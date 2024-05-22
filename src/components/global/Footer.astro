@@ -1,0 +1,40 @@
+<footer>
+  <div class="max-w-xl px-8 mx-auto">
+    <div class="prose-styles flex justify-between">
+      <p class="text-sm">
+        <span
+          class="flex gap-2 font-medium"
+          x-data="{ year: new Date().getFullYear() }">
+          <span x-text="year"></span><span> Windstatic</span>
+        </span>
+      </p>
+      <p>
+        <span
+          id="clock"
+          class="text-sm">
+        </span>
+      </p>
+    </div>
+  </div>
+</footer>
+<script type="module">
+  function updateClock() {
+    const now = new Date(); // Get the current date and time
+    const hours = now.getHours(); // 0-23
+    const minutes = now.getMinutes(); // 0-59
+    const seconds = now.getSeconds(); // 0-59
+    // Format time as HH:MM:SS
+    // Use .toString().padStart(2, '0') to add leading zeros if needed
+    const timeString = [
+      hours.toString().padStart(2, "0"),
+      minutes.toString().padStart(2, "0"),
+      seconds.toString().padStart(2, "0"),
+    ].join(":");
+    // Update the clock element with the time
+    document.getElementById("clock").textContent = timeString;
+  }
+  // Update the clock every second
+  setInterval(updateClock, 1000);
+  // Initialize the clock
+  updateClock();
+</script>

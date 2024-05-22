@@ -1,0 +1,30 @@
+---
+import "../styles/global.css";
+import Metas from "./seo/Metas.astro";
+import Favicons from "./seo/Favicons.astro";
+const {
+  title = "Michaelandreuzza.com  - Home",
+  description = "#",
+  url,
+  socialImage = "/images/opengraph/facebook.png",
+  twitterImage = "/images/opengraph/twitter.png",
+  author = "Michael Andreuzza",
+} = Astro.props;
+const sanitizedTitle = title.toLowerCase().replaceAll(" ", "-");
+---
+<Metas
+  title={title}
+  description={description.substring(0, 100)}
+  url={Astro.site
+    ? `${Astro.site}/${sanitizedTitle}`
+    : `https://michaelandreuzza.com/${sanitizedTitle}`}
+  image={socialImage}
+  author={author}
+  twitterImage={twitterImage}
+/>
+<Favicons/>
+<!-- HTML in your document's head -->
+<link rel="preconnect" href="https://rsms.me/" />
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
+
