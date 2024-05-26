@@ -2,101 +2,123 @@
 page: Home
 ---
 
-<div class="flex items-center gap-2 mb-12">
-  <div class="inline-flex gap-2 items-center">
-    <svg
-      class="flex-none inline size-4"
-      viewBox="0 0 64 64"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg">
-      <g clip-path="url(#clip0_459_2)">
-        <path
-          d="M32 12.75C23.4668 12.75 18.1332 17.0168 16 25.55C19.2 21.2833 22.9333 19.6832 27.2 20.75C29.6343 21.3585 31.3743 23.2498 33.3003 25.0795C36.4378 28.2643 40.0687 31.95 48 31.95C56.5332 31.95 61.8668 27.6832 64 19.15C60.8 23.4167 57.0667 25.0167 52.8 23.95C50.3657 23.3415 48.6257 21.4503 46.6997 19.6205C43.5622 16.4358 39.9313 12.75 32 12.75ZM16 31.95C7.46675 31.95 2.13325 36.2168 0 44.75C3.2 40.4833 6.93325 38.8833 11.2 39.95C13.6342 40.5585 15.3742 42.4497 17.3002 44.2795C20.4377 47.4642 24.0687 51.15 32 51.15C40.5332 51.15 45.8668 46.8833 48 38.35C44.8 42.6168 41.0667 44.2167 36.8 43.15C34.3657 42.5415 32.6258 40.6502 30.6998 38.8205C27.5623 35.6357 23.9313 31.95 16 31.95Z"
-          fill="#38BDF9"
-          stroke="#38BDF9"
-          stroke-width="0.25"
-        ></path>
-      </g>
-      <defs>
-        <clipPath id="clip0_459_2">
-          <rect
-            width="64"
-            height="64"
-            fill="white"
-          ></rect>
-        </clipPath>
-      </defs>
-    </svg> Tailwind CSS
-  </div>
-·
-  <div class="inline-flex gap-2 items-center">
-    <svg
-      class="flex-none inline size-4"
-      viewBox="0 0 64 64"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg">
-      <g clip-path="url(#clip0_460_7)">
-        <path
-          d="M49.7769 17L63.9992 31.16L49.7769 45.3197L35.5547 31.1597L49.7769 17Z"
-          fill="#77C1D2"
-        ></path>
-        <path
-          d="M14.2222 17L43.7067 46.355H15.2622L0 31.16L14.2222 17Z"
-          fill="#2D3441"
-        ></path>
-      </g>
-      <defs>
-        <clipPath id="clip0_460_7">
-          <rect
-            width="64"
-            height="29.5"
-            fill="white"
-            transform="translate(0 17)"
-          ></rect>
-        </clipPath>
-      </defs>
-    </svg>
-    Alpine JS
-  </div>
-</div>
-
-# Build your layout library
-
-windstatic is a set of elements, templates & layouts made with Tailwind CSS and Alpine.js
-
-Discover a collection of components ready to be seamlessly integrated into your applications with just a simple copy and paste.
+# all blocks for windstatic.com
 
 ---
+### Heros
+- [Hero 1](/heros/1)
+---
+### Left Headings
 
-### blocks
+- [Heading 1](/left-headings/1)
+- [Heading 2](/left-headings/2)
+- [Heading 3](/left-headings/3)
+- [Heading 4](/left-headings/4)
+- [Heading 5](/left-headings/5)
+- [Heading 6](/left-headings/6)
+- [Heading 7](/left-headings/7)
+- [Heading 8](/left-headings/8)
+- [Heading 9](/left-headings/9)
+- [Heading 10](/left-headings/10)
+- [Heading 11](/left-headings/11)
+- [Heading 12](/left-headings/12)
+- [Heading 13](/left-headings/13)
+- [Heading 14](/left-headings/14)
+- [Heading 15](/left-headings/15)
+- [Heading 16](/left-headings/16)
+- [Heading 17](/left-headings/17)
+- [Heading 18](/left-headings/18)
+- [Heading 19](/left-headings/19)
+- [Heading 20](/left-headings/20)
+---
+### Centered Headings
 
-- [faq](/blocks/faq)
-- [auth](/blocks/auth)
-- [blog](/blocks/blog)
-- [team](/blocks/team)
-- [grids](/blocks/grids)
-- [error](/blocks/error)
-- [heros](/blocks/heros)
-- [gallery](/blocks/logos)
-- [pricing](/blocks/pricing)
-- [footers](/blocks/footers)
-- [features](/blocks/features)
-- [newsletter ](/blocks/newsletter)
-- [logoclouds](/blocks/logoclouds)
-- [testimonials](/blocks/testimonials)
-- [call to action](/blocks/cta)
+- [Heading 1](/centered-headings/1)
+- [Heading 2](/centered-headings/2)
+- [Heading 3](/centered-headings/3)
+- [Heading 4](/centered-headings/4)
+- [Heading 5](/centered-headings/5)
+- [Heading 6](/centered-headings/6)
+- [Heading 7](/centered-headings/7)
+- [Heading 8](/centered-headings/8)
+- [Heading 9](/centered-headings/9)
+- [Heading 10](/centered-headings/10)
+- [Heading 11](/centered-headings/11)
+- [Heading 12](/centered-headings/12)
+- [Heading 13](/centered-headings/13)
+- [Heading 14](/centered-headings/14)
+- [Heading 15](/centered-headings/15)
+- [Heading 16](/centered-headings/16)
+- [Heading 17](/centered-headings/17)
+- [Heading 18](/centered-headings/18)
+- [Heading 19](/centered-headings/19)
+- [Heading 20](/centered-headings/20)
+---
+### Right Headings
 
-### navigation
+- [Heading 1](/right-headings/1)
+- [Heading 2](/right-headings/2)
+- [Heading 3](/right-headings/3)
+- [Heading 4](/right-headings/4)
+- [Heading 5](/right-headings/5)
+- [Heading 6](/right-headings/6)
+- [Heading 7](/right-headings/7)
+- [Heading 8](/right-headings/8)
+- [Heading 9](/right-headings/9)
+- [Heading 10](/right-headings/10)
+- [Heading 11](/right-headings/11)
+- [Heading 12](/right-headings/12)
+- [Heading 13](/right-headings/13)
+- [Heading 14](/right-headings/14)
+- [Heading 15](/right-headings/15)
+- [Heading 16](/right-headings/16)
+- [Heading 17](/right-headings/17)
+- [Heading 18](/right-headings/18)
+- [Heading 19](/right-headings/19)
+- [Heading 20](/right-headings/20)
+---
+### Grids
 
-- [tabs](/navigation/tabs)
-- [steps](/navigation/steps)
-- [flyouts](/navigation/flyouts)
-- [navbars](/navigation/navbars)
-- [sidebars](/navigation/sidebars)
-- [pagination](/navigation/pagination)
-- [breadcrumbs](/blocks/breadcrumbs)
-- [vertical navigation](/navigation/vertical-navigation)
+- [Grid 1](/grids/1)
+- [Grid 2](/grids/2)
+- [Grid 3](/grids/3)
+- [Grid 4](/grids/4)
+- [Grid 5](/grids/5)
+- [Grid 6](/grids/6)
+- [Grid 7](/grids/7)
+- [Grid 8](/grids/8)
+- [Grid 9](/grids/9)
+- [Grid 10](/grids/10)
+- [Grid 11](/grids/11)
+- [Grid 12](/grids/12)
+- [Grid 13](/grids/13)
+- [Grid 14](/grids/14)
+- [Grid 15](/grids/15)
+- [Grid 16](/grids/16)
+- [Grid 17](/grids/17)
+- [Grid 18](/grids/18)
+- [Grid 19](/grids/19)
+- [Grid 20](/grids/20)
 
-### components
-
-- [buttons](/components/buttons)
+---
+### Pricing
+- [Pricing 1](/pricing/1)
+- [Pricing 2](/pricing/2)
+- [Pricing 3](/pricing/3)
+- [Pricing 4](/pricing/4)
+- [Pricing 5](/pricing/5)
+- [Pricing 6](/pricing/6)
+- [Pricing 7](/pricing/7)
+- [Pricing 8](/pricing/8)
+- [Pricing 9](/pricing/9)
+- [Pricing 10](/pricing/10)
+- [Pricing 11](/pricing/11)
+- [Pricing 12](/pricing/12)
+- [Pricing 13](/pricing/13)
+- [Pricing 14](/pricing/14)
+- [Pricing 15](/pricing/15)
+- [Pricing 16](/pricing/16)
+- [Pricing 17](/pricing/17)
+- [Pricing 18](/pricing/18)
+- [Pricing 19](/pricing/19)
+- [Pricing 20](/pricing/20)
