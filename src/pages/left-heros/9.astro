@@ -1,5 +1,22 @@
 ---
 import ScreenLayout from "@/layouts/ScreenLayout.astro";
+const features = [
+  {
+    title: "Real-time financial analytics",
+    description:
+      "This feature can include customizable charts, graphs, and financial dashboards that help users monitor their investments and expenses.",
+  },
+  {
+    title: "Secure digital wallet",
+    description:
+      "Offer a secure and user-friendly digital wallet where users can manage their digital assets, cryptocurrencies, and traditional currencies.",
+  },
+  {
+    title: "Personalized financial advice",
+    description:
+      "Implement a feature that offers personalized financial advice and investment recommendations based on the user's goals.",
+  },
+];
 ---
 
 <ScreenLayout>
@@ -31,9 +48,10 @@ import ScreenLayout from "@/layouts/ScreenLayout.astro";
         ></rect></svg
       >
     </div>
+
     <div
-      class="px-8 py-32 sm:py-48 lg:py-56 mx-auto md:px-12 lg:px-32 max-w-7xl relative">
-      <div class="text-center">
+      class="px-8 py-32 md:py-48 lg:py-56 mx-auto md:px-12 lg:px-32 max-w-7xl relative">
+      <div class="mx-auto max-w-2xl lg:mx-0 lg:flex-auto">
         <span
           class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
           >Your tagline</span
@@ -44,23 +62,19 @@ import ScreenLayout from "@/layouts/ScreenLayout.astro";
 
           <span class="text-gray-600">users with an engaging headline</span>
         </h1>
-        <p
-          class="lg:w-1/2 mx-auto mt-6 text-base font-medium text-gray-500 lg:text-balance">
-          The fastest method for working together on staging and temporary
-          environments.
+        <p class="text-base font-medium mt-4 text-gray-500">
+          The fastest and most efficient method for working together on staging
+          and temporary environments. This approach streamlines collaboration
+          among team members, ensuring that development and testing processes
+          are seamless and effective.
         </p>
 
-        <div
-          class="flex flex-wrap items-center justify-center gap-2 mx-auto mt-12">
-          <button
-            class="flex items-center justify-center h-10 px-4 py-2 text-sm font-semibold text-white transition-all duration-200 rounded-lg bg-gradient-to-b from-blue-500 to-blue-600 hover:to-blue-800 shadow focus:ring-2 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none"
-            aria-label="Action">
-            Get started
-          </button>
-          <button
-            class="flex items-center justify-center gap-2 h-10 px-4 py-2 text-sm font-semibold text-gray-500 transition-all duration-200 bg-gray-50 border border-gray-300 rounded-lg hover:text-blue-700 focus:ring-2 shadow shadow-gray-500/5 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none"
-            aria-label="Action">
-            Lerarn more
+        <div class="mt-12 flex">
+          <a
+            href="#_"
+            aria-label="Action"
+            class="text-blue-500 hover:text-black text-sm font-medium duration-300 flex items-center gap-2"
+            >Get started
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="18"
@@ -78,9 +92,22 @@ import ScreenLayout from "@/layouts/ScreenLayout.astro";
                 fill="none"
               ></path><path d="M9 6l6 6l-6 6"></path></svg
             >
-          </button>
+          </a>
         </div>
       </div>
+      <dl
+        class="grid grid-cols-1  gap-12 sm:grid-cols-2 md:grid-cols-3 mt-8">
+        {
+          features.map((feature, index) => (
+            <div>
+              <dt class="text-blue-950 font-medium text-sm font-mono uppercase">
+                {feature.title}
+              </dt>
+              <dd class="mt-2 text-sm text-gray-500">{feature.description}</dd>
+            </div>
+          ))
+        }
+      </dl>
     </div>
   </section>
 </ScreenLayout>
