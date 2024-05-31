@@ -2,11 +2,74 @@
 page: Home
 ---
 
-# all blocks for windstatic.com
+# all blocks for windstatic _pro_
 
 ---
-### Heros
-- [Hero 1](/heros/1)
+### Left Heros
+- [Hero 1](/left-heros/1)
+- [Hero 2](/left-heros/2)
+- [Hero 3](/left-heros/3)
+- [Hero 4](/left-heros/4)
+- [Hero 5](/left-heros/5)
+- [Hero 6](/left-heros/6)
+- [Hero 7](/left-heros/7)
+- [Hero 8](/left-heros/8)
+- [Hero 9](/left-heros/9)
+- [Hero 10](/left-heros/10)
+- [Hero 11](/left-heros/11)
+- [Hero 12](/left-heros/12)
+- [Hero 13](/left-heros/13)
+- [Hero 14](/left-heros/14)
+- [Hero 15](/left-heros/15)
+- [Hero 16](/left-heros/16)
+- [Hero 17](/left-heros/17)
+- [Hero 18](/left-heros/18)
+- [Hero 19](/left-heros/19)
+- [Hero 20](/left-heros/20)
+---
+### Centered Heros
+- [Hero 1](/centered-heros/1)
+- [Hero 2](/centered-heros/2)
+- [Hero 3](/centered-heros/3)
+- [Hero 4](/centered-heros/4)
+- [Hero 5](/centered-heros/5)
+- [Hero 6](/centered-heros/6)
+- [Hero 7](/centered-heros/7)
+- [Hero 8](/centered-heros/8)
+- [Hero 9](/centered-heros/9)
+- [Hero 10](/centered-heros/10)
+
+---
+### Right Heros
+- [Hero 1](/right-heros/1)
+- [Hero 2](/right-heros/2)
+- [Hero 3](/right-heros/3)
+- [Hero 4](/right-heros/4)
+- [Hero 5](/right-heros/5)
+
+---
+### Features
+- [Feature 1](/features/1)
+- [Feature 2](/features/2)
+- [Feature 3](/features/3)
+- [Feature 4](/features/4)
+- [Feature 5](/features/5)
+- [Feature 6](/features/6)
+- [Feature 7](/features/7)
+- [Feature 8](/features/8)
+- [Feature 9](/features/9)
+- [Feature 10](/features/10)
+- [Feature 11](/features/11)
+- [Feature 12](/features/12)
+- [Feature 13](/features/13)
+- [Feature 14](/features/14)
+- [Feature 15](/features/15)
+- [Feature 16](/features/16)
+- [Feature 17](/features/17)
+- [Feature 18](/features/18)
+- [Feature 19](/features/19)
+- [Feature 20](/features/20)
+
 ---
 ### Left Headings
 
