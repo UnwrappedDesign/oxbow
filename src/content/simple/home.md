@@ -69,9 +69,19 @@ page: Home
 - [Feature 18](/features/18)
 - [Feature 19](/features/19)
 - [Feature 20](/features/20)
+- [Feature 21](/features/21)
+- [Feature 22](/features/22)
+- [Feature 23](/features/23)
+- [Feature 24](/features/24)
+- [Feature 25](/features/25)
+- [Feature 26](/features/26)
+- [Feature 27](/features/27)
+- [Feature 28](/features/28)
+- [Feature 29](/features/29)
+- [Feature 30](/features/30)
 
 ---
-### Left Headings
+### Left  Headings
 
 - [Heading 1](/left-headings/1)
 - [Heading 2](/left-headings/2)
