@@ -1,9 +1,251 @@
 ---
-import Home from "@/content/simple/home.md";
-import SimpleLayout from "@/layouts/SimpleLayout.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const blocks = [
+  {
+    category: "Left Heros",
+    items: [
+      { name: "Hero ", url: "/left-heros/1" },
+      { name: "Hero ", url: "/left-heros/2" },
+      { name: "Hero ", url: "/left-heros/3" },
+      { name: "Hero ", url: "/left-heros/4" },
+      { name: "Hero ", url: "/left-heros/5" },
+      { name: "Hero ", url: "/left-heros/6" },
+      { name: "Hero ", url: "/left-heros/7" },
+      { name: "Hero ", url: "/left-heros/8" },
+      { name: "Hero ", url: "/left-heros/9" },
+      { name: "Hero ", url: "/left-heros/10" },
+      { name: "Hero ", url: "/left-heros/11" },
+      { name: "Hero ", url: "/left-heros/12" },
+      { name: "Hero ", url: "/left-heros/13" },
+      { name: "Hero ", url: "/left-heros/14" },
+      { name: "Hero ", url: "/left-heros/15" },
+      { name: "Hero", url: "/left-heros/16" },
+      { name: "Hero ", url: "/left-heros/17" },
+      { name: "Hero", url: "/left-heros/18" },
+      { name: "Hero ", url: "/left-heros/19" },
+      { name: "Hero ", url: "/left-heros/20" },
+    ],
+  },
+  {
+    category: "Centered Heros",
+    items: [
+      { name: "Hero", url: "/centered-heros/1" },
+      { name: "Hero", url: "/centered-heros/2" },
+      { name: "Hero", url: "/centered-heros/3" },
+      { name: "Hero", url: "/centered-heros/4" },
+      { name: "Hero", url: "/centered-heros/5" },
+      { name: "Hero", url: "/centered-heros/6" },
+      { name: "Hero", url: "/centered-heros/7" },
+      { name: "Hero", url: "/centered-heros/8" },
+      { name: "Hero", url: "/centered-heros/9" },
+      { name: "Hero", url: "/centered-heros/10" },
+    ],
+  },
+  {
+    category: "Right Heros",
+    items: [
+      { name: "Hero ", url: "/right-heros/1" },
+      { name: "Hero ", url: "/right-heros/2" },
+      { name: "Hero ", url: "/right-heros/3" },
+      { name: "Hero ", url: "/right-heros/4" },
+      { name: "Hero ", url: "/right-heros/5" },
+    ],
+  },
+  {
+    category: "Features",
+    items: [
+      { name: "Feature", url: "/features/1" },
+      { name: "Feature", url: "/features/2" },
+      { name: "Feature", url: "/features/3" },
+      { name: "Feature", url: "/features/4" },
+      { name: "Feature", url: "/features/5" },
+      { name: "Feature", url: "/features/6" },
+      { name: "Feature", url: "/features/7" },
+      { name: "Feature", url: "/features/8" },
+      { name: "Feature", url: "/features/9" },
+      { name: "Feature", url: "/features/10" },
+      { name: "Feature", url: "/features/11" },
+      { name: "Feature", url: "/features/12" },
+      { name: "Feature", url: "/features/13" },
+      { name: "Feature", url: "/features/14" },
+      { name: "Feature", url: "/features/15" },
+      { name: "Feature", url: "/features/16" },
+      { name: "Feature", url: "/features/17" },
+      { name: "Feature", url: "/features/18" },
+      { name: "Feature", url: "/features/19" },
+      { name: "Feature", url: "/features/20" },
+      { name: "Feature", url: "/features/21" },
+      { name: "Feature", url: "/features/22" },
+      { name: "Feature", url: "/features/23" },
+      { name: "Feature", url: "/features/24" },
+      { name: "Feature", url: "/features/25" },
+      { name: "Feature", url: "/features/26" },
+      { name: "Feature", url: "/features/27" },
+      { name: "Feature", url: "/features/28" },
+      { name: "Feature", url: "/features/29" },
+      { name: "Feature", url: "/features/30" },
+    ],
+  },
+  {
+    category: "Left Headings",
+    items: [
+      { name: "Heading", url: "/left-headings/1" },
+      { name: "Heading", url: "/left-headings/2" },
+      { name: "Heading", url: "/left-headings/3" },
+      { name: "Heading", url: "/left-headings/4" },
+      { name: "Heading", url: "/left-headings/5" },
+      { name: "Heading", url: "/left-headings/6" },
+      { name: "Heading", url: "/left-headings/7" },
+      { name: "Heading", url: "/left-headings/8" },
+      { name: "Heading", url: "/left-headings/9" },
+      { name: "Heading", url: "/left-headings/10" },
+      { name: "Heading", url: "/left-headings/11" },
+      { name: "Heading", url: "/left-headings/12" },
+      { name: "Heading", url: "/left-headings/13" },
+      { name: "Heading", url: "/left-headings/14" },
+      { name: "Heading", url: "/left-headings/15" },
+      { name: "Heading", url: "/left-headings/16" },
+      { name: "Heading", url: "/left-headings/17" },
+      { name: "Heading", url: "/left-headings/18" },
+      { name: "Heading", url: "/left-headings/19" },
+      { name: "Heading", url: "/left-headings/20" },
+    ],
+  },
+  {
+    category: "Centered Headings",
+    items: [
+      { name: "Heading", url: "/centered-headings/1" },
+      { name: "Heading", url: "/centered-headings/2" },
+      { name: "Heading", url: "/centered-headings/3" },
+      { name: "Heading", url: "/centered-headings/4" },
+      { name: "Heading", url: "/centered-headings/5" },
+      { name: "Heading", url: "/centered-headings/6" },
+      { name: "Heading", url: "/centered-headings/7" },
+      { name: "Heading", url: "/centered-headings/8" },
+      { name: "Heading", url: "/centered-headings/9" },
+      { name: "Heading", url: "/centered-headings/10" },
+      { name: "Heading", url: "/centered-headings/11" },
+      { name: "Heading", url: "/centered-headings/12" },
+      { name: "Heading", url: "/centered-headings/13" },
+      { name: "Heading", url: "/centered-headings/14" },
+      { name: "Heading", url: "/centered-headings/15" },
+      { name: "Heading", url: "/centered-headings/16" },
+      { name: "Heading", url: "/centered-headings/17" },
+      { name: "Heading", url: "/centered-headings/18" },
+      { name: "Heading", url: "/centered-headings/19" },
+      { name: "Heading", url: "/centered-headings/20" },
+    ],
+  },
+  {
+    category: "Right Headings",
+    items: [
+      { name: "Heading", url: "/right-headings/1" },
+      { name: "Heading", url: "/right-headings/2" },
+      { name: "Heading", url: "/right-headings/3" },
+      { name: "Heading", url: "/right-headings/4" },
+      { name: "Heading", url: "/right-headings/5" },
+      { name: "Heading", url: "/right-headings/6" },
+      { name: "Heading", url: "/right-headings/7" },
+      { name: "Heading", url: "/right-headings/8" },
+      { name: "Heading", url: "/right-headings/9" },
+      { name: "Heading", url: "/right-headings/10" },
+      { name: "Heading", url: "/right-headings/11" },
+      { name: "Heading", url: "/right-headings/12" },
+      { name: "Heading", url: "/right-headings/13" },
+      { name: "Heading", url: "/right-headings/14" },
+      { name: "Heading", url: "/right-headings/15" },
+      { name: "Heading", url: "/right-headings/16" },
+      { name: "Heading", url: "/right-headings/17" },
+      { name: "Heading", url: "/right-headings/18" },
+      { name: "Heading", url: "/right-headings/19" },
+      { name: "Heading", url: "/right-headings/20" },
+    ],
+  },
+  {
+    category: "Grids",
+    items: [
+      { name: "Grid", url: "/grids/1" },
+      { name: "Grid", url: "/grids/2" },
+      { name: "Grid", url: "/grids/3" },
+      { name: "Grid", url: "/grids/4" },
+      { name: "Grid", url: "/grids/5" },
+      { name: "Grid", url: "/grids/6" },
+      { name: "Grid", url: "/grids/7" },
+      { name: "Grid", url: "/grids/8" },
+      { name: "Grid", url: "/grids/9" },
+      { name: "Grid", url: "/grids/10" },
+      { name: "Grid", url: "/grids/11" },
+      { name: "Grid", url: "/grids/12" },
+      { name: "Grid", url: "/grids/13" },
+      { name: "Grid", url: "/grids/14" },
+      { name: "Grid", url: "/grids/15" },
+      { name: "Grid", url: "/grids/16" },
+      { name: "Grid", url: "/grids/17" },
+      { name: "Grid", url: "/grids/18" },
+      { name: "Grid", url: "/grids/19" },
+      { name: "Grid", url: "/grids/20" },
+    ],
+  },
+  {
+    category: "Pricing",
+    items: [
+      { name: "Pricing", url: "/pricing/1" },
+      { name: "Pricing", url: "/pricing/2" },
+      { name: "Pricing", url: "/pricing/3" },
+      { name: "Pricing", url: "/pricing/4" },
+      { name: "Pricing", url: "/pricing/5" },
+      { name: "Pricing", url: "/pricing/6" },
+      { name: "Pricing", url: "/pricing/7" },
+      { name: "Pricing", url: "/pricing/8" },
+      { name: "Pricing", url: "/pricing/9" },
+      { name: "Pricing", url: "/pricing/10" },
+      { name: "Pricing", url: "/pricing/11" },
+      { name: "Pricing", url: "/pricing/12" },
+      { name: "Pricing", url: "/pricing/13" },
+      { name: "Pricing", url: "/pricing/14" },
+      { name: "Pricing", url: "/pricing/15" },
+      { name: "Pricing", url: "/pricing/16" },
+      { name: "Pricing", url: "/pricing/17" },
+      { name: "Pricing", url: "/pricing/18" },
+      { name: "Pricing", url: "/pricing/19" },
+      { name: "Pricing", url: "/pricing/20" },
+    ],
+  },
+];
 ---
 
-<SimpleLayout>
-  <Home />
-</SimpleLayout>
-
+<BaseLayout>
+  <section>
+    <div class="max-w-xl mx-auto px-8 py-12 lg:py-32">
+      <div class="prose-styles">
+        <h1 id="hey">
+          windstatic — a set of elements, templates & layouts made with Tailwind
+          CSS and Alpine.js
+        </h1>
+        <p>
+          Discover a collection of components ready to be seamlessly integrated
+          into your applications with just a simple copy and paste.
+        </p>
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-3 pt-6 border-t">
+          {
+            blocks.map((block) => (
+              <div>
+                <h2>{block.category}</h2>
+                <ul>
+                  {block.items.map((item, subIndex) => (
+                    <li>
+                      <a href={item.url}>
+                        {subIndex + 1} {item.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
