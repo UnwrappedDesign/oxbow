@@ -1,0 +1,79 @@
+---
+import ScreenLayout from "@/layouts/ScreenLayout.astro";
+const faqs = [
+  {
+    question: "How does end-to-end encryption work?",
+    answer:
+      "End-to-end encryption ensures that only the sender and recipient can access the content of a message. ",
+  },
+  {
+    question: "Can I access my encrypted data if I forget my encryption key?",
+    answer:
+      "No, forgetting or losing your encryption key means that your encrypted data cannot be accessed.",
+  },
+  {
+    question:
+      "Are there any limitations to the self-destructing messages feature?",
+    answer:
+      "Self-destructing messages are designed to automatically delete themselves after a specific period or upon being read by the recipient. ",
+  },
+  {
+    question:
+      "What happens if I enable two-factor authentication and lose my device?",
+    answer:
+      "Losing your device doesn't automatically compromise your account's security. ",
+  },
+  {
+    question: "Is my personal information shared or sold to third parties?",
+    answer:
+      "No, we strictly adhere to a privacy-centric approach. Your personal information is never shared, sold, or monetized. ",
+  },
+  {
+    question: "Can I use this platform on multiple devices?",
+    answer:
+      "Yes, you can access our platform on multiple devices. ",
+  },
+  {
+    question: "Are there any storage limitations for files and documents?",
+    answer:
+      "Our platform provides ample storage space for your files and documents. ",
+  },
+  {
+    question: "Is it possible to export my data from the platform?",
+    answer:
+      "Yes, you can export your data from the platform. ",
+  },
+];
+---
+
+<ScreenLayout>
+  <section>
+    <div class="px-8 py-32 mx-auto md:px-12 lg:px-32 max-w-7xl relative">
+      <div>
+        <span
+          class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+          >faq</span
+        >
+        <h1
+          class="text-4xl mt-4 font-semibold tracking-tight text-blue-950 lg:text-5xl lg:text-balance">
+          Frequently Asked Questions
+        </h1>
+        <p class="mt-6 text-base font-medium text-gray-500">
+          Everything you need to know about our platform.
+        </p>
+      </div>
+      <div class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {
+          faqs.map((faq) => (
+            <div>
+              <div class="  text-left select-none text-blue-950 ">
+                {faq.question}
+              </div>
+              <div class="mt-2 text-sm text-gray-500">{faq.answer}</div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</ScreenLayout>
