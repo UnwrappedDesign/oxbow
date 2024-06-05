@@ -1,0 +1,89 @@
+---
+import ScreenLayout from "@/layouts/ScreenLayout.astro";
+const teamMembers = [
+  {
+    name: "Michael Andreuzza",
+    title: "Creator of Windstatic.com",
+    imgSrc:
+      "https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+  },
+  {
+    name: "Juan Echanove",
+    title: "Founder of Pay Oneeer",
+    imgSrc:
+      "https://images.unsplash.com/photo-1624224971170-2f84fed5eb5e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1999&q=80",
+  },
+  {
+    name: "Elona Muska",
+    title: "Founder of Fesla",
+    imgSrc:
+      "https://images.unsplash.com/photo-1602434228300-a645bce6891b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1639&q=80",
+  },
+  {
+    name: "Messina Lionel",
+    title: "COO at Pff Inc",
+    imgSrc:
+      "https://images.unsplash.com/photo-1548142813-c348350df52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=989&q=80",
+  },
+  {
+    name: "Sara Johnson",
+    title: "Lead Developer",
+    imgSrc:
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+  },
+  {
+    name: "David Kim",
+    title: "Marketing Director",
+    imgSrc:
+      "https://images.unsplash.com/photo-1456327102063-fb5054efe647?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGhlYWQlMjBwZXJzb258ZW58MHwwfDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
+  },
+];
+---
+
+<ScreenLayout>
+  <section>
+    <div class="px-8 py-32 mx-auto md:px-12 lg:px-32 max-w-7xl relative">
+      <div>
+        <span
+          class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+          >Your tagline</span
+        >
+        <h1
+          class="text-4xl mt-4 font-semibold tracking-tight text-blue-950 lg:text-5xl lg:text-balance">
+          Meet Our Team
+
+          <span class="text-gray-600 block">Diverse. Skilled. United. </span>
+        </h1>
+        <p class="mt-6 text-base font-medium text-gray-500 lg:text-balance">
+          A group of passionate individuals working together to innovate and
+          excel in our industry.
+        </p>
+      </div>
+      <ul
+        role="list"
+        class="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 lg:mt-24">
+        {
+          teamMembers.map((member) => (
+            <li>
+              <div class="flex items-center gap-4">
+                <img
+                  class="object-cover rounded-full size-12"
+                  src={member.imgSrc}
+                  alt=""
+                />
+                <div>
+                  <h3 class="font-mono uppercase tracking-tighter text-sm font-medium text-blue-950">
+                    {member.name}
+                  </h3>
+                  <p class="mt-2 text-sm text-gray-500 text-balance">
+                    {member.title}
+                  </p>
+                </div>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</ScreenLayout>

@@ -1,5 +1,32 @@
 ---
 import ScreenLayout from "@/layouts/ScreenLayout.astro";
+const teamMembers = [
+  {
+    name: "Michael Andreuzza",
+    title: "Creator of Windstatic.com",
+    imgSrc:
+      "https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+  },
+  {
+    name: "Juan Echanove",
+    title: "Founder of Pay Oneeer",
+    imgSrc:
+      "https://images.unsplash.com/photo-1624224971170-2f84fed5eb5e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1999&q=80",
+  },
+  {
+    name: "Elona Muska",
+    title: "Founder of Fesla",
+    imgSrc:
+      "https://images.unsplash.com/photo-1602434228300-a645bce6891b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1639&q=80",
+  },
+  {
+    name: "Messina Lionel",
+    title: "COO at Pff Inc",
+    imgSrc:
+      "https://images.unsplash.com/photo-1548142813-c348350df52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=989&q=80",
+  },
+  // More team members can be added here
+];
 ---
 
 <ScreenLayout>
@@ -8,33 +35,43 @@ import ScreenLayout from "@/layouts/ScreenLayout.astro";
       <div>
         <span
           class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
-          >faq</span
+          >Your tagline</span
         >
         <h1
           class="text-4xl mt-4 font-semibold tracking-tight text-blue-950 lg:text-5xl lg:text-balance">
-          Frequently Asked Questions
+          Meet Our Team
+
+          <span class="text-gray-600 block">Diverse. Skilled. United. </span>
         </h1>
-        <p class="mt-6 text-base font-medium text-gray-500">
-          Everything you need to know about our platform.
+        <p class="mt-6 text-base font-medium text-gray-500 lg:text-balance">
+          A group of passionate individuals working together to innovate and
+          excel in our industry.
         </p>
       </div>
       <ul
         role="list"
-        class="mx-auto mt-20 grid max-w-2xl grid-cols-2 gap-x-8 gap-y-16 text-center sm:grid-cols-3 md:grid-cols-4 lg:mx-0 lg:max-w-none lg:grid-cols-5 xl:grid-cols-6">
-        <li>
-          <img
-            class="mx-auto h-24 w-24 rounded-full"
-            src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80"
-            alt=""
-          />
-          <h3
-            class="mt-6 text-base font-semibold leading-7 tracking-tight text-gray-900">
-            Michael Foster
-          </h3>
-          <p class="text-sm leading-6 text-gray-600">Co-Founder / CTO</p>
-        </li>
-
-        <!-- More people... -->
+        class="mt-12 sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-12 lg:mt-24">
+        {
+          teamMembers.map((member) => (
+            <li>
+              <div class="flex flex-col gap-4">
+                <img
+                  class="object-cover rounded-full size-16 lg:size-20"
+                  src={member.imgSrc}
+                  alt=""
+                />
+                <div>
+                  <h3 class="font-mono uppercase tracking-tighter text-sm font-medium text-blue-950">
+                    {member.name}
+                  </h3>
+                  <p class="mt-2 text-sm text-gray-500 text-balance">
+                    {member.title}
+                  </p>
+                </div>
+              </div>
+            </li>
+          ))
+        }
       </ul>
     </div>
   </section>
