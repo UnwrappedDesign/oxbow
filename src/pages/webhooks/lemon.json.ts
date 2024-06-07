@@ -1,15 +1,16 @@
 import type { APIRoute } from 'astro';
-
-import { auth } from '../../firebaseAdmin';
+import { getAuth } from "firebase-admin/auth";
+import { app } from "../../firebase/server";
 
 export const POST: APIRoute = async ({ request }) => {
+  const auth = getAuth(app)
   const { headers } = request;
 
   if (!headers.get('X-Signature')) {
     return new Response('X-Signature header is required', { status: 400 });
   }
 
-  if (headers.get('X-Signature') !== process.env.LEMON_SQUEEZE_SECRET) {
+  if (headers.get('X-Signature') !== import.meta.env.LEMON_SQUEEZE_SECRET) {
     return new Response('Invalid X-Signature header', { status: 403 });
   }
 

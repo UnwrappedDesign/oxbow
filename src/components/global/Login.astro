@@ -10,11 +10,7 @@
     <form>
       <div class="space-y-3 mt-6 pt-6 border-t">
         <div>
-          <label
-            for="email"
-            class="sr-only">
-            Email
-          </label>
+          <label for="email" class="sr-only"> Email </label>
           <input
             id="email"
             name="email"
@@ -30,7 +26,8 @@
           <button
             type="submit"
             aria-label="Get your link"
-            class="rounded-lg px-4 py-2 text-sm font-semibold w-full transition-all text-white bg-gradient-to-b from-blue-500 to-blue-600 hover:to-blue-700 h-10 inline-flex items-center justify-between">
+            class="rounded-lg px-4 py-2 text-sm font-semibold w-full transition-all text-white bg-gradient-to-b from-blue-500 to-blue-600 hover:to-blue-700 h-10 inline-flex items-center justify-between"
+          >
             Get your link
             <span aria-hidden="true">&rarr;</span>
           </button>
@@ -38,36 +35,29 @@
       </div>
     </form>
     <div class="mt-4 space-y-2 text-xs text-gray-500">
-      <div
-        id="invalid-email"
-        class="hidden">
+      <div id="invalid-email" class="hidden">
         <p>
-          <strong class="text-red-500 font-semibold">Invalid Email:</strong> "The email
-          address you entered is not valid. Please enter a valid email address."
+          <strong class="text-red-500 font-semibold">Invalid Email:</strong> "The
+          email address you entered is not valid. Please enter a valid email address."
         </p>
       </div>
-      <div
-        id="email-not-found"
-        class="hidden">
+      <div id="email-not-found" class="hidden">
         <p>
           <strong class="text-red-500 font-semibold">Email Not Found:</strong> "We
           couldn't find an account linked to this email address. Please check the
           email address or create a new account."
         </p>
       </div>
-      <div
-        id="server-error"
-        class="hidden">
+      <div id="server-error" class="hidden">
         <p>
           <strong class="text-red-500 font-semibold">Server Error:</strong> "An error
           occurred while processing your request. Please try again later."
         </p>
       </div>
-      <div
-        id="email-send-failure"
-        class="hidden">
+      <div id="email-send-failure" class="hidden">
         <p>
-          <strong class="text-red-500 font-semibold">Email Send Failure:</strong>
+          <strong class="text-red-500 font-semibold">Email Send Failure:</strong
+          >
           "We were unable to send the sign-in link to your email. Please check your
           email address and try again."
         </p>
@@ -75,3 +65,31 @@
     </div>
   </div>
 </section>
+<script>
+  import { getAuth, sendSignInLinkToEmail } from "firebase/auth";
+  import { app } from "../../firebase/client";
+
+  const auth = getAuth(app);
+
+  const form = document.querySelector("form") as HTMLFormElement;
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = (form.querySelector("#email") as HTMLInputElement).value;
+
+    const baseUrl = import.meta.env.PUBLIC_APP_BASE_URL;
+
+    const actionCodeSettings = {
+      url: baseUrl,
+      handleCodeInApp: true,
+    };
+
+    try {
+      await sendSignInLinkToEmail(auth, email, actionCodeSettings);
+
+      window.localStorage.setItem("emailForSignIn", email);
+      console.log("Email sent");
+    } catch (error) {
+      console.error(error);
+    }
+  });
+</script>
