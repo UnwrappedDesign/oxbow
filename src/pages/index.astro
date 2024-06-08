@@ -1,4 +1,6 @@
 ---
+import { AstroSeo } from "@astrolib/seo";
+
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
 const blocks = [
@@ -290,19 +292,69 @@ const blocks = [
 ];
 ---
 
+<AstroSeo
+  title="Windstatic - Home "
+  description="A set of elements, templates & layouts made with Tailwind CSS and Alpine.js"
+  canonical="https://www.windstatic.com"
+  openGraph={{
+    url: "https://www.windstatic.com",
+    title: "Windstatic - Home",
+    description:
+      "Discover a collection of components ready to be seamlessly integrated into your applications with just a simple copy and paste.",
+    images: [
+      {
+        url: "https://www.windstatic.com/images/OpenGraph/facebook.png",
+        width: 1200,
+        height: 630,
+        alt: "Social open graph",
+        type: "image/png",
+      },
+      {
+        url: "https://www.windstatic.com/OpenGraph/twitter.png",
+        width: 4096,
+        height: 4096,
+        alt: "Twitter open graph",
+        type: "image/png",
+      },
+      { url: "https://www.windstatic.com/OpenGraph/facebook.ong" },
+      { url: "https://www.windstatic.com/OpenGraph/twitter.png" },
+    ],
+    site_name: "Windstatic",
+  }}
+  twitter={{
+    handle: "@Mike_Andreuzza",
+    site: "https://www.windstatic.com",
+    cardType: "summary_large_image",
+  }}
+/>
+
 <BaseLayout>
   <section>
-    <div class="max-w-xl mx-auto px-8 py-12 lg:py-32">
-      <div class="prose-styles">
-        <h1 id="hey">
-          windstatic — a set of elements, templates & layouts made with Tailwind
-          CSS and Alpine.js
-        </h1>
-        <p>
-          Discover a collection of components ready to be seamlessly integrated
-          into your applications with just a simple copy and paste.
-        </p>
-        <div class="grid grid-cols-1 gap-8 lg:grid-cols-3 pt-6 border-t">
+    <div>
+      <div class="max-w-xl mx-auto px-8 pt-12 lg:pt-32">
+        <div class="prose-styles">
+          <h1   >
+            windstatic — a set of elements, templates & layouts made with Tailwind
+            CSS and Alpine.js
+          </h1>
+          <p>
+            Discover a collection of components ready to be seamlessly integrated
+            into your applications with just a simple copy and paste.
+          </p>
+          <div class="flex gap-3 text-gray-400">
+            <span
+              class="hidden lg:inline"
+              title="command palette">
+              Search for anything with —
+              <span class="text-xs"> ⌘ + K </span>
+              or <span class="text-xs"> CTRL + K </span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="max-w-7xl mx-auto px-8 pb-12 mt-12 lg:pb-32">
+        <div
+          class="grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 pt-6 border-t prose-styles">
           {
             blocks.map((block) => (
               <div>
