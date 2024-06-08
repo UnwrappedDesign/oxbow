@@ -20,9 +20,9 @@ export default defineConfig({
     drafts: true
   },
   site: 'https://windstatic.com',
-  integrations: [tailwind(), rename(), sitemap(), mdx(), alpinejs()],
+  integrations: [tailwind(), sitemap(), mdx(), alpinejs()],
   adapter: node({
     mode: 'standalone'
   }),
-  output: 'static'
+  output: 'server'
 });
