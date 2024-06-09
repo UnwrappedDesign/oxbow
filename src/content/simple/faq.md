@@ -25,7 +25,7 @@ When the components are developed in code, we use Tailwind CSS and to those comp
 
 ---
 **License**
-
+- Read more on the license page [here](/license)
 ### Do I need to purchase a license everytime I want to work on a new project?
 Unlike the majority of othere themes or components, there's no need to purchase a new  license for each new project. As long as your usage complies with the license terms, you can create unlimited websites without
 ### Can I use it for my clients?
@@ -42,6 +42,8 @@ Sure thing! As long as your project is a genuine website and not a derivative co
 
 ### Can I create themes or templates with Windstatic and then sell them?
 No, we don't allow you to create themes or templates with Windstatic and then sell them. Derivative products encompass themes, UI kits, page builders, or any other tool involving repackaging and distributing our components or templates for others to utilize in constructing their own websites.
+
+
 
 ---
 **Support**

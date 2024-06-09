@@ -1,11 +1,62 @@
+---
+const navigation = [
+  { title: "Home", href: "/" },
+  { title: "Pricing", href: "/pricing" },
+  { title: "Support", href: "/support" },
+];
+const legal = [
+  { title: "Pricing", href: "/pricing" },
+  { title: "Faq", href: "/faq" },
+  { title: "Terms", href: "/terms" },
+  { title: "Privacy", href: "/privacy" },
+  { title: "License", href: "/license" },
+  { title: "Refund", href: "/refund" },
+];
+---
+
 <footer>
   <div class="max-w-xl px-8 mx-auto">
+    <div
+      class="prose-styles grid grid-cols-1 md:grid-cols-2 gap-8 lg:grid-cols-3">
+      <div>
+        <h2>Navigation</h2>
+        <ul>
+          {
+            navigation.map((item) => (
+              <li>
+                <a href={item.href}>{item.title}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div>
+        <h2>Legal</h2>
+        <ul>
+          {
+            legal.map((item) => (
+              <li>
+                <a href={item.href}>{item.title}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="col-span-full !text-xs">
+        <p>
+       All rights reserved. Windstatic is not affiliated with Tailwind
+          Labs team, nor is it endorsed by or sponsored by this one. A side project
+          by <a href="https://michaelandreuzza.com">Michael Andreuzza</a> This website
+          was built with Astro JS & Tailwind CSS. Crafted in Åland Islands, Finland.
+        </p>
+      </div>
+    </div>
     <div class="prose-styles flex justify-between">
       <p class="text-sm">
         <span
           class="flex gap-2 font-medium"
           x-data="{ year: new Date().getFullYear() }">
-          <span x-text="year"></span><span> Windstatic</span>
+          © <span x-text="year"></span><span> Windstatic</span>
         </span>
       </p>
       <p>
