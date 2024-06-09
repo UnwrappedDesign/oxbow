@@ -1,16 +1,25 @@
 ---
-const navigation = [
-  { title: "Home", href: "/" },
-  { title: "Pricing", href: "/pricing" },
-  { title: "Support", href: "/support" },
-];
-const legal = [
-  { title: "Pricing", href: "/pricing" },
-  { title: "Faq", href: "/faq" },
-  { title: "Terms", href: "/terms" },
-  { title: "Privacy", href: "/privacy" },
-  { title: "License", href: "/license" },
-  { title: "Refund", href: "/refund" },
+const links = [
+  {
+    category: "Navigation",
+    items: [
+      { title: "Home", href: "/" },
+      { title: "Pricing", href: "/pricing" },
+      { title: "Support", href: "/support" },
+      { title: "Affiliates", href: "/affiliates" },
+    ],
+  },
+  {
+    category: "Legal",
+    items: [
+      { title: "Pricing", href: "/pricing" },
+      { title: "Faq", href: "/faq" },
+      { title: "Terms", href: "/terms" },
+      { title: "Privacy", href: "/privacy" },
+      { title: "License", href: "/license" },
+      { title: "Refund", href: "/refund" },
+    ],
+  },
 ];
 ---
 
@@ -18,34 +27,31 @@ const legal = [
   <div class="max-w-xl px-8 mx-auto">
     <div
       class="prose-styles grid grid-cols-1 md:grid-cols-2 gap-8 lg:grid-cols-3">
-      <div>
-        <h2>Navigation</h2>
-        <ul>
-          {
-            navigation.map((item) => (
-              <li>
-                <a href={item.href}>{item.title}</a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-      <div>
-        <h2>Legal</h2>
-        <ul>
-          {
-            legal.map((item) => (
-              <li>
-                <a href={item.href}>{item.title}</a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
+      {
+        links.map((category) => (
+          <div>
+            <h2>{category.category}</h2>
+            <ul
+              class="not-prose space-y-2"
+              role="list">
+              {category.items.map((item) => (
+                <li>
+                  <a
+                    class="hover:text-blue-500 hover:underline"
+                    href={item.href}>
+                    {item.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+
       <div class="col-span-full !text-xs">
         <p>
-       All rights reserved. Windstatic is not affiliated with Tailwind
-          Labs team, nor is it endorsed by or sponsored by this one. A side project
+          All rights reserved. Windstatic is not affiliated with Tailwind Labs
+          team, nor is it endorsed by or sponsored by this one. A side project
           by <a href="https://michaelandreuzza.com">Michael Andreuzza</a> This website
           was built with Astro JS & Tailwind CSS. Crafted in Åland Islands, Finland.
         </p>
