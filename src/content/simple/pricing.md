@@ -27,8 +27,8 @@ When you purchase an all-access license, you unlock everything: every component 
 
 
 
-<button type="submit" class="rounded-lg px-4 py-2 text-sm font-semibold w-auto gap-4 transition-all text-white bg-gradient-to-b from-blue-500 to-blue-600 hover:to-blue-700 h-10 inline-flex items-center justify-between" aria-label="Get your link"> Get all access for $149
-</button>
+<a href="https://windstatic.lemonsqueezy.com/buy/9bfc74ed-bb0b-464e-adf1-f6766084dac6" type="submit" class="rounded-lg px-4 py-2 text-sm font-semibold w-auto gap-4 transition-all text-white bg-gradient-to-b from-blue-500 to-blue-600 not-prose hover:to-blue-700 h-10 inline-flex items-center justify-between" aria-label="Get your link"> Get all access for $149
+</a>
 
 ---
 ## What's included
