@@ -1,0 +1,72 @@
+---
+import { Picture } from "astro:assets";
+const { entries } = Astro.props; // Make sure entries is correctly passed and used
+// Manually import images
+import placeholder from "/src/images/placeholder.jpg";
+import leftHeros from "/src/images/leftHeros.png";
+import centeredHeros from "/src/images/centeredHeros.png";
+import rightHeros from "/src/images/rightHeros.png";
+import features from "/src/images/features.png";
+import leftaHeadings from "/src/images/leftHeadings.png";
+import centeredHeadings from "/src/images/centeredHeadings.png";
+import rightHeadings from "/src/images/rightHeadings.png";
+import grids from "/src/images/grids.png";
+import pricing from "/src/images/pricing.png";
+import faq from "/src/images/faq.png";
+import team from "/src/images/team.png";
+import blogEntries from "/src/images/blogEntries.png";
+import blogContent from "/src/images/blogContent.png";
+const imageMap = {
+  "placeholder.jpg": placeholder,
+  "leftHeros.png": leftHeros,
+  "centeredHeros.png": centeredHeros,
+  "rightHeros.png": rightHeros,
+  "features.png": features,
+  "leftHeadings.png": leftaHeadings,
+  "centeredHeadings.png": centeredHeadings,
+  "rightHeadings.png": rightHeadings,
+  "grids.png": grids,
+  "pricing.png": pricing,
+  "faq.png": faq,
+  "team.png": team,
+  "blogEntries.png": blogEntries,
+  "blogContent.png": blogContent,
+
+
+};
+// Function to get the correct image import based on file name
+function getImageSrc(fileName) {
+  return imageMap[fileName] || "";
+}
+---
+
+<ul
+  class="col-span-3 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 sm:gap-y-10 md:grid-cols-3 xl:grid-cols-3 xl:gap-x-8">
+  {
+    entries.map((template) => (
+      <li>
+        <div class="group relative">
+          <Picture
+            class="object-bottom object-cover shadow rounded-md"
+            formats={["avif", "jpg"]}
+            alt={template.name}
+            src={getImageSrc(template.image)}
+          />
+          <div>
+            <h4 class="mt-4 text-sm font-medium text-black group-hover:text-blue-600">
+              <a
+                title={template.name}
+                href={template.link}>
+                <span class="absolute -inset-2.5 z-10" />
+                <span class="relative">{template.name}</span>
+              </a>
+            </h4>
+            <p class="relative mt-1.5 text-xs font-medium text-gray-400">
+              {template.quantity} components
+            </p>
+          </div>
+        </div>
+      </li>
+    ))
+  }
+</ul>
