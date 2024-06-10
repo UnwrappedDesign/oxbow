@@ -15,19 +15,20 @@ export const POST: APIRoute = async ({ request }) => {
   const { headers } = request;
 
   const signature = headers.get('X-Signature');
+  const body = await request.text();
 
   if (!signature) {
     return new Response('X-Signature header is required', { status: 400 });
   }
 
-  if (signature && !checkSignature(signature, await request.text())) {
+  if (signature && !checkSignature(signature, body)) {
     return new Response('Invalid X-Signature header', { status: 403 });
   }
 
   try {
-    const body = await request.json();
+    const json = JSON.parse(body);
 
-    const { user_email: email } = body.data.attributes;
+    const { user_email: email } = json.data.attributes;
 
     if (!email) {
       return new Response('Email is required', { status: 400 });
