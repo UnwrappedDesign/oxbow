@@ -18,5 +18,5 @@ export default defineConfig({
     drafts: true
   },
   site: 'https://windstatic.com',
-  integrations: [tailwind(), rename(), sitemap(), mdx()]
+  integrations: [tailwind(), sitemap(), mdx()]
 });
