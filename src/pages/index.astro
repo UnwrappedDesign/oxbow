@@ -77,12 +77,18 @@ import EntryStructure from "@/components/landing/EntryStructure.astro";
               :class="$tab.isSelected ? 'border-blue-500 bg-white' : 'border-transparent'"
               class="inline-flex r border-b-2 py-2.5 pr-6">Application</button
             >
+            <button
+              x-tabs:tab
+              type="button"
+              :class="$tab.isSelected ? 'border-blue-500 bg-white' : 'border-transparent'"
+              class="inline-flex r border-b-2 py-2.5 pr-6"
+              >ECommerce</button
+            >
           </div>
           <div x-tabs:panels class="pt-12">
             <section x-tabs:panel>
               <div
-                class="prose-styles grid grid-cols-1 gap-4 lg:grid-cols-3 items-start bg-gray-50 p-8 border-l-4 border-blue-500"
-              >
+                class="prose-styles grid grid-cols-1 gap-4 lg:grid-cols-3 items-start bg-gray-50 p-8 border-l-4 border-blue-500">
                 <h2 class="!mt-0">Marketing</h2>
                 <p class="lg:col-span-2">
                   Hero sections, feature displays, and newsletter sign-up forms
@@ -114,17 +120,64 @@ import EntryStructure from "@/components/landing/EntryStructure.astro";
               </section>
             </section>
             <section x-tabs:panel>
-              <h2 class="text-xl font-bold">Tab 2 Content</h2>
-              <p class="mt-2 text-gray-500">
-                Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                cupidatat non proident, sunt in culpa qui officia deserunt
-                mollit anim id est laborum.
-              </p>
-              <button
-                class="mt-5 rounded-md border border-gray-200 px-4 py-2 text-sm"
-                >Take Action</button
-              >
+              <div
+                class="prose-styles grid grid-cols-1 gap-4 lg:grid-cols-3 items-start bg-gray-50 p-8 border-l-4 border-blue-500">
+                <h2 class="!mt-0">Application UI</h2>
+                <p class="lg:col-span-2">
+                  Form layouts, tables, and modal dialogs help create
+                  attractive, responsive web applications. Design intuitive
+                  forms, manage data with sortable tables, and use modal dialogs
+                  for smooth interactions, ensuring functionality and visual
+                  appeal across all devices.
+                </p>
+              </div>
+              <section class="flex flex-col gap-4 mt-12">
+                <div class="relative">
+                  <div
+                    class="absolute inset-0 flex items-center"
+                    aria-hidden="true">
+                    <div class="w-full border-t border-gray-300"></div>
+                  </div>
+                  <div class="relative flex justify-start">
+                    <span
+                      class="bg-white pr-3 text-xl font-medium leading-6 text-black">
+                      General sections</span
+                    >
+                  </div>
+                </div>
+
+                <!-- <EntryStructure entries={general} /> -->
+              </section>
+            </section>
+            <section x-tabs:panel>
+              <div
+                class="prose-styles grid grid-cols-1 gap-4 lg:grid-cols-3 items-start bg-gray-50 p-8 border-l-4 border-blue-500">
+                <h2 class="!mt-0">ECommerce</h2>
+                <p class="lg:col-span-2">
+                  Checkout forms, shopping carts, and product views — all the
+                  essentials to build your next ecommerce front-end. Create
+                  seamless checkout processes, efficient shopping carts, and
+                  engaging product displays to ensure a smooth and appealing
+                  shopping experience for your customers.
+                </p>
+              </div>
+              <section class="flex flex-col gap-4 mt-12">
+                <div class="relative">
+                  <div
+                    class="absolute inset-0 flex items-center"
+                    aria-hidden="true">
+                    <div class="w-full border-t border-gray-300"></div>
+                  </div>
+                  <div class="relative flex justify-start">
+                    <span
+                      class="bg-white pr-3 text-xl font-medium leading-6 text-black">
+                      General sections</span
+                    >
+                  </div>
+                </div>
+
+                <!-- <EntryStructure entries={general} /> -->
+              </section>
             </section>
           </div>
         </div>
