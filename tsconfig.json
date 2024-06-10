@@ -1,4 +1,5 @@
 {
+  "extends": "astro/tsconfigs/base",
   "compilerOptions": {
     // Enable top-level await, and other modern ESM features.
     "target": "ESNext",
@@ -14,6 +15,12 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "allowSyntheticDefaultImports": true,
+    "plugins": [
+      {
+        "name": "@astrojs/ts-plugin"
+      },
+    ],
   }
 }

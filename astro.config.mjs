@@ -2,7 +2,8 @@ import { defineConfig } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
-import rename from 'astro-rename';
+import netlify from '@astrojs/netlify';
+import alpinejs from "@astrojs/alpinejs";
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,5 +19,7 @@ export default defineConfig({
     drafts: true
   },
   site: 'https://windstatic.com',
-  integrations: [tailwind(), sitemap(), mdx()]
+  integrations: [tailwind(), sitemap(), mdx(), alpinejs()],
+  adapter: netlify(),
+  output: 'server'
 });
