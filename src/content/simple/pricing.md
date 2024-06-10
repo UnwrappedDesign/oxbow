@@ -10,12 +10,12 @@ page: Pricing
 # Get everything forever
 
 
-Gain lifetime access to over 500 components and all current templates, as well as any new content we release in the future, for a single one-time fee.
+Gain lifetime access to over 500 components and all current templates, as well as any new content we future release, for a single one-time fee.
 
 ---
 
 ## Individual  — **$149 one-time payment + local taxes**
-For individuals working on their next big idea.
+For individuals working on their projects or freelancers.
 
 When you purchase an all-access license, you unlock everything: every component example and all future additions to Windstatic Pro.
 
@@ -29,11 +29,24 @@ When you purchase an all-access license, you unlock everything: every component 
 
 <a href="https://windstatic.lemonsqueezy.com/buy/9bfc74ed-bb0b-464e-adf1-f6766084dac6" type="submit" class="rounded-lg px-4 py-2 text-sm font-semibold w-auto gap-4 transition-all text-white bg-gradient-to-b from-blue-500 to-blue-600 not-prose hover:to-blue-700 h-10 inline-flex items-center justify-between" aria-label="Get your link"> Get all access for $149
 </a>
+---
 
 ---
+
+## Teams  — **$299 one-time payment + local taxes**
+For startup teams and agencies
+
+- **Same as individual +**  get access to all your team. This tier gives you access to up to 25 people.
+
+
+<a href="https://windstatic.lemonsqueezy.com/buy/9bfc74ed-bb0b-464e-adf1-f6766084dac6" type="submit" class="rounded-lg px-4 py-2 text-sm font-semibold w-auto gap-4 transition-all text-white bg-gradient-to-b from-blue-500 to-blue-600 not-prose hover:to-blue-700 h-10 inline-flex items-center justify-between" aria-label="Get your link"> Get access for your team for $299
+</a>
+
+---
+
 ## What's included
 
-Access over 500 professionally designed, fully responsive components, expertly crafted and ready to be integrated and customized in your Tailwind projects.
+Access over 800+ professionally designed, fully responsive components, expertly crafted and ready to be integrated and customized in your Tailwind projects.
 - **Application UI** — Includes buttons, form controls, application layouts, dialogs, and more to enhance your application's user interface.
 - **Marketing** — Offers hero sections, feature segments, newsletter sign-up forms, and more to boost your marketing efforts.
 - **Ecommerce** — Provides checkout forms, shopping carts, product views, and more tailored for ecommerce functionalities.
@@ -46,7 +59,7 @@ Diverse Selection — Each category offers a plethora of UI patterns, ensuring y
 ## Get started without configuring anything
 - **Simple Customization** — Styled with utility classes directly in the markup, making customization effortless. No need to deal with configuration variables or intricate CSS – just open the markup in your editor and modify as needed.
 - **Keyboard Accessibility** — Every element is keyboard accessible, ensuring an optimal experience for users navigating with keyboards or screen readers. Our markup is meticulously crafted to enhance screen reader compatibility.
-- **Production Ready** — Our components and templates undergo rigorous testing across the latest browser versions, ensuring seamless performance and reliability. They are designed to handle various edge cases, providing robust solutions for your projects.
+- **Production Ready** — The components  undergo rigorous testing across the latest browser versions, ensuring seamless performance and reliability. They are designed to handle various edge cases, providing robust solutions for your projects.
 
 
 
