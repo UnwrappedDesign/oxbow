@@ -4,6 +4,8 @@ import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
 import node from "@astrojs/node";
 import alpinejs from "@astrojs/alpinejs";
+import rename from "astro-rename";
+
 
 // https://astro.build/config
 export default defineConfig({
@@ -19,7 +21,7 @@ export default defineConfig({
     drafts: true
   },
   site: 'https://windstatic.com',
-  integrations: [tailwind(), sitemap(), mdx(), alpinejs()],
+  integrations: [tailwind(), sitemap(), mdx(), alpinejs(), rename()],
   adapter: node({
     mode: 'standalone'
   }),
