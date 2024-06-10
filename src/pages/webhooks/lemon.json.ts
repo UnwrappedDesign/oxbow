@@ -17,7 +17,7 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     const body = await request.json();
 
-    const { email, displayName } = body;
+    const { user_email: email } = body.data.attributes;
 
     if (!email) {
       return new Response('Email is required', { status: 400 });
@@ -25,7 +25,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     const user = await auth.createUser({
       email,
-      displayName,
+      displayName: email,
     });
 
     return new Response(`User created: ${user.uid}`, { status: 200 });
