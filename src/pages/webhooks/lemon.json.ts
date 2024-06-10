@@ -1,16 +1,12 @@
 import type { APIRoute } from 'astro';
 import { getAuth } from "firebase-admin/auth";
-import { createHmac, timingSafeEqual } from "crypto";
+import { createHmac } from "crypto";
 import { app } from "../../firebase/server";
 
 const secret = import.meta.env.LEMON_SQUEEZE_SECRET;
 
 function checkSignature(signature: string, payload: string) {
-  const hmac = createHmac('sha256', secret);
-  const digest = Buffer.from(hmac.update(payload).digest('hex'), 'utf-8');
-  const signatureBuffer = Buffer.from(signature, 'utf-8');
-
-  return timingSafeEqual(digest, signatureBuffer);
+  return createHmac('sha256', secret).update(payload).digest('hex') === signature;
 }
 
 
