@@ -73,13 +73,13 @@ const team: Template = {
 const blogEntries: Template = {
   name: "Blog Entries",
   quantity: 10,
-  link: "/components/blog",
+  link: "/components/blog-entries",
   image: "blogEntries.png",
 };
 const blogContent: Template = {
   name: "Blog Content",
   quantity: 5,
-  link: "/components/blog",
+  link: "/components/blog-content",
   image: "blogContent.png",
 };
 export const general: Template[] = [leftHeros, centeredHeros, rightHeros, features, leftHeadings, centeredHeadings, rightHeadings, grids, pricing, faq, team, blogEntries, blogContent];
