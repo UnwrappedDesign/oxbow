@@ -7,25 +7,25 @@ const protectedRoutes = [
   "/blog-content/",
   "/blog-entries/",
   "/centered-headings/",
-  "/centered-heros/",
+  "/centered-heroes/",
   "/faq/",
   "/features/",
   "/grids/",
   "/left-headings/",
-  "/left-heros/",
+  "/left-heroes/",
   "/pricing/",
   "/right-headings/",
-  "/right-heros/",
+  "/right-heroes/",
   "/team/",
 ];
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const pathname = context.url.pathname;
-  
+
   if (protectedRoutes.every(route => !pathname.startsWith(route))){
     return next();
   }
-  
+
   try {
     if (context.cookies.has("__session")) {
       const auth = getAuth(app);
