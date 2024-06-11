@@ -81,10 +81,10 @@ After purchasing a license, you will receive an invite to our web app, granting 
 Can't find your answer? Send and [email](michael@andreuzza.com) and I'll will get back to you as soon as possible.
 
 ---
-**General**
+## **General**
 
 ### What does life time access mean?
-- Purchasing an all-access license is a single payment, with no ongoing subscription fees. With this license, you gain permanent access to all content on Windstatic.
+Purchasing an all-access license is a single payment, with no ongoing subscription fees. With this license, you gain permanent access to all content on Windstatic.
 
 ### What does free updates mean?
 When you buy an all-access license, you unlock every component currently offered, as well as any future additions, without extra charges.
@@ -98,7 +98,9 @@ Since the primary focus is on developing high-quality components in code, we don
 When the components are developed in code, we use Tailwind CSS and to those components that need JavaScript the components use Alpine.js.
 
 ---
-**License**
+## **License**
+
+Read more about the license here [here](/license).
 
 ### Do I need to purchase a license everytime I want to work on a new project?
 Unlike the majority of othere themes or components, there's no need to purchase a new  license for each new project. As long as your usage complies with the license terms, you can create unlimited websites without
@@ -118,9 +120,9 @@ Sure thing! As long as your project is a genuine website and not a derivative co
 No, we don't allow you to create themes or templates with Windstatic and then sell them. Derivative products encompass themes, UI kits, page builders, or any other tool involving repackaging and distributing our components or templates for others to utilize in constructing their own websites.
 
 ---
-**Support**
+## **Support**
 
 ### What about support?
-Read more on the support page here
+Read more on the support page [here](/support).
 
 ---

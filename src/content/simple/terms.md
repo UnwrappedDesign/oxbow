@@ -1,6 +1,8 @@
 ---
 page: Terms of service
 ---
+# Terms of service
+
 This agreement constitutes a binding legal contract between Unwrapped AB (sometimes referred to as “we”, “us” or “our”) and you, with respect to your use of this site and all websites, applications and communications that post a link to this agreement (collectively, the “Site”)(“Terms and Conditions”). We reserve our right to change these Terms and Conditions in the future. Except as explicitly stated otherwise, your continued use of the Site will constitute deemed acceptance of our updated Terms and Conditions.
 
 Site
