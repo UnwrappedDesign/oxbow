@@ -1,10 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 .prose-styles {
   @apply prose prose-headings:text-black text-sm  text-gray-500   prose-a:text-blue-500  prose-a:no-underline hover:prose-a:underline  prose-a:font-normal prose-strong:text-blue-500   prose-blockquote:text-gray-500  prose-blockquote:border-gray-400  prose-headings:text-[16px]  prose-ul:leading-tight prose-ul:[list-style-type:'⏤'] prose-ul:space-y-2.5 prose-strong:font-normal   prose-headings:font-normal max-w-none prose-li:marker:text-black  mt-0 prose-h1:text-2xl;
-}
-/* CSS */
+  }
+  /* Styling Inter font with custom settings, it's cooler like this*/
+  /* CSS */
 :root {
   font-family: Inter, sans-serif;
   font-feature-settings: "liga" 1, "calt" 1,
@@ -20,6 +22,41 @@
     font-family: InterVariable, sans-serif;
   }
 }
+
+/* Styling  Ninja Keys */
+ninja-keys::part(ninja-input) {
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+ninja-keys {
+  --ninja-modal-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3),
+    0 4px 6px -4px rgba(0, 0, 0, 0.3) !important;
+  --ninja-modal-background: #18181b;
+  --ninja-overflow-background: #ffffff50;
+  --ninja-secondary-text-color: #ffffff;
+  --ninja-text-color: #ffffff;
+  --ninja-selected-background: #ffffff20;
+  --ninja-key-border-radius: 0.75rem;
+}
+ninja-keys::part(ninja-action) {
+  border-left: 4px solid transparent;
+}
 ninja-keys::part(ninja-selected) {
-  border-left: 2px solid #2b43e3;
+  border-left: 4px solid #fff;
+}
+
+/* Styling the code blocks*/
+:root {
+   --astro-code-color-text: theme('colors.blue.500');
+  --astro-code-color-background: theme('colors.zinc.50');
+  --astro-code-token-constant: theme('colors.zinc.800');
+  --astro-code-token-string: theme('colors.zinc.800');
+  --astro-code-token-comment: theme('colors.zinc.700');
+  --astro-code-token-keyword: theme('colors.zinc.600');
+  --astro-code-token-parameter: theme('colors.blue.500');
+  --astro-code-token-function: theme('colors.zinc.500');
+  --astro-code-token-string-expression: theme('colors.black');
+  --astro-code-token-punctuation: theme('colors.gray.200');
+  --astro-code-token-link: theme('colors.blue.300');
 }

@@ -1,0 +1,27 @@
+---
+import One from "/src/pages/components/marketing/left-heroes/1.astro";
+
+// Define the static paths for dynamic routing
+export async function getStaticPaths() {
+  return [
+    { params: { component: "One" } },
+    { params: { component: "Two" } },
+    // Add more components as needed
+  ];
+}
+
+// Map the component name to the actual component
+const components = {
+  One,
+
+  // Add more components here as needed
+};
+
+// Get the component from the route params
+const { component } = Astro.params;
+const Component = components[component];
+---
+
+<!-- Render the component if it exists, otherwise show an error -->{
+  Component ? <Component /> : <p>Component not found</p>
+}

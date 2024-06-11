@@ -73,8 +73,7 @@ Diverse Selection — Each category offers a plethora of UI patterns, ensuring y
 
 ---
 ## How it works
-After purchasing a license, you will receive an invite to our web app, granting you access to all components.
-
+After completing your license purchase, an email containing a link to our web app will be promptly sent to you, providing full access to all components.
 ---
 
 # Faq
