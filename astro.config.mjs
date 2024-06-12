@@ -27,7 +27,11 @@ export default defineConfig({
     drafts: true
   },
   site: 'https://windstatic.com',
-  integrations: [sitemap(), mdx(), alpinejs()],
+  integrations: [
+    sitemap(), 
+    mdx(), 
+    alpinejs({ entrypoint: 'src/alpine' })
+  ],
   adapter: localhost ? node({mode: 'standalone'}) : netlify(),
   output: 'server'
 });
