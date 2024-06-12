@@ -3,7 +3,16 @@ import { getAstroPostHTML } from "astro-posthtml"
 import _minifyClassnames from "posthtml-minify-classnames"
 
 const minifyClassnames = _minifyClassnames({
-  genNameId: false
+  filter: /^(.border-transparent|.border-blue-500|.bg-white)$/,
+  genNameId: false,
+  customAttributes: [
+    'x-transition:enter',
+    'x-transition:enter-start',
+    'x-transition:enter-end',
+    'x-transition:leave',
+    'x-transition:leave-start',
+    'x-transition:leave-end',
+  ]
 });
 
 import { getAuth } from "firebase-admin/auth";
