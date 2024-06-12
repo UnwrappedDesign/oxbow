@@ -82,6 +82,12 @@ const blogContent: Template = {
   link: "/playground/marketing/blog-content",
   image: "blogContent.png",
 };
-export const general: Template[] = [leftheroes, centeredheroes, rightheroes, features, leftHeadings, centeredHeadings, rightHeadings, grids, pricing, faq, team, blogEntries, blogContent];
-export const byName = { leftheroes, centeredheroes, rightheroes, features, leftHeadings, centeredHeadings, rightHeadings, grids, pricing, faq, team, blogEntries, blogContent };
+const testimonials: Template = {
+  name: "Testimonials",
+  quantity: 5,
+  link: "/playground/marketing/blog-content",
+  image: "testimonials.png",
+};
+export const general: Template[] = [leftheroes, centeredheroes, rightheroes, features, leftHeadings, centeredHeadings, rightHeadings, grids, pricing, faq, team, blogEntries, blogContent, testimonials];
+export const byName = { leftheroes, centeredheroes, rightheroes, features, leftHeadings, centeredHeadings, rightHeadings, grids, pricing, faq, team, blogEntries, blogContent, testimonials };
 export const allEntries = Object.values(byName);
