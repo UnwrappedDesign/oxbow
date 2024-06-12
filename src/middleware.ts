@@ -1,30 +1,26 @@
 import { defineMiddleware } from "astro/middleware";
+import { getAstroPostHTML } from "astro-posthtml"
+import _minifyClassnames from "posthtml-minify-classnames"
+
+const minifyClassnames = _minifyClassnames({
+  filter: /^(.border-transparent|.border-blue-500|.bg-white)$/,
+  genNameId: false,
+  customAttributes: [
+    'x-transition:enter',
+    'x-transition:enter-start',
+    'x-transition:enter-end',
+    'x-transition:leave',
+    'x-transition:leave-start',
+    'x-transition:leave-end',
+  ]
+});
 
 import { getAuth } from "firebase-admin/auth";
 import { app } from "./firebase/server";
 
-const protectedRoutes = [
-  "/blog-content/",
-  "/blog-entries/",
-  "/centered-headings/",
-  "/centered-heroes/",
-  "/faq/",
-  "/features/",
-  "/grids/",
-  "/left-headings/",
-  "/left-heroes/",
-  "/pricing/",
-  "/right-headings/",
-  "/right-heroes/",
-  "/team/",
-];
+const mode = import.meta.env.MODE;
 
 export const onRequest = defineMiddleware(async (context, next) => {
-  const pathname = context.url.pathname;
-
-  if (protectedRoutes.every(route => !pathname.startsWith(route))){
-    return next();
-  }
 
   try {
     if (context.cookies.has("__session")) {
@@ -37,5 +33,10 @@ export const onRequest = defineMiddleware(async (context, next) => {
     }
     // forward request
   } catch (error) {}
-  return Response.redirect(new URL("/pricing", context.url), 302);
+
+  if (mode === "development") {
+    return next();
+  }
+  return getAstroPostHTML([minifyClassnames])(context, next)
+ ;
 });
