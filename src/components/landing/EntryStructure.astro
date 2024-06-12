@@ -3,9 +3,9 @@ import { Picture } from "astro:assets";
 const { entries } = Astro.props; // Make sure entries is correctly passed and used
 // Manually import images
 
-import leftheroes from "/src/images/leftheroes.png";
-import centeredheroes from "/src/images/centeredheroes.png";
-import rightheroes from "/src/images/rightheroes.png";
+import leftheroes from "/src/images/leftHeroes.png";
+import centeredheroes from "/src/images/centeredHeroes.png";
+import rightheroes from "/src/images/rightHeroes.png";
 import features from "/src/images/features.png";
 import leftaHeadings from "/src/images/leftHeadings.png";
 import centeredHeadings from "/src/images/centeredHeadings.png";
@@ -18,7 +18,6 @@ import blogEntries from "/src/images/blogEntries.png";
 import blogContent from "/src/images/blogContent.png";
 import testimonials from "/src/images/testimonials.png";
 const imageMap = {
-
   "leftheroes.png": leftheroes,
   "centeredheroes.png": centeredheroes,
   "rightheroes.png": rightheroes,
@@ -41,7 +40,8 @@ function getImageSrc(fileName) {
 ---
 
 <ul
-  class="col-span-3 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 sm:gap-y-10 md:grid-cols-3 xl:grid-cols-3 xl:gap-x-8">
+  class="col-span-3 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 sm:gap-y-10 md:grid-cols-3 xl:grid-cols-3 xl:gap-x-8"
+>
   {
     entries.map((template) => (
       <li>
@@ -54,9 +54,7 @@ function getImageSrc(fileName) {
           />
           <div>
             <h4 class="mt-4 text-sm font-medium text-black group-hover:text-blue-600">
-              <a
-                title={template.name}
-                href={template.link}>
+              <a title={template.name} href={template.link}>
                 <span class="absolute -inset-2.5 z-10" />
                 <span class="relative">{template.name}</span>
               </a>
