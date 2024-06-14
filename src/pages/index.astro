@@ -1,6 +1,14 @@
 ---
 import { AstroSeo } from "@astrolib/seo";
-import { general } from "@/data/entries.json";
+// Marketing
+import { pageSections } from "@/data/entries.json";
+// Application
+import { navigation } from "@/data/entries.json";
+import { elements } from "@/data/entries.json";
+import { overlay } from "@/data/entries.json";
+// Forms
+import { forms } from "@/data/entries.json";
+
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import EntryStructure from "@/components/landing/EntryStructure.astro";
 ---
@@ -43,8 +51,8 @@ import EntryStructure from "@/components/landing/EntryStructure.astro";
 <BaseLayout>
   <section>
     <div>
-      <div class="max-w-xl  mx-auto px-8 pt-12 lg:pt-32">
-        <div class="flex items-center gap-4 ">
+      <div class="max-w-xl mx-auto px-8 pt-12 lg:pt-32">
+        <div class="flex items-center gap-4">
           <div class="inline-flex gap-2 items-center">
             <svg
               class="flex-none inline size-6"
@@ -70,7 +78,7 @@ import EntryStructure from "@/components/landing/EntryStructure.astro";
               </defs>
             </svg> Tailwind CSS
           </div>
-·
+          ·
           <div class="inline-flex gap-2 items-center">
             <svg
               class="flex-none inline size-6"
@@ -153,38 +161,36 @@ import EntryStructure from "@/components/landing/EntryStructure.astro";
           <div
             x-tabs:panels
             class="pt-12">
-            <section x-tabs:panel>
+            <section
+              class="flex flex-col gap-24"
+              x-tabs:panel>
               <div>
-                <div
-                  class="prose-styles grid grid-cols-1 gap-4 lg:grid-cols-3 items-start bg-gray-50 p-8 border-l-4 border-blue-500">
-                  <h2 class="!mt-0">Marketing</h2>
-                  <p class="lg:col-span-2">
-                    Hero sections, feature displays, and newsletter sign-up
-                    forms — essential elements for crafting captivating
-                    marketing websites. These components help make a strong
-                    first impression, showcase key offerings, and grow your
-                    audience, ensuring your site stands out and engages visitors
-                    effectively.
-                  </p>
-                </div>
-              </div>
-              <section class="flex flex-col gap-4 mt-12">
-                <div class="relative">
+                <div>
                   <div
-                    class="absolute inset-0 flex items-center"
-                    aria-hidden="true">
-                    <div class="w-full border-t border-gray-300"></div>
-                  </div>
-                  <div class="relative flex justify-start">
-                    <span
-                      class="bg-white pr-3 text-xl font-medium leading-6 text-black">
-                      General sections</span
-                    >
+                    class="prose-styles grid grid-cols-1 gap-4 lg:grid-cols-3 items-start bg-gray-50 p-8 border-l-4 border-blue-500">
+                    <h2 class="!mt-0">Marketing</h2>
+                    <p class="lg:col-span-2">
+                      Hero sections, feature displays, and newsletter sign-up
+                      forms — essential elements for crafting captivating
+                      marketing websites. These components help make a strong
+                      first impression, showcase key offerings, and grow your
+                      audience, ensuring your site stands out and engages
+                      visitors effectively.
+                    </p>
                   </div>
                 </div>
+                <section class="mt-12 flex flex-col gap-12 lg:gap-24">
+                  <div class="flex flex-col gap-6">
+                    <div class="border-b pb-2">
+                      <h3 class="text-base font-semibold leading-6 text-black">
+                        Page sections
+                      </h3>
+                    </div>
 
-                <EntryStructure entries={general} />
-              </section>
+                    <EntryStructure entries={pageSections} />
+                  </div>
+                </section>
+              </div>
             </section>
             <section x-tabs:panel>
               <div
@@ -198,22 +204,39 @@ import EntryStructure from "@/components/landing/EntryStructure.astro";
                   appeal across all devices.
                 </p>
               </div>
-              <section class="flex flex-col gap-4 mt-12">
-                <div class="relative">
-                  <div
-                    class="absolute inset-0 flex items-center"
-                    aria-hidden="true">
-                    <div class="w-full border-t border-gray-300"></div>
+              <section class="mt-12 flex flex-col gap-12 lg:gap-24">
+                <div class="flex flex-col gap-6">
+                  <div class="border-b pb-2">
+                    <h3 class="text-base font-semibold leading-6 text-black">
+                      Navigation
+                    </h3>
                   </div>
-                  <div class="relative flex justify-start">
-                    <span
-                      class="bg-white pr-3 text-xl font-medium leading-6 text-black">
-                      General sections</span
-                    >
-                  </div>
+                  <EntryStructure entries={navigation} />
                 </div>
-
-                <!-- <EntryStructure entries={general} /> -->
+                <div class="flex flex-col gap-6">
+                  <div class="border-b pb-2">
+                    <h3 class="text-base font-semibold leading-6 text-black">
+                      Elements
+                    </h3>
+                  </div>
+                  <EntryStructure entries={elements} />
+                </div>
+                <div class="flex flex-col gap-6">
+                  <div class="border-b pb-2">
+                    <h3 class="text-base font-semibold leading-6 text-black">
+                      Overlay
+                    </h3>
+                  </div>
+                  <EntryStructure entries={overlay} />
+                </div>
+                  <div class="flex flex-col gap-6">
+                  <div class="border-b pb-2">
+                    <h3 class="text-base font-semibold leading-6 text-black">
+                      Forms
+                    </h3>
+                  </div>
+                  <EntryStructure entries={forms} />
+                </div>
               </section>
             </section>
             <section x-tabs:panel>
@@ -242,7 +265,6 @@ import EntryStructure from "@/components/landing/EntryStructure.astro";
                     >
                   </div>
                 </div>
-
                 <!-- <EntryStructure entries={general} /> -->
               </section>
             </section>
@@ -259,10 +281,8 @@ import EntryStructure from "@/components/landing/EntryStructure.astro";
     signInWithEmailLink,
   } from "firebase/auth";
   import { app } from "../firebase/client";
-
   // Confirm the link is a sign-in with email link.
   const auth = getAuth(app);
-
   if (isSignInWithEmailLink(auth, window.location.href)) {
     // Additional state parameters can also be passed via URL.
     // This can be used to continue the user's intended action before triggering
@@ -285,9 +305,7 @@ import EntryStructure from "@/components/landing/EntryStructure.astro";
         // result.additionalUserInfo.profile == null
         // You can check if the user is new or existing:
         // result.additionalUserInfo.isNewUser
-
         const idToken = await result.user.getIdToken();
-
         await fetch("/api/auth/signin", {
           method: "GET",
           headers: {

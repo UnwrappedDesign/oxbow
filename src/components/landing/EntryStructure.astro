@@ -1,8 +1,8 @@
 ---
 import { Picture } from "astro:assets";
 const { entries } = Astro.props; // Make sure entries is correctly passed and used
-// Manually import images
 
+// Page sections
 import leftheroes from "/src/images/leftHeroes.png";
 import centeredheroes from "/src/images/centeredHeroes.png";
 import rightheroes from "/src/images/rightHeroes.png";
@@ -17,7 +17,43 @@ import team from "/src/images/team.png";
 import blogEntries from "/src/images/blogEntries.png";
 import blogContent from "/src/images/blogContent.png";
 import testimonials from "/src/images/testimonials.png";
+import gallery from "/src/images/gallery.png";
+import logoclouds from "/src/images/logoclouds.png";
+import stats from "/src/images/stats.png";
+import footers from "/src/images/footers.png";
+import status from "/src/images/status.png";
+import contact from "/src/images/contact.png";
+import newsletter from "/src/images/newsletter.png";
+// Elements
+import banners from "/src/images/banners.png";
+import buttons from "/src/images/buttons.png";
+import buttongroups from "/src/images/buttongroups.png";
+import badges from "/src/images/badges.png";
+import avatars from "/src/images/avatars.png";
+// Navigation
+import navbars from "/src/images/navbars.png";
+import flyouts from "/src/images/flyouts.png";
+import megamenu from "/src/images/megamenu.png";
+import sidebars from "/src/images/sidebars.png";
+import verticalnav from "/src/images/verticalnav.png";
+import breadcrumbs from "/src/images/breadcrumbs.png";
+import pagination from "/src/images/pagination.png";
+import tabs from "/src/images/tabs.png";
+import commandbar from "/src/images/commandbar.png";
+// Application
+//
+//
+//
+// Overlays
+import modals from "/src/images/modals.png";
+import slideover from "/src/images/slideover.png";
+import notifications from "/src/images/notifications.png";
+// Forms
+import formlayouts from "/src/images/formlayouts.png";
+import inputs from "/src/images/inputs.png";
+
 const imageMap = {
+  // Page sections
   "leftheroes.png": leftheroes,
   "centeredheroes.png": centeredheroes,
   "rightheroes.png": rightheroes,
@@ -32,6 +68,36 @@ const imageMap = {
   "blogEntries.png": blogEntries,
   "blogContent.png": blogContent,
   "testimonials.png": testimonials,
+  "gallery.png": gallery,
+  "logoclouds.png": logoclouds,
+  "stats.png": stats,
+  "footers.png": footers,
+  "status.png": status,
+  "contact.png": contact,
+  "newsletter.png": newsletter,
+  // Elements
+  "banners.png": banners,
+  "buttons.png": buttons,
+  "buttongroups.png": buttongroups,
+  "badges.png": badges,
+  "avatars.png": avatars,
+  // Navigation
+  "navbars.png": navbars,
+  "flyouts.png": flyouts,
+  "megamenu.png": megamenu,
+  "sidebars.png": sidebars,
+  "verticalnav.png": verticalnav,
+  "breadcrumbs.png": breadcrumbs,
+  "pagination.png": pagination,
+  "tabs.png": tabs,
+  "commandbar.png": commandbar,
+  // Overlays
+  "modals.png": modals,
+  "slideover.png": slideover,
+  "notifications.png": notifications,
+  // Forms
+  "formlayouts.png": formlayouts,
+  "inputs.png": inputs,
 };
 // Function to get the correct image import based on file name
 function getImageSrc(fileName) {
@@ -40,8 +106,7 @@ function getImageSrc(fileName) {
 ---
 
 <ul
-  class="col-span-3 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 sm:gap-y-10 md:grid-cols-3 xl:grid-cols-3 xl:gap-x-8"
->
+  class="col-span-3 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 sm:gap-y-10 md:grid-cols-3 xl:grid-cols-3 xl:gap-x-8">
   {
     entries.map((template) => (
       <li>
@@ -54,7 +119,9 @@ function getImageSrc(fileName) {
           />
           <div>
             <h4 class="mt-4 text-sm font-medium text-black group-hover:text-blue-600">
-              <a title={template.name} href={template.link}>
+              <a
+                title={template.name}
+                href={template.link}>
                 <span class="absolute -inset-2.5 z-10" />
                 <span class="relative">{template.name}</span>
               </a>
