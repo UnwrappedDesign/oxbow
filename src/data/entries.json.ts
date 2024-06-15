@@ -192,7 +192,7 @@ const tabs: Template = {
   image: "tabs.png",
 };
 const commandbar: Template = {
-  name: "Commandbar",
+  name: "Command Bar",
   quantity: 1,
   link: "/playground/application/commandbar",
   image: "commandbar.png",
@@ -229,6 +229,18 @@ const avatars: Template = {
   link: "/playground/application/avatars",
   image: "avatars.png",
 };
+const alerts: Template = {
+  name: "Alerts",
+  quantity: 1,
+  link: "/playground/application/alerts",
+  image: "alerts.png",
+};
+const emptystates: Template = {
+  name: "Emptystates",
+  quantity: 1,
+  link: "/playground/application/emptystates",
+  image: "emptystates.png",
+};
 // Overlays
 const modals: Template = {
   name: "Modals",
@@ -261,7 +273,36 @@ const inputs: Template = {
   link: "/playground/application/inputs",
   image: "inputs.png",
 };
-
+const textarea: Template = {
+  name: "Textarea",
+  quantity: 1,
+  link: "/playground/application/textarea",
+  image: "textarea.png",
+};
+const checkboxes: Template = {
+  name: "Checkboxes",
+  quantity: 1,
+  link: "/playground/application/checkboxes",
+  image: "checkboxes.png",
+};
+const toggles: Template = {
+  name: "Toggles",
+  quantity: 1,
+  link: "/playground/application/toggles",
+  image: "toggles.png",
+};
+const selects: Template = {
+  name: "selects",
+  quantity: 1,
+  link: "/playground/application/selects",
+  image: "selects.png",
+};
+const radiogroups: Template = {
+  name: "Radio Groups",
+  quantity: 1,
+  link: "/playground/application/radiogroups",
+  image: "radiogroups.png",
+};
 
 // Ecommerce
 //
@@ -295,7 +336,15 @@ export const pageSections: Template[] = [
   contact,
   newsletter,
 ];
-export const elements: Template[] = [banners, buttons, buttongroups, badges, avatars];
+export const elements: Template[] = [
+  banners,
+  buttons,
+  buttongroups,
+  badges,
+  avatars,
+  alerts,
+  emptystates,
+];
 
 // Application
 //
@@ -312,8 +361,16 @@ export const navigation: Template[] = [
   tabs,
   commandbar,
 ];
-export const overlay: Template[] = [notifications, modals, slideover, ];
-export const forms: Template[] = [formlayouts, inputs, ];
+export const overlay: Template[] = [notifications, modals, slideover];
+export const forms: Template[] = [
+  formlayouts,
+  inputs,
+  textarea,
+  checkboxes,
+  toggles,
+  selects,
+  radiogroups,
+];
 
 // Ecommerce
 //
@@ -352,6 +409,8 @@ export const byName = {
   buttongroups,
   badges,
   avatars,
+  alerts,
+  emptystates,
   // Navigation
   navbars,
   flyouts,
@@ -369,5 +428,10 @@ export const byName = {
   // Forms
   formlayouts,
   inputs,
+  textarea,
+  checkboxes,
+  toggles,
+  selects,
+  radiogroups,
 };
 export const allEntries = Object.values(byName);
