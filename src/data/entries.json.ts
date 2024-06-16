@@ -96,7 +96,7 @@ const testimonials: Template = {
 };
 const gallery: Template = {
   name: "Galleries",
-  quantity: 1,
+  quantity: 10,
   link: "/playground/marketing/gallery",
   image: "gallery.png",
 };
