@@ -3,17 +3,37 @@ export const prerender = true;
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Playground from "@/components/global/Playground.astro";
 
+const { section } = Astro.params;
+const { page } = Astro.props;
+
 export async function getStaticPaths({ paginate }) {
   const PAGE_SIZE = 10;
 
   const components = await Astro.glob(
-    `@/pages/components/marketing/left-heroes/*.astro`,
+    `@/pages/components/marketing/**/*.astro`,
   );
 
-  return paginate(components, { pageSize: PAGE_SIZE });
-}
+  const sections = components.reduce((acc: string[], component) => {
+    const [_pages, _components, _marketing, section] = component.url.split("/");
+    if (!acc.includes(section)) {
+      acc.push(section);
+    }
+    return acc;
+  }, []);
 
-const { page } = Astro.props;
+  return sections.flatMap((section) => {
+    const sectionRegex = new RegExp(`marketing\/${section}\/\\d+$`, "i");
+
+    const filteredComponents = components.filter((component) => {
+      return component.url?.match(sectionRegex);
+    });
+
+    return paginate(filteredComponents, {
+      pageSize: PAGE_SIZE,
+      params: { section },
+    });
+  });
+}
 ---
 
 <BaseLayout>
@@ -21,7 +41,7 @@ const { page } = Astro.props;
     <div class="max-w-xl mx-auto px-8 pt-12 lg:pt-32">
       <div class="prose-styles">
         <span class="pb-2">Page sections / Marketing</span>
-        <h1>Left Heroes</h1>
+        <h1>{section}</h1>
 
         <div class="flex gap-3 text-gray-400">
           <span class="hidden lg:inline" title="command palette">

@@ -13,7 +13,7 @@ export interface Template {
 const leftheroes: Template = {
   name: "Left Heroes",
   quantity: 20,
-  link: "/playground/marketing/left-heroes/1",
+  link: "/playground/marketing/left-heroes",
   image: "leftheroes.png",
 };
 const centeredheroes: Template = {
