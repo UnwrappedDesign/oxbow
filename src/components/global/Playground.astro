@@ -1,7 +1,15 @@
 ---
 import { Code } from "astro:components";
 
+import * as prettier from "prettier";
+
 const code = await Astro.slots.render("default");
+
+const ppcode = await prettier
+  .format(code, {
+    parser: "lwc",
+  })
+  .catch((e) => console.error(e));
 ---
 
 <section x-data="{tab: 'preview'}" class="not-prose">
@@ -55,7 +63,7 @@ const code = await Astro.slots.render("default");
         x-show="tab === 'code'"
         class="flex-grow h-full w-full overflow-scroll px-8 py-6 transition"
       >
-        <Code id="codeBlock" code={code} lang="html" theme="css-variables" />
+        <Code id="codeBlock" code={ppcode} lang="html" theme="github-light" />
       </div>
       <div
         class="absolute inset-y-0 my-auto h-full z-50 right-0 flex items-center"
