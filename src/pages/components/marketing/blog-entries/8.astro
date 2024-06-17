@@ -1,5 +1,4 @@
 ---
-import ScreenLayout from "@/layouts/ScreenLayout.astro";
 const articles = [
   {
     image:
@@ -8,8 +7,7 @@ const articles = [
     description:
       "Learn the best practices for creating responsive web designs that provide a seamless user experience across all devices.",
     author: "John Doe",
-    authorImage:
-      "/avatars/1.avif",
+    authorImage: "/avatars/1.avif",
     date: "Mon Mar 25",
     link: "#_",
   },
@@ -20,8 +18,7 @@ const articles = [
     description:
       "An in-depth comparison of the most popular JavaScript frameworks, including React, Vue, and Angular, to help you choose the right one for your project.",
     author: "Michael Johnson",
-    authorImage:
-      "/avatars/2.avif",
+    authorImage: "/avatars/2.avif",
     date: "Wed Apr 10",
     link: "#_",
   },
@@ -32,119 +29,115 @@ const articles = [
     description:
       "Explore the latest features and updates in CSS that are shaping the future of web design and development.",
     author: "Johannes Svensson",
-    authorImage:
-      "/avatars/3.avif",
+    authorImage: "/avatars/3.avif",
     date: "Fri May 05",
     link: "#_",
   },
 ];
 ---
 
-<ScreenLayout>
-  <section>
-    <div class="px-8 py-24 mx-auto md:px-12 lg:px-32 max-w-7xl relative">
-
-      <div
-        class="grid items-center grid-cols-1  gap-6 lg:grid-cols-3 ">
-        <div class="block w-full lg:col-span-2">
-          <img
-            alt="#_"
-            class="shadow rounded-2xl aspect-[4/3] object-cover object-center w-full"
-            src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          />
-        </div>
-        <div class="bg-gray-50 h-full rounded-2xl p-6 flex flex-col justify-between">
-         <div>
-            <span
-              class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
-              >the main thing</span
-            >
-            <h1
-              class="text-4xl mt-4 font-semibold tracking-tight text-blue-950 lg:text-5xl ">
-              How to transform your visitors into users
-            </h1>
-         </div>
-
-          <div class="mt-12 flex">
-            <a
-              href="#_"
-              aria-label="Action"
-              class="text-blue-500 hover:text-blue-950 text-sm font-medium duration-300 flex items-center gap-2"
-              >Read further
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"
-                ><path
-                  stroke="none"
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                ></path><path d="M9 6l6 6l-6 6"></path></svg
-              >
-            </a>
-          </div>
-        </div>
+<section>
+  <div class="px-8 py-24 mx-auto md:px-12 lg:px-32 max-w-7xl relative">
+    <div class="grid items-center grid-cols-1 gap-6 lg:grid-cols-3">
+      <div class="block w-full lg:col-span-2">
+        <img
+          alt="#_"
+          class="shadow rounded-2xl aspect-[4/3] object-cover object-center w-full"
+          src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        />
       </div>
-
       <div
-        class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 mt-6 relative">
-        {
-          articles.map((article) => (
-            <article class="relative isolate flex flex-col  shadow overflow-hidden rounded-2xl">
-              <div class="relative aspect-[4/3] ">
-                <img
-                  src={article.image}
-                  alt="#_"
-                  class="absolute inset-0 h-full w-full   bg-gray-50 object-cover"
-                />
-              </div>
-              <div class="flex flex-col justify-between p-6">
-                <div>
-                  <h3 class="font-mono  uppercase tracking-tighter text-base font-medium text-blue-950 pt-8 lg:pt-0">
-                    <a href={article.link}>
-                      <span class="absolute inset-0" />
-                      {article.title}
-                    </a>
-                  </h3>
-                  <div class="mt-2 mb-4 text-sm text-gray-500 line-clamp-3">
-                    <p>{article.description}</p>
-                  </div>
-                </div>
-                <div class="mt-6 flex ">
-                  <div class="relative flex items-center gap-x-4">
-                    <img
-                      src={article.authorImage}
-                      alt="#_"
-                      class="size-12 rounded-full bg-gray-50 object-cover"
-                    />
-                    <div class="text-sm leading-6">
-                      <p class="font-semibold text-gray-900">
-                        <a href="#_">
-                          <span class="absolute inset-0" />
-                          {article.author}
-                        </a>
-                      </p>
-                      <dl>
-                        <dt class="sr-only">{article.date}</dt>
-                        <dd class="text-xs text-gray-500">
-                          <time datetime={article.date}>{article.date}</time>
-                        </dd>
-                      </dl>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </article>
-          ))
-        }
+        class="bg-gray-50 h-full rounded-2xl p-6 flex flex-col justify-between"
+      >
+        <div>
+          <span
+            class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+            >the main thing</span
+          >
+          <h1
+            class="text-4xl mt-4 font-semibold tracking-tight text-blue-950 lg:text-5xl"
+          >
+            How to transform your visitors into users
+          </h1>
+        </div>
+
+        <div class="mt-12 flex">
+          <a
+            href="#_"
+            aria-label="Action"
+            class="text-blue-500 hover:text-blue-950 text-sm font-medium duration-300 flex items-center gap-2"
+            >Read further
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"
+              ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                d="M9 6l6 6l-6 6"></path></svg
+            >
+          </a>
+        </div>
       </div>
     </div>
-  </section>
-</ScreenLayout>
+
+    <div
+      class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 mt-6 relative"
+    >
+      {
+        articles.map((article) => (
+          <article class="relative isolate flex flex-col  shadow overflow-hidden rounded-2xl">
+            <div class="relative aspect-[4/3] ">
+              <img
+                src={article.image}
+                alt="#_"
+                class="absolute inset-0 h-full w-full   bg-gray-50 object-cover"
+              />
+            </div>
+            <div class="flex flex-col justify-between p-6">
+              <div>
+                <h3 class="font-mono  uppercase tracking-tighter text-base font-medium text-blue-950 pt-8 lg:pt-0">
+                  <a href={article.link}>
+                    <span class="absolute inset-0" />
+                    {article.title}
+                  </a>
+                </h3>
+                <div class="mt-2 mb-4 text-sm text-gray-500 line-clamp-3">
+                  <p>{article.description}</p>
+                </div>
+              </div>
+              <div class="mt-6 flex ">
+                <div class="relative flex items-center gap-x-4">
+                  <img
+                    src={article.authorImage}
+                    alt="#_"
+                    class="size-12 rounded-full bg-gray-50 object-cover"
+                  />
+                  <div class="text-sm leading-6">
+                    <p class="font-semibold text-gray-900">
+                      <a href="#_">
+                        <span class="absolute inset-0" />
+                        {article.author}
+                      </a>
+                    </p>
+                    <dl>
+                      <dt class="sr-only">{article.date}</dt>
+                      <dd class="text-xs text-gray-500">
+                        <time datetime={article.date}>{article.date}</time>
+                      </dd>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

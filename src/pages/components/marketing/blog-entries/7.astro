@@ -1,5 +1,4 @@
 ---
-import ScreenLayout from "@/layouts/ScreenLayout.astro";
 const articles = [
   {
     image:
@@ -8,8 +7,7 @@ const articles = [
     description:
       "Learn the best practices for creating responsive web designs that provide a seamless user experience across all devices.",
     author: "John Doe",
-    authorImage:
-      "/avatars/1.avif",
+    authorImage: "/avatars/1.avif",
     date: "Mon Mar 25",
     link: "#_",
   },
@@ -20,8 +18,7 @@ const articles = [
     description:
       "An in-depth comparison of the most popular JavaScript frameworks, including React, Vue, and Angular, to help you choose the right one for your project.",
     author: "Michael Johnson",
-    authorImage:
-      "/avatars/2.avif",
+    authorImage: "/avatars/2.avif",
     date: "Wed Apr 10",
     link: "#_",
   },
@@ -32,119 +29,112 @@ const articles = [
     description:
       "Explore the latest features and updates in CSS that are shaping the future of web design and development.",
     author: "Johannes Svensson",
-    authorImage:
-      "/avatars/3.avif",
+    authorImage: "/avatars/3.avif",
     date: "Fri May 05",
     link: "#_",
   },
 ];
 ---
 
-<ScreenLayout>
-  <section>
-    <div class="px-8 py-24 mx-auto md:px-12 lg:px-32 max-w-7xl relative">
-      <div class="text-center">
-        <span
-          class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
-          >Blog</span
-        >
-        <h1
-          class="text-4xl mt-4 font-semibold tracking-tight text-blue-950 lg:text-5xl lg:text-balance">
-          From our blog
-        </h1>
-        <p class="mt-6 text-base font-medium text-gray-500">
-          Exploring topics, tips, and trends in the world of communication and
-          privacy
-        </p>
-        <form
-          class="w-full p-2 mt-12 rounded-xl sm:flex mx-auto sm:max-w-md bg-white ring-1 ring-gray-200 shadow">
-          <label
-            for="email-address"
-            class="sr-only"
-            >Email address</label
+<section>
+  <div class="px-8 py-24 mx-auto md:px-12 lg:px-32 max-w-7xl relative">
+    <div class="text-center">
+      <span
+        class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+        >Blog</span
+      >
+      <h1
+        class="text-4xl mt-4 font-semibold tracking-tight text-blue-950 lg:text-5xl lg:text-balance"
+      >
+        From our blog
+      </h1>
+      <p class="mt-6 text-base font-medium text-gray-500">
+        Exploring topics, tips, and trends in the world of communication and
+        privacy
+      </p>
+      <form
+        class="w-full p-2 mt-12 rounded-xl sm:flex mx-auto sm:max-w-md bg-white ring-1 ring-gray-200 shadow"
+      >
+        <label for="email-address" class="sr-only">Email address</label>
+        <input
+          id="email-address"
+          type="email"
+          name="email-address"
+          autocomplete="email"
+          placeholder="Enter your email"
+          aria-placeholder="Enter your email"
+          required=""
+          class="block w-full h-10 px-4 py-2 text-sm text-blue-700 border border-transparent appearance-none rounded-lg bg-gray-50 placeholder-blue-950 focus:border-gray-500 focus:bg-transparent focus:outline-none focus:ring-blue-300 sm:text-sm"
+        />
+        <div class="mt-2 sm:ml-2 sm:mt-0 sm:flex-shrink-0">
+          <button
+            type="submit"
+            class="flex items-center w-full sm:w-auto justify-center h-10 px-4 py-2 text-sm font-semibold text-white transition-all duration-200 rounded-lg bg-gradient-to-b from-blue-500 to-blue-600 hover:to-blue-800 shadow shadow-blue-600/50 focus:ring-2 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none lg:w-auto"
+            >Subscribe</button
           >
-          <input
-            id="email-address"
-            type="email"
-            name="email-address"
-            autocomplete="email"
-            placeholder="Enter your email"
-            aria-placeholder="Enter your email"
-            required=""
-            class="block w-full h-10 px-4 py-2 text-sm text-blue-700 border border-transparent appearance-none rounded-lg bg-gray-50 placeholder-blue-950 focus:border-gray-500 focus:bg-transparent focus:outline-none focus:ring-blue-300 sm:text-sm"
-          />
-          <div class="mt-2 sm:ml-2 sm:mt-0 sm:flex-shrink-0">
-            <button
-              type="submit"
-              class="flex items-center w-full sm:w-auto justify-center h-10 px-4 py-2 text-sm font-semibold text-white transition-all duration-200 rounded-lg bg-gradient-to-b from-blue-500 to-blue-600 hover:to-blue-800 shadow shadow-blue-600/50 focus:ring-2 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none lg:w-auto"
-              >Subscribe</button
-            >
-          </div>
-        </form>
-        <p class="text-xs mt-3 text-gray-500">
-          When you sign up, you accept our <a
-            class="text-blue-600 hover:text-blue-950"
-            href="#_"
-            >Terms of Service</a
-          > and <a
-            class="text-blue-600 hover:text-blue-950"
-            href="#_"
-            >Privacy Policy</a
-          >.
-        </p>
-      </div>
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 mt-32 relative">
-        {
-          articles.map((article) => (
-            <article class="relative isolate flex flex-col  shadow overflow-hidden rounded-2xl">
-              <div class="relative aspect-[4/3] ">
-                <img
-                  src={article.image}
-                  alt="#_"
-                  class="absolute inset-0 h-full w-full   bg-gray-50 object-cover"
-                />
-              </div>
-              <div class="flex flex-col justify-between p-6">
-                <div>
-                  <h3 class="font-mono  uppercase tracking-tighter text-base font-medium text-blue-950 pt-8 lg:pt-0">
-                    <a href={article.link}>
-                      <span class="absolute inset-0" />
-                      {article.title}
-                    </a>
-                  </h3>
-                  <div class="mt-2 mb-4 text-sm text-gray-500 line-clamp-3">
-                    <p>{article.description}</p>
-                  </div>
-                </div>
-                <div class="mt-6 flex ">
-                  <div class="relative flex items-center gap-x-4">
-                    <img
-                      src={article.authorImage}
-                      alt="#_"
-                      class="size-12 rounded-full bg-gray-50 object-cover"
-                    />
-                    <div class="text-sm leading-6">
-                      <p class="font-semibold text-gray-900">
-                        <a href="#_">
-                          <span class="absolute inset-0" />
-                          {article.author}
-                        </a>
-                      </p>
-                      <dl>
-                        <dt class="sr-only">{article.date}</dt>
-                        <dd class="text-xs text-gray-500">
-                          <time datetime={article.date}>{article.date}</time>
-                        </dd>
-                      </dl>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </article>
-          ))
-        }
-      </div>
-
+        </div>
+      </form>
+      <p class="text-xs mt-3 text-gray-500">
+        When you sign up, you accept our <a
+          class="text-blue-600 hover:text-blue-950"
+          href="#_">Terms of Service</a
+        > and <a class="text-blue-600 hover:text-blue-950" href="#_"
+          >Privacy Policy</a
+        >.
+      </p>
     </div>
-  </section>
-</ScreenLayout>
+    <div
+      class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 mt-32 relative"
+    >
+      {
+        articles.map((article) => (
+          <article class="relative isolate flex flex-col  shadow overflow-hidden rounded-2xl">
+            <div class="relative aspect-[4/3] ">
+              <img
+                src={article.image}
+                alt="#_"
+                class="absolute inset-0 h-full w-full   bg-gray-50 object-cover"
+              />
+            </div>
+            <div class="flex flex-col justify-between p-6">
+              <div>
+                <h3 class="font-mono  uppercase tracking-tighter text-base font-medium text-blue-950 pt-8 lg:pt-0">
+                  <a href={article.link}>
+                    <span class="absolute inset-0" />
+                    {article.title}
+                  </a>
+                </h3>
+                <div class="mt-2 mb-4 text-sm text-gray-500 line-clamp-3">
+                  <p>{article.description}</p>
+                </div>
+              </div>
+              <div class="mt-6 flex ">
+                <div class="relative flex items-center gap-x-4">
+                  <img
+                    src={article.authorImage}
+                    alt="#_"
+                    class="size-12 rounded-full bg-gray-50 object-cover"
+                  />
+                  <div class="text-sm leading-6">
+                    <p class="font-semibold text-gray-900">
+                      <a href="#_">
+                        <span class="absolute inset-0" />
+                        {article.author}
+                      </a>
+                    </p>
+                    <dl>
+                      <dt class="sr-only">{article.date}</dt>
+                      <dd class="text-xs text-gray-500">
+                        <time datetime={article.date}>{article.date}</time>
+                      </dd>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

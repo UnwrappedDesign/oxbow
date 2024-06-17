@@ -1,5 +1,4 @@
 ---
-import ScreenLayout from "@/layouts/ScreenLayout.astro";
 const faqs = [
   {
     question: "How does end-to-end encryption work?",
@@ -46,49 +45,50 @@ const faqs = [
 ];
 ---
 
-<ScreenLayout>
-  <section>
-    <div class="px-8 py-24 mx-auto md:px-12 lg:px-32 max-w-7xl relative">
-      <div>
-        <span
-          class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
-          >faq</span
-        >
-        <h1
-          class="text-4xl mt-4 font-semibold tracking-tight text-blue-950 lg:text-5xl lg:text-balance">
-          Frequently Asked Questions
-        </h1>
-        <p class="mt-6 text-base font-medium text-gray-500">
-          Everything you need to know about our platform.
-        </p>
-      </div>
-      <div class="mt-12">
-        {
-          faqs.map((faq) => (
-            <details class="group cursor-pointer">
-              <summary
-                class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none text-blue-950 hover:text-blue-500
-              focus:text-blue-500">
-                {faq.question}
-                <svg
-                  class="size-5 duration-300 ease-out  transform group-open:-rotate-45"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M12 6v12m6-6H6"
-                  />
-                </svg>
-              </summary>
-              <div class="py-4 pt-2 text-sm text-gray-500">{faq.answer}</div>
-            </details>
-          ))
-        }
-      </div>
+<section>
+  <div class="px-8 py-24 mx-auto md:px-12 lg:px-32 max-w-7xl relative">
+    <div>
+      <span
+        class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+        >faq</span
+      >
+      <h1
+        class="text-4xl mt-4 font-semibold tracking-tight text-blue-950 lg:text-5xl lg:text-balance"
+      >
+        Frequently Asked Questions
+      </h1>
+      <p class="mt-6 text-base font-medium text-gray-500">
+        Everything you need to know about our platform.
+      </p>
     </div>
-  </section>
-</ScreenLayout>
+    <div class="mt-12">
+      {
+        faqs.map((faq) => (
+          <details class="group cursor-pointer">
+            <summary
+              class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none text-blue-950 hover:text-blue-500
+              focus:text-blue-500"
+            >
+              {faq.question}
+              <svg
+                class="size-5 duration-300 ease-out  transform group-open:-rotate-45"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 6v12m6-6H6"
+                />
+              </svg>
+            </summary>
+            <div class="py-4 pt-2 text-sm text-gray-500">{faq.answer}</div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,5 +1,4 @@
 ---
-import ScreenLayout from "@/layouts/ScreenLayout.astro";
 const faq1 = [
   {
     question: "How does end-to-end encryption work?",
@@ -17,7 +16,6 @@ const faq1 = [
     answer:
       "Self-destructing messages are designed to automatically delete themselves after a specific period or upon being read by the recipient. However, it's important to note that the feature only removes the message from the devices involved in the conversation. Recipients may take screenshots or use other means to capture the content, which is beyond the platform's control.",
   },
-
 ];
 const faq2 = [
   {
@@ -52,124 +50,119 @@ const faq3 = [
     answer:
       "Yes, you can access our platform on multiple devices. Your encrypted data remains synced across all devices, allowing you to seamlessly communicate and access your files and messages from anywhere.",
   },
-
 ];
 ---
 
-<ScreenLayout>
-  <section>
-    <div class="px-8 py-24 mx-auto md:px-12 lg:px-32 max-w-7xl relative">
-      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-        <div>
-          <span
-            class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
-            >faq</span
-          >
-          <h1
-            class="text-4xl mt-4 font-semibold tracking-tight text-blue-950 lg:text-balance">
-            Frequently Asked Questions
-          </h1>
-          <p class="mt-6 text-base font-medium text-gray-500">
-            Everything you need to know about our platform.
-          </p>
-        </div>
+<section>
+  <div class="px-8 py-24 mx-auto md:px-12 lg:px-32 max-w-7xl relative">
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div>
+        <span
+          class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+          >faq</span
+        >
+        <h1
+          class="text-4xl mt-4 font-semibold tracking-tight text-blue-950 lg:text-balance"
+        >
+          Frequently Asked Questions
+        </h1>
+        <p class="mt-6 text-base font-medium text-gray-500">
+          Everything you need to know about our platform.
+        </p>
+      </div>
 
-        <div class="justify-start w-full  lg:col-span-2">
-          <div x-data="{ tab: 'tab1' }">
-            <ul class="flex gap-4 lg:gap-8 text-sm text-black border-b">
-              <li class="-mb-px">
-                <!-- event handler set state to 'tab1' and add conditional :class for active state -->
-                <a
-                  @click.prevent="tab = 'tab1'"
-                  href="#_"
-                  class="inline-block py-2 font-medium bg-white text-blue-500 border-b-2 border-blue-500"
-                  :class="{ ' bg-white text-blue-500 border-b-2 border-blue-500' : tab === 'tab1' }">
-                  General questions</a
-                >
-              </li>
-              <li class="-mb-px">
-                <a
-                  @click.prevent="tab = 'tab2'"
-                  href="#_"
-                  class="inline-block py-2 font-medium"
-                  :class="{ ' bg-white text-blue-500 border-b-2 border-blue-500' : tab === 'tab2' }">
-                  Support team</a
-                >
-              </li>
-              <li class="-mb-px">
-                <a
-                  @click.prevent="tab = 'tab3'"
-                  href="#_"
-                  class="inline-block py-2 font-medium"
-                  :class="{ ' bg-white text-blue-500 border-b-2 border-blue-500' : tab === 'tab3' }">
-                  License</a
-                >
-              </li>
-            </ul>
-            <div class="py-4 pt-4 text-left bg-white content">
-              <!-- Tab 1 content -->
-              <div
-                x-show="tab==='tab1'"
-                class="text-gray-500">
-                <div class="space-y-8 lg:col-span-2">
-                  {
-                    faq1.map((faq) => (
-                      <div>
-                        <div class="  text-left select-none text-blue-950 ">
-                          {faq.question}
-                        </div>
-                        <div class="mt-2 text-sm text-gray-500">
-                          {faq.answer}
-                        </div>
+      <div class="justify-start w-full lg:col-span-2">
+        <div x-data="{ tab: 'tab1' }">
+          <ul class="flex gap-4 lg:gap-8 text-sm text-black border-b">
+            <li class="-mb-px">
+              <!-- event handler set state to 'tab1' and add conditional :class for active state -->
+              <a
+                @click.prevent="tab = 'tab1'"
+                href="#_"
+                class="inline-block py-2 font-medium bg-white text-blue-500 border-b-2 border-blue-500"
+                :class="{ ' bg-white text-blue-500 border-b-2 border-blue-500' : tab === 'tab1' }"
+              >
+                General questions</a
+              >
+            </li>
+            <li class="-mb-px">
+              <a
+                @click.prevent="tab = 'tab2'"
+                href="#_"
+                class="inline-block py-2 font-medium"
+                :class="{ ' bg-white text-blue-500 border-b-2 border-blue-500' : tab === 'tab2' }"
+              >
+                Support team</a
+              >
+            </li>
+            <li class="-mb-px">
+              <a
+                @click.prevent="tab = 'tab3'"
+                href="#_"
+                class="inline-block py-2 font-medium"
+                :class="{ ' bg-white text-blue-500 border-b-2 border-blue-500' : tab === 'tab3' }"
+              >
+                License</a
+              >
+            </li>
+          </ul>
+          <div class="py-4 pt-4 text-left bg-white content">
+            <!-- Tab 1 content -->
+            <div x-show="tab==='tab1'" class="text-gray-500">
+              <div class="space-y-8 lg:col-span-2">
+                {
+                  faq1.map((faq) => (
+                    <div>
+                      <div class="  text-left select-none text-blue-950 ">
+                        {faq.question}
                       </div>
-                    ))
-                  }
-                </div>
+                      <div class="mt-2 text-sm text-gray-500">{faq.answer}</div>
+                    </div>
+                  ))
+                }
               </div>
-              <!-- Tab 2 content -->
-              <div
-                x-show="tab==='tab2'"
-                class="text-gray-500"
-                style="display: none;">
-                <div class="space-y-8 lg:col-span-2">
-                  {
-                    faq2.map((faq) => (
-                      <div>
-                        <div class="  text-left select-none text-blue-950 ">
-                          {faq.question}
-                        </div>
-                        <div class="mt-2 text-sm text-gray-500">
-                          {faq.answer}
-                        </div>
+            </div>
+            <!-- Tab 2 content -->
+            <div
+              x-show="tab==='tab2'"
+              class="text-gray-500"
+              style="display: none;"
+            >
+              <div class="space-y-8 lg:col-span-2">
+                {
+                  faq2.map((faq) => (
+                    <div>
+                      <div class="  text-left select-none text-blue-950 ">
+                        {faq.question}
                       </div>
-                    ))
-                  }
-                </div>
+                      <div class="mt-2 text-sm text-gray-500">{faq.answer}</div>
+                    </div>
+                  ))
+                }
               </div>
-              <!-- Tab 3 content -->
-              <div
-                x-show="tab==='tab3'"
-                class="text-gray-500"
-                style="display: none;">
-                <div class="space-y-8 lg:col-span-2">
-                  {
-                    faq3.map((faq) => (
-                      <div>
-                        <div class="  text-left select-none text-blue-950 ">
-                          {faq.question}
-                        </div>
-                        <div class="mt-2 text-sm text-gray-500">
-                          {faq.answer}
-                        </div>
+            </div>
+            <!-- Tab 3 content -->
+            <div
+              x-show="tab==='tab3'"
+              class="text-gray-500"
+              style="display: none;"
+            >
+              <div class="space-y-8 lg:col-span-2">
+                {
+                  faq3.map((faq) => (
+                    <div>
+                      <div class="  text-left select-none text-blue-950 ">
+                        {faq.question}
                       </div>
-                    ))
-                  }
-                </div>
+                      <div class="mt-2 text-sm text-gray-500">{faq.answer}</div>
+                    </div>
+                  ))
+                }
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
-</ScreenLayout>
+  </div>
+</section>
