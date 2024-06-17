@@ -1,5 +1,4 @@
 ---
-import ScreenLayout from "@/layouts/ScreenLayout.astro";
 const data = [
   {
     name: "Michael Andreuzza",
@@ -46,59 +45,58 @@ const data = [
 ];
 ---
 
-<ScreenLayout>
-  <section class="relative overflow-hidden">
-    <div class="px-8 py-24 mx-auto md:px-12 lg:px-32 max-w-7xl relative">
-      <div class="text-center max-w-xl mx-auto">
-        <span
-          class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
-          >Your tagline</span
-        >
-        <h1
-          class="text-4xl mt-4 font-semibold tracking-tight text-blue-950 lg:text-5xl lg:text-balance">
-          Hear from our customers
+<section class="relative overflow-hidden">
+  <div class="px-8 py-24 mx-auto md:px-12 lg:px-32 max-w-7xl relative">
+    <div class="text-center max-w-xl mx-auto">
+      <span
+        class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+        >Your tagline</span
+      >
+      <h1
+        class="text-4xl mt-4 font-semibold tracking-tight text-blue-950 lg:text-5xl lg:text-balance"
+      >
+        Hear from our customers
 
-          <span class="text-gray-600 block">about their experiences </span>
-        </h1>
-        <p class="mt-6 text-base font-medium text-gray-500 lg:text-balance">
-          A group of passionate individuals working together to innovate and
-          excel in our industry.
-        </p>
-      </div>
+        <span class="text-gray-600 block">about their experiences </span>
+      </h1>
+      <p class="mt-6 text-base font-medium text-gray-500 lg:text-balance">
+        A group of passionate individuals working together to innovate and excel
+        in our industry.
+      </p>
     </div>
-    <div class="flex justify-center gap-5 overflow-hidden sm:gap-4 py-4">
-      {
-        data.map((member) => (
-          <>
-            <div class="  w-44 flex flex-none sm:w-96 ">
-              <figure class="h-full  bg-gray-50 p-6 rounded-2xl flex flex-col justify-between">
-                <blockquote>
-                  <p class="text-sm text-gray-500 text-pretty">
-                    {member.testimonial}
-                  </p>
-                </blockquote>
-                <figcaption class="flex items-center mt-12 justify-between ">
-                  <div class="flex items-center gap-4">
-                    <img
-                      class="object-cover rounded-full size-12"
-                      src={member.imgSrc}
-                      alt=""
-                    />
-                    <div>
-                      <h3 class="font-mono uppercase tracking-tighter text-sm font-medium text-blue-950">
-                        {member.name}
-                      </h3>
-                      <p class="mt-2 text-sm text-gray-500 text-balance">
-                        {member.title}
-                      </p>
-                    </div>
+  </div>
+  <div class="flex justify-center gap-5 overflow-hidden sm:gap-4 py-4">
+    {
+      data.map((member) => (
+        <>
+          <div class="  w-44 flex flex-none sm:w-96 ">
+            <figure class="h-full  bg-gray-50 p-6 rounded-2xl flex flex-col justify-between">
+              <blockquote>
+                <p class="text-sm text-gray-500 text-pretty">
+                  {member.testimonial}
+                </p>
+              </blockquote>
+              <figcaption class="flex items-center mt-12 justify-between ">
+                <div class="flex items-center gap-4">
+                  <img
+                    class="object-cover rounded-full size-12"
+                    src={member.imgSrc}
+                    alt=""
+                  />
+                  <div>
+                    <h3 class="font-mono uppercase tracking-tighter text-sm font-medium text-blue-950">
+                      {member.name}
+                    </h3>
+                    <p class="mt-2 text-sm text-gray-500 text-balance">
+                      {member.title}
+                    </p>
                   </div>
-                </figcaption>
-              </figure>
-            </div>
-          </>
-        ))
-      }
-    </div>
-  </section>
-</ScreenLayout>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+        </>
+      ))
+    }
+  </div>
+</section>

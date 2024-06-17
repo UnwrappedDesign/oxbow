@@ -1,341 +1,295 @@
----
-import ScreenLayout from "@/layouts/ScreenLayout.astro";
----
+<section class="relative overflow-hidden">
+  <div
+    class="absolute inset-x-0 top-0 h-96 rotate-180 text-gray-400/30 opacity-60 [mask-image:linear-gradient(to_bottom,transparent,white)]"
+  >
+    <svg
+      class="absolute inset-0 h-full w-full"
+      xmlns="http://www.w3.org/2000/svg"
+      ><defs
+        ><pattern
+          id="grid-pattern"
+          width="32"
+          height="32"
+          patternUnits="userSpaceOnUse"
+          x="50%"
+          y="100%"
+          patternTransform="translate(0 -1)"
+          ><path d="M0 32V.5H32" fill="none" stroke="currentColor"
+          ></path></pattern
+        ></defs
+      ><rect width="100%" height="100%" fill="url(#grid-pattern)"></rect></svg
+    >
+  </div>
 
-<ScreenLayout>
-  <section class="relative overflow-hidden">
-    <div
-      class="absolute inset-x-0 top-0 h-96 rotate-180 text-gray-400/30 opacity-60 [mask-image:linear-gradient(to_bottom,transparent,white)]">
-      <svg
-        class="absolute inset-0 h-full w-full"
-        xmlns="http://www.w3.org/2000/svg"
-        ><defs
-          ><pattern
-            id="grid-pattern"
-            width="32"
-            height="32"
-            patternUnits="userSpaceOnUse"
-            x="50%"
-            y="100%"
-            patternTransform="translate(0 -1)"
-            ><path
-              d="M0 32V.5H32"
-              fill="none"
-              stroke="currentColor"
-            ></path></pattern
-          ></defs
-        ><rect
-          width="100%"
-          height="100%"
-          fill="url(#grid-pattern)"
-        ></rect></svg
+  <div class="px-8 py-24 mx-auto md:px-12 lg:px-32 max-w-screen-xl relative">
+    <!--- Tier 1 -->
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <section
+        class="flex flex-col h-full justify-between border p-8 rounded-3xl bg-white"
       >
-    </div>
-
-    <div class="px-8 py-24 mx-auto md:px-12 lg:px-32 max-w-screen-xl relative">
-      <!--- Tier 1 -->
-      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <section
-          class="flex flex-col h-full justify-between border p-8 rounded-3xl bg-white">
-          <div>
+        <div>
+          <div class="flex flex-col gap-2">
             <div class="flex flex-col gap-2">
-              <div class="flex flex-col gap-2">
-                <div class="flex items-center justify-between">
-                  <p
-                    class="text-base font-medium uppercase font-mono tracking-tighter text-blue-950 mt-4">
-                    Basic
-                  </p>
-                  <svg
-                    class="text-blue-500"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_435_2)">
-                      <path
-                        d="M3 12C3 13.1819 3.23279 14.3522 3.68508 15.4442C4.13738 16.5361 4.80031 17.5282 5.63604 18.364C6.47177 19.1997 7.46392 19.8626 8.55585 20.3149C9.64778 20.7672 10.8181 21 12 21C13.1819 21 14.3522 20.7672 15.4442 20.3149C16.5361 19.8626 17.5282 19.1997 18.364 18.364C19.1997 17.5282 19.8626 16.5361 20.3149 15.4442C20.7672 14.3522 21 13.1819 21 12C21 10.8181 20.7672 9.64778 20.3149 8.55585C19.8626 7.46392 19.1997 6.47177 18.364 5.63604C17.5282 4.80031 16.5361 4.13738 15.4442 3.68508C14.3522 3.23279 13.1819 3 12 3C10.8181 3 9.64778 3.23279 8.55585 3.68508C7.46392 4.13738 6.47177 4.80031 5.63604 5.63604C4.80031 6.47177 4.13738 7.46392 3.68508 8.55585C3.23279 9.64778 3 10.8181 3 12Z"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      ></path>
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_435_2">
-                        <rect
-                          width="24"
-                          height="24"
-                          fill="white"
-                        ></rect>
-                      </clipPath>
-                    </defs>
-                  </svg>
-                </div>
+              <div class="flex items-center justify-between">
                 <p
-                  class="font-semibold text-4xl tracking-tighter font-mono text-blue-950 mt-8">
-                  $9/month
+                  class="text-base font-medium uppercase font-mono tracking-tighter text-blue-950 mt-4"
+                >
+                  Basic
                 </p>
+                <svg
+                  class="text-blue-500"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#clip0_435_2)">
+                    <path
+                      d="M3 12C3 13.1819 3.23279 14.3522 3.68508 15.4442C4.13738 16.5361 4.80031 17.5282 5.63604 18.364C6.47177 19.1997 7.46392 19.8626 8.55585 20.3149C9.64778 20.7672 10.8181 21 12 21C13.1819 21 14.3522 20.7672 15.4442 20.3149C16.5361 19.8626 17.5282 19.1997 18.364 18.364C19.1997 17.5282 19.8626 16.5361 20.3149 15.4442C20.7672 14.3522 21 13.1819 21 12C21 10.8181 20.7672 9.64778 20.3149 8.55585C19.8626 7.46392 19.1997 6.47177 18.364 5.63604C17.5282 4.80031 16.5361 4.13738 15.4442 3.68508C14.3522 3.23279 13.1819 3 12 3C10.8181 3 9.64778 3.23279 8.55585 3.68508C7.46392 4.13738 6.47177 4.80031 5.63604 5.63604C4.80031 6.47177 4.13738 7.46392 3.68508 8.55585C3.23279 9.64778 3 10.8181 3 12Z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_435_2">
+                      <rect width="24" height="24" fill="white"></rect>
+                    </clipPath>
+                  </defs>
+                </svg>
               </div>
-
-              <p class="text-sm text-gray-500 mt-4 text-balance">
-                This subscription tier caters to individuals and hobbyists
-                seeking fundamental features.
+              <p
+                class="font-semibold text-4xl tracking-tighter font-mono text-blue-950 mt-8"
+              >
+                $9/month
               </p>
             </div>
-            <ul
-              class="flex flex-col mt-10 text-sm text-gray-700 gap-y-3"
-              role="list">
-              <li class="flex flex-row items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="size-4 icon icon-tabler icon-tabler-circle-check-filled text-blue-500"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round">
-                  <path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  ></path>
-                  <path
-                    d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
-                    stroke-width="0"
-                    fill="currentColor"
-                  ></path>
-                </svg>
-                <span>Unlimited members</span>
-              </li>
-              <li class="flex flex-row items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="size-4 icon icon-tabler icon-tabler-circle-check-filled text-blue-500"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round">
-                  <path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  ></path>
-                  <path
-                    d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
-                    stroke-width="0"
-                    fill="currentColor"
-                  ></path>
-                </svg>
-                <span>2 teams </span>
-              </li>
-              <li class="flex flex-row items-center gap-2 opacity-70">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-x text-blue-500 size-4"
-                  ><path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  ></path><path d="M18 6l-12 12"></path><path d="M6 6l12 12"
-                  ></path></svg
-                >
-                <span>50 issues (+unlimited archived)</span>
-              </li>
-              <li class="flex flex-row items-center gap-2 opacity-70">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-x text-blue-500 size-4"
-                  ><path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  ></path><path d="M18 6l-12 12"></path><path d="M6 6l12 12"
-                  ></path></svg
-                >
-                <span>Slack, GitHub, and API access</span>
-              </li>
-            </ul>
-          </div>
-          <div class="mt-8 flex">
-            <a
-              aria-describedby="#_"
-              class="flex items-center justify-center gap-2 h-10 px-4 py-2 text-sm font-semibold text-gray-500 transition-all duration-200 bg-gray-50 border border-gray-300 rounded-lg hover:text-blue-700 focus:ring-2 shadow shadow-gray-500/5 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none"
-              href="#_"
-              >Get started</a
-            >
-          </div>
-        </section>
-        <section
-          class="flex flex-col h-full justify-between border p-8 rounded-3xl bg-white">
-          <div>
-            <div class="flex flex-col gap-2">
-              <div class="flex flex-col gap-2">
-                <div class="flex items-center justify-between">
-                  <p
-                    class="text-base font-medium uppercase font-mono tracking-tighter text-blue-950 mt-4">
-                    Standard
-                  </p>
-                  <svg
-                    class="text-blue-500"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_438_17)">
-                      <path
-                        d="M3 5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5Z"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      ></path>
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_438_17">
-                        <rect
-                          width="24"
-                          height="24"
-                          fill="white"
-                        ></rect>
-                      </clipPath>
-                    </defs>
-                  </svg>
-                </div>
-                <p
-                  class="font-semibold text-4xl tracking-tighter font-mono text-blue-950 mt-8">
-                  $19/month
-                </p>
-              </div>
 
-              <p class="text-sm text-gray-500 mt-4 text-balance">
-                Designed with medium-sized businesses in mind, this subscription
-                tier provides advanced tools.
+            <p class="text-sm text-gray-500 mt-4 text-balance">
+              This subscription tier caters to individuals and hobbyists seeking
+              fundamental features.
+            </p>
+          </div>
+          <ul
+            class="flex flex-col mt-10 text-sm text-gray-700 gap-y-3"
+            role="list"
+          >
+            <li class="flex flex-row items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-4 icon icon-tabler icon-tabler-circle-check-filled text-blue-500"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path
+                  d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
+                  stroke-width="0"
+                  fill="currentColor"></path>
+              </svg>
+              <span>Unlimited members</span>
+            </li>
+            <li class="flex flex-row items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-4 icon icon-tabler icon-tabler-circle-check-filled text-blue-500"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path
+                  d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
+                  stroke-width="0"
+                  fill="currentColor"></path>
+              </svg>
+              <span>2 teams </span>
+            </li>
+            <li class="flex flex-row items-center gap-2 opacity-70">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-x text-blue-500 size-4"
+                ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                  d="M18 6l-12 12"></path><path d="M6 6l12 12"></path></svg
+              >
+              <span>50 issues (+unlimited archived)</span>
+            </li>
+            <li class="flex flex-row items-center gap-2 opacity-70">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-x text-blue-500 size-4"
+                ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                  d="M18 6l-12 12"></path><path d="M6 6l12 12"></path></svg
+              >
+              <span>Slack, GitHub, and API access</span>
+            </li>
+          </ul>
+        </div>
+        <div class="mt-8 flex">
+          <a
+            aria-describedby="#_"
+            class="flex items-center justify-center gap-2 h-10 px-4 py-2 text-sm font-semibold text-gray-500 transition-all duration-200 bg-gray-50 border border-gray-300 rounded-lg hover:text-blue-700 focus:ring-2 shadow shadow-gray-500/5 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none"
+            href="#_">Get started</a
+          >
+        </div>
+      </section>
+      <section
+        class="flex flex-col h-full justify-between border p-8 rounded-3xl bg-white"
+      >
+        <div>
+          <div class="flex flex-col gap-2">
+            <div class="flex flex-col gap-2">
+              <div class="flex items-center justify-between">
+                <p
+                  class="text-base font-medium uppercase font-mono tracking-tighter text-blue-950 mt-4"
+                >
+                  Standard
+                </p>
+                <svg
+                  class="text-blue-500"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#clip0_438_17)">
+                    <path
+                      d="M3 5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5Z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_438_17">
+                      <rect width="24" height="24" fill="white"></rect>
+                    </clipPath>
+                  </defs>
+                </svg>
+              </div>
+              <p
+                class="font-semibold text-4xl tracking-tighter font-mono text-blue-950 mt-8"
+              >
+                $19/month
               </p>
             </div>
-            <ul
-              class="flex flex-col mt-10 text-sm text-gray-700 gap-y-3"
-              role="list">
-              <li class="flex flex-row items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="size-4 icon icon-tabler icon-tabler-circle-check-filled text-blue-500"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round">
-                  <path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  ></path>
-                  <path
-                    d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
-                    stroke-width="0"
-                    fill="currentColor"
-                  ></path>
-                </svg>
-                <span>All basic plan features</span>
-              </li>
-              <li class="flex flex-row items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="size-4 icon icon-tabler icon-tabler-circle-check-filled text-blue-500"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round">
-                  <path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  ></path>
-                  <path
-                    d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
-                    stroke-width="0"
-                    fill="currentColor"
-                  ></path>
-                </svg>
-                <span>5 teams </span>
-              </li>
-              <li class="flex flex-row items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="size-4 icon icon-tabler icon-tabler-circle-check-filled text-blue-500"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round">
-                  <path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  ></path>
-                  <path
-                    d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
-                    stroke-width="0"
-                    fill="currentColor"
-                  ></path>
-                </svg>
-                <span>Unlimited issues and file uploads </span>
-              </li>
-              <li class="flex flex-row items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="size-4 icon icon-tabler icon-tabler-circle-check-filled text-blue-500"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round">
-                  <path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  ></path>
-                  <path
-                    d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
-                    stroke-width="0"
-                    fill="currentColor"
-                  ></path>
-                </svg>
-                <span>Admin roles</span>
-              </li>
-            </ul>
+
+            <p class="text-sm text-gray-500 mt-4 text-balance">
+              Designed with medium-sized businesses in mind, this subscription
+              tier provides advanced tools.
+            </p>
           </div>
-          <div class="mt-8 flex">
-            <a
-              aria-describedby="#_"
-              class="flex items-center justify-center h-10 px-4 py-2 text-sm font-semibold text-white transition-all duration-200 rounded-lg bg-gradient-to-b from-blue-500 to-blue-600 hover:to-blue-800 shadow focus:ring-2 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none"
-              href="#_"
-              >Get started</a
-            >
-          </div>
-        </section>
-      </div>
+          <ul
+            class="flex flex-col mt-10 text-sm text-gray-700 gap-y-3"
+            role="list"
+          >
+            <li class="flex flex-row items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-4 icon icon-tabler icon-tabler-circle-check-filled text-blue-500"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path
+                  d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
+                  stroke-width="0"
+                  fill="currentColor"></path>
+              </svg>
+              <span>All basic plan features</span>
+            </li>
+            <li class="flex flex-row items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-4 icon icon-tabler icon-tabler-circle-check-filled text-blue-500"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path
+                  d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
+                  stroke-width="0"
+                  fill="currentColor"></path>
+              </svg>
+              <span>5 teams </span>
+            </li>
+            <li class="flex flex-row items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-4 icon icon-tabler icon-tabler-circle-check-filled text-blue-500"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path
+                  d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
+                  stroke-width="0"
+                  fill="currentColor"></path>
+              </svg>
+              <span>Unlimited issues and file uploads </span>
+            </li>
+            <li class="flex flex-row items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-4 icon icon-tabler icon-tabler-circle-check-filled text-blue-500"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path
+                  d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
+                  stroke-width="0"
+                  fill="currentColor"></path>
+              </svg>
+              <span>Admin roles</span>
+            </li>
+          </ul>
+        </div>
+        <div class="mt-8 flex">
+          <a
+            aria-describedby="#_"
+            class="flex items-center justify-center h-10 px-4 py-2 text-sm font-semibold text-white transition-all duration-200 rounded-lg bg-gradient-to-b from-blue-500 to-blue-600 hover:to-blue-800 shadow focus:ring-2 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none"
+            href="#_">Get started</a
+          >
+        </div>
+      </section>
     </div>
-  </section>
-</ScreenLayout>
+  </div>
+</section>
