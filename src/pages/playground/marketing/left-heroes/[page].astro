@@ -1,10 +1,19 @@
 ---
+export const prerender = true;
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Playground from "@/components/global/Playground.astro";
 
-const components = await Astro.glob(
-  `@/pages/components/marketing/left-heroes/*.astro`,
-);
+export async function getStaticPaths({ paginate }) {
+  const PAGE_SIZE = 10;
+
+  const components = await Astro.glob(
+    `@/pages/components/marketing/left-heroes/*.astro`,
+  );
+
+  return paginate(components, { pageSize: PAGE_SIZE });
+}
+
+const { page } = Astro.props;
 ---
 
 <BaseLayout>
@@ -25,13 +34,16 @@ const components = await Astro.glob(
     </div>
 
     <div class="max-w-7xl mx-auto px-8 space-y-12 pb-32 mt-12">
+      <div>Page {page.currentPage}</div>
       {
-        components.map((component) => (
+        page.data.map((component) => (
           <Playground>
             <component.default />
           </Playground>
         ))
       }
+      {page.url.prev ? <a href={page.url.prev}>Previous</a> : null}
+      {page.url.next ? <a href={page.url.next}>Next</a> : null}
     </div>
   </section>
 </BaseLayout>
