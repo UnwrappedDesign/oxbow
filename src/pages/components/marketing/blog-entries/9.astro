@@ -1,5 +1,4 @@
 ---
-import ScreenLayout from "@/layouts/ScreenLayout.astro";
 const articles = [
   {
     image:
@@ -8,8 +7,7 @@ const articles = [
     description:
       "Learn the best practices for creating responsive web designs that provide a seamless user experience across all devices.",
     author: "John Doe",
-    authorImage:
-      "/avatars/1.avif",
+    authorImage: "/avatars/1.avif",
     date: "Mon Mar 25",
     link: "#_",
   },
@@ -20,8 +18,7 @@ const articles = [
     description:
       "An in-depth comparison of the most popular JavaScript frameworks, including React, Vue, and Angular, to help you choose the right one for your project.",
     author: "Michael Johnson",
-    authorImage:
-      "/avatars/2.avif",
+    authorImage: "/avatars/2.avif",
     date: "Wed Apr 10",
     link: "#_",
   },
@@ -32,97 +29,89 @@ const articles = [
     description:
       "Explore the latest features and updates in CSS that are shaping the future of web design and development.",
     author: "Johannes Svensson",
-    authorImage:
-      "/avatars/3.avif",
+    authorImage: "/avatars/3.avif",
     date: "Fri May 05",
     link: "#_",
   },
 ];
 ---
 
-<ScreenLayout>
-  <section>
-    <div class="px-8 py-24 mx-auto md:px-12 lg:px-32 max-w-7xl relative">
+<section>
+  <div class="px-8 py-24 mx-auto md:px-12 lg:px-32 max-w-7xl relative">
+    <div class="flex flex-col gap-6 relative">
+      {
+        articles.map((article) => (
+          <>
+            <div class="grid items-center grid-cols-1 gap-6 lg:grid-cols-3">
+              <div class="block w-full lg:col-span-2">
+                <img
+                  src={article.image}
+                  alt="#_"
+                  class="shadow rounded-2xl aspect-[4/3] object-cover object-center w-full"
+                />
+              </div>
+              <div class="bg-gray-50 h-full rounded-2xl p-6 flex flex-col justify-between">
+                <div>
+                  <h1 class="text-4xl font-semibold tracking-tight text-blue-950 lg:text-4xl">
+                    {article.title}
+                  </h1>
 
-      <div class="flex flex-col gap-6  relative">
-        {
-          articles.map((article) => (
-            <>
-              <div class="grid items-center grid-cols-1 gap-6 lg:grid-cols-3">
-                <div class="block w-full lg:col-span-2">
-                  <img
-                    src={article.image}
-                    alt="#_"
-                    class="shadow rounded-2xl aspect-[4/3] object-cover object-center w-full"
-                  />
-                </div>
-                <div class="bg-gray-50 h-full rounded-2xl p-6 flex flex-col justify-between">
-                  <div>
-                    <h1 class="text-4xl font-semibold tracking-tight text-blue-950 lg:text-4xl">
-                      {article.title}
-                    </h1>
-
-                    <div class="mt-6 flex ">
-                      <div class="relative flex items-center gap-x-4">
-                        <img
-                          src={article.authorImage}
-                          alt="#_"
-                          class="size-12 rounded-full bg-gray-50 object-cover"
-                        />
-                        <div class="text-sm leading-6">
-                          <p class="font-semibold text-gray-900">
-                            <a href="#_">
-                              <span class="absolute inset-0" />
-                              {article.author}
-                            </a>
-                          </p>
-                          <dl>
-                            <dt class="sr-only">{article.date}</dt>
-                            <dd class="text-xs text-gray-500">
-                              <time datetime={article.date}>
-                                {article.date}
-                              </time>
-                            </dd>
-                          </dl>
-                        </div>
+                  <div class="mt-6 flex ">
+                    <div class="relative flex items-center gap-x-4">
+                      <img
+                        src={article.authorImage}
+                        alt="#_"
+                        class="size-12 rounded-full bg-gray-50 object-cover"
+                      />
+                      <div class="text-sm leading-6">
+                        <p class="font-semibold text-gray-900">
+                          <a href="#_">
+                            <span class="absolute inset-0" />
+                            {article.author}
+                          </a>
+                        </p>
+                        <dl>
+                          <dt class="sr-only">{article.date}</dt>
+                          <dd class="text-xs text-gray-500">
+                            <time datetime={article.date}>{article.date}</time>
+                          </dd>
+                        </dl>
                       </div>
                     </div>
                   </div>
+                </div>
 
-                  <div class="mt-12 flex">
-                    <a
-                      href="#_"
-                      aria-label="Action"
-                      class="text-blue-500 hover:text-blue-950 text-sm font-medium duration-300 flex items-center gap-2">
-                      Read further
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="18"
-                        height="18"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right">
-                        <>
-                          <path
-                            stroke="none"
-                            d="M0 0h24v24H0z"
-                            fill="none"
-                          />
-                          <path d="M9 6l6 6l-6 6" />
-                        </>
-                      </svg>
-                    </a>
-                  </div>
+                <div class="mt-12 flex">
+                  <a
+                    href="#_"
+                    aria-label="Action"
+                    class="text-blue-500 hover:text-blue-950 text-sm font-medium duration-300 flex items-center gap-2"
+                  >
+                    Read further
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"
+                    >
+                      <>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M9 6l6 6l-6 6" />
+                      </>
+                    </svg>
+                  </a>
                 </div>
               </div>
-            </>
-          ))
-        }
-      </div>
+            </div>
+          </>
+        ))
+      }
     </div>
-  </section>
-</ScreenLayout>
+  </div>
+</section>

@@ -1,14 +1,10 @@
----
-import ScreenLayout from "@/layouts/ScreenLayout.astro";
----
-
-<ScreenLayout>
-  <section class="overflow-hidden">
+<section class="overflow-hidden">
+  <div
+    class="px-8 py-24 mx-auto md:px-12 lg:px-32 items-center max-w-7xl relative"
+  >
     <div
-      class="px-8 py-24 mx-auto md:px-12 lg:px-32 items-center max-w-7xl relative">
-      <div
-        class="flex flex-col-reverse w-full"
-        x-data="{
+      class="flex flex-col-reverse w-full"
+      x-data="{
           skip: 1,
           atBeginning: false,
           atEnd: false,
@@ -54,332 +50,351 @@ import ScreenLayout from "@/layouts/ScreenLayout.astro";
                   }
               },
           },
-      }">
-        <div
-          class="flex flex-col-reverse w-full"
-          aria-labelledby="carousel-label"
-          role="region"
-          tabindex="0"
-          x-on:keydown.left="prev"
-          x-on:keydown.right="next">
-          <div class="flex flex-col-reverse lg:flex-row">
-            <div>
-              <div class="max-w-xs">
-                <span
-                  class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase">
-                  Testimonials
-                </span>
-                <h1
-                  class="text-3xl mt-4 font-semibold tracking-tight text-blue-950">
-                  Testimonials from
-                  <span class="text-gray-600 block">delighted customers </span>
-                </h1>
-                <p class="text-base font-medium text-gray-500 mt-4 ">
-                  Discover stories of success and satisfaction shared by our
-                  clients.
-                </p>
-              </div>
-              <div class="items-center inline-flex mt-4 order-last space-x-2">
-                <button
-                  class="flex items-center text-white bg-blue-500 rounded-full hover:bg-blue-600 size-8 focus:bg-blue-400"
-                  :class="{ 'opacity-50 ': atBeginning }"
-                  :aria-disabled="atBeginning"
-                  :tabindex="atEnd ? -1 : 0"
-                  x-on:click="prev"
-                  tabindex="0">
-                  <span
-                    aria-hidden="true"
-                    class="mx-auto">
-                    ←
-                  </span><span class="sr-only">Skip to previous slide page</span
-                  >
-                </button>
-                <button
-                  class="flex items-center text-white bg-blue-500 rounded-full hover:bg-blue-600 size-8 focus:bg-blue-400"
-                  :class="{ 'opacity-50 ': atEnd }"
-                  :aria-disabled="atEnd"
-                  :tabindex="atEnd ? -1 : 0"
-                  x-on:click="next"
-                  tabindex="0">
-                  <span
-                    aria-hidden="true"
-                    class="mx-auto">
-                    →
-                  </span><span class="sr-only">Skip to next slide page</span>
-                </button>
-              </div>
+      }"
+    >
+      <div
+        class="flex flex-col-reverse w-full"
+        aria-labelledby="carousel-label"
+        role="region"
+        tabindex="0"
+        x-on:keydown.left="prev"
+        x-on:keydown.right="next"
+      >
+        <div class="flex flex-col-reverse lg:flex-row">
+          <div>
+            <div class="max-w-xs">
+              <span
+                class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+              >
+                Testimonials
+              </span>
+              <h1
+                class="text-3xl mt-4 font-semibold tracking-tight text-blue-950"
+              >
+                Testimonials from
+                <span class="text-gray-600 block">delighted customers </span>
+              </h1>
+              <p class="text-base font-medium text-gray-500 mt-4">
+                Discover stories of success and satisfaction shared by our
+                clients.
+              </p>
             </div>
-            <div class="w-full snap-x lg:-mr-[90rem] lg:ml-32 mt-12 lg:mt-0">
-              <ul
-                class="gap-3 rounded-2xl overflow-x-scroll p-2 w-screen grid grid-flow-col auto-cols-max scrollbar-hide snap-mandatory relative"
-                role="listbox"
-                aria-labelledby="carousel-content-label"
+            <div class="items-center inline-flex mt-4 order-last space-x-2">
+              <button
+                class="flex items-center text-white bg-blue-500 rounded-full hover:bg-blue-600 size-8 focus:bg-blue-400"
+                :class="{ 'opacity-50 ': atBeginning }"
+                :aria-disabled="atBeginning"
+                :tabindex="atEnd ? -1 : 0"
+                x-on:click="prev"
                 tabindex="0"
-                x-ref="slider">
-                <li
-                  role="option"
-                  aria-selected="false"
-                  x-bind="disableNextAndPreviousButtons"
-                  class="bg-gray-50 p-8 rounded-2xl shadow snap-start w-64 h-full">
-                  <figure class="flex flex-col-reverse h-full justify-between">
-                    <figcaption class="relative flex items-center gap-3 mt-12">
-                      <img
-                        alt="#_"
-                        src="/avatars/1.avif"
-                        class="object-cover rounded-full size-12"
-                      />
-                      <div>
-                        <h3
-                          class="font-mono uppercase tracking-tighter text-sm font-medium text-blue-950">
-                          Michael Andreuzza
-                        </h3>
-                        <p class="mt-1 text-xs text-gray-500">Creator</p>
-                      </div>
-                    </figcaption>
-                    <blockquote class="mt-4">
-                      <p class="text-sm text-gray-500 text-pretty">
-                        Being in the financial industry, we were always looking
-                        for ways to enhance our transactions' security and
-                        efficiency.
-                      </p>
-                    </blockquote>
-                  </figure>
-                </li>
-                <li
-                  role="option"
-                  aria-selected="false"
-                  x-bind="disableNextAndPreviousButtons"
-                  class="bg-gray-50 p-8 rounded-2xl shadow snap-start w-64 h-full">
-                  <figure class="flex flex-col-reverse h-full justify-between">
-                    <figcaption class="relative flex gap-3 items-center">
-                      <img
-                        alt="#_"
-                        src="/avatars/2.avif"
-                        class="object-cover rounded-full size-12"
-                      />
-                      <div>
-                        <h3
-                          class="font-mono uppercase tracking-tighter text-sm font-medium text-blue-950">
-                          Gege Piazza
-                        </h3>
-                        <p class="mt-1 text-sm text-gray-500">Developer</p>
-                      </div>
-                    </figcaption>
-                    <blockquote class="mt-4">
-                      <p class="text-sm text-gray-500 text-pretty">
-                        Implementing Semplice's blockchain technology has been a
-                        game-changer for our supply chain management.
-                      </p>
-                    </blockquote>
-                  </figure>
-                </li>
-                <li
-                  role="option"
-                  aria-selected="false"
-                  x-bind="disableNextAndPreviousButtons"
-                  class="bg-gray-50 p-8 rounded-2xl shadow snap-start w-64 h-full">
-                  <figure class="flex flex-col-reverse h-full justify-between">
-                    <figcaption class="relative flex items-center gap-3 mt-12">
-                      <img
-                        alt="#_"
-                        src="/avatars/3.avif"
-                        class="object-cover rounded-full size-12"
-                      />
-                      <div>
-                        <h3
-                          class="font-mono uppercase tracking-tighter text-sm font-medium text-blue-950">
-                          Jenson Button
-                        </h3>
-                        <p class="mt-1 text-sm text-gray-500">Founder</p>
-                      </div>
-                    </figcaption>
-                    <blockquote class="mt-4">
-                      <p class="text-sm text-gray-500 text-pretty">
-                        We were initially hesitant about integrating blockchain
-                        technology into our existing systems.
-                      </p>
-                    </blockquote>
-                  </figure>
-                </li>
-                <li
-                  role="option"
-                  aria-selected="false"
-                  x-bind="disableNextAndPreviousButtons"
-                  class="bg-gray-50 p-8 rounded-2xl shadow snap-start w-64 h-full">
-                  <figure class="flex flex-col-reverse h-full justify-between">
-                    <figcaption class="relative flex gap-3 items-center">
-                      <img
-                        alt="#_"
-                        src="/avatars/4.avif"
-                        class="object-cover mx-auto rounded-full size-12"
-                      />
-                      <div>
-                        <h3
-                          class="font-mono uppercase tracking-tighter text-sm font-medium text-blue-950">
-                          Michael Andreuzza
-                        </h3>
-                        <p class="mt-2 text-sm text-gray-500">Designer</p>
-                      </div>
-                    </figcaption>
-                    <blockquote>
-                      <p class="text-sm text-gray-500 text-pretty">
-                        Being in the financial industry, we were always looking
-                        for ways to enhance our transactions' security and
-                        efficiency.
-                      </p>
-                    </blockquote>
-                  </figure>
-                </li>
-                <li
-                  role="option"
-                  aria-selected="false"
-                  x-bind="disableNextAndPreviousButtons"
-                  class="bg-gray-50 p-8 rounded-2xl shadow snap-start w-64 h-full">
-                  <figure class="flex flex-col-reverse h-full justify-between">
-                    <figcaption class="relative flex gap-3 items-center">
-                      <img
-                        alt="#_"
-                        src="/avatars/5.avif"
-                        class="object-cover rounded-full size-12"
-                      />
-                      <div>
-                        <h3
-                          class="font-mono uppercase tracking-tighter text-sm font-medium text-blue-950">
-                          Gege Piazza
-                        </h3>
-                        <p class="mt-2 text-sm text-gray-500">CEO</p>
-                      </div>
-                    </figcaption>
-                    <blockquote>
-                      <p class="text-sm text-gray-500 text-pretty">
-                        Implementing Semplice's blockchain technology has been a
-                        game-changer for our supply chain management.
-                      </p>
-                    </blockquote>
-                  </figure>
-                </li>
-                <li
-                  role="option"
-                  aria-selected="false"
-                  x-bind="disableNextAndPreviousButtons"
-                  class="bg-gray-50 p-8 rounded-2xl shadow snap-start w-64 h-full">
-                  <figure class="flex flex-col-reverse h-full justify-between">
-                    <figcaption class="relative flex gap-3 items-center">
-                      <img
-                        alt="#_"
-                        src="/avatars/6.avif"
-                        class="object-cover mx-auto rounded-full size-12"
-                      />
-                      <div>
-                        <h3
-                          class="font-mono uppercase tracking-tighter text-sm font-medium text-blue-950">
-                          Jenson Button
-                        </h3>
-                        <p class="mt-2 text-sm text-gray-500">Founder</p>
-                      </div>
-                    </figcaption>
-                    <blockquote>
-                      <p class="text-sm text-gray-500 text-pretty">
-                        We were initially hesitant about integrating blockchain
-                        technology into our existing systems.
-                      </p>
-                    </blockquote>
-                  </figure>
-                </li>
-                <li
-                  role="option"
-                  aria-selected="false"
-                  x-bind="disableNextAndPreviousButtons"
-                  class="bg-gray-50 p-8 rounded-2xl shadow snap-start w-64 h-full">
-                  <figure class="flex flex-col-reverse h-full justify-between">
-                    <figcaption class="relative flex gap-3 items-center">
-                      <img
-                        alt="#_"
-                        src="/avatars/8.avif"
-                        class="object-cover mx-auto rounded-full size-12"
-                      />
-                      <div>
-                        <h3
-                          class="font-mono uppercase tracking-tighter text-sm font-medium text-blue-950">
-                          Michael Andreuzza
-                        </h3>
-                        <p class="mt-2 text-sm text-gray-500">Marketing</p>
-                      </div>
-                    </figcaption>
-                    <blockquote>
-                      <p class="text-sm text-gray-500 text-pretty">
-                        Being in the financial industry, we were always looking
-                        for ways to enhance our transactions' security and
-                        efficiency.
-                      </p>
-                    </blockquote>
-                  </figure>
-                </li>
-                <li
-                  role="option"
-                  aria-selected="false"
-                  x-bind="disableNextAndPreviousButtons"
-                  class="bg-gray-50 p-8 rounded-2xl shadow snap-start w-64 h-full">
-                  <figure class="flex flex-col-reverse h-full justify-between">
-                    <figcaption class="relative flex gap-3 items-center">
-                      <img
-                        alt="#_"
-                        src="/avatars/8.avif"
-                        class="object-cover mx-auto rounded-full size-12"
-                      />
-                      <div>
-                        <h3
-                          class="font-mono uppercase tracking-tighter text-sm font-medium text-blue-950">
-                          Gege Piazza
-                        </h3>
-                        <p class="mt-2 text-sm text-gray-500">
-                          Creator of Pizza Piazza
-                        </p>
-                      </div>
-                    </figcaption>
-                    <blockquote>
-                      <p class="text-sm text-gray-500 text-pretty">
-                        Implementing Semplice's blockchain technology has been a
-                        game-changer for our supply chain management.
-                      </p>
-                    </blockquote>
-                  </figure>
-                </li>
-                <li
-                  role="option"
-                  aria-selected="false"
-                  x-bind="disableNextAndPreviousButtons"
-                  class="bg-gray-50 p-8 rounded-2xl shadow snap-start w-64 h-full">
-                  <figure class="flex flex-col-reverse h-full justify-between">
-                    <figcaption class="relative flex items-center gap-3 mt-12">
-                      <img
-                        alt="#_"
-                        src="/avatars/9.avif"
-                        class="object-cover mx-auto rounded-full size-12"
-                      />
-                      <div>
-                        <h3
-                          class="font-mono uppercase tracking-tighter text-sm font-medium text-blue-950">
-                          Jenson Button
-                        </h3>
-                        <p class="mt-2 text-sm text-gray-500">
-                          Founder of Benji and Tom
-                        </p>
-                      </div>
-                    </figcaption>
-                    <blockquote>
-                      <p class="text-sm text-gray-500 text-pretty">
-                        We were initially hesitant about integrating blockchain
-                        technology into our existing systems.
-                      </p>
-                    </blockquote>
-                  </figure>
-                </li>
-              </ul>
+              >
+                <span aria-hidden="true" class="mx-auto"> ← </span><span
+                  class="sr-only">Skip to previous slide page</span
+                >
+              </button>
+              <button
+                class="flex items-center text-white bg-blue-500 rounded-full hover:bg-blue-600 size-8 focus:bg-blue-400"
+                :class="{ 'opacity-50 ': atEnd }"
+                :aria-disabled="atEnd"
+                :tabindex="atEnd ? -1 : 0"
+                x-on:click="next"
+                tabindex="0"
+              >
+                <span aria-hidden="true" class="mx-auto"> → </span><span
+                  class="sr-only">Skip to next slide page</span
+                >
+              </button>
             </div>
+          </div>
+          <div class="w-full snap-x lg:-mr-[90rem] lg:ml-32 mt-12 lg:mt-0">
+            <ul
+              class="gap-3 rounded-2xl overflow-x-scroll p-2 w-screen grid grid-flow-col auto-cols-max scrollbar-hide snap-mandatory relative"
+              role="listbox"
+              aria-labelledby="carousel-content-label"
+              tabindex="0"
+              x-ref="slider"
+            >
+              <li
+                role="option"
+                aria-selected="false"
+                x-bind="disableNextAndPreviousButtons"
+                class="bg-gray-50 p-8 rounded-2xl shadow snap-start w-64 h-full"
+              >
+                <figure class="flex flex-col-reverse h-full justify-between">
+                  <figcaption class="relative flex items-center gap-3 mt-12">
+                    <img
+                      alt="#_"
+                      src="/avatars/1.avif"
+                      class="object-cover rounded-full size-12"
+                    />
+                    <div>
+                      <h3
+                        class="font-mono uppercase tracking-tighter text-sm font-medium text-blue-950"
+                      >
+                        Michael Andreuzza
+                      </h3>
+                      <p class="mt-1 text-xs text-gray-500">Creator</p>
+                    </div>
+                  </figcaption>
+                  <blockquote class="mt-4">
+                    <p class="text-sm text-gray-500 text-pretty">
+                      Being in the financial industry, we were always looking
+                      for ways to enhance our transactions' security and
+                      efficiency.
+                    </p>
+                  </blockquote>
+                </figure>
+              </li>
+              <li
+                role="option"
+                aria-selected="false"
+                x-bind="disableNextAndPreviousButtons"
+                class="bg-gray-50 p-8 rounded-2xl shadow snap-start w-64 h-full"
+              >
+                <figure class="flex flex-col-reverse h-full justify-between">
+                  <figcaption class="relative flex gap-3 items-center">
+                    <img
+                      alt="#_"
+                      src="/avatars/2.avif"
+                      class="object-cover rounded-full size-12"
+                    />
+                    <div>
+                      <h3
+                        class="font-mono uppercase tracking-tighter text-sm font-medium text-blue-950"
+                      >
+                        Gege Piazza
+                      </h3>
+                      <p class="mt-1 text-sm text-gray-500">Developer</p>
+                    </div>
+                  </figcaption>
+                  <blockquote class="mt-4">
+                    <p class="text-sm text-gray-500 text-pretty">
+                      Implementing Semplice's blockchain technology has been a
+                      game-changer for our supply chain management.
+                    </p>
+                  </blockquote>
+                </figure>
+              </li>
+              <li
+                role="option"
+                aria-selected="false"
+                x-bind="disableNextAndPreviousButtons"
+                class="bg-gray-50 p-8 rounded-2xl shadow snap-start w-64 h-full"
+              >
+                <figure class="flex flex-col-reverse h-full justify-between">
+                  <figcaption class="relative flex items-center gap-3 mt-12">
+                    <img
+                      alt="#_"
+                      src="/avatars/3.avif"
+                      class="object-cover rounded-full size-12"
+                    />
+                    <div>
+                      <h3
+                        class="font-mono uppercase tracking-tighter text-sm font-medium text-blue-950"
+                      >
+                        Jenson Button
+                      </h3>
+                      <p class="mt-1 text-sm text-gray-500">Founder</p>
+                    </div>
+                  </figcaption>
+                  <blockquote class="mt-4">
+                    <p class="text-sm text-gray-500 text-pretty">
+                      We were initially hesitant about integrating blockchain
+                      technology into our existing systems.
+                    </p>
+                  </blockquote>
+                </figure>
+              </li>
+              <li
+                role="option"
+                aria-selected="false"
+                x-bind="disableNextAndPreviousButtons"
+                class="bg-gray-50 p-8 rounded-2xl shadow snap-start w-64 h-full"
+              >
+                <figure class="flex flex-col-reverse h-full justify-between">
+                  <figcaption class="relative flex gap-3 items-center">
+                    <img
+                      alt="#_"
+                      src="/avatars/4.avif"
+                      class="object-cover mx-auto rounded-full size-12"
+                    />
+                    <div>
+                      <h3
+                        class="font-mono uppercase tracking-tighter text-sm font-medium text-blue-950"
+                      >
+                        Michael Andreuzza
+                      </h3>
+                      <p class="mt-2 text-sm text-gray-500">Designer</p>
+                    </div>
+                  </figcaption>
+                  <blockquote>
+                    <p class="text-sm text-gray-500 text-pretty">
+                      Being in the financial industry, we were always looking
+                      for ways to enhance our transactions' security and
+                      efficiency.
+                    </p>
+                  </blockquote>
+                </figure>
+              </li>
+              <li
+                role="option"
+                aria-selected="false"
+                x-bind="disableNextAndPreviousButtons"
+                class="bg-gray-50 p-8 rounded-2xl shadow snap-start w-64 h-full"
+              >
+                <figure class="flex flex-col-reverse h-full justify-between">
+                  <figcaption class="relative flex gap-3 items-center">
+                    <img
+                      alt="#_"
+                      src="/avatars/5.avif"
+                      class="object-cover rounded-full size-12"
+                    />
+                    <div>
+                      <h3
+                        class="font-mono uppercase tracking-tighter text-sm font-medium text-blue-950"
+                      >
+                        Gege Piazza
+                      </h3>
+                      <p class="mt-2 text-sm text-gray-500">CEO</p>
+                    </div>
+                  </figcaption>
+                  <blockquote>
+                    <p class="text-sm text-gray-500 text-pretty">
+                      Implementing Semplice's blockchain technology has been a
+                      game-changer for our supply chain management.
+                    </p>
+                  </blockquote>
+                </figure>
+              </li>
+              <li
+                role="option"
+                aria-selected="false"
+                x-bind="disableNextAndPreviousButtons"
+                class="bg-gray-50 p-8 rounded-2xl shadow snap-start w-64 h-full"
+              >
+                <figure class="flex flex-col-reverse h-full justify-between">
+                  <figcaption class="relative flex gap-3 items-center">
+                    <img
+                      alt="#_"
+                      src="/avatars/6.avif"
+                      class="object-cover mx-auto rounded-full size-12"
+                    />
+                    <div>
+                      <h3
+                        class="font-mono uppercase tracking-tighter text-sm font-medium text-blue-950"
+                      >
+                        Jenson Button
+                      </h3>
+                      <p class="mt-2 text-sm text-gray-500">Founder</p>
+                    </div>
+                  </figcaption>
+                  <blockquote>
+                    <p class="text-sm text-gray-500 text-pretty">
+                      We were initially hesitant about integrating blockchain
+                      technology into our existing systems.
+                    </p>
+                  </blockquote>
+                </figure>
+              </li>
+              <li
+                role="option"
+                aria-selected="false"
+                x-bind="disableNextAndPreviousButtons"
+                class="bg-gray-50 p-8 rounded-2xl shadow snap-start w-64 h-full"
+              >
+                <figure class="flex flex-col-reverse h-full justify-between">
+                  <figcaption class="relative flex gap-3 items-center">
+                    <img
+                      alt="#_"
+                      src="/avatars/8.avif"
+                      class="object-cover mx-auto rounded-full size-12"
+                    />
+                    <div>
+                      <h3
+                        class="font-mono uppercase tracking-tighter text-sm font-medium text-blue-950"
+                      >
+                        Michael Andreuzza
+                      </h3>
+                      <p class="mt-2 text-sm text-gray-500">Marketing</p>
+                    </div>
+                  </figcaption>
+                  <blockquote>
+                    <p class="text-sm text-gray-500 text-pretty">
+                      Being in the financial industry, we were always looking
+                      for ways to enhance our transactions' security and
+                      efficiency.
+                    </p>
+                  </blockquote>
+                </figure>
+              </li>
+              <li
+                role="option"
+                aria-selected="false"
+                x-bind="disableNextAndPreviousButtons"
+                class="bg-gray-50 p-8 rounded-2xl shadow snap-start w-64 h-full"
+              >
+                <figure class="flex flex-col-reverse h-full justify-between">
+                  <figcaption class="relative flex gap-3 items-center">
+                    <img
+                      alt="#_"
+                      src="/avatars/8.avif"
+                      class="object-cover mx-auto rounded-full size-12"
+                    />
+                    <div>
+                      <h3
+                        class="font-mono uppercase tracking-tighter text-sm font-medium text-blue-950"
+                      >
+                        Gege Piazza
+                      </h3>
+                      <p class="mt-2 text-sm text-gray-500">
+                        Creator of Pizza Piazza
+                      </p>
+                    </div>
+                  </figcaption>
+                  <blockquote>
+                    <p class="text-sm text-gray-500 text-pretty">
+                      Implementing Semplice's blockchain technology has been a
+                      game-changer for our supply chain management.
+                    </p>
+                  </blockquote>
+                </figure>
+              </li>
+              <li
+                role="option"
+                aria-selected="false"
+                x-bind="disableNextAndPreviousButtons"
+                class="bg-gray-50 p-8 rounded-2xl shadow snap-start w-64 h-full"
+              >
+                <figure class="flex flex-col-reverse h-full justify-between">
+                  <figcaption class="relative flex items-center gap-3 mt-12">
+                    <img
+                      alt="#_"
+                      src="/avatars/9.avif"
+                      class="object-cover mx-auto rounded-full size-12"
+                    />
+                    <div>
+                      <h3
+                        class="font-mono uppercase tracking-tighter text-sm font-medium text-blue-950"
+                      >
+                        Jenson Button
+                      </h3>
+                      <p class="mt-2 text-sm text-gray-500">
+                        Founder of Benji and Tom
+                      </p>
+                    </div>
+                  </figcaption>
+                  <blockquote>
+                    <p class="text-sm text-gray-500 text-pretty">
+                      We were initially hesitant about integrating blockchain
+                      technology into our existing systems.
+                    </p>
+                  </blockquote>
+                </figure>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
-  </section>
-</ScreenLayout>
+  </div>
+</section>
