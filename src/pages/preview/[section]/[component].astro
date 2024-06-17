@@ -1,0 +1,24 @@
+---
+import Playground from "@/components/global/Playground.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+// Get the component from the route params
+const { section, component } = Astro.params;
+
+const components = await Astro.glob(`@/pages/components/marketing/**/*.astro`);
+
+const comp = components.find((c) => c.url.endsWith(`${section}/${component}`));
+---
+
+<!-- Render the component if it exists, otherwise show an error -->
+<BaseLayout>
+  {
+    comp ? (
+      <Playground>
+        <comp.default />
+      </Playground>
+    ) : (
+      <p>Component not found</p>
+    )
+  }
+</BaseLayout>

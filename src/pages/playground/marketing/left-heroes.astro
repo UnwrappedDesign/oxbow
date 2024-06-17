@@ -1,19 +1,21 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import TabComponent from "@/components/global/TabComponent.astro";
+import Playground from "@/components/global/Playground.astro";
+
+const components = await Astro.glob(
+  `@/pages/components/marketing/left-heroes/*.astro`,
+);
 ---
 
 <BaseLayout>
   <section>
     <div class="max-w-xl mx-auto px-8 pt-12 lg:pt-32">
       <div class="prose-styles">
-        <span class="pb-2"> Page sections / Marketing</span>
+        <span class="pb-2">Page sections / Marketing</span>
         <h1>Left Heroes</h1>
 
         <div class="flex gap-3 text-gray-400">
-          <span
-            class="hidden lg:inline"
-            title="command palette">
+          <span class="hidden lg:inline" title="command palette">
             Search for anything with —
             <span class="text-xs"> ⌘ + K </span>
             or <span class="text-xs"> CTRL + K </span>
@@ -23,7 +25,13 @@ import TabComponent from "@/components/global/TabComponent.astro";
     </div>
 
     <div class="max-w-7xl mx-auto px-8 space-y-12 pb-32 mt-12">
-      <TabComponent componentName="One" />
+      {
+        components.map((component) => (
+          <Playground>
+            <component.default />
+          </Playground>
+        ))
+      }
     </div>
   </section>
 </BaseLayout>
