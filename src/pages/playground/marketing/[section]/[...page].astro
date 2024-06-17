@@ -1,0 +1,69 @@
+---
+export const prerender = true;
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Playground from "@/components/global/Playground.astro";
+
+const { section } = Astro.params;
+const { page } = Astro.props;
+
+export async function getStaticPaths({ paginate }) {
+  const PAGE_SIZE = 10;
+
+  const components = await Astro.glob(
+    `@/pages/components/marketing/**/*.astro`,
+  );
+
+  const sections = components.reduce((acc: string[], component) => {
+    const [_pages, _components, _marketing, section] = component.url.split("/");
+    if (!acc.includes(section)) {
+      acc.push(section);
+    }
+    return acc;
+  }, []);
+
+  return sections.flatMap((section) => {
+    const sectionRegex = new RegExp(`marketing\/${section}\/\\d+$`, "i");
+
+    const filteredComponents = components.filter((component) => {
+      return component.url?.match(sectionRegex);
+    });
+
+    return paginate(filteredComponents, {
+      pageSize: PAGE_SIZE,
+      params: { section },
+    });
+  });
+}
+---
+
+<BaseLayout>
+  <section>
+    <div class="max-w-xl mx-auto px-8 pt-12 lg:pt-32">
+      <div class="prose-styles">
+        <span class="pb-2">Page sections / Marketing</span>
+        <h1>{section}</h1>
+
+        <div class="flex gap-3 text-gray-400">
+          <span class="hidden lg:inline" title="command palette">
+            Search for anything with —
+            <span class="text-xs"> ⌘ + K </span>
+            or <span class="text-xs"> CTRL + K </span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-8 space-y-12 pb-32 mt-12">
+      <div>Page {page.currentPage}</div>
+      {
+        page.data.map((component) => (
+          <Playground>
+            <component.default />
+          </Playground>
+        ))
+      }
+      {page.url.prev ? <a href={page.url.prev}>Previous</a> : null}
+      {page.url.next ? <a href={page.url.next}>Next</a> : null}
+    </div>
+  </section>
+</BaseLayout>
