@@ -1,3 +1,7 @@
+---
+const user = Astro.locals.user;
+---
+
 <div
   class="w-full max-w-xl px-8 bg-white mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between py-4"
 >
@@ -7,11 +11,17 @@
   >
     <a href="/" class="font-medium">❖ Windstatic</a>
     <div class="flex gap-3 text-gray-500">
-      <a x-show="user === null" href="/login">Log in</a>
-      <a x-show="user === null" class="lg:border-l lg:pl-4" href="/pricing"
-        >Get all access for $149</a
-      >
-      <div x-show="user !== null" x-data x-popover class="relative">
+      {
+        !user && (
+          <>
+            <a href="/login">Log in</a>
+            <a class="lg:border-l lg:pl-4" href="/pricing">
+              Get all access for $149
+            </a>
+          </>
+        )
+      }
+      {user && <div x-popover class="relative">
         <button x-popover:button type="button" class="flex items-center gap-2">
           Account
 
@@ -39,7 +49,8 @@
               >Signed in as</span
             >
             <!-- This span has to be the email address of the user, when logged in -->
-            <span class="mt-0.5 font-semibold" role="none" x-text="user?.email">
+            <span class="mt-0.5 font-semibold" role="none">
+              { user.email }
             </span>
           </p>
           <div class="py-1.5" role="none">
@@ -133,28 +144,18 @@
             >
           </div>
         </div>
-      </div>
+      </div>}
     </div>
   </div>
 </div>
 <script>
   import { getAuth } from "firebase/auth";
 
-  import { app } from "../../firebase/client";
+  import { app } from "@/firebase/client";
 
   const auth = getAuth(app);
   document.addEventListener("alpine:init", () => {
     Alpine.data("navigation", () => ({
-      init() {
-        auth.onAuthStateChanged((authUser) => {
-          if (authUser) {
-            this.user = authUser;
-          } else {
-            this.user = null;
-          }
-        });
-      },
-      user: null,
       async signOut() {
         await auth.signOut();
         fetch("/api/auth/signout");

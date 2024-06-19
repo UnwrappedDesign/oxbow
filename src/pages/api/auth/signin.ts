@@ -5,11 +5,9 @@ import { app } from "../../../firebase/server";
 export const GET: APIRoute = async ({ request, cookies, redirect }) => {
   const auth = getAuth(app);
 
-  console.log(request.headers);
   /* Get token from request headers */
   const idToken = request.headers.get("Authorization")?.split("Bearer ")[1];
 
-  console.log(idToken);
   if (!idToken) {
     return new Response(
       "No token found",
