@@ -1,6 +1,5 @@
 ---
 import { Code } from "astro:components";
-
 import * as prettier from "prettier";
 
 const code = await Astro.slots.render("default");
@@ -10,6 +9,8 @@ const ppcode = await prettier
     parser: "lwc",
   })
   .catch((e) => console.error(e));
+
+const loggedIn = Boolean(Astro.locals.user);
 ---
 
 <section x-data="{tab: 'preview'}" class="not-prose">
@@ -23,7 +24,7 @@ const ppcode = await prettier
             Simple with bottom image
           </h2>
         </div>
-        <div class="flex items-center">
+        {loggedIn && (<div class="flex items-center">
           <button
             @click="tab = 'preview'"
             :class="tab === 'preview' ? 'bg-black/5' : 'bg-black/0'"
@@ -49,7 +50,7 @@ const ppcode = await prettier
               >Copied!</span
             >
           </button>
-        </div>
+        </div>)}
       </div>
     </div>
     <div
@@ -59,12 +60,12 @@ const ppcode = await prettier
       <div x-show="tab === 'preview'" class="flex-grow h-full">
         <Fragment set:html={code} />
       </div>
-      <div
+      {loggedIn && <div
         x-show="tab === 'code'"
         class="flex-grow h-full w-full overflow-scroll px-8 py-6 transition"
       >
         <Code id="codeBlock" code={ppcode} lang="html" theme="github-light" />
-      </div>
+      </div>}
       <div
         class="absolute inset-y-0 my-auto h-full z-50 right-0 flex items-center"
       >

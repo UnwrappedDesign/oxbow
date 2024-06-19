@@ -10,11 +10,14 @@ export async function getStaticPaths({ paginate }) {
   const PAGE_SIZE = 10;
 
   const components = await Astro.glob(
-    `@/pages/components/marketing/**/*.astro`,
+    `@/components/windstatic/marketing/**/*.astro`,
   );
 
   const sections = components.reduce((acc: string[], component) => {
-    const [_pages, _components, _marketing, section] = component.url.split("/");
+    const [_components, _windstatic, _marketing, section] = component.file
+      .replace(/.*src\//, "")
+      .split("/");
+
     if (!acc.includes(section)) {
       acc.push(section);
     }
@@ -22,10 +25,10 @@ export async function getStaticPaths({ paginate }) {
   }, []);
 
   return sections.flatMap((section) => {
-    const sectionRegex = new RegExp(`marketing\/${section}\/\\d+$`, "i");
+    const sectionRegex = new RegExp(`marketing\/${section}\/.+\.astro$`, "i");
 
     const filteredComponents = components.filter((component) => {
-      return component.url?.match(sectionRegex);
+      return component.file?.match(sectionRegex);
     });
 
     return paginate(filteredComponents, {
@@ -54,7 +57,7 @@ export async function getStaticPaths({ paginate }) {
     </div>
 
     <div class="max-w-7xl mx-auto px-8 space-y-12 pb-32 mt-12">
-      <div>Page {page.currentPage}</div>
+      <div>Page {page.currentPage} / {page.lastPage}</div>
       {
         page.data.map((component) => (
           <Playground>
