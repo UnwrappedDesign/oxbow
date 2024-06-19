@@ -5,7 +5,9 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 // Get the component from the route params
 const { section, component } = Astro.params;
 
-const components = await Astro.glob(`@/pages/components/marketing/**/*.astro`);
+const components = await Astro.glob(
+  `@/component/windstatic/marketing/**/*.astro`,
+);
 
 const comp = components.find((c) => c.url.endsWith(`${section}/${component}`));
 ---
