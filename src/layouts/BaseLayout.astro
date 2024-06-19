@@ -1,8 +1,19 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Navigation from "../components/global/Navigation.astro";
-import Footer from "../components/global/Footer.astro";
+import { getAuth } from "firebase-admin/auth";
+
+import BaseHead from "@/components/BaseHead.astro";
+import Navigation from "@/components/global/Navigation.astro";
+import Footer from "@/components/global/Footer.astro";
 import NinjaScript from "@/components/commandBar/NinjaScript.astro";
+
+import { app } from "@/firebase/server";
+
+/* Check if the user is authenticated */
+const auth = getAuth(app);
+const sessionCookie = Astro.cookies.get("__session")?.value;
+const idToken = sessionCookie
+  ? await auth.verifySessionCookie(sessionCookie)
+  : null;
 ---
 
 <html lang="en" class="selection:text-blue selection:bg-blue/5">
@@ -23,5 +34,35 @@ import NinjaScript from "@/components/commandBar/NinjaScript.astro";
       <slot name="footer" />
     </ninja-keys>
     <NinjaScript />
+    <astro-firebase data-idtoken={idToken}></astro-firebase>
+    <script>
+      import {
+        getAuth,
+        inMemoryPersistence,
+        signInWithCustomToken,
+      } from "firebase/auth";
+      import { app } from "../firebase/client";
+
+      class AstroFirebase extends HTMLElement {
+        constructor() {
+          super();
+          const idToken = this.dataset.idtoken;
+
+          if (idToken) {
+            const auth = getAuth(app);
+            auth.setPersistence(inMemoryPersistence);
+
+            signInWithCustomToken(auth, idToken)
+              .then(() => {
+                console.log("Successfully signed in with custom token");
+              })
+              .catch((error) => {
+                console.error("Error signing in with custom token", error);
+              });
+          }
+        }
+      }
+      customElements.define("astro-firebase", AstroFirebase);
+    </script>
   </body>
 </html>

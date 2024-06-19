@@ -3,7 +3,7 @@ import { getAstroPostHTML } from "astro-posthtml"
 import _minifyClassnames from "posthtml-minify-classnames"
 
 const minifyClassnames = _minifyClassnames({
-  filter: /^(.border-transparent|.border-blue-500|.bg-white)$/,
+  filter: /^(.border-transparent|.border-blue-500|.bg-white|bg-black\/5|bg-black\/0)$/,
   genNameId: false,
   customAttributes: [
     'x-transition:enter',
@@ -28,8 +28,11 @@ export const onRequest = defineMiddleware(async (context, next) => {
       const sessionCookie = context.cookies.get("__session").value;
       const decodedCookie = await auth.verifySessionCookie(sessionCookie);
       if (decodedCookie) {
+        context.locals.user = auth.getUser(decodedCookie.uid);
         return next();
       }
+    } else {
+      context.locals.user = null;
     }
     // forward request
   } catch (error) {}
