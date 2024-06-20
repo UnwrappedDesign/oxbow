@@ -10,6 +10,8 @@ const { PUBLIC_APP_BASE_URL } = loadEnv(process.env.NODE_ENV, process.cwd(), "")
 
 const localhost = PUBLIC_APP_BASE_URL.includes('localhost');
 
+console.log("Loading app with NODE_ENV: ", process.env.NODE_ENV);
+
 // https://astro.build/config
 export default defineConfig({
   markdown: {
