@@ -8,6 +8,8 @@ module.exports = {
       sans: ["Inter", ...defaultTheme.fontFamily.sans],
       mono: ["IBM Plex Mono", ...defaultTheme.fontFamily.sans],
     },
+    boxShadow: { blackOnWhite: "0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.3) !important" },
+
     extend: {
       colors: {
         white: colors.white,
