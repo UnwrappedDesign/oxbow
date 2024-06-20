@@ -1,42 +1,27 @@
 ---
-export const prerender = true;
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Playground from "@/components/global/Playground.astro";
+import { paginate } from "@/utils/pagination";
 
-const { section } = Astro.params;
-const { page } = Astro.props;
+const { section, page } = Astro.params;
 
-export async function getStaticPaths({ paginate }) {
-  const PAGE_SIZE = 10;
+const components = await Astro.glob(
+  `@/components/windstatic/marketing/**/*.astro`,
+);
 
-  const components = await Astro.glob(
-    `@/components/windstatic/marketing/**/*.astro`,
-  );
+const sectionComponents = components.filter((component) => {
+  const sectionRegex = new RegExp(`marketing\/${section}\/.+\.astro$`, "i");
 
-  const sections = components.reduce((acc: string[], component) => {
-    const [_components, _windstatic, _marketing, section] = component.file
-      .replace(/.*src\//, "")
-      .split("/");
+  return component.file?.match(sectionRegex);
+});
 
-    if (!acc.includes(section)) {
-      acc.push(section);
-    }
-    return acc;
-  }, []);
+const currentPage = parseInt(page, 10) || 1;
 
-  return sections.flatMap((section) => {
-    const sectionRegex = new RegExp(`marketing\/${section}\/.+\.astro$`, "i");
-
-    const filteredComponents = components.filter((component) => {
-      return component.file?.match(sectionRegex);
-    });
-
-    return paginate(filteredComponents, {
-      pageSize: PAGE_SIZE,
-      params: { section },
-    });
-  });
-}
+const paginationData = paginate(
+  `/playground/marketing/${section}`,
+  sectionComponents,
+  currentPage,
+);
 ---
 
 <BaseLayout>
@@ -57,16 +42,24 @@ export async function getStaticPaths({ paginate }) {
     </div>
 
     <div class="max-w-7xl mx-auto px-8 space-y-12 pb-32 mt-12">
-      <div>Page {page.currentPage} / {page.lastPage}</div>
+      <div>Page {paginationData.currentPage} / {paginationData.lastPage}</div>
       {
-        page.data.map((component) => (
+        paginationData.data.map((component) => (
           <Playground>
             <component.default />
           </Playground>
         ))
       }
-      {page.url.prev ? <a href={page.url.prev}>Previous</a> : null}
-      {page.url.next ? <a href={page.url.next}>Next</a> : null}
+      {
+        paginationData.url.prev ? (
+          <a href={paginationData.url.prev}>Previous</a>
+        ) : null
+      }
+      {
+        paginationData.url.next ? (
+          <a href={paginationData.url.next}>Next</a>
+        ) : null
+      }
     </div>
   </section>
 </BaseLayout>
