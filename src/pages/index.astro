@@ -50,9 +50,8 @@ import EntryStructure from "@/components/landing/EntryStructure.astro";
 />
 <BaseLayout>
   <section class="relative overflow-hidden">
-
-    <div class="max-w-xl mx-auto px-8 pt-12 lg:pt-32">
-      <div class="flex items-center gap-4">
+    <div class="max-w-4xl mx-auto text-center px-8 pt-12 lg:py-32 xl:py-56">
+      <div class="flex items-center gap-4 justify-center">
         <div class="inline-flex gap-2 items-center">
           <svg
             class="flex-none inline size-6"
@@ -110,17 +109,18 @@ import EntryStructure from "@/components/landing/EntryStructure.astro";
         </div>
       </div>
       <div class="prose-styles pt-8">
-        <h1>
-          windstatic — a set of elements, templates & layouts made with
-          Tailwind CSS and Alpine.js
+        <h1
+          class="text-4xl font-semibold tracking-tighter sm:text-5xl [@media(max-width:480px)]:text-[2rem] text-black not-prose">
+          A set of elements, templates & layouts made with Tailwind CSS and
+          Alpine.js
         </h1>
-        <p>
-          Discover a collection of components ready to be seamlessly
-          integrated into your applications with just a simple copy and paste.
+        <p class="text-balance">
+          Discover a collection of components ready to be seamlessly integrated
+          into your applications with just a simple copy and paste.
         </p>
-        <div class="flex gap-3 text-gray-400">
+        <div class=" justify-center pt-4">
           <span
-            class="hidden lg:inline"
+            class="hidden lg:inline bg-black text-xs h-10 text-white px-6 py-4 rounded-lg shadow-blackOnWhite"
             title="command palette">
             Search for anything with —
             <span class="text-xs"> ⌘ + K </span>
@@ -135,26 +135,26 @@ import EntryStructure from "@/components/landing/EntryStructure.astro";
         x-tabs>
         <div
           x-tabs:list
-          class="-mb-px flex items-stretch gap-2 border-b">
+          class="flex items-stretch gap-2 pb-6 justify-center">
           <button
             x-tabs:tab
             type="button"
-            :class="$tab.isSelected ? 'border-blue-500 bg-white' : 'border-transparent'"
-            class="inline-flex border-b-2 py-2.5 pr-6"
+            :class="$tab.isSelected ? '  bg-gray-100 text-gray-900' : 'text-gray-500'"
+            class="inline-flex py-2.5 px-6 rounded-full text-sm items-center h-9 font-medium"
             >Marketing</button
           >
           <button
             x-tabs:tab
             type="button"
-            :class="$tab.isSelected ? 'border-blue-500 bg-white' : 'border-transparent'"
-            class="inline-flex r border-b-2 py-2.5 pr-6"
+            :class="$tab.isSelected ? '  bg-gray-100 text-gray-900' : 'text-gray-500'"
+            class="inline-flex py-2.5 px-6 rounded-full text-sm items-center h-9 font-medium"
             >Application</button
           >
           <button
             x-tabs:tab
             type="button"
-            :class="$tab.isSelected ? 'border-blue-500 bg-white' : 'border-transparent'"
-            class="inline-flex r border-b-2 py-2.5 pr-6"
+            :class="$tab.isSelected ? '  bg-gray-100 text-gray-900' : 'text-gray-500'"
+            class="inline-flex py-2.5 px-6 rounded-full text-sm items-center h-9 font-medium"
             >ECommerce</button
           >
         </div>
@@ -167,15 +167,15 @@ import EntryStructure from "@/components/landing/EntryStructure.astro";
             <div>
               <div>
                 <div
-                  class="prose-styles grid grid-cols-1 gap-4 lg:grid-cols-3 items-start bg-gray-50 p-8 border-l-4 border-blue-500">
+                  class="prose-styles grid grid-cols-1 gap-4 lg:grid-cols-3 items-start bg-gray-50 p-8 rounded-xl">
                   <h2 class="!mt-0">Marketing</h2>
                   <p class="lg:col-span-2">
                     Hero sections, feature displays, and newsletter sign-up
                     forms — essential elements for crafting captivating
                     marketing websites. These components help make a strong
                     first impression, showcase key offerings, and grow your
-                    audience, ensuring your site stands out and engages
-                    visitors effectively.
+                    audience, ensuring your site stands out and engages visitors
+                    effectively.
                   </p>
                 </div>
               </div>
@@ -194,14 +194,14 @@ import EntryStructure from "@/components/landing/EntryStructure.astro";
           </section>
           <section x-tabs:panel>
             <div
-              class="prose-styles grid grid-cols-1 gap-4 lg:grid-cols-3 items-start bg-gray-50 p-8 border-l-4 border-blue-500">
+              class="prose-styles grid grid-cols-1 gap-4 lg:grid-cols-3 items-start bg-gray-50 p-8 rounded-xl">
               <h2 class="!mt-0">Application UI</h2>
               <p class="lg:col-span-2">
-                Form layouts, tables, and modal dialogs help create
-                attractive, responsive web applications. Design intuitive
-                forms, manage data with sortable tables, and use modal dialogs
-                for smooth interactions, ensuring functionality and visual
-                appeal across all devices.
+                Form layouts, tables, and modal dialogs help create attractive,
+                responsive web applications. Design intuitive forms, manage data
+                with sortable tables, and use modal dialogs for smooth
+                interactions, ensuring functionality and visual appeal across
+                all devices.
               </p>
             </div>
             <section class="mt-12 flex flex-col gap-12 lg:gap-24">
@@ -241,7 +241,7 @@ import EntryStructure from "@/components/landing/EntryStructure.astro";
           </section>
           <section x-tabs:panel>
             <div
-              class="prose-styles grid grid-cols-1 gap-4 lg:grid-cols-3 items-start bg-gray-50 p-8 border-l-4 border-blue-500">
+              class="prose-styles grid grid-cols-1 gap-4 lg:grid-cols-3 items-start bg-gray-50 p-8 rounded-xl">
               <h2 class="!mt-0">ECommerce</h2>
               <p class="lg:col-span-2">
                 Checkout forms, shopping carts, and product views — all the
@@ -271,7 +271,6 @@ import EntryStructure from "@/components/landing/EntryStructure.astro";
         </div>
       </div>
     </div>
-    
   </section>
 </BaseLayout>
 <script>
