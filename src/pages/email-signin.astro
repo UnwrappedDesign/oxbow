@@ -1,3 +1,4 @@
+<p>Signing in...</p>
 <script>
   import {
     getAuth,
@@ -36,9 +37,13 @@
             Authorization: `Bearer ${idToken}`,
           },
         });
-        window.location.assign("/");
+
+        const baseUrl = import.meta.env.PUBLIC_APP_BASE_URL;
+
+        window.location.replace(baseUrl);
       })
       .catch(async (error) => {
+        alert("Error signing in with email link, please try again.");
         // Some error occurred, you can inspect the code: error.code
         // Common errors could be invalid email and invalid or expired OTPs.
       });

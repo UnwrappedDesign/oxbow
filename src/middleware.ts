@@ -28,7 +28,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
       const sessionCookie = context.cookies.get("__session").value;
       const decodedCookie = await auth.verifySessionCookie(sessionCookie);
       if (decodedCookie) {
-        context.locals.user = auth.getUser(decodedCookie.uid);
+        context.locals.user = await auth.getUser(decodedCookie.uid);
         return next();
       }
     } else {
