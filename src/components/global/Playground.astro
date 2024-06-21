@@ -13,37 +13,29 @@ const ppcode = await prettier
 const loggedIn = Boolean(Astro.locals.user);
 ---
 
-<section x-data="{tab: 'preview'}" class="not-prose">
+<section
+  x-data="{tab: 'preview'}"
+  class="not-prose">
   <div class="relative">
     <div class="pointer-events-none inset-x-0 top-0 z-10 md:left-auto">
-      <div
-        class="flex items-center justify-between py-2 backdrop-blur-sm md:m-1"
-      >
-        <div class="hidden md:flex min-w-0">
-          <h2 class="truncate text-base font-medium leading-7 text-slate-900">
-            Simple with bottom image
-          </h2>
-        </div>
-        {loggedIn && (<div class="flex items-center">
+      <div class="flex items-center justify-between py-2 backdrop-blur-sm ">
+        {loggedIn && (<div class="flex items-center ml-auto">
           <button
             @click="tab = 'preview'"
             :class="tab === 'preview' ? 'bg-black/5' : 'bg-black/0'"
-            class="backdrop-blur pointer-events-auto mr-1 flex rounded-md px-4 py-1 text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50"
-          >
+            class="backdrop-blur pointer-events-auto mr-1 flex rounded-md px-4 py-1 text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50">
             Preview
           </button>
           <button
             @click="tab = 'code'"
             :class="tab === 'code' ? 'bg-black/5' : 'bg-black/0'"
-            class="pointer-events-auto flex rounded-md px-4 py-1 text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50"
-          >
+            class="pointer-events-auto flex rounded-md px-4 py-1 text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50">
             Code
           </button>
           <div class="mx-1 h-4 w-[2px] bg-black/10"></div>
           <button
             id="copyButton"
-            class="pointer-events-auto relative flex rounded-md px-4 py-1 text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50"
-          >
+            class="pointer-events-auto relative flex rounded-md px-4 py-1 text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50">
             <span class="transition">Copy</span>
             <span
               class="opacity-0 absolute inset-0 flex items-center justify-center transition"
@@ -55,20 +47,24 @@ const loggedIn = Boolean(Astro.locals.user);
     </div>
     <div
       id="resizeContainer"
-      class="relative h-full w-full flex border overflow-hidden"
-    >
-      <div x-show="tab === 'preview'" class="flex-grow h-full">
+      class="relative h-full w-full flex border overflow-hidden">
+      <div
+        x-show="tab === 'preview'"
+        class="flex-grow h-full">
         <Fragment set:html={code} />
       </div>
       {loggedIn && <div
         x-show="tab === 'code'"
-        class="flex-grow h-full w-full overflow-scroll px-8 py-6 transition"
-      >
-        <Code id="codeBlock" code={ppcode} lang="html" theme="github-light" />
+        class="flex-grow h-full w-full text-xs overflow-auto p-4 ov bg-zinc-50 transition">
+        <Code
+          id="codeBlock"
+          code={ppcode}
+          lang="html"
+          theme="css-variables"
+        />
       </div>}
       <div
-        class="absolute inset-y-0 my-auto h-full z-50 right-0 flex items-center"
-      >
+        class="absolute inset-y-0 my-auto h-full z-50 right-0 flex items-center">
         <div class="w-2 bg-blue h-8"></div>
       </div>
     </div>

@@ -91,7 +91,7 @@ const blogContent: Template = {
 const testimonials: Template = {
   name: "Testimonials",
   quantity: 20,
-  link: "/playground/marketing/blog-content",
+  link: "/playground/marketing/testimonials",
   image: "testimonials.png",
 };
 const gallery: Template = {
