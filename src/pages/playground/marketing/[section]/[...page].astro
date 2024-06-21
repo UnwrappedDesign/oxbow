@@ -59,8 +59,10 @@ const paginationData = paginate(
 
       <div class="space-y-12 pb-32 mt-12">
         {
-          paginationData.data.map((component) => (
-            <Playground>
+          paginationData.data.map((component, index) => (
+            <Playground
+              playgroundRef={`${section}-${currentPage}-component-${index}`}
+            >
               <component.default />
             </Playground>
           ))
