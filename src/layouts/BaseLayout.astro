@@ -8,12 +8,9 @@ import NinjaScript from "@/components/commandBar/NinjaScript.astro";
 
 import { app } from "@/firebase/server";
 
-/* Check if the user is authenticated */
 const auth = getAuth(app);
-const sessionCookie = Astro.cookies.get("__session")?.value;
-const idToken = sessionCookie
-  ? await auth.verifySessionCookie(sessionCookie)
-  : null;
+const uid = Astro.locals.user?.uid;
+const customToken = uid ? await auth.createCustomToken(uid) : null;
 ---
 
 <html lang="en" class="selection:text-blue selection:bg-blue/5">
@@ -34,25 +31,25 @@ const idToken = sessionCookie
       <slot name="footer" />
     </ninja-keys>
     <NinjaScript />
-    <astro-firebase data-idtoken={idToken}></astro-firebase>
+    <astro-firebase data-customtoken={customToken}></astro-firebase>
     <script>
       import {
         getAuth,
         inMemoryPersistence,
         signInWithCustomToken,
       } from "firebase/auth";
-      import { app } from "../firebase/client";
+      import { app } from "@/firebase/client";
 
       class AstroFirebase extends HTMLElement {
         constructor() {
           super();
-          const idToken = this.dataset.idtoken;
+          const customToken = this.dataset.customtoken;
 
-          if (idToken) {
+          if (customToken) {
             const auth = getAuth(app);
             auth.setPersistence(inMemoryPersistence);
 
-            signInWithCustomToken(auth, idToken)
+            signInWithCustomToken(auth, customToken)
               .then(() => {
                 console.log("Successfully signed in with custom token");
               })
