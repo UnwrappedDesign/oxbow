@@ -26,40 +26,68 @@ const paginationData = paginate(
 
 <BaseLayout>
   <section>
-    <div class="max-w-xl mx-auto px-8 pt-12 lg:pt-32">
+    <div class="max-w-7xl mx-auto px-8 pt-12 lg:pt-32">
       <div class="prose-styles">
-        <span class="pb-2">Page sections / Marketing</span>
-        <h1>{section}</h1>
+        <span
+          ><a href="/#pageSections">Page sections</a> /<a href="/#marketing">
+            Marketing Page</a
+          > / Page {paginationData.currentPage}</span
+        >
+        —
+        <span>
+          {
+            paginationData.url.prev ? (
+              <a class="" href={paginationData.url.prev}>
+                Previous
+              </a>
+            ) : null
+          }
+          {
+            paginationData.url.next ? (
+              <a class="" href={paginationData.url.next}>
+                Next
+              </a>
+            ) : null
+          }
+        </span>
+        <h1
+          class="text-4xl capitalize mt-4 font-semibold tracking-tight sm:text-4xl [@media(max-width:480px)]:text-[2rem] text-black not-prose"
+        >
+          {section}
+        </h1>
+      </div>
 
-        <div class="flex gap-3 text-gray-400">
-          <span class="hidden lg:inline" title="command palette">
-            Search for anything with —
-            <span class="text-xs"> ⌘ + K </span>
-            or <span class="text-xs"> CTRL + K </span>
-          </span>
+      <div class="space-y-12 pb-32 mt-12">
+        {
+          paginationData.data.map((component) => (
+            <Playground>
+              <component.default />
+            </Playground>
+          ))
+        }
+        <div class="flex items-center justify-between w-full">
+          {
+            paginationData.url.prev ? (
+              <a
+                class="border rounded-full px-4 py-1  items-center text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50"
+                href={paginationData.url.prev}
+              >
+                Previous
+              </a>
+            ) : null
+          }
+          {
+            paginationData.url.next ? (
+              <a
+                class="border ml-auto rounded-full px-4 py-1  items-center text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50"
+                href={paginationData.url.next}
+              >
+                Next
+              </a>
+            ) : null
+          }
         </div>
       </div>
-    </div>
-
-    <div class="max-w-7xl mx-auto px-8 space-y-12 pb-32 mt-12">
-      <div>Page {paginationData.currentPage} / {paginationData.lastPage}</div>
-      {
-        paginationData.data.map((component) => (
-          <Playground>
-            <component.default />
-          </Playground>
-        ))
-      }
-      {
-        paginationData.url.prev ? (
-          <a href={paginationData.url.prev}>Previous</a>
-        ) : null
-      }
-      {
-        paginationData.url.next ? (
-          <a href={paginationData.url.next}>Next</a>
-        ) : null
-      }
     </div>
   </section>
 </BaseLayout>
