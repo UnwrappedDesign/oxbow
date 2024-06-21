@@ -48,15 +48,30 @@ ninja-keys::part(ninja-selected) {
 
 /* Styling the code blocks*/
 :root {
-   --astro-code-color-text: theme('colors.blue.500');
-  --astro-code-color-background: theme('colors.zinc.50');
-  --astro-code-token-constant: theme('colors.zinc.800');
-  --astro-code-token-string: theme('colors.zinc.800');
-  --astro-code-token-comment: theme('colors.zinc.700');
-  --astro-code-token-keyword: theme('colors.zinc.600');
+   --astro-code-color-text: theme('colors.gray.500');
+  --astro-code-color-background: theme('colors.gray.50');
+  --astro-code-token-constant: theme('colors.gray.800');
+  --astro-code-token-string: theme('colors.blue.500');
+  --astro-code-token-comment: theme('colors.gray.300');
+  --astro-code-token-keyword: theme('colors.blue.600');
   --astro-code-token-parameter: theme('colors.blue.500');
-  --astro-code-token-function: theme('colors.zinc.500');
-  --astro-code-token-string-expression: theme('colors.black');
-  --astro-code-token-punctuation: theme('colors.gray.200');
+  --astro-code-token-function: theme('colors.gray.500');
+  --astro-code-token-string-expression: theme('colors.blue.700');
+  --astro-code-token-punctuation: theme('colors.orange.500');
   --astro-code-token-link: theme('colors.blue.300');
+}
+
+code {
+  counter-reset: step;
+  counter-increment: step 0;
+}
+
+code .line::before {
+  content: counter(step);
+  counter-increment: step;
+  width: 1rem;
+  margin-right: 1.5rem;
+  display: inline-block;
+  text-align: right;
+  color: rgba(115,138,148,.4)
 }

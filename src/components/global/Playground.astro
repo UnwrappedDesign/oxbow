@@ -13,29 +13,31 @@ const ppcode = await prettier
 const loggedIn = Boolean(Astro.locals.user);
 ---
 
+
+
 <section
   x-data="{tab: 'preview'}"
   class="not-prose">
   <div class="relative">
     <div class="pointer-events-none inset-x-0 top-0 z-10 md:left-auto">
-      <div class="flex items-center justify-between py-2 backdrop-blur-sm ">
+      <div class="flex items-center justify-between py-2 backdrop-blur-sm">
         {loggedIn && (<div class="flex items-center ml-auto">
           <button
             @click="tab = 'preview'"
             :class="tab === 'preview' ? 'bg-black/5' : 'bg-black/0'"
-            class="backdrop-blur pointer-events-auto mr-1 flex rounded-md px-4 py-1 text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50">
+            class="backdrop-blur pointer-events-auto mr-1 flex rounded-full px-4 py-1 text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50">
             Preview
           </button>
           <button
             @click="tab = 'code'"
             :class="tab === 'code' ? 'bg-black/5' : 'bg-black/0'"
-            class="pointer-events-auto flex rounded-md px-4 py-1 text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50">
+            class="pointer-events-auto flex rounded-full px-4 py-1 text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50">
             Code
           </button>
           <div class="mx-1 h-4 w-[2px] bg-black/10"></div>
           <button
             id="copyButton"
-            class="pointer-events-auto relative flex rounded-md px-4 py-1 text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50">
+            class="pointer-events-auto relative flex rounded-full px-4 py-1 text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50">
             <span class="transition">Copy</span>
             <span
               class="opacity-0 absolute inset-0 flex items-center justify-center transition"
@@ -47,7 +49,7 @@ const loggedIn = Boolean(Astro.locals.user);
     </div>
     <div
       id="resizeContainer"
-      class="relative h-full w-full flex border overflow-hidden">
+      class="relative h-full w-full flex border overflow-hidden rounded-lg shadow-whiteOnWhite">
       <div
         x-show="tab === 'preview'"
         class="flex-grow h-full">
