@@ -13,11 +13,7 @@ const ppcode = await prettier
 const loggedIn = Boolean(Astro.locals.user);
 ---
 
-
-
-<section
-  x-data="{tab: 'preview'}"
-  class="not-prose">
+<section x-data={`{ tab: 'preview' }`} class="not-prose">
   <div class="relative">
     <div class="pointer-events-none inset-x-0 top-0 z-10 md:left-auto">
       <div class="flex items-center justify-between py-2 backdrop-blur-sm">
@@ -37,8 +33,14 @@ const loggedIn = Boolean(Astro.locals.user);
           <div class="mx-1 h-4 w-[2px] bg-black/10"></div>
           <button
             id="copyButton"
-            class="pointer-events-auto relative flex rounded-full px-4 py-1 text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50">
-            <span class="transition">Copy</span>
+            class="pointer-events-auto relative flex rounded-md px-4 py-1 text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50"
+            x-clipboard.raw={`${ppcode}`}
+          >
+            <span 
+              class="transition" 
+            >
+              Copy
+            </span>
             <span
               class="opacity-0 absolute inset-0 flex items-center justify-center transition"
               >Copied!</span
@@ -72,3 +74,4 @@ const loggedIn = Boolean(Astro.locals.user);
     </div>
   </div>
 </section>
+

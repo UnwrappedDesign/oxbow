@@ -90,8 +90,9 @@ import ResendLoginLink from "./ResendLoginLink.astro";
   </div>
 </section>
 <script>
+  import Alpine from "alpinejs";
   import { getAuth, sendSignInLinkToEmail } from "firebase/auth";
-  import { app } from "../../firebase/client";
+  import { app } from "@/firebase/client";
 
   const auth = getAuth(app);
 
@@ -103,7 +104,7 @@ import ResendLoginLink from "./ResendLoginLink.astro";
         const baseUrl = import.meta.env.PUBLIC_APP_BASE_URL;
 
         const actionCodeSettings = {
-          url: baseUrl,
+          url: `${baseUrl}/email-signin`,
           handleCodeInApp: true,
         };
 

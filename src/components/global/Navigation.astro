@@ -149,6 +149,7 @@ const user = Astro.locals.user;
   </div>
 </div>
 <script>
+  import Alpine from "alpinejs";
   import { getAuth } from "firebase/auth";
 
   import { app } from "@/firebase/client";
@@ -159,7 +160,7 @@ const user = Astro.locals.user;
     Alpine.data("navigation", () => ({
       async signOut() {
         await auth.signOut();
-        window.location.href = "/api/auth/signout";
+        window.location.assign("/api/auth/signout");
       },
     }));
   });
