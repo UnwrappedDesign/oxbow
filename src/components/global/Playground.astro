@@ -8,8 +8,12 @@ const ppcode = await prettier
   .format(code, {
     parser: "lwc",
   })
-  .catch((e) => console.error(e));
 
+interface Props {
+  playgroundRef: string;
+}
+
+const { playgroundRef } = Astro.props;
 const loggedIn = Boolean(Astro.locals.user);
 ---
 
@@ -32,27 +36,30 @@ const loggedIn = Boolean(Astro.locals.user);
           </button>
           <div class="mx-1 h-4 w-[2px] bg-black/10"></div>
           <button
-            id="copyButton"
+            x-data="{ copied: false }"
             class="pointer-events-auto relative flex rounded-md px-4 py-1 text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50"
-            x-clipboard.raw={`${ppcode}`}
+            @click={
+            `
+              copied = true; 
+              $clipboard(document.getElementById('${playgroundRef}').innerHTML);
+              setTimeout(() => {
+                copied = false;
+              }, 2000);
+            `
+            }
           >
-            <span 
-              class="transition" 
-            >
-              Copy
-            </span>
             <span
-              class="opacity-0 absolute inset-0 flex items-center justify-center transition"
-              >Copied!</span
-            >
+              x-text="copied ? 'Copied!' : 'Copy'"
+              class="transition" 
+            ></span>
           </button>
         </div>)}
       </div>
     </div>
     <div
-      id="resizeContainer"
       class="relative h-full w-full flex border overflow-hidden rounded-lg shadow-whiteOnWhite">
       <div
+        id={`${playgroundRef}`}
         x-show="tab === 'preview'"
         class="flex-grow h-full">
         <Fragment set:html={code} />
@@ -61,7 +68,6 @@ const loggedIn = Boolean(Astro.locals.user);
         x-show="tab === 'code'"
         class="flex-grow h-full w-full text-xs overflow-auto p-4 ov bg-zinc-50 transition">
         <Code
-          id="codeBlock"
           code={ppcode}
           lang="html"
           theme="css-variables"
