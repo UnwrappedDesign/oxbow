@@ -4,72 +4,158 @@ import * as prettier from "prettier";
 
 const code = await Astro.slots.render("default");
 
-const ppcode = await prettier
-  .format(code, {
-    parser: "lwc",
-  })
+const ppcode = await prettier.format(code, {
+  parser: "lwc",
+});
 
 interface Props {
+  componentPath: string;
   playgroundRef: string;
 }
 
-const { playgroundRef } = Astro.props;
+const { componentPath, playgroundRef } = Astro.props;
 const loggedIn = Boolean(Astro.locals.user);
+
 ---
 
-<section x-data={`{ tab: 'preview' }`} class="not-prose">
+<section x-data={`{ tab: 'preview', viewportSize: 'desktop' }`} class="not-prose">
   <div class="relative">
     <div class="pointer-events-none inset-x-0 top-0 z-10 md:left-auto">
       <div class="flex items-center justify-between py-2 gap-1">
-<div  class="rounded-md border bg-gray-50 p-1 text-gray-500 flex items-center justify-center  size-7 text-xs">
-  1
-</div>
-     <div class="flex items-center justify-end w-full">
-         <span class="isolate inline-flex  h-7">
-    <button type="button" class="relative inline-flex items-center rounded-l-md bg-white p-1 px-0. text-xs font-semibold text-gray-900  hover:bg-gray-50 focus:z-10">
-      <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-device-mobile size-[20px]">
-        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-        <path d="M6 5a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-14z" />
-        <path d="M11 4h2" />
-        <path d="M12 17v.01" />
-      </svg>
-    </button>
-    <button type="button" class="relative -ml-px inline-flex items-center bg-white p-1 px-0. text-xs font-semibold text-gray-900  hover:bg-gray-50 focus:z-10">
-      <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-device-ipad-horizontal size-[22px]">
-        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-        <path d="M3 6a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-12z" />
-        <path d="M9 17h6" />
-      </svg>
-    </button>
-    <button type="button" class="relative -ml-px inline-flex items-center rounded-r-md bg-white p-1 px-0. text-xs font-semibold text-gray-900  hover:bg-gray-50 focus:z-10">
-      <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-device-desktop size-[22px]">
-        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-        <path d="M3 5a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1v-10z" />
-        <path d="M7 20h10" />
-        <path d="M9 16v4" />
-        <path d="M15 16v4" />
-      </svg>
-    </button>
-         </span>
-          <div class="mx-1 h-4 w-[2px] bg-black/10"></div> {loggedIn && ( <div class="flex items-center ">
-            <button @click="tab = 'preview'" :class="tab === 'preview' ? 'bg-black/5' : 'bg-black/0'" class="backdrop-blur pointer-events-auto flex rounded-md px-4 h-7 py-1 text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50"> Preview </button>
-            <button @click="tab = 'code'" :class="tab === 'code' ? 'bg-black/5' : 'bg-black/0'" class="pointer-events-auto flex rounded-md px-4 py-1 text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50"> Code </button>
-            <div class="mx-1 h-4 w-[2px] bg-black/10"></div>
-            <button x-data="{ copied: false }" class="pointer-events-auto relative w-20 flex rounded-md px-4 py-1 text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50" @click={ ` copied=true; $clipboard(document.getElementById('${playgroundRef}').innerHTML); setTimeout(()=> { copied = false; }, 2000); ` } > <span x-text="copied ? 'Copied!' : 'Copy'" class="transition"></span>
+        <div
+          class="rounded-md border bg-gray-50 p-1 text-gray-500 flex items-center justify-center size-7 text-xs"
+        >
+          1
+        </div>
+        <div class="flex items-center justify-end w-full">
+          <span class="isolate inline-flex h-7">
+            <button
+              class="pointer-events-auto relative inline-flex items-center rounded-l-md p-1 px-0. text-xs font-semibold text-gray-900 hover:bg-gray-50 focus:z-10"
+              @click="viewportSize = 'mobile'" :class="viewportSize === 'mobile' ? 'bg-black/5' : 'bg-black/0'" 
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-device-mobile size-[20px]"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path
+                  d="M6 5a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-14z"
+                ></path>
+                <path d="M11 4h2"></path>
+                <path d="M12 17v.01"></path>
+              </svg>
             </button>
-          </div>)}
-     </div>
+            <button
+              class="pointer-events-auto relative -ml-px inline-flex items-center  p-1 px-0. text-xs font-semibold text-gray-900 hover:bg-gray-50 focus:z-10"
+              @click="viewportSize = 'tablet'" :class="viewportSize === 'tablet' ? 'bg-black/5' : 'bg-black/0'" 
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-device-ipad-horizontal size-[22px]"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path
+                  d="M3 6a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-12z"
+                ></path>
+                <path d="M9 17h6"></path>
+              </svg>
+            </button>
+            <button
+              class="pointer-events-auto relative -ml-px inline-flex items-center rounded-r-md p-1 px-0. text-xs font-semibold text-gray-900 hover:bg-gray-50 focus:z-10"
+              @click="viewportSize = 'desktop'" :class="viewportSize === 'desktop' ? 'bg-black/5' : 'bg-black/0'" 
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-device-desktop size-[22px]"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path
+                  d="M3 5a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1v-10z"
+                ></path>
+                <path d="M7 20h10"></path>
+                <path d="M9 16v4"></path>
+                <path d="M15 16v4"></path>
+              </svg>
+            </button>
+          </span>
+          <div class="mx-1 h-4 w-[2px] bg-black/10"></div>
+          {
+            loggedIn && (
+              <div class="flex items-center ">
+                <button 
+                  @click="tab = 'preview'" :class="tab === 'preview' ? 'bg-black/5' : 'bg-black/0'" 
+                  class="backdrop-blur pointer-events-auto flex rounded-md px-4 h-7 py-1 text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50">
+                  Preview
+                </button>
+                <button 
+                  @click="tab = 'code'" :class="tab === 'code' ? 'bg-black/5' : 'bg-black/0'" 
+                  class="pointer-events-auto flex rounded-md px-4 py-1 text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50">
+                  Code
+                </button>
+                <div class="mx-1 h-4 w-[2px] bg-black/10" />
+                <button
+                  x-data="{ copied: false }"
+                  class="pointer-events-auto relative w-20 flex rounded-md px-4 py-1 text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50"
+                  @click={`copied=true; $clipboard(document.getElementById('${playgroundRef}').innerHTML); setTimeout(()=> { copied = false; }, 2000);`}
+                >
+                  <span
+                    x-text="copied ? 'Copied!' : 'Copy'"
+                    class="transition"
+                  />
+                </button>
+              </div>
+            )
+          }
+        </div>
       </div>
     </div>
-    <div class="relative h-full w-full flex border overflow-hidden rounded-lg shadow-whiteOnWhite">
-      <div id={`${playgroundRef}`} x-show="tab === 'preview'" class="flex-grow h-full">
-        <Fragment set:html={code} />
-      </div> {loggedIn && <div x-show="tab === 'code'" class="flex-grow h-full w-full text-sm overflow-auto p-4 ov bg-black transition">
-        <Code code={ppcode} lang="html" theme="css-variables" />
-      </div>} <div class="absolute inset-y-0 my-auto h-full z-50 right-0 flex items-center">
+    <div
+      class="relative h-full w-full flex border overflow-hidden rounded-lg shadow-whiteOnWhite"
+    >
+      <div
+        x-show="tab === 'preview'"
+        class="flex flex-grow w-full justify-center"
+      >
+        <div
+          id={`${playgroundRef}`}
+          class="border border-black/10 h-[400] md:h-[600px] w-full"
+          :class="{ 'max-w-xs': viewportSize === 'mobile', 'max-w-screen-md': viewportSize === 'tablet','max-w-screen-xl': viewportSize === 'desktop' }">
+          <iframe width="100%" height="100%" src={`/iframe/${componentPath}`} />
+        </div>
+      </div>
+      {
+        loggedIn && (
+          <div
+            x-show="tab === 'code'"
+            class="flex-grow h-full w-full text-sm overflow-auto p-4 ov bg-black transition"
+          >
+            <Code code={ppcode} lang="html" theme="css-variables" />
+          </div>
+        )
+      }
+      <div
+        class="absolute inset-y-0 my-auto h-full z-50 right-0 flex items-center"
+      >
         <div class="w-2 bg-blue h-8"></div>
       </div>
     </div>
   </div>
 </section>
-
