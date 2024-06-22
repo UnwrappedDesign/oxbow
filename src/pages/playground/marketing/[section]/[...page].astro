@@ -61,7 +61,7 @@ const paginationData = paginate(
         {
           paginationData.data.map((component, index) => (
             <Playground
-              componentPath={component.file}
+              componentPath={component.file.replace(/.*\/src/, "/src")}
               playgroundRef={`${section}-${currentPage}-component-${index}`}>
               <component.default />
             </Playground>
