@@ -114,7 +114,7 @@ const ppcode = loggedIn ? await prettier.format(code, {
                 <button
                   x-data="{ copied: false }"
                   class="pointer-events-auto relative w-20 flex rounded-md px-4 py-1 text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50"
-                  @click={`copied=true; $clipboard(document.getElementById('${playgroundRef}').innerHTML); setTimeout(()=> { copied = false; }, 2000);`}
+                  @click={`copied=true; $clipboard($refs.code${componentIndex}.innerText); setTimeout(()=> { copied = false; }, 2000);`}
                 >
                   <span
                     x-text="copied ? 'Copied!' : 'Copy'"
@@ -135,16 +135,16 @@ const ppcode = loggedIn ? await prettier.format(code, {
         class="flex flex-grow w-full justify-center"
       >
         <div
-          id={`${playgroundRef}`}
           class="w-full overflow-auto"
           :class="{ 'max-w-sm border': viewportSize === 'mobile', 'max-w-screen-md border': viewportSize === 'tablet','max-w-screen-xl': viewportSize === 'desktop' }">
-          <iframe x-intersect.once="$el.src = $el.dataset.src" id={`iframe-${componentIndex}`} width="100%" data-src={`/iframe/${componentPath}?iframeId=iframe-${componentIndex}`}/>
+          <iframe x-intersect.once="$el.src = $el.dataset.src" id={playgroundRef} width="100%" data-src={`/iframe/${componentPath}?iframeId=iframe-${componentIndex}`}/>
         </div>
       </div>
       {
         loggedIn && (
           <div
             x-show="tab === 'code'"
+            x-ref={`code${componentIndex}`}
             class="flex-grow h-full w-full text-sm overflow-auto p-4 ov bg-black transition"
           >
             <Code code={ppcode} lang="html" theme="css-variables" />
