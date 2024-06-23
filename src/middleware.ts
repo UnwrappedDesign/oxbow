@@ -16,9 +16,10 @@ const minifyClassnames = _minifyClassnames({
 });
 
 import { getAuth } from "firebase-admin/auth";
-import { app } from "./firebase/server";
+import { app } from "@/firebase/server";
 
 const mode = import.meta.env.MODE;
+const baseUrl = import.meta.env.PUBLIC_APP_BASE_URL;
 
 export const onRequest = defineMiddleware(async (context, next) => {
 
@@ -37,7 +38,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
     // forward request
   } catch (error) {}
 
-  if (mode === "development") {
+  if (!context.request.url.startsWith(`${baseUrl}/iframe/`) || mode === "development") {
     return next();
   }
   return getAstroPostHTML([minifyClassnames])(context, next)
