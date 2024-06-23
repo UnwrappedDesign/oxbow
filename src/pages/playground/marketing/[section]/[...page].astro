@@ -98,7 +98,9 @@ const paginationData = paginate(
       const iframes = document.querySelectorAll("iframe");
 
       iframes.forEach((iframe) => {
-        iframe.height = iframe.contentWindow.document.body.scrollHeight + "px";
+        try {
+          iframe.height = iframe.contentWindow.document.body.scrollHeight + "px";
+        } catch (e) {}
       });
 
       requestAnimationFrame(resizeIFramesToFitContent)

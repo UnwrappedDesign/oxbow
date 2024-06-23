@@ -124,7 +124,7 @@ const loggedIn = Boolean(Astro.locals.user);
       </div>
     </div>
     <div
-      class="relative h-full w-full flex border overflow-hidden rounded-lg shadow-whiteOnWhite"
+      class="relative min-h-[400] w-full flex border overflow-hidden rounded-lg shadow-whiteOnWhite"
     >
       <div
         x-show="tab === 'preview'"
@@ -134,7 +134,7 @@ const loggedIn = Boolean(Astro.locals.user);
           id={`${playgroundRef}`}
           class="w-full overflow-auto"
           :class="{ 'max-w-sm border': viewportSize === 'mobile', 'max-w-screen-md border': viewportSize === 'tablet','max-w-screen-xl': viewportSize === 'desktop' }">
-          <iframe id={`iframe-${componentIndex}`} width="100%" src={`/iframe/${componentPath}?iframeId=iframe-${componentIndex}`} />
+          <iframe x-intersect.once="$el.src = $el.dataset.src" id={`iframe-${componentIndex}`} width="100%" data-src={`/iframe/${componentPath}?iframeId=iframe-${componentIndex}`}/>
         </div>
       </div>
       {
