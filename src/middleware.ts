@@ -3,7 +3,6 @@ import { getAstroPostHTML } from "astro-posthtml"
 import _minifyClassnames from "posthtml-minify-classnames"
 
 const minifyClassnames = _minifyClassnames({
-  filter: /^(.border-transparent|.border-blue-500|.bg-white|.bg-black\/5|.bg-black\/0|.hidden|.max-w-xs|.max-w-screen-md|.max-w-screen-xl)$/,
   genNameId: false,
   customAttributes: [
     'x-transition:enter',
