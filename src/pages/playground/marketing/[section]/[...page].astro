@@ -2,6 +2,7 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Playground from "@/components/global/Playground.astro";
 import { paginate } from "@/utils/pagination";
+const PAGE_SIZE = 10;
 const { section, page } = Astro.params;
 const components = await Astro.glob(
   `@/components/windstatic/marketing/**/*.astro`
@@ -14,7 +15,8 @@ const currentPage = parseInt(page, 10) || 1;
 const paginationData = paginate(
   `/playground/marketing/${section}`,
   sectionComponents,
-  currentPage
+  currentPage,
+  PAGE_SIZE
 );
 ---
 
@@ -61,6 +63,7 @@ const paginationData = paginate(
         {
           paginationData.data.map((component, index) => (
             <Playground
+              componentIndex={(currentPage - 1) * PAGE_SIZE + index + 1}
               componentPath={component.file.replace(/.*\/src/, "/src")}
               playgroundRef={`${section}-${currentPage}-component-${index}`}>
               <component.default />
@@ -90,4 +93,17 @@ const paginationData = paginate(
       </div>
     </div>
   </section>
+  <script>
+    function resizeIFramesToFitContent() {
+      const iframes = document.querySelectorAll("iframe");
+
+      iframes.forEach((iframe) => {
+        iframe.height = iframe.contentWindow.document.body.scrollHeight + "px";
+      });
+
+      requestAnimationFrame(resizeIFramesToFitContent)
+    }
+
+    addEventListener("load", requestAnimationFrame.bind(this, resizeIFramesToFitContent))
+  </script>
 </BaseLayout>
