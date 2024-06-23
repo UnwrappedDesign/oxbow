@@ -1,10 +1,7 @@
 ---
 import { Code } from "astro:components";
 import * as prettier from "prettier";
-const code = await Astro.slots.render("default");
-const ppcode = await prettier.format(code, {
-  parser: "lwc",
-});
+
 interface Props {
   componentIndex: number;
   componentPath: string;
@@ -12,6 +9,13 @@ interface Props {
 }
 const { componentIndex, componentPath, playgroundRef } = Astro.props;
 const loggedIn = Boolean(Astro.locals.user);
+
+const code = loggedIn ? await Astro.slots.render("default") 
+                      : '';
+const ppcode = loggedIn ? await prettier.format(code, {
+                          parser: "lwc",
+                        }) 
+                        : '';
 ---
 <section x-data={`{ tab: 'preview', viewportSize: 'desktop' }`} class="not-prose">
   <div class="relative">
