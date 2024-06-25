@@ -72,12 +72,11 @@
       </div>
     </div>
   </div>
-  <script>
-    import Alpine from "alpinejs";
-    import { getAuth, sendSignInLinkToEmail } from "firebase/auth";
-    import { app } from "@/firebase/client";
-
-    const auth = getAuth(app);
+</section>
+<script>
+  import Alpine from "alpinejs";
+  import { sendSignInLinkToEmail } from "firebase/auth";
+  import { auth } from "@/firebase/client";
 
     document.addEventListener("alpine:init", () => {
       Alpine.data("loginForm", () => ({
@@ -100,27 +99,26 @@
             handleCodeInApp: true,
           };
 
-          try {
-            await sendSignInLinkToEmail(auth, this.email, actionCodeSettings);
+        try {
+          window.localStorage.setItem("emailForSignIn", this.email);
 
-            window.localStorage.setItem("emailForSignIn", this.email);
+          await sendSignInLinkToEmail(auth, this.email, actionCodeSettings);
 
-            this.emailSent = true;
-          } catch (error) {
-            console.log("error", error.code, error.message);
-            if (error.code === "auth/admin-restricted-operation") {
-              console.log("error auth/admin-restricted-operation");
-              this.errorMessage = [
-                "We couldn't find an account linked to this email address.",
-                "Please check the email address or create a new account.",
-              ].join(" ");
-            } else {
-              console.log("error else");
-              this.errorMessage = [
-                "We were unable to send the sign-in link to your email.",
-                "Please check your email address and try again.",
-              ].join(" ");
-            }
+          this.emailSent = true;
+        } catch (error) {
+          console.log("error", error.code, error.message);
+          if (error.code === "auth/admin-restricted-operation") {
+            console.log("error auth/admin-restricted-operation");
+            this.errorMessage = [
+              "We couldn't find an account linked to this email address.",
+              "Please check the email address or create a new account.",
+            ].join(" ");
+          } else {
+            console.log("error else");
+            this.errorMessage = [
+              "We were unable to send the sign-in link to your email.",
+              "Please check your email address and try again.",
+            ].join(" ");
           }
         },
       }));
