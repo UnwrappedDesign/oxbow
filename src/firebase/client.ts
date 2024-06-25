@@ -1,6 +1,10 @@
-import { initializeApp } from 'firebase/app';
+import { initializeApp, type FirebaseOptions } from 'firebase/app';
+import {
+  getAuth,
+  connectAuthEmulator,
+} from "firebase/auth";
 
-const firebaseConfig = {
+const firebaseConfig: FirebaseOptions = {
   apiKey: import.meta.env.PUBLIC_FIREBASE_API_KEY,
   authDomain: import.meta.env.PUBLIC_FIREBASE_AUTH_DOMAIN,
   projectId: import.meta.env.PUBLIC_,
@@ -10,3 +14,11 @@ const firebaseConfig = {
 };
 
 export const app = initializeApp(firebaseConfig);
+const authEmulatorHost = import.meta.env.PUBLIC_FIREBASE_AUTH_EMULATOR_HOST;
+
+export const auth = getAuth(app);
+
+if (authEmulatorHost) {
+  connectAuthEmulator(auth, authEmulatorHost);
+}
+
