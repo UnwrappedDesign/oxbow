@@ -1,92 +1,59 @@
----
-import ResendLoginLink from "./ResendLoginLink.astro";
----
-
 <section x-data="loginForm()">
-  <div x-show="emailSent">
-    <ResendLoginLink />
-  </div>
-  <div x-show="!emailSent">
-    <div class="max-w-xl mx-auto px-8 py-12 lg:py-32">
-      <div class="prose-styles">
-        <h1>Sign in with your email</h1>
-        <p>
-          Please enter the email address linked to your account, and we will
-          send a unique sign-in link to your inbox.
-        </p>
-      </div>
-      <form @submit.prevent="sendEmail()">
-        <div class="space-y-3 mt-6 pt-6 border-t">
-          <div>
-            <label for="email" class="sr-only"> Email </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              x-model="email"
-              autocomplete="on"
-              placeholder="email@example.com"
-              required
-              aria-required="true"
-              class="block w-full px-4 py-2 h-10 border-2 focus:ring-2 focus:ring-blue-500 bg-chalk border-transparent ring-1 ring-gray-200 duration-300 rounded-lg appearance-none text-blue-500 placeholder-zinc-300 focus:border-blue-300 focus:outline-none sm:text-sm"
-            />
-          </div>
-
-          <!--
-        // This button send an email to the customers and it has to redirect to /resend-login-link.astro, there is a message to the user that the email has been sent
-        // and what to do if they do not get it.
-        -->
-          <div class="space-y-3">
-            <button
-              type="submit"
-              aria-label="Get your link"
-              class="rounded-lg px-4 py-2 text-sm font-semibold w-full transition-all text-white bg-gradient-to-b from-blue-500 to-blue-600 hover:to-blue-700 h-10 inline-flex items-center justify-between"
-            >
-              Get your link
-              <span aria-hidden="true">&rarr;</span>
-            </button>
-            <div class="prose-styles">
-              <small
-                >By clicking continue, you agree to our <a href="/terms"
-                  >Terms of Service</a
-                > and
-                <a href="/privacy"> Privacy Policy. </a>
-              </small>
+  <div class="max-w-xl mx-auto px-8 py-12 lg:py-32">
+    <div class="prose-styles">
+      <h1 x-text="emailSent ? 'Check Your Inbox' : 'Sign in with your email'">
+      </h1>
+      <p x-cloak x-show="!emailSent">
+        Please enter the email address linked to your account, and we will send
+        a unique sign-in link to your inbox.
+      </p>
+      <p x-cloak x-show="emailSent">
+        Please click the link in the email we sent to sign in to your account.
+        If you can't find the email, be sure to check your spam folder.
+      </p>
+    </div>
+    <form @submit.prevent="sendEmail()">
+      <div class="space-y-3 mt-6 pt-6 border-t">
+        <div>
+          <label for="email" class="sr-only"> Email </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            x-model="email"
+            x-on:input="clearErrorMessage"
+            autocomplete="on"
+            placeholder="email@example.com"
+            required
+            aria-required="true"
+            class="block w-full px-4 py-2 h-10 border-2 focus:ring-2 focus:ring-blue-500 bg-chalk border-transparent ring-1 ring-gray-200 duration-300 rounded-lg appearance-none text-blue-500 placeholder-zinc-300 focus:border-blue-300 focus:outline-none sm:text-sm"
+          />
+          <div class="mt-4 space-y-2 text-xs text-gray-500">
+            <div x-cloak x-show="!!errorMessage">
+              <p x-text="errorMessage"></p>
             </div>
           </div>
         </div>
-      </form>
-      <div class="mt-4 space-y-2 text-xs text-gray-500">
-        <div id="invalid-email" class="hidden">
-          <p>
-            <strong class="text-red-500 font-semibold">Invalid Email:</strong> "The
-            email address you entered is not valid. Please enter a valid email address."
-          </p>
-        </div>
-        <div id="email-not-found" class="hidden">
-          <p>
-            <strong class="text-red-500 font-semibold">Email Not Found:</strong>
-            "We couldn't find an account linked to this email address. Please check
-            the email address or create a new account."
-          </p>
-        </div>
-        <div id="server-error" class="hidden">
-          <p>
-            <strong class="text-red-500 font-semibold">Server Error:</strong> "An
-            error occurred while processing your request. Please try again later."
-          </p>
-        </div>
-        <div id="email-send-failure" class="hidden">
-          <p>
-            <strong class="text-red-500 font-semibold"
-              >Email Send Failure:</strong
-            >
-            "We were unable to send the sign-in link to your email. Please check
-            your email address and try again."
-          </p>
+        <div class="space-y-3">
+          <button
+            type="submit"
+            aria-label="Get your link"
+            class="rounded-lg px-4 py-2 text-sm font-semibold w-full transition-all text-white bg-gradient-to-b from-blue-500 to-blue-600 hover:to-blue-700 h-10 inline-flex items-center justify-between"
+          >
+            Get your link
+            <span aria-hidden="true">&rarr;</span>
+          </button>
+          <div class="prose-styles">
+            <small
+              >By clicking continue, you agree to our <a href="/terms"
+                >Terms of Service</a
+              > and
+              <a href="/privacy"> Privacy Policy. </a>
+            </small>
+          </div>
         </div>
       </div>
-    </div>
+    </form>
   </div>
 </section>
 <script>
@@ -100,6 +67,10 @@ import ResendLoginLink from "./ResendLoginLink.astro";
     Alpine.data("loginForm", () => ({
       email: "",
       emailSent: false,
+      errorMessage: "",
+      clearErrorMessage() {
+        this.errorMessage = "";
+      },
       async sendEmail() {
         const baseUrl = import.meta.env.PUBLIC_APP_BASE_URL;
 
@@ -115,7 +86,20 @@ import ResendLoginLink from "./ResendLoginLink.astro";
 
           this.emailSent = true;
         } catch (error) {
-          console.error(error);
+          console.log("error", error.code, error.message);
+          if (error.code === "auth/admin-restricted-operation") {
+            console.log("error auth/admin-restricted-operation");
+            this.errorMessage = [
+              "We couldn't find an account linked to this email address.",
+              "Please check the email address or create a new account.",
+            ].join(" ");
+          } else {
+            console.log("error else");
+            this.errorMessage = [
+              "We were unable to send the sign-in link to your email.",
+              "Please check your email address and try again.",
+            ].join(" ");
+          }
         }
       },
     }));
