@@ -6,25 +6,18 @@ const user = Astro.locals.user;
   class="w-full max-w-7xl px-8 bg-white mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between py-4"
 >
   <div
-    x-data="navigation()"
+    x-data={`{...navigation(), username: "${user?.email ?? ""}"}`}
     class="flex items-center justify-between text-black w-full text-sm"
   >
     <a href="/" class="font-medium">❖ Windstatic</a>
     <div class="flex gap-3 text-gray-500">
-      {
-        !user && (
-          <>
-            <a href="/login">Log in</a>
-            <a class="lg:border-l lg:pl-4" href="/pricing">
-              Get all access for $149
-            </a>
-          </>
-        )
-      }
-      {user && <div x-popover class="relative">
+      <a href="/login" x-cloak x-show="!username">Log in</a>
+      <a class="lg:border-l lg:pl-4" href="/pricing" x-cloak x-show="!username">
+        Get all access for $149
+      </a>
+      <div x-popover x-cloak x-show="!!username" class="relative">
         <button x-popover:button type="button" class="flex items-center gap-2">
           Account
-
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -39,7 +32,6 @@ const user = Astro.locals.user;
           >
         </button>
         <div
-          x-cloak
           x-popover:panel
           x-transition.origin.top.left
           class="absolute right-0 top-full z-50 -mr-0.5 mt-3 w-48 origin-top-right divide-y divide-gray-100 rounded-lg bg-white text-sm font-normal text-gray-600 shadow ring-1 ring-gray-900/5 focus:outline-none sm:-mr-3.5 transform opacity-100 scale-100"
@@ -48,9 +40,8 @@ const user = Astro.locals.user;
             <span class="block text-xs text-gray-500" role="none"
               >Signed in as</span
             >
-            <span class="mt-0.5 font-semibold" role="none">
-              { user.email }
-            </span>
+            <span class="mt-0.5 font-semibold" role="none" x-text="username"
+            ></span>
           </p>
           <div class="py-1.5" role="none">
             <a
@@ -98,7 +89,6 @@ const user = Astro.locals.user;
             >
           </div>
           <div class="py-1.5" role="none">
-            <!-- When the user clicks on tis link, this takes to Lemon Squeezy's customers billing page -->
             <a
               class="py-1.5 px-3.5 hover:bg-gray-50 hover:text-blue-500 items-center gap-2 flex"
               role="menuitem"
@@ -119,7 +109,6 @@ const user = Astro.locals.user;
                 ></path></svg
               >Account portal ↗</a
             >
-            <!-- When the user clicks on the button, this has to redirect to login page -->
             <button
               type="button"
               class="py-1.5 px-3.5 hover:bg-gray-50 hover:text-blue-500 items-center gap-2 flex w-full"
@@ -143,7 +132,7 @@ const user = Astro.locals.user;
             >
           </div>
         </div>
-      </div>}
+      </div>
     </div>
   </div>
 </div>
@@ -154,9 +143,10 @@ const user = Astro.locals.user;
   import { app } from "@/firebase/client";
 
   const auth = getAuth(app);
-  
+
   document.addEventListener("alpine:init", () => {
     Alpine.data("navigation", () => ({
+      username: "{{ user?.email }}",
       async signOut() {
         await auth.signOut();
         window.location.assign("/api/auth/signout");
