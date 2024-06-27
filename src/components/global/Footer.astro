@@ -20,41 +20,58 @@ const links = [
       { title: "Refund", href: "/refund" },
     ],
   },
+   {
+    category: "Other projects",
+    items: [
+      { title: "Lexington Themes", href: "https://lexingtonthemes.com" },
+      { title: "Colors & fonts", href: "https://colorsandfonts.com" },
+      { title: "SVG Doodles", href: "https://svgdoodles.com" },
+
+    ],
+  },
 ];
 ---
 
 <footer>
   <div class="max-w-7xl px-8 mx-auto">
-    <div
-      class="prose-styles grid grid-cols-1 md:grid-cols-2 gap-8 lg:grid-cols-3">
-      {
-        links.map((category) => (
-          <div>
-            <h2>{category.category}</h2>
-            <ul
-              class="not-prose space-y-2"
-              role="list">
-              {category.items.map((item) => (
-                <li>
-                  <a
-                    class="hover:text-blue-500 hover:underline"
-                    href={item.href}>
-                    {item.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))
-      }
-
-      <div class="col-span-full">
+    <div class="flex flex-col gap-12">
+      <a
+        href="/"
+        class="font-medium col-span-4 "
+        >❖ </a
+      >
+      <div
+        class="prose-styles flex flex-col gap-8 lg:grid-cols-3 col-span-2 lg:-mt-8">
+        {
+          links.map((category) => (
+            <div>
+              <h2>{category.category}</h2>
+              <ul
+                class="not-prose space-y-2 w-full"
+                role="list">
+                {category.items.map((item) => (
+                  <li>
+                    <a
+                      class="hover:text-blue-500   w-full flex items-center justify-between"
+                      href={item.href}>
+                      {item.title}
+                      <span>&rarr;</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+      <div class="col-span-full  prose-styles mt-12">
         <p>
           <small>
             All rights reserved. Windstatic is not affiliated with Tailwind Labs
             team, nor is it endorsed by or sponsored by this one. A side project
-            by <a href="https://michaelandreuzza.com">Michael Andreuzza</a> This website
-            was built with Astro JS & Tailwind CSS. Crafted in Åland Islands, Finland.
+            by <a href="https://michaelandreuzza.com">Michael Andreuzza</a> This
+            website was built with Astro JS & Tailwind CSS. Crafted in Åland Islands,
+            Finland.
           </small>
         </p>
       </div>

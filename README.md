@@ -1,11 +1,7 @@
 ## Windstatic
-
-### Getting started 
-
+### Getting started
 ```bash
-git pull 
-
+git pull
 npm install
-
 npm run dev
 ```

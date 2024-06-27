@@ -10,11 +10,11 @@ interface Props {
 const { componentIndex, componentPath, playgroundRef } = Astro.props;
 const loggedIn = Boolean(Astro.locals.user);
 
-const code = loggedIn ? await Astro.slots.render("default") 
+const code = loggedIn ? await Astro.slots.render("default")
                       : '';
 const ppcode = loggedIn ? await prettier.format(code, {
                           parser: "lwc",
-                        }) 
+                        })
                         : '';
 ---
 <section x-data={`{ tab: 'preview', viewportSize: 'desktop' }`} class="not-prose">
@@ -27,8 +27,8 @@ const ppcode = loggedIn ? await prettier.format(code, {
         >
         {componentIndex}
         </a>
-        <div class="hidden md:flex items-center justify-end w-full">
-          <span class="isolate inline-flex h-7 gap-1" x-show="tab === 'preview'">
+        <div class="flex items-center justify-end w-full">
+          <span class="isolate md:inline-flex h-7 gap-1 hidden" x-show="tab === 'preview'">
             <button
               class="pointer-events-auto relative inline-flex items-center rounded p-1 focus:text-blue-500 text-xs font-semibold text-gray-900 hover:bg-gray-50 "
               @click="viewportSize = 'mobile'" :class="viewportSize === 'mobile' ? 'bg-zinc-100' : 'bg-black/0'"
@@ -96,7 +96,7 @@ const ppcode = loggedIn ? await prettier.format(code, {
               </svg>
             </button>
           </span>
-          <div class="mx-1 h-4 w-[2px] bg-black/10"></div>
+          <div class="mx-1 h-4 w-[2px] bg-black/10 hidden md:inline-block"></div>
           {
             loggedIn && (
               <div class="flex items-center ">
@@ -135,7 +135,7 @@ const ppcode = loggedIn ? await prettier.format(code, {
         class="flex flex-grow w-full justify-center"
       >
         <div
-          class="w-full overflow-auto"
+          class="w-full overflow-auto transition-all duration-500 easy-in-out"
           :class="{ 'max-w-sm border': viewportSize === 'mobile', 'max-w-screen-md border': viewportSize === 'tablet','max-w-screen-xl': viewportSize === 'desktop' }">
           <iframe x-intersect.once="$el.src = $el.dataset.src" id={playgroundRef} width="100%" data-src={`/iframe/${componentPath}?iframeId=iframe-${componentIndex}`}/>
         </div>
@@ -145,7 +145,7 @@ const ppcode = loggedIn ? await prettier.format(code, {
           <div
             x-show="tab === 'code'"
             x-ref={`code${componentIndex}`}
-            class="flex-grow h-full w-full text-sm overflow-auto p-4 ov bg-black transition"
+            class="flex-grow h-full w-full text-sm overflow-auto p-4 ov bg-gray-50 transition"
           >
             <Code code={ppcode} lang="html" theme="css-variables" />
           </div>
