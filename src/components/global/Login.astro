@@ -78,26 +78,26 @@
   import { sendSignInLinkToEmail } from "firebase/auth";
   import { auth } from "@/firebase/client";
 
-    document.addEventListener("alpine:init", () => {
-      Alpine.data("loginForm", () => ({
-        email: "",
-        emailSent: false,
-        errorMessage: "",
-        clearErrorMessage() {
-          this.errorMessage = "";
-        },
-        clearForm() {
-          this.email = "";
-          this.emailSent = false;
-          this.errorMessage = "";
-        },
-        async sendEmail() {
-          const baseUrl = import.meta.env.PUBLIC_APP_BASE_URL;
+  document.addEventListener("alpine:init", () => {
+    Alpine.data("loginForm", () => ({
+      email: "",
+      emailSent: false,
+      errorMessage: "",
+      clearErrorMessage() {
+        this.errorMessage = "";
+      },
+      clearForm() {
+        this.email = "";
+        this.emailSent = false;
+        this.errorMessage = "";
+      },
+      async sendEmail() {
+        const baseUrl = import.meta.env.PUBLIC_APP_BASE_URL;
 
-          const actionCodeSettings = {
-            url: `${baseUrl}/email-signin`,
-            handleCodeInApp: true,
-          };
+        const actionCodeSettings = {
+          url: `${baseUrl}/email-signin`,
+          handleCodeInApp: true,
+        };
 
         try {
           window.localStorage.setItem("emailForSignIn", this.email);
@@ -120,8 +120,8 @@
               "Please check your email address and try again.",
             ].join(" ");
           }
-        },
-      }));
-    });
-  </script>
-</section>
+        }
+      },
+    }));
+  });
+</script>
