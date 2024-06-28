@@ -12,7 +12,11 @@
         If you can't find the email, be sure to check your spam folder.
       </p>
     </div>
-    <form @submit.prevent="sendEmail()">
+    <form
+      @submit.prevent="sendEmail()"
+      x-cloak
+      x-show="!emailSent || errorMessage"
+    >
       <div class="space-y-3 mt-6 pt-6 border-t">
         <div>
           <label for="email" class="sr-only"> Email </label>
@@ -54,54 +58,72 @@
         </div>
       </div>
     </form>
+    <div x-cloak x-show="emailSent">
+      <div class="prose-styles">
+        <p>
+          Didn't receive the email?
+          <button
+            class="rounded-lg mt-6 px-4 py-2 text-sm font-semibold w-full transition-all text-white bg-gradient-to-b from-blue-500 to-blue-600 hover:to-blue-700 h-10 inline-flex items-center justify-between"
+            @click="clearForm()"
+          >
+            Try again
+          </button>
+        </p>
+      </div>
+    </div>
   </div>
-</section>
-<script>
-  import Alpine from "alpinejs";
-  import { getAuth, sendSignInLinkToEmail } from "firebase/auth";
-  import { app } from "@/firebase/client";
+  <script>
+    import Alpine from "alpinejs";
+    import { getAuth, sendSignInLinkToEmail } from "firebase/auth";
+    import { app } from "@/firebase/client";
 
-  const auth = getAuth(app);
+    const auth = getAuth(app);
 
-  document.addEventListener("alpine:init", () => {
-    Alpine.data("loginForm", () => ({
-      email: "",
-      emailSent: false,
-      errorMessage: "",
-      clearErrorMessage() {
-        this.errorMessage = "";
-      },
-      async sendEmail() {
-        const baseUrl = import.meta.env.PUBLIC_APP_BASE_URL;
+    document.addEventListener("alpine:init", () => {
+      Alpine.data("loginForm", () => ({
+        email: "",
+        emailSent: false,
+        errorMessage: "",
+        clearErrorMessage() {
+          this.errorMessage = "";
+        },
+        clearForm() {
+          this.email = "";
+          this.emailSent = false;
+          this.errorMessage = "";
+        },
+        async sendEmail() {
+          const baseUrl = import.meta.env.PUBLIC_APP_BASE_URL;
 
-        const actionCodeSettings = {
-          url: `${baseUrl}/email-signin`,
-          handleCodeInApp: true,
-        };
+          const actionCodeSettings = {
+            url: `${baseUrl}/email-signin`,
+            handleCodeInApp: true,
+          };
 
-        try {
-          await sendSignInLinkToEmail(auth, this.email, actionCodeSettings);
+          try {
+            await sendSignInLinkToEmail(auth, this.email, actionCodeSettings);
 
-          window.localStorage.setItem("emailForSignIn", this.email);
+            window.localStorage.setItem("emailForSignIn", this.email);
 
-          this.emailSent = true;
-        } catch (error) {
-          console.log("error", error.code, error.message);
-          if (error.code === "auth/admin-restricted-operation") {
-            console.log("error auth/admin-restricted-operation");
-            this.errorMessage = [
-              "We couldn't find an account linked to this email address.",
-              "Please check the email address or create a new account.",
-            ].join(" ");
-          } else {
-            console.log("error else");
-            this.errorMessage = [
-              "We were unable to send the sign-in link to your email.",
-              "Please check your email address and try again.",
-            ].join(" ");
+            this.emailSent = true;
+          } catch (error) {
+            console.log("error", error.code, error.message);
+            if (error.code === "auth/admin-restricted-operation") {
+              console.log("error auth/admin-restricted-operation");
+              this.errorMessage = [
+                "We couldn't find an account linked to this email address.",
+                "Please check the email address or create a new account.",
+              ].join(" ");
+            } else {
+              console.log("error else");
+              this.errorMessage = [
+                "We were unable to send the sign-in link to your email.",
+                "Please check your email address and try again.",
+              ].join(" ");
+            }
           }
-        }
-      },
-    }));
-  });
-</script>
+        },
+      }));
+    });
+  </script>
+</section>
