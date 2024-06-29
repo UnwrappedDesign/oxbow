@@ -26,9 +26,7 @@ When you purchase an all-access license, you unlock everything: every component 
 - **No recurring subscriptions or update fees** — Pay once and gain permanent access to all our premium Tailwind CSS resources.
 
 
-
-<a href="https://windstatic.lemonsqueezy.com/buy/9bfc74ed-bb0b-464e-adf1-f6766084dac6" type="submit" class="rounded-lg px-4 py-2 text-sm font-semibold w-auto gap-4 transition-all text-white bg-gradient-to-b from-blue-500 to-blue-600 not-prose hover:to-blue-700 h-10 inline-flex items-center justify-between" aria-label="Get your link"> Get all access for $149
-</a>
+<a href="/api/buy/individual" type="submit" class="rounded-lg px-4 py-2 text-sm font-semibold w-auto gap-4 transition-all text-white bg-gradient-to-b from-blue-500 to-blue-600 not-prose hover:to-blue-700 h-10 inline-flex items-center justify-between" aria-label="Get your link"> Get all access for $149</a>
 ---
 
 ---
@@ -39,8 +37,7 @@ For startup teams and agencies
 - **Same as individual +**  get access to all your team. This tier gives you access to up to 25 people.
 
 
-<a href="https://windstatic.lemonsqueezy.com/buy/9bfc74ed-bb0b-464e-adf1-f6766084dac6" type="submit" class="rounded-lg px-4 py-2 text-sm font-semibold w-auto gap-4 transition-all text-white bg-gradient-to-b from-blue-500 to-blue-600 not-prose hover:to-blue-700 h-10 inline-flex items-center justify-between" aria-label="Get your link"> Get access for your team for $299
-</a>
+<a href="/api/buy/team" type="submit" class="rounded-lg px-4 py-2 text-sm font-semibold w-auto gap-4 transition-all text-white bg-gradient-to-b from-blue-500 to-blue-600 not-prose hover:to-blue-700 h-10 inline-flex items-center justify-between" aria-label="Get your link"> Get access for your team for $299</a>
 
 ---
 
