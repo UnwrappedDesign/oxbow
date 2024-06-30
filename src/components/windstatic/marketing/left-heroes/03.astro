@@ -1,3 +1,13 @@
+---
+const logos = [
+  "/brands/1.svg",
+  "/brands/2.svg",
+  "/brands/3.svg",
+  "/brands/4.svg",
+  "/brands/5.svg",
+];
+---
+
 <section class="relative overflow-hidden">
   <div class="px-8 pt-24 mx-auto md:px-12 lg:px-32 max-w-7xl relative">
     <div>
@@ -37,32 +47,17 @@
       </p>
 
       <div
-        class="grid items-center max-w-lg grid-cols-3 mx-auto mt-10 gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-5 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5 opacity-40">
-        <img
-          class="max-h-8"
-          src="/brands/1.svg"
-          alt="/brands/1.svg"
-        />
-        <img
-          class="max-h-8"
-          src="/brands/2.svg"
-          alt="/brands/2.svg"
-        />
-        <img
-          class="max-h-8"
-          src="/brands/3.svg"
-          alt="/brands/3.svg"
-        />
-        <img
-          class="max-h-8"
-          src="/brands/4.svg"
-          alt="/brands/4.svg"
-        />
-        <img
-          class="max-h-8"
-          src="/brands/5.svg"
-          alt="/brands/5.svg"
-        />
+        class="grid items-center grid-cols-3 mx-auto mt-10 gap-x-8 gap-y-10 sm:grid-cols-5 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5 opacity-40">
+        {
+          logos.map((logo, index) => (
+            <img
+              class="max-h-8"
+              src={logo}
+              alt="#_"
+            />
+          ))
+        }
+
       </div>
     </div>
   </div>
