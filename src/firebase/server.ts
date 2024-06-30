@@ -7,7 +7,7 @@ const serviceAccount = JSON.parse(serviceAccountJson);
 
 const activeApps = getApps();
 
-process.env.FIREBASE_AUTH_EMULATOR_HOST = import.meta.env.FIREBASE_AUTH_EMULATOR_HOST;
+process.env.FIREBASE_AUTH_EMULATOR_HOST = import.meta.env.PUBLIC_FIREBASE_AUTH_EMULATOR_HOST;
 
 export const app = activeApps.length === 0 ? initializeApp({
   credential: cert(serviceAccount as ServiceAccount),
