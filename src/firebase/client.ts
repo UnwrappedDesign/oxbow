@@ -19,6 +19,12 @@ const authEmulatorHost = import.meta.env.PUBLIC_FIREBASE_AUTH_EMULATOR_HOST;
 export const auth = getAuth(app);
 
 if (authEmulatorHost) {
-  connectAuthEmulator(auth, authEmulatorHost);
+  try {
+    connectAuthEmulator(auth, `http://${authEmulatorHost}`);
+
+  } catch (error) {
+    console.error(error);
+  }
+  
 }
 
