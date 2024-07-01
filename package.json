@@ -3,16 +3,19 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "concurrently 'astro dev' 'npm:auth'",
-    "start": "astro build && concurrently 'npm:dist:serve' 'npm:auth'",
-    "dist": "astro build",
+    "dev": "concurrently 'npm:serve:*(!dist)'",
+    "build": "astro build",
+    "start": "npm run build && npm run serve:dist",
     "preview": "astro preview",
     "astro": "astro",
-    "dist:serve": "node ./dist/server/entry.mjs",
-    "auth": "firebase emulators:start --only auth",
+    "serve:dev": "astro dev",
+    "serve:dist": "node ./dist/server/entry.mjs",
+    "serve:auth": "firebase emulators:start --only auth",
+    "serve": "concurrently 'npm:serve:*(!dev)'",
     "test:cypress": "cypress run",
     "test:watch": "cypress open",
-    "test": "start-server-and-test start localhost:4321 test:cypress"
+    "test": "npm run build && start-server-and-test serve localhost:4321 test:cypress",
+    "test:ci": "firebase use dev && npm run serve"
   },
   "dependencies": {
     "@alpinejs/focus": "^3.14.1",
@@ -52,6 +55,7 @@
     "concurrently": "^8.2.2",
     "cypress": "^13.12.0",
     "eslint-plugin-cypress": "^3.3.0",
+    "firebase-tools": "^13.12.0",
     "prettier-plugin-astro": "^0.14.0",
     "start-server-and-test": "^2.0.4",
     "typescript": "^5.5.2",
