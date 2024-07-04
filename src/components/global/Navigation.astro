@@ -143,15 +143,12 @@ const user = Astro.locals.user;
 </div>
 <script>
   import Alpine from "alpinejs";
-  import { getAuth } from "firebase/auth";
 
-  import { app } from "@/firebase/client";
-
-  const auth = getAuth(app);
+  import { auth } from "@/firebase/client";
 
   document.addEventListener("alpine:init", () => {
     Alpine.data("navigation", () => ({
-      username: "{{ user?.email }}",
+      username: "",
       async signOut() {
         await auth.signOut();
         window.location.assign("/api/auth/signout");
