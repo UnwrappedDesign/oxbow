@@ -34,11 +34,10 @@ const customToken = uid ? await auth.createCustomToken(uid) : null;
     <astro-firebase data-customtoken={customToken}></astro-firebase>
     <script>
       import {
-        getAuth,
         inMemoryPersistence,
         signInWithCustomToken,
       } from "firebase/auth";
-      import { app } from "@/firebase/client";
+      import { auth } from "@/firebase/client";
 
       class AstroFirebase extends HTMLElement {
         constructor() {
@@ -46,7 +45,6 @@ const customToken = uid ? await auth.createCustomToken(uid) : null;
           const customToken = this.dataset.customtoken;
 
           if (customToken) {
-            const auth = getAuth(app);
             auth.setPersistence(inMemoryPersistence);
 
             signInWithCustomToken(auth, customToken)

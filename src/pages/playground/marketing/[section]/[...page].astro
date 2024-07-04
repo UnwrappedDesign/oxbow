@@ -5,7 +5,7 @@ import { paginate } from "@/utils/pagination";
 const PAGE_SIZE = 10;
 const { section, page } = Astro.params;
 const components = await Astro.glob(
-  `@/components/windstatic/marketing/**/*.astro`
+  `@/components/windstatic/marketing/**/*.astro`,
 );
 const sectionComponents = components.filter((component) => {
   const sectionRegex = new RegExp(`marketing\/${section}\/.+\.astro$`, "i");
@@ -16,7 +16,7 @@ const paginationData = paginate(
   `/playground/marketing/${section}`,
   sectionComponents,
   currentPage,
-  PAGE_SIZE
+  PAGE_SIZE,
 );
 ---
 
@@ -25,10 +25,7 @@ const paginationData = paginate(
     <div class="max-w-7xl mx-auto px-8 pt-12 lg:pt-32">
       <div class="prose-styles">
         <span>
-
-          <a href="/#pageSections">
-
-            Page sections</a> / <a href="/#marketing">
+          <a href="/#pageSections"> Page sections</a> / <a href="/#marketing">
             Marketing Page</a
           > / Page {paginationData.currentPage}</span
         >
@@ -36,26 +33,22 @@ const paginationData = paginate(
         <span>
           {
             paginationData.url.prev ? (
-              <a
-                class=""
-                href={paginationData.url.prev}>
+              <a class="" href={paginationData.url.prev}>
                 Previous
               </a>
             ) : null
           }
           {
             paginationData.url.next ? (
-              <a
-                class=""
-                href={paginationData.url.next}>
+              <a class="" href={paginationData.url.next}>
                 Next
-
               </a>
             ) : null
           }
         </span>
         <h1
-          class="text-4xl capitalize mt-4 font-semibold tracking-tight sm:text-4xl [@media(max-width:480px)]:text-[2rem] text-black not-prose">
+          class="text-4xl capitalize mt-4 font-semibold tracking-tight sm:text-4xl [@media(max-width:480px)]:text-[2rem] text-black not-prose"
+        >
           {section}
         </h1>
       </div>
@@ -67,7 +60,8 @@ const paginationData = paginate(
             <Playground
               componentIndex={(currentPage - 1) * PAGE_SIZE + index + 1}
               componentPath={component.file.replace(/.*\/src/, "src")}
-              playgroundRef={`${section}-${currentPage}-component-${index}`}>
+              playgroundRef={`${section}-${currentPage}-component-${index}`}
+            >
               <component.default />
             </Playground>
           ))
@@ -77,7 +71,8 @@ const paginationData = paginate(
             paginationData.url.prev ? (
               <a
                 class="border rounded-full px-4 py-1  items-center text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50"
-                href={paginationData.url.prev}>
+                href={paginationData.url.prev}
+              >
                 Previous
               </a>
             ) : null
@@ -86,14 +81,14 @@ const paginationData = paginate(
             paginationData.url.next ? (
               <a
                 class="border ml-auto rounded-full px-4 py-1  items-center text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50"
-                href={paginationData.url.next}>
+                href={paginationData.url.next}
+              >
                 Next
               </a>
             ) : null
           }
         </div>
       </div>
-
     </div>
   </section>
   <script>
@@ -102,13 +97,17 @@ const paginationData = paginate(
 
       iframes.forEach((iframe) => {
         try {
-          iframe.height = iframe.contentWindow.document.body.scrollHeight + "px";
+          iframe.height =
+            iframe.contentWindow.document.body.scrollHeight + "px";
         } catch (e) {}
       });
 
-      requestAnimationFrame(resizeIFramesToFitContent)
+      requestAnimationFrame(resizeIFramesToFitContent);
     }
 
-    addEventListener("load", requestAnimationFrame.bind(this, resizeIFramesToFitContent))
+    addEventListener(
+      "load",
+      requestAnimationFrame.bind(this, resizeIFramesToFitContent),
+    );
   </script>
 </BaseLayout>
