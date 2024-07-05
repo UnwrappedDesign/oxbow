@@ -1,0 +1,116 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Playground from "@/components/global/Playground.astro";
+import { paginate } from "@/utils/pagination";
+
+const PAGE_SIZE = 10;
+const { section, subsection, page } = Astro.params;
+const components = await Astro.glob(`@/components/windstatic/**/*.astro`);
+
+const sectionComponents = components.filter((component) => {
+  const sectionRegex = new RegExp(`${section}\/${subsection}\/.+\.astro$`, "i");
+  return component.file?.match(sectionRegex);
+});
+
+const currentPage = parseInt(page ?? "1", 10) || 1;
+const paginationData = paginate(
+  `/playground/${section}/${subsection}`,
+  sectionComponents,
+  currentPage,
+  PAGE_SIZE,
+);
+---
+
+<BaseLayout>
+  <section>
+    <div class="max-w-7xl mx-auto px-8 pt-12 lg:pt-32">
+      <div class="prose-styles">
+        <span>
+          <a href="/#pageSections"> Page sections</a> / <a
+            href={`/#${section}`}
+          >
+            {`${section}`} Page</a
+          > / Page {paginationData.currentPage}</span
+        >
+        —
+        <span>
+          {
+            paginationData.url.prev ? (
+              <a class="" href={paginationData.url.prev}>
+                Previous
+              </a>
+            ) : null
+          }
+          {
+            paginationData.url.next ? (
+              <a class="" href={paginationData.url.next}>
+                Next
+              </a>
+            ) : null
+          }
+        </span>
+        <h1
+          class="text-4xl capitalize mt-4 font-semibold tracking-tight sm:text-4xl [@media(max-width:480px)]:text-[2rem] text-black not-prose"
+        >
+          {section}
+        </h1>
+      </div>
+    </div>
+    <div class="maxc-w-screen px-8">
+      <div class="space-y-12 pb-32 mt-12">
+        {
+          paginationData.data.map((component, index) => (
+            <Playground
+              componentIndex={(currentPage - 1) * PAGE_SIZE + index + 1}
+              componentPath={component.file.replace(/.*\/src/, "src")}
+              playgroundRef={`${section}-${subsection}-${currentPage}-component-${index}`}
+            >
+              <component.default />
+            </Playground>
+          ))
+        }
+        <div class="flex items-center justify-between w-full">
+          {
+            paginationData.url.prev ? (
+              <a
+                class="border rounded-full px-4 py-1  items-center text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50"
+                href={paginationData.url.prev}
+              >
+                Previous
+              </a>
+            ) : null
+          }
+          {
+            paginationData.url.next ? (
+              <a
+                class="border ml-auto rounded-full px-4 py-1  items-center text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50"
+                href={paginationData.url.next}
+              >
+                Next
+              </a>
+            ) : null
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    function resizeIFramesToFitContent() {
+      const iframes = document.querySelectorAll("iframe");
+
+      iframes.forEach((iframe) => {
+        try {
+          iframe.height =
+            iframe.contentWindow?.document.body.scrollHeight + "px";
+        } catch (e) {}
+      });
+
+      requestAnimationFrame(resizeIFramesToFitContent);
+    }
+
+    addEventListener(
+      "load",
+      requestAnimationFrame.bind(this, resizeIFramesToFitContent),
+    );
+  </script>
+</BaseLayout>
