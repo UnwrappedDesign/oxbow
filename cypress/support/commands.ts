@@ -9,15 +9,21 @@ import {
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 
+const apiKey = Cypress.env('PUBLIC_FIREBASE_API_KEY');
+const authDomain = Cypress.env('PUBLIC_FIREBASE_AUTH_DOMAIN');
 const projectId = Cypress.env('PUBLIC_FIREBASE_PROJECT_ID');
+const storageBucket = Cypress.env('PUBLIC_FIREBASE_STORAGE_BUCKET');
+const messagingSenderId = Cypress.env('PUBLIC_FIREBASE_MESSAGING_SENDER_ID');
+const appId = Cypress.env('PUBLIC_FIREBASE_APP_ID');
+
 
 const firebaseConfig: FirebaseOptions = {
-  apiKey: Cypress.env('PUBLIC_FIREBASE_API_KEY'),
-  authDomain: Cypress.env('PUBLIC_FIREBASE_AUTH_DOMAIN'),
+  apiKey,
+  authDomain,
   projectId,
-  storageBucket: Cypress.env('PUBLIC_FIREBASE_STORAGE_BUCKET'),
-  messagingSenderId: Cypress.env('PUBLIC_FIREBASE_MESSAGING_SENDER_ID'),
-  appId: Cypress.env('PUBLIC_FIREBASE_APP_ID'),
+  storageBucket,
+  messagingSenderId,
+  appId,
 };
 
 const app = initializeApp(firebaseConfig);
@@ -50,7 +56,7 @@ Cypress.Commands.add('getLastOobCode', () => {
 });
 
 Cypress.Commands.add('createUser', (email: string, password: string) => {
-  return createUserWithEmailAndPassword(auth, email, password);
+  return cy.wrap(createUserWithEmailAndPassword(auth, email, password));
 });
 
 Cypress.Commands.add('login', (email: string, password: string) => {
