@@ -2,15 +2,16 @@
 
 import type { UserCredential } from "firebase/auth"
 
-declare namespace Cypress {
-  interface Chainable<Subject> {
+declare global {
+ namespace Cypress {
+    interface Chainable {
+      clearUsers(): Chainable<Response<void>>
 
-    clearUsers(): Chainable<any>
+      getLastOobCode(): Chainable<{oobLink: string}>
 
-    getLastOobCode(): Chainable<any>
+      createUser(email: string, password: string): Chainable<UserCredential>
 
-    createUser(email: string, password: string): Chainable<any>
-
-    login(email: string, password: string): Chainable<any>
+      login(email: string, password: string): Chainable<Response<void>>
+    }
   }
 }
