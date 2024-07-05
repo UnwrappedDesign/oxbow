@@ -5,7 +5,4 @@ export default defineConfig({
     baseUrl: 'http://localhost:4321',
     supportFile: 'cypress/support/e2e.ts'
   },
-  env: {
-    PUBLIC_APP_BASE_URL: 'http://localhost:4321',
-  }
 });
