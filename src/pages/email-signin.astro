@@ -2,7 +2,6 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
-
 <style>
   .container2 {
     -webkit-transform: scaleY(-1);
@@ -62,7 +61,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   <section class="relative overflow-hidden">
     <div class="max-w-4xl mx-auto text-center px-8 py-12 lg:py-48">
       <div class="prose-styles">
-      <div class="rotate-45">
+        <div class="rotate-45">
           <div class="flex items-center w-32 mx-auto container2">
             <div class="blob mx-auto blob2"></div>
             <div class="blob mx-auto relative"></div>
@@ -71,23 +70,17 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
             <div class="blob mx-auto blob2"></div>
             <div class="blob mx-auto relative"></div>
           </div>
-      </div>
+        </div>
 
         <p class="!mt-16">Hold on, we are building the blocks for you...</p>
       </div>
     </div>
   </section>
 </BaseLayout>
-
 <script>
-  import {
-    getAuth,
-    isSignInWithEmailLink,
-    signInWithEmailLink,
-  } from "firebase/auth";
-  import { app } from "@/firebase/client";
+  import { isSignInWithEmailLink, signInWithEmailLink } from "firebase/auth";
+  import { auth } from "@/firebase/client";
   // Confirm the link is a sign-in with email link.
-  const auth = getAuth(app);
 
   if (isSignInWithEmailLink(auth, window.location.href)) {
     // Additional state parameters can also be passed via URL.
