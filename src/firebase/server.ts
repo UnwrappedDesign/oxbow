@@ -7,8 +7,18 @@ const serviceAccount = JSON.parse(serviceAccountJson);
 
 const activeApps = getApps();
 
-process.env.FIREBASE_AUTH_EMULATOR_HOST = import.meta.env.PUBLIC_FIREBASE_AUTH_EMULATOR_HOST;
+const emulatorHost = import.meta.env.PUBLIC_FIREBASE_AUTH_EMULATOR_HOST;
 
-export const app = activeApps.length === 0 ? initializeApp({
-  credential: cert(serviceAccount as ServiceAccount),
-}) : activeApps[0];
+if (emulatorHost) {
+  console.info('Connecting to auth emulatorHost.');
+  process.env.FIREBASE_AUTH_EMULATOR_HOST = emulatorHost;
+}
+
+const initApp = () => {
+  console.info('Loading service account from env.');
+  return initializeApp({
+    credential: cert(serviceAccount as ServiceAccount)
+  });
+};
+
+export const app = activeApps.length === 0 ? initApp() : activeApps[0];
