@@ -59,6 +59,9 @@ Cypress.Commands.add('createUser', (email: string, password: string) => {
   return cy.wrap(createUserWithEmailAndPassword(auth, email, password));
 });
 
+Cypress.Commands.add('getUsers', () => {
+});
+
 Cypress.Commands.add('login', (email: string, password: string) => {
   const credentials = signInWithEmailAndPassword(auth, email, password);
 

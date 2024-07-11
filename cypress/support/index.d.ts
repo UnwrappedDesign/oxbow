@@ -7,6 +7,8 @@ declare global {
     interface Chainable {
       clearUsers(): Chainable<Response<void>>
 
+      getUsers(): Chainable<Response<void>>
+
       getLastOobCode(): Chainable<{oobLink: string}>
 
       createUser(email: string, password: string): Chainable<UserCredential>
