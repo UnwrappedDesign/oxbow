@@ -14,6 +14,7 @@ export const POST: APIRoute = async ({ request }) => {
   const { headers } = request;
   const signature = headers.get('X-Signature');
   const body = await request.text();
+
   if (!signature) {
     return new Response('X-Signature header is required', { status: 400 });
   }

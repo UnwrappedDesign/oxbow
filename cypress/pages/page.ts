@@ -7,6 +7,10 @@ export abstract class Page {
     return this.url;
   }
 
+  getHeading(level: number = 1) {
+    return cy.findByRole('heading', { level });
+  }
+
   getFullUrl() {
     return `${Cypress.config().baseUrl}${this.getUrl()}`;
   }
