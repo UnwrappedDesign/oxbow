@@ -3,7 +3,7 @@ import { initializeApp, cert, getApps } from "firebase-admin/app";
 
 const serviceAccountBase64 = import.meta.env.FIREBASE_SERVICE_ACCOUNT_ENCODED;
 const serviceAccountJson = Buffer.from(serviceAccountBase64, 'base64').toString('utf-8');
-const serviceAccount = JSON.parse(serviceAccountJson);
+const serviceAccount: ServiceAccount = JSON.parse(serviceAccountJson);
 
 const activeApps = getApps();
 
@@ -17,7 +17,7 @@ if (emulatorHost) {
 const initApp = () => {
   console.info('Loading service account from env.');
   return initializeApp({
-    credential: cert(serviceAccount as ServiceAccount)
+    credential: cert(serviceAccount)
   });
 };
 
