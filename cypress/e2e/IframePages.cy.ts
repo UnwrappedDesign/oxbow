@@ -1,4 +1,4 @@
-import { TestComponentIframePage } from "cypress/pages/TestComponentIframePage";
+import { TestComponentIframePage } from "../pages/TestComponentIframePage";
 
 describe('IframePages', () => {
   const testComponentIframePage = new TestComponentIframePage();
