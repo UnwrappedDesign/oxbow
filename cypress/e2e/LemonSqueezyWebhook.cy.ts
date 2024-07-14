@@ -35,7 +35,6 @@ describe('LemonSqueezyWebhook', () => {
 
   describe('Request with valid signature', () => {
     let signature: string;
-    let request: Cypress.Chainable<Cypress.Response<void>>
 
     beforeEach(() => {
       cy.clearUsers();
@@ -56,6 +55,12 @@ describe('LemonSqueezyWebhook', () => {
       }).then((response) => {
         expect(response.body).to.contain('User created');
         expect(response.status).to.eq(200);
+
+        const [_userCreated, uid] = response.body.split(/:\s+/);
+
+        cy.getUser(uid).then((user) => {
+          expect(user.email).to.eq(requestBody.data.attributes.user_email);
+        });
       });
     });
   });

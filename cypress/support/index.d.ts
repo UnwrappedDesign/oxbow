@@ -1,5 +1,6 @@
 /// <reference types="cypress" />
 
+import type { UserRecord } from "firebase-admin/auth"
 import type { UserCredential } from "firebase/auth"
 
 declare global {
@@ -7,7 +8,7 @@ declare global {
     interface Chainable {
       clearUsers(): Chainable<Response<void>>
 
-      getUsers(): Chainable<Response<void>>
+      getUser(uid: string): Chainable<UserRecord>
 
       getLastOobCode(): Chainable<{oobLink: string}>
 
