@@ -14,7 +14,7 @@ Gain lifetime access to over 500 components and all current templates, as well a
 
 ---
 
-## Individual  — **$149 one-time payment + local taxes**
+## Individual  — **<span class="opacity-60">~~$149~~</span> $79 one-time payment + local taxes**
 For individuals working on their projects or freelancers.
 
 When you purchase an all-access license, you unlock everything: every component example and all future additions to Windstatic Pro.
@@ -26,18 +26,20 @@ When you purchase an all-access license, you unlock everything: every component 
 - **No recurring subscriptions or update fees** — Pay once and gain permanent access to all our premium Tailwind CSS resources.
 
 
-<a href="/api/buy/individual" type="submit" class="rounded-lg px-4 py-2 text-sm font-semibold w-auto gap-4 transition-all text-white bg-gradient-to-b from-blue-500 to-blue-600 not-prose hover:to-blue-700 h-10 inline-flex items-center justify-between" aria-label="Get your link"> Get all access for $149</a>
+<a href="/api/buy/individual" type="submit" class="rounded-lg px-4 w-full py-2 text-sm font-semibold justify-center gap-4 transition-all text-white bg-gradient-to-b from-blue-500 to-blue-600 not-prose hover:to-blue-700 h-10 inline-flex items-center " aria-label="Get your link"> Get all access for <span class="opacity-60">~~$149~~</span> $79</a>
 ---
 
 ---
 
-## Teams  — **$299 one-time payment + local taxes**
+
+
+## Teams  — **<span class="opacity-60">~~$299~~</span> $149 one-time payment + local taxes**
 For startup teams and agencies
 
 - **Same as individual +**  get access to all your team. This tier gives you access to up to 25 people.
 
 
-<a href="/api/buy/team" type="submit" class="rounded-lg px-4 py-2 text-sm font-semibold w-auto gap-4 transition-all text-white bg-gradient-to-b from-blue-500 to-blue-600 not-prose hover:to-blue-700 h-10 inline-flex items-center justify-between" aria-label="Get your link"> Get access for your team for $299</a>
+<a href="/api/buy/team" type="submit" class="rounded-lg w-full px-4 py-2 text-sm font-semibold  gap-4 transition-all text-white bg-gradient-to-b from-blue-500 to-blue-600 not-prose hover:to-blue-700 h-10 inline-flex items-center justify-center" aria-label="Get your link"> Get access for your team for <span class="opacity-50">~~$299~~</span> $149 </a>
 
 ---
 
@@ -65,60 +67,3 @@ Diverse Selection — Each category offers a plethora of UI patterns, ensuring y
 - **No subscription required** — After the initial payment, there will be no more charges for all-access licenses.
 - F**ree updates and content** — New templates, components, and versions are included at no extra charge.
 
-
-
-
----
-## How it works
-After completing your license purchase, an email containing a link to our web app will be promptly sent to you, providing full access to all components.
----
-
-# Faq
-Can't find your answer? Send and [email](michael@andreuzza.com) and I'll will get back to you as soon as possible.
-
----
-## **General**
-
-### What does life time access mean?
-Purchasing an all-access license is a single payment, with no ongoing subscription fees. With this license, you gain permanent access to all content on Windstatic.
-
-### What does free updates mean?
-When you buy an all-access license, you unlock every component currently offered, as well as any future additions, without extra charges.
-
-### Do you create the design for the components?
-Unfortunately, design assets for tools such as Figma or other design tools are not included in the components.
-
-Since the primary focus is on developing high-quality components in code, we don't allocate resources to creating additional design assets.
-
-### What frameworks are supported?
-When the components are developed in code, we use Tailwind CSS and to those components that need JavaScript the components use Alpine.js.
-
----
-## **License**
-
-Read more about the license here [here](/license).
-
-### Do I need to purchase a license everytime I want to work on a new project?
-Unlike the majority of othere themes or components, there's no need to purchase a new  license for each new project. As long as your usage complies with the license terms, you can create unlimited websites without
-### Can I use it for my clients?
-Sure thing, If you're building a custom website specifically for one client, you're welcome to use the components.
-The only restriction is that you cannot use Windstatic to craft a website or template intended for resale to multiple clients.
-
-### Can I use it for my projects?
-Sure! Your license grants you the freedom to develop as many of your own projects as you wish, whether they are straightforward public websites or SaaS applications requiring user payment.
-
-As long as your project isn't a website builder or similar tool enabling customers to create their own sites using Windstatic, you're good to go.
-### Can I use it for Open Source projects?
-Sure thing! As long as your project is a genuine website and not a derivative component library, theme builder, or any product primarily focused on repackaging and redistributing the components, it's perfectly fine for it to be open source.
-
-
-### Can I create themes or templates with Windstatic and then sell them?
-No, we don't allow you to create themes or templates with Windstatic and then sell them. Derivative products encompass themes, UI kits, page builders, or any other tool involving repackaging and distributing our components or templates for others to utilize in constructing their own websites.
-
----
-## **Support**
-
-### What about support?
-Read more on the support page [here](/support).
-
----
