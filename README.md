@@ -27,3 +27,4 @@ PUBLIC_FIREBASE_STORAGE_BUCKET: `Firebase storage bucket`
 PUBLIC_FIREBASE_MESSAGING_SENDER_ID: `Firebase messaging sender ID`
 PUBLIC_FIREBASE_APP_ID: `Firebase app ID`
 PUBLIC_FIREBASE_AUTH_EMULATOR_HOST: `Firebase auth emulator host. Only used in development`
+
