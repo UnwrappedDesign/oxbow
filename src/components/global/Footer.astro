@@ -1,5 +1,5 @@
 ---
-const links = [
+const siteLinks = [
   {
     category: "Navigation",
     items: [
@@ -10,6 +10,19 @@ const links = [
       { title: "Roadmap", href: "/roadmap" },
     ],
   },
+  {
+    category: "Legal",
+    items: [
+      { title: "Pricing", href: "/pricing" },
+      { title: "Faq", href: "/faq" },
+      { title: "Terms", href: "/terms" },
+      { title: "Privacy", href: "/privacy" },
+      { title: "License", href: "/license" },
+      { title: "Refund", href: "/refund" },
+    ],
+  },
+];
+const blockLinks = [
   {
     category: "Marketing",
     items: [
@@ -75,36 +88,123 @@ const links = [
       },
     ],
   },
-  {
-    category: "Legal",
-    items: [
-      { title: "Pricing", href: "/pricing" },
-      { title: "Faq", href: "/faq" },
-      { title: "Terms", href: "/terms" },
-      { title: "Privacy", href: "/privacy" },
-      { title: "License", href: "/license" },
-      { title: "Refund", href: "/refund" },
-    ],
-  },
-  {
-    category: "Website templates built with Astro JS and Tailwind CSS",
-    items: [{ title: "Lexington Themes", href: "https://lexingtonthemes.com" }],
-  },
 ];
 ---
-
-<footer>
-  <div class="max-w-7xl 2xl:max-w-[100rem] px-8 mx-auto">
+<footer >
+  <div class="max-w-6xl 2xl:max-w-[100rem] px-8 mx-auto relative border-t pt-6">
     <div class="flex flex-col gap-12">
-      <a
-        href="/"
-        class="font-medium col-span-4"
-        >❖ Windstatic</a
-      >
+
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div class="prose-styles md:grid-cols-2 gap-8 grid  !max-w-2xl">
+          {
+            siteLinks.map((category) => (
+              <div>
+                <h2>{category.category}</h2>
+                <ul
+                  class="not-prose space-y-2 w-full"
+                  role="list">
+                  {category.items.map((item) => (
+                    <li>
+                      <a
+                        class="hover:text-blue-500   w-full flex items-center justify-between"
+                        href={item.href}>
+                        {item.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </div>
+        <div
+          class="relative isolate overflow-hidden bg-white px-6 pt-16 border ring-4 ring-gray-50 rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-12 lg:px-12 lg:pt-0 lg:col-span-3">
+          <div
+            class="mx-auto max-w-xs text-center lg:mx-0 lg:flex-auto lg:py-12 lg:text-left">
+            <div class="flex flex-wrap justify-center lg:justify-start">
+              <div class="flex items-center text-sm font-medium text-black">
+                <svg
+                  class="flex-none size-4 stroke-current"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  viewBox="0 0 100 100"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M63.3694 5.33018C64.129 6.27325 64.5164 7.54562 65.291 10.0906L82.215 65.6862C75.8581 62.3873 69.0351 60.0773 61.9815 58.836L50.9623 21.5986C50.8744 21.3015 50.6928 21.0408 50.4445 20.8556C50.1962 20.6704 49.8945 20.5705 49.5848 20.571C49.275 20.5715 48.9737 20.6723 48.7259 20.8583C48.4782 21.0443 48.2974 21.3055 48.2105 21.6029L37.3247 58.8172C30.2392 60.0528 23.3848 62.3665 17 65.6778L34.0071 10.0776C34.7842 7.53708 35.1728 6.26679 35.9324 5.32559C36.603 4.49465 37.4753 3.84929 38.466 3.45101C39.5884 3 40.9167 3 43.5734 3H55.7208C58.381 3 59.7111 3 60.8344 3.45205C61.8261 3.85109 62.6988 4.49772 63.3694 5.33018Z"
+                    fill="black"
+                  ></path>
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M65.3945 68.3321C62.6045 70.7178 57.0359 72.3448 50.6215 72.3448C42.7487 72.3448 36.15 69.8938 34.399 66.5975C33.773 68.4867 33.6327 70.6488 33.6327 72.03C33.6327 72.03 33.2203 78.812 37.9374 83.5291C37.9374 81.0797 39.9229 79.0942 42.3722 79.0942C46.5704 79.0942 46.5657 82.7568 46.5619 85.7284L46.5616 85.9936C46.5616 90.5039 49.3182 94.3703 53.2386 96C52.6531 94.7957 52.3246 93.4433 52.3246 92.0141C52.3246 87.7124 54.85 86.1107 57.7851 84.2492C60.1204 82.7681 62.7151 81.1226 64.5033 77.8215C65.4364 76.0991 65.9662 74.1264 65.9662 72.03C65.9662 70.7407 65.7658 69.4982 65.3945 68.3321V68.3321Z"
+                    fill="#d94dd1"
+                    stroke="#d94dd1"
+                  ></path></svg
+                ><span class="ml-2.5"> Astro</span>
+              </div>
+              <div
+                class="flex items-center ml-6 text-sm font-medium text-black">
+                <svg
+                  viewBox="0 0 256 154"
+                  aria-label="Tailwind CSS"
+                  class="flex-none size-4 stroke-current"
+                  width="64"
+                  height="64"
+                  astro-icon="logos:tailwindcss-icon">
+                  <path
+                    fill="#38bdf9"
+                    d="M128 0C93.867 0 72.533 17.067 64 51.2 76.8 34.133 91.733 27.733 108.8 32c9.737 2.434 16.697 9.499 24.401 17.318C145.751 62.057 160.275 76.8 192 76.8c34.133 0 55.467-17.067 64-51.2-12.8 17.067-27.733 23.467-44.8 19.2-9.737-2.434-16.697-9.499-24.401-17.318C174.249 14.743 159.725 0 128 0zM64 76.8C29.867 76.8 8.533 93.867 0 128c12.8-17.067 27.733-23.467 44.8-19.2 9.737 2.434 16.697 9.499 24.401 17.318C81.751 138.857 96.275 153.6 128 153.6c34.133 0 55.467-17.067 64-51.2-12.8 17.067-27.733 23.467-44.8 19.2-9.737-2.434-16.697-9.499-24.401-17.318C110.249 91.543 95.725 76.8 64 76.8z"
+                  ></path></svg
+                ><span class="ml-2.5"> Tailwind CSS</span>
+              </div>
+            </div>
+            <p class="mt-4 text-3xl font-medium tracking-tight text-black">
+              Lexington Themes
+            </p>
+            <p class="max-w-2xl mt-4 text-xs text-gray-500">
+              Free and premium multipage themes &amp; UI Kits For freelancers,
+              developers, businesses, and personal use. Beautifully crafted with
+              Astro.js, and Tailwind CSS
+              <span class="lg:block">— Simple &amp; easy to customise.</span>
+            </p>
+            <p
+              class="mt-4 text-base text-black lg:pl-4 lg:border-l-4 border-blue-600 text-balance">
+              Use the code<span class="text-blue-600"> LEXINGTON30</span>
+              and
+              <span class="text-black opacity-70"
+                >get a 30% discount on the bundle</span
+              >
+            </p>
+            <div class="mt-8">
+              <a
+                href="https://lexingtonthemes.com"
+                class="inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-semibold text-white transition-all duration-200 rounded-lg bg-gradient-to-b from-blue-500 to-blue-600 hover:to-blue-800 shadow focus:ring-2 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none lg:w-auto"
+                >See all templates
+              </a>
+            </div>
+          </div>
+          <div class="relative mt-16 h-80 lg:mt-8">
+            <img
+              class="absolute left-0 top-0 object-cover w-[57rem] max-w-none rounded-2xl bg-white"
+              src="https://www.colorsandfonts.com/images/bundle.png"
+              alt="Lexington Themes"
+              width="1824"
+              height="1080"
+            />
+          </div>
+        </div>
+      </div>
+      <div>
+        <p>Explore all blocks</p>
+      </div>
       <div
-        class="prose-styles flex flex-col gap-8 lg:grid-cols-3  lg:-mt-8">
+        class="prose-styles md:grid-cols-3 gap-8 lg:grid-cols-5 grid lg:-mt-12">
         {
-          links.map((category) => (
+          blockLinks.map((category) => (
             <div>
               <h2>{category.category}</h2>
               <ul
@@ -125,54 +225,29 @@ const links = [
           ))
         }
       </div>
-      <div class="col-span-full prose-styles mt-12">
+      <svg
+        class="-mb-[3.6rem] lg:-mb-[4rem] text-blue-600 mt-24"
+        viewBox="0 0 565 68"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M17.335 66L0.364948 2.13415H15.8752L23.7216 34.1583C25.3639 40.8186 25.8201 49.1212 25.6376 54.5954H30.1994C29.9257 49.1212 29.9257 40.8186 31.8417 34.1583L40.8741 2.13415H56.6581L65.7818 34.1583C67.6978 40.8186 67.6978 49.1212 67.4241 54.5954H71.9859C71.7122 49.1212 72.2596 40.8186 73.9019 34.1583L81.657 2.13415H97.1673L80.1973 66H60.1251L48.7205 19.1955L37.3159 66H17.335ZM101.669 2.13415H116.266V66H101.669V2.13415ZM125.759 66V2.13415H145.466L172.107 55.9639H176.669V55.0516C171.286 44.9243 168.549 36.8042 168.549 28.1367V2.13415H182.599V66H163.166L135.886 11.0754H131.324V11.9877C136.16 19.4692 139.809 28.6841 139.809 39.0851V66H125.759ZM191.56 66V2.13415H216.194C236.54 2.13415 249.86 13.5388 249.86 34.1583C249.86 54.5954 236.54 66 216.194 66H191.56ZM206.066 54.1392H216.194C225.956 54.1392 234.989 48.665 234.989 34.1583C234.989 19.5604 225.956 13.9949 216.194 13.9949H206.066V54.1392ZM283.47 67.4598C265.952 67.4598 256.555 59.5222 255.369 45.1067H271.335C271.974 51.4021 275.988 55.234 283.196 55.234C290.039 55.234 292.776 52.3145 292.776 48.2088C292.776 43.8294 290.221 41.1836 275.897 37.899C263.671 35.0707 257.558 29.8702 257.558 20.3815C257.558 8.06455 267.594 0.674361 282.192 0.674361C298.706 0.674361 306.461 10.0718 307.009 21.4764H291.955C291.225 16.0022 288.123 12.5352 282.01 12.5352C275.349 12.5352 273.16 15.6372 273.16 19.013C273.16 22.3887 275.167 24.1223 285.842 26.4032C301.808 29.8702 308.742 34.9794 308.742 46.8402C308.742 60.1608 297.338 67.4598 283.47 67.4598ZM331.663 66V13.9949H310.77V2.13415H367.154V13.9949H346.261V66H331.663ZM360.258 66L382.337 2.13415H403.139L425.766 66H410.803L406.15 50.7634H379.326L374.673 66H360.258ZM383.249 39.2676H402.135L395.384 20.2903C394.471 17.7357 394.289 14.6336 394.836 11.4403H390.275C390.822 14.6336 390.731 17.7357 389.818 20.2903L383.249 39.2676ZM438.852 66V13.9949H417.959V2.13415H474.344V13.9949H453.45V66H438.852ZM479.771 2.13415H494.369V66H479.771V2.13415ZM534.06 67.4598C514.809 67.4598 502.31 54.5041 502.31 33.9758C502.31 13.5388 514.809 0.674361 534.06 0.674361C551.669 0.674361 562.617 10.5279 564.077 26.7681H548.385C547.381 18.648 542.454 13.8125 534.06 13.8125C524.298 13.8125 517.82 21.5676 517.82 33.9758C517.82 46.3841 524.298 54.3217 534.06 54.3217C542.363 54.3217 547.472 49.4861 548.476 41.366H564.26C562.8 57.6062 551.578 67.4598 534.06 67.4598Z"
+          fill="currentColor"
+        ></path>
+      </svg>
+      <div class="col-span-full prose-styles mt-12 border-t bg-white">
         <p>
-          <small>
-            All rights reserved. Windstatic is not affiliated with Tailwind Labs
-            team, nor is it endorsed by or sponsored by this one. A side project
-            by <a href="https://michaelandreuzza.com">Michael Andreuzza</a> This
-            website was built with Astro JS & Tailwind CSS. Crafted in Åland Islands,
-            Finland.
-          </small>
+          <span x-data="{ year: new Date().getFullYear() }">
+            <span>© Windstatic</span>
+            <span x-text="year"></span>
+          </span> — All rights reserved. Windstatic is not affiliated with Tailwind
+          Labs team, nor is it endorsed by or sponsored by this one — A project by
+          <a href="https://michaelandreuzza.com">Michael Andreuzza</a>
+          and <a href="https://gabriel.perales.me/">Gabriel Perales</a> This website
+          was built with Astro JS & Tailwind CSS. Crafted in Åland Islands &amp;
+          Spain.
         </p>
       </div>
     </div>
-    <div class="prose-styles flex justify-between">
-      <p class="text-sm">
-        <span
-          class="flex gap-2 font-medium"
-          x-data="{ year: new Date().getFullYear() }">
-          <span>© Windstatic</span>
-          <span x-text="year"></span>
-        </span>
-      </p>
-      <p>
-        <span
-          id="clock"
-          class="text-sm">
-        </span>
-      </p>
-    </div>
   </div>
 </footer>
-<script type="module">
-  function updateClock() {
-    const now = new Date(); // Get the current date and time
-    const hours = now.getHours(); // 0-23
-    const minutes = now.getMinutes(); // 0-59
-    const seconds = now.getSeconds(); // 0-59
-    // Format time as HH:MM:SS
-    // Use .toString().padStart(2, '0') to add leading zeros if needed
-    const timeString = [
-      hours.toString().padStart(2, "0"),
-      minutes.toString().padStart(2, "0"),
-      seconds.toString().padStart(2, "0"),
-    ].join(":");
-    // Update the clock element with the time
-    document.getElementById("clock").textContent = timeString;
-  }
-  // Update the clock every second
-  setInterval(updateClock, 1000);
-  // Initialize the clock
-  updateClock();
-</script>
