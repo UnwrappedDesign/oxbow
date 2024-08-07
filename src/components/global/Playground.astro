@@ -135,9 +135,9 @@ const ppcode = loggedIn ? await prettier.format(code, {
         class="flex flex-grow w-full justify-center"
       >
         <div
-          class="w-full overflow-auto transition-all duration-500 easy-in-out"
-          :class="{ 'max-w-sm border': viewportSize === 'mobile', 'max-w-screen-md border': viewportSize === 'tablet','max-w-screen': viewportSize === 'desktop' }">
-          <iframe x-intersect.once="$el.src = $el.dataset.src" id={playgroundRef} width="100%" data-src={`/iframe/${componentPath}?iframeId=iframe-${componentIndex}`}/>
+          class="w-full overflow-auto transition-all duration-500 easy-in-out border-x"
+          :class="{ 'max-w-sm': viewportSize === 'mobile', 'max-w-screen-md': viewportSize === 'tablet','max-w-full': viewportSize === 'desktop' }">
+          <iframe srcdoc={}  x-intersect.once="$el.src = $el.dataset.src" id={playgroundRef} width="100%" data-src={`/iframe/${componentPath}?iframeId=iframe-${componentIndex}`}/>
         </div>
       </div>
       {

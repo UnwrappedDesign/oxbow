@@ -1,0 +1,73 @@
+<style>
+  .container2 {
+    -webkit-transform: scaleY(-1);
+    transform: scaleY(-1);
+  }
+  .blob2 {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+  }
+  .blob {
+    width: 112px;
+    height: 112px;
+    display: grid;
+    background: #fff;
+    filter: blur(6px) contrast(20);
+    padding: 11.2px;
+    mix-blend-mode: darken;
+  }
+
+  .blob:before,
+  .blob:after {
+    content: "";
+    grid-area: 1/1;
+    width: 44.8px;
+    height: 44.8px;
+    background: #474bff;
+    animation: blob-rhf26m 2s infinite;
+  }
+
+  .blob:after {
+    animation-delay: -1s;
+  }
+
+  @keyframes blob-rhf26m {
+    0% {
+      transform: translate(0, 0);
+    }
+
+    25% {
+      transform: translate(100%, 0);
+    }
+
+    50% {
+      transform: translate(100%, 100%);
+    }
+
+    75% {
+      transform: translate(0, 100%);
+    }
+
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+</style>
+<section class="relative overflow-hidden">
+  <div class="max-w-4xl mx-auto text-center px-8 py-12 lg:py-48">
+    <div class="prose-styles">
+      <div class="rotate-45">
+        <div class="flex items-center w-32 mx-auto container2">
+          <div class="blob mx-auto blob2"></div>
+          <div class="blob mx-auto relative"></div>
+        </div>
+        <div class="flex items-center w-32 mx-auto">
+          <div class="blob mx-auto blob2"></div>
+          <div class="blob mx-auto relative"></div>
+        </div>
+      </div>
+
+      <p class="!mt-16">Hold on, we are building the blocks for you...</p>
+    </div>
+  </div>
+</section>
