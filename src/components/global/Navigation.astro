@@ -12,7 +12,7 @@ const user = Astro.locals.user;
   </div>
 </div>
 
- <div
+<div
   class="w-full max-w-7xl 2xl:max-w-[100rem] px-8 bg-white mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between py-4">
   <div
     x-data={`{...navigation(), username: "${user?.email ?? ""}"}`}
@@ -23,6 +23,7 @@ const user = Astro.locals.user;
       >❖ Windstatic</a
     >
     <div class="flex flex-wrap gap-3 text-gray-500 items-center justify-between w-full sm:w-auto">
+
       <a
         href="/login"
         x-cloak
@@ -34,7 +35,9 @@ const user = Astro.locals.user;
         href="/pricing"
         x-cloak
         x-show="!username">
+
         Get all access for <del class="opacity-60 ml-2"> $149</del> &nbsp; $79
+
       </a>
       <div
         x-popover
@@ -193,15 +196,12 @@ const user = Astro.locals.user;
 </div>
 <script>
   import Alpine from "alpinejs";
-  import { getAuth } from "firebase/auth";
 
-  import { app } from "@/firebase/client";
-
-  const auth = getAuth(app);
+  import { auth } from "@/firebase/client";
 
   document.addEventListener("alpine:init", () => {
     Alpine.data("navigation", () => ({
-      username: "{{ user?.email }}",
+      username: "",
       async signOut() {
         await auth.signOut();
         window.location.assign("/api/auth/signout");
