@@ -14,7 +14,7 @@ Gain lifetime access to over 500 components and all current templates, as well a
 
 ---
 
-## Individual  — **<span class="opacity-60">~~$149~~</span> $79 one-time payment + local taxes**
+## Individual  — **<span class="opacity-60">~~$149~~</span> $89 one-time payment + local taxes**
 For individuals working on their projects or freelancers.
 
 When you purchase an all-access license, you unlock everything: every component example and all future additions to Windstatic Pro.
@@ -26,7 +26,7 @@ When you purchase an all-access license, you unlock everything: every component 
 - **No recurring subscriptions or update fees** — Pay once and gain permanent access to all our premium Tailwind CSS resources.
 
 
-<a href="/api/buy/individual" type="submit" class="rounded-lg px-4 w-full py-2 text-sm font-semibold justify-center gap-4 transition-all text-white bg-gradient-to-b from-blue-500 to-blue-600 not-prose hover:to-blue-700 h-10 inline-flex items-center " aria-label="Get your link"> Get all access for <span class="opacity-60">~~$149~~</span> $79</a>
+<a href="/api/buy/individual" type="submit" class="rounded-lg px-4 w-full py-2 text-sm font-semibold justify-center gap-4 transition-all text-white bg-gradient-to-b from-blue-500 to-blue-600 not-prose hover:to-blue-700 h-10 inline-flex items-center " aria-label="Get your link"> Get all access for <span class="opacity-60">~~$149~~</span> $89</a>
 ---
 
 ---
