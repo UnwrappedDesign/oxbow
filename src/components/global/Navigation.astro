@@ -2,18 +2,18 @@
 const user = Astro.locals.user;
 ---
 
-
 <div
   class="relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5">
   <div class="flex flex-wrap items-center mx-auto">
     <p class="text-xs leading-6 text-blue-500">
-      <span class="font-semibold">Be an Early Bird —</span> Exclusive Discount Inside
+      <span class="font-semibold">Be an Early Bird —</span> Get an Exclusive Discount
+      on Our Beta Release!
     </p>
   </div>
 </div>
 
 <div
-  class="w-full max-w-7xl 2xl:max-w-[100rem] px-8 bg-white mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between py-4">
+  class="w-full max-w-6xl 2xl:max-w-[100rem] px-8 bg-white mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between py-4">
   <div
     x-data={`{...navigation(), username: "${user?.email ?? ""}"}`}
     class="flex flex-wrap gap-4 items-center justify-between text-black w-full text-sm mx-auto">
@@ -22,8 +22,8 @@ const user = Astro.locals.user;
       class="font-medium w-full sm:w-auto"
       >❖ Windstatic</a
     >
-    <div class="flex flex-wrap gap-3 text-gray-500 items-center justify-between w-full sm:w-auto">
-
+    <div
+      class="flex flex-wrap gap-3 text-gray-500 items-center justify-between w-full sm:w-auto">
       <a
         href="/login"
         x-cloak
@@ -31,13 +31,11 @@ const user = Astro.locals.user;
         >Log in</a
       >
       <a
-        class="px-4 py-2 bg-gray-100 rounded-md h-9 flex items-center text-blue-500 hover:text-black"
+        class="px-4 py-2 bg-gray-100 rounded-lg h-9 flex items-center text-blue-500 hover:text-black"
         href="/pricing"
         x-cloak
         x-show="!username">
-
         Get all access for <del class="opacity-60 ml-2"> $149</del> &nbsp; $79
-
       </a>
       <div
         x-popover
