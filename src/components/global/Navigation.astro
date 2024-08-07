@@ -2,6 +2,7 @@
 const user = Astro.locals.user;
 ---
 
+
 <div
   class="relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5">
   <div class="flex flex-wrap items-center mx-auto">
@@ -11,17 +12,17 @@ const user = Astro.locals.user;
   </div>
 </div>
 
-<div
-  class="w-full max-w-7xl px-8 bg-white mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between py-4">
+ <div
+  class="w-full max-w-7xl 2xl:max-w-[100rem] px-8 bg-white mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between py-4">
   <div
     x-data={`{...navigation(), username: "${user?.email ?? ""}"}`}
-    class="flex items-center justify-between text-black w-full text-sm max-w-xl mx-auto">
+    class="flex flex-wrap gap-4 items-center justify-between text-black w-full text-sm mx-auto">
     <a
       href="/"
-      class="font-medium"
+      class="font-medium w-full sm:w-auto"
       >❖ Windstatic</a
     >
-    <div class="flex gap-3 text-gray-500 items-center">
+    <div class="flex flex-wrap gap-3 text-gray-500 items-center justify-between w-full sm:w-auto">
       <a
         href="/login"
         x-cloak
