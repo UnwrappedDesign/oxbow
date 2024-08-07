@@ -1,25 +1,6 @@
 ---
 const pricingData = [
   {
-    type: "Teams",
-    price: "$149",
-    audience: "For startup teams and agencies",
-    features: [
-      {
-        highlight: "Same as individual ",
-        description:
-          "Get access to all your teamThis tier gives you access to up to 25 people.",
-      },
-    ],
-    cardStyles: "bg-white ",
-    purchaseButton: {
-      text: "Buy for $149",
-      class:
-        "rounded-lg w-full px-4 py-2 text-sm font-semibold gap-4 transition-all text-black bg-gradient-to-b from-gray-100 to-gray-200 not-prose hover:to-gray-300 h-10 inline-flex items-center justify-center",
-      link: "https://lexingtonthemes.lemonsqueezy.com/checkout/buy/3c84c7cf-3688-4541-97eb-70bb4f251103",
-    },
-  },
-  {
     type: "Individual",
     price: "$89",
     audience: "For individuals working on their projects or freelancers",
@@ -48,7 +29,7 @@ const pricingData = [
           "Pay once and gain permanent access to all our premium Tailwind CSS resources.",
       },
     ],
-    cardStyles: "bg-gray-50 order-first lg:order-none",
+    cardStyles: "bg-gray-50  border-t md:border-t-0 ",
     purchaseButton: {
       text: "Buy for $89",
       class:
@@ -56,11 +37,29 @@ const pricingData = [
       link: "https://lexingtonthemes.lemonsqueezy.com/checkout/buy/7273c2d3-4b2a-4e6c-a990-04f9b44c96ea",
     },
   },
+  {
+    type: "Teams",
+    price: "$149",
+    audience: "For startup teams and agencies",
+    features: [
+      {
+        highlight: "Same as individual ",
+        description:
+          "Get access to all your teamThis tier gives you access to up to 25 people.",
+      },
+    ],
+    cardStyles: " md:border-l",
+    purchaseButton: {
+      text: "Buy for $149",
+      class:
+        "rounded-lg w-full px-4 py-2 text-sm font-semibold gap-4 transition-all text-black bg-gradient-to-b from-gray-100 to-gray-200 not-prose hover:to-gray-300 h-10 inline-flex items-center justify-center",
+      link: "https://lexingtonthemes.lemonsqueezy.com/checkout/buy/3c84c7cf-3688-4541-97eb-70bb4f251103",
+    },
+  },
 ];
 ---
 
-<div
-  class="grid grid-cols-1 divide-y md:divide-y-0 md:divide-x md:grid-cols-2 text-left border border-t-0">
+<div class="grid grid-cols-1 md:grid-cols-2 text-left border-x border-b">
   {
     pricingData.map((tier) => (
       <div class={`relative flex  p-8 ${tier.cardStyles}`}>
