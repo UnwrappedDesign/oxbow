@@ -23,7 +23,7 @@ export default defineConfig({
   },
   build: {
     inlineStylesheets: 'always',
-  },  
+  },
   shikiConfig: {
     wrap: true,
     skipInline: false,
@@ -31,8 +31,8 @@ export default defineConfig({
   },
   site: 'https://windstatic.com',
   integrations: [
-    sitemap(), 
-    mdx(), 
+    sitemap(),
+    mdx(),
     alpinejs({ entrypoint: 'src/alpine' })
   ],
   adapter: localhost ? node({mode: 'standalone'}) : netlify(),
