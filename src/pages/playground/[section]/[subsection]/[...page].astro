@@ -17,42 +17,48 @@ const paginationData = paginate(
   `/playground/${section}/${subsection}`,
   sectionComponents,
   currentPage,
-  PAGE_SIZE,
+  PAGE_SIZE
 );
 ---
 
 <BaseLayout>
   <section>
     <div class="max-w-5xl mx-auto px-8 pt-12 lg:pt-32">
-      <div class="prose-styles">
+      <div class="prose-styles uppercase !text-xs">
         <span>
-          <a href="/#pageSections"> Page sections</a> / <a
-            href={`/#${section}`}
-          >
-            {`${section}`} Page</a
-          > / Page {paginationData.currentPage}</span
+
+          <a href="/#pageSections"> Page sections</a> /
+          <a href="/#marketing"> {`${section}`}</a> /
+           <a
+            href={`/#${section}`}>
+            {`${subsection}`}
+          </a> / Page {paginationData.currentPage}</span
         >
         —
         <span>
           {
             paginationData.url.prev ? (
-              <a class="" href={paginationData.url.prev}>
+              <a
+                class=""
+                href={paginationData.url.prev}>
                 Previous
               </a>
             ) : null
           }
+          ·
           {
             paginationData.url.next ? (
-              <a class="" href={paginationData.url.next}>
+              <a
+                class=""
+                href={paginationData.url.next}>
                 Next
               </a>
             ) : null
           }
         </span>
         <h1
-          class="text-4xl capitalize mt-4 font-semibold tracking-tight sm:text-4xl [@media(max-width:480px)]:text-[2rem] text-black not-prose"
-        >
-          {section}
+          class="text-4xl capitalize mt-4 font-semibold tracking-tight sm:text-4xl [@media(max-width:480px)]:text-[2rem] text-black not-prose">
+          {subsection}
         </h1>
       </div>
     </div>
@@ -63,8 +69,7 @@ const paginationData = paginate(
             <Playground
               componentIndex={(currentPage - 1) * PAGE_SIZE + index + 1}
               componentPath={component.file.replace(/.*\/src/, "src")}
-              playgroundRef={`${section}-${subsection}-${currentPage}-component-${index}`}
-            >
+              playgroundRef={`${section}-${subsection}-${currentPage}-component-${index}`}>
               <component.default />
             </Playground>
           ))
@@ -74,8 +79,7 @@ const paginationData = paginate(
             paginationData.url.prev ? (
               <a
                 class="border rounded-full px-4 py-1  items-center text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50"
-                href={paginationData.url.prev}
-              >
+                href={paginationData.url.prev}>
                 Previous
               </a>
             ) : null
@@ -84,8 +88,7 @@ const paginationData = paginate(
             paginationData.url.next ? (
               <a
                 class="border ml-auto rounded-full px-4 py-1  items-center text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50"
-                href={paginationData.url.next}
-              >
+                href={paginationData.url.next}>
                 Next
               </a>
             ) : null
@@ -110,7 +113,7 @@ const paginationData = paginate(
 
     addEventListener(
       "load",
-      requestAnimationFrame.bind(this, resizeIFramesToFitContent),
+      requestAnimationFrame.bind(this, resizeIFramesToFitContent)
     );
   </script>
 </BaseLayout>

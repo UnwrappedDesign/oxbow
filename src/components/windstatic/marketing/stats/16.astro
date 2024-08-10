@@ -1,55 +1,100 @@
-<section class="bg-gray-100">
-  <div class="px-8 py-24 mx-auto md:px-12 lg:px-32 max-w-7xl relative">
-    <dl class="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 text-center">
-      <div
-        x-data="{ count: 0, target: 30, counter() { let interval = setInterval(() => { if (this.count < this.target) { this.count += 1; } else { clearInterval(interval); } }, 50); } }"
-        x-intersect.once="counter()"
-        class="flex flex-col aspect-square p-8 lg:p-12 overflow-hidden rounded-3xl relative">
-        <div class="bg-gradient-to-t from-gray-100 via-transparent absolute inset-0"></div>
-        <dt class="mt-4 relative">
-          <p
-            class="font-mono uppercase tracking-tighter text-sm font-medium text-gray-900">
-            Working Individuals
-          </p>
-          <p class="text-sm text-gray-500 text-balance mt-2">
-            We’re dedicated to delivering outstanding service and value for
-            everyone.
-          </p>
-        </dt>
-        <dd
-          x-text="`${count}%`"
-          class="order-first text-3xl font-normal font-mono text-blue-500">
-        </dd>
-        <img
-          class="mt-8"
-          src="/images/phone1.png"
-          alt="#_"
-        />
+<div class="relative ">
+  <img
+    class="h-56 w-full bg-gray-50 border-8 border-white rounded-3xl object-cover lg:absolute lg:inset-y-0 lg:right-0 lg:h-full lg:w-1/2"
+    src="/images/blueGradient2.jpeg"
+    alt=""
+  />
+  <div class="mx-auto grid max-w-7xl lg:grid-cols-2">
+    <div class="px-6 pb-24 pt-16 sm:pb-32 sm:pt-20 lg:px-8 lg:pt-32">
+      <div class="mx-auto max-w-2xl lg:ml-0 lg:max-w-lg">
+        <span
+          class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+          >Your tagline</span
+        >
+        <h1
+          class="text-3xl lg:text-4xl mt-4 font-semibold tracking-tight text-gray-900 lg:text-balance">
+          Empower your finances with our unmatched value
+        </h1>
+        <p class="text-base font-medium mt-4 text-gray-500 text-pretty hdd">
+          Experience low fees, unwavering commitment, and massive earnings with
+          a service trusted by over 60 million users.
+        </p>
+        <dl
+          class="grid grid-cols-1 max-w-xl gap-x-2 gap-y-6 mt-12 sm:grid-cols-2">
+          <div
+            x-data="{ count: 0, target: 30, counter() { let interval = setInterval(() => { if (this.count < this.target) { this.count += 1; } else { clearInterval(interval); } }, 50); } }"
+            x-intersect.once="counter()"
+            class="flex flex-col">
+            <dt class="mt-4">
+              <p
+                class="font-mono uppercase tracking-tighter text-sm font-medium text-gray-900">
+                Working Individuals
+              </p>
+              <p class="text-sm text-gray-500 text-pretty mt-2">
+                We’re dedicated to delivering outstanding service and value.
+              </p>
+            </dt>
+            <dd
+              x-text="`${count}%`"
+              class="order-first text-2xl font-normal font-mono text-blue-600">
+            </dd>
+          </div>
+          <div
+            x-data="{ count: 0, target: 40, counter() { let interval = setInterval(() => { if (this.count < this.target) { this.count += 1; } else { clearInterval(interval); } }, 50); } }"
+            x-intersect.once="counter()"
+            class="flex flex-col">
+            <dt class="mt-4">
+              <p
+                class="font-mono uppercase tracking-tighter text-sm font-medium text-gray-900">
+                super Low Fee
+              </p>
+              <p class="text-sm text-gray-500 text-pretty mt-2">
+                Enjoy significant savings with our extremely low fee structure.
+              </p>
+            </dt>
+            <dd
+              x-text="`${count}%`"
+              class="order-first text-2xl font-normal font-mono text-blue-600">
+            </dd>
+          </div>
+          <div
+            x-data="{ count: 0, target: 50, counter() { let interval = setInterval(() => { if (this.count < this.target) { this.count += 1; } else { clearInterval(interval); } }, 50); } }"
+            x-intersect.once="counter()"
+            class="flex flex-col">
+            <dt class="mt-4">
+              <p
+                class="font-mono uppercase tracking-tighter text-sm font-medium text-gray-900">
+                Massive Earnings
+              </p>
+              <p class="text-sm text-gray-500 text-pretty mt-2">
+                Reap the benefits with substantial returns.
+              </p>
+            </dt>
+            <dd
+              x-text="`${count}%`"
+              class="order-first text-2xl font-normal font-mono text-blue-600">
+            </dd>
+          </div>
+          <div
+            x-data="{ count: 0, target: 60000000, counter() { let interval = setInterval(() => { if (this.count < this.target) { this.count += 1000000; } else { clearInterval(interval); this.count = this.target; } }, 50); } }"
+            x-intersect.once="counter()"
+            class="flex flex-col">
+            <dt class="mt-4">
+              <p
+                class="font-mono uppercase tracking-tighter text-sm font-medium text-gray-900">
+                Growing Impact
+              </p>
+              <p class="text-sm text-gray-500 text-pretty mt-2">
+                Join 60 million satisfied users who trust our services.
+              </p>
+            </dt>
+            <dd
+              x-text="`${(count / 1000000) % 1 === 0 ? (count / 1000000) : (count / 1000000).toFixed(1)}M`"
+              class="order-first text-2xl font-normal font-mono text-blue-600">
+            </dd>
+          </div>
+        </dl>
       </div>
-      <div
-        x-data="{ count: 0, target: 40, counter() { let interval = setInterval(() => { if (this.count < this.target) { this.count += 1; } else { clearInterval(interval); } }, 50); } }"
-        x-intersect.once="counter()"
-        class="flex flex-col aspect-square p-8 lg:p-12 overflow-hidden rounded-3xl relative">
-        <div class="bg-gradient-to-t from-gray-100 via-transparent absolute inset-0"></div>
-        <dt class="mt-4 relative">
-          <p
-            class="font-mono uppercase tracking-tighter text-sm font-medium text-gray-900">
-            super Low Fee
-          </p>
-          <p class="text-sm text-gray-500 text-balance mt-2">
-            Enjoy significant savings with our extremely low fee structure.
-          </p>
-        </dt>
-        <dd
-          x-text="`${count}%`"
-          class="order-first text-3xl font-normal font-mono text-blue-500">
-        </dd>
-        <img
-          class="mt-8"
-          src="/images/phone2.png"
-          alt="#_"
-        />
-      </div>
-    </dl>
+    </div>
   </div>
-</section>
+</div>
