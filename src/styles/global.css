@@ -2,20 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Hidding emulators*/
+.firebase-emulator-warning {
+  color: #66666650 !important;
+  border: transparent !important;
+  background-color: transparent !important;
+  font-size: 0.8rem !important;
+}
 
 .prose-styles {
   @apply prose prose-headings:text-black text-sm  text-gray-500   prose-a:text-blue-500  prose-a:no-underline hover:prose-a:underline  prose-a:font-normal prose-strong:text-blue-500   prose-blockquote:text-gray-500  prose-blockquote:border-gray-400  prose-headings:text-[16px]  prose-ul:leading-tight prose-ul:[list-style-type:'⏤'] prose-ul:space-y-2.5 prose-strong:font-normal   prose-headings:font-normal max-w-none prose-li:marker:text-black  mt-0 prose-h1:text-2xl;
-  }
-  /* Styling Inter font with custom settings, it's cooler like this*/
-  /* CSS */
+}
+/* Styling Inter font with custom settings, it's cooler like this*/
+/* CSS */
 :root {
   font-family: Inter, sans-serif;
-  font-feature-settings: "liga" 1, "calt" 1,
-    /* Contextual Alternates */ "dlig" 1, /* Discretionary Ligatures */ "ss07" 1,
-    /* fSquare punctuation */ "ss08" 1, /* Square quotes */ "zero" 1,
-    /* Slashed zero */ "tnum" 1, /* Tabular numbers */ "cv03" 1,
-    /* Open six */ "cv04" 1, /* Open nine */ "cv01" 1,
-    /* Alternate one */ "cv09", /* Flat-top three */ "cv02" 1; /* Open 4 */
+  font-feature-settings:
+    "liga" 1,
+    "calt" 1, /* Contextual Alternates */
+    "dlig" 1, /* Discretionary Ligatures */
+    "ss07" 1, /* fSquare punctuation */
+
+    "ss08" 1, /* Square quotes */
+    "zero" 1, /* Slashed zero */
+    "tnum" 1, /* Tabular numbers */
+    "cv06" 1, /* Simplified u */
+    "cv10" 1, /* Capital G with spur */
+
+    "cv03" 1, /* Open six */
+    "cv04" 1, /* Open nine */
+    "cv01" 1, /* Alternate one */
+    "cv09", /* Flat-top three */
+    "cv02" 1; /* Open 4 */
 }
 @supports (font-variation-settings: normal) {
   /* Use variable font if supported */
@@ -65,17 +83,17 @@ ninja-keys::part(ninja-selected) {
 } */
 /*Light*/
 :root {
-  --astro-code-color-background: theme('colors.gray.50');
-  --astro-code-color-text: theme('colors.gray.400');
-  --astro-code-token-comment: theme('colors.gray.400');
-  --astro-code-token-string: theme('colors.blue.500');
-  --astro-code-token-keyword: theme('colors.blue.500');
-  --astro-code-token-link: theme('colors.blue.600');
-  --astro-code-token-constant: theme('colors.blue.900');
-  --astro-code-token-parameter: theme('colors.blue.500');
-  --astro-code-token-function: theme('colors.blue.500');
-  --astro-code-token-punctuation: theme('colors.blue.950');
-  --astro-code-token-string-expression: theme('colors.blue.950');
+  --astro-code-color-background: theme("colors.gray.50");
+  --astro-code-color-text: theme("colors.gray.400");
+  --astro-code-token-comment: theme("colors.gray.400");
+  --astro-code-token-string: theme("colors.blue.500");
+  --astro-code-token-keyword: theme("colors.blue.500");
+  --astro-code-token-link: theme("colors.blue.600");
+  --astro-code-token-constant: theme("colors.blue.900");
+  --astro-code-token-parameter: theme("colors.blue.500");
+  --astro-code-token-function: theme("colors.blue.500");
+  --astro-code-token-punctuation: theme("colors.blue.950");
+  --astro-code-token-string-expression: theme("colors.blue.950");
 }
 code {
   counter-reset: step;
@@ -89,7 +107,9 @@ code .line::before {
   margin-right: 1.5rem;
   display: inline-block;
   text-align: right;
-  color: #9da3ae
+  color: #9da3ae;
 }
 
-[x-cloak] { display: none !important; }
+[x-cloak] {
+  display: none !important;
+}
