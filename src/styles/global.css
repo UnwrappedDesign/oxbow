@@ -11,36 +11,30 @@
 }
 
 .prose-styles {
-  @apply prose prose-headings:text-black text-sm  text-gray-500   prose-a:text-blue-500  prose-a:no-underline hover:prose-a:underline  prose-a:font-normal prose-strong:text-blue-500   prose-blockquote:text-gray-500  prose-blockquote:border-gray-400  prose-headings:text-[16px]  prose-ul:leading-tight prose-ul:[list-style-type:'⏤'] prose-ul:space-y-2.5 prose-strong:font-normal   prose-headings:font-normal max-w-none prose-li:marker:text-black  mt-0 prose-h1:text-2xl;
+  @apply prose prose-headings:text-black text-sm  text-gray-500   prose-a:text-accent-500  prose-a:no-underline hover:prose-a:underline  prose-a:font-normal prose-strong:text-accent-500   prose-blockquote:text-gray-500  prose-blockquote:border-gray-400  prose-headings:text-[16px]  prose-ul:leading-tight prose-ul:[list-style-type:'⏤'] prose-ul:space-y-2.5 prose-strong:font-normal   prose-headings:font-normal max-w-none prose-li:marker:text-black  mt-0 prose-h1:text-2xl;
 }
-/* Styling Inter font with custom settings, it's cooler like this*/
-/* CSS */
 :root {
-  font-family: Inter, sans-serif;
+  font-family: Geist, sans-serif;
   font-feature-settings:
-    "liga" 1,
-    "calt" 1, /* Contextual Alternates */
-    "dlig" 1, /* Discretionary Ligatures */
-    "ss07" 1, /* fSquare punctuation */
+ "liga" 1,   /* Ligatures */
+    "calt" 1,   /* Contextual Alternates */
+    "dlig" 1,   /* Discretionary Ligatures */
+    "ss01" 1,   /* Double-story "a" */
+    /*"ss02" 1,*/ /* Alternative "G" */
+    "ss03" 1,   /* Different leg on "R" */
+    "ss04" 1,   /* Single-story "g" */
+    "ss05" 1,   /* "l" with a tail */
+    "ss06" 1,   /* "y" with a straight tail */
+    "tnum" 1;   /* Tabular numbers */
 
-    "ss08" 1, /* Square quotes */
-    "zero" 1, /* Slashed zero */
-    "tnum" 1, /* Tabular numbers */
-    "cv06" 1, /* Simplified u */
-    "cv10" 1, /* Capital G with spur */
-
-    "cv03" 1, /* Open six */
-    "cv04" 1, /* Open nine */
-    "cv01" 1, /* Alternate one */
-    "cv09", /* Flat-top three */
-    "cv02" 1; /* Open 4 */
 }
 @supports (font-variation-settings: normal) {
   /* Use variable font if supported */
   :root {
-    font-family: InterVariable, sans-serif;
+    font-family: Geist , sans-serif;
   }
 }
+
 
 /* Styling  Ninja Keys */
 ninja-keys::part(ninja-input) {
@@ -86,14 +80,14 @@ ninja-keys::part(ninja-selected) {
   --astro-code-color-background: theme("colors.gray.50");
   --astro-code-color-text: theme("colors.gray.400");
   --astro-code-token-comment: theme("colors.gray.400");
-  --astro-code-token-string: theme("colors.blue.500");
-  --astro-code-token-keyword: theme("colors.blue.500");
-  --astro-code-token-link: theme("colors.blue.600");
-  --astro-code-token-constant: theme("colors.blue.900");
-  --astro-code-token-parameter: theme("colors.blue.500");
-  --astro-code-token-function: theme("colors.blue.500");
-  --astro-code-token-punctuation: theme("colors.blue.950");
-  --astro-code-token-string-expression: theme("colors.blue.950");
+  --astro-code-token-string: theme("colors.accent.500");
+  --astro-code-token-keyword: theme("colors.accent.500");
+  --astro-code-token-link: theme("colors.accent.600");
+  --astro-code-token-constant: theme("colors.accent.900");
+  --astro-code-token-parameter: theme("colors.accent.500");
+  --astro-code-token-function: theme("colors.accent.500");
+  --astro-code-token-punctuation: theme("colors.accent.950");
+  --astro-code-token-string-expression: theme("colors.accent.950");
 }
 code {
   counter-reset: step;
@@ -113,3 +107,169 @@ code .line::before {
 [x-cloak] {
   display: none !important;
 }
+
+
+/* Geist Sans */
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/geist/Geist-Thin.woff2") format("woff2"),
+       url("/fonts/geist/Geist-Thin.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/geist/Geist-UltraLight.woff2") format("woff2"),
+       url("/fonts/geist/Geist-UltraLight.woff") format("woff");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/geist/Geist-Light.woff2") format("woff2"),
+       url("/fonts/geist/Geist-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/geist/Geist-Regular.woff2") format("woff2"),
+       url("/fonts/geist/Geist-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/geist/Geist-Medium.woff2") format("woff2"),
+       url("/fonts/geist/Geist-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/geist/Geist-SemiBold.woff2") format("woff2"),
+       url("/fonts/geist/Geist-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/geist/Geist-Bold.woff2") format("woff2"),
+       url("/fonts/geist/Geist-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/geist/Geist-Black.woff2") format("woff2"),
+       url("/fonts/geist/Geist-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/geist/Geist-UltraBlack.woff2") format("woff2"),
+       url("/fonts/geist/Geist-UltraBlack.woff") format("woff");
+  font-weight: 950;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Geist Mono */
+@font-face {
+  font-family: "Geist Mono";
+  src: url('/fonts/geist/GeistMono-Thin.woff2') format('woff2'),
+       url('/fonts/geist/GeistMono-Thin.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url('/fonts/geist/GeistMono-UltraLight.woff2') format('woff2'),
+       url('/fonts/geist/GeistMono-UltraLight.woff') format('woff');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url('/fonts/geist/GeistMono-Light.woff2') format('woff2'),
+       url('/fonts/geist/GeistMono-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url('/fonts/geist/GeistMono-Regular.woff2') format('woff2'),
+       url('/fonts/geist/GeistMono-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url('/fonts/geist/GeistMono-Medium.woff2') format('woff2'),
+       url('/fonts/geist/GeistMono-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url('/fonts/geist/GeistMono-SemiBold.woff2') format('woff2'),
+       url('/fonts/geist/GeistMono-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url('/fonts/geist/GeistMono-Bold.woff2') format('woff2'),
+       url('/fonts/geist/GeistMono-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url('/fonts/geist/GeistMono-Black.woff2') format('woff2'),
+       url('/fonts/geist/GeistMono-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url('/fonts/geist/GeistMono-UltraBlack.woff2') format('woff2'),
+       url('/fonts/geist/GeistMono-UltraBlack.woff') format('woff');
+  font-weight: 950;
+  font-style: normal;
+  font-display: swap;
+}
+

@@ -1,0 +1,67 @@
+---
+const logos = [
+  {
+    src: "/brands/1.svg",
+    width: 158,
+    height: 48,
+    colSpan: "col-span-2 lg:col-span-1",
+  },
+  {
+    src: "/brands/2.svg",
+    width: 158,
+    height: 48,
+    colSpan: "col-span-2 lg:col-span-1",
+  },
+  {
+    src: "/brands/9.svg",
+    width: 158,
+    height: 48,
+    colSpan: "col-span-2 lg:col-span-1",
+  },
+  {
+    src: "/brands/4.svg",
+    width: 158,
+    height: 48,
+    colSpan: "col-span-2 sm:col-start-2 lg:col-span-1",
+  },
+  {
+    src: "/brands/5.svg",
+    width: 158,
+    height: 48,
+    colSpan: "col-span-2 col-start-2 sm:col-start-auto lg:col-span-1",
+  },
+];
+---
+
+<section>
+  <div class="px-8 py-24 mx-auto md:px-12 lg:px-32 max-w-7xl relative">
+    <div class="mx-auto ">
+        <div
+          class="mx-auto relative  grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
+          <div class="grid justify-between w-full col-span-full">
+            <div
+              class="absolute inset-0 left-0 z-10 from-white to-transparent w-44 bg-gradient-to-r">
+            </div>
+            <div
+              class="absolute inset-0 left-0 z-10 ml-auto from-white to-transparent w-44 bg-gradient-to-l">
+            </div>
+          </div>
+          {
+            logos.map((logo) => (
+              <img
+                class={`${logo.colSpan} max-h-12 w-full object-contain relative`}
+                src={logo.src}
+                alt="#_"
+                width={logo.width}
+                height={logo.height}
+              />
+            ))
+          }
+        </div>
+      <h2
+        class="font-mono uppercase mt-10 tracking-tighter text-sm font-medium text-gray-400 text-center">
+        Trusted by industry leaders and our families because we pay them
+      </h2>
+    </div>
+  </div>
+</section>
