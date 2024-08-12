@@ -4,11 +4,11 @@ const colors = require("tailwindcss/colors");
 module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
-    fontFamily: {
-      sans: ["Geist ", ...defaultTheme.fontFamily.sans],
-      mono: ["Geist Mono", ...defaultTheme.fontFamily.sans],
-    },
     extend: {
+      fontFamily: {
+        sans: ["Inter ", ...defaultTheme.fontFamily.sans],
+        mono: ["JetBrains Mono", ...defaultTheme.fontFamily.sans],
+      },
       boxShadow: {
         blackOnWhite:
           "0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.3) !important",
