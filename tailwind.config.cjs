@@ -5,8 +5,8 @@ module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     fontFamily: {
-      sans: ["Inter", ...defaultTheme.fontFamily.sans],
-      mono: ["IBM Plex Mono", ...defaultTheme.fontFamily.sans],
+      sans: ["Geist ", ...defaultTheme.fontFamily.sans],
+      mono: ["Geist Mono", ...defaultTheme.fontFamily.sans],
     },
     extend: {
       boxShadow: {
@@ -19,6 +19,19 @@ module.exports = {
         white: colors.white,
         gray: colors.gray,
         black: "#121212",
+        accent: {
+        '50': '#f1f5fd',
+          '100': '#e0eaf9',
+          '200': '#c8daf5',
+          '300': '#a3c3ed',
+          '400': '#77a2e3',
+          '500': '#5783da',
+          '600': '#4267cd',
+          '700': '#3955bc',
+          '800': '#344799',
+          '900': '#2e3e7a',
+          '950': '#20284b',
+        },
       },
     },
   },
