@@ -1,79 +1,40 @@
+---
+const features = [
+  {
+    title: "Decentralized consensus mechanism",
+    description:
+      "Our platform employs a decentralized consensus mechanism that revolutionizes how transactions are confirmed.",
+  },
+  {
+    title: "Streamlining processes",
+    description:
+      "Our smart contract automation feature simplifies complex business processes by encoding contract terms and conditions into self-executing code.",
+  },
+  {
+    title: "Immutable ledger technology",
+    description:
+      "Embracing immutable ledger technology, our blockchain maintains an unchangeable record of all transactions.",
+  },
+  {
+    title: "Easy management of digital assets",
+    description:
+      "Our user-friendly wallet simplifies the management of digital assets, providing an intuitive interface for storing, sending, and receiving cryptocurrencies.",
+  },
+];
+---
+
 <section>
-  <div class="px-8 py-32 mx-auto md:px-12 lg:px-32 max-w-7xl relative">
-    <div class="text-center">
-      <span
-        class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
-        >Your tagline</span
-      >
-      <h1
-        class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 sm:text-5xl sm:text-balance">
-        Transform your visitors into users with an engaging headline
-      </h1>
-      <p class="mt-6 text-base font-medium text-gray-500 sm:text-balance">
-        The fastest method for working together on staging and temporary
-        environments.
-      </p>
-    </div>
-    <dl
-      class="grid md:grid-cols-2 text-center gap-x-6 gap-y-12 mt-24 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16">
-      <div>
-        <span class="flex items-center justify-center mx-auto text-blue-500"
-          >1
-        </span>
-        <div class="mt-6">
-          <dt
-            class="font-mono uppercase tracking-tighter text-sm font-medium text-gray-900">
-            Easy navigation
-          </dt>
-          <dd class="mt-2 text-sm text-gray-500">
-            Hover over any element to see its Tailwind classes. Press Space to
-            easily pin and edit the element.
-          </dd>
-        </div>
-      </div>
-      <div>
-        <div>
-          <span class="flex items-center justify-center mx-auto text-blue-500"
-            >2</span
-          >
-        </div>
-        <div class="mt-6">
-          <dt
-            class="font-mono uppercase tracking-tighter text-sm font-medium text-gray-900">
-            Persistence
-          </dt>
-          <dd class="mt-2 text-sm text-gray-500">
-            spotless will remember all your changes to every element so you can
-            copy all changes at once!
-          </dd>
-        </div>
-      </div>
-      <div>
-        <div>
-          <span class="flex items-center justify-center mx-auto text-blue-500"
-            >3</span
-          >
-        </div>
-        <div class="mt-6">
-          <dt
-            class="font-mono uppercase tracking-tighter text-sm font-medium text-gray-900">
-            Screenshot tool
-          </dt>
-          <dd class="mt-2 text-sm text-gray-500">
-            Make screenshots of a particular part of the screen to share quick
-            and easy!
-          </dd>
-        </div>
-      </div>
-    </dl>
+  <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
+
+
     <div
-      class="grid grid-cols-1 mt-12 lg:grid-cols-2 lg:mt-24 items-start gap-12">
-      <div>
+      class="grid grid-cols-1 lg:grid-cols-2  items-start gap-12">
+      <div class="lg:pl-24 md:pl-12">
         <p
-          class="text-3xl font-semibold tracking-tight text-gray-900 sm:text-balance">
+          class="text-2xl font-semibold tracking-tight text-gray-900 lg:text-balance">
           Transform your visitors into users with an engaging headline
         </p>
-        <p class="mt-6 text-base font-medium text-gray-500 sm:text-balance">
+        <p class="mt-6 text-base font-medium text-gray-500 lg:text-balance">
           The fastest and most efficient method for working together on staging
           and temporary environments.
         </p>
@@ -89,48 +50,18 @@
           </div>
         </div>
         <dl class="gap-8 grid sm:grid-cols-2 lg:grid-cols-1 mt-12">
-          <div>
-            <dt
-              class="font-mono uppercase tracking-tighter text-sm font-medium text-gray-900">
-              Decentralized consensus mechanism
-            </dt>
-            <dd class="mt-2 text-sm text-gray-500 text-balance">
-              Our platform employs a decentralized consensus mechanism that
-              revolutionizes how transactions are confirmed.
-            </dd>
-          </div>
-          <div>
-            <dt
-              class="font-mono uppercase tracking-tighter text-sm font-medium text-gray-900">
-              Streamlining processes
-            </dt>
-            <dd class="mt-2 text-sm text-gray-500 text-balance">
-              Our smart contract automation feature simplifies complex business
-              processes. By encoding contract terms and conditions into
-              self-executing code.
-            </dd>
-          </div>
-          <div>
-            <dt
-              class="font-mono uppercase tracking-tighter text-sm font-medium text-gray-900">
-              Immutable ledger technology
-            </dt>
-            <dd class="mt-2 text-sm text-gray-500 text-balance">
-              Embracing immutable ledger technology, our blockchain maintains an
-              unchangeable record of all transactions.
-            </dd>
-          </div>
-          <div>
-            <dt
-              class="font-mono uppercase tracking-tighter text-sm font-medium text-gray-900">
-              Easy management of digital assets
-            </dt>
-            <dd class="mt-2 text-sm text-gray-500 text-balance">
-              Our user-friendly wallet simplifies the management of digital
-              assets, providing an intuitive interface for storing, sending, and
-              receiving cryptocurrencies.
-            </dd>
-          </div>
+          {
+            features.map((feature, index) => (
+              <div>
+                <dt class="tracking-tight text-lg font-medium text-gray-900">
+                  {feature.title}
+                </dt>
+                <dd class="mt-2 text-sm text-gray-500 lg:text-balance">
+                  {feature.description}
+                </dd>
+              </div>
+            ))
+          }
         </dl>
       </div>
       <div class="lg:order-first block w-full mt-12 aspect-square lg:mt-0">
