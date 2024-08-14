@@ -29,21 +29,6 @@ const features: Template = {
   link: "/playground/marketing/features",
   image: "features.png",
 };
-const leftHeadings: Template = {
-  name: "Left Headings",
-  link: "/playground/marketing/left-headings",
-  image: "leftHeadings.png",
-};
-const centeredHeadings: Template = {
-  name: "Centered Headings",
-  link: "/playground/marketing/centered-headings",
-  image: "centeredHeadings.png",
-};
-const rightHeadings: Template = {
-  name: "Right Headings",
-  link: "/playground/marketing/right-headings",
-  image: "rightHeadings.png",
-};
 const grids: Template = {
   name: "Grids",
   link: "/playground/marketing/grids",
@@ -114,12 +99,10 @@ const newsletter: Template = {
   link: "/playground/marketing/newsletter",
   image: "newsletter.png",
 };
-
 // Application
 //
 //
 //
-
 // Navigation
 const navbars: Template = {
   name: "Navbars",
@@ -255,12 +238,10 @@ const radiogroups: Template = {
   link: "/playground/application/radiogroups",
   image: "radiogroups.png",
 };
-
 // Ecommerce
 //
 //
 //
-
 // Marketing
 //
 //
@@ -270,9 +251,6 @@ export const pageSections: Template[] = [
   centeredheroes,
   rightheroes,
   features,
-  leftHeadings,
-  centeredHeadings,
-  rightHeadings,
   grids,
   pricing,
   faq,
@@ -297,7 +275,6 @@ export const elements: Template[] = [
   alerts,
   emptystates,
 ];
-
 // Application
 //
 //
@@ -323,7 +300,6 @@ export const forms: Template[] = [
   selects,
   radiogroups,
 ];
-
 // Ecommerce
 //
 //
@@ -338,9 +314,6 @@ export const byName = {
   centeredheroes,
   rightheroes,
   features,
-  leftHeadings,
-  centeredHeadings,
-  rightHeadings,
   grids,
   pricing,
   faq,
