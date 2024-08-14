@@ -1,6 +1,32 @@
+---
+const items = [
+  {
+    imgSrc: "/images/blueCard.svg",
+    imgAlt: "#_",
+    title: "Easy navigation",
+    description:
+      "Hover over any element to see its Tailwind classes. Press Space to easily pin and edit your settings.",
+  },
+  {
+    imgSrc: "/images/darkCard.svg",
+    imgAlt: "#_",
+    title: "Persistence",
+    description:
+      "Spotless will remember all your changes to every element so you can copy all changes at once!",
+  },
+  {
+    imgSrc: "/images/whiteCard.svg",
+    imgAlt: "#_",
+    title: "Screenshot tool",
+    description:
+      "Make screenshots of a particular part of the screen to share quickly and easily.",
+  },
+];
+---
+
 <section>
   <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
-    <div class="text-center">
+    <div class="text-center max-w-xl mx-auto lg:text-balance">
       <span
         class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
         >Your tagline</span
@@ -16,59 +42,23 @@
     </div>
     <dl
       class="grid sm:grid-cols-2 mt-12 text-center gap-x-6 gap-y-12 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16">
-      <div class="flex flex-col h-full justify-between">
-        <div>
-          <img
-            class="rounded-2xl drop-shadow w-full"
-            src="/images/blueCard.svg"
-            alt="#_"
-          />
-          <dt
-            class="font-mono mt-6 uppercase tracking-tighter text-sm font-medium text-gray-900">
-            NO GUARANTEE
-          </dt>
-          <dd class="mt-2 text-sm text-gray-500 text-pretty">
-            The recipe is provided "as is" without any guarantees. Bake at your
-            own risk, and we do not accept responsibility for any loss or
-            damage.
-          </dd>
-        </div>
-      </div>
-      <div class="flex flex-col h-full justify-between">
-        <div>
-          <img
-            class="rounded-2xl drop-shadow w-full"
-            src="/images/darkCard.svg"
-            alt="#_"
-          />
-          <dt
-            class="font-mono mt-6 uppercase tracking-tighter text-sm font-medium text-gray-900">
-            FAST DELIVERY
-          </dt>
-          <dd class="mt-2 text-sm text-gray-500 text-balance">
-            We ensure your baked goods are delivered fresh and on time, every
-            time. We also offer free delivery to select locations.
-          </dd>
-        </div>
-      </div>
-      <div class="flex flex-col h-full justify-between">
-        <div>
-          <img
-            class="rounded-2xl drop-shadow w-full"
-            src="/images/whiteCard.svg"
-            alt="#_"
-          />
-          <dt
-            class="font-mono mt-6 uppercase tracking-tighter text-sm font-medium text-gray-900">
-            Baking Freedom
-          </dt>
-          <dd class="mt-2 text-sm text-gray-500 text-pretty">
-            You can adapt, remix, transform, and build upon the licensed work.
-            We also offer a wide range of customization options to suit your
-            unique tastes.
-          </dd>
-        </div>
-      </div>
+      {
+        items.map((item) => (
+          <div class="flex flex-col h-full justify-between">
+            <div>
+              <img
+                class="rounded-2xl drop-shadow w-full"
+                src={item.imgSrc}
+                alt={item.imgAlt}
+              />
+              <dt class="tracking-tight text-lg font-medium text-gray-900 mt-6">
+                {item.title}
+              </dt>
+              <dd class="mt-2 text-sm text-gray-500">{item.description}</dd>
+            </div>
+          </div>
+        ))
+      }
     </dl>
   </div>
 </section>
