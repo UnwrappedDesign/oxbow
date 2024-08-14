@@ -1,5 +1,11 @@
 ## Windstatic
 ### Getting started
+
+Install firebase tools for local development in case you don't have install it in your machine
+``
+npm install -g firebase-tools
+``
+
 ```bash
 git pull
 npm install
