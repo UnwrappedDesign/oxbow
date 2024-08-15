@@ -1,85 +1,75 @@
+---
+const data = [
+  {
+
+    text: "Our cutting-edge design offers a fresh, modern look that transforms your project into a standout experience. ",
+    items: ["Revolutionizing communication", "Enhancing productivity"],
+  },
+  {
+
+    text: "Equipped with advanced features and tools, our solution effortlessly manages complex tasks and workflows. ",
+    items: ["Unlocking innovative solutions", "Enabling interoperability"],
+  },
+  {
+
+    text: "Integrating with existing systems is smooth and hassle-free, thanks to our incredible flexible approach. ",
+    items: ["Streamlining operations", "Simplifying implementation"],
+  },
+];
+---
+
 <section>
-  <div class="px-8 py-32 mx-auto md:px-12 lg:px-32 max-w-7xl relative">
-    <div class="text-center">
-      <span
-        class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
-        >Your tagline</span
-      >
-      <h1
-        class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 sm:text-5xl sm:text-balance">
-        Transform your visitors into users with an engaging headline
-      </h1>
-      <p class="mt-6 text-base font-medium text-gray-500 sm:text-balance">
-        The fastest method for working together on staging and temporary
-        environments.
-      </p>
+  <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
+    <div class="bg-gray-50 p-8 lg:p-10 rounded-3xl">
+
+      <div
+        class="gap-x-2 gap-y-14  lg:gap-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          data.map((section) => (
+            <div>
+              <div>
+
+                <ul
+                  role="list"
+                  class="space-y-1  text-base font-medium text-gray-900 list-none">
+                  {section.items.map((item, idx) => (
+                    <li class="list-none">
+                      <div class=" flex  items-center gap-4 ">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="icon icon-tabler icon-tabler-circle-check-filled text-blue-600"
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                          stroke-width="2"
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round">
+                          <path
+                            stroke="none"
+                            d="M0 0h24v24H0z"
+                            fill="none"
+                          />
+                          <path
+                            d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
+                            stroke-width="0"
+                            fill="currentColor"
+                          />
+                        </svg>
+                        <span class="text-gray-700 text-base">{item}</span>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <p class="mt-6 text-sm text-gray-500 text-pretty">
+                {section.text}
+              </p>
+            </div>
+          ))
+        }
+      </div>
     </div>
-    <dl
-      class="grid md: text-center gap-x-6 gap-y-12 mt-24 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16">
-      <div>
-        <span class="flex items-center justify-center mx-auto text-blue-500"
-          >1
-        </span>
-        <div class="mt-6">
-          <dt
-            class="font-mono uppercase tracking-tighter text-sm font-medium text-gray-900">
-            Easy navigation
-          </dt>
-          <dd class="mt-2 text-sm text-gray-500">
-            Hover over any element to see its Tailwind classes. Press Space to
-            easily pin and edit.
-          </dd>
-        </div>
-        <img
-          class="mt-8"
-          src="/images/phone1.png"
-          alt="#_"
-        />
-      </div>
-      <div>
-        <div>
-          <span class="flex items-center justify-center mx-auto text-blue-500"
-            >2</span
-          >
-        </div>
-        <div class="mt-6">
-          <dt
-            class="font-mono uppercase tracking-tighter text-sm font-medium text-gray-900">
-            Persistence
-          </dt>
-          <dd class="mt-2 text-sm text-gray-500">
-            spotless will remember all your changes to every element so you can
-            copy all changes at once!
-          </dd>
-        </div>
-        <img
-          class="mt-8"
-          src="/images/phone2.png"
-          alt="#_"
-        />
-      </div>
-      <div>
-        <div>
-          <span class="flex items-center justify-center mx-auto text-blue-500"
-            >3</span
-          >
-        </div>
-        <div class="mt-6">
-          <dt
-            class="font-mono uppercase tracking-tighter text-sm font-medium text-gray-900">
-            Screenshot tool
-          </dt>
-          <dd class="mt-2 text-sm text-gray-500">
-            Make screenshots of a particular part of the screen to share quick
-            and easy peasy wizzy cheesey.
-          </dd>
-        </div>
-        <img
-          class="mt-8"
-          src="/images/phone3.png"
-          alt="#_"
-        />
-      </div>
-    </dl>
   </div>
 </section>

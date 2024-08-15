@@ -9,7 +9,7 @@ interface Props {
 const { entries } = Astro.props; // Make sure entries is correctly passed and used
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/images/**/*.{jpeg,jpg,png,gif}",
+  "/src/images/**/*.{jpeg,jpg,png,gif}"
 );
 
 const components = await Astro.glob("@/components/windstatic/**/*.astro");
@@ -32,7 +32,7 @@ const entriesWithQuantity = entries
     const imagePath = `/src/images/${entry.image}`;
     if (!images[imagePath])
       throw new Error(
-        `"${imagePath}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`,
+        `"${imagePath}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`
       );
 
     return {
@@ -46,20 +46,21 @@ const entriesWithQuantity = entries
 ---
 
 <ul
-  class="col-span-3 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 sm:gap-y-10 md:grid-cols-3 xl:grid-cols-4 xl:gap-x-8"
->
+  class="col-span-3 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 sm:gap-y-10 md:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 xl:gap-x-8 ">
   {
     entriesWithQuantity.map((template) => (
-      <li>
-        <div class="group relative ">
+      <li class="">
+        <div class="group relative group rounded-lg">
           <Image
-            class="object-bottom object-cover shadow rounded-md"
+            class="object-bottom object-cover shadow border rounded-lg ring-4 ring-gray-50 group-hover:ring-gray-100 duration-300"
             alt={template.name}
             src={template.image()}
           />
           <div>
-            <h4 class="mt-4 text-sm font-medium text-black group-hover:text-blue-600">
-              <a title={template.name} href={template.link}>
+            <h4 class="mt-4 text-sm font-medium text-black group-hover:text-accent-600">
+              <a
+                title={template.name}
+                href={template.link}>
                 <span class="absolute -inset-2.5 z-10" />
                 <span class="relative">{template.name}</span>
               </a>
@@ -73,3 +74,5 @@ const entriesWithQuantity = entries
     ))
   }
 </ul>
+
+

@@ -1,841 +1,328 @@
-<section  x-data="{duration: 'monthly'}">
+<section>
+  <!-- Define a data attribute 'duration' with the initial value 'monthly'  -->
 
+  <div
+    x-data="{duration: 'monthly'}"
+    class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-screen-xl relative">
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-2 md:items-end">
+      <div>
+        <span
+          class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+          >Your tagline</span
+        >
+        <p
+          class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 lg:text-balance">
+          Equip your business
+          <br />
+          <span>with world class software </span>
+        </p>
+      </div>
+      <div class="md:ml-auto">
+        <div
+          class="w-full border bg-white overflow-hidden inline-flex mt-8 p-0.5 rounded-lg max-w-xs shadow shadow-white/20 z-0">
+          <!-- Monthly Pricing Button: Sets 'duration' to 'monthly' when clicked -->
+          <button
+            id="monthly-pricing-button"
+            class="block w-full px-8 py-2 text-xs font-medium transition border border-transparent rounded-md text-blue-900"
+            @click="duration = 'monthly'"
+            :class="duration == 'monthly' ? 'bg-gray-100 border text-blue-900 ' : ''"
+            type="button">
+            Monthly
+          </button>
 
-  <div class="px-8 py-24 mx-auto md:px-12 lg:px-32 max-w-screen-xl relative">
-    <!---- Use only from lg: -->
-    <div class="hidden mt-24 lg:block">
-      <table class="w-full mx-auto text-center bg-transparent">
-        <thead>
-          <tr class="align-top">
-            <th
-              class="w-1/3 p-8 bg-transparent font-normal text-left align-bottom"
-            >
-              <div
-                class="w-full border bg-white overflow-hidden inline-flex mt-8 p-0.5 rounded-lg max-w-xs shadow shadow-white/20 z-0"
-              >
-                <!-- Monthly Pricing Button: Sets 'duration' to 'monthly' when clicked -->
-                <button
-                  id="monthly-pricing-button"
-                  class="block w-full px-8 py-2 text-xs font-medium transition border border-transparent rounded-md text-blue-900"
-                  @click="duration = 'monthly'"
-                  :class="duration == 'monthly' ? 'bg-gray-100 border text-blue-900 ' : ''"
-                  type="button"
-                >
-                  Monthly
-                </button>
-
-                <!-- Annual Pricing Button: Sets 'duration' to 'annual' when clicked -->
-                <button
-                  id="annual-pricing-button"
-                  class="block w-full px-8 py-2 text-xs font-medium transition border border-transparent rounded-md text-blue-900"
-                  @click="duration = 'annual'"
-                  :class="duration == 'annual' ? 'bg-gray-100 border text-blue-900 ' : ''"
-                  type="button"
-                >
-                  Annual
-                </button>
-              </div>
-            </th>
-            <th class="w-1/3 p-8 bg-transparent font-normal text-left relative">
-              <div
-                class="font-mono text-base font-medium tracking-tighter uppercase text-gray-900"
-              >
-                Hobby
-              </div>
+          <!-- Annual Pricing Button: Sets 'duration' to 'annual' when clicked -->
+          <button
+            id="annual-pricing-button"
+            class="block w-full px-8 py-2 text-xs font-medium transition border border-transparent rounded-md text-blue-900"
+            @click="duration = 'annual'"
+            :class="duration == 'annual' ? 'bg-gray-100 border text-blue-900 ' : ''"
+            type="button">
+            Annual
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="mx-auto mt-12 grid max-w-lg grid-cols-1 items-center gap-y-6  sm:gap-y-0 lg:max-w-none lg:grid-cols-2">
+      <div
+        class="relative rounded-3xl bg-gray-50 p-8 sm:mx-8 lg:mx-0 sm:rounded-b-none lg:rounded-tr-none lg:rounded-bl-3xl shadow">
+        <div>
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center justify-between gap-2">
               <p
-                class="font-semibold order-first text-xl tracking-tighter font-mono mt-8 text-gray-900"
-              >
+                class="text-4xl font-medium uppercase font-mono tracking-tighter text-gray-900 ">
+                Basic
+              </p>
+              <p
+                class="font-semibold  flex items-baseline text-4xl tracking-tighter font-mono text-gray-900">
                 <span
                   data-monthly="$9"
                   data-annual="$5"
-                  x-text="$el.dataset[duration]"></span>
+                  x-text="$el.dataset[duration]"
+                ></span>
                 <span class="text-sm font-normal tracking-normal text-gray-700">
                   <span x-show="duration === 'monthly'">
                     <span x-show="duration === 'monthly'"> /month</span></span
                   >
-                  <span x-show="duration === 'annual'" style="display: none;">
+                  <span
+                    x-show="duration === 'annual'"
+                    style="display: none;">
                     /annually</span
                   >
                 </span>
               </p>
-              <p class="text-xs text-gray-700 mt-4">
-                This subscription tier caters to individuals and hobbyists
-                seeking fundamental features.
-              </p>
-              <div class="mt-8">
-                <button
-                  type="button"
-                  aria-label="Get started with plan-name"
-                  class="flex items-center justify-center gap-2 h-10 px-4 py-2 text-sm font-semibold text-gray-500 transition-all duration-200 bg-gray-50 border border-gray-300 rounded-lg hover:text-blue-700 focus:ring-2 shadow shadow-gray-500/5 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none w-full"
-                  >Get started</button
-                >
-              </div>
-            </th>
-            <th class="w-1/3 p-8 bg-transparent font-normal text-left relative">
-              <div
-                aria-hidden="true"
-                class="absolute inset-y-0 right-0 hidden w-full rounded-2xl rounded-b-none border-b-0 border border-blue-500 sm:block"
-              >
-              </div>
-              <div class="relative">
-                <div
-                  class="font-mono text-base flex items-center justify-between font-medium tracking-tighter uppercase text-gray-900"
-                >
-                  GOLDEN UNICORN
-                  <span
-                    class="inline-flex shadow items-center gap-1 px-2 py-1 text-xs font-medium text-white bg-blue-500 rounded-md ring-1 ring-inset ring-gray-500/10"
-                    >Popular
-                  </span>
-                </div>
+            </div>
+
+            <p class="text-sm text-gray-700 mt-4 lg:text-balance">
+              This subscription tier caters to individuals and hobbyists seeking
+              fundamental features.
+            </p>
+          </div>
+          <ul
+            class="flex flex-col mt-10 text-sm text-gray-700 gap-y-3"
+            role="list">
+            <li class="flex flex-row items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-4 icon icon-tabler icon-tabler-circle-check-filled text-blue-500"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+                <path
+                  stroke="none"
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                ></path>
+                <path
+                  d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
+                  stroke-width="0"
+                  fill="currentColor"
+                ></path>
+              </svg>
+              <span>All standard plan features</span>
+            </li>
+            <li class="flex flex-row items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-4 icon icon-tabler icon-tabler-circle-check-filled text-blue-500"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+                <path
+                  stroke="none"
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                ></path>
+                <path
+                  d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
+                  stroke-width="0"
+                  fill="currentColor"
+                ></path>
+              </svg>
+              <span>Unlimited teams </span>
+            </li>
+            <li class="flex flex-row items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-4 icon icon-tabler icon-tabler-circle-check-filled text-blue-500"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+                <path
+                  stroke="none"
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                ></path>
+                <path
+                  d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
+                  stroke-width="0"
+                  fill="currentColor"
+                ></path>
+              </svg>
+              <span>Private teams and guest </span>
+            </li>
+          </ul>
+        </div>
+        <div class="w-full mt-8">
+          <a
+            aria-describedby="#_"
+            class="flex items-center justify-center gap-2 h-10 px-4 py-2 text-sm font-semibold text-gray-500 transition-all duration-200 bg-white border border-gray-300 rounded-lg hover:text-blue-700 focus:ring-2 shadow shadow-gray-500/5 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none w-full"
+            href="#_"
+            >Get started</a
+          >
+        </div>
+      </div>
+      <div class="rounded-3xl bg-gradient-to-b from-blue-500 to-indigo-600 p-8">
+        <div>
+          <div>
+            <div class="flex flex-col gap-2">
+              <div class="flex items-center justify-between gap-2">
                 <p
-                  class="font-semibold order-first text-xl tracking-tighter mt-8 font-mono text-gray-900"
-                >
+                  class="text-4xl font-medium uppercase font-mono tracking-tighter text-white">
+                  Premium
+                </p>
+                <p
+                  class="font-semibold flex items-baseline  text-4xl tracking-tighter font-mono text-white">
                   <span
-                    data-monthly="$29"
-                    data-annual="$19"
-                    x-text="$el.dataset[duration]"></span>
-                  <span
-                    class="text-sm font-normal tracking-normal text-gray-700"
-                  >
+                    data-monthly="$49"
+                    data-annual="$39"
+                    x-text="$el.dataset[duration]"
+                  ></span>
+                  <span class="text-sm font-normal tracking-normal text-white">
                     <span x-show="duration === 'monthly'"> /month</span>
-                    <span x-show="duration === 'annual'" style="display: none;"
+                    <span
+                      x-show="duration === 'annual'"
+                      style="display: none;"
                       >/annually</span
                     ></span
                   >
                 </p>
-
-                <p class="text-xs text-gray-700 mt-4">
-                  This subscription tier caters to individuals and hobbyists
-                  seeking fundamental features.
-                </p>
-                <div class="mt-8">
-                  <button
-                    type="button"
-                    aria-label="Get started with plan-name"
-                    class="flex items-center justify-center h-10 px-4 py-2 text-sm font-semibold text-white transition-all duration-200 rounded-lg bg-gradient-to-b from-blue-500 to-blue-600 hover:to-blue-800 shadow focus:ring-2 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none w-full"
-                    >Get started</button
-                  >
-                </div>
               </div>
-            </th>
-          </tr>
-          <tbody class="divide-y">
-            <tr class="overflow-hidden">
-              <th
-                scope="colgroup"
-                colspan="3"
-                class="p-4 border-y border-blue-500 bg-gray-50 text-sm font-semibold leading-6 text-left text-gray-900"
-              >
-                Features
-              </th>
-            </tr>
-            <tr>
-              <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left"
-              >
-                Analytics <p class="inline"></p>
-              </th>
-              <td class="px-2 text-xs font-medium text-gray-500">3</td>
-              <td
-                class="px-2 text-xs font-medium text-gray-500 border-x border-blue-500"
-                >10</td
-              >
-            </tr>
-            <tr>
-              <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left"
-              >
-                Accounts <p class="inline"></p>
-              </th>
-              <td class="px-2 text-xs font-medium text-gray-500">5</td>
-              <td
-                class="px-2 text-xs font-medium text-gray-500 border-x border-blue-500"
-                >10</td
-              >
-            </tr>
-            <tr>
-              <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left"
-              >
-                Integrations <p class="inline"></p>
-              </th>
-              <td class="px-2 text-xs font-medium text-gray-500">2</td>
-              <td
-                class="border-x border-blue-500 px-2 text-xs font-medium text-gray-500"
-                >All</td
-              >
-            </tr>
-            <tr>
-              <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left"
-              >
-                Programs <p class="inline"></p>
-              </th>
-              <td class="px-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M5 12l14 0"></path>
-                </svg></td
-              >
-              <td
-                class="px-2 text-xs font-medium text-gray-500 border-x border-blue-500"
-                >1</td
-              >
-            </tr>
-            <tr>
-              <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left"
-              >
-                Deployments <p class="inline"></p>
-              </th>
-              <td class="px-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M5 12l14 0"></path>
-                </svg>
-              </td>
-              <td class="px-2 border-x border-blue-500">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="size-5 mx-auto text-blue-500 icon icon-tabler icon-tabler-circle-check-filled"
-                  viewBox="0 0 24 24"
-                  stroke-width="1"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path
-                    d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
-                    stroke-width="0"
-                    fill="currentColor"></path>
-                </svg>
-              </td>
-            </tr>
-            <tr>
-              <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left"
-              >
-                Advanced Checkpoints <p class="inline"></p>
-              </th>
-              <td class="px-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M5 12l14 0"></path>
-                </svg>
-              </td>
-              <td class="px-2 border-x border-blue-500">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="size-5 mx-auto text-blue-500 icon icon-tabler icon-tabler-circle-check-filled"
-                  viewBox="0 0 24 24"
-                  stroke-width="1"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path
-                    d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
-                    stroke-width="0"
-                    fill="currentColor"></path>
-                </svg>
-              </td>
-            </tr>
-            <tr>
-              <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left"
-              >
-                Private Deploymentss <p class="inline"></p>
-              </th>
-              <td class="px-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M5 12l14 0"></path>
-                </svg>
-              </td>
-              <td class="px-2 border-x border-blue-500">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="size-5 mx-auto text-blue-500 icon icon-tabler icon-tabler-circle-check-filled"
-                  viewBox="0 0 24 24"
-                  stroke-width="1"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path
-                    d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
-                    stroke-width="0"
-                    fill="currentColor"></path>
-                </svg>
-              </td>
-            </tr>
-            <tr>
-              <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left"
-                >Support</th
-              >
-              <td class="px-2 text-xs font-medium text-gray-500"
-                >Discord community</td
-              >
-              <td
-                class="px-2 text-xs font-medium text-gray-500 border-x border-blue-500"
-                >Live chat</td
-              >
-            </tr>
-            <tr class="overflow-hidden rounded-xl">
-              <th
-                scope="colgroup"
-                colspan="3"
-                class="p-4 border-b border-blue-500 bg-gray-50 text-sm font-semibold leading-6 text-left text-gray-900"
-              >
-                Extras
-              </th>
-            </tr>
-            <tr>
-              <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left"
-              >
-                SLA
-              </th>
-              <td class="px-2 text-xs font-medium text-gray-500">4 days</td>
-              <td
-                class="px-2 text-xs font-medium text-gray-500 border-x border-blue-500"
-                >3 day</td
-              >
-            </tr>
-            <tr>
-              <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left"
-              >
-                Service Agreement
-              </th>
-              <td class="px-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M5 12l14 0"></path>
-                </svg>
-              </td>
-              <td
-                class="px-2 text-xs font-medium text-gray-500 border-x border-blue-500"
-              >
-                yes
-              </td>
-            </tr>
-            <tr>
-              <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left"
-              >
-                Dedicated Manager
-              </th>
-              <td class="px-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M5 12l14 0"></path>
-                </svg>
-              </td>
-              <td class="px-2 border-x border-blue-500">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="size-5 mx-auto text-blue-500 icon icon-tabler icon-tabler-circle-check-filled"
-                  viewBox="0 0 24 24"
-                  stroke-width="1"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path
-                    d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
-                    stroke-width="0"
-                    fill="currentColor"></path>
-                </svg>
-              </td>
-            </tr>
-            <tr>
-              <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left"
-              >
-                Training
-              </th>
-              <td class="px-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M5 12l14 0"></path>
-                </svg>
-              </td>
-              <td class="px-2 border-x border-blue-500">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="size-5 mx-auto text-blue-500 icon icon-tabler icon-tabler-circle-check-filled"
-                  viewBox="0 0 24 24"
-                  stroke-width="1"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path
-                    d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
-                    stroke-width="0"
-                    fill="currentColor"></path>
-                </svg>
-              </td>
-            </tr>
-            <tr>
-              <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left"
-              >
-                Dedicated support channel
-              </th>
-              <td class="px-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M5 12l14 0"></path>
-                </svg>
-              </td>
-              <td class="px-2 border-x border-blue-500">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M5 12l14 0"></path>
-                </svg>
-              </td>
-            </tr>
-            <tr>
-              <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left"
-              >
-                Webstorm Environments <p class="inline"></p>
-              </th>
-              <td class="px-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M5 12l14 0"></path>
-                </svg>
-              </td>
-              <td class="px-2 border-x border-blue-500">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M5 12l14 0"></path>
-                </svg>
-              </td>
-            </tr>
-            <tr>
-              <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left"
-              >
-                Included accounts
-              </th>
-              <td class="px-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M5 12l14 0"></path>
-                </svg></td
-              >
-              <td
-                class="px-2 text-xs font-medium text-gray-500 border-x border-blue-500border-x border-blue-500"
-                >30</td
-              >
-            </tr>
 
-            <tr>
-              <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left"
-              >
-                Additional accounts
-              </th>
-              <td class="px-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
+              <p class="text-sm text-white mt-4 lg:text-balance">
+                Designed with medium-sized businesses in mind, this subscription
+                tier provides advanced tools.
+              </p>
+            </div>
+          </div>
+          <ul
+            class="flex flex-col mt-10 text-sm text-white gap-y-3"
+            role="list">
+            <li class="flex flex-row items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-4 icon icon-tabler icon-tabler-circle-check-filled"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+                <path
+                  stroke="none"
+                  d="M0 0h24v24H0z"
                   fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M5 12l14 0"></path>
-                </svg></td
-              >
-              <td
-                class="px-2 text-xs font-medium text-gray-500 border-x border-blue-500"
-                >$23 per month</td
-              >
-            </tr>
-            <tr>
-              <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left"
-              >
-                Discounts
-              </th>
-              <td class="px-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
+                ></path>
+                <path
+                  d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
+                  stroke-width="0"
+                  fill="currentColor"
+                ></path>
+              </svg>
+              <span>All standard plan features</span>
+            </li>
+            <li class="flex flex-row items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-4 icon icon-tabler icon-tabler-circle-check-filled"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+                <path
+                  stroke="none"
+                  d="M0 0h24v24H0z"
                   fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M5 12l14 0"></path>
-                </svg>
-              </td>
-              <td class="px-2 border-x border-blue-500">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="size-5 mx-auto text-blue-500 icon icon-tabler icon-tabler-circle-check-filled"
-                  viewBox="0 0 24 24"
-                  stroke-width="1"
-                  stroke="currentColor"
+                ></path>
+                <path
+                  d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
+                  stroke-width="0"
+                  fill="currentColor"
+                ></path>
+              </svg>
+              <span>Unlimited teams </span>
+            </li>
+            <li class="flex flex-row items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-4 icon icon-tabler icon-tabler-circle-check-filled"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+                <path
+                  stroke="none"
+                  d="M0 0h24v24H0z"
                   fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path
-                    d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
-                    stroke-width="0"
-                    fill="currentColor"></path>
-                </svg>
-              </td>
-            </tr>
-            <tr>
-              <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left"
-              >
-                Minimum term
-              </th>
-              <td class="px-2 text-xs font-medium text-gray-500"
-                >Month-to-month</td
-              >
-              <td
-                class="px-2 text-xs font-medium text-gray-500 border-x border-blue-500"
-                >Month-to-month</td
-              >
-            </tr>
-            <tr>
-              <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left"
-              >
-                Pay monthly
-              </th>
-              <td class="px-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="size-5 mx-auto text-blue-500 icon icon-tabler icon-tabler-circle-check-filled"
-                  viewBox="0 0 24 24"
-                  stroke-width="1"
-                  stroke="currentColor"
+                ></path>
+                <path
+                  d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
+                  stroke-width="0"
+                  fill="currentColor"
+                ></path>
+              </svg>
+              <span>Private teams and guest </span>
+            </li>
+            <li class="flex flex-row items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-4 icon icon-tabler icon-tabler-circle-check-filled text-white"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+                <path
+                  stroke="none"
+                  d="M0 0h24v24H0z"
                   fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path
-                    d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
-                    stroke-width="0"
-                    fill="currentColor"></path>
-                </svg>
-              </td>
-              <td class="px-2 border-x border-blue-500">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="size-5 mx-auto text-blue-500 icon icon-tabler icon-tabler-circle-check-filled"
-                  viewBox="0 0 24 24"
-                  stroke-width="1"
-                  stroke="currentColor"
+                ></path>
+                <path
+                  d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
+                  stroke-width="0"
+                  fill="currentColor"
+                ></path>
+              </svg>
+              <span>Insights</span>
+            </li>
+            <li class="flex flex-row items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-4 icon icon-tabler icon-tabler-circle-check-filled text-white"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+                <path
+                  stroke="none"
+                  d="M0 0h24v24H0z"
                   fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path
-                    d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
-                    stroke-width="0"
-                    fill="currentColor"></path>
-                </svg>
-              </td>
-            </tr>
-            <tr>
-              <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left"
-              >
-                Pay yearly
-              </th>
-              <td class="px-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="size-5 mx-auto text-blue-500 icon icon-tabler icon-tabler-circle-check-filled"
-                  viewBox="0 0 24 24"
-                  stroke-width="1"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path
-                    d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
-                    stroke-width="0"
-                    fill="currentColor"></path>
-                </svg>
-              </td>
-              <td class="px-2 border-x border-blue-500">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="size-5 mx-auto text-blue-500 icon icon-tabler icon-tabler-circle-check-filled"
-                  viewBox="0 0 24 24"
-                  stroke-width="1"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path
-                    d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
-                    stroke-width="0"
-                    fill="currentColor"></path>
-                </svg>
-              </td>
-            </tr>
-            <tr>
-              <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left"
-              >
-                Pay by credit card
-              </th>
-              <td class="px-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="size-5 mx-auto text-blue-500 icon icon-tabler icon-tabler-circle-check-filled"
-                  viewBox="0 0 24 24"
-                  stroke-width="1"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path
-                    d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
-                    stroke-width="0"
-                    fill="currentColor"></path>
-                </svg>
-              </td>
-              <td class="px-2 border-x border-blue-500">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="size-5 mx-auto text-blue-500 icon icon-tabler icon-tabler-circle-check-filled"
-                  viewBox="0 0 24 24"
-                  stroke-width="1"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path
-                    d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
-                    stroke-width="0"
-                    fill="currentColor"></path>
-                </svg>
-              </td>
-            </tr>
-            <tr>
-              <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left"
-              >
-                Pay by bank transfer
-              </th>
-              <td class="px-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="size-5 mx-auto text-blue-500 icon icon-tabler icon-tabler-circle-check-filled"
-                  viewBox="0 0 24 24"
-                  stroke-width="1"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path
-                    d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
-                    stroke-width="0"
-                    fill="currentColor"></path>
-                </svg>
-              </td>
-              <td class="px-2 border-x border-blue-500 border-b">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="size-5 mx-auto text-blue-500 icon icon-tabler icon-tabler-circle-check-filled"
-                  viewBox="0 0 24 24"
-                  stroke-width="1"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path
-                    d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
-                    stroke-width="0"
-                    fill="currentColor"></path>
-                </svg>
-              </td>
-            </tr>
-          </tbody>
-        </thead>
-      </table>
+                ></path>
+                <path
+                  d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
+                  stroke-width="0"
+                  fill="currentColor"
+                ></path>
+              </svg>
+              <span>Integrations </span>
+            </li>
+          </ul>
+        </div>
+        <div class="w-full mt-8">
+          <a
+            aria-describedby="#_"
+            class="flex items-center justify-center gap-2 h-10 px-4 py-2 text-sm font-semibold text-gray-500 transition-all duration-200 bg-gray-50 border border-gray-300 rounded-lg hover:text-blue-700 focus:ring-2 shadow shadow-gray-500/5 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none w-full"
+            href="#_"
+            >Get started</a
+          >
+        </div>
+      </div>
     </div>
   </div>
 </section>
