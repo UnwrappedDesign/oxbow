@@ -1,0 +1,57 @@
+<section >
+  <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
+    <dl class="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 text-center">
+      <div
+        x-data="{ count: 0, target: 30, counter() { let interval = setInterval(() => { if (this.count < this.target) { this.count += 1; } else { clearInterval(interval); } }, 50); } }"
+        x-intersect.once="counter()"
+        class="flex flex-col aspect-square p-8 lg:p-12 overflow-hidden rounded-3xl relative bg-gray-50">
+
+        <dt class="mt-4 ">
+          <p
+            class="tracking-tight text-lg font-medium text-gray-900">
+            Working Individuals
+          </p>
+          <p class="text-sm text-gray-500 text-balance mt-2">
+            We’re dedicated to delivering outstanding service and value for
+            everyone.
+          </p>
+        </dt>
+        <dd
+          x-text="`${count}%`"
+          class="order-first text-3xl font-normal font-mono text-blue-500">
+        </dd>
+        <img
+          class="mt-8"
+          src="/images/phone1.png"
+          alt="#_"
+        />
+      </div>
+      <div
+        x-data="{ count: 0, target: 40, counter() { let interval = setInterval(() => { if (this.count < this.target) { this.count += 1; } else { clearInterval(interval); } }, 50); } }"
+        x-intersect.once="counter()"
+        class="flex flex-col aspect-square p-8 lg:p-12 overflow-hidden rounded-3xl relative bg-gray-50">
+
+        <dt class="mt-4 ">
+          <p
+            class="tracking-tight text-lg font-medium text-gray-900">
+            super Low Fee
+          </p>
+          <p class="text-sm text-gray-500 text-balance mt-2">
+            Enjoy significant savings with our extremely low fee structure.
+          </p>
+        </dt>
+        <dd
+          x-text="`${count}%`"
+          class="order-first text-3xl font-normal font-mono text-blue-500">
+        </dd>
+        <img
+          class="mt-8"
+          src="/images/phone2.png"
+          alt="#_"
+        />
+      </div>
+    </dl>
+  </div>
+</section>
+
+

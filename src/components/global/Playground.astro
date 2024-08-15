@@ -17,7 +17,7 @@ const ppcode = loggedIn ? await prettier.format(code, {
                         })
                         : '';
 ---
-<section x-data={`{ tab: 'preview', viewportSize: 'desktop' }`} class="not-prose">
+<section x-data={`{ tab: 'preview', viewportSize: 'desktop' }`} class="not-prose" >
   <div class="relative">
     <div class="pointer-events-none inset-x-0 top-0 z-10 md:left-auto">
       <div class="flex items-center justify-between py-2 gap-1">
@@ -30,7 +30,7 @@ const ppcode = loggedIn ? await prettier.format(code, {
         <div class="flex items-center justify-end w-full">
           <span class="isolate md:inline-flex h-7 gap-1 hidden" x-show="tab === 'preview'">
             <button
-              class="pointer-events-auto relative inline-flex items-center rounded p-1 focus:text-blue-500 text-xs font-semibold text-gray-900 hover:bg-gray-50 "
+              class="pointer-events-auto relative inline-flex items-center rounded p-1 focus:text-accent-500 text-xs font-semibold text-gray-900 hover:bg-gray-50 "
               @click="viewportSize = 'mobile'" :class="viewportSize === 'mobile' ? 'bg-zinc-100' : 'bg-black/0'"
             >
               <svg
@@ -52,7 +52,7 @@ const ppcode = loggedIn ? await prettier.format(code, {
               </svg>
             </button>
             <button
-              class="pointer-events-auto relative  inline-flex items-center rounded  p-1 focus:text-blue-500 text-xs font-semibold text-gray-900 hover:bg-gray-50 "
+              class="pointer-events-auto relative  inline-flex items-center rounded  p-1 focus:text-accent-500 text-xs font-semibold text-gray-900 hover:bg-gray-50 "
               @click="viewportSize = 'tablet'" :class="viewportSize === 'tablet' ? 'bg-zinc-100' : 'bg-black/0'"
             >
               <svg
@@ -73,7 +73,7 @@ const ppcode = loggedIn ? await prettier.format(code, {
               </svg>
             </button>
             <button
-              class="pointer-events-auto relative  inline-flex items-center rounded p-1 focus:text-blue-500 text-xs font-semibold text-gray-900 hover:bg-gray-50 "
+              class="pointer-events-auto relative  inline-flex items-center rounded p-1 focus:text-accent-500 text-xs font-semibold text-gray-900 hover:bg-gray-50 "
               @click="viewportSize = 'desktop'" :class="viewportSize === 'desktop' ? 'bg-zinc-100' : 'bg-black/0 '"
             >
               <svg
@@ -128,15 +128,15 @@ const ppcode = loggedIn ? await prettier.format(code, {
       </div>
     </div>
     <div
-      class="relative min-h-[400] w-full flex border overflow-hidden rounded-lg shadow-whiteOnWhite"
+      class="relative min-h-[400] w-full flex border  ring-4 ring-gray-50 overflow-hidden rounded-lg "
     >
       <div
         x-show="tab === 'preview'"
         class="flex flex-grow w-full justify-center"
       >
         <div
-          class="w-full overflow-auto transition-all duration-500 easy-in-out border-x"
-          :class="{ 'max-w-sm': viewportSize === 'mobile', 'max-w-screen-md': viewportSize === 'tablet','max-w-full': viewportSize === 'desktop' }">
+          class="w-full overflow-auto transition-all duration-500 easy-in-out"
+          :class="{ 'max-w-sm  border-x': viewportSize === 'mobile', 'max-w-screen-md  border-x': viewportSize === 'tablet','max-w-full': viewportSize === 'desktop' }">
           <iframe srcdoc={}  x-intersect.once="$el.src = $el.dataset.src" id={playgroundRef} width="100%" data-src={`/iframe/${componentPath}?iframeId=iframe-${componentIndex}`}/>
         </div>
       </div>
@@ -154,7 +154,7 @@ const ppcode = loggedIn ? await prettier.format(code, {
       <div
         class="absolute inset-y-0 my-auto h-full z-50 right-0 flex items-center"
       >
-        <div class="w-2 bg-blue h-8"></div>
+        <div class="w-2 bg-accent h-8"></div>
       </div>
     </div>
   </div>
