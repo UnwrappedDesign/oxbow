@@ -1,62 +1,87 @@
+---
+const featureTop = [
+  {
+    title: "Easy navigation",
+    description:
+      "Hover over any element to see its Tailwind classes. Press Space to easily pin and edit your settings.",
+    imgSrc: "/images/phone2.png",
+    altText: "Navigation Image",
+  },
+  {
+    title: "Persistence",
+    description:
+      "Spotless will remember all your changes to every element so you can copy all changes at once!",
+    imgSrc: "/images/phone7.png",
+    altText: "Persistence Image",
+  },
+];
+const featuresBottom = [
+  {
+    title: "Easy navigation",
+    description:
+      "Hover over any element to see its Tailwind classes. Press Space to easily pin and edit your settings.",
+
+    imageAlt: "Easy navigation screenshot",
+  },
+  {
+    title: "Persistence",
+    description:
+      "Spotless will remember all your changes to every element so you can copy all changes at once!",
+
+    imageAlt: "Persistence feature screenshot",
+  },
+  {
+    title: "Screenshot tool",
+    description:
+      "Make screenshots of a particular part of the screen to share quickly and easily.",
+
+    imageAlt: "Screenshot tool feature",
+  },
+];
+---
+
 <section>
-  <div class="px-8 py-32 mx-auto md:px-12 lg:px-32 max-w-7xl relative">
-    <div class=" max-w-2xl  lg:flex-auto">
-      <span
-        class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
-        >Your tagline</span
-      >
-      <h1
-        class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 lg:text-5xl lg:text-balance">
-        Transform your visitors into users with an engaging headline
-      </h1>
-      <p class="text-base font-medium mt-4 text-gray-500">
-        The fastest and most efficient method for working together on staging
-        and temporary environments. This approach streamlines collaboration
-        among team members, ensuring that development and testing processes are
-        seamless and effective.
-      </p>
-    </div>
+  <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
+
     <dl
-      class="grid grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-4 md:grid-cols-2 lg:gap-x-8 lg:gap-y-16 mt-12">
-      <div>
-        <dt
-          class="font-mono uppercase tracking-tighter text-sm font-medium text-gray-900">
-          NO GUARANTEE
-        </dt>
-        <dd class="mt-2 text-sm text-gray-500 text-pretty">
-          The recipe is provided "as is" without any guarantees. Bake at your
-          own risk.
-        </dd>
-      </div>
-      <div>
-        <dt
-          class="font-mono uppercase tracking-tighter text-sm font-medium text-gray-900">
-          COMMERCIAL BAKING ALLOWED
-        </dt>
-        <dd class="mt-2 text-sm text-gray-500 text-pretty">
-          You may use the recipe for both home baking and commercial purposes if
-          you want to.
-        </dd>
-      </div>
-      <div>
-        <dt
-          class="font-mono uppercase tracking-tighter text-sm font-medium text-gray-900">
-          Baking Freedom
-        </dt>
-        <dd class="mt-2 text-sm text-gray-500 text-pretty">
-          You can adapt, remix, transform, and build upon the licensed work.
-        </dd>
-      </div>
-      <div>
-        <dt
-          class="font-mono uppercase tracking-tighter text-sm font-medium text-gray-900">
-          Tools for every kitchen
-        </dt>
-        <dd class="mt-2 text-sm text-gray-500 text-pretty">
-          Hear from a range of chefs on how they're using BaaS in radically
-          different ways.
-        </dd>
-      </div>
+      class="grid grid-cols-1 gap-2  text-center sm:grid-cols-2">
+      {
+        featureTop.map((feature, index) => (
+          <div class="h-full bg-gray-50 rounded-3xl shadow overflow-hidden flex flex-col justify-between">
+            <div class="p-8 pb-0 md:text-center">
+              <div>
+                <dt class="tracking-tight text-lg font-medium text-gray-900">
+                  {feature.title}
+                </dt>
+                <dd class="mt-2 text-sm text-gray-500 lg:text-balance">
+                  {feature.description}
+                </dd>
+              </div>
+            </div>
+            <div class="p-8 -mb-96">
+              <img
+                src={feature.imgSrc}
+                alt={feature.altText}
+              />
+            </div>
+          </div>
+        ))
+      }
+    </dl>
+    <dl
+      class="grid md:grid-cols-2 text-center gap-x-6 gap-y-12 mt-12 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16">
+      {
+        featuresBottom.map((feature) => (
+          <div class="mt-6">
+            <dt class="tracking-tight text-lg font-medium text-gray-900">
+              {feature.title}
+            </dt>
+            <dd class="mt-2 text-sm text-gray-500 lg:text-balance">
+              {feature.description}
+            </dd>
+          </div>
+        ))
+      }
     </dl>
   </div>
 </section>

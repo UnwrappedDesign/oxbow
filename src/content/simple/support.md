@@ -11,5 +11,5 @@ However, Windstatic users can join our private Discord community to ask question
 
 ### Contact
 - [Email](mailto:michael@andreuzza.com)
-- [Twitter](https://twitter.com/andreuzza)
+- [Twitter](https://twitter.com/mike_andreuzza)
 
