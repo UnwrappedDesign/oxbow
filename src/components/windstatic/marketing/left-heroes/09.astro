@@ -1,43 +1,80 @@
----
-const features = [
-  {
-    title: "Real-time financial analytics",
-    description:
-      "This feature can include customizable charts, graphs, and financial dashboards that help users monitor their investments and expenses.",
-  },
-  {
-    title: "Secure digital wallet",
-    description:
-      "Offer a secure and user-friendly digital wallet where users can manage their digital assets, cryptocurrencies, and traditional currencies.",
-  },
-  {
-    title: "Personalized financial advice",
-    description:
-      "Implement a feature that offers personalized financial advice and investment recommendations based on the user's goals.",
-  },
-];
----
-
 <section>
-  <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
-    <div class=" max-w-3xl  lg:flex-auto">
-      <span class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase">Tagline</span>
+  <div
+    class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative flex flex-col gap-24 lg:gap-12">
+    <dl class="grid md:grid-cols-2 gap-8 lg:grid-cols-3">
+      <div
+        x-data="{ count: 0, target: 80, counter() { let interval = setInterval(() => { if (this.count < this.target) { this.count += 1; } else { clearInterval(interval); } }, 50); } }"
+        x-intersect.once="counter()"
+        class="flex justify-between rounded-3xl bg-gray-50 flex-col lg:gap-12 lg:rotate-6 hover:rotate-0 duration-300">
+        <span
+          x-text="`${count}%`"
+          class="text-5xl font-normal font-mono text-blue-600 p-8 order-last border-t w-full">
+        </span>
+        <div class="sm:shrink lg:flex-none p-8">
+          <p class="tracking-tight text-lg font-medium text-gray-900">
+            Working Individuals
+          </p>
+          <p class="mt-2 text-sm text-gray-500 text-pretty">
+            We’re dedicated to delivering outstanding service and value.
+          </p>
+        </div>
+      </div>
+      <div
+        x-data="{ count: 0, target: 50, counter() { let interval = setInterval(() => { if (this.count < this.target) { this.count += 1; } else { clearInterval(interval); } }, 50); } }"
+        x-intersect.once="counter()"
+        class="flex justify-between rounded-3xl bg-blue-600 flex-col lg:gap-28 lg:-rotate-12 hover:rotate-0 duration-300">
+        <span
+          x-text="`${count}B`"
+          class="text-5xl font-normal font-mono text-white p-8 order-last border-t w-full border-white/20">
+        </span>
+        <div class="sm:shrink lg:flex-none p-8">
+          <p class="tracking-tight text-lg font-medium text-white">
+            Massive Earnings
+          </p>
+          <p class="text-sm text-gray-200 text-pretty mt-2">
+            Reap the benefits with substantial returns .
+          </p>
+        </div>
+      </div>
+      <div
+        x-data="{ count: 0, target: 40, counter() { let interval = setInterval(() => { if (this.count < this.target) { this.count += 1; } else { clearInterval(interval); } }, 50); } }"
+        x-intersect.once="counter()"
+        class="flex justify-between rounded-3xl bg-blue-950 flex-col lg:gap-44 lg:rotate-6 hover:rotate-0 duration-300">
+        <span
+          x-text="`${count}M`"
+          class="text-5xl font-normal font-mono text-white p-8 order-last border-t border-white/20 w-full">
+        </span>
+        <div class="sm:shrink lg:flex-none p-8">
+          <p class="tracking-tight text-lg font-medium text-white">
+            Super low fee
+          </p>
+          <p class="text-sm text-gray-200 text-pretty mt-2">
+            Enjoy significant savings with our extremely low fee structure.
+          </p>
+        </div>
+      </div>
+    </dl>
+    <div class="order-first lg:order-last">
+      <span
+        class="text-blue-600 uppercase font-mono font-medium tracking-tight text-xs">
+        Tagline
+      </span>
       <h1
-        class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 lg:text-balance">
-        Transform your visitors into users with an engaging headline
+        class="text-3xl mt-8 sm:text-5xl tracking-tight font-semibold lg:text-5xl text-gray-900 lg:text-balance">
+        Ensure each visitor's experience is impactful, turning casual
+        interactions into meaningful connections that drive engagement and
+        loyalty.
       </h1>
-      <p class="text-base font-medium mt-4 text-gray-500">
-        The fastest and most efficient method for working together on staging
-        and temporary environments. This approach streamlines collaboration
-        among team members, ensuring that development and testing processes are
-        seamless and effective.
-      </p>
-      <div class="mt-12 flex">
-        <a
-          href="#_"
-          aria-label="Action"
-          class="text-blue-500 hover:text-gray-900 text-sm font-medium duration-300 flex items-center gap-2"
-          >Get started
+      <div class="flex flex-wrap items-center gap-2 mt-12">
+        <button
+          class="flex items-center justify-center h-10 px-4 py-2 text-sm font-semibold text-white transition-all duration-200 rounded-lg bg-gradient-to-b from-blue-500 to-indigo-600 hover:to-indigo-800 shadow focus:ring-2 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none"
+          aria-label="Action">
+          Get started
+        </button>
+        <button
+          class="flex items-center justify-center gap-2 h-10 px-4 py-2 text-sm font-semibold text-gray-500 transition-all bg-gray-50 border border-gray-300 rounded-lg hover:text-blue-700 focus:ring-2 shadow shadow-gray-500/5 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none duration-300"
+          aria-label="Action">
+          Learn more
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="18"
@@ -55,20 +92,8 @@ const features = [
               fill="none"
             ></path><path d="M9 6l6 6l-6 6"></path></svg
           >
-        </a>
+        </button>
       </div>
     </div>
-    <dl class="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-3 mt-8">
-      {
-        features.map((feature, index) => (
-          <div>
-            <dt class="text-gray-900 font-medium text-sm font-mono uppercase">
-              {feature.title}
-            </dt>
-            <dd class="mt-2 text-sm text-gray-500">{feature.description}</dd>
-          </div>
-        ))
-      }
-    </dl>
   </div>
 </section>
