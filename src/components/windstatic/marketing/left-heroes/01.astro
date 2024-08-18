@@ -1,3 +1,68 @@
+---
+const logos = [
+  {
+    src: "/brands/1.svg",
+    width: 158,
+    height: 48,
+    colSpan: "col-span-2 lg:col-span-1",
+  },
+  {
+    src: "/brands/2.svg",
+    width: 158,
+    height: 48,
+    colSpan: "col-span-2 lg:col-span-1",
+  },
+  {
+    src: "/brands/3.svg",
+    width: 158,
+    height: 48,
+    colSpan: "col-span-2 lg:col-span-1",
+  },
+  {
+    src: "/brands/4.svg",
+    width: 158,
+    height: 48,
+    colSpan: "col-span-2 sm:col-start-2 lg:col-span-1",
+  },
+  {
+    src: "/brands/5.svg",
+    width: 158,
+    height: 48,
+    colSpan: "col-span-2 col-start-2 sm:col-start-auto lg:col-span-1",
+  },
+  {
+    src: "/brands/6.svg",
+    width: 158,
+    height: 48,
+    colSpan: "col-span-2 lg:col-span-1",
+  },
+  {
+    src: "/brands/7.svg",
+    width: 158,
+    height: 48,
+    colSpan: "col-span-2 lg:col-span-1",
+  },
+  {
+    src: "/brands/9.svg",
+    width: 158,
+    height: 48,
+    colSpan: "col-span-2 lg:col-span-1",
+  },
+  {
+    src: "/brands/8.svg",
+    width: 158,
+    height: 48,
+    colSpan: "col-span-2 sm:col-start-2 lg:col-span-1",
+  },
+  {
+    src: "/brands/10.svg",
+    width: 158,
+    height: 48,
+    colSpan: "col-span-2 col-start-2 sm:col-start-auto lg:col-span-1",
+  },
+];
+---
+
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
@@ -51,6 +116,20 @@
           alt="#_"
         />
       </div>
+    </div>
+    <div
+      class="mx-auto grid mt-10 grid-cols-4 items-center gap-x-8 gap-y-10 sm:grid-cols-6 sm:gap-x-10 lg:-mx-6 lg:grid-cols-5">
+      {
+        logos.map((logo) => (
+          <img
+            class={`${logo.colSpan} max-h-12 w-full object-contain `}
+            src={logo.src}
+            alt="#_"
+            width={logo.width}
+            height={logo.height}
+          />
+        ))
+      }
     </div>
   </div>
 </section>
