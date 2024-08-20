@@ -25,7 +25,7 @@ const articles = [
   {
     image:
       "https://images.unsplash.com/photo-1587301669187-732ea66e7617?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    title: "The future of CSS: new features to watch",
+    title: "The future of CSS: new features",
     description:
       "Explore the latest features and updates in CSS that are shaping the future of web design and development.",
     author: "Johannes Svensson",
@@ -38,24 +38,26 @@ const articles = [
 
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
-    <div class="text-center">
+    <div class="max-w-xl text-center mx-auto lg:text-balance">
       <span
         class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
-        >Blog</span
+        >Tagline</span
       >
       <h1
-        class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 lg:text-balance"
-      >
-        From our blog
+        class="text-4xl mt-4 font-semibold tracking-tight lg:text-7xl text-gray-900 sm:text-balance">
+        From Our Blog
       </h1>
       <p class="mt-6 text-base font-medium text-gray-500">
-        Exploring topics, tips, and trends in the world of communication and
-        privacy
+        Dive into our latest articles and stay updated with fresh perspectives
+        and expert advice.
       </p>
       <form
-        class="w-full p-2 mt-12 rounded-xl sm:flex mx-auto sm:max-w-md bg-white ring-1 ring-gray-200 shadow"
-      >
-        <label for="email-address" class="sr-only">Email address</label>
+        class="w-full p-2 mx-auto mt-12 rounded-xl sm:flex sm:max-w-md bg-white ring-1 ring-gray-200 shadow">
+        <label
+          for="email-address"
+          class="sr-only"
+          >Email address</label
+        >
         <input
           id="email-address"
           type="email"
@@ -77,15 +79,17 @@ const articles = [
       <p class="text-xs mt-3 text-gray-500">
         When you sign up, you accept our <a
           class="text-blue-600 hover:text-gray-900"
-          href="#_">Terms of Service</a
-        > and <a class="text-blue-600 hover:text-gray-900" href="#_"
+          href="#_"
+          >Terms of Service</a
+        > and <a
+          class="text-blue-600 hover:text-gray-900"
+          href="#_"
           >Privacy Policy</a
         >.
       </p>
     </div>
     <div
-      class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-32 relative"
-    >
+      class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-32 relative">
       {
         articles.map((article) => (
           <article class="relative isolate flex flex-col gap-8 ">
@@ -98,7 +102,7 @@ const articles = [
             </div>
             <div class="flex flex-col justify-between">
               <div>
-                <h3 class="font-mono  uppercase tracking-tighter text-lg font-medium text-gray-900 pt-8 lg:pt-0">
+                <h3 class="tracking-tight text-xl font-medium  text-gray-900 pt-8 lg:pt-0">
                   <a href={article.link}>
                     <span class="absolute inset-0" />
                     {article.title}
