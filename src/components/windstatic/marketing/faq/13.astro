@@ -8,13 +8,13 @@ const faq1 = [
   {
     question: "Can I access my encrypted data if I forget my encryption key?",
     answer:
-      "No, forgetting or losing your encryption key means that your encrypted data cannot be accessed.       ",
+      "No, forgetting or losing your encryption key means that your encrypted data cannot be accessed. This is a crucial security measure to ensure that even if someone gains unauthorized access to your account, they won't be able to decrypt and view your messages or files.",
   },
   {
     question:
       "Are there any limitations to the self-destructing messages feature?",
     answer:
-      "Self-destructing messages are designed to automatically delete themselves after a specific period or upon being read by the recipient.          ",
+      "Self-destructing messages are designed to automatically delete themselves after a specific period or upon being read by the recipient. However, it's important to note that the feature only removes the message from the devices involved in the conversation. Recipients may take screenshots or use other means to capture the content, which is beyond the platform's control.",
   },
 ];
 const faq2 = [
@@ -52,11 +52,12 @@ const faq3 = [
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div>
       <span
-        class="tracking-tight text-lg font-medium  text-gray-900"
+        class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
         >faq</span
       >
       <h1
-        class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 lg:text-balance">
+        class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 lg:text-balance"
+      >
         Frequently Asked Questions
       </h1>
       <p class="mt-6 text-base font-medium text-gray-500">
@@ -67,15 +68,17 @@ const faq3 = [
     <div class="justify-start w-full lg:col-span-2 mt-12">
       <div
         x-data="{ tab: 'tab1' }"
-        class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-        <ul class="flex flex-col  text-sm text-black">
+        class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+      >
+        <ul class="flex flex-col gap-4 lg:gap-8 text-sm text-black">
           <li class="-mb-px">
             <!-- event handler set state to 'tab1' and add conditional :class for active state -->
             <a
               @click.prevent="tab = 'tab1'"
               href="#_"
-              class="inline-flex pl-4 py-2 tracking-tight border-l text-lg font-medium text-gray-900 w-full h-12 items-center"
-              :class="{ '  text-blue-500  border-l-2 border-blue-500' : tab === 'tab1' }">
+              class="inline-flex rounded-lg px-4 py-2 text-sm font-semibold text-gray-500 w-full h-12 items-center"
+              :class="{ '  text-blue-500  bg-gray-50 shadow' : tab === 'tab1' }"
+            >
               General questions</a
             >
           </li>
@@ -83,8 +86,9 @@ const faq3 = [
             <a
               @click.prevent="tab = 'tab2'"
               href="#_"
-              class="inline-flex pl-4 py-2 tracking-tight border-l text-lg font-medium text-gray-900 w-full h-12 items-center"
-              :class="{ ' text-blue-500  border-l-2 border-blue-500' : tab === 'tab2' }">
+              class="inline-flex rounded-lg px-4 py-2 text-sm font-semibold text-gray-500 w-full h-12 items-center"
+              :class="{ ' text-blue-500  bg-gray-50 shadow' : tab === 'tab2' }"
+            >
               Support team</a
             >
           </li>
@@ -92,48 +96,25 @@ const faq3 = [
             <a
               @click.prevent="tab = 'tab3'"
               href="#_"
-              class="inline-flex pl-4 py-2 tracking-tight border-l text-lg font-medium text-gray-900 w-full h-12 items-center"
-              :class="{ ' text-blue-500  border-l-2 border-blue-500' : tab === 'tab3' }">
+              class="inline-flex rounded-lg px-4 py-2 text-sm font-semibold text-gray-500 w-full h-12 items-center"
+              :class="{ ' text-blue-500  bg-gray-50 shadow' : tab === 'tab3' }"
+            >
               License</a
             >
           </li>
         </ul>
-        <div class="text-left conten lg:col-span-2">
+        <div class="text-left bg-white conten lg:col-span-2">
           <!-- Tab 1 content -->
-          <div
-            x-show="tab==='tab1'"
-            class="text-gray-500">
-            <div class="lg:col-span-2 divide-y">
+          <div x-show="tab==='tab1'" class="text-gray-500">
+            <div class="space-y-8 lg:col-span-2">
               {
-                faq1.map((faq, index) => (
-                  <details class="group cursor-pointer py-4">
-                    <summary
-                      class="flex items-center justify-between w-full   text-left select-none tracking-tight text-lg font-medium text-gray-900 hover:text-blue-500
-                    focus:text-blue-500">
-                      <div class="flex items-center gap-4">
-                        <span class="size-6 text-xs shrink-0  rounded-full flex items-center justify-center  bg-gradient-to-b from-blue-500 to-indigo-600 text-white">
-                          {index + 1}
-                        </span>
-                        {faq.question}
-                      </div>
-                      <svg
-                        class="size-5 duration-300 ease-out  transform group-open:-rotate-45"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor">
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M12 6v12m6-6H6"
-                        />
-                      </svg>
-                    </summary>
-                    <div class="py-4 pt-2 pl-10 text-base text-gray-500">
-                      {faq.answer}
+                faq1.map((faq) => (
+                  <div>
+                    <div class="  text-left select-none text-gray-900 ">
+                      {faq.question}
                     </div>
-                  </details>
+                    <div class="mt-2 text-sm text-gray-500">{faq.answer}</div>
+                  </div>
                 ))
               }
             </div>
@@ -142,38 +123,17 @@ const faq3 = [
           <div
             x-show="tab==='tab2'"
             class="text-gray-500"
-            style="display: none;">
-            <div class="lg:col-span-2 divide-y">
+            style="display: none;"
+          >
+            <div class="space-y-8 lg:col-span-2">
               {
-                faq2.map((faq, index) => (
-                  <details class="group cursor-pointer py-4">
-                    <summary
-                      class="flex items-center justify-between w-full   text-left select-none tracking-tight text-lg font-medium text-gray-900 hover:text-blue-500
-                    focus:text-blue-500">
-                      <div class="flex items-center gap-4">
-                        <span class="size-6 text-xs shrink-0  rounded-full flex items-center justify-center  bg-gradient-to-b from-blue-500 to-indigo-600 text-white">
-                          {index + 1}
-                        </span>
-                        {faq.question}
-                      </div>
-                      <svg
-                        class="size-5 duration-300 ease-out  transform group-open:-rotate-45"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor">
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M12 6v12m6-6H6"
-                        />
-                      </svg>
-                    </summary>
-                    <div class="py-4 pt-2 pl-10 text-base text-gray-500">
-                      {faq.answer}
+                faq2.map((faq) => (
+                  <div>
+                    <div class="  text-left select-none text-gray-900 ">
+                      {faq.question}
                     </div>
-                  </details>
+                    <div class="mt-2 text-sm text-gray-500">{faq.answer}</div>
+                  </div>
                 ))
               }
             </div>
@@ -182,38 +142,17 @@ const faq3 = [
           <div
             x-show="tab==='tab3'"
             class="text-gray-500"
-            style="display: none;">
-            <div class="lg:col-span-2 divide-y">
+            style="display: none;"
+          >
+            <div class="space-y-8 lg:col-span-2">
               {
-                faq3.map((faq, index) => (
-                  <details class="group cursor-pointer py-4">
-                    <summary
-                      class="flex items-center justify-between w-full   text-left select-none tracking-tight text-lg font-medium text-gray-900 hover:text-blue-500
-                    focus:text-blue-500">
-                      <div class="flex items-center gap-4">
-                        <span class="size-6 text-xs shrink-0  rounded-full flex items-center justify-center  bg-gradient-to-b from-blue-500 to-indigo-600 text-white">
-                          {index + 1}
-                        </span>
-                        {faq.question}
-                      </div>
-                      <svg
-                        class="size-5 duration-300 ease-out  transform group-open:-rotate-45"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor">
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M12 6v12m6-6H6"
-                        />
-                      </svg>
-                    </summary>
-                    <div class="py-4 pt-2 pl-10 text-base text-gray-500">
-                      {faq.answer}
+                faq3.map((faq) => (
+                  <div>
+                    <div class="  text-left select-none text-gray-900 ">
+                      {faq.question}
                     </div>
-                  </details>
+                    <div class="mt-2 text-sm text-gray-500">{faq.answer}</div>
+                  </div>
                 ))
               }
             </div>

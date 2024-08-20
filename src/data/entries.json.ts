@@ -24,15 +24,15 @@ const rightheroes: Template = {
   link: "/playground/marketing/right-heroes",
   image: "rightHeroes.png",
 };
-const staticFeatures: Template = {
-  name: "Static Features",
-  link: "/playground/marketing/static-features",
-  image: "staticFeatures.png",
+const features: Template = {
+  name: "Features",
+  link: "/playground/marketing/features",
+  image: "features.png",
 };
-const interactiveFeatures: Template = {
-  name: "Interactive Features",
-  link: "/playground/marketing/interactive-features",
-  image: "interactiveFeatures.png",
+const grids: Template = {
+  name: "Grids",
+  link: "/playground/marketing/grids",
+  image: "grids.png",
 };
 const pricing: Template = {
   name: "Pricing",
@@ -64,6 +64,11 @@ const testimonials: Template = {
   link: "/playground/marketing/testimonials",
   image: "testimonials.png",
 };
+const gallery: Template = {
+  name: "Galleries",
+  link: "/playground/marketing/gallery",
+  image: "gallery.png",
+};
 const logoclouds: Template = {
   name: "Logo Clouds",
   link: "/playground/marketing/logo-clouds",
@@ -93,16 +98,6 @@ const newsletter: Template = {
   name: "Newsletter",
   link: "/playground/marketing/newsletter",
   image: "newsletter.png",
-};
-const staticGallery: Template = {
-  name: "Static Galleries",
-  link: "/playground/marketing/static-gallery",
-  image: "staticGallery.png",
-};
-const interactiveGallery: Template = {
-  name: "Interactive Galleries",
-  link: "/playground/marketing/interactive-gallery",
-  image: "interactiveGallery.png",
 };
 // Application
 //
@@ -255,22 +250,21 @@ export const pageSections: Template[] = [
   leftheroes,
   centeredheroes,
   rightheroes,
-  staticFeatures,
-  interactiveFeatures,
+  features,
+  grids,
   pricing,
   faq,
   team,
   blogEntries,
   blogContent,
   testimonials,
+  gallery,
   logoclouds,
   stats,
   footers,
   status,
   contact,
   newsletter,
-  staticGallery,
-  interactiveGallery,
 ];
 export const elements: Template[] = [
   banners,
@@ -319,22 +313,21 @@ export const byName = {
   leftheroes,
   centeredheroes,
   rightheroes,
-  staticFeatures,
-  interactiveFeatures,
+  features,
+  grids,
   pricing,
   faq,
   team,
   blogEntries,
   blogContent,
   testimonials,
+  gallery,
   logoclouds,
   stats,
   footers,
   status,
   contact,
   newsletter,
-  staticGallery,
-  interactiveGallery,
   // Elements
   banners,
   buttons,

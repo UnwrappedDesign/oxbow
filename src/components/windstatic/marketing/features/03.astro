@@ -1,0 +1,68 @@
+---
+const features = [
+  {
+    title: "Easy navigation",
+    description:
+      "Hover over any element to see its Tailwind classes. Press Space to easily pin and edit your settings.",
+    imageSrc: "/images/phone1.png",
+    imageAlt: "Easy navigation screenshot",
+  },
+  {
+    title: "Persistence",
+    description:
+      "Spotless will remember all your changes to every element so you can copy all changes at once!",
+    imageSrc: "/images/phone2.png",
+    imageAlt: "Persistence feature screenshot",
+  },
+  {
+    title: "Screenshot tool",
+    description:
+      "Make screenshots of a particular part of the screen to share quickly and easily.",
+    imageSrc: "/images/phone3.png",
+    imageAlt: "Screenshot tool feature",
+  },
+];
+---
+
+<section>
+  <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
+    <div
+      class="grid grid-cols-1 gap-12 md:grid-cols-3 md:items-center p-8 bg-gray-50 rounded-3xl">
+      <div class="lg:col-span-2 text-center lg:text-left">
+        <h1
+          class="text-4xl font-semibold tracking-tight text-gray-900 lg:text-balance">
+          Transform your visitors into users with an engaging headline
+        </h1>
+      </div>
+      <p class="text-base font-medium text-gray-500">
+        The fastest and most efficient method for working together on staging
+        and temporary environments.
+      </p>
+    </div>
+    <dl
+      class="grid text-center gap-x-4 gap-y-12 mt-12 lg:mt-4 lg:grid-cols-3 lg:gap-x-4 lg:gap-y-16">
+      {
+        features.map((feature, index) => (
+          <div class="p-8 rounded-3xl bg-gray-50 ">
+            <span class=" size-12 rounded-full flex items-center justify-center   mx-auto  bg-gradient-to-b from-blue-500 to-indigo-600 text-white ">
+              {index + 1}
+            </span>
+            <div class="mt-6">
+              <dt class="tracking-tight text-lg font-medium text-gray-900">
+                {feature.title}
+              </dt>
+              <dd class="mt-2 text-sm text-gray-500 lg:text-balance">
+                {feature.description}
+              </dd>
+            </div>
+            <img
+              class="mt-8"
+              src={feature.imageSrc}
+              alt={feature.imageAlt}
+            />
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
