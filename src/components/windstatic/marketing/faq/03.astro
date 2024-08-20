@@ -3,77 +3,92 @@ const faqs = [
   {
     question: "How does end-to-end encryption work?",
     answer:
-      "End-to-end encryption ensures that only the sender and recipient can access the content of a message.    ",
+      "End-to-end encryption ensures that only the sender and recipient can access the content of a message. The information is encrypted on the sender's device and can only be decrypted by the intended recipient, preventing any intermediaries, including the platform provider, from accessing the data.",
   },
   {
-    question: "Can I access my encrypted data?",
+    question: "Can I access my encrypted data if I forget my encryption key?",
     answer:
-      "No, forgetting or losing your encryption key means that your encrypted data cannot be accessed.       ",
+      "No, forgetting or losing your encryption key means that your encrypted data cannot be accessed. This is a crucial security measure to ensure that even if someone gains unauthorized access to your account, they won't be able to decrypt and view your messages or files.",
   },
   {
-    question: "Are there any limitations ?",
+    question:
+      "Are there any limitations to the self-destructing messages feature?",
     answer:
-      "Self-destructing messages are designed to automatically delete themselves after a specific period or upon being read by the recipient.          ",
+      "Self-destructing messages are designed to automatically delete themselves after a specific period or upon being read by the recipient. However, it's important to note that the feature only removes the message from the devices involved in the conversation. Recipients may take screenshots or use other means to capture the content, which is beyond the platform's control.",
+  },
+  {
+    question:
+      "What happens if I enable two-factor authentication and lose my device?",
+    answer:
+      "Losing your device doesn't automatically compromise your account's security. It's recommended to contact our support team as soon as possible to disable the two-factor authentication on your lost device and set up the authentication on your new device. This process will help protect your account from unauthorized access while ensuring you can regain access to it.",
+  },
+  {
+    question: "Is my personal information shared or sold to third parties?",
+    answer:
+      "No, we strictly adhere to a privacy-centric approach. Your personal information is never shared, sold, or monetized. We prioritize your privacy and ensure that your data remains confidential and only accessible to you.",
+  },
+  {
+    question: "Can I use this platform on multiple devices?",
+    answer:
+      "Yes, you can access our platform on multiple devices. Your encrypted data remains synced across all devices, allowing you to seamlessly communicate and access your files and messages from anywhere.",
+  },
+  {
+    question: "Are there any storage limitations for files and documents?",
+    answer:
+      "Our platform provides ample storage space for your files and documents. However, there may be storage limitations based on the pricing plan you choose. We offer flexible plans to suit your needs and provide options to upgrade if you require additional storage capacity.",
+  },
+  {
+    question: "Is it possible to export my data from the platform?",
+    answer:
+      "Yes, you can export your data from the platform. We offer export features that allow you to download your messages, files, and documents, ensuring you have a local copy for backup or migration purposes. It provides you with greater control and flexibility over your data.",
   },
 ];
 ---
 
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
- <div class="max-w-md mx-auto">
-      <div>
-        <span
-          class="tracking-tight text-lg font-medium  text-gray-900"
-          >faq</span
-        >
-        <h1
-          class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 lg:text-balance">
-          Frequently Asked Questions
-        </h1>
-        <p class="mt-6 text-base font-medium text-gray-500">
-          Everything you need to know about our platform.
-        </p>
-      </div>
-      <div
-        class="flex flex-col gap-12 mt-12">
-        {
-          faqs.map((faq) => (
-            <div>
-              <p class="tracking-tight text-lg font-medium  text-gray-900">
-                {faq.question}
-              </p>
-              <p class="mt-2 text-sm text-gray-500 text-pretty line-clamp-3">
-                {faq.answer}
-              </p>
-              <div class="flex mt-8">
-                <button
-                  class="text-blue-600 flex items-center gap-3 hover:text-gray-900 transition-all duration-200 text-sm"
-                  aria-label="Action">
-                  Learn more
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right">
-                    <path
-                      stroke="none"
-                      d="M0 0h24v24H0z"
-                      fill="none"
-                    />
-                    <path d="M9 6l6 6l-6 6" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          ))
-        }
-      </div>
- </div>
+    <div>
+      <span
+        class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+        >faq</span
+      >
+      <h1
+        class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 lg:text-balance"
+      >
+        Frequently Asked Questions
+      </h1>
+      <p class="mt-6 text-base font-medium text-gray-500">
+        Everything you need to know about our platform.
+      </p>
+    </div>
+    <div class="mt-12 divide-y border overflow-hidden rounded-xl">
+      {
+        faqs.map((faq) => (
+          <details class="group cursor-pointer">
+            <summary
+              class="flex items-center justify-between w-full p-4  text-left select-none text-gray-900 hover:text-blue-500
+              focus:text-blue-500 focus:bg-gray-50 "
+            >
+              {faq.question}
+              <svg
+                class="size-5 duration-300 ease-out  transform group-open:-rotate-45"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 6v12m6-6H6"
+                />
+              </svg>
+            </summary>
+            <div class="p-4 border-t  text-sm text-gray-500">{faq.answer}</div>
+          </details>
+        ))
+      }
+    </div>
   </div>
 </section>

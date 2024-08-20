@@ -9,12 +9,12 @@ page: Pricing
 
 # Get everything forever
 
+
 Gain lifetime access to over 500 components and all current templates, as well as any new content we future release, for a single one-time fee.
 
 ---
 
-## Individual — **<span class="opacity-60">~~$149~~</span> $89 one-time payment + local taxes**
-
+## Individual  — **<span class="opacity-60">~~$149~~</span> $89 one-time payment + local taxes**
 For individuals working on their projects or freelancers.
 
 When you purchase an all-access license, you unlock everything: every component example and all future additions to Windstatic Pro.
@@ -25,17 +25,21 @@ When you purchase an all-access license, you unlock everything: every component 
 - **Free updates** — Regular updates with new components and templates.
 - **No recurring subscriptions or update fees** — Pay once and gain permanent access to all our premium Tailwind CSS resources.
 
-## <a href="/api/buy/individual" type="submit" class="inline-flex items-center justify-between w-full gap-4 px-4 py-3 h-10 text-sm font-medium text-white duration-300 transition rounded-lg bg-accent-600 group active:text-blue-900 active:transition-none outline-offset-2 hover:bg-accent-100 hover:text-blue-700  ring-4 ring-blue-50 not-prose " aria-label="Get your link"> Get all access for <span><span class="opacity-60">~~$149~~</span> $89</span></a>
+
+<a href="/api/buy/individual" type="submit" class="inline-flex items-center justify-between w-full gap-4 px-4 py-3 h-10 text-sm font-medium text-white transition rounded-lg bg-accent-600 group active:text-blue-900 active:transition-none outline-offset-2 hover:bg-accent-100 hover:text-blue-700  ring-4 ring-blue-50 not-prose " aria-label="Get your link"> Get all access for <span><span class="opacity-60">~~$149~~</span> $89</span></a>
+---
 
 ---
 
-## Teams — **<span class="opacity-60">~~$299~~</span> $149 one-time payment + local taxes**
 
+
+## Teams  — **<span class="opacity-60">~~$299~~</span> $149 one-time payment + local taxes**
 For startup teams and agencies
 
-- **Same as individual +** get access to all your team. This tier gives you access to up to 25 people.
+- **Same as individual +**  get access to all your team. This tier gives you access to up to 25 people.
 
-<a href="/api/buy/team" type="submit" class="inline-flex items-center justify-between w-full gap-4 px-4 py-3 h-10 text-sm font-medium text-white transition rounded-lg bg-blue-950 group active:text-blue-200 active:transition-none outline-offset-2 hover:bg-blue-900 hover:text-white  ring-4 ring-blue-50 not-prose duration-300" aria-label="Get your link"> Get access for your team for
+
+<a href="/api/buy/team" type="submit" class="inline-flex items-center justify-between w-full gap-4 px-4 py-3 h-10 text-sm font-medium text-black transition rounded-lg bg-gray-100 group active:text-gray-900 active:transition-none outline-offset-2 hover:bg-gray-100 hover:text-gray-700  ring-4 ring-gray-50 not-prose" aria-label="Get your link"> Get access for your team for
 <span><span class="opacity-50">~~$299~~</span> $149</span> </a>
 
 ---
@@ -43,7 +47,6 @@ For startup teams and agencies
 ## What's included
 
 Access over 800+ professionally designed, fully responsive components, expertly crafted and ready to be integrated and customized in your Tailwind projects.
-
 - **Application UI** — Includes buttons, form controls, application layouts, dialogs, and more to enhance your application's user interface.
 - **Marketing** — Offers hero sections, feature segments, newsletter sign-up forms, and more to boost your marketing efforts.
 - **Ecommerce** — Provides checkout forms, shopping carts, product views, and more tailored for ecommerce functionalities.
@@ -53,16 +56,15 @@ Vanilla HTML & Alpine JS — Each component includes a functional example in HTM
 Diverse Selection — Each category offers a plethora of UI patterns, ensuring you can easily discover the ideal foundation for your project, no matter what you're creating.
 
 ---
-
 ## Get started without configuring anything
-
 - **Simple Customization** — Styled with utility classes directly in the markup, making customization effortless. No need to deal with configuration variables or intricate CSS – just open the markup in your editor and modify as needed.
 - **Keyboard Accessibility** — Every element is keyboard accessible, ensuring an optimal experience for users navigating with keyboards or screen readers. Our markup is meticulously crafted to enhance screen reader compatibility.
-- **Production Ready** — The components undergo rigorous testing across the latest browser versions, ensuring seamless performance and reliability. They are designed to handle various edge cases, providing robust solutions for your projects.
+- **Production Ready** — The components  undergo rigorous testing across the latest browser versions, ensuring seamless performance and reliability. They are designed to handle various edge cases, providing robust solutions for your projects.
+
+
 
 ---
-
 ## Lifetime access
-
 - **No subscription required** — After the initial payment, there will be no more charges for all-access licenses.
 - F**ree updates and content** — New templates, components, and versions are included at no extra charge.
+
