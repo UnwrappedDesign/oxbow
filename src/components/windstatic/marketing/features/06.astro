@@ -1,0 +1,74 @@
+---
+const features = [
+  {
+    title: "Innovative Design",
+    description:
+      "Our cutting-edge design offers a fresh, modern look that transforms your project into a standout experience.",
+    imageSrc: "/images/blueCard.svg",
+    imageAlt: "Innovative design image",
+  },
+  {
+    title: "Powerful Functionality",
+    description:
+      "Equipped with advanced features and tools, our solution effortlessly manages complex tasks and workflows.",
+    imageSrc: "/images/darkCard.svg",
+    imageAlt: "Powerful functionality image",
+  },
+  {
+    title: "Easy Integration",
+    description:
+      "Integrating with existing systems is smooth and hassle-free, thanks to our incredible flexible approach.",
+    imageSrc: "/images/whiteCard.svg",
+    imageAlt: "Easy integration image",
+  },
+  {
+    title: "Revolutionizing communication",
+    description:
+      "Unlocking innovative solutions that enhance connectivity and streamline interactions.",
+    imageSrc: "/images/blueCard.svg",
+    imageAlt: "Revolutionizing communication image",
+  },
+
+];
+---
+
+<section>
+  <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
+    <div class="max-w-xl">
+      <span
+        class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+        >Your tagline</span
+      >
+      <h1
+        class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 lg:text-balance">
+        Transform your visitors into users with an engaging headline
+      </h1>
+      <p class="mt-6 text-base font-medium text-gray-500 lg:text-pretty">
+        The fastest method for working together on staging and temporary
+        environments.
+      </p>
+    </div>
+    <dl
+      class="grid sm:grid-cols-2 gap-x-6 gap-y-12 lg:gap-x-8 lg:gap-y-16 mt-12">
+      {
+        features.map((feature, index) => (
+          <div class="flex flex-col h-full justify-between">
+            <div>
+              <dt class="tracking-tight text-lg font-medium text-gray-900">
+                {feature.title}
+              </dt>
+              <dd class="mt-2 text-base text-gray-500 text-balance">
+                {feature.description}
+              </dd>
+            </div>
+            <img
+              class="mt-6 drop-shadow object-center w-full"
+              src={feature.imageSrc}
+              alt={feature.imageAlt}
+            />
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
