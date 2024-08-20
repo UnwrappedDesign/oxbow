@@ -3,24 +3,24 @@ const faqs = [
   {
     question: "How does end-to-end encryption work?",
     answer:
-      "End-to-end encryption ensures that only the sender and recipient can access the content of a message. The information is encrypted on the sender's device and can only be decrypted by the intended recipient, preventing any intermediaries, including the platform provider, from accessing the data.",
+      "End-to-end encryption ensures that only the sender and recipient can access the content of a message.    ",
   },
   {
     question: "Can I access my encrypted data if I forget my encryption key?",
     answer:
-      "No, forgetting or losing your encryption key means that your encrypted data cannot be accessed. This is a crucial security measure to ensure that even if someone gains unauthorized access to your account, they won't be able to decrypt and view your messages or files.",
+      "No, forgetting or losing your encryption key means that your encrypted data cannot be accessed.       ",
   },
   {
     question:
       "Are there any limitations to the self-destructing messages feature?",
     answer:
-      "Self-destructing messages are designed to automatically delete themselves after a specific period or upon being read by the recipient. However, it's important to note that the feature only removes the message from the devices involved in the conversation. Recipients may take screenshots or use other means to capture the content, which is beyond the platform's control.",
+      "Self-destructing messages are designed to automatically delete themselves after a specific period or upon being read by the recipient.          ",
   },
   {
     question:
       "What happens if I enable two-factor authentication and lose my device?",
     answer:
-      "Losing your device doesn't automatically compromise your account's security. It's recommended to contact our support team as soon as possible to disable the two-factor authentication on your lost device and set up the authentication on your new device. This process will help protect your account from unauthorized access while ensuring you can regain access to it.",
+      "Losing your device doesn't automatically compromise your account's security.              ",
   },
   {
     question: "Is my personal information shared or sold to third parties?",
@@ -49,29 +49,31 @@ const faqs = [
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div>
       <span
-        class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+        class="tracking-tight text-lg font-medium  text-gray-900"
         >faq</span
       >
       <h1
-        class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 lg:text-balance"
-      >
+        class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 lg:text-balance">
         Frequently Asked Questions
       </h1>
       <p class="mt-6 text-base font-medium text-gray-500">
         Everything you need to know about our platform.
       </p>
     </div>
-    <div class="mt-12 space-y-8">
+    <dl class="space-y-8 divide-y divide-gray-900/10 mt-12">
       {
         faqs.map((faq) => (
-          <div>
-            <div class="  text-left select-none text-gray-900 ">
+          <div class="pt-8 lg:grid lg:grid-cols-12 lg:gap-12">
+            <dt class="tracking-tight text-lg font-medium  text-gray-900 lg:col-span-5">
               {faq.question}
-            </div>
-            <div class="mt-2 text-sm text-gray-500">{faq.answer}</div>
+            </dt>
+            <dd class="mt-4 lg:col-span-7 lg:mt-0">
+              <p class="ttext-sm text-gray-500">{faq.answer}</p>
+            </dd>
           </div>
         ))
       }
-    </div>
+      <!-- More questions... -->
+    </dl>
   </div>
 </section>
