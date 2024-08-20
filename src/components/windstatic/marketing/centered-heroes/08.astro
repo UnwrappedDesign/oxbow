@@ -1,0 +1,136 @@
+<section>
+  <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
+    <div class="text-center">
+      <span
+        class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+        >Your tagline</span
+      >
+      <h1
+        class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 sm:text-balance"
+      >
+       Transform your visitors into users with an engaging headline
+      </h1>
+    </div>
+    <div class="relative h-full mt-12" x-data="{ open: false }">
+      <img
+        class="object-cover h-full border shadowl rounded-2xl w-full object-center"
+        src="/images/whiteCard.svg"
+        alt="3_"
+      />
+      <div class="absolute bg-blue-200/50 inset-0 rounded-2xl"></div>
+      <button
+        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center size-12 text-sm font-semibold text-blue-500 transition-all duration-200 rounded-full bg-white hover:bg-blue-500 hover:text-white shadow focus:ring-2 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none lg:size-24"
+        @click="open = true"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-player-play"
+          ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+            d="M7 4v16l13 -8z"></path></svg
+        >
+      </button>
+
+      <!-- Modal -->
+      <div
+        class="fixed inset-0 flex items-center justify-center bg-gray-200/70"
+        x-show="open"
+        @keydown.escape.window="open = false"
+        aria-labelledby="modal-title"
+        role="dialog"
+        aria-modal="true"
+        x-cloak
+      >
+        <div
+          class="bg-white rounded-2xl overflow-hidden shadow transform transition-all max-w-3xl w-full"
+          @click.away="open = false"
+        >
+          <div
+            class="border-b bg-gray-50 px-4 py-3 sm:px-6 flex justify-between items-center"
+          >
+            <h2 class="font-medium text-gray-900" id="modal-title">
+              Watch Video
+            </h2>
+            <button
+              @click="open = false"
+              class="text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              aria-label="Close modal"
+            >
+              <span class="sr-only">Close</span>
+              <svg
+                class="size-4"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+          <div class="p-2">
+            <iframe
+              class="w-full rounded-xl shadow-2xl h-96"
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/VIDEO_ID"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <p
+        class="mx-auto mt-6 text-base font-medium text-gray-500 lg:text-balance"
+      >
+        This hero block enables your website to communicate your message and
+        brand identity powerfully and attractively, creating a visually
+        impactful and effective presentation.
+      </p>
+      <div
+        class="flex flex-wrap items-center justify-center gap-2 mx-auto mt-12"
+      >
+        <button
+          class="flex items-center justify-center h-10 px-4 py-2 text-sm font-semibold text-gray-500 transition-all duration-200 bg-gray-50 border border-gray-300 rounded-lg hover:text-blue-700 focus:ring-2 shadow shadow-gray-500/5 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none"
+          aria-label="Action"
+        >
+          Try it for free
+        </button>
+        <button
+          class="flex items-center justify-center gap-2 h-10 px-4 py-2 text-sm font-semibold text-white transition-all duration-200 rounded-lg bg-gradient-to-b from-blue-500 to-indigo-600 hover:to-indigo-800 shadow focus:ring-2 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none"
+          aria-label="Action"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="28"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-download"
+            ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+              d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"></path><path
+              d="M7 11l5 5l5 -5"></path><path d="M12 4l0 12"></path></svg
+          >
+          Download
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
