@@ -3,18 +3,18 @@ const faq1 = [
   {
     question: "How does end-to-end encryption work?",
     answer:
-      "End-to-end encryption ensures that only the sender and recipient can access the content of a message. The information is encrypted on the sender's device and can only be decrypted by the intended recipient, preventing any intermediaries, including the platform provider, from accessing the data.",
+      "End-to-end encryption ensures that only the sender and recipient can access the content of a message.    ",
   },
   {
     question: "Can I access my encrypted data if I forget my encryption key?",
     answer:
-      "No, forgetting or losing your encryption key means that your encrypted data cannot be accessed. This is a crucial security measure to ensure that even if someone gains unauthorized access to your account, they won't be able to decrypt and view your messages or files.",
+      "No, forgetting or losing your encryption key means that your encrypted data cannot be accessed.       ",
   },
   {
     question:
       "Are there any limitations to the self-destructing messages feature?",
     answer:
-      "Self-destructing messages are designed to automatically delete themselves after a specific period or upon being read by the recipient. However, it's important to note that the feature only removes the message from the devices involved in the conversation. Recipients may take screenshots or use other means to capture the content, which is beyond the platform's control.",
+      "Self-destructing messages are designed to automatically delete themselves after a specific period or upon being read by the recipient.          ",
   },
 ];
 const faq2 = [
@@ -58,17 +58,41 @@ const faq3 = [
     <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
       <div>
         <span
-          class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+          class="tracking-tight text-lg font-medium  text-gray-900"
           >faq</span
         >
         <h1
-          class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 lg:text-balance"
-        >
+          class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 lg:text-balance">
           Frequently Asked Questions
         </h1>
         <p class="mt-6 text-base font-medium text-gray-500">
           Everything you need to know about our platform.
         </p>
+        <div class="flex mt-8">
+          <button
+            class="text-blue-600 flex items-center gap-3 hover:text-gray-900 transition-all duration-200 text-sm"
+            aria-label="Action">
+            Learn more
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right">
+              <path
+                stroke="none"
+                d="M0 0h24v24H0z"
+                fill="none"
+              ></path>
+              <path d="M9 6l6 6l-6 6"></path>
+            </svg>
+          </button>
+        </div>
       </div>
 
       <div class="justify-start w-full lg:col-span-2">
@@ -80,43 +104,44 @@ const faq3 = [
                 @click.prevent="tab = 'tab1'"
                 href="#_"
                 class="inline-block py-2 font-medium bg-white text-blue-500 border-b-2 border-blue-500"
-                :class="{ ' bg-white text-blue-500 border-b-2 border-blue-500' : tab === 'tab1' }"
-              >
-                General questions</a
-              >
+                :class="{ ' bg-white text-blue-500 border-b-2 border-blue-500' : tab === 'tab1' }">
+                General
+              </a>
             </li>
             <li class="-mb-px">
               <a
                 @click.prevent="tab = 'tab2'"
                 href="#_"
                 class="inline-block py-2 font-medium"
-                :class="{ ' bg-white text-blue-500 border-b-2 border-blue-500' : tab === 'tab2' }"
-              >
-                Support team</a
-              >
+                :class="{ ' bg-white text-blue-500 border-b-2 border-blue-500' : tab === 'tab2' }">
+                Support
+              </a>
             </li>
             <li class="-mb-px">
               <a
                 @click.prevent="tab = 'tab3'"
                 href="#_"
                 class="inline-block py-2 font-medium"
-                :class="{ ' bg-white text-blue-500 border-b-2 border-blue-500' : tab === 'tab3' }"
-              >
+                :class="{ ' bg-white text-blue-500 border-b-2 border-blue-500' : tab === 'tab3' }">
                 License</a
               >
             </li>
           </ul>
           <div class="py-4 pt-4 text-left bg-white content">
             <!-- Tab 1 content -->
-            <div x-show="tab==='tab1'" class="text-gray-500">
+            <div
+              x-show="tab==='tab1'"
+              class="text-gray-500">
               <div class="space-y-8 lg:col-span-2">
                 {
                   faq1.map((faq) => (
                     <div>
-                      <div class="  text-left select-none text-gray-900 ">
+                      <div class="tracking-tight text-lg font-medium  text-gray-900 ">
                         {faq.question}
                       </div>
-                      <div class="mt-2 text-sm text-gray-500">{faq.answer}</div>
+                      <div class="mt-2 text-base text-gray-500">
+                        {faq.answer}
+                      </div>
                     </div>
                   ))
                 }
@@ -126,13 +151,12 @@ const faq3 = [
             <div
               x-show="tab==='tab2'"
               class="text-gray-500"
-              style="display: none;"
-            >
+              style="display: none;">
               <div class="space-y-8 lg:col-span-2">
                 {
                   faq2.map((faq) => (
                     <div>
-                      <div class="  text-left select-none text-gray-900 ">
+                      <div class="tracking-tight text-lg font-medium  text-gray-900 ">
                         {faq.question}
                       </div>
                       <div class="mt-2 text-sm text-gray-500">{faq.answer}</div>
@@ -145,13 +169,12 @@ const faq3 = [
             <div
               x-show="tab==='tab3'"
               class="text-gray-500"
-              style="display: none;"
-            >
+              style="display: none;">
               <div class="space-y-8 lg:col-span-2">
                 {
                   faq3.map((faq) => (
                     <div>
-                      <div class="  text-left select-none text-gray-900 ">
+                      <div class="tracking-tight text-lg font-medium  text-gray-900 ">
                         {faq.question}
                       </div>
                       <div class="mt-2 text-sm text-gray-500">{faq.answer}</div>
