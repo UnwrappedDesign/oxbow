@@ -1,0 +1,301 @@
+---
+const listItems = [
+  "Revolutionizing communication",
+  "Enhancing productivity",
+  "Advanced security measures",
+  "Seamless integration",
+  "Empowering users with solutions",
+  "Effortless management",
+  "Unlocking innovative solutions",
+  "Enabling interoperability",
+  "Enhancing scalability",
+];
+---
+
+<section>
+  <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
+    <div
+      class="grid grid-cols-1 gap-12 md:grid-cols-3 text-center lg:text-left md:items-end">
+      <div class="lg:col-span-2">
+        <span
+          class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+          >Your tagline</span
+        >
+        <h1
+          class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 lg:text-balance">
+          Transform your visitors into users with an engaging headline
+        </h1>
+      </div>
+      <p class="text-base font-medium text-gray-500">
+        The fastest and most efficient method for working together on staging
+        and temporary environments.
+      </p>
+    </div>
+    <ul
+      role="list"
+      class="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-2 text-base font-medium text-gray-900">
+      {
+        listItems.map((item, index) => (
+          <li>
+            <div class="relative flex flex-row items-start gap-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-circle-check-filled text-blue-600"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                strokeWidth="2"
+                stroke="currentColor"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round">
+                <path
+                  stroke="none"
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                />
+                <path
+                  d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
+                  strokeWidth="0"
+                  fill="currentColor"
+                />
+              </svg>
+              <p>{item}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+    <!-- Show Tab 1 as default  -->
+    <div
+      x-data="{ tab: 'tab1' }"
+      class="grid items-center grid-cols-1 mt-12 gap-6 lg:grid-cols-2 bg-gray-50 rounded-3xl p-8">
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-1 gap-2 list-none">
+        <!-- Tab 1 -->
+        <li>
+          <button
+            @click.prevent="tab = 'tab1'"
+            class="items-start p-4 lg:p-8 rounded-xl transition text-left h-full"
+            :class="{ 'bg-white' : tab === 'tab1' }">
+            <div>
+              <div class="flex items-center gap-4">
+                <div class="text-blue-500">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-filters"
+                    ><path
+                      stroke="none"
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    ></path><path d="M12 8m-5 0a5 5 0 1 0 10 0a5 5 0 1 0 -10 0"
+                    ></path><path d="M8 11a5 5 0 1 0 3.998 1.997"></path><path
+                      d="M12.002 19.003a5 5 0 1 0 3.998 -8.003"></path></svg
+                  >
+                </div>
+                <dt class="tracking-tight text-lg font-medium text-gray-900">
+                  Innovative Design
+                </dt>
+              </div>
+              <dd class="mt-2 text-sm text-gray-500 text-pretty">
+                Our cutting-edge design offers a fresh, modern look that
+                transforms your project into a standout experience.
+              </dd>
+            </div>
+          </button>
+        </li>
+        <!-- Tab 2 -->
+        <li>
+          <button
+            @click.prevent="tab = 'tab2'"
+            class="items-start p-4 lg:p-8 rounded-xl transition text-left h-full"
+            :class="{ 'bg-white ' : tab === 'tab2' }">
+            <div>
+              <div class="flex items-center gap-4">
+                <div class="text-blue-500">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-keyframes"
+                    ><path
+                      stroke="none"
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    ></path><path
+                      d="M9.225 18.412a1.595 1.595 0 0 1 -1.225 .588c-.468 0 -.914 -.214 -1.225 -.588l-4.361 -5.248a1.844 1.844 0 0 1 0 -2.328l4.361 -5.248a1.595 1.595 0 0 1 1.225 -.588c.468 0 .914 .214 1.225 .588l4.361 5.248a1.844 1.844 0 0 1 0 2.328l-4.361 5.248z"
+                    ></path><path
+                      d="M17 5l4.586 5.836a1.844 1.844 0 0 1 0 2.328l-4.586 5.836"
+                    ></path><path
+                      d="M13 5l4.586 5.836a1.844 1.844 0 0 1 0 2.328l-4.586 5.836"
+                    ></path></svg
+                  >
+                </div>
+                <dt class="tracking-tight text-lg font-medium text-gray-900">
+                  Powerful Functionality
+                </dt>
+              </div>
+              <dd class="mt-2 text-sm text-gray-500 text-pretty">
+                Equipped with advanced features and tools, our solution
+                effortlessly manages complex tasks and workflows.
+              </dd>
+            </div>
+          </button>
+        </li>
+        <!-- Tab 3 -->
+        <li>
+          <button
+            @click.prevent="tab = 'tab3'"
+            class="items-start p-4 lg:p-8 rounded-xl transition text-left h-full"
+            :class="{ 'bg-white ' : tab === 'tab3' }">
+            <div>
+              <div class="flex items-center gap-4">
+                <div class="text-blue-500">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-broadcast"
+                    ><path
+                      stroke="none"
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    ></path><path d="M18.364 19.364a9 9 0 1 0 -12.728 0"
+                    ></path><path d="M15.536 16.536a5 5 0 1 0 -7.072 0"
+                    ></path><path d="M12 13m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"
+                    ></path></svg
+                  >
+                </div>
+                <dt class="tracking-tight text-lg font-medium text-gray-900">
+                  Revolutionizing communication
+                </dt>
+              </div>
+              <dd class="mt-2 text-sm text-gray-500 text-pretty">
+                Unlocking innovative solutions that enhance connectivity and
+                streamline interactions.
+              </dd>
+            </div>
+          </button>
+        </li>
+        <!-- Tab 4 -->
+        <li>
+          <button
+            @click.prevent="tab = 'tab4'"
+            class="items-start p-4 lg:p-8 rounded-xl transition text-left h-full"
+            :class="{ 'bg-white ' : tab === 'tab4' }">
+            <div>
+              <div class="flex items-center gap-4">
+                <div class="text-blue-500">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-air-balloon"
+                    ><path
+                      stroke="none"
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    ></path><path
+                      d="M10 19m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v1a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z"
+                    ></path><path
+                      d="M12 16c3.314 0 6 -4.686 6 -8a6 6 0 1 0 -12 0c0 3.314 2.686 8 6 8z"
+                    ></path><path d="M12 9m-2 0a2 7 0 1 0 4 0a2 7 0 1 0 -4 0"
+                    ></path></svg
+                  >
+                </div>
+                <dt class="tracking-tight text-lg font-medium text-gray-900">
+                  Easy Integration
+                </dt>
+              </div>
+              <dd class="mt-2 text-sm text-gray-500 text-pretty">
+                Integrating with existing systems is smooth and hassle-free,
+                thanks to our incredible flexible approach.
+              </dd>
+            </div>
+          </button>
+        </li>
+      </ul>
+      <div class="p-8 text-left content">
+        <!-- Tab 1 content -->
+        <div x-show="tab==='tab1'">
+          <div class="block w-full mt-12">
+            <div>
+              <img
+                alt="#_"
+                class="relative w-full rounded-2xl drop-shadow-2xl h-full object-cover"
+                src="/images/phone1.png"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- Tab 2 content. You can add a transition on this div to make it smoother -->
+        <div
+          x-show="tab==='tab2'"
+          style="display: none;">
+          <div class="block w-full mt-12">
+            <div>
+              <img
+                alt="#_"
+                class="relative w-full rounded-2xl drop-shadow-2xl h-full object-cover"
+                src="/images/phone2.png"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- Tab 3 content. You can add a transition on this div to make it smoother -->
+        <div
+          x-show="tab==='tab3'"
+          style="display: none;">
+          <div class="block w-full mt-12">
+            <div>
+              <img
+                alt="#_"
+                class="relative w-full rounded-2xl drop-shadow-2xl h-full object-cover"
+                src="/images/phone3.png"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- Tab 4 content. You can add a transition on this div to make it smoother -->
+        <div
+          x-show="tab==='tab4'"
+          style="display: none;">
+          <div class="block w-full mt-12">
+            <div>
+              <img
+                alt="#_"
+                class="relative w-full rounded-2xl drop-shadow-2xl h-full object-cover"
+                src="/images/phone4.png"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

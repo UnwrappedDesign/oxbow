@@ -3,18 +3,18 @@ const faq1 = [
   {
     question: "How does end-to-end encryption work?",
     answer:
-      "End-to-end encryption ensures that only the sender and recipient can access the content of a message.    ",
+      "End-to-end encryption ensures that only the sender and recipient can access the content of a message. The information is encrypted on the sender's device and can only be decrypted by the intended recipient, preventing any intermediaries, including the platform provider, from accessing the data.",
   },
   {
     question: "Can I access my encrypted data if I forget my encryption key?",
     answer:
-      "No, forgetting or losing your encryption key means that your encrypted data cannot be accessed.       ",
+      "No, forgetting or losing your encryption key means that your encrypted data cannot be accessed. This is a crucial security measure to ensure that even if someone gains unauthorized access to your account, they won't be able to decrypt and view your messages or files.",
   },
   {
     question:
       "Are there any limitations to the self-destructing messages feature?",
     answer:
-      "Self-destructing messages are designed to automatically delete themselves after a specific period or upon being read by the recipient.          ",
+      "Self-destructing messages are designed to automatically delete themselves after a specific period or upon being read by the recipient. However, it's important to note that the feature only removes the message from the devices involved in the conversation. Recipients may take screenshots or use other means to capture the content, which is beyond the platform's control.",
   },
 ];
 const faq2 = [
@@ -56,9 +56,13 @@ const faq3 = [
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div>
-      <span class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase">faq</span>
+      <span
+        class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+        >faq</span
+      >
       <h1
-        class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 lg:text-balance">
+        class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 lg:text-balance"
+      >
         Frequently Asked Questions
       </h1>
       <p class="mt-6 text-base font-medium text-gray-500">
@@ -67,56 +71,28 @@ const faq3 = [
     </div>
     <div class="mt-12 divide-y">
       <div class="py-12">
-        <div class="p-4 bg-gray-50 rounded-xl flex items-center justify-between">
-          <p class="tracking-tight text-lg font-medium text-gray-900">
-            General questions
-          </p>
-          <div class="flex">
-            <button
-              class="text-blue-600 flex items-center gap-3 hover:text-gray-900 transition-all duration-200 text-base"
-              aria-label="Action">
-              Read all questions
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right">
-                <path
-                  stroke="none"
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                ></path>
-                <path d="M9 6l6 6l-6 6"></path>
-              </svg>
-            </button>
-          </div>
-        </div>
+        <p
+          class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+        >
+          General questions
+        </p>
         <div>
           {
-            faq1.map((faq, index) => (
+            faq1.map((faq) => (
               <details class="group cursor-pointer">
                 <summary
-                  class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none tracking-tight text-base font-medium text-gray-900 hover:text-blue-500
-                      focus:text-blue-500">
-                 <div class="flex items-center gap-4">
-                    <span class="size-6 text-xs shrink-0  rounded-full flex items-center justify-center  bg-gradient-to-b from-blue-500 to-indigo-600 text-white">
-                      {index + 1}
-                    </span>
-                    {faq.question}
-                  </div>
+                  class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none text-gray-900 hover:text-blue-500
+                      focus:text-blue-500"
+                >
+                  {faq.question}
                   <svg
                     class="size-5 duration-300 ease-out  transform group-open:-rotate-45"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
-                    stroke="currentColor">
+                    stroke="currentColor"
+                  >
                     <path
                       stroke-linecap="round"
                       stroke-linejoin="round"
@@ -131,56 +107,28 @@ const faq3 = [
         </div>
       </div>
       <div class="py-12">
-        <div class="p-4 bg-gray-50 rounded-xl flex items-center justify-between">
-          <p class="tracking-tight text-lg font-medium text-gray-900">
-            Support team
-          </p>
-          <div class="flex">
-            <button
-              class="text-blue-600 flex items-center gap-3 hover:text-gray-900 transition-all duration-200 text-base"
-              aria-label="Action">
-              Read all questions
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right">
-                <path
-                  stroke="none"
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                ></path>
-                <path d="M9 6l6 6l-6 6"></path>
-              </svg>
-            </button>
-          </div>
-        </div>
+        <p
+          class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+        >
+          support team
+        </p>
         <div>
           {
-            faq2.map((faq, index) => (
+            faq2.map((faq) => (
               <details class="group cursor-pointer">
                 <summary
-                  class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none tracking-tight text-base font-medium text-gray-900 hover:text-blue-500
-                      focus:text-blue-500">
-                 <div class="flex items-center gap-4">
-                    <span class="size-6 text-xs shrink-0  rounded-full flex items-center justify-center  bg-gradient-to-b from-blue-500 to-indigo-600 text-white">
-                      {index + 1}
-                    </span>
-                    {faq.question}
-                  </div>
+                  class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none text-gray-900 hover:text-blue-500
+                      focus:text-blue-500"
+                >
+                  {faq.question}
                   <svg
                     class="size-5 duration-300 ease-out  transform group-open:-rotate-45"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
-                    stroke="currentColor">
+                    stroke="currentColor"
+                  >
                     <path
                       stroke-linecap="round"
                       stroke-linejoin="round"
@@ -195,56 +143,28 @@ const faq3 = [
         </div>
       </div>
       <div class="py-12">
-        <div class="p-4 bg-gray-50 rounded-xl flex items-center justify-between">
-          <p class="tracking-tight text-lg font-medium text-gray-900">
-            License
-          </p>
-          <div class="flex">
-            <button
-              class="text-blue-600 flex items-center gap-3 hover:text-gray-900 transition-all duration-200 text-base"
-              aria-label="Action">
-              Read all questions
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right">
-                <path
-                  stroke="none"
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                ></path>
-                <path d="M9 6l6 6l-6 6"></path>
-              </svg>
-            </button>
-          </div>
-        </div>
+        <p
+          class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+        >
+          License
+        </p>
         <div>
           {
-            faq3.map((faq, index) => (
+            faq3.map((faq) => (
               <details class="group cursor-pointer">
                 <summary
-                  class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none tracking-tight text-base font-medium text-gray-900 hover:text-blue-500
-                      focus:text-blue-500">
-                 <div class="flex items-center gap-4">
-                    <span class="size-6 text-xs shrink-0  rounded-full flex items-center justify-center  bg-gradient-to-b from-blue-500 to-indigo-600 text-white">
-                      {index + 1}
-                    </span>
-                    {faq.question}
-                  </div>
+                  class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none text-gray-900 hover:text-blue-500
+                      focus:text-blue-500"
+                >
+                  {faq.question}
                   <svg
                     class="size-5 duration-300 ease-out  transform group-open:-rotate-45"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
-                    stroke="currentColor">
+                    stroke="currentColor"
+                  >
                     <path
                       stroke-linecap="round"
                       stroke-linejoin="round"
