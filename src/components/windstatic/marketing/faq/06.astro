@@ -1,141 +1,96 @@
 ---
-const faqsSet1 = [
+const faqs = [
   {
-    question: "How does encryption work?",
+    question: "How does end-to-end encryption work?",
     answer:
-      "End-to-end encryption ensures that only the sender and recipient can access the content of a message.    ",
+      "End-to-end encryption ensures that only the sender and recipient can access the content of a message. The information is encrypted on the sender's device and can only be decrypted by the intended recipient, preventing any intermediaries, including the platform provider, from accessing the data.",
   },
   {
-    question: "What if I forget my encryption key?",
+    question: "Can I access my encrypted data if I forget my encryption key?",
     answer:
-      "No, forgetting or losing your encryption key means that your encrypted data cannot be accessed.       ",
+      "No, forgetting or losing your encryption key means that your encrypted data cannot be accessed. This is a crucial security measure to ensure that even if someone gains unauthorized access to your account, they won't be able to decrypt and view your messages or files.",
   },
   {
-    question: "Any limits to self-destructing messages?",
+    question:
+      "Are there any limitations to the self-destructing messages feature?",
     answer:
-      "Self-destructing messages are designed to automatically delete themselves after a specific period or upon being read by the recipient.          ",
+      "Self-destructing messages are designed to automatically delete themselves after a specific period or upon being read by the recipient. However, it's important to note that the feature only removes the message from the devices involved in the conversation. Recipients may take screenshots or use other means to capture the content, which is beyond the platform's control.",
   },
   {
-    question: "What if I lose my device with 2FA?",
+    question:
+      "What happens if I enable two-factor authentication and lose my device?",
     answer:
-      "Losing your device doesn't automatically compromise your account's security.              ",
-  },
-];
-const faqsSet2 = [
-  {
-    question: "How do I reset my password?",
-    answer:
-      "You can reset your password by clicking 'Forgot Password' on the login page and following the instructions sent to your email.",
+      "Losing your device doesn't automatically compromise your account's security. It's recommended to contact our support team as soon as possible to disable the two-factor authentication on your lost device and set up the authentication on your new device. This process will help protect your account from unauthorized access while ensuring you can regain access to it.",
   },
   {
-    question: "Can I change my username?",
+    question: "Is my personal information shared or sold to third parties?",
     answer:
-      "Yes, you can change your username in the account settings under 'Profile'.",
+      "No, we strictly adhere to a privacy-centric approach. Your personal information is never shared, sold, or monetized. We prioritize your privacy and ensure that your data remains confidential and only accessible to you.",
   },
   {
-    question: "What if I experience a login issue?",
+    question: "Can I use this platform on multiple devices?",
     answer:
-      "If you face login issues, try resetting your password or contact support for help.",
+      "Yes, you can access our platform on multiple devices. Your encrypted data remains synced across all devices, allowing you to seamlessly communicate and access your files and messages from anywhere.",
   },
   {
-    question: "How do I update my profile picture?",
+    question: "Are there any storage limitations for files and documents?",
     answer:
-      "To update your profile picture, go to 'Profile' in settings and upload a new image.",
+      "Our platform provides ample storage space for your files and documents. However, there may be storage limitations based on the pricing plan you choose. We offer flexible plans to suit your needs and provide options to upgrade if you require additional storage capacity.",
+  },
+  {
+    question: "Is it possible to export my data from the platform?",
+    answer:
+      "Yes, you can export your data from the platform. We offer export features that allow you to download your messages, files, and documents, ensuring you have a local copy for backup or migration purposes. It provides you with greater control and flexibility over your data.",
   },
 ];
 ---
 
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
-    <div>
-      <span class="tracking-tight text-lg font-medium  text-gray-900">faq</span>
+    <div class="text-center">
+      <span
+        class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+        >faq</span
+      >
       <h1
-        class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 lg:text-balance">
+        class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 lg:text-balance"
+      >
         Frequently Asked Questions
       </h1>
       <p class="mt-6 text-base font-medium text-gray-500">
         Everything you need to know about our platform.
       </p>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
-      <div>
-        <p class="tracking-tight text-lg font-medium  text-gray-900">
-          General questions
-        </p>
-        <div class="divide-y border-y mt-8">
-          {
-            faqsSet1.map((faq, index) => (
-              <details class="group cursor-pointer">
-                <summary
-                  class="flex items-center justify-between w-full py-4  text-left select-none tracking-tight text-base font-medium text-gray-900 hover:text-blue-500
-                    focus:text-blue-500">
-                  <div class="flex items-center gap-4">
-                    <span class="size-6 text-xs shrink-0  rounded-full flex items-center justify-center  bg-gradient-to-b from-blue-500 to-indigo-600 text-white">
-                      {index + 1}
-                    </span>
-                    {faq.question}
-                  </div>
-                  <svg
-                    class="size-5 duration-300 ease-out  transform group-open:-rotate-45"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor">
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M12 6v12m6-6H6"
-                    />
-                  </svg>
-                </summary>
-                <div class="py-4 pt-2 pl-10 text-sm text-gray-500">
-                  {faq.answer}
-                </div>
-              </details>
-            ))
-          }
-        </div>
-      </div>
-      <div>
-        <p class="tracking-tight text-lg font-medium  text-gray-900">
-          Support team
-        </p>
-        <div class="divide-y border-y mt-8">
-          {
-            faqsSet2.map((faq, index) => (
-              <details class="group cursor-pointer">
-                <summary
-                  class="flex items-center justify-between w-full py-4  text-left select-none tracking-tight text-base font-medium text-gray-900 hover:text-blue-500
-                    focus:text-blue-500">
-                  <div class="flex items-center gap-4">
-                    <span class="size-6 text-xs shrink-0  rounded-full flex items-center justify-center  bg-gradient-to-b from-blue-500 to-indigo-600 text-white">
-                      {index + 1}
-                    </span>
-                    {faq.question}
-                  </div>
-                  <svg
-                    class="size-5 duration-300 ease-out  transform group-open:-rotate-45"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor">
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M12 6v12m6-6H6"
-                    />
-                  </svg>
-                </summary>
-                <div class="py-4 pt-2 pl-10 text-sm text-gray-500">
-                  {faq.answer}
-                </div>
-              </details>
-            ))
-          }
-        </div>
-      </div>
+    <div
+      class="mt-12 max-w-xl mx-auto divide-y border rounded-xl overflow-hidden"
+    >
+      {
+        faqs.map((faq) => (
+          <details class="group cursor-pointer">
+            <summary
+              class="flex items-center justify-between w-full p-4  text-left select-none text-gray-900 hover:text-blue-500
+              focus:text-blue-500 focus:bg-gray-50"
+            >
+              {faq.question}
+              <svg
+                class="size-5 duration-300 ease-out  transform group-open:-rotate-45"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 6v12m6-6H6"
+                />
+              </svg>
+            </summary>
+            <div class="p-4  text-sm text-gray-500 border-t">{faq.answer}</div>
+          </details>
+        ))
+      }
     </div>
   </div>
 </section>

@@ -1,99 +1,56 @@
 ---
-const data = [
-  {
-    text: "Our cutting-edge design offers a fresh, modern look that transforms your project into a standout experience. ",
-    items: ["Revolutionizing communication", "Enhancing productivity"],
-  },
+const logos = [
+  "/brands/1.svg",
+  "/brands/2.svg",
+  "/brands/3.svg",
+  "/brands/4.svg",
+
 ];
 ---
-
-<section class="relative overflow-hidden">
-  <div
-    class="mx-auto max-w-7xl px-6 py-24 lg:flex items-center lg:px-8 relative">
+<div class="relative">
+  <div class="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-24 lg:px-8">
     <div
-      class="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl lg:flex-shrink-0 lg:px-12">
-      <span
-        class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
-        >Tagline</span
-      >
-      <h1
-        class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 lg:text-7xl lg:text-balance">
-        Make every visitor count
-      </h1>
-      <p class="mt-6 text-base font-medium text-gray-500 lg:text-balance">
-        Integrating with existing systems is smooth and hassle-free, thanks to
-        our incredible flexible approach. Equipped with advanced features and
-        tools, our solution effortlessly manages complex tasks and workflows.
-      </p>
-      <div class="flex flex-wrap gap-4 mt-12">
-        <button
-          class="flex items-center justify-center h-10 px-4 py-2 text-sm font-semibold text-white transition-all duration-200 rounded-lg bg-gradient-to-b from-blue-500 to-indigo-600 hover:to-indigo-800 shadow focus:ring-2 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none"
-          aria-label="Action">
-          Get started
-        </button>
-        <div class="text-sm text-gray-500">
-          <span class="block">This is some support text</span>
-          <span class="block">and this is also.</span>
+      class="px-6 pb-24 pt-10 sm:pb-32 lg:col-span-7 lg:px-0 lg:pb-56 lg:pt-48 xl:col-span-6"
+    >
+      <div class="mx-auto max-w-2xl lg:mx-0">
+        <span
+          class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+          >Your tagline</span
+        >
+        <h1
+          class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 sm:text-5xl"
+        >
+          Transform your visitors into users with an engaging headline
+        </h1>
+
+        <div class="flex lg:items-center gap-4 mt-12 flex-row">
+          <button
+            class="flex items-center justify-center h-10 px-4 py-2 text-sm font-semibold text-white transition-all duration-200 rounded-lg bg-gradient-to-b from-blue-500 to-indigo-600 hover:to-indigo-800 shadow focus:ring-2 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none"
+            aria-label="Action"
+          >
+            Get started
+          </button>
+          <div class="text-sm text-gray-500">
+            <span class="block">This is some support text</span>
+            <span class="block">and this is also.</span>
+          </div>
         </div>
-      </div>
-      <div class="mt-6 pt-6 border-t">
-        {
-          data.map((section) => (
-            <div class="mt-2">
-              <p class="text-sm text-gray-500 text-pretty lg:text-balance">
-                {section.text}
-              </p>
-              <ul
-                role="list"
-                class="space-y-1 mt-6 text-base font-medium text-gray-900 list-none">
-                {section.items.map((item, idx) => (
-                  <li class="list-none">
-                    <div class=" flex  items-center gap-4 ">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="icon icon-tabler icon-tabler-circle-check-filled text-blue-600"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        stroke-width="2"
-                        stroke="currentColor"
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path
-                          stroke="none"
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path
-                          d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
-                          stroke-width="0"
-                          fill="currentColor"
-                        />
-                      </svg>
-                      <span class="text-gray-700 text-base">{item}</span>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))
-        }
+        <div class="grid grid-cols-2 sm:grid-cols-4 mt-12 items-center">
+          { logos.map((logo, index) => (
+            <img class="max-h-6" src={logo} alt="#_" />
+          ))}
+
+        </div>
       </div>
     </div>
     <div
-      class="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32">
-      <div class="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
-        <div class="-m-2 lg:-m-4">
-          <img
-            src="/images/dashboardLight.svg"
-            alt="#_"
-            width="2432"
-            height="1442"
-            class="w-[76rem] border shadow rounded-2xl"
-          />
-        </div>
-      </div>
+      class="relative lg:col-span-5 lg:-mr-8 xl:absolute xl:inset-0 xl:left-1/2 xl:mr-0"
+    >
+      <img
+        class="aspect-[3/2] w-full bg-gray-50 object-cover lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
+        src="/thumbs/l1.png"
+        alt="#_"
+      />
     </div>
   </div>
-</section>
+</div>
