@@ -1,4 +1,3 @@
-
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div
@@ -6,10 +5,7 @@
       <div
         class="mx-auto text-center lg:mx-0 lg:flex-auto lg:pt-24 lg:text-left">
         <div class="max-w-2xl lg:flex-auto">
-          <span
-            class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
-            >Your tagline</span
-          >
+          <span class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase">Tagline</span>
           <h1
             class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 lg:text-balance">
             Empower your finances with our unmatched value
@@ -19,19 +15,14 @@
             with a service trusted by over 60 million users.
           </p>
         </div>
-        <dl class="grid grid-cols-1 gap-x-2 gap-y-6 mt-12 sm:grid-cols-2">
+        <dl
+          class="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 md:grid-cols-4 mt-12">
           <div
             x-data="{ count: 0, target: 30, counter() { let interval = setInterval(() => { if (this.count < this.target) { this.count += 1; } else { clearInterval(interval); } }, 50); } }"
             x-intersect.once="counter()"
             class="flex flex-col">
-            <dt class="mt-4">
-              <p
-                class="tracking-tight text-lg font-medium text-gray-900">
-                Working Individuals
-              </p>
-              <p class="text-sm text-gray-500 text-pretty mt-2">
-                We’re dedicated to delivering outstanding service and value.
-              </p>
+            <dt class="mt-4 tracking-tight text-lg font-medium  text-gray-900">
+              Working Individuals
             </dt>
             <dd
               x-text="`${count}%`"
@@ -42,17 +33,35 @@
             x-data="{ count: 0, target: 40, counter() { let interval = setInterval(() => { if (this.count < this.target) { this.count += 1; } else { clearInterval(interval); } }, 50); } }"
             x-intersect.once="counter()"
             class="flex flex-col">
-            <dt class="mt-4">
-              <p
-                class="tracking-tight text-lg font-medium text-gray-900">
-                super Low Fee
-              </p>
-              <p class="text-sm text-gray-500 text-pretty mt-2">
-                Enjoy significant savings with our extremely low fee structure.
-              </p>
+            <dt class="mt-4 tracking-tight text-lg font-medium  text-gray-900">
+              Super low fee
             </dt>
             <dd
               x-text="`${count}%`"
+              class="order-first text-5xl font-normal font-mono text-blue-600">
+            </dd>
+          </div>
+          <div
+            x-data="{ count: 0, target: 50, counter() { let interval = setInterval(() => { if (this.count < this.target) { this.count += 1; } else { clearInterval(interval); } }, 50); } }"
+            x-intersect.once="counter()"
+            class="flex flex-col">
+            <dt class="mt-4 tracking-tight text-lg font-medium  text-gray-900">
+              Great Commitment
+            </dt>
+            <dd
+              x-text="`${count}%`"
+              class="order-first text-5xl font-normal font-mono text-blue-600">
+            </dd>
+          </div>
+          <div
+            x-data="{ count: 0, target: 60000000, counter() { let interval = setInterval(() => { if (this.count < this.target) { this.count += 1000000; } else { clearInterval(interval); this.count = this.target; } }, 50); } }"
+            x-intersect.once="counter()"
+            class="flex flex-col">
+            <dt class="mt-4 tracking-tight text-lg font-medium  text-gray-900">
+              Massive Earnings
+            </dt>
+            <dd
+              x-text="`${(count / 1000000) % 1 === 0 ? (count / 1000000) : (count / 1000000).toFixed(1)}M`"
               class="order-first text-5xl font-normal font-mono text-blue-600">
             </dd>
           </div>
