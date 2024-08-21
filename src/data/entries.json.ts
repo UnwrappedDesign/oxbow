@@ -234,7 +234,7 @@ const toggles: Template = {
   image: "toggles.png",
 };
 const selects: Template = {
-  name: "selects",
+  name: "Selects",
   link: "/playground/application/selects",
   image: "selects.png",
 };
