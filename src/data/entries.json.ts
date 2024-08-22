@@ -79,6 +79,11 @@ const footers: Template = {
   link: "/playground/marketing/footers",
   image: "footers.png",
 };
+const cta: Template = {
+  name: "Call to Actions",
+  link: "/playground/marketing/cta",
+  image: "cta.png",
+};
 const status: Template = {
   name: "Status",
   link: "/playground/marketing/status",
@@ -90,8 +95,8 @@ const contact: Template = {
   image: "contact.png",
 };
 const newsletter: Template = {
-  name: "Newsletter",
-  link: "/playground/marketing/newsletter",
+  name: "Newsletter CTA",
+  link: "/playground/marketing/cta-newsletter",
   image: "newsletter.png",
 };
 const staticGallery: Template = {
@@ -271,6 +276,7 @@ export const pageSections: Template[] = [
   newsletter,
   staticGallery,
   interactiveGallery,
+  cta,
 ];
 export const elements: Template[] = [
   banners,
@@ -335,6 +341,7 @@ export const byName = {
   newsletter,
   staticGallery,
   interactiveGallery,
+  cta,
   // Elements
   banners,
   buttons,
