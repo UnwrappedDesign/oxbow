@@ -25,20 +25,20 @@ const siteLinks = [
 
 <footer>
   <div class="max-w-5xl 2xl:max-w-[100rem] px-8 mx-auto relative">
-    <div class="flex flex-col gap-12 border-t pt-6">
-      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12 sr-only">
+    <div class="flex flex-col gap-12 pt-6 border-t">
+      <div class="grid grid-cols-1 gap-8 sr-only lg:grid-cols-4 lg:gap-12">
         <div class="prose-styles md:grid-cols-2 gap-8 grid !max-w-2xl">
           {
             siteLinks.map((category) => (
               <div>
                 <h2>{category.category}</h2>
                 <ul
-                  class="not-prose space-y-2 w-full"
+                  class="w-full space-y-2 not-prose"
                   role="list">
                   {category.items.map((item) => (
                     <li>
                       <a
-                        class="hover:text-accent-500   w-full flex items-center justify-between"
+                        class="flex items-center justify-between w-full hover:text-accent-500"
                         href={item.href}>
                         {item.title}
                       </a>
@@ -50,13 +50,13 @@ const siteLinks = [
           }
         </div>
         <div
-          class="relative isolate overflow-hidden bg-white px-6 pt-16 border ring-4 ring-gray-50 rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-12 lg:px-12 lg:pt-0 lg:col-span-3">
+          class="relative px-6 pt-16 overflow-hidden bg-white border isolate ring-4 ring-gray-50 rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-12 lg:px-12 lg:pt-0 lg:col-span-3">
           <div
-            class="mx-auto max-w-xs text-center lg:mx-0 lg:flex-auto lg:py-12 lg:text-left">
+            class="max-w-xs mx-auto text-center lg:mx-0 lg:flex-auto lg:py-12 lg:text-left">
             <div class="flex flex-wrap justify-center lg:justify-start">
               <div class="flex items-center text-sm font-medium text-gray-900">
                 <svg
-                  class="flex-none size-4 stroke-current"
+                  class="flex-none stroke-current size-4"
                   stroke-width="1.5"
                   stroke-linecap="round"
                   stroke-linejoin="round"
@@ -83,7 +83,7 @@ const siteLinks = [
                 <svg
                   viewBox="0 0 256 154"
                   aria-label="Tailwind CSS"
-                  class="flex-none size-4 stroke-current"
+                  class="flex-none stroke-current size-4"
                   width="64"
                   height="64"
                   astro-icon="logos:tailwindcss-icon">
@@ -114,7 +114,7 @@ const siteLinks = [
             <div class="mt-8">
               <a
                 href="https://lexingtonthemes.com"
-                class="inline-flex items-center justify-between w-full gap-4 px-4 py-3 h-10 text-sm font-medium text-white transition rounded-lg bg-accent-600 group active:text-blue-900 active:transition-none outline-offset-2 hover:bg-accent-100 hover:text-blue-700 md:w-auto ring-4 ring-blue-50 lg:w-auto"
+                class="inline-flex items-center justify-between w-full h-10 gap-4 px-4 py-3 text-sm font-medium text-white transition rounded-lg bg-accent-600 group active:text-blue-900 active:transition-none outline-offset-2 hover:bg-accent-100 hover:text-blue-700 md:w-auto ring-4 ring-blue-50 lg:w-auto"
                 >See all templates
               </a>
             </div>
@@ -131,6 +131,8 @@ const siteLinks = [
         </div>
       </div>
 
+
+
       <svg
         class="-mb-[3.6rem] lg:-mb-[4rem] text-accent-950
          mt-24"
@@ -142,7 +144,8 @@ const siteLinks = [
           fill="currentColor"
         ></path>
       </svg>
-      <div class="col-span-full prose-styles mt-12 border-t bg-white">
+
+      <div class="relative bg-white border-t col-span-full prose-styles">
         <p>
           <span x-data="{ year: new Date().getFullYear() }">
             <span>© Windstatic</span>
