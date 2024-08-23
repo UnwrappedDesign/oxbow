@@ -1,13 +1,9 @@
 import type { APIRoute } from 'astro';
 import { getAuth } from "firebase-admin/auth";
-import { createHmac } from "crypto";
 import { app } from "@/firebase/server";
+import { verifySignature } from '@/utils/verifySignature';
 
 const secret = import.meta.env.LEMON_SQUEEZE_SECRET;
-
-function checkSignature(signature: string, payload: string) {
-  return createHmac('sha256', secret).update(payload).digest('hex') === signature;
-}
 
 export const POST: APIRoute = async ({ request }) => {
   const auth = getAuth(app)
@@ -15,10 +11,14 @@ export const POST: APIRoute = async ({ request }) => {
   const signature = headers.get('X-Signature');
   const body = await request.text();
 
+  if (!secret) {
+    return new Response('Can not verify signature', { status: 400 });
+  }
+
   if (!signature) {
     return new Response('X-Signature header is required', { status: 400 });
   }
-  if (signature && !checkSignature(signature, body)) {
+  if (signature && !verifySignature(signature, body, secret)) {
     return new Response('Invalid X-Signature header', { status: 403 });
   }
   try {
