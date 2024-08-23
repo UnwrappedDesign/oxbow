@@ -8,7 +8,7 @@ import { loadEnv } from "vite";
 
 const { PUBLIC_APP_BASE_URL } = loadEnv(process.env.NODE_ENV, process.cwd(), "");
 
-const localhost = PUBLIC_APP_BASE_URL.includes('localhost');
+const localhost = PUBLIC_APP_BASE_URL?.includes('localhost') ?? false;
 
 console.log("Loading app with PUBLIC_APP_BASE_URL: ", PUBLIC_APP_BASE_URL);
 console.log("Loading app with NODE_ENV: ", process.env.NODE_ENV);
