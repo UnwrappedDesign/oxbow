@@ -34,6 +34,16 @@ const interactiveFeatures: Template = {
   link: "/playground/marketing/interactive-features",
   image: "interactiveFeatures.png",
 };
+const timeline: Template = {
+  name: "Timeline",
+  link: "/playground/marketing/timeline",
+  image: "timeline.png",
+};
+const steps: Template = {
+  name: "Steps",
+  link: "/playground/marketing/steps",
+  image: "steps.png",
+};
 const pricing: Template = {
   name: "Pricing",
   link: "/playground/marketing/pricing",
@@ -262,6 +272,8 @@ export const pageSections: Template[] = [
   rightheroes,
   staticFeatures,
   interactiveFeatures,
+  timeline,
+  steps,
   pricing,
   faq,
   team,
@@ -327,6 +339,8 @@ export const byName = {
   rightheroes,
   staticFeatures,
   interactiveFeatures,
+  timeline,
+  steps,
   pricing,
   faq,
   team,
