@@ -1,0 +1,64 @@
+---
+const steps = [
+  {
+    title: "Choose your account type",
+    description:
+      "Decide whether you need a checking account, savings account, or both. Each type has its own benefits and features.",
+  },
+  {
+    title: "Gather required documents",
+    description:
+      "Collect necessary documents such as ID, proof of address, and Social Security number. This ensures a smooth application process.",
+  },
+  {
+    title: "Complete the application",
+    description:
+      "Fill out the application form online or at your local branch. Provide accurate information to avoid delays.",
+  },
+  {
+    title: "Deposit initial funds",
+    description:
+      "        Make your initial deposit to activate your account. This can usually be done through a transfer, check, or cash deposit.",
+  },
+];
+---
+
+<section>
+  <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
+    <div class="lg:text-balance max-w-xl mx-auto text-center">
+      <span
+        class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+        >Process</span
+      >
+      <h1
+        class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 lg:text-balance">
+        Simple steps to achieve your goals
+      </h1>
+      <p class="text-base font-medium mt-4 text-gray-500">
+        Follow these straightforward steps to streamline your process and
+        achieve success with ease.
+      </p>
+    </div>
+    <dl
+      class="grid grid-cols-1 text-center md:grid-cols-2 mt-12 lg:grid-cols-4 gap-x-4 gap-y-8">
+      <!-- Loop through each step in the array -->
+      {
+        steps.map((step, index) => (
+          <div>
+            <div>
+              <span class="size-8 mx-auto rounded-full flex items-center justify-center bg-gradient-to-b from-blue-500 to-indigo-600 text-white">
+                {index + 1}
+              </span>
+            </div>
+            <div class="mt-6">
+              <dt class="tracking-tight text-lg font-medium text-gray-900">
+                {step.title}
+              </dt>
+              <dd class="mt-2 text-sm text-gray-500">{step.description}</dd>
+            </div>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>

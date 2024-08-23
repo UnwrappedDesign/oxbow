@@ -9,7 +9,23 @@ page: Pricing
 
 # Get everything forever
 
-Gain lifetime access to over 500 components and all current templates, as well as any new content we future release, for a single one-time fee.
+Get lifetime access to over 270 components, plus all future updates and new content we release, with a single one-time payment — New content added weekly.
+
+**Get lifetime access at our launch price —  buy now before the price goes up!**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ---
 
