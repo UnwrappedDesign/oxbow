@@ -9,7 +9,9 @@ page: Pricing
 
 # Get everything forever
 
-Gain lifetime access to over 500 components and all current templates, as well as any new content we future release, for a single one-time fee.
+Get lifetime access to over 270 components, plus all future updates and new content we release, with a single one-time payment — New content added weekly.
+
+**Get lifetime access at our launch price —  buy now before the price goes up!**
 
 ---
 
@@ -19,7 +21,7 @@ For individuals working on their projects or freelancers.
 
 When you purchase an all-access license, you unlock everything: every component example and all future additions to Windstatic Pro.
 
-- **More than 500 components** — Everything required to create stunning application UIs, marketing sites, ecommerce stores, and beyond.
+- **More than 270 components** — Everything required to create stunning application UIs, marketing sites, ecommerce stores, and beyond.
 - **Lifetime access** — Immediate access to all current content, plus any new components and templates added in the future.
 - **Unlimited projects** — Use Windstatic for as many projects as you need.
 - **Free updates** — Regular updates with new components and templates.
