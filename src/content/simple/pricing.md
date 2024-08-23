@@ -35,7 +35,7 @@ When you purchase an all-access license, you unlock everything: every component 
 
 For startup teams and agencies
 
-- **Same as individual +** get access to all your team. This tier gives you access to up to 25 people.
+- **Same as individual +** get access to all your team. This tier gives you access to up to 5 people.
 
 <a href="/api/buy/team" type="submit" class="inline-flex items-center justify-between w-full gap-4 px-4 py-3 h-10 text-sm font-medium text-white transition rounded-lg bg-blue-950 group active:text-blue-200 active:transition-none outline-offset-2 hover:bg-blue-900 hover:text-white  ring-4 ring-blue-50 not-prose duration-300" aria-label="Get your link"> Get access for your team for
 <span><span class="opacity-50">~~$299~~</span> $149</span> </a>
@@ -67,4 +67,4 @@ Diverse Selection — Each category offers a plethora of UI patterns, ensuring y
 ## Lifetime access
 
 - **No subscription required** — After the initial payment, there will be no more charges for all-access licenses.
-- F**ree updates and content** — New templates, components, and versions are included at no extra charge.
+- **Free updates and content** — New templates, components, and versions are included at no extra charge.
