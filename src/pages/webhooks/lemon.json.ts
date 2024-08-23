@@ -18,19 +18,24 @@ export const POST: APIRoute = async ({ request }) => {
   if (!signature) {
     return new Response('X-Signature header is required', { status: 400 });
   }
+
   if (signature && !verifySignature(signature, body, secret)) {
     return new Response('Invalid X-Signature header', { status: 403 });
   }
+
   try {
     const json = JSON.parse(body);
     const { user_email: email } = json.data.attributes;
+    
     if (!email) {
       return new Response('Email is required', { status: 400 });
     }
+
     const user = await auth.createUser({
       email,
       displayName: email,
     });
+
     return new Response(`User created: ${user.uid}`, { status: 200 });
   } catch (error) {
     console.error('Error creating user:', error);
