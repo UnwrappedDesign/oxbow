@@ -4,6 +4,7 @@ import _minifyClassnames from "posthtml-minify-classnames"
 
 const minifyClassnames = _minifyClassnames({
   genNameId: false,
+  filter: /.bg-white/,
   customAttributes: [
     'x-transition:enter',
     'x-transition:enter-start',

@@ -9,7 +9,6 @@ describe('verifySignature', () => {
     expect(verifySignature(signature, payload, secret)).to.be.true;
   });
 
-
   it('should return false if the signature is invalid', () => {
     const payload = 'hello world';
     const secret = 'secret';
