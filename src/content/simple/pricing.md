@@ -13,25 +13,9 @@ page: Pricing
 **No subscription required**
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-Get lifetime access to over 270 components, plus all future updates and new content we release, with a single one-time payment — New content added weekly.
-
-**Get lifetime access at our launch price —  buy now before the price goes up!**
-
 ---
 
-## Individual — **<span class="opacity-60">~~$149~~</span> $89 one-time payment + local taxes**
+## Individual —  **$149 one-time payment + local taxes**
 
 For individuals working on their projects or freelancers.
 
@@ -43,18 +27,18 @@ When you purchase an all-access license, you unlock everything: every component 
 - **Free updates** — Regular updates with new components and templates.
 - **No recurring subscriptions or update fees** — Pay once and gain permanent access to all our premium Tailwind CSS resources.
 
-## <a href="/api/buy/individual" type="submit" class="inline-flex items-center justify-between w-full gap-4 px-4 py-3 h-10 text-sm font-medium text-white duration-300 transition rounded-lg bg-accent-600 group active:text-blue-900 active:transition-none outline-offset-2 hover:bg-accent-100 hover:text-blue-700  ring-4 ring-blue-50 not-prose " aria-label="Get your link"> Get all access for <span><span class="opacity-60">~~$149~~</span> $89</span></a>
+## <a href="/api/buy/individual" type="submit" class="inline-flex items-center justify-between w-full gap-4 px-4 py-3 h-10 text-sm font-medium text-white duration-300 transition rounded-lg bg-accent-600 group active:text-blue-900 active:transition-none outline-offset-2 hover:bg-accent-100 hover:text-blue-700  ring-4 ring-blue-50 not-prose " aria-label="Get your link"> Get all access for <span> $149</span></a>
 
 ---
 
-## Teams — **<span class="opacity-60">~~$299~~</span> $149 one-time payment + local taxes**
+## Teams —  **$299 one-time payment + local taxes**
 
 For startup teams and agencies
 
 - **Same as individual +** get access to all your team. This tier gives you access to up to 5 people.
 
 <a href="/api/buy/team" type="submit" class="inline-flex items-center justify-between w-full gap-4 px-4 py-3 h-10 text-sm font-medium text-white transition rounded-lg bg-blue-950 group active:text-blue-200 active:transition-none outline-offset-2 hover:bg-blue-900 hover:text-white  ring-4 ring-blue-50 not-prose duration-300" aria-label="Get your link"> Get access for your team for
-<span><span class="opacity-50">~~$299~~</span> $149</span> </a>
+<span> $299</span> </a>
 
 ---
 
