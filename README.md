@@ -33,4 +33,6 @@ npm run dev
 - PUBLIC_FIREBASE_MESSAGING_SENDER_ID: `Firebase messaging sender ID`
 - PUBLIC_FIREBASE_APP_ID: `Firebase app ID`
 - PUBLIC_FIREBASE_AUTH_EMULATOR_HOST: `Firebase auth emulator host. Only used in development`
+- PUBLIC_UMAMI_URL: `Url where the umami analytics is hosted`
+- PUBLIC_UMAMI_WEBSITE_ID: `Website ID for the umami analytics`
 

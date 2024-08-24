@@ -25,6 +25,9 @@ page: Pricing
 
 
 
+Get lifetime access to over 270 components, plus all future updates and new content we release, with a single one-time payment — New content added weekly.
+
+**Get lifetime access at our launch price —  buy now before the price goes up!**
 
 ---
 
@@ -80,4 +83,4 @@ Diverse Selection — Each category offers a plethora of UI patterns, ensuring y
 ## Lifetime access
 
 - **No subscription required** — After the initial payment, there will be no more charges for all-access licenses.
-- F**ree updates and content** — New templates, components, and versions are included at no extra charge.
+- **Free updates and content** — New templates, components, and versions are included at no extra charge.

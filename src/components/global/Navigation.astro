@@ -3,7 +3,8 @@ const user = Astro.locals.user;
 ---
 
 <div
-  class="relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5">
+  class="relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5"
+>
   <div class="flex flex-wrap items-center mx-auto">
     <p class="text-xs 2xl:text-base leading-6 text-gray-600">
       <span class="font-semibold">Be an Early Bird —</span> Get an Exclusive Discount
@@ -13,7 +14,8 @@ const user = Astro.locals.user;
 </div>
 
 <div
-  class="w-full max-w-5xl 2xl:max-w-[100rem] px-8 bg-white mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between py-4">
+  class="w-full max-w-5xl 2xl:max-w-[100rem] px-8 bg-white mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between py-4"
+>
   <div
     x-data={`{...navigation(), username: "${user?.email ?? ""}"}`}
     class="flex flex-wrap items-center justify-between w-full gap-4 mx-auto text-sm text-gray-900">
@@ -47,20 +49,14 @@ const user = Astro.locals.user;
         class="inline-flex items-center justify-between w-auto h-8 2xl:h-10 gap-4 px-4 py-3 text-sm 2xl:text-base font-medium text-white transition duration-300 rounded-md bg-accent-600 group active:text-blue-900 active:transition-none outline-offset-2 hover:bg-accent-100 hover:text-blue-700 ring-4 ring-blue-50"
         href="/pricing"
         x-cloak
-        x-show="!username">
+        x-show="!username"
+      >
         Get all access for <div>
           <del class="ml-2 opacity-60">$149</del>&nbsp;$89
         </div>
       </a>
-      <div
-        x-popover
-        x-cloak
-        x-show="!!username"
-        class="relative">
-        <button
-          x-popover:button
-          type="button"
-          class="flex items-center gap-2">
+      <div x-popover x-cloak x-show="!!username" class="relative">
+        <button x-popover:button type="button" class="flex items-center gap-2">
           Account
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -71,39 +67,29 @@ const user = Astro.locals.user;
             stroke-linecap="round"
             stroke-linejoin="round"
             class="size-4 icon icon-tabler icons-tabler-outline icon-tabler-chevron-down"
-            ><path
-              stroke="none"
-              d="M0 0h24v24H0z"
-              fill="none"
-            ></path><path d="M6 9l6 6l6 -6"></path></svg
+            ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+              d="M6 9l6 6l6 -6"></path></svg
           >
         </button>
         <div
           x-popover:panel
           x-transition.origin.top.left
-          class="absolute right-0 top-full z-50 -mr-0.5 mt-3 w-48 origin-top-right divide-y divide-gray-100 rounded-lg bg-white text-sm font-normal text-gray-600 shadow ring-1 ring-gray-900/5 focus:outline-none sm:-mr-3.5 transform opacity-100 scale-100">
-          <p
-            class="truncate px-3.5 py-3"
-            role="none">
-            <span
-              class="block text-xs text-gray-500"
-              role="none"
+          class="absolute right-0 top-full z-50 -mr-0.5 mt-3 w-48 origin-top-right divide-y divide-gray-100 rounded-lg bg-white text-sm font-normal text-gray-600 shadow ring-1 ring-gray-900/5 focus:outline-none sm:-mr-3.5 transform opacity-100 scale-100"
+        >
+          <p class="truncate px-3.5 py-3" role="none">
+            <span class="block text-xs text-gray-500" role="none"
               >Signed in as</span
             >
-            <span
-              class="mt-0.5 font-semibold"
-              role="none"
-              x-text="username"
+            <span class="mt-0.5 font-semibold" role="none" x-text="username"
             ></span>
           </p>
-          <div
-            class="py-1.5"
-            role="none">
+          <div class="py-1.5" role="none">
             <a
               class="py-1.5 px-3.5 hover:bg-gray-50 hover:text-accent-500 items-center gap-2 flex"
               role="menuitem"
               tabindex="-1"
-              href="/support">
+              href="/support"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -113,15 +99,12 @@ const user = Astro.locals.user;
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 class="icon icon-tabler icons-tabler-outline icon-tabler-lifebuoy size-4"
-                ><path
-                  stroke="none"
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                ></path><path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"
-                ></path><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"
-                ></path><path d="M15 15l3.35 3.35"></path><path
-                  d="M9 15l-3.35 3.35"></path><path d="M5.65 5.65l3.35 3.35"
-                ></path><path d="M18.35 5.65l-3.35 3.35"></path></svg
+                ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                  d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path><path
+                  d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path><path
+                  d="M15 15l3.35 3.35"></path><path d="M9 15l-3.35 3.35"
+                ></path><path d="M5.65 5.65l3.35 3.35"></path><path
+                  d="M18.35 5.65l-3.35 3.35"></path></svg
               >Support</a
             >
             <a
@@ -138,20 +121,14 @@ const user = Astro.locals.user;
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 class="icon icon-tabler icons-tabler-outline icon-tabler-license size-4"
-                ><path
-                  stroke="none"
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                ></path><path
+                ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
                   d="M15 21h-9a3 3 0 0 1 -3 -3v-1h10v2a2 2 0 0 0 4 0v-14a2 2 0 1 1 2 2h-2m2 -4h-11a3 3 0 0 0 -3 3v11"
                 ></path><path d="M9 7l4 0"></path><path d="M9 11l4 0"
                 ></path></svg
               >License</a
             >
           </div>
-          <div
-            class="py-1.5"
-            role="none">
+          <div class="py-1.5" role="none">
             <a
               class="py-1.5 px-3.5 hover:bg-gray-50 hover:text-accent-500 items-center gap-2 flex"
               role="menuitem"
@@ -166,11 +143,7 @@ const user = Astro.locals.user;
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 class="icon icon-tabler icons-tabler-outline icon-tabler-settings size-4"
-                ><path
-                  stroke="none"
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                ></path><path
+                ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
                   d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"
                 ></path><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"
                 ></path></svg
@@ -191,11 +164,7 @@ const user = Astro.locals.user;
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 class="icon icon-tabler icons-tabler-outline icon-tabler-logout-2 size-4"
-                ><path
-                  stroke="none"
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                ></path><path
+                ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
                   d="M10 8v-2a2 2 0 0 1 2 -2h7a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-2"
                 ></path><path d="M15 12h-12l3 -3"></path><path d="M6 15l-3 -3"
                 ></path></svg
