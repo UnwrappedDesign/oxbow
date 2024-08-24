@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["Inter ", ...defaultTheme.fontFamily.sans],
+        atipla: ["Atipla ND ", ...defaultTheme.fontFamily.sans],
         mono: ["JetBrains Mono", ...defaultTheme.fontFamily.sans],
       },
       boxShadow: {
@@ -18,7 +19,7 @@ module.exports = {
       colors: {
         white: colors.white,
         gray: colors.gray,
-        black: "#121212",
+        black: "#172148",
         accent: {
         '50': '#ebf7ff',
         '100': '#d2edff',
@@ -31,6 +32,11 @@ module.exports = {
         '800': '#003dd4',
         '900': '#02379e',
         '950': '#072364',
+        '1000': '#1A2551',
+        '1100': '#172148',
+        '1200': '#141d40',
+        '1300': '#0f1a3a',
+        '1400': '#0a142e',
         },
       },
     },

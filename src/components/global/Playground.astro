@@ -102,18 +102,18 @@ const ppcode = loggedIn ? await prettier.format(code, {
               <div class="flex items-center ">
                 <button
                   @click="tab = 'preview'" :class="tab === 'preview' ? 'bg-zinc-100' : 'bg-black/0'"
-                  class="backdrop-blur pointer-events-auto flex rounded-md px-4 h-7 py-1 text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50">
+                  class="backdrop-blur pointer-events-auto flex rounded-md px-4 h-7 py-1 text-sm text-gray-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50">
                   Preview
                 </button>
                 <button
                   @click="tab = 'code'" :class="tab === 'code' ? 'bg-zinc-100' : 'bg-black/0'"
-                  class="pointer-events-auto flex rounded-md px-4 py-1 text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50">
+                  class="pointer-events-auto flex rounded-md px-4 py-1 text-sm text-gray-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50">
                   Code
                 </button>
                 <div class="mx-1 h-4 w-[2px] bg-black/10" />
                 <button
                   x-data="{ copied: false }"
-                  class="pointer-events-auto relative w-20 flex rounded-md px-4 py-1 text-sm text-black transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50"
+                  class="pointer-events-auto relative w-20 flex rounded-md px-4 py-1 text-sm text-gray-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50"
                   @click={`copied=true; $clipboard($refs.code${componentIndex}.innerText); setTimeout(()=> { copied = false; }, 2000);`}
                 >
                   <span
