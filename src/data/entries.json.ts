@@ -34,6 +34,16 @@ const interactiveFeatures: Template = {
   link: "/playground/marketing/interactive-features",
   image: "interactiveFeatures.png",
 };
+const timeline: Template = {
+  name: "Timeline",
+  link: "/playground/marketing/timeline",
+  image: "timeline.png",
+};
+const steps: Template = {
+  name: "Steps",
+  link: "/playground/marketing/steps",
+  image: "steps.png",
+};
 const pricing: Template = {
   name: "Pricing",
   link: "/playground/marketing/pricing",
@@ -79,6 +89,11 @@ const footers: Template = {
   link: "/playground/marketing/footers",
   image: "footers.png",
 };
+const cta: Template = {
+  name: "Call to Actions",
+  link: "/playground/marketing/cta",
+  image: "cta.png",
+};
 const status: Template = {
   name: "Status",
   link: "/playground/marketing/status",
@@ -90,8 +105,8 @@ const contact: Template = {
   image: "contact.png",
 };
 const newsletter: Template = {
-  name: "Newsletter",
-  link: "/playground/marketing/newsletter",
+  name: "Newsletter CTA",
+  link: "/playground/marketing/cta-newsletter",
   image: "newsletter.png",
 };
 const staticGallery: Template = {
@@ -234,7 +249,7 @@ const toggles: Template = {
   image: "toggles.png",
 };
 const selects: Template = {
-  name: "selects",
+  name: "Selects",
   link: "/playground/application/selects",
   image: "selects.png",
 };
@@ -257,6 +272,8 @@ export const pageSections: Template[] = [
   rightheroes,
   staticFeatures,
   interactiveFeatures,
+  timeline,
+  steps,
   pricing,
   faq,
   team,
@@ -271,6 +288,7 @@ export const pageSections: Template[] = [
   newsletter,
   staticGallery,
   interactiveGallery,
+  cta,
 ];
 export const elements: Template[] = [
   banners,
@@ -321,6 +339,8 @@ export const byName = {
   rightheroes,
   staticFeatures,
   interactiveFeatures,
+  timeline,
+  steps,
   pricing,
   faq,
   team,
@@ -335,6 +355,7 @@ export const byName = {
   newsletter,
   staticGallery,
   interactiveGallery,
+  cta,
   // Elements
   banners,
   buttons,

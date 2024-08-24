@@ -1,0 +1,55 @@
+---
+const steps = [
+  {
+    title: "Choose your account type",
+    description:
+      "Decide whether you need a checking account, savings account, or both. Each type has its own benefits and features.",
+  },
+  {
+    title: "Gather required documents",
+    description:
+      "Collect necessary documents such as ID, proof of address, and Social Security number. This ensures a smooth application process.",
+  },
+  {
+    title: "Complete the application",
+    description:
+      "Fill out the application form online or at your local branch. Provide accurate information to avoid delays.",
+  },
+];
+---
+
+<section>
+  <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
+    <div class="max-w-xl mx-auto lg:text-balance text-center">
+      <span
+        class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+        >Process</span
+      >
+      <h1
+        class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 lg:text-balance">
+        Simple steps to achieve your goals
+      </h1>
+      <p class="text-base font-medium mt-4 text-gray-500">
+        Follow these straightforward steps to streamline your process and
+        achieve success with ease.
+      </p>
+    </div>
+   <dl class="grid grid-cols-2 gap-x-4 gap-y-12 lg:grid-cols-3 lg:divide-x lg:border-x mt-12">
+    <!-- Loop through each step in the array -->
+    {steps.map((step, index) => (
+      <div class="lg:px-8" >
+        <div class="text-blue-500 flex gap-3 items-center">
+      
+          <span>{index + 1}.</span>
+          <dt class="tracking-tight text-lg font-medium text-gray-900">
+            {step.title}
+          </dt>
+        </div>
+        <dd class="mt-2 text-sm text-gray-500 text-pretty">
+          {step.description}
+        </dd>
+      </div>
+    ))}
+  </dl>
+  </div>
+</section>
