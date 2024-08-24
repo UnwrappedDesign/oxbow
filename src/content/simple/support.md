@@ -3,7 +3,7 @@ page: Support
 ---
 
 # Support
-Windstatic is designed for self-service use. Although we provide assistance for account management and licensing issues, users should already be familiar with Tailwind CSS and HTML to effectively utilize the product.
+Windstatic is designed for self-service use. Although we provide assistance for account management and licensing issues, users should already be familiar with Tailwind CSS, HTML and Alpine JS to effectively utilize the product.
 
 Given the unique nature of each project and the complexities involved in understanding how different pieces of code work together, we do not provide technical support or consulting services.
 
