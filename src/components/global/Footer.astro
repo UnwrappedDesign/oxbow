@@ -23,29 +23,44 @@ const siteLinks = [
 ---
 
 <footer>
-  <div class="max-w-5xl mt-6 2xl:max-w-[100rem] px-8 mx-auto relative">
+  <div class="max-w-5xl mt-6 2xl:max-w-screen-xl px-8 mx-auto relative">
     <div class="flex flex-col gap-12">
-      <div class="prose-styles md:grid-cols-2 gap-8 grid !max-w-xs">
-        {
-          siteLinks.map((category) => (
-            <div>
-              <h2>{category.category}</h2>
-              <ul
-                class="w-full space-y-2 not-prose"
-                role="list">
-                {category.items.map((item) => (
-                  <li>
-                    <a
-                      class="flex items-center justify-between w-full hover:text-accent-500"
-                      href={item.href}>
-                      {item.title}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))
-        }
+      <div
+        class="prose-styles grid-cols-1 items-start md:grid-cols-3 gap-8 grid">
+        <div class="grid grid-cols-2 gap-12 ">
+          {
+            siteLinks.map((category) => (
+              <div>
+                <h2>{category.category}</h2>
+                <ul
+                  class="w-full space-y-2 not-prose"
+                  role="list">
+                  {category.items.map((item) => (
+                    <li>
+                      <a
+                        class="flex items-center justify-between w-full hover:text-accent-500"
+                        href={item.href}>
+                        {item.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </div>
+        <a
+          href="/"
+          class="flex items-center w-full gap-3 font-medium sm:w-auto group 2xl:text-base lg:col-start-3 lg:ml-auto"
+          ><span
+            class="duration-300 group-hover:text-blue-600 group-hover:animate-pulse"
+            ><img
+              class="h-24 2xl:h-24"
+              src="/images/windstatic/windLogo.png"
+              alt="#_"
+            /></span
+          >
+        </a>
       </div>
       <svg
         class="-mb-[3.6rem] lg:-mb-[4rem] text-accent-500

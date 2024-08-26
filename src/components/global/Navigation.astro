@@ -7,56 +7,135 @@ const user = Astro.locals.user;
   <div class="flex flex-wrap items-center mx-auto">
     <p class="text-xs md:text-base leading-6 font-light text-black 2xl:text-lg">
       <strong class="font-semibold"> Celebrate Windstatic UI launch.</strong>
-      <span>
-        Get a <strong class="text-accent-600 font-bold uppercase"
-          >40% discount.</strong
-        >
-        Apply code <strong class="text-accent-600 font-bold uppercase"
-          >WINDSTATIC40</strong
-        > at checkout.
+      <span class="items-baseline inline-flex">
+        Get a &nbsp; <strong class="text-accent-600 font-bold uppercase"
+          >40% discount.
+        </strong> &nbsp; Apply code &nbsp; <strong
+          class="text-accent-600 font-bold uppercase"
+          >WINDSTATIC40
+        </strong> &nbsp; at checkout.
       </span>
     </p>
   </div>
 </div>
-
 <div
-  class="w-full max-w-5xl 2xl:max-w-[100rem] px-8 bg-white mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between py-4">
+  class="items-center w-full mx-auto relative mt-1"
+  x-data={`{...navigation(), username: "${user?.email ?? ""}"}`}>
   <div
-    x-data={`{...navigation(), username: "${user?.email ?? ""}"}`}
-    class="flex flex-wrap items-center justify-between w-full gap-4 mx-auto text-sm text-gray-900">
-    <a
-      href="/"
-      class="flex items-center w-full gap-3 font-medium sm:w-auto group 2xl:text-base"
-      ><span
-        class="duration-300 group-hover:text-blue-600 group-hover:animate-pulse"
-        ><img
-          class="h-7 2xl:h-9"
-          src="/images/windstatic/windLogo.png"
-          alt="#_"
-        /></span
-      > Windstatic UI</a
-    >
-    <div
-      class="flex flex-wrap items-center justify-between w-full gap-3 2xl:text-base font-medium text-gray-500 sm:w-auto">
+    class="w-full flex flex-col max-w-5xl 2xl:max-w-screen-xl mx-auto px-8 lg:bg-none md:flex-row md:items-center md:justify-between py-4"
+    x-data="{ open: false }">
+    <div class="items-center flex justify-between flex-row lg:justify-start">
       <a
-        href="/faq"
-        x-cloak
-        x-show="!username"
-        >Faq</a
+        href="/"
+        class="flex items-center w-full gap-3 font-medium sm:w-auto group 2xl:text-base"
+        ><span
+          class="duration-300 group-hover:text-blue-600 group-hover:animate-pulse"
+          ><img
+            class="h-7 2xl:h-9"
+            src="/images/windstatic/windLogo.png"
+            alt="#_"
+          /></span
+        > Windstatic UI</a
       >
-      <a
-        href="/login"
-        x-cloak
-        x-show="!username"
-        >Log in</a
+      <button
+        class="cursor-pointer sm:hidden"
+        onclick="document.querySelector('ninja-keys').open()">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-search size-6"
+          ><path
+            stroke="none"
+            d="M0 0h24v24H0z"
+            fill="none"
+          ></path><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"
+          ></path><path d="M21 21l-6 -6"></path></svg
+        >
+      </button>
+      <button
+        aria-label="open"
+        @click="open = !open"
+        class="items-center inline-flex focus:outline-none text-black focus:text-accent-500 hover:text-accent-600 justify-center md:hidden p-2"
+        ><svg
+          viewBox="0 0 24 24"
+          class="size-6"
+          fill="none"
+          stroke="currentColor">
+          <path
+            d="M4 6h16M4 12h16M4 18h16"
+            :class="{'hidden': open, 'inline-flex': !open }"
+            class="inline-flex"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          ></path>
+          <path
+            d="M6 18L18 6M6 6l12 12"
+            :class="{'hidden': !open, 'inline-flex': open }"
+            class="hidden"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          ></path>
+        </svg></button
       >
-      <a
-        class="inline-flex items-center justify-between w-auto h-8 2xl:h-10 gap-4 px-4 py-3 text-sm 2xl:text-base font-medium text-white transition duration-300 rounded-md bg-accent-600 group active:text-blue-900 active:transition-none outline-offset-2 hover:bg-accent-100 hover:text-blue-700 ring-4 ring-blue-50"
-        href="/pricing"
-        x-cloak
-        x-show="!username">
-        Get all access for <div>$149</div>
-      </a>
+    </div>
+    <nav
+      :class="{'flex': open, 'hidden': !open}"
+      class="items-center flex-col flex-grow hidden justify-end lg:px-0 md:flex text-sm lg:text-sm md:flex-row md:pb-0 px-5 gap-x-4 gap-y-4 xl:text-sm 2xl:text-lg text-black">
+      <button
+        class="cursor-pointer hidden sm:inline-flex"
+        onclick="document.querySelector('ninja-keys').open()">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-search size-6"
+          ><path
+            stroke="none"
+            d="M0 0h24v24H0z"
+            fill="none"
+          ></path><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"
+          ></path><path d="M21 21l-6 -6"></path></svg
+        >
+      </button>
+      <div class="md:border-l-2 md:pl-4 flex flex-col md:flex-row items-center gap-4">
+        <a
+          href="/pricing#features"
+          x-cloak
+          x-show="!username"
+          >What's included</a
+        >
+        <a
+          href="/faq"
+          x-cloak
+          x-show="!username"
+          >Faq</a
+        >
+        <a
+          href="/login"
+          x-cloak
+          x-show="!username"
+          >Log in</a
+        >
+        <a
+          class="inline-flex items-center justify-between w-auto h-8 2xl:h-10 gap-4 px-4 py-3 text-sm 2xl:text-base font-medium text-white transition duration-300 rounded-md bg-accent-500 group active:transition-none outline-offset-2 hover:bg-accent-600 ring-4 ring-blue-50"
+          href="/pricing"
+          x-cloak
+          x-show="!username">
+          Get all access for <div>$149</div>
+        </a>
+      </div>
+
       <div
         x-popover
         x-cloak
@@ -209,9 +288,10 @@ const user = Astro.locals.user;
           </div>
         </div>
       </div>
-    </div>
+    </nav>
   </div>
 </div>
+
 <script>
   import Alpine from "alpinejs";
 
