@@ -83,8 +83,8 @@ const pricingData = [
 <BaseLayout>
   <section class="relative overflow-hidden">
     <div class="max-w-5xl 2xl:max-w-screen-xl px-8 mx-auto pt-12 relative">
-      <div class="p-8 lg:p-10 border border-dashed relative lg:text-center">
-        <Crosses />
+      <div class=" lg:text-center">
+
         <div class="flex items-center lg:justify-center gap-4">
           <div class="inline-flex gap-2 items-center">
             <svg
@@ -145,7 +145,7 @@ const pricingData = [
         <div class="max-w-3xl 2xl:max-w-5xl lg:mx-auto pt-8">
           <div>
             <h1
-              class="text-2xl font-semibold 2xl:leading-[3.5rem] tracking-tight lg:text-balance sm:text-4xl text-balance [@media(max-width:480px)]:text-[2rem] 2xl:text-[3.5rem] text-black not-prose">
+              class="text-2xl font-semibold 2xl:leading-[3rem] tracking-tight lg:text-balance sm:text-4xl text-balance [@media(max-width:480px)]:text-[2rem] 2xl:text-[3rem] text-black not-prose">
               Unlock permanent access to all components, elements and layouts
               and future additions for a one-time payment
             </h1>
@@ -203,50 +203,52 @@ const pricingData = [
             </div>
           </div>
         </div>
-        <div
-          class="!mt-10 grid grid-cols-1 mx-auto gap-1 md:grid-cols-2 text-left border border-dashed relative">
-          <Crosses />
-          {
-            pricingData.map((tier) => (
-              <div
-                class={`relative flex flex-col h-full justify-between p-8 2xl:p-16 gap-8   ${tier.cardStyles}`}>
-                <ul
-                  class="flex flex-col list-disc list-inside"
-                  role="list">
-                  <li class="block font-medium text-black text-xl 2xl:text-2xl">
-                    {tier.type} — <strong>{tier.price}</strong>
-                  </li>
-                  <li class="block text-sm 2xl:text-lg text-gray-500 mt-1 pb-3">
-                    {tier.audience}
-                  </li>
+      <div>
+          <div
+            class="!mt-10 grid grid-cols-1 mx-auto gap-1 md:grid-cols-2 text-left border border-dashed relative">
+            <Crosses />
+            {
+              pricingData.map((tier) => (
+                <div
+                  class={`relative flex flex-col h-full justify-between p-8 2xl:p-16 gap-8   ${tier.cardStyles}`}>
+                  <ul
+                    class="flex flex-col list-disc list-inside"
+                    role="list">
+                    <li class=" text-2xl font-semibold 2xl:leading-[3rem] tracking-tight lg:text-balance sm:text-4xl text-balance [@media(max-width:480px)]:text-[2rem] 2xl:text-[3rem] text-black not-prose flex justify-between">
+                      {tier.type}  <span>{tier.price}</span>
+                    </li>
+                    <li class="block text-sm 2xl:text-lg text-gray-500  pb-3 mt-4">
+                      {tier.audience}
+                    </li>
 
-                  {tier.features.map((feature, i) => {
-                    const [startText, ...rest] = feature.split(" — ");
-                    const restText = rest.join(" — ");
-                    return (
-                      <li class="text-sm mt-3 2xl:text-lg font-medium text-gray-500">
-                        {startText}
-                        {restText && ` — ${restText}`}
-                      </li>
-                    );
-                  })}
-                </ul>
+                    {tier.features.map((feature, i) => {
+                      const [startText, ...rest] = feature.split(" — ");
+                      const restText = rest.join(" — ");
+                      return (
+                        <li class="text-sm mt-3 2xl:text-lg font-medium text-gray-500">
+                          {startText}
+                          {restText && ` — ${restText}`}
+                        </li>
+                      );
+                    })}
+                  </ul>
 
-                <div>
-                  {tier.purchaseButton && (
-                    <a
-                      id={`purchase-${tier.type.toLowerCase().replace(/\s/g, "-")}-bundle`}
-                      data-umami-event={`purchase-${tier.type.toLowerCase().replace(/\s/g, "-")}-bundle`}
-                      class={tier.purchaseButton.class}
-                      href={tier.purchaseButton.link}>
-                      {tier.purchaseButton.text}
-                    </a>
-                  )}
+                  <div>
+                    {tier.purchaseButton && (
+                      <a
+                        id={`purchase-${tier.type.toLowerCase().replace(/\s/g, "-")}-bundle`}
+                        data-umami-event={`purchase-${tier.type.toLowerCase().replace(/\s/g, "-")}-bundle`}
+                        class={tier.purchaseButton.class}
+                        href={tier.purchaseButton.link}>
+                        {tier.purchaseButton.text}
+                      </a>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))
-          }
-        </div>
+              ))
+            }
+          </div>
+      </div>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 items-center w-full">
         <div class="inline-flex items-center gap-3">
