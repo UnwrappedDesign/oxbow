@@ -10,6 +10,7 @@ import Cta from "@/components/global/Cta.astro";
 import { pageSections } from "@/data/entries.json";
 //
 // Application
+import { forms } from "@/data/entries.json";
 import { navigation } from "@/data/entries.json";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import EntryStructure from "@/components/landing/EntryStructure.astro";
@@ -53,8 +54,7 @@ import EntryStructure from "@/components/landing/EntryStructure.astro";
 <BaseLayout>
   <section class="relative overflow-hidden">
     <div class="max-w-5xl 2xl:max-w-screen-xl px-8 mx-auto pt-12 relative">
-      <div class="p-8 lg:p-10 border border-dashed relative lg:text-center">
-        <Crosses />
+      <div class="relative lg:text-center">
         <div class="flex items-center lg:justify-center gap-4">
           <div class="inline-flex gap-2 items-center">
             <svg
@@ -115,7 +115,7 @@ import EntryStructure from "@/components/landing/EntryStructure.astro";
         <div class="max-w-xl lg:mx-auto pt-8">
           <div class="prose-styles">
             <h1
-              class="text-3xl font-semibold tracking-tight lg:text-balance sm:text-5xl text-balance [@media(max-width:480px)]:text-[2rem] 2xl:text-[3.5rem] text-black not-prose">
+              class="text-3xl font-semibold tracking-tight lg:text-balance sm:text-5xl text-balance [@media(max-width:480px)]:text-[2rem] 2xl:text-[3rem] text-black not-prose">
               Premium components, elements and layouts
             </h1>
             <p class="text-balance max-w-2xl 2xl:text-lg">
@@ -148,12 +148,10 @@ import EntryStructure from "@/components/landing/EntryStructure.astro";
           <button
             x-tabs:tab
             type="button"
-            title="coming soon"
-            disabled
+
             :class="$tab.isSelected ? 'border-accent-500 bg-white' : 'border-transparent'"
-            class="inline-flex border-b-2 text-sm 2xl:text-lg group w-28 2xl:w-40 text-black py-2.5 pr-6 focus:outline-none disabled:opacity-50">
-            <span class="group-hover:hidden">Application</span>
-            <span class="hidden group-hover:block">Coming soon</span>
+            class="inline-flex border-b-2 text-sm 2xl:text-lg group w-28 2xl:w-40 text-black py-2.5 pr-6 focus:outline-none">
+            Application
           </button>
           <button
             x-tabs:tab
@@ -179,9 +177,9 @@ import EntryStructure from "@/components/landing/EntryStructure.astro";
                 <Crosses />
                 <h2 class="!mt-0 2xl:text-lg">Marketing</h2>
                 <p class="lg:col-span-2 2xl:text-lg">
-                  Hero sections, feature displays, and sign-up forms help you
-                  build standout marketing websites that impress visitors,
-                  showcase key features, and grow your audience.
+                  Hero sections, feature displays, footers, pricing pages and
+                  more help you build standout marketing websites that impress
+                  visitors, showcase key features, and grow your audience.
                 </p>
               </div>
               <section class="mt-12 flex flex-col gap-12 lg:gap-24">
@@ -205,7 +203,7 @@ import EntryStructure from "@/components/landing/EntryStructure.astro";
             <div
               class="prose-styles grid grid-cols-1 gap-4 relative lg:grid-cols-3 items-start border border-dashed border-gray-200 p-8">
               <Crosses />
-              <h2 class="!mt-0 2xl:text-lg">Coming soon — Application UI</h2>
+              <h2 class="!mt-0 2xl:text-lg"> Application UI</h2>
               <p class="lg:col-span-2 2xl:text-lg">
                 Form layouts, tables, and modals help build responsive web apps.
                 Create user-friendly forms, manage data with sortable tables,
@@ -213,7 +211,7 @@ import EntryStructure from "@/components/landing/EntryStructure.astro";
               </p>
             </div>
             <section class="mt-12 flex flex-col gap-12 lg:gap-24">
-              <!-- <div
+              <!--  <div
               class="flex flex-col gap-6 scroll-mt-16"
               id="navigation">
               <div class="border-b pb-2">
@@ -241,16 +239,17 @@ import EntryStructure from "@/components/landing/EntryStructure.astro";
                 </h3>
               </div>
               <EntryStructure entries={overlay} />
-            </div>
-            <div class="flex flex-col gap-6 scroll-mt-16"
-            id="forms">
-              <div class="border-b pb-2">
-                <h3 class="text-base font-semibold leading-6 text-gray-900">
-                  Forms
-                </h3>
-              </div>
-              <EntryStructure entries={forms} />
             </div> -->
+              <div
+                class="flex flex-col gap-6 scroll-mt-16"
+                id="forms">
+                <div class="border-b pb-2">
+                  <h3 class="text-base font-semibold leading-6 text-gray-900">
+                    Forms
+                  </h3>
+                </div>
+                <EntryStructure entries={forms} />
+              </div>
             </section>
           </section>
           <section x-tabs:panel>

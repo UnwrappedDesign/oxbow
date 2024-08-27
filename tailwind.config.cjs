@@ -20,7 +20,6 @@ module.exports = {
         white: colors.white,
         gray: colors.gray,
         black: "#172148",
-        white: "#fafafa",
         accent: {
         '50': '#ebf7ff',
         '100': '#d2edff',
