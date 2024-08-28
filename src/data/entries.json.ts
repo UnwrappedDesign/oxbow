@@ -9,53 +9,38 @@ export interface Template {
 //
 // Page sections
 //
-const leftheroes: Template = {
-  name: "Left Heroes",
-  link: "/playground/marketing/left-heroes",
-  image: "leftHeroes.png",
+const heros: Template = {
+  name: "Hero Sections",
+  link: "/playground/marketing/hero",
+  image: "heros.png",
 };
-const centeredheroes: Template = {
-  name: "Centered Heroes",
-  link: "/playground/marketing/centered-heroes",
-  image: "centeredHeroes.png",
-};
-const rightheroes: Template = {
-  name: "Right Heroes",
-  link: "/playground/marketing/right-heroes",
-  image: "rightHeroes.png",
-};
-const staticFeatures: Template = {
-  name: "Static Features",
-  link: "/playground/marketing/static-features",
-  image: "staticFeatures.png",
-};
-const interactiveFeatures: Template = {
-  name: "Interactive Features",
-  link: "/playground/marketing/interactive-features",
-  image: "interactiveFeatures.png",
+const features: Template = {
+  name: "Features Sections",
+  link: "/playground/marketing/features",
+  image: "features.png",
 };
 const timeline: Template = {
-  name: "Timeline",
+  name: "Timeline Sections",
   link: "/playground/marketing/timeline",
   image: "timeline.png",
 };
 const steps: Template = {
-  name: "Steps",
+  name: "Steps Sections",
   link: "/playground/marketing/steps",
   image: "steps.png",
 };
 const pricing: Template = {
-  name: "Pricing",
+  name: "Pricing Sections",
   link: "/playground/marketing/pricing",
   image: "pricing.png",
 };
 const faq: Template = {
-  name: "Faqs",
+  name: "Faq Sections",
   link: "/playground/marketing/faq",
   image: "faq.png",
 };
 const team: Template = {
-  name: "Team",
+  name: "Team Sections",
   link: "/playground/marketing/team",
   image: "team.png",
 };
@@ -80,7 +65,7 @@ const logoclouds: Template = {
   image: "logoclouds.png",
 };
 const stats: Template = {
-  name: "Stats",
+  name: "Stats Sections",
   link: "/playground/marketing/stats",
   image: "stats.png",
 };
@@ -95,35 +80,41 @@ const cta: Template = {
   image: "cta.png",
 };
 const status: Template = {
-  name: "Status",
+  name: "Status Sections",
   link: "/playground/marketing/status",
   image: "status.png",
 };
 const contact: Template = {
-  name: "Contact",
+  name: "Contact Sections",
   link: "/playground/marketing/contact",
   image: "contact.png",
 };
 const newsletter: Template = {
-  name: "Newsletter CTA",
+  name: "Newsletter Call to Action",
   link: "/playground/marketing/cta-newsletter",
   image: "newsletter.png",
 };
-const staticGallery: Template = {
-  name: "Static Galleries",
+const gallery: Template = {
+  name: "Galleries Sections",
   link: "/playground/marketing/static-gallery",
-  image: "staticGallery.png",
-};
-const interactiveGallery: Template = {
-  name: "Interactive Galleries",
-  link: "/playground/marketing/interactive-gallery",
-  image: "interactiveGallery.png",
+  image: "gallery.png",
 };
 // Application
 //
+const signIn: Template = {
+  name: "Sign In",
+  link: "/playground/application/sign-in",
+  image: "signIn.png",
+};
+const signUp: Template = {
+  name: "Sign Up",
+  link: "/playground/application/sign-up",
+  image: "signUp.png",
+};
 //
 //
 // Navigation
+//
 const navbars: Template = {
   name: "Navbars",
   link: "/playground/application/navbars",
@@ -180,11 +171,6 @@ const buttons: Template = {
   name: "Buttons",
   link: "/playground/application/buttons",
   image: "buttons.png",
-};
-const buttongroups: Template = {
-  name: "Button Groups",
-  link: "/playground/application/buttongroups",
-  image: "buttongroups.png",
 };
 const badges: Template = {
   name: "Badges",
@@ -267,11 +253,8 @@ const radiogroups: Template = {
 //
 //
 export const pageSections: Template[] = [
-  leftheroes,
-  centeredheroes,
-  rightheroes,
-  staticFeatures,
-  interactiveFeatures,
+  heros,
+  features,
   timeline,
   steps,
   pricing,
@@ -286,14 +269,11 @@ export const pageSections: Template[] = [
   status,
   contact,
   newsletter,
-  staticGallery,
-  interactiveGallery,
   cta,
 ];
 export const elements: Template[] = [
   banners,
   buttons,
-  buttongroups,
   badges,
   avatars,
   alerts,
@@ -316,6 +296,8 @@ export const navigation: Template[] = [
 ];
 export const overlay: Template[] = [notifications, modals, slideover];
 export const forms: Template[] = [
+  signIn,
+  signUp,
   formlayouts,
   inputs,
   textarea,
@@ -334,11 +316,8 @@ export const forms: Template[] = [
 //
 export const byName = {
   // Page sections
-  leftheroes,
-  centeredheroes,
-  rightheroes,
-  staticFeatures,
-  interactiveFeatures,
+  heros,
+  features,
   timeline,
   steps,
   pricing,
@@ -353,13 +332,10 @@ export const byName = {
   status,
   contact,
   newsletter,
-  staticGallery,
-  interactiveGallery,
   cta,
   // Elements
   banners,
   buttons,
-  buttongroups,
   badges,
   avatars,
   alerts,
@@ -379,6 +355,8 @@ export const byName = {
   slideover,
   modals,
   // Forms
+  signIn,
+  signUp,
   formlayouts,
   inputs,
   textarea,
