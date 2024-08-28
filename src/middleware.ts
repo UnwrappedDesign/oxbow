@@ -19,7 +19,6 @@ import { getAuth } from "firebase-admin/auth";
 import { app } from "@/firebase/server";
 
 const mode = import.meta.env.MODE;
-const baseUrl = import.meta.env.PUBLIC_APP_BASE_URL;
 
 export const onRequest = defineMiddleware(async (context, next) => {
 
@@ -38,9 +37,10 @@ export const onRequest = defineMiddleware(async (context, next) => {
     // forward request
   } catch (error) {}
 
-  if (!context.request.url.startsWith(`${baseUrl}/iframe/`) || mode === "development") {
+  if (/^\/iframe\/.*(01|02).astro$/.test(context.url.pathname) || !context.url.pathname.startsWith(`/iframe/`) || mode === "development") {
     return next();
   }
+
   return getAstroPostHTML([minifyClassnames])(context, next)
  ;
 });
