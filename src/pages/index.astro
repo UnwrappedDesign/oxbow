@@ -7,7 +7,7 @@ import Cta from "@/components/global/Cta.astro";
 //
 // Marketing
 //
-import { pageSections } from "@/data/entries.json";
+import { forms, pageSections, elements } from "@/data/entries.json";
 ---
 
 <AstroSeo
@@ -119,7 +119,8 @@ import { pageSections } from "@/data/entries.json";
       </div>
     </div>
     <div
-      class="max-w-7xl 2xl:max-w-screen-xl mx-auto px-8 pb-12 lg:pb-32 mt-24 relative">
+      class="max-w-7xl 2xl:max-w-screen-xl mx-auto px-8 pb-12 lg:pb-32 mt-24 relative"
+    >
       <div
         x-data="{
     selectedTab: localStorage.getItem('selectedTab') || 'marketing',
@@ -129,10 +130,12 @@ import { pageSections } from "@/data/entries.json";
     }
   }"
         x-init="$nextTick(() => $dispatch('tab-select', selectedTab))"
-        class="relative">
+        class="relative"
+      >
         <div
           role="tablist"
-          class="-mb-px flex items-stretch gap-2 border-b relative">
+          class="-mb-px flex items-stretch gap-2 border-b relative"
+        >
           <button
             @click="setTab('marketing'); $dispatch('tab-select', 'marketing')"
             :class="selectedTab === 'marketing' ? 'border-accent-500 bg-white' : 'border-transparent'"
@@ -156,7 +159,8 @@ import { pageSections } from "@/data/entries.json";
             :class="selectedTab === 'ecommerce' ? 'border-accent-500 bg-white' : 'border-transparent'"
             class="inline-flex border-b-2 text-sm 2xl:text-lg group w-28 2xl:w-40 text-black py-2.5 pr-6 focus:outline-none disabled:opacity-50"
             role="tab"
-            :aria-selected="selectedTab === 'ecommerce'">
+            :aria-selected="selectedTab === 'ecommerce'"
+          >
             <span class="group-hover:hidden">eCommerce</span>
             <span class="hidden group-hover:block">Coming soon</span>
           </button>
@@ -167,7 +171,8 @@ import { pageSections } from "@/data/entries.json";
             class="flex flex-col scroll-mt-16"
             x-show="selectedTab === 'marketing'"
             role="tabpanel"
-            @tab-select.window="$el.style.display = $event.detail === 'marketing' ? 'block' : 'none'">
+            @tab-select.window="$el.style.display = $event.detail === 'marketing' ? 'block' : 'none'"
+          >
             <div>
               <div
                 class="prose-styles grid grid-cols-1 gap-4 relative lg:grid-cols-3 items-start border border-dashed border-gray-200 p-8"
@@ -197,7 +202,8 @@ import { pageSections } from "@/data/entries.json";
             class="flex flex-col scroll-mt-16"
             x-show="selectedTab === 'application'"
             role="tabpanel"
-            @tab-select.window="$el.style.display = $event.detail === 'application' ? 'block' : 'none'">
+            @tab-select.window="$el.style.display = $event.detail === 'application' ? 'block' : 'none'"
+          >
             <div
               class="prose-styles grid grid-cols-1 gap-4 relative lg:grid-cols-3 items-start border border-dashed border-gray-200 p-8"
             >
@@ -231,9 +237,7 @@ import { pageSections } from "@/data/entries.json";
                 </div>
                 <EntryStructure entries={overlay} />
               </div> -->
-              <div
-                class="flex flex-col gap-6 scroll-mt-16"
-                id="forms">
+              <div class="flex flex-col gap-6 scroll-mt-16" id="forms">
                 <div class="border-b pb-2">
                   <h3 class="text-base font-semibold leading-6 text-gray-900">
                     Forms
@@ -241,9 +245,7 @@ import { pageSections } from "@/data/entries.json";
                 </div>
                 <EntryStructure entries={forms} />
               </div>
-              <div
-                class="flex flex-col gap-6 scroll-mt-16"
-                id="elements">
+              <div class="flex flex-col gap-6 scroll-mt-16" id="elements">
                 <div class="border-b pb-2">
                   <h3 class="text-base font-semibold leading-6 text-gray-900">
                     Elements
@@ -257,7 +259,8 @@ import { pageSections } from "@/data/entries.json";
             id="ecommerce"
             x-show="selectedTab === 'ecommerce'"
             role="tabpanel"
-            @tab-select.window="$el.style.display = $event.detail === 'ecommerce' ? 'block' : 'none'">
+            @tab-select.window="$el.style.display = $event.detail === 'ecommerce' ? 'block' : 'none'"
+          >
             >
             <div>
               <div
