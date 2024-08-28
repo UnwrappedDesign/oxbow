@@ -28,7 +28,7 @@ declare global {
   namespace App {
     interface Locals {
       // add props here
-      user: UserRecord | null;
+      user?: UserRecord | null;
     }
   }
 }

@@ -9,7 +9,9 @@ interface Props {
 }
 const { componentIndex, componentPath, playgroundRef } = Astro.props;
 
-const canSeeCode = Astro.locals.user || componentIndex === 1;
+const user = Astro.locals.user;
+
+const canSeeCode = user || componentIndex === 1;
 
 const code = canSeeCode ? await Astro.slots.render("default")
                       : '';
@@ -127,7 +129,10 @@ const ppcode = canSeeCode ? await prettier.format(code, {
             ) : (
               <a
                 class="pointer-events-auto relative flex rounded-md px-4 py-1 text-sm text-gray-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50"
-                href="/pricing"
+                href="/pricing" 
+                data-umami-event="click-get-access"
+                data-umami-data-id={user?.uid}
+                data-umami-event-componentref={componentPath}
               >
                 Get Access
               </a>
