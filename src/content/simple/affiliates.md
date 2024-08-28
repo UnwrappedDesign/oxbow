@@ -6,7 +6,7 @@ page: Join our affiliate program
 
 [Apply today Earn up to 30% on every sale](https://affiliates.lemonsqueezy.com/programs/windstatic)
 
-A simple and easy way ━ to make money for referring people to Windstatic. Get 20% of every sale you refer. There’s no limit on how much you can earn.
+A simple and easy way ━ to make money for referring people to Windstatic. Get 30% of every sale you refer. There’s no limit on how much you can earn.
 
 ### Why promote Windstatic?
 
@@ -37,5 +37,6 @@ Lemon Squeezy requires a minimum balance of $50.00 before processing an affiliat
 
 ### How do I sign up?
 
-The Lemon Squeezy affiliate hub hosts ### Why promote Windstatic?
+The Lemon Squeezy affiliate hub hosts
+### Why promote Windstatic?
 ’s affiliate program. Click the “Apply” button to create a Lemon Squeezy account and join our program.
