@@ -23,11 +23,32 @@ const siteLinks = [
 ---
 
 <footer>
-  <div class="max-w-5xl mt-6 2xl:max-w-screen-xl px-8 mx-auto relative">
+  <div class="max-w-5xl mt-6 2xl:max-w-screen-xl px-8 pt-24 mx-auto relative">
     <div class="flex flex-col gap-12">
-      <div
-        class="prose-styles grid-cols-1 items-start md:grid-cols-3 gap-8 grid">
-        <div class="grid grid-cols-2 gap-12 ">
+      <div class="prose-styles gap-8">
+        <div class="border-b pb-5 sm:flex sm:items-start sm:justify-between">
+          <a
+            href="/"
+            class="flex items-center w-full gap-3 font-medium sm:w-auto group 2xl:text-base not-prose"
+            ><span
+              class="duration-300 group-hover:text-blue-600 group-hover:animate-pulse"
+              ><img
+                class="h-7 2xl:h-9"
+                src="/images/windstatic/windLogo.png"
+                alt="#_"
+              /></span
+            > Windstatic UI</a
+          >
+          <div class="sm:mt-0 flex mt-3 sm:ml-4 max-w-xl">
+            <p class="text-neutral-600 text-xs lg:text-sm">
+              Premium components, elements and layouts For freelancers,
+              developers, businesses, and personal use. Beautifully crafted with
+              Tailwind CSS and Alpine JS — Simple & easy to customise.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-6">
           {
             siteLinks.map((category) => (
               <div>
@@ -41,6 +62,7 @@ const siteLinks = [
                         class="flex items-center justify-between w-full hover:text-accent-500"
                         href={item.href}>
                         {item.title}
+                        <span>&rarr;</span>
                       </a>
                     </li>
                   ))}
@@ -49,18 +71,6 @@ const siteLinks = [
             ))
           }
         </div>
-        <a
-          href="/"
-          class="flex items-center w-full gap-3 font-medium sm:w-auto group 2xl:text-base lg:col-start-3 lg:ml-auto"
-          ><span
-            class="duration-300 group-hover:text-blue-600 group-hover:animate-pulse"
-            ><img
-              class="h-24 2xl:h-24"
-              src="/images/windstatic/windLogo.png"
-              alt="#_"
-            /></span
-          >
-        </a>
       </div>
       <svg
         class="-mb-[3.6rem] lg:-mb-[4rem] text-accent-500
