@@ -99,7 +99,6 @@ const gallery: Template = {
   link: "/playground/marketing/static-gallery",
   image: "gallery.png",
 };
-
 // Application
 //
 const signIn: Template = {
@@ -172,11 +171,6 @@ const buttons: Template = {
   name: "Buttons",
   link: "/playground/application/buttons",
   image: "buttons.png",
-};
-const buttongroups: Template = {
-  name: "Button Groups",
-  link: "/playground/application/buttongroups",
-  image: "buttongroups.png",
 };
 const badges: Template = {
   name: "Badges",
@@ -275,14 +269,11 @@ export const pageSections: Template[] = [
   status,
   contact,
   newsletter,
-
-
   cta,
 ];
 export const elements: Template[] = [
   banners,
   buttons,
-  buttongroups,
   badges,
   avatars,
   alerts,
@@ -341,13 +332,10 @@ export const byName = {
   status,
   contact,
   newsletter,
-
-
   cta,
   // Elements
   banners,
   buttons,
-  buttongroups,
   badges,
   avatars,
   alerts,
