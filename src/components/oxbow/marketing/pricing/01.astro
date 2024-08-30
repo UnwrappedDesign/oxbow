@@ -1,0 +1,182 @@
+<section>
+  <!-- Define a data attribute 'duration' with the initial value 'monthly'  -->
+
+  <div
+    x-data="{duration: 'monthly'}"
+    class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-screen-xl relative">
+    <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:items-center">
+      <div class="flex flex-col gap-12 justify-between max-w-md mx-auto md:text-balance text-center lg:text-left">
+        <div>
+          <span class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase">Tagline</span>
+          <p class="text-4xl mt-4 font-semibold tracking-tight text-gray-900">
+            Equip your business with world class software
+          </p>
+          <p class="text-base text-balance mt-4 text-gray-700 ">
+            Every plan includes every feature, and can scale as your team does.
+          </p>
+        </div>
+        <div
+          class="w-full border bg-white overflow-hidden justify-center mx-auto lg:mx-0 inline-flex p-0.5 rounded-lg max-w-xs shadow shadow-white/20 z-0">
+          <!-- Monthly Pricing Button: Sets 'duration' to 'monthly' when clicked -->
+          <button
+            id="monthly-pricing-button"
+            class="block w-full px-8 py-2 text-xs font-medium transition border border-transparent rounded-md text-blue-900"
+            @click="duration = 'monthly'"
+            :class="duration == 'monthly' ? 'bg-gray-100 border text-blue-900 ' : ''"
+            type="button">
+            Monthly
+          </button>
+
+          <!-- Annual Pricing Button: Sets 'duration' to 'annual' when clicked -->
+          <button
+            id="annual-pricing-button"
+            class="block w-full px-8 py-2 text-xs font-medium transition border border-transparent rounded-md text-blue-900"
+            @click="duration = 'annual'"
+            :class="duration == 'annual' ? 'bg-gray-100 border text-blue-900 ' : ''"
+            type="button">
+            Annual
+          </button>
+        </div>
+      </div>
+      <div
+        class="flex flex-col h-full justify-between p-8 bg-gradient-to-b from-blue-500 to-indigo-600 rounded-3xl lg:col-span-2">
+        <div>
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center gap-2 justify-between">
+              <p class="text-xl font-medium font-mono uppercase text-white">
+                Basic
+              </p>
+              <p
+                class="text-xl font-medium uppercase font-mono tracking-tighter text-white">
+                <span
+                  data-monthly="$9"
+                  data-annual="$5"
+                  x-text="$el.dataset[duration]"
+                ></span>
+                <span class="text-sm font-normal tracking-normal text-gray-200">
+                  <span x-show="duration === 'monthly'">
+                    <span x-show="duration === 'monthly'"> /month</span></span
+                  >
+                  <span
+                    x-show="duration === 'annual'"
+                    style="display: none;">
+                    /annually</span
+                  >
+                </span>
+              </p>
+            </div>
+
+            <p class="text-base text-white mt-4">
+              This subscription tier caters to individuals and hobbyists seeking
+              fundamental features.
+            </p>
+          </div>
+          <ul
+            class="grid grid-cols-1 sm:grid-cols-2 l mt-10 text-sm text-white gap-y-3"
+            role="list">
+            <li class="flex flex-row items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-4 icon icon-tabler icon-tabler-circle-check-filled text-white"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+                <path
+                  stroke="none"
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                ></path>
+                <path
+                  d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
+                  stroke-width="0"
+                  fill="currentColor"
+                ></path>
+              </svg>
+              <span>Unlimited members</span>
+            </li>
+            <li class="flex flex-row items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-4 icon icon-tabler icon-tabler-circle-check-filled text-white"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+                <path
+                  stroke="none"
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                ></path>
+                <path
+                  d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
+                  stroke-width="0"
+                  fill="currentColor"
+                ></path>
+              </svg>
+              <span>2 teams </span>
+            </li>
+            <li class="flex flex-row items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-4 icon icon-tabler icon-tabler-circle-check-filled text-white"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+                <path
+                  stroke="none"
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                ></path>
+                <path
+                  d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
+                  stroke-width="0"
+                  fill="currentColor"
+                ></path>
+              </svg>
+              <span>50 issues (+unlimited)</span>
+            </li>
+            <li class="flex flex-row items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-4 icon icon-tabler icon-tabler-circle-check-filled text-white"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+                <path
+                  stroke="none"
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                ></path>
+                <path
+                  d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
+                  stroke-width="0"
+                  fill="currentColor"
+                ></path>
+              </svg>
+              <span>Slack, GitHub, and API access</span>
+            </li>
+          </ul>
+        </div>
+        <div class="w-full mt-8">
+          <a
+            aria-describedby="#_"
+            class="flex items-center justify-center gap-2 h-10 px-4 py-2 text-sm font-medium text-gray-500 transition-all bg-white border border-gray-300 rounded-lg hover:text-gray-700 focus:ring-2 shadow shadow-gray-500/5 focus:ring-gray-900 focus:ring-offset-2 ring-offset-gray-200 duration-300 hover:border-gray-200    hover:shadow-none w-full"
+            href="#_"
+            >Get started</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

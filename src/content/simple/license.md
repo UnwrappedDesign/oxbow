@@ -6,7 +6,7 @@ page: license
 
 ### Personal license
 
-Windstatic provides you with a perpetual, non-exclusive license to utilize the components.
+Oxbow UI provides you with a perpetual, non-exclusive license to utilize the components.
 
 This license allows a single person (the Licensee) to access and use the components.
 
@@ -23,7 +23,7 @@ This license allows a single person (the Licensee) to access and use the compone
 - Use the components to create End products that are designed to allow an End User to build their own End products using the components or derivatives of the components.
 - Re-distribute the components or derivatives of the components separately from an End product, neither in code nor as design assets.
 - Share your access to the components with any other individuals.
-- Use the components to produce anything that may be deemed by Windstatic, in their sole and absolute discretion, to be competitive or in conflict with the business of Windstatic.
+- Use the components to produce anything that may be deemed by Oxbow UI, in their sole and absolute discretion, to be competitive or in conflict with the business of Oxbow UI.
 
 ## Example usage
 
@@ -37,21 +37,21 @@ Examples of usage **allowed** by the license:
 
 Examples of usage **not allowed** by the license:
 
-- Creating a repository of your favorite Windstatic components (or derivatives based on Windstatic components) and publishing it publicly.
-- Creating a UI library using Windstatic components and making it available either for sale or for free.
-- Converting Windstatic components to another framework and making it available either for sale or for free.
-- Creating a Figma, Sketch UI, or any other toolkit based on the Windstatic component designs.
-- Creating a "website builder" project where end users can build their own websites using components included with or derived from Windstatic.
+- Creating a repository of your favorite Oxbow UI components (or derivatives based on Oxbow UI components) and publishing it publicly.
+- Creating a UI library using Oxbow UI components and making it available either for sale or for free.
+- Converting Oxbow UI components to another framework and making it available either for sale or for free.
+- Creating a Figma, Sketch UI, or any other toolkit based on the Oxbow UI component designs.
+- Creating a "website builder" project where end users can build their own websites using components included with or derived from Oxbow UI.
 - Creating a theme, template, or project starter kit using the components and making it available either for sale or for free.
 - Creating an admin panel tool that is made available either for sale or for free.
-- In simple terms, use Windstatic for anything you like as long as it doesn't compete with Windstatic.
+- In simple terms, use Oxbow UI for anything you like as long as it doesn't compete with Oxbow UI.
 
 
 ## Personal license definitions
 
 **Licensee** — is the individual who has purchased a Personal License.
 
-**Components**  — are the source code and design assets made available to the Licensee after purchasing a Windstatic license.
+**Components**  — are the source code and design assets made available to the Licensee after purchasing a Oxbow UI license.
 
 **End product** — is any artifact produced that incorporates the components or derivatives of the components.
 
@@ -62,7 +62,7 @@ Examples of usage **not allowed** by the license:
 ---
 
 ## Team License
-Windstatic provides an ongoing, non-exclusive license for utilizing the components.
+Oxbow UI provides an ongoing, non-exclusive license for utilizing the components.
 
 The license permits up to 25 Employees and Contractors of the Licensee to utilize and access the components.
 
@@ -78,7 +78,7 @@ The license permits up to 25 Employees and Contractors of the Licensee to utiliz
 - Independently distribute the components or their derivatives apart from an End product.
 - Generate End products owned by entities other than the Licensee or the Licensee's clients.
 - Provide component access to individuals not categorized as Employees or Contractors of the Licensee.
-- Produce anything that Windstatic, at its sole discretion, deems competitive or conflicting with its business.
+- Produce anything that Oxbow UI, at its sole discretion, deems competitive or conflicting with its business.
 
 ## Example usage
 
@@ -91,23 +91,23 @@ Examples of usage **allowed** by the license:
 
 Examples of usage **not allowed** by the license:
 
-- Creating a repository of your favorite Windstatic components (or derivatives based on Windstatic components) and publishing it publicly.
-- Creating a UI library using Windstatic components and making it available either for sale or for free.
-- Converting Windstatic components to another framework and making it available either for sale or for free.
-- Creating a Figma, Sketch UI, or any other toolkit based on the Windstatic component designs.
-- Creating a "website builder" project where end users can build their own websites using components included with or derived from Windstatic.
+- Creating a repository of your favorite Oxbow UI components (or derivatives based on Oxbow UI components) and publishing it publicly.
+- Creating a UI library using Oxbow UI components and making it available either for sale or for free.
+- Converting Oxbow UI components to another framework and making it available either for sale or for free.
+- Creating a Figma, Sketch UI, or any other toolkit based on the Oxbow UI component designs.
+- Creating a "website builder" project where end users can build their own websites using components included with or derived from Oxbow UI.
 - Creating a theme, template, or project starter kit using the components and making it available either for sale or for free.
 - Creating an admin panel tool that is made available either for sale or for free.
-- In simple terms, use Windstatic for anything you like as long as it doesn't compete with Windstatic.
-- Producing any End product that does not exclusively belong to either your company or a client thereof. For instance, your employees or contractors cannot utilize your company's Windstatic license to develop personal websites or side projects.
-- Providing Windstatic access to individuals upon their purchase of a product from you. For example, you cannot leverage a Team License to grant access to Windstatic when someone buys an online course from you.
+- In simple terms, use Oxbow UI for anything you like as long as it doesn't compete with Oxbow UI.
+- Producing any End product that does not exclusively belong to either your company or a client thereof. For instance, your employees or contractors cannot utilize your company's Oxbow UI license to develop personal websites or side projects.
+- Providing Oxbow UI access to individuals upon their purchase of a product from you. For example, you cannot leverage a Team License to grant access to Oxbow UI when someone buys an online course from you.
 - Commercializing access to your team account for individuals not employed by your company.
 
 ## Team License Definitions
 
 **Licensee** — The business entity that has acquired a Team License.
 
-**Components** — The source code and design assets accessible to the licensee subsequent to purchasing a Windstatic license.
+**Components** — The source code and design assets accessible to the licensee subsequent to purchasing a Oxbow UI license.
 
 **End product** — Any outcome generated that integrates the Components or their derivatives.
 
@@ -121,7 +121,7 @@ Examples of usage **not allowed** by the license:
 
 
 ## Other license terms:
-You are not required to attribute or link to Windstatic in any of your projects.
+You are not required to attribute or link to Oxbow UI in any of your projects.
 
 All the rights for photographs and illustrations used in the components are reserved by their legal owners and are presented in the UI Kits for demonstrating purposes.
 
@@ -131,12 +131,12 @@ Windtatic will not be responsible for any outcome that may occur during the cour
 ## Compulsory law
 If you are found to be in violation of the license, a refund may be issued at our discretion. When license violation is blatant and malicious no refund will be issued.
 
-The copyright of Windstatic's component is owned by Windatatic. You are granted only the permissions described in this license; all other rights are reserved. Windstatic reserves the right to pursue legal remedies for any unauthorized use of the components outside the scope of this license.
+The copyright of Oxbow UI's component is owned by Windatatic. You are granted only the permissions described in this license; all other rights are reserved. Oxbow UI reserves the right to pursue legal remedies for any unauthorized use of the components outside the scope of this license.
 
 
 
 ## Accountabilty
-Windstatic liability to you for costs, damages, or other losses arising from your use of the Components — including third-party claims against you — is limited to a refund of your license fee. Windstatic may not be held liable for any consequential damages related to your use of the Windstatic.
+Oxbow UI liability to you for costs, damages, or other losses arising from your use of the Components — including third-party claims against you — is limited to a refund of your license fee. Oxbow UI may not be held liable for any consequential damages related to your use of the Oxbow UI.
 
 This Agreement is governed by the laws of Mariehamn, Åland Islands and the applicable laws of Finland. Legal proceedings related to this Agreement may only be brought in the courts of Mariehamn. You agree to service of process at the e-mail address on your original order.
 

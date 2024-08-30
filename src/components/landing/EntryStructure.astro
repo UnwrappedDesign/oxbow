@@ -1,31 +1,24 @@
 ---
 import { Image } from "astro:assets";
 import type { Template } from "@/data/entries.json";
-
 interface Props {
   entries: Template[];
 }
-
 const { entries } = Astro.props; // Make sure entries is correctly passed and used
-
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/images/**/*.{jpeg,jpg,png,gif}"
 );
-
-const components = await Astro.glob("@/components/windstatic/**/*.astro");
-
+const components = await Astro.glob("@/components/oxbow/**/*.astro");
 const componentBySection = components.reduce((acc, component) => {
   const [section, subsection] = component.file
-    .replace(/.*\/src\/components\/windstatic\//, "")
+    .replace(/.*\/src\/components\/oxbow\//, "")
     .split("/");
-
   const path = ["/playground", section, subsection].filter(Boolean).join("/");
   return {
     ...acc,
     [path]: acc[path] ? acc[path] + 1 : 1,
   };
 }, {});
-
 // Add quantity to each entry
 const entriesWithQuantity = entries
   .map((entry: Template) => {
@@ -34,7 +27,6 @@ const entriesWithQuantity = entries
       throw new Error(
         `"${imagePath}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`
       );
-
     return {
       ...entry,
       image: images[imagePath],
@@ -44,15 +36,14 @@ const entriesWithQuantity = entries
   // Filter out entries with quantity 0
   .filter((entry) => entry.quantity > 0);
 ---
-
 <ul
-  class="col-span-3 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 sm:gap-y-10 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 xl:gap-x-8 ">
+  class="col-span-3 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 sm:gap-y-10 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 xl:gap-x-8">
   {
     entriesWithQuantity.map((template) => (
       <li class="">
         <div class="group relative group rounded-lg">
           <Image
-            class="object-bottom object-cover shadow border rounded-lg ring-4 ring-gray-50 group-hover:ring-gray-100 duration-300"
+            class="object-bottom object-cover  border rounded-lg group-hover:ring-2 group-hover:ring-offset-2  group-hover:ring-gray-100 duration-300"
             alt={template.name}
             src={template.image()}
           />
@@ -74,5 +65,3 @@ const entriesWithQuantity = entries
     ))
   }
 </ul>
-
-

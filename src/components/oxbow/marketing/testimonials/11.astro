@@ -1,0 +1,74 @@
+---
+const data = [
+  {
+    name: "Mike Vega",
+    title: "Creator of Oxbow UI.com",
+    testimonial:
+      "Being in the financial industry, we were always looking for ways to enhance our transactions' security and efficiency.",
+    imgSrc: "/avatars/1.avif",
+  },
+  {
+    name: "Juan Echanove",
+    title: "Founder of Pay Oneeer",
+    testimonial:
+      "Oxbow UI is a platform that allows you to create a customized landing page for your business. It's a great way to showcase your products and services to potential customers.",
+    imgSrc: "/avatars/2.avif",
+  },
+];
+---
+
+<section>
+  <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-2 items-center">
+      <div class="lg:pr-8 lg:pb-8">
+        <span
+          class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase">
+          Testimonials
+        </span>
+        <h1 class="text-3xl mt-4 font-semibold tracking-tight text-gray-900">
+          Testimonials from
+
+          <span class="text-gray-600 block">delighted customers </span>
+        </h1>
+
+        <p class="text-base font-medium text-gray-500 mt-4">
+          Discover stories of success and satisfaction shared by our clients.
+        </p>
+      </div>
+      {
+        data.map((member) => (
+          <>
+            <li class="bg-gray-50 p-6 rounded-2xl shadow flex flex-col h-full">
+              <figure class="flex flex-col  h-full justify-between">
+                <div>
+                  <blockquote>
+                    <p class="text-sm text-gray-500 text-pretty">
+                      "{member.testimonial}"
+                    </p>
+                  </blockquote>
+                </div>
+                <figcaption class="flex items-center justify-between mt-12">
+                  <div class="flex items-center gap-4">
+                    <img
+                      class="object-cover rounded-full size-12"
+                      src={member.imgSrc}
+                      alt="#_"
+                    />
+                    <div>
+                      <h3 class="tracking-tight text-lg font-medium  text-gray-900">
+                        {member.name}
+                      </h3>
+                      <p class="mt-2 text-sm text-gray-500 text-balance">
+                        {member.title}
+                      </p>
+                    </div>
+                  </div>
+                </figcaption>
+              </figure>
+            </li>
+          </>
+        ))
+      }
+    </div>
+  </div>
+</section>
