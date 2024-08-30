@@ -1,4 +1,4 @@
-## Windstatic
+## Oxbow UI
 ### Getting started
 
 Install firebase tools for local development in case you don't have install it in your machine
@@ -21,8 +21,8 @@ npm run dev
 - FIREBASE_TOKEN: `Firebase token for authentication as admin`
 
 #### Product variables
-- PRODUCT_INDIVIDUAL_LICENSE_URL: `URL for the windstatic product individual license`
-- PRODUCT_TEAM_LICENSE_URL: `URL for the windstatic product team license`
+- PRODUCT_INDIVIDUAL_LICENSE_URL: `URL for the Oxbow UI product individual license`
+- PRODUCT_TEAM_LICENSE_URL: `URL for the Oxbow UI product team license`
 
 ### Frontend environment variables
 - PUBLIC_APP_BASE_URL: `Base URL for the app`

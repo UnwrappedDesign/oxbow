@@ -1,0 +1,202 @@
+---
+const articles = [
+  {
+    title: "Responsive web design best practices",
+    description:
+      "Learn the best practices for creating responsive web designs that provide a seamless user experience across all devices.",
+    date: "Mon Mar 25",
+    link: "#_",
+  },
+  {
+    title: "Javascript frameworks: a comparison",
+    description:
+      "An in-depth comparison of the most popular JavaScript frameworks, including React, Vue, and Angular, to help you choose the right one for your project.",
+    date: "Wed Apr 10",
+    link: "#_",
+  },
+  {
+    title: "The future of CSS: new features to watch",
+    description:
+      "Explore the latest features and updates in CSS that are shaping the future of web design and development.",
+    date: "Fri May 05",
+    link: "#_",
+  },
+  {
+    title: "User experience design principles",
+    description:
+      "Understand the key principles of user experience design and how to apply them to create intuitive and user-friendly websites.",
+    date: "Tue Jun 15",
+    link: "#_",
+  },
+  {
+    title: "Web performance optimization tips",
+    description:
+      "Discover effective tips and techniques for optimizing the performance of your websites to ensure fast loading times and a smooth user experience.",
+    date: "Thu Jul 01",
+    link: "#_",
+  },
+  {
+    title: "Accessibility in web design",
+    description:
+      "Learn how to make your websites more accessible to users with disabilities by following web accessibility guidelines and best practices.",
+    date: "Mon Aug 23",
+    link: "#_",
+  },
+];
+---
+
+<section>
+  <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
+    <div class="grid grid-cols-1 lg:grid-cols-3 items-end gap-12">
+      <div class="lg:col-span-2 max-w-2xl">
+        <span
+          class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+          >Tagline</span
+        >
+        <h1
+          class="text-4xl mt-4 font-semibold tracking-tight sm:text-6xl lg:text-6xl text-gray-900 sm:text-balance">
+          From Our Blog
+        </h1>
+        <p class="mt-6 text-base font-medium text-gray-500 lg:text-balance">
+          Dive into our latest articles and stay updated with fresh perspectives
+          and expert advice.
+        </p>
+      </div>
+      <div class="lg:ml-auto">
+        <form class="w-full mt-8 sm:flex sm:max-w-md">
+          <label
+            for="email-address"
+            class="sr-only"
+            >Email address</label
+          >
+          <input
+            id="email-address"
+            type="email"
+            name="email-address"
+            autocomplete="email"
+            placeholder="Enter your email"
+            aria-placeholder="Enter your email"
+            required=""
+            class="block w-full h-10 px-4 py-2 text-sm text-blue-700 duration-300 bg-white border border-transparent rounded-lg shadow appearance-none ring-1 ring-gray-200 placeholder-gray-400 focus:border-gray-300 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+          />
+          <div class="mt-2 sm:ml-2 sm:mt-0 sm:flex-shrink-0">
+            <button
+              type="submit"
+              class="flex items-center justify-center w-full h-10 px-4 py-2 text-sm font-medium text-white transition-all duration-200 rounded-lg shadow sm:w-auto bg-gradient-to-b from-blue-500 to-indigo-600 hover:to-indigo-800 shadow-blue-600/50 focus:ring-2 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none lg:w-auto"
+              >Subscribe</button
+            >
+          </div>
+        </form>
+        <p class="text-xs mt-3 text-gray-500">
+          When you sign up, you accept our <a
+            class="text-blue-600 hover:text-gray-900"
+            href="#_"
+            >Terms of Service</a
+          > and <a
+            class="text-blue-600 hover:text-gray-900"
+            href="#_"
+            >Privacy Policy</a
+          >.
+        </p>
+      </div>
+    </div>
+    <div
+      class="relative sm:pb-12 mt-12 pt-12 border-t grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <div class="flex flex-col gap-12 lg:col-span-2">
+        {
+          articles.map((article) => (
+            <article class="relative group">
+              <div class="absolute -inset-y-2.5 -inset-x-4 md:-inset-y-6 md:-inset-x-8 sm:rounded-2xl group-hover:bg-gray-50 duration-300" />
+
+              <div class="relative">
+                <dl>
+                  <dt class="sr-only">{article.date}</dt>
+                  <dd class="text-xs text-gray-500">
+                    <time datetime={article.date}>{article.date}</time>
+                  </dd>
+                </dl>
+                <h3 class=" mt-2 tracking-tight text-2xl font-medium  text-gray-900 pt-8 lg:pt-0">
+                  {article.title}
+                </h3>
+                <div class="mt-2 mb-4 text-base lg:text-lg text-gray-500 line-clamp-2">
+                  <p>{article.description}</p>
+                </div>
+              </div>
+              <a
+                class="flex items-center text-sm text-blue-700 font-medium"
+                href={article.link}>
+                <span class="absolute -inset-y-2.5 -inset-x-4 md:-inset-y-4 md:-inset-x-6 sm:rounded-2xl" />
+                <span class="text-blue-500 hover:text-gray-900 text-sm font-medium duration-300 flex items-center gap-2 relative">
+                  Read more <span class="sr-only">, {article.title}</span>
+                </span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-chevron-right relative mt-px overflow-visible ml-2.5 size-4"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  />
+                  <path d="M9 6l6 6l-6 6" />
+                </svg>
+              </a>
+            </article>
+          ))
+        }
+      </div>
+      <div class="lg:ml-auto">
+        <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          <li>
+            <a
+              href="#"
+              class="text-blue-600 hover:text-gray-900 duration-300">
+              Latest Articles
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="text-blue-600 hover:text-gray-900 duration-300">
+              Popular Posts
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="text-blue-600 hover:text-gray-900 duration-300">
+              Categories
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="text-blue-600 hover:text-gray-900 duration-300">
+              Archives
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="text-blue-600 hover:text-gray-900 duration-300">
+              About the Author
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="text-blue-600 hover:text-gray-900 duration-300">
+              Subscribe to Newsletter
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

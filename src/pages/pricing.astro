@@ -1,29 +1,27 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { AstroSeo } from "@astrolib/seo";
-import Crosses from "@/components/designAssets/Crosses.astro";
 import Included from "@/components/global/Included.astro";
 import Cta from "@/components/global/Cta.astro";
 const pricingData = [
   {
-    img: "/images/windstatic/windLogoDark.png",
+    img: "/images/oxbow/windLogoDark.png",
     type: "Teams",
     price: "$299",
     audience: "For startup teams and agencies",
     features: [
       "Same as individual — plus get access to your team. This tier gives you access to up to 5 people.",
     ],
-    cardStyles:
-      "lg:border-r border-b lg:border-b-0 border-dashed order-first lg:order-none",
+    cardStyles: "relative flex border p-8 bg-white  ",
     purchaseButton: {
       text: "Buy for $299",
       class:
-        "inline-flex items-center justify-between w-full gap-4 px-4 py-3 h-10 text-sm font-medium text-white transition rounded-lg bg-blue-950 group active:text-blue-200 active:transition-none outline-offset-2 hover:bg-blue-900 hover:text-white  ring-4 ring-blue-50 not-prose duration-300",
+        "inline-flex 2xl:text-base h-10 items-center focus:outline-none bg-white border border-gray-300 focus:ring-2 focus:ring-black focus:ring-offset-2 font-medium hover:bg-gray-50 px-4 py-1 rounded-full text-black text-sm duration-200 w-full text-center justify-center",
       link: "/api/buy/team",
     },
   },
   {
-    img: "/images/windstatic/windLogo.png",
+    img: "/images/oxbow/windLogo.png",
     type: "Individual",
     price: "$149",
     audience: "For individuals working on their projects or freelancers.",
@@ -34,57 +32,74 @@ const pricingData = [
       "Free updates ",
       "Use in SaaS",
     ],
-    cardStyles: " ",
+    cardStyles: "relative flex border p-8 bg-gray-50 order-first lg:order-none",
     purchaseButton: {
       text: "Buy for $149",
       class:
-        "inline-flex items-center justify-between w-full gap-4 px-4 py-3 h-10 text-sm font-medium text-white duration-300 transition rounded-lg bg-accent-500 group active:transition-none outline-offset-2 hover:bg-accent-600   ring-4 ring-blue-50 not-prose",
+        "text-white h-10 2xl:text-base bg-black focus:ring-2 focus:ring-white focus:ring-offset-2 inline-flex items-center px-4 py-1 rounded-full border border-transparent hover:bg-black/10 hover:text-black ring-1 ring-transparent duration-200 text-sm w-full justify-center",
       link: "/api/buy/individual",
+    },
+  },
+  {
+    img: "/images/oxbow/windLogo.png",
+    type: "Demos",
+    price: "$0",
+    audience: "Every category has a free demo",
+    features: [
+      "1 Component from every category ready to copy to clipboard",
+
+
+    ],
+    cardStyles: " relative flex border p-8 bg-white ",
+    purchaseButton: {
+      text: "Browse components",
+      class:
+        "inline-flex 2xl:text-base h-10 items-center focus:outline-none bg-white border border-gray-300 focus:ring-2 focus:ring-black focus:ring-offset-2 font-medium hover:bg-gray-50 px-4 py-1 rounded-full text-black text-sm duration-200 w-full text-center justify-center",
+      link: "/",
     },
   },
 ];
 ---
 
 <AstroSeo
-  title="Windstatic UI - Pricing "
+  title="Oxbow UI - Pricing "
   description="Unlock permanent access to all components, elements and layouts and future additions for a one-time payment."
-  canonical="https://www.windstatic.com/pricing"
+  canonical="https://www.oxbowui.com/pricing"
   openGraph={{
-    url: "https://www.windstatic.com/images/OpenGraph/twitter.png",
-    title: "Windstatic UI - Pricing",
+    url: "https://www.oxbowui.com/images/OpenGraph/twitter.png",
+    title: "Oxbow UI - Pricing",
     description:
       "Unlock permanent access to all components, elements and layouts and future additions for a one-time payment.",
     images: [
       {
-        url: "https://www.windstatic.com/images/OpenGraph/facebook.png",
+        url: "https://www.oxbowui.com/images/OpenGraph/facebook.png",
         width: 1200,
         height: 630,
-        alt: "Windstatic",
+        alt: "Oxbow UI",
         type: "image/png",
       },
       {
-        url: "https://www.windstatic.com/images/OpenGraph/twitter.png",
+        url: "https://www.oxbowui.com/images/OpenGraph/twitter.png",
         width: 4096,
         height: 4096,
-        alt: "Windstatic",
+        alt: "Oxbow UI",
         type: "image/png",
       },
-      { url: "https://www.windstatic.com/images/OpenGraph/facebook.ong" },
-      { url: "https://www.windstatic.com/images/OpenGraph/twitter.png" },
+      { url: "https://www.oxbowui.com/images/OpenGraph/facebook.ong" },
+      { url: "https://www.oxbowui.com/images/OpenGraph/twitter.png" },
     ],
-    site_name: "Windstatic",
+    site_name: "Oxbow UI",
   }}
   twitter={{
     handle: "@Mike_Andreuzza",
-    site: "https://www.windstatic.com",
+    site: "https://www.oxbowui.com",
     cardType: "summary_large_image",
   }}
 />
 <BaseLayout>
   <section class="relative overflow-hidden">
     <div class="max-w-5xl 2xl:max-w-screen-xl px-8 mx-auto pt-12 relative">
-      <div class=" lg:text-center">
-
+      <div class="lg:text-center">
         <div class="flex items-center lg:justify-center gap-4">
           <div class="inline-flex gap-2 items-center">
             <svg
@@ -145,9 +160,9 @@ const pricingData = [
         <div class="max-w-3xl 2xl:max-w-5xl lg:mx-auto pt-8">
           <div>
             <h1
-              class="text-2xl font-semibold 2xl:leading-[3rem] tracking-tight lg:text-balance sm:text-4xl text-balance [@media(max-width:480px)]:text-[2rem] 2xl:text-[3rem] text-black not-prose">
-              Unlock permanent access to all components, elements and layouts
-              and future additions for a one-time payment
+              class="text-black font-medium text-4xl tracking-tight 2xl:text-5xl text-balance">
+              Unlock permanent access to everything and future additions for a
+              one-time payment
             </h1>
             <p
               class="mt-3 inline-flex items-center rounded-md bg-zinc-50 px-2 py-1 text-xs 2xl:text-base font-medium text-accent-600 ring-1 ring-inset ring-zinc-500/10">
@@ -156,106 +171,53 @@ const pricingData = [
           </div>
         </div>
       </div>
-
-      <div class="mx-auto pb-5 text-center">
-        <div class="max-w-3xl 2xl:max-w-4xl mx-auto hidden">
-          <p
-            class="text-black font-medium text-4xl tracking-tight 2xl:text-5xl text-balance">
-            Unlock permanent access to all components, elements and layouts and
-            future additions for a one-time payment
-          </p>
-          <p
-            class="mt-3 inline-flex items-center rounded-md bg-zinc-50 px-2 py-1 text-xs 2xl:text-base font-medium text-accent-600 ring-1 ring-inset ring-zinc-500/10">
-            No subscription required
-          </p>
-          <div class="flex flex-wrap mt-6 text-center justify-center">
-            <div class="flex items-center text-sm font-medium text-black">
-              <svg
-                viewBox="0 0 256 118"
-                class="flex-none stroke-current size-5 inline"
-                astro-icon="logos:alpinejs-icon"
-                aria-label="Alpine">
-                <path
-                  d="M199.111 0 256 56.64l-56.889 56.639-56.889-56.64z"
-                  fill="#77C1D2"
-                ></path><path
-                  d="m56.889 0 117.938 117.42H61.049L0 56.64z"
-                  fill="#2D3441"
-                ></path></svg
-              >
-              <span class="ml-2.5"> Alpine JS</span>
-            </div>
-            <div class="flex items-center ml-6 text-sm font-medium text-black">
-              <svg
-                class="flex-none size-5 stroke-current inline"
-                viewBox="0 0 256 154"
-                aria-label="Tailwind CSS"
-                astro-icon="logos:tailwindcss-icon"
-                height="64"
-                width="64"
-                ><path
-                  d="M128 0C93.867 0 72.533 17.067 64 51.2 76.8 34.133 91.733 27.733 108.8 32c9.737 2.434 16.697 9.999 24.401 17.318C145.751 62.057 160.275 76.8 192 76.8c34.133 0 55.467-17.067 64-51.2-12.8 17.067-27.733 23.467-44.8 19.2-9.737-2.434-16.697-9.999-24.401-17.318C174.249 14.743 159.725 0 128 0zM64 76.8C29.867 76.8 8.533 93.867 0 128c12.8-17.067 27.733-23.467 44.8-19.2 9.737 2.434 16.697 9.999 24.401 17.318C81.751 138.857 96.275 153.6 128 153.6c34.133 0 55.467-17.067 64-51.2-12.8 17.067-27.733 23.467-44.8 19.2-9.737-2.434-16.697-9.999-24.401-17.318C110.249 91.543 95.725 76.8 64 76.8z"
-                  fill="#38bdf9"
-                  stroke="#38bdf9"
-                ></path></svg
-              >
-              <span class="ml-2.5"> Tailwind CSS</span>
-            </div>
-          </div>
-        </div>
-      <div>
-          <div
-            class="!mt-10 grid grid-cols-1 mx-auto gap-1 md:grid-cols-2 text-left border border-dashed relative">
-            <Crosses />
-            {
-              pricingData.map((tier) => (
-                <div
-                  class={`relative flex flex-col h-full justify-between p-8 2xl:p-16 gap-8   ${tier.cardStyles}`}>
-                  <ul
-                    class="flex flex-col list-disc list-inside"
-                    role="list">
-                    <li class=" text-2xl font-semibold 2xl:leading-[3rem] tracking-tight lg:text-balance sm:text-4xl text-balance [@media(max-width:480px)]:text-[2rem] 2xl:text-[3rem] text-black not-prose flex justify-between">
-                      {tier.type}  <span>{tier.price}</span>
+      <div
+        class="!mt-10 grid grid-cols-1 mx-auto gap-1 md:grid-cols-2 lg:grid-cols-3 text-left">
+        {
+          pricingData.map((tier) => (
+            <div
+              class={`relative flex flex-col h-full justify-between p-8 2xl:p-16 gap-8   ${tier.cardStyles}`}>
+              <ul
+                class="flex flex-col list-disc list-inside"
+                role="list">
+                <li class="block font-medium text-black 2xl:text-2xl">
+                  {tier.type} — <span>{tier.price}</span>
+                </li>
+                <li class="block text-sm 2xl:text-lg text-gray-500  pb-3 mt-4">
+                  {tier.audience}
+                </li>
+                {tier.features.map((feature, i) => {
+                  const [startText, ...rest] = feature.split(" — ");
+                  const restText = rest.join(" — ");
+                  return (
+                    <li class="text-sm mt-3 2xl:text-lg font-medium text-gray-900">
+                      {startText}
+                      {restText && ` — ${restText}`}
                     </li>
-                    <li class="block text-sm 2xl:text-lg text-gray-500  pb-3 mt-4">
-                      {tier.audience}
-                    </li>
-
-                    {tier.features.map((feature, i) => {
-                      const [startText, ...rest] = feature.split(" — ");
-                      const restText = rest.join(" — ");
-                      return (
-                        <li class="text-sm mt-3 2xl:text-lg font-medium text-gray-500">
-                          {startText}
-                          {restText && ` — ${restText}`}
-                        </li>
-                      );
-                    })}
-                  </ul>
-
-                  <div>
-                    {tier.purchaseButton && (
-                      <a
-                        id={`purchase-${tier.type.toLowerCase().replace(/\s/g, "-")}-bundle`}
-                        data-umami-event={`purchase-${tier.type.toLowerCase().replace(/\s/g, "-")}-bundle`}
-                        class={tier.purchaseButton.class}
-                        href={tier.purchaseButton.link}>
-                        {tier.purchaseButton.text}
-                      </a>
-                    )}
-                  </div>
-                </div>
-              ))
-            }
-          </div>
+                  );
+                })}
+              </ul>
+              <div>
+                {tier.purchaseButton && (
+                  <a
+                    id={`purchase-${tier.type.toLowerCase().replace(/\s/g, "-")}-bundle`}
+                    data-umami-event={`purchase-${tier.type.toLowerCase().replace(/\s/g, "-")}-bundle`}
+                    class={tier.purchaseButton.class}
+                    href={tier.purchaseButton.link}>
+                    {tier.purchaseButton.text}
+                  </a>
+                )}
+              </div>
+            </div>
+          ))
+        }
       </div>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 items-center w-full">
+      <div class="grid grid-cols-1 mt-5 md:grid-cols-2 items-center w-full">
         <div class="inline-flex items-center gap-3">
           <h1 class="text-netral-500">Secure Payment via</h1>
           <img
             class="h-5"
-            src="/images/windstatic/lemon.svg"
+            src="/images/oxbow/lemon.svg"
             alt=""
           />
         </div>
@@ -266,35 +228,35 @@ const pricingData = [
             <li>
               <img
                 height="50"
-                src="/images/windstatic/paypal.svg"
+                src="/images/oxbow/paypal.svg"
                 alt=""
               />
             </li>
             <li>
               <img
                 height="50"
-                src="/images/windstatic/applepay.svg"
+                src="/images/oxbow/applepay.svg"
                 alt=""
               />
             </li>
             <li>
               <img
                 height="50"
-                src="/images/windstatic/googlepay.svg"
+                src="/images/oxbow/googlepay.svg"
                 alt=""
               />
             </li>
             <li>
               <img
                 height="50"
-                src="/images/windstatic/mastercard.svg"
+                src="/images/oxbow/mastercard.svg"
                 alt=""
               />
             </li>
             <li>
               <img
                 height="50"
-                src="/images/windstatic/visa.svg"
+                src="/images/oxbow/visa.svg"
                 alt=""
               />
             </li>
