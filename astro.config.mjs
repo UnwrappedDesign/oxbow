@@ -29,7 +29,7 @@ export default defineConfig({
     skipInline: false,
     drafts: true
   },
-  site: 'https://windstatic.com',
+  site: 'https://oxbowui.com',
   integrations: [
     sitemap(),
     mdx(),

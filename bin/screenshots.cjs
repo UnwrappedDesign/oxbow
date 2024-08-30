@@ -3,13 +3,13 @@ const fs = require('fs');
 const path = require('path');
 
 (async function() {
-  const dir = "src/components/windstatic/marketing";
+  const dir = "src/components/oxbow/marketing";
 
   // create the screenshots directory if it doesn't exist
   if (!fs.existsSync('screenshots')) {
     fs.mkdirSync('screenshots');
   }
-  
+
   const files = await fs.promises.readdir(path.join(__dirname, `../${dir}`), {recursive: true});
 
   const astroFiles = files.filter(file => file.endsWith('.astro'));
