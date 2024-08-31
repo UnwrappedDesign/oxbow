@@ -4,7 +4,7 @@ import { AstroSeo } from "@astrolib/seo";
 import Included from "@/components/global/Included.astro";
 import Cta from "@/components/global/Cta.astro";
 const pricingData = [
-  {
+  /* {
     img: "/images/oxbow/windLogoDark.png",
     type: "Teams",
     price: "$299",
@@ -16,14 +16,15 @@ const pricingData = [
     purchaseButton: {
       text: "Buy for $299",
       class:
-        "inline-flex 2xl:text-base h-10 items-center focus:outline-none bg-white border border-gray-300 focus:ring-2 focus:ring-black focus:ring-offset-2 font-medium hover:bg-gray-50 px-4 py-1 rounded-full text-black text-sm duration-200 w-full text-center justify-center",
+        "inline-flex 2xl:text-base h-10 items-center focus:outline-none bg-white border border-zinc-300 focus:ring-2 focus:ring-black focus:ring-offset-2 font-medium hover:bg-zinc-50 px-4 py-1 rounded-full text-black text-sm duration-200 w-full text-center justify-center",
       link: "/api/buy/team",
     },
-  },
+  }, */
   {
     img: "/images/oxbow/windLogo.png",
     type: "Individual",
-    price: "$149",
+    price: "$49 ",
+    futurePrice: "$149",
     audience: "For individuals working on their projects or freelancers.",
     features: [
       "All components ",
@@ -32,32 +33,28 @@ const pricingData = [
       "Free updates ",
       "Use in SaaS",
     ],
-    cardStyles: "relative flex border p-8 bg-gray-50 order-first lg:order-none",
+    cardStyles: "relative flex border p-8 bg-zinc-50 order-first lg:order-none",
     purchaseButton: {
-      text: "Buy for $149",
+      text: "Buy for ",
       class:
         "text-white h-10 2xl:text-base bg-black focus:ring-2 focus:ring-white focus:ring-offset-2 inline-flex items-center px-4 py-1 rounded-full border border-transparent hover:bg-black/10 hover:text-black ring-1 ring-transparent duration-200 text-sm w-full justify-center",
       link: "/api/buy/individual",
     },
   },
-  {
+  /* {
     img: "/images/oxbow/windLogo.png",
     type: "Demos",
     price: "$0",
     audience: "Every category has a free demo",
-    features: [
-      "1 Component from every category ready to copy to clipboard",
-
-
-    ],
+    features: ["1 Component from every category ready to copy to clipboard"],
     cardStyles: " relative flex border p-8 bg-white ",
     purchaseButton: {
       text: "Browse components",
       class:
-        "inline-flex 2xl:text-base h-10 items-center focus:outline-none bg-white border border-gray-300 focus:ring-2 focus:ring-black focus:ring-offset-2 font-medium hover:bg-gray-50 px-4 py-1 rounded-full text-black text-sm duration-200 w-full text-center justify-center",
+        "inline-flex 2xl:text-base h-10 items-center focus:outline-none bg-white border border-zinc-300 focus:ring-2 focus:ring-black focus:ring-offset-2 font-medium hover:bg-zinc-50 px-4 py-1 rounded-full text-black text-sm duration-200 w-full text-center justify-center",
       link: "/",
     },
-  },
+  }, */
 ];
 ---
 
@@ -99,9 +96,9 @@ const pricingData = [
 <BaseLayout>
   <section class="relative overflow-hidden">
     <div class="max-w-5xl 2xl:max-w-screen-xl px-8 mx-auto pt-12 relative">
-      <div class="lg:text-center">
-        <div class="flex items-center lg:justify-center gap-4">
-          <div class="inline-flex gap-2 items-center">
+      <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 items-center">
+        <div>
+          <div class="inline-flex gap-2 items-center text-sm text-zinc-500">
             <svg
               class="flex-none inline size-6"
               viewBox="0 0 64 64"
@@ -126,91 +123,64 @@ const pricingData = [
               </defs>
             </svg> Tailwind CSS
           </div>
-          ·
-          <div class="inline-flex gap-2 items-center">
-            <svg
-              class="flex-none inline size-6"
-              viewBox="0 0 64 64"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <g clip-path="url(#clip0_460_7)">
-                <path
-                  d="M49.7769 17L63.9992 31.16L49.7769 45.3197L35.5547 31.1597L49.7769 17Z"
-                  fill="#77C1D2"
-                ></path>
-                <path
-                  d="M14.2222 17L43.7067 46.355H15.2622L0 31.16L14.2222 17Z"
-                  fill="#2D3441"
-                ></path>
-              </g>
-              <defs>
-                <clipPath id="clip0_460_7">
-                  <rect
-                    width="64"
-                    height="29.5"
-                    fill="white"
-                    transform="translate(0 17)"
-                  ></rect>
-                </clipPath>
-              </defs>
-            </svg>
-            Alpine JS
-          </div>
-        </div>
-        <div class="max-w-3xl 2xl:max-w-5xl lg:mx-auto pt-8">
-          <div>
-            <h1
-              class="text-black font-medium text-4xl tracking-tight 2xl:text-5xl text-balance">
-              Unlock permanent access to everything and future additions for a
-              one-time payment
-            </h1>
-            <p
-              class="mt-3 inline-flex items-center rounded-md bg-zinc-50 px-2 py-1 text-xs 2xl:text-base font-medium text-accent-600 ring-1 ring-inset ring-zinc-500/10">
-              No subscription required
-            </p>
-          </div>
-        </div>
-      </div>
-      <div
-        class="!mt-10 grid grid-cols-1 mx-auto gap-1 md:grid-cols-2 lg:grid-cols-3 text-left">
-        {
-          pricingData.map((tier) => (
-            <div
-              class={`relative flex flex-col h-full justify-between p-8 2xl:p-16 gap-8   ${tier.cardStyles}`}>
-              <ul
-                class="flex flex-col list-disc list-inside"
-                role="list">
-                <li class="block font-medium text-black 2xl:text-2xl">
-                  {tier.type} — <span>{tier.price}</span>
-                </li>
-                <li class="block text-sm 2xl:text-lg text-gray-500  pb-3 mt-4">
-                  {tier.audience}
-                </li>
-                {tier.features.map((feature, i) => {
-                  const [startText, ...rest] = feature.split(" — ");
-                  const restText = rest.join(" — ");
-                  return (
-                    <li class="text-sm mt-3 2xl:text-lg font-medium text-gray-900">
-                      {startText}
-                      {restText && ` — ${restText}`}
-                    </li>
-                  );
-                })}
-              </ul>
-              <div>
-                {tier.purchaseButton && (
-                  <a
-                    id={`purchase-${tier.type.toLowerCase().replace(/\s/g, "-")}-bundle`}
-                    data-umami-event={`purchase-${tier.type.toLowerCase().replace(/\s/g, "-")}-bundle`}
-                    class={tier.purchaseButton.class}
-                    href={tier.purchaseButton.link}>
-                    {tier.purchaseButton.text}
-                  </a>
-                )}
-              </div>
+          <div class=" pt-8">
+            <div>
+              <h1
+                class="text-black font-medium text-4xl tracking-tight 2xl:text-5xl text-balance">
+                Unlock permanent access to everything and future additions for a
+                one-time payment
+              </h1>
+              <p
+                class="mt-8 inline-flex items-center rounded-md bg-zinc-50 px-2 py-1 text-xs 2xl:text-base font-medium text-accent-600 ring-1 ring-inset ring-zinc-500/10">
+                No subscription required
+              </p>
             </div>
-          ))
-        }
+          </div>
+        </div>
+        <div>
+          {
+            pricingData.map((tier) => (
+              <div
+                class={`relative flex flex-col h-full justify-between p-8 2xl:p-16 gap-8   ${tier.cardStyles}`}>
+                <ul
+                  class="flex flex-col list-disc list-inside"
+                  role="list">
+                  <li class="block font-medium text-black 2xl:text-2xl">
+                    {tier.type} —{" "}
+                    <>
+                      <span>{tier.price}</span>
+                      <del class="opacity-50">{tier.futurePrice}</del>
+                    </>
+                  </li>
+                  <li class="block text-sm 2xl:text-lg text-zinc-500  pb-3 mt-4">
+                    {tier.audience}
+                  </li>
+                  {tier.features.map((feature, i) => {
+                    const [startText, ...rest] = feature.split(" — ");
+                    const restText = rest.join(" — ");
+                    return (
+                      <li class="text-sm mt-3 2xl:text-lg font-medium text-zinc-900">
+                        {startText}
+                        {restText && ` — ${restText}`}
+                      </li>
+                    );
+                  })}
+                </ul>
+                <div>
+                  {tier.purchaseButton && (
+                    <a
+                      id={`purchase-${tier.type.toLowerCase().replace(/\s/g, "-")}-bundle`}
+                      data-umami-event={`purchase-${tier.type.toLowerCase().replace(/\s/g, "-")}-bundle`}
+                      class={tier.purchaseButton.class}
+                      href={tier.purchaseButton.link}>
+                      {tier.purchaseButton.text} {tier.price}
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))
+          }
+        </div>
       </div>
       <div class="grid grid-cols-1 mt-5 md:grid-cols-2 items-center w-full">
         <div class="inline-flex items-center gap-3">
