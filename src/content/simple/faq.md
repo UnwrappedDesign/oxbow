@@ -21,7 +21,7 @@ Unfortunately, design assets for tools such as Figma or other design tools are n
 Since the primary focus is on developing high-quality components in code, we don't allocate resources to creating additional design assets.
 
 ### What frameworks are supported?
-When the components are developed in code, we use Tailwind CSS and to those components that need JavaScript the components use Alpine.js.
+When the components are developed in code, we use plain Tailwind CSS, no need to configure nothing.
 
 ---
 **License**
