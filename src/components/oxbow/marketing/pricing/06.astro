@@ -1,28 +1,27 @@
 <section>
-  <!-- Define a data attribute 'duration' with the initial value 'monthly'  -->
-
-  <div
-    x-data="{duration: 'monthly'}"
-    class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-screen-xl relative">
-    <div class="grid grid-cols-1  lg:max-w-none gap-y-4 lg:gap-x-12 lg:grid-cols-3 lg:items-start w-full">
+  <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-screen-xl relative">
+    <div
+      class="grid grid-cols-1 lg:max-w-none gap-y-4 lg:gap-x-12 lg:grid-cols-3 lg:items-start w-full">
       <div
-        class="flex flex-col gap-12 h-full justify-between p-8 bg-gray-50 rounded-3xl cols-span-full lg:col-span-1">
+        class="flex flex-col gap-12 h-full justify-between lg:p-8 lg:bg-zinc-50 lg:rounded-3xl cols-span-full lg:col-span-1">
         <div>
-          <span class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase">Tagline</span>
+          <span
+            class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+            >Tagline</span
+          >
           <p
-            class="text-3xl mt-4 font-semibold tracking-tight text-gray-900 lg:text-pretty">
+            class="text-3xl mt-4 font-semibold tracking-tight text-zinc-900 lg:text-pretty">
             Start saving your money today!
           </p>
-          <p class="text-base lg:text-pretty mt-4 text-gray-700">
+          <p class="text-base lg:text-pretty mt-4 text-zinc-700">
             Choose a plan that fits your needs and budget.
           </p>
         </div>
-
-        <div class="flex flex-col p-8 bg-gray-950 rounded-2xl">
+        <div class="flex flex-col p-8 bg-zinc-950 rounded-2xl">
           <figure class="flex flex-col h-full gap-4">
             <div>
               <blockquote>
-                <p class="text-base text-gray-200 text-pretty">
+                <p class="text-base text-zinc-200 text-pretty">
                   "Completely blown away by the quality of the work."
                 </p>
               </blockquote>
@@ -34,11 +33,10 @@
                     alt="#_"
                   />
                   <div>
-                    <h3
-                      class="tracking-tight text-lg font-medium text-white">
+                    <h3 class="tracking-tight text-lg font-medium text-white">
                       Mike Vega
                     </h3>
-                    <p class="mt-1 text-sm text-gray-500 text-balance">
+                    <p class="mt-1 text-sm text-zinc-500 text-balance">
                       Boy Band leader
                     </p>
                   </div>
@@ -54,73 +52,74 @@
           class="col-span-full pb-4 lg:pt-24 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:items-end text-center lg:text-left">
           <div>
             <p
-              class="text-2xl font-semibold tracking-tight text-gray-900 lg:text-pretty">
+              class="text-2xl font-semibold tracking-tight text-zinc-900 lg:text-pretty">
               Start your free trial today
             </p>
-            <p class="text-base text-balance mt-2 text-gray-700">
+            <p class="text-base text-balance mt-2 text-zinc-700">
               Get started, no credit card required.
             </p>
           </div>
-          <div
-            class="w-full border bg-white overflow-hidden inline-flex p-0.5 rounded-lg max-w-xs shadow shadow-white/20 z-0">
-            <!-- Monthly Pricing Button: Sets 'duration' to 'monthly' when clicked -->
-            <button
-              id="monthly-pricing-button"
-              class="block w-full px-8 py-2 text-xs font-medium transition border border-transparent rounded-md text-blue-900"
-              @click="duration = 'monthly'"
-              :class="duration == 'monthly' ? 'bg-gray-100 border text-blue-900 ' : ''"
-              type="button">
-              Monthly
-            </button>
-
-            <!-- Annual Pricing Button: Sets 'duration' to 'annual' when clicked -->
-            <button
-              id="annual-pricing-button"
-              class="block w-full px-8 py-2 text-xs font-medium transition border border-transparent rounded-md text-blue-900"
-              @click="duration = 'annual'"
-              :class="duration == 'annual' ? 'bg-gray-100 border text-blue-900 ' : ''"
-              type="button">
-              Annual
-            </button>
-          </div>
+          <fieldset
+            aria-label="#_"
+            class="mt-8 max-w-xs mx-auto lg:mx-0 w-full">
+            <div
+              class="grid grid-cols-2 gap-x-1 rounded-lg p-1 h-10 text-center text-xs font-semibold leading-5 ring-1 ring-inset ring-gray-200">
+              <!--
+              When the checkbox is selected, apply "bg-gray-50" for the background. If the checkbox is not selected, use "bg-white" for the background.
+              -->
+              <label
+                class="cursor-pointer rounded px-2.5 py-1 bg-gray-50 text-zinc-900">
+                <input
+                  type="radio"
+                  name="month"
+                  value="month"
+                  class="sr-only"
+                />
+                <span>Monthly</span>
+              </label>
+              <!--
+              When the checkbox is selected, apply "bg-gray-50" for the background. If the checkbox is not selected, use "bg-white" for the background.
+              -->
+              <label class="cursor-pointer rounded px-2.5 py-1 text-zinc-900">
+                <input
+                  type="radio"
+                  name="annual"
+                  value="annual"
+                  class="sr-only"
+                />
+                <span>Annually</span>
+              </label>
+            </div>
+          </fieldset>
         </div>
         <div
-          class="flex flex-col h-full justify-between p-8 bg-gray-50 rounded-3xl">
+          class="flex flex-col h-full justify-between p-8 bg-zinc-50 rounded-3xl">
           <div>
             <div class="flex flex-col gap-2">
               <div class="flex flex-col gap-2">
                 <p
-                  class="text-xl font-medium uppercase font-mono  tracking-tighter text-gray-900 mt-8">
+                  class="text-xl font-medium uppercase font-mono tracking-tighter text-zinc-900 mt-8">
                   Basic
                 </p>
                 <p
-                  class="font-semibold order-first flex items-baseline text-4xl tracking-tighter font-mono text-gray-900">
-                  <span
-                    data-monthly="$9"
-                    data-annual="$5"
-                    x-text="$el.dataset[duration]"
-                  ></span>
-                  <span
-                    class="text-sm font-normal tracking-normal text-gray-700">
-                    <span x-show="duration === 'monthly'">
-                      <span x-show="duration === 'monthly'"> /month</span></span
-                    >
-                    <span
-                      x-show="duration === 'annual'"
-                      style="display: none;">
-                      /annually</span
-                    >
-                  </span>
+                  class="font-semibold order-first flex items-baseline text-4xl tracking-tighter font-mono text-zinc-900">
+                                     <!--
+                Display the price, which should be updated according to the state of the frequency toggle
+                -->
+                  <span>$19</span>
+                  <!--
+                Display the payment frequency, which should also be updated based on the frequency toggle
+                -->
+                  <span class="text-sm">/month</span>
                 </p>
               </div>
-
-              <p class="text-sm text-gray-700 mt-4">
+              <p class="text-sm text-zinc-700 mt-4">
                 This subscription tier caters to individuals and hobbyists
                 seeking fundamental features.
               </p>
             </div>
             <ul
-              class="flex flex-col mt-10 text-sm text-gray-700 gap-y-3"
+              class="flex flex-col mt-10 text-sm text-zinc-700 gap-y-3"
               role="list">
               <li class="flex flex-row items-center gap-2">
                 <svg
@@ -211,43 +210,35 @@
           <div class="w-full mt-8">
             <a
               aria-describedby="#_"
-              class="flex items-center justify-center gap-2 h-10 px-4 py-2 text-sm font-medium text-gray-500 transition-all bg-white border border-gray-300 rounded-lg hover:text-gray-700 focus:ring-2 shadow shadow-gray-500/5 focus:ring-gray-900 focus:ring-offset-2 ring-offset-gray-200 duration-300 hover:border-gray-200    hover:shadow-none w-full"
+              class="flex items-center justify-center gap-2 h-10 px-4 py-2 text-sm font-medium text-zinc-500 transition-all bg-white border border-zinc-300 rounded-lg hover:text-zinc-700 focus:ring-2 shadow shadow-zinc-500/5 focus:ring-zinc-900 focus:ring-offset-2 ring-offset-zinc-200 duration-300 hover:border-zinc-200 hover:shadow-none w-full"
               href="#_"
               >Get started</a
             >
           </div>
         </div>
         <!--- Tier 2 -->
-
         <div
-          class="flex h-full justify-between flex-col  p-8 rounded-3xl bg-gradient-to-b from-blue-500 to-indigo-600 ">
+          class="flex h-full justify-between flex-col p-8 rounded-3xl bg-gradient-to-b from-blue-500 to-indigo-600">
           <div>
             <div>
               <div class="flex flex-col gap-2">
                 <div class="flex flex-col gap-2">
                   <p
-                    class="text-xl font-medium uppercase font-mono  tracking-tighter text-white mt-8">
+                    class="text-xl font-medium uppercase font-mono tracking-tighter text-white mt-8">
                     Premium
                   </p>
                   <p
                     class="font-semibold flex items-baseline order-first text-4xl tracking-tighter font-mono text-white">
-                    <span
-                      data-monthly="$49"
-                      data-annual="$39"
-                      x-text="$el.dataset[duration]"
-                    ></span>
-                    <span
-                      class="text-sm font-normal tracking-normal text-white">
-                      <span x-show="duration === 'monthly'"> /month</span>
-                      <span
-                        x-show="duration === 'annual'"
-                        style="display: none;"
-                        >/annually</span
-                      ></span
-                    >
+                                        <!--
+                Display the price, which should be updated according to the state of the frequency toggle
+                -->
+                  <span>$39</span>
+                  <!--
+                Display the payment frequency, which should also be updated based on the frequency toggle
+                -->
+                  <span class="text-sm">/month</span>
                   </p>
                 </div>
-
                 <p class="text-sm text-white mt-4">
                   Designed with medium-sized businesses in mind, this
                   subscription tier provides advanced tools.
@@ -377,7 +368,7 @@
           <div class="w-full mt-8">
             <a
               aria-describedby="#_"
-              class="flex items-center justify-center gap-2 h-10 px-4 py-2 text-sm font-medium text-gray-500 transition-all bg-gray-50 border border-gray-300 rounded-lg hover:text-gray-700 focus:ring-2 shadow shadow-gray-500/5 focus:ring-gray-900 focus:ring-offset-2 ring-offset-gray-200 duration-300 hover:border-gray-200    hover:shadow-none w-full"
+              class="flex items-center justify-center gap-2 h-10 px-4 py-2 text-sm font-medium text-zinc-500 transition-all bg-zinc-50 border border-zinc-300 rounded-lg hover:text-zinc-700 focus:ring-2 shadow shadow-zinc-500/5 focus:ring-zinc-900 focus:ring-offset-2 ring-offset-zinc-200 duration-300 hover:border-zinc-200 hover:shadow-none w-full"
               href="#_"
               >Get started</a
             >
