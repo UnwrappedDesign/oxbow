@@ -2,12 +2,39 @@
 const user = Astro.locals.user;
 ---
 
-<!-- <div
-  class="relative isolate flex items-center gap-x-6 overflow-hidden bg-zinc-50 px-6 py-2.5 sm:px-3.5 sr-only">
-  <div class="flex flex-wrap items-center mx-auto">
-    <p class="text-xs md:text-base leading-6 font-light text-black 2xl:text-lg">
-      <strong class="font-semibold"> Celebrate Oxbow UI launch.</strong>
-      <span class="items-baseline inline-flex">
+<div
+  x-show="showAlert"
+  x-data="{ showAlert: true }"
+  role="alert"
+  class="relative isolate flex items-center gap-x-6 overflow-hidden bg-zinc-50 px-6 py-2.5 sm:px-3.5r-only">
+  <div class="flex flex-wrap items-center mx-auto  relative">
+    <button
+      @click="showAlert = false"
+      class="underline border text-zinc-900 absolute right-0 focus:bg-white focus:text-blue-700 hover:bg-white hover:text-blue-500 rounded-full p-0.5"
+      ><svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="size-3 icon icon-tabler icon-tabler-x"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+        stroke="currentColor"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        ><path
+          stroke="none"
+          d="M0 0h24v24H0z"
+          fill="none"
+        ></path><path d="M18 6l-12 12"></path><path d="M6 6l12 12"></path></svg
+      ></button
+    >
+    <p class="text-xs md:text-sm leading-6 font-light text-black 2xl:text-sm lg:pr-20">
+      Hey there! We noticed you're visiting from [Country]. We support parity
+      pricing, here is a <span class="text-accent-600 font-bold uppercase"
+        >[X]%</span
+      > discount. Just apply the code <span
+        class="text-accent-600 font-bold uppercase">[DISCOUNT_CODE]</span
+      > at checkout.
+      <span class="items-baseline inline-flex sr-only">
         Get a &nbsp; <strong class="text-accent-600 font-bold uppercase"
           >40% discount.
         </strong> &nbsp; Apply code &nbsp; <strong
@@ -17,7 +44,7 @@ const user = Astro.locals.user;
       </span>
     </p>
   </div>
-</div> -->
+</div>
 <div
   class="items-center w-full mx-auto relative mt-1"
   x-data={`{...navigation(), username: "${user?.email ?? ""}"}`}>
