@@ -1,90 +1,84 @@
 <section>
-  <!-- Define a data attribute 'duration' with the initial value 'monthly'  -->
-
-  <div
-    x-data="{duration: 'monthly'}"
-    class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-screen-xl relative"
-  >
+  <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-screen-xl relative">
     <div class="max-w-xl text-center mx-auto">
-      <span class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase">Tagline</span>
-      <p
-        class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 lg:text-balance"
+      <span
+        class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+        >Tagline</span
       >
+      <p
+        class="text-4xl mt-4 font-semibold tracking-tight text-zinc-900 lg:text-balance">
         Equip your business
         <br />
         <span>with world class software </span>
       </p>
-      <p class="text-base max-w-sm mx-auto text-balance mt-4 text-gray-700">
+      <p class="text-base max-w-sm mx-auto text-balance mt-4 text-zinc-700">
         Every plan includes every feature, and can scale as your team does.
       </p>
-      <div
-        class="w-full border bg-white overflow-hidden inline-flex mt-8 p-0.5 rounded-lg max-w-xs shadow shadow-white/20 z-0"
-      >
-        <!-- Monthly Pricing Button: Sets 'duration' to 'monthly' when clicked -->
-        <button
-          id="monthly-pricing-button"
-          class="block w-full px-8 py-2 text-xs font-medium transition border border-transparent rounded-md text-blue-900"
-          @click="duration = 'monthly'"
-          :class="duration == 'monthly' ? 'bg-gray-100 border text-blue-900 ' : ''"
-          type="button"
-        >
-          Monthly
-        </button>
-
-        <!-- Annual Pricing Button: Sets 'duration' to 'annual' when clicked -->
-        <button
-          id="annual-pricing-button"
-          class="block w-full px-8 py-2 text-xs font-medium transition border border-transparent rounded-md text-blue-900"
-          @click="duration = 'annual'"
-          :class="duration == 'annual' ? 'bg-gray-100 border text-blue-900 ' : ''"
-          type="button"
-        >
-          Annual
-        </button>
-      </div>
+      <fieldset
+        aria-label="#_"
+        class="mt-8 max-w-xs mx-auto w-full">
+        <div
+          class="grid grid-cols-2 gap-x-1 rounded-lg p-1 h-10 text-center text-xs font-semibold leading-5 ring-1 ring-inset ring-gray-200">
+          <!--
+              When the checkbox is selected, apply "bg-gray-50" for the background. If the checkbox is not selected, use "bg-white" for the background.
+              -->
+          <label
+            class="cursor-pointer rounded px-2.5 py-1 bg-gray-50 text-zinc-900">
+            <input
+              type="radio"
+              name="month"
+              value="month"
+              class="sr-only"
+            />
+            <span>Monthly</span>
+          </label>
+          <!--
+              When the checkbox is selected, apply "bg-gray-50" for the background. If the checkbox is not selected, use "bg-white" for the background.
+              -->
+          <label class="cursor-pointer rounded px-2.5 py-1 text-zinc-900">
+            <input
+              type="radio"
+              name="annual"
+              value="annual"
+              class="sr-only"
+            />
+            <span>Annually</span>
+          </label>
+        </div>
+      </fieldset>
     </div>
     <div
-      class="grid grid-cols-1 gap-4 mt-12 sm:grid-cols-2 sm:mx-auto max-w-3xl"
-    >
+      class="grid grid-cols-1 gap-4 mt-12 sm:grid-cols-2 sm:mx-auto max-w-3xl">
       <!--- Tier 1 -->
       <section
-        class="flex flex-col h-full justify-between p-8 bg-gray-50 rounded-3xl"
-      >
+        class="flex flex-col h-full justify-between p-8 bg-zinc-50 rounded-3xl">
         <div>
           <div class="flex flex-col gap-2">
             <div class="flex flex-col gap-2">
               <p
-                class="text-xl font-medium uppercase font-mono  tracking-tighter text-gray-900 mt-8"
-              >
+                class="text-xl font-medium uppercase font-mono tracking-tighter text-zinc-900 mt-8">
                 Basic
               </p>
               <p
-                class="font-semibold order-first flex items-baseline text-4xl tracking-tighter font-mono text-gray-900"
-              >
-                <span
-                  data-monthly="$9"
-                  data-annual="$5"
-                  x-text="$el.dataset[duration]"></span>
-                <span class="text-sm font-normal tracking-normal text-gray-700">
-                  <span x-show="duration === 'monthly'">
-                    <span x-show="duration === 'monthly'"> /month</span></span
-                  >
-                  <span x-show="duration === 'annual'" style="display: none;">
-                    /annually</span
-                  >
-                </span>
+                class="font-semibold order-first flex items-baseline text-4xl tracking-tighter font-mono text-zinc-900">
+                <!--
+                Display the price, which should be updated according to the state of the frequency toggle
+                -->
+                <span>$19</span>
+                <!--
+                Display the payment frequency, which should also be updated based on the frequency toggle
+                -->
+                <span class="text-sm">/month</span>
               </p>
             </div>
-
-            <p class="text-sm text-gray-700 mt-4">
+            <p class="text-sm text-zinc-700 mt-4">
               This subscription tier caters to individuals and hobbyists seeking
               fundamental features.
             </p>
           </div>
           <ul
-            class="flex flex-col mt-10 text-sm text-gray-700 gap-y-3"
-            role="list"
-          >
+            class="flex flex-col mt-10 text-sm text-zinc-700 gap-y-3"
+            role="list">
             <li class="flex flex-row items-center gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -94,13 +88,17 @@
                 stroke="currentColor"
                 fill="none"
                 stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                stroke-linejoin="round">
+                <path
+                  stroke="none"
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                ></path>
                 <path
                   d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
                   stroke-width="0"
-                  fill="currentColor"></path>
+                  fill="currentColor"
+                ></path>
               </svg>
               <span>Unlimited members</span>
             </li>
@@ -113,13 +111,17 @@
                 stroke="currentColor"
                 fill="none"
                 stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                stroke-linejoin="round">
+                <path
+                  stroke="none"
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                ></path>
                 <path
                   d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
                   stroke-width="0"
-                  fill="currentColor"></path>
+                  fill="currentColor"
+                ></path>
               </svg>
               <span>2 teams </span>
             </li>
@@ -133,8 +135,12 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 class="icon icon-tabler icons-tabler-outline icon-tabler-x text-blue-500 size-4"
-                ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-                  d="M18 6l-12 12"></path><path d="M6 6l12 12"></path></svg
+                ><path
+                  stroke="none"
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                ></path><path d="M18 6l-12 12"></path><path d="M6 6l12 12"
+                ></path></svg
               >
               <span>50 issues (+unlimited)</span>
             </li>
@@ -148,8 +154,12 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 class="icon icon-tabler icons-tabler-outline icon-tabler-x text-blue-500 size-4"
-                ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-                  d="M18 6l-12 12"></path><path d="M6 6l12 12"></path></svg
+                ><path
+                  stroke="none"
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                ></path><path d="M18 6l-12 12"></path><path d="M6 6l12 12"
+                ></path></svg
               >
               <span>Slack, GitHub, and API access</span>
             </li>
@@ -158,41 +168,35 @@
         <div class="w-full mt-8">
           <a
             aria-describedby="#_"
-            class="flex items-center justify-center gap-2 h-10 px-4 py-2 text-sm font-medium text-gray-500 transition-all bg-white border border-gray-300 rounded-lg hover:text-gray-700 focus:ring-2 shadow shadow-gray-500/5 focus:ring-gray-900 focus:ring-offset-2 ring-offset-gray-200 duration-300 hover:border-gray-200    hover:shadow-none w-full"
-            href="#_">Get started</a
+            class="flex items-center justify-center gap-2 h-10 px-4 py-2 text-sm font-medium text-zinc-500 transition-all bg-white border border-zinc-300 rounded-lg hover:text-zinc-700 focus:ring-2 shadow shadow-zinc-500/5 focus:ring-zinc-900 focus:ring-offset-2 ring-offset-zinc-200 duration-300 hover:border-zinc-200 hover:shadow-none w-full"
+            href="#_"
+            >Get started</a
           >
         </div>
       </section>
       <!--- Tier 2 -->
-
       <div
-        class="flex h-full justify-between flex-col order-first p-8 rounded-3xl bg-gradient-to-b from-blue-500 to-indigo-600 lg:order-none"
-      >
+        class="flex h-full justify-between flex-col order-first p-8 rounded-3xl bg-gradient-to-b from-blue-500 to-indigo-600 lg:order-none">
         <div>
           <div>
             <div class="flex flex-col gap-2">
               <div class="flex flex-col gap-2">
                 <p
-                  class="text-xl font-medium uppercase font-mono  tracking-tighter text-white mt-8"
-                >
+                  class="text-xl font-medium uppercase font-mono tracking-tighter text-white mt-8">
                   Premium
                 </p>
                 <p
-                  class="font-semibold flex items-baseline order-first text-4xl tracking-tighter font-mono text-white"
-                >
-                  <span
-                    data-monthly="$49"
-                    data-annual="$39"
-                    x-text="$el.dataset[duration]"></span>
-                  <span class="text-sm font-normal tracking-normal text-white">
-                    <span x-show="duration === 'monthly'"> /month</span>
-                    <span x-show="duration === 'annual'" style="display: none;"
-                      >/annually</span
-                    ></span
-                  >
+                  class="font-semibold flex items-baseline order-first text-4xl tracking-tighter font-mono text-white">
+                  <!--
+                Display the price, which should be updated according to the state of the frequency toggle
+                -->
+                  <span>$29</span>
+                  <!--
+                Display the payment frequency, which should also be updated based on the frequency toggle
+                -->
+                  <span class="text-sm">/month</span>
                 </p>
               </div>
-
               <p class="text-sm text-white mt-4">
                 Designed with medium-sized businesses in mind, this subscription
                 tier provides advanced tools.
@@ -201,8 +205,7 @@
           </div>
           <ul
             class="flex flex-col mt-10 text-sm text-white gap-y-3"
-            role="list"
-          >
+            role="list">
             <li class="flex flex-row items-center gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -212,13 +215,17 @@
                 stroke="currentColor"
                 fill="none"
                 stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                stroke-linejoin="round">
+                <path
+                  stroke="none"
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                ></path>
                 <path
                   d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
                   stroke-width="0"
-                  fill="currentColor"></path>
+                  fill="currentColor"
+                ></path>
               </svg>
               <span>All standard plan features</span>
             </li>
@@ -231,13 +238,17 @@
                 stroke="currentColor"
                 fill="none"
                 stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                stroke-linejoin="round">
+                <path
+                  stroke="none"
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                ></path>
                 <path
                   d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
                   stroke-width="0"
-                  fill="currentColor"></path>
+                  fill="currentColor"
+                ></path>
               </svg>
               <span>Unlimited teams </span>
             </li>
@@ -250,13 +261,17 @@
                 stroke="currentColor"
                 fill="none"
                 stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                stroke-linejoin="round">
+                <path
+                  stroke="none"
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                ></path>
                 <path
                   d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
                   stroke-width="0"
-                  fill="currentColor"></path>
+                  fill="currentColor"
+                ></path>
               </svg>
               <span>Private teams and guest </span>
             </li>
@@ -269,13 +284,17 @@
                 stroke="currentColor"
                 fill="none"
                 stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                stroke-linejoin="round">
+                <path
+                  stroke="none"
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                ></path>
                 <path
                   d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
                   stroke-width="0"
-                  fill="currentColor"></path>
+                  fill="currentColor"
+                ></path>
               </svg>
               <span>Insights</span>
             </li>
@@ -288,13 +307,17 @@
                 stroke="currentColor"
                 fill="none"
                 stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                stroke-linejoin="round">
+                <path
+                  stroke="none"
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                ></path>
                 <path
                   d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
                   stroke-width="0"
-                  fill="currentColor"></path>
+                  fill="currentColor"
+                ></path>
               </svg>
               <span>Integrations </span>
             </li>
@@ -303,21 +326,20 @@
         <div class="w-full mt-8">
           <a
             aria-describedby="#_"
-            class="flex items-center justify-center gap-2 h-10 px-4 py-2 text-sm font-medium text-gray-500 transition-all bg-gray-50 border border-gray-300 rounded-lg hover:text-gray-700 focus:ring-2 shadow shadow-gray-500/5 focus:ring-gray-900 focus:ring-offset-2 ring-offset-gray-200 duration-300 hover:border-gray-200    hover:shadow-none w-full"
-            href="#_">Get started</a
+            class="flex items-center justify-center gap-2 h-10 px-4 py-2 text-sm font-medium text-zinc-500 transition-all bg-zinc-50 border border-zinc-300 rounded-lg hover:text-zinc-700 focus:ring-2 shadow shadow-zinc-500/5 focus:ring-zinc-900 focus:ring-offset-2 ring-offset-zinc-200 duration-300 hover:border-zinc-200 hover:shadow-none w-full"
+            href="#_"
+            >Get started</a
           >
         </div>
       </div>
       <div
-        class="p-8 bg-gray-50 rounded-3xl col-span-full grid grid-cols-1 gap-12 md:grid-cols-2 md:items-end"
-      >
+        class="p-8 bg-zinc-50 rounded-3xl col-span-full grid grid-cols-1 gap-12 md:grid-cols-2 md:items-end">
         <div>
           <p
-            class="text-3xl font-semibold tracking-tight text-gray-900 lg:text-balance"
-          >
+            class="text-3xl font-semibold tracking-tight text-zinc-900 lg:text-balance">
             Customize your plan
           </p>
-          <p class="mt-4 text-base text-gray-500">
+          <p class="mt-4 text-base text-zinc-500">
             Customize your plan to fit your needs, and get the best value for
             your money.
           </p>
@@ -325,9 +347,8 @@
         <div class="flex md:ml-auto">
           <a
             href="#_"
-            class="flex items-center justify-center h-10 px-4 py-2 text-sm font-medium text-white transition-all duration-200 rounded-lg bg-gradient-to-b from-blue-500 to-indigo-600 hover:to-indigo-800 shadow focus:ring-2 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none"
-            aria-describedby="#_"
-          >
+            class="flex items-center justify-center h-10 px-4 py-2 text-sm font-medium text-white transition-all duration-200 rounded-lg bg-gradient-to-b from-blue-500 to-indigo-600 hover:to-indigo-800 shadow focus:ring-2 focus:ring-blue-950 focus:ring-offset-2 ring-offset-zinc-200 hover:shadow-none"
+            aria-describedby="#_">
             Get started
           </a>
         </div>
