@@ -1,5 +1,8 @@
-<section x-data="{duration: 'monthly'}">
+<section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-screen-xl relative">
+    <p class="text-zinc-500 lg:hidden text-center">
+      Pricing table for desktop use
+    </p>
     <!---- Use only from lg: -->
     <div class="hidden mt-24 lg:block">
       <table class="w-full mx-auto text-center bg-transparent">
@@ -7,53 +10,58 @@
           <tr class="align-top">
             <th
               class="w-1/4 py-4 bg-transparent font-normal text-left align-bottom border-b">
-              <div
-                class="w-full border bg-white overflow-hidden inline-flex mt-8 p-0.5 rounded-lg max-w-xs shadow shadow-white/20 z-0">
-                <!-- Monthly Pricing Button: Sets 'duration' to 'monthly' when clicked -->
-                <button
-                  id="monthly-pricing-button"
-                  class="block w-full px-8 py-2 text-xs font-medium transition border border-transparent rounded-md text-blue-900"
-                  @click="duration = 'monthly'"
-                  :class="duration == 'monthly' ? 'bg-gray-100 border text-blue-900 ' : ''"
-                  type="button">
-                  Monthly
-                </button>
-                <!-- Annual Pricing Button: Sets 'duration' to 'annual' when clicked -->
-                <button
-                  id="annual-pricing-button"
-                  class="block w-full px-8 py-2 text-xs font-medium transition border border-transparent rounded-md text-blue-900"
-                  @click="duration = 'annual'"
-                  :class="duration == 'annual' ? 'bg-gray-100 border text-blue-900 ' : ''"
-                  type="button">
-                  Annual
-                </button>
-              </div>
+              <fieldset
+                aria-label="#_"
+                class="mt-8 w-full">
+                <div
+                  class="grid grid-cols-2 gap-x-1 rounded-lg p-1 h-10 text-center text-xs font-semibold leading-5 ring-1 ring-inset ring-gray-200">
+                  <!--
+              When the checkbox is selected, apply "bg-gray-50" for the background. If the checkbox is not selected, use "bg-white" for the background.
+              -->
+                  <label
+                    class="cursor-pointer rounded px-2.5 py-1 bg-gray-50 text-zinc-900">
+                    <input
+                      type="radio"
+                      name="month"
+                      value="month"
+                      class="sr-only"
+                    />
+                    <span>Monthly</span>
+                  </label>
+                  <!--
+              When the checkbox is selected, apply "bg-gray-50" for the background. If the checkbox is not selected, use "bg-white" for the background.
+              -->
+                  <label
+                    class="cursor-pointer rounded px-2.5 py-1 text-zinc-900">
+                    <input
+                      type="radio"
+                      name="annual"
+                      value="annual"
+                      class="sr-only"
+                    />
+                    <span>Annually</span>
+                  </label>
+                </div>
+              </fieldset>
             </th>
             <th
               class="w-1/4 px-2 py-4 bg-transparent font-normal text-left border-b">
               <div
-                class="font-mono text-base font-medium tracking-tighter uppercase text-gray-900">
+                class="font-mono text-base font-medium tracking-tighter uppercase text-zinc-900">
                 Hobby
               </div>
               <p
-                class="font-semibold order-first text-xl tracking-tighter font-mono mt-8 text-gray-900">
-                <span
-                  data-monthly="$9"
-                  data-annual="$5"
-                  x-text="$el.dataset[duration]"
-                ></span>
-                <span class="text-sm font-normal tracking-normal text-gray-700">
-                  <span x-show="duration === 'monthly'">
-                    <span x-show="duration === 'monthly'"> /month</span>
-                  </span>
-                  <span
-                    x-show="duration === 'annual'"
-                    style="display: none;">
-                    /annually</span
-                  >
-                </span>
+                class="font-semibold order-first text-xl tracking-tighter font-mono mt-8 text-zinc-900">
+                <!--
+                Display the price, which should be updated according to the state of the frequency toggle
+                -->
+                <span>$19</span>
+                <!--
+                Display the payment frequency, which should also be updated based on the frequency toggle
+                -->
+                <span class="text-sm">/month</span>
               </p>
-              <p class="text-xs text-gray-700 mt-4">
+              <p class="text-xs text-zinc-700 mt-4">
                 This subscription tier caters to individuals and hobbyists
                 seeking fundamental features.
               </p>
@@ -61,7 +69,7 @@
                 <button
                   type="button"
                   aria-label="Get started with plan-name"
-                  class="flex items-center justify-center gap-2 h-10 px-4 py-2 text-sm font-medium text-gray-500 transition-all bg-gray-50 border border-gray-300 rounded-lg hover:text-gray-700 focus:ring-2 shadow shadow-gray-500/5 focus:ring-gray-900 focus:ring-offset-2 ring-offset-gray-200 duration-300 hover:border-gray-200    hover:shadow-none w-full"
+                  class="flex items-center justify-center gap-2 h-10 px-4 py-2 text-sm font-medium text-zinc-500 transition-all bg-zinc-50 border border-zinc-300 rounded-lg hover:text-zinc-700 focus:ring-2 shadow shadow-zinc-500/5 focus:ring-zinc-900 focus:ring-offset-2 ring-offset-zinc-200 duration-300 hover:border-zinc-200 hover:shadow-none w-full"
                   >Get started</button
                 >
               </div>
@@ -69,7 +77,7 @@
             <th class="w-1/4 px-2 py-4 font-normal text-left border-b">
               <div class="flex justify-between items-center">
                 <div
-                  class="font-mono text-base flex items-center justify-between font-medium tracking-tighter uppercase text-gray-900">
+                  class="font-mono text-base flex items-center justify-between font-medium tracking-tighter uppercase text-zinc-900">
                   GOLDEN UNICORN
                 </div>
                 <span
@@ -78,63 +86,54 @@
                 </span>
               </div>
               <p
-                class="font-semibold order-first text-xl tracking-tighter mt-8 font-mono text-gray-900">
-                <span
-                  data-monthly="$29"
-                  data-annual="$19"
-                  x-text="$el.dataset[duration]"
-                ></span>
-                <span class="text-sm font-normal tracking-normal text-gray-700">
-                  <span x-show="duration === 'monthly'"> /month</span>
-                  <span
-                    x-show="duration === 'annual'"
-                    style="display: none;"
-                    >/annually</span
-                  >
-                </span>
+                class="font-semibold order-first text-xl tracking-tighter mt-8 font-mono text-zinc-900">
+                <!--
+                Display the price, which should be updated according to the state of the frequency toggle
+                -->
+                <span>$29</span>
+                <!--
+                Display the payment frequency, which should also be updated based on the frequency toggle
+                -->
+                <span class="text-sm">/month</span>
               </p>
-              <p class="text-xs text-gray-700 mt-4">
-                For small businesses or startups, this subscription tier will meet your requirements.
+              <p class="text-xs text-zinc-700 mt-4">
+                For small businesses or startups, this subscription tier will
+                meet your requirements.
               </p>
               <div class="mt-8">
                 <button
                   type="button"
                   aria-label="Get started with plan-name"
-                  class="flex items-center justify-center h-10 px-4 py-2 text-sm font-medium text-white transition-all duration-200 rounded-lg bg-gradient-to-b from-blue-500 to-indigo-600 hover:to-indigo-800 shadow focus:ring-2 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none w-full"
+                  class="flex items-center justify-center h-10 px-4 py-2 text-sm font-medium text-white transition-all duration-200 rounded-lg bg-gradient-to-b from-blue-500 to-indigo-600 hover:to-indigo-800 shadow focus:ring-2 focus:ring-blue-950 focus:ring-offset-2 ring-offset-zinc-200 hover:shadow-none w-full"
                   >Get started</button
                 >
               </div>
             </th>
             <th class="w-1/4 px-2 py-4 font-normal text-left border-b">
               <div
-                class="font-mono text-base flex items-center justify-between font-medium tracking-tighter uppercase text-gray-900">
+                class="font-mono text-base flex items-center justify-between font-medium tracking-tighter uppercase text-zinc-900">
                 DIAMOND DELUXE
               </div>
               <p
-                class="font-semibold order-first text-xl tracking-tighter font-mono text-gray-900 mt-8">
-                <span
-                  data-monthly="$49"
-                  data-annual="$39"
-                  x-text="$el.dataset[duration]"
-                ></span>
-                <span class="text-sm font-normal tracking-normal text-gray-900">
-                  <span x-show="duration === 'monthly'"> /month</span>
-                  <span
-                    x-show="duration === 'annual'"
-                    style="display: none;"
-                    >/annually</span
-                  >
-                </span>
+                class="font-semibold order-first text-xl tracking-tighter font-mono text-zinc-900 mt-8">
+                <!--
+                Display the price, which should be updated according to the state of the frequency toggle
+                -->
+                <span>$29</span>
+                <!--
+                Display the payment frequency, which should also be updated based on the frequency toggle
+                -->
+                <span class="text-sm">/month</span>
               </p>
-              <p class="text-xs text-gray-500 mt-4">
+              <p class="text-xs text-zinc-500 mt-4">
                 Designed with medium-sized businesses in mind, this subscription
-                tier provides  tools.
+                tier provides tools.
               </p>
               <div class="mt-8">
                 <button
                   type="button"
                   aria-label="Get started with plan-name"
-                  class="flex items-center justify-center gap-2 h-10 px-4 py-2 text-sm font-medium text-gray-500 transition-all bg-gray-50 border border-gray-300 rounded-lg hover:text-gray-700 focus:ring-2 shadow shadow-gray-500/5 focus:ring-gray-900 focus:ring-offset-2 ring-offset-gray-200 duration-300 hover:border-gray-200    hover:shadow-none w-full"
+                  class="flex items-center justify-center gap-2 h-10 px-4 py-2 text-sm font-medium text-zinc-500 transition-all bg-zinc-50 border border-zinc-300 rounded-lg hover:text-zinc-700 focus:ring-2 shadow shadow-zinc-500/5 focus:ring-zinc-900 focus:ring-offset-2 ring-offset-zinc-200 duration-300 hover:border-zinc-200 hover:shadow-none w-full"
                   >Get started</button
                 >
               </div>
@@ -143,40 +142,40 @@
           <tbody class="divide-y">
             <tr>
               <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left">
+                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-zinc-900 text-left">
                 Analytics
               </th>
-              <td class="px-2 text-xs font-medium text-gray-500">3</td>
-              <td class="px-2 text-xs font-medium text-gray-500">10</td>
-              <td class="px-2 text-xs font-medium text-gray-500">Unlimited</td>
+              <td class="px-2 text-xs font-medium text-zinc-500">3</td>
+              <td class="px-2 text-xs font-medium text-zinc-500">10</td>
+              <td class="px-2 text-xs font-medium text-zinc-500">Unlimited</td>
             </tr>
             <tr>
               <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left">
+                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-zinc-900 text-left">
                 Accounts
               </th>
-              <td class="px-2 text-xs font-medium text-gray-500">5</td>
-              <td class="px-2 text-xs font-medium text-gray-500">10</td>
-              <td class="px-2 text-xs font-medium text-gray-500">Unlimited</td>
+              <td class="px-2 text-xs font-medium text-zinc-500">5</td>
+              <td class="px-2 text-xs font-medium text-zinc-500">10</td>
+              <td class="px-2 text-xs font-medium text-zinc-500">Unlimited</td>
             </tr>
             <tr>
               <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left">
+                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-zinc-900 text-left">
                 Integrations
               </th>
-              <td class="px-2 text-xs font-medium text-gray-500">2</td>
-              <td class="px-2 text-xs font-medium text-gray-500">Unlimited</td>
-              <td class="px-2 text-xs font-medium text-gray-500">Unlimited</td>
+              <td class="px-2 text-xs font-medium text-zinc-500">2</td>
+              <td class="px-2 text-xs font-medium text-zinc-500">Unlimited</td>
+              <td class="px-2 text-xs font-medium text-zinc-500">Unlimited</td>
             </tr>
             <tr>
               <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left">
+                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-zinc-900 text-left">
                 Programs
               </th>
               <td class="px-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
+                  class="mx-auto text-zinc-500 icon icon-tabler icon-tabler-minus"
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
@@ -193,18 +192,18 @@
                   <path d="M5 12l14 0"></path>
                 </svg>
               </td>
-              <td class="px-2 text-xs font-medium text-gray-500">1</td>
-              <td class="px-2 text-xs font-medium text-gray-500">Unlimited</td>
+              <td class="px-2 text-xs font-medium text-zinc-500">1</td>
+              <td class="px-2 text-xs font-medium text-zinc-500">Unlimited</td>
             </tr>
             <tr>
               <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left">
+                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-zinc-900 text-left">
                 Deployments
               </th>
               <td class="px-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
+                  class="mx-auto text-zinc-500 icon icon-tabler icon-tabler-minus"
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
@@ -268,13 +267,13 @@
             </tr>
             <tr>
               <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left">
+                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-zinc-900 text-left">
                 Advanced Checkpoints
               </th>
               <td class="px-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
+                  class="mx-auto text-zinc-500 icon icon-tabler icon-tabler-minus"
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
@@ -338,13 +337,13 @@
             </tr>
             <tr>
               <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left">
+                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-zinc-900 text-left">
                 Private Deploymentss
               </th>
               <td class="px-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
+                  class="mx-auto text-zinc-500 icon icon-tabler icon-tabler-minus"
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
@@ -408,35 +407,35 @@
             </tr>
             <tr>
               <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left"
+                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-zinc-900 text-left"
                 >Support</th
               >
-              <td class="px-2 text-xs font-medium text-gray-500"
+              <td class="px-2 text-xs font-medium text-zinc-500"
                 >Discord community</td
               >
-              <td class="px-2 text-xs font-medium text-gray-500">Live chat</td>
-              <td class="px-2 text-xs font-medium text-gray-500">
+              <td class="px-2 text-xs font-medium text-zinc-500">Live chat</td>
+              <td class="px-2 text-xs font-medium text-zinc-500">
                 Dedicated Discord</td
               >
             </tr>
             <tr>
               <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left">
+                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-zinc-900 text-left">
                 SLA
               </th>
-              <td class="px-2 text-xs font-medium text-gray-500">4 days</td>
-              <td class="px-2 text-xs font-medium text-gray-500">3 day</td>
-              <td class="px-2 text-xs font-medium text-gray-500">1 hour</td>
+              <td class="px-2 text-xs font-medium text-zinc-500">4 days</td>
+              <td class="px-2 text-xs font-medium text-zinc-500">3 day</td>
+              <td class="px-2 text-xs font-medium text-zinc-500">1 hour</td>
             </tr>
             <tr>
               <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left">
+                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-zinc-900 text-left">
                 Service Agreement
               </th>
               <td class="px-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
+                  class="mx-auto text-zinc-500 icon icon-tabler icon-tabler-minus"
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
@@ -456,7 +455,7 @@
               <td class="px-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
+                  class="mx-auto text-zinc-500 icon icon-tabler icon-tabler-minus"
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
@@ -498,13 +497,13 @@
             </tr>
             <tr>
               <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left">
+                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-zinc-900 text-left">
                 Dedicated Manager
               </th>
               <td class="px-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
+                  class="mx-auto text-zinc-500 icon icon-tabler icon-tabler-minus"
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
@@ -568,13 +567,13 @@
             </tr>
             <tr>
               <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left">
+                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-zinc-900 text-left">
                 Training
               </th>
               <td class="px-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
+                  class="mx-auto text-zinc-500 icon icon-tabler icon-tabler-minus"
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
@@ -638,13 +637,13 @@
             </tr>
             <tr>
               <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left">
+                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-zinc-900 text-left">
                 Dedicated support channel
               </th>
               <td class="px-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
+                  class="mx-auto text-zinc-500 icon icon-tabler icon-tabler-minus"
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
@@ -664,7 +663,7 @@
               <td class="px-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
+                  class="mx-auto text-zinc-500 icon icon-tabler icon-tabler-minus"
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
@@ -706,13 +705,13 @@
             </tr>
             <tr>
               <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left">
+                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-zinc-900 text-left">
                 Webstorm Environments
               </th>
               <td class="px-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
+                  class="mx-auto text-zinc-500 icon icon-tabler icon-tabler-minus"
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
@@ -729,11 +728,11 @@
                   <path d="M5 12l14 0"></path>
                 </svg>
               </td>
-              <td class="px-2 text-xs font-medium text-gray-500">
+              <td class="px-2 text-xs font-medium text-zinc-500">
                 <div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
+                    class="mx-auto text-zinc-500 icon icon-tabler icon-tabler-minus"
                     width="20"
                     height="20"
                     viewBox="0 0 24 24"
@@ -776,13 +775,13 @@
             </tr>
             <tr>
               <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left">
+                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-zinc-900 text-left">
                 Included accounts
               </th>
               <td class="px-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
+                  class="mx-auto text-zinc-500 icon icon-tabler icon-tabler-minus"
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
@@ -799,27 +798,27 @@
                   <path d="M5 12l14 0"></path>
                 </svg>
               </td>
-              <td class="px-2 text-xs font-medium text-gray-500">30</td>
-              <td class="px-2 text-xs font-medium text-gray-500">100</td>
+              <td class="px-2 text-xs font-medium text-zinc-500">30</td>
+              <td class="px-2 text-xs font-medium text-zinc-500">100</td>
             </tr>
             <tr>
               <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left">
+                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-zinc-900 text-left">
                 Views
               </th>
-              <td class="px-2 text-xs font-medium text-gray-500">Unlimited</td>
-              <td class="px-2 text-xs font-medium text-gray-500">Unlimited</td>
-              <td class="px-2 text-xs font-medium text-gray-500">Unlimited</td>
+              <td class="px-2 text-xs font-medium text-zinc-500">Unlimited</td>
+              <td class="px-2 text-xs font-medium text-zinc-500">Unlimited</td>
+              <td class="px-2 text-xs font-medium text-zinc-500">Unlimited</td>
             </tr>
             <tr>
               <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left">
+                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-zinc-900 text-left">
                 Additional accounts
               </th>
               <td class="px-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
+                  class="mx-auto text-zinc-500 icon icon-tabler icon-tabler-minus"
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
@@ -836,22 +835,22 @@
                   <path d="M5 12l14 0"></path>
                 </svg>
               </td>
-              <td class="px-2 text-xs font-medium text-gray-500"
+              <td class="px-2 text-xs font-medium text-zinc-500"
                 >$23 per month</td
               >
-              <td class="px-2 text-xs font-medium text-gray-500"
+              <td class="px-2 text-xs font-medium text-zinc-500"
                 >$40 per month</td
               >
             </tr>
             <tr>
               <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left">
+                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-zinc-900 text-left">
                 Discounts
               </th>
               <td class="px-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
+                  class="mx-auto text-zinc-500 icon icon-tabler icon-tabler-minus"
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
@@ -915,20 +914,20 @@
             </tr>
             <tr>
               <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left">
+                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-zinc-900 text-left">
                 Minimum term
               </th>
-              <td class="px-2 text-xs font-medium text-gray-500"
+              <td class="px-2 text-xs font-medium text-zinc-500"
                 >Month-to-month</td
               >
-              <td class="px-2 text-xs font-medium text-gray-500"
+              <td class="px-2 text-xs font-medium text-zinc-500"
                 >Month-to-month</td
               >
-              <td class="px-2 text-xs font-medium text-gray-500">1 year</td>
+              <td class="px-2 text-xs font-medium text-zinc-500">1 year</td>
             </tr>
             <tr>
               <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left">
+                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-zinc-900 text-left">
                 Pay monthly
               </th>
               <td class="px-2">
@@ -978,7 +977,7 @@
               <td class="px-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
+                  class="mx-auto text-zinc-500 icon icon-tabler icon-tabler-minus"
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
@@ -998,7 +997,7 @@
             </tr>
             <tr>
               <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left">
+                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-zinc-900 text-left">
                 Pay yearly
               </th>
               <td class="px-2">
@@ -1070,7 +1069,7 @@
             </tr>
             <tr>
               <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left">
+                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-zinc-900 text-left">
                 Pay by credit card
               </th>
               <td class="px-2">
@@ -1120,7 +1119,7 @@
               <td class="px-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto text-gray-500 icon icon-tabler icon-tabler-minus"
+                  class="mx-auto text-zinc-500 icon icon-tabler icon-tabler-minus"
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
@@ -1140,7 +1139,7 @@
             </tr>
             <tr>
               <th
-                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-gray-900 text-left">
+                class="py-3 font-mono text-sm font-medium tracking-tighter uppercase text-zinc-900 text-left">
                 Pay by bank transfer
               </th>
               <td class="px-2">
@@ -1216,7 +1215,7 @@
                 <button
                   type="button"
                   aria-label="Get started with plan-name"
-                  class="flex items-center justify-center gap-2 h-10 px-4 py-2 text-sm font-medium text-gray-500 transition-all bg-gray-50 border border-gray-300 rounded-lg hover:text-gray-700 focus:ring-2 shadow shadow-gray-500/5 focus:ring-gray-900 focus:ring-offset-2 ring-offset-gray-200 duration-300 hover:border-gray-200    hover:shadow-none w-full"
+                  class="flex items-center justify-center gap-2 h-10 px-4 py-2 text-sm font-medium text-zinc-500 transition-all bg-zinc-50 border border-zinc-300 rounded-lg hover:text-zinc-700 focus:ring-2 shadow shadow-zinc-500/5 focus:ring-zinc-900 focus:ring-offset-2 ring-offset-zinc-200 duration-300 hover:border-zinc-200 hover:shadow-none w-full"
                   >Get started</button
                 >
               </th>
@@ -1224,7 +1223,7 @@
                 <button
                   type="button"
                   aria-label="Get started with plan-name"
-                  class="flex items-center justify-center h-10 px-4 py-2 text-sm font-medium text-white transition-all duration-200 rounded-lg bg-gradient-to-b from-blue-500 to-indigo-600 hover:to-indigo-800 shadow focus:ring-2 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none w-full"
+                  class="flex items-center justify-center h-10 px-4 py-2 text-sm font-medium text-white transition-all duration-200 rounded-lg bg-gradient-to-b from-blue-500 to-indigo-600 hover:to-indigo-800 shadow focus:ring-2 focus:ring-blue-950 focus:ring-offset-2 ring-offset-zinc-200 hover:shadow-none w-full"
                   >Get started</button
                 >
               </th>
@@ -1232,7 +1231,7 @@
                 <button
                   type="button"
                   aria-label="Get started with plan-name"
-                  class="flex items-center justify-center gap-2 h-10 px-4 py-2 text-sm font-medium text-gray-500 transition-all bg-gray-50 border border-gray-300 rounded-lg hover:text-gray-700 focus:ring-2 shadow shadow-gray-500/5 focus:ring-gray-900 focus:ring-offset-2 ring-offset-gray-200 duration-300 hover:border-gray-200    hover:shadow-none w-full"
+                  class="flex items-center justify-center gap-2 h-10 px-4 py-2 text-sm font-medium text-zinc-500 transition-all bg-zinc-50 border border-zinc-300 rounded-lg hover:text-zinc-700 focus:ring-2 shadow shadow-zinc-500/5 focus:ring-zinc-900 focus:ring-offset-2 ring-offset-zinc-200 duration-300 hover:border-zinc-200 hover:shadow-none w-full"
                   >Get started</button
                 >
               </th>
