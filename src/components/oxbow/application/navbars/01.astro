@@ -1,0 +1,82 @@
+<div class="justify-center w-full mx-auto bg-gray-100">
+  <div
+    class="flex items-center justify-center py-2 lg:h-12 text-white bg-gradient-to-b from-blue-500 px-8 to-indigo-600">
+    <div class="flex flex-col lg:flex-row lg:items-center justify-center gap-4">
+      <div class="text-xs font-medium">
+        <span>We have launched a new version of Oxbow UI</span>
+      </div>
+      <div class="hidden w-px h-6 sm:block bg-white/20"></div>
+      <div>
+        <a
+          class="text-xs flex font-semibold items-center justify-center px-4 py-2 rounded-lg transition-all h-8 text-white bg-gradient-to-b from-white/[.105] hover:to-white/[.25] ring-1 ring-inset ring-white/20 to-white/[.15]"
+          href="#_"
+          >Learn more &nbsp; →</a
+        >
+      </div>
+    </div>
+  </div>
+  <div
+    x-data="{ open: false }"
+    class="flex flex-col w-full mx-auto md:px-12 md:items-center md:justify-between md:flex-row px-8 py-2 lg:px-24 max-w-screen-xl relative">
+    <div class="flex flex-row items-center justify-between text-black">
+      <a
+        href="/"
+        class="flex items-center w-full gap-3 font-medium sm:w-auto group 2xl:text-lg"
+        ><span
+          class="duration-300 group-hover:text-blue-600 group-hover:animate-pulse"
+          ><img
+            class="h-7 2xl:h-9"
+            src="/images/oxbow/windLogo.png"
+            alt="#_"
+          /></span
+        > oxbow ui</a
+      >
+      <button
+        class="rounded-lg md:hidden focus:outline-none focus:shadow-outline focus:text-blue-600"
+        @click="open = !open">
+        <svg
+          class="size-6"
+          stroke="currentColor"
+          fill="none"
+          viewBox="0 0 24 24">
+          <path
+            :class="{'hidden': open, 'inline-flex': !open }"
+            class="inline-flex"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          ></path>
+          <path
+            :class="{'hidden': !open, 'inline-flex': open }"
+            class="hidden"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          ></path>
+        </svg>
+      </button>
+    </div>
+    <nav
+      :class="{'flex': open, 'hidden': !open}"
+      class="flex-col items-center flex-grow hidden gap-3 p-4 px-5 text-xs font-medium text-gray-500 md:px-0 md:pb-0 md:flex md:justify-start md:flex-row lg:p-0 md:mt-0">
+      <a
+        class="hover:text-black focus:outline-none focus:text-gray-500 md:ml-auto"
+        href="#_"
+        >Features
+      </a>
+      <a
+        class="hover:text-black focus:outline-none focus:text-gray-500"
+        href="#_"
+        >About
+      </a>
+      <a
+        class="flex items-center justify-center h-8 px-4 py-2 text-xs font-semibold text-white transition-all duration-200 rounded-md shadow bg-gradient-to-b from-blue-500 to-indigo-600 hover:to-indigo-800 focus:ring-2 focus:ring-blue-950 focus:ring-offset-2 ring-offset-zinc-200 hover:shadow-none"
+        href="#_"
+        role="button">
+        Button
+      </a>
+    </nav>
+  </div>
+</div>
