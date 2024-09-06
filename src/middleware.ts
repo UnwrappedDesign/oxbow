@@ -2,9 +2,16 @@ import { defineMiddleware } from "astro/middleware";
 import { getAstroPostHTML } from "astro-posthtml"
 import _minifyClassnames from "posthtml-minify-classnames"
 
+const excludeClasses = [
+  'bg-white',
+  'hidden',
+  'inline-flex',
+  'flex'
+];
+
 const minifyClassnames = _minifyClassnames({
   genNameId: false,
-  filter: /.bg-white/,
+  filter: new RegExp(`^\.(${excludeClasses.join('|')})$`),
   customAttributes: [
     'x-transition:enter',
     'x-transition:enter-start',
@@ -37,7 +44,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
     // forward request
   } catch (error) {}
 
-  if (/^\/iframe\/.*(01|02).astro$/.test(context.url.pathname) || !context.url.pathname.startsWith(`/iframe/`) || mode === "development") {
+  if (/^\/iframe\/.*(01).astro$/.test(context.url.pathname) || !context.url.pathname.startsWith(`/iframe/`) || mode === "development") {
     return next();
   }
 
