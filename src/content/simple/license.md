@@ -45,6 +45,7 @@ Examples of usage **not allowed** by the license:
 - Creating a theme, template, or project starter kit using the components and making it available either for sale or for free.
 - Creating an admin panel tool that is made available either for sale or for free.
 - In simple terms, use Oxbow UI for anything you like as long as it doesn't compete with Oxbow UI.
+- Using the templates or components for training AI models.
 
 
 ## Personal license definitions
@@ -102,6 +103,8 @@ Examples of usage **not allowed** by the license:
 - Producing any End product that does not exclusively belong to either your company or a client thereof. For instance, your employees or contractors cannot utilize your company's Oxbow UI license to develop personal websites or side projects.
 - Providing Oxbow UI access to individuals upon their purchase of a product from you. For example, you cannot leverage a Team License to grant access to Oxbow UI when someone buys an online course from you.
 - Commercializing access to your team account for individuals not employed by your company.
+- Using the templates or components for training AI models.
+
 
 ## Team License Definitions
 
