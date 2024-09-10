@@ -12,7 +12,9 @@ const uid = Astro.locals.user?.uid;
 const customToken = uid ? await auth.createCustomToken(uid) : null;
 ---
 
-<html lang="en" class="scroll-smooth">
+<html
+  lang="en"
+  class="scroll-smooth">
   <head>
     <BaseHead />
   </head>
@@ -25,11 +27,17 @@ const customToken = uid ? await auth.createCustomToken(uid) : null;
     <ninja-keys
       class="dark"
       selectHotkey="enter"
-      placeholder="Search for anything..."
-    >
+      placeholder="Search for anything...">
       <slot name="footer" />
     </ninja-keys>
     <NinjaScript />
+    <script>
+      window.lemonSqueezyAffiliateConfig = { store: "oxbow" };
+    </script>
+    <script
+      src="https://lmsqueezy.com/affiliate.js"
+      defer
+    ></script>
     <astro-firebase data-customtoken={customToken}></astro-firebase>
     <script>
       import {
