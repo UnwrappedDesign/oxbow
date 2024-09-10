@@ -21,7 +21,7 @@ const eelco: Template = {
   name: "Eelco Wiersma",
   work: "Creator of saas-ui.dev",
   text: "Pretty amazing library 👏",
-  image: "/reviews/alinSimion.jpg",
+  image: "/reviews/eelco.jpg",
 };
 
 const carl: Template = {
