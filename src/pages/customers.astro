@@ -1,0 +1,167 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { reviews } from "@/data/reviews.json";
+---
+
+<BaseLayout>
+  <section>
+    <div class="max-w-5xl 2xl:max-w-screen-xl px-8 mx-auto pt-12 relative">
+      <div class="pb-5 max-w-3xl">
+        <p class="text-gray-900 font-medium text-4xl tracking-tighter">
+          Meet Oxbow's customers and supporters
+        </p>
+        <p class="mt-4 text-gray-600">
+          Oxbow UI enables individuals and businesses of all sizes to launch
+          their products quickly, in days instead of months. Explore our range
+          of customizable components and begin creating your ideal website
+          today.
+        </p>
+      </div>
+
+      <ul
+        class="w-full border-y divide-y mt-8"
+        role="list">
+        {
+          reviews.map((template) => (
+            <>
+              <li class="py-4 lg:py-8">
+                <div class="grid items-start grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-24">
+                  <div class="order-last lg:col-span-2">
+                    <p class="text-gray-600 text-pretty">"{template.text}"</p>
+                  </div>
+                  <div class="inline-flex items-center gap-3">
+                    <div class="flex-shrink-0">
+                      <img
+                        alt="a picture of {template.name}"
+                        src={template.image}
+                        class="w-10 h-10 rounded-full lg:h-16 lg:w-16 grayscale"
+                      />
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <p class="text-sm font-medium text-black">
+                        {template.name}
+                      </p>
+                      <p class="text-sm text-gray-600">{template.work}</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+  <section>
+    <div
+      class="flex flex-col justify-center flex-1 w-full mx-auto space-y-24 max-w-5xl 2xl:max-w-screen-xl px-8 pt-24">
+      <div
+        class="relative grid items-end grid-cols-1 p-10 mx-auto gap-y-12 lg:p-10 bg-accent-600">
+        <div>
+          <p class="w-full text-white font-medium sm:text-2xl 2xl:text-3xl">
+            Get lifetime access to every components, elements and layouts
+            available today for $49 and own it forever. Plus, new additions,
+            lifetime updates, use on unlimited projects and enjoy lifetime
+            support.
+            <br />
+            <br />
+            <span class="text-white/80 italic lg:block"
+              >No subscription required!</span
+            >
+          </p>
+        </div>
+        <div class="flex mt-8">
+          <a
+            href="/pricing"
+            aria-label="Pricing"
+            title="Get full access"
+            id="access-footer-cta"
+            data-umami-event="access-footer-cta"
+            class="text-sm h-10 focus:outline-none focus:ring-2 focus:ring-accent-600 focus:ring-offset-2 font-medium inline-flex items-center px-4 py-1 rounded-full justify-between gap-3 bg-white text-black hover:bg-white/10 hover:text-white">
+            Get access for $49
+          </a>
+        </div>
+      </div>
+
+      <div
+        class="relative px-6 pt-16 mt-12 overflow-hidden isolate border sm:px-16 md:pt-24 lg:flex lg:gap-x-12 lg:px-12 lg:pt-0 lg:col-span-3">
+        <div
+          class="max-w-xs mx-auto text-center lg:mx-0 lg:flex-auto lg:py-12 lg:text-left">
+          <div class="flex flex-wrap justify-center lg:justify-start">
+            <div class="flex items-center text-sm font-medium text-black">
+              <svg
+                class="flex-none stroke-current size-4"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                viewBox="0 0 100 100"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M63.3694 5.33018C64.129 6.27325 64.5164 7.54562 65.291 10.0906L82.215 65.6862C75.8581 62.3873 69.0351 60.0773 61.9815 58.836L50.9623 21.5986C50.8744 21.3015 50.6928 21.0408 50.4445 20.8556C50.1962 20.6704 49.8945 20.5705 49.5848 20.571C49.275 20.5715 48.9737 20.6723 48.7259 20.8583C48.4782 21.0443 48.2974 21.3055 48.2105 21.6029L37.3247 58.8172C30.2392 60.0528 23.3848 62.3665 17 65.6778L34.0071 10.0776C34.7842 7.53708 35.1728 6.26679 35.9324 5.32559C36.603 4.49465 37.4753 3.84929 38.466 3.45101C39.5884 3 40.9167 3 43.5734 3H55.7208C58.381 3 59.7111 3 60.8344 3.45205C61.8261 3.85109 62.6988 4.49772 63.3694 5.33018Z"
+                  fill="black"
+                ></path>
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M65.3945 68.3321C62.6045 70.7178 57.0359 72.3448 50.6215 72.3448C42.7487 72.3448 36.15 69.8938 34.399 66.5975C33.773 68.4867 33.6327 70.6488 33.6327 72.03C33.6327 72.03 33.2203 78.812 37.9374 83.5291C37.9374 81.0797 39.9229 79.0942 42.3722 79.0942C46.5704 79.0942 46.5657 82.7568 46.5619 85.7284L46.5616 85.9936C46.5616 90.5039 49.3182 94.3703 53.2386 96C52.6531 94.7957 52.3246 93.4433 52.3246 92.0141C52.3246 87.7124 54.85 86.1107 57.7851 84.2492C60.1204 82.7681 62.7151 81.1226 64.5033 77.8215C65.4364 76.0991 65.9662 74.1264 65.9662 72.03C65.9662 70.7407 65.7658 69.4982 65.3945 68.3321V68.3321Z"
+                  fill="#d94dd1"
+                  stroke="#d94dd1"
+                ></path></svg
+              ><span class="ml-2.5"> Astro</span>
+            </div>
+            <div class="flex items-center ml-6 text-sm font-medium text-black">
+              <svg
+                viewBox="0 0 256 154"
+                aria-label="Tailwind CSS"
+                class="flex-none stroke-current size-4"
+                width="64"
+                height="64"
+                astro-icon="logos:tailwindcss-icon">
+                <path
+                  fill="#38bdf9"
+                  d="M128 0C93.867 0 72.533 17.067 64 51.2 76.8 34.133 91.733 27.733 108.8 32c9.737 2.434 16.697 9.499 24.401 17.318C145.751 62.057 160.275 76.8 192 76.8c34.133 0 55.467-17.067 64-51.2-12.8 17.067-27.733 23.467-44.8 19.2-9.737-2.434-16.697-9.499-24.401-17.318C174.249 14.743 159.725 0 128 0zM64 76.8C29.867 76.8 8.533 93.867 0 128c12.8-17.067 27.733-23.467 44.8-19.2 9.737 2.434 16.697 9.499 24.401 17.318C81.751 138.857 96.275 153.6 128 153.6c34.133 0 55.467-17.067 64-51.2-12.8 17.067-27.733 23.467-44.8 19.2-9.737-2.434-16.697-9.499-24.401-17.318C110.249 91.543 95.725 76.8 64 76.8z"
+                ></path></svg
+              ><span class="ml-2.5"> Tailwind CSS</span>
+            </div>
+          </div>
+          <p class="mt-4 text-3xl font-medium tracking-tight text-black">
+            Lexington Themes
+          </p>
+          <p class="max-w-2xl mt-4 text-xs text-gray-500">
+            Free and premium multipage themes &amp; UI Kits For freelancers,
+            developers, businesses, and personal use. Beautifully crafted with
+            Astro.js, and Tailwind CSS
+            <span class="lg:block">— Simple &amp; easy to customise.</span>
+          </p>
+          <p
+            class="mt-4 text-base text-black border-blue-600 lg:pl-4 lg:border-l-4 text-balance">
+            Use the code<span class="text-blue-600"> LEXINGTON30</span>
+            and
+            <span class="text-black opacity-70"
+              >get a 30% discount on the bundle</span
+            >
+          </p>
+          <div class="mt-8">
+            <a
+              href="https://lexingtonthemes.com"
+              class="text-sm h-10 focus:outline-none focus:ring-2 focus:ring-accent-600 focus:ring-offset-2 font-medium inline-flex items-center px-4 py-1 rounded-full justify-between gap-3 bg-white text-black hover:bg-white/10 hover:text-white invert"
+              >See all templates <span>→</span>
+            </a>
+          </div>
+        </div>
+        <div class="relative mt-16 h-80 lg:mt-8">
+          <img
+            class="absolute left-0 top-0 object-cover w-[57rem] max-w-none bg-white"
+            src="https://www.colorsandfonts.com/images/bundle.png"
+            alt="Lexington Themes"
+            width="1824"
+            height="1080"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

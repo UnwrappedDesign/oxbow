@@ -1,0 +1,147 @@
+<div class="h-[32rem]">
+  <div class="flex items-center justify-center w-full py-12 mx-auto">
+    <!--- Whrn in use set x-data="{ open: false }" -->
+    <div
+      x-data="{ open: true }"
+      class="relative">
+      <button
+        type="button"
+        @click="open = !open"
+        class="inline-flex items-center text-sm font-semibold leading-6 text-gray-900 gap-x-1"
+        aria-expanded="false">
+        <span>Help Center</span>
+        <svg
+          class="w-5 h-5"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          aria-hidden="true">
+          <path
+            fill-rule="evenodd"
+            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+      </button>
+
+      <div
+        x-show="open"
+        @click.outside="open = false"
+        class="absolute z-10 flex w-screen px-4 mt-5 transition duration-200 ease-out -translate-x-1/2 left-1/2 max-w-max"
+        :class="{ 'opacity-0 translate-y-1': !open, 'opacity-100 translate-y-0': open }">
+        <div
+          class="flex-auto w-screen max-w-xs p-4 text-sm leading-6 bg-white shadow-lg rounded-3xl ring-1 ring-gray-900/5">
+          <div>
+            <div
+              class="relative flex w-full p-4 rounded-xl group hover:bg-gray-50">
+              <a
+                href="#"
+                class="flex items-center w-full gap-2 text-sm font-medium text-gray-900 group-hover:text-blue-500">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="icon icon-tabler size-5 icons-tabler-outline icon-tabler-refresh group-hover:text-blue-500">
+                  <path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path>
+                  <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"></path>
+                  <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"></path>
+                </svg>
+                Sync across devices
+              </a>
+            </div>
+            <div
+              class="relative flex w-full p-4 rounded-xl group gap-x-6 hover:bg-gray-50">
+              <a
+                href="#"
+                class="flex items-center w-full gap-2 text-sm font-medium text-gray-900 group-hover:text-blue-500">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="size-5 icon icon-tabler icons-tabler-outline icon-tabler-file-dots text-gray-600 group-hover:text-blue-500"
+                  ><path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path><path d="M14 3v4a1 1 0 0 0 1 1h4"></path><path
+                    d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"
+                  ></path><path d="M9 14v.01"></path><path d="M12 14v.01"
+                  ></path><path d="M15 14v.01"></path></svg
+                >
+                Create custom documents
+              </a>
+            </div>
+            <div
+              class="relative flex w-full p-4 rounded-xl group gap-x-6 hover:bg-gray-50">
+              <a
+                href="#"
+                class="flex items-center w-full gap-2 text-sm font-medium text-gray-900 group-hover:text-blue-500">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-edit sgroup-hover:text-blue-500 size-5"
+                  ><path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path><path
+                    d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"
+                  ></path><path
+                    d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"
+                  ></path><path d="M16 5l3 3"></path></svg
+                >
+                Edit your files
+              </a>
+            </div>
+            <div
+              class="relative flex w-full p-4 rounded-xl group gap-x-6 hover:bg-gray-50">
+              <a
+                href="#"
+                class="flex items-center w-full gap-2 text-sm font-medium text-gray-900 group-hover:text-blue-500">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-brain sgroup-hover:text-blue-500 size-5"
+                  ><path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path><path
+                    d="M15.5 13a3.5 3.5 0 0 0 -3.5 3.5v1a3.5 3.5 0 0 0 7 0v-1.8"
+                  ></path><path
+                    d="M8.5 13a3.5 3.5 0 0 1 3.5 3.5v1a3.5 3.5 0 0 1 -7 0v-1.8"
+                  ></path><path d="M17.5 16a3.5 3.5 0 0 0 0 -7h-.5"></path><path
+                    d="M19 9.3v-2.8a3.5 3.5 0 0 0 -7 0"></path><path
+                    d="M6.5 16a3.5 3.5 0 0 1 0 -7h.5"></path><path
+                    d="M5 9.3v-2.8a3.5 3.5 0 0 1 7 0v10"></path></svg
+                >
+                Organize files
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
