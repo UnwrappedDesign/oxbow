@@ -1,0 +1,59 @@
+---
+import { reviews } from "../../data/reviews.json";
+---
+
+<section>
+  <div
+    class="flex flex-col justify-center flex-1 w-full mx-auto space-y-24 max-w-5xl 2xl:max-w-screen-xl px-8 py-12">
+    <div class="gap-3 lg:grid lg:grid-cols-2 justify-between">
+      <div>
+        <h2 class="text-black font-medium text-3xl tracking-tighter">
+          Reviews and opinions
+        </h2>
+      </div>
+
+      <div class="flex flex-wrap gap-2 lg:ml-auto mt-3 lg:mt-0">
+        <a
+          href="/customers"
+          class="inline-flex items-center focus:outline-none bg-white border border-gray-300 focus:ring-2 focus:ring-black focus:ring-offset-2 font-medium hover:bg-gray-50 px-4 py-1 rounded-full text-black text-sm duration-200">
+          See them all
+        </a>
+      </div>
+    </div>
+    <ul
+      class="w-full mt-12 border-y divide-y relative lg:grid-cols-2 grid lg:divide-y-0 lg:gap-x-12"
+      role="list">
+      {
+        reviews.slice(0, 2).map((template) => (
+          <>
+            <li class="py-4 lg:py-8 relative">
+              <div class="grid items-start grid-cols-1 gap-6  ">
+                <div class="order-last ">
+                  <p class="text-gray-600 text-pretty">
+                    "{template.text}"
+                  </p>
+                </div>
+                <div class="inline-flex items-center gap-3">
+                  <div class="flex-shrink-0">
+                    <img
+                      alt={template.name}
+                      src={template.image}
+                      class="w-10 h-10 rounded-full lg:h-16 lg:w-16 grayscale"
+                    />
+                  </div>
+                  <div class="flex-1 min-w-0 relative">
+                    <p class="text-sm font-medium text-black">
+                      {template.name}
+                    </p>
+                    <p class="text-sm text-gray-600">{template.work}</p>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </>
+        ))
+      }
+    </ul>
+
+  </div>
+</section>
