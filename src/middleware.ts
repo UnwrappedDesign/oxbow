@@ -23,6 +23,10 @@ const excludeClasses = [
   "focus:ring-offset-2",
   "ring-offset-gray-200",
   "hover:to-indigo-800",
+  "opacity-0",
+  "opacity-100",
+  "translate-y-1",
+  "translate-y-0",
 ];
 
 const minifyClassnames = _minifyClassnames({
