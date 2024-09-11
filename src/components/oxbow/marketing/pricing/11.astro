@@ -55,14 +55,21 @@
               </p>
               <p
                 class="font-semibold order-first flex items-baseline text-4xl tracking-tighter font-mono text-gray-900">
-                <!--
-                Display the price, which should be updated according to the state of the frequency toggle
-                -->
-                <span>$19</span>
-                <!--
-                Display the payment frequency, which should also be updated based on the frequency toggle
-                -->
-                <span class="text-sm">/month</span>
+                <span
+                  data-monthly="$9"
+                  data-annual="$5"
+                  x-text="$el.dataset[duration]"
+                ></span>
+                <span class="text-sm font-normal tracking-normal text-gray-700">
+                  <span x-show="duration === 'monthly'">
+                    <span x-show="duration === 'monthly'"> /month</span></span
+                  >
+                  <span
+                    x-show="duration === 'annual'"
+                    style="display: none;">
+                    /annually</span
+                  >
+                </span>
               </p>
             </div>
             <p class="text-sm text-gray-700 mt-4">
@@ -179,14 +186,19 @@
               </p>
               <p
                 class="font-semibold order-first flex items-baseline text-4xl tracking-tighter font-mono text-blue-600">
-                <!--
-                Display the price, which should be updated according to the state of the frequency toggle
-                -->
-                <span>$29</span>
-                <!--
-                Display the payment frequency, which should also be updated based on the frequency toggle
-                -->
-                <span class="text-sm">/month</span>
+                <span
+                  data-monthly="$29"
+                  data-annual="$19"
+                  x-text="$el.dataset[duration]"
+                ></span>
+                <span class="text-sm font-normal tracking-normal text-gray-700">
+                  <span x-show="duration === 'monthly'"> /month</span>
+                  <span
+                    x-show="duration === 'annual'"
+                    style="display: none;"
+                    >/annually</span
+                  ></span
+                >
               </p>
             </div>
             <p class="text-sm text-gray-700 mt-4">
@@ -312,14 +324,20 @@
                 </p>
                 <p
                   class="font-semibold flex items-baseline order-first text-4xl tracking-tighter font-mono text-gray-900">
-                  <!--
-                Display the price, which should be updated according to the state of the frequency toggle
-                -->
-                  <span>$39</span>
-                  <!--
-                Display the payment frequency, which should also be updated based on the frequency toggle
-                -->
-                  <span class="text-sm">/month</span>
+                  <span
+                    data-monthly="$49"
+                    data-annual="$39"
+                    x-text="$el.dataset[duration]"
+                  ></span>
+                  <span
+                    class="text-sm font-normal tracking-normal text-gray-700">
+                    <span x-show="duration === 'monthly'"> /month</span>
+                    <span
+                      x-show="duration === 'annual'"
+                      style="display: none;"
+                      >/annually</span
+                    ></span
+                  >
                 </p>
               </div>
               <p class="text-sm text-gray-700 mt-4">
