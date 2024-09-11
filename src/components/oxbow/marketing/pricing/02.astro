@@ -1,4 +1,4 @@
-<section>
+<section x-data="{duration: 'monthly'}">
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-screen-xl relative">
     <div class="grid sm:grid-cols-2 gap-4 lg:grid-cols-3 lg:items-center">
       <div
@@ -15,38 +15,28 @@
             Every plan includes every feature, and can scale as your team does.
           </p>
         </div>
-        <fieldset
-          aria-label="#_"
-          class="mt-8 max-w-xs mx-auto lg:mx-0 w-full">
-          <div
-            class="grid grid-cols-2 gap-x-1 rounded-lg p-1 h-10 text-center text-xs font-semibold leading-5 ring-1 ring-inset ring-gray-200">
-            <!--
-              When the checkbox is selected, apply "bg-gray-50" for the background. If the checkbox is not selected, use "bg-white" for the background.
-              -->
-            <label
-              class="cursor-pointer rounded px-2.5 py-1 bg-gray-50 text-gray-900">
-              <input
-                type="radio"
-                name="month"
-                value="month"
-                class="sr-only"
-              />
-              <span>Monthly</span>
-            </label>
-            <!--
-              When the checkbox is selected, apply "bg-gray-50" for the background. If the checkbox is not selected, use "bg-white" for the background.
-              -->
-            <label class="cursor-pointer rounded px-2.5 py-1 text-gray-900">
-              <input
-                type="radio"
-                name="annual"
-                value="annual"
-                class="sr-only"
-              />
-              <span>Annually</span>
-            </label>
-          </div>
-        </fieldset>
+        <div
+          class="w-full mt-8 border bg-white overflow-hidden justify-center mx-auto lg:mx-0 inline-flex p-0.5 rounded-lg max-w-xs shadow shadow-white/20 z-0">
+          <!-- Monthly Pricing Button: Sets 'duration' to 'monthly' when clicked -->
+          <button
+            id="monthly-pricing-button"
+            class="block w-full px-8 py-2 text-xs font-medium transition border border-transparent rounded-md text-blue-900"
+            @click="duration = 'monthly'"
+            :class="duration == 'monthly' ? 'bg-gray-100 border text-blue-900 ' : ''"
+            type="button">
+            Monthly
+          </button>
+
+          <!-- Annual Pricing Button: Sets 'duration' to 'annual' when clicked -->
+          <button
+            id="annual-pricing-button"
+            class="block w-full px-8 py-2 text-xs font-medium transition border border-transparent rounded-md text-blue-900"
+            @click="duration = 'annual'"
+            :class="duration == 'annual' ? 'bg-gray-100 border text-blue-900 ' : ''"
+            type="button">
+            Annual
+          </button>
+        </div>
       </div>
       <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:col-span-2">
         <div
@@ -60,14 +50,22 @@
                 </p>
                 <p
                   class="font-semibold flex items-baseline text-2xl tracking-tighter font-mono text-gray-900">
-                  <!--
-                Display the price, which should be updated according to the state of the frequency toggle
-                -->
-                  <span>$19</span>
-                  <!--
-                Display the payment frequency, which should also be updated based on the frequency toggle
-                -->
-                  <span class="text-sm">/month</span>
+                  <span
+                    data-monthly="$9"
+                    data-annual="$5"
+                    x-text="$el.dataset[duration]"
+                  ></span>
+                  <span
+                    class="text-sm font-normal tracking-normal text-gray-700">
+                    <span x-show="duration === 'monthly'">
+                      <span x-show="duration === 'monthly'"> /month</span></span
+                    >
+                    <span
+                      x-show="duration === 'annual'"
+                      style="display: none;">
+                      /annually</span
+                    >
+                  </span>
                 </p>
               </div>
               <p class="text-sm text-gray-700 mt-4">
@@ -185,14 +183,24 @@
                   </p>
                   <p
                     class="font-semibold flex items-baseline text-2xl tracking-tighter font-mono text-white">
-                    <!--
-                Display the price, which should be updated according to the state of the frequency toggle
-                -->
-                    <span>$29</span>
-                    <!--
-                Display the payment frequency, which should also be updated based on the frequency toggle
-                -->
-                    <span class="text-sm">/month</span>
+                    <span
+                      data-monthly="$49"
+                      data-annual="$39"
+                      x-text="$el.dataset[duration]"
+                    ></span>
+                    <span
+                      class="text-sm font-normal tracking-normal text-gray-200">
+                      <span x-show="duration === 'monthly'">
+                        <span x-show="duration === 'monthly'">
+                          /month</span
+                        ></span
+                      >
+                      <span
+                        x-show="duration === 'annual'"
+                        style="display: none;">
+                        /annually</span
+                      >
+                    </span>
                   </p>
                 </div>
                 <p class="text-sm text-white mt-4">
