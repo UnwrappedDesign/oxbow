@@ -28,6 +28,9 @@ const excludeClasses = [
   "translate-y-1",
   "translate-y-0",
   "bg-gray-100",
+  "size-12",
+  "opacity-25",
+  
 ];
 
 const minifyClassnames = _minifyClassnames({
