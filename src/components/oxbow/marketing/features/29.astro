@@ -79,7 +79,7 @@ const data = [
       <div class="gap-6 grid grid-cols-1 sm:grid-cols-2 lg:col-span-2">
         {
           data.map((section) => (
-            <div class="lg:bg-gray-50 lg:rounded-3xl lg:p-10 ">
+            <div class="bg-gray-50 rounded-3xl p-8 lg:p-10 ">
               <div>
                 <p class="tracking-tight text-lg font-medium  text-gray-900">
                   {section.category}
@@ -125,13 +125,64 @@ const data = [
           ))
         }
       </div>
-      <div class="block w-full  h-full">
-        <img
-          :src="slide"
-          alt="#"
-          class="w-full h-full object-contain"
-          src="/images/phone4.png"
-        />
+      <div class="block w-full lg:row-span-2">
+        <div
+          x-data="{ activeSlide: 0, slides: ['/images/phone4.png', '/images/phone2.png', '/images/phone3.png'] }"
+          class="h-full relative"
+          role="region"
+          aria-label="Image Slider">
+          <!-- Template for each slide image -->
+          <template
+            x-for="(slide, index) in slides"
+            :key="index">
+            <div
+              x-show="activeSlide === index"
+              x-transition:enter="transition ease-out duration-500"
+              x-transition:enter-start="opacity-0 transform scale-95"
+              x-transition:enter-end="opacity-100 transform scale-100"
+              x-transition:leave="transition ease-in duration-500"
+              x-transition:leave-start="opacity-100 transform scale-100"
+              x-transition:leave-end="opacity-0 transform scale-95"
+              class="h-full w-full absolute inset-0"
+              :aria-hidden="activeSlide !== index">
+              <!-- Slide image -->
+              <img
+                :src="slide"
+                alt="#"
+                class="w-full h-full object-contain"
+              />
+            </div>
+          </template>
+          <!-- Previous slide button -->
+          <button
+            @click="activeSlide = activeSlide === 0 ? slides.length - 1 : activeSlide - 1"
+            class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white border text-gray-900 rounded-full size-10 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            aria-label="Previous Slide">
+            &larr;
+          </button>
+          <!-- Next slide button -->
+          <button
+            @click="activeSlide = activeSlide === slides.length - 1 ? 0 : activeSlide + 1"
+            class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white border text-gray-900 rounded-full size-10 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            aria-label="Next Slide">
+            &rarr;
+          </button>
+          <!-- Pagination indicators -->
+          <div
+            class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+            <template
+              x-for="(slide, index) in slides"
+              :key="index">
+              <button
+                @click="activeSlide = index"
+                :class="{'bg-gray-800': activeSlide === index, 'bg-gray-400': activeSlide !== index}"
+                class="h-3 w-3 rounded-full focus:outline-none"
+                :aria-label="'Slide ' + (index + 1)"
+                :aria-current="activeSlide === index ? 'true' : 'false'"
+              ></button>
+            </template>
+          </div>
+        </div>
       </div>
     </div>
   </div>
