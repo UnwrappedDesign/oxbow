@@ -26,20 +26,23 @@ const templates: { [key: string]: Template[] } = {
     { name: "Newsletter Call to Action", link: "/playground/marketing/cta-newsletter", image: "newsletter.png" },
     { name: "Call to Actions", link: "/playground/marketing/cta", image: "cta.png" },
   ],
+  // Page Examples
+   pageExamples: [
+     { name: "Landing Pages", link: "/playground/marketing/landing-pages", image: "landingPages.png" }
+     ],
   // Elements
   elements: [
     { name: "Buttons", link: "/playground/application/buttons", image: "buttons.png" },
-    { name: "Banners", link: "/playground/application/banners", image: "banners.png" },
     { name: "Badges", link: "/playground/application/badges", image: "badges.png" },
-    { name: "Avatars", link: "/playground/application/avatars", image: "avatars.png" },
+    { name: "Banners", link: "/playground/application/banners", image: "banners.png" },
     { name: "Alerts", link: "/playground/application/alerts", image: "alerts.png" },
     { name: "Emptystates", link: "/playground/application/emptystates", image: "emptystates.png" },
+    { name: "Avatars", link: "/playground/application/avatars", image: "avatars.png" },
   ],
   // Navigation
   navigation: [
     { name: "Navbars", link: "/playground/application/navbars", image: "navbars.png" },
     { name: "Flyout menus", link: "/playground/application/flyouts", image: "flyouts.png" },
-    { name: "Mega Menu", link: "/playground/application/megamenu", image: "megamenu.png" },
     { name: "Sidebars", link: "/playground/application/sidebars", image: "sidebars.png" },
     { name: "Vertical navigation", link: "/playground/application/verticalnav", image: "verticalnav.png" },
     { name: "Breadcrumbs", link: "/playground/application/breadcrumbs", image: "breadcrumbs.png" },
@@ -55,8 +58,8 @@ const templates: { [key: string]: Template[] } = {
   ],
   // Forms
   forms: [
-    { name: "Sign In", link: "/playground/application/sign-in", image: "signIn.png" },
     { name: "Sign Up", link: "/playground/application/sign-up", image: "signUp.png" },
+    { name: "Sign In", link: "/playground/application/sign-in", image: "signIn.png" },
     { name: "Form Layouts", link: "/playground/application/formlayouts", image: "formlayouts.png" },
     { name: "Inputs", link: "/playground/application/inputs", image: "inputs.png" },
     { name: "Textarea", link: "/playground/application/textarea", image: "textarea.png" },
@@ -68,11 +71,14 @@ const templates: { [key: string]: Template[] } = {
 };
 
 // Export sections
-export const { pageSections, elements, navigation, overlay, forms } = templates;
+export const { pageSections, pageExamples, elements, navigation, overlay, forms } = templates;
 
 // Export all entries by name
 export const byName = {
+  // Marketing
   pageSections: Object.fromEntries(pageSections.map(template => [template.name, template])),
+  pageExamples: Object.fromEntries(pageSections.map(template => [template.name, template])),
+  // Application
   elements: Object.fromEntries(elements.map(template => [template.name, template])),
   navigation: Object.fromEntries(navigation.map(template => [template.name, template])),
   overlay: Object.fromEntries(overlay.map(template => [template.name, template])),
