@@ -1,0 +1,948 @@
+<div class="justify-center w-full mx-auto bg-gray-100">
+
+  <div
+    x-data="{ open: false }"
+    class="flex flex-col w-full mx-auto md:px-12 md:items-center md:justify-between md:flex-row px-8 py-2 lg:px-24 max-w-screen-xl relative">
+    <div class="flex flex-row items-center justify-between text-black">
+      <a
+        href="/"
+        class="flex items-center w-full gap-3 font-medium sm:w-auto group 2xl:text-lg"
+        ><span
+          class="duration-300 group-hover:text-blue-600 group-hover:animate-pulse"
+          ><img
+            class="h-7 2xl:h-9"
+            src="/images/oxbow/windLogo.png"
+            alt="#_"
+          /></span
+        > oxbow ui</a
+      >
+      <button
+        class="rounded-lg md:hidden focus:outline-none focus:shadow-outline focus:text-blue-600"
+        @click="open = !open">
+        <svg
+          class="size-6"
+          stroke="currentColor"
+          fill="none"
+          viewBox="0 0 24 24">
+          <path
+            :class="{'hidden': open, 'inline-flex': !open }"
+            class="inline-flex"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          ></path>
+          <path
+            :class="{'hidden': !open, 'inline-flex': open }"
+            class="hidden"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          ></path>
+        </svg>
+      </button>
+    </div>
+    <nav
+      :class="{'flex': open, 'hidden': !open}"
+      class="flex-col items-center flex-grow hidden gap-3 p-4 px-5 text-xs font-medium text-gray-500 md:px-0 md:pb-0 md:flex md:justify-start md:flex-row lg:p-0 md:mt-0">
+      <a
+        class="hover:text-black focus:outline-none focus:text-gray-500 md:ml-auto"
+        href="#_"
+        >Features
+      </a>
+      <a
+        class="hover:text-black focus:outline-none focus:text-gray-500"
+        href="#_"
+        >About
+      </a>
+      <a
+        class="flex items-center justify-center h-8 px-4 py-2 text-xs font-semibold text-white transition-all duration-200 rounded-md shadow bg-gradient-to-b from-blue-500 to-indigo-600 hover:to-indigo-800 focus:ring-2 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none"
+        href="#_"
+        role="button">
+        Button
+      </a>
+    </nav>
+  </div>
+</div>
+<section x-data="{duration: 'monthly'}">
+  <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-screen-xl relative">
+    <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:items-center">
+      <div
+        class="flex flex-col gap-12 justify-between max-w-md mx-auto lg:mx-0 md:text-balance text-center lg:text-left">
+        <div>
+          <span
+            class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+            >Tagline</span
+          >
+          <p class="text-4xl mt-4 font-semibold tracking-tight text-gray-900">
+            Equip your business with world class software
+          </p>
+          <p class="text-base text-balance mt-4 text-gray-700">
+            Every plan includes every feature, and can scale as your team does.
+          </p>
+          <div
+            class="w-full mt-8 border bg-white overflow-hidden justify-center mx-auto lg:mx-0 inline-flex p-0.5 rounded-lg max-w-xs shadow shadow-white/20 z-0">
+            <!-- Monthly Pricing Button: Sets 'duration' to 'monthly' when clicked -->
+            <button
+              id="monthly-pricing-button"
+              class="block w-full px-8 py-2 text-xs font-medium transition border border-transparent rounded-md text-blue-900"
+              @click="duration = 'monthly'"
+              :class="duration == 'monthly' ? 'bg-gray-100 border text-blue-900 ' : ''"
+              type="button">
+              Monthly
+            </button>
+
+            <!-- Annual Pricing Button: Sets 'duration' to 'annual' when clicked -->
+            <button
+              id="annual-pricing-button"
+              class="block w-full px-8 py-2 text-xs font-medium transition border border-transparent rounded-md text-blue-900"
+              @click="duration = 'annual'"
+              :class="duration == 'annual' ? 'bg-gray-100 border text-blue-900 ' : ''"
+              type="button">
+              Annual
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex flex-col h-full justify-between p-8 bg-gradient-to-b from-blue-500 to-indigo-600 rounded-3xl">
+        <div>
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center gap-2 justify-between">
+              <p class="text-xl font-medium text-white">Basic</p>
+              <p
+                class="font-semibold flex items-baseline text-2xl tracking-tighter font-mono text-white">
+                <span
+                  data-monthly="$49"
+                  data-annual="$39"
+                  x-text="$el.dataset[duration]"
+                ></span>
+                <span class="text-sm font-normal tracking-normal text-gray-200">
+                  <span x-show="duration === 'monthly'">
+                    <span x-show="duration === 'monthly'"> /month</span></span
+                  >
+                  <span
+                    x-show="duration === 'annual'"
+                    style="display: none;">
+                    /annually</span
+                  >
+                </span>
+              </p>
+            </div>
+            <ul
+              class="grid grid-cols-1 sm:grid-cols-2 l mt-10 text-sm text-white gap-y-3"
+              role="list">
+              <li class="flex flex-row items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="size-4 icon icon-tabler icon-tabler-circle-check-filled text-white"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path>
+                  <path
+                    d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
+                    stroke-width="0"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+                <span>Unlimited members</span>
+              </li>
+              <li class="flex flex-row items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="size-4 icon icon-tabler icon-tabler-circle-check-filled text-white"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path>
+                  <path
+                    d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
+                    stroke-width="0"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+                <span>2 teams </span>
+              </li>
+              <li class="flex flex-row items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="size-4 icon icon-tabler icon-tabler-circle-check-filled text-white"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path>
+                  <path
+                    d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
+                    stroke-width="0"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+                <span>50 issues (+unlimited)</span>
+              </li>
+              <li class="flex flex-row items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="size-4 icon icon-tabler icon-tabler-circle-check-filled text-white"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  ></path>
+                  <path
+                    d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
+                    stroke-width="0"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+                <span>Slack, GitHub, and API access</span>
+              </li>
+            </ul>
+          </div>
+          <div class="w-full mt-8">
+            <a
+              aria-describedby="#_"
+              class="flex items-center justify-center gap-2 h-10 px-4 py-2 text-sm font-medium text-gray-500 transition-all bg-white border border-gray-300 rounded-lg hover:text-gray-700 focus:ring-2 shadow shadow-gray-500/5 focus:ring-gray-900 focus:ring-offset-2 ring-offset-gray-200 duration-300 hover:border-gray-200 hover:shadow-none w-full"
+              href="#_"
+              >Get started</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
+    <div>
+      <span
+        class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+        >faq</span
+      >
+      <h1
+        class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 lg:text-balance">
+        Frequently Asked Questions
+      </h1>
+      <p class="mt-6 text-base font-medium text-gray-500">
+        Everything you need to know about our platform.
+      </p>
+    </div>
+    <div class="mt-12">
+      <details class="group cursor-pointer">
+        <summary
+          class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none tracking-tight text-base font-medium text-gray-900 hover:text-blue-500 focus:text-blue-500">
+          How does end-to-end encryption work?
+          <svg
+            class="size-5 duration-300 ease-out transform group-open:-rotate-45"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 6v12m6-6H6"
+            ></path>
+          </svg>
+        </summary>
+        <div class="py-4 pt-2 pb-8 text-sm text-gray-500">
+          End-to-end encryption ensures that only the sender and recipient can
+          access the content of a message.
+          <div class="flex mt-8">
+            <button
+              class="text-blue-600 flex items-center gap-3 hover:text-gray-900 transition-all duration-200 text-sm"
+              aria-label="Action">
+              Learn more
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right">
+                <path
+                  stroke="none"
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                ></path>
+                <path d="M9 6l6 6l-6 6"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </details>
+      <details class="group cursor-pointer">
+        <summary
+          class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none tracking-tight text-base font-medium text-gray-900 hover:text-blue-500 focus:text-blue-500">
+          Can I access my encrypted data if I forget my encryption key?
+          <svg
+            class="size-5 duration-300 ease-out transform group-open:-rotate-45"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 6v12m6-6H6"
+            ></path>
+          </svg>
+        </summary>
+        <div class="py-4 pt-2 pb-8 text-sm text-gray-500">
+          No, forgetting or losing your encryption key means that your encrypted
+          data cannot be accessed.
+          <div class="flex mt-8">
+            <button
+              class="text-blue-600 flex items-center gap-3 hover:text-gray-900 transition-all duration-200 text-sm"
+              aria-label="Action">
+              Learn more
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right">
+                <path
+                  stroke="none"
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                ></path>
+                <path d="M9 6l6 6l-6 6"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </details>
+      <details class="group cursor-pointer">
+        <summary
+          class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none tracking-tight text-base font-medium text-gray-900 hover:text-blue-500 focus:text-blue-500">
+          Are there any limitations to the self-destructing messages feature?
+          <svg
+            class="size-5 duration-300 ease-out transform group-open:-rotate-45"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 6v12m6-6H6"
+            ></path>
+          </svg>
+        </summary>
+        <div class="py-4 pt-2 pb-8 text-sm text-gray-500">
+          Self-destructing messages are designed to automatically delete
+          themselves after a specific period or upon being read by the
+          recipient.
+          <div class="flex mt-8">
+            <button
+              class="text-blue-600 flex items-center gap-3 hover:text-gray-900 transition-all duration-200 text-sm"
+              aria-label="Action">
+              Learn more
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right">
+                <path
+                  stroke="none"
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                ></path>
+                <path d="M9 6l6 6l-6 6"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </details>
+      <details class="group cursor-pointer">
+        <summary
+          class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none tracking-tight text-base font-medium text-gray-900 hover:text-blue-500 focus:text-blue-500">
+          What happens if I enable two-factor authentication and lose my device?
+          <svg
+            class="size-5 duration-300 ease-out transform group-open:-rotate-45"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 6v12m6-6H6"
+            ></path>
+          </svg>
+        </summary>
+        <div class="py-4 pt-2 pb-8 text-sm text-gray-500">
+          Losing your device doesn&#39;t automatically compromise your
+          account&#39;s security.
+          <div class="flex mt-8">
+            <button
+              class="text-blue-600 flex items-center gap-3 hover:text-gray-900 transition-all duration-200 text-sm"
+              aria-label="Action">
+              Learn more
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right">
+                <path
+                  stroke="none"
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                ></path>
+                <path d="M9 6l6 6l-6 6"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </details>
+      <details class="group cursor-pointer">
+        <summary
+          class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none tracking-tight text-base font-medium text-gray-900 hover:text-blue-500 focus:text-blue-500">
+          Is my personal information shared or sold to third parties?
+          <svg
+            class="size-5 duration-300 ease-out transform group-open:-rotate-45"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 6v12m6-6H6"
+            ></path>
+          </svg>
+        </summary>
+        <div class="py-4 pt-2 pb-8 text-sm text-gray-500">
+          No, we strictly adhere to a privacy-centric approach. Your personal
+          information is never shared, sold, or monetized. We prioritize your
+          privacy and ensure that your data remains confidential and only
+          accessible to you.
+          <div class="flex mt-8">
+            <button
+              class="text-blue-600 flex items-center gap-3 hover:text-gray-900 transition-all duration-200 text-sm"
+              aria-label="Action">
+              Learn more
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right">
+                <path
+                  stroke="none"
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                ></path>
+                <path d="M9 6l6 6l-6 6"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </details>
+      <details class="group cursor-pointer">
+        <summary
+          class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none tracking-tight text-base font-medium text-gray-900 hover:text-blue-500 focus:text-blue-500">
+          Can I use this platform on multiple devices?
+          <svg
+            class="size-5 duration-300 ease-out transform group-open:-rotate-45"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 6v12m6-6H6"
+            ></path>
+          </svg>
+        </summary>
+        <div class="py-4 pt-2 pb-8 text-sm text-gray-500">
+          Yes, you can access our platform on multiple devices. Your encrypted
+          data remains synced across all devices, allowing you to seamlessly
+          communicate and access your files and messages from anywhere.
+          <div class="flex mt-8">
+            <button
+              class="text-blue-600 flex items-center gap-3 hover:text-gray-900 transition-all duration-200 text-sm"
+              aria-label="Action">
+              Learn more
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right">
+                <path
+                  stroke="none"
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                ></path>
+                <path d="M9 6l6 6l-6 6"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </details>
+      <details class="group cursor-pointer">
+        <summary
+          class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none tracking-tight text-base font-medium text-gray-900 hover:text-blue-500 focus:text-blue-500">
+          Are there any storage limitations for files and documents?
+          <svg
+            class="size-5 duration-300 ease-out transform group-open:-rotate-45"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 6v12m6-6H6"
+            ></path>
+          </svg>
+        </summary>
+        <div class="py-4 pt-2 pb-8 text-sm text-gray-500">
+          Our platform provides ample storage space for your files and
+          documents. However, there may be storage limitations based on the
+          pricing plan you choose. We offer flexible plans to suit your needs
+          and provide options to upgrade if you require additional storage
+          capacity.
+          <div class="flex mt-8">
+            <button
+              class="text-blue-600 flex items-center gap-3 hover:text-gray-900 transition-all duration-200 text-sm"
+              aria-label="Action">
+              Learn more
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right">
+                <path
+                  stroke="none"
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                ></path>
+                <path d="M9 6l6 6l-6 6"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </details>
+      <details class="group cursor-pointer">
+        <summary
+          class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none tracking-tight text-base font-medium text-gray-900 hover:text-blue-500 focus:text-blue-500">
+          Is it possible to export my data from the platform?
+          <svg
+            class="size-5 duration-300 ease-out transform group-open:-rotate-45"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 6v12m6-6H6"
+            ></path>
+          </svg>
+        </summary>
+        <div class="py-4 pt-2 pb-8 text-sm text-gray-500">
+          Yes, you can export your data from the platform. We offer export
+          features that allow you to download your messages, files, and
+          documents, ensuring you have a local copy for backup or migration
+          purposes. It provides you with greater control and flexibility over
+          your data.
+          <div class="flex mt-8">
+            <button
+              class="text-blue-600 flex items-center gap-3 hover:text-gray-900 transition-all duration-200 text-sm"
+              aria-label="Action">
+              Learn more
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right">
+                <path
+                  stroke="none"
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                ></path>
+                <path d="M9 6l6 6l-6 6"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </details>
+    </div>
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-12 pt-12 border-t items-end">
+      <div class="lg:col-span-2">
+        <img
+          class="h-12"
+          src="/images/oxbow/blueLineLogo.png"
+          alt="#_"
+        />
+        <h1 class="text-4xl mt-4 font-semibold tracking-tight text-gray-900">
+          Got questions?
+        </h1>
+        <p class="mt-6 text-base font-medium text-gray-500 lg:text-balance">
+          We're here to help you with any questions you might have.
+        </p>
+      </div>
+      <div class="flex lg:ml-auto">
+        <button
+          class="text-blue-600 flex items-center gap-3 hover:text-gray-900 transition-all duration-200 text-base"
+          aria-label="Action">
+          Learn more
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right">
+            <path
+              stroke="none"
+              d="M0 0h24v24H0z"
+              fill="none"
+            ></path>
+            <path d="M9 6l6 6l-6 6"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+ <section>
+  <div class="px-8 py-12 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
+    <div class="grid items-end grid-cols-1 sm:grid-cols-2 gap-4">
+      <div>
+        <p class="text-xl font-semibold tracking-tight text-gray-900">
+          Get started with our app today
+        </p>
+        <p class="mt-4 text-sm text-gray-500 lg:text-base">
+          Streamline your workflow and collaborate seamlessly on staging and
+          temporary environments
+        </p>
+      </div>
+      <div class="flex flex-col lg:flex-row items-center gap-2 sm:ml-auto">
+        <button
+          class="flex items-center w-full lg:w-auto justify-between sm:justify-center gap-2 h-10 px-4 py-2 text-sm font-medium text-gray-500 transition-all bg-gray-50 border border-gray-300 rounded-lg hover:text-gray-700 focus:ring-2 md:justify-center shadow shadow-gray-500/5 focus:ring-gray-900 focus:ring-offset-2 ring-offset-gray-200 duration-300 hover:border-gray-200 hover:shadow-none"
+        >
+          <svg
+            class="size-5"
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.9998 14.5L21.1998 10L4.8998 1.2C4.7998 1.1 4.5998 1.1 4.2998 1L16.9998 14.5Z"
+              fill="#00F076"
+            ></path>
+            <path
+              d="M22.9998 21L28.8998 17.8C29.5998 17.4 29.9998 16.8 29.9998 16C29.9998 15.2 29.5998 14.5 28.8998 14.2L22.9998 11L18.2998 16L22.9998 21Z"
+              fill="#FFC900"
+            ></path>
+            <path
+              d="M2.4 1.8999C2.1 2.1999 2 2.5999 2 2.9999V28.9999C2 29.3999 2.1 29.7999 2.4 30.1999L15.6 15.9999L2.4 1.8999Z"
+              fill="#00D6FF"
+            ></path>
+            <path
+              d="M16.9998 17.5L4.2998 31C4.4998 31 4.6998 30.9 4.8998 30.8L21.1998 22L16.9998 17.5Z"
+              fill="#FF3A44"
+            ></path>
+          </svg>
+          <span class="text-xs text-gray-600"
+            >Download on Google Play</span
+          ></button
+        ><button
+          class="flex items-center w-full lg:w-auto justify-between sm:justify-center gap-2 h-10 px-4 py-2 text-sm font-medium text-gray-500 transition-all bg-gray-50 border border-gray-300 rounded-lg hover:text-gray-700 focus:ring-2 shadow shadow-gray-500/5 focus:ring-gray-900 focus:ring-offset-2 ring-offset-gray-200 duration-300 hover:border-gray-200 hover:shadow-none"
+        >
+          <svg
+            class="size-5"
+            viewBox="0 0 61 74"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M51.0332 39.3793C51.0696 36.549 51.8214 33.7739 53.2186 31.3122C54.6157 28.8506 56.6129 26.7823 59.0241 25.2999C57.4923 23.1122 55.4715 21.3118 53.1222 20.0417C50.7728 18.7716 48.1597 18.0668 45.4904 17.9833C39.7961 17.3856 34.2759 21.3906 31.3741 21.3906C28.4163 21.3906 23.9488 18.0427 19.1379 18.1416C16.0261 18.2422 12.9935 19.147 10.3354 20.7681C7.6773 22.3892 5.48446 24.6711 3.97052 27.3917C-2.5874 38.7459 2.30423 55.433 8.58628 64.611C11.7293 69.1052 15.4027 74.1253 20.2092 73.9473C24.9126 73.7522 26.6693 70.948 32.3467 70.948C37.9715 70.948 39.6195 73.9473 44.5236 73.8341C49.5706 73.7522 52.7504 69.3199 55.7833 64.7832C58.0416 61.5809 59.7793 58.0417 60.9322 54.2966C58 53.0565 55.4977 50.9806 53.7374 48.3279C51.9771 45.6751 51.0366 42.5629 51.0332 39.3793Z"
+              fill="black"
+            ></path>
+            <path
+              d="M41.7704 11.9472C44.5223 8.64377 45.878 4.39769 45.5498 0.110733C41.3456 0.5523 37.4621 2.56163 34.673 5.73837C33.3094 7.29028 32.265 9.09575 31.5995 11.0515C30.9341 13.0073 30.6606 15.0751 30.7948 17.1367C32.8976 17.1583 34.978 16.7025 36.8791 15.8036C38.7803 14.9047 40.4527 13.5862 41.7704 11.9472V11.9472Z"
+              fill="currentColor"
+            ></path>
+          </svg>
+          <span class="text-xs text-gray-600">Download on App Store</span>
+        </button>
+      </div>
+    </div>
+    <div
+      class="grid pt-6 mt-6 border-t grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-24"
+    >
+      <div class="space-y-4">
+        <nav aria-labelledby="footer-heading-0">
+          <h3 id="footer-heading-0" class="text-sm font-medium text-gray-900">
+            Company
+          </h3>
+          <ul class="mt-4 space-y-4">
+            <li>
+              <a
+                href="#"
+                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+              >
+                About
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+              >
+                Mission
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+              >
+                Leadership Team
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+              >
+                History
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="space-y-4">
+        <nav aria-labelledby="footer-heading-1">
+          <h3 id="footer-heading-1" class="text-sm font-medium text-gray-900">
+            Services
+          </h3>
+          <ul class="mt-4 space-y-4">
+            <li>
+              <a
+                href="#"
+                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+              >
+                Marketing
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+              >
+                Analytics
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+              >
+                Commerce
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+              >
+                Insights
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="space-y-4">
+        <nav aria-labelledby="footer-heading-2">
+          <h3 id="footer-heading-2" class="text-sm font-medium text-gray-900">
+            Resources
+          </h3>
+          <ul class="mt-4 space-y-4">
+            <li>
+              <a
+                href="#"
+                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+              >
+                Documentation
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+              >
+                Guides
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+              >
+                Webinars
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+              >
+                White Papers
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="space-y-4">
+        <nav aria-labelledby="footer-heading-3">
+          <h3 id="footer-heading-3" class="text-sm font-medium text-gray-900">
+            Support &amp; Legal
+          </h3>
+          <ul class="mt-4 space-y-4">
+            <li>
+              <a
+                href="#"
+                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+              >
+                Pricing
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+              >
+                API Status
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+              >
+                Live Chat
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+              >
+                Email Support
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div
+      class="pt-6 mt-12 border-t flex flex-col md:flex-row items-center justify-between"
+    >
+      <a
+        href="#_"
+        class="font-medium w-full sm:w-auto group flex gap-3 items-center group-hover:text-blue-600 duration-300 group-hover:animate-pulse"
+        ><img
+          class="h-7 2xl:h-12"
+          src="/images/oxbow/blueLineLogo.png"
+          alt="#_"
+        />
+        Oxbow UI</a
+      >
+      <p class="border-gray-700 text-gray-400 text-sm">
+        Copyright © 2024 Oxbow UI. All rights reserved.
+      </p>
+    </div>
+  </div>
+</section>
+

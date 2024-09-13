@@ -28,7 +28,8 @@ const templates: { [key: string]: Template[] } = {
   ],
   // Page Examples
    pageExamples: [
-     { name: "Landing Pages", link: "/playground/marketing/landing-pages", image: "landingPages.png" }
+     { name: "Landing Pages", link: "/playground/marketing/landing-pages", image: "landingPages.png" },
+     { name: "Pricing Pages", link: "/playground/marketing/pricing-pages", image: "pricingPages.png" },
      ],
   // Elements
   elements: [
