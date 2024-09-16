@@ -16,7 +16,7 @@ const canSeeCode = user || componentIndex === 1;
 const code = canSeeCode ? await Astro.slots.render("default")
                       : '';
 const ppcode = canSeeCode ? await prettier.format(code, {
-                          parser: "lwc",
+                          parser: "html",
                         })
                         : '';
 
