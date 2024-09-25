@@ -1,0 +1,30 @@
+---
+const avatars = [
+  { src: "/avatars/1.avif", alt: "#_" },
+  { src: "/avatars/2.avif", alt: "#_" },
+  { src: "/avatars/3.avif", alt: "#_" },
+  { src: "/avatars/4.avif", alt: "#_" },
+];
+---
+
+<section>
+  <div
+    class="flex justify-center px-8 py-12 mx-auto md:px-12 lg:px-24 max-w-7xl items-center">
+    <div class="flex -space-x-4">
+      {
+        avatars.map((avatar, index) => (
+          <img
+            class="inline-block size-12 object-cover object-center rounded-xl -rotate-12 ring-2 ring-white hover:-translate-y-2 duration-300"
+            src={avatar.src}
+            alt={avatar.alt}
+          />
+        ))
+      }
+      <a
+        class="flex items-center justify-center size-12 z-10 text-xs font-medium text-gray-500 bg-white  rounded-xl -rotate-12 ring-2 ring-gray-200"
+        href="#"
+        >+99</a
+      >
+    </div>
+  </div>
+</section>
