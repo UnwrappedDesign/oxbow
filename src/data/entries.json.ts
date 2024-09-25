@@ -37,8 +37,9 @@ const templates: { [key: string]: Template[] } = {
     { name: "Badges", link: "/playground/application/badges", image: "badges.png" },
     { name: "Banners", link: "/playground/application/banners", image: "banners.png" },
     { name: "Alerts", link: "/playground/application/alerts", image: "alerts.png" },
-    { name: "Emptystates", link: "/playground/application/emptystates", image: "emptystates.png" },
+    { name: "Emptystates", link: "/playground/application/emptyStates", image: "emptystates.png" },
     { name: "Avatars", link: "/playground/application/avatars", image: "avatars.png" },
+    { name: "Tables", link: "/playground/application/tables", image: "tables.png" },
   ],
   // Navigation
   navigation: [
