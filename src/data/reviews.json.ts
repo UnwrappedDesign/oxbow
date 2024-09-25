@@ -36,8 +36,15 @@ const alin: Template = {
   text: "I think this is an instant buy for me 👏 Congrats!",
   image: "/reviews/alinSimion.jpg",
 };
+const jonSullivan: Template = {
+  name: "Jon sullivan",
+  work: "Software Engineer",
+  text: "That new set of UI components, Oxbow, is absolutely killer. I looked through quite a few (though there are just so dang many! 🎉) and really love them",
+  image: "/reviews/jonSullivan.jpg",
+};
 
 export const byName = {
+  jonSullivan,
   alexHughes,
   ianHawes,
   carl,
