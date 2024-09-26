@@ -1,0 +1,56 @@
+---
+const { variant, size, class: className, ...rest } = Astro.props;
+
+const primaryClasses = [
+  "from-blue-500",
+  "to-indigo-600",
+  "hover:to-indigo-800",
+  "focus:ring-blue-950",
+  "ring-offset-gray-200",
+];
+
+const secondaryClasses = [
+  "text-gray-500",
+  "border-gray-300",
+  "bg-gray-50",
+  "hover:text-gray-700",
+  "focus:ring-gray-900",
+  "ring-offset-gray-200",
+  "hover:border-gray-200",
+  "hover:shadow-none",
+];
+
+const sizeSmallClasses = ["h-8", "px-4", "py-2", "text-xs", "font-semibold"];
+
+const sizeMediumClasses = ["h-10", "px-4", "py-2", "text-sm", "font-medium"];
+
+const sizeLargeClasses = ["h-12", "px-6", "py-3", "text-base", "font-medium"];
+---
+
+<button
+  class:list={[
+    "flex",
+    "items-center",
+    "justify-center",
+    "text-white",
+    "transition-all",
+    "duration-200",
+    "rounded-lg",
+    "shadow",
+    "bg-gradient-to-b",
+    "focus:ring-2",
+    "hover:shadow-none",
+    "focus:ring-offset-2",
+    variant === "primary" && primaryClasses,
+    variant === "secondary" && secondaryClasses,
+    size === "small" && sizeSmallClasses,
+    size === "medium" && sizeMediumClasses,
+    size === "large" && sizeLargeClasses,
+    className,
+  ]}
+  {...rest}
+>
+  <slot name="left-icon" />
+  <slot />
+  <slot name="right-icon" />
+</button>
