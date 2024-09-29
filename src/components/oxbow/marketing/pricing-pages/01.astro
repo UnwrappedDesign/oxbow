@@ -1,4 +1,4 @@
-<div class="justify-center w-full mx-auto bg-gray-100">
+<div class="justify-center w-full mx-auto bg-base-100">
 
   <div
     x-data="{ open: false }"
@@ -8,7 +8,7 @@
         href="/"
         class="flex items-center w-full gap-3 font-medium sm:w-auto group 2xl:text-lg"
         ><span
-          class="duration-300 group-hover:text-blue-600 group-hover:animate-pulse"
+          class="duration-300 group-hover:text-accent-600 group-hover:animate-pulse"
           ><img
             class="h-7 2xl:h-9"
             src="/images/oxbow/windLogo.png"
@@ -17,7 +17,7 @@
         > oxbow ui</a
       >
       <button
-        class="rounded-lg md:hidden focus:outline-none focus:shadow-outline focus:text-blue-600"
+        class="rounded-lg md:hidden focus:outline-none focus:shadow-outline focus:text-accent-600"
         @click="open = !open">
         <svg
           class="size-6"
@@ -45,19 +45,19 @@
     </div>
     <nav
       :class="{'flex': open, 'hidden': !open}"
-      class="flex-col items-center flex-grow hidden gap-3 p-4 px-5 text-xs font-medium text-gray-500 md:px-0 md:pb-0 md:flex md:justify-start md:flex-row lg:p-0 md:mt-0">
+      class="flex-col items-center flex-grow hidden gap-3 p-4 px-5 text-xs font-medium text-base-500 md:px-0 md:pb-0 md:flex md:justify-start md:flex-row lg:p-0 md:mt-0">
       <a
-        class="hover:text-black focus:outline-none focus:text-gray-500 md:ml-auto"
+        class="hover:text-black focus:outline-none focus:text-base-500 md:ml-auto"
         href="#_"
         >Features
       </a>
       <a
-        class="hover:text-black focus:outline-none focus:text-gray-500"
+        class="hover:text-black focus:outline-none focus:text-base-500"
         href="#_"
         >About
       </a>
       <a
-        class="flex items-center justify-center h-8 px-4 py-2 text-xs font-semibold text-white transition-all duration-200 rounded-md shadow bg-gradient-to-b from-blue-500 to-indigo-600 hover:to-indigo-800 focus:ring-2 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none"
+        class="flex items-center justify-center h-8 px-4 py-2 text-xs font-semibold text-white transition-all duration-200 rounded-md shadow bg-accent-700  hover:to-accent-800 focus:ring-2 focus:ring-accent-950 focus:ring-offset-2 ring-offset-base-200 hover:shadow-none"
         href="#_"
         role="button">
         Button
@@ -72,23 +72,23 @@
         class="flex flex-col gap-12 justify-between max-w-md mx-auto lg:mx-0 md:text-balance text-center lg:text-left">
         <div>
           <span
-            class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+            class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase"
             >Tagline</span
           >
-          <p class="text-4xl mt-4 font-semibold tracking-tight text-gray-900">
+          <p class="text-4xl mt-4 font-semibold tracking-tight text-base-900">
             Equip your business with world class software
           </p>
-          <p class="text-base text-balance mt-4 text-gray-700">
+          <p class="text-base text-balance mt-4 text-base-700">
             Every plan includes every feature, and can scale as your team does.
           </p>
           <div
-            class="w-full mt-8 border bg-white overflow-hidden justify-center mx-auto lg:mx-0 inline-flex p-0.5 rounded-lg max-w-xs shadow shadow-white/20 z-0">
+            class="w-full mt-8 border bg-white overflow-hidden justify-center mx-auto lg:mx-0 inline-flex p-0.5 rounded-lg max-w-xs shadow     z-0">
             <!-- Monthly Pricing Button: Sets 'duration' to 'monthly' when clicked -->
             <button
               id="monthly-pricing-button"
-              class="block w-full px-8 py-2 text-xs font-medium transition border border-transparent rounded-md text-blue-900"
+              class="block w-full px-8 py-2 text-xs font-medium transition border border-transparent rounded-md text-accent-900"
               @click="duration = 'monthly'"
-              :class="duration == 'monthly' ? 'bg-gray-100 border text-blue-900 ' : ''"
+              :class="duration == 'monthly' ? 'bg-base-100 border text-accent-900 ' : ''"
               type="button">
               Monthly
             </button>
@@ -96,9 +96,9 @@
             <!-- Annual Pricing Button: Sets 'duration' to 'annual' when clicked -->
             <button
               id="annual-pricing-button"
-              class="block w-full px-8 py-2 text-xs font-medium transition border border-transparent rounded-md text-blue-900"
+              class="block w-full px-8 py-2 text-xs font-medium transition border border-transparent rounded-md text-accent-900"
               @click="duration = 'annual'"
-              :class="duration == 'annual' ? 'bg-gray-100 border text-blue-900 ' : ''"
+              :class="duration == 'annual' ? 'bg-base-100 border text-accent-900 ' : ''"
               type="button">
               Annual
             </button>
@@ -106,7 +106,7 @@
         </div>
       </div>
       <div
-        class="flex flex-col h-full justify-between p-8 bg-gradient-to-b from-blue-500 to-indigo-600 rounded-3xl">
+        class="flex flex-col h-full justify-between p-8 bg-accent-700  rounded-3xl">
         <div>
           <div class="flex flex-col gap-2">
             <div class="flex items-center gap-2 justify-between">
@@ -118,7 +118,7 @@
                   data-annual="$39"
                   x-text="$el.dataset[duration]"
                 ></span>
-                <span class="text-sm font-normal tracking-normal text-gray-200">
+                <span class="text-sm font-normal tracking-normal text-base-200">
                   <span x-show="duration === 'monthly'">
                     <span x-show="duration === 'monthly'"> /month</span></span
                   >
@@ -133,7 +133,7 @@
             <ul
               class="grid grid-cols-1 sm:grid-cols-2 l mt-10 text-sm text-white gap-y-3"
               role="list">
-              <li class="flex flex-row items-center gap-2">
+              <li class="flex items-center gap-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="size-4 icon icon-tabler icon-tabler-circle-check-filled text-white"
@@ -156,7 +156,7 @@
                 </svg>
                 <span>Unlimited members</span>
               </li>
-              <li class="flex flex-row items-center gap-2">
+              <li class="flex items-center gap-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="size-4 icon icon-tabler icon-tabler-circle-check-filled text-white"
@@ -179,7 +179,7 @@
                 </svg>
                 <span>2 teams </span>
               </li>
-              <li class="flex flex-row items-center gap-2">
+              <li class="flex items-center gap-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="size-4 icon icon-tabler icon-tabler-circle-check-filled text-white"
@@ -202,7 +202,7 @@
                 </svg>
                 <span>50 issues (+unlimited)</span>
               </li>
-              <li class="flex flex-row items-center gap-2">
+              <li class="flex items-center gap-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="size-4 icon icon-tabler icon-tabler-circle-check-filled text-white"
@@ -230,7 +230,7 @@
           <div class="w-full mt-8">
             <a
               aria-describedby="#_"
-              class="flex items-center justify-center gap-2 h-10 px-4 py-2 text-sm font-medium text-gray-500 transition-all bg-white border border-gray-300 rounded-lg hover:text-gray-700 focus:ring-2 shadow shadow-gray-500/5 focus:ring-gray-900 focus:ring-offset-2 ring-offset-gray-200 duration-300 hover:border-gray-200 hover:shadow-none w-full"
+              class="flex items-center justify-center gap-2 h-10 px-4 py-2 text-sm font-medium text-base-500 transition-all bg-white border border-base-300 rounded-lg hover:text-base-700 focus:ring-2 shadow shadow-base-500/5 focus:ring-base-900 focus:ring-offset-2 ring-offset-base-200 duration-300 hover:border-base-200 hover:shadow-none w-full"
               href="#_"
               >Get started</a
             >
@@ -244,21 +244,21 @@
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div>
       <span
-        class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+        class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase"
         >faq</span
       >
       <h1
-        class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 lg:text-balance">
+        class="text-4xl mt-4 font-semibold tracking-tight text-base-900 lg:text-balance">
         Frequently Asked Questions
       </h1>
-      <p class="mt-6 text-base font-medium text-gray-500">
+      <p class="mt-6 text-base font-medium text-base-500">
         Everything you need to know about our platform.
       </p>
     </div>
     <div class="mt-12">
       <details class="group cursor-pointer">
         <summary
-          class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none tracking-tight text-base font-medium text-gray-900 hover:text-blue-500 focus:text-blue-500">
+          class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none tracking-tight text-base font-medium text-base-900 hover:text-accent-500 focus:text-accent-500">
           How does end-to-end encryption work?
           <svg
             class="size-5 duration-300 ease-out transform group-open:-rotate-45"
@@ -274,12 +274,12 @@
             ></path>
           </svg>
         </summary>
-        <div class="py-4 pt-2 pb-8 text-sm text-gray-500">
+        <div class="py-4 pt-2 pb-8 text-sm text-base-500">
           End-to-end encryption ensures that only the sender and recipient can
           access the content of a message.
           <div class="flex mt-8">
             <button
-              class="text-blue-600 flex items-center gap-3 hover:text-gray-900 transition-all duration-200 text-sm"
+              class="text-accent-600 flex items-center gap-3 hover:text-base-900 transition-all duration-200 text-sm"
               aria-label="Action">
               Learn more
               <svg
@@ -306,7 +306,7 @@
       </details>
       <details class="group cursor-pointer">
         <summary
-          class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none tracking-tight text-base font-medium text-gray-900 hover:text-blue-500 focus:text-blue-500">
+          class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none tracking-tight text-base font-medium text-base-900 hover:text-accent-500 focus:text-accent-500">
           Can I access my encrypted data if I forget my encryption key?
           <svg
             class="size-5 duration-300 ease-out transform group-open:-rotate-45"
@@ -322,12 +322,12 @@
             ></path>
           </svg>
         </summary>
-        <div class="py-4 pt-2 pb-8 text-sm text-gray-500">
+        <div class="py-4 pt-2 pb-8 text-sm text-base-500">
           No, forgetting or losing your encryption key means that your encrypted
           data cannot be accessed.
           <div class="flex mt-8">
             <button
-              class="text-blue-600 flex items-center gap-3 hover:text-gray-900 transition-all duration-200 text-sm"
+              class="text-accent-600 flex items-center gap-3 hover:text-base-900 transition-all duration-200 text-sm"
               aria-label="Action">
               Learn more
               <svg
@@ -354,7 +354,7 @@
       </details>
       <details class="group cursor-pointer">
         <summary
-          class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none tracking-tight text-base font-medium text-gray-900 hover:text-blue-500 focus:text-blue-500">
+          class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none tracking-tight text-base font-medium text-base-900 hover:text-accent-500 focus:text-accent-500">
           Are there any limitations to the self-destructing messages feature?
           <svg
             class="size-5 duration-300 ease-out transform group-open:-rotate-45"
@@ -370,13 +370,13 @@
             ></path>
           </svg>
         </summary>
-        <div class="py-4 pt-2 pb-8 text-sm text-gray-500">
+        <div class="py-4 pt-2 pb-8 text-sm text-base-500">
           Self-destructing messages are designed to automatically delete
           themselves after a specific period or upon being read by the
           recipient.
           <div class="flex mt-8">
             <button
-              class="text-blue-600 flex items-center gap-3 hover:text-gray-900 transition-all duration-200 text-sm"
+              class="text-accent-600 flex items-center gap-3 hover:text-base-900 transition-all duration-200 text-sm"
               aria-label="Action">
               Learn more
               <svg
@@ -403,7 +403,7 @@
       </details>
       <details class="group cursor-pointer">
         <summary
-          class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none tracking-tight text-base font-medium text-gray-900 hover:text-blue-500 focus:text-blue-500">
+          class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none tracking-tight text-base font-medium text-base-900 hover:text-accent-500 focus:text-accent-500">
           What happens if I enable two-factor authentication and lose my device?
           <svg
             class="size-5 duration-300 ease-out transform group-open:-rotate-45"
@@ -419,12 +419,12 @@
             ></path>
           </svg>
         </summary>
-        <div class="py-4 pt-2 pb-8 text-sm text-gray-500">
+        <div class="py-4 pt-2 pb-8 text-sm text-base-500">
           Losing your device doesn&#39;t automatically compromise your
           account&#39;s security.
           <div class="flex mt-8">
             <button
-              class="text-blue-600 flex items-center gap-3 hover:text-gray-900 transition-all duration-200 text-sm"
+              class="text-accent-600 flex items-center gap-3 hover:text-base-900 transition-all duration-200 text-sm"
               aria-label="Action">
               Learn more
               <svg
@@ -451,7 +451,7 @@
       </details>
       <details class="group cursor-pointer">
         <summary
-          class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none tracking-tight text-base font-medium text-gray-900 hover:text-blue-500 focus:text-blue-500">
+          class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none tracking-tight text-base font-medium text-base-900 hover:text-accent-500 focus:text-accent-500">
           Is my personal information shared or sold to third parties?
           <svg
             class="size-5 duration-300 ease-out transform group-open:-rotate-45"
@@ -467,14 +467,14 @@
             ></path>
           </svg>
         </summary>
-        <div class="py-4 pt-2 pb-8 text-sm text-gray-500">
+        <div class="py-4 pt-2 pb-8 text-sm text-base-500">
           No, we strictly adhere to a privacy-centric approach. Your personal
           information is never shared, sold, or monetized. We prioritize your
           privacy and ensure that your data remains confidential and only
           accessible to you.
           <div class="flex mt-8">
             <button
-              class="text-blue-600 flex items-center gap-3 hover:text-gray-900 transition-all duration-200 text-sm"
+              class="text-accent-600 flex items-center gap-3 hover:text-base-900 transition-all duration-200 text-sm"
               aria-label="Action">
               Learn more
               <svg
@@ -501,7 +501,7 @@
       </details>
       <details class="group cursor-pointer">
         <summary
-          class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none tracking-tight text-base font-medium text-gray-900 hover:text-blue-500 focus:text-blue-500">
+          class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none tracking-tight text-base font-medium text-base-900 hover:text-accent-500 focus:text-accent-500">
           Can I use this platform on multiple devices?
           <svg
             class="size-5 duration-300 ease-out transform group-open:-rotate-45"
@@ -517,13 +517,13 @@
             ></path>
           </svg>
         </summary>
-        <div class="py-4 pt-2 pb-8 text-sm text-gray-500">
+        <div class="py-4 pt-2 pb-8 text-sm text-base-500">
           Yes, you can access our platform on multiple devices. Your encrypted
           data remains synced across all devices, allowing you to seamlessly
           communicate and access your files and messages from anywhere.
           <div class="flex mt-8">
             <button
-              class="text-blue-600 flex items-center gap-3 hover:text-gray-900 transition-all duration-200 text-sm"
+              class="text-accent-600 flex items-center gap-3 hover:text-base-900 transition-all duration-200 text-sm"
               aria-label="Action">
               Learn more
               <svg
@@ -550,7 +550,7 @@
       </details>
       <details class="group cursor-pointer">
         <summary
-          class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none tracking-tight text-base font-medium text-gray-900 hover:text-blue-500 focus:text-blue-500">
+          class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none tracking-tight text-base font-medium text-base-900 hover:text-accent-500 focus:text-accent-500">
           Are there any storage limitations for files and documents?
           <svg
             class="size-5 duration-300 ease-out transform group-open:-rotate-45"
@@ -566,7 +566,7 @@
             ></path>
           </svg>
         </summary>
-        <div class="py-4 pt-2 pb-8 text-sm text-gray-500">
+        <div class="py-4 pt-2 pb-8 text-sm text-base-500">
           Our platform provides ample storage space for your files and
           documents. However, there may be storage limitations based on the
           pricing plan you choose. We offer flexible plans to suit your needs
@@ -574,7 +574,7 @@
           capacity.
           <div class="flex mt-8">
             <button
-              class="text-blue-600 flex items-center gap-3 hover:text-gray-900 transition-all duration-200 text-sm"
+              class="text-accent-600 flex items-center gap-3 hover:text-base-900 transition-all duration-200 text-sm"
               aria-label="Action">
               Learn more
               <svg
@@ -601,7 +601,7 @@
       </details>
       <details class="group cursor-pointer">
         <summary
-          class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none tracking-tight text-base font-medium text-gray-900 hover:text-blue-500 focus:text-blue-500">
+          class="flex items-center justify-between w-full pt-4 pb-1 text-left select-none tracking-tight text-base font-medium text-base-900 hover:text-accent-500 focus:text-accent-500">
           Is it possible to export my data from the platform?
           <svg
             class="size-5 duration-300 ease-out transform group-open:-rotate-45"
@@ -617,7 +617,7 @@
             ></path>
           </svg>
         </summary>
-        <div class="py-4 pt-2 pb-8 text-sm text-gray-500">
+        <div class="py-4 pt-2 pb-8 text-sm text-base-500">
           Yes, you can export your data from the platform. We offer export
           features that allow you to download your messages, files, and
           documents, ensuring you have a local copy for backup or migration
@@ -625,7 +625,7 @@
           your data.
           <div class="flex mt-8">
             <button
-              class="text-blue-600 flex items-center gap-3 hover:text-gray-900 transition-all duration-200 text-sm"
+              class="text-accent-600 flex items-center gap-3 hover:text-base-900 transition-all duration-200 text-sm"
               aria-label="Action">
               Learn more
               <svg
@@ -659,16 +659,16 @@
           src="/images/oxbow/blueLineLogo.png"
           alt="#_"
         />
-        <h1 class="text-4xl mt-4 font-semibold tracking-tight text-gray-900">
+        <h1 class="text-4xl mt-4 font-semibold tracking-tight text-base-900">
           Got questions?
         </h1>
-        <p class="mt-6 text-base font-medium text-gray-500 lg:text-balance">
+        <p class="mt-6 text-base font-medium text-base-500 lg:text-balance">
           We're here to help you with any questions you might have.
         </p>
       </div>
       <div class="flex lg:ml-auto">
         <button
-          class="text-blue-600 flex items-center gap-3 hover:text-gray-900 transition-all duration-200 text-base"
+          class="text-accent-600 flex items-center gap-3 hover:text-base-900 transition-all duration-200 text-base"
           aria-label="Action">
           Learn more
           <svg
@@ -698,17 +698,17 @@
   <div class="px-8 py-12 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div class="grid items-end grid-cols-1 sm:grid-cols-2 gap-4">
       <div>
-        <p class="text-xl font-semibold tracking-tight text-gray-900">
+        <p class="text-xl font-semibold tracking-tight text-base-900">
           Get started with our app today
         </p>
-        <p class="mt-4 text-sm text-gray-500 lg:text-base">
+        <p class="mt-4 text-sm text-base-500 lg:text-base">
           Streamline your workflow and collaborate seamlessly on staging and
           temporary environments
         </p>
       </div>
       <div class="flex flex-col lg:flex-row items-center gap-2 sm:ml-auto">
         <button
-          class="flex items-center w-full lg:w-auto justify-between sm:justify-center gap-2 h-10 px-4 py-2 text-sm font-medium text-gray-500 transition-all bg-gray-50 border border-gray-300 rounded-lg hover:text-gray-700 focus:ring-2 md:justify-center shadow shadow-gray-500/5 focus:ring-gray-900 focus:ring-offset-2 ring-offset-gray-200 duration-300 hover:border-gray-200 hover:shadow-none"
+          class="flex items-center w-full lg:w-auto justify-between sm:justify-center gap-2 h-10 px-4 py-2 text-sm font-medium text-base-500 transition-all bg-base-50 border border-base-300 rounded-lg hover:text-base-700 focus:ring-2 md:justify-center shadow shadow-base-500/5 focus:ring-base-900 focus:ring-offset-2 ring-offset-base-200 duration-300 hover:border-base-200 hover:shadow-none"
         >
           <svg
             class="size-5"
@@ -733,11 +733,11 @@
               fill="#FF3A44"
             ></path>
           </svg>
-          <span class="text-xs text-gray-600"
+          <span class="text-xs text-base-600"
             >Download on Google Play</span
           ></button
         ><button
-          class="flex items-center w-full lg:w-auto justify-between sm:justify-center gap-2 h-10 px-4 py-2 text-sm font-medium text-gray-500 transition-all bg-gray-50 border border-gray-300 rounded-lg hover:text-gray-700 focus:ring-2 shadow shadow-gray-500/5 focus:ring-gray-900 focus:ring-offset-2 ring-offset-gray-200 duration-300 hover:border-gray-200 hover:shadow-none"
+          class="flex items-center w-full lg:w-auto justify-between sm:justify-center gap-2 h-10 px-4 py-2 text-sm font-medium text-base-500 transition-all bg-base-50 border border-base-300 rounded-lg hover:text-base-700 focus:ring-2 shadow shadow-base-500/5 focus:ring-base-900 focus:ring-offset-2 ring-offset-base-200 duration-300 hover:border-base-200 hover:shadow-none"
         >
           <svg
             class="size-5"
@@ -754,7 +754,7 @@
               fill="currentColor"
             ></path>
           </svg>
-          <span class="text-xs text-gray-600">Download on App Store</span>
+          <span class="text-xs text-base-600">Download on App Store</span>
         </button>
       </div>
     </div>
@@ -763,14 +763,14 @@
     >
       <div class="space-y-4">
         <nav aria-labelledby="footer-heading-0">
-          <h3 id="footer-heading-0" class="text-sm font-medium text-gray-900">
+          <h3 id="footer-heading-0" class="text-sm font-medium text-base-900">
             Company
           </h3>
           <ul class="mt-4 space-y-4">
             <li>
               <a
                 href="#"
-                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+                class="text-base-600 text-sm md:text-base hover:text-accent-500 duration-300"
               >
                 About
               </a>
@@ -778,7 +778,7 @@
             <li>
               <a
                 href="#"
-                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+                class="text-base-600 text-sm md:text-base hover:text-accent-500 duration-300"
               >
                 Mission
               </a>
@@ -786,7 +786,7 @@
             <li>
               <a
                 href="#"
-                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+                class="text-base-600 text-sm md:text-base hover:text-accent-500 duration-300"
               >
                 Leadership Team
               </a>
@@ -794,7 +794,7 @@
             <li>
               <a
                 href="#"
-                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+                class="text-base-600 text-sm md:text-base hover:text-accent-500 duration-300"
               >
                 History
               </a>
@@ -804,14 +804,14 @@
       </div>
       <div class="space-y-4">
         <nav aria-labelledby="footer-heading-1">
-          <h3 id="footer-heading-1" class="text-sm font-medium text-gray-900">
+          <h3 id="footer-heading-1" class="text-sm font-medium text-base-900">
             Services
           </h3>
           <ul class="mt-4 space-y-4">
             <li>
               <a
                 href="#"
-                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+                class="text-base-600 text-sm md:text-base hover:text-accent-500 duration-300"
               >
                 Marketing
               </a>
@@ -819,7 +819,7 @@
             <li>
               <a
                 href="#"
-                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+                class="text-base-600 text-sm md:text-base hover:text-accent-500 duration-300"
               >
                 Analytics
               </a>
@@ -827,7 +827,7 @@
             <li>
               <a
                 href="#"
-                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+                class="text-base-600 text-sm md:text-base hover:text-accent-500 duration-300"
               >
                 Commerce
               </a>
@@ -835,7 +835,7 @@
             <li>
               <a
                 href="#"
-                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+                class="text-base-600 text-sm md:text-base hover:text-accent-500 duration-300"
               >
                 Insights
               </a>
@@ -845,14 +845,14 @@
       </div>
       <div class="space-y-4">
         <nav aria-labelledby="footer-heading-2">
-          <h3 id="footer-heading-2" class="text-sm font-medium text-gray-900">
+          <h3 id="footer-heading-2" class="text-sm font-medium text-base-900">
             Resources
           </h3>
           <ul class="mt-4 space-y-4">
             <li>
               <a
                 href="#"
-                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+                class="text-base-600 text-sm md:text-base hover:text-accent-500 duration-300"
               >
                 Documentation
               </a>
@@ -860,7 +860,7 @@
             <li>
               <a
                 href="#"
-                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+                class="text-base-600 text-sm md:text-base hover:text-accent-500 duration-300"
               >
                 Guides
               </a>
@@ -868,7 +868,7 @@
             <li>
               <a
                 href="#"
-                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+                class="text-base-600 text-sm md:text-base hover:text-accent-500 duration-300"
               >
                 Webinars
               </a>
@@ -876,7 +876,7 @@
             <li>
               <a
                 href="#"
-                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+                class="text-base-600 text-sm md:text-base hover:text-accent-500 duration-300"
               >
                 White Papers
               </a>
@@ -886,14 +886,14 @@
       </div>
       <div class="space-y-4">
         <nav aria-labelledby="footer-heading-3">
-          <h3 id="footer-heading-3" class="text-sm font-medium text-gray-900">
+          <h3 id="footer-heading-3" class="text-sm font-medium text-base-900">
             Support &amp; Legal
           </h3>
           <ul class="mt-4 space-y-4">
             <li>
               <a
                 href="#"
-                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+                class="text-base-600 text-sm md:text-base hover:text-accent-500 duration-300"
               >
                 Pricing
               </a>
@@ -901,7 +901,7 @@
             <li>
               <a
                 href="#"
-                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+                class="text-base-600 text-sm md:text-base hover:text-accent-500 duration-300"
               >
                 API Status
               </a>
@@ -909,7 +909,7 @@
             <li>
               <a
                 href="#"
-                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+                class="text-base-600 text-sm md:text-base hover:text-accent-500 duration-300"
               >
                 Live Chat
               </a>
@@ -917,7 +917,7 @@
             <li>
               <a
                 href="#"
-                class="text-gray-600 text-sm md:text-base hover:text-blue-500 duration-300"
+                class="text-base-600 text-sm md:text-base hover:text-accent-500 duration-300"
               >
                 Email Support
               </a>
@@ -931,7 +931,7 @@
     >
       <a
         href="#_"
-        class="font-medium w-full sm:w-auto group flex gap-3 items-center group-hover:text-blue-600 duration-300 group-hover:animate-pulse"
+        class="font-medium w-full sm:w-auto group flex gap-3 items-center group-hover:text-accent-600 duration-300 group-hover:animate-pulse"
         ><img
           class="h-7 2xl:h-12"
           src="/images/oxbow/blueLineLogo.png"
@@ -939,7 +939,7 @@
         />
         Oxbow UI</a
       >
-      <p class="border-gray-700 text-gray-400 text-sm">
+      <p class="border-base-700 text-base-400 text-sm">
         Copyright © 2024 Oxbow UI. All rights reserved.
       </p>
     </div>

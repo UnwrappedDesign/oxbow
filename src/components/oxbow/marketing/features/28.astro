@@ -1,85 +1,23 @@
----
-const listItems = [
-  "Revolutionizing communication",
-  "Enhancing productivity",
-  "Advanced security measures",
-  "Seamless integration",
-  "Empowering users with solutions",
-  "Effortless management",
-  "Unlocking innovative solutions",
-  "Enabling interoperability",
-  "Enhancing scalability",
-];
----
+
 
 <section>
-  <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
-    <div
-      class="grid grid-cols-1 gap-12 md:grid-cols-3 text-center lg:text-left md:items-end">
-      <div class="lg:col-span-2">
-        <span
-          class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
-          >Tagline</span
-        >
-        <h1
-          class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 lg:text-balance">
-          Transform your visitors into users with an engaging headline
-        </h1>
-      </div>
-      <p class="text-base font-medium text-gray-500">
-        The fastest and most efficient method for working together on staging
-        and temporary environments.
-      </p>
-    </div>
-    <ul
-      role="list"
-      class="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-2 text-base font-medium text-gray-900">
-      {
-        listItems.map((item, index) => (
-          <li>
-            <div class="relative flex flex-row items-start gap-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="icon icon-tabler icon-tabler-circle-check-filled text-blue-600"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-                stroke="currentColor"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round">
-                <path
-                  stroke="none"
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                />
-                <path
-                  d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
-                  strokeWidth="0"
-                  fill="currentColor"
-                />
-              </svg>
-              <p>{item}</p>
-            </div>
-          </li>
-        ))
-      }
-    </ul>
+  <div class="px-8 py-12 mx-auto md:px-12 lg:px-24 max-w-7xl relative overflow-hidden">
+
+
     <!-- Show Tab 1 as default  -->
     <div
       x-data="{ tab: 'tab1' }"
-      class="grid items-center grid-cols-1 mt-12 gap-6 lg:grid-cols-2 bg-gray-50 rounded-3xl p-8">
+      class="grid items-center grid-cols-1 gap-6 lg:grid-cols-2">
       <ul class="grid sm:grid-cols-2 lg:grid-cols-1 gap-2 list-none">
         <!-- Tab 1 -->
-        <li>
+        <li class="bg-base-50 rounded-3xl p-1">
           <button
             @click.prevent="tab = 'tab1'"
-            class="items-start p-4 lg:p-8 rounded-xl transition text-left h-full"
-            :class="{ 'bg-white' : tab === 'tab1' }">
+            class="items-start p-4 lg:p-8 rounded-[1.3rem] transition text-left h-full"
+            :class="{ 'bg-white shadow' : tab === 'tab1' }">
             <div>
               <div class="flex items-center gap-4">
-                <div class="text-blue-500">
+                <div class="text-accent-500">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -100,11 +38,11 @@ const listItems = [
                       d="M12.002 19.003a5 5 0 1 0 3.998 -8.003"></path></svg
                   >
                 </div>
-                <dt class="tracking-tight text-lg font-medium text-gray-900">
+                <dt class="tracking-tight text-lg font-medium text-base-900">
                   Innovative Design
                 </dt>
               </div>
-              <dd class="mt-2 text-sm text-gray-500 text-pretty">
+              <dd class="mt-2 text-sm text-base-500 text-pretty">
                 Our cutting-edge design offers a fresh, modern look that
                 transforms your project into a standout experience.
               </dd>
@@ -112,14 +50,14 @@ const listItems = [
           </button>
         </li>
         <!-- Tab 2 -->
-        <li>
+        <li class="bg-base-50 rounded-3xl p-1">
           <button
             @click.prevent="tab = 'tab2'"
-            class="items-start p-4 lg:p-8 rounded-xl transition text-left h-full"
-            :class="{ 'bg-white ' : tab === 'tab2' }">
+            class="items-start p-4 lg:p-8 rounded-[1.3rem] transition text-left h-full"
+            :class="{ 'bg-white shadow ' : tab === 'tab2' }">
             <div>
               <div class="flex items-center gap-4">
-                <div class="text-blue-500">
+                <div class="text-accent-500">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -144,11 +82,11 @@ const listItems = [
                     ></path></svg
                   >
                 </div>
-                <dt class="tracking-tight text-lg font-medium text-gray-900">
+                <dt class="tracking-tight text-lg font-medium text-base-900">
                   Powerful Functionality
                 </dt>
               </div>
-              <dd class="mt-2 text-sm text-gray-500 text-pretty">
+              <dd class="mt-2 text-sm text-base-500 text-pretty">
                 Equipped with advanced features and tools, our solution
                 effortlessly manages complex tasks and workflows.
               </dd>
@@ -156,14 +94,14 @@ const listItems = [
           </button>
         </li>
         <!-- Tab 3 -->
-        <li>
+        <li class="bg-base-50 rounded-3xl p-1">
           <button
             @click.prevent="tab = 'tab3'"
-            class="items-start p-4 lg:p-8 rounded-xl transition text-left h-full"
-            :class="{ 'bg-white ' : tab === 'tab3' }">
+            class="items-start p-4 lg:p-8 rounded-[1.3rem] transition text-left h-full"
+            :class="{ 'bg-white shadow ' : tab === 'tab3' }">
             <div>
               <div class="flex items-center gap-4">
-                <div class="text-blue-500">
+                <div class="text-accent-500">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -185,11 +123,11 @@ const listItems = [
                     ></path></svg
                   >
                 </div>
-                <dt class="tracking-tight text-lg font-medium text-gray-900">
+                <dt class="tracking-tight text-lg font-medium text-base-900">
                   Revolutionizing communication
                 </dt>
               </div>
-              <dd class="mt-2 text-sm text-gray-500 text-pretty">
+              <dd class="mt-2 text-sm text-base-500 text-pretty">
                 Unlocking innovative solutions that enhance connectivity and
                 streamline interactions.
               </dd>
@@ -197,14 +135,14 @@ const listItems = [
           </button>
         </li>
         <!-- Tab 4 -->
-        <li>
+        <li class="bg-base-50 rounded-3xl p-1">
           <button
             @click.prevent="tab = 'tab4'"
-            class="items-start p-4 lg:p-8 rounded-xl transition text-left h-full"
-            :class="{ 'bg-white ' : tab === 'tab4' }">
+            class="items-start p-4 lg:p-8 rounded-[1.3rem] transition text-left h-full"
+            :class="{ 'bg-white shadow ' : tab === 'tab4' }">
             <div>
               <div class="flex items-center gap-4">
-                <div class="text-blue-500">
+                <div class="text-accent-500">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -228,13 +166,55 @@ const listItems = [
                     ></path></svg
                   >
                 </div>
-                <dt class="tracking-tight text-lg font-medium text-gray-900">
+                <dt class="tracking-tight text-lg font-medium text-base-900">
                   Easy Integration
                 </dt>
               </div>
-              <dd class="mt-2 text-sm text-gray-500 text-pretty">
+              <dd class="mt-2 text-sm text-base-500 text-pretty">
                 Integrating with existing systems is smooth and hassle-free,
                 thanks to our incredible flexible approach.
+              </dd>
+            </div>
+          </button>
+        </li>
+        <!-- Tab 5 -->
+        <li class="bg-base-50 rounded-3xl p-1">
+          <button
+            @click.prevent="tab = 'tab5'"
+            class="items-start p-4 lg:p-8 rounded-[1.3rem] transition text-left h-full"
+            :class="{ 'bg-white shadow ' : tab === 'tab5' }">
+            <div>
+              <div class="flex items-center gap-4">
+                <div class="text-accent-500">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-device-analytics"
+                    ><path
+                      stroke="none"
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    ></path><path
+                      d="M3 4m0 1a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1z"
+                    ></path><path d="M7 20l10 0"></path><path d="M9 16l0 4"
+                    ></path><path d="M15 16l0 4"></path><path
+                      d="M8 12l3 -3l2 2l3 -3"></path></svg
+                  >
+                </div>
+                <dt class="tracking-tight text-lg font-medium text-base-900">
+                  Advanced Analytics
+                </dt>
+              </div>
+              <dd class="mt-2 text-sm text-base-500 text-pretty">
+                Gain deep insights into your data with our comprehensive
+                analytics tools, helping you make informed decisions.
               </dd>
             </div>
           </button>
@@ -244,13 +224,11 @@ const listItems = [
         <!-- Tab 1 content -->
         <div x-show="tab==='tab1'">
           <div class="block w-full mt-12">
-            <div>
-              <img
-                alt="#_"
-                class="relative w-full rounded-2xl drop-shadow-2xl h-full object-cover"
-                src="/images/phone1.png"
-              />
-            </div>
+            <img
+              alt="#_"
+              class="relative w-full rounded-2xl drop-shadow-2xl h-full object-cover"
+              src="/images/phone1.png"
+            />
           </div>
         </div>
         <!-- Tab 2 content. You can add a transition on this div to make it smoother -->
@@ -258,13 +236,11 @@ const listItems = [
           x-show="tab==='tab2'"
           style="display: none;">
           <div class="block w-full mt-12">
-            <div>
-              <img
-                alt="#_"
-                class="relative w-full rounded-2xl drop-shadow-2xl h-full object-cover"
-                src="/images/phone2.png"
-              />
-            </div>
+            <img
+              alt="#_"
+              class="relative w-full rounded-2xl drop-shadow-2xl h-full object-cover"
+              src="/images/phone2.png"
+            />
           </div>
         </div>
         <!-- Tab 3 content. You can add a transition on this div to make it smoother -->
@@ -272,13 +248,11 @@ const listItems = [
           x-show="tab==='tab3'"
           style="display: none;">
           <div class="block w-full mt-12">
-            <div>
-              <img
-                alt="#_"
-                class="relative w-full rounded-2xl drop-shadow-2xl h-full object-cover"
-                src="/images/phone3.png"
-              />
-            </div>
+            <img
+              alt="#_"
+              class="relative w-full rounded-2xl drop-shadow-2xl h-full object-cover"
+              src="/images/phone3.png"
+            />
           </div>
         </div>
         <!-- Tab 4 content. You can add a transition on this div to make it smoother -->
@@ -286,13 +260,23 @@ const listItems = [
           x-show="tab==='tab4'"
           style="display: none;">
           <div class="block w-full mt-12">
-            <div>
-              <img
-                alt="#_"
-                class="relative w-full rounded-2xl drop-shadow-2xl h-full object-cover"
-                src="/images/phone4.png"
-              />
-            </div>
+            <img
+              alt="#_"
+              class="relative w-full rounded-2xl drop-shadow-2xl h-full object-cover"
+              src="/images/phone4.png"
+            />
+          </div>
+        </div>
+        <!-- Tab 5 content. You can add a transition on this div to make it smoother -->
+        <div
+          x-show="tab==='tab5'"
+          style="display: none;">
+          <div class="block w-full mt-12">
+            <img
+              alt="#_"
+              class="relative w-full rounded-2xl drop-shadow-2xl h-full object-cover"
+              src="/images/phone5.png"
+            />
           </div>
         </div>
       </div>
