@@ -122,6 +122,8 @@ Examples of usage **not allowed** by the license:
 
 **Client** — An individual or entity directly receiving customized professional services from the Licensee, tailored specifically for that individual or entity. Customers of software-as-a-service products are not considered clients for the purposes of this document.
 
+## Good to know
+This project is currently in beta, and we reserve the right to change the styles and forms of the blocks as needed.
 
 ## Other license terms:
 You are not required to attribute or link to Oxbow UI in any of your projects.
