@@ -3,33 +3,50 @@ import { getAstroPostHTML } from "astro-posthtml";
 import _minifyClassnames from "posthtml-minify-classnames";
 
 const excludeClasses = [
+  // Text classes
+  "text-white",
+  "text-accent-600",
+  "text-accent-500",
+  // Background classes
   "bg-white",
+  "bg-base-100",
+  "bg-base-50",
+  // Border classes
+  "border-b-2",
+  "border-accent-500",
+  // Hover classes 
+  "hover:shadow-none",
+  "hover:to-accent-800",
+  "hover:text-accent-500",
+  // Focus classes
+  "focus:ring-2",
+  "focus:ring-accent-950",
+  "focus:ring-offset-2",
+  // Ring
+  "ring-offset-base-200",
+  // Shadow
+  "shadow",
+  // Visibility
   "hidden",
+  "opacity-0",
+  "opacity-25",
+  "opacity-100",
+  // Displau classes
   "inline-flex",
   "flex",
-  "text-accent- 500",
-  "border-b-2",
-  "border-accent- 500",
-  "text-white",
-  "bg-gradient-to-b",
-  "from-accent- 500",
-  "to-accent- 600",
-  "hover:shadow-none",
-  "shadow",
   "transition-all",
   "duration-200",
-  "focus:ring-2",
-  "focus:ring-accent- 950",
-  "focus:ring-offset-2",
-  "ring-offset-base-200",
-  "hover:to-accent- 800",
-  "opacity-0",
-  "opacity-100",
   "translate-y-1",
   "translate-y-0",
-  "bg-base-100",
+  "translate-x-full",
+
+  // Gradients
+  "bg-gradient-to-b",
+  "from-accent-500",
+  "to-accent-600",
+  // Size
   "size-12",
-  "opacity-25",
+  "w-1/2 ",
 
 ];
 
