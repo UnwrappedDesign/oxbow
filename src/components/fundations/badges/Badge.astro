@@ -1,0 +1,57 @@
+---
+const {
+  variant,
+  size,
+  onlyIconSize,
+  gap,
+  class: className,
+  ...rest
+} = Astro.props;
+// Accent button
+const accentClass = ["text-white", "bg-accent-600"];
+// Alternative button
+const alternativeAccentClass = [
+  "text-base-500",
+  "bg-white",
+  "ring-1",
+  "ring-base-100",
+];
+// Default button
+const defaultClass = ["text-white", "bg-base-900"];
+// Muted button
+const mutedClass = ["text-accent-700", "bg-accent-50"];
+// Text button
+const textClass = ["text-base-500", "bg-white" ];
+// Size
+const xs = ["px-2.5", "py-1.5", "text-xs"];
+const sm = ["px-4", "py-2", "text-sm"];
+
+// Gap
+const gapXS = ["gap-1"];
+const gapSM = ["gap-4"];
+---
+
+<span
+  class:list={[
+    "rounded-full",
+    "inline-flex",
+    "items-center",
+    "font-medium",
+    "relative",
+    variant === "accent" && accentClass,
+    variant === "alternative" && alternativeAccentClass,
+    variant === "default" && defaultClass,
+    variant === "muted" && mutedClass,
+    variant === "text" && textClass,
+    size === "xs" && xs,
+    size === "sm" && sm,
+    gap === "xs" && gapXS,
+    gap === "sm" && gapSM,
+    className,
+  ]}
+  {...rest}>
+  <slot name="left-icon" />
+  <slot />
+  <slot name="right-icon" />
+  <slot name="notification" />
+</span>

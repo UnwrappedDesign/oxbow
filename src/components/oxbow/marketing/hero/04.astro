@@ -1,4 +1,5 @@
 ---
+import Button from "@/components/fundations/buttons/Button.astro";
 const data = [
   {
     text: "Our cutting-edge design offers a fresh, modern look that transforms your project into a standout experience. ",
@@ -13,25 +14,25 @@ const data = [
     <div
       class="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl lg:flex-shrink-0 lg:px-12">
       <span
-        class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
+        class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase"
         >Tagline</span
       >
       <h1
-        class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 lg:text-7xl lg:text-balance">
+        class="text-4xl mt-4 font-semibold tracking-tight text-base-900 lg:text-7xl lg:text-balance">
         Make every visitor count
       </h1>
-      <p class="mt-6 text-base font-medium text-gray-500 lg:text-balance">
+      <p class="mt-6 text-base font-medium text-base-500 lg:text-balance">
         Integrating with existing systems is smooth and hassle-free, thanks to
         our incredible flexible approach. Equipped with advanced features and
         tools, our solution effortlessly manages complex tasks and workflows.
       </p>
       <div class="flex flex-wrap gap-4 mt-12">
-        <button
-          class="flex items-center justify-center h-10 px-4 py-2 text-sm font-medium text-white transition-all duration-200 rounded-lg bg-gradient-to-b from-blue-500 to-indigo-600 hover:to-indigo-800 shadow focus:ring-2 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none"
-          aria-label="Action">
+        <Button
+          variant="accent"
+          size="sm">
           Get started
-        </button>
-        <div class="text-sm text-gray-500">
+        </Button>
+        <div class="text-sm text-base-500">
           <span class="block">This is some support text</span>
           <span class="block">and this is also.</span>
         </div>
@@ -40,18 +41,18 @@ const data = [
         {
           data.map((section) => (
             <div class="mt-2">
-              <p class="text-sm text-gray-500 text-pretty lg:text-balance">
+              <p class="text-sm text-base-500 text-pretty lg:text-balance">
                 {section.text}
               </p>
               <ul
                 role="list"
-                class="space-y-1 mt-6 text-base font-medium text-gray-900 list-none">
+                class="space-y-1 mt-6 text-base font-medium text-base-900 list-none">
                 {section.items.map((item, idx) => (
                   <li class="list-none">
                     <div class=" flex  items-center gap-4 ">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        class="icon icon-tabler icon-tabler-circle-check-filled text-blue-600"
+                        class="icon icon-tabler icon-tabler-circle-check-filled text-accent-600"
                         width="20"
                         height="20"
                         viewBox="0 0 24 24"
@@ -71,7 +72,7 @@ const data = [
                           fill="currentColor"
                         />
                       </svg>
-                      <span class="text-gray-700 text-base">{item}</span>
+                      <span class="text-base-700 text-base">{item}</span>
                     </div>
                   </li>
                 ))}

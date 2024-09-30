@@ -2,7 +2,7 @@ import { TestComponentIframePage } from "../pages/TestComponentIframePage";
 
 describe('IframePages', () => {
   const testComponentIframePage = new TestComponentIframePage();
-  const classArr = 'text-4xl mt-4 text-gray-900 lg:text-5xl lg:text-balance'.split(' ');
+  const classArr = 'text-4xl mt-4 text-base-900 lg:text-5xl lg:text-balance'.split(' ');
 
   describe('Unlogged user test component', () => {
     beforeEach(() => {
