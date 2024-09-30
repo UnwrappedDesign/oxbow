@@ -1,0 +1,51 @@
+---
+const { variant, position, size, class: className, ...rest } = Astro.props;
+// Accent button
+const accentClass = ["text-white", "bg-accent-600"];
+// Alternative button
+const alternativeAccentClass = [
+  "text-base-500",
+  "bg-white",
+  "ring-1",
+  "ring-base-100",
+];
+// Default button
+const defaultClass = ["text-white", "bg-base-900", "ring-base-800"];
+// Muted button
+const mutedClass = ["text-accent-700", "bg-accent-50"];
+// Text button
+const textClass = ["text-base-500", "bg-white"];
+// Position
+const positionXS = ["gap-1"];
+const positionSM = ["gap-4"];
+// Size
+const xs = ["text-[0.6rem]", "size-5", "top-0.5", "right-0"];
+const sm = ["text-[0.8rem]", "size-7", "top-1", "right-0"];
+---
+
+<span
+  class:list={[
+    "absolute",
+    "top-0",
+    "right-0",
+    "transform",
+    "translate-x-1/2",
+    "-translate-y-1/2",
+    "rounded-full",
+    "text-[0.6rem]",
+    "flex",
+    "items-center",
+    "justify-center",
+    variant === "accent" && accentClass,
+    variant === "alternative" && alternativeAccentClass,
+    variant === "default" && defaultClass,
+    variant === "muted" && mutedClass,
+    variant === "text" && textClass,
+    position === "xs" && positionXS,
+    position === "sm" && positionSM,
+    size === "xs" && xs,
+    size === "sm" && sm,
+  ]}
+  {...rest}>
+  <slot />
+</span>
