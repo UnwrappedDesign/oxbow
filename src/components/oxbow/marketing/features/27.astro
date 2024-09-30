@@ -1,59 +1,281 @@
 <section>
-  <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
-    <div class="grid grid-cols-1 gap-12 md:grid-cols-3 md:items-start">
-      <div class="">
-        <span
-          class="font-mono text-xs font-medium tracking-tight text-blue-600 uppercase"
-          >Tagline</span
-        >
-        <h1
-          class="text-4xl mt-4 font-semibold tracking-tight text-gray-900 lg:text-pretty">
-          Transform your visitors into users with an engaging headline
-        </h1>
-        <div class="flex flex-wrap gap-4 mt-12">
+  <div
+    class="px-8 py-12 mx-auto md:px-12 lg:px-24 max-w-7xl relative overflow-hidden">
+    <!-- Show Tab 1 as default  -->
+    <div
+      x-data="{ tab: 'tab1' }"
+      class="grid items-center grid-cols-1 gap-6 lg:grid-cols-2">
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-1 gap-4 list-none">
+        <!-- Tab 1 -->
+        <li class="bg-base-50 rounded-3xl p-1 ">
           <button
-            class="flex items-center justify-center h-10 px-4 py-2 text-sm font-medium text-white transition-all duration-200 rounded-lg bg-gradient-to-b from-blue-500 to-indigo-600 hover:to-indigo-800 shadow focus:ring-2 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none"
-            aria-label="Action">
-            Get started
+            @click.prevent="tab = 'tab1'"
+            class="items-start p-4 lg:p-8 rounded-[1.3rem] transition text-left h-full"
+            :class="{ 'bg-white shadow' : tab === 'tab1' }">
+            <div>
+              <div class="flex items-center gap-4">
+                <div class="text-accent-500">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-filters"
+                    ><path
+                      stroke="none"
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    ></path><path d="M12 8m-5 0a5 5 0 1 0 10 0a5 5 0 1 0 -10 0"
+                    ></path><path d="M8 11a5 5 0 1 0 3.998 1.997"></path><path
+                      d="M12.002 19.003a5 5 0 1 0 3.998 -8.003"></path></svg
+                  >
+                </div>
+                <dt class="tracking-tight text-lg font-medium text-base-900">
+                  Innovative Design
+                </dt>
+              </div>
+              <dd class="mt-2 text-sm text-base-500 text-pretty">
+                Our cutting-edge design offers a fresh, modern look that
+                transforms your project into a standout experience.
+              </dd>
+            </div>
           </button>
-          <div class="text-sm text-gray-500">
-            <span class="block">This is some support text</span>
-            <span class="block">and this is also.</span>
+        </li>
+        <!-- Tab 2 -->
+        <li class="bg-base-50 rounded-3xl p-1 ">
+          <button
+            @click.prevent="tab = 'tab2'"
+            class="items-start p-4 lg:p-8 rounded-[1.3rem] transition text-left h-full"
+            :class="{ 'bg-white shadow ' : tab === 'tab2' }">
+            <div>
+              <div class="flex items-center gap-4">
+                <div class="text-accent-500">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-keyframes"
+                    ><path
+                      stroke="none"
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    ></path><path
+                      d="M9.225 18.412a1.595 1.595 0 0 1 -1.225 .588c-.468 0 -.914 -.214 -1.225 -.588l-4.361 -5.248a1.844 1.844 0 0 1 0 -2.328l4.361 -5.248a1.595 1.595 0 0 1 1.225 -.588c.468 0 .914 .214 1.225 .588l4.361 5.248a1.844 1.844 0 0 1 0 2.328l-4.361 5.248z"
+                    ></path><path
+                      d="M17 5l4.586 5.836a1.844 1.844 0 0 1 0 2.328l-4.586 5.836"
+                    ></path><path
+                      d="M13 5l4.586 5.836a1.844 1.844 0 0 1 0 2.328l-4.586 5.836"
+                    ></path></svg
+                  >
+                </div>
+                <dt class="tracking-tight text-lg font-medium text-base-900">
+                  Powerful Functionality
+                </dt>
+              </div>
+              <dd class="mt-2 text-sm text-base-500 text-pretty">
+                Equipped with advanced features and tools, our solution
+                effortlessly manages complex tasks and workflows.
+              </dd>
+            </div>
+          </button>
+        </li>
+        <!-- Tab 3 -->
+        <li class="bg-base-50 rounded-3xl p-1 ">
+          <button
+            @click.prevent="tab = 'tab3'"
+            class="items-start p-4 lg:p-8 rounded-[1.3rem] transition text-left h-full"
+            :class="{ 'bg-white shadow ' : tab === 'tab3' }">
+            <div>
+              <div class="flex items-center gap-4">
+                <div class="text-accent-500">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-broadcast"
+                    ><path
+                      stroke="none"
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    ></path><path d="M18.364 19.364a9 9 0 1 0 -12.728 0"
+                    ></path><path d="M15.536 16.536a5 5 0 1 0 -7.072 0"
+                    ></path><path d="M12 13m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"
+                    ></path></svg
+                  >
+                </div>
+                <dt class="tracking-tight text-lg font-medium text-base-900">
+                  Revolutionizing communication
+                </dt>
+              </div>
+              <dd class="mt-2 text-sm text-base-500 text-pretty">
+                Unlocking innovative solutions that enhance connectivity and
+                streamline interactions.
+              </dd>
+            </div>
+          </button>
+        </li>
+        <!-- Tab 4 -->
+        <li class="bg-base-50 rounded-3xl p-1 ">
+          <button
+            @click.prevent="tab = 'tab4'"
+            class="items-start p-4 lg:p-8 rounded-[1.3rem] transition text-left h-full"
+            :class="{ 'bg-white shadow ' : tab === 'tab4' }">
+            <div>
+              <div class="flex items-center gap-4">
+                <div class="text-accent-500">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-air-balloon"
+                    ><path
+                      stroke="none"
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    ></path><path
+                      d="M10 19m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v1a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z"
+                    ></path><path
+                      d="M12 16c3.314 0 6 -4.686 6 -8a6 6 0 1 0 -12 0c0 3.314 2.686 8 6 8z"
+                    ></path><path d="M12 9m-2 0a2 7 0 1 0 4 0a2 7 0 1 0 -4 0"
+                    ></path></svg
+                  >
+                </div>
+                <dt class="tracking-tight text-lg font-medium text-base-900">
+                  Easy Integration
+                </dt>
+              </div>
+              <dd class="mt-2 text-sm text-base-500 text-pretty">
+                Integrating with existing systems is smooth and hassle-free,
+                thanks to our incredible flexible approach.
+              </dd>
+            </div>
+          </button>
+        </li>
+        <!-- Tab 5 -->
+        <li class="bg-base-50 rounded-3xl p-1 ">
+          <button
+            @click.prevent="tab = 'tab5'"
+            class="items-start p-4 lg:p-8 rounded-[1.3rem] transition text-left h-full"
+            :class="{ 'bg-white shadow ' : tab === 'tab5' }">
+            <div>
+              <div class="flex items-center gap-4">
+                <div class="text-accent-500">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-device-analytics"
+                    ><path
+                      stroke="none"
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    ></path><path
+                      d="M3 4m0 1a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1z"
+                    ></path><path d="M7 20l10 0"></path><path d="M9 16l0 4"
+                    ></path><path d="M15 16l0 4"></path><path
+                      d="M8 12l3 -3l2 2l3 -3"></path></svg
+                  >
+                </div>
+                <dt class="tracking-tight text-lg font-medium text-base-900">
+                  Advanced Analytics
+                </dt>
+              </div>
+              <dd class="mt-2 text-sm text-base-500 text-pretty">
+                Gain deep insights into your data with our comprehensive
+                analytics tools, helping you make informed decisions.
+              </dd>
+            </div>
+          </button>
+        </li>
+      </ul>
+      <div class="p-8 text-left content">
+        <!-- Tab 1 content -->
+        <div x-show="tab==='tab1'">
+          <div class="block w-full mt-12">
+            <img
+              alt="#_"
+              class="relative w-full rounded-2xl drop-shadow-2xl h-full object-cover"
+              src="/images/phone1.png"
+            />
           </div>
         </div>
-      </div>
-      <div
-        class="bg-gradient-to-b lg:col-span-2 group from-blue-500 to-indigo-600 rounded-3xl flex flex-col h-full justify-between gap-24 relative">
-        <a
-          class="absolute inset-0"
-          href="#_">
-        </a>
-        <dt
-          class="tracking-tight text-lg font-medium text-white p-8 flex items-center justify-between w-full">
-          Innovative Design
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            class="icon icon-tabler icons-tabler-filled icon-tabler-circle-arrow-right group-hover:-rotate-45 duration-300"
-            ><path
-              stroke="none"
-              d="M0 0h24v24H0z"
-              fill="none"
-            ></path><path
-              d="M12 2l.324 .005a10 10 0 1 1 -.648 0l.324 -.005zm.613 5.21a1 1 0 0 0 -1.32 1.497l2.291 2.293h-5.584l-.117 .007a1 1 0 0 0 .117 1.993h5.584l-2.291 2.293l-.083 .094a1 1 0 0 0 1.497 1.32l4 -4l.073 -.082l.064 -.089l.062 -.113l.044 -.11l.03 -.112l.017 -.126l.003 -.075l-.007 -.118l-.029 -.148l-.035 -.105l-.054 -.113l-.071 -.111a1.008 1.008 0 0 0 -.097 -.112l-4 -4z"
-            ></path></svg
-          >
-        </dt>
-        <dd
-          class="p-8 text-base text-gray-200 text-balance border-t border-white/20 relative">
-          The fastest and most efficient method for working together on staging
-          and temporary environments. This approach streamlines collaboration
-          among team members, ensuring that development and testing processes
-          are seamless and effective.
-        </dd>
+        <!-- Tab 2 content. You can add a transition on this div to make it smoother -->
+        <div
+          x-show="tab==='tab2'"
+          style="display: none;">
+          <div class="block w-full mt-12">
+            <img
+              alt="#_"
+              class="relative w-full rounded-2xl drop-shadow-2xl h-full object-cover"
+              src="/images/phone2.png"
+            />
+          </div>
+        </div>
+        <!-- Tab 3 content. You can add a transition on this div to make it smoother -->
+        <div
+          x-show="tab==='tab3'"
+          style="display: none;">
+          <div class="block w-full mt-12">
+            <img
+              alt="#_"
+              class="relative w-full rounded-2xl drop-shadow-2xl h-full object-cover"
+              src="/images/phone3.png"
+            />
+          </div>
+        </div>
+        <!-- Tab 4 content. You can add a transition on this div to make it smoother -->
+        <div
+          x-show="tab==='tab4'"
+          style="display: none;">
+          <div class="block w-full mt-12">
+            <img
+              alt="#_"
+              class="relative w-full rounded-2xl drop-shadow-2xl h-full object-cover"
+              src="/images/phone4.png"
+            />
+          </div>
+        </div>
+        <!-- Tab 5 content. You can add a transition on this div to make it smoother -->
+        <div
+          x-show="tab==='tab5'"
+          style="display: none;">
+          <div class="block w-full mt-12">
+            <img
+              alt="#_"
+              class="relative w-full rounded-2xl drop-shadow-2xl h-full object-cover"
+              src="/images/phone5.png"
+            />
+          </div>
+        </div>
       </div>
     </div>
   </div>

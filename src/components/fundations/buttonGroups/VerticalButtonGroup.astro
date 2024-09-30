@@ -1,0 +1,147 @@
+---
+const {
+  variant,
+  size,
+  onlyIconSize,
+  position,
+  gap,
+  class: className,
+  ...rest
+} = Astro.props;
+// Accent button
+const accentClass = [
+  "text-white",
+  "bg-accent-600",
+  "hover:bg-accent-700",
+  "ring-accent-700",
+  "focus:ring-accent-700",
+  "focus:ring-offset-white",
+];
+// Default button
+const defaultClass = [
+  "text-base-500",
+  "bg-white",
+  "hover:text-accent-500",
+  "ring-1",
+  "ring-base-100",
+  "focus:ring-accent-500",
+  "focus:ring-offset-white",
+];
+// Muted button
+const mutedClass = [
+  "text-accent-700",
+  "bg-accent-50",
+  "hover:bg-accent-100",
+  "ring-accent-50",
+  "focus:ring-accent-500",
+  "focus:ring-offset-white",
+];
+
+// Text button
+const textClass = [
+  "text-base-500",
+  "bg-white",
+  "hover:text-accent-600",
+  "hover:bg-base-50",
+  "ring-transparent",
+  "focus:ring-accent-500",
+  "focus:ring-offset-white",
+];
+
+// Link button
+const linkClass = [
+  "text-accent-500",
+  "hover:text-accent-700",
+  "ring-transparent",
+  "focus:ring-accent-500",
+  "focus:ring-offset-white",
+];
+
+// Size
+const xs = ["h-8", "px-4", "py-2", "text-xs", "font-medium"];
+const sm = ["h-9", "px-4", "py-2", "text-sm", "font-medium"];
+const base = ["h-10", "px-6", "py-3", "text-base", "font-medium"];
+const md = ["h-11", "px-6", "py-3", "text-base", "font-medium"];
+const lg = ["h-12", "px-6", "py-3", "text-base", "font-medium"];
+const xl = ["h-14", "px-6", "py-3", "text-lg", "font-medium"];
+// Button position
+// Top
+const topXS = ["rounded-t-md"];
+const topSM = ["rounded-t-md"];
+const topBase = ["rounded-t-lg"];
+const topMD = ["rounded-t-lg"];
+const topLG = ["rounded-t-lg"];
+const topXL = ["rounded-t-lg"];
+// Middle
+const middleXS = ["rounded-none", "-mt-px"];
+const middleSM = ["rounded-none", "-mt-px"];
+const middleBase = ["rounded-none", "-mt-px"];
+const middleMD = ["rounded-none", "-mt-px"];
+const middleLG = ["rounded-none", "-mt-px"];
+const middleXL = ["rounded-none", "-mt-px"];
+// bottom
+const bottomXS = ["rounded-b-md", "-mt-px"];
+const bottomSM = ["rounded-b-md", "-mt-px"];
+const bottomBase = ["rounded-b-lg", "-mt-px"];
+const bottomMD = ["rounded-b-lg", "-mt-px"];
+const bottomLG = ["rounded-b-lg", "-mt-px"];
+const bottomXL = ["rounded-b-lg", "-mt-px"];
+
+// Gap
+const gapXS = ["gap-2"];
+const gapSM = ["gap-4"];
+const gapMD = ["gap-8"];
+const gapLG = ["gap-12"];
+---
+
+<button
+  class:list={[
+    "flex",
+    "items-center",
+    "justify-center",
+    "focus:z-10",
+    "transition-all",
+    "duration-300",
+    "focus:ring-2",
+    "focus:ring-offset-1",
+    "focus:outline-none",
+    variant === "accent" && accentClass,
+    variant === "default" && defaultClass,
+    variant === "muted" && mutedClass,
+    variant === "text" && textClass,
+    variant === "link" && linkClass,
+    size === "xs" && xs,
+    size === "sm" && sm,
+    size === "base" && base,
+    size === "md" && md,
+    size === "lg" && lg,
+    size === "xl" && xl,
+    position === "top" && topXS,
+    position === "top" && topSM,
+    position === "top" && topBase,
+    position === "top" && topMD,
+    position === "top" && topLG,
+    position === "top" && topXL,
+    position === "middle" && middleXS,
+    position === "middle" && middleSM,
+    position === "middle" && middleBase,
+    position === "middle" && middleMD,
+    position === "middle" && middleLG,
+    position === "middle" && middleXL,
+    position === "bottom" && bottomXS,
+    position === "bottom" && bottomBase,
+    position === "bottom" && bottomSM,
+    position === "bottom" && bottomMD,
+    position === "bottom" && bottomLG,
+    position === "bottom" && bottomXL,
+    gap === "xs" && gapXS,
+    gap === "sm" && gapSM,
+    gap === "md" && gapMD,
+    gap === "lg" && gapLG,
+    className,
+  ]}
+  {...rest}>
+  <slot name="left-icon" />
+  <slot />
+  <slot name="right-icon" />
+</button>
