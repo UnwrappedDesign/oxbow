@@ -1,41 +1,36 @@
 ---
 import { Code } from "astro:components";
 import * as prettier from "prettier";
-
 interface Props {
   componentIndex: number;
   componentPath: string;
   playgroundRef: string;
 }
 const { componentIndex, componentPath, playgroundRef } = Astro.props;
-
 const user = Astro.locals.user;
-
 const canSeeCode = user || componentIndex === 1;
-
 const code = canSeeCode ? await Astro.slots.render("default")
                       : '';
 const ppcode = canSeeCode ? await prettier.format(code, {
                           parser: "html",
                         })
                         : '';
-
 ---
 <section x-data={`{ tab: 'preview', viewportSize: 'desktop' }`} class="not-prose" >
   <div class="relative">
     <div class="pointer-events-none inset-x-0 top-0 z-10 md:left-auto">
       <div class="flex items-center justify-between py-2 gap-1">
         <a
-          class="pointer-events-auto rounded-md border bg-gray-50 p-1 text-gray-500 flex items-center justify-center size-7 text-xs"
+          class="pointer-events-auto rounded-md border bg-base-50 p-1 text-base-500 flex items-center justify-center size-7 text-xs"
           href={`#${componentIndex}`}
         >
         {componentIndex}
         </a>
-        <div class="flex items-center justify-end w-full">
+        <div class="flex items-center justify-end w-full gap-2">
           <span class="isolate md:inline-flex h-7 gap-1 hidden" x-show="tab === 'preview'">
             <button
-              class="pointer-events-auto relative inline-flex items-center rounded p-1 focus:text-accent-500 text-xs font-semibold text-gray-900 hover:bg-gray-50 "
-              @click="viewportSize = 'mobile'" :class="viewportSize === 'mobile' ? 'bg-gray-100' : 'bg-black/0'"
+              class="pointer-events-auto relative inline-flex items-center rounded p-1 focus:text-accent-500 text-xs font-semibold text-base-900 hover:bg-base-50 "
+              @click="viewportSize = 'mobile'" :class="viewportSize === 'mobile' ? 'bg-base-50' : 'bg-black/0'"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -56,8 +51,8 @@ const ppcode = canSeeCode ? await prettier.format(code, {
               </svg>
             </button>
             <button
-              class="pointer-events-auto relative  inline-flex items-center rounded  p-1 focus:text-accent-500 text-xs font-semibold text-gray-900 hover:bg-gray-50 "
-              @click="viewportSize = 'tablet'" :class="viewportSize === 'tablet' ? 'bg-gray-100' : 'bg-black/0'"
+              class="pointer-events-auto relative  inline-flex items-center rounded  p-1 focus:text-accent-500 text-xs font-semibold text-base-900 hover:bg-base-50 "
+              @click="viewportSize = 'tablet'" :class="viewportSize === 'tablet' ? 'bg-base-50' : 'bg-black/0'"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -77,8 +72,8 @@ const ppcode = canSeeCode ? await prettier.format(code, {
               </svg>
             </button>
             <button
-              class="pointer-events-auto relative  inline-flex items-center rounded p-1 focus:text-accent-500 text-xs font-semibold text-gray-900 hover:bg-gray-50 "
-              @click="viewportSize = 'desktop'" :class="viewportSize === 'desktop' ? 'bg-gray-100' : 'bg-black/0 '"
+              class="pointer-events-auto relative  inline-flex items-center rounded p-1 focus:text-accent-500 text-xs font-semibold text-base-900 hover:bg-base-50 "
+              @click="viewportSize = 'desktop'" :class="viewportSize === 'desktop' ? 'bg-base-50' : 'bg-black/0 '"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -100,24 +95,24 @@ const ppcode = canSeeCode ? await prettier.format(code, {
               </svg>
             </button>
           </span>
-          <div class="mx-1 h-4 w-[2px] bg-black/10 hidden md:inline-block"></div>
+          <div class="mx-1 h-4 w-[2px] bg-base-50 hidden md:inline-block"></div>
           {
             canSeeCode ? (
               <div class="flex items-center ">
                 <button
-                  @click="tab = 'preview'" :class="tab === 'preview' ? 'bg-gray-100' : 'bg-black/0'"
-                  class="backdrop-blur pointer-events-auto flex rounded-md px-4 h-7 py-1 text-sm text-gray-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50">
+                  @click="tab = 'preview'" :class="tab === 'preview' ? 'bg-base-50' : 'bg-black/0'"
+                  class="backdrop-blur pointer-events-auto flex rounded-md px-4 h-7 py-1 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50">
                   Preview
                 </button>
                 <button
-                  @click="tab = 'code'" :class="tab === 'code' ? 'bg-gray-100' : 'bg-black/0'"
-                  class="pointer-events-auto flex rounded-md px-4 py-1 text-sm text-gray-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50">
+                  @click="tab = 'code'" :class="tab === 'code' ? 'bg-base-50' : 'bg-black/0'"
+                  class="pointer-events-auto flex rounded-md px-4 py-1 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50">
                   Code
                 </button>
-                <div class="mx-1 h-4 w-[2px] bg-black/10" />
+                <div class="mx-1 h-4 w-[2px] bg-base-50" />
                 <button
                   x-data="{ copied: false }"
-                  class="pointer-events-auto relative w-20 flex rounded-md px-4 py-1 text-sm text-gray-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50"
+                  class="pointer-events-auto relative w-20 flex rounded-md px-4 py-1 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50"
                   @click={`copied=true; $clipboard($refs.code${componentIndex}.innerText); setTimeout(()=> { copied = false; }, 2000);`}
                 >
                   <span
@@ -128,7 +123,7 @@ const ppcode = canSeeCode ? await prettier.format(code, {
               </div>
             ) : (
               <a
-                class="pointer-events-auto relative flex rounded-md px-4 py-1 text-sm text-gray-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50"
+                class="pointer-events-auto relative flex rounded-md px-4 py-1 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-black/50"
                 href="/pricing"
                 data-umami-event="click-get-access"
                 data-umami-data-id={user?.uid}
@@ -142,7 +137,7 @@ const ppcode = canSeeCode ? await prettier.format(code, {
       </div>
     </div>
     <div
-      class="relative min-h-[400] w-full flex border  ring-4 ring-gray-50 overflow-hidden rounded-lg"
+      class="relative min-h-[400] w-full flex border  ring-4 ring-base-50 overflow-hidden rounded-lg"
     >
       <div
         x-show="tab === 'preview'"
@@ -159,17 +154,12 @@ const ppcode = canSeeCode ? await prettier.format(code, {
           <div
             x-show="tab === 'code'"
             x-ref={`code${componentIndex}`}
-            class="flex-grow h-full w-full text-sm overflow-auto p-4 ov bg-gray-50 transition selection:bg-[#CEFDFE] selection:text-accent-950"
+            class="flex-grow size-full  text-sm overflow-auto p-4 ov bg-base-25 transition selection:bg-[#CEFDFE] selection:text-accent-950"
           >
             <Code code={ppcode} lang="html" theme="css-variables" />
           </div>
         )
       }
-      <div
-        class="absolute inset-y-0 my-auto h-full z-50 right-0 flex items-center"
-      >
-        <div class="w-2 bg-accent h-8"></div>
-      </div>
     </div>
   </div>
 </section>

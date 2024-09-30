@@ -1,0 +1,113 @@
+---
+const {
+  variant,
+  size,
+  onlyIconSize,
+  gap,
+  class: className,
+  ...rest
+} = Astro.props;
+// Accent button
+const accentClass = [
+  "text-white",
+  "bg-accent-600",
+  "hover:bg-accent-700",
+  "ring-accent-700",
+  "focus:ring-accent-700",
+  "focus:ring-offset-white",
+];
+// Alternative button
+const alternativeAccentClass = [
+  "text-base-500",
+  "bg-white",
+  "hover:text-accent-500",
+  "ring-1",
+  "ring-base-100",
+  "focus:ring-accent-500",
+  "focus:ring-offset-white",
+];
+// Default button
+const defaultClass = [
+  "text-white",
+  "bg-base-900",
+  "hover:bg-base-800",
+  "ring-base-800",
+  "focus:ring-base-800",
+  "focus:ring-offset-white",
+];
+// Muted button
+const mutedClass = [
+  "text-accent-700",
+  "bg-accent-50",
+  "hover:bg-accent-100",
+  "ring-accent-50",
+  "focus:ring-accent-500",
+  "focus:ring-offset-white",
+];
+// Text button
+const textClass = [
+  "text-base-500",
+  "bg-white",
+  "hover:text-accent-600",
+  "hover:bg-base-50",
+  "ring-transparent",
+  "focus:ring-accent-500",
+  "focus:ring-offset-white",
+];
+// Link button
+const linkClass = [
+  "text-accent-500",
+  "hover:text-accent-700",
+  "ring-transparent",
+  "focus:ring-accent-500",
+  "focus:ring-offset-white",
+];
+// Size
+const xs = ["h-8", "px-4", "py-2", "text-xs", "font-medium", "rounded-md"];
+const sm = ["h-9", "px-4", "py-2", "text-sm", "font-medium", "rounded-md"];
+const base = ["h-10", "px-6", "py-3", "text-base", "font-medium", "rounded-lg"];
+const md = ["h-11", "px-6", "py-3", "text-base", "font-medium", "rounded-lg"];
+const lg = ["h-12", "px-6", "py-3", "text-base", "font-medium", "rounded-lg"];
+const xl = ["h-14", "px-6", "py-3", "text-lg", "font-medium", "rounded-lg"];
+// Gap
+const gapXS = ["gap-2"];
+const gapSM = ["gap-4"];
+const gapBase = ["gap-8"];
+const gapMD = ["gap-10"];
+const gapLG = ["gap-12"];
+---
+
+<button
+  class:list={[
+    "flex",
+    "items-center",
+    "justify-center",
+    "transition-all",
+    "duration-300",
+    "focus:ring-2",
+    "focus:ring-offset-2",
+    "focus:outline-none",
+    variant === "accent" && accentClass,
+    variant === "alternative" && alternativeAccentClass,
+    variant === "default" && defaultClass,
+    variant === "muted" && mutedClass,
+    variant === "text" && textClass,
+    variant === "link" && linkClass,
+    size === "xs" && xs,
+    size === "sm" && sm,
+    size === "base" && base,
+    size === "md" && md,
+    size === "lg" && lg,
+    size === "xl" && xl,
+    gap === "xs" && gapXS,
+    gap === "sm" && gapSM,
+    gap === "base" && gapBase,
+    gap === "md" && gapMD,
+    gap === "lg" && gapLG,
+    className,
+  ]}
+  {...rest}>
+  <slot name="left-icon" />
+  <slot />
+  <slot name="right-icon" />
+</button>
