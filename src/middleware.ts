@@ -32,14 +32,21 @@ const excludeClasses = [
   "opacity-25",
   "opacity-100",
   // Displau classes
-  "inline-flex",
   "flex",
+  "inset-0",
+  "absolute",
+  "inline-flex",
+  // Transition classes
+  "ease-in-out",
   "transition-all",
-  "duration-200",
+  "transition-transform",
+  // Transform classes
   "translate-y-1",
   "translate-y-0",
   "translate-x-full",
   "translate-x-0",
+  // Furation
+  "duration-200",
 
   // Gradients
   "bg-gradient-to-b",
@@ -47,7 +54,7 @@ const excludeClasses = [
   "to-accent-600",
   // Size
   "size-12",
-  "w-1/2 ",
+  "w-1/2",
 
 ];
 
