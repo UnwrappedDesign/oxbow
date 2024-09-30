@@ -14,7 +14,7 @@ const excludeClasses = [
   // Border classes
   "border-b-2",
   "border-accent-500",
-  // Hover classes 
+  // Hover classes
   "hover:shadow-none",
   "hover:to-accent-800",
   "hover:text-accent-500",
@@ -39,6 +39,7 @@ const excludeClasses = [
   "translate-y-1",
   "translate-y-0",
   "translate-x-full",
+  "translate-x-0",
 
   // Gradients
   "bg-gradient-to-b",
