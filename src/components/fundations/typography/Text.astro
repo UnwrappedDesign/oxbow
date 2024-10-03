@@ -1,0 +1,56 @@
+---
+export interface TextStyle {
+  base: string;
+}
+export interface TextStyles {
+  [key: string]: TextStyle;
+}
+export interface Props {
+  tag?: "p" | "span" | "small" | "div" | "strong" | "em" | "blockquote";
+  variant?: string;
+  class?: string;
+}
+const textStyles: TextStyles = {
+  body: {
+    base: "text-base font-medium text-base-500",
+  },
+  caption: {
+    base: "text-sm font-normal text-base-400",
+  },
+  overline: {
+    base: "text-xs font-medium uppercase tracking-wider",
+  },
+  small: {
+    base: "text-sm font-normal",
+  },
+  lead: {
+    base: "text-xl font-normal text-base-600",
+  },
+  link: {
+    base: "text-primary-600 hover:text-primary-700 underline",
+  },
+  blockquote: {
+    base: "text-lg italic font-medium text-base-500 border-l-4 border-base-300 pl-4",
+  },
+  code: {
+    base: "font-mono text-sm bg-base-100 rounded px-1 py-0.5",
+  },
+  // Add more text variants as needed...
+};
+const {
+  tag: Tag = "p",
+  variant = "body",
+  class: className = "",
+  ...rest
+} = Astro.props;
+// Get the base classes for the variant
+const baseClasses = textStyles[variant]?.base || textStyles.body.base;
+// Combine base classes with additional classes
+const combinedClasses = `${baseClasses} ${className}`.trim();
+---
+
+<Tag
+  class={combinedClasses}
+  {...rest}>
+  <slot />
+</Tag>
