@@ -1,39 +1,35 @@
 ---
-const {
-  variant,
-  size,
-  onlyIconSize,
-  gap,
-  class: className,
-  ...rest
-} = Astro.props;
+const { variant, size, class: className, ...rest } = Astro.props;
+
+// Default button
+const defaultClass = [
+  "text-white",
+  "bg-base-900",
+  "hover:bg-base-800",
+  "focus:ring-base-500/50",
+];
 // Accent button
 const accentClass = [
   "text-white",
   "bg-accent-600",
   "hover:bg-accent-700",
-  "ring-accent-700",
-  "focus:ring-accent-700",
-  "focus:ring-offset-white",
+  "focus:ring-accent-500/50",
 ];
-// Default button
-const defaultClass = [
+// Alternative button
+const alternativeAccentClass = [
   "text-base-500",
   "bg-white",
   "hover:text-accent-500",
   "ring-1",
-  "ring-base-100",
+  "ring-base-200",
   "focus:ring-accent-500",
-  "focus:ring-offset-white",
 ];
 // Muted button
 const mutedClass = [
-  "text-accent-700",
-  "bg-accent-50",
-  "hover:bg-accent-100",
-  "ring-accent-50",
-  "focus:ring-accent-500",
-  "focus:ring-offset-white",
+  "text-base-700",
+  "bg-base-50",
+  "hover:bg-white",
+  "focus:ring-base-500/50",
 ];
 // Text button
 const textClass = [
@@ -41,26 +37,52 @@ const textClass = [
   "bg-white",
   "hover:text-accent-600",
   "hover:bg-base-50",
-  "ring-transparent",
   "focus:ring-accent-500",
-  "focus:ring-offset-white",
 ];
 // Link button
 const linkClass = [
   "text-accent-500",
   "hover:text-accent-700",
-  "ring-transparent",
   "focus:ring-accent-500",
-  "focus:ring-offset-white",
 ];
-// Size
-const xs = ["p-1", "text-xs", "font-medium", "rounded-md"];
-const sm = ["p-1.5", "text-sm", "font-medium", "rounded-md"];
-const base = ["p-2", "text-base", "font-medium", "rounded-lg"];
-const md = ["p-2.5", "text-base", "font-medium", "rounded-lg"];
-const lg = ["p-3", "text-base", "font-medium", "rounded-lg"];
-const xl = ["p-4", "text-lg", "font-medium", "rounded-lg"];
+// Success button
+const infoClass = [
+  "text-accent-700",
+  "bg-accent-600/10",
+  "hover:bg-accent-600/5",
+  "focus:ring-accent-600/20",
+];
+// Success button
+const successClass = [
+  "text-emerald-600",
+  "bg-emerald-600/10",
+  "hover:bg-emerald-600/5",
+  "focus:ring-emerald-600/20",
+];
+// Warning button
+const warningClass = [
+  "text-amber-600",
+  "bg-amber-600/10",
+  "hover:bg-amber-600/5",
+  "focus:ring-amber-600/10",
+];
+// Danger button
+const dangerClass = [
+  "text-rose-600",
+  "bg-rose-600/10",
+  "hover:bg-rose-600/5",
+  "focus:ring-rose-600",
+];
+
+// Updated size classes to match Button component
+const xs = ["h-8", "w-8", "p-1.5", "text-xs"];
+const sm = ["h-9", "w-9", "p-2", "text-sm"];
+const base = ["h-10", "w-10", "p-2", "text-base"];
+const md = ["h-11", "w-11", "p-2.5", "text-base"];
+const lg = ["h-12", "w-12", "p-3", "text-base"];
+const xl = ["h-14", "w-14", "p-3.5", "text-lg"];
 ---
+
 <button
   class:list={[
     "flex",
@@ -71,9 +93,13 @@ const xl = ["p-4", "text-lg", "font-medium", "rounded-lg"];
     "focus:ring-2",
     "focus:ring-offset-2",
     "focus:outline-none",
+    "rounded-lg",
     variant === "accent" && accentClass,
-    variant === "default" && defaultClass,
+    variant === "alternative" && alternativeAccentClass,
     variant === "muted" && mutedClass,
+    variant === "success" && successClass,
+    variant === "warning" && warningClass,
+    variant === "danger" && dangerClass,
     variant === "text" && textClass,
     variant === "link" && linkClass,
     size === "xs" && xs,
@@ -85,5 +111,6 @@ const xl = ["p-4", "text-lg", "font-medium", "rounded-lg"];
     className,
   ]}
   {...rest}>
+  <slot />
   <slot name="icon" />
 </button>
