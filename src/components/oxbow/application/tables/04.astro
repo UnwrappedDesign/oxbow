@@ -1,88 +1,46 @@
+---
+import Button from "@/components/fundations/buttons/Button.astro";
+import ChevronLeft from "@/components/fundations/icons/ChevronLeft.astro";
+import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
+import List from "@/components/fundations/icons/List.astro";
+import Component from "@/components/fundations/icons/Component.astro";
+import Plus from "@/components/fundations/icons/Plus.astro";
+import IconButton from "@/components/fundations/buttons/IconButton.astro";
+import Badge from "@/components/fundations/badges/Badge.astro";
+---
+
 <section>
   <div class="relative px-4 py-12 mx-auto md:px-12 lg:px-24 max-w-7xl">
     <div class="flex flex-col sm:flex-row sm:items-center gap-2 justify-end">
-      <button
-        class="flex items-center justify-center size-10 p-1 text-xs font-semibold text-base-900 transition-all duration-300 rounded-md shadow bg-base-50 focus:ring-2 shadow-base-500/5 focus:ring-base-900 focus:ring-offset-2 ring-offset-base-200 hover:text-accent-500 hover:shadow-none"
-        aria-label="Action">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="icon icon-tabler icons-tabler-outline icon-tabler-list size-4">
-          <path
-            stroke="none"
-            d="M0 0h24v24H0z"
-            fill="none"
-          ></path>
-          <path d="M9 6l11 0"></path>
-          <path d="M9 12l11 0"></path>
-          <path d="M9 18l11 0"></path>
-          <path d="M5 6l0 .01"></path>
-          <path d="M5 12l0 .01"></path>
-          <path d="M5 18l0 .01"></path>
-        </svg>
-      </button>
-      <button
-        class="flex items-center justify-center size-10 p-1 text-xs font-semibold text-base-900 transition-all duration-300 rounded-md shadow bg-base-50 focus:ring-2 shadow-base-500/5 focus:ring-base-900 focus:ring-offset-2 ring-offset-base-200 hover:text-accent-500 hover:shadow-none"
-        aria-label="Action">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="icon icon-tabler icons-tabler-outline icon-tabler-layout-2 size-4">
-          <path
-            stroke="none"
-            d="M0 0h24v24H0z"
-            fill="none"
-          ></path>
-          <path
-            d="M4 4m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v1a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z"
-          ></path>
-          <path
-            d="M4 13m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z"
-          ></path>
-          <path
-            d="M14 4m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z"
-          ></path>
-          <path
-            d="M14 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v1a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z"
-          ></path>
-        </svg>
-      </button>
-      <div class="sm:flex-none">
-        <button
-          class="flex items-center justify-center h-10 gap-2 px-4 py-2 text-sm font-medium text-white transition-all duration-200 rounded-lg shadow bg-accent-700  hover:to-accent-800 focus:ring-2 focus:ring-accent-950 focus:ring-offset-2 ring-offset-base-200 hover:shadow-none w-full sm:w-auto"
-          aria-label="Action">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="icon icon-tabler icons-tabler-outline icon-tabler-plus size-4">
-            <path
-              stroke="none"
-              d="M0 0h24v24H0z"
-              fill="none"
-            ></path>
-            <path d="M12 5l0 14"></path>
-            <path d="M5 12l14 0"></path>
-          </svg>
-          New product
-        </button>
-      </div>
+      <IconButton
+        variant="alternative"
+        size="base">
+        <List
+          size="base"
+          slot="icon"
+        />
+      </IconButton>
+      <IconButton
+        variant="alternative"
+        size="base">
+        <Component
+          size="base"
+          slot="icon"
+        />
+      </IconButton>
+
+      <Button
+        gap="xs"
+        size="base"
+        variant="accent">
+        <Plus
+          size="base"
+          slot="icon"
+          slot="left-icon"
+        />
+
+        New product
+      </Button>
     </div>
     <div class="flow-root mt-8">
       <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -145,7 +103,7 @@
             <tbody class="divide-y divide-base-200">
               <tr class="">
                 <td
-                  class="whitespace-nowrap pr-3 pl-3 sm:pl-0 py-4 text-sm font-medium tracking-tighter text-base-900">
+                  class="whitespace-nowrap pr-3 pl-3 sm:pl-0 py-4 text-sm font-medium tracking-tighter text-base-900 truncate">
                   <span class="flex items-center gap-2">
                     <img
                       class="inline-block h-8 w-12 rounded"
@@ -160,30 +118,31 @@
                   $99.00
                 </td>
                 <td class="hitespace-nowrap px-3 py-4 max-w-xs overflow-hidden">
-                  <div class="flex">
-                    <span
-                      class="flex gap-2 items-center rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-medium text-emerald-600">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
+                  <Badge
+                    gap="xs"
+                    size="xs"
+                    variant="success"
+                    slot="left-icon">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="icon icon-tabler icons-tabler-outline icon-tabler-check size-3">
+                      <path
+                        stroke="none"
+                        d="M0 0h24v24H0z"
                         fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-check size-3">
-                        <path
-                          stroke="none"
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        ></path>
-                        <path d="M5 12l5 5l10 -10"></path>
-                      </svg>
-                      In Transit
-                    </span>
-                  </div>
+                      ></path>
+                      <path d="M5 12l5 5l10 -10"></path>
+                    </svg>
+                    Paid
+                  </Badge>
                 </td>
                 <td
                   class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500 text-right">
@@ -195,17 +154,17 @@
                 </td>
                 <td
                   class="relative whitespace-nowrap py-4 pl-3 pr-3 sm:pr-0 text-right">
-                  <button
-                    type="submit"
-                    class="flex items-center justify-center h-8 px-4 py-2 text-xs font-semibold text-base-900 transition-all duration-300 rounded-md shadow bg-base-50 focus:ring-2 shadow-base-500/5 focus:ring-base-900 focus:ring-offset-2 ring-offset-base-200 hover:text-accent-500 hover:shadow-none ml-auto"
-                    aria-label="Action">
-                    Share<span class="sr-only">Share</span>
-                  </button>
+                  <Button
+                    size="sm"
+                    variant="text"
+                    class="ml-auto">
+                    Share <span class="sr-only">Share</span>
+                  </Button>
                 </td>
               </tr>
               <tr class="">
                 <td
-                  class="whitespace-nowrap pr-3 pl-3 sm:pl-0 py-4 text-sm font-medium tracking-tighter text-base-900">
+                  class="whitespace-nowrap pr-3 pl-3 sm:pl-0 py-4 text-sm font-medium tracking-tighter text-base-900 truncate">
                   <span class="flex items-center gap-2">
                     <img
                       class="inline-block h-8 w-12 rounded"
@@ -220,30 +179,31 @@
                   $99.00
                 </td>
                 <td class="hitespace-nowrap px-3 py-4 max-w-xs overflow-hidden">
-                  <div class="flex">
-                    <span
-                      class="flex gap-2 items-center rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-medium text-emerald-600">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
+                  <Badge
+                    gap="xs"
+                    size="xs"
+                    variant="success"
+                    slot="left-icon">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="icon icon-tabler icons-tabler-outline icon-tabler-check size-3">
+                      <path
+                        stroke="none"
+                        d="M0 0h24v24H0z"
                         fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-check size-3">
-                        <path
-                          stroke="none"
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        ></path>
-                        <path d="M5 12l5 5l10 -10"></path>
-                      </svg>
-                      Canceled
-                    </span>
-                  </div>
+                      ></path>
+                      <path d="M5 12l5 5l10 -10"></path>
+                    </svg>
+                    Paid
+                  </Badge>
                 </td>
                 <td
                   class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500 text-right">
@@ -255,17 +215,17 @@
                 </td>
                 <td
                   class="relative whitespace-nowrap py-4 pl-3 pr-3 sm:pr-0 text-right">
-                  <button
-                    type="submit"
-                    class="flex items-center justify-center h-8 px-4 py-2 text-xs font-semibold text-base-900 transition-all duration-300 rounded-md shadow bg-base-50 focus:ring-2 shadow-base-500/5 focus:ring-base-900 focus:ring-offset-2 ring-offset-base-200 hover:text-accent-500 hover:shadow-none ml-auto"
-                    aria-label="Action">
-                    Share<span class="sr-only">Share</span>
-                  </button>
+                  <Button
+                    size="sm"
+                    variant="text"
+                    class="ml-auto">
+                    Share <span class="sr-only">Share</span>
+                  </Button>
                 </td>
               </tr>
               <tr class="">
                 <td
-                  class="whitespace-nowrap pr-3 pl-3 sm:pl-0 py-4 text-sm font-medium tracking-tighter text-base-900">
+                  class="whitespace-nowrap pr-3 pl-3 sm:pl-0 py-4 text-sm font-medium tracking-tighter text-base-900 truncate">
                   <span class="flex items-center gap-2">
                     <img
                       class="inline-block h-8 w-12 rounded"
@@ -280,30 +240,31 @@
                   $99.00
                 </td>
                 <td class="hitespace-nowrap px-3 py-4 max-w-xs overflow-hidden">
-                  <div class="flex">
-                    <span
-                      class="flex gap-2 items-center rounded-full bg-rose-50 px-2.5 py-1 text-xs font-medium text-rose-600">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
+                  <Badge
+                    gap="xs"
+                    size="xs"
+                    variant="danger"
+                    slot="left-icon">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="icon icon-tabler icons-tabler-outline icon-tabler-check size-3">
+                      <path
+                        stroke="none"
+                        d="M0 0h24v24H0z"
                         fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-check size-3">
-                        <path
-                          stroke="none"
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        ></path>
-                        <path d="M5 12l5 5l10 -10"></path>
-                      </svg>
-                      draft
-                    </span>
-                  </div>
+                      ></path>
+                      <path d="M5 12l5 5l10 -10"></path>
+                    </svg>
+                    Canceled
+                  </Badge>
                 </td>
                 <td
                   class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500 text-right">
@@ -315,17 +276,17 @@
                 </td>
                 <td
                   class="relative whitespace-nowrap py-4 pl-3 pr-3 sm:pr-0 text-right">
-                  <button
-                    type="submit"
-                    class="flex items-center justify-center h-8 px-4 py-2 text-xs font-semibold text-base-900 transition-all duration-300 rounded-md shadow bg-base-50 focus:ring-2 shadow-base-500/5 focus:ring-base-900 focus:ring-offset-2 ring-offset-base-200 hover:text-accent-500 hover:shadow-none ml-auto"
-                    aria-label="Action">
-                    Share<span class="sr-only">Share</span>
-                  </button>
+                  <Button
+                    size="sm"
+                    variant="text"
+                    class="ml-auto">
+                    Share <span class="sr-only">Share</span>
+                  </Button>
                 </td>
               </tr>
               <tr class="">
                 <td
-                  class="whitespace-nowrap pr-3 pl-3 sm:pl-0 py-4 text-sm font-medium tracking-tighter text-base-900">
+                  class="whitespace-nowrap pr-3 pl-3 sm:pl-0 py-4 text-sm font-medium tracking-tighter text-base-900 truncate">
                   <span class="flex items-center gap-2">
                     <img
                       class="inline-block h-8 w-12 rounded"
@@ -340,30 +301,31 @@
                   $199.00
                 </td>
                 <td class="hitespace-nowrap px-3 py-4 max-w-xs overflow-hidden">
-                  <div class="flex">
-                    <span
-                      class="flex gap-2 items-center rounded-full bg-amber-50 px-2.5 py-1 text-xs font-medium text-amber-600">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
+                  <Badge
+                    gap="xs"
+                    size="xs"
+                    variant="warning"
+                    slot="left-icon">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="icon icon-tabler icons-tabler-outline icon-tabler-check size-3">
+                      <path
+                        stroke="none"
+                        d="M0 0h24v24H0z"
                         fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-check size-3">
-                        <path
-                          stroke="none"
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        ></path>
-                        <path d="M5 12l5 5l10 -10"></path>
-                      </svg>
-                      Pending
-                    </span>
-                  </div>
+                      ></path>
+                      <path d="M5 12l5 5l10 -10"></path>
+                    </svg>
+                    Pending
+                  </Badge>
                 </td>
                 <td
                   class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500 text-right">
@@ -375,12 +337,12 @@
                 </td>
                 <td
                   class="relative whitespace-nowrap py-4 pl-3 pr-3 sm:pr-0 text-right">
-                  <button
-                    type="submit"
-                    class="flex items-center justify-center h-8 px-4 py-2 text-xs font-semibold text-base-900 transition-all duration-300 rounded-md shadow bg-base-50 focus:ring-2 shadow-base-500/5 focus:ring-base-900 focus:ring-offset-2 ring-offset-base-200 hover:text-accent-500 hover:shadow-none ml-auto"
-                    aria-label="Action">
-                    Share<span class="sr-only">Share</span>
-                  </button>
+                  <Button
+                    size="sm"
+                    variant="text"
+                    class="ml-auto">
+                    Share <span class="sr-only">Share</span>
+                  </Button>
                 </td>
               </tr>
             </tbody>
@@ -389,48 +351,30 @@
       </div>
     </div>
     <nav class="flex items-center justify-between px-4 sm:px-0 w-full mt-4">
-      <a
-        href="#_"
-        class="flex items-center text-base-500 hover:text-accent-500 text-sm gap-2 duration-300">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="icon icon-tabler size-4 icons-tabler-outline icon-tabler-chevron-left">
-          <path
-            stroke="none"
-            d="M0 0h24v24H0z"
-            fill="none"
-          ></path>
-          <path d="M15 6l-6 6l6 6"></path>
-        </svg>
+      <Button
+        gap="xs"
+        size="xs"
+        variant="alternative">
+        <ChevronLeft
+          size="sm"
+          slot="icon"
+          slot="left-icon"
+        />
+
         Previous
-      </a>
-      <a
-        href="#_"
-        class="flex items-center text-base-500 hover:text-accent-500 text-sm gap-2 duration-300">
-        Next
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="icon size-4 icon-tabler icons-tabler-outline icon-tabler-chevron-right">
-          <path
-            stroke="none"
-            d="M0 0h24v24H0z"
-            fill="none"
-          ></path>
-          <path d="M9 6l6 6l-6 6"></path>
-        </svg>
-      </a>
+      </Button>
+      <Button
+        gap="xs"
+        size="xs"
+        variant="alternative">
+        Previous
+        <ChevronRight
+          size="sm"
+          slot="icon"
+          slot="right-icon"
+        />
+
+      </Button>
     </nav>
   </div>
 </section>

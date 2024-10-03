@@ -1,4 +1,5 @@
 ---
+import Button from "@/components/fundations/buttons/Button.astro";
 const articles = [
   {
     image:
@@ -51,7 +52,7 @@ const articles = [
         Dive into our latest articles and stay updated with fresh perspectives
         and expert advice.
       </p>
-      <form class="w-full mt-8 sm:flex sm:max-w-md mx-auto">
+      <form class="w-full mt-8 flex flex-col sm:flex-row sm:max-w-md mx-auto gap-2">
         <label
           for="email-address"
           class="sr-only"
@@ -67,13 +68,13 @@ const articles = [
           required=""
           class="block w-full h-10 px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg shadow appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
         />
-        <div class="mt-2 sm:ml-2 sm:mt-0 sm:flex-shrink-0">
-          <button
-            type="submit"
-            class="flex items-center justify-center w-full h-10 px-4 py-2 text-sm font-medium text-white transition-all duration-200 rounded-lg shadow sm:w-auto bg-accent-700  hover:to-accent-800 shadow-accent-600/50 focus:ring-2 focus:ring-accent-950 focus:ring-offset-2 ring-offset-base-200 hover:shadow-none lg:w-auto"
-            >Subscribe</button
-          >
-        </div>
+        <Button
+          class="w-full sm:w-auto"
+          type="submit"
+          variant="accent"
+          size="base">
+          Subscribe
+        </Button>
       </form>
       <p class="text-xs mt-3 text-base-500">
         When you sign up, you accept our <a
