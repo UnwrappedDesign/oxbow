@@ -1,5 +1,7 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
 const logos = [
   {
     src: "/brands/1.svg",
@@ -36,7 +38,7 @@ const logos = [
 
 <section>
   <div class="p-8">
-    <div class="relative overflow-hidden bg-base-50 rounded-3xl shadow">
+    <div class="relative overflow-hidden bg-base-50 rounded-3xl ">
       <div
         class="absolute inset-x-0 top-0 h-48 rotate-180 text-base-500 [mask-image:linear-gradient(to_bottom,transparent,white)]">
         <svg
@@ -574,19 +576,24 @@ const logos = [
           <div
             class="mx-auto text-center lg:text-left max-w-2xl lg:mx-0 lg:flex-auto text-balance">
             <div>
-              <span
-                class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase"
-                >Tagline</span
-              >
-              <h1
-                class="text-4xl mt-4 font-semibold tracking-tight text-base-900 sm:text-6xl lg:text-7xl">
+              <Text
+                tag="span"
+                variant="eyebrow">
+                Tagline
+              </Text>
+              <Heading
+                class="mt-8"
+                level={1}
+                variant="display">
                 Make every visitor count
-              </h1>
-              <p
-                class="mt-4 text-base font-medium text-base-500 max-w-xl mx-auto lg:mx-0">
-                The fastest method for working together on staging and temporary
-                environments.
-              </p>
+              </Heading>
+              <Text
+                class="mt-4"
+                tag="p"
+                variant="body">
+                Integrating with existing systems is smooth and hassle-free,
+                thanks to our incredible flexible approach.
+              </Text>
               <div
                 class="flex flex-col lg:flex-row items-center justify-center lg:justify-start gap-4 mt-8">
                 <Button

@@ -1,8 +1,12 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import CircleCheck from "@/components/fundations/icons/CircleCheck.astro";
 const data = [
   {
     category: "Innovative Design",
+
     text: "Our cutting-edge design offers a fresh, modern look that transforms your project into a standout experience. ",
     items: ["Revolutionizing communication", "Enhancing productivity"],
   },
@@ -23,18 +27,24 @@ const data = [
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
       <div class="lg:order-last">
-        <span
-          class="text-accent-600 uppercase font-mono font-medium tracking-tight text-xs">
+        <Text
+          tag="span"
+          variant="eyebrow">
           Tagline
-        </span>
-        <h1
-          class="text-5xl mt-8 tracking-tight font-semibold text-base-900 lg:text-balance">
-          Make every visitor count
-        </h1>
-        <p class="mt-6 text-base font-medium text-base-500">
+        </Text>
+        <Heading
+          class="mt-4"
+          level={1}
+          variant="default">
+          Seamlessly embrace top notch security
+        </Heading>
+        <Text
+          class="mt-4"
+          tag="p"
+          variant="body">
           The fastest method for working together on staging and temporary
           environments.
-        </p>
+        </Text>
         <div class="flex flex-wrap items-center gap-2 mx-auto mt-12">
           <Button
             variant="accent"
@@ -64,42 +74,35 @@ const data = [
         data.map((section) => (
           <div>
             <div>
-              <p class="tracking-tight text-lg font-medium  text-base-900">
+              <Heading
+                class="mt-4"
+                level={3}
+                variant="featureTitle">
                 {section.category}
-              </p>
-              <p class="mt-2 text-sm text-base-500 text-pretty">
+              </Heading>
+              <Text
+                class="mt-4"
+                tag="p"
+                variant="body">
                 {section.text}
-              </p>
+              </Text>
             </div>
             <ul
               role="list"
-              class="space-y-1 mt-6 text-base font-medium text-base-900 list-none">
+              class="space-y-1 mt-6 text-base font-medium text-base-900">
               {section.items.map((item, idx) => (
-                <li class="list-none">
-                  <div class=" flex  items-center gap-4 ">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="icon icon-tabler icon-tabler-circle-check-filled text-accent-600"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      stroke-width="2"
-                      stroke="currentColor"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round">
-                      <path
-                        stroke="none"
-                        d="M0 0h24v24H0z"
-                        fill="none"
-                      />
-                      <path
-                        d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
-                        stroke-width="0"
-                        fill="currentColor"
-                      />
-                    </svg>
-                    <span class="text-base-700 text-base">{item}</span>
+                <li>
+                  <div class="flex  items-center gap-4">
+                    <CircleCheck
+                      class="text-accent-600"
+                      size="base"
+                      slot="icon"
+                    />
+                    <Text
+                      tag="span"
+                      variant="featureListItem">
+                      {item}
+                    </Text>
                   </div>
                 </li>
               ))}
