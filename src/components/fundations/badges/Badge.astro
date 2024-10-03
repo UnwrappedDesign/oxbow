@@ -7,24 +7,33 @@ const {
   class: className,
   ...rest
 } = Astro.props;
-// Accent button
+// Accent badge
 const accentClass = ["text-white", "bg-accent-600"];
-// Alternative button
+// Alternative badge
 const alternativeAccentClass = [
   "text-base-500",
   "bg-white",
   "ring-1",
-  "ring-base-100",
+  "ring-base-200",
 ];
-// Default button
+// Default badge
 const defaultClass = ["text-white", "bg-base-900"];
-// Muted button
-const mutedClass = ["text-accent-700", "bg-accent-50"];
-// Text button
+// Muted badge
+const mutedClass = ["text-base-700", "bg-base-50"];
+// Text badge
 const textClass = ["text-base-500", "bg-white" ];
+// Info badge
+const infoClass = ["text-accent-700", "bg-accent-600/10"];
+// Success badge
+const successClass = ["text-emerald-600", "bg-emerald-600/10"];
+// Warning badge
+const warningClass = ["text-amber-600", "bg-amber-600/10"];
+// Danger badge
+const dangerClass = ["text-rose-600", "bg-rose-600/10"];
+
 // Size
-const xs = ["px-2.5", "py-1.5", "text-xs"];
-const sm = ["px-4", "py-2", "text-sm"];
+const xs = ["px-2.5", "py-1", "text-xs"];
+const sm = ["px-4", "py-1.5", "text-sm"];
 
 // Gap
 const gapXS = ["gap-1"];
@@ -43,6 +52,10 @@ const gapSM = ["gap-4"];
     variant === "default" && defaultClass,
     variant === "muted" && mutedClass,
     variant === "text" && textClass,
+    variant === "info" && infoClass,
+    variant === "success" && successClass,
+    variant === "warning" && warningClass,
+    variant === "danger" && dangerClass,
     size === "xs" && xs,
     size === "sm" && sm,
     gap === "xs" && gapXS,
