@@ -1,4 +1,6 @@
 ---
+// Used for paragraphs, spans, small, div, strong, em, blockquote or any other text element with different styles
+//
 export interface TextStyle {
   base: string;
 }
@@ -6,13 +8,19 @@ export interface TextStyles {
   [key: string]: TextStyle;
 }
 export interface Props {
-  tag?: "p" | "span" | "small" | "div" | "strong" | "em" | "blockquote";
+  tag?: "p" | "span" | "small" | "div" | "strong" | "em" | "blockquote" | "dd" | "dt";
   variant?: string;
   class?: string;
 }
 const textStyles: TextStyles = {
+  eyebrow: {
+    base: "text-accent-600 uppercase font-mono font-medium tracking-tight text-xs",
+  },
   body: {
     base: "text-base font-medium text-base-500",
+  },
+  featureListItem: {
+    base: "tracking-tight text-lg font-medium  text-base-900",
   },
   caption: {
     base: "text-sm font-normal text-base-400",
@@ -22,9 +30,6 @@ const textStyles: TextStyles = {
   },
   small: {
     base: "text-sm font-normal",
-  },
-  lead: {
-    base: "text-xl font-normal text-base-600",
   },
   link: {
     base: "text-primary-600 hover:text-primary-700 underline",

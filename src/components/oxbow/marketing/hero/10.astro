@@ -1,24 +1,52 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+const avatars = [
+  { src: "/avatars/1.avif", alt: "#_" },
+  { src: "/avatars/2.avif", alt: "#_" },
+  { src: "/avatars/3.avif", alt: "#_" },
+  { src: "/avatars/4.avif", alt: "#_" },
+];
 ---
+
 <section class="relative overflow-hidden">
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl">
     <div class="grid items-start grid-cols-1 gap-12 md:grid-cols-2">
       <div class="max-w-xs lg:max-w-2xl lg:mx-0 lg:py-32 lg:flex-auto">
         <div>
-          <span
-            class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase"
-            >Tagline</span
-          >
-          <h1
-            class="text-4xl mt-4 font-semibold tracking-tight text-base-900 sm:text-6xl lg:text-7xl">
-            Make every visitor count
-          </h1>
-          <p
-            class="mt-6 text-base font-medium text-base-500 max-w-xl mx-auto lg:mx-0 lg:text-balance">
-            The fastest method for working together on staging and temporary
-            environments.
-          </p>
+          <div class="flex -space-x-4 mt-8">
+            {
+              avatars.map((avatar, index) => (
+                <img
+                  class="inline-block size-12 object-cover object-center rounded-xl -rotate-12 ring-2 ring-white hover:-translate-y-2 duration-300"
+                  src={avatar.src}
+                  alt={avatar.alt}
+                />
+              ))
+            }
+            <a
+              class="flex items-center justify-center size-12 z-10 text-xs font-medium text-base-500 bg-white rounded-xl -rotate-12 ring-2 ring-base-200"
+              href="#"
+              >+99</a
+            >
+          </div>
+          <Text
+            class="mt-8 max-w-sm mx-auto lg:mx-0 lg:text-balance"
+            tag="p"
+            variant="body">
+            Integrating with existing systems is smooth and hassle-free, thanks
+            to our incredible flexible approach. Equipped with advanced features
+            and tools, our solution effortlessly manages complex tasks and
+            workflows.
+          </Text>
+          <Text
+            class="mt-4 max-w-sm mx-auto lg:mx-0 lg:text-balance"
+            tag="p"
+            variant="body">
+            Our cutting-edge design offers a fresh, modern look that transforms
+            your project into a standout experience.
+          </Text>
+
           <div
             class="flex flex-col lg:flex-row items-center justify-start gap-4 mt-12">
             <Button
@@ -30,28 +58,6 @@ import Button from "@/components/fundations/buttons/Button.astro";
               <span class="block">This is some support text</span>
               <span class="block">and this is also.</span>
             </div>
-          </div>
-          <div class="flex -space-x-2 overflow-hidden mt-8">
-            <img
-              class="inline-block size-10 rounded-full object-cover object-center"
-              src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fHww"
-              alt="#_"
-            />
-            <img
-              class="inline-block size-10 rounded-full object-cover object-center"
-              src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=2861&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="#_"
-            />
-            <img
-              class="inline-block size-10 rounded-full object-cover object-center"
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="#_"
-            />
-            <img
-              class="inline-block size-10 rounded-full object-cover object-center"
-              src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="#_"
-            />
           </div>
         </div>
       </div>
