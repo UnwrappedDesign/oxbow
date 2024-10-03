@@ -1,63 +1,43 @@
 ---
-interface Props {
-  level?: 1 | 2 | 3 | 4 | 5 | 6;
-  size?: "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl";
-  weight?: "normal" | "medium" | "semibold" | "bold";
-  color?: string;
-  tracking?: "tighter" | "tight" | "normal" | "wide" | "wider" | "widest";
+export interface HeadingStyle {
+  base: string;
+  responsive?: string;
+}
+
+export interface HeadingStyles {
+  [key: string]: HeadingStyle;
+}
+
+export interface Props {
+  level: 1 | 2 | 3 | 4 | 5 | 6;
+  variant?: string;
   class?: string;
 }
 
-const {
-  level = 2,
-  size = "5xl",
-  weight = "semibold",
-  color = "text-base-900",
-  tracking = "tight",
-  class: className,
-  ...rest
-} = Astro.props;
+const headingStyles: HeadingStyles = {
+  default: {
+    base: "font-semibold",
+    responsive: "text-2xl md:text-3xl lg:text-4xl tracking-tighter",
+  },
+  subtitle: {
+    base: "font-semibold text-gray-600",
+    responsive: "text-xl md:text-2xl lg:text-3xl",
+  },
+  section: {
+    base: "font-bold text-primary-600",
+    responsive: "text-lg md:text-xl lg:text-2xl",
+  },
+  // Add more variants as needed
+};
+
+const { level, variant = "default", class: className = "" } = Astro.props;
 
 const Tag = `h${level}`;
 
-const sizes = {
-  xl: "text-xl",
-  "2xl": "text-2xl",
-  "3xl": "text-3xl",
-  "4xl": "text-4xl",
-  "5xl": "text-5xl",
-  "6xl": "text-6xl",
-};
-
-const weights = {
-  normal: "font-normal",
-  medium: "font-medium",
-  semibold: "font-semibold",
-  bold: "font-bold",
-};
-
-const trackings = {
-  tighter: "tracking-tighter",
-  tight: "tracking-tight",
-  normal: "tracking-normal",
-  wide: "tracking-wide",
-  wider: "tracking-wider",
-  widest: "tracking-widest",
-};
-
-const classes = [
-  sizes[size],
-  weights[weight],
-  trackings[tracking],
-  color,
-  className,
-]
-  .filter(Boolean)
-  .join(" ");
+const style = headingStyles[variant] || headingStyles.default;
+const combinedClasses = `${style.base} ${style.responsive || ""} ${className}`;
 ---
 
-<Tag
-  class:list={classes}
-  {...rest}>
+<Tag class:list={combinedClasses}>
   <slot />
 </Tag>

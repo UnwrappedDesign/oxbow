@@ -1,20 +1,23 @@
 ---
 const { variant, position, size, class: className, ...rest } = Astro.props;
-// Accent button
-const accentClass = ["text-white", "bg-accent-600"];
-// Alternative button
-const alternativeAccentClass = [
-  "text-base-500",
-  "bg-white",
-  "ring-1",
-  "ring-base-100",
-];
-// Default button
-const defaultClass = ["text-white", "bg-base-900", "ring-base-800"];
-// Muted button
-const mutedClass = ["text-accent-700", "bg-accent-50"];
-// Text button
+// Accent
+const accentClass = ["text-accent-600", "ring-accent-600"];
+// Alternative
+const alternativeAccentClass = ["text-base-500", "ring-base-200"];
+// Default
+const defaultClass = ["text-base-800", "ring-base-800"];
+// Muted
+const mutedClass = ["text-base-600", "ring-base-600"];
+// Text
 const textClass = ["text-base-500", "bg-white"];
+// Info
+const infoClass = ["text-accent-700", "ring-accent-700"];
+// Success
+const successClass = ["text-emerald-600", "ring-emerald-600"];
+// Warning
+const warningClass = ["text-amber-600", "ring-amber-600"];
+// Danger
+const dangerClass = ["text-rose-600", "ring-rose-600"];
 // Position
 const positionXS = ["gap-1"];
 const positionSM = ["gap-4"];
@@ -25,6 +28,7 @@ const sm = ["text-[0.8rem]", "size-7", "top-1", "right-0"];
 
 <span
   class:list={[
+    "ring-2",
     "absolute",
     "top-0",
     "right-0",
@@ -34,6 +38,7 @@ const sm = ["text-[0.8rem]", "size-7", "top-1", "right-0"];
     "rounded-full",
     "text-[0.6rem]",
     "flex",
+    "bg-white",
     "items-center",
     "justify-center",
     variant === "accent" && accentClass,
@@ -41,11 +46,16 @@ const sm = ["text-[0.8rem]", "size-7", "top-1", "right-0"];
     variant === "default" && defaultClass,
     variant === "muted" && mutedClass,
     variant === "text" && textClass,
+    variant === "info" && infoClass,
+    variant === "success" && successClass,
+    variant === "warning" && warningClass,
+    variant === "danger" && dangerClass,
     position === "xs" && positionXS,
     position === "sm" && positionSM,
     size === "xs" && xs,
     size === "sm" && sm,
   ]}
-  {...rest}>
+  {...rest}
+>
   <slot />
 </span>

@@ -1,14 +1,19 @@
- <section class="overflow-hidden">
+---
+import Button from "@/components/fundations/buttons/Button.astro";
+import Plus from "@/components/fundations/icons/Plus.astro";
+import Badge from "@/components/fundations/badges/Badge.astro";
+---
+
+<section class="overflow-hidden">
   <div class="relative px-4 py-12 mx-auto md:px-12 lg:px-24 max-w-7xl">
-    <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2">
       <div class="relative w-full">
         <span class="absolute inset-y-0 left-0 flex items-center pl-3">
           <svg
             class="text-base-400 size-5"
             viewBox="0 0 24 24"
             fill="none"
-            aria-hidden="true"
-          >
+            aria-hidden="true">
             <path
               d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
               stroke="currentColor"
@@ -20,79 +25,66 @@
         </span>
         <input
           type="text"
-          class="w-full py-2 pl-10 pr-4 block h-10 px-4 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg shadow appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+          class="w-full py-2 pl-10 pr-4 block h-10 px-4 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
           placeholder="Search by email addres or user ID..."
           aria-label="Search"
         />
       </div>
       <div class="sm:ml-auto sm:flex-none">
-        <button
-          class="flex items-center justify-center h-10 gap-2 px-4 py-2 text-sm font-medium text-white transition-all duration-200 rounded-lg shadow bg-accent-700  hover:to-accent-800 focus:ring-2 focus:ring-accent-950 focus:ring-offset-2 ring-offset-base-200 hover:shadow-none w-full sm:w-auto"
-          aria-label="Action"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="icon icon-tabler icons-tabler-outline icon-tabler-plus size-4"
-          >
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-            <path d="M12 5l0 14"></path>
-            <path d="M5 12l14 0"></path>
-          </svg>
+        <Button
+          gap="xs"
+          size="base"
+          variant="accent">
+          <Plus
+            size="base"
+            slot="icon"
+            slot="left-icon"
+          />
+
           Add user
-        </button>
+        </Button>
       </div>
     </div>
     <div class="mt-8 flow-root">
       <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
           <table
-            class="min-w-full sm:ring-1 sm:rounded-xl overflow-hidden ring-base-200"
-          >
+            class="min-w-full sm:ring-1 sm:rounded-xl overflow-hidden ring-base-200">
             <thead class="border-b border-base-200 bg-base-50">
               <tr>
                 <th
                   scope="col"
-                  class="py-3.5 pl-4 pr-3 text-base font-medium tracking-tighter text-base-900 text-left"
-                >
+                  class="py-3.5 pl-4 pr-3 text-base font-medium tracking-tighter text-base-900 text-left">
                   Name
                 </th>
                 <th
                   scope="col"
-                  class="px-3 py-3.5 text-base font-medium tracking-tighter text-base-900 text-left"
-                >
+                  class="px-3 py-3.5 text-base font-medium tracking-tighter text-base-900 text-left">
                   Providers
                 </th>
                 <th
                   scope="col"
-                  class="px-3 py-3.5 text-base font-medium tracking-tighter text-base-900 text-left"
-                >
+                  class="px-3 py-3.5 text-base font-medium tracking-tighter text-base-900 text-left">
                   Created
                 </th>
                 <th
                   scope="col"
-                  class="px-3 py-3.5 text-base font-medium tracking-tighter text-base-900 text-left"
-                >
+                  class="px-3 py-3.5 text-base font-medium tracking-tighter text-base-900 text-left">
                   Signed
                 </th>
                 <th
                   scope="col"
-                  class="px-3 py-3.5 text-base font-medium tracking-tighter text-base-900 text-left"
-                >
+                  class="px-3 py-3.5 text-base font-medium tracking-tighter text-base-900 text-left">
                   User ID
                 </th>
                 <th
                   scope="col"
-                  class="px-3 py-3.5 text-base font-medium tracking-tighter text-base-900 text-left"
-                >
+                  class="px-3 py-3.5 text-base font-medium tracking-tighter text-base-900 text-left">
                   Status
                 </th>
-                <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
+                <th
+                  scope="col"
+                  class="relative py-3.5 pl-3 pr-4 sm:pr-0">
                   <span class="sr-only">Edit</span>
                 </th>
               </tr>
@@ -100,13 +92,11 @@
             <tbody class="divide-y divide-base-200">
               <tr>
                 <td
-                  class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium tracking-tighter text-base-900"
-                >
+                  class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium tracking-tighter text-base-900">
                   Jhonny Begood
                 </td>
                 <td
-                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500"
-                >
+                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500">
                   <div class="flex items-center gap-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -116,9 +106,12 @@
                       stroke-width="2"
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      class="icon icon-tabler icons-tabler-outline icon-tabler-mail size-4"
-                    >
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      class="icon icon-tabler icons-tabler-outline icon-tabler-mail size-4">
+                      <path
+                        stroke="none"
+                        d="M0 0h24v24H0z"
+                        fill="none"
+                      ></path>
                       <path
                         d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"
                       ></path>
@@ -132,33 +125,31 @@
                       stroke-width="2"
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      class="icon icon-tabler icons-tabler-outline icon-tabler-brand-github size-4"
-                    >
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      class="icon icon-tabler icons-tabler-outline icon-tabler-brand-github size-4">
+                      <path
+                        stroke="none"
+                        d="M0 0h24v24H0z"
+                        fill="none"
+                      ></path>
                       <path
                         d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"
                       ></path>
                     </svg>
-
                   </div>
                 </td>
                 <td
-                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500"
-                >
+                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500">
                   21 Aug 2024
                 </td>
                 <td
-                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500"
-                >
+                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500">
                   24 Sept 2024
                 </td>
                 <td
-                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500 max-w-xs overflow-hidden truncate"
-                >
+                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500 max-w-xs overflow-hidden truncate">
                   <span class="flex items-center gap-2">
                     <button
-                      class="text-base-500 hover:text-accent-500 duration-300"
-                    >
+                      class="text-base-500 hover:text-accent-500 duration-300">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -167,8 +158,7 @@
                         stroke-width="2"
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard size-4"
-                      >
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard size-4">
                         <path
                           stroke="none"
                           d="M0 0h24v24H0z"
@@ -187,30 +177,29 @@
                     >
                   </span>
                 </td>
-                <td
-                  class="{hitespace-nowrap px-3 py-4 max-w-xs overflow-hidden truncate"
-                >
-                  <span
-                    class="rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-medium text-emerald-600"
-                  >
+                <td class="px-3 py-4 max-w-xs overflow-hidden truncate">
+                  <!-- XS Size -->
+                  <Badge
+                    variant="success"
+                    size="xs">
                     Active
-                  </span>
+                  </Badge>
                 </td>
                 <td
-                  class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right"
-                >
+                  class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right">
                   <div class="flex items-center gap-2">
+                    <Button
+                        size="sm"
+                        type="submit"
+                        variant="link"
+                        class="ml-auto"
+                        >
+                        Edit<span class="sr-only">Edit</span>
+                      </Button>
+
                     <button
                       type="submit"
-                      class="text-accent-500 hover:text-base-900 font-medium transition-all duration-200 text-sm"
-                    >
-                      Edit<span class="sr-only">Edit</span>
-                    </button>
-                    <div class="w-px h-4 bg-base-200"></div>
-                    <button
-                      type="submit"
-                      class="text-red-500 hover:text-base-900 font-medium transition-all duration-200 text-sm"
-                    >
+                      class="text-red-500 hover:text-base-900 font-medium transition-all duration-200 text-sm">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -219,8 +208,7 @@
                         stroke-width="2"
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-x size-4"
-                      >
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-x size-4">
                         <path
                           stroke="none"
                           d="M0 0h24v24H0z"
@@ -236,13 +224,11 @@
               </tr>
               <tr>
                 <td
-                  class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium tracking-tighter text-base-900"
-                >
+                  class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium tracking-tighter text-base-900">
                   Alice Smith
                 </td>
                 <td
-                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500"
-                >
+                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500">
                   <div class="flex items-center gap-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -252,35 +238,32 @@
                       stroke-width="2"
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      class="icon icon-tabler icons-tabler-outline icon-tabler-mail size-4"
-                    >
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      class="icon icon-tabler icons-tabler-outline icon-tabler-mail size-4">
+                      <path
+                        stroke="none"
+                        d="M0 0h24v24H0z"
+                        fill="none"
+                      ></path>
                       <path
                         d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"
                       ></path>
                       <path d="M3 7l9 6l9 -6"></path>
                     </svg>
-
-
                   </div>
                 </td>
                 <td
-                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500"
-                >
+                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500">
                   19 June 2024
                 </td>
                 <td
-                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500"
-                >
+                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500">
                   21 Aug 2024
                 </td>
                 <td
-                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500 max-w-xs overflow-hidden truncate"
-                >
+                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500 max-w-xs overflow-hidden truncate">
                   <span class="flex items-center gap-2">
                     <button
-                      class="text-base-500 hover:text-accent-500 duration-300"
-                    >
+                      class="text-base-500 hover:text-accent-500 duration-300">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -289,8 +272,7 @@
                         stroke-width="2"
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard size-4"
-                      >
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard size-4">
                         <path
                           stroke="none"
                           d="M0 0h24v24H0z"
@@ -309,30 +291,28 @@
                     >
                   </span>
                 </td>
-                <td
-                  class="{hitespace-nowrap px-3 py-4 max-w-xs overflow-hidden truncate"
-                >
-                  <span
-                    class="rounded-full bg-rose-50 px-2.5 py-1 text-xs font-medium text-rose-600"
-                  >
+                <td class="px-3 py-4 max-w-xs overflow-hidden truncate">
+                  <Badge
+                    variant="danger"
+                    size="xs">
                     Inactive
-                  </span>
+                  </Badge>
                 </td>
                 <td
-                  class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right"
-                >
+                  class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right">
                   <div class="flex items-center gap-2">
+                    <Button
+                        size="sm"
+                        type="submit"
+                        variant="link"
+                        class="ml-auto"
+                        >
+                        Edit<span class="sr-only">Edit</span>
+                      </Button>
+
                     <button
                       type="submit"
-                      class="text-accent-500 hover:text-base-900 font-medium transition-all duration-200 text-sm"
-                    >
-                      Edit<span class="sr-only">Edit</span>
-                    </button>
-                    <div class="w-px h-4 bg-base-200"></div>
-                    <button
-                      type="submit"
-                      class="text-red-500 hover:text-base-900 font-medium transition-all duration-200 text-sm"
-                    >
+                      class="text-red-500 hover:text-base-900 font-medium transition-all duration-200 text-sm">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -341,8 +321,7 @@
                         stroke-width="2"
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-x size-4"
-                      >
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-x size-4">
                         <path
                           stroke="none"
                           d="M0 0h24v24H0z"
@@ -358,15 +337,12 @@
               </tr>
               <tr>
                 <td
-                  class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium tracking-tighter text-base-900"
-                >
+                  class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium tracking-tighter text-base-900">
                   Bob Johnson
                 </td>
                 <td
-                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500"
-                >
+                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500">
                   <div class="flex items-center gap-2">
-
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
@@ -375,30 +351,29 @@
                       stroke-width="2"
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      class="icon icon-tabler icons-tabler-outline icon-tabler-brand-gitlab size-4"
-                    >
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      class="icon icon-tabler icons-tabler-outline icon-tabler-brand-gitlab size-4">
+                      <path
+                        stroke="none"
+                        d="M0 0h24v24H0z"
+                        fill="none"
+                      ></path>
                       <path d="M21 14l-9 7l-9 -7l3 -11l3 7h6l3 -7z"></path>
                     </svg>
                   </div>
                 </td>
                 <td
-                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500"
-                >
+                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500">
                   02 May 2024
                 </td>
                 <td
-                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500"
-                >
+                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500">
                   02 May 2024
                 </td>
                 <td
-                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500 max-w-xs overflow-hidden truncate"
-                >
+                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500 max-w-xs overflow-hidden truncate">
                   <span class="flex items-center gap-2">
                     <button
-                      class="text-base-500 hover:text-accent-500 duration-300"
-                    >
+                      class="text-base-500 hover:text-accent-500 duration-300">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -407,8 +382,7 @@
                         stroke-width="2"
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard size-4"
-                      >
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard size-4">
                         <path
                           stroke="none"
                           d="M0 0h24v24H0z"
@@ -427,30 +401,28 @@
                     >
                   </span>
                 </td>
-                <td
-                  class="{hitespace-nowrap px-3 py-4 max-w-xs overflow-hidden truncate"
-                >
-                  <span
-                    class="rounded-full bg-amber-50 px-2.5 py-1 text-xs font-medium text-amber-600"
-                  >
+                <td class="px-3 py-4 max-w-xs overflow-hidden truncate">
+                  <Badge
+                    variant="warning"
+                    size="xs">
                     Pending
-                  </span>
+                  </Badge>
                 </td>
                 <td
-                  class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right"
-                >
+                  class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right">
                   <div class="flex items-center gap-2">
+                    <Button
+                        size="sm"
+                        type="submit"
+                        variant="link"
+                        class="ml-auto"
+                        >
+                        Edit<span class="sr-only">Edit</span>
+                      </Button>
+
                     <button
                       type="submit"
-                      class="text-accent-500 hover:text-base-900 font-medium transition-all duration-200 text-sm"
-                    >
-                      Edit<span class="sr-only">Edit</span>
-                    </button>
-                    <div class="w-px h-4 bg-base-200"></div>
-                    <button
-                      type="submit"
-                      class="text-red-500 hover:text-base-900 font-medium transition-all duration-200 text-sm"
-                    >
+                      class="text-red-500 hover:text-base-900 font-medium transition-all duration-200 text-sm">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -459,8 +431,7 @@
                         stroke-width="2"
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-x size-4"
-                      >
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-x size-4">
                         <path
                           stroke="none"
                           d="M0 0h24v24H0z"
@@ -476,13 +447,11 @@
               </tr>
               <tr>
                 <td
-                  class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium tracking-tighter text-base-900"
-                >
+                  class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium tracking-tighter text-base-900">
                   Clara Oswald
                 </td>
                 <td
-                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500"
-                >
+                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500">
                   <div class="flex items-center gap-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -492,9 +461,12 @@
                       stroke-width="2"
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      class="icon icon-tabler icons-tabler-outline icon-tabler-mail size-4"
-                    >
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      class="icon icon-tabler icons-tabler-outline icon-tabler-mail size-4">
+                      <path
+                        stroke="none"
+                        d="M0 0h24v24H0z"
+                        fill="none"
+                      ></path>
                       <path
                         d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"
                       ></path>
@@ -509,30 +481,29 @@
                       stroke-width="2"
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      class="icon icon-tabler icons-tabler-outline icon-tabler-brand-gitlab size-4"
-                    >
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      class="icon icon-tabler icons-tabler-outline icon-tabler-brand-gitlab size-4">
+                      <path
+                        stroke="none"
+                        d="M0 0h24v24H0z"
+                        fill="none"
+                      ></path>
                       <path d="M21 14l-9 7l-9 -7l3 -11l3 7h6l3 -7z"></path>
                     </svg>
                   </div>
                 </td>
                 <td
-                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500"
-                >
+                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500">
                   12 March 2024
                 </td>
                 <td
-                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500"
-                >
+                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500">
                   16 July 2024
                 </td>
                 <td
-                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500 max-w-xs overflow-hidden truncate"
-                >
+                  class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500 max-w-xs overflow-hidden truncate">
                   <span class="flex items-center gap-2">
                     <button
-                      class="text-base-500 hover:text-accent-500 duration-300"
-                    >
+                      class="text-base-500 hover:text-accent-500 duration-300">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -541,8 +512,7 @@
                         stroke-width="2"
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard size-4"
-                      >
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard size-4">
                         <path
                           stroke="none"
                           d="M0 0h24v24H0z"
@@ -561,30 +531,28 @@
                     >
                   </span>
                 </td>
-                <td
-                  class="{hitespace-nowrap px-3 py-4 max-w-xs overflow-hidden truncate"
-                >
-                  <span
-                    class="rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-medium text-emerald-600"
-                  >
+                <td class="px-3 py-4 max-w-xs overflow-hidden truncate">
+                  <Badge
+                    variant="success"
+                    size="xs">
                     Active
-                  </span>
+                  </Badge>
                 </td>
                 <td
-                  class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right"
-                >
+                  class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right">
                   <div class="flex items-center gap-2">
+                    <Button
+                        size="sm"
+                        type="submit"
+                        variant="link"
+                        class="ml-auto"
+                        >
+                        Edit<span class="sr-only">Edit</span>
+                      </Button>
+
                     <button
                       type="submit"
-                      class="text-accent-500 hover:text-base-900 font-medium transition-all duration-200 text-sm"
-                    >
-                      Edit<span class="sr-only">Edit</span>
-                    </button>
-                    <div class="w-px h-4 bg-base-200"></div>
-                    <button
-                      type="submit"
-                      class="text-red-500 hover:text-base-900 font-medium transition-all duration-200 text-sm"
-                    >
+                      class="text-red-500 hover:text-base-900 font-medium transition-all duration-200 text-sm">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -593,8 +561,7 @@
                         stroke-width="2"
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-x size-4"
-                      >
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-x size-4">
                         <path
                           stroke="none"
                           d="M0 0h24v24H0z"
