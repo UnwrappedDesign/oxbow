@@ -1,32 +1,402 @@
+---
+import IconButton from "@/components/fundations/buttons/IconButton.astro";
+import ChevronLeft from "@/components/fundations/icons/ChevronLeft.astro";
+import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
+---
+
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
-    <div class="max-w-4xl">
-
-      <blockquote
-        class="text-4xl  font-semibold tracking-tight text-base-900 lg:text-balance"
+    <div class="max-w-xl">
+      <span
+        class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase"
+        >Testimonials</span
       >
-        "Being in the financial industry, we were always looking for ways to
-        enhance our transactions' security and efficiency."
-      </blockquote>
-      <figcaption class="flex text-left mt-8">
-        <div class="flex items-center gap-4">
-          <img
-            class="object-cover rounded-full size-12"
-            src="/avatars/1.avif"
-            alt="#_"
-          />
-          <div>
-            <h3
-              class="tracking-tight text-lg font-medium  text-base-900"
-            >
-              Michael Andreuzza
-            </h3>
-            <p class="mt-2 text-sm text-base-500 text-balance">
-              Creator of Oxbow UI.com
-            </p>
+      <h1
+        class="text-4xl mt-4 font-semibold tracking-tight text-base-900 lg:text-balance">
+        Hear from our customers about their experiences
+      </h1>
+      <p class="mt-6 text-base font-medium text-base-500">
+        Find out how our users are using Oxbow UI to create a customized landing
+        page for their business.
+      </p>
+    </div>
+    <div
+      class="flex flex-col w-full mt-12"
+      x-data="{
+                      skip: 1,
+                      atBeginning: false,
+                      atEnd: false,
+                      next() {
+                          this.to((current, offset) => current + (offset * this.skip))
+                      },
+                      prev() {
+                          this.to((current, offset) => current - (offset * this.skip))
+                      },
+                      to(strategy) {
+                          let slider = this.$refs.slider
+                          let current = slider.scrollLeft
+                          let offset = slider.firstElementChild.getBoundingClientRect().width
+                          slider.scrollTo({ left: strategy(current, offset), behavior: 'smooth' })
+                      },
+                      focusableWhenVisible: {
+                          'x-intersect:enter'() {
+                              this.$el.removeAttribute('tabindex')
+                          },
+                          'x-intersect:leave'() {
+                              this.$el.setAttribute('tabindex', '-1')
+                          },
+                      },
+                      disableNextAndPreviousButtons: {
+                          'x-intersect:enter.threshold.05'() {
+                              let slideEls = this.$el.parentElement.children
+                              // If this is the first slide.
+                              if (slideEls[0] === this.$el) {
+                                  this.atBeginning = true
+                              // If this is the last slide.
+                              } else if (slideEls[slideEls.length-1] === this.$el) {
+                                  this.atEnd = true
+                              }
+                          },
+                          'x-intersect:leave.threshold.05'() {
+                              let slideEls = this.$el.parentElement.children
+                              // If this is the first slide.
+                              if (slideEls[0] === this.$el) {
+                                  this.atBeginning = false
+                              // If this is the last slide.
+                              } else if (slideEls[slideEls.length-1] === this.$el) {
+                                  this.atEnd = false
+                              }
+                          },
+                      },
+                  }">
+      <div
+        class="flex flex-col w-full relative"
+        aria-labelledby="carousel-label"
+        role="region"
+        tabindex="0"
+        x-on:keydown.left="prev"
+        x-on:keydown.right="next">
+        <h2
+          class="sr-only"
+          hidden=""
+          id="carousel-label">
+          Carousel
+        </h2>
+        <span
+          class="sr-only"
+          hidden=""
+          id="carousel-content-label"
+          >Carousel</span
+        >
+        <div class="w-full justify-between grid">
+          <div
+            class="absolute inset-0 from-white dark:from-black left-0 via-transparent w-44 z-10 bg-gradient-to-r">
+          </div>
+          <div
+            class="absolute inset-0 from-white dark:from-black left-0 via-transparent w-44 z-10 bg-gradient-to-l ml-auto">
           </div>
         </div>
-      </figcaption>
+        <div class="inline-flex items-center space-x-2 lg:px-2 relative z-10">
+          <IconButton
+            :class="{ 'opacity-50 ': atBeginning }"
+            :aria-disabled="atBeginning"
+            :tabindex="atEnd ? -1 : 0"
+            x-on:click="prev"
+            tabindex="0"
+            variant="alternative"
+            size="sm">
+            <ChevronLeft
+              size="base"
+              slot="icon"
+            />
+            <span class="sr-only">Skip to previous slide page</span>
+          </IconButton>
+
+          <IconButton
+            :class="{ 'opacity-50 ': atEnd }"
+            :aria-disabled="atEnd"
+            :tabindex="atEnd ? -1 : 0"
+            x-on:click="next"
+            tabindex="0"
+            variant="alternative"
+            size="sm">
+            <ChevronRight
+              size="base"
+              slot="icon"
+            />
+            <span class="sr-only">Skip to next slide page</span>
+          </IconButton>
+        </div>
+
+        <ul
+          class="flex w-full gap-3 mt-4 overflow-x-scroll text-center scrollbar-hide snap-mandatory snap-x rounded-2xl"
+          role="listbox"
+          aria-labelledby="carousel-content-label"
+          tabindex="0"
+          x-ref="slider">
+          <li
+            class="p-6  shrink-0 snap-start bg-base-50 rounded-2xl"
+            role="option"
+            x-bind="disableNextAndPreviousButtons">
+            <figure
+              class="relative flex flex-col justify-between h-full max-w-xs">
+              <figcaption class="relative flex flex-col justify-between">
+                <img
+                  alt="#_"
+                  src="/avatars/1.avif"
+                  class="object-cover mx-auto rounded-full size-14 grayscale"
+                />
+                <div class="mt-4">
+                  <h3 class="tracking-tight text-lg font-medium text-base-900">
+                    Michael Andreuzza
+                  </h3>
+                  <p class="mt-2 text-sm text-base-500">
+                    Creator of Oxbow UI.com
+                  </p>
+                </div>
+              </figcaption>
+              <blockquote class="mt-4">
+                <p class="text-sm text-base-500 text-pretty">
+                  Being in the financial industry, we were always looking for
+                  ways to enhance our transactions' security and efficiency.
+                </p>
+              </blockquote>
+            </figure>
+          </li>
+          <li
+            class="p-6  shrink-0 snap-start bg-base-50 rounded-2xl"
+            role="option"
+            x-bind="disableNextAndPreviousButtons">
+            <figure
+              class="relative flex flex-col justify-between h-full max-w-xs">
+              <figcaption class="relative flex flex-col justify-between">
+                <img
+                  alt="#_"
+                  src="/avatars/2.avif"
+                  class="object-cover mx-auto rounded-full size-14 grayscale"
+                />
+                <div class="mt-4">
+                  <h3 class="tracking-tight text-lg font-medium text-base-900">
+                    Gege Piazza
+                  </h3>
+                  <p class="mt-2 text-sm text-base-500">
+                    Creator of Pizza Piazza
+                  </p>
+                </div>
+              </figcaption>
+              <blockquote class="mt-4">
+                <p class="text-sm text-base-500 text-pretty">
+                  Implementing Semplice's blockchain technology has been a
+                  game-changer for our supply chain management.
+                </p>
+              </blockquote>
+            </figure>
+          </li>
+          <li
+            class="p-6  shrink-0 snap-start bg-base-50 rounded-2xl"
+            role="option"
+            x-bind="disableNextAndPreviousButtons">
+            <figure
+              class="relative flex flex-col justify-between h-full max-w-xs">
+              <figcaption class="relative flex flex-col justify-between">
+                <img
+                  alt="#_"
+                  src="/avatars/3.avif"
+                  class="object-cover mx-auto rounded-full size-14 grayscale"
+                />
+                <div class="mt-4">
+                  <h3 class="tracking-tight text-lg font-medium text-base-900">
+                    Jenson Button
+                  </h3>
+                  <p class="mt-2 text-sm text-base-500">
+                    Founder of Benji and Tom
+                  </p>
+                </div>
+              </figcaption>
+              <blockquote class="mt-4">
+                <p class="text-sm text-base-500 text-pretty">
+                  We were initially hesitant about integrating blockchain
+                  technology into our existing systems.
+                </p>
+              </blockquote>
+            </figure>
+          </li>
+          <li
+            class="p-6  shrink-0 snap-start bg-base-50 rounded-2xl"
+            role="option"
+            x-bind="disableNextAndPreviousButtons">
+            <figure
+              class="relative flex flex-col justify-between h-full max-w-xs">
+              <figcaption class="relative flex flex-col justify-between">
+                <img
+                  alt="#_"
+                  src="/avatars/4.avif"
+                  class="object-cover mx-auto rounded-full size-14 grayscale"
+                />
+                <div class="mt-4">
+                  <h3 class="tracking-tight text-lg font-medium text-base-900">
+                    Michael Andreuzza
+                  </h3>
+                  <p class="mt-2 text-sm text-base-500">
+                    Creator of Oxbow UI.com
+                  </p>
+                </div>
+              </figcaption>
+              <blockquote class="mt-4">
+                <p class="text-sm text-base-500 text-pretty">
+                  Being in the financial industry, we were always looking for
+                  ways to enhance our transactions' security and efficiency.
+                </p>
+              </blockquote>
+            </figure>
+          </li>
+          <li
+            class="p-6  shrink-0 snap-start bg-base-50 rounded-2xl"
+            role="option"
+            x-bind="disableNextAndPreviousButtons">
+            <figure
+              class="relative flex flex-col justify-between h-full max-w-xs">
+              <figcaption class="relative flex flex-col justify-between">
+                <img
+                  alt="#_"
+                  src="/avatars/5.avif"
+                  class="object-cover mx-auto rounded-full size-14 grayscale"
+                />
+                <div class="mt-4">
+                  <h3 class="tracking-tight text-lg font-medium text-base-900">
+                    Gege Piazza
+                  </h3>
+                  <p class="mt-2 text-sm text-base-500">
+                    Creator of Pizza Piazza
+                  </p>
+                </div>
+              </figcaption>
+              <blockquote class="mt-4">
+                <p class="text-sm text-base-500 text-pretty">
+                  Implementing Semplice's blockchain technology has been a
+                  game-changer for our supply chain management.
+                </p>
+              </blockquote>
+            </figure>
+          </li>
+          <li
+            class="p-6  shrink-0 snap-start bg-base-50 rounded-2xl"
+            role="option"
+            x-bind="disableNextAndPreviousButtons">
+            <figure
+              class="relative flex flex-col justify-between h-full max-w-xs">
+              <figcaption class="relative flex flex-col justify-between">
+                <img
+                  alt="#_"
+                  src="/avatars/6.avif"
+                  class="object-cover mx-auto rounded-full size-14 grayscale"
+                />
+                <div class="mt-4">
+                  <h3 class="tracking-tight text-lg font-medium text-base-900">
+                    Jenson Button
+                  </h3>
+                  <p class="mt-2 text-sm text-base-500">
+                    Founder of Benji and Tom
+                  </p>
+                </div>
+              </figcaption>
+              <blockquote class="mt-4">
+                <p class="text-sm text-base-500 text-pretty">
+                  We were initially hesitant about integrating blockchain
+                  technology into our existing systems.
+                </p>
+              </blockquote>
+            </figure>
+          </li>
+          <li
+            class="p-6  shrink-0 snap-start bg-base-50 rounded-2xl"
+            role="option"
+            x-bind="disableNextAndPreviousButtons">
+            <figure
+              class="relative flex flex-col justify-between h-full max-w-xs">
+              <figcaption class="relative flex flex-col justify-between">
+                <img
+                  alt="#_"
+                  src="/avatars/8.avif"
+                  class="object-cover mx-auto rounded-full size-14 grayscale"
+                />
+                <div class="mt-4">
+                  <h3 class="tracking-tight text-lg font-medium text-base-900">
+                    Michael Andreuzza
+                  </h3>
+                  <p class="mt-2 text-sm text-base-500">
+                    Creator of Oxbow UI.com
+                  </p>
+                </div>
+              </figcaption>
+              <blockquote class="mt-4">
+                <p class="text-sm text-base-500 text-pretty">
+                  Being in the financial industry, we were always looking for
+                  ways to enhance our transactions' security and efficiency.
+                </p>
+              </blockquote>
+            </figure>
+          </li>
+          <li
+            class="p-6  shrink-0 snap-start bg-base-50 rounded-2xl"
+            role="option"
+            x-bind="disableNextAndPreviousButtons">
+            <figure
+              class="relative flex flex-col justify-between h-full max-w-xs">
+              <figcaption class="relative flex flex-col justify-between">
+                <img
+                  alt="#_"
+                  src="/avatars/8.avif"
+                  class="object-cover mx-auto rounded-full size-14 grayscale"
+                />
+                <div class="mt-4">
+                  <h3 class="tracking-tight text-lg font-medium text-base-900">
+                    Gege Piazza
+                  </h3>
+                  <p class="mt-2 text-sm text-base-500">
+                    Creator of Pizza Piazza
+                  </p>
+                </div>
+              </figcaption>
+              <blockquote class="mt-4">
+                <p class="text-sm text-base-500 text-pretty">
+                  Implementing Semplice's blockchain technology has been a
+                  game-changer for our supply chain management.
+                </p>
+              </blockquote>
+            </figure>
+          </li>
+          <li
+            class="p-6  shrink-0 snap-start bg-base-50 rounded-2xl"
+            role="option"
+            x-bind="disableNextAndPreviousButtons">
+            <figure
+              class="relative flex flex-col justify-between h-full max-w-xs">
+              <figcaption class="relative flex flex-col justify-between">
+                <img
+                  alt="#_"
+                  src="/avatars/9.avif"
+                  class="object-cover mx-auto rounded-full size-14 grayscale"
+                />
+                <div class="mt-4">
+                  <h3 class="tracking-tight text-lg font-medium text-base-900">
+                    Jenson Button
+                  </h3>
+                  <p class="mt-2 text-sm text-base-500">
+                    Founder of Benji and Tom
+                  </p>
+                </div>
+              </figcaption>
+              <blockquote class="mt-4">
+                <p class="text-sm text-base-500 text-pretty">
+                  We were initially hesitant about integrating blockchain
+                  technology into our existing systems.
+                </p>
+              </blockquote>
+            </figure>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
