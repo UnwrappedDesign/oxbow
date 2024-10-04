@@ -9,10 +9,10 @@ All you need is, only if you want to have some colors and typography defined on 
 
 We are using different naming for colors, for example:
 
-- Accent:
-- Base:
-- Error:
-- Warning:
+- Accent
+- Base
+- Error
+- Warning
 
 The values go from 25 to 950
 
