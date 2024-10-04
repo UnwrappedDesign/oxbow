@@ -13,7 +13,8 @@ We are using different naming for colors, for example:
 - Base:
 - Error:
 - Warning:
-  The objects go from 25 to 950
+
+The objects go from 25 to 950
 
 A part of the color naming we are also using our own custom tints and shades, you can use any color you want.
 This are the objects so you can copy paste it on your config file ( `tailwind.config.cjs`).
