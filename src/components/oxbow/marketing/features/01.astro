@@ -1,7 +1,11 @@
 ---
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import CircleCheck from "@/components/fundations/icons/CircleCheck.astro";
 const data = [
   {
     category: "Innovative Design",
+
     text: "Our cutting-edge design offers a fresh, modern look that transforms your project into a standout experience. ",
     items: ["Revolutionizing communication", "Enhancing productivity"],
   },
@@ -20,14 +24,15 @@ const data = [
 
 <section>
   <div class="relative px-8 pt-24 mx-auto md:px-12 lg:px-24 max-w-7xl">
-    <div class="max-w-xl">
+    <div class="max-w-3xl">
       <span
         class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase"
         >Tagline</span
       >
       <h1
         class="mt-4 text-4xl font-semibold tracking-tight text-base-900 sm:text-balance">
-        Transform your visitors into users with an engaging headline
+        Email service that prioritizes privacy by implementing end-to-end
+        encryption.
       </h1>
       <p class="mt-6 text-base font-medium text-base-500 sm:text-pretty">
         The fastest method for working together on staging and temporary
@@ -35,47 +40,40 @@ const data = [
       </p>
     </div>
     <div
-      class="grid grid-cols-1 mt-12 gap-x-2 gap-y-14 lg:gap-12 sm:grid-cols-2 lg:grid-cols-3">
+      class="gap-x-2 gap-y-14 mt-12 lg:gap-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
       {
         data.map((section) => (
           <div>
             <div>
-              <p class="text-lg font-medium tracking-tight text-base-900">
+              <Heading
+                class="mt-4"
+                level={3}
+                variant="featureTitle">
                 {section.category}
-              </p>
-              <p class="mt-2 text-sm text-base-500 text-pretty">
+              </Heading>
+              <Text
+                class="mt-4"
+                tag="p"
+                variant="body">
                 {section.text}
-              </p>
+              </Text>
             </div>
             <ul
               role="list"
-              class="mt-6 space-y-1 text-base font-medium list-none text-base-900">
+              class="space-y-1 mt-6 text-base font-medium text-base-900">
               {section.items.map((item, idx) => (
-                <li class="list-none">
-                  <div class="flex items-center gap-4 ">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="text-accent-600 icon icon-tabler icon-tabler-circle-check-filled"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      stroke-width="2"
-                      stroke="currentColor"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round">
-                      <path
-                        stroke="none"
-                        d="M0 0h24v24H0z"
-                        fill="none"
-                      />
-                      <path
-                        d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
-                        stroke-width="0"
-                        fill="currentColor"
-                      />
-                    </svg>
-                    <span class="text-base text-base-700">{item}</span>
+                <li>
+                  <div class="flex  items-center gap-4">
+                    <CircleCheck
+                      class="text-accent-600"
+                      size="base"
+                      slot="icon"
+                    />
+                    <Text
+                      tag="span"
+                      variant="featureListItem">
+                      {item}
+                    </Text>
                   </div>
                 </li>
               ))}

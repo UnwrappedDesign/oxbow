@@ -1,4 +1,6 @@
 ---
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
 const featureTop = [
   {
     title: "Easy navigation",
@@ -42,19 +44,25 @@ const featuresBottom = [
 
 <section>
   <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
-
-    <dl
-      class="grid grid-cols-1 gap-2  text-center sm:grid-cols-2">
+    <dl class="grid grid-cols-1 gap-2 text-center sm:grid-cols-2">
       {
         featureTop.map((feature, index) => (
           <div class="h-full bg-base-50 rounded-3xl shadow overflow-hidden flex flex-col justify-between">
             <div class="p-8 pb-0 md:text-center">
               <div>
-                <dt class="tracking-tight text-lg font-medium  text-base-900">
-                  {feature.title}
+                <dt>
+                  <Heading
+                    level={3}
+                    variant="featureTitle">
+                    {feature.title}
+                  </Heading>
                 </dt>
-                <dd class="mt-2 text-sm text-base-500 lg:text-balance">
-                  {feature.description}
+                <dd class="mt-2 ">
+                  <Text
+                    tag="p"
+                    variant="body">
+                    {feature.description}
+                  </Text>
                 </dd>
               </div>
             </div>
@@ -73,11 +81,19 @@ const featuresBottom = [
       {
         featuresBottom.map((feature) => (
           <div class="mt-6">
-            <dt class="tracking-tight text-lg font-medium  text-base-900">
-              {feature.title}
+            <dt>
+              <Heading
+                level={3}
+                variant="featureTitle">
+                {feature.title}
+              </Heading>
             </dt>
-            <dd class="mt-2 text-sm text-base-500 lg:text-balance">
-              {feature.description}
+            <dd class="mt-2 ">
+              <Text
+                tag="p"
+                variant="body">
+                {feature.description}
+              </Text>
             </dd>
           </div>
         ))
