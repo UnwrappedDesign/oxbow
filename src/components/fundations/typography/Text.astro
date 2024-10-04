@@ -1,55 +1,87 @@
 ---
-// Used for paragraphs, spans, small, div, strong, em, blockquote or any other text element with different styles
+// Used for paragraphs, spans, small, div, strong, em, blockquote, or any other text element with different styles
 //
 export interface TextStyle {
-  base: string;
+  light: string;
+  dark?: string; // Make dark optional for styles that don't require it
 }
 export interface TextStyles {
   [key: string]: TextStyle;
 }
 export interface Props {
-  tag?: "p" | "span" | "small" | "div" | "strong" | "em" | "blockquote" | "dd" | "dt";
+  tag?:
+    | "p"
+    | "span"
+    | "small"
+    | "div"
+    | "strong"
+    | "em"
+    | "blockquote"
+    | "dd"
+    | "dt";
   variant?: string;
   class?: string;
+  darkMode?: boolean; // Add a prop to indicate if dark mode is enabled
 }
 const textStyles: TextStyles = {
+  bigNumbers: {
+    light: "text-5xl font-normal font-mono text-accent-600",
+    dark: "text-5xl font-normal font-mono text-white",
+  },
   eyebrow: {
-    base: "text-accent-600 uppercase font-mono font-medium tracking-tight text-xs",
+    light:
+      "text-accent-600 uppercase font-mono font-medium tracking-tight text-xs",
+    dark: "text-accent-300 uppercase font-mono font-medium tracking-tight text-xs",
   },
   body: {
-    base: "text-base font-medium text-base-500",
+    light: "text-base font-medium text-base-500",
+    dark: "text-base-300 font-medium",
   },
   featureListItem: {
-    base: "tracking-tight text-lg font-medium  text-base-900",
+    light: "tracking-tight text-lg font-medium text-base-900",
+    dark: "tracking-tight text-lg font-medium text-base-300",
   },
   caption: {
-    base: "text-sm font-normal text-base-400",
+    light: "text-sm font-normal text-base-400",
+    dark: "text-sm font-normal text-base-500",
   },
   overline: {
-    base: "text-xs font-medium uppercase tracking-wider",
+    light: "text-xs font-medium uppercase tracking-wider",
+    dark: "text-xs font-medium uppercase tracking-wider",
   },
   small: {
-    base: "text-sm font-normal",
+    light: "text-sm font-normal",
+    dark: "text-sm font-normal",
   },
   link: {
-    base: "text-primary-600 hover:text-primary-700 underline",
+    light: "text-primary-600 hover:text-primary-700 underline",
+    dark: "text-primary-400 hover:text-primary-500 underline",
   },
   blockquote: {
-    base: "text-lg italic font-medium text-base-500 border-l-4 border-base-300 pl-4",
+    light:
+      "text-lg italic font-medium text-base-500 border-l-4 border-base-300 pl-4",
+    dark: "text-lg italic font-medium text-base-400 border-l-4 border-base-500 pl-4",
   },
   code: {
-    base: "font-mono text-sm bg-base-100 rounded px-1 py-0.5",
+    light: "font-mono text-sm bg-base-100 rounded px-1 py-0.5",
+    dark: "font-mono text-sm bg-base-900 rounded px-1 py-0.5",
   },
   // Add more text variants as needed...
 };
+
 const {
   tag: Tag = "p",
   variant = "body",
   class: className = "",
+  darkMode = false, // Get the dark mode prop
   ...rest
 } = Astro.props;
+
 // Get the base classes for the variant
-const baseClasses = textStyles[variant]?.base || textStyles.body.base;
+const baseClasses = darkMode
+  ? textStyles[variant]?.dark || textStyles.body.dark
+  : textStyles[variant]?.light || textStyles.body.light;
+
 // Combine base classes with additional classes
 const combinedClasses = `${baseClasses} ${className}`.trim();
 ---
