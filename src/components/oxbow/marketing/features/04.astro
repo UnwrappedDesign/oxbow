@@ -1,4 +1,6 @@
 ---
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
 const features = [
   {
     title: "Decentralized consensus mechanism",
@@ -27,17 +29,23 @@ const features = [
   <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div class="grid grid-cols-1 lg:grid-cols-2 items-start gap-12">
       <div class="lg:pl-24 md:pl-12">
-        <p
-          class="text-2xl font-semibold tracking-tight text-base-900 lg:text-balance">
-          Transform your visitors into users with an engaging headline
-        </p>
-        <p class="mt-6 text-base font-medium text-base-500 lg:text-balance">
-          The fastest and most efficient method for working together on staging
-          and temporary environments.
-        </p>
+        <Heading
+          class="mt-4"
+          level={1}
+          variant="defaultSmall">
+          Revolutionary privacy-centric architecture: redefining secure
+          communication paradigms.
+        </Heading>
+        <Text
+          class="mt-4"
+          tag="p"
+          variant="body">
+          The fastest method for working together on staging and temporary
+          environments.
+        </Text>
         <div class="flex flex-wrap gap-4 mt-12">
           <button
-            class="flex items-center justify-center h-10 px-4 py-2 text-sm font-medium text-white transition-all duration-200 rounded-lg bg-accent-700  hover:to-accent-800 shadow focus:ring-2 focus:ring-accent-950 focus:ring-offset-2 ring-offset-base-200 hover:shadow-none"
+            class="flex items-center justify-center h-10 px-4 py-2 text-sm font-medium text-white transition-all duration-200 rounded-lg bg-accent-700 hover:to-accent-800 shadow focus:ring-2 focus:ring-accent-950 focus:ring-offset-2 ring-offset-base-200 hover:shadow-none"
             aria-label="Action">
             Get started
           </button>
@@ -50,11 +58,19 @@ const features = [
           {
             features.map((feature, index) => (
               <div>
-                <dt class="tracking-tight text-lg font-medium  text-base-900">
-                  {feature.title}
+                <dt>
+                  <Heading
+                    level={3}
+                    variant="featureTitle">
+                    {feature.title}
+                  </Heading>
                 </dt>
-                <dd class="mt-2 text-sm text-base-500 lg:text-balance">
-                  {feature.description}
+                <dd class="mt-2 ">
+                  <Text
+                    tag="p"
+                    variant="body">
+                    {feature.description}
+                  </Text>
                 </dd>
               </div>
             ))
