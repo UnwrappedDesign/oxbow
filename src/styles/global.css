@@ -1,12 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities; /* Styling Inter font with custom settings, it's cooler like this*/
-
 /* CSS */
+code {
+  font-family: JetBrains Mono, monospace;
+  font-feature-settings:
+  /*-------- NUMBERS --------*/
+  /* Raised bar F, Slashed zero, fractions*/  "ss20" 1,
+    /* Variant 269 */  "cv18" 1,
+    /* Variant $ */  "cv14" 1,
+    /* Variant r */  "cv10" 1,
+    /* Variant y */  "cv11" 1,
+    /* Variant u */  "cv12" 1,
+}
 :root {
   font-family: Inter, sans-serif;
   font-feature-settings:
-
     /*-------- NUMBERS --------*/
     /* Tabular numbers */ "tnum" 1,
     /* Slashed zero */ "zero" 1,
@@ -15,24 +24,19 @@
     /* Open four */ "cv02" 1,
     /* Open six */ "cv03" 1,
     /* Open nine */ "cv04" 1,
-
     /*-------- LETTERS --------*/
     /* Square punctuation */ "ss08" 1,
     /* Discretionary ligatures */ "dlig" 1,
     /* Simplified u */ "cv06" 1,
     /* Capital G with spur */ "cv10" 1,
-
     /* Compact t */ "cv13" 1;
-
 }
-
 @supports (font-variation-settings: normal) {
   /* Use variable font if supported */
   :root {
     font-family: InterVariable, sans-serif;
   }
 }
-
 /* Hidding emulators*/
 .firebase-emulator-warning {
   color: #66666650 !important;
@@ -40,13 +44,11 @@
   background-color: transparent !important;
   font-size: 0.8rem !important;
 }
-
 .prose-styles {
-  @apply prose prose-headings:text-base-900 text-sm  text-base-500   prose-a:text-accent-500  prose-a:no-underline hover:prose-a:underline  prose-a:font-normal prose-strong:text-accent-500   prose-blockquote:text-base-500  prose-blockquote:border-base-400  prose-headings:text-[16px]  prose-ul:leading-tight prose-ul:[list-style-type:'⏤'] prose-ul:space-y-2.5 prose-strong:font-normal   prose-headings:font-normal max-w-none prose-li:marker:text-base-900  mt-0 prose-h1:text-2xl;
+  @apply prose prose-headings:text-base-900 text-sm  text-base-500   prose-a:text-accent-500  prose-a:no-underline hover:prose-a:underline  prose-a:font-normal prose-strong:text-accent-500   prose-blockquote:text-base-500  prose-blockquote:border-base-400  prose-headings:text-[16px]  prose-ul:leading-tight prose-ul:[list-style-type:'⏤'] prose-ul:space-y-2.5 prose-strong:font-normal   prose-headings:font-normal max-w-none prose-li:marker:text-base-900  mt-0 prose-h1:text-2xl 2xl:prose-lg prose-pre:ring-4 prose-pre:ring-base-25 prose-pre:border prose-code:text-accent-600;
 }
 /* Styling Inter font with custom settings, it's cooler like this*/
 /* CSS */
-
 /* Styling  Ninja Keys */
 ninja-keys::part(ninja-input) {
   color: #ffffff;
@@ -54,7 +56,6 @@ ninja-keys::part(ninja-input) {
   margin-left: 2rem !important;
   margin-right: 2rem !important;
 }
-
 ninja-keys {
   --ninja-modal-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3),
     0 4px 6px -4px rgba(0, 0, 0, 0.3) !important;
@@ -73,9 +74,7 @@ ninja-keys::part(ninja-action) {
 ninja-keys::part(ninja-selected) {
   border-left: 4px solid #fff;
 }
-
 /* Styling the code blocks*/
-
 /*DArk*/
 /* :root {
   --astro-code-color-text: theme('colors.base.200');
@@ -93,7 +92,7 @@ ninja-keys::part(ninja-selected) {
 /*Light*/
 :root {
   --astro-code-color-background: theme("colors.base.50");
-  --astro-code-color-text: theme("colors.base.400");
+  --astro-code-color-text: theme("colors.base.500");
   --astro-code-token-comment: theme("colors.base.400");
   --astro-code-token-string: theme("colors.accent.500");
   --astro-code-token-keyword: theme("colors.accent.500");
@@ -108,7 +107,6 @@ code {
   counter-reset: step;
   counter-increment: step 0;
 }
-
 code .line::before {
   content: counter(step);
   counter-increment: step;
@@ -118,11 +116,9 @@ code .line::before {
   text-align: right;
   color: #9da3ae;
 }
-
 [x-cloak] {
   display: none !important;
 }
-
 /* JetBrains Mono */
 @font-face {
   font-family: "JetBrains Mono";
@@ -130,14 +126,12 @@ code .line::before {
   font-weight: 400;
   src: url("/fonts/JetBrainsMono-Regular.woff2") format("woff2");
 }
-
 @font-face {
   font-family: "JetBrains Mono";
   font-style: normal;
   font-weight: 700;
   src: url("/fonts/JetBrainsMono-Bold.woff2") format("woff2");
 }
-
 @font-face {
   font-family: "Atipla ND Book";
   src:
