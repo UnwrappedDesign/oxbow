@@ -1,4 +1,6 @@
 ---
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
 const items = [
   {
     imgSrc: "/images/blueCard.svg",
@@ -27,17 +29,24 @@ const items = [
 <section>
   <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div class="text-center max-w-xl mx-auto lg:text-balance">
-      <span class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase"
-        >Tagline</span
-      >
-      <h1
-        class="text-4xl mt-4 font-semibold tracking-tight text-base-900 sm:text-balance">
+      <Text
+        tag="span"
+        variant="eyebrow">
+        Tagline
+      </Text>
+      <Heading
+        class="mt-4"
+        level={1}
+        variant="defaultSmall">
         Transform your visitors into users with an engaging headline
-      </h1>
-      <p class="mt-6 text-base font-medium text-base-500 sm:text-balance">
+      </Heading>
+      <Text
+        class="mt-4"
+        tag="p"
+        variant="body">
         The fastest method for working together on staging and temporary
         environments.
-      </p>
+      </Text>
     </div>
     <dl
       class="grid sm:grid-cols-2 mt-12 text-center gap-x-6 gap-y-12 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16">
@@ -50,10 +59,20 @@ const items = [
                 src={item.imgSrc}
                 alt={item.imgAlt}
               />
-              <dt class="tracking-tight text-lg font-medium  text-base-900 mt-6">
-                {item.title}
+              <dt class="mt-4">
+                <Heading
+                  level={3}
+                  variant="featureTitle">
+                  {item.title}
+                </Heading>
               </dt>
-              <dd class="mt-2 text-sm text-base-500">{item.description}</dd>
+              <dd>
+                <Text
+                  tag="p"
+                  variant="body">
+                  {item.description}
+                </Text>
+              </dd>
             </div>
           </div>
         ))

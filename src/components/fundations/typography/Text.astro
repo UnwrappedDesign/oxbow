@@ -10,6 +10,7 @@ export interface TextStyles {
 }
 export interface Props {
   tag?:
+    | "a"
     | "p"
     | "span"
     | "small"
@@ -18,10 +19,12 @@ export interface Props {
     | "em"
     | "blockquote"
     | "dd"
-    | "dt";
+    | "dt"
+    | "summary";
   variant?: string;
   class?: string;
   darkMode?: boolean; // Add a prop to indicate if dark mode is enabled
+  href?: string; // Add href for anchor tags
 }
 const textStyles: TextStyles = {
   bigNumbers: {
@@ -31,7 +34,7 @@ const textStyles: TextStyles = {
   eyebrow: {
     light:
       "text-accent-600 uppercase font-mono font-medium tracking-tight text-xs",
-    dark: "text-accent-300 uppercase font-mono font-medium tracking-tight text-xs",
+    dark: "text-white uppercase font-mono font-medium tracking-tight text-xs",
   },
   body: {
     light: "text-base font-medium text-base-500",
@@ -42,25 +45,30 @@ const textStyles: TextStyles = {
     dark: "tracking-tight text-lg font-medium text-base-300",
   },
   caption: {
-    light: "text-sm font-normal text-base-400",
-    dark: "text-sm font-normal text-base-500",
+    light: "text-sm font-normal text-base-500",
+    dark: "text-sm font-normal text-white",
   },
   overline: {
     light: "text-xs font-medium uppercase tracking-wider",
     dark: "text-xs font-medium uppercase tracking-wider",
   },
   small: {
-    light: "text-sm font-normal",
-    dark: "text-sm font-normal",
+    light: "text-sm font-normal text-base-500",
+    dark: "text-sm font-normal text-white",
   },
   link: {
-    light: "text-primary-600 hover:text-primary-700 underline",
-    dark: "text-primary-400 hover:text-primary-500 underline",
+    light:
+      "text-sm font-medium text-accent-500 duration-300 hover:text-base-900",
+    dark: "text-sm font-medium text-white duration-300 hover:text-base-500",
   },
   blockquote: {
     light:
       "text-lg italic font-medium text-base-500 border-l-4 border-base-300 pl-4",
     dark: "text-lg italic font-medium text-base-400 border-l-4 border-base-500 pl-4",
+  },
+  summary: {
+    light: "tracking-tight text-base font-medium text-base-900",
+    dark: "tracking-tight text-base font-medium text-white",
   },
   code: {
     light: "font-mono text-sm bg-base-100 rounded px-1 py-0.5",
@@ -74,6 +82,7 @@ const {
   variant = "body",
   class: className = "",
   darkMode = false, // Get the dark mode prop
+  href = "#", // Default href for anchor tags
   ...rest
 } = Astro.props;
 
@@ -88,6 +97,7 @@ const combinedClasses = `${baseClasses} ${className}`.trim();
 
 <Tag
   class={combinedClasses}
+  href={Tag === "a" ? href : undefined}
   {...rest}>
   <slot />
 </Tag>
