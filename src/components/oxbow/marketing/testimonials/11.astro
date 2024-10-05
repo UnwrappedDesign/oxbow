@@ -1,97 +1,91 @@
+---
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+const member = [
+  {
+    testimonial:
+      "Being in the financial industry, we were always looking for ways to enhance our transactions' security and efficiency",
+    name: "Ana Betancourt",
+    title: "Creator of Something",
+    imgSrc: "/avatars/5.avif",
+  },
+  {
+    testimonial:
+      "Implementing Semplice's blockchain technology has been a game-changer for our supply chain management.",
+    name: "Juanjo Garcia",
+    title: "Founder of his kids",
+    imgSrc: "/avatars/2.avif",
+  },
+  {
+    testimonial:
+      "We were initially hesitant about integrating blockchain technology into our existing systems.",
+    name: "Joana Svenblad",
+    title: "Founder of nothing",
+    imgSrc: "/avatars/3.avif",
+  },
+];
+---
 
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div class="max-w-xl text-center mx-auto">
-      <span
-        class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase"
-        >Testimonials</span
-      >
-      <h1
-        class="text-4xl mt-4 font-semibold tracking-tight text-base-900 lg:text-balance">
+      <Text
+        tag="span"
+        variant="eyebrow">
+        Tagline
+      </Text>
+      <Heading
+        class="mt-4"
+        level={1}
+        variant="default">
         Hear from our customers about their experiences
-      </h1>
-      <p class="mt-6 text-base font-medium text-base-500 lg:text-balance">
+      </Heading>
+      <Text
+        class="mt-4"
+        tag="p"
+        variant="body">
         Find out how our users are using Oxbow UI to create a customized landing
         page for their business.
-      </p>
+      </Text>
     </div>
     <ul
       class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full mt-12 rounded-2xl">
-      <li>
-        <figure class="flex flex-col gap-12 h-full justify-between">
-          <div class="flex flex-col h-full justify-between">
-            <blockquote>
-              <p class="text-xl font-semibold tracking-tight text-base-900">
-                " Being in the financial industry, we were always looking for
-                ways to enhance our transactions' security and efficiency"
-              </p>
-            </blockquote>
-            <div class="mt-6">
-              <h3 class="tracking-tight text-lg font-medium text-base-900">
-                Ana Betancourt
-              </h3>
-              <p class="mt-2 text-sm text-base-500">Creator of Something</p>
-            </div>
-          </div>
-          <figcaption class="justify-between w-full">
-            <img
-              alt="#_"
-              src="/avatars/5.avif"
-              class="object-cover size-full rounded-2xl aspect-[4/3]"
-            />
-          </figcaption>
-        </figure>
-      </li>
-      <li>
-        <figure class="flex flex-col gap-12 h-full justify-between">
-          <div class="flex flex-col h-full justify-between">
-            <blockquote>
-              <p class="text-xl font-semibold tracking-tight text-base-900">
-                "Implementing Semplice's blockchain technology has been a
-                game-changer for our supply chain management. "
-              </p>
-            </blockquote>
-            <div class="mt-6">
-              <h3 class="tracking-tight text-lg font-medium text-base-900">
-                Juanjo Garcia
-              </h3>
-              <p class="mt-2 text-sm text-base-500">Founder of his kids</p>
-            </div>
-          </div>
-          <figcaption class="justify-between w-full">
-            <img
-              alt="#_"
-              src="/avatars/2.avif"
-              class="object-cover size-full rounded-2xl aspect-[4/3]"
-            />
-          </figcaption>
-        </figure>
-      </li>
-      <li>
-        <figure class="flex flex-col gap-12 h-full justify-between">
-          <div class="flex flex-col h-full justify-between">
-            <blockquote>
-              <p class="text-xl font-semibold tracking-tight text-base-900">
-                "We were initially hesitant about integrating blockchain
-                technology into our existing systems. "
-              </p>
-            </blockquote>
-            <div class="mt-6">
-              <h3 class="tracking-tight text-lg font-medium text-base-900">
-                Joana Svenblad
-              </h3>
-              <p class="mt-2 text-sm text-base-500">Founder of nothing</p>
-            </div>
-          </div>
-          <figcaption class="justify-between w-full">
-            <img
-              alt="#_"
-              src="/avatars/3.avif"
-              class="object-cover size-full rounded-2xl aspect-[4/3]"
-            />
-          </figcaption>
-        </figure>
-      </li>
+      {
+        member.map((member) => (
+          <li>
+            <figure class="flex flex-col gap-12 h-full justify-between">
+              <div class="flex flex-col h-full justify-between">
+                <blockquote class="mt-4">
+                  <Text
+                    tag="p"
+                    variant="body">
+                    {member.testimonial}
+                  </Text>
+                </blockquote>
+                <div class="mt-6">
+                  <Heading
+                    level={3}
+                    variant="featureTitle">
+                    {member.name}
+                  </Heading>
+                  <Text
+                    tag="small"
+                    variant="small">
+                    {member.title}
+                  </Text>
+                </div>
+              </div>
+              <figcaption class="justify-between w-full">
+                <img
+                  alt={member.name}
+                  src={member.imgSrc}
+                  class="object-cover size-full rounded-2xl aspect-[4/3]"
+                />
+              </figcaption>
+            </figure>
+          </li>
+        ))
+      }
     </ul>
   </div>
 </section>

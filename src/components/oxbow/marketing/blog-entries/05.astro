@@ -1,5 +1,7 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
 const articles = [
   {
     image:
@@ -36,23 +38,28 @@ const articles = [
   },
 ];
 ---
-
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div class="grid grid-cols-1 lg:grid-cols-3 items-end gap-12">
       <div class="lg:col-span-2 max-w-2xl">
-        <span
-          class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase"
-          >Tagline</span
-        >
-        <h1
-          class="text-4xl mt-4 font-semibold tracking-tight sm:text-6xl lg:text-6xl text-base-900 sm:text-balance">
-          From Our Blog
-        </h1>
-        <p class="mt-6 text-base font-medium text-base-500 lg:text-balance">
-          Dive into our latest articles and stay updated with fresh perspectives
-          and expert advice.
-        </p>
+        <Text
+          tag="span"
+          variant="eyebrow">
+          Tagline
+        </Text>
+        <Heading
+          class="mt-4"
+          level={1}
+          variant="display">
+          Insights and perspectives
+        </Heading>
+        <Text
+          class="mt-4 lg:text-balance"
+          tag="p"
+          variant="body">
+          Exploring topics, tips, and trends in the world of communication and
+          privacy
+        </Text>
       </div>
       <div class="lg:ml-auto">
         <form class="w-full mt-8 flex flex-col sm:flex-row sm:max-w-md gap-2">
@@ -79,17 +86,25 @@ const articles = [
             Subscribe
           </Button>
         </form>
-        <p class="text-xs mt-3 text-base-500">
-          When you sign up, you accept our <a
-            class="text-accent-600 hover:text-base-900"
+        <Text
+          class="mt-4 lg:text-balance"
+          tag="p"
+          variant="small">
+          When you sign up, you accept our
+          <Text
+            tag="a"
             href="#_"
-            >Terms of Service</a
-          > and <a
-            class="text-accent-600 hover:text-base-900"
+            variant="link">
+            See all our open roles
+          </Text>
+          and
+          <Text
+            tag="a"
             href="#_"
-            >Privacy Policy</a
-          >.
-        </p>
+            variant="link">
+            Privacy Policy
+          </Text>
+        </Text>
       </div>
     </div>
     <div
@@ -97,41 +112,50 @@ const articles = [
       {
         articles.map((article) => (
           <article class="relative isolate flex flex-col h-full justify-between gap-8 ">
-            <div class="flex flex-col h-full justify-between">
+            <div class="flex flex-col justify-between">
               <div>
-                <h3 class="tracking-tight text-xl font-medium  text-base-900 pt-8 lg:pt-0">
-                  <a href={article.link}>
+                <Text
+                  tag="a"
+                  href="#_"
+                  variant="link">
+                  <Heading
+                    level={3}
+                    variant="featureTitle">
                     <span class="absolute inset-0" />
                     {article.title}
-                  </a>
-                </h3>
-                <div class="mt-2 mb-4 text-base text-base-500 line-clamp-3">
-                  <p>{article.description}</p>
-                </div>
+                  </Heading>
+                </Text>
+                <Text
+                  class="mt-4 line-clamp-3"
+                  tag="p"
+                  variant="body">
+                  {article.description}
+                </Text>
               </div>
-              <div class="mt-6 flex ">
-                <div class="relative flex items-center gap-x-4">
+                <div class="relative flex items-center gap-x-4 mt-4">
                   <img
                     src={article.authorImage}
                     alt="#_"
                     class="size-12 rounded-full bg-base-50 object-cover"
                   />
                   <div class="text-sm leading-6">
-                    <p class="font-semibold text-base-900">
-                      <a href="#_">
-                        <span class="absolute inset-0" />
-                        {article.author}
-                      </a>
-                    </p>
-                    <dl>
-                      <dt class="sr-only">{article.date}</dt>
-                      <dd class="text-xs text-base-500">
+                    <Text
+                      class="mt-4"
+                      tag="a"
+                      variant="body">
+                      {article.author}
+                    </Text>
+                    <div>
+                      <span class="sr-only">{article.date}</span>
+                      <Text
+                        tag="span"
+                        variant="eyebrow">
                         <time datetime={article.date}>{article.date}</time>
-                      </dd>
-                    </dl>
+                      </Text>
+                    </div>
                   </div>
                 </div>
-              </div>
+
             </div>
             <div class="relative aspect-square shrink-0 ">
               <img

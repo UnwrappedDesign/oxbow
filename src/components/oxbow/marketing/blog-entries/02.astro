@@ -1,5 +1,17 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
+const menuItems = [
+  { label: "Latest Articles", href: "#_" },
+  { label: "Popular Posts", href: "#_" },
+  { label: "Categories", href: "#_" },
+  { label: "Archives", href: "#_" },
+  { label: "About the Author", href: "#_" },
+  { label: "Subscribe to Newsletter", href: "#_" },
+];
+
 const articles = [
   {
     title: "Responsive web design best practices",
@@ -50,18 +62,24 @@ const articles = [
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div class="grid grid-cols-1 lg:grid-cols-3 items-end gap-12">
       <div class="lg:col-span-2 max-w-2xl">
-        <span
-          class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase"
-          >Tagline</span
-        >
-        <h1
-          class="text-4xl mt-4 font-semibold tracking-tight sm:text-6xl lg:text-6xl text-base-900 sm:text-balance">
-          From Our Blog
-        </h1>
-        <p class="mt-6 text-base font-medium text-base-500 lg:text-balance">
-          Dive into our latest articles and stay updated with fresh perspectives
-          and expert advice.
-        </p>
+        <Text
+          tag="span"
+          variant="eyebrow">
+          Tagline
+        </Text>
+        <Heading
+          class="mt-4"
+          level={1}
+          variant="display">
+          Insights and perspectives
+        </Heading>
+        <Text
+          class="mt-4 lg:text-balance"
+          tag="p"
+          variant="body">
+          Exploring topics, tips, and trends in the world of communication and
+          privacy
+        </Text>
       </div>
       <div class="lg:ml-auto">
         <form class="w-full mt-8 flex flex-col sm:flex-row sm:max-w-md gap-2">
@@ -88,17 +106,25 @@ const articles = [
             Subscribe
           </Button>
         </form>
-        <p class="text-xs mt-3 text-base-500">
-          When you sign up, you accept our <a
-            class="text-accent-600 hover:text-base-900"
+        <Text
+          class="mt-4 lg:text-balance"
+          tag="p"
+          variant="small">
+          When you sign up, you accept our
+          <Text
+            tag="a"
             href="#_"
-            >Terms of Service</a
-          > and <a
-            class="text-accent-600 hover:text-base-900"
+            variant="link">
+            See all our open roles
+          </Text>
+          and
+          <Text
+            tag="a"
             href="#_"
-            >Privacy Policy</a
-          >.
-        </p>
+            variant="link">
+            Privacy Policy
+          </Text>
+        </Text>
       </div>
     </div>
     <div
@@ -110,92 +136,59 @@ const articles = [
               <div class="absolute -inset-y-2.5 -inset-x-4 md:-inset-y-6 md:-inset-x-8 sm:rounded-2xl group-hover:bg-base-50 duration-300" />
 
               <div class="relative">
-                <dl>
-                  <dt class="sr-only">{article.date}</dt>
-                  <dd class="text-xs text-base-500">
+                <div>
+                  <span class="sr-only">{article.date}</span>
+                  <Text
+                    tag="span"
+                    variant="eyebrow">
                     <time datetime={article.date}>{article.date}</time>
-                  </dd>
-                </dl>
-                <h3 class=" mt-2 tracking-tight text-2xl font-medium  text-base-900 pt-8 lg:pt-0">
-                  {article.title}
-                </h3>
-                <div class="mt-2 mb-4 text-base lg:text-lg text-base-500 line-clamp-2">
-                  <p>{article.description}</p>
+                  </Text>
                 </div>
+                <Heading
+                  level={3}
+                  variant="featureTitle">
+                  {article.title}
+                </Heading>
+                <Text
+                  class="mt-4"
+                  tag="p"
+                  variant="body">
+                  {article.description}
+                </Text>
               </div>
-              <a
-                class="flex items-center text-sm text-accent-700 font-medium"
-                href={article.link}>
-                <span class="absolute -inset-y-2.5 -inset-x-4 md:-inset-y-4 md:-inset-x-6 sm:rounded-2xl" />
-                <span class="text-accent-500 hover:text-base-900 text-sm font-medium duration-300 flex items-center gap-2 relative">
-                  Read more <span class="sr-only">, {article.title}</span>
-                </span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-chevron-right relative mt-px overflow-visible ml-2.5 size-4"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round">
-                  <path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  />
-                  <path d="M9 6l6 6l-6 6" />
-                </svg>
-              </a>
+              <div class="mt-8">
+                <Text
+                  tag="a"
+                  href="#_"
+                  variant="link"
+                  class="flex items-center gap-2 relative">
+                  Read further
+                  <ChevronRight size="sm" />
+                </Text>
+              </div>
             </article>
           ))
         }
       </div>
       <div class="lg:ml-auto">
-        <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
-        <ul class="space-y-2">
-          <li>
-            <a
-              href="#_"
-              class="text-accent-600 hover:text-base-900 duration-300">
-              Latest Articles
-            </a>
-          </li>
-          <li>
-            <a
-              href="#_"
-              class="text-accent-600 hover:text-base-900 duration-300">
-              Popular Posts
-            </a>
-          </li>
-          <li>
-            <a
-              href="#_"
-              class="text-accent-600 hover:text-base-900 duration-300">
-              Categories
-            </a>
-          </li>
-          <li>
-            <a
-              href="#_"
-              class="text-accent-600 hover:text-base-900 duration-300">
-              Archives
-            </a>
-          </li>
-          <li>
-            <a
-              href="#_"
-              class="text-accent-600 hover:text-base-900 duration-300">
-              About the Author
-            </a>
-          </li>
-          <li>
-            <a
-              href="#_"
-              class="text-accent-600 hover:text-base-900 duration-300">
-              Subscribe to Newsletter
-            </a>
-          </li>
+        <Heading
+          level={4}
+          variant="featureTitle">
+          Quick Links
+        </Heading>
+        <ul class="space-y-2 mt-4">
+          {
+            menuItems.map((item) => (
+              <li>
+                <Text
+                  tag="a"
+                  href="#_"
+                  variant="link">
+                  {item.label}
+                </Text>
+              </li>
+            ))
+          }
         </ul>
       </div>
     </div>
