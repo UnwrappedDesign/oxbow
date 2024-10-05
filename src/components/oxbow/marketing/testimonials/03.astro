@@ -1,12 +1,12 @@
 ---
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
 import IconButton from "@/components/fundations/buttons/IconButton.astro";
 import ChevronLeft from "@/components/fundations/icons/ChevronLeft.astro";
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 ---
-
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
-
     <div
       class="flex flex-col w-full"
       x-data="{
@@ -75,7 +75,6 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
           id="carousel-content-label"
           >Carousel</span
         >
-
         <div class="inline-flex items-center space-x-2 order-last mt-4 w-full">
           <IconButton
             :class="{ 'opacity-50 ': atBeginning }"
@@ -91,7 +90,6 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
             />
             <span class="sr-only">Skip to previous slide page</span>
           </IconButton>
-
           <IconButton
             :class="{ 'opacity-50 ': atEnd }"
             :aria-disabled="atEnd"
@@ -107,7 +105,6 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
             <span class="sr-only">Skip to next slide page</span>
           </IconButton>
         </div>
-
         <ul
           class="flex w-full gap-3 mt-4 overflow-x-scroll scrollbar-hide snap-mandatory snap-x rounded-2xl relative"
           role="listbox"
@@ -122,18 +119,25 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
               class="relative flex flex-col lg:flex-row gap-12 items-center">
               <div>
                 <blockquote>
-                  <p
-                    class="text-3xl font-semibold tracking-tight text-base-900 lg:text-balance">
-                    " Being in the financial industry, we were always looking
-                    for ways to enhance our transactions' security and
-                    efficiency"
-                  </p>
+                  <Heading
+                    class="mt-4"
+                    level={3}
+                    variant="default">
+                    Being in the financial industry, we were always looking for
+                    ways to enhance our transactions' security and efficiency
+                  </Heading>
                 </blockquote>
                 <div class="mt-6">
-                  <h3 class="tracking-tight text-lg font-medium text-base-900">
+                  <Heading
+                    level={3}
+                    variant="featureTitle">
                     Ana Betancourt
-                  </h3>
-                  <p class="mt-2 text-sm text-base-500">Creator of Something</p>
+                  </Heading>
+                  <Text
+                    tag="small"
+                    variant="small">
+                    Creator of Something
+                  </Text>
                 </div>
               </div>
               <figcaption class="justify-between w-full">
@@ -153,17 +157,25 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
               class="relative flex flex-col lg:flex-row gap-12 items-center">
               <div>
                 <blockquote>
-                  <p
-                    class="text-3xl font-semibold tracking-tight text-base-900 lg:text-balance">
-                    "Implementing Semplice's blockchain technology has been a
-                    game-changer for our supply chain management. "
-                  </p>
+                  <Heading
+                    class="mt-4"
+                    level={3}
+                    variant="default">
+                    Implementing Semplice's blockchain technology has been a
+                    game-changer for our supply chain management.
+                  </Heading>
                 </blockquote>
                 <div class="mt-6">
-                  <h3 class="tracking-tight text-lg font-medium text-base-900">
+                  <Heading
+                    level={3}
+                    variant="featureTitle">
                     Juanjo Garcia
-                  </h3>
-                  <p class="mt-2 text-sm text-base-500">Founder of his kids</p>
+                  </Heading>
+                  <Text
+                    tag="small"
+                    variant="small">
+                    Founder of his kids
+                  </Text>
                 </div>
               </div>
               <figcaption class="justify-between w-full">

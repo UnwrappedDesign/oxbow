@@ -1,5 +1,6 @@
 ---
-import Button from "@/components/fundations/buttons/Button.astro";
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
 const articles = [
   {
     image:
@@ -41,30 +42,24 @@ const articles = [
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
       <div class="lg:order-last">
-        <span
-          class="text-accent-600 uppercase font-mono font-medium tracking-tight text-xs">
+        <Text
+          tag="span"
+          variant="eyebrow">
           Tagline
-        </span>
-        <h1
-          class="text-4xl mt-8 tracking-tighter lg:text-7xl lg:text-balance font-semibold text-base-900">
-          From our blog
-        </h1>
-        <p class="mt-6 text-base font-medium text-base-500">
-          Dive into our latest articles and stay updated with fresh perspectives
-          and expert advice.
-        </p>
-        <div class="flex flex-wrap items-center gap-2 mx-auto mt-8">
-          <Button
-            variant="accent"
-            size="sm">
-            Get started
-          </Button>
-          <Button
-            variant="alternative"
-            size="sm">
-            Learn more
-          </Button>
-        </div>
+        </Text>
+        <Heading
+          class="mt-4"
+          level={1}
+          variant="displaySmall">
+          Insights and perspectives
+        </Heading>
+        <Text
+          class="mt-4 lg:text-balance"
+          tag="p"
+          variant="body">
+          Exploring topics, tips, and trends in the world of communication and
+          privacy
+        </Text>
       </div>
       <div class="lg:col-span-2">
         <div class="relative h-full">
@@ -79,39 +74,49 @@ const articles = [
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-24">
       {
         articles.map((article) => (
-          <article class="relative isolate flex flex-col gap-8 ">
-            <div class="flex flex-col justify-between ">
+          <article class="relative ">
+            <div class="flex flex-col justify-between h-full">
               <div>
-                <h3 class="tracking-tight text-xl font-medium  text-base-900 pt-8 lg:pt-0">
-                  <a href={article.link}>
+                <Text
+                  class="mt-4"
+                  tag="a"
+                  href=""
+                  variant="link">
+                  <Heading
+                    level={3}
+                    class="mt-2"
+                    variant="featureTitle">
                     <span class="absolute inset-0" />
                     {article.title}
-                  </a>
-                </h3>
-                <div class="mt-2 mb-4 text-base text-base-500 line-clamp-3">
-                  <p>{article.description}</p>
-                </div>
+                  </Heading>
+                </Text>
+
+                <Text
+                  class="mt-2 line-clamp-3"
+                  tag="p"
+                  variant="body">
+                  {article.description}
+                </Text>
               </div>
-              <div class="mt-6 flex ">
-                <div class="relative flex items-center gap-x-4">
-                  <img
-                    src={article.authorImage}
-                    alt="#_"
-                    class="size-12 rounded-full bg-base-50 object-cover"
-                  />
-                  <div class="text-sm leading-6">
-                    <p class="font-semibold text-base-900">
-                      <a href="#_">
-                        <span class="absolute inset-0" />
-                        {article.author}
-                      </a>
-                    </p>
-                    <dl>
-                      <dt class="sr-only">{article.date}</dt>
-                      <dd class="text-xs text-base-500">
-                        <time datetime={article.date}>{article.date}</time>
-                      </dd>
-                    </dl>
+              <div class="relative flex items-center gap-x-4 mt-4">
+                <img
+                  src={article.authorImage}
+                  alt="#_"
+                  class="size-12 rounded-full bg-base-50 object-cover"
+                />
+                <div>
+                  <Text
+                    tag="a"
+                    variant="body">
+                    {article.author}
+                  </Text>
+                  <div>
+                    <span class="sr-only">{article.date}</span>
+                    <Text
+                      tag="span"
+                      variant="eyebrow">
+                      <time datetime={article.date}>{article.date}</time>
+                    </Text>
                   </div>
                 </div>
               </div>

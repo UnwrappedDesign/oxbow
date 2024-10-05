@@ -1,4 +1,8 @@
 ---
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import XBrand from "@/components/fundations/icons/XBrand.astro";
+import LinkedinBrand from "@/components/fundations/icons/LinkedinBrand.astro";
 const teamMembers = [
   {
     name: "Mike Vega",
@@ -51,17 +55,24 @@ const teamMembers = [
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div class="max-w-xl mx-auto text-center lg:text-balance">
-      <span
-        class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase">
-        tagline</span
-      >
-      <h1 class="text-4xl mt-4 font-semibold tracking-tight text-base-900">
+      <Text
+        tag="span"
+        variant="eyebrow">
+        Tagline
+      </Text>
+      <Heading
+        class="mt-4"
+        level={1}
+        variant="default">
         Introducing our team
-      </h1>
-      <p class="mt-6 text-base font-medium text-base-500">
+      </Heading>
+      <Text
+        class="mt-4 lg:text-balance"
+        tag="p"
+        variant="body">
         Uniting talent with vision. Get to know the dedicated professionals who
         blend their skills and passion to lead us to new heights.
-      </p>
+      </Text>
     </div>
     <ul
       role="list"
@@ -77,68 +88,39 @@ const teamMembers = [
                   alt="#_"
                 />
                 <div>
-                  <h3 class="tracking-tight text-lg font-medium  text-base-900">
+                  <Heading
+                    level={3}
+                    variant="featureTitle">
                     {member.name}
-                  </h3>
-                  <p class="mt-2 text-sm text-base-500 text-balance">
+                  </Heading>
+                  <Text
+                    tag="p"
+                    variant="body">
                     {member.title}
-                  </p>
+                  </Text>
                 </div>
               </div>
-              <p class="mt-8 text-sm text-base-500 text-pretty">
+              <Text
+                class="mt-8"
+                tag="p"
+                variant="body">
                 {member.description}
-              </p>
+              </Text>
             </div>
             <div class="mt-4 flex items-center gap-2 ">
-              <a href="#_">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler text-accent-600 hover:text-base-900 icons-tabler-outline icon-tabler-brand-x">
-                  <>
-                    <path
-                      stroke="none"
-                      d="M0 0h24v24H0z"
-                      fill="none"
-                    />
-                    <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
-                    <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
-                  </>
-                </svg>
-              </a>
-              <a href="#_">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler text-accent-600 hover:text-base-900 icons-tabler-outline icon-tabler-brand-linkedin">
-                  <>
-                    <path
-                      stroke="none"
-                      d="M0 0h24v24H0z"
-                      fill="none"
-                    />
-                    <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
-                    <path d="M8 11l0 5" />
-                    <path d="M8 8l0 .01" />
-                    <path d="M12 16l0 -5" />
-                    <path d="M16 16v-3a2 2 0 0 0 -4 0" />
-                  </>
-                </svg>
-              </a>
+              <Text
+                tag="a"
+                href="#_"
+                variant="link">
+                <XBrand size="sm" />
+              </Text>
+
+              <Text
+                tag="a"
+                href="#_"
+                variant="link">
+                <LinkedinBrand size="sm" />
+              </Text>
             </div>
           </li>
         ))
