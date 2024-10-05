@@ -1,4 +1,6 @@
 ---
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
 const faqs = [
   {
     question: "What's encryption work?",
@@ -21,17 +23,23 @@ const faqs = [
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div>
-      <span
-        class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase"
-        >faq</span
-      >
-      <h1
-        class="text-4xl mt-4 font-semibold tracking-tight text-base-900 lg:text-balance">
+      <Text
+        tag="span"
+        variant="eyebrow">
+        Tagline
+      </Text>
+      <Heading
+        class="mt-4"
+        level={1}
+        variant="default">
         Frequently Asked Questions
-      </h1>
-      <p class="mt-6 text-base font-medium text-base-500">
+      </Heading>
+      <Text
+        class="mt-4 lg:text-balance"
+        tag="p"
+        variant="body">
         Everything you need to know about our platform.
-      </p>
+      </Text>
     </div>
     <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
       {
@@ -40,10 +48,18 @@ const faqs = [
             <span class="size-6 text-xs shrink-0  rounded-full flex items-center justify-center  bg-accent-700  text-white">
               {index + 1}
             </span>
-            <div class="tracking-tight mt-4 text-lg font-medium  text-base-900">
-              {faq.question}
-            </div>
-            <div class="mt-2 text-sm text-base-500">{faq.answer}</div>
+            <Heading
+            class="mt-4"
+              level={3}
+              variant="featureTitle">
+               {faq.question}
+            </Heading>
+            <Text
+              class="mt-4"
+              tag="p"
+              variant="body">
+              {faq.answer}
+            </Text>
           </div>
         ))
       }

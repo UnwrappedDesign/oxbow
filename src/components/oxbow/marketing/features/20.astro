@@ -1,4 +1,34 @@
 ---
+import Badge from "@/components/fundations/badges/Badge.astro";
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import Filters from "@/components/fundations/icons/Filters.astro";
+import WaveSquare from "@/components/fundations/icons/WaveSquare.astro";
+import ArrowIteration from "@/components/fundations/icons/ArrowIteration.astro";
+import Plus from "@/components/fundations/icons/Plus.astro";
+
+const data = [
+  {
+    icon: "Filters",
+    category: "Live editing",
+    text: "Instantly see the result of every change you make.",
+  },
+  {
+    icon: "WaveSquare",
+    category: "Autocompletion",
+    text: "Spotless will suggest the right classes for you as you type.",
+  },
+  {
+    icon: "ArrowIteration",
+    category: "Hide/show classes",
+    text: "Hide or show classes to see how your design changes.",
+  },
+  {
+    icon: "Plus",
+    category: "Color preview",
+    text: "See the color of every class in the autocompletion view.",
+  },
+];
 const features = [
   "Secure Transactions",
   "Proxy Voting Capabilities",
@@ -17,19 +47,26 @@ const features = [
 
 <section>
   <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
-    <div class="text-center max-w-xl mx-auto lg:text-balance">
-      <span
-        class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase"
-        >Tagline</span
-      >
-      <h1
-        class="text-4xl mt-4 font-semibold tracking-tight text-base-900 sm:text-balance">
-        Transform your visitors into users with an engaging headline
-      </h1>
-      <p class="mt-6 text-base font-medium text-base-500 sm:text-balance">
+    <div class="text-center max-w-2xl mx-auto lg:text-balance">
+      <Text
+        tag="span"
+        variant="eyebrow">
+        Tagline
+      </Text>
+      <Heading
+        class="mt-4"
+        level={1}
+        variant="default">
+        Safeguard your workspace with essential applications for end-to-end
+        encryption.
+      </Heading>
+      <Text
+        class="mt-4"
+        tag="p"
+        variant="body">
         The fastest method for working together on staging and temporary
         environments.
-      </p>
+      </Text>
     </div>
     <div>
       <div
@@ -44,122 +81,66 @@ const features = [
         </div>
         <div class="relative flex items-center gap-2 whitespace-nowrap t">
           {
-            features.map((feature, index) => (
-              <div class="inline-flex items-center gap-3 text-sm text-base-600">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-circle-check-filled "
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round">
-                  <path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  />
-                  <path
-                    d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
-                    stroke-width="0"
-                    fill="currentColor"
-                  />
-                </svg>
-                <span class="group-hover:text-white">{feature}</span>
-              </div>
+            features.map((feature) => (
+              <Badge
+                variant="muted"
+                size="sm">
+                {feature}
+              </Badge>
             ))
           }
         </div>
       </div>
     </div>
     <dl
-      class="grid grid-cols-1 sm:grid-cols-2 text-center gap-x-6 gap-y-12 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16 mt-12">
-      <div>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="icon icon-tabler icons-tabler-outline icon-tabler-filters text-accent-500 mx-auto"
-          ><path
-            stroke="none"
-            d="M0 0h24v24H0z"
-            fill="none"
-          ></path><path d="M12 8m-5 0a5 5 0 1 0 10 0a5 5 0 1 0 -10 0"
-          ></path><path d="M8 11a5 5 0 1 0 3.998 1.997"></path><path
-            d="M12.002 19.003a5 5 0 1 0 3.998 -8.003"></path></svg
-        >
-
-        <dt class="tracking-tight mt-8 text-lg font-medium text-base-900">
-          Innovative Design
-        </dt>
-        <dd class="mt-2 text-sm text-base-500 text-pretty">
-          Our cutting-edge design offers a fresh, modern look that transforms
-          your project into a standout experience.
-        </dd>
-      </div>
-      <div>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="icon icon-tabler icons-tabler-outline icon-tabler-wave-square text-accent-500 mx-auto"
-          ><path
-            stroke="none"
-            d="M0 0h24v24H0z"
-            fill="none"
-          ></path><path d="M3 12h5v8h4v-16h4v8h5"></path></svg
-        >
-
-        <dt class="tracking-tight text-lg mt-8 font-medium text-base-900">
-          Powerful Functionality
-        </dt>
-        <dd class="mt-2 text-sm text-base-500 text-pretty">
-          Equipped with advanced features and tools, our solution effortlessly
-          manages complex tasks and workflows.
-        </dd>
-      </div>
-      <div>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-iteration text-accent-500 mx-auto"
-          ><path
-            stroke="none"
-            d="M0 0h24v24H0z"
-            fill="none"
-          ></path><path d="M8.5 16a5.5 5.5 0 1 0 -5.5 -5.5v.5"></path><path
-            d="M3 16h18"></path><path d="M18 13l3 3l-3 3"></path></svg
-        >
-        <dt class="tracking-tight mt-8 text-lg font-medium text-base-900">
-          Easy Integration
-        </dt>
-        <dd class="mt-2 text-sm text-base-500 text-pretty">
-          Integrating with existing systems is smooth and hassle-free, thanks to
-          our incredible flexible approach.
-        </dd>
-      </div>
+      class="grid grid-cols-2 text-center gap-x-6 gap-y-12 lg:grid-cols-4 lg:gap-y-16 mt-12">
+      {
+        data.map((section) => (
+          <div>
+            <div class=" flex flex-col gap-3 text-accent-600">
+              {section.icon === "Filters" && (
+                <Filters
+                  class="mx-auto"
+                  size="base"
+                />
+              )}
+              {section.icon === "WaveSquare" && (
+                <WaveSquare
+                  class="mx-auto"
+                  size="base"
+                />
+              )}
+              {section.icon === "ArrowIteration" && (
+                <ArrowIteration
+                  class="mx-auto"
+                  size="base"
+                />
+              )}
+              {section.icon === "Plus" && (
+                <Plus
+                  class="mx-auto"
+                  size="base"
+                />
+              )}
+              <dt>
+                <Heading
+                  level={3}
+                  variant="featureTitle">
+                  {section.category}
+                </Heading>
+              </dt>
+            </div>
+            <dd>
+              <Text
+                class="mt-2"
+                tag="p"
+                variant="body">
+                {section.text}
+              </Text>
+            </dd>
+          </div>
+        ))
+      }
     </dl>
   </div>
 </section>

@@ -1,56 +1,66 @@
+---
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+
+
+const data = [
+  {
+    image: "/images/whiteCard.svg",
+
+    category: "Live editing",
+    text: "Instantly see the result of every change you make.",
+  },
+  {
+    image: "/images/blueCard.svg",
+
+    category: "Autocompletion",
+    text: "Spotless will suggest the right classes for you as you type.",
+  },
+  {
+    image: "/images/darkCard.svg",
+
+    category: "Hide/show classes",
+    text: "Hide or show classes to see how your design changes.",
+  }
+];
+---
+
 <section>
   <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
-    <dl class="grid md:grid-cols-2 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      <div class="p-1 bg-base-50 rounded-3xl">
-        <div class="rounded-[1.3rem] overflow-hidden shadow">
-          <img
-            src="/images/whiteCard.svg"
-            alt="#_"
-          />
-        </div>
-        <div class="px-4 py-6">
-          <dt class="tracking-tight text-lg font-medium text-base-900">
-            Live editing
-          </dt>
-          <dd class="mt-2 text-sm text-base-500 text-pretty">
-            Instantly see the result of every change you make.
-          </dd>
-        </div>
-      </div>
-      <div class="p-1 bg-base-50 rounded-3xl">
-        <div class="rounded-[1.3rem] overflow-hidden shadow">
-          <img
-            src="/images/blueCard.svg"
-            alt="#_"
-          />
-        </div>
-        <div class="px-4 py-6">
-          <dt class="tracking-tight text-lg font-medium text-base-900">
-            Autocompletion
-          </dt>
-          <dd class="mt-2 text-sm text-base-500 text-pretty">
-            Baking will suggest the right classes for you as you type.
-          </dd>
-        </div>
-      </div>
-      <div class="p-1 bg-base-50 rounded-3xl ">
-        <div class="rounded-[1.3rem] overflow-hidden ">
-          <div class="flex flex-col  ">
+    <dl
+      class="grid grd-cols-1 md:grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-3 lg:gap-y-16">
+      {
+        data.map((section) => (
+
+        <div class="p-1 bg-base-50 rounded-3xl">
+          <div class="rounded-[1.3rem] overflow-hidden shadow">
             <img
-              src="/images/darkCard.svg"
+              src={section.image}
               alt="#_"
+              class="w-full"
             />
           </div>
           <div class="px-4 py-6">
-            <dt class="tracking-tight text-lg font-medium text-base-900">
-              Hide/show classes
-            </dt>
-            <dd class="mt-2 text-sm text-base-500 text-pretty">
-              Hide or show classes to see how your design changes.
+           <dt >
+                <Heading
+                  level={3}
+                  variant="featureTitle">
+                  {section.category}
+                </Heading>
+              </dt>
+             <dd>
+              <Text
+                class="mt-2"
+                tag="p"
+                variant="body">
+                {section.text}
+              </Text>
             </dd>
           </div>
         </div>
-      </div>
+        ))
+      }
     </dl>
+
   </div>
 </section>
