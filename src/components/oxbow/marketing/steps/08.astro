@@ -1,4 +1,6 @@
 ---
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
 const steps = [
   {
     title: "Choose your account type",
@@ -22,26 +24,10 @@ const steps = [
   },
 ];
 ---
-
 <section>
   <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
-    <div class="lg:text-balance max-w-xl mx-auto text-center">
-      <span
-        class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase"
-        >Process</span
-      >
-      <h1
-        class="text-4xl mt-4 font-semibold tracking-tight text-base-900 lg:text-balance">
-        Simple steps to achieve your goals
-      </h1>
-      <p class="text-base font-medium mt-4 text-base-500">
-        Follow these straightforward steps to streamline your process and
-        achieve success with ease.
-      </p>
-    </div>
     <dl
-      class="grid grid-cols-1 text-center md:grid-cols-2 mt-12 lg:grid-cols-4 gap-x-4 gap-y-8">
-      <!-- Loop through each step in the array -->
+      class="grid grid-cols-1 text-center md:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-8">
       {
         steps.map((step, index) => (
           <div>
@@ -51,10 +37,20 @@ const steps = [
               </span>
             </div>
             <div class="mt-6">
-              <dt class="tracking-tight text-lg font-medium text-base-900">
-                {step.title}
+              <dt>
+                <Heading
+                  level={3}
+                  variant="featureTitle">
+                  {step.title}
+                </Heading>
               </dt>
-              <dd class="mt-2 text-sm text-base-500">{step.description}</dd>
+              <dd class="mt-2">
+                <Text
+                  tag="p"
+                  variant="body">
+                {step.description}
+                </Text>
+              </dd>
             </div>
           </div>
         ))

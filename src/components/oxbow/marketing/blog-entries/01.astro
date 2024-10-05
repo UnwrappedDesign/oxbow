@@ -1,5 +1,8 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 const articles = [
   {
     title: "Responsive web design best practices",
@@ -34,20 +37,21 @@ const articles = [
 
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
-    <div class="max-w-xl lg:text-balance">
-      <span
-        class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase"
-        >Tagline</span
-      >
-      <h1
-        class="text-4xl mt-4 font-semibold tracking-tight lg:text-7xl text-base-900 sm:text-balance">
-        From Our Blog
-      </h1>
-      <p class="mt-6 text-base font-medium text-base-500">
-        Dive into our latest articles and stay updated with fresh perspectives
-        and expert advice.
-      </p>
-      <form class="w-full mt-8 flex flex-col sm:flex-row sm:max-w-md gap-2">
+    <div class="max-w-xl lg:text-balance mx-auto text-center">
+      <Text
+        tag="span"
+        variant="eyebrow">
+        Tagline
+      </Text>
+      <Heading
+        class="mt-4"
+        level={1}
+        variant="display">
+        Insights and perspectives
+      </Heading>
+
+      <form
+        class="w-full mt-12 flex flex-col sm:flex-row mx-auto sm:max-w-md gap-2">
         <label
           for="email-address"
           class="sr-only"
@@ -64,25 +68,32 @@ const articles = [
           class="block w-full h-10 px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg shadow appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
         />
         <Button
-        class="w-full sm:w-auto"
+          class="w-full sm:w-auto"
           type="submit"
           variant="accent"
           size="base">
           Subscribe
         </Button>
-
       </form>
-      <p class="text-xs mt-3 text-base-500">
-        When you sign up, you accept our <a
-          class="text-accent-600 hover:text-base-900"
+      <Text
+        class="mt-4 lg:text-balance"
+        tag="p"
+        variant="small">
+        When you sign up, you accept our
+        <Text
+          tag="a"
           href="#_"
-          >Terms of Service</a
-        > and <a
-          class="text-accent-600 hover:text-base-900"
+          variant="link">
+          See all our open roles
+        </Text>
+        and
+        <Text
+          tag="a"
           href="#_"
-          >Privacy Policy</a
-        >.
-      </p>
+          variant="link">
+          Privacy Policy
+        </Text>
+      </Text>
     </div>
     <div
       class="relative sm:pb-12 sm:ml-[calc(2rem+1px)] md:ml-[calc(3.5rem+1px)] lg:ml-[max(calc(14.5rem+1px),calc(100%-80rem))]">
@@ -106,44 +117,41 @@ const articles = [
                   class="fill-white"
                 />
               </svg>
-              <div class="relative">
-                <h3 class="tracking-tight text-2xl font-medium  text-base-900 pt-8 lg:pt-0">
+              <div class="relative  pt-8 lg:pt-0">
+                <Heading
+                  level={3}
+                  class="mt-8"
+                  variant="featureTitle">
                   {article.title}
-                </h3>
-                <div class="mt-2 mb-4 text-base lg:text-lg text-base-500 ">
-                  <p>{article.description}</p>
+                </Heading>
+                <Text
+                  class="mt-4"
+                  tag="p"
+                  variant="body">
+                  {article.description}
+                </Text>
+
+                <div class="absolute left-0 top-0  lg:left-auto lg:right-full lg:mr-[calc(6.5rem+1px)]">
+                  <span class="sr-only">{article.date}</span>
+                    <Text
+                      class="whitespace-nowrap"
+                      tag="span"
+                      variant="eyebrow">
+                      <time datetime={article.date}>{article.date}</time>
+                    </Text>
+
                 </div>
-                <dl class="absolute left-0 top-0 tracking-tight text-lg font-medium  text-base-900 lg:left-auto lg:right-full lg:mr-[calc(6.5rem+1px)]">
-                  <dt class="sr-only">{article.date}</dt>
-                  <dd class="whitespace-nowrap">
-                    <time datetime={article.date}>{article.date}</time>
-                  </dd>
-                </dl>
               </div>
-              <a
-                class="flex items-center text-sm text-accent-700 font-medium"
-                href={article.link}>
-                <span class="absolute -inset-y-2.5 -inset-x-4 md:-inset-y-4 md:-inset-x-6 sm:rounded-2xl" />
-                <span class="text-accent-500 hover:text-base-900 text-sm font-medium duration-300 flex items-center gap-2 relative">
-                  Read more <span class="sr-only">, {article.title}</span>
-                </span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-chevron-right relative mt-px overflow-visible ml-2.5 size-4"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round">
-                  <path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  />
-                  <path d="M9 6l6 6l-6 6" />
-                </svg>
-              </a>
+              <div class="mt-8">
+                <Text
+                  tag="a"
+                  href="#_"
+                  variant="link"
+                  class="flex items-center gap-2 relative">
+                  Read further
+                  <ChevronRight size="sm" />
+                </Text>
+              </div>
             </article>
           ))
         }

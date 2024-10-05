@@ -1,39 +1,28 @@
 ---
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
 const faqs = [
   {
     question: "What is encryption?",
     answer:
-      "End-to-end encryption is a method that ensures only the sender and the recipient of a message can access its content. When you send a message, it is encrypted on your device, making it unreadable by anyone else.",
+      "End-to-end encryption is a method that ensures only the sender and the recipient of a message can access its content. ",
   },
   {
     question: "Forgot my key?",
     answer:
-      "If you forget your encryption key, your encrypted data becomes inaccessible. This is a deliberate security measure to ensure that your sensitive data remains protected, even if someone gains unauthorized access to your account. ",
+      "If you forget your encryption key, your encrypted data becomes inaccessible. ",
   },
   {
     question: "Message limits?",
     answer:
-      "Self-destructing messages are a feature designed to automatically delete themselves after a set period or once they've been read. While this is useful for maintaining privacy, it has its limitations. ",
+      "Self-destructing messages are a feature designed to automatically delete themselves after a set period or once they've been read. ",
   },
 ];
 ---
 
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
-    <div>
-     <span
-        class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase"
-        >faq</span
-      >
-      <h1
-        class="text-4xl mt-4 font-semibold tracking-tight text-base-900 lg:text-balance">
-        Frequently Asked Questions
-      </h1>
-      <p class="mt-6 text-base font-medium text-base-500">
-        Everything you need to know about our platform.
-      </p>
-    </div>
-    <div class="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-3 ">
+    <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
       {
         faqs.map((faq, index) => (
           <div class="flex justify-between rounded-3xl bg-base-50 flex-col lg:gap-12">
@@ -41,12 +30,17 @@ const faqs = [
               {index + 1}
             </span>
             <div class="sm:shrink lg:flex-none p-8">
-              <p class="tracking-tight text-lg font-medium  text-base-900">
+              <Heading
+                level={3}
+                variant="featureTitle">
                 {faq.question}
-              </p>
-              <p class="mt-2 text-base text-base-500 text-pretty lg:text-baöance">
+              </Heading>
+              <Text
+                class="mt-4"
+                tag="p"
+                variant="body">
                 {faq.answer}
-              </p>
+              </Text>
             </div>
           </div>
         ))
