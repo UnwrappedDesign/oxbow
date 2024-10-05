@@ -1,4 +1,6 @@
 ---
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
 const faqs = [
   {
     question: "How does end-to-end encryption work?",
@@ -26,56 +28,54 @@ const faqs = [
     question: "Is my personal information shared or sold to third parties?",
     answer:
       "No, we strictly adhere to a privacy-centric approach. Your personal information is never shared, sold, or monetized. We prioritize your privacy and ensure that your data remains confidential and only accessible to you.",
-  },
-  {
-    question: "Can I use this platform on multiple devices?",
-    answer:
-      "Yes, you can access our platform on multiple devices. Your encrypted data remains synced across all devices, allowing you to seamlessly communicate and access your files and messages from anywhere.",
-  },
-  {
-    question: "Are there any storage limitations for files and documents?",
-    answer:
-      "Our platform provides ample storage space for your files and documents. However, there may be storage limitations based on the pricing plan you choose. We offer flexible plans to suit your needs and provide options to upgrade if you require additional storage capacity.",
-  },
-  {
-    question: "Is it possible to export my data from the platform?",
-    answer:
-      "Yes, you can export your data from the platform. We offer export features that allow you to download your messages, files, and documents, ensuring you have a local copy for backup or migration purposes. It provides you with greater control and flexibility over your data.",
-  },
+  }
 ];
 ---
-
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div>
-     <span
-        class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase"
-        >faq</span
-      >
-      <h1
-        class="text-4xl mt-4 font-semibold tracking-tight text-base-900 lg:text-balance">
+      <Text
+        tag="span"
+        variant="eyebrow">
+        Tagline
+      </Text>
+      <Heading
+        class="mt-4"
+        level={1}
+        variant="default">
         Frequently Asked Questions
-      </h1>
-      <p class="mt-6 text-base font-medium text-base-500">
+      </Heading>
+      <Text
+        class="mt-4 lg:text-balance"
+        tag="p"
+        variant="body">
         Everything you need to know about our platform.
-      </p>
+      </Text>
     </div>
-    <dl class="space-y-8 divide-y divide-base-900/10 mt-12">
+    <ul
+      role="list"
+      class="space-y-8 divide-y divide-base-900/10 mt-12">
       {
         faqs.map((faq) => (
           <div class="pt-8 lg:grid lg:grid-cols-12 lg:gap-12">
-            <dt class="tracking-tight text-lg font-medium  text-base-900 lg:col-span-5">
-              {faq.question}
-            </dt>
-            <dd class="mt-4 lg:col-span-7 lg:mt-0">
-              <p class="ttext-sm text-base-500">{faq.answer}</p>
-            </dd>
+            <div class=" lg:col-span-5">
+              <Heading
+                level={3}
+                variant="featureTitle">
+                {faq.question}
+              </Heading>
+            </div>
+            <div class="mt-4 lg:col-span-7 lg:mt-0">
+              <Text
+                tag="p"
+                variant="body">
+                {faq.answer}
+              </Text>
+            </div>
           </div>
         ))
       }
       <!-- More questions... -->
-    </dl>
+    </ul>
   </div>
 </section>
-
-

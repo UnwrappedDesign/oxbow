@@ -1,61 +1,77 @@
+---
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+const menuItems = [
+  { label: "Latest Articles", href: "#_" },
+  { label: "Popular Posts", href: "#_" },
+  { label: "Categories", href: "#_" },
+  { label: "Archives", href: "#_" },
+  { label: "About the Author", href: "#_" },
+  { label: "Subscribe to Newsletter", href: "#_" },
+];
+---
+
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div>
-      <dl
-        class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase">
-        <dt class="sr-only">01.01.24</dt>
-        <dd>
-          <time datetime="01.01.24">01.01.24</time>
-        </dd>
-      </dl>
-      <h1
-        class="text-4xl mt-4 font-semibold tracking-tight text-base-900 lg:text-balance">
+      <Text
+        tag="span"
+        variant="eyebrow">
+        <time datetime="01.01.24">01.01.24</time>
+      </Text>
+      <Heading
+        class="mt-4"
+        level={1}
+        variant="default">
         Responsive web design best practices
-      </h1>
-      <p class="mt-6 text-base font-medium text-base-500 lg:text-balance">
+      </Heading>
+      <Text
+        class="mt-4 lg:text-balance"
+        tag="p"
+        variant="body">
         Learn the best practices for creating responsive web designs that
         provide a seamless user experience across all devices.
-      </p>
-      <div class="mt-6 flex text-left">
-        <div class="relative flex items-center gap-x-4">
-          <img
-            src="/avatars/1.avif"
-            alt="#_"
-            class="size-12 rounded-full bg-base-50 object-cover"
-          />
-          <div class="text-sm leading-6">
-            <p class="font-semibold text-base-900">
-              <a href="#_">
-                <span class="absolute inset-0"></span> John Doe
-              </a>
-            </p>
-            <p class="text-xs text-base-500">Oxbow UI Writter</p>
+      </Text>
+
+      <div class="group flex-shrink-0 mt-6 flex">
+        <div class="flex items-center gap-2">
+          <div>
+            <img
+              class="inline-block size-9 rounded-full"
+              src="/avatars/1.avif"
+              alt=""
+            />
           </div>
+          <a href="#_">
+            <p
+              class="text-sm font-medium text-base-700 group-hover:text-accent-500">
+              Michael Andreuzza
+            </p>
+            <p class="text-xs font-medium text-base-400">example@example.com</p>
+          </a>
         </div>
       </div>
     </div>
     <div class="mt-12 lg:mt-24 flex border-t pt-12">
       <aside class="hidden lg:block">
-        <h3>Table of Contents</h3>
-        <ul
-          class="text-base-500 mt-4 text-sm list-none space-y-1"
-          role="list">
-          <li>
-            <a
-              class="hover:text-accent-500"
-              href="#mobile-first-approach"
-              >Mobile-First Approach</a
-            >
-          </li>
-          <li class="hover:text-accent-500">
-            <a href="#advantages-of-mobile-first-approach"
-              >Advantages of Mobile-First Approach</a
-            >
-          </li>
-
-          <li class="hover:text-accent-500">
-            <a href="#inclusion">Inclusion</a>
-          </li>
+        <Heading
+          level={4}
+          variant="featureTitle">
+  Table of contents
+        </Heading>
+        <ul class="space-y-2 mt-4">
+          {
+            menuItems.map((item) => (
+              <li>
+                <Text
+                  tag="a"
+                  href="#_"
+                  variant="link">
+                  {item.label}
+                </Text>
+              </li>
+            ))
+          }
         </ul>
       </aside>
       <div

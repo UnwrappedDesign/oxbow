@@ -1,4 +1,7 @@
 ---
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import CircleCheck from "@/components/fundations/icons/CircleCheck.astro";
 const listOne = [
   "Revolutionizing communication",
   "Enhancing productivity",
@@ -12,55 +15,46 @@ const listTwo = [
   "Enabling interoperability",
 ];
 ---
-
 <section class="relative overflow-hidden">
   <div
-    class="flex flex-col items-center pb-24 md:flex-row lg:gap-8 pt-24 mx-auto max-w-7xl relative"
-  >
+    class="flex flex-col items-center pb-24 md:flex-row lg:gap-8 pt-24 mx-auto max-w-7xl relative">
     <div class="px-8 md:pl-12 lg:pl-44 lg:pb-0">
       <div>
-        <span
-          class="text-accent-600 uppercase font-mono font-medium tracking-tight text-xs"
-        >
-          Your next FinTech startup
-        </span>
-        <h1
-          class="text-3xl mt-8 tracking-tighter font-semibold text-base-900 lg:text-balance"
-        >
-          Transform your visitors into users with an engaging headline
-        </h1>
-        <p class="mt-6 text-base font-medium text-base-500">
+        <Text
+          tag="p"
+          variant="eyebrow">
+          Tagline
+        </Text>
+        <Heading
+          class="mt-4"
+          level={1}
+          variant="default">
+          Embrace security from today onwards
+        </Heading>
+        <Text
+          class="mt-4"
+          tag="p"
+          variant="body">
           The fastest method for working together on staging and temporary
           environments.
-        </p>
+        </Text>
         <ul
           role="list"
-          class="lg:flex hidden flex-col gap-1 mt-12 ext-base font-medium text-base-900"
-        >
+          class="lg:flex hidden flex-col gap-1 mt-12 ext-base font-medium text-base-900">
           {
             listOne.map((item, index) => (
               <li>
-                <div class="relative flex flex-row items-center gap-4">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="icon icon-tabler icon-tabler-circle-check-filled text-accent-600"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    strokeWidth="2"
-                    stroke="currentColor"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path
-                      d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
-                      strokeWidth="0"
-                      fill="currentColor"
-                    />
-                  </svg>
-                  <p>{item}</p>
+                <div class=" flex flex-row items-center gap-4">
+                  <CircleCheck
+                    class="text-accent-600"
+                    size="base"
+                    slot="icon"
+                  />
+                  <Text
+                    tag="span"
+                    variant="featureListItem">
+                    {item}
+                  </Text>
                 </div>
               </li>
             ))
@@ -79,52 +73,45 @@ const listTwo = [
     </div>
   </div>
   <div
-    class="flex flex-col items-center pb-24 md:flex-row lg:gap-8 pt-24 mx-auto max-w-7xl relative"
-  >
+    class="flex flex-col items-center pb-24 md:flex-row lg:gap-8 pt-24 mx-auto max-w-7xl relative">
     <div class="px-8 md:pr-12 lg:pr-44 lg:pb-0">
       <div>
-        <span
-          class="text-accent-600 uppercase font-mono font-medium tracking-tight text-xs"
-        >
-          Your next FinTech startup
-        </span>
-        <h1
-          class="text-3xl mt-8 tracking-tighter font-semibold text-base-900 lg:text-balance"
-        >
-          Transform your visitors into users with an engaging headline
-        </h1>
-        <p class="mt-6 text-base font-medium text-base-500">
+        <Text
+          tag="span"
+          variant="eyebrow">
+          Tagline
+        </Text>
+        <Heading
+          class="mt-4"
+          level={1}
+          variant="default">
+          Safeguard your workspace with essential applications for end-to-end
+          encryption.
+        </Heading>
+        <Text
+          class="mt-4"
+          tag="p"
+          variant="body">
           The fastest method for working together on staging and temporary
           environments.
-        </p>
+        </Text>
         <ul
           role="list"
-          class="lg:flex hidden flex-col gap-1 mt-12 ext-base font-medium text-base-900"
-        >
+          class="lg:flex hidden flex-col gap-1 mt-12 ext-base font-medium text-base-900">
           {
-            listTwo.map((item, index) => (
+            listTwo.map((item) => (
               <li>
-                <div class="relative flex flex-row items-center gap-4">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="icon icon-tabler icon-tabler-circle-check-filled text-accent-600"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    strokeWidth="2"
-                    stroke="currentColor"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path
-                      d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"
-                      strokeWidth="0"
-                      fill="currentColor"
-                    />
-                  </svg>
-                  <p>{item}</p>
+                <div class=" flex flex-row items-center gap-4">
+                  <CircleCheck
+                    class="text-accent-600"
+                    size="base"
+                    slot="icon"
+                  />
+                  <Text
+                    tag="span"
+                    variant="featureListItem">
+                    {item}
+                  </Text>
                 </div>
               </li>
             ))

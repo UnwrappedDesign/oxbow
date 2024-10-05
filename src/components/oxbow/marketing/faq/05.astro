@@ -1,4 +1,8 @@
 ---
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
+import Plus from "@/components/fundations/icons/Plus.astro";
 const faqs = [
   {
     question: "How does end-to-end encryption work?",
@@ -28,87 +32,81 @@ const faqs = [
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div class="text-center">
-      <span
-        class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase"
-        >faq</span
-      >
-      <h1
-        class="text-4xl mt-4 font-semibold tracking-tight text-base-900 lg:text-balance">
+      <Text
+        tag="span"
+        variant="eyebrow">
+        Tagline
+      </Text>
+      <Heading
+        class="mt-4"
+        level={1}
+        variant="default">
         Frequently Asked Questions
-      </h1>
-      <p class="mt-6 text-base font-medium text-base-500">
+      </Heading>
+      <Text
+        class="mt-4 lg:text-balance"
+        tag="p"
+        variant="body">
         Everything you need to know about our platform.
-      </p>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
-      <div class="mx-auto divide-y">
-        {
-          faqs.map((faq) => (
-            <details class="group cursor-pointer">
-              <summary
-                class="flex items-center justify-between w-full py-6  text-left select-none tracking-tight text-base font-medium text-base-900 hover:text-accent-500
-                focus:text-accent-500">
-                {faq.question}
-                <svg
-                  class="size-5 duration-300 ease-out  transform group-open:-rotate-45"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M12 6v12m6-6H6"
+      </Text>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
+        <div class="mx-auto divide-y">
+          {
+            faqs.map((faq) => (
+              <details class="group cursor-pointer">
+                <Text
+                  class="flex  items-center justify-between w-full py-6  text-left select-none hover:text-accent-500 focus:text-accent-500"
+                  tag="summary"
+                  variant="summary">
+                  {faq.question}
+                  <Plus
+                    class="duration-300 ease-out  transform group-open:-rotate-45"
+                    size="sm"
                   />
-                </svg>
-              </summary>
-              <div class="py-4 pt-2 text-sm text-base-500">{faq.answer}</div>
-            </details>
-          ))
-        }
-      </div>
-      <div
-        class="p-8 bg-base-50 rounded-3xl flex flex-col h-full justify-center text-center">
-        <div>
+                </Text>
+                <div class="py-4 pt-2 text-sm text-base-500">
+                  <Text
+                    tag="p"
+                    variant="body">
+                    {faq.answer}
+                  </Text>
+                </div>
+              </details>
+            ))
+          }
+        </div>
+        <div
+          class="p-8 bg-base-50 rounded-3xl flex flex-col h-full justify-center text-center">
+          <div>
+            <img
+              class="h-12 mx-auto"
+              src="/images/oxbow/blueLineLogo.png"
+              alt="#_"
+            />
+            <Heading
+              class="mt-4"
+              level={3}
+              variant="default">
+              Got questions?
+            </Heading>
+            <Text
+              class="mt-4 lg:text-balance"
+              tag="p"
+              variant="body">
+              Everything you need to know about our platform. We're here to help
+              you with any questions you might have.
+            </Text>
 
-          <img
-            class="h-12 mx-auto"
-            src="/images/oxbow/blueLineLogo.png"
-            alt="#_"
-          />
-          <h1 class="text-4xl mt-4 font-semibold tracking-tight text-base-900">
-            Got questions?
-          </h1>
-          <p
-            class="mt-6 text-base font-medium text-base-500 max-w-sm mx-auto lg:text-balance">
-            We're here to help you with any questions you might have.
-          </p>
-
-          <div class="flex flex-wrap items-center gap-2 justify-center mt-8">
-            <button
-              class="text-accent-600 flex items-center gap-3 hover:text-base-900 transition-all duration-200 text-sm"
-              aria-label="Action">
-              Learn more
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right">
-                <path
-                  stroke="none"
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                ></path>
-                <path d="M9 6l6 6l-6 6"></path>
-              </svg>
-            </button>
+            <div class="mt-8 justify-center flex">
+              <Text
+                tag="a"
+                href="#_"
+                variant="link"
+                class="flex items-center gap-2">
+                Contact support
+                <ChevronRight size="sm" />
+              </Text>
+            </div>
           </div>
         </div>
       </div>

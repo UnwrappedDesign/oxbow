@@ -1,4 +1,6 @@
 ---
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
 const data = [
   {
     name: "Mike Vega",
@@ -27,18 +29,24 @@ const data = [
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div class="text-center max-w-xl mx-auto">
-      <span
-        class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase"
-        >Tagline</span
-      >
-      <h1
-        class="text-4xl mt-4 font-semibold tracking-tight text-base-900 lg:text-balance">
+      <Text
+        tag="span"
+        variant="eyebrow">
+        Tagline
+      </Text>
+      <Heading
+        class="mt-4"
+        level={1}
+        variant="default">
         Hear from our customers about their experiences
-      </h1>
-      <p class="mt-6 text-base font-medium text-base-500 lg:text-balance">
+      </Heading>
+      <Text
+        class="mt-4"
+        tag="p"
+        variant="body">
         Find out how our users are using Oxbow UI to create a customized landing
         page for their business.
-      </p>
+      </Text>
     </div>
     <ul
       role="list"
@@ -56,19 +64,25 @@ const data = [
                       alt="#_"
                     />
                     <div>
-                      <h3 class="tracking-tight text-lg font-medium  text-base-900">
+                      <Heading
+                        level={3}
+                        variant="featureTitle">
                         {member.name}
-                      </h3>
-                      <p class="mt-2 text-sm text-base-500 text-balance">
+                      </Heading>
+                      <Text
+                        tag="small"
+                        variant="small">
                         {member.title}
-                      </p>
+                      </Text>
                     </div>
                   </div>
                 </figcaption>
-                <blockquote class="mt-12">
-                  <p class="text-sm text-base-500 text-pretty">
+                <blockquote class="mt-4">
+                  <Text
+                    tag="p"
+                    variant="body">
                     {member.testimonial}
-                  </p>
+                  </Text>
                 </blockquote>
               </figure>
             </li>

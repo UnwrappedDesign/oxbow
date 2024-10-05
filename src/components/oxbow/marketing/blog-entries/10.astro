@@ -1,4 +1,7 @@
 ---
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 const articles = [
   {
     image:
@@ -51,58 +54,52 @@ const articles = [
               <div class="absolute inset-0 -z-10 bg-gradient-to-t from-base-100 via-base-200/70" />
               <div class="flex flex-col  gap-y-12 overflow-hidden  ">
                 <div>
-                  <h1 class="text-4xl  font-semibold tracking-tight text-base-900 lg:text-7xl lg:text-balance xl:text-8xl">
-                    {article.title}
-                  </h1>
-                  <div class="mt-6 flex ">
-                    <div class="relative flex items-center gap-x-4">
-                      <img
-                        src={article.authorImage}
-                        alt="#_"
-                        class="size-12 rounded-full bg-base-50 object-cover"
-                      />
-                      <div class="text-sm leading-6">
-                        <p class="font-semibold text-base-900">
-                          <a href="#_">
-                            <span class="absolute inset-0" />
-                            {article.author}
-                          </a>
-                        </p>
-                        <dl>
-                          <dt class="sr-only">{article.date}</dt>
-                          <dd class="text-xs text-base-500">
-                            <time datetime={article.date}>{article.date}</time>
-                          </dd>
-                        </dl>
+                  <Text
+                    class="mt-4"
+                    tag="a"
+                    href=""
+                    variant="link">
+                    <Heading
+                      level={3}
+                      class="lg:text-balance"
+                      variant="display">
+                      <span class="absolute inset-0" />
+                      {article.title}
+                    </Heading>
+                  </Text>
+                  <div class="relative flex items-center gap-x-4 mt-4">
+                    <img
+                      src={article.authorImage}
+                      alt="#_"
+                      class="size-12 rounded-full bg-base-50 object-cover"
+                    />
+                    <div>
+                      <Text
+                        tag="a"
+                        variant="body">
+                        {article.author}
+                      </Text>
+
+                      <div>
+                        <span class="sr-only">{article.date}</span>
+                        <Text
+                          tag="span"
+                          variant="eyebrow">
+                          <time datetime={article.date}>{article.date}</time>
+                        </Text>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class=" flex">
-                  <a
+                <div class="flex">
+                  <Text
+                    tag="a"
                     href="#_"
-                    aria-label="Action"
-                    class="text-accent-500 hover:text-base-900 text-sm font-medium duration-300 flex items-center gap-2"
-                  >
+                    variant="link"
+                    class="flex items-center gap-2">
                     Read further
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"
-                    >
-                      <>
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M9 6l6 6l-6 6" />
-                      </>
-                    </svg>
-                  </a>
+                    <ChevronRight size="sm" />
+                  </Text>
                 </div>
               </div>
             </article>

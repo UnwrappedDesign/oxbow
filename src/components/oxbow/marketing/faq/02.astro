@@ -1,4 +1,7 @@
 ---
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import Plus from "@/components/fundations/icons/Plus.astro";
 const faqsSet1 = [
   {
     question: "How does encryption work?",
@@ -43,7 +46,6 @@ const faqsSet2 = [
       "To update your profile picture, go to 'Profile' in settings and upload a new image.",
   },
 ];
-
 const faqsSet3 = [
   {
     question: "How do I delete my account?",
@@ -69,102 +71,116 @@ const faqsSet3 = [
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div>
-      <span
-        class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase"
-        >faq</span
-      >
-      <h1
-        class="text-4xl mt-4 font-semibold tracking-tight text-base-900 lg:text-balance">
+      <Text
+        tag="span"
+        variant="eyebrow">
+        Tagline
+      </Text>
+      <Heading
+        class="mt-4"
+        level={1}
+        variant="default">
         Frequently Asked Questions
-      </h1>
-      <p class="mt-6 text-base font-medium text-base-500">
+      </Heading>
+      <Text
+        class="mt-4 lg:text-balance"
+        tag="p"
+        variant="body">
         Everything you need to know about our platform.
-      </p>
+      </Text>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-12">
       <div>
-        <p class="tracking-tight text-lg font-medium text-base-900">
+        <Heading
+          level={3}
+          variant="featureTitle">
           General questions
-        </p>
+        </Heading>
         <div class="divide-y border-y mt-8">
           {
             faqsSet1.map((faq) => (
               <details class="group cursor-pointer">
-                <summary class="flex items-center justify-between w-full py-4  text-left select-none tracking-tight text-base font-medium text-base-900 hover:text-accent-500 focus:text-accent-500">
+                <Text
+                  class="flex  items-center justify-between w-full py-4  text-left select-none hover:text-accent-500 focus:text-accent-500"
+                  tag="summary"
+                  variant="summary">
                   {faq.question}
-                  <svg
-                    class="size-5 duration-300 ease-out  transform group-open:-rotate-45"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor">
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M12 6v12m6-6H6"
-                    />
-                  </svg>
-                </summary>
-                <div class="py-4 pt-2 text-sm text-base-500">{faq.answer}</div>
+                  <Plus
+                    class="duration-300 ease-out  transform group-open:-rotate-45"
+                    size="sm"
+                  />
+                </Text>
+                <div class="py-4 pt-2 text-sm text-base-500">
+                  <Text
+                    tag="p"
+                    variant="body">
+                    {faq.answer}
+                  </Text>
+                </div>
               </details>
             ))
           }
         </div>
       </div>
       <div>
-        <p class="tracking-tight text-lg font-medium text-base-900">
+        <Heading
+          level={3}
+          variant="featureTitle">
           Support team
-        </p>
+        </Heading>
         <div class="divide-y border-y mt-8">
           {
             faqsSet2.map((faq) => (
               <details class="group cursor-pointer">
-                <summary class="flex items-center justify-between w-full py-4  text-left select-none tracking-tight text-base font-medium text-base-900 hover:text-accent-500 focus:text-accent-500">
+                <Text
+                  class="flex  items-center justify-between w-full py-4  text-left select-none hover:text-accent-500 focus:text-accent-500"
+                  tag="summary"
+                  variant="summary">
                   {faq.question}
-                  <svg
-                    class="size-5 duration-300 ease-out  transform group-open:-rotate-45"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor">
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M12 6v12m6-6H6"
-                    />
-                  </svg>
-                </summary>
-                <div class="py-4 pt-2 text-sm text-base-500">{faq.answer}</div>
+                  <Plus
+                    class="duration-300 ease-out  transform group-open:-rotate-45"
+                    size="sm"
+                  />
+                </Text>
+                <div class="py-4 pt-2 text-sm text-base-500">
+                  <Text
+                    tag="p"
+                    variant="body">
+                    {faq.answer}
+                  </Text>
+                </div>
               </details>
             ))
           }
         </div>
       </div>
       <div>
-        <p class="tracking-tight text-lg font-medium text-base-900">License</p>
+        <Heading
+          level={3}
+          variant="featureTitle">
+          License
+        </Heading>
         <div class="divide-y border-y mt-8">
           {
             faqsSet3.map((faq) => (
               <details class="group cursor-pointer">
-                <summary class="flex items-center justify-between w-full py-4  text-left select-none tracking-tight text-base font-medium text-base-900 hover:text-accent-500 focus:text-accent-500">
+                <Text
+                  class="flex  items-center justify-between w-full py-4  text-left select-none hover:text-accent-500 focus:text-accent-500"
+                  tag="summary"
+                  variant="summary">
                   {faq.question}
-                  <svg
-                    class="size-5 duration-300 ease-out  transform group-open:-rotate-45"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor">
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M12 6v12m6-6H6"
-                    />
-                  </svg>
-                </summary>
-                <div class="py-4 pt-2 text-sm text-base-500">{faq.answer}</div>
+                  <Plus
+                    class="duration-300 ease-out  transform group-open:-rotate-45"
+                    size="sm"
+                  />
+                </Text>
+                <div class="py-4 pt-2 text-sm text-base-500">
+                  <Text
+                    tag="p"
+                    variant="body">
+                    {faq.answer}
+                  </Text>
+                </div>
               </details>
             ))
           }
