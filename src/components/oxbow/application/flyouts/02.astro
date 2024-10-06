@@ -1,27 +1,28 @@
+---
+import Button from "@/components/fundations/buttons/Button.astro";
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
+---
+
 <div class="h-[40rem]">
   <div class="flex items-center justify-center w-full py-12 mx-auto">
     <!--- When in use set x-data="{ open: false }" -->
     <div
       x-data="{ open: true }"
       class="relative">
-      <button
-        type="button"
+     <Button
+        aria-expanded="false"
         @click="open = !open"
-        class="inline-flex items-center text-sm font-semibold leading-6 text-base-900 gap-x-1"
-        aria-expanded="false">
+        variant="text"
+        size="sm"
+        gap="sm">
         <span>Help Center</span>
-        <svg
-          class="w-5 h-5"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-          aria-hidden="true">
-          <path
-            fill-rule="evenodd"
-            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-            clip-rule="evenodd"
-          ></path>
-        </svg>
-      </button>
+        <ChevronDown
+          size="sm"
+          slot="right-icon"
+        />
+      </Button>
 
       <div
         x-show="open"
@@ -30,7 +31,7 @@
         :class="{ 'opacity-0 translate-y-1': !open, 'opacity-100 translate-y-0': open }">
         <div
           class="flex-auto w-screen max-w-sm p-4 text-sm leading-6 bg-white shadow-lg rounded-3xl ring-1 ring-base-900/5">
-          <div >
+          <div>
             <div
               class="relative flex w-full p-4 rounded-xl group gap-x-6 hover:bg-base-50">
               <div
