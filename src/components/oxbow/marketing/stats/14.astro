@@ -1,73 +1,80 @@
+---
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+const stats = [
+  {
+    label: "Working Individuals",
+    description: "We reached over 30 million users and are growing fast.",
+    value: "30%",
+  },
+  {
+    label: "Super low fee",
+    description:
+      "Enjoy significant savings with our extremely low fee structure.",
+    value: "40%",
+  },
+  {
+    label: "Great Commitment",
+    description: " We’re dedicated to delivering outstanding service and valu.",
+    value: "50%",
+  },
+  {
+    label: "Massive Earnings",
+    description: "Reap the benefits with substantial returns ",
+    value: "100%",
+  },
+  {
+    label: "Customer Satisfaction",
+    description:
+      "Our customers consistently rate us with a 98% satisfaction rate.",
+    value: "98%",
+  },
+  {
+    label: "Global Reach",
+    description: "We’ve expanded our services to over 120 countries worldwide.",
+    value: "120+",
+  },
+  {
+    label: " Transactions",
+    description: "Over 500,000 transactions processed with zero failures.",
+    value: "500K",
+  },
+  {
+    label: "Team Growth",
+    description: "Our team has grown by 150% in the past year.",
+    value: "150%",
+  },
+];
+---
+
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
-    <div class="grid items-center grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-24">
-      <div class="md:order-first">
-        <dl class="grid grid-cols-1 gap-x-2 gap-y-6 mt-12 sm:grid-cols-2">
-          <div class="flex flex-col">
-            <dt class="mt-4">
-              <p class="tracking-tight text-lg font-medium text-base-900">
-                Working Individuals
-              </p>
-              <p class="text-sm text-base-500 text-pretty mt-2">
-                We’re dedicated to delivering outstanding service and value.
-              </p>
-            </dt>
-            <dd
-              class="order-first text-5xl font-normal font-mono text-accent-600">
-              50%
-            </dd>
+    <div class="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        stats.map((stat) => (
+          <div>
+            <div class="flex gap-4 items-baseline">
+              <Text
+                tag="span"
+                variant="smallNumber">
+                {stat.value}
+              </Text>
+              <Heading
+
+                level={3}
+                variant="featureTitle">
+                {stat.label}
+              </Heading>
+            </div>
+            <Text
+              class="mt-2"
+              tag="p"
+              variant="body">
+              {stat.description}
+            </Text>
           </div>
-          <div class="flex flex-col">
-            <dt class="mt-4">
-              <p class="tracking-tight text-lg font-medium text-base-900">
-                Super low fee
-              </p>
-              <p class="text-sm text-base-500 text-pretty mt-2">
-                Enjoy significant savings with our extremely low fee structure.
-              </p>
-            </dt>
-            <dd
-              class="order-first text-5xl font-normal font-mono text-accent-600">
-              90B
-            </dd>
-          </div>
-          <div class="flex flex-col">
-            <dt class="mt-4">
-              <p class="tracking-tight text-lg font-medium text-base-900">
-                Massive Earnings
-              </p>
-              <p class="text-sm text-base-500 text-pretty mt-2">
-                Reap the benefits with substantial returns .
-              </p>
-            </dt>
-            <dd
-              class="order-first text-5xl font-normal font-mono text-accent-600">
-              80%
-            </dd>
-          </div>
-          <div class="flex flex-col">
-            <dt class="mt-4">
-              <p class="tracking-tight text-lg font-medium text-base-900">
-                Growing Impact
-              </p>
-              <p class="text-sm text-base-500 text-pretty mt-2">
-                Join 60 million satisfied users who trust our services.
-              </p>
-            </dt>
-            <dd
-              class="order-first text-5xl font-normal font-mono text-accent-600">
-              90B
-            </dd>
-          </div>
-        </dl>
-      </div>
-      <div class="order-first block w-full">
-        <img
-          alt="#_"
-          class="drop-shadow size-full aspect-square rounded-2xl"
-          src="/people/1w.jpg"
-        />
-      </div>
+        ))
+      }
     </div>
   </div>
 </section>

@@ -1,4 +1,7 @@
 ---
+import Button from "@/components/fundations/buttons/Button.astro";
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
 const logos = [
   {
     src: "/brands/1.svg",
@@ -29,28 +32,43 @@ const logos = [
   },
 ];
 ---
-
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div class="grid grid-cols-1 items-center gap-x-8 gap-y-16 lg:grid-cols-2">
       <div
         class="mx-auto w-full max-w-xl lg:mx-0 bg-base-50 p-8 flex flex-col justify-between h-full rounded-3xl gap-12 lg:gap-24">
         <div>
-          <span class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase">Tagline</span>
-          <h1 class="text-4xl mt-4 font-semibold tracking-tight text-base-900">
+          <Text
+            tag="span"
+            variant="eyebrow">
+            Tagline
+          </Text>
+          <Heading
+            class="mt-4"
+            level={3}
+            variant="default">
             Come build with us and help revolutionize financing
-          </h1>
+          </Heading>
         </div>
-
         <div class="flex items-center gap-4 mt-8 flex-row">
-          <button
-            class="flex items-center justify-center h-10 px-4 py-2 text-sm font-medium text-white transition-all duration-200 rounded-lg bg-accent-700  hover:to-accent-800 shadow focus:ring-2 focus:ring-accent-950 focus:ring-offset-2 ring-offset-base-200 hover:shadow-none"
-            aria-label="Action">
-            Meet our customers
-          </button>
+          <Button
+            variant="accent"
+            size="sm">
+            Get started
+          </Button>
           <div class="text-sm text-base-500">
-            <span class="block">This is some support text</span>
-            <span class="block">and this is also.</span>
+            <Text
+              tag="span"
+              class="block"
+              variant="body">
+              This is some support text
+            </Text>
+            <Text
+              tag="span"
+              class="block"
+              variant="body">
+              and this is also.
+            </Text>
           </div>
         </div>
       </div>
