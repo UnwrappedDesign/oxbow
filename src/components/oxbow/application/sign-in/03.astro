@@ -1,5 +1,7 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
 import Apple from "@/components/fundations/icons/Apple.astro";
 import Chrome from "@/components/fundations/icons/Chrome.astro";
 import Meta from "@/components/fundations/icons/Meta.astro";
@@ -9,17 +11,23 @@ import Meta from "@/components/fundations/icons/Meta.astro";
   <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div class="max-w-lg mx-auto">
       <div class="text-center lg:text-balance">
-        <span
-          class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase"
-          >Sign in</span
-        >
-        <h1
-          class="text-3xl mt-4 font-semibold tracking-tight text-base-900 sm:text-balance">
+        <Text
+          tag="span"
+          variant="eyebrow">
+          Tagline
+        </Text>
+        <Heading
+          class="mt-4"
+          level={1}
+          variant="default">
           Sign in to your account
-        </h1>
-        <p class="mt-6 text-base font-medium text-base-500 sm:text-balance">
+        </Heading>
+        <Text
+          class="mt-4 lg:text-balance"
+          tag="p"
+          variant="body">
           Welcome back! Please enter your email and password to sign in.
-        </p>
+        </Text>
       </div>
       <form
         action="#"
@@ -27,11 +35,12 @@ import Meta from "@/components/fundations/icons/Meta.astro";
         class="mx-auto mt-12 max-w-lg">
         <div class="flex flex-col gap-y-6">
           <div>
-            <label
+            <Text
               for="email"
-              class="block text-sm font-medium text-base-500">
+              tag="label"
+              variant="inputLabel">
               Email
-            </label>
+            </Text>
             <div class="mt-2.5">
               <input
                 type="email"
@@ -52,16 +61,19 @@ import Meta from "@/components/fundations/icons/Meta.astro";
             </div>
           </div>
           <div>
-            <label
-              for="password"
-              class="text-sm font-medium text-base-500 flex items-center justify-between">
+            <Text
+              for="email"
+              tag="label"
+              class="flex items-center justify-between"
+              variant="inputLabel">
               Password
-              <a
-                href="#_"
-                class="text-accent-600 text-sm hover:text-base-900"
-                >Forgot password?</a
-              >
-            </label>
+              <Text
+                for="email"
+                tag="a"
+                variant="link">
+                Forgot password?
+              </Text>
+            </Text>
             <div class="mt-2.5">
               <input
                 type="password"
@@ -81,18 +93,19 @@ import Meta from "@/components/fundations/icons/Meta.astro";
               </span>
             </div>
           </div>
-          <div class="flex items-center">
+          <div class="flex items-center gap-3">
             <input
               id="remember-me"
               name="remember-me"
               type="checkbox"
               class="size-4 rounded border-base-300 text-accent-600 focus:ring-accent-600 shadow"
             />
-            <label
+            <Text
               for="remember-me"
-              class="ml-3 block text-sm leading-6 text-base-900"
-              >Remember me</label
-            >
+              tag="label"
+              variant="inputLabel">
+              Remember me
+            </Text>
           </div>
         </div>
 
@@ -111,8 +124,13 @@ import Meta from "@/components/fundations/icons/Meta.astro";
           aria-hidden="true">
           <div class="w-full border-t"></div>
         </div>
-        <div class="relative flex justify-center text-sm font-medium leading-6">
-          <span class="bg-white px-6 text-base-900">Or Sign in with</span>
+        <div class="relative flex justify-center">
+          <Text
+            class="bg-white px-6 text-base-900"
+            tag="span"
+            variant="small">
+            Or Sign in with
+          </Text>
         </div>
       </div>
       <div class="flex flex-col gap-y-4 mt-4">
@@ -151,14 +169,16 @@ import Meta from "@/components/fundations/icons/Meta.astro";
         </Button>
       </div>
       <div class="flex mt-4 justify-center">
-        <p class="text-sm text-base-500">
+        <Text
+          tag="p"
+          variant="body">
           Don't have an account?
-          <a
-            class="text-accent-600 hover:text-base-900"
-            href="#_"
-            >Sign up</a
-          >
-        </p>
+          <Text
+            tag="a"
+            variant="link">
+            Sign up
+          </Text>
+        </Text>
       </div>
     </div>
   </div>

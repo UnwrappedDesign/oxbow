@@ -1,5 +1,8 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+
 const data = [
   {
     name: "Mike Vega",
@@ -21,14 +24,18 @@ const data = [
           src="/images/oxbow/blueLineLogo.png"
           alt="#_"
         />
-        <p
-          class="text-xl mt-8 lg:text-2xl lg:text-balance font-semibold tracking-tight text-base-900">
+        <Heading
+          level={3}
+          variant="defaultSmall">
           Get started today and start collaborating with your team
-        </p>
-        <p class="mt-4 text-sm text-base-500 lg:text-base lg:text-pretty">
+        </Heading>
+        <Text
+          class="mt-4 lg:text-balance"
+          tag="p"
+          variant="body">
           Streamline your workflow and collaborate seamlessly on staging and
           temporary environments
-        </p>
+        </Text>
         <div class="flex flex-wrap items-center gap-2 mt-8">
           <Button
             variant="accent"
@@ -41,118 +48,43 @@ const data = [
             Learn more
           </Button>
         </div>
-        {
-          data.map((member) => (
-            <>
-              <figure class="flex flex-col  mt-12">
-                <figcaption>
-                  <div class="flex items-center gap-4">
-                    <img
-                      class="object-cover rounded-full size-12"
-                      src={member.imgSrc}
-                      alt="#_"
-                    />
-                    <div>
-                      <h3 class="tracking-tight text-lg font-medium  text-base-900">
-                        {member.name}
-                      </h3>
-                      <p class="mt-1 text-sm text-base-500 text-balance">
-                        {member.title}
-                      </p>
-                    </div>
-                  </div>
-                </figcaption>
-                <blockquote class="mt-6 pl-4 border-l-2 border-accent-500">
-                  <span class="flex items-center gap-2   rounded-full">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      class="icon icon-tabler icons-tabler-filled icon-tabler-star text-yellow-400">
-                      <>
-                        <path
-                          stroke="none"
-                          d="M0 0h24v24H0z"
-                          fill="none"
+        <ul
+          role="list"
+          class="mt-6 pt-6 border-t">
+          {
+            data.map((member) => (
+              <>
+                <li>
+                  <figure class="flex flex-col  h-full ">
+                    <Text
+                      tag="blockquote"
+                      variant="blockquote">
+                      {member.testimonial}
+                    </Text>
+
+                    <figcaption>
+                      <div class="flex items-center gap-2 mt-8">
+                        <img
+                          class="nline-block size-9 rounded-full"
+                          src={member.imgSrc}
+                          alt="#_"
                         />
-                        <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
-                      </>
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      class="icon icon-tabler icons-tabler-filled icon-tabler-star text-yellow-400">
-                      <>
-                        <path
-                          stroke="none"
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
-                      </>
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      class="icon icon-tabler icons-tabler-filled icon-tabler-star text-yellow-400">
-                      <>
-                        <path
-                          stroke="none"
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
-                      </>
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      class="icon icon-tabler icons-tabler-filled icon-tabler-star text-yellow-400">
-                      <>
-                        <path
-                          stroke="none"
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
-                      </>
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      class="icon icon-tabler icons-tabler-filled icon-tabler-star text-yellow-400">
-                      <>
-                        <path
-                          stroke="none"
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
-                      </>
-                    </svg>
-                  </span>
-                  <p class="text-sm mt-4  text-base-500 text-pretty">
-                    {member.testimonial}
-                  </p>
-                </blockquote>
-              </figure>
-            </>
-          ))
-        }
+                        <div>
+                          <h3 class="text-sm font-medium text-base-700 group-hover:text-accent-500">
+                            {member.name}
+                          </h3>
+                          <p class="text-xs font-medium text-base-400 ">
+                            {member.title}
+                          </p>
+                        </div>
+                      </div>
+                    </figcaption>
+                  </figure>
+                </li>
+              </>
+            ))
+          }
+        </ul>
       </div>
       <div class="mt-12 lg:-mt-32 h-full">
         <img

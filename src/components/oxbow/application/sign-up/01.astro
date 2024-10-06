@@ -1,6 +1,9 @@
 ---
-import Button from "@/components/fundations/buttons/Button.astro"
+import Button from "@/components/fundations/buttons/Button.astro";
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
 ---
+
 <section>
   <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div class="max-w-lg mx-auto">
@@ -10,17 +13,18 @@ import Button from "@/components/fundations/buttons/Button.astro"
           src="/images/oxbow/blueLineLogo.png"
           alt="#_"
         />
-        <span
-          class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase"
-          >Sign up</span
-        >
-        <h1
-          class="text-3xl mt-4 font-semibold tracking-tight text-base-900 sm:text-balance">
+        <Heading
+          class="mt-4"
+          level={1}
+          variant="default">
           Join our community
-        </h1>
-        <p class="mt-6 text-base font-medium text-base-500 sm:text-balance">
+        </Heading>
+        <Text
+          class="mt-4 lg:text-balance"
+          tag="p"
+          variant="body">
           Sign up to join our community and start building your brand.
-        </p>
+        </Text>
       </div>
       <form
         action="#"
@@ -28,11 +32,12 @@ import Button from "@/components/fundations/buttons/Button.astro"
         class="mx-auto mt-12 max-w-lg">
         <div class="flex flex-col gap-y-6">
           <div>
-            <label
+            <Text
               for="first-name"
-              class="block text-sm font-medium text-base-500">
-              First name
-            </label>
+              tag="label"
+              variant="inputLabel">
+            First name
+            </Text>
             <div class="mt-2.5">
               <input
                 type="text"
@@ -53,11 +58,12 @@ import Button from "@/components/fundations/buttons/Button.astro"
             </div>
           </div>
           <div>
-            <label
+            <Text
               for="email"
-              class="block text-sm font-medium text-base-500">
+              tag="label"
+              variant="inputLabel">
               Email
-            </label>
+            </Text>
             <div class="mt-2.5">
               <input
                 type="email"
@@ -104,19 +110,20 @@ import Button from "@/components/fundations/buttons/Button.astro"
             class="w-full"
             variant="accent"
             size="base">
-           Sign up
+            Sign up
           </Button>
-       
         </div>
         <div class="flex items-center mt-4">
-          <p class="text-sm text-base-500">
-            Already have an account?
-            <a
-              class="text-accent-600 hover:text-base-900"
-              href="#_"
-              >Sign in</a
-            >
-          </p>
+          <Text
+            tag="p"
+            variant="body">
+            Don't have an account? Already have an account?
+            <Text
+              tag="a"
+              variant="link">
+              Sign in
+            </Text>
+          </Text>
         </div>
       </form>
     </div>

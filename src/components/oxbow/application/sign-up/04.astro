@@ -1,5 +1,7 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
 import Apple from "@/components/fundations/icons/Apple.astro";
 import Chrome from "@/components/fundations/icons/Chrome.astro";
 import Meta from "@/components/fundations/icons/Meta.astro";
@@ -24,17 +26,23 @@ import Meta from "@/components/fundations/icons/Meta.astro";
             src="/images/oxbow/blueLineLogo.png"
             alt="#_"
           />
-          <span
-            class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase"
-            >Sign up</span
-          >
-          <h1
-            class="mt-4 text-3xl font-semibold tracking-tight text-base-900 sm:text-balance">
+          <Text
+            tag="span"
+            variant="eyebrow">
+            Tagline
+          </Text>
+          <Heading
+            class="mt-4"
+            level={1}
+            variant="default">
             Join our community
-          </h1>
-          <p class="mt-6 text-base font-medium text-base-500 sm:text-balance">
+          </Heading>
+          <Text
+            class="mt-4 lg:text-balance"
+            tag="p"
+            variant="body">
             Sign up to join our community and start building your brand.
-          </p>
+          </Text>
         </div>
         <form
           action="#"
@@ -42,11 +50,12 @@ import Meta from "@/components/fundations/icons/Meta.astro";
           class="max-w-lg mx-auto mt-12">
           <div class="flex flex-col gap-y-6">
             <div>
-              <label
+              <Text
                 for="first-name"
-                class="block text-sm font-medium text-base-500">
+                tag="label"
+                variant="inputLabel">
                 First name
-              </label>
+              </Text>
               <div class="mt-2.5">
                 <input
                   type="text"
@@ -57,21 +66,22 @@ import Meta from "@/components/fundations/icons/Meta.astro";
                   aria-required="true"
                   aria-describedby="first-name-error"
                   placeholder="Your first name"
-                  class="block w-full h-10 px-4 py-2 text-sm text-accent-700 placeholder-base-400 duration-300 bg-white border border-transparent rounded-lg shadow appearance-none ring-1 ring-base-200 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+                  class="block w-full h-10 px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg shadow appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
                 />
                 <span
                   id="first-name-error"
-                  class="hidden text-sm text-red-600">
+                  class="text-red-600 text-sm hidden">
                   Please enter your first name.
                 </span>
               </div>
             </div>
             <div>
-              <label
+              <Text
                 for="email"
-                class="block text-sm font-medium text-base-500">
+                tag="label"
+                variant="inputLabel">
                 Email
-              </label>
+              </Text>
               <div class="mt-2.5">
                 <input
                   type="email"
@@ -82,21 +92,22 @@ import Meta from "@/components/fundations/icons/Meta.astro";
                   aria-required="true"
                   aria-describedby="email-error"
                   placeholder="Your email"
-                  class="block w-full h-10 px-4 py-2 text-sm text-accent-700 placeholder-base-400 duration-300 bg-white border border-transparent rounded-lg shadow appearance-none ring-1 ring-base-200 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+                  class="block w-full h-10 px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg shadow appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
                 />
                 <span
                   id="email-error"
-                  class="hidden text-sm text-red-600">
+                  class="text-red-600 text-sm hidden">
                   Please enter a valid email address.
                 </span>
               </div>
             </div>
             <div>
-              <label
+              <Text
                 for="password"
-                class="block text-sm font-medium text-base-500">
+                tag="label"
+                variant="inputLabel">
                 Password
-              </label>
+              </Text>
               <div class="mt-2.5">
                 <input
                   type="password"
@@ -107,21 +118,22 @@ import Meta from "@/components/fundations/icons/Meta.astro";
                   aria-required="true"
                   aria-describedby="password-error"
                   placeholder="Your password"
-                  class="block w-full h-10 px-4 py-2 text-sm text-accent-700 placeholder-base-400 duration-300 bg-white border border-transparent rounded-lg shadow appearance-none ring-1 ring-base-200 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+                  class="block w-full h-10 px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg shadow appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
                 />
                 <span
                   id="password-error"
-                  class="hidden text-sm text-red-600">
+                  class="text-red-600 text-sm hidden">
                   Please enter a valid password.
                 </span>
               </div>
             </div>
             <div>
-              <label
+              <Text
                 for="confirm-password"
-                class="text-sm font-medium text-base-500">
+                tag="label"
+                variant="inputLabel">
                 Confirm Password
-              </label>
+              </Text>
               <div class="mt-2.5">
                 <input
                   type="password"
@@ -132,49 +144,56 @@ import Meta from "@/components/fundations/icons/Meta.astro";
                   aria-required="true"
                   aria-describedby="confirm-password-error"
                   placeholder="Confirm your password"
-                  class="block w-full h-10 px-4 py-2 text-sm text-accent-700 placeholder-base-400 duration-300 bg-white border border-transparent rounded-lg shadow appearance-none ring-1 ring-base-200 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+                  class="block w-full h-10 px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg shadow appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
                 />
                 <span
                   id="confirm-password-error"
-                  class="hidden text-sm text-red-600">
+                  class="text-red-600 text-sm hidden">
                   Passwords do not match.
                 </span>
               </div>
             </div>
-            <div>
-              <div class="flex items-center">
+            <div class="space-y-2">
+              <div class="flex items-center gap-3">
                 <input
                   id="remember-me"
                   name="remember-me"
                   type="checkbox"
-                  class="text-accent-600 border-base-300 rounded size-4 focus:ring-accent-600"
+                  class="size-4 rounded border-base-300 text-accent-600 focus:ring-accent-600 shadow"
                 />
-                <label
+                <Text
                   for="remember-me"
-                  class="block ml-3 text-sm leading-6 text-base-900"
-                  >Remember me</label
-                >
+                  tag="label"
+                  variant="inputLabel">
+                  Remember me
+                </Text>
               </div>
-              <div class="flex items-center mt-2">
+              <div class="flex items-center gap-3">
                 <input
                   id="agreement"
                   name="agreement"
                   type="checkbox"
-                  class="text-accent-600 border-base-300 rounded size-4 focus:ring-accent-600"
+                  class="size-4 rounded border-base-300 text-accent-600 focus:ring-accent-600 shadow"
                 />
-                <label
+                <Text
                   for="agreement"
-                  class="block ml-3 text-sm text-base-500"
-                  >You agree to our <a
-                    class="text-accent-600 hover:text-base-900"
+                  tag="label"
+                  variant="inputLabel">
+                  You agree to our
+                  <Text
+                    tag="a"
                     href="#_"
-                    >Terms of Service</a
-                  > and <a
-                    class="text-accent-600 hover:text-base-900"
+                    variant="link">
+                    Terms of Service
+                  </Text>
+                  and
+                  <Text
+                    tag="a"
                     href="#_"
-                    >Privacy Policy</a
-                  >.</label
-                >
+                    variant="link">
+                    Privacy Policy
+                  </Text>
+                </Text>
               </div>
             </div>
           </div>
@@ -201,11 +220,10 @@ import Meta from "@/components/fundations/icons/Meta.astro";
         </div>
         <div class="flex gap-4 mt-4">
           <Button
-            class="w-full  justify-center"
+            class="w-full justify-center"
             variant="apple-brand"
             size="base"
             gap="gapXS">
-
             <Apple
               size="sm"
               slot="right-icon"
@@ -216,7 +234,6 @@ import Meta from "@/components/fundations/icons/Meta.astro";
             variant="meta-brand"
             size="base"
             gap="gapXS">
-
             <Meta
               size="sm"
               slot="right-icon"
@@ -227,22 +244,23 @@ import Meta from "@/components/fundations/icons/Meta.astro";
             variant="muted"
             size="base"
             gap="gapXS">
-
             <Chrome
               size="sm"
               slot="right-icon"
             />
           </Button>
         </div>
-        <div class="flex justify-center mt-4">
-          <p class="text-sm text-base-500">
-            Already have an account?
-            <a
-              class="text-accent-600 hover:text-base-900"
-              href="#_"
-              >Sign in</a
-            >
-          </p>
+        <div class="flex mt-4">
+          <Text
+            tag="p"
+            variant="body">
+            Don't have an account? Already have an account?
+            <Text
+              tag="a"
+              variant="link">
+              Sign in
+            </Text>
+          </Text>
         </div>
       </div>
     </div>

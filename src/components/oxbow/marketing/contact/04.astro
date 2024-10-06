@@ -1,5 +1,7 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
 ---
 
 <div class="relative bg-white">
@@ -15,18 +17,24 @@ import Button from "@/components/fundations/buttons/Button.astro";
     <div class="px-6 lg:px-8">
       <div class="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
         <div class="max-w-xl lg:text-balance">
-          <span
-            class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase"
-            >Contact</span
-          >
-          <h1
-            class="text-3xl mt-4 font-semibold tracking-tight text-base-900 sm:text-balance">
+          <Text
+            tag="span"
+            variant="eyebrow">
+            Tagline
+          </Text>
+          <Heading
+            class="mt-4"
+            level={1}
+            variant="defaultSmall">
             We would love to hear from you!
-          </h1>
-          <p class="mt-6 text-base font-medium text-base-500 sm:text-balance">
-            Let us know what you have in mind, and we will get back to you as
-            soon as possible.
-          </p>
+          </Heading>
+          <Text
+            class="mt-4 lg:text-balance"
+            tag="p"
+            variant="body">
+            Uniting talent with vision. Get to know the dedicated professionals
+            who blend their skills and passion to lead us to new heights.
+          </Text>
         </div>
         <form
           action="#"
@@ -34,11 +42,12 @@ import Button from "@/components/fundations/buttons/Button.astro";
           class="mx-auto mt-12 max-w-lg">
           <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
             <div>
-              <label
+              <Text
                 for="first-name"
-                class="block text-sm font-medium text-base-500">
+                tag="label"
+                variant="inputLabel">
                 First name
-              </label>
+              </Text>
               <div class="mt-2.5">
                 <input
                   type="text"
@@ -59,11 +68,12 @@ import Button from "@/components/fundations/buttons/Button.astro";
               </div>
             </div>
             <div>
-              <label
+              <Text
                 for="last-name"
-                class="block text-sm font-medium text-base-500">
+                tag="label"
+                variant="inputLabel">
                 Last name
-              </label>
+              </Text>
               <div class="mt-2.5">
                 <input
                   type="text"
@@ -84,36 +94,36 @@ import Button from "@/components/fundations/buttons/Button.astro";
               </div>
             </div>
             <div class="sm:col-span-2">
-              <label
-                for="email"
-                class="block text-sm font-medium text-base-500">
-                Email
-              </label>
+              <Text
+                for="compant"
+                tag="label"
+                variant="inputLabel">
+                Company name
+              </Text>
               <div class="mt-2.5">
                 <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  autocomplete="email"
-                  required
-                  aria-required="true"
-                  aria-describedby="email-error"
-                  placeholder="Your email"
+                  type="text"
+                  name="company"
+                  id="company"
+                  autocomplete="organization"
+                  aria-describedby="company-error"
+                  placeholder="Your company"
                   class="block w-full h-10 px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg shadow appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
                 />
                 <span
-                  id="email-error"
+                  id="company-error"
                   class="text-red-600 text-sm hidden">
-                  Please enter a valid email address.
+                  Please enter your company name.
                 </span>
               </div>
             </div>
             <div class="sm:col-span-2">
-              <label
+              <Text
                 for="phone-number"
-                class="block text-sm font-medium text-base-500">
+                tag="label"
+                variant="inputLabel">
                 Phone number
-              </label>
+              </Text>
               <div class="relative mt-2.5">
                 <div class="absolute inset-y-0 left-0 flex items-center">
                   <label
@@ -256,16 +266,21 @@ import Button from "@/components/fundations/buttons/Button.astro";
             <label
               for="agreement"
               class="ml-3 block text-sm text-base-500"
-              >You agree to our <a
-                class="text-accent-600 hover:text-base-900"
+              >You agree to our
+              <Text
+                tag="a"
                 href="#_"
-                >Terms of Service</a
-              > and <a
-                class="text-accent-600 hover:text-base-900"
+                variant="link">
+                Terms of Service
+              </Text>
+              and
+              <Text
+                tag="a"
                 href="#_"
-                >Privacy Policy</a
-              >.</label
-            >
+                variant="link">
+                Privacy Policy
+              </Text>
+            </label>
           </div>
         </form>
       </div>
