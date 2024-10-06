@@ -1,5 +1,11 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import XBrand from "@/components/fundations/icons/XBrand.astro";
+import LinkedinBrand from "@/components/fundations/icons/LinkedinBrand.astro";
+import YoutubeBrand from "@/components/fundations/icons/YoutubeBrand.astro";
+import GithubBrand from "@/components/fundations/icons/GithubBrand.astro";
 const footerLinks = [
   {
     heading: "Company ",
@@ -44,20 +50,29 @@ const footerLinks = [
   <div class="px-8 py-12 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
       <div>
-        <a
-          href="/"
-          class="font-medium w-full sm:w-auto group flex gap-3 items-center group-hover:text-accent-600 duration-300 group-hover:animate-pulse"
-          ><img
+        <Text
+          class="w-full sm:w-auto flex gap-3 items-center"
+          href="#_"
+          tag="a"
+          variant="footerLink">
+          <img
             class="h-7 2xl:h-12"
             src="/images/oxbow/blueLineLogo.png"
             alt="#_"
-          /> Oxbow UI</a
-        >
+          /> Oxbow UI
+        </Text>
         <div class="mt-8">
-          <p class="text-sm font-medium text-base-900">Join our newsletter</p>
-          <p class="text-sm text-base-500 mt-2">
+           <Heading
+            level={3}
+            variant="featureTitleSmall">
+            Join our newsletter
+          </Heading>
+          <Text
+            class="mt-2 "
+            tag="p"
+            variant="small">
             Stay up to date with our latest news and updates.
-          </p>
+          </Text>
           <form class="w-full mt-8 sm:flex sm:max-w-md">
             <label
               for="email-address"
@@ -91,19 +106,21 @@ const footerLinks = [
         {
           footerLinks.map((section, index) => (
             <nav aria-labelledby={`footer-heading-${index}`}>
-              <h3
+              <Heading
                 id={`footer-heading-${index}`}
-                class="text-sm font-medium  text-base-900">
+                level={3}
+                variant="footerHeading">
                 {section.heading}
-              </h3>
+              </Heading>
               <ul class="mt-4 space-y-4">
                 {section.links.map((link, linkIndex) => (
                   <li>
-                    <a
+                    <Text
                       href={link.href}
-                      class="text-base-600 text-sm md:text-base hover:text-accent-500 duration-300">
+                      tag="a"
+                      variant="footerLink">
                       {link.text}
-                    </a>
+                    </Text>
                   </li>
                 ))}
               </ul>
@@ -114,103 +131,46 @@ const footerLinks = [
     </div>
     <div
       class="pt-12 mt-12 border-t flex flex-col gap-8 sm:flex-row sm:items-center justify-between">
-      <p class="border-base-700 text-base-400 text-sm">
+      <Text
+        tag="p"
+        variant="small">
         Copyright © 2024 Oxbow UI. All rights reserved.
-      </p>
+      </Text>
       <nav
         aria-labelledby="social-icons-heading"
         role="navigation"
         class="flex items-center gap-4 text-base-500">
-        <h2
+        <Heading
           id="social-icons-heading"
-          class="sr-only">
+          class="sr-only"
+          level={3}
+          variant="footerHeading">
           Follow us on social media
-        </h2>
-        <a
+        </Heading>
+        <Text
+          tag="a"
           href="#_"
-          aria-label="Follow us on Brand X">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="icon icon-tabler size-4 hover:text-accent-600 icons-tabler-outline icon-tabler-brand-x"
-            ><path
-              stroke="none"
-              d="M0 0h24v24H0z"
-              fill="none"
-            ></path><path d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path
-              d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg
-          >
-        </a>
-        <a
+          variant="link">
+          <XBrand size="sm" />
+        </Text>
+        <Text
+          tag="a"
           href="#_"
-          aria-label="Follow us on YouTube">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="icon icon-tabler size-4 hover:text-accent-600 icons-tabler-outline icon-tabler-brand-youtube"
-            ><path
-              stroke="none"
-              d="M0 0h24v24H0z"
-              fill="none"
-            ></path><path
-              d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8z"
-            ></path><path d="M10 9l5 3l-5 3z"></path></svg
-          >
-        </a>
-        <a
+          variant="link">
+          <LinkedinBrand size="sm" />
+        </Text>
+        <Text
+          tag="a"
           href="#_"
-          aria-label="Follow us on GitHub">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="icon icon-tabler size-4 hover:text-accent-600 icons-tabler-outline icon-tabler-brand-github"
-            ><path
-              stroke="none"
-              d="M0 0h24v24H0z"
-              fill="none"
-            ></path><path
-              d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"
-            ></path></svg
-          >
-        </a>
-        <a
+          variant="link">
+          <GithubBrand size="sm" />
+        </Text>
+        <Text
+          tag="a"
           href="#_"
-          aria-label="Follow us on Linkedin">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="icon icon-tabler size-4 hover:text-accent-600 icons-tabler-outline icon-tabler-brand-linkedin"
-            ><path
-              stroke="none"
-              d="M0 0h24v24H0z"
-              fill="none"
-            ></path><path
-              d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"
-            ></path><path d="M8 11l0 5"></path><path d="M8 8l0 .01"></path><path
-              d="M12 16l0 -5"></path><path d="M16 16v-3a2 2 0 0 0 -4 0"
-            ></path></svg
-          >
-        </a>
+          variant="link">
+          <YoutubeBrand size="sm" />
+        </Text>
       </nav>
     </div>
   </div>

@@ -1,4 +1,10 @@
 ---
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import XBrand from "@/components/fundations/icons/XBrand.astro";
+import LinkedinBrand from "@/components/fundations/icons/LinkedinBrand.astro";
+import YoutubeBrand from "@/components/fundations/icons/YoutubeBrand.astro";
+import GithubBrand from "@/components/fundations/icons/GithubBrand.astro";
 const footerLinks = [
   {
     heading: "Company ",
@@ -44,34 +50,46 @@ const footerLinks = [
     <div
       class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-x-8 gap-y-24">
       <div class="col-span-full md:col-span-1">
-        <a
-          href="/"
-          class="font-medium w-full sm:w-auto group flex gap-3 text-white items-center group-hover:text-white duration-300 group-hover:animate-pulse"
-          ><img
+        <Text
+          class="w-full sm:w-auto flex gap-3 items-center"
+          href="#_"
+          tag="a"
+          darkMode={true}
+          variant="footerLink">
+          <img
             class="h-7 2xl:h-12"
             src="/images/oxbow/whiteLineLogo.png"
             alt="#_"
-          /> Oxbow UI</a
-        >
-        <p class="text-sm text-base-200 mt-4">Designed in europe.</p>
+          /> Oxbow UI
+        </Text>
+        <Text
+          tag="p"
+          darkMode={true}
+          variant="small">
+          Designed in europe.
+        </Text>
       </div>
       {
         footerLinks.map((section, index) => (
           <div class="space-y-4">
             <nav aria-labelledby={`footer-heading-${index}`}>
-              <h3
+              <Heading
                 id={`footer-heading-${index}`}
-                class="text-sm font-medium  text-white">
+                darkMode={true}
+                level={3}
+                variant="footerHeading">
                 {section.heading}
-              </h3>
+              </Heading>
               <ul class="mt-4 space-y-4">
                 {section.links.map((link, linkIndex) => (
                   <li>
-                    <a
+                    <Text
                       href={link.href}
-                      class="text-base-300 text-sm md:text-base hover:text-white duration-300">
+                      darkMode={true}
+                      tag="a"
+                      variant="footerLink">
                       {link.text}
-                    </a>
+                    </Text>
                   </li>
                 ))}
               </ul>
@@ -82,105 +100,51 @@ const footerLinks = [
     </div>
     <div
       class="pt-12 mt-12 border-t flex border-white/20 flex-col gap-8 sm:flex-row sm:items-center justify-between">
-      <p
-        class="text-base-200 text-sm"
-                           >
+      <Text
+        tag="p"
+        darkMode={true}
+        variant="small">
         Copyright © 2024 Oxbow UI. All rights reserved.
-      </p>
+      </Text>
       <nav
         aria-labelledby="social-icons-heading"
         role="navigation"
         class="flex items-center gap-4 text-base-200">
-        <h2
+        <Heading
           id="social-icons-heading"
-          class="sr-only">
+          class="sr-only"
+          level={3}
+          variant="footerHeading">
           Follow us on social media
-        </h2>
-        <a
+        </Heading>
+        <Text
+          tag="a"
           href="#_"
-          aria-label="Follow us on Brand X">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="icon icon-tabler size-4 hover:text-white icons-tabler-outline icon-tabler-brand-x"
-            ><path
-              stroke="none"
-              d="M0 0h24v24H0z"
-              fill="none"
-            ></path><path d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path
-              d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg
-          >
-        </a>
-        <a
+          darkMode={true}
+          variant="link">
+          <XBrand size="sm" />
+        </Text>
+        <Text
+          tag="a"
           href="#_"
-          aria-label="Follow us on YouTube">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="icon icon-tabler size-4 hover:text-white icons-tabler-outline icon-tabler-brand-youtube"
-            ><path
-              stroke="none"
-              d="M0 0h24v24H0z"
-              fill="none"
-            ></path><path
-              d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8z"
-            ></path><path d="M10 9l5 3l-5 3z"></path></svg
-          >
-        </a>
-        <a
+          darkMode={true}
+          variant="link">
+          <LinkedinBrand size="sm" />
+        </Text>
+        <Text
+          tag="a"
           href="#_"
-          aria-label="Follow us on GitHub">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="icon icon-tabler size-4 hover:text-white icons-tabler-outline icon-tabler-brand-github"
-            ><path
-              stroke="none"
-              d="M0 0h24v24H0z"
-              fill="none"
-            ></path><path
-              d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"
-            ></path></svg
-          >
-        </a>
-        <a
+          darkMode={true}
+          variant="link">
+          <GithubBrand size="sm" />
+        </Text>
+        <Text
+          tag="a"
           href="#_"
-          aria-label="Follow us on Linkedin">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="icon icon-tabler size-4 hover:text-white icons-tabler-outline icon-tabler-brand-linkedin"
-            ><path
-              stroke="none"
-              d="M0 0h24v24H0z"
-              fill="none"
-            ></path><path
-              d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"
-            ></path><path d="M8 11l0 5"></path><path d="M8 8l0 .01"></path><path
-              d="M12 16l0 -5"></path><path d="M16 16v-3a2 2 0 0 0 -4 0"
-            ></path></svg
-          >
-        </a>
+          darkMode={true}
+          variant="link">
+          <YoutubeBrand size="sm" />
+        </Text>
       </nav>
     </div>
   </div>
