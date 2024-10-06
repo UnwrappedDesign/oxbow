@@ -1,4 +1,6 @@
 ---
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
 import Apple from "@/components/fundations/icons/Apple.astro";
 import GooglePlay from "@/components/fundations/icons/GooglePlay.astro";
@@ -22,16 +24,22 @@ const footerLinks = [
       class="flex flex-col gap-12 sm:flex-row justify-between sm:items-start">
       <div>
         <div>
-          <a
+          <Text
+            class="w-full sm:w-auto flex gap-3 items-center"
             href="#_"
-            class="font-medium w-full sm:w-auto group flex gap-3 items-center group-hover:text-accent-600 duration-300 group-hover:animate-pulse"
-            ><img
+            tag="a"
+            variant="footerLink">
+            <img
               class="h-7 2xl:h-12"
               src="/images/oxbow/blueLineLogo.png"
               alt="#_"
-            /> Oxbow UI</a
-          >
-          <p class="text-sm text-base-500 mt-4">Designed in europe.</p>
+            /> Oxbow UI
+          </Text>
+          <Text
+            tag="p"
+            variant="small">
+            Designed in europe.
+          </Text>
         </div>
         {
           footerLinks.map((section, index) => (
@@ -41,11 +49,12 @@ const footerLinks = [
               <ul class=" gap-x-4 flex flex-wrap">
                 {section.links.map((link, linkIndex) => (
                   <li>
-                    <a
+                    <Text
                       href={link.href}
-                      class="text-base-600 text-sm md:text-base hover:text-accent-500 duration-300">
+                      tag="a"
+                      variant="footerLink">
                       {link.text}
-                    </a>
+                    </Text>
                   </li>
                 ))}
               </ul>
@@ -53,60 +62,61 @@ const footerLinks = [
           ))
         }
       </div>
-      <div>
-        <p class="text-sm font-medium tracking-tight text-base-900">
-          Get started with our app today
-        </p>
-        <div class="flex flex-col items-center mt-4 gap-2">
-          <Button
+      <div class="flex flex-col items-center gap-2">
+        <Button
           class="w-full"
-            variant="alternative"
-            gap="xs"
-            size="sm">
-            <Apple
-              size="sm"
-              slot="left-icon"
-            />
-            <span>Download on App Store</span>
-          </Button>
-          <Button
+          variant="alternative"
+          gap="xs"
+          size="sm">
+          <Apple
+            size="sm"
+            slot="left-icon"
+          />
+          <span>Download on App Store</span>
+        </Button>
+        <Button
           class="w-full"
-            variant="alternative"
-            gap="xs"
-            size="sm">
-            <GooglePlay
-              size="sm"
-              slot="left-icon"
-            />
-            <span>Download on Google Play</span>
-          </Button>
-        </div>
+          variant="alternative"
+          gap="xs"
+          size="sm">
+          <GooglePlay
+            size="sm"
+            slot="left-icon"
+          />
+          <span>Download on Google Play</span>
+        </Button>
       </div>
     </div>
     <div
       class="pt-12 mt-12 border-t flex flex-col gap-8 sm:flex-row sm:items-center justify-between">
-      <p class="border-base-700 text-base-400 text-sm">
+      <Text
+        tag="p"
+        variant="small">
         Copyright © 2024 Oxbow UI. All rights reserved.
-      </p>
+      </Text>
       <nav
         aria-labelledby="legal-links"
         role="navigation"
         class="flex items-center gap-4 text-base-500 text-sm">
-        <h2
+        <Heading
           id="legal-links"
-          class="sr-only">
+          class="sr-only"
+          level={3}
+          variant="footerHeading">
           Legal and terms
-        </h2>
-        <a
+        </Heading>
+        <Text
           href="#_"
-          class="hover:text-accent-500 duration-300">
+          tag="a"
+          variant="footerLink">
           Terms of Service
-        </a>
-        <a
+        </Text>
+        <Text
           href="#_"
-          class="hover:text-accent-500 duration-300">
+          tag="a"
+          variant="footerLink">
           Privacy Policy
-        </a>
+        </Text>
       </nav>
     </div>
   </div>

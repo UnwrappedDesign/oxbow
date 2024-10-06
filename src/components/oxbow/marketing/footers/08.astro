@@ -1,4 +1,6 @@
 ---
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
 const footerLinks = [
   {
     heading: "Company ",
@@ -60,15 +62,17 @@ const footerLinks = [
 <section>
   <div class="px-8 py-12 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div class="flex flex-col md:flex-row md:items-center justify-between">
-      <a
+      <Text
+        class="w-full sm:w-auto flex gap-3 items-center"
         href="#_"
-        class="font-medium w-full sm:w-auto group flex gap-3 items-center group-hover:text-accent-600 duration-300 group-hover:animate-pulse"
-        ><img
+        tag="a"
+        variant="footerLink">
+        <img
           class="h-7 2xl:h-12"
           src="/images/oxbow/blueLineLogo.png"
           alt="#_"
-        /> Oxbow UI</a
-      >
+        /> Oxbow UI
+      </Text>
       <p class="text-sm text-base-500">Designed in europe.</p>
     </div>
     <div
@@ -77,19 +81,21 @@ const footerLinks = [
         footerLinks.map((section, index) => (
           <div class="space-y-4">
             <nav aria-labelledby={`footer-heading-${index}`}>
-              <h3
+              <Heading
                 id={`footer-heading-${index}`}
-                class="text-sm font-medium  text-base-900">
+                level={3}
+                variant="footerHeading">
                 {section.heading}
-              </h3>
+              </Heading>
               <ul class="mt-4 space-y-4">
                 {section.links.map((link, linkIndex) => (
                   <li>
-                    <a
+                    <Text
                       href={link.href}
-                      class="text-base-600 text-sm md:text-base hover:text-accent-500 duration-300">
+                      tag="a"
+                      variant="footerLink">
                       {link.text}
-                    </a>
+                    </Text>
                   </li>
                 ))}
               </ul>
@@ -100,30 +106,34 @@ const footerLinks = [
     </div>
     <div
       class="pt-12 mt-12 border-t flex flex-col gap-8 sm:flex-row sm:items-center justify-between">
-      <p
-        class="border-base-700 text-base-400 text-sm"
-                           >
+      <Text
+        tag="p"
+        variant="small">
         Copyright © 2024 Oxbow UI. All rights reserved.
-      </p>
+      </Text>
       <nav
         aria-labelledby="legal-links"
         role="navigation"
         class="flex items-center gap-4 text-base-500 text-sm">
-        <h2
+        <Heading
           id="legal-links"
-          class="sr-only">
+          class="sr-only"
+          level={3}
+          variant="footerHeading">
           Legal and terms
-        </h2>
-        <a
+        </Heading>
+        <Text
           href="#_"
-          class="hover:text-accent-500 duration-300">
+          tag="a"
+          variant="footerLink">
           Terms of Service
-        </a>
-        <a
+        </Text>
+        <Text
           href="#_"
-          class="hover:text-accent-500 duration-300">
+          tag="a"
+          variant="footerLink">
           Privacy Policy
-        </a>
+        </Text>
       </nav>
     </div>
   </div>
