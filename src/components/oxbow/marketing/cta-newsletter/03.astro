@@ -1,5 +1,7 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
 ---
 
 <section>
@@ -10,20 +12,26 @@ import Button from "@/components/fundations/buttons/Button.astro";
         src="/images/oxbow/blueLineLogo.png"
         alt="#_"
       />
-      <p
-        class="mt-8 text-xl font-semibold tracking-tight text-base-900 lg:text-4xl lg:text-balance">
+      <Heading
+        level={3}
+        variant="default">
         Join our newsletter
-      </p>
-      <p class="mt-4 text-sm text-base-500 lg:text-base lg:text-balance">
+      </Heading>
+      <Text
+        class="mt-4 lg:text-balance"
+        tag="p"
+        variant="body">
         Stay up to date with our latest news and updates.
-      </p>
+      </Text>
     </div>
     <form class="w-full mx-auto mt-8 sm:flex sm:max-w-md">
-      <label
+      <Text
         for="email-address"
         class="sr-only"
-        >Email address</label
-      >
+        tag="label"
+        variant="inputLabel">
+        Email address
+      </Text>
       <input
         id="email-address"
         type="email"
@@ -44,16 +52,22 @@ import Button from "@/components/fundations/buttons/Button.astro";
         </Button>
       </div>
     </form>
-    <p class="text-xs mt-3 text-base-500 text-center">
-      When you sign up, you accept our <a
-        class="text-accent-600 hover:text-base-900"
-        href="#_"
-        >Terms of Service</a
-      > and <a
-        class="text-accent-600 hover:text-base-900"
-        href="#_"
-        >Privacy Policy</a
-      >.
-    </p>
+    <Text
+      class="text-center mt-4"
+      tag="p"
+      variant="small">
+      When you sign up, you accept our
+      <Text
+        tag="a"
+        variant="link">
+        Terms of Service
+      </Text>
+      and
+      <Text
+        tag="a"
+        variant="link">
+        Privacy Policy
+      </Text>
+    </Text>
   </div>
 </section>
