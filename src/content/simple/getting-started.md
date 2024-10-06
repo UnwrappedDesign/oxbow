@@ -11,6 +11,7 @@ We are using different naming for colors, for example:
 
 - Accent
 - Base
+- Success
 - Error
 - Warning
 
@@ -94,7 +95,7 @@ warning: {
 
 ## Typography
 
-For typography we using Inter, but we have customized and added stylistic sets.
+For typography we are using Inter, but we have customized and added stylistic sets.
 
 You can grab the CDN from Rasmus website.
 ```html
