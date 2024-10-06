@@ -1,5 +1,9 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
 const links = [
   {
     category: "Browse by category",
@@ -59,26 +63,19 @@ const links = [
     x-data="{ open: true }">
     <div
       class="flex items-center justify-center px-8 mx-auto max-w-7xl md:px-12 lg:px-24">
-      <button
-        type="button"
+      <Button
+        aria-expanded="false"
         @click="open = !open"
-        class="inline-flex items-center text-sm font-semibold leading-6 text-base-900 gap-x-1"
-        aria-expanded="false">
+        variant="text"
+        size="sm"
+        gap="sm">
         <span>Help Center</span>
-        <svg
-          class="w-5 h-5"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-          aria-hidden="true">
-          <path
-            fill-rule="evenodd"
-            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-            clip-rule="evenodd"
-          ></path>
-        </svg>
-      </button>
+        <ChevronDown
+          size="sm"
+          slot="right-icon"
+        />
+      </Button>
     </div>
-
     <!-- Flyout menu -->
     <div
       x-show="open"
@@ -96,18 +93,22 @@ const links = [
           {
             links.map((categoryItem, index) => (
               <div>
-                <h3 class="text-sm font-medium text-base-900">
+                <Heading
+                  level={3}
+                  variant="footerHeading">
                   {categoryItem.category}
-                </h3>
+                </Heading>
                 <div
-                  class="mt-2 space-y-2"
+                  class="mt-4 pt-4 border-t border-gray-200 space-y-2"
                   role="none">
                   {categoryItem.features.map((feature, featureIndex) => (
-                    <a
-                      href={feature.link}
-                      class="block text-sm duration-300 text-base-500 hover:text-accent-500">
+                    <Text
+                      href="#_"
+                      tag="a"
+                      class="block "
+                      variant="navigationLink">
                       {feature.name}
-                    </a>
+                    </Text>
                   ))}
                 </div>
               </div>
@@ -117,14 +118,19 @@ const links = [
         <div
           class="grid items-end grid-cols-1 gap-4 p-8 mt-12 sm:grid-cols-2 bg-base-50 rounded-2xl">
           <div>
-            <p class="text-xl font-semibold tracking-tight text-base-900">
+            <Heading
+              level={3}
+              variant="featureTitle">
               Discover your perfect style
-            </p>
-            <p class="mt-4 text-sm text-base-500 lg:text-base text-balance">
+            </Heading>
+            <Text
+              class="mt-4 lg:text-balance"
+              tag="p"
+              variant="body">
               Explore the latest trends and effortlessly shop exclusive
               collections, all while enjoying a personalized shopping experience
               tailored just for you
-            </p>
+            </Text>
           </div>
           <div class="flex flex-col items-center gap-2 lg:flex-row sm:ml-auto">
             <Button
