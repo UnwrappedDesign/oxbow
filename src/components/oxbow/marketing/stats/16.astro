@@ -1,3 +1,53 @@
+---
+import Button from "@/components/fundations/buttons/Button.astro";
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+const stats = [
+  {
+    label: "Working Individuals",
+    description: "We reached over 30 million users and are growing fast.",
+    value: "30%",
+  },
+  {
+    label: "Super low fee",
+    description:
+      "Enjoy significant savings with our extremely low fee structure.",
+    value: "40%",
+  },
+  {
+    label: "Great Commitment",
+    description: " We’re dedicated to delivering outstanding service and valu.",
+    value: "50%",
+  },
+  {
+    label: "Massive Earnings",
+    description: "Reap the benefits with substantial returns ",
+    value: "100%",
+  },
+  {
+    label: "Customer Satisfaction",
+    description:
+      "Our customers consistently rate us with a 98% satisfaction rate.",
+    value: "98%",
+  },
+  {
+    label: "Global Reach",
+    description: "We’ve expanded our services to over 120 countries worldwide.",
+    value: "120+",
+  },
+  {
+    label: " Transactions",
+    description: "Over 500,000 transactions processed with zero failures.",
+    value: "500K",
+  },
+  {
+    label: "Team Growth",
+    description: "Our team has grown by 150% in the past year.",
+    value: "150%",
+  },
+];
+---
+
 <div class="relative">
   <img
     class="h-56 w-full bg-base-50 border-8 border-white rounded-3xl object-cover lg:absolute lg:inset-y-0 lg:right-0 lg:h-full lg:w-1/2"
@@ -7,76 +57,64 @@
   <div class="mx-auto grid max-w-7xl lg:grid-cols-2">
     <div class="px-6 pb-24 pt-16 sm:pb-32 sm:pt-20 lg:px-8 lg:pt-32">
       <div class="mx-auto max-w-2xl lg:ml-0 lg:max-w-lg">
-        <span
-          class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase"
-          >Tagline</span
-        >
-        <h1
-          class="text-3xl lg:text-4xl mt-4 font-semibold tracking-tight text-base-900 lg:text-balance">
+        <Text
+          tag="span"
+          variant="eyebrow">
+          Tagline
+        </Text>
+        <Heading
+          class="mt-4"
+          level={1}
+          variant="default">
           Empower your finances with our unmatched value
-        </h1>
-        <p class="text-base font-medium mt-4 text-base-500 text-pretty hdd">
+        </Heading>
+        <Text
+          class="mt-4"
+          tag="p"
+          variant="body">
           Experience low fees, unwavering commitment, and massive earnings with
           a service trusted by over 60 million users.
-        </p>
-        <dl class="grid grid-cols-1 gap-x-2 gap-y-6 mt-12 sm:grid-cols-2">
-          <div class="flex flex-col">
-            <dt class="mt-4">
-              <p class="tracking-tight text-lg font-medium text-base-900">
-                Working Individuals
-              </p>
-              <p class="text-sm text-base-500 text-pretty mt-2">
-                We’re dedicated to delivering outstanding service and value.
-              </p>
-            </dt>
-            <dd
-              class="order-first text-5xl font-normal font-mono text-accent-600">
-              50%
-            </dd>
-          </div>
-          <div class="flex flex-col">
-            <dt class="mt-4">
-              <p class="tracking-tight text-lg font-medium text-base-900">
-                Super low fee
-              </p>
-              <p class="text-sm text-base-500 text-pretty mt-2">
-                Enjoy significant savings with our extremely low fee structure.
-              </p>
-            </dt>
-            <dd
-              class="order-first text-5xl font-normal font-mono text-accent-600">
-              90B
-            </dd>
-          </div>
-          <div class="flex flex-col">
-            <dt class="mt-4">
-              <p class="tracking-tight text-lg font-medium text-base-900">
-                Massive Earnings
-              </p>
-              <p class="text-sm text-base-500 text-pretty mt-2">
-                Reap the benefits with substantial returns .
-              </p>
-            </dt>
-            <dd
-              class="order-first text-5xl font-normal font-mono text-accent-600">
-              80%
-            </dd>
-          </div>
-          <div class="flex flex-col">
-            <dt class="mt-4">
-              <p class="tracking-tight text-lg font-medium text-base-900">
-                Growing Impact
-              </p>
-              <p class="text-sm text-base-500 text-pretty mt-2">
-                Join 60 million satisfied users who trust our services.
-              </p>
-            </dt>
-            <dd
-              class="order-first text-5xl font-normal font-mono text-accent-600">
-              90B
-            </dd>
-          </div>
-        </dl>
+        </Text>
+        <div
+          class="flex flex-wrap mt-8 items-center justify-center lg:justify-start gap-2">
+          <Button
+            variant="accent"
+            size="sm">
+            Get started
+          </Button>
+          <Button
+            variant="alternative"
+            size="sm">
+            Learn more
+          </Button>
+        </div>
+        <div class="grid gap-x-6 gap-y-12 sm:grid-cols-2 mt-12">
+          {
+            stats.slice(0, 4).map((stat) => (
+              <div>
+                <div class="flex flex-col ">
+                  <Text
+                    tag="p"
+                    variant="bigNumber">
+                    {stat.value}
+                  </Text>
+                  <Heading
+                    class="mt-4"
+                    level={3}
+                    variant="featureTitle">
+                    {stat.label}
+                  </Heading>
+                </div>
+                <Text
+                  class="mt-2"
+                  tag="p"
+                  variant="body">
+                  {stat.description}
+                </Text>
+              </div>
+            ))
+          }
+        </div>
       </div>
     </div>
   </div>

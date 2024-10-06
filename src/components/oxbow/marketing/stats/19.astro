@@ -1,63 +1,72 @@
+---
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+const stats = [
+  {
+    label: "Working Individuals",
+    value: "30%",
+  },
+  {
+    label: "Super low fee",
+    value: "40%",
+  },
+  {
+    label: "Great Commitment",
+    value: "50%",
+  },
+  {
+    label: "Massive Earnings",
+    value: "60M",
+  },
+];
+---
+
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div
-      class="relative isolate overflow-hidden border shadow rounded-3xl px-6 pt-16 sm:px-16 md:pt-24 flex flex-col lg:gap-x-20 lg:px-24 lg:pt-0">
+      class="relative isolate overflow-hidden bg-base-50 rounded-3xl px-6 pt-16 sm:px-16 md:pt-24 flex flex-col lg:gap-x-20 lg:px-24 lg:pt-0">
       <div
         class="mx-auto text-center lg:mx-0 lg:flex-auto lg:pt-24 lg:text-left">
         <div class="max-w-2xl lg:flex-auto">
-          <span class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase">Tagline</span>
-          <h1
-            class="text-4xl mt-4 font-semibold tracking-tight text-base-900 lg:text-balance">
+          <Text
+            tag="span"
+            variant="eyebrow">
+            Tagline
+          </Text>
+          <Heading
+            class="mt-4"
+            level={1}
+            variant="default">
             Empower your finances with our unmatched value
-          </h1>
-          <p class="text-base font-medium mt-4 text-base-500">
+          </Heading>
+          <Text
+            class="mt-4 lg:text-balance"
+            tag="p"
+            variant="body">
             Experience low fees, unwavering commitment, and massive earnings
             with a service trusted by over 60 million users.
-          </p>
+          </Text>
         </div>
-        <dl
+        <div
           class="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 md:grid-cols-4 mt-12">
-          <div
-            class="flex flex-col">
-            <dt class="mt-4 tracking-tight text-lg font-medium  text-base-900">
-              Working Individuals
-            </dt>
-            <dd
-              class="order-first text-5xl font-normal font-mono text-accent-600">
-              20%
-            </dd>
-          </div>
-          <div
-            class="flex flex-col">
-            <dt class="mt-4 tracking-tight text-lg font-medium  text-base-900">
-              Super low fee
-            </dt>
-            <dd
-              class="order-first text-5xl font-normal font-mono text-accent-600">
-              40M
-            </dd>
-          </div>
-          <div
-            class="flex flex-col">
-            <dt class="mt-4 tracking-tight text-lg font-medium  text-base-900">
-              Great Commitment
-            </dt>
-            <dd
-              class="order-first text-5xl font-normal font-mono text-accent-600">
-              90B
-            </dd>
-          </div>
-          <div
-            class="flex flex-col">
-            <dt class="mt-4 tracking-tight text-lg font-medium  text-base-900">
-              Massive Earnings
-            </dt>
-            <dd
-              class="order-first text-5xl font-normal font-mono text-accent-600">
-              50+
-            </dd>
-          </div>
-        </dl>
+          {
+            stats.map((stat) => (
+              <div class="flex flex-col">
+                <Text
+                  tag="span"
+                  variant="bigNumber">
+                  {stat.value}
+                </Text>
+                <Heading
+                  class="mt-4"
+                  level={3}
+                  variant="featureTitle">
+                  {stat.label}
+                </Heading>
+              </div>
+            ))
+          }
+        </div>
       </div>
       <div class="relative mt-16 h-80 lg:mt-8">
         <img
