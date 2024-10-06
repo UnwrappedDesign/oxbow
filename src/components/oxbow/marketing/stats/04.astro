@@ -1,24 +1,54 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+const stats = [
+  {
+    label: "Working Individuals",
+    description: "We reached over 30 million users and are growing fast.",
+    value: "30%",
+  },
+  {
+    label: "Super low fee",
+    description:
+      "Enjoy significant savings with our extremely low fee structure.",
+    value: "40%",
+  },
+  {
+    label: "Great Commitment",
+    description: " We’re dedicated to delivering outstanding service and valu.",
+    value: "50%",
+  },
+  {
+    label: "Massive Earnings",
+    description: "Reap the benefits with substantial returns ",
+    value: "100%",
+  },
+];
 ---
-
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
-    <div class="grid grid-cols-1 gap-y-12 lg:grid-cols-3 lg:items-center">
+    <div class="grid grid-cols-1 gap-12 lg:grid-cols-3 lg:items-center">
       <div class="flex flex-col h-full justify-between gap-8">
         <div class="text-center lg:text-left">
-          <span
-            class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase"
-            >Tagline</span
-          >
-          <h1
-            class="text-4xl mt-4 font-semibold tracking-tight text-base-900 lg:text-balance">
+          <Text
+            tag="span"
+            variant="eyebrow">
+            Tagline
+          </Text>
+          <Heading
+            class="mt-4"
+            level={1}
+            variant="default">
             Empower your finances with our unmatched value
-          </h1>
-          <p class="text-base font-medium mt-4 text-base-500 lg:text-balance">
+          </Heading>
+          <Text
+            class="mt-4"
+            tag="p"
+            variant="body">
             Experience low fees, unwavering commitment, and massive earnings
             with a service trusted by over 60 million users.
-          </p>
+          </Text>
         </div>
         <div
           class="flex flex-wrap items-center justify-center lg:justify-start gap-2">
@@ -34,67 +64,32 @@ import Button from "@/components/fundations/buttons/Button.astro";
           </Button>
         </div>
       </div>
-      <dl class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:col-span-2">
-        <div class="flex flex-col bg-base-50 p-8 rounded-3xl">
-          <dt class="mt-4">
-            <p class="tracking-tight text-lg font-medium text-base-900">
-              Working Individuals
-            </p>
-            <p class="text-sm text-base-500 text-pretty mt-2">
-              We’re dedicated to delivering outstanding service and value.
-            </p>
-          </dt>
-          <dd
-            class="order-first text-5xl font-normal font-mono text-accent-600">
-            30%
-          </dd>
-        </div>
-
-        <div class="flex flex-col bg-base-50 p-8 rounded-3xl">
-          <dt class="mt-4">
-            <p class="tracking-tight text-lg font-medium text-base-900">
-              Super low fee
-            </p>
-            <p class="text-sm text-base-500 text-pretty mt-2">
-              Enjoy significant savings with our extremely low fee structure.
-            </p>
-          </dt>
-          <dd
-            class="order-first text-5xl font-normal font-mono text-accent-600">
-            40%
-          </dd>
-        </div>
-
-        <div class="flex flex-col bg-base-50 p-8 rounded-3xl">
-          <dt class="mt-4">
-            <p class="tracking-tight text-lg font-medium text-base-900">
-              Massive Earnings
-            </p>
-            <p class="text-sm text-base-500 text-pretty mt-2">
-              Reap the benefits with substantial returns.
-            </p>
-          </dt>
-          <dd
-            class="order-first text-5xl font-normal font-mono text-accent-600">
-            50%
-          </dd>
-        </div>
-
-        <div class="flex flex-col bg-base-50 p-8 rounded-3xl">
-          <dt class="mt-4">
-            <p class="tracking-tight text-lg font-medium text-base-900">
-              Growing Impact
-            </p>
-            <p class="text-sm text-base-500 text-pretty mt-2">
-              Join 60 million satisfied users who trust our services.
-            </p>
-          </dt>
-          <dd
-            class="order-first text-5xl font-normal font-mono text-accent-600">
-            60M
-          </dd>
-        </div>
-      </dl>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:col-span-2">
+        {
+          stats.map((stat) => (
+            <div class="flex flex-col bg-base-50 p-8 rounded-3xl">
+              <div class="flex gap-4   items-baseline">
+                <Text
+                  tag="span"
+                  variant="smallNumber">
+                  {stat.value}
+                </Text>
+                <Heading
+                  level={3}
+                  variant="featureTitle">
+                  {stat.label}
+                </Heading>
+              </div>
+              <Text
+                class="mt-2"
+                tag="p"
+                variant="body">
+                {stat.description}
+              </Text>
+            </div>
+          ))
+        }
+      </div>
     </div>
   </div>
 </section>
