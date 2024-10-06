@@ -1,4 +1,9 @@
 ---
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import MapPin from "@/components/fundations/icons/MapPin.astro";
+import Phone from "@/components/fundations/icons/Phone.astro";
+import Mail from "@/components/fundations/icons/Mail.astro";
 const contactInfo = [
   {
     title: "Collaborate",
@@ -57,23 +62,31 @@ const locations = [
   <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl">
     <div class="grid grid-cols-1 lg:grid-cols-3">
       <div>
-        <span
-          class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase"
-          >Contact</span
-        >
-        <h1
-          class="text-4xl mt-4 font-semibold tracking-tight text-base-900 sm:text-balance">
+        <Text
+          tag="span"
+          variant="eyebrow">
+          Tagline
+        </Text>
+        <Heading
+          class="mt-4"
+          level={1}
+          variant="defaultSmall">
           Get in touch with our friendly team
-        </h1>
-        <p class="mt-6 text-base font-medium text-base-500 sm:text-balance">
+        </Heading>
+        <Text
+          class="mt-4 lg:text-balance"
+          tag="p"
+          variant="body">
           Let us know how we can help.
-        </p>
+        </Text>
       </div>
       <div class="space-y-12 lg:col-span-2">
         <div>
-          <p class="tracking-tight text-lg font-medium text-base-900">
+          <Heading
+            level={3}
+            variant="featureTitle">
             Contact us
-          </p>
+          </Heading>
           <div class="flex divide-y mt-4 border-y flex-col">
             {
               contactInfo.map((contact) => (
@@ -85,58 +98,27 @@ const locations = [
                     <div>
                       <dt class="sr-only">Email</dt>
                       <dd>
-                        <a
-                          class="text-accent-500 hover:text-base-900 duration-300 flex items-center gap-2"
-                          href={contact.email.mailto}>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            class="icon icon-tabler icons-tabler-outline size-4 icon-tabler-mail">
-                            <>
-                              <path
-                                stroke="none"
-                                d="M0 0h24v24H0z"
-                                fill="none"
-                              />
-                              <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
-                              <path d="M3 7l9 6l9 -6" />
-                            </>
-                          </svg>{" "}
+                        <Text
+                          tag="a"
+                          href="#_"
+                          variant="link"
+                          class="flex items-center gap-2 ">
+                          <Mail size="sm" />
                           {contact.email.address}
-                        </a>
+                        </Text>
                       </dd>
                     </div>
                     <div>
                       <dt class="sr-only">Phone number</dt>
                       <dd>
-                        <a
-                          href={`tel:${contact.phone}`}
-                          class="text-accent-500 hover:text-base-900 duration-300 flex items-center gap-2">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            class="icon icon-tabler icons-tabler-outline size-4 icon-tabler-phone">
-                            <>
-                              <path
-                                stroke="none"
-                                d="M0 0h24v24H0z"
-                                fill="none"
-                              />
-                              <path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2" />
-                            </>
-                          </svg>{" "}
+                        <Text
+                          tag="a"
+                          href="#_"
+                          variant="link"
+                          class="flex items-center gap-2 ">
+                          <Phone size="sm" />
                           {contact.phone}
-                        </a>
+                        </Text>
                       </dd>
                     </div>
                   </dl>
@@ -146,42 +128,34 @@ const locations = [
           </div>
         </div>
         <div>
-          <p class="tracking-tight text-lg font-medium text-base-900">
+          <Heading
+            level={3}
+            variant="featureTitle">
             Our offices
-          </p>
+          </Heading>
           <div class="border-y divide-y mt-4">
             {
               locations.map((location) => (
                 <div class="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 gap-2 py-4">
-                  <h3 class="tracking-tight text-base  text-base-500">
+                  <Text
+                    class="mt-2"
+                    tag="span"
+                    variant="body">
                     {location.title}
-                  </h3>
+                  </Text>
                   <address class="mt-2 not-italic gap-2 text-sm lg:col-span-2 text-base-500 flex  sm:text-balance">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="icon icon-tabler icons-tabler-outline icon-tabler-map-pin size-4">
-                      <>
-                        <path
-                          stroke="none"
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
-                        <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z" />
-                      </>
-                    </svg>
+                    <MapPin
+                      class="text-accent-600"
+                      size="sm"
+                    />
                     <div class="flex flex-col lg:flex-row gap-2">
                       {location.addressLines.map((line, idx) => (
-                        <p>
+                        <Text
+                          tag="p"
+                          variant="small">
                           {line}
                           {idx < location.addressLines.length - 1 ? ", " : ""}
-                        </p>
+                        </Text>
                       ))}
                     </div>
                   </address>

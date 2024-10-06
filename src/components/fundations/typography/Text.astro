@@ -20,11 +20,14 @@ export interface Props {
     | "blockquote"
     | "dd"
     | "dt"
-    | "summary";
+    | "summary"
+    | "label";
   variant?: string;
   class?: string;
   darkMode?: boolean; // Add a prop to indicate if dark mode is enabled
   href?: string; // Add href for anchor tags
+  for?: string; // Add for attribute for label tags
+  id?: string; // Add id attribute for label tags
 }
 const textStyles: TextStyles = {
   bigNumbers: {
@@ -61,6 +64,15 @@ const textStyles: TextStyles = {
       "text-sm font-medium text-accent-500 duration-300 hover:text-base-900",
     dark: "text-sm font-medium text-white duration-300 hover:text-base-500",
   },
+  inputLabel: {
+    light: "text-sm font-medium text-base-500",
+    dark: " text-sm font-medium text-white",
+  },
+  footerLink: {
+    light:
+      "text-base-600 font-medium text-sm md:text-base hover:text-accent-500 duration-300",
+    dark: "text-base-300 font-medium text-sm md:text-base hover:text-white duration-300",
+  },
   blockquote: {
     light:
       "text-lg italic font-medium text-base-500 border-l-4 border-base-300 pl-4",
@@ -78,7 +90,7 @@ const textStyles: TextStyles = {
     light: "text-5xl font-normal font-mono text-accent-600",
     dark: "text-5xl font-normal font-mono text-white",
   },
-   smallNumber: {
+  smallNumber: {
     light: "text-xl font-normal font-mono text-accent-600",
     dark: "text-xl font-normal font-mono text-white",
   },
