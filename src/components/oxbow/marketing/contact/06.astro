@@ -1,5 +1,9 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import MapPin from "@/components/fundations/icons/MapPin.astro";
+
 const options = [
   { id: 1, name: "Use our chat widget", href: "#" },
   { id: 2, name: "Explore our knowledge base", href: "#" },
@@ -22,49 +26,54 @@ const teamMembers = [
     title: "Customer Support Manager",
     imgSrc: "/avatars/2.avif",
   },
-  {
-    name: "Elona Muska",
-    title: "Customer Service Director",
-    imgSrc: "/avatars/3.avif",
-  },
 ];
 ---
 
 <section>
   <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl">
     <div class="max-w-xl lg:text-balance text-center mx-auto">
-      <span
-        class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase"
-        >Contact</span
-      >
-      <h1
-        class="text-4xl mt-4 font-semibold tracking-tight text-base-900 sm:text-balance">
+      <Text
+        tag="span"
+        variant="eyebrow">
+        Tagline
+      </Text>
+      <Heading
+        class="mt-4"
+        level={1}
+        variant="default">
         We would love to hear from you!
-      </h1>
-      <p class="mt-6 text-base font-medium text-base-500 sm:text-balance">
-        Let us know what you have in mind, and we will get back to you as soon
-        as possible.
-      </p>
+      </Heading>
+      <Text
+        class="mt-4 lg:text-balance"
+        tag="p"
+        variant="body">
+        Uniting talent with vision. Get to know the dedicated professionals who
+        blend their skills and passion to lead us to new heights.
+      </Text>
     </div>
     <ul
       role="list"
-      class="mt-12 grid grid-cols-1 text-left sm:grid-cols-2 md:grid-cols-3 gap-12 lg:gap-0 lg:mt-24 lg:border-x lg:divide-x">
+      class="mt-12 grid grid-cols-1 text-left sm:grid-cols-2 max-w-3xl mx-auto gap-12 lg:gap-0 lg:mt-24">
       {
         teamMembers.map((member) => (
           <li>
-            <div class="flex flex-row lgitems-center gap-4 lg:pl-8">
+            <div class="flex items-center gap-4 ">
               <img
-                class="object-cover rounded-full size-16 "
+                class="object-cover rounded-full size-12"
                 src={member.imgSrc}
                 alt="#_"
               />
               <div>
-                <h3 class="tracking-tight text-lg font-medium  text-base-900">
+                <Heading
+                  level={3}
+                  variant="featureTitle">
                   {member.name}
-                </h3>
-                <p class="mt-2 text-sm text-base-500 text-balance">
+                </Heading>
+                <Text
+                  tag="p"
+                  variant="body">
                   {member.title}
-                </p>
+                </Text>
               </div>
             </div>
           </li>
@@ -74,112 +83,101 @@ const teamMembers = [
     <div class="grid grid-cols-1 mt-24 gap-x-32 gap-y-6 md:grid-cols-2">
       <div class="flex flex-col divide-y">
         <div class="py-4">
-          <p class="tracking-tight text-lg font-medium text-base-900">
+          <Heading
+            level={3}
+            variant="featureTitle">
             Talk to us
-          </p>
-          <p class="mt-2 text-sm lg:text-pretty text-base-500">
+          </Heading>
+          <Text
+            class="mt-2"
+            tag="p"
+            variant="body">
             Speak to our team about your project and we will get back to you as
             soon as possible. We are here to help you every step of the way.
-          </p>
+          </Text>
           <ul
             class="space-y-2 mt-6 text-base font-medium text-accent-500 list-none">
             {
               options.map((option) => (
                 <li>
-                  <a
-                    href={option.href}
-                    class="hover:text-base-900    duration-300 ">
+                  <Text
+                    tag="a"
+                    href="#_"
+                    variant="link"
+                    class="flex items-center gap-2 mt-4">
                     {option.name}
-                  </a>
+                  </Text>
                 </li>
               ))
             }
           </ul>
         </div>
         <div class="py-4">
-          <p class="tracking-tight text-lg font-medium text-base-900">
+          <Heading
+            level={3}
+            variant="featureTitle">
             Call us
-          </p>
-          <p class="mt-2 text-sm lg:text-pretty text-base-500">
+          </Heading>
+          <Text
+            class="mt-2"
+            tag="p"
+            variant="body">
             Our phones lines are open 24/7. You can call us anytime to get in
             touch with us. We waiting for your call.
-          </p>
-
+          </Text>
           <ul
             class="space-y-2 mt-6 text-base font-medium text-accent-500 list-none">
             <div>
               <span class="sr-only">Phone number</span>
               <div>
-                <a
-                  href="tel:+44 20 7946 1234"
-                  class="text-accent-500 hover:text-base-900 duration-300 flex items-center gap-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="icon icon-tabler icons-tabler-outline size-4 icon-tabler-phone">
-                    <path
-                      stroke="none"
-                      d="M0 0h24v24H0z"
-                      fill="none"
-                    ></path>
-                    <path
-                      d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"
-                    ></path>
-                  </svg>
+                <Text
+                  tag="a"
+                  href="#_"
+                  variant="link"
+                  class="flex items-center gap-2 mt-4">
                   +44 20 7946 1234
-                </a>
+                </Text>
               </div>
             </div>
           </ul>
         </div>
         <div class="py-4">
-          <p class="tracking-tight text-lg font-medium text-base-900">
-            Our office
-          </p>
-          <p class="mt-2 text-sm lg:text-pretty text-base-500">
-            We are in Weden, might aswell that you can come and visit us in our
-            office.
-          </p>
-
+          <Heading
+            level={3}
+            variant="featureTitle">
+            Our offices
+          </Heading>
+          <Text
+            class="mt-2"
+            tag="p"
+            variant="body">
+            We are global, might aswell that you can come and visit us in your
+            country. We have offices in the Amsterdam, Vienna, Stockholm and
+            Zurich.
+          </Text>
           <ul
             class="divide-y mt-6 text-base font-medium text-accent-500 list-none">
             {
               locations.map((location) => (
                 <div class="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 py-4">
-                  <h3 class="tracking-tight text-base  text-base-500">
+                  <Heading
+                    level={3}
+                    variant="featureTitleSmall">
                     {location.title}
-                  </h3>
-                  <address class="mt-2 lg:mt-0 not-italic  gap-2 text-sm  text-base-500 flex lg:col-span-2  sm:text-balance">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="icon icon-tabler icons-tabler-outline icon-tabler-map-pin size-4">
-                      <>
-                        <path
-                          stroke="none"
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
-                        <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z" />
-                      </>
-                    </svg>
+                  </Heading>
+                  <address class="mt-2 lg:mt-0 not-italic gap-2 text-sm  text-base-500 flex lg:col-span-2  sm:text-balance ">
+                    <MapPin
+                      class="text-accent-600"
+                      size="sm"
+                    />
                     <div class="flex flex-col  gap-2">
                       {location.addressLines.map((line, idx) => (
-                        <p>
+                        <Text
+                          tag="p"
+                          variant="small">
                           {line}
                           {idx < location.addressLines.length - 1 ? ", " : ""}
-                        </p>
+                        </Text>
                       ))}
                     </div>
                   </address>
@@ -194,11 +192,12 @@ const teamMembers = [
         method="POST">
         <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
           <div>
-            <label
+            <Text
               for="first-name"
-              class="block text-sm font-medium text-base-500">
+              tag="label"
+              variant="inputLabel">
               First name
-            </label>
+            </Text>
             <div class="mt-2.5">
               <input
                 type="text"
@@ -219,11 +218,12 @@ const teamMembers = [
             </div>
           </div>
           <div>
-            <label
+            <Text
               for="last-name"
-              class="block text-sm font-medium text-base-500">
+              tag="label"
+              variant="inputLabel">
               Last name
-            </label>
+            </Text>
             <div class="mt-2.5">
               <input
                 type="text"
@@ -243,38 +243,37 @@ const teamMembers = [
               </span>
             </div>
           </div>
-
           <div class="sm:col-span-2">
-            <label
-              for="email"
-              class="block text-sm font-medium text-base-500">
-              Email
-            </label>
+            <Text
+              for="compant"
+              tag="label"
+              variant="inputLabel">
+              Company name
+            </Text>
             <div class="mt-2.5">
               <input
-                type="email"
-                name="email"
-                id="email"
-                autocomplete="email"
-                required
-                aria-required="true"
-                aria-describedby="email-error"
-                placeholder="Your email"
+                type="text"
+                name="company"
+                id="company"
+                autocomplete="organization"
+                aria-describedby="company-error"
+                placeholder="Your company"
                 class="block w-full h-10 px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg shadow appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
               />
               <span
-                id="email-error"
+                id="company-error"
                 class="text-red-600 text-sm hidden">
-                Please enter a valid email address.
+                Please enter your company name.
               </span>
             </div>
           </div>
           <div class="sm:col-span-2">
-            <label
+            <Text
               for="phone-number"
-              class="block text-sm font-medium text-base-500">
+              tag="label"
+              variant="inputLabel">
               Phone number
-            </label>
+            </Text>
             <div class="relative mt-2.5">
               <div class="absolute inset-y-0 left-0 flex items-center">
                 <label
@@ -309,11 +308,38 @@ const teamMembers = [
             </div>
           </div>
           <div class="sm:col-span-2">
-            <label
+            <Text
+              for="email"
+              tag="label"
+              variant="inputLabel">
+              Email
+            </Text>
+            <div class="mt-2.5">
+              <input
+                type="email"
+                name="email"
+                id="email"
+                autocomplete="email"
+                required
+                aria-required="true"
+                aria-describedby="email-error"
+                placeholder="Your email"
+                class="block w-full h-10 px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg shadow appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+              />
+              <span
+                id="email-error"
+                class="text-red-600 text-sm hidden">
+                Please enter a valid email address.
+              </span>
+            </div>
+          </div>
+          <div class="sm:col-span-2">
+            <Text
               for="message"
-              class="block text-sm font-medium text-base-500">
+              tag="label"
+              variant="inputLabel">
               Message
-            </label>
+            </Text>
             <div class="mt-2.5">
               <textarea
                 name="message"
@@ -330,6 +356,32 @@ const teamMembers = [
               </span>
             </div>
           </div>
+        </div>
+        <div class="flex items-center mt-4">
+          <input
+            id="agreement"
+            name="agreement"
+            type="checkbox"
+            class="size-4 rounded border-base-300 text-accent-600 focus:ring-accent-600 shadow"
+          />
+          <label
+            for="agreement"
+            class="ml-3 block text-sm text-base-500"
+            >You agree to our
+            <Text
+              tag="a"
+              href="#_"
+              variant="link">
+              Terms of Service
+            </Text>
+            and
+            <Text
+              tag="a"
+              href="#_"
+              variant="link">
+              Privacy Policy
+            </Text>
+          </label>
         </div>
         <div class="mt-10">
           <Button

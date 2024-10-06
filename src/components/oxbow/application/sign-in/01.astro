@@ -1,38 +1,41 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
 ---
-
 <section>
   <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div class="max-w-lg mx-auto">
       <div class="text-center lg:text-balance">
         <img
-          class="h-20 mb-12 mx-auto"
+          class="h-20 mx-auto"
           src="/images/oxbow/blueLineLogo.png"
           alt="#_"
         />
-        <span
-          class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase"
-          >Sign in</span
-        >
-        <h1
-          class="text-3xl mt-4 font-semibold tracking-tight text-base-900 sm:text-balance">
+        <Heading
+          class="mt-4"
+          level={1}
+          variant="default">
           Sign in to your account
-        </h1>
-        <p class="mt-6 text-base font-medium text-base-500 sm:text-balance">
+        </Heading>
+        <Text
+          class="mt-4 lg:text-balance"
+          tag="p"
+          variant="body">
           Welcome back! Please enter your email and password to sign in.
-        </p>
+        </Text>
       </div>
       <form
         action="#"
         method="POST"
         class="mx-auto mt-12 max-w-lg">
         <div>
-          <label
+          <Text
             for="email"
-            class="block text-sm font-medium text-base-500">
+            tag="label"
+            variant="inputLabel">
             Email
-          </label>
+          </Text>
           <div class="mt-2.5">
             <input
               type="email"
@@ -52,7 +55,6 @@ import Button from "@/components/fundations/buttons/Button.astro";
             </span>
           </div>
         </div>
-
         <div class="mt-10">
           <Button
             class="w-full"
@@ -62,14 +64,16 @@ import Button from "@/components/fundations/buttons/Button.astro";
           </Button>
         </div>
         <div class="flex items-center mt-4">
-          <p class="text-sm text-base-500">
+          <Text
+            tag="p"
+            variant="body">
             Don't have an account?
-            <a
-              class="text-accent-600 hover:text-base-900"
-              href="#_"
-              >Sign up</a
-            >
-          </p>
+            <Text
+              tag="a"
+              variant="link">
+              Sign up
+            </Text>
+          </Text>
         </div>
       </form>
     </div>
