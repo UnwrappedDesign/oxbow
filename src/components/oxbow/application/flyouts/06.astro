@@ -1,4 +1,8 @@
 ---
+import Button from "@/components/fundations/buttons/Button.astro";
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
 const links = [
   { name: "Formatted text and markdown", link: "#" },
   { name: "Themes for your documentation", link: "#" },
@@ -6,7 +10,7 @@ const links = [
   { name: "Samsung pen support", link: "#" },
   { name: "Flowcharts and diagrams", link: "#" },
   { name: "Quick translations", link: "#" },
-  { name: "HQ editing tools", link: "#" }
+  { name: "HQ editing tools", link: "#" },
 ];
 ---
 
@@ -17,24 +21,18 @@ const links = [
     x-data="{ open: true }">
     <div
       class="flex items-center justify-center px-8 mx-auto max-w-7xl md:px-12 lg:px-24">
-      <button
-        type="button"
+      <Button
+        aria-expanded="false"
         @click="open = !open"
-        class="inline-flex items-center text-sm font-semibold leading-6 text-base-900 gap-x-1"
-        aria-expanded="false">
+        variant="text"
+        size="sm"
+        gap="sm">
         <span>Help Center</span>
-        <svg
-          class="w-5 h-5"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-          aria-hidden="true">
-          <path
-            fill-rule="evenodd"
-            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-            clip-rule="evenodd"
-          ></path>
-        </svg>
-      </button>
+        <ChevronDown
+          size="sm"
+          slot="right-icon"
+        />
+      </Button>
     </div>
     <!-- Flyout menu -->
     <div
@@ -52,7 +50,11 @@ const links = [
         <div
           class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
           <div>
-            <h3 class="px-4 text-sm font-medium text-base-900">Benefits</h3>
+            <Heading
+              level={3}
+              variant="footerHeading">
+              Benefits
+            </Heading>
             <div class="mt-2">
               <div
                 class="relative flex w-full p-4 rounded-xl group gap-x-6 hover:bg-base-50">
@@ -277,9 +279,11 @@ const links = [
             </div>
           </div>
           <div>
-            <h3 class="px-4 text-sm font-medium text-base-900">
+            <Heading
+              level={3}
+              variant="footerHeading">
               Enhance Productivity
-            </h3>
+            </Heading>
             <div class="mt-2">
               <div
                 class="relative flex w-full p-4 rounded-xl group gap-x-6 hover:bg-base-50">
@@ -534,14 +538,18 @@ const links = [
                 aria-label="Search"
               />
             </div>
-            <div class="flex flex-col mt-8 ">
+            <div
+              class="mt-4 pt-4 border-t border-gray-200 space-y-2"
+              role="none">
               {
-                links.map((feature, index) => (
-                  <a
-                    href={feature.link}
-                    class="block px-4 py-2 text-sm font-medium transition-colors rounded-lg text-base-500 hover:text-accent-500 hover:bg-base-50">
+                links.map((feature) => (
+                  <Text
+                    href="#_"
+                    tag="a"
+                    class="block "
+                    variant="navigationLink">
                     {feature.name}
-                  </a>
+                  </Text>
                 ))
               }
             </div>

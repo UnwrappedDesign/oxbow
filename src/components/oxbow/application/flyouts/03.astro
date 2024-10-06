@@ -1,5 +1,8 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
+import Heading from "@/components/fundations/typography/Heading.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
 const links = [
   { name: "Formatted text and markdown", link: "#" },
   { name: "Themes for your documentation", link: "#" },
@@ -13,31 +16,24 @@ const links = [
   { name: "Version control", link: "#" },
 ];
 ---
-
 <div class="h-[60rem]">
   <div class="flex items-center justify-center w-full py-12 mx-auto">
     <!--- When in use set x-data="{ open: false }" -->
     <div
       class="relative"
       x-data="{ open: true }">
-      <button
-        type="button"
+      <Button
+        aria-expanded="false"
         @click="open = !open"
-        class="inline-flex items-center text-sm font-semibold leading-6 text-base-900 gap-x-1"
-        aria-expanded="false">
+        variant="text"
+        size="sm"
+        gap="sm">
         <span>Help Center</span>
-        <svg
-          class="w-5 h-5"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-          aria-hidden="true">
-          <path
-            fill-rule="evenodd"
-            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-            clip-rule="evenodd"
-          ></path>
-        </svg>
-      </button>
+        <ChevronDown
+          size="sm"
+          slot="right-icon"
+        />
+      </Button>
       <div
         x-show="open"
         @click.away="open = false"
@@ -53,9 +49,13 @@ const links = [
           class="flex-auto w-screen max-w-md overflow-hidden bg-white shadow-lg rounded-3xl ring-1 ring-base-900/5 lg:max-w-3xl">
           <div class="grid grid-cols-1 p-8 gap-x-0 gap-y-1 lg:grid-cols-2">
             <div
-              class="py-4"
+              class="p-4"
               role="none">
-              <h3 class="px-4 text-sm font-medium text-base-900">Benefits</h3>
+              <Heading
+                level={3}
+                variant="footerHeading">
+                Benefits
+              </Heading>
               <div class="mt-2">
                 <div
                   class="relative flex w-full p-4 rounded-xl group gap-x-6 hover:bg-base-50">
@@ -337,19 +337,23 @@ const links = [
               </div>
             </div>
             <div class="p-4">
-              <h3 class="px-4 text-sm font-medium text-base-900">
+              <Heading
+                level={3}
+                variant="footerHeading">
                 Browse by feature
-              </h3>
+              </Heading>
               <div
-                class="mt-2"
+                class="mt-4 pt-4 border-t border-gray-200 space-y-2"
                 role="none">
                 {
-                  links.map((feature, index) => (
-                    <a
-                      href={feature.link}
-                      class="block px-4 py-2 text-sm font-medium transition-colors rounded-lg text-base-500 hover:text-accent-500 hover:bg-base-50">
+                  links.map((feature) => (
+                    <Text
+                      href="#_"
+                      tag="a"
+                      class="block "
+                      variant="navigationLink">
                       {feature.name}
-                    </a>
+                    </Text>
                   ))
                 }
               </div>
@@ -359,12 +363,17 @@ const links = [
             <div
               class="grid items-end grid-cols-1 p-8 md:grid-cols-3 bg-base-50 rounded-2xl">
               <div class="md:col-span-2">
-                <p class="text-sm font-semibold text-base-900">
+                <Heading
+                  level={3}
+                  variant="featureTitle">
                   Ready to get started?
-                </p>
-                <p class="mt-2 text-sm leading-6 text-base-500">
-                  Take your markdown to the next level with Oxbow
-                </p>
+                </Heading>
+                <Text
+                  class="mt-4 lg:text-balance"
+                  tag="p"
+                  variant="body">
+                  Take your markup to the next level with Oxbow
+                </Text>
               </div>
               <div class="mt-4 lg:justify-self-end">
                 <Button
