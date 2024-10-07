@@ -1,0 +1,53 @@
+---
+// Used for paragraphs, spans, small, div, strong, em, blockquote, or any other text element with different styles
+//
+export interface TextStyle {
+  light: string;
+  dark?: string; // Make dark optional for styles that don't require it
+}
+export interface TextStyles {
+  [key: string]: TextStyle;
+}
+export interface Props {
+  tag?: "a";
+  variant?: string;
+  class?: string;
+  darkMode?: boolean; // Add a prop to indicate if dark mode is enabled
+  href?: string; // Add href for anchor tags
+  for?: string; // Add for attribute for label tags
+  id?: string; // Add id attribute for label tags
+}
+const textStyles: TextStyles = {
+  link: {
+    light:
+      "text-sm font-medium text-accent-500 duration-300 hover:text-base-900",
+    dark: "text-sm font-medium text-white duration-300 hover:text-base-200",
+  },
+  navigationLink: {
+    light:
+      "text-base-600 font-medium text-sm md:text-base hover:text-accent-500 duration-300",
+    dark: "text-base-300 font-medium text-sm md:text-base hover:text-white duration-300",
+  },
+  // Add more text variants as needed...
+};
+const {
+  tag: Tag = "a",
+  variant = "link",
+  class: className = "",
+  darkMode = false, // Get the dark mode prop
+  href = "#", // Default href for anchor tags
+  ...rest
+} = Astro.props;
+// Get the base classes for the variant
+const baseClasses = darkMode
+  ? textStyles[variant]?.dark || textStyles.body.dark
+  : textStyles[variant]?.light || textStyles.body.light;
+// Combine base classes with additional classes
+const combinedClasses = `${baseClasses} ${className}`.trim();
+---
+<Tag
+  class={combinedClasses}
+  href={Tag === "a" ? href : undefined}
+  {...rest}>
+  <slot />
+</Tag>

@@ -2,6 +2,7 @@
 import Button from "@/components/fundations/buttons/Button.astro";
 import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
+import Link from "@/components/fundations/typography/Link.astro";
 import XBrand from "@/components/fundations/icons/XBrand.astro";
 import LinkedinBrand from "@/components/fundations/icons/LinkedinBrand.astro";
 import YoutubeBrand from "@/components/fundations/icons/YoutubeBrand.astro";
@@ -41,7 +42,7 @@ const footerLinks = [
   <div class="px-8 py-12 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8">
       <div class="col-span-full md:col-span-1">
-       <Text
+       <Link
         class="w-full sm:w-auto flex gap-3 items-center"
         href="#_"
         tag="a"
@@ -51,8 +52,8 @@ const footerLinks = [
           src="/images/oxbow/blueLineLogo.png"
           alt="#_"
         /> Oxbow UI
-      </Text>
-       <Text
+    </Link>
+        <Text
           tag="p"
           variant="small">
           Designed in europe.
@@ -70,12 +71,12 @@ const footerLinks = [
             <ul class="mt-4 space-y-4">
               {section.links.map((link, linkIndex) => (
                 <li>
-                  <Text
-                    href={link.href}
-                    tag="a"
-                    variant="navigationLink">
-                    {link.text}
-                  </Text>
+                  <Link
+                      href={link.href}
+                      tag="a"
+                      variant="navigationLink">
+                      {link.text}
+                    </Link>
                 </li>
               ))}
             </ul>
@@ -84,13 +85,13 @@ const footerLinks = [
       }
       <div class="col-span-full md:col-span-2">
         <div>
-           <Heading
+          <Heading
             level={3}
             variant="featureTitleSmall">
             Join our newsletter
           </Heading>
           <Text
-            class="mt-2 "
+            class="mt-2"
             tag="p"
             variant="small">
             Stay up to date with our latest news and updates.
@@ -142,30 +143,30 @@ const footerLinks = [
           variant="footerHeading">
           Follow us on social media
         </Heading>
-       <Text
+        <Link
           tag="a"
           href="#_"
           variant="link">
           <XBrand size="sm" />
-        </Text>
-        <Text
+        </Link>
+        <Link
           tag="a"
           href="#_"
           variant="link">
           <LinkedinBrand size="sm" />
-        </Text>
-        <Text
+        </Link>
+        <Link
           tag="a"
           href="#_"
           variant="link">
           <GithubBrand size="sm" />
-        </Text>
-        <Text
+        </Link>
+        <Link
           tag="a"
           href="#_"
           variant="link">
           <YoutubeBrand size="sm" />
-        </Text>
+        </Link>
       </nav>
     </div>
   </div>
