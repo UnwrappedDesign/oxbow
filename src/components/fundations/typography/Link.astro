@@ -28,6 +28,10 @@ const textStyles: TextStyles = {
       "text-base-600 font-medium text-sm md:text-base hover:text-accent-500 duration-300",
     dark: "text-base-300 font-medium text-sm md:text-base hover:text-white duration-300",
   },
+  thickFlyoutLink: {
+    light:
+      "flex items-center w-full gap-2 text-sm font-medium text-base-900 group-hover:text-accent-500 relative  p-4 rounded-xl group hover:bg-base-50",
+  },
   // Add more text variants as needed...
 };
 const {
@@ -45,9 +49,12 @@ const baseClasses = darkMode
 // Combine base classes with additional classes
 const combinedClasses = `${baseClasses} ${className}`.trim();
 ---
+
 <Tag
   class={combinedClasses}
   href={Tag === "a" ? href : undefined}
   {...rest}>
+  <slot name="left-icon" />
   <slot />
+  <slot name="right-icon" />
 </Tag>
