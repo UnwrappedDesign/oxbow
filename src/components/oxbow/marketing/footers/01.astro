@@ -2,6 +2,7 @@
 import Button from "@/components/fundations/buttons/Button.astro";
 import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
+import Link from "@/components/fundations/typography/Link.astro";
 import Apple from "@/components/fundations/icons/Apple.astro";
 import GooglePlay from "@/components/fundations/icons/GooglePlay.astro";
 const footerLinks = [
@@ -43,6 +44,7 @@ const footerLinks = [
   },
 ];
 ---
+
 <section>
   <div class="px-8 py-12 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div class="grid items-end grid-cols-1 sm:grid-cols-2 gap-4">
@@ -98,12 +100,12 @@ const footerLinks = [
               <ul class="mt-4 space-y-4">
                 {section.links.map((link) => (
                   <li>
-                    <Text
+                    <Link
                       href={link.href}
                       tag="a"
                       variant="navigationLink">
                       {link.text}
-                    </Text>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -114,7 +116,7 @@ const footerLinks = [
     </div>
     <div
       class="pt-6 mt-12 border-t flex flex-col md:flex-row items-center justify-between">
-      <Text
+      <Link
         class="w-full sm:w-auto flex gap-3 items-center"
         href="#_"
         tag="a"
@@ -124,7 +126,7 @@ const footerLinks = [
           src="/images/oxbow/blueLineLogo.png"
           alt="#_"
         /> Oxbow UI
-      </Text>
+      </Link>
       <Text
         tag="p"
         variant="small">
