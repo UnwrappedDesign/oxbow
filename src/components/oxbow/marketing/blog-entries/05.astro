@@ -2,6 +2,8 @@
 import Button from "@/components/fundations/buttons/Button.astro";
 import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
+import Link from "@/components/fundations/typography/Link.astro";
+
 const articles = [
   {
     image:
@@ -38,6 +40,7 @@ const articles = [
   },
 ];
 ---
+
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div class="grid grid-cols-1 lg:grid-cols-3 items-end gap-12">
@@ -91,19 +94,19 @@ const articles = [
           tag="p"
           variant="small">
           When you sign up, you accept our
-          <Text
+          <Link
             tag="a"
             href="#_"
             variant="link">
-            See all our open roles
-          </Text>
+            Terms of service
+          </Link>
           and
-          <Text
+          <Link
             tag="a"
             href="#_"
             variant="link">
             Privacy Policy
-          </Text>
+          </Link>
         </Text>
       </div>
     </div>
@@ -132,30 +135,29 @@ const articles = [
                   {article.description}
                 </Text>
               </div>
-                <div class="relative flex items-center gap-x-4 mt-4">
-                  <img
-                    src={article.authorImage}
-                    alt="#_"
-                    class="size-12 rounded-full bg-base-50 object-cover"
-                  />
-                  <div class="text-sm leading-6">
+              <div class="relative flex items-center gap-x-4 mt-4">
+                <img
+                  src={article.authorImage}
+                  alt="#_"
+                  class="size-12 rounded-full bg-base-50 object-cover"
+                />
+                <div class="text-sm leading-6">
+                  <Text
+                    class="mt-4"
+                    tag="a"
+                    variant="body">
+                    {article.author}
+                  </Text>
+                  <div>
+                    <span class="sr-only">{article.date}</span>
                     <Text
-                      class="mt-4"
-                      tag="a"
-                      variant="body">
-                      {article.author}
+                      tag="span"
+                      variant="eyebrow">
+                      <time datetime={article.date}>{article.date}</time>
                     </Text>
-                    <div>
-                      <span class="sr-only">{article.date}</span>
-                      <Text
-                        tag="span"
-                        variant="eyebrow">
-                        <time datetime={article.date}>{article.date}</time>
-                      </Text>
-                    </div>
                   </div>
                 </div>
-
+              </div>
             </div>
             <div class="relative aspect-square shrink-0 ">
               <img

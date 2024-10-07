@@ -1,6 +1,7 @@
 ---
 import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
+import Link from "@/components/fundations/typography/Link.astro";
 import XBrand from "@/components/fundations/icons/XBrand.astro";
 import LinkedinBrand from "@/components/fundations/icons/LinkedinBrand.astro";
 import YoutubeBrand from "@/components/fundations/icons/YoutubeBrand.astro";
@@ -23,7 +24,7 @@ const footerLinks = [
     <div
       class="flex flex-col gap-8 text-center md:text-left md:flex-row items-center justify-between w-full">
       <div class="w-full justify-center md:justify-start">
-        <Text
+       <Link
         class="w-full sm:w-auto flex gap-3 items-center"
         href="#_"
         tag="a"
@@ -33,7 +34,7 @@ const footerLinks = [
           src="/images/oxbow/blueLineLogo.png"
           alt="#_"
         /> Oxbow UI
-      </Text>
+    </Link>
       </div>
 
       {
@@ -51,12 +52,12 @@ const footerLinks = [
             <ul class=" gap-x-4 gap-y-8 flex flex-wrap justify-center">
               {section.links.map((link, linkIndex) => (
                 <li>
-                  <Text
-                    href={link.href}
-                    tag="a"
-                    variant="navigationLink">
-                    {link.text}
-                  </Text>
+                  <Link
+                      href={link.href}
+                      tag="a"
+                      variant="navigationLink">
+                      {link.text}
+                    </Link>
                 </li>
               ))}
             </ul>
@@ -74,30 +75,30 @@ const footerLinks = [
           variant="footerHeading">
           Follow us on social media
         </Heading>
-       <Text
+        <Link
           tag="a"
           href="#_"
           variant="link">
           <XBrand size="sm" />
-        </Text>
-        <Text
+        </Link>
+        <Link
           tag="a"
           href="#_"
           variant="link">
           <LinkedinBrand size="sm" />
-        </Text>
-        <Text
+        </Link>
+        <Link
           tag="a"
           href="#_"
           variant="link">
           <GithubBrand size="sm" />
-        </Text>
-        <Text
+        </Link>
+        <Link
           tag="a"
           href="#_"
           variant="link">
           <YoutubeBrand size="sm" />
-        </Text>
+        </Link>
       </nav>
     </div>
   </div>
