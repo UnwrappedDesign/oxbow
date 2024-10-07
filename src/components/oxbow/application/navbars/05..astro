@@ -3,6 +3,8 @@ import Button from "@/components/fundations/buttons/Button.astro";
 import IconButton from "@/components/fundations/buttons/IconButton.astro";
 import Burger from "@/components/fundations/icons/Burger.astro";
 import Text from "@/components/fundations/typography/Text.astro";
+import Link from "@/components/fundations/typography/Link.astro";
+
 const navLinks = [
   { label: "Overview", href: "#_" },
   { label: "Integrations", href: "#_" },
@@ -21,7 +23,7 @@ const navLinks = [
     x-data="{ open: false }"
     class="flex flex-col w-full mx-auto md:px-12 md:items-center md:justify-between md:flex-row px-8 py-2 lg:px-24 max-w-screen-xl relative">
     <div class="flex flex-row items-center justify-between text-black">
-      <Text
+      <Link
         class="w-full sm:w-auto flex gap-3 items-center"
         href="#_"
         tag="a"
@@ -31,7 +33,7 @@ const navLinks = [
           src="/images/oxbow/blueLineLogo.png"
           alt="#_"
         /> Oxbow UI
-      </Text>
+      </Link>
       <IconButton
         class="md:hidden"
         @click="open = !open"
@@ -46,20 +48,20 @@ const navLinks = [
     <nav
       :class="{'flex': open, 'hidden': !open}"
       class="flex-col items-center flex-grow hidden gap-3 p-4 px-5 md:px-0 md:pb-0 md:flex md:justify-start md:flex-row lg:p-0">
-      <Text
+      <Link
         class="md:ml-auto"
         href="#_"
         tag="a"
-        variant="navigationLink">
-        Features
-      </Text>
-      <Text
-        class="md:mr-auto"
+        variant="navigationLink"
+        >Features</Link
+      >
+      <Link
         href="#_"
         tag="a"
-        variant="navigationLink">
-        About
-      </Text>
+        class="md:mr-auto"
+        variant="navigationLink"
+        >About</Link
+      >
       <Text
         href="#_"
         tag="a"
