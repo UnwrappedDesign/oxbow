@@ -10,7 +10,6 @@ export interface TextStyles {
 }
 export interface Props {
   tag?:
-    | "a"
     | "p"
     | "span"
     | "small"
@@ -25,7 +24,6 @@ export interface Props {
   variant?: string;
   class?: string;
   darkMode?: boolean; // Add a prop to indicate if dark mode is enabled
-  href?: string; // Add href for anchor tags
   for?: string; // Add for attribute for label tags
   id?: string; // Add id attribute for label tags
 }
@@ -59,19 +57,9 @@ const textStyles: TextStyles = {
     light: "text-sm font-normal text-base-500",
     dark: "text-sm font-normal text-white",
   },
-  link: {
-    light:
-      "text-sm font-medium text-accent-500 duration-300 hover:text-base-900",
-    dark: "text-sm font-medium text-white duration-300 hover:text-base-200",
-  },
   inputLabel: {
     light: "text-sm font-medium text-base-500",
     dark: " text-sm font-medium text-white",
-  },
-  navigationLink: {
-    light:
-      "text-base-600 font-medium text-sm md:text-base hover:text-accent-500 duration-300",
-    dark: "text-base-300 font-medium text-sm md:text-base hover:text-white duration-300",
   },
   blockquote: {
     light:
@@ -96,7 +84,6 @@ const textStyles: TextStyles = {
   },
   // Add more text variants as needed...
 };
-
 const {
   tag: Tag = "p",
   variant = "body",
@@ -105,16 +92,13 @@ const {
   href = "#", // Default href for anchor tags
   ...rest
 } = Astro.props;
-
 // Get the base classes for the variant
 const baseClasses = darkMode
   ? textStyles[variant]?.dark || textStyles.body.dark
   : textStyles[variant]?.light || textStyles.body.light;
-
 // Combine base classes with additional classes
 const combinedClasses = `${baseClasses} ${className}`.trim();
 ---
-
 <Tag
   class={combinedClasses}
   href={Tag === "a" ? href : undefined}
