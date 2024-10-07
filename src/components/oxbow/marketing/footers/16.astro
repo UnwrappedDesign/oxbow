@@ -1,6 +1,7 @@
 ---
 import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
+import Link from "@/components/fundations/typography/Link.astro";
 import XBrand from "@/components/fundations/icons/XBrand.astro";
 import LinkedinBrand from "@/components/fundations/icons/LinkedinBrand.astro";
 import YoutubeBrand from "@/components/fundations/icons/YoutubeBrand.astro";
@@ -23,7 +24,6 @@ const footerLinks = [
     <div
       class="p-8 bg-accent-700 rounded-2xl flex flex-col gap-8 text-center md:text-left md:flex-row items-center justify-between w-full">
       <div class="w-full justify-center md:justify-start">
-
         <Text
           class="w-full sm:w-auto flex gap-3 items-center"
           href="#_"
@@ -52,13 +52,14 @@ const footerLinks = [
             <ul class=" gap-x-4 gap-y-8 flex flex-wrap justify-center">
               {section.links.map((link, linkIndex) => (
                 <li>
-                  <Text
+
+                  <Link
                     href={link.href}
                     tag="a"
                     darkMode={true}
                     variant="navigationLink">
                     {link.text}
-                  </Text>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -76,34 +77,30 @@ const footerLinks = [
           variant="footerHeading">
           Follow us on social media
         </Heading>
-        <Text
-          tag="a"
-          href="#_"
-          darkMode={true}
-          variant="link">
-          <XBrand size="sm" />
-        </Text>
-        <Text
-          tag="a"
-          href="#_"
-          darkMode={true}
-          variant="link">
-          <LinkedinBrand size="sm" />
-        </Text>
-        <Text
-          tag="a"
-          href="#_"
-          darkMode={true}
-          variant="link">
-          <GithubBrand size="sm" />
-        </Text>
-        <Text
-          tag="a"
-          href="#_"
-          darkMode={true}
-          variant="link">
-          <YoutubeBrand size="sm" />
-        </Text>
+        <Link
+   href="#_"
+   darkMode={true}
+   variant="link">
+<XBrand size="sm" />
+</Link>
+<Link
+   href="#_"
+   darkMode={true}
+   variant="link">
+<LinkedinBrand size="sm" />
+</Link>
+<Link
+   href="#_"
+   darkMode={true}
+   variant="link">
+<GithubBrand size="sm" />
+</Link>
+<Link
+   href="#_"
+   darkMode={true}
+   variant="link">
+<YoutubeBrand size="sm" />
+</Link>
       </nav>
     </div>
   </div>

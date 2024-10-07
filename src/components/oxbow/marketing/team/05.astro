@@ -1,6 +1,7 @@
 ---
 import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
+import Link from "@/components/fundations/typography/Link.astro";
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 const teamMembers = [
   {
@@ -50,6 +51,7 @@ const teamMembers = [
   },
 ];
 ---
+
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div class="max-w-xl lg:text-balance text-center mx-auto">
@@ -77,7 +79,7 @@ const teamMembers = [
       class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 gap-y-16 lg:mt-24">
       {
         teamMembers.map((member) => (
-          <li >
+          <li>
             <div class="flex items-center justify-between ">
               <div class="flex items-center gap-4">
                 <img
@@ -103,21 +105,20 @@ const teamMembers = [
         ))
       }
     </ul>
-    <div
-      class="flex text-center items-center gap-2 justify-center mt-12">
+    <div class="flex text-center items-center gap-2 justify-center mt-12">
       <Text
         tag="span"
         variant="body">
         We are hiring
       </Text>
-      <Text
+      <Link
         tag="a"
         href="#_"
         variant="link"
         class="flex items-center gap-2">
         See all our open roles
         <ChevronRight size="sm" />
-      </Text>
+      </Link>
     </div>
   </div>
 </section>
