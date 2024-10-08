@@ -1,3 +1,15 @@
+---
+import Button from "@/components/fundations/buttons/Button.astro";
+import IconButton from "@/components/fundations/buttons/IconButton.astro";
+import Link from "@/components/fundations/typography/Link.astro";
+import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
+import Lifebuoy from "@/components/fundations/icons/Lifebuoy.astro";
+import InfoCircle from "@/components/fundations/icons/InfoCircle.astro";
+import ThreeDots from "@/components/fundations/icons/ThreeDots.astro";
+import Settings from "@/components/fundations/icons/Settings.astro";
+import User from "@/components/fundations/icons/User.astro";
+---
+
 <section>
   <div class="px-8 py-32 mx-auto max-w-7xl lg:px-16 md:px-12">
     <div
@@ -9,110 +21,118 @@
           role="list"
           class="flex items-center space-x-4 text-sm">
           <li>
-            <a
+            <Link
+              tag="a"
               href="#_"
-              class="text-sm flex items-center gap-2 font-medium text-base-500 duration-200 hover:text-accent-600">
-              <span>Home </span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon size-4 icon-tabler icons-tabler-outline icon-tabler-chevron-right">
-                <path
-                  stroke="none"
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                ></path>
-                <path d="M9 6l6 6l-6 6"></path>
-              </svg>
-            </a>
+              variant="linkMuted"
+              class="flex items-center gap-2">
+              <span>Home</span>
+              <ChevronRight size="base" />
+            </Link>
           </li>
-          <li>
-            <a
-              href="#_"
-              class="text-sm font-medium text-accent-500 hover:text-accent-500"
-              aria-current="page"
-              >Help Center Overview</a
-            >
-          </li>
+            <li>
+              <Link
+                tag="a"
+                href="#_"
+                variant="link"
+                class="flex items-center gap-2">
+                <span>Help Center Overview</span>
+              </Link>
+            </li>
         </ol>
       </nav>
       <div class="relative">
-        <li
+        <div
           class="relative flex items-center"
           @click.away="open = false"
           x-data="{ open: false }">
-          <button
+          <IconButton
             @click="open = !open"
-            class="flex items-center text-sm text-base-600 rounded-full hover:text-accent-500"
             aria-haspopup="true"
-            aria-expanded="false">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-dots size-6"
-              ><path
-                stroke="none"
-                d="M0 0h24v24H0z"
-                fill="none"
-              ></path><path d="M5 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"
-              ></path><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"
-              ></path><path d="M19 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"
-              ></path></svg
-            >
-          </button>
+            aria-expanded="false"
+            variant="text"
+            size="sm">
+            <ThreeDots
+              size="base"
+              slot="icon"
+            />
+            
+          </IconButton>
+
           <div
             x-show="open"
+            @click.away="open = false"
             x-transition:enter="transition ease-out duration-200"
-            x-transition:enter-start="transform opacity-0 scale-95"
-            x-transition:enter-end="transform opacity-100 scale-100"
-            x-transition:leave="transition ease-in duration-75"
-            x-transition:leave-start="transform opacity-100 scale-100"
-            x-transition:leave-end="transform opacity-0 scale-95"
-            class="origin-top-center absolute left-1/2 ml-24 md:ml-0 transform p-2 -translate-x-1/2 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black/5 focus:outline-none"
+            x-transition:enter-start="opacity-0 translate-y-1"
+            x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-150"
+            x-transition:leave-start="opacity-100 translate-y-0"
+            x-transition:leave-end="opacity-0 translate-y-1"
+            class="origin-top-center absolute divide-y overflow-hidden divide-base-200 left-auto right-8 transform mt-2 w-56 rounded-xl shadow bg-white ring-1 ring-black/5 focus:outline-none"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="menu-button">
             <div
-              class="py-1"
+              class="p-1.5"
               role="none">
-              <a
+              <Link
+                tag="a"
                 href="#_"
-                class="block sm:hidden px-4 py-2 rounded text-sm text-base-700 hover:bg-base-100 hover:text-accent-500"
-                >Help Center</a
-              >
-              <a
+                variant="dropDownLink"
+                class="flex items-center gap-2">
+                <InfoCircle
+                  class="left-icon"
+                  size="sm"
+                />
+                FAQ
+              </Link>
+              <Link
+                tag="a"
                 href="#_"
-                class="block px-4 py-2 text-sm text-base-700 hover:bg-base-100 hover:text-accent-500 duration-300 rounded"
-                >FAQ</a
-              >
-              <a
+                variant="dropDownLink"
+                class="flex items-center gap-2">
+                <Lifebuoy
+                  class="left-icon"
+                  size="sm"
+                />
+                Support
+              </Link>
+              <Link
+                tag="a"
                 href="#_"
-                class="block px-4 py-2 text-sm text-base-700 hover:bg-base-100 hover:text-accent-500 duration-300 rounded"
-                >Guides</a
-              >
-              <a
+                variant="dropDownLink"
+                class="flex items-center gap-2">
+                <Settings
+                  class="left-icon"
+                  size="sm"
+                />
+                Account
+              </Link>
+              <Link
+                tag="a"
                 href="#_"
-                class="block px-4 py-2 text-sm text-base-700 hover:bg-base-100 hover:text-accent-500 duration-300 rounded"
-                >Contact Support</a
-              >
-              <a
-                href="#_"
-                class="block px-4 py-2 text-sm text-base-700 hover:bg-base-100 hover:text-accent-500 duration-300 rounded"
-                >Submit a Ticket</a
-              >
+                variant="dropDownLink"
+                class="flex items-center gap-2">
+                <User
+                  class="left-icon"
+                  size="sm"
+                />
+                Profile
+              </Link>
+            </div>
+            <div
+              class="p-1.5 bg-base-50"
+              role="none">
+              <Button
+                class="w-full"
+                variant="alternative"
+                gap="xs"
+                size="xs">
+                <span> Sign out</span>
+              </Button>
             </div>
           </div>
-        </li>
+        </div>
       </div>
     </div>
   </div>

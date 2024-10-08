@@ -1,3 +1,9 @@
+---
+import Text from "@/components/fundations/typography/Text.astro";
+import Link from "@/components/fundations/typography/Link.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+---
+
 <section>
   <div class="relative px-8 py-12 mx-auto md:px-12 lg:px-24 max-w-7xl">
     <div class="text-center lg:text-balance max-w-xl mx-auto">
@@ -12,7 +18,6 @@
           <div class="text-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -34,12 +39,20 @@
               class="mt-4 flex text-sm leading-6 text-base-600 justify-center">
               <label
                 for="file-upload"
-                class="relative cursor-pointer rounded-md bg-white font-medium text-accent-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-accent-600 focus-within:ring-offset-2 hover:text-accent-500">
-                <span
-                  ><span class="text-light text-base-500"
-                    >Drag and drop an image, or
-                  </span> Browse</span
-                >
+                class="relative cursor-pointer rounded-md bg-white font-medium text-accent-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-accent-600 focus-within:ring-offset-2 hover:text-accent-500 p-1">
+                <div class="flex gap-2 items-center">
+                  <Text
+                    tag="span"
+                    variant="small">
+                    Drag and drop an image, or
+                  </Text>
+                  <Button
+                    variant="muted"
+                    size="xs">
+                  Browser
+                  </Button>
+                </div>
+
                 <input
                   id="file-upload"
                   name="file-upload"
@@ -48,9 +61,12 @@
                 />
               </label>
             </div>
-            <p class="text-xs leading-5 text-base-500">
+            <Text
+            class="mt-4"
+              tag="p"
+              variant="small">
               Minimum 1600px width recommended. Max 10MB each (20MB for videos)
-            </p>
+            </Text>
           </div>
         </div>
       </div>
