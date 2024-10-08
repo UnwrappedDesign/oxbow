@@ -1,163 +1,132 @@
+---
+import Button from "@/components/fundations/buttons/Button.astro";
+import IconButton from "@/components/fundations/buttons/IconButton.astro";
+import Link from "@/components/fundations/typography/Link.astro";
+import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
+import Lifebuoy from "@/components/fundations/icons/Lifebuoy.astro";
+import InfoCircle from "@/components/fundations/icons/InfoCircle.astro";
+import ThreeDots from "@/components/fundations/icons/ThreeDots.astro";
+import Settings from "@/components/fundations/icons/Settings.astro";
+import User from "@/components/fundations/icons/User.astro";
+---
+
 <section>
   <div class="items-center px-8 py-32 mx-auto max-w-7xl lg:px-16 md:px-12">
     <div class="justify-center w-full mx-auto">
       <nav
-        class="flex"
-        aria-label="Breadcrumb">
+        aria-label="Breadcrumb"
+        class="flex-1 pb-5">
         <ol
           role="list"
-          class="flex items-center space-x-4">
+          class="flex items-center space-x-4 text-sm">
           <li>
-            <a
+            <Link
+              tag="a"
               href="#_"
-              class="flex items-center duration-200 text-base-500 hover:text-accent-600"
-              tabindex="0">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon icon-tabler size-5 icons-tabler-outline icon-tabler-home">
-                <path
-                  stroke="none"
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                ></path>
-                <path d="M5 12l-2 0l9 -9l9 9l-2 0"></path>
-                <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
-                <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
-              </svg>
-            </a>
-          </li>
-          <li class="hidden sm:block">
-            <a
-              href="#_"
-              class="flex items-center gap-2 text-sm font-medium duration-200 text-base-500 hover:text-accent-600"
-              tabindex="0">
-              Help Center
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon size-4 icon-tabler icons-tabler-outline icon-tabler-chevron-right">
-                <path
-                  stroke="none"
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                ></path>
-                <path d="M9 6l6 6l-6 6"></path>
-              </svg>
-            </a>
+              variant="linkMuted"
+              class="flex items-center gap-2">
+              <span>Home</span>
+              <ChevronRight size="base" />
+            </Link>
           </li>
           <li
             class="relative flex items-center"
             @click.away="open = false"
             x-data="{ open: false }">
-            <button
+            <IconButton
               @click="open = !open"
-              class="flex items-center justify-between gap-2 text-sm rounded-full text-base-600 hover:text-accent-500"
               aria-haspopup="true"
               aria-expanded="false"
-              aria-controls="dropdown-menu"
-              tabindex="0">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-dots size-6">
-                <path
-                  stroke="none"
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                ></path>
-                <path d="M5 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
-                <path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
-                <path d="M19 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon size-4 icon-tabler icons-tabler-outline icon-tabler-chevron-right">
-                <path
-                  stroke="none"
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                ></path>
-                <path d="M9 6l6 6l-6 6"></path>
-              </svg>
-            </button>
+              variant="text"
+              size="sm">
+              <ThreeDots
+                size="base"
+                slot="icon"
+              />
+            </IconButton>
+            <ChevronRight size="base" />
             <div
-              id="dropdown-menu"
               x-show="open"
+              @click.away="open = false"
               x-transition:enter="transition ease-out duration-200"
-              x-transition:enter-start="transform opacity-0 scale-95"
-              x-transition:enter-end="transform opacity-100 scale-100"
-              x-transition:leave="transition ease-in duration-75"
-              x-transition:leave-start="transform opacity-100 scale-100"
-              x-transition:leave-end="transform opacity-0 scale-95"
-              class="absolute w-56 p-2 mt-2 ml-24 transform -translate-x-1/2 bg-white rounded-md shadow-lg origin-top-center left-1/2 md:ml-0 ring-1 ring-black/5 focus:outline-none"
+              x-transition:enter-start="opacity-0 translate-y-1"
+              x-transition:enter-end="opacity-100 translate-y-0"
+              x-transition:leave="transition ease-in duration-150"
+              x-transition:leave-start="opacity-100 translate-y-0"
+              x-transition:leave-end="opacity-0 translate-y-1"
+              class="origin-top-center absolute divide-y overflow-hidden divide-base-200 left-1/2 transform -translate-x-1/2 mt-2 w-56 rounded-xl shadow bg-white ring-1 ring-black/5 focus:outline-none"
               role="menu"
-              tabindex="0">
+              aria-orientation="vertical"
+              aria-labelledby="menu-button">
               <div
-                class="py-1"
+                class="p-1.5"
                 role="none">
-                <a
+                <Link
+                  tag="a"
                   href="#_"
-                  class="block px-4 py-2 text-sm rounded text-base-700 sm:hidden hover:bg-base-100 hover:text-accent-500"
-                  tabindex="0"
-                  >Help Center</a
-                >
-                <a
+                  variant="dropDownLink"
+                  class="flex items-center gap-2">
+                  <InfoCircle
+                    class="left-icon"
+                    size="sm"
+                  />
+                  FAQ
+                </Link>
+                <Link
+                  tag="a"
                   href="#_"
-                  class="block px-4 py-2 text-sm duration-300 rounded text-base-700 hover:bg-base-100 hover:text-accent-500"
-                  tabindex="0"
-                  >FAQ</a
-                >
-                <a
+                  variant="dropDownLink"
+                  class="flex items-center gap-2">
+                  <Lifebuoy
+                    class="left-icon"
+                    size="sm"
+                  />
+                  Support
+                </Link>
+                <Link
+                  tag="a"
                   href="#_"
-                  class="block px-4 py-2 text-sm duration-300 rounded text-base-700 hover:bg-base-100 hover:text-accent-500"
-                  tabindex="0"
-                  >Guides</a
-                >
-                <a
+                  variant="dropDownLink"
+                  class="flex items-center gap-2">
+                  <Settings
+                    class="left-icon"
+                    size="sm"
+                  />
+                  Account
+                </Link>
+                <Link
+                  tag="a"
                   href="#_"
-                  class="block px-4 py-2 text-sm duration-300 rounded text-base-700 hover:bg-base-100 hover:text-accent-500"
-                  tabindex="0"
-                  >Contact Support</a
-                >
-                <a
-                  href="#_"
-                  class="block px-4 py-2 text-sm duration-300 rounded text-base-700 hover:bg-base-100 hover:text-accent-500"
-                  tabindex="0"
-                  >Submit a Ticket</a
-                >
+                  variant="dropDownLink"
+                  class="flex items-center gap-2">
+                  <User
+                    class="left-icon"
+                    size="sm"
+                  />
+                  Profile
+                </Link>
+              </div>
+              <div
+                class="p-1.5 bg-base-50"
+                role="none">
+                <Button
+                  class="w-full"
+                  variant="alternative"
+                  gap="xs"
+                  size="xs">
+                  <span> Sign out</span>
+                </Button>
               </div>
             </div>
           </li>
           <li>
-            <a
+            <Link
+              tag="a"
               href="#_"
-              class="text-sm font-medium text-accent-500 hover:text-accent-500"
-              aria-current="page"
-              tabindex="0"
-              >Help Center Overview</a
-            >
+              variant="link"
+              class="flex items-center gap-2">
+              <span>Help Center Overview</span>
+            </Link>
           </li>
         </ol>
       </nav>
