@@ -1,13 +1,17 @@
 ---
-// Used for paragraphs, spans, small, div, strong, em, blockquote, or any other text element with different styles
-//
 export interface TextStyle {
   light: string;
   dark?: string; // Make dark optional for styles that don't require it
+  info?: string; // Add an info style for specific text elements
+  success?: string; // Add a success style for specific text elements
+  warning?: string; // Add a warning style for specific text elements
+  danger?: string; // Add a danger style for specific text elements
 }
+
 export interface TextStyles {
   [key: string]: TextStyle;
 }
+
 export interface Props {
   tag?:
     | "p"
@@ -26,7 +30,12 @@ export interface Props {
   darkMode?: boolean; // Add a prop to indicate if dark mode is enabled
   for?: string; // Add for attribute for label tags
   id?: string; // Add id attribute for label tags
+  info?: boolean;
+  success?: boolean;
+  warning?: boolean;
+  danger?: boolean;
 }
+
 const textStyles: TextStyles = {
   bigNumbers: {
     light: "text-5xl font-normal font-mono text-accent-600",
@@ -40,22 +49,42 @@ const textStyles: TextStyles = {
   body: {
     light: "text-base font-medium text-base-500",
     dark: "text-base-300 font-medium",
+    info: "text-base font-medium text-accent-900",
+    success: "text-base font-medium text-emerald-900",
+    warning: "text-base font-medium text-amber-900",
+    danger: "text-base font-medium text-rose-900",
   },
   featureListItem: {
     light: "tracking-tight text-lg font-medium text-base-900",
     dark: "tracking-tight text-lg font-medium text-base-300",
+    info: "tracking-tight text-lg font-medium text-accent-800",
+    success: "tracking-tight text-lg font-medium text-emerald-800",
+    warning: "tracking-tight text-lg font-medium text-amber-800",
+    danger: "tracking-tight text-lg font-medium text-rose-800",
+  },
+  featureListItemSmall: {
+    light: "tracking-tight text-bas font-medium text-base-900",
+    dark: "tracking-tight text-base font-medium text-base-300",
+    info: "tracking-tight text-base font-medium text-accent-800",
+    success: "tracking-tight text-base font-medium text-emerald-800",
+    warning: "tracking-tight text-base font-medium text-amber-800",
+    danger: "tracking-tight text-base font-medium text-rose-800",
   },
   caption: {
     light: "text-sm font-normal text-base-500",
     dark: "text-sm font-normal text-white",
-  },
-  overline: {
-    light: "text-xs font-medium uppercase tracking-wider",
-    dark: "text-xs font-medium uppercase tracking-wider",
+    info: "text-sm font-normal text-accent-800",
+    success: "text-sm font-normal text-emerald-800",
+    warning: "text-sm font-normal text-amber-800",
+    danger: "text-sm font-normal text-rose-800",
   },
   small: {
     light: "text-sm font-normal text-base-500",
     dark: "text-sm font-normal text-white",
+    info: "text-sm font-normal text-accent-700",
+    success: "text-sm font-normal text-emerald-700",
+    warning: "text-sm font-normal text-amber-700",
+    danger: "text-sm font-normal text-rose-700",
   },
   inputLabel: {
     light: "text-sm font-medium text-base-500",
@@ -84,24 +113,41 @@ const textStyles: TextStyles = {
   },
   // Add more text variants as needed...
 };
+
 const {
-  tag: Tag = "p",
-  variant = "body",
+  tag: Tag = "p", // default to paragraph
+  variant = "body", // default to body variant
   class: className = "",
   darkMode = false, // Get the dark mode prop
-  href = "#", // Default href for anchor tags
+  info = false,
+  success = false,
+  warning = false,
+  danger = false,
   ...rest
 } = Astro.props;
-// Get the base classes for the variant
-const baseClasses = darkMode
+
+// Get the base classes for the variant (light or dark mode)
+let baseClasses = darkMode
   ? textStyles[variant]?.dark || textStyles.body.dark
   : textStyles[variant]?.light || textStyles.body.light;
-// Combine base classes with additional classes
+
+// Override with specific styles if `info`, `success`, `warning`, or `danger` is true
+if (info) {
+  baseClasses = textStyles[variant]?.info || textStyles.body.info;
+} else if (success) {
+  baseClasses = textStyles[variant]?.success || textStyles.body.success;
+} else if (warning) {
+  baseClasses = textStyles[variant]?.warning || textStyles.body.warning;
+} else if (danger) {
+  baseClasses = textStyles[variant]?.danger || textStyles.body.danger;
+}
+
+// Combine base classes with any additional custom classes
 const combinedClasses = `${baseClasses} ${className}`.trim();
 ---
+
 <Tag
   class={combinedClasses}
-  href={Tag === "a" ? href : undefined}
   {...rest}>
   <slot />
 </Tag>

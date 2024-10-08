@@ -14,6 +14,13 @@ const defaultClass = [
   "hover:bg-base-800",
   "focus:ring-base-500/50",
 ];
+// Default Dark button
+const defaultDarkClass = [
+  "text-black",
+  "bg-white",
+  "hover:bg-base-200",
+  "focus:ring-base-500/50",
+];
 // Accent button
 const accentClass = [
   "text-white",
@@ -21,8 +28,15 @@ const accentClass = [
   "hover:bg-accent-700",
   "focus:ring-accent-500/50",
 ];
+// AccentDark button
+const accentCDarklass = [
+  "text-white",
+  "bg-accent-500",
+  "hover:bg-accent-600",
+  "focus:ring-accent-500/50",
+];
 // Alternative button
-const alternativeAccentClass = [
+const alternativeClass = [
   "text-base-500",
   "bg-white",
   "hover:text-accent-500",
@@ -30,12 +44,28 @@ const alternativeAccentClass = [
   "ring-base-200",
   "focus:ring-accent-500",
 ];
+// Alternative dark button
+const alternativeDarkClass = [
+  "text-white",
+  "bg-base-900",
+  "hover:text-accent-400",
+  "ring-1",
+  "ring-base-700",
+  "focus:ring-accent-400",
+];
 // Muted button
 const mutedClass = [
   "text-base-700",
   "bg-base-50",
   "hover:bg-white",
   "focus:ring-base-500/50",
+];
+// Muted dark button
+const mutedDarkClass = [
+  "text-base-300",
+  "bg-base-800",
+  "hover:bg-base-700",
+  "focus:ring-base-700/50",
 ];
 // Text button
 const textClass = [
@@ -80,7 +110,6 @@ const dangerClass = [
   "focus:ring-rose-600",
 ];
 
-// Meta button
 // Meeta brand button
 const metaBrandClass = [
   "text-white",
@@ -101,6 +130,16 @@ const chromeBrandClass = [
   "hover:bg-base-100",
   "focus:ring-base-500/50",
 ];
+// Trasnparent Light button
+const transparentLight = [
+  "text-base-900",
+  "bg-transparent",
+  "hover:text-accent-600",
+];
+// Trasnparent Dark button
+// Trasnparent Dark button
+const transparentDark = ["text-white", "bg-transparent", "hover:text-base-400"];
+
 // Size
 const xs = ["h-8", "px-4", "py-2", "text-xs", "font-medium", "rounded-md"];
 const sm = ["h-9", "px-4", "py-2", "text-sm", "font-medium", "rounded-md"];
@@ -127,9 +166,13 @@ const additionalClasses = className ? className.split(" ") : [];
     "focus:ring-2",
     "focus:outline-none",
     variant === "accent" && accentClass,
+    variant === "accentDark" && accentCDarklass,
     variant === "default" && defaultClass,
-    variant === "alternative" && alternativeAccentClass,
+    variant === "defaultDark" && defaultDarkClass,
+    variant === "alternative" && alternativeClass,
+    variant === "alternativeDark" && alternativeDarkClass,
     variant === "muted" && mutedClass,
+    variant === "mutedDark" && mutedDarkClass,
     variant === "info" && infoClass,
     variant === "success" && successClass,
     variant === "warning" && warningClass,
@@ -139,6 +182,8 @@ const additionalClasses = className ? className.split(" ") : [];
     variant === "meta-brand" && metaBrandClass,
     variant === "apple-brand" && appleBrandClass,
     variant === "chrome-brand" && chromeBrandClass,
+    variant === "transparentLight" && transparentLight,
+    variant === "transparentDark" && transparentDark,
     size === "xs" && xs,
     size === "sm" && sm,
     size === "base" && base,

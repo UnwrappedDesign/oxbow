@@ -1,11 +1,17 @@
 ---
 const { variant, size, class: className, ...rest } = Astro.props;
-
 // Default button
 const defaultClass = [
   "text-white",
   "bg-base-900",
   "hover:bg-base-800",
+  "focus:ring-base-500/50",
+];
+// Default Dark button
+const defaultDarkClass = [
+  "text-black",
+  "bg-white",
+  "hover:bg-base-200",
   "focus:ring-base-500/50",
 ];
 // Accent button
@@ -15,8 +21,15 @@ const accentClass = [
   "hover:bg-accent-700",
   "focus:ring-accent-500/50",
 ];
+// AccentDark button
+const accentCDarklass = [
+  "text-white",
+  "bg-accent-500",
+  "hover:bg-accent-600",
+  "focus:ring-accent-500/50",
+];
 // Alternative button
-const alternativeAccentClass = [
+const alternativeClass = [
   "text-base-500",
   "bg-white",
   "hover:text-accent-500",
@@ -24,12 +37,28 @@ const alternativeAccentClass = [
   "ring-base-200",
   "focus:ring-accent-500",
 ];
+// Alternative dark button
+const alternativeDarkClass = [
+  "text-white",
+  "bg-base-900",
+  "hover:text-accent-400",
+  "ring-1",
+  "ring-base-700",
+  "focus:ring-accent-400",
+];
 // Muted button
 const mutedClass = [
   "text-base-700",
   "bg-base-50",
   "hover:bg-white",
   "focus:ring-base-500/50",
+];
+// Muted dark button
+const mutedDarkClass = [
+  "text-base-300",
+  "bg-base-800",
+  "hover:bg-base-700",
+  "focus:ring-base-700/50",
 ];
 // Text button
 const textClass = [
@@ -74,6 +103,36 @@ const dangerClass = [
   "focus:ring-rose-600",
 ];
 
+// Meeta brand button
+const metaBrandClass = [
+  "text-white",
+  "bg-accent-500",
+  "hover:bg-accent-600",
+  "focus:ring-base-500/50",
+];
+// Meeta brand button
+const appleBrandClass = [
+  "text-white",
+  "bg-black",
+  "hover:bg-base-700",
+  "focus:ring-base-500/50",
+];
+const chromeBrandClass = [
+  "text-white",
+  "bg-base-50",
+  "hover:bg-base-100",
+  "focus:ring-base-500/50",
+];
+// Trasnparent Light button
+const transparentLight = [
+  "text-base-900",
+  "bg-transparent",
+  "hover:text-accent-600",
+];
+// Trasnparent Dark button
+// Trasnparent Dark button
+const transparentDark = ["text-white", "bg-transparent", "hover:text-base-400"];
+
 // Updated size classes to match Button component
 const xs = ["h-8", "w-8", "p-1.5", "text-xs"];
 const sm = ["h-9", "w-9", "p-2", "text-sm"];
@@ -95,13 +154,24 @@ const xl = ["h-14", "w-14", "p-3.5", "text-lg"];
     "focus:outline-none",
     "rounded-lg",
     variant === "accent" && accentClass,
-    variant === "alternative" && alternativeAccentClass,
+    variant === "accentDark" && accentCDarklass,
+    variant === "default" && defaultClass,
+    variant === "defaultDark" && defaultDarkClass,
+    variant === "alternative" && alternativeClass,
+    variant === "alternativeDark" && alternativeDarkClass,
     variant === "muted" && mutedClass,
+    variant === "mutedDark" && mutedDarkClass,
+    variant === "info" && infoClass,
     variant === "success" && successClass,
     variant === "warning" && warningClass,
     variant === "danger" && dangerClass,
     variant === "text" && textClass,
     variant === "link" && linkClass,
+    variant === "meta-brand" && metaBrandClass,
+    variant === "apple-brand" && appleBrandClass,
+    variant === "chrome-brand" && chromeBrandClass,
+    variant === "transparentLight" && transparentLight,
+    variant === "transparentDark" && transparentDark,
     size === "xs" && xs,
     size === "sm" && sm,
     size === "base" && base,

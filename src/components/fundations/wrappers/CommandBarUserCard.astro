@@ -1,0 +1,46 @@
+---
+import MapPin from "../icons/MapPin.astro";
+const {
+  name,
+  username,
+  location,
+  avatarSrc,
+  avatarAlt,
+  additionalClasses = "", // Allow passing extra classes for custom styling
+} = Astro.props;
+---
+
+<a
+  href="#_"
+  class={`flex items-center justify-between w-full ${additionalClasses}`}>
+  <div class="group block flex-shrink-0">
+    <div class="flex items-center gap-2">
+      <div>
+        <img
+          class="inline-block size-10 object-cover object-center rounded-lg"
+          src={avatarSrc}
+          alt={avatarAlt}
+        />
+      </div>
+      <div>
+        <p
+          class="text-sm font-medium text-base-900 group-hover:text-accent-500 duration-300">
+          {name}
+        </p>
+        <p
+          class="text-xs mt-1 text-base-400 group-hover:text-accent-500 duration-300">
+          {username}
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="flex-none ml-auto text-xs font-medium text-base-500">
+    <div class="flex items-center gap-2">
+      <span>{location}</span>
+      <MapPin
+        size="sm"
+        slot="icon"
+      />
+    </div>
+  </div>
+</a>
