@@ -1,0 +1,26 @@
+---
+// Props to make the component more flexible
+const {
+  text = "Search projects...",
+  hasKbd = false,
+  kbdKey = "S",
+  iconSlot, // Slot for custom icons
+  additionalClasses = ""
+} = Astro.props;
+---
+
+<button class={`flex p-2 items-center w-full text-xs text-base-500 duration-200 cursor-pointer select-none hover:text-accent-500 group rounded-md hover:bg-base-50 ${additionalClasses}`}>
+  <div class="flex items-center gap-2">
+    {iconSlot ? (
+      <slot name="icon"></slot>
+    ) : null}
+    <span class="flex-auto truncate">{text}</span>
+  </div>
+  {hasKbd && (
+    <span class="flex-none ml-auto text-xs font-semibold text-base-400">
+      <kbd class="flex items-center justify-center size-4 font-semibold text-base-500 border rounded bg-white border-base-200">
+        {kbdKey}
+      </kbd>
+    </span>
+  )}
+</button>

@@ -1,3 +1,10 @@
+---
+import CommandbarButton from "@/components/fundations/buttons/CommandBarButton.astro";
+import Component from "@/components/fundations/icons/Component.astro";
+import Plus from "@/components/fundations/icons/Plus.astro";
+import Search from "@/components/fundations/icons/Search.astro";
+---
+
 <section class="bg-base-50 overflow-hidden">
   <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div
@@ -9,24 +16,12 @@
           class="sr-only"
           >Search</label
         >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="icon icon-tabler icons-tabler-outline icon-tabler-search pointer-events-none absolute top-3.5 left-4 size-5 text-base-400"
-          aria-hidden="true">
-          <path
-            stroke="none"
-            d="M0 0h24v24H0z"
-            fill="none"
-          ></path>
-          <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
-          <path d="M21 21l-6 -6"></path>
-        </svg>
+        <Search
+          class="pointer-events-none absolute top-3.5 left-4 text-base-400"
+          size="base"
+          slot="icon"
+        />
+
         <input
           id="search"
           type="text"
@@ -45,73 +40,36 @@
         role="listbox"
         tabindex="0">
         <li
-          class="flex p-2 items-center text-xs text-base-500 duration-200 cursor-pointer select-none hover:text-accent-500 group rounded-md hover:bg-base-50"
           id="option-1"
           role="option"
           tabindex="0"
           aria-selected="false">
-          <div class="flex items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-components size-4"
-              aria-hidden="true">
-              <path
-                stroke="none"
-                d="M0 0h24v24H0z"
-                fill="none"
-              ></path>
-              <path d="M3 12l3 3l3 -3l-3 -3z"></path>
-              <path d="M15 12l3 3l3 -3l-3 -3z"></path>
-              <path d="M9 6l3 3l3 -3l-3 -3z"></path>
-              <path d="M9 18l3 3l3 -3l-3 -3z"></path>
-            </svg>
-            <span class="flex-auto truncate">Search projects...</span>
-          </div>
-          <span class="flex-none ml-auto text-xs font-semibold text-base-400">
-            <kbd
-              class="flex items-center justify-center size-4 font-semibold text-base-500 border rounded bg-white border-base-200">
-              S
-            </kbd>
-          </span>
+          <CommandbarButton
+            text="Search projects..."
+            hasKbd={true}
+            kbdKey="S"
+            iconSlot={true}>
+            <Component
+              size="sm"
+              slot="icon"
+            />
+          </CommandbarButton>
         </li>
         <li
-          class="flex p-2 items-center text-xs text-base-500 duration-200 cursor-pointer select-none hover:text-accent-500 group rounded-md hover:bg-base-50"
           id="option-2"
           role="option"
           tabindex="0"
           aria-selected="false">
-          <div class="flex items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-square-plus size-4"
-              ><path
-                stroke="none"
-                d="M0 0h24v24H0z"
-                fill="none"
-              ></path><path d="M9 12h6"></path><path d="M12 9v6"></path><path
-                d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14z"
-              ></path></svg
-            >
-            <p>Create another project</p>
-          </div>
-          <span class="flex-none ml-auto text-xs font-semibold text-base-400">
-            <kbd
-              class="flex items-center justify-center size-4 font-semibold text-base-500 border rounded bg-white border-base-200">
-              C
-            </kbd>
-          </span>
+          <CommandbarButton
+            text="Create another project"
+            hasKbd={true}
+            kbdKey="C"
+            iconSlot={true}>
+            <Plus
+              size="sm"
+              slot="icon"
+            />
+          </CommandbarButton>
         </li>
         <!-- Add more items similarly with roles and attributes... -->
       </ul>
