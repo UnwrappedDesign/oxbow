@@ -1,7 +1,13 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
-import Plus from "@/components/fundations/icons/Plus.astro";
+import IconButton from "@/components/fundations/buttons/IconButton.astro";
 import Badge from "@/components/fundations/badges/Badge.astro";
+import Plus from "@/components/fundations/icons/Plus.astro";
+import X from "@/components/fundations/icons/X.astro";
+import Search from "@/components/fundations/icons/Search.astro";
+import Mail from "@/components/fundations/icons/Mail.astro";
+import GithubBrand from "@/components/fundations/icons/GithubBrand.astro";
+import Clipboard from "@/components/fundations/icons/Clipboard.astro";
 ---
 
 <section class="overflow-hidden">
@@ -9,19 +15,11 @@ import Badge from "@/components/fundations/badges/Badge.astro";
     <div class="flex flex-col sm:flex-row sm:items-center gap-2">
       <div class="relative w-full">
         <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-          <svg
-            class="text-base-400 size-5"
-            viewBox="0 0 24 24"
-            fill="none"
-            aria-hidden="true">
-            <path
-              d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            ></path>
-          </svg>
+          <Search
+            class="text-base-400"
+            size="base"
+            slot="icon"
+          />
         </span>
         <input
           type="text"
@@ -40,7 +38,6 @@ import Badge from "@/components/fundations/badges/Badge.astro";
             slot="icon"
             slot="left-icon"
           />
-
           Add user
         </Button>
       </div>
@@ -98,43 +95,16 @@ import Badge from "@/components/fundations/badges/Badge.astro";
                 <td
                   class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500">
                   <div class="flex items-center gap-2">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="icon icon-tabler icons-tabler-outline icon-tabler-mail size-4">
-                      <path
-                        stroke="none"
-                        d="M0 0h24v24H0z"
-                        fill="none"
-                      ></path>
-                      <path
-                        d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"
-                      ></path>
-                      <path d="M3 7l9 6l9 -6"></path>
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="icon icon-tabler icons-tabler-outline icon-tabler-brand-github size-4">
-                      <path
-                        stroke="none"
-                        d="M0 0h24v24H0z"
-                        fill="none"
-                      ></path>
-                      <path
-                        d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"
-                      ></path>
-                    </svg>
+                    <Mail
+                      class="text-base-400"
+                      size="sm"
+                      slot="icon"
+                    />
+                    <GithubBrand
+                      class="text-base-400"
+                      size="sm"
+                      slot="icon"
+                    />
                   </div>
                 </td>
                 <td
@@ -150,27 +120,12 @@ import Badge from "@/components/fundations/badges/Badge.astro";
                   <span class="flex items-center gap-2">
                     <button
                       class="text-base-500 hover:text-accent-500 duration-300">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard size-4">
-                        <path
-                          stroke="none"
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        ></path>
-                        <path
-                          d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"
-                        ></path>
-                        <path
-                          d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z"
-                        ></path>
-                      </svg>
+
+                       <Clipboard
+                        class="text-base-400"
+                        size="sm"
+                        slot="icon"
+                      />
                     </button>
                     <span class="truncate"
                       >7fc61d7c-9060-464f-97df-37ba721e11f7</span
@@ -189,36 +144,22 @@ import Badge from "@/components/fundations/badges/Badge.astro";
                   class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right">
                   <div class="flex items-center gap-2">
                     <Button
-                        size="sm"
-                        type="submit"
-                        variant="link"
-                        class="ml-auto"
-                        >
-                        Edit<span class="sr-only">Edit</span>
-                      </Button>
-
-                    <button
+                      size="sm"
                       type="submit"
-                      class="text-red-500 hover:text-base-900 font-medium transition-all duration-200 text-sm">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-x size-4">
-                        <path
-                          stroke="none"
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        ></path>
-                        <path d="M18 6l-12 12"></path>
-                        <path d="M6 6l12 12"></path>
-                      </svg>
+                      variant="link"
+                      class="ml-auto">
+                      Edit<span class="sr-only">Edit</span>
+                    </Button>
+                    <IconButton
+                      variant="text"
+                      size="xs">
+                      <X
+                        class="text-red-500"
+                        size="sm"
+                        slot="icon"
+                      />
                       <span class="sr-only">Delete</span>
-                    </button>
+                    </IconButton>
                   </div>
                 </td>
               </tr>
@@ -230,25 +171,11 @@ import Badge from "@/components/fundations/badges/Badge.astro";
                 <td
                   class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500">
                   <div class="flex items-center gap-2">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="icon icon-tabler icons-tabler-outline icon-tabler-mail size-4">
-                      <path
-                        stroke="none"
-                        d="M0 0h24v24H0z"
-                        fill="none"
-                      ></path>
-                      <path
-                        d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"
-                      ></path>
-                      <path d="M3 7l9 6l9 -6"></path>
-                    </svg>
+                    <Mail
+                      class="text-base-400"
+                      size="sm"
+                      slot="icon"
+                    />
                   </div>
                 </td>
                 <td
@@ -264,27 +191,11 @@ import Badge from "@/components/fundations/badges/Badge.astro";
                   <span class="flex items-center gap-2">
                     <button
                       class="text-base-500 hover:text-accent-500 duration-300">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard size-4">
-                        <path
-                          stroke="none"
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        ></path>
-                        <path
-                          d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"
-                        ></path>
-                        <path
-                          d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z"
-                        ></path>
-                      </svg>
+                       <Clipboard
+                        class="text-base-400"
+                        size="sm"
+                        slot="icon"
+                      />
                     </button>
                     <span class="truncate"
                       >16839a81-6f63-4aa2-859f-69dd924fefdd</span
@@ -302,36 +213,22 @@ import Badge from "@/components/fundations/badges/Badge.astro";
                   class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right">
                   <div class="flex items-center gap-2">
                     <Button
-                        size="sm"
-                        type="submit"
-                        variant="link"
-                        class="ml-auto"
-                        >
-                        Edit<span class="sr-only">Edit</span>
-                      </Button>
-
-                    <button
+                      size="sm"
                       type="submit"
-                      class="text-red-500 hover:text-base-900 font-medium transition-all duration-200 text-sm">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-x size-4">
-                        <path
-                          stroke="none"
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        ></path>
-                        <path d="M18 6l-12 12"></path>
-                        <path d="M6 6l12 12"></path>
-                      </svg>
+                      variant="link"
+                      class="ml-auto">
+                      Edit<span class="sr-only">Edit</span>
+                    </Button>
+                    <IconButton
+                      variant="text"
+                      size="xs">
+                      <X
+                        class="text-red-500"
+                        size="sm"
+                        slot="icon"
+                      />
                       <span class="sr-only">Delete</span>
-                    </button>
+                    </IconButton>
                   </div>
                 </td>
               </tr>
@@ -343,22 +240,11 @@ import Badge from "@/components/fundations/badges/Badge.astro";
                 <td
                   class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500">
                   <div class="flex items-center gap-2">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="icon icon-tabler icons-tabler-outline icon-tabler-brand-gitlab size-4">
-                      <path
-                        stroke="none"
-                        d="M0 0h24v24H0z"
-                        fill="none"
-                      ></path>
-                      <path d="M21 14l-9 7l-9 -7l3 -11l3 7h6l3 -7z"></path>
-                    </svg>
+                    <GithubBrand
+                      class="text-base-400"
+                      size="sm"
+                      slot="icon"
+                    />
                   </div>
                 </td>
                 <td
@@ -374,27 +260,11 @@ import Badge from "@/components/fundations/badges/Badge.astro";
                   <span class="flex items-center gap-2">
                     <button
                       class="text-base-500 hover:text-accent-500 duration-300">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard size-4">
-                        <path
-                          stroke="none"
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        ></path>
-                        <path
-                          d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"
-                        ></path>
-                        <path
-                          d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z"
-                        ></path>
-                      </svg>
+                       <Clipboard
+                        class="text-base-400"
+                        size="sm"
+                        slot="icon"
+                      />
                     </button>
                     <span class="truncate"
                       >d4b03e34-4574-4641-a7aa-e57d04059e38</span
@@ -412,36 +282,22 @@ import Badge from "@/components/fundations/badges/Badge.astro";
                   class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right">
                   <div class="flex items-center gap-2">
                     <Button
-                        size="sm"
-                        type="submit"
-                        variant="link"
-                        class="ml-auto"
-                        >
-                        Edit<span class="sr-only">Edit</span>
-                      </Button>
-
-                    <button
+                      size="sm"
                       type="submit"
-                      class="text-red-500 hover:text-base-900 font-medium transition-all duration-200 text-sm">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-x size-4">
-                        <path
-                          stroke="none"
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        ></path>
-                        <path d="M18 6l-12 12"></path>
-                        <path d="M6 6l12 12"></path>
-                      </svg>
+                      variant="link"
+                      class="ml-auto">
+                      Edit<span class="sr-only">Edit</span>
+                    </Button>
+                    <IconButton
+                      variant="text"
+                      size="xs">
+                      <X
+                        class="text-red-500"
+                        size="sm"
+                        slot="icon"
+                      />
                       <span class="sr-only">Delete</span>
-                    </button>
+                    </IconButton>
                   </div>
                 </td>
               </tr>
@@ -453,42 +309,16 @@ import Badge from "@/components/fundations/badges/Badge.astro";
                 <td
                   class="whitespace-nowrap px-3 py-4 text-xs font-medium text-base-500">
                   <div class="flex items-center gap-2">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="icon icon-tabler icons-tabler-outline icon-tabler-mail size-4">
-                      <path
-                        stroke="none"
-                        d="M0 0h24v24H0z"
-                        fill="none"
-                      ></path>
-                      <path
-                        d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"
-                      ></path>
-                      <path d="M3 7l9 6l9 -6"></path>
-                    </svg>
-
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="icon icon-tabler icons-tabler-outline icon-tabler-brand-gitlab size-4">
-                      <path
-                        stroke="none"
-                        d="M0 0h24v24H0z"
-                        fill="none"
-                      ></path>
-                      <path d="M21 14l-9 7l-9 -7l3 -11l3 7h6l3 -7z"></path>
-                    </svg>
+                    <Mail
+                      class="text-base-400"
+                      size="sm"
+                      slot="icon"
+                    />
+                    <GithubBrand
+                      class="text-base-400"
+                      size="sm"
+                      slot="icon"
+                    />
                   </div>
                 </td>
                 <td
@@ -504,27 +334,11 @@ import Badge from "@/components/fundations/badges/Badge.astro";
                   <span class="flex items-center gap-2">
                     <button
                       class="text-base-500 hover:text-accent-500 duration-300">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard size-4">
-                        <path
-                          stroke="none"
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        ></path>
-                        <path
-                          d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"
-                        ></path>
-                        <path
-                          d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z"
-                        ></path>
-                      </svg>
+                       <Clipboard
+                        class="text-base-400"
+                        size="sm"
+                        slot="icon"
+                      />
                     </button>
                     <span class="truncate"
                       >9e402944-9e5f-4b39-9163-3b1664211cbe</span
@@ -542,36 +356,22 @@ import Badge from "@/components/fundations/badges/Badge.astro";
                   class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right">
                   <div class="flex items-center gap-2">
                     <Button
-                        size="sm"
-                        type="submit"
-                        variant="link"
-                        class="ml-auto"
-                        >
-                        Edit<span class="sr-only">Edit</span>
-                      </Button>
-
-                    <button
+                      size="sm"
                       type="submit"
-                      class="text-red-500 hover:text-base-900 font-medium transition-all duration-200 text-sm">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-x size-4">
-                        <path
-                          stroke="none"
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        ></path>
-                        <path d="M18 6l-12 12"></path>
-                        <path d="M6 6l12 12"></path>
-                      </svg>
+                      variant="link"
+                      class="ml-auto">
+                      Edit<span class="sr-only">Edit</span>
+                    </Button>
+                    <IconButton
+                      variant="text"
+                      size="xs">
+                      <X
+                        class="text-red-500"
+                        size="sm"
+                        slot="icon"
+                      />
                       <span class="sr-only">Delete</span>
-                    </button>
+                    </IconButton>
                   </div>
                 </td>
               </tr>
