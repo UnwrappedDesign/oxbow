@@ -1,3 +1,9 @@
+---
+import Search from "@/components/fundations/icons/Search.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import CommandBarUserCard from "@/components/fundations/wrappers/CommandBarUserCard.astro";
+---
+
 <section class="bg-base-50 overflow-hidden">
   <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div
@@ -9,24 +15,11 @@
           class="sr-only"
           >Search</label
         >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="icon icon-tabler icons-tabler-outline icon-tabler-search pointer-events-none absolute top-3.5 left-4 size-5 text-base-400"
-          aria-hidden="true">
-          <path
-            stroke="none"
-            d="M0 0h24v24H0z"
-            fill="none"
-          ></path>
-          <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
-          <path d="M21 21l-6 -6"></path>
-        </svg>
+        <Search
+          class="pointer-events-none absolute top-3.5 left-4 text-base-400"
+          size="base"
+          slot="icon"
+        />
         <input
           id="search"
           type="text"
@@ -45,172 +38,50 @@
         role="listbox"
         tabindex="0">
         <li>
-          <p class="text-sm font-semibold text-base-500">Search results (2)</p>
+          <Text
+            tag="p"
+            variant="small">
+            Search results (2)
+          </Text>
         </li>
         <li
-          class="flex text-sm text-base-500 duration-200 cursor-pointer select-none hover:text-accent-500 group"
           id="option-1"
           role="option"
           tabindex="0"
           aria-selected="false">
-          <a
-            href="#_"
-            class="flex items-center justify-between w-full">
-            <div class="group block flex-shrink-0">
-              <div class="flex items-center gap-2">
-                <div>
-                  <img
-                    class="inline-block size-10 object-cover object-center rounded-lg"
-                    src="/avatars/1.avif"
-                    alt=""
-                  />
-                </div>
-                <div     >
-                  <p
-                    class="text-sm font-medium text-base-900 group-hover:text-accent-500 duration-300">
-                    Michael Andreuzza
-                  </p>
-                  <p
-                    class="text-xs mt-1 text-base-400 group-hover:text-accent-500 duration-300">
-                    @Mike_Andreuzza
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="flex-none ml-auto text-xs font-medium text-base-500">
-              <div class="flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-map-pin size-4"
-                  ><path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  ></path><path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"
-                  ></path><path
-                    d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"
-                  ></path></svg
-                >
-                <span>Alicante, Spain</span>
-              </div>
-            </div>
-          </a>
+          <CommandBarUserCard
+            name="Michael Andreuzza"
+            username="@Mike_Andreuzza"
+            location="Alicante, Spain"
+            avatarSrc="/avatars/1.avif"
+            avatarAlt="Profile picture"
+          />
         </li>
         <li
-          class="flex text-sm text-base-500 duration-200 cursor-pointer select-none hover:text-accent-500 group"
           id="option-1"
           role="option"
           tabindex="0"
           aria-selected="false">
-          <a
-            href="#_"
-            class="flex items-center justify-between w-full">
-            <div class="group block flex-shrink-0">
-              <div class="flex items-center gap-2">
-                <div>
-                  <img
-                    class="inline-block size-10 object-cover object-center rounded-lg"
-                    src="/avatars/4.avif"
-                    alt=""
-                  />
-                </div>
-                <div     >
-                  <p
-                    class="text-sm font-medium text-base-900 group-hover:text-accent-500 duration-300">
-                    Jordan McKenna
-                  </p>
-                  <p
-                    class="text-xs mt-1 text-base-400 group-hover:text-accent-500 duration-300">
-                    @jordan_mckenna
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="flex-none ml-auto text-xs font-medium text-base-500">
-              <div class="flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-map-pin size-4"
-                  ><path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  ></path><path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"
-                  ></path><path
-                    d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"
-                  ></path></svg
-                >
-                <span> Milan, Italy</span>
-              </div>
-            </div>
-          </a>
+          <CommandBarUserCard
+            name="Jordan McKenna"
+            username="@jordan_mckenna"
+            location="Milano, Italy"
+            avatarSrc="/avatars/4.avif"
+            avatarAlt="Profile picture"
+          />
         </li>
         <li
-          class="flex text-sm text-base-500 duration-200 cursor-pointer select-none hover:text-accent-500 group"
           id="option-1"
           role="option"
           tabindex="0"
           aria-selected="false">
-          <a
-            href="#_"
-            class="flex items-center justify-between w-full">
-            <div class="group block flex-shrink-0">
-              <div class="flex items-center gap-2">
-                <div>
-                  <img
-                    class="inline-block size-10 object-cover object-center rounded-lg"
-                    src="/avatars/6.avif"
-                    alt=""
-                  />
-                </div>
-                <div     >
-                  <p
-                    class="text-sm font-medium text-base-900 group-hover:text-accent-500 duration-300">
-                    Peter Lee
-                  </p>
-                  <p
-                    class="text-xs mt-1 text-base-400 group-hover:text-accent-500 duration-300">
-                    @peter_lee
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="flex-none ml-auto text-xs font-medium text-base-500">
-              <div class="flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-map-pin size-4"
-                  ><path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  ></path><path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"
-                  ></path><path
-                    d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"
-                  ></path></svg
-                >
-                <span> London, UK</span>
-              </div>
-            </div>
-          </a>
+          <CommandBarUserCard
+            name="Peter Lee"
+            username="@peter_lee"
+            location="London, UK"
+            avatarSrc="/avatars/6.avif"
+            avatarAlt="Profile picture"
+          />
         </li>
         <!-- Add more items similarly with roles and attributes... -->
       </ul>

@@ -138,4 +138,8 @@ We are using this stylistic sets and you can learn more about it [here](https://
 }
 ```
 
+  ## Icons
+  We have choosen to use Tabler Icons, because it has almost 7k icons fo free and open source.
+  You can grab them here: [Tabler Icons](https://tabler-icons.io/)
+
 Any questions just ask us by [email](mailto:michael@andreuzza.com) or on [Twitter](https://twitter.com/mike_andreuzza).

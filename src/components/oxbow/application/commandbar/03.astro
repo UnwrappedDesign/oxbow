@@ -1,3 +1,12 @@
+---
+import CommandbarButton from "@/components/fundations/buttons/CommandBarButton.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import Search from "@/components/fundations/icons/Search.astro";
+import Plus from "@/components/fundations/icons/Plus.astro";
+import ArrowRight from "@/components/fundations/icons/ArrowRight.astro";
+import Clipboard from "@/components/fundations/icons/Clipboard.astro";
+---
+
 <section class="bg-base-50 overflow-hidden">
   <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div
@@ -8,24 +17,11 @@
           class="sr-only"
           >Search</label
         >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="icon icon-tabler icons-tabler-outline icon-tabler-search pointer-events-none absolute top-3.5 left-4 size-5 text-base-400"
-          aria-hidden="true">
-          <path
-            stroke="none"
-            d="M0 0h24v24H0z"
-            fill="none"
-          ></path>
-          <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
-          <path d="M21 21l-6 -6"></path>
-        </svg>
+        <Search
+          class="pointer-events-none absolute top-3.5 left-4 text-base-400"
+          size="base"
+          slot="icon"
+        />
         <input
           id="search-bar"
           type="text"
@@ -42,173 +38,70 @@
         role="listbox"
         tabindex="0">
         <li class="px-2">
-          <p class="text-sm font-medium text-base-500">
+          <Text
+            tag="p"
+            variant="small">
             Create another project
-          </p>
+          </Text>
         </li>
         <li
-          class="flex p-2 text-xs text-base-500 duration-200 cursor-pointer select-none hover:text-accent-500 group rounded-lg hover:bg-base-50"
           id="option-1"
           role="option"
           tabindex="-1">
-          <a
-            href="#_"
-            class="flex items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard size-4"
-              aria-hidden="true">
-              <path
-                stroke="none"
-                d="M0 0h24v24H0z"
-                fill="none"
-              ></path>
-              <path
-                d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"
-              ></path>
-              <path
-                d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z"
-              ></path>
-            </svg>
-            <p>Copy current URL</p>
-          </a>
+          <CommandbarButton
+            text="Copy current URL"
+            iconSlot={true}>
+            <Clipboard
+              size="sm"
+              slot="icon"
+            />
+          </CommandbarButton>
         </li>
         <li class="px-2">
-          <p class="text-sm font-medium text-base-500">Scope</p>
+          <Text
+            tag="p"
+            variant="small">
+            Scope
+          </Text>
         </li>
         <li
-          class="flex p-2 text-xs text-base-500 duration-200 cursor-pointer select-none hover:text-accent-500 group rounded-lg hover:bg-base-50"
           id="option-2"
           role="option"
           tabindex="-1">
-          <a
-            href="#_"
-            class="flex items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline size-4 icon-tabler-arrow-right"
-              aria-hidden="true">
-              <path
-                stroke="none"
-                d="M0 0h24v24H0z"
-                fill="none"
-              ></path>
-              <path d="M5 12l14 0"></path>
-              <path d="M13 18l6 -6"></path>
-              <path d="M13 6l6 6"></path>
-            </svg>
-            <p>
-              Go to <strong>Personal account</strong>
-            </p>
-          </a>
+          <CommandbarButton
+            text="Go to personal account overview"
+            iconSlot={true}>
+            <ArrowRight
+              size="sm"
+              slot="icon"
+            />
+          </CommandbarButton>
         </li>
         <li
-          class="flex p-2 text-xs text-base-500 duration-200 cursor-pointer select-none hover:text-accent-500 group rounded-lg hover:bg-base-50"
           id="option-3"
           role="option"
           tabindex="-1">
-          <a
-            href="#_"
-            class="flex items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline size-4 icon-tabler-arrow-right"
-              aria-hidden="true">
-              <path
-                stroke="none"
-                d="M0 0h24v24H0z"
-                fill="none"
-              ></path>
-              <path d="M5 12l14 0"></path>
-              <path d="M13 18l6 -6"></path>
-              <path d="M13 6l6 6"></path>
-            </svg>
-            <p>
-              Go to <strong>Personal account</strong> overview
-            </p>
-          </a>
+          <CommandbarButton
+            text="Go to personal account integrations"
+            iconSlot={true}>
+            <ArrowRight
+              size="sm"
+              slot="icon"
+            />
+          </CommandbarButton>
         </li>
         <li
-          class="flex p-2 text-xs text-base-500 duration-200 cursor-pointer select-none hover:text-accent-500 group rounded-lg hover:bg-base-50"
           id="option-4"
           role="option"
           tabindex="-1">
-          <a
-            href="#_"
-            class="flex items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline size-4 icon-tabler-arrow-right"
-              aria-hidden="true">
-              <path
-                stroke="none"
-                d="M0 0h24v24H0z"
-                fill="none"
-              ></path>
-              <path d="M5 12l14 0"></path>
-              <path d="M13 18l6 -6"></path>
-              <path d="M13 6l6 6"></path>
-            </svg>
-            <p>
-              Go to <strong>Personal account</strong> Integrations
-            </p>
-          </a>
-        </li>
-        <li
-          class="flex p-2 text-xs text-base-500 duration-200 cursor-pointer select-none hover:text-accent-500 group rounded-lg hover:bg-base-50"
-          id="option-5"
-          role="option"
-          tabindex="-1">
-          <a
-            href="#_"
-            class="flex items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline size-4 icon-tabler-arrow-right"
-              aria-hidden="true">
-              <path
-                stroke="none"
-                d="M0 0h24v24H0z"
-                fill="none"
-              ></path>
-              <path d="M5 12l14 0"></path>
-              <path d="M13 18l6 -6"></path>
-              <path d="M13 6l6 6"></path>
-            </svg>
-            <p>
-              Go to <strong>Personal account</strong> Activities
-            </p>
-          </a>
+          <CommandbarButton
+            text="Go to personal account activities"
+            iconSlot={true}>
+            <ArrowRight
+              size="sm"
+              slot="icon"
+            />
+          </CommandbarButton>
         </li>
       </ul>
       <ul
@@ -217,37 +110,20 @@
         role="listbox"
         tabindex="0">
         <li
-          class="flex p-2 items-center text-xs text-base-500 duration-200 cursor-pointer select-none hover:text-accent-500 group rounded-lg hover:bg-base-50"
-          id="option-2"
+          id="option-5"
           role="option"
           tabindex="0"
           aria-selected="false">
-          <div class="flex items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-square-plus size-4"
-              ><path
-                stroke="none"
-                d="M0 0h24v24H0z"
-                fill="none"
-              ></path><path d="M9 12h6"></path><path d="M12 9v6"></path><path
-                d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14z"
-              ></path></svg
-            >
-            <p>Create another project</p>
-          </div>
-          <span class="flex-none ml-auto text-xs font-semibold text-base-400">
-            <kbd
-              class="flex items-center justify-center size-5 font-semibold text-base-500 border rounded bg-white border-base-200">
-              P
-            </kbd>
-          </span>
+          <CommandbarButton
+            text="Create another project"
+            hasKbd={true}
+            kbdKey="C"
+            iconSlot={true}>
+            <Plus
+              size="sm"
+              slot="icon"
+            />
+          </CommandbarButton>
         </li>
       </ul>
     </div>
