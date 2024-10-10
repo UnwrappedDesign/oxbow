@@ -1,0 +1,231 @@
+---
+// Import necessary components
+import Button from "../buttons/Button.astro";
+import Badge from "../badges/Badge.astro";
+import Check from "../icons/Check.astro";
+import Heading from "../typography/Heading.astro";
+import Text from "../typography/Text.astro";
+// Props from the parent component
+const {
+  tierName = "Core", // Default tier is 'Core'
+  isPopular,
+  colorMode = "light", // Default color mode is 'light'
+  showFeatures = true, // Controls whether to show the features
+  buttonVariant = "alternative", // Default button variant is 'alternative'
+  featuresLayout = "list", // New prop to control layout: 'list' or 'grid'
+  roundedDesktop = "rounded-3xl", // Default prop for rounded corners on desktop
+  isLeft = false, // New prop to control if the card is left
+  isCentered = false, // New prop to control if the card is centered
+  isRight = false, // New prop to control if the card is right
+} = Astro.props;
+// Define default details for each tier
+const tierDetails = {
+  Core: {
+    audience: "For individuals",
+    description:
+      "This subscription tier caters to individuals and hobbyists seeking fundamental features.",
+    priceMonthly: "$29.00",
+    priceAnnual: "$19.00",
+  },
+  Momentum: {
+    audience: "For startups",
+    description:
+      "Tailored for expanding businesses, this tier offers advanced tools and analytics.",
+    priceMonthly: "$49.00",
+    priceAnnual: "$39.00",
+  },
+  Growth: {
+    audience: "For corporates",
+    description:
+      "Designed for established businesses, providing comprehensive tools.",
+    priceMonthly: "$99.00",
+    priceAnnual: "$79.00",
+  },
+  Apex: {
+    audience: "For enterprises",
+    description:
+      "For large-scale operations, providing premium features and dedicated support.",
+    priceMonthly: "$199.00",
+    priceAnnual: "$149.00",
+  },
+};
+// Get the baked-in tier details
+const { audience, description, priceMonthly, priceAnnual } =
+  tierDetails[tierName];
+// Define default features for each tier
+const defaultFeatures = {
+  Core: [
+    "Unlimited members",
+    "1 Team",
+    "50 issues",
+    "Slack, GitHub, and API access",
+    "Basic reporting tools",
+    "Community support",
+    "Basic customization options",
+  ],
+  Momentum: [
+    "Unlimited teams",
+    "Private teams and guests",
+    "Insights",
+    "Custom branding options",
+    "Collaboration tools",
+    "Mobile app access",
+  ],
+  Growth: [
+    "Unlimited members",
+    "Advanced analytics",
+    "Priority support",
+    "Custom API integration",
+    "Unlimited storage",
+    "Enhanced security",
+  ],
+  Apex: [
+    "Dedicated account manager",
+    "Advanced team management",
+    "Premium integrations",
+    "Tailored onboarding",
+    "White-label solutions",
+    "24/7 support",
+  ],
+};
+// Get the features for the current tier
+const features = defaultFeatures[tierName] || [];
+// Define the color classes based on the colorMode
+const colorClasses = {
+  white: {
+    cardBg: "bg-white",
+    innerBg: "bg-white rounded-[1.3rem]",
+    textColor: "text-base-900",
+    subTextColor: "text-base-500",
+  },
+  light: {
+    cardBg: "bg-base-50",
+    innerBg: "bg-white rounded-[1.3rem]",
+    textColor: "text-base-900",
+    subTextColor: "text-base-500",
+  },
+  dark: {
+    cardBg: "bg-base-950 shadow",
+    innerBg: "bg-base-900 rounded-[1.3rem]",
+    textColor: "text-white",
+    subTextColor: "text-white/50",
+  },
+  baseDark: {
+    cardBg: "bg-base-900 shadow",
+    innerBg: "bg-white/10 rounded-[1.3rem]",
+    textColor: "text-white",
+    subTextColor: "text-white/50",
+  },
+  accent: {
+    cardBg: "bg-accent-700 shadow",
+    innerBg: "bg-white/10 rounded-[1.3rem]",
+    textColor: "text-white",
+    subTextColor: "text-accent-100",
+  },
+}[colorMode];
+// Define rounding classes based on the roundedDesktop prop
+let roundingClass = "rounded-3xl"; // Default rounding
+if (roundedDesktop === "left") {
+  roundingClass = " lg:rounded-r-none"; // Rounds left, no right
+} else if (roundedDesktop === "right") {
+  roundingClass = "lg:rounded-l-none "; // Rounds right, no left
+} else if (roundedDesktop === "none") {
+  roundingClass = "lg:rounded-none"; // No rounding if specified
+}
+---
+<div
+  class={`flex flex-col h-full rounded-3xl ${isLeft ? "lg:pr-0 lg:py-1" : "p-1"} ${isCentered ? "lg:px-0 lg:py-1" : "p-1"} ${isRight ? "lg:pl-0 lg:py-1" : "p-1"} ${roundingClass} ${colorClasses.cardBg}`}>
+  <div>
+    <div
+      class={`flex flex-col gap-4 p-8 ${colorClasses.innerBg} h-full ${roundingClass} shadow `}>
+      <div class="flex items-start justify-between w-full">
+        <div>
+          <Heading
+            level={3}
+            variant="featureTitleLarge"
+            class={colorClasses.textColor}>
+            {tierName}
+          </Heading>
+          <Text
+            tag="p"
+            variant="small"
+            class={colorClasses.textColor}>
+            {audience}
+          </Text>
+        </div>
+        {
+          isPopular && (
+            <Badge
+              variant="muted"
+              size="xs">
+              Popular
+            </Badge>
+          )
+        }
+      </div>
+      <Text
+        tag="p"
+        variant="body"
+        class={colorClasses.textColor}>
+        {description}
+      </Text>
+    </div>
+  </div>
+  <div class="p-8">
+    <p
+      class={`font-semibold flex lg:text-3xl items-baseline text-2xl tracking-tighter ${colorClasses.textColor}`}>
+      <span
+        data-monthly={priceMonthly}
+        data-annual={priceAnnual}
+        x-text="$el.dataset[duration]"
+      ></span>
+      <span
+        class={`text-sm font-normal font-sans tracking-normal ${colorClasses.subTextColor}`}>
+        <span x-show="duration === 'monthly'">/month</span>
+        <span
+          x-show="duration === 'annual'"
+          style="display: none;"
+          >/annually</span
+        >
+      </span>
+    </p>
+    <div class="w-full mt-4">
+      <Button
+        class="w-full"
+        variant={buttonVariant}
+        size="sm">
+        Get Started
+      </Button>
+    </div>
+    {
+      showFeatures ? (
+        <div class="mt-8">
+          <Text
+            tag="p"
+            variant="pricingIntro"
+            class={colorClasses.textColor}>
+            {tierName} plan includes:
+          </Text>
+          <ul
+            class={`flex flex-col mt-4 gap-y-3 ${featuresLayout === "grid" ? "grid grid-cols-1 lg:grid-cols-2" : ""}`}
+            role="list">
+            {features.map((feature) => (
+              <li class="flex items-center gap-2">
+                <Check
+                  class={colorClasses.textColor}
+                  size="sm"
+                />
+                <Text
+                  tag="span"
+                  variant="small"
+                  class={colorClasses.textColor}>
+                  {feature}
+                </Text>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null
+    }
+  </div>
+</div>
