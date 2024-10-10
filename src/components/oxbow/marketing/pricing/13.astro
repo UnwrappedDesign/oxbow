@@ -1,405 +1,53 @@
 ---
-import Button from "@/components/fundations/buttons/Button.astro";
-import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.astro";
+import PricingToggleDark from "@/components/fundations/buttonGroups/PricingToggleDark.astro";
 import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
+import PricingCardsSingle from "@/components/fundations/pricing/PricingCardsSingle.astro";
 ---
 
-<section x-data="{duration: 'monthly'}">
+<section
+  x-data="{duration: 'monthly'}"
+  class="bg-base-950">
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-screen-xl relative">
-    <p class="text-base-500 lg:hidden text-center">
-      Pricing table for desktop use
-    </p>
-    <!---- Use only from xl: -->
-    <div class="hidden lg:block">
-      <div
-        class="text-center md:text-left grid grid-cols-1 gap-12 md:grid-cols-2 md:items-end">
+    <div
+      class="grid grid-cols-1 max-w-lg mx-auto lg:max-w-none gap-y-12 lg:gap-0 lg:grid-cols-3 lg:items-start w-full">
+      <div class="flex flex-col gap-8 h-full cols-span-full lg:col-span-1">
         <div>
           <Text
             tag="span"
+            darkMode={true}
             variant="eyebrow">
             Tagline
           </Text>
           <Heading
             class="mt-4"
             level={1}
+            darkMode={true}
             variant="default">
             Equip your business with world class software
           </Heading>
         </div>
-        <div class="md:ml-auto">
-          <div
-            aria-labelledby="pricing-toggle"
-            class="w-full relative mt-8 ring-1 ring-base-200 ring-offset-2 bg-white overflow-hidden justify-center gap-4 mx-auto lg:mx-0 inline-flex p-1 rounded-md max-w-52 shadow z-0">
-            <!-- Monthly Pricing Button: Sets 'duration' to 'monthly' when clicked -->
-            <PricingToggle />
-          </div>
+        <div
+          aria-labelledby="pricing-toggle"
+          class="w-full relative mt-8 ring-1 ring-base-800 ring-offset-2 ring-offset-base-950 bg-900 overflow-hidden gap-4 inline-flex p-1 rounded-md max-w-52 shadow z-0">
+          <PricingToggleDark />
         </div>
       </div>
-      <table class="w-full mx-autom mt-8 text-center bg-transparent">
-        <thead>
-          <tr class="align-top">
-            <th class="w-1/3"></th>
-            <th class="w-1/3 p-1 pr-0 font-normal text-left relative">
-              <div
-                aria-hidden="true"
-                class="absolute inset-y-0 right-0 hidden w-full rounded-tl-3xl bg-base-50 sm:block">
-              </div>
-              <div class="relative">
-                <div class="p-8 bg-white shadow rounded-l-[1.3rem]">
-                  <div class="text-xl text-base-900">Core</div>
-                  <p class="text-sm text-base-500 mt-2">
-                    This subscription tier caters to individuals and hobbyists
-                    seeking fundamental features.
-                  </p>
-                </div>
-                <div class="p-8 pt-0 mt-8">
-                  <p
-                    class="font-semibold lg:text-3xl flex items-baseline text-2xl tracking-tighter text-base-900">
-                    <span
-                      data-monthly="$29.00"
-                      data-annual="$19.00"
-                      x-text="$el.dataset[duration]"
-                    ></span>
-                    <span
-                      class="text-sm font-normal tracking-normal font-sans text-base-500">
-                      <span x-show="duration === 'monthly'">
-                        <span x-show="duration === 'monthly'">
-                          /month</span
-                        ></span
-                      >
-                      <span
-                        x-show="duration === 'annual'"
-                        style="display: none;">
-                        /annually</span
-                      >
-                    </span>
-                  </p>
-                  <div class="mt-4">
-                    <Button
-                      class="w-full"
-                      variant="alternative"
-                      size="sm">
-                      Get Started
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </th>
-            <th class="w-1/3 font-normal text-left relative p-1 pl-0">
-              <div
-                aria-hidden="true"
-                class="absolute inset-y-0 right-0 hidden w-full rounded-tr-3xl bg-base-900 sm:block">
-              </div>
-              <div class="relative">
-                <div class="p-8 bg-base-800 shadow rounded-r-[1.3rem]">
-                  <div
-                    class="flex items-center justify-between text-xl text-white">
-                    Momentum
-                    <span
-                      class="rounded-full bg-base-900 px-2.5 py-1 text-xs font-medium text-white"
-                      >Popular
-                    </span>
-                  </div>
-
-                  <p class="text-sm text-base-200 mt-2">
-                    Designed with medium-sized businesses in mind, this
-                    subscription tier provides advanced tools.
-                  </p>
-                </div>
-                <div class="p-8 pt-0 mt-8">
-                  <p
-                    class="font-semibold lg:text-3xl flex items-baseline text-2xl tracking-tighter text-white">
-                    <span
-                      data-monthly="$49.00"
-                      data-annual="$39.00"
-                      x-text="$el.dataset[duration]"
-                    ></span>
-                    <span
-                      class="text-sm font-normal font-sans tracking-normal text-base-200">
-                      <span x-show="duration === 'monthly'">
-                        <span x-show="duration === 'monthly'">
-                          /month</span
-                        ></span
-                      >
-                      <span
-                        x-show="duration === 'annual'"
-                        style="display: none;">
-                        /annually</span
-                      >
-                    </span>
-                  </p>
-                  <div class="mt-4">
-                    <Button
-                      class="w-full"
-                      variant="alternative"
-                      size="sm">
-                      Get Started
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th
-              class="p-3 text-sm bg-base-50 text-base-900 rounded-l-lg font-medium text-left">
-              <div class="flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-user-circle size-4"
-                  ><path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  ></path><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"
-                  ></path><path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"
-                  ></path><path
-                    d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855"
-                  ></path></svg
-                >Accounts
-              </div>
-            </th>
-            <td
-              class="px-2 text-xs font-medium bg-base-50 text-base-900 border-t border-base-200"
-              >5</td
-            >
-            <td
-              class="px-2 text-xs font-medium text-white bg-base-900 border-t border-base-800"
-              >10</td
-            >
-          </tr>
-          <tr>
-            <th class="p-3 text-sm text-base-900 font-medium text-left">
-              <div class="flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-graph size-4"
-                  ><path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  ></path><path
-                    d="M4 18v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"
-                  ></path><path d="M7 14l3 -3l2 2l3 -3l2 2"></path></svg
-                >
-                Analytics
-              </div>
-            </th>
-            <td
-              class="px-2 text-xs font-medium text-base-900 bg-base-50 border-t border-base-200"
-              >3</td
-            >
-            <td
-              class="px-2 text-xs font-medium text-white bg-base-900 border-t border-base-800"
-              >10</td
-            >
-          </tr>
-          <tr>
-            <th
-              class="p-3 text-sm bg-base-50 text-base-900 rounded-l-lg font-medium text-left">
-              <div class="flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-iteration size-4"
-                  ><path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  ></path><path d="M8.5 16a5.5 5.5 0 1 0 -5.5 -5.5v.5"
-                  ></path><path d="M3 16h18"></path><path d="M18 13l3 3l-3 3"
-                  ></path></svg
-                >Integrations
-              </div>
-            </th>
-            <td
-              class="px-2 text-xs font-medium bg-base-50 text-base-900 border-t border-base-200"
-              >2</td
-            >
-            <td
-              class="px-2 text-xs font-medium text-white bg-base-900 border-t border-base-800">
-              YES
-            </td>
-          </tr>
-          <tr>
-            <th
-              class="p-3 text-sm text-base-900 font-medium text-left rounded-l-lg">
-              <div class="flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-file-info size-4"
-                  ><path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  ></path><path d="M14 3v4a1 1 0 0 0 1 1h4"></path><path
-                    d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"
-                  ></path><path d="M11 14h1v4h1"></path><path d="M12 11h.01"
-                  ></path></svg
-                >Programs
-              </div>
-            </th>
-            <td
-              class="px-2 text-base-900 bg-base-50 border-t border-base-200 text-xs font-medium">
-              NO
-            </td>
-            <td
-              class="px-2 text-xs font-medium text-white bg-base-900 border-t border-base-800"
-              >1</td
-            >
-          </tr>
-          <tr>
-            <th
-              class="p-3 text-sm bg-base-50 text-base-900 rounded-l-lg font-medium text-left">
-              <div class="flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-rocket size-4"
-                  ><path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  ></path><path
-                    d="M4 13a8 8 0 0 1 7 7a6 6 0 0 0 3 -5a9 9 0 0 0 6 -8a3 3 0 0 0 -3 -3a9 9 0 0 0 -8 6a6 6 0 0 0 -5 3"
-                  ></path><path d="M7 14a6 6 0 0 0 -3 6a6 6 0 0 0 6 -3"
-                  ></path><path d="M15 9m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"
-                  ></path></svg
-                >Deployments
-              </div>
-            </th>
-            <td
-              class="px-2 text-base-900 bg-base-50 border-t border-base-200 text-xs font-medium">
-              NO
-            </td>
-            <td
-              class="px-2 text-xs font-medium text-white bg-base-900 border-t border-base-800">
-              YES
-            </td>
-          </tr>
-          <tr>
-            <th
-              class="p-3 text-sm text-base-900 font-medium text-left rounded-l-lg">
-              <div class="flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-checklist size-4"
-                  ><path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  ></path><path
-                    d="M9.615 20h-2.615a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8"
-                  ></path><path d="M14 19l2 2l4 -4"></path><path d="M9 8h4"
-                  ></path><path d="M9 12h2"></path></svg
-                >Advanced Checkpoints
-              </div>
-            </th>
-            <td
-              class="px-2 text-base-900 bg-base-50 border-t border-base-200 text-xs font-medium">
-              NO
-            </td>
-            <td
-              class="px-2 text-xs font-medium text-white bg-base-900 border-t border-base-800">
-              YES
-            </td>
-          </tr>
-          <tr>
-            <th
-              class="p-3 text-sm bg-base-50 text-base-900 rounded-l-lg font-medium text-left">
-              <div class="flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-tools size-4"
-                  ><path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  ></path><path d="M3 21h4l13 -13a1.5 1.5 0 0 0 -4 -4l-13 13v4"
-                  ></path><path d="M14.5 5.5l4 4"></path><path
-                    d="M12 8l-5 -5l-4 4l5 5"></path><path d="M7 8l-1.5 1.5"
-                  ></path><path d="M16 12l5 5l-4 4l-5 -5"></path><path
-                    d="M16 17l-1.5 1.5"></path></svg
-                >Reporting tools
-              </div>
-            </th>
-            <td
-              class="px-2 text-base-900 bg-base-50 border-t border-base-200 text-xs font-medium">
-              NO
-            </td>
-            <td
-              class="px-2 text-xs font-medium text-white bg-base-900 border-t border-base-800">
-              YES
-            </td>
-          </tr>
-          <tr class="align-top">
-            <th></th>
-            <th
-              class="w-1/4 px-2 py-6 border-t border-base-200 bg-base-50 rounded-bl-3xl">
-            </th>
-            <th
-              class="w-1/4 px-2 py-6 rounded-br-3xl bg-base-900 border-t border-base-800">
-            </th>
-          </tr>
-        </tbody>
-      </table>
+      <PricingCardsSingle
+        tierName="Core"
+        roundedDesktop="left"
+        colorMode="baseDark"
+        isLeft={true}
+      />
+      <!-- Tier two -->
+      <PricingCardsSingle
+        tierName="Momentum"
+        isPopular={true}
+        roundedDesktop="none"
+        colorMode="accent"
+        roundedDesktop="right"
+        isRight={true}
+      />
     </div>
   </div>
 </section>

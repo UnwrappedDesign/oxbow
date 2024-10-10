@@ -20,7 +20,7 @@ const excludeClasses = [
   "hover:text-accent-500",
   // Focus classes
   "focus:ring-2",
-  "focus:ring-accent-950",
+  "focus:ring-base-950",
   "focus:ring-offset-2",
   // Ring
   "ring-offset-base-200",
