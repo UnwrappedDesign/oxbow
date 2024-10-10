@@ -1,0 +1,28 @@
+<!-- Monthly Pricing Button: Sets 'duration' to 'monthly' when clicked -->
+<div
+  class="absolute inset-0 bg-base-800 rounded-md transition-transform duration-200 ease-in-out"
+  :class="duration === 'monthly' ? 'w-1/2 translate-x-0' : 'w-1/2 translate-x-full'">
+</div>
+
+<!-- Monthly Pricing Button -->
+<button
+  id="monthly-pricing-button"
+  class="relative flex items-center justify-center w-full px-2 h-6 text-xs font-medium focus:outline-none transition-colors duration-300 z-10"
+  :class="duration === 'monthly' ? 'text-white' : 'text-base-400 hover:text-accent-400'"
+  @click="duration = 'monthly'"
+  type="button"
+  :aria-pressed="duration === 'monthly'">
+  Monthly
+</button>
+
+<!-- Annual Pricing Button -->
+<button
+  id="annual-pricing-button"
+  class="relative flex items-center justify-center w-full px-2 h-6 text-xs font-medium focus:outline-none transition-colors duration-300 z-10"
+  :class="duration === 'annual' ? 'text-white' : 'text-base-400 hover:text-accent-400'"
+  @click="duration = 'annual'"
+  type="button"
+  :aria-pressed="duration === 'annual'">
+  Annual
+</button>
+
