@@ -1,5 +1,7 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
+import Badge from "@/components/fundations/badges/Badge.astro";
+import Check from "@/components/fundations/icons/Check.astro";
 import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.astro";
 import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
@@ -36,23 +38,38 @@ import Text from "@/components/fundations/typography/Text.astro";
           </div>
         </div>
       </div>
-      <table class="w-full mt-8 mx-auto text-center bg-transparent">
+      <table class="w-full mx-autom mt-8 text-center bg-transparent">
         <thead>
           <tr class="align-top">
-            <th class="w-1/3"> </th>
+            <th class="w-1/3"></th>
             <th class="w-1/3 p-1 pr-0 font-normal text-left relative">
               <div
                 aria-hidden="true"
-                class="absolute inset-y-0 right-0 hidden w-full rounded-tl-3xl rounded-bl-3xl bg-base-50 sm:block">
+                class="absolute inset-y-0 right-0 hidden w-full rounded-tl-3xl bg-base-50 sm:block">
               </div>
               <div class="relative">
                 <div
-                  class="p-8 bg-white shadow rounded-[1.3rem] rounded-r-none">
-                  <div class="text-xl text-base-900">Core</div>
-                  <p class="text-sm text-base-500 mt-2">
+                  class="p-8 flex flex-col gap-4 bg-white shadow rounded-l-[1.3rem]">
+                  <div class="flex items-start justify-between w-full">
+                    <div>
+                      <Heading
+                        level={3}
+                        variant="featureTitleLarge">
+                        Core
+                      </Heading>
+                      <Text
+                        tag="p"
+                        variant="small">
+                        For individuals
+                      </Text>
+                    </div>
+                  </div>
+                  <Text
+                    tag="p"
+                    variant="body">
                     This subscription tier caters to individuals and hobbyists
-                    seeking features.
-                  </p>
+                    seeking fundamental features.
+                  </Text>
                 </div>
                 <div class="p-8 pt-0 mt-8">
                   <p
@@ -87,26 +104,42 @@ import Text from "@/components/fundations/typography/Text.astro";
                 </div>
               </div>
             </th>
-            <th class="w-1/3 font-normal text-left relative p-1 px-0">
+            <th class="w-1/3 font-normal text-left relative p-1 pl-0">
               <div
                 aria-hidden="true"
-                class="absolute inset-y-0 right-0 hidden w-full rounded-tr-3xl bg-base-900 sm:block rounded-br-3xl">
+                class="absolute inset-y-0 right-0 hidden w-full rounded-tr-3xl bg-base-900 sm:block">
               </div>
               <div class="relative">
                 <div
-                  class="p-8 bg-base-800 shadow rounded-[1.3rem] rounded-l-none">
-                  <div
-                    class="flex items-center justify-between text-xl text-white">
-                    Momentum
-                    <span
-                      class="rounded-full bg-base-900 px-2.5 py-1 text-xs font-medium text-white"
-                      >Popular
-                    </span>
+                  class="p-8 flex flex-col gap-4 bg-white/5 shadow rounded-r-[1.3rem]">
+                  <div class="flex items-start justify-between w-full">
+                    <div>
+                      <Heading
+                        level={3}
+                        darkMode={true}
+                        variant="featureTitleLarge">
+                        Momentum
+                      </Heading>
+                      <Text
+                        tag="p"
+                        darkMode={true}
+                        variant="small">
+                        For startups
+                      </Text>
+                    </div>
+                    <Badge
+                      variant="default"
+                      size="xs">
+                      Popular
+                    </Badge>
                   </div>
-                  <p class="text-sm text-base-200 mt-2">
-                    Designed with medium-sized businesses in mind, this tier
-                    provides advanced tools.
-                  </p>
+                  <Text
+                    tag="p"
+                    darkMode={true}
+                    variant="body">
+                    Designed with medium-sized businesses in mind, this
+                    subscription tier provides advanced tools.
+                  </Text>
                 </div>
                 <div class="p-8 pt-0 mt-8">
                   <p
@@ -144,59 +177,20 @@ import Text from "@/components/fundations/typography/Text.astro";
           </tr>
         </thead>
         <tbody>
-          <tr class="overflow-hidden">
-            <th
-              scope="colgroup"
-              colspan="4"
-              class="p-4">
-            </th>
-          </tr>
-          <tr class="overflow-hidden">
-            <th
-              scope="colgroup"
-              colspan="4"
-              class="p-4 bg-base-50 text-sm font-medium leading-6 text-left text-base-900 rounded-xl">
-              Usage
-            </th>
-          </tr>
-          <tr class="overflow-hidden">
-            <th
-              scope="colgroup"
-              colspan="4"
-              class="p-4">
-            </th>
-          </tr>
           <tr>
-            <th class="py-3 text-sm text-base-900 font-medium text-left">
+            <th
+              class="py-3 text-sm text-base-900 font-medium text-left border-t border-base-200">
               <div class="flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-graph size-4"
-                  ><path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  ></path><path
-                    d="M4 18v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"
-                  ></path><path d="M7 14l3 -3l2 2l3 -3l2 2"></path></svg
-                >
+                <Check size="sm" />
                 Analytics
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium text-base-900 bg-base-50 rounded-tl-3xl"
+              class="px-2 text-xs font-medium text-base-900 bg-base-50 border-t border-base-200"
               >3</td
             >
             <td
-              class="px-2 text-xs font-medium text-white bg-base-900 rounded-tr-3xl"
+              class="px-2 text-xs font-medium text-white bg-base-900 border-t border-base-800"
               >10</td
             >
           </tr>
@@ -204,27 +198,7 @@ import Text from "@/components/fundations/typography/Text.astro";
             <th
               class="py-3 text-sm text-base-900 font-medium text-left border-t border-base-200">
               <div class="flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-user-circle size-4"
-                  ><path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  ></path><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"
-                  ></path><path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"
-                  ></path><path
-                    d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855"
-                  ></path></svg
-                >Accounts
+                <Check size="sm" />Accounts
               </div>
             </th>
             <td
@@ -240,25 +214,7 @@ import Text from "@/components/fundations/typography/Text.astro";
             <th
               class="py-3 text-sm text-base-900 font-medium text-left border-t border-base-200">
               <div class="flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-iteration size-4"
-                  ><path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  ></path><path d="M8.5 16a5.5 5.5 0 1 0 -5.5 -5.5v.5"
-                  ></path><path d="M3 16h18"></path><path d="M18 13l3 3l-3 3"
-                  ></path></svg
-                >Integrations
+                <Check size="sm" />Integrations
               </div>
             </th>
             <td
@@ -274,26 +230,7 @@ import Text from "@/components/fundations/typography/Text.astro";
             <th
               class="py-3 text-sm text-base-900 font-medium text-left border-t border-base-200">
               <div class="flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-file-info size-4"
-                  ><path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  ></path><path d="M14 3v4a1 1 0 0 0 1 1h4"></path><path
-                    d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"
-                  ></path><path d="M11 14h1v4h1"></path><path d="M12 11h.01"
-                  ></path></svg
-                >Programs
+                <Check size="sm" />Programs
               </div>
             </th>
             <td
@@ -309,27 +246,7 @@ import Text from "@/components/fundations/typography/Text.astro";
             <th
               class="py-3 text-sm text-base-900 font-medium text-left border-t border-base-200">
               <div class="flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-rocket size-4"
-                  ><path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  ></path><path
-                    d="M4 13a8 8 0 0 1 7 7a6 6 0 0 0 3 -5a9 9 0 0 0 6 -8a3 3 0 0 0 -3 -3a9 9 0 0 0 -8 6a6 6 0 0 0 -5 3"
-                  ></path><path d="M7 14a6 6 0 0 0 -3 6a6 6 0 0 0 6 -3"
-                  ></path><path d="M15 9m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"
-                  ></path></svg
-                >Deployments
+                <Check size="sm" />Deployments
               </div>
             </th>
             <td
@@ -345,26 +262,7 @@ import Text from "@/components/fundations/typography/Text.astro";
             <th
               class="py-3 text-sm text-base-900 font-medium text-left border-t border-base-200">
               <div class="flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-checklist size-4"
-                  ><path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  ></path><path
-                    d="M9.615 20h-2.615a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8"
-                  ></path><path d="M14 19l2 2l4 -4"></path><path d="M9 8h4"
-                  ></path><path d="M9 12h2"></path></svg
-                >Advanced Checkpoints
+                <Check size="sm" />Advanced Checkpoints
               </div>
             </th>
             <td
@@ -380,27 +278,7 @@ import Text from "@/components/fundations/typography/Text.astro";
             <th
               class="py-3 text-sm text-base-900 font-medium text-left border-t border-base-200">
               <div class="flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-tools size-4"
-                  ><path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  ></path><path d="M3 21h4l13 -13a1.5 1.5 0 0 0 -4 -4l-13 13v4"
-                  ></path><path d="M14.5 5.5l4 4"></path><path
-                    d="M12 8l-5 -5l-4 4l5 5"></path><path d="M7 8l-1.5 1.5"
-                  ></path><path d="M16 12l5 5l-4 4l-5 -5"></path><path
-                    d="M16 17l-1.5 1.5"></path></svg
-                >Reporting tools
+                <Check size="sm" />Reporting tools
               </div>
             </th>
             <td
@@ -416,202 +294,26 @@ import Text from "@/components/fundations/typography/Text.astro";
             <th
               class="py-3 text-sm text-base-900 font-medium text-left border-t border-base-200"
               ><div class="flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-lifebuoy size-4"
-                  ><path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  ></path><path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"
-                  ></path><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"
-                  ></path><path d="M15 15l3.35 3.35"></path><path
-                    d="M9 15l-3.35 3.35"></path><path d="M5.65 5.65l3.35 3.35"
-                  ></path><path d="M18.35 5.65l-3.35 3.35"></path></svg
-                >Support
+                <Check size="sm" />Support
               </div></th
             >
             <td
-              class="px-2 text-xs font-medium text-base-900 bg-base-50 border-t border-base-200 rounded-bl-3xl"
+              class="px-2 text-xs font-medium text-base-900 bg-base-50 border-t border-base-200"
               >Discord community</td
             >
             <td
-              class="px-2 text-xs font-medium text-white bg-base-900 border-t border-base-800 rounded-br-3xl"
+              class="px-2 text-xs font-medium text-white bg-base-900 border-t border-base-800"
               >Live chat</td
             >
           </tr>
-          <tr class="overflow-hidden">
+          <tr class="align-top">
+            <th class="border-t"></th>
             <th
-              scope="colgroup"
-              colspan="4"
-              class="p-4">
+              class="w-1/4 px-2 py-6 border-t border-base-200 bg-base-50 rounded-bl-3xl">
             </th>
-          </tr>
-          <tr class="overflow-hidden">
             <th
-              scope="colgroup"
-              colspan="4"
-              class="p-4 bg-base-50 text-sm font-medium leading-6 text-left text-base-900 rounded-xl">
-              Features
+              class="w-1/4 px-2 py-6 rounded-br-3xl bg-base-900 border-t border-base-800">
             </th>
-          </tr>
-          <tr class="overflow-hidden">
-            <th
-              scope="colgroup"
-              colspan="4"
-              class="p-4">
-            </th>
-          </tr>
-          <tr>
-            <th class="py-3 text-sm text-base-900 font-medium text-left">
-              <div class="flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-heart-handshake size-4"
-                  ><path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  ></path><path
-                    d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"
-                  ></path><path
-                    d="M12 6l-3.293 3.293a1 1 0 0 0 0 1.414l.543 .543c.69 .69 1.81 .69 2.5 0l1 -1a3.182 3.182 0 0 1 4.5 0l2.25 2.25"
-                  ></path><path d="M12.5 15.5l2 2"></path><path d="M15 13l2 2"
-                  ></path></svg
-                >
-                Service agreement
-              </div>
-            </th>
-            <td
-              class="px-2 text-xs font-medium text-base-900 bg-base-50 rounded-tl-3xl"
-              >No</td
-            >
-            <td
-              class="px-2 text-xs font-medium text-white bg-base-900 rounded-tr-3xl"
-              >No</td
-            >
-          </tr>
-          <tr>
-            <th
-              class="py-3 text-sm text-base-900 font-medium text-left border-t border-base-200">
-              <div class="flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-user-circle size-4"
-                  ><path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  ></path><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"
-                  ></path><path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"
-                  ></path><path
-                    d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855"
-                  ></path></svg
-                >Dedicted Manager
-              </div>
-            </th>
-            <td
-              class="px-2 text-xs font-medium text-base-900 bg-base-50 border-t border-base-200"
-              >No</td
-            >
-            <td
-              class="px-2 text-xs font-medium text-white bg-base-900 border-t border-base-800"
-              >Yes</td
-            >
-          </tr>
-          <tr>
-            <th
-              class="py-3 text-sm text-base-900 font-medium text-left border-t border-base-200">
-              <div class="flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-arrows-join size-4"
-                  ><path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  ></path><path d="M3 7h5l3.5 5h9.5"></path><path
-                    d="M3 17h5l3.495 -5"></path><path d="M18 15l3 -3l-3 -3"
-                  ></path></svg
-                >Onboarding sessions
-              </div>
-            </th>
-            <td
-              class="px-2 text-xs font-medium text-base-900 bg-base-50 border-t border-base-200"
-              >No</td
-            >
-            <td
-              class="px-2 text-xs font-medium text-white bg-base-900 border-t border-base-800">
-              No
-            </td>
-          </tr>
-          <tr>
-            <th
-              class="py-3 text-sm text-base-900 font-medium text-left border-t border-base-200">
-              <div class="flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-lifebuoy size-4"
-                  ><path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  ></path><path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"
-                  ></path><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"
-                  ></path><path d="M15 15l3.35 3.35"></path><path
-                    d="M9 15l-3.35 3.35"></path><path d="M5.65 5.65l3.35 3.35"
-                  ></path><path d="M18.35 5.65l-3.35 3.35"></path></svg
-                >Dedicated support channel
-              </div>
-            </th>
-            <td
-              class="px-2 text-base-900 bg-base-50 border-t border-base-200 text-xs font-medium rounded-bl-3xl">
-              No
-            </td>
-            <td
-              class="px-2 text-xs font-medium text-white bg-base-900 border-t border-base-800 rounded-br-3xl"
-              >No</td
-            >
           </tr>
         </tbody>
       </table>
