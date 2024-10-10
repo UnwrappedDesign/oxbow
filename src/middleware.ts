@@ -7,6 +7,7 @@ const excludeClasses = [
   "text-white",
   "text-accent-600",
   "text-accent-500",
+  "text-base-400",
   // Background classes
   "bg-white",
   "bg-base-100",
@@ -18,6 +19,7 @@ const excludeClasses = [
   "hover:shadow-none",
   "hover:to-accent-800",
   "hover:text-accent-500",
+  "hover:text-accent-400",
   // Focus classes
   "focus:ring-2",
   "focus:ring-base-950",
