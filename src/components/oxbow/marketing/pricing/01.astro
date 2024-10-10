@@ -1,7 +1,8 @@
 ---
-import Button from "@/components/fundations/buttons/Button.astro";
+import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.astro";
 import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
+import PricingCardsSingle from "@/components/fundations/pricing/PricingCardsSingle.astro";
 ---
 
 <section x-data="{duration: 'monthly'}">
@@ -25,106 +26,34 @@ import Text from "@/components/fundations/typography/Text.astro";
         Choose a plan that works the best for you and your team. Start small,
         upgrade when you need to.
       </Text>
+      <div
+        aria-labelledby="pricing-toggle"
+        class="w-full relative mt-8 ring-1 ring-base-200 ring-offset-2 bg-white overflow-hidden justify-center gap-4 mx-auto lg:mx-0 inline-flex p-1 rounded-md max-w-52 shadow z-0">
+        <!-- Monthly Pricing Button: Sets 'duration' to 'monthly' when clicked -->
+        <PricingToggle />
+      </div>
     </div>
     <div
-      class="grid grid-cols-1 gap-4 mt-12 sm:grid-cols-2 md:grid-cols-3 mx-auto">
-      <!-- Tier 1 -->
-      <div
-        class="flex flex-col h-full justify-between p-1 bg-base-50 rounded-3xl shadow">
-        <div>
-          <div class="flex flex-col p-8 bg-white shadow rounded-[1.3rem]">
-            <span class="text-xl text-base-900 ">
-              Core
-            </span>
-            <p class="text-sm text-base-500 mt-2">
-              This subscription tier caters to individuals and hobbyists seeking
-              fundamental features.
-            </p>
-          </div>
-          <div class="p-8 pt-0 mt-8">
-            <p
-              class="font-semibold lg:text-3xl flex items-baseline text-2xl tracking-tighter text-base-900">
-              $19.00
-              <span
-                class="text-sm font-normal tracking-normal font-sans text-base-500">
-                /month
-              </span>
-            </p>
-            <div class="w-full mt-4">
-              <Button
-                class="w-full"
-                variant="alternative"
-                size="sm">
-                Get Started
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Tier 2 -->
-      <div
-        class="flex h-full justify-between flex-col p-1 rounded-3xl bg-base-900 shadow">
-        <div>
-          <div class="flex flex-col p-8 bg-base-800 shadow rounded-[1.3rem]">
-            <span class="text-xl text-white ">
-              Momentum
-            </span>
-            <p class="text-sm text-base-300 mt-2">
-              Designed with medium-sized businesses in mind, this subscription
-              tier provides advanced tools.
-            </p>
-          </div>
-          <div class="p-8 pt-0 mt-8">
-            <p
-              class="font-semibold flex lg:text-3xl items-baseline text-2xl tracking-tighter text-white ">
-              $49.00
-              <span
-                class="text-sm font-normal tracking-normal font-sans text-base-300">
-                /month
-              </span>
-            </p>
-            <div class="w-full mt-4">
-              <Button
-                class="w-full"
-                variant="alternative"
-                size="sm">
-                Get Started
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Tier 3 -->
-      <div
-        class="flex flex-col h-full justify-between p-1 bg-base-50 rounded-3xl shadow">
-        <div>
-          <div class="flex flex-col p-8 bg-white shadow rounded-[1.3rem]">
-            <span class="text-xl text-base-900 "> Growth </span>
-            <p class="text-sm text-base-500 mt-2">
-              Designed for expanding businesses, this tier provides essential
-              tools to scale operations efficiently.
-            </p>
-          </div>
-          <div class="p-8 pt-0 mt-8">
-            <p
-              class="font-semibold lg:text-3xl flex items-baseline text-2xl tracking-tighter text-base-900">
-              $99.00
-              <span
-                class="text-sm font-normal tracking-normal font-sans text-base-500">
-                /month
-              </span>
-            </p>
-            <div class="w-full mt-4">
-              <Button
-                class="w-full"
-                variant="alternative"
-                size="sm">
-                Get Started
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
+      class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-12 mx-auto">
+      <!-- Tier one -->
+      <PricingCardsSingle
+        tierName="Core"
+        showFeatures={false}
+
+      />
+      <!-- Tier two -->
+      <PricingCardsSingle
+        tierName="Momentum"
+        isPopular={true}
+        colorMode="dark"
+        showFeatures={false}
+      />
+      <!-- Tier three -->
+      <PricingCardsSingle
+        tierName="Growth"
+        colorMode="accent"
+        showFeatures={false}
+      />
     </div>
   </div>
 </section>

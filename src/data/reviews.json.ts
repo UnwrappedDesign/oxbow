@@ -44,9 +44,9 @@ const jonSullivan: Template = {
 };
 
 export const byName = {
-  jonSullivan,
   alexHughes,
   ianHawes,
+  jonSullivan,
   carl,
   eelco,
   alin,
