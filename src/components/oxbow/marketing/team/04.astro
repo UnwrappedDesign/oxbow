@@ -1,5 +1,4 @@
 ---
-import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 const teamMembers = [
   {
@@ -52,10 +51,9 @@ const teamMembers = [
 
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
-
     <ul
       role="list"
-      class=" grid grid-cols-1 sm:grid-cols-3 gap-px lg:grid-cols-4 rounded-3xl overflow-hidden border bg-base-200">
+      class="grid grid-cols-1 sm:grid-cols-3 gap-px lg:grid-cols-4 rounded-3xl overflow-hidden border bg-base-200">
       {
         teamMembers.map((member) => (
           <li class="bg-white p-8 lg:p-12 flex flex-col gap-4 text-center hover:bg-transparent duration-300">
@@ -65,14 +63,16 @@ const teamMembers = [
               alt="#_"
             />
             <div>
-              <Heading
-                level={3}
-                variant="featureTitle">
+              <Text
+                variant="textLG"
+                tag="h3"
+                class="text-base-900 font-medium">
                 {member.name}
-              </Heading>
+              </Text>
               <Text
                 tag="p"
-                variant="body">
+                variant="textBase"
+                class="text-base-500 font-medium">
                 {member.title}
               </Text>
             </div>

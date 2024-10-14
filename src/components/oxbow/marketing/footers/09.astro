@@ -1,7 +1,6 @@
 ---
-import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-import Link from "@/components/fundations/typography/Link.astro";
+
 import Button from "@/components/fundations/buttons/Button.astro";
 import Apple from "@/components/fundations/icons/Apple.astro";
 import GooglePlay from "@/components/fundations/icons/GooglePlay.astro";
@@ -29,7 +28,8 @@ const footerLinks = [
             class="w-full sm:w-auto flex gap-3 items-center"
             href="#_"
             tag="a"
-            variant="navigationLink">
+            variant="textMD"
+                    class="hover:text-accent-500 font-medium text-base-500">
             <img
               class="h-7 2xl:h-12"
               src="/images/oxbow/blueLineLogo.png"
@@ -38,7 +38,8 @@ const footerLinks = [
           </Text>
           <Text
             tag="p"
-            variant="small">
+            variant="textSM"
+            class="mt-2 text-base-500 font-medium">
             Designed in europe.
           </Text>
         </div>
@@ -50,12 +51,13 @@ const footerLinks = [
               <ul class=" gap-x-4 flex flex-wrap">
                 {section.links.map((link, linkIndex) => (
                   <li>
-                   <Link
-                      href={link.href}
+                     <Text
                       tag="a"
-                      variant="navigationLink">
+                      href="#_"
+                      variant="textMD"
+                      class="hover:text-accent-500 font-medium text-base-500">
                       {link.text}
-                    </Link>
+                    </Text>
                   </li>
                 ))}
               </ul>
@@ -91,31 +93,34 @@ const footerLinks = [
     <div
       class="pt-12 mt-12 border-t flex flex-col gap-8 sm:flex-row sm:items-center justify-between">
       <Text
-        tag="p"
-        variant="small">
+        tag="h2"
+        variant="textSM"
+        class="font-medium text-base-400">
         Copyright © 2024 Oxbow UI. All rights reserved.
       </Text>
       <nav
         aria-labelledby="legal-links"
         role="navigation"
         class="flex items-center gap-4 text-base-500 text-sm">
-        <Heading
+        <Text
           id="legal-links"
           class="sr-only"
-          level={3}
+          tag="h3"
           variant="footerHeading">
           Legal and terms
-        </Heading>
+        </Text>
         <Text
           href="#_"
           tag="a"
-          variant="navigationLink">
+          variant="textMD"
+                    class="hover:text-accent-500 font-medium text-base-500">
           Terms of Service
         </Text>
         <Text
           href="#_"
           tag="a"
-          variant="navigationLink">
+          variant="textMD"
+                    class="hover:text-accent-500 font-medium text-base-500">
           Privacy Policy
         </Text>
       </nav>

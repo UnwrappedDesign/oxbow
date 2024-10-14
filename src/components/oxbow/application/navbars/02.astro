@@ -3,7 +3,6 @@ import Button from "@/components/fundations/buttons/Button.astro";
 import IconButton from "@/components/fundations/buttons/IconButton.astro";
 import Burger from "@/components/fundations/icons/Burger.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-import Link from "@/components/fundations/typography/Link.astro";
 ---
 
 <div class="justify-center w-full mx-auto bg-base-50">
@@ -11,17 +10,17 @@ import Link from "@/components/fundations/typography/Link.astro";
     x-data="{ open: false }"
     class="flex flex-col w-full mx-auto md:px-12 md:items-center md:justify-between md:flex-row px-8 py-2 lg:px-24 max-w-screen-xl relative">
     <div class="flex flex-row items-center justify-between text-black">
-      <Link
-        class="w-full sm:w-auto flex gap-3 items-center"
-        href="#_"
+      <Text
         tag="a"
-        variant="navigationLink">
+        href="#_"
+        variant="textMD"
+        class="hover:text-accent-500 font-medium flex items-center gap-2 text-base-900">
         <img
           class="h-7 2xl:h-12"
           src="/images/oxbow/blueLineLogo.png"
           alt="#_"
         /> Oxbow UI
-      </Link>
+      </Text>
       <IconButton
         class="md:hidden"
         @click="open = !open"
@@ -36,18 +35,20 @@ import Link from "@/components/fundations/typography/Link.astro";
     <nav
       :class="{'flex': open, 'hidden': !open}"
       class="flex-col items-center flex-grow hidden gap-3 p-4 px-5 md:px-0 md:pb-0 md:flex md:justify-center md:flex-row lg:p-0">
-      <Link
-        class="md:ml-auto"
+      <Text
+
         href="#_"
         tag="a"
-        variant="navigationLink"
-        >Features</Link
+        variant="textMD"
+        class="hover:text-accent-500 font-medium text-base-500 md:ml-auto"
+        >Features</Text
       >
-      <Link
+      <Text
         href="#_"
         tag="a"
-        variant="navigationLink"
-        >About</Link
+        variant="textMD"
+        class="hover:text-accent-500 font-medium text-base-500"
+        >About</Text
       >
       <Button
         variant="accent"

@@ -1,7 +1,6 @@
 ---
-import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-import Link from "@/components/fundations/typography/Link.astro";
+
 import XBrand from "@/components/fundations/icons/XBrand.astro";
 import LinkedinBrand from "@/components/fundations/icons/LinkedinBrand.astro";
 const teamMembers = [
@@ -57,20 +56,21 @@ const teamMembers = [
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div class="max-w-xl mx-auto text-center lg:text-balance">
       <Text
-        tag="span"
-        variant="eyebrow">
+        tag="p"
+        variant="textSM"
+        class="font-bold uppercase text-accent-600">
         Tagline
       </Text>
-      <Heading
-        class="mt-4"
-        level={1}
-        variant="default">
-        Introducing our team
-      </Heading>
       <Text
-        class="mt-4 lg:text-balance"
-        tag="p"
-        variant="body">
+        tag="h2"
+        variant="displayMD"
+        class="mt-4 font-semibold text-base-900 lg:text-balance">
+        Introducing our team
+      </Text>
+       <Text
+          tag="p"
+          variant="textBase"
+          class="mt-4 text-base-500 font-medium">
         Uniting talent with vision. Get to know the dedicated professionals who
         blend their skills and passion to lead us to new heights.
       </Text>
@@ -89,38 +89,40 @@ const teamMembers = [
                   alt="#_"
                 />
                 <div>
-                  <Heading
-                    level={3}
-                    variant="featureTitle">
+                  <Text
+                    variant="textLG"
+                    tag="h3"
+                    class="text-base-900 font-medium">
                     {member.name}
-                  </Heading>
+                  </Text>
                   <Text
                     tag="p"
-                    variant="body">
+                    variant="textSM"
+                    class="mt-2 text-base-500 font-medium">
                     {member.title}
                   </Text>
                 </div>
               </div>
               <Text
-                class="mt-8"
                 tag="p"
-                variant="body">
+                variant="textBase"
+                class="mt-4 text-base-500 font-medium">
                 {member.description}
               </Text>
             </div>
             <div class="mt-4 flex items-center gap-2 ">
-              <Link
+              <Text
                 tag="a"
                 href="#_"
                 variant="link">
                 <XBrand size="sm" />
-              </Link>
-              <Link
+              </Text>
+              <Text
                 tag="a"
                 href="#_"
                 variant="link">
                 <LinkedinBrand size="sm" />
-              </Link>
+              </Text>
             </div>
           </li>
         ))

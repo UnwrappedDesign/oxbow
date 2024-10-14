@@ -1,5 +1,4 @@
 ---
-import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 const member = [
   {
@@ -28,49 +27,33 @@ const member = [
 
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
-    <div class="max-w-xl text-center mx-auto">
-      <Text
-        tag="span"
-        variant="eyebrow">
-        Tagline
-      </Text>
-      <Heading
-        class="mt-4"
-        level={1}
-        variant="default">
-        Hear from our customers about their experiences
-      </Heading>
-      <Text
-        class="mt-4"
-        tag="p"
-        variant="body">
-        Find out how our users are using Oxbow UI to create a customized landing
-        page for their business.
-      </Text>
-    </div>
+
     <ul
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full mt-12 rounded-2xl">
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full rounded-2xl">
       {
         member.map((member) => (
           <li>
             <figure class="flex flex-col gap-12 h-full justify-between">
               <div class="flex flex-col h-full justify-between">
-                <blockquote class="mt-4">
+                <div>
+                  <Text
+                    tag="blockquote"
+                    variant="textMD"
+                    class="text-base-500 italic font-medium">
+                    "{member.testimonial}"
+                  </Text>
+                </div>
+                <div class="mt-6">
+                  <Text
+                    tag="h3"
+                    variant="textMD"
+                    class="text-base-900 font-medium">
+                    {member.name}
+                  </Text>
                   <Text
                     tag="p"
-                    variant="body">
-                    {member.testimonial}
-                  </Text>
-                </blockquote>
-                <div class="mt-6">
-                  <Heading
-                    level={3}
-                    variant="featureTitle">
-                    {member.name}
-                  </Heading>
-                  <Text
-                    tag="small"
-                    variant="small">
+                    variant="textXS"
+                    class="text-base-400 font-medium">
                     {member.title}
                   </Text>
                 </div>

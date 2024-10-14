@@ -1,15 +1,12 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
-import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-import Link from "@/components/fundations/typography/Link.astro";
 import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
 import FlyoutLinkBox from "@/components/fundations/wrappers/FlyoutLinkBox.astro";
 import Refresh from "@/components/fundations/icons/Refresh.astro";
 import FileDots from "@/components/fundations/icons/FileDots.astro";
 import Edit from "@/components/fundations/icons/Edit.astro";
 import Brain from "@/components/fundations/icons/Brain.astro";
-
 const links = [
   {
     category: "Browse by category",
@@ -87,11 +84,12 @@ const blogPosts = [
         <div
           class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
           <div>
-            <Heading
-              level={3}
-              variant="footerHeading">
+            <Text
+              tag="h3"
+              variant="textBase"
+              class="text-base-900 font-medium">
               Benefits
-            </Heading>
+            </Text>
             <div class="mt-2">
               <FlyoutLinkBox
                 href="#_"
@@ -124,22 +122,23 @@ const blogPosts = [
               {
                 links.map((categoryItem, index) => (
                   <div>
-                    <Heading
-                      level={3}
-                      variant="footerHeading">
+                    <Text
+                      tag="h3"
+                      variant="textBase"
+                      class="text-base-900 font-medium">
                       {categoryItem.category}
-                    </Heading>
+                    </Text>
                     <div
                       class="mt-4 pt-4 border-t border-gray-200 space-y-2"
                       role="none">
                       {categoryItem.features.map((feature) => (
-                        <Link
-                          href="#_"
+                        <Text
                           tag="a"
-                          class="block "
-                          variant="navigationLink">
+                          href="#_"
+                          variant="textMD"
+                          class="hover:text-accent-500 font-medium block text-base-500 ">
                           {feature.name}
-                        </Link>
+                        </Text>
                       ))}
                     </div>
                   </div>
@@ -157,23 +156,24 @@ const blogPosts = [
                     src={post.imageUrl}
                   />
                   <div>
-                    <Link
+                    <Text
                       href="#_"
                       tag="a"
-                      variant="navigationLink">
+                      variant="textMD">
                       <span class="absolute inset-0 sm:rounded-2xl" />
-                      <Heading
-                        level={3}
-                        variant="featureTitleSmall">
-
-                      {post.title}
-                      </Heading>
                       <Text
-                        tag="p"
-                        variant="small">
+                        tag="h3"
+                        variant="textBase"
+                        class="text-base-900 font-medium group-hover:text-accent-500">
+                        {post.title}
+                      </Text>
+                      <Text
+                        tag="h3"
+                        variant="textSM"
+                        class="text-base-500 font-medium">
                         {post.subtitle}
                       </Text>
-                    </Link>
+                    </Text>
                   </div>
                 </div>
               ))

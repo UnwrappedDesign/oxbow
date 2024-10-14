@@ -1,5 +1,5 @@
 ---
-import Heading from "@/components/fundations/typography/Heading.astro";
+
 import Text from "@/components/fundations/typography/Text.astro";
 const faqs = [
   {
@@ -23,21 +23,22 @@ const faqs = [
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div>
-      <Text
-        tag="span"
-        variant="eyebrow">
-        Tagline
-      </Text>
-      <Heading
-        class="mt-4"
-        level={1}
-        variant="default">
+       <Text
+          tag="p"
+          variant="textSM"
+          class="font-bold uppercase text-accent-600">
+          Tagline
+        </Text>
+       <Text
+        tag="h2"
+        variant="displayMD"
+        class="mt-4 font-semibold text-base-900 lg:text-balance">
         Frequently Asked Questions
-      </Heading>
+      </Text>
       <Text
-        class="mt-4 lg:text-balance"
-        tag="p"
-        variant="body">
+          tag="p"
+          variant="textBase"
+          class="mt-4 text-base-500 font-medium">
         Everything you need to know about our platform.
       </Text>
     </div>
@@ -48,16 +49,16 @@ const faqs = [
             <span class="size-6 text-xs shrink-0  rounded-full flex items-center justify-center  bg-accent-700  text-white">
               {index + 1}
             </span>
-            <Heading
-            class="mt-4"
-              level={3}
-              variant="featureTitle">
-               {faq.question}
-            </Heading>
             <Text
-              class="mt-4"
+            class="mt-4"
+              tag="h3"
+              variant="textLG">
+               {faq.question}
+            </Text>
+            <Text
               tag="p"
-              variant="body">
+                  variant="textBase"
+                  class="mt-4 text-base-500 font-medium">
               {faq.answer}
             </Text>
           </div>

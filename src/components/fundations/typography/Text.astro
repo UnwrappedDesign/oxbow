@@ -1,20 +1,42 @@
 ---
-export interface TextStyle {
-  light: string;
-  dark?: string; // Make dark optional for styles that don't require it
-  info?: string; // Add an info style for specific text elements
-  success?: string; // Add a success style for specific text elements
-  warning?: string; // Add a warning style for specific text elements
-  danger?: string; // Add a danger style for specific text elements
-}
+/**
+ * Text Component Props:
+ *
+ * Props:
+ * - tag (optional): Specifies the HTML tag to render.
+ *   Possible values: "p", "span", "small", "div", "strong", "em",
+ *                    "blockquote", "dd", "dt", "summary", "label",
+ *                    "h1", "h2", "h3", "h4", "h5", "h6". Defaults to "p".
+ *
+ * - variant (optional): Determines the style variant of the text.
+ *   Possible values:
+ *     - display2xl
+ *     - displayXL
+ *     - displayLG
+ *     - displayMD
+ *     - displaySM
+ *     - displayXS
+ *     - textXL
+ *     - textLG
+ *     - textMD
+ *     - textSM
+ *     - textXS
+ *   Defaults to "textMD".
+ *
+ * - level (optional): Determines the heading level for the tag if using heading tags (h1-h6). Defaults to 2.
+ *
+ * - class (optional): Additional CSS classes to apply to the component.
+ *
+ * - for (optional): Used for the 'label' tag to associate the label with a form element (id of the input).
+ *
+ * - id (optional): Unique identifier for the label element.
+ */
 
-export interface TextStyles {
-  [key: string]: TextStyle;
-}
-
+// Text.astro
 export interface Props {
   tag?:
     | "p"
+    | "a"
     | "span"
     | "small"
     | "div"
@@ -24,133 +46,66 @@ export interface Props {
     | "dd"
     | "dt"
     | "summary"
-    | "label";
-  variant?: string;
+    | "label"
+    | "h1"
+    | "h2"
+    | "h3"
+    | "h4"
+    | "h5"
+    | "h6";
+  variant?: string; // Consider renaming it 'textVariant' for clarity
+  level?: number; // Added level prop for heading levels
   class?: string;
-  darkMode?: boolean; // Add a prop to indicate if dark mode is enabled
-  for?: string; // Add for attribute for label tags
-  id?: string; // Add id attribute for label tags
-  info?: boolean;
-  success?: boolean;
-  warning?: boolean;
-  danger?: boolean;
+  for?: string; // Add 'for' attribute for label tags
+  id?: string; // Add 'id' attribute for label tags
+  href?: string; // Add 'href' attribute for anchor tags
 }
 
-const textStyles: TextStyles = {
-  bigNumbers: {
-    light: "text-5xl font-normal font-mono text-accent-600",
-    dark: "text-5xl font-normal font-mono text-white",
-  },
-  eyebrow: {
-    light:
-      "text-accent-600 uppercase font-mono font-medium tracking-tight text-xs",
-    dark: "text-white uppercase font-mono font-medium tracking-tight text-xs",
-  },
-  body: {
-    light: "text-base font-medium text-base-500",
-    dark: "text-base-300 font-medium",
-    info: "text-base font-medium text-accent-900",
-    success: "text-base font-medium text-emerald-900",
-    warning: "text-base font-medium text-amber-900",
-    danger: "text-base font-medium text-rose-900",
-  },
-  featureListItem: {
-    light: "tracking-tight text-lg font-medium text-base-900",
-    dark: "tracking-tight text-lg font-medium text-base-300",
-    info: "tracking-tight text-lg font-medium text-accent-800",
-    success: "tracking-tight text-lg font-medium text-emerald-800",
-    warning: "tracking-tight text-lg font-medium text-amber-800",
-    danger: "tracking-tight text-lg font-medium text-rose-800",
-  },
-  featureListItemSmall: {
-    light: "tracking-tight text-bas font-medium text-base-900",
-    dark: "tracking-tight text-base font-medium text-base-300",
-    info: "tracking-tight text-base font-medium text-accent-800",
-    success: "tracking-tight text-base font-medium text-emerald-800",
-    warning: "tracking-tight text-base font-medium text-amber-800",
-    danger: "tracking-tight text-base font-medium text-rose-800",
-  },
-  caption: {
-    light: "text-sm font-normal text-base-500",
-    dark: "text-sm font-normal text-white",
-    info: "text-sm font-normal text-accent-800",
-    success: "text-sm font-normal text-emerald-800",
-    warning: "text-sm font-normal text-amber-800",
-    danger: "text-sm font-normal text-rose-800",
-  },
-  small: {
-    light: "text-sm font-normal text-base-500",
-    dark: "text-sm font-normal text-white",
-    info: "text-sm font-normal text-accent-700",
-    success: "text-sm font-normal text-emerald-700",
-    warning: "text-sm font-normal text-amber-700",
-    danger: "text-sm font-normal text-rose-700",
-  },
-  inputLabel: {
-    light: "text-sm font-medium text-base-500",
-    dark: " text-sm font-medium text-white",
-  },
-  blockquote: {
-    light:
-      "text-lg italic font-medium text-base-500 border-l-4 border-base-300 pl-4",
-    dark: "text-lg italic font-medium text-base-400 border-l-4 border-base-500 pl-4",
-  },
-  summary: {
-    light: "tracking-tight text-base font-medium text-base-900",
-    dark: "tracking-tight text-base font-medium text-white",
-  },
-  code: {
-    light: "font-mono text-sm bg-base-100 rounded px-1 py-0.5",
-    dark: "font-mono text-sm bg-base-900 rounded px-1 py-0.5",
-  },
-  bigNumber: {
-    light: "text-5xl font-normal font-mono text-accent-600",
-    dark: "text-5xl font-normal font-mono text-white",
-  },
-  smallNumber: {
-    light: "text-xl font-normal font-mono text-accent-600",
-    dark: "text-xl font-normal font-mono text-white",
-  },
-  pricingIntro: {
-    light:
-      "text-xs text-base-500 font-medium font-mono uppercase tracking-wide",
-    dark: "text-xs text-white font-mono  font-medium uppercase tracking-wide",
-  },
-  // Add more text variants as needed...
+// Define the text styles with all specified variants
+const textStyles: { [key: string]: string } = {
+  display2XL:
+    "text-4xl leading-tight tracking-tight sm:text-5xl md:text-6xl lg:text-7xl",
+  displayXL:
+    "text-3xl leading-tight tracking-tight sm:text-4xl md:text-5xl lg:text-6xl",
+  displayLG:
+    "text-2xl leading-tight tracking-tight sm:text-3xl md:text-4xl lg:text-5xl",
+  displayMD:
+    "text-xl leading-tight tracking-tight sm:text-2xl md:text-3xl lg:text-4xl",
+  displaySM: "text-lg leading-tight sm:text-xl md:text-2xl lg:text-3xl",
+  displayXS: "text-base leading-tight sm:text-lg md:text-xl lg:text-2xl",
+  textXL: "text-lg leading-normal sm:text-xl md:text-2xl",
+  textLG: "text-base leading-normal sm:text-lg md:text-xl",
+  textBase: "text-base leading-normal",
+  textMD: "text-md leading-normal ",
+  textSM: "text-sm leading-normal ",
+  textXS: "text-xs leading-normal ",
 };
 
 const {
   tag: Tag = "p", // default to paragraph
-  variant = "body", // default to body variant
+  variant = "textMD", // default to textMD variant
+  level = 2, // default to level 2 for headings
   class: className = "",
-  darkMode = false, // Get the dark mode prop
-  info = false,
-  success = false,
-  warning = false,
-  danger = false,
+  for: htmlFor, // Capture 'for' attribute
   ...rest
 } = Astro.props;
 
-// Get the base classes for the variant (light or dark mode)
-let baseClasses = darkMode
-  ? textStyles[variant]?.dark || textStyles.body.dark
-  : textStyles[variant]?.light || textStyles.body.light;
-
-// Override with specific styles if `info`, `success`, `warning`, or `danger` is true
-if (info) {
-  baseClasses = textStyles[variant]?.info || textStyles.body.info;
-} else if (success) {
-  baseClasses = textStyles[variant]?.success || textStyles.body.success;
-} else if (warning) {
-  baseClasses = textStyles[variant]?.warning || textStyles.body.warning;
-} else if (danger) {
-  baseClasses = textStyles[variant]?.danger || textStyles.body.danger;
-}
-
+// Get the base classes for the variant
+const baseClasses = textStyles[variant] || textStyles.textMD; // Default to textMD if not found
 // Combine base classes with any additional custom classes
 const combinedClasses = `${baseClasses} ${className}`.trim();
+
+// Adjust the tag based on the level for headings
+let resolvedTag: string = Tag; // Ensure resolvedTag is a string
+if (["h1", "h2", "h3", "h4", "h5", "h6"].includes(Tag)) {
+  resolvedTag = `h${Math.min(Math.max(level, 1), 6)}`; // Enforce level to be between 1 and 6
+}
 ---
 
-<Tag class={combinedClasses} {...rest}>
+<Tag
+  class={combinedClasses}
+  {...rest}>
+  <slot name="left-icon" />
   <slot />
+  <slot name="right-icon" />
 </Tag>

@@ -1,7 +1,5 @@
 ---
-import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-import Link from "@/components/fundations/typography/Link.astro";
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 const faqs = [
   {
@@ -34,46 +32,48 @@ const faqs = [
     <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
       <div class="lg:bg-base-50 lg:p-8 lg:rounded-2xl">
         <Text
-          tag="span"
-          variant="eyebrow">
+          tag="p"
+          variant="textSM"
+          class="font-bold uppercase text-accent-600">
           Tagline
         </Text>
-        <Heading
-          class="mt-4"
-          level={1}
-          variant="default">
-          Frequently Asked Questions
-        </Heading>
         <Text
-          class="mt-4 lg:text-balance"
+          tag="h2"
+          variant="displaySM"
+          class="mt-4 font-semibold text-base-900 lg:text-balance">
+          Frequently Asked Questions
+        </Text>
+        <Text
           tag="p"
-          variant="body">
+          variant="textBase"
+          class="mt-4 text-base-500 font-medium">
           Everything you need to know about our platform.
         </Text>
         <div class="mt-8">
-          <Link
+          <Text
             tag="a"
             href="#_"
-            variant="link"
-            class="flex items-center gap-2">
+            variant="textMD"
+            class="text-accent-500 font-medium flex items-center gap-2 hover:text-base-900">
             Contact support
             <ChevronRight size="sm" />
-          </Link>
+          </Text>
         </div>
       </div>
       <div class="grid gird-cols-1 divide-y lg:col-span-2">
         {
           faqs.map((faq) => (
             <div class="py-6">
-              <Heading
-                level={3}
-                variant="featureTitle">
-                {faq.question}
-              </Heading>
               <Text
-                class="mt-4"
+                variant="textLG"
+                tag="h3"
+                class="text-base-900 font-medium">
+                {faq.question}
+              </Text>
+              <Text
                 tag="p"
-                variant="body">
+                variant="textBase"
+                class="mt-4 text-base-500 font-medium">
                 {faq.answer}
               </Text>
             </div>

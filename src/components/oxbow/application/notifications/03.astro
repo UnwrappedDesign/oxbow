@@ -1,10 +1,13 @@
+---
+import Text from "@/components/fundations/typography/Text.astro";
+---
 <div
   class="p-8"
   x-show="showAlert"
   x-data="{ showAlert: true }"
   role="alert">
   <div
-    class="mx-auto w-full max-w-md overflow-hidden rounded-xl bg-white shadow-lg ring-1 ring-black/5">
+    class="mx-auto w-full max-w-md overflow-hidden rounded-xl bg-white shadow-lg ring-1 ring-base-200 ">
     <div class="p-4">
       <div class="flex items-start">
         <div class="flex-shrink-0">
@@ -27,13 +30,18 @@
           >
         </div>
         <div class="ml-3 w-0 flex-1 pt-0.5">
-          <p
-            class="tracking-tight text-lg font-medium text-base-900 lg:text-pretty">
+          <Text
+            tag="p"
+            variant="textBase"
+            class="text-base-900 font-medium">
             We've added you to our wait list!
-          </p>
-          <p class="mt-2 text-sm text-base-500">
+          </Text>
+          <Text
+            tag="p"
+            variant="textSM"
+            class="text-base-500 mt-2 font-medium">
             We'll update you soon with your invite.
-          </p>
+          </Text>
         </div>
         <div class="ml-4 flex flex-shrink-0">
           <button
@@ -41,7 +49,6 @@
             type="button"
             class="inline-flex rounded-md bg-white text-base-400 hover:text-base-500 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2">
             <span class="sr-only">Close</span>
-
             <svg
               class="size-5"
               viewBox="0 0 20 20"
