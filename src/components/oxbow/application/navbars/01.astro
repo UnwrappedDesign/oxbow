@@ -3,8 +3,6 @@ import Button from "@/components/fundations/buttons/Button.astro";
 import IconButton from "@/components/fundations/buttons/IconButton.astro";
 import Burger from "@/components/fundations/icons/Burger.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-import Link from "@/components/fundations/typography/Link.astro";
-
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 ---
 
@@ -16,8 +14,8 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
       <div class="text-xs font-medium">
         <Text
           tag="span"
-          darkMode={true}
-          variant="small">
+          variant="textSM"
+          class="font-medium text-white">
           We have launched a new version of Oxbow UI
         </Text>
       </div>
@@ -25,34 +23,32 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
       <div>
         <Text
           tag="a"
-          darkMode={true}
-          variant="link"
-          class="flex items-center gap-2 mx-auto">
+          href="#_"
+          variant="textSM"
+          class="hover:text-accent-200 font-medium flex items-center gap-2 text-white">
           Talk to sales
           <ChevronRight size="sm" />
         </Text>
       </div>
     </div>
   </div>
-
   <!-- Navigation Section with Alpine.js State Management -->
   <div
     x-data="{ open: false }"
     class="flex flex-col w-full mx-auto md:px-12 md:items-center md:justify-between md:flex-row px-8 py-2 lg:px-24 max-w-screen-xl relative">
     <div class="flex flex-row items-center justify-between text-black">
       <!-- Logo Section -->
-      <Link
-        class="w-full sm:w-auto flex gap-3 items-center"
-        href="#_"
+      <Text
         tag="a"
-        variant="navigationLink">
+        href="#_"
+        variant="textMD"
+        class="hover:text-accent-500 font-medium flex items-center gap-2 text-base-900">
         <img
           class="h-7 2xl:h-12"
           src="/images/oxbow/blueLineLogo.png"
           alt="#_"
         /> Oxbow UI
-      </Link>
-
+      </Text>
       <IconButton
         class="md:hidden"
         @click="open = !open"
@@ -64,14 +60,12 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
         />
       </IconButton>
     </div>
-
     <!-- Navigation Menu -->
     <nav
       :class="{ 'flex': open, 'hidden': !open }"
       class="flex-col items-center flex-grow hidden gap-3 p-4 px-5 md:px-0 md:pb-0 md:flex md:justify-start md:flex-row lg:p-0">
-
       <Button
-      class="md:ml-auto"
+        class="md:ml-auto"
         variant="accent"
         size="sm"
         >Button</Button

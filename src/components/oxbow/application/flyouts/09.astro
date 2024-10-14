@@ -1,8 +1,6 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
-import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-import Link from "@/components/fundations/typography/Link.astro";
 import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
 import FlyoutLinkBox from "@/components/fundations/wrappers/FlyoutLinkBox.astro";
 import Refresh from "@/components/fundations/icons/Refresh.astro";
@@ -13,7 +11,6 @@ import LoaderTwo from "@/components/fundations/icons/LoaderTwo.astro";
 import Automation from "@/components/fundations/icons/Automation.astro";
 import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
 import Clock from "@/components/fundations/icons/Clock.astro";
-
 const blogPosts = [
   {
     title: "Boost Your Workflow",
@@ -61,11 +58,12 @@ const blogPosts = [
         <div
           class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
           <div>
-            <Heading
-              level={3}
-              variant="footerHeading">
+            <Text
+              tag="h3"
+              variant="textBase"
+              class="text-base-900 font-medium">
               Benefits
-            </Heading>
+            </Text>
             <div class="mt-2">
               <FlyoutLinkBox
                 href="#_"
@@ -94,11 +92,12 @@ const blogPosts = [
             </div>
           </div>
           <div>
-            <Heading
-              level={3}
-              variant="footerHeading">
+            <Text
+              tag="h3"
+              variant="textBase"
+              class="text-base-900 font-medium">
               Enhance Productivity
-            </Heading>
+            </Text>
             <div class="mt-2">
               <FlyoutLinkBox
                 href="#_"
@@ -127,7 +126,6 @@ const blogPosts = [
               />
             </div>
           </div>
-
           <div>
             {
               blogPosts.map((post) => (
@@ -137,23 +135,26 @@ const blogPosts = [
                     class="object-cover object-center aspect-[4/2] rounded-xl"
                     src={post.imageUrl}
                   />
+
                   <div>
-                    <Link
+                    <Text
                       href="#_"
                       tag="a"
-                      variant="navigationLink">
+                      variant="textXL">
                       <span class="absolute inset-0 sm:rounded-2xl" />
-                      <Heading
-                        level={3}
-                        variant="featureTitleSmall">
-                        {post.title}
-                      </Heading>
                       <Text
-                        tag="p"
-                        variant="small">
+                        tag="h3"
+                        variant="textLg"
+                        class="text-base-900 font-medium group-hover:text-accent-500">
+                        {post.title}
+                      </Text>
+                      <Text
+                        tag="h3"
+                        variant="textBase"
+                        class="text-base-500 font-medium">
                         {post.subtitle}
                       </Text>
-                    </Link>
+                    </Text>
                   </div>
                 </div>
               ))

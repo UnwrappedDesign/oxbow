@@ -1,8 +1,8 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
-import Heading from "@/components/fundations/typography/Heading.astro";
+
 import Text from "@/components/fundations/typography/Text.astro";
-import Link from "@/components/fundations/typography/Link.astro";
+
 const footerLinks = [
   {
     heading: "Company ",
@@ -48,15 +48,16 @@ const footerLinks = [
     <div class="bg-base-50 rounded-2xl divide-y overflow-hidden">
       <div class="grid items-end grid-cols-1 sm:grid-cols-2 gap-4 p-8 lg:p-12">
         <div>
-          <Heading
-            level={3}
-            variant="featureTitle">
-            Get started with our app today
-          </Heading>
           <Text
-            class="mt-2 lg:text-balance"
+            tag="h2"
+            variant="textLG"
+            class="font-semibold text-base-900">
+            Get started with our app today
+          </Text>
+          <Text
             tag="p"
-            variant="body">
+            variant="textBase"
+            class="mt-4 text-base-500 font-medium lg:text-balance">
             Streamline your workflow and collaborate seamlessly on staging and
             temporary environments
           </Text>
@@ -79,21 +80,23 @@ const footerLinks = [
           footerLinks.map((section, index) => (
             <div class="space-y-4">
               <nav aria-labelledby={`footer-heading-${index}`}>
-                <Heading
-                  id={`footer-heading-${index}`}
-                  level={3}
-                  variant="footerHeading">
-                  {section.heading}
-                </Heading>
+                <Text
+                tag="h2"
+                variant="textBase"
+                id={`footer-heading-${index}`}
+                class="font-semibold text-base-900">
+                {section.heading}
+              </Text>
                 <ul class="mt-4 space-y-4">
                   {section.links.map((link, linkIndex) => (
                     <li>
-                      <Link
-                        href={link.href}
-                        tag="a"
-                        variant="navigationLink">
-                        {link.text}
-                      </Link>
+                       <Text
+                      tag="a"
+                      href="#_"
+                      variant="textMD"
+                      class="hover:text-accent-500 font-medium text-base-500">
+                      {link.text}
+                    </Text>
                     </li>
                   ))}
                 </ul>
@@ -104,22 +107,23 @@ const footerLinks = [
       </div>
       <div
         class="p-8 lg:p-12 flex flex-col md:flex-row items-center justify-between">
-       <Link
-        class="w-full sm:w-auto flex gap-3 items-center"
-        href="#_"
+        <Text
         tag="a"
-        variant="navigationLink">
+        href="#_"
+        variant="textMD"
+        class="hover:text-accent-500 font-medium flex items-center gap-2 text-base-900">
         <img
           class="h-7 2xl:h-12"
           src="/images/oxbow/blueLineLogo.png"
           alt="#_"
         /> Oxbow UI
-    </Link>
-        <Text
-          tag="p"
-          variant="small">
-          Copyright © 2024 Oxbow UI. All rights reserved.
-        </Text>
+      </Text>
+      <Text
+        tag="h2"
+        variant="textSM"
+        class="font-medium text-base-400">
+        Copyright © 2024 Oxbow UI. All rights reserved.
+      </Text>
       </div>
     </div>
   </div>

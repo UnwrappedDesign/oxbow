@@ -1,6 +1,5 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
-import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 const logos = [
   {
@@ -20,7 +19,6 @@ const logos = [
   },
 ];
 ---
-
 <div class="relative">
   <div class="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-24 lg:px-8">
     <div
@@ -31,32 +29,39 @@ const logos = [
           src="/images/oxbow/blueLineLogo.png"
           alt="#_"
         />
-
-        <Heading
-          class="mt-12"
-          level={1}
-          variant="display">
-          Make every visitor count
-        </Heading>
         <Text
-          class="mt-4"
+          tag="h2"
+          variant="displayLG"
+          class="mt-12 font-semibold text-base-900 lg:text-balance">
+          Transforming the banking experience for a digital future
+        </Text>
+        <Text
+          class="mt-4 text-base-500 font-medium"
           tag="p"
-          variant="body">
+          variant="textBase">
           Integrating with existing systems is smooth and hassle-free, thanks to
           our incredible flexible approach. Equipped with advanced features and
           tools, our solution effortlessly manages complex tasks and workflows.
         </Text>
-
-
-        <div class="flex flex-wrap gap-4 mt-12">
+        <div class="flex flex-wrap lg:items-center gap-4 mt-12">
           <Button
             variant="accent"
             size="sm">
             Get started
           </Button>
-          <div class="text-sm text-base-500">
-            <span class="block">This is some support text</span>
-            <span class="block">and this is also.</span>
+          <div class=" font-medium lg:items-center">
+            <Text
+              tag="span"
+              class="block"
+              variant="textMD">
+              This is some support text
+            </Text>
+            <Text
+              tag="span"
+              class="block"
+              variant="textMD">
+              and this is also.
+            </Text>
           </div>
         </div>
         <div
@@ -64,7 +69,6 @@ const logos = [
           {
             logos.map((logo) => (
               <img
-                class={`${logo.colSpan} max-h-12 w-full object-contain `}
                 src={logo.src}
                 alt="#_"
                 width={logo.width}

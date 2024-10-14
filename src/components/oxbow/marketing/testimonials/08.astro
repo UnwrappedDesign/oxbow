@@ -1,42 +1,44 @@
 ---
-import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
 
 <section x-data="{ testimonialActive: 1 }">
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl">
     <div>
-      <blockquote x-show.transition="testimonialActive == 1">
-        <Heading
-          level={3}
-          variant="default">
+      <div x-show.transition="testimonialActive == 1">
+        <Text
+          tag="blockquote"
+          variant="displayLG"
+          class="text-base-900 italic font-medium lg:text-balance">
           Being in the financial industry, we were always looking for ways to
           enhance our transactions' security and efficiency
-        </Heading>
-      </blockquote>
+        </Text>
+      </div>
       <div
         x-show.immediate="testimonialActive === 2"
         style="display: none;">
-        <blockquote x-show.transition="testimonialActive == 2">
-          <Heading
-            level={3}
-            variant="default">
+        <div x-show.transition="testimonialActive == 2">
+          <Text
+            tag="blockquote"
+            variant="displayLG"
+            class="text-base-900 italic font-medium lg:text-balance">
             Implementing Semplice's blockchain technology has been a
             game-changer for our supply chain management
-          </Heading>
-        </blockquote>
+          </Text>
+        </div>
       </div>
       <div
         x-show.immediate="testimonialActive === 3"
         style="display: none;">
-        <blockquote x-show.transition="testimonialActive == 3">
-          <Heading
-            level={3}
-            variant="default">
+        <div x-show.transition="testimonialActive == 3">
+          <Text
+            tag="blockquote"
+            variant="displayLG"
+            class="text-base-900 italic font-medium lg:text-balance">
             We were initially hesitant about integrating blockchain technology
             into our existing systems.
-          </Heading>
-        </blockquote>
+          </Text>
+        </div>
       </div>
     </div>
     <div
@@ -75,42 +77,48 @@ import Text from "@/components/fundations/typography/Text.astro";
       </div>
       <div>
         <div x-show="testimonialActive == 1">
-          <Heading
-            level={3}
-            variant="featureTitle">
-            Michael Andreuzza
-          </Heading>
           <Text
-            tag="small"
-            variant="small">
+            tag="h3"
+            variant="textMD"
+            class="text-base-900 font-medium">
+            Michael Andreuzza
+          </Text>
+          <Text
+            tag="p"
+            variant="textXS"
+            class="text-base-400 font-medium">
             Founder
           </Text>
         </div>
         <div
           x-show="testimonialActive == 2"
           style="display: none;">
-          <Heading
-            level={3}
-            variant="featureTitle">
-            Jonny Mnemonic
-          </Heading>
           <Text
-            tag="small"
-            variant="small">
+            tag="h3"
+            variant="textLG"
+            class="text-base-900 font-medium">
+            Jonny Mnemonic
+          </Text>
+          <Text
+            tag="p"
+            variant="textXS"
+            class="text-base-400 font-medium">
             Designer
           </Text>
         </div>
         <div
           x-show="testimonialActive == 3"
           style="display: none;">
-          <Heading
-            level={3}
-            variant="featureTitle">
-            Anna Svenblad
-          </Heading>
           <Text
-            tag="small"
-            variant="small">
+            tag="h3"
+            variant="textLG"
+            class="text-base-900 font-medium">
+            Anna Svenblad
+          </Text>
+          <Text
+            tag="p"
+            variant="textXS"
+            class="text-base-400 font-medium">
             Writter
           </Text>
         </div>

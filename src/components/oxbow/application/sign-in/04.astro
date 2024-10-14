@@ -1,9 +1,6 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
-import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-import Link from "@/components/fundations/typography/Link.astro";
-
 import Apple from "@/components/fundations/icons/Apple.astro";
 import Chrome from "@/components/fundations/icons/Chrome.astro";
 import Meta from "@/components/fundations/icons/Meta.astro";
@@ -19,45 +16,43 @@ import Meta from "@/components/fundations/icons/Meta.astro";
     />
     <!-- Text overlay -->
     <div
-      class="absolute inset-0 flex flex-col justify-start lg:text-white lg:bg-base-950 lg:bg-opacity-80 lg:p-10">
+      class="absolute inset-0 flex flex-col justify-start lg:bg-base-950 lg:bg-opacity-80 lg:p-10">
       <div class="hidden md:block">
         <img
           class="size-20"
           src="/images/oxbow/whiteLineLogo.png"
           alt="#_"
         />
-
-        <Heading
-          class="mt-12 lg:mt-52"
-          level={3}
-          darkMode={true}
-          variant="defaultSmall">
-          Welcome to Our Platform
-        </Heading>
         <Text
-          class="mt-4"
+          class=""
+          tag="h3"
+          variant="textXL"
+          class="lg:text-white font-medium mt-12 lg:mt-52">
+          Welcome to Our Platform
+        </Text>
+        <Text
           tag="p"
-          darkMode={true}
-          variant="small">
+          variant="textBase"
+          class="mt-4 lg:text-white">
           Welcome back! Please enter your email and password to sign in.
           Discover a world where seamless connectivity empowers your every
           interaction. Dive into an experience designed to effortlessly connect
           you with what matters most, enhancing productivity and enabling you to
           achieve more.
         </Text>
-
         <div class="flex mt-4">
           <Text
             tag="p"
-            darkMode={true}
-            variant="body">
+            variant="textSM"
+            class="text-base-300 font-medium">
             Don't have an account?
-            <Link
-                tag="a"
-                href="#_"
-                variant="link">
-                Sign up
-              </Link>
+            <Text
+              tag="a"
+              href="#_"
+              variant="textMD"
+              class="text-accent-500 font-medium hover:text-base-500">
+              Sign up
+            </Text>
           </Text>
         </div>
       </div>
@@ -68,20 +63,21 @@ import Meta from "@/components/fundations/icons/Meta.astro";
     <div class="lg:col-start-2 w-full px-8 lg:px-0">
       <div class="text-center md:text-left lg:text-balance">
         <Text
-          tag="span"
-          variant="eyebrow">
+          tag="p"
+          variant="textSM"
+          class="font-bold uppercase text-accent-600">
           Tagline
         </Text>
-        <Heading
-          class="mt-4"
-          level={1}
-          variant="default">
-          Sign in to your account
-        </Heading>
         <Text
-          class="mt-4 lg:text-balance"
+          tag="h2"
+          variant="displayMD"
+          class="mt-4 font-semibold text-base-900 lg:text-balance">
+          Sign in to your account
+        </Text>
+        <Text
           tag="p"
-          variant="body">
+          variant="textBase"
+          class="mt-4 text-base-500 font-medium">
           Welcome back! Please enter your email and password to sign in.
         </Text>
       </div>
@@ -94,7 +90,8 @@ import Meta from "@/components/fundations/icons/Meta.astro";
             <Text
               for="email"
               tag="label"
-              variant="inputLabel">
+              variant="textBase"
+              class="text-base-500 font-medium">
               Email
             </Text>
             <div class="mt-2.5">
@@ -107,7 +104,7 @@ import Meta from "@/components/fundations/icons/Meta.astro";
                 aria-required="true"
                 aria-describedby="email-error"
                 placeholder="Your email"
-                class="block w-full h-10 px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg shadow appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+                class="block w-full h-10 px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
               />
               <span
                 id="email-error"
@@ -121,7 +118,8 @@ import Meta from "@/components/fundations/icons/Meta.astro";
               for="email"
               tag="label"
               class="flex items-center justify-between"
-              variant="inputLabel">
+              variant="textBase"
+              class="text-base-500 font-medium">
               Password
               <Text
                 for="email"
@@ -140,7 +138,7 @@ import Meta from "@/components/fundations/icons/Meta.astro";
                 aria-required="true"
                 aria-describedby="password-error"
                 placeholder="Your password"
-                class="block w-full h-10 px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg shadow appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+                class="block w-full h-10 px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
               />
               <span
                 id="password-error"
@@ -159,12 +157,11 @@ import Meta from "@/components/fundations/icons/Meta.astro";
             <Text
               for="remember-me"
               tag="label"
-              variant="inputLabel">
-              Remember me
+              class="block text-sm text-base-500 font-medium"
+              >Remember me
             </Text>
           </div>
         </div>
-
         <div class="mt-10">
           <Button
             class="w-full"
@@ -181,9 +178,9 @@ import Meta from "@/components/fundations/icons/Meta.astro";
           </div>
           <div class="relative flex justify-center">
             <Text
-              class="bg-white px-6 text-base-900"
               tag="span"
-              variant="small">
+              variant="textSM"
+              class="text-base-500 font-medium bg-white px-4 border rounded-full py-1">
               Or Sign in with
             </Text>
           </div>
