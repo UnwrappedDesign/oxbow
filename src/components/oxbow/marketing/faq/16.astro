@@ -1,7 +1,5 @@
 ---
-import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-import Link from "@/components/fundations/typography/Link.astro";
 import Plus from "@/components/fundations/icons/Plus.astro";
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 const faq1 = [
@@ -61,20 +59,21 @@ const faq1 = [
     <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
       <div>
         <Text
-          tag="span"
-          variant="eyebrow">
+          tag="p"
+          variant="textSM"
+          class="font-bold uppercase text-accent-600">
           Tagline
         </Text>
-        <Heading
-          class="mt-4"
-          level={1}
-          variant="default">
-          Frequently Asked Questions
-        </Heading>
         <Text
-          class="mt-4 lg:text-balance"
+          tag="h2"
+          variant="displaySM"
+          class="mt-4 font-semibold text-base-900 lg:text-balance">
+          Frequently Asked Questions
+        </Text>
+        <Text
           tag="p"
-          variant="body">
+          variant="textBase"
+          class="mt-4 text-base-500 font-medium">
           Everything you need to know about our platform.
         </Text>
       </div>
@@ -86,32 +85,29 @@ const faq1 = [
             src="/images/oxbow/whiteLineLogo.png"
             alt="#_"
           />
-          <Heading
-            class="mt-4"
-            level={3}
-            darkMode={true}
-            variant="default">
-            Got questions?
-          </Heading>
           <Text
-            class="mt-4 lg:text-balance"
+            tag="h2"
+            variant="textLG"
+            class="mt-4 font-semibold text-white lg:text-balance">
+            Got questions?
+          </Text>
+          <Text
             tag="p"
-            darkMode={true}
-            variant="body">
+            variant="textBase"
+            class="mt-4 text-base-300 font-medium lg:text-balance">
             Everything you need to know about our platform. We're here to help
             you with any questions you might have.
           </Text>
 
           <div class="mt-8 flex justify-center">
-            <Link
+            <Text
               tag="a"
               href="#_"
-              variant="link"
-              darkMode={true}
-              class="flex items-center gap-2">
+              variant="textMD"
+              class="text-white hover:text-accent-200 font-medium flex items-center gap-2">
               Contact Support
               <ChevronRight size="sm" />
-            </Link>
+            </Text>
           </div>
         </div>
       </div>
@@ -121,9 +117,9 @@ const faq1 = [
         faq1.map((faq) => (
           <details class="group cursor-pointer p-4 bg-base-50 rounded-xl">
             <Text
-              class="flex  items-center justify-between w-full   text-left select-none hover:text-accent-500 focus:text-accent-500"
               tag="summary"
-              variant="summary">
+              variant="textBase"
+              class="text-base-900 font-medium flex  items-center justify-between w-full   text-left select-none hover:text-accent-500 focus:text-accent-500">
               {faq.question}
               <Plus
                 class="duration-300 ease-out  transform group-open:-rotate-45"
@@ -133,7 +129,8 @@ const faq1 = [
             <div class="py-4 pt-2 text-sm text-base-500">
               <Text
                 tag="p"
-                variant="body">
+                variant="textBase"
+                class="text-base-500 font-medium">
                 {faq.answer}
               </Text>
             </div>

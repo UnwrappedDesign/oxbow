@@ -1,7 +1,7 @@
 ---
+import Text from "@/components/fundations/typography/Text.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
 import IconButton from "@/components/fundations/buttons/IconButton.astro";
-import Link from "@/components/fundations/typography/Link.astro";
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 import Lifebuoy from "@/components/fundations/icons/Lifebuoy.astro";
 import InfoCircle from "@/components/fundations/icons/InfoCircle.astro";
@@ -19,26 +19,27 @@ import User from "@/components/fundations/icons/User.astro";
         class="flex-1 pb-5">
         <ol
           role="list"
-          class="flex items-center space-x-4 text-sm">
+          class="flex items-center space-x-2">
           <li>
-            <Link
+            <Text
               tag="a"
               href="#_"
-              variant="linkMuted"
-              class="flex items-center gap-2">
-              <span>Home</span>
+              variant="textMD"
+              class="p-2 hover:bg-base-50  hover:text-accent-500 items-center rounded-lg gap-2 flex text-base-500  font-medium">
+              Home
               <ChevronRight size="base" />
-            </Link>
+            </Text>
           </li>
-            <li>
-              <Link
-                tag="a"
-                href="#_"
-                variant="link"
-                class="flex items-center gap-2">
-                <span>Help Center Overview</span>
-              </Link>
-            </li>
+
+          <li>
+            <Text
+              tag="a"
+              href="#_"
+              variant="textMD"
+              class="p-2 hover:bg-base-50  hover:text-accent-500 items-center rounded-lg gap-2 flex text-base-500  font-medium">
+              Help Center
+            </Text>
+          </li>
         </ol>
       </nav>
       <div class="relative">
@@ -56,9 +57,7 @@ import User from "@/components/fundations/icons/User.astro";
               size="base"
               slot="icon"
             />
-            
           </IconButton>
-
           <div
             x-show="open"
             @click.away="open = false"
@@ -68,57 +67,57 @@ import User from "@/components/fundations/icons/User.astro";
             x-transition:leave="transition ease-in duration-150"
             x-transition:leave-start="opacity-100 translate-y-0"
             x-transition:leave-end="opacity-0 translate-y-1"
-            class="origin-top-center absolute divide-y overflow-hidden divide-base-200 left-auto right-8 transform mt-2 w-56 rounded-xl shadow bg-white ring-1 ring-black/5 focus:outline-none"
+            class="origin-top-center absolute divide-y overflow-hidden divide-base-200 left-auto right-8 transform mt-2 w-56 rounded-xl shadow-lg bg-white ring-1 ring-base-200  focus:outline-none"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="menu-button">
             <div
               class="p-1.5"
               role="none">
-              <Link
+              <Text
                 tag="a"
                 href="#_"
-                variant="dropDownLink"
-                class="flex items-center gap-2">
+                variant="textSM"
+                class="p-2 hover:bg-base-50  hover:text-accent-500 items-center rounded-lg gap-2 flex text-base-500">
                 <InfoCircle
                   class="left-icon"
                   size="sm"
                 />
                 FAQ
-              </Link>
-              <Link
+              </Text>
+              <Text
                 tag="a"
                 href="#_"
-                variant="dropDownLink"
-                class="flex items-center gap-2">
+                variant="textSM"
+                class="p-2 hover:bg-base-50  hover:text-accent-500 items-center rounded-lg gap-2 flex text-base-500">
                 <Lifebuoy
                   class="left-icon"
                   size="sm"
                 />
                 Support
-              </Link>
-              <Link
+              </Text>
+              <Text
                 tag="a"
                 href="#_"
-                variant="dropDownLink"
-                class="flex items-center gap-2">
+                variant="textSM"
+                class="p-2 hover:bg-base-50  hover:text-accent-500 items-center rounded-lg gap-2 flex text-base-500">
                 <Settings
                   class="left-icon"
                   size="sm"
                 />
                 Account
-              </Link>
-              <Link
+              </Text>
+              <Text
                 tag="a"
                 href="#_"
-                variant="dropDownLink"
-                class="flex items-center gap-2">
+                variant="textSM"
+                class="p-2 hover:bg-base-50  hover:text-accent-500 items-center rounded-lg gap-2 flex text-base-500">
                 <User
                   class="left-icon"
                   size="sm"
                 />
                 Profile
-              </Link>
+              </Text>
             </div>
             <div
               class="p-1.5 bg-base-50"

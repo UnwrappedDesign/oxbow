@@ -36,24 +36,28 @@ const entriesWithQuantity = entries
   // Filter out entries with quantity 0
   .filter((entry) => entry.quantity > 0);
 ---
+
 <ul
   class="col-span-3 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 sm:gap-y-10 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 xl:gap-x-8">
   {
     entriesWithQuantity.map((template) => (
-      <li class="relative">
-        <div class="group relative group rounded-lg">
+      <li class="relative ">
+        <div class="group relative group rounded-lg ">
           <Image
-            class="object-bottom object-cover  border rounded-lg group-hover:ring-2 group-hover:ring-offset-2  group-hover:ring-base-200 duration-300"
+            class="object-bottom  object-cover  border rounded-lg group-hover:ring-2 group-hover:ring-offset-2  group-hover:ring-base-200 duration-300"
             alt={template.name}
             src={template.image()}
           />
           <div>
             <h4 class="mt-4 text-sm 2xl:text-base font-medium text-base-900 group-hover:text-accent-600">
-              <a
+              <a class="flex justify-between gap-2 items-center"
                 title={template.name}
                 href={template.link}>
                 <span class="absolute -inset-2.5 z-10" />
                 <span class="relative">{template.name}</span>
+                <span class="inline-flex  items-center font-medium z-10 text-accent-500 sr-only bottom-2 right-2 bg-base-50 px-2.5 py-1 text-xs rounded-md">
+                  New
+                </span>
               </a>
             </h4>
             <p class="relative mt-1.5 text-xs 2xl:text-sm font-medium text-base-400">

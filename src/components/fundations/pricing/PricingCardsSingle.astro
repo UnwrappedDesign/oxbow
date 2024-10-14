@@ -3,7 +3,6 @@
 import Button from "../buttons/Button.astro";
 import Badge from "../badges/Badge.astro";
 import Check from "../icons/Check.astro";
-import Heading from "../typography/Heading.astro";
 import Text from "../typography/Text.astro";
 // Props from the parent component
 const {
@@ -23,7 +22,7 @@ const tierDetails = {
   Core: {
     audience: "For individuals",
     description:
-      "This subscription tier caters to individuals and hobbyists seeking fundamental features.",
+      "This subscription tier caters to individuals and hobbyists seeking features.",
     priceMonthly: "$29.00",
     priceAnnual: "$19.00",
   },
@@ -95,32 +94,52 @@ const colorClasses = {
   white: {
     cardBg: "bg-white",
     innerBg: "bg-white rounded-[1.3rem]",
-    textColor: "text-base-900",
-    subTextColor: "text-base-500",
+    titleColor: "text-base-900",
+    subTitleColor: "text-base-500",
+    introColor: "text-base-500",
+    priceColor: "text-base-900",
+    monthYearTextColor: "text-base-500",
+    featuresTextColor: "text-base-500",
   },
   light: {
-    cardBg: "bg-base-50",
+    cardBg: "bg-base-50 shadow",
     innerBg: "bg-white rounded-[1.3rem]",
-    textColor: "text-base-900",
-    subTextColor: "text-base-500",
+    titleColor: "text-base-900",
+    subTitleColor: "text-base-500",
+    introColor: "text-base-500",
+    priceColor: "text-base-900",
+    monthYearTextColor: "text-base-500",
+    featuresTextColor: "text-base-500",
   },
   dark: {
     cardBg: "bg-base-950 shadow",
-    innerBg: "bg-base-900 rounded-[1.3rem]",
-    textColor: "text-white",
-    subTextColor: "text-white/50",
+    innerBg: "bg-white/10 rounded-[1.3rem]",
+    titleColor: "text-white",
+    subTitleColor: "text-base-200",
+    introColor: "text-base-200",
+    priceColor: "text-white",
+    monthYearTextColor: "text-white/50",
+    featuresTextColor: "text-base-200",
   },
   baseDark: {
     cardBg: "bg-base-900 shadow",
     innerBg: "bg-white/10 rounded-[1.3rem]",
-    textColor: "text-white",
-    subTextColor: "text-white/50",
+    titleColor: "text-white",
+    subTitleColor: "text-base-200",
+    introColor: "text-base-200",
+    priceColor: "text-white",
+    monthYearTextColor: "text-white/50",
+    featuresTextColor: "text-base-200",
   },
   accent: {
     cardBg: "bg-accent-700 shadow",
     innerBg: "bg-white/10 rounded-[1.3rem]",
-    textColor: "text-white",
-    subTextColor: "text-accent-100",
+    titleColor: "text-white",
+    subTitleColor: "text-base-200",
+    introColor: "text-base-200",
+    priceColor: "text-white",
+    monthYearTextColor: "text-accent-100",
+    featuresTextColor: "text-base-200",
   },
 }[colorMode];
 // Define rounding classes based on the roundedDesktop prop
@@ -133,6 +152,7 @@ if (roundedDesktop === "left") {
   roundingClass = "lg:rounded-none"; // No rounding if specified
 }
 ---
+
 <div
   class={`flex flex-col h-full rounded-3xl ${isLeft ? "lg:pr-0 lg:py-1" : "p-1"} ${isCentered ? "lg:px-0 lg:py-1" : "p-1"} ${isRight ? "lg:pl-0 lg:py-1" : "p-1"} ${roundingClass} ${colorClasses.cardBg}`}>
   <div>
@@ -140,16 +160,16 @@ if (roundedDesktop === "left") {
       class={`flex flex-col gap-4 p-8 ${colorClasses.innerBg} h-full ${roundingClass} shadow `}>
       <div class="flex items-start justify-between w-full">
         <div>
-          <Heading
-            level={3}
-            variant="featureTitleLarge"
-            class={colorClasses.textColor}>
+          <Text
+            tag="h3"
+            variant="textXL"
+            class={`font-medium ${colorClasses.titleColor}`}>
             {tierName}
-          </Heading>
+          </Text>
           <Text
             tag="p"
-            variant="small"
-            class={colorClasses.textColor}>
+            variant="textMD"
+            class={`font-medium ${colorClasses.subTitleColor}`}>
             {audience}
           </Text>
         </div>
@@ -165,22 +185,22 @@ if (roundedDesktop === "left") {
       </div>
       <Text
         tag="p"
-        variant="body"
-        class={colorClasses.textColor}>
+        variant="textMD"
+        class={`font-medium ${colorClasses.introColor}`}>
         {description}
       </Text>
     </div>
   </div>
   <div class="p-8">
     <p
-      class={`font-semibold flex lg:text-3xl items-baseline text-2xl tracking-tighter ${colorClasses.textColor}`}>
+      class={`font-semibold flex lg:text-3xl items-baseline text-2xl tracking-tighter ${colorClasses.priceColor}`}>
       <span
         data-monthly={priceMonthly}
         data-annual={priceAnnual}
         x-text="$el.dataset[duration]"
       ></span>
       <span
-        class={`text-sm font-normal font-sans tracking-normal ${colorClasses.subTextColor}`}>
+        class={`text-sm font-normal font-sans tracking-normal ${colorClasses.monthYearTextColor}`}>
         <span x-show="duration === 'monthly'">/month</span>
         <span
           x-show="duration === 'annual'"
@@ -202,23 +222,19 @@ if (roundedDesktop === "left") {
         <div class="mt-8">
           <Text
             tag="p"
-            variant="pricingIntro"
-            class={colorClasses.textColor}>
+            variant="textSM"
+            class={`font-medium uppercase ${colorClasses.featuresTextColor}`}>
             {tierName} plan includes:
           </Text>
           <ul
-            class={`flex flex-col mt-4 gap-y-3 ${featuresLayout === "grid" ? "grid grid-cols-1 lg:grid-cols-2" : ""}`}
+            class={`flex flex-col mt-4 gap-y-3 ${colorClasses.featuresTextColor} ${featuresLayout === "grid" ? "grid grid-cols-1 lg:grid-cols-2" : ""}`}
             role="list">
             {features.map((feature) => (
               <li class="flex items-center gap-2">
-                <Check
-                  class={colorClasses.textColor}
-                  size="sm"
-                />
+                <Check size="sm" />
                 <Text
                   tag="span"
-                  variant="small"
-                  class={colorClasses.textColor}>
+                  variant="textMD">
                   {feature}
                 </Text>
               </li>

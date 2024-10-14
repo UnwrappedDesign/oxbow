@@ -1,5 +1,4 @@
 ---
-import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 import Filters from "@/components/fundations/icons/Filters.astro";
 import WaveSquare from "@/components/fundations/icons/WaveSquare.astro";
@@ -44,34 +43,32 @@ const data = [
     icon: "Camera",
     category: "Screenshot tool",
     text: "Make screenshots of a particular part of the screen to share quick and easy!",
-  },
-  {
-    icon: "Stacked",
-    category: "Breakpoint info",
-    text: "Instantly know what Tailwind breakpoint you're currently on.",
-  },
+  }
 ];
 ---
 
 <section>
   <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <dl class="grid grid-cols-1 md:col-span-2 gap-4 lg:grid-cols-3 mt-12">
-      <div class="lg:col-span-2 col-span-full">
+
+      <div
+        class="lg:col-span-2 col-span-full p-8 bg-base-50 rounded-3xl flex flex-col h-full">
         <Text
-          tag="span"
-          variant="eyebrow">
+          tag="p"
+          variant="textSM"
+          class="font-bold uppercase text-accent-600">
           Tagline
         </Text>
-        <Heading
-          class="mt-4"
-          level={1}
-          variant="default">
-          Transform your visitors into users with an engaging headline
-        </Heading>
         <Text
-          class="mt-4"
+          tag="h2"
+          variant="displayMD"
+          class="mt-4 font-semibold text-base-900 lg:text-balance">
+          Transforming the banking experience for a digital future
+        </Text>
+        <Text
           tag="p"
-          variant="body">
+          variant="textBase"
+          class="mt-4 text-base-500 font-medium">
           The fastest method for working together on staging and temporary
           environments.
         </Text>
@@ -129,18 +126,19 @@ const data = [
                 />
               )}
               <dt>
-                <Heading
-                  level={3}
-                  variant="featureTitle">
+                <Text
+                  variant="textLG"
+                  tag="h3"
+                  class="text-base-900 font-medium">
                   {section.category}
-                </Heading>
+                </Text>
               </dt>
             </div>
             <dd>
               <Text
-                class="mt-2"
                 tag="p"
-                variant="body">
+                variant="textBase"
+                class="mt-2 text-base-500 font-medium">
                 {section.text}
               </Text>
             </dd>
@@ -150,4 +148,3 @@ const data = [
     </dl>
   </div>
 </section>
-
