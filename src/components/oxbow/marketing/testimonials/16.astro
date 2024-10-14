@@ -1,107 +1,42 @@
 ---
-import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-import Link from "@/components/fundations/typography/Link.astro";
-
-import XBrand from "@/components/fundations/icons/XBrand.astro";
-import LinkedinBrand from "@/components/fundations/icons/LinkedinBrand.astro";
-const data = [
-  {
-    name: "Mike Vega",
-    title: "Creator of Oxbow UI.com",
-    testimonial:
-      "Being in the financial industry, we were always looking for ways to enhance our transactions' security and efficiency.",
-    imgSrc: "/avatars/1.avif",
-  },
-  {
-    name: "Juan Echanove",
-    title: "Founder of Pay Oneeer",
-    testimonial:
-      "Oxbow UI is a platform that allows you to create a customized landing page for your business. It's a great way to showcase your products and services to potential customers.",
-    imgSrc: "/avatars/2.avif",
-  },
-  {
-    name: "Elona Muska",
-    title: "Founder of Fesla",
-    testimonial:
-      "With Oxbow UI, we can create a customized landing page for our business that showcases our products and services in the best possible way.",
-    imgSrc: "/avatars/3.avif",
-  },
-];
 ---
 
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
-    <div class="text-center max-w-xl mx-auto">
-      <span
-        class="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase"
-        >Tagline</span
-      >
-      <h1
-        class="text-4xl mt-4 font-semibold tracking-tight text-base-900 lg:text-balance">
-        Hear from our customers about their experiences
-      </h1>
-      <p class="mt-6 text-base font-medium text-base-500 lg:text-balance">
-        Find out how our users are using Oxbow UI to create a customized landing
-        page for their business.
-      </p>
+    <div class="max-w-4xl">
+      <div>
+        <Text
+          tag="blockquote"
+          variant="displayLG"
+          class="text-base-900 italic font-medium">
+          "Being in the financial industry, we were always looking for ways to
+          enhance our transactions' security and efficiency."
+        </Text>
+      </div>
+      <figcaption class="flex text-left mt-8">
+        <div class="flex items-center gap-4">
+          <img
+            class="object-cover rounded-full size-12"
+            src="/avatars/1.avif"
+            alt="#_"
+          />
+          <div>
+            <Text
+              tag="h3"
+              variant="textMD"
+              class="text-base-900 font-medium">
+              Mike Vega
+            </Text>
+            <Text
+              tag="p"
+              variant="textXS"
+              class="text-base-400 font-medium">
+              Designer
+            </Text>
+          </div>
+        </div>
+      </figcaption>
     </div>
-    <ul
-      role="list"
-      class="mt-12 grid sm:grid-cols-2 md:grid-cols-3 gap-12 lg:mt-24">
-      {
-        data.map((member) => (
-          <>
-            <li>
-              <figure class="flex flex-col  h-full ">
-                <figcaption>
-                  <div class="flex items-center gap-4">
-                    <img
-                      class="object-cover rounded-full size-12"
-                      src={member.imgSrc}
-                      alt="#_"
-                    />
-                    <div>
-                      <Heading
-                        level={3}
-                        variant="featureTitle">
-                        {member.name}
-                      </Heading>
-                      <Text
-                        tag="small"
-                        variant="small">
-                        {member.title}
-                      </Text>
-                    </div>
-                  </div>
-                </figcaption>
-                <blockquote class="mt-4">
-                  <Text
-                    tag="p"
-                    variant="body">
-                    {member.testimonial}
-                  </Text>
-                </blockquote>
-                <div class="mt-4 flex items-center gap-2  ">
-                  <Link
-                    tag="a"
-                    href="#_"
-                    variant="link">
-                    <XBrand size="sm" />
-                  </Link>
-
-                  <Link
-                    tag="a"
-                    href="#_"
-                    variant="link">
-                    <LinkedinBrand size="sm" />
-                  </Link>
-                </div>
-              </figure>
-            </li>
-          </>
-        ))
-      }
-    </ul>
   </div>
 </section>

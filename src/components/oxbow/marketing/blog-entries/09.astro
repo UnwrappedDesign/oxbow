@@ -1,8 +1,5 @@
 ---
-import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-import Link from "@/components/fundations/typography/Link.astro";
-
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 const articles = [
   {
@@ -40,14 +37,13 @@ const articles = [
   },
 ];
 ---
-
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div class="flex flex-col gap-6 relative">
       {
         articles.map((article) => (
           <>
-            <div class="grid items-center grid-cols-1 gap-6 lg:grid-cols-3">
+            <div class="grid items-center grid-cols-1 gap-6 lg:grid-cols-3 group">
               <div class="block w-full lg:col-span-2">
                 <img
                   src={article.image}
@@ -59,31 +55,31 @@ const articles = [
                 <div>
                   <Text
                     tag="a"
-                    href=""
+                    href="#_"
                     variant="link">
-                    <Heading
-                      level={3}
-                      variant="default">
+                    <Text
+                      tag="h3"
+                      variant="displaySM"
+                      class=" text-base-900 font-semibold">
                       <span class="absolute inset-0" />
                       {article.title}
-                    </Heading>
+                    </Text>
                   </Text>
                   <Text
-                    class="line-clamp-3 mt-4"
                     tag="p"
-                    variant="body">
+                    variant="textLG"
+                    class="mt-4 text-base-500 font-medium line-clamp-3">
                     {article.description}
                   </Text>
                 </div>
-                <div class="mt-12 flex">
-                  <Link
-                    tag="a"
-                    href="#_"
-                    variant="link"
-                    class="flex items-center gap-2 relative">
+                <div class="mt-12">
+                  <Text
+                    tag="span"
+                    variant="textMD"
+                    class="text-accent-500 font-medium flex items-center gap-2 group-over:text-base-900">
                     Read further
                     <ChevronRight size="sm" />
-                  </Link>
+                  </Text>
                 </div>
               </div>
             </div>

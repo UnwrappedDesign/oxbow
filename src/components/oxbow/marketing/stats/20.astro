@@ -1,6 +1,6 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
-import Heading from "@/components/fundations/typography/Heading.astro";
+
 import Text from "@/components/fundations/typography/Text.astro";
 const stats = [
   {
@@ -51,24 +51,25 @@ const stats = [
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div
-      class="relative isolate overflow-hidden border shadow rounded-3xl px-6 pt-16 sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
+      class="relative isolate overflow-hidden bg-accent-950  rounded-3xl px-6 pt-16 sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
       <div
         class="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-24 lg:text-left">
         <Text
-          tag="span"
-          variant="eyebrow">
+          tag="p"
+          variant="textSM"
+          class="font-bold uppercase text-accent-500">
           Tagline
         </Text>
-        <Heading
-          class="mt-4"
-          level={1}
-          variant="default">
-          Empower your finances with our unmatched value
-        </Heading>
         <Text
-          class="mt-4"
+          tag="h2"
+          variant="displayMD"
+          class="mt-4 font-semibold text-white lg:text-balance">
+          Empower your finances with our unmatched value
+        </Text>
+        <Text
           tag="p"
-          variant="body">
+          variant="textBase"
+          class="mt-4 text-base-300 font-medium">
           Experience low fees, unwavering commitment, and massive earnings with
           a service trusted by over 60 million users.
         </Text>
@@ -90,23 +91,24 @@ const stats = [
           {
             stats.slice(0, 4).map((stat) => (
               <div>
-                <div class="flex flex-col">
+                <div class="flex flex-col ">
                   <Text
-                    tag="span"
-                    variant="smallNumber">
+                    tag="p"
+                    variant="textLG"
+                    class=" text-accent-500 font-medium">
                     {stat.value}
                   </Text>
-                  <Heading
-                    class="mt-4"
-                    level={3}
-                    variant="featureTitle">
+                  <Text
+                    tag="h3"
+                    variant="textLG"
+                    class=" text-white font-medium">
                     {stat.label}
-                  </Heading>
+                  </Text>
                 </div>
                 <Text
-                  class="mt-2"
                   tag="p"
-                  variant="body">
+                  variant="textBase"
+                  class="mt-4 text-base-300 font-medium">
                   {stat.description}
                 </Text>
               </div>
@@ -116,7 +118,7 @@ const stats = [
       </div>
       <div class="relative mt-16 h-80 lg:mt-8">
         <img
-          class="absolute top-0 w-[70rem] max-w-none rounded-2xl border shadow"
+          class="absolute top-0 w-[70rem] max-w-none rounded-2xl  shadow"
           src="/images/dashboardLight.svg"
           alt="img"
         />

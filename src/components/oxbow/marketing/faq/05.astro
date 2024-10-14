@@ -1,7 +1,5 @@
 ---
-import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-import Link from "@/components/fundations/typography/Link.astro";
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 import Plus from "@/components/fundations/icons/Plus.astro";
 const faqs = [
@@ -29,25 +27,25 @@ const faqs = [
   },
 ];
 ---
-
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div class="text-center">
       <Text
-        tag="span"
-        variant="eyebrow">
+        tag="p"
+        variant="textSM"
+        class="font-bold uppercase text-accent-600">
         Tagline
       </Text>
-      <Heading
-        class="mt-4"
-        level={1}
-        variant="default">
-        Frequently Asked Questions
-      </Heading>
       <Text
-        class="mt-4 lg:text-balance"
-        tag="p"
-        variant="body">
+        tag="h2"
+        variant="displayMD"
+        class="mt-4 font-semibold text-base-900 lg:text-balance">
+        Frequently Asked Questions
+      </Text>
+       <Text
+          tag="p"
+          variant="textBase"
+          class="mt-4 text-base-500 font-medium">
         Everything you need to know about our platform.
       </Text>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
@@ -56,9 +54,9 @@ const faqs = [
             faqs.map((faq) => (
               <details class="group cursor-pointer">
                 <Text
-                  class="flex  items-center justify-between w-full py-6  text-left select-none hover:text-accent-500 focus:text-accent-500"
                   tag="summary"
-                  variant="summary">
+                  variant="textBase"
+                  class="text-base-900 font-medium flex  items-center justify-between w-full py-4  text-left select-none hover:text-accent-500 focus:text-accent-500">
                   {faq.question}
                   <Plus
                     class="duration-300 ease-out  transform group-open:-rotate-45"
@@ -68,7 +66,8 @@ const faqs = [
                 <div class="py-4 pt-2 text-sm text-base-500">
                   <Text
                     tag="p"
-                    variant="body">
+                    variant="textBase"
+                    class="text-base-500 font-medium">
                     {faq.answer}
                   </Text>
                 </div>
@@ -84,29 +83,28 @@ const faqs = [
               src="/images/oxbow/blueLineLogo.png"
               alt="#_"
             />
-            <Heading
-              class="mt-4"
-              level={3}
-              variant="default">
-              Got questions?
-            </Heading>
             <Text
-              class="mt-4 lg:text-balance"
+              tag="h2"
+              variant="textLG"
+              class="mt-4 font-semibold text-base-900 lg:text-balance">
+              Got questions?
+            </Text>
+            <Text
               tag="p"
-              variant="body">
+              variant="textBase"
+              class="mt-4 text-base-500 font-medium lg:text-balance">
               Everything you need to know about our platform. We're here to help
               you with any questions you might have.
             </Text>
-
             <div class="mt-8 justify-center flex">
-              <Link
-                tag="a"
-                href="#_"
-                variant="link"
-                class="flex items-center gap-2">
-                Contact support
-                <ChevronRight size="sm" />
-            </Link>
+             <Text
+              tag="a"
+              href="#_"
+              variant="textMD"
+              class="text-accent-500 font-medium flex items-center gap-2 hover:text-base-900">
+             Contact support
+              <ChevronRight size="sm" />
+            </Text>
             </div>
           </div>
         </div>

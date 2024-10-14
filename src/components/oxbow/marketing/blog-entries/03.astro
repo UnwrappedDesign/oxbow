@@ -1,8 +1,6 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
-import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-import Link from "@/components/fundations/typography/Link.astro";
 
 const articles = [
   {
@@ -46,20 +44,21 @@ const articles = [
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
       <div class="max-w-xl lg:text-balance">
         <Text
-          tag="span"
-          variant="eyebrow">
+          tag="p"
+          variant="textSM"
+          class="font-bold uppercase text-accent-600">
           Tagline
         </Text>
-        <Heading
-          class="mt-4"
-          level={1}
-          variant="default">
-          Insights and perspectives
-        </Heading>
         <Text
-          class="mt-4 lg:text-balance"
+          tag="h2"
+          variant="displayMD"
+          class="mt-4 font-semibold text-base-900 lg:text-balance">
+          Insights and perspectives
+        </Text>
+        <Text
           tag="p"
-          variant="body">
+          variant="textBase"
+          class="mt-4 text-base-500 font-medium">
           Exploring topics, tips, and trends in the world of communication and
           privacy
         </Text>
@@ -77,7 +76,7 @@ const articles = [
             placeholder="Enter your email"
             aria-placeholder="Enter your email"
             required=""
-            class="block w-full h-10 px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg shadow appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+            class="block w-full h-10 px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
           />
           <Button
             class="w-full sm:w-auto"
@@ -88,29 +87,31 @@ const articles = [
           </Button>
         </form>
         <Text
-          class="mt-4 lg:text-balance"
           tag="p"
-          variant="small">
+          variant="textSM"
+          class="mt-4 text-base-500 font-medium">
           When you sign up, you accept our
-          <Link
+          <Text
             tag="a"
             href="#_"
-            variant="link">
+            variant="textSM"
+            class="text-accent-500 font-medium gap-2 hover:text-base-900">
             Terms of service
-          </Link>
+          </Text>
           and
-          <Link
+          <Text
             tag="a"
             href="#_"
-            variant="link">
+            variant="textSM"
+            class="text-accent-500 font-medium gap-2 hover:text-base-900">
             Privacy Policy
-          </Link>
+          </Text>
         </Text>
       </div>
       <div class="flex flex-col gap-12 lg:col-span-2 relative">
         {
           articles.map((article) => (
-            <article class="relative isolate flex flex-col gap-8 lg:flex-row">
+            <article class="relative isolate flex flex-col gap-8 lg:flex-row group">
               <div class="relative aspect-[16/9] sm:aspect-[2/1] lg:aspect-square lg:w-64 lg:shrink-0">
                 <img
                   src={article.image}
@@ -125,19 +126,18 @@ const articles = [
                     tag="a"
                     href=""
                     variant="link">
-                    <Heading
-                      level={3}
-                      class="mt-2"
-                      variant="featureTitle">
+                    <Text
+                      tag="h3"
+                      variant="textLG"
+                      class="text-base-900 font-medium group-hover:text-accent-600 duration-200">
                       <span class="absolute inset-0" />
                       {article.title}
-                    </Heading>
+                    </Text>
                   </Text>
-
                   <Text
-                    class="mt-4 line-clamp-3"
                     tag="p"
-                    variant="body">
+                    variant="textBase"
+                    class="mt-4 text-base-500 font-medium line-clamp-3">
                     {article.description}
                   </Text>
                 </div>
@@ -149,16 +149,17 @@ const articles = [
                   />
                   <div>
                     <Text
-                      class="mt-4"
-                      tag="a"
-                      variant="body">
+                      tag="h3"
+                      variant="textMD"
+                      class=" text-base-900 font-medium">
                       {article.author}
                     </Text>
                     <div>
                       <span class="sr-only">{article.date}</span>
                       <Text
-                        tag="span"
-                        variant="eyebrow">
+                        tag="p"
+                        variant="textSM"
+                        class="font-medium uppercase text-base-500">
                         <time datetime={article.date}>{article.date}</time>
                       </Text>
                     </div>

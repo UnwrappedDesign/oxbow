@@ -1,8 +1,6 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
-import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-import Link from "@/components/fundations/typography/Link.astro";
 import FlyoutLinkBox from "@/components/fundations/wrappers/FlyoutLinkBox.astro";
 import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
 import Refresh from "@/components/fundations/icons/Refresh.astro";
@@ -23,7 +21,6 @@ const links = [
   { name: "Version control", link: "#" },
 ];
 ---
-
 <div class="h-[60rem]">
   <div class="flex items-center justify-center w-full py-12 mx-auto">
     <!--- When in use set x-data="{ open: false }" -->
@@ -59,11 +56,12 @@ const links = [
             <div
               class="p-4"
               role="none">
-              <Heading
-                level={3}
-                variant="footerHeading">
+              <Text
+                tag="h3"
+                variant="textBase"
+                class="text-base-900 font-medium">
                 Benefits
-              </Heading>
+              </Text>
               <div class="mt-2">
                 <FlyoutLinkBox
                   href="#_"
@@ -98,23 +96,24 @@ const links = [
               </div>
             </div>
             <div class="p-4">
-              <Heading
-                level={3}
-                variant="footerHeading">
+              <Text
+                tag="h3"
+                variant="textBase"
+                class="text-base-900 font-medium">
                 Browse by feature
-              </Heading>
+              </Text>
               <div
                 class="mt-4 pt-4 border-t border-gray-200 space-y-2"
                 role="none">
                 {
                   links.map((feature) => (
-                    <Link
-                      href="#_"
+                    <Text
                       tag="a"
-                      class="block "
-                      variant="navigationLink">
+                      href="#_"
+                      variant="textMD"
+                       class="hover:text-accent-500 font-medium block text-base-500 ">
                       {feature.name}
-                    </Link>
+                    </Text>
                   ))
                 }
               </div>
@@ -124,15 +123,16 @@ const links = [
             <div
               class="grid items-end grid-cols-1 p-8 md:grid-cols-3 bg-base-50 rounded-2xl">
               <div class="md:col-span-2">
-                <Heading
-                  level={3}
-                  variant="featureTitle">
-                  Ready to get started?
-                </Heading>
                 <Text
-                  class="mt-4 lg:text-balance"
+                  tag="h2"
+                  variant="textLG"
+                  class="font-semibold text-base-900">
+                  Ready to get started?
+                </Text>
+                <Text
                   tag="p"
-                  variant="body">
+                  variant="textBase"
+                  class="mt-2 text-base-500 font-medium lg:text-balance">
                   Take your markup to the next level with Oxbow
                 </Text>
               </div>
