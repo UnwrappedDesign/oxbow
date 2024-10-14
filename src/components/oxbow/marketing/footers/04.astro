@@ -1,7 +1,6 @@
 ---
-import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-import Link from "@/components/fundations/typography/Link.astro";
+
 import XBrand from "@/components/fundations/icons/XBrand.astro";
 import LinkedinBrand from "@/components/fundations/icons/LinkedinBrand.astro";
 import YoutubeBrand from "@/components/fundations/icons/YoutubeBrand.astro";
@@ -42,40 +41,37 @@ const footerLinks = [
     <div
       class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-x-8 gap-y-24">
       <div class="col-span-full md:col-span-2 lg:col-start-5 lg:order-last">
-       <Link
-        class="w-full sm:w-auto flex gap-3 items-center"
-        href="#_"
+        <Text
         tag="a"
-        variant="navigationLink">
+        href="#_"
+        variant="textMD"
+        class="hover:text-accent-500 font-medium flex items-center gap-2 text-base-900">
         <img
           class="h-7 2xl:h-12"
           src="/images/oxbow/blueLineLogo.png"
           alt="#_"
         /> Oxbow UI
-    </Link>
-        <div class="group relative mt-8 divide-x flex items-center">
+      </Text>
+        <div class="group relative mt-8 divide-x flex items-center group">
           <img
             alt="#_"
             class="size-20 pr-2"
             src="/assets/qr-lexingtonthemes.svg"
           />
           <div class="pl-2 lg:w-64 h-full">
-            <Heading
-              level={3}
-              variant="featureTitleSmall">
-              <Text
-                class="mt-2"
-                tag="a"
-                href="#_"
-                variant="featureTitleSmall">
-                <span class="absolute inset-0 sm:rounded-2xl"></span>Download
-                the app
-              </Text>
-            </Heading>
             <Text
-              class="mt-2"
+              tag="a"
+              href=""
+              variant="textBase"
+              class="font-semibold text-base-900 group-hover:text-accent-500">
+              <span class="absolute inset-0 sm:rounded-2xl"></span>Download the
+              app
+            </Text>
+
+            <Text
               tag="p"
-              variant="small">
+              variant="textMD"
+              class="mt-2 text-base-500 font-medium">
               Scan the QR code to download the app from your app store.
             </Text>
           </div>
@@ -85,21 +81,23 @@ const footerLinks = [
         footerLinks.map((section, index) => (
           <div class="space-y-4">
             <nav aria-labelledby={`footer-heading-${index}`}>
-              <Heading
+              <Text
+                tag="h2"
+                variant="textBase"
                 id={`footer-heading-${index}`}
-                level={3}
-                variant="footerHeading">
+                class="font-semibold text-base-900">
                 {section.heading}
-              </Heading>
+              </Text>
               <ul class="mt-4 space-y-4">
                 {section.links.map((link, linkIndex) => (
                   <li>
-                   <Link
-                      href={link.href}
+                     <Text
                       tag="a"
-                      variant="navigationLink">
+                      href="#_"
+                      variant="textMD"
+                      class="hover:text-accent-500 font-medium text-base-500">
                       {link.text}
-                    </Link>
+                    </Text>
                   </li>
                 ))}
               </ul>
@@ -110,46 +108,53 @@ const footerLinks = [
     </div>
     <div
       class="pt-12 mt-12 border-t flex flex-col gap-8 sm:flex-row sm:items-center justify-between">
-      <Text
-        tag="p"
-        variant="small">
+    <Text
+        tag="h2"
+        variant="textSM"
+        class="font-medium text-base-400">
         Copyright © 2024 Oxbow UI. All rights reserved.
       </Text>
       <nav
         aria-labelledby="social-icons-heading"
         role="navigation"
         class="flex items-center gap-4 text-base-500">
-        <Heading
+        <Text
           id="social-icons-heading"
-          class="sr-only"
-          level={3}
-          variant="footerHeading">
+          class="sr-only">
           Follow us on social media
-        </Heading>
-        <Link
-          tag="a"
-          href="#_"
-          variant="link">
+        </Text>
+        <Text
+
+                      tag="a"
+                      href="#_"
+                      variant="textMD"
+                      class="hover:text-accent-500 font-medium text-base-500">
           <XBrand size="sm" />
-        </Link>
-        <Link
-          tag="a"
-          href="#_"
-          variant="link">
+        </Text>
+        <Text
+
+                      tag="a"
+                      href="#_"
+                      variant="textMD"
+                      class="hover:text-accent-500 font-medium text-base-500">
           <LinkedinBrand size="sm" />
-        </Link>
-        <Link
-          tag="a"
-          href="#_"
-          variant="link">
+        </Text>
+        <Text
+
+                      tag="a"
+                      href="#_"
+                      variant="textMD"
+                      class="hover:text-accent-500 font-medium text-base-500">
           <GithubBrand size="sm" />
-        </Link>
-        <Link
-          tag="a"
-          href="#_"
-          variant="link">
+        </Text>
+        <Text
+
+                      tag="a"
+                      href="#_"
+                      variant="textMD"
+                      class="hover:text-accent-500 font-medium text-base-500">
           <YoutubeBrand size="sm" />
-        </Link>
+        </Text>
       </nav>
     </div>
   </div>

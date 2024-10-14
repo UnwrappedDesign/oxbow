@@ -1,6 +1,5 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
-import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 const stats = [
   {
@@ -47,26 +46,28 @@ const stats = [
   },
 ];
 ---
+
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div class="space-y-24">
       <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-start">
         <div>
           <Text
-            tag="span"
-            variant="eyebrow">
+            tag="p"
+            variant="textSM"
+            class="font-bold uppercase text-accent-600">
             Tagline
           </Text>
-          <Heading
-            class="mt-4"
-            level={1}
-            variant="default">
-            Empower your finances with our unmatched value
-          </Heading>
           <Text
-            class="mt-4"
+            tag="h2"
+            variant="displayMD"
+            class="mt-4 font-semibold text-base-900 lg:text-balance">
+            Empower your finances with our unmatched value
+          </Text>
+          <Text
             tag="p"
-            variant="body">
+            variant="textBase"
+            class="mt-4 text-base-500 font-medium">
             Experience low fees, unwavering commitment, and massive earnings
             with a service trusted by over 60 million users.
           </Text>
@@ -88,22 +89,24 @@ const stats = [
           {
             stats.slice(0, 4).map((stat) => (
               <div>
-                <div class="flex gap-4 items-baseline">
+                <div class="flex gap-4 items-baseline flex-col">
                   <Text
-                    tag="span"
-                    variant="smallNumber">
+                    tag="p"
+                    variant="textLG"
+                    class=" text-accent-700 font-medium">
                     {stat.value}
                   </Text>
-                  <Heading
-                    level={3}
-                    variant="featureTitle">
+                  <Text
+                    tag="h3"
+                    variant="textLG"
+                    class=" text-base-900 font-medium">
                     {stat.label}
-                  </Heading>
+                  </Text>
                 </div>
                 <Text
-                  class="mt-2"
                   tag="p"
-                  variant="body">
+                  variant="textBase"
+                  class="mt-4 text-base-500 font-medium">
                   {stat.description}
                 </Text>
               </div>
@@ -116,22 +119,24 @@ const stats = [
           {
             stats.slice(4, 8).map((stat) => (
               <div>
-                <div class="flex gap-4 items-baseline">
+                <div class="flex gap-4 items-baseline flex-col">
                   <Text
-                    tag="span"
-                    variant="smallNumber">
+                    tag="p"
+                    variant="textLG"
+                    class=" text-accent-700 font-medium">
                     {stat.value}
                   </Text>
-                  <Heading
-                    level={3}
-                    variant="featureTitle">
+                  <Text
+                    tag="h3"
+                    variant="textLG"
+                    class=" text-base-900 font-medium">
                     {stat.label}
-                  </Heading>
+                  </Text>
                 </div>
                 <Text
-                  class="mt-2"
                   tag="p"
-                  variant="body">
+                  variant="textBase"
+                  class="mt-4 text-base-500 font-medium">
                   {stat.description}
                 </Text>
               </div>
@@ -141,17 +146,13 @@ const stats = [
         <div>
           <Text
             tag="blockquote"
-            variant="blockquote">
+            variant="displaySM"
+            class="text-base-900 italic font-medium">
             "Experience industry-leading low fees, unwavering dedication to
             customer satisfaction, and the potential for substantial earnings
             with a platform trusted by over 60 million satisfied users
             worldwide.
-            <br />
-            <br />Whether you're a seasoned expert or just starting out, our
-            service is designed to provide the best value while ensuring
-            security and support every step of the way. Join a community that
-            values transparency, reliability, and long-term success, making it
-            easier than ever to achieve your financial goals with confidence"
+
           </Text>
         </div>
       </div>

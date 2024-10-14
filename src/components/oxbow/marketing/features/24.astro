@@ -1,5 +1,4 @@
 ---
-import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 import Filters from "@/components/fundations/icons/Filters.astro";
 import WaveSquare from "@/components/fundations/icons/WaveSquare.astro";
@@ -22,6 +21,7 @@ const data = [
   },
 ];
 ---
+
 <section>
   <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <dl
@@ -36,18 +36,19 @@ const data = [
                 <ArrowIteration size="base" />
               )}
               <dt>
-                <Heading
-                  level={3}
-                  variant="featureTitle">
+                <Text
+                  variant="textLG"
+                  tag="h3"
+                  class="text-base-900 font-medium">
                   {section.category}
-                </Heading>
+                </Text>
               </dt>
             </div>
             <dd>
               <Text
-                class="mt-2"
                 tag="p"
-                variant="body">
+                variant="textBase"
+                class="mt-2 text-base-500 font-medium">
                 {section.text}
               </Text>
             </dd>
@@ -58,21 +59,22 @@ const data = [
     <div class="grid grid-cols-1 gap-12 mt-12 md:grid-cols-3 md:items-end">
       <div class="lg:col-span-2">
         <Text
-          tag="span"
-          variant="eyebrow">
+          tag="p"
+          variant="textSM"
+          class="font-bold uppercase text-accent-600">
           Tagline
         </Text>
-        <Heading
-          class="mt-4"
-          level={1}
-          variant="default">
-          Safeguard your workspace with essential applications for end-to-end
-          encryption.
-        </Heading>
+        <Text
+          tag="h2"
+          variant="displayMD"
+          class="mt-4 font-semibold text-base-900 lg:text-balance">
+          Transforming the banking experience for a digital future
+        </Text>
       </div>
-      <Text
-        tag="p"
-        variant="body">
+       <Text
+          tag="p"
+          variant="textBase"
+          class="mt-4 text-base-500 font-medium">
         The fastest method for working together on staging and temporary
         environments.
       </Text>

@@ -1,7 +1,6 @@
 ---
-import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-import Link from "@/components/fundations/typography/Link.astro";
+
 import XBrand from "@/components/fundations/icons/XBrand.astro";
 import LinkedinBrand from "@/components/fundations/icons/LinkedinBrand.astro";
 import YoutubeBrand from "@/components/fundations/icons/YoutubeBrand.astro";
@@ -46,17 +45,16 @@ const footerLinks = [
 ];
 ---
 
-<section class="bg-base-950">
+<section class="bg-accent-950">
   <div class="px-8 py-12 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div
       class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-x-8 gap-y-24">
       <div class="col-span-full md:col-span-1">
         <Text
-          class="w-full sm:w-auto flex gap-3 items-center"
-          href="#_"
           tag="a"
-          darkMode={true}
-          variant="navigationLink">
+          href="#_"
+          variant="textMD"
+          class="hover:text-accent-400 font-medium flex items-center gap-2 text-white">
           <img
             class="h-7 2xl:h-12"
             src="/images/oxbow/whiteLineLogo.png"
@@ -65,8 +63,8 @@ const footerLinks = [
         </Text>
         <Text
           tag="p"
-          darkMode={true}
-          variant="small">
+          variant="textSM"
+          class="mt-2 text-base-300 font-medium">
           Designed in europe.
         </Text>
       </div>
@@ -74,23 +72,23 @@ const footerLinks = [
         footerLinks.map((section, index) => (
           <div class="space-y-4">
             <nav aria-labelledby={`footer-heading-${index}`}>
-              <Heading
+             <Text
+                tag="h2"
+                variant="textBase"
                 id={`footer-heading-${index}`}
-                darkMode={true}
-                level={3}
-                variant="footerHeading">
+                class="font-semibold text-white">
                 {section.heading}
-              </Heading>
+              </Text>
               <ul class="mt-4 space-y-4">
                 {section.links.map((link, linkIndex) => (
                   <li>
-                    <Link
-                      href={link.href}
+                     <Text
                       tag="a"
-                      darkMode={true}
-                      variant="navigationLink">
+                      href="#_"
+                      variant="textMD"
+                      class="hover:text-accent-500 font-medium text-base-300">
                       {link.text}
-                    </Link>
+                    </Text>
                   </li>
                 ))}
               </ul>
@@ -102,46 +100,48 @@ const footerLinks = [
     <div
       class="pt-12 mt-12 border-t flex border-white/20 flex-col gap-8 sm:flex-row sm:items-center justify-between">
       <Text
-        tag="p"
-        darkMode={true}
-        variant="small">
+        tag="h2"
+        variant="textSM"
+        class="font-medium text-base-300">
         Copyright © 2024 Oxbow UI. All rights reserved.
       </Text>
       <nav
         aria-labelledby="social-icons-heading"
         role="navigation"
         class="flex items-center gap-4 text-base-200">
-        <Heading
+        <Text
           id="social-icons-heading"
-          class="sr-only"
-          level={3}
-          variant="footerHeading">
+          class="sr-only">
           Follow us on social media
-        </Heading>
-        <Link
-   href="#_"
-   darkMode={true}
-   variant="link">
-<XBrand size="sm" />
-</Link>
-<Link
-   href="#_"
-   darkMode={true}
-   variant="link">
-<LinkedinBrand size="sm" />
-</Link>
-<Link
-   href="#_"
-   darkMode={true}
-   variant="link">
-<GithubBrand size="sm" />
-</Link>
-<Link
-   href="#_"
-   darkMode={true}
-   variant="link">
-<YoutubeBrand size="sm" />
-</Link>
+        </Text>
+        <Text
+          tag="a"
+          href="#_"
+          variant="textMD"
+          class="hover:text-accent-500 font-medium text-white">
+          <XBrand size="sm" />
+        </Text>
+        <Text
+          tag="a"
+          href="#_"
+          variant="textMD"
+          class="hover:text-accent-500 font-medium text-white">
+          <LinkedinBrand size="sm" />
+        </Text>
+        <Text
+          tag="a"
+          href="#_"
+          variant="textMD"
+          class="hover:text-accent-500 font-medium text-white">
+          <GithubBrand size="sm" />
+        </Text>
+        <Text
+          tag="a"
+          href="#_"
+          variant="textMD"
+          class="hover:text-accent-500 font-medium text-white">
+          <YoutubeBrand size="sm" />
+        </Text>
       </nav>
     </div>
   </div>

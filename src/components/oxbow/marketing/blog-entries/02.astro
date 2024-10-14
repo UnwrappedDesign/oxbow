@@ -1,8 +1,7 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
-import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-import Link from "@/components/fundations/typography/Link.astro";
+
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 const menuItems = [
   { label: "Latest Articles", href: "#_" },
@@ -12,7 +11,6 @@ const menuItems = [
   { label: "About the Author", href: "#_" },
   { label: "Subscribe to Newsletter", href: "#_" },
 ];
-
 const articles = [
   {
     title: "Responsive web design best practices",
@@ -58,26 +56,26 @@ const articles = [
   },
 ];
 ---
-
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div class="grid grid-cols-1 lg:grid-cols-3 items-end gap-12">
       <div class="lg:col-span-2 max-w-2xl">
         <Text
-          tag="span"
-          variant="eyebrow">
+          tag="p"
+          variant="textSM"
+          class="font-bold uppercase text-accent-600">
           Tagline
         </Text>
-        <Heading
-          class="mt-4"
-          level={1}
-          variant="display">
-          Insights and perspectives
-        </Heading>
         <Text
-          class="mt-4 lg:text-balance"
+          tag="h2"
+          variant="displayMD"
+          class="mt-4 font-semibold text-base-900 lg:text-balance">
+          Insights and perspectives
+        </Text>
+        <Text
           tag="p"
-          variant="body">
+          variant="textBase"
+          class="mt-4 text-base-500 font-medium">
           Exploring topics, tips, and trends in the world of communication and
           privacy
         </Text>
@@ -97,7 +95,7 @@ const articles = [
             placeholder="Enter your email"
             aria-placeholder="Enter your email"
             required=""
-            class="block w-full h-10 px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg shadow appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+            class="block w-full h-10 px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
           />
           <Button
             class="w-full sm:w-auto"
@@ -108,23 +106,25 @@ const articles = [
           </Button>
         </form>
         <Text
-          class="mt-4 lg:text-balance"
           tag="p"
-          variant="small">
+          variant="textSM"
+          class="mt-4 text-base-500 font-medium">
           When you sign up, you accept our
-          <Link
+          <Text
             tag="a"
             href="#_"
-            variant="link">
+            variant="textSM"
+            class="text-accent-500 font-medium gap-2 hover:text-base-900">
             Terms of service
-          </Link>
+          </Text>
           and
-          <Link
+          <Text
             tag="a"
             href="#_"
-            variant="link">
+            variant="textSM"
+            class="text-accent-500 font-medium gap-2 hover:text-base-900">
             Privacy Policy
-          </Link>
+          </Text>
         </Text>
       </div>
     </div>
@@ -135,58 +135,66 @@ const articles = [
           articles.map((article) => (
             <article class="relative group">
               <div class="absolute -inset-y-2.5 -inset-x-4 md:-inset-y-6 md:-inset-x-8 sm:rounded-2xl group-hover:bg-base-50 duration-300" />
-
               <div class="relative">
                 <div>
                   <span class="sr-only">{article.date}</span>
                   <Text
-                    tag="span"
-                    variant="eyebrow">
+                    tag="p"
+                    variant="textSM"
+                    class="font-medium uppercase text-base-500 whitespace-nowrap">
                     <time datetime={article.date}>{article.date}</time>
                   </Text>
                 </div>
-                <Heading
-                  level={3}
-                  variant="featureTitle">
-                  {article.title}
-                </Heading>
                 <Text
-                  class="mt-4"
+                  tag="h3"
+                  variant="textLG"
+                  class="mt-4 text-base-900 font-medium group-hover:text-accent-600 duration-200">
+                  {article.title}
+                </Text>
+                <Text
                   tag="p"
-                  variant="body">
+                  variant="textBase"
+                  class="mt-4 text-base-500 font-medium">
                   {article.description}
                 </Text>
               </div>
               <div class="mt-8">
-                <Link
+                <Text
                   tag="a"
                   href="#_"
-                  variant="link"
-                  class="flex items-center gap-2 relative">
-                  Read further
-                  <ChevronRight size="sm" />
-                </Link>
+                  variant="textMD"
+                  class="text-accent-500 font-medium flex items-center gap-2 hover:text-base-900">
+                  <span class="absolute -inset-y-2.5 -inset-x-4 md:-inset-y-4 md:-inset-x-6 sm:rounded-2xl" />
+                  <span class="relative ">
+                    Read more <span class="sr-only">, {article.title}</span>
+                  </span>
+                  <ChevronRight
+                    class="relative"
+                    size="sm"
+                  />
+                </Text>
               </div>
             </article>
           ))
         }
       </div>
       <div class="lg:ml-auto">
-        <Heading
-          level={4}
-          variant="featureTitle">
+        <Text
+          tag="h4"
+          variant="textLG">
           Quick Links
-        </Heading>
+        </Text>
         <ul class="space-y-2 mt-4">
           {
             menuItems.map((item) => (
               <li>
-                <Link
+                <Text
                   tag="a"
                   href="#_"
-                  variant="link">
+                  variant="textSM"
+                  class="text-accent-500 font-medium flex items-center gap-2 hover:text-base-900">
                   {item.label}
-                </Link>
+                </Text>
               </li>
             ))
           }
