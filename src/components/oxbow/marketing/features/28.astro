@@ -1,6 +1,5 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
-import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 import CircleCheck from "@/components/fundations/icons/CircleCheck.astro";
 const data = [
@@ -33,20 +32,21 @@ const data = [
       class="list-none grid grid-cols-1 bg-base-50 items-center lg:grid-cols-2 gap-4 lg:gap-24 rounded-3xl p-8 lg:p-10 relative overflow-clip">
       <div class="pt-8 text-center lg:text-left">
         <Text
-          tag="span"
-          variant="eyebrow">
+          tag="p"
+          variant="textSM"
+          class="font-bold uppercase text-accent-600">
           Tagline
         </Text>
-        <Heading
-          class="mt-4"
-          level={1}
-          variant="defaultSmall">
-          Transform your visitors into users with an engaging headline
-        </Heading>
         <Text
-          class="mt-4"
+          tag="h2"
+          variant="displayMD"
+          class="mt-4 font-semibold text-base-900 lg:text-balance">
+          Transforming the banking experience for a digital future
+        </Text>
+        <Text
           tag="p"
-          variant="body">
+          variant="textBase"
+          class="mt-4 text-base-500 font-medium">
           The fastest method for working together on staging and temporary
           environments.
         </Text>
@@ -71,23 +71,22 @@ const data = [
         />
       </div>
     </div>
-
     <div class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
       <div class="gap-6 grid grid-cols-1 sm:grid-cols-2 lg:col-span-2">
         {
           data.map((section) => (
             <div class="bg-base-50 rounded-3xl p-8 lg:p-10 h-full">
               <div>
-                <Heading
-
-                  level={3}
-                  variant="featureTitle">
-                  {section.category}
-                </Heading>
                 <Text
-                  class="mt-4"
+                  variant="textLG"
+                  tag="h3"
+                  class="text-base-900 font-medium">
+                  {section.category}
+                </Text>
+                <Text
                   tag="p"
-                  variant="body">
+                  variant="textBase"
+                  class="mt-4 text-base-500 font-medium">
                   {section.text}
                 </Text>
               </div>
@@ -95,7 +94,7 @@ const data = [
                 role="list"
                 class="space-y-1 mt-6 text-base font-medium text-base-900 list-none">
                 {section.items.map((item) => (
-                  <li >
+                  <li>
                     <div class=" flex  items-center gap-4 ">
                       <CircleCheck
                         class="text-accent-600"
@@ -104,7 +103,7 @@ const data = [
                       />
                       <Text
                         tag="span"
-                        variant="featureListItem">
+                        variant="textBase">
                         {item}
                       </Text>
                     </div>

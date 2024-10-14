@@ -1,8 +1,6 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
-import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-import Link from "@/components/fundations/typography/Link.astro";
 ---
 
 <section>
@@ -14,16 +12,16 @@ import Link from "@/components/fundations/typography/Link.astro";
           src="/images/oxbow/blueLineLogo.png"
           alt="#_"
         />
-        <Heading
-          class="mt-4"
-          level={1}
-          variant="default">
-          Join our community
-        </Heading>
         <Text
-          class="mt-4 lg:text-balance"
+          tag="h2"
+          variant="displayMD"
+          class="mt-4 font-semibold text-base-900 lg:text-balance">
+          Join our community
+        </Text>
+        <Text
           tag="p"
-          variant="body">
+          variant="textBase"
+          class="mt-4 text-base-500 font-medium">
           Sign up to join our community and start building your brand.
         </Text>
       </div>
@@ -36,7 +34,8 @@ import Link from "@/components/fundations/typography/Link.astro";
             <Text
               for="first-name"
               tag="label"
-              variant="inputLabel">
+              variant="textBase"
+              class="text-base-500 font-medium">
               First name
             </Text>
             <div class="mt-2.5">
@@ -49,7 +48,7 @@ import Link from "@/components/fundations/typography/Link.astro";
                 aria-required="true"
                 aria-describedby="first-name-error"
                 placeholder="Your first name"
-                class="block w-full h-10 px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg shadow appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+                class="block w-full h-10 px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
               />
               <span
                 id="first-name-error"
@@ -62,7 +61,8 @@ import Link from "@/components/fundations/typography/Link.astro";
             <Text
               for="email"
               tag="label"
-              variant="inputLabel">
+              variant="textBase"
+              class="text-base-500 font-medium">
               Email
             </Text>
             <div class="mt-2.5">
@@ -75,7 +75,7 @@ import Link from "@/components/fundations/typography/Link.astro";
                 aria-required="true"
                 aria-describedby="email-error"
                 placeholder="Your email"
-                class="block w-full h-10 px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg shadow appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+                class="block w-full h-10 px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
               />
               <span
                 id="email-error"
@@ -85,31 +85,34 @@ import Link from "@/components/fundations/typography/Link.astro";
             </div>
           </div>
         </div>
-        <div class="flex items-center mt-4">
+        <div class="flex items-center mt-4 gap-3">
           <input
             id="agreement"
             name="agreement"
             type="checkbox"
             class="size-4 rounded border-base-300 text-accent-600 focus:ring-accent-600 shadow"
           />
-          <label
+          <Text
             for="agreement"
-            class="ml-3 block text-sm text-base-500"
+            tag="label"
+            class="block text-sm text-base-500 font-medium"
             >You agree to our
-            <Link
+            <Text
               tag="a"
               href="#_"
-              variant="link">
+              variant="textMD"
+              class="text-accent-500 font-medium hover:text-base-500">
               Terms of service
-            </Link>
+            </Text>
             and
-            <Link
+            <Text
               tag="a"
               href="#_"
-              variant="link">
+              variant="textMD"
+              class="text-accent-500 font-medium hover:text-base-500">
               Privacy Policy
-            </Link></label
-          >
+            </Text>
+          </Text>
         </div>
         <div class="mt-10">
           <Button
@@ -122,14 +125,16 @@ import Link from "@/components/fundations/typography/Link.astro";
         <div class="flex items-center mt-4">
           <Text
             tag="p"
-            variant="body">
+            variant="textSM"
+            class="text-base-500 font-medium">
             Don't have an account? Already have an account?
-          <Link
-                tag="a"
-                href="#_"
-                variant="link">
-                Sign in
-              </Link>
+            <Text
+              tag="a"
+              href="#_"
+              variant="textMD"
+              class="text-accent-500 font-medium hover:text-base-500">
+              Sign in
+            </Text>
           </Text>
         </div>
       </form>

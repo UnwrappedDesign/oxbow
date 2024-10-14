@@ -1,8 +1,8 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
-import Heading from "@/components/fundations/typography/Heading.astro";
+
 import Text from "@/components/fundations/typography/Text.astro";
-import Link from "@/components/fundations/typography/Link.astro";
+
 import XBrand from "@/components/fundations/icons/XBrand.astro";
 import LinkedinBrand from "@/components/fundations/icons/LinkedinBrand.astro";
 import YoutubeBrand from "@/components/fundations/icons/YoutubeBrand.astro";
@@ -51,27 +51,28 @@ const footerLinks = [
   <div class="px-8 py-12 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
       <div>
-       <Link
-        class="w-full sm:w-auto flex gap-3 items-center"
-        href="#_"
-        tag="a"
-        variant="navigationLink">
-        <img
-          class="h-7 2xl:h-12"
-          src="/images/oxbow/blueLineLogo.png"
-          alt="#_"
-        /> Oxbow UI
-    </Link>
+        <Text
+          tag="a"
+          href="#_"
+          variant="textMD"
+          class="hover:text-accent-500 font-medium flex items-center gap-2 text-base-900">
+          <img
+            class="h-7 2xl:h-12"
+            src="/images/oxbow/blueLineLogo.png"
+            alt="#_"
+          /> Oxbow UI
+        </Text>
         <div class="mt-8">
-          <Heading
-            level={3}
-            variant="featureTitleSmall">
-            Join our newsletter
-          </Heading>
           <Text
-            class="mt-2"
+            tag="h2"
+            variant="textBase"
+            class="font-semibold text-base-900">
+            Join our newsletter
+          </Text>
+          <Text
             tag="p"
-            variant="small">
+            variant="textBase"
+            class="mt-2 text-base-500 font-medium lg:text-balance">
             Stay up to date with our latest news and updates.
           </Text>
           <form class="w-full mt-8 sm:flex sm:max-w-md">
@@ -107,21 +108,23 @@ const footerLinks = [
         {
           footerLinks.map((section, index) => (
             <nav aria-labelledby={`footer-heading-${index}`}>
-              <Heading
+              <Text
+                tag="h2"
+                variant="textBase"
                 id={`footer-heading-${index}`}
-                level={3}
-                variant="footerHeading">
+                class="font-semibold text-base-900">
                 {section.heading}
-              </Heading>
+              </Text>
               <ul class="mt-4 space-y-4">
                 {section.links.map((link, linkIndex) => (
                   <li>
-                   <Link
-                      href={link.href}
+                    <Text
                       tag="a"
-                      variant="navigationLink">
+                      href="#_"
+                      variant="textMD"
+                      class="hover:text-accent-500 font-medium text-base-500">
                       {link.text}
-                    </Link>
+                    </Text>
                   </li>
                 ))}
               </ul>
@@ -133,45 +136,48 @@ const footerLinks = [
     <div
       class="pt-12 mt-12 border-t flex flex-col gap-8 sm:flex-row sm:items-center justify-between">
       <Text
-        tag="p"
-        variant="small">
+        tag="h2"
+        variant="textSM"
+        class="font-medium text-base-400">
         Copyright © 2024 Oxbow UI. All rights reserved.
       </Text>
       <nav
         aria-labelledby="social-icons-heading"
         role="navigation"
         class="flex items-center gap-4 text-base-500">
-        <Heading
+        <Text
           id="social-icons-heading"
-          class="sr-only"
-          level={3}
-          variant="footerHeading">
+          class="sr-only">
           Follow us on social media
-        </Heading>
-        <Link
+        </Text>
+        <Text
           tag="a"
           href="#_"
-          variant="link">
+          variant="textMD"
+          class="hover:text-accent-500 font-medium text-base-500">
           <XBrand size="sm" />
-        </Link>
-        <Link
+        </Text>
+        <Text
           tag="a"
           href="#_"
-          variant="link">
+          variant="textMD"
+          class="hover:text-accent-500 font-medium text-base-500">
           <LinkedinBrand size="sm" />
-        </Link>
-        <Link
+        </Text>
+        <Text
           tag="a"
           href="#_"
-          variant="link">
+          variant="textMD"
+          class="hover:text-accent-500 font-medium text-base-500">
           <GithubBrand size="sm" />
-        </Link>
-        <Link
+        </Text>
+        <Text
           tag="a"
           href="#_"
-          variant="link">
+          variant="textMD"
+          class="hover:text-accent-500 font-medium text-base-500">
           <YoutubeBrand size="sm" />
-        </Link>
+        </Text>
       </nav>
     </div>
   </div>

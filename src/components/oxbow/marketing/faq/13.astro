@@ -1,5 +1,4 @@
 ---
-import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 const faqs = [
   {
@@ -46,42 +45,43 @@ const faqs = [
   },
 ];
 ---
-
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
       <div>
         <Text
-          tag="span"
-          variant="eyebrow">
+          tag="p"
+          variant="textSM"
+          class="font-bold uppercase text-accent-600">
           Tagline
         </Text>
-        <Heading
-          class="mt-4"
-          level={1}
-          variant="default">
-          Frequently Asked Questions
-        </Heading>
         <Text
-          class="mt-4 lg:text-balance"
+          tag="h2"
+          variant="displaySM"
+          class="mt-4 font-semibold text-base-900 lg:text-balance">
+          Frequently Asked Questions
+        </Text>
+        <Text
           tag="p"
-          variant="body">
+          variant="textBase"
+          class="mt-4 text-base-500 font-medium">
           Everything you need to know about our platform.
         </Text>
       </div>
       <div class="mx-auto flex flex-col divide-y divide-base-200 lg:col-span-2">
         {
-          faqs.map((faq, index) => (
+          faqs.map((faq) => (
             <div class=" py-8">
-              <Heading
-                level={3}
-                variant="featureTitle">
-                {index + 1}. {faq.question}
-              </Heading>
               <Text
-                class="mt-4"
+                variant="textLG"
+                tag="h3"
+                class="text-base-900 font-medium">
+                {faq.question}
+              </Text>
+              <Text
                 tag="p"
-                variant="body">
+                variant="textBase"
+                class="mt-4 text-base-500 font-medium">
                 {faq.answer}
               </Text>
             </div>

@@ -1,7 +1,6 @@
 ---
-import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-import Link from "@/components/fundations/typography/Link.astro";
+
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 import XBrand from "@/components/fundations/icons/XBrand.astro";
 import LinkedinBrand from "@/components/fundations/icons/LinkedinBrand.astro";
@@ -29,20 +28,21 @@ const teamMembers = [
       class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 items-start">
       <div class="sm:text-balance text-center lg:text-left">
         <Text
-          tag="span"
-          variant="eyebrow">
+          tag="p"
+          variant="textSM"
+          class="font-bold uppercase text-accent-600">
           Tagline
         </Text>
-        <Heading
-          class="mt-4"
-          level={1}
-          variant="default">
-          Introducing our team
-        </Heading>
         <Text
-          class="mt-4 lg:text-balance"
+          tag="h2"
+          variant="displayMD"
+          class="mt-4 font-semibold text-base-900 lg:text-balance">
+          Introducing our team
+        </Text>
+        <Text
           tag="p"
-          variant="body">
+          variant="textBase"
+          class="mt-4 text-base-500 font-medium">
           Uniting talent with vision. Get to know the dedicated professionals
           who blend their skills and passion to lead us to new heights.
         </Text>
@@ -50,17 +50,17 @@ const teamMembers = [
           class="flex mt-8 text-center items-center gap-2 text-base-500 text-sm justify-center lg:justify-start">
           <Text
             tag="span"
-            variant="body">
+            variant="textBase">
             We are hiring
           </Text>
-          <Link
+          <Text
             tag="a"
             href="#_"
-            variant="link"
-            class="flex items-center gap-2">
+            variant="textMD"
+            class="text-accent-500 font-medium flex items-center gap-2 hover:text-base-900">
             See all our open roles
             <ChevronRight size="sm" />
-          </Link>
+          </Text>
         </div>
       </div>
       <ul
@@ -78,30 +78,31 @@ const teamMembers = [
                   />
                   <div class="w-full">
                     <div class="flex items-center justify-between">
-                      <Heading
-                        level={3}
-                        variant="featureTitle">
+                      <Text
+                        variant="textLG"
+                        tag="h3"
+                        class="text-base-900 font-medium">
                         {member.name}
-                      </Heading>
+                      </Text>
                       <div class=" flex items-center gap-2 ">
-                        <Link
+                        <Text
                           tag="a"
                           href="#_"
                           variant="link">
                           <XBrand size="sm" />
-                        </Link>
-                        <Link
+                        </Text>
+                        <Text
                           tag="a"
                           href="#_"
                           variant="link">
                           <LinkedinBrand size="sm" />
-                        </Link>
+                        </Text>
                       </div>
                     </div>
                     <Text
-                      class="mt-2"
                       tag="p"
-                      variant="body">
+                      variant="textSM"
+                      class="mt-2 text-base-500 font-medium">
                       {member.title}
                     </Text>
                   </div>
@@ -110,7 +111,8 @@ const teamMembers = [
               <div class="border-t p-8 mt-24">
                 <Text
                   tag="p"
-                  variant="body">
+                  variant="textBase"
+                  class="mt-4 text-base-500 font-medium">
                   {member.description}
                 </Text>
               </div>

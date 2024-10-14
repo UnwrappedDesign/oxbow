@@ -1,7 +1,6 @@
 ---
-import Heading from "@/components/fundations/typography/Heading.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-import Link from "@/components/fundations/typography/Link.astro";
+
 import XBrand from "@/components/fundations/icons/XBrand.astro";
 import LinkedinBrand from "@/components/fundations/icons/LinkedinBrand.astro";
 import YoutubeBrand from "@/components/fundations/icons/YoutubeBrand.astro";
@@ -25,11 +24,10 @@ const footerLinks = [
       class="p-8 bg-accent-700 rounded-2xl flex flex-col gap-8 text-center md:text-left md:flex-row items-center justify-between w-full">
       <div class="w-full justify-center md:justify-start">
         <Text
-          class="w-full sm:w-auto flex gap-3 items-center"
-          href="#_"
           tag="a"
-          darkMode={true}
-          variant="navigationLink">
+          href="#_"
+          variant="textMD"
+          class="hover:text-accent-400 font-medium flex items-center gap-2 text-white">
           <img
             class="h-7 2xl:h-12"
             src="/images/oxbow/whiteLineLogo.png"
@@ -42,24 +40,17 @@ const footerLinks = [
           <nav
             class="flex items-center gap-4 text-base-500 text-sm w-full justify-center"
             aria-labelledby={`footer-heading-${index}`}>
-            <Heading
-              class="sr-only"
-              id={`footer-heading-${index}`}
-              level={3}
-              variant="footerHeading">
-              {section.heading}
-            </Heading>
+
             <ul class=" gap-x-4 gap-y-8 flex flex-wrap justify-center">
               {section.links.map((link, linkIndex) => (
                 <li>
-
-                  <Link
-                    href={link.href}
-                    tag="a"
-                    darkMode={true}
-                    variant="navigationLink">
-                    {link.text}
-                  </Link>
+                   <Text
+                      tag="a"
+                      href="#_"
+                      variant="textMD"
+                      class="hover:text-accent-500 font-medium text-base-300">
+                      {link.text}
+                    </Text>
                 </li>
               ))}
             </ul>
@@ -70,37 +61,39 @@ const footerLinks = [
         aria-labelledby="social-icons-heading"
         role="navigation"
         class="flex items-center gap-4 text-base-200 w-full justify-center lg:justify-end">
-        <Heading
+        <Text
           id="social-icons-heading"
-          class="sr-only"
-          level={3}
-          variant="footerHeading">
+          class="sr-only">
           Follow us on social media
-        </Heading>
-        <Link
-   href="#_"
-   darkMode={true}
-   variant="link">
-<XBrand size="sm" />
-</Link>
-<Link
-   href="#_"
-   darkMode={true}
-   variant="link">
-<LinkedinBrand size="sm" />
-</Link>
-<Link
-   href="#_"
-   darkMode={true}
-   variant="link">
-<GithubBrand size="sm" />
-</Link>
-<Link
-   href="#_"
-   darkMode={true}
-   variant="link">
-<YoutubeBrand size="sm" />
-</Link>
+        </Text>
+       <Text
+          tag="a"
+          href="#_"
+          variant="textMD"
+          class="hover:text-accent-500 font-medium text-white">
+          <XBrand size="sm" />
+        </Text>
+       <Text
+          tag="a"
+          href="#_"
+          variant="textMD"
+          class="hover:text-accent-500 font-medium text-white">
+          <LinkedinBrand size="sm" />
+        </Text>
+       <Text
+          tag="a"
+          href="#_"
+          variant="textMD"
+          class="hover:text-accent-500 font-medium text-white">
+          <GithubBrand size="sm" />
+        </Text>
+       <Text
+          tag="a"
+          href="#_"
+          variant="textMD"
+          class="hover:text-accent-500 font-medium text-white">
+          <YoutubeBrand size="sm" />
+        </Text>
       </nav>
     </div>
   </div>

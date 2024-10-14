@@ -1,6 +1,6 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
-import Heading from "@/components/fundations/typography/Heading.astro";
+
 import Text from "@/components/fundations/typography/Text.astro";
 
 const data = [
@@ -24,15 +24,16 @@ const data = [
           src="/images/oxbow/blueLineLogo.png"
           alt="#_"
         />
-        <Heading
-          level={3}
-          variant="defaultSmall">
-          Get started today and start collaborating with your team
-        </Heading>
         <Text
-          class="mt-4 lg:text-balance"
+          tag="h2"
+          variant="displayMD"
+          class="font-semibold text-base-900 lg:text-balance">
+          Get started with our app today
+        </Text>
+        <Text
           tag="p"
-          variant="body">
+          variant="textBase"
+          class="mt-4 text-base-500 font-medium">
           Streamline your workflow and collaborate seamlessly on staging and
           temporary environments
         </Text>
@@ -58,24 +59,30 @@ const data = [
                   <figure class="flex flex-col  h-full ">
                     <Text
                       tag="blockquote"
-                      variant="blockquote">
+                      variant="textBase"
+                      class=" text-base-500 italic font-medium">
                       {member.testimonial}
                     </Text>
-
                     <figcaption>
                       <div class="flex items-center gap-2 mt-8">
                         <img
-                          class="nline-block size-9 rounded-full"
+                          class="nline-block size-12 rounded-full"
                           src={member.imgSrc}
                           alt="#_"
                         />
                         <div>
-                          <h3 class="text-sm font-medium text-base-700 group-hover:text-accent-500">
+                          <Text
+                            tag="p"
+                            variant="textMD"
+                            class=" text-base-900  font-medium">
                             {member.name}
-                          </h3>
-                          <p class="text-xs font-medium text-base-400 ">
+                          </Text>
+                          <Text
+                            tag="p"
+                            variant="textSM"
+                            class=" text-base-500  font-medium">
                             {member.title}
-                          </p>
+                          </Text>
                         </div>
                       </div>
                     </figcaption>
