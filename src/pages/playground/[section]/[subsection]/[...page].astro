@@ -2,16 +2,13 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Playground from "@/components/global/Playground.astro";
 import { paginate } from "@/utils/pagination";
-
 const PAGE_SIZE = 10;
 const { section, subsection, page } = Astro.params;
 const components = await Astro.glob(`@/components/oxbow/**/*.astro`);
-
 const sectionComponents = components.filter((component) => {
   const sectionRegex = new RegExp(`${section}\/${subsection}\/.+\.astro$`, "i");
   return component.file?.match(sectionRegex);
 });
-
 const currentPage = parseInt(page ?? "1", 10) || 1;
 const paginationData = paginate(
   `/playground/${section}/${subsection}`,
@@ -24,26 +21,30 @@ const paginationData = paginate(
 <BaseLayout>
   <section>
     <div class="max-w-5xl 2xl:max-w-[100rem] mx-auto px-8 pt-12 lg:pt-32">
-      <div class="prose-styles uppercase !text-xs ">
+      <div class="uppercase text-sm text-base-500 font-medium">
         <span>
-          <a href="/"> Home</a>  / Page {paginationData.currentPage}</span
+          <a
+            href="/"
+            class="text-accent-500 hover:text-base-500 font-medium">
+            Home</a
+          > / Page {paginationData.currentPage}</span
         >
-        —
-        <span>
+        /
+        <span class="space-x-2">
           {
             paginationData.url.prev ? (
               <a
-
+                class="text-accent-500 hover:text-base-500 font-medium"
                 href={paginationData.url.prev}>
                 Previous
               </a>
             ) : null
           }
-          ·
+         <span>·</span>
           {
             paginationData.url.next ? (
               <a
-
+                class="text-accent-500 hover:text-base-500 font-medium"
                 href={paginationData.url.next}>
                 Next
               </a>
@@ -72,7 +73,7 @@ const paginationData = paginate(
           {
             paginationData.url.prev ? (
               <a
-                class="items-center px-4 py-1 text-sm text-base-900 transition border rounded-full focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200 0"
+                class="items-center flex px-4 py-1 text-sm text-base-500 transition border rounded-full focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200 hover:text-accent-500 ring-2 ring-offset-2 ring-transparent focus:ring-accent-500 duration-300"
                 href={paginationData.url.prev}>
                 Previous
               </a>
@@ -81,7 +82,7 @@ const paginationData = paginate(
           {
             paginationData.url.next ? (
               <a
-                class="items-center px-4 py-1 ml-auto text-sm text-base-900 transition border rounded-full focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200 0"
+                class="items-center flex px-4 py-1 ml-auto text-sm text-base-500 transition border rounded-full focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200 hover:text-accent-500 ring-2 ring-offset-2 ring-transparent focus:ring-accent-500 duration-300"
                 href={paginationData.url.next}>
                 Next
               </a>
@@ -94,17 +95,14 @@ const paginationData = paginate(
   <script>
     function resizeIFramesToFitContent() {
       const iframes = document.querySelectorAll("iframe");
-
       iframes.forEach((iframe) => {
         try {
           iframe.height =
             iframe.contentWindow?.document.body.scrollHeight + "px";
         } catch (e) {}
       });
-
       requestAnimationFrame(resizeIFramesToFitContent);
     }
-
     addEventListener(
       "load",
       requestAnimationFrame.bind(this, resizeIFramesToFitContent)

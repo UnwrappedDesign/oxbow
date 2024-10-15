@@ -99,7 +99,7 @@ const pricingData = [
 />
 <BaseLayout>
   <section class="relative overflow-hidden">
-    <div class="max-w-5xl 2xl:max-w-screen-xl px-8 mx-auto pt-12 relative">
+    <div class="max-w-5xl 2xl:max-w-[100rem] px-8 mx-auto pt-12 relative">
       <div class="max-w-3xl 2xl:max-w-4xl mx-auto text-center text-balance">
         <div
           class="flex items-center gap-4 text-sm 2xl:text-lg mx-auto text-base-500 justify-center">
@@ -169,50 +169,336 @@ const pricingData = [
         </p>
       </div>
       <div
-        class="mt-10 grid grid-cols-1 gap-px md:grid-cols-3 text-left border bg-neutral-200 rounded-lg overflow-hidden ring-4 ring-base-50">
-        {
-          pricingData.map((tier) => (
-            <div
-              class={`relative flex flex-col size-full  justify-between p-8 2xl:p-8 gap-8   ${tier.cardStyles}`}>
-              <ul
-                class="flex flex-col list-disc list-inside"
-                role="list">
-                <li class="block font-medium text-black 2xl:text-2xl">
-                  {tier.type} —{" "}
-                  <>
-                    <span>{tier.price}</span>
-                    <del class="opacity-50">{tier.futurePrice}</del>
-                  </>
-                </li>
-                <li class="block text-sm 2xl:text-lg text-base-500  pb-3 mt-4">
-                  {tier.audience}
-                </li>
-                {tier.features.map((feature, i) => {
-                  const [startText, ...rest] = feature.split(" — ");
-                  const restText = rest.join(" — ");
-                  return (
-                    <li class="text-sm mt-3 2xl:text-lg font-medium text-base-900">
-                      {startText}
-                      {restText && ` — ${restText}`}
-                    </li>
-                  );
-                })}
-              </ul>
+        class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-12 mx-auto lg:-mx-24 2xl:-mx-0">
+        <!-- Tier 1 -->
+        <div
+          class="flex flex-col h-full justify-between p-1 bg-base-50 rounded-3xl shadow">
+          <div>
+            <div class="flex flex-col p-8 bg-white shadow rounded-[1.3rem]">
               <div>
-                {tier.purchaseButton && (
-                  <a
-                    id={`purchase-${tier.type.toLowerCase().replace(/\s/g, "-")}-bundle`}
-                    data-umami-event={`purchase-${tier.type.toLowerCase().replace(/\s/g, "-")}-bundle`}
-                    class={tier.purchaseButton.class}
-                    href={tier.purchaseButton.link}>
-                    {tier.purchaseButton.text} {tier.price}
-                  </a>
-                )}
+                <span class="text-2xl 2xl:text-3xl font-semibold text-base-900">
+                  Teams
+                </span>
+                <p class="text-md leading-normal text-base-500 2xl:text-lg">
+                  For Companies, teams & clients
+                </p>
+              </div>
+              <p class="text-base 2xl:text-2xl font-medium text-base-500 mt-8">
+                For companies, teams, and clients, offering collaboration at
+                scale.
+              </p>
+            </div>
+            <div class="p-8 pt-0 mt-8">
+              <p
+                class="font-medium lg:text-4xl flex items-baseline text-2xl tracking-tighter text-base-900">
+                $199 <del class="ml-2 opacity-50">$399</del>
+              </p>
+              <div class="w-full mt-4">
+                <a
+                  id="purchase-teams-bundle"
+                  data-umami-event="purchase-teams-bundle"
+                  class="flex items-center justify-center duration-200 focus:ring-2 transition-shadow focus:outline-none text-base-500 bg-white hover:text-accent-500 ring-1 ring-base-200 focus:ring-accent-500 h-11 px-6 py-3 text-base font-medium rounded-lg"
+                  href="/api/buy/team">
+                  Buy for $199
+                </a>
+              </div>
+              <div class="pt-4 mt-4 border-t border-dashed border-base-200">
+                <p
+                  class="text-xs 2xl:text-base text-base-500 font-mono uppercase tracking-wide">
+                  Team plan includes:
+                </p>
+                <ul
+                  class="flex flex-col 2xl:text-lg text-sm mt-4 text-base-900 gap-y-3 font-medium"
+                  role="list">
+                  <li>
+                    <div class="flex items-start gap-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-users-group shrink-0 size-4"
+                        ><path
+                          stroke="none"
+                          d="M0 0h24v24H0z"
+                          fill="none"
+                        ></path><path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"
+                        ></path><path
+                          d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1"
+                        ></path><path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"
+                        ></path><path d="M17 10h2a2 2 0 0 1 2 2v1"></path><path
+                          d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path><path
+                          d="M3 13v-1a2 2 0 0 1 2 -2h2"></path></svg
+                      >
+                      <div>
+                        <span class="font-semibold"
+                          >Get access to your team
+                        </span> —
+                        <span class="text-sm text-base-500 2xl:text-lg">
+                          Team licenses provide access for up to 5 members,
+                          ensuring coverage for even the largest teams within
+                          your organization.
+                        </span>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
               </div>
             </div>
-          ))
-        }
+          </div>
+        </div>
+        <!-- Tier 2 -->
+        <div
+          class="flex h-full justify-between flex-col p-1 rounded-3xl bg-accent-1400 order-first lg:order-none">
+          <div>
+            <div class="flex flex-col p-8 bg-white/5 shadow rounded-[1.3rem]">
+              <div>
+                <span class="text-2xl 2xl:text-3xl font-semibold text-white">
+                  Individual
+                </span>
+                <p class="text-md leading-normal text-base-400 2xl:text-lg">
+                  Personal and clients
+                </p>
+              </div>
+              <p class="text-base 2xl:text-2xl font-medium text-base-300 mt-8">
+                Perfect for personal use, freelance and individual client work.
+              </p>
+            </div>
+            <div class="p-8 pt-0 mt-8">
+              <p
+                class="font-medium font-mono flex lg:text-4xl items-baseline text-2xl tracking-tighter text-white">
+                $49 <del class="ml-2 opacity-50">$149</del>
+              </p>
+              <div class="w-full mt-4">
+                <a
+                  id="purchase-individual-bundle"
+                  data-umami-event="purchase-individual-bundle"
+                  class="flex items-center justify-center duration-200 focus:ring-2 transition-shadow focus:outline-none text-white bg-accent-600 hover:bg-accent-700 focus:ring-accent-500/50 h-11 px-6 py-3 text-base font-medium rounded-lg w-full"
+                  href="/api/buy/individual">
+                  Buy for $49
+                </a>
+              </div>
+              <div class="pt-4 mt-4 border-t border-dashed border-base-700">
+                <p
+                  class="text-xs 2xl:text-base text-base-200 font-mono uppercase tracking-wide">
+                  Individual plan includes:
+                </p>
+                <ul
+                  class="flex flex-col mt-4 2xl:text-lg text-sm text-white gap-y-6 font-medium"
+                  role="list">
+                  <li>
+                    <div class="flex items-start gap-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-infinity size-4 shrink-0"
+                        ><path
+                          stroke="none"
+                          d="M0 0h24v24H0z"
+                          fill="none"
+                        ></path><path
+                          d="M9.828 9.172a4 4 0 1 0 0 5.656a10 10 0 0 0 2.172 -2.828a10 10 0 0 1 2.172 -2.828a4 4 0 1 1 0 5.656a10 10 0 0 1 -2.172 -2.828a10 10 0 0 0 -2.172 -2.828"
+                        ></path></svg
+                      >
+                      <div>
+                        <span class="font-semibold">Lifetime access — </span>
+                        <span class="text-sm text-base-300 2xl:text-lg">
+                          Get full access to everything we offer now, plus any
+                          new blocks, components and features we add in the future.
+                        </span>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="flex items-start gap-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-components shrink-0 size-4"
+                        ><path
+                          stroke="none"
+                          d="M0 0h24v24H0z"
+                          fill="none"
+                        ></path><path d="M3 12l3 3l3 -3l-3 -3z"></path><path
+                          d="M15 12l3 3l3 -3l-3 -3z"></path><path
+                          d="M9 6l3 3l3 -3l-3 -3z"></path><path
+                          d="M9 18l3 3l3 -3l-3 -3z"></path></svg
+                      >
+                      <div>
+                        <span class="font-semibold">All components </span> —
+                        <span class="text-sm text-base-300 mt-2 2xl:text-lg">
+                          Access everything you need to build great app designs,
+                          websites, online stores, and more.
+                        </span>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="flex items-start gap-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-tools shrink-0 size-4"
+                        ><path
+                          stroke="none"
+                          d="M0 0h24v24H0z"
+                          fill="none"
+                        ></path><path
+                          d="M3 21h4l13 -13a1.5 1.5 0 0 0 -4 -4l-13 13v4"
+                        ></path><path d="M14.5 5.5l4 4"></path><path
+                          d="M12 8l-5 -5l-4 4l5 5"></path><path
+                          d="M7 8l-1.5 1.5"></path><path
+                          d="M16 12l5 5l-4 4l-5 -5"></path><path
+                          d="M16 17l-1.5 1.5"></path></svg
+                      >
+                      <div>
+                        <span class="font-semibold">Unlimited projects </span> —
+                        <span class="text-sm text-base-300 2xl:text-lg">
+                          Use in as many projects as you want, without any
+                          limits.
+                        </span>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="flex items-start gap-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-refresh shrink-0 size-4"
+                        ><path
+                          stroke="none"
+                          d="M0 0h24v24H0z"
+                          fill="none"
+                        ></path><path
+                          d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"
+                        ></path><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"
+                        ></path></svg
+                      >
+                      <div>
+                        <span class="font-semibold">Free updates</span> —
+                        <span class="text-sm text-base-300 2xl:text-lg">
+                          Enjoy regular updates with new features and
+                          improvements at no extra charge.
+                        </span>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Tier 3 -->
+        <div
+          class="flex flex-col h-full justify-between p-1 bg-base-50 rounded-3xl shadow">
+          <div>
+            <div class="flex flex-col p-8 bg-white shadow rounded-[1.3rem]">
+              <div>
+                <span class="text-2xl 2xl:text-3xl font-semibold text-base-900">
+                  Demos
+                </span>
+                <p class="text-md leading-normal text-base-500 2xl:text-lg">
+                  For testing purposes
+                </p>
+              </div>
+              <p class="text-base 2xl:text-2xl font-medium text-base-500 mt-8">
+                Explore free demos for every category—copy, paste, and see how
+                they work.
+              </p>
+            </div>
+            <div class="p-8 pt-0 mt-8">
+              <p
+                class="font-medium lg:text-4xl flex items-baseline text-2xl tracking-tighter text-base-900">
+                $0
+              </p>
+              <div class="w-full mt-4">
+                <a
+                  id="purchase-demos-bundle"
+                  data-umami-event="purchase-demos-bundle"
+                  class="flex items-center justify-center duration-200 focus:ring-2 transition-shadow focus:outline-none text-base-500 bg-white hover:text-accent-500 ring-1 ring-base-200 focus:ring-accent-500 h-11 px-6 py-3 text-base font-medium rounded-lg"
+                  href="/">
+                  Browse components $0
+                </a>
+              </div>
+              <div class="pt-4 mt-4 border-t border-dashed border-base-200">
+                <p
+                  class="text-xs 2xl:text-base text-base-500 font-mono uppercase tracking-wide">
+                  Demos include:
+                </p>
+                <ul
+                  class="flex flex-col 2xl:text-lg text-sm mt-4 text-base-900 gap-y-3 font-medium"
+                  role="list">
+                  <li>
+                    <div class="flex items-start gap-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-plus shrink-0 size-4"
+                        ><path
+                          stroke="none"
+                          d="M0 0h24v24H0z"
+                          fill="none"
+                        ></path><path d="M12 5l0 14"></path><path d="M5 12l14 0"
+                        ></path></svg
+                      >
+                      <div>
+                        <span class="font-semibold">All demo components </span> —
+                        <span class="text-sm text-base-500 2xl:text-lg">
+                          One component from each category is available for easy
+                          copying to your clipboard without the need for a
+                          subscription or registration.
+                        </span>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
       <div class="grid grid-cols-1 mt-5 md:grid-cols-2 items-center w-full">
         <div class="inline-flex items-center gap-3">
           <h1 class="text-base-500 2xl:text-lg">Secure Payment via</h1>
