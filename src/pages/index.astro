@@ -51,7 +51,7 @@ import { forms, elements, overlay, navigation } from "@/data/entries.json";
 />
 <BaseLayout>
   <section class="relative overflow-hidden">
-    <div class="max-w-5xl 2xl:max-w-screen-xl px-8 mx-auto pt-12 relative">
+    <div class="max-w-5xl 2xl:max-w-[100rem] px-8 mx-auto pt-12 relative">
       <div class="max-w-3xl 2xl:max-w-4xl">
         <div class="flex items-center gap-4 text-sm text-base-500">
           <div class="inline-flex gap-2 items-center">
@@ -111,7 +111,7 @@ import { forms, elements, overlay, navigation } from "@/data/entries.json";
           </div>
         </div>
         <h1
-          class="text-4xl mt-12 font-semibold  tracking-tight text-black lg:text-balance 2xl:text-6xl">
+          class="text-4xl mt-12 font-semibold tracking-tight text-black lg:text-balance 2xl:text-6xl">
           Free and premium components, elements and layouts
         </h1>
         <p class="text-balance mt-4 text-base-500 lg:text-balance 2xl:text-xl">
@@ -121,7 +121,7 @@ import { forms, elements, overlay, navigation } from "@/data/entries.json";
       </div>
     </div>
     <div
-      class="max-w-7xl 2xl:max-w-screen-xl mx-auto px-8 pb-12 lg:pb-32 mt-24 relative">
+      class="max-w-5xl 2xl:max-w-[100rem] mx-auto px-8 pb-12 lg:pb-32 mt-24 relative">
       <div
         x-data="{
     selectedTab: localStorage.getItem('selectedTab') || 'marketing',
@@ -137,16 +137,16 @@ import { forms, elements, overlay, navigation } from "@/data/entries.json";
           class="-mb-px flex items-stretch gap-2 border-b relative">
           <button
             @click="setTab('marketing'); $dispatch('tab-select', 'marketing')"
-            :class="selectedTab === 'marketing' ? 'border-accent-500 bg-white' : 'border-transparent'"
-            class="inline-flex border-b-2 text-sm 2xl:text-lg w-28 2xl:w-40 text-black py-2.5 pr-6 focus:outline-none"
+            :class="selectedTab === 'marketing' ? 'border-accent-600 bg-white text-accent-600' : 'border-transparent text-base-500'"
+            class="inline-flex border-b-2 text-sm 2xl:text-lg w-28 2xl:w-40 py-2.5 pr-6 focus:outline-none font-medium"
             role="tab"
             :aria-selected="selectedTab === 'marketing'"
             >Marketing
           </button>
           <button
             @click="setTab('application'); $dispatch('tab-select', 'application')"
-            :class="selectedTab === 'application' ? 'border-accent-500 bg-white' : 'border-transparent'"
-            class="inline-flex border-b-2 text-sm 2xl:text-lg group w-28 2xl:w-40 text-black py-2.5 pr-6 focus:outline-none"
+            :class="selectedTab === 'application' ? 'border-accent-600 bg-white' : 'border-transparent text-base-500'"
+            class="inline-flex border-b-2 text-sm 2xl:text-lg group w-28 2xl:w-40 py-2.5 pr-6 focus:outline-none font-medium"
             role="tab"
             :aria-selected="selectedTab === 'application'"
             >Application
@@ -155,8 +155,8 @@ import { forms, elements, overlay, navigation } from "@/data/entries.json";
             @click="setTab('ecommerce'); $dispatch('tab-select', 'ecommerce')"
             title="coming soon"
             disabled
-            :class="selectedTab === 'ecommerce' ? 'border-accent-500 bg-white' : 'border-transparent'"
-            class="inline-flex border-b-2 text-sm 2xl:text-lg group w-28 2xl:w-40 text-black py-2.5 pr-6 focus:outline-none disabled:opacity-50"
+            :class="selectedTab === 'ecommerce' ? 'border-accent-600 bg-white' : 'border-transparent text-base-500'"
+            class="inline-flex border-b-2 text-sm 2xl:text-lg group w-28 2xl:w-40 py-2.5 pr-6 focus:outline-none disabled:opacity-40 font-medium"
             role="tab"
             :aria-selected="selectedTab === 'ecommerce'">
             <span class="group-hover:hidden">eCommerce</span>
@@ -173,15 +173,15 @@ import { forms, elements, overlay, navigation } from "@/data/entries.json";
             role="tabpanel"
             @tab-select.window="$el.style.display = $event.detail === 'marketing' ? 'block' : 'none'">
             <div>
-              <div
-                class="prose-styles grid grid-cols-1 gap-4 relative lg:grid-cols-3 items-start">
-                <h2 class="!mt-0 2xl:text-lg">Marketing</h2>
-                <p class="lg:col-span-2 2xl:text-lg">
+              <div class="max-w-xl">
+                <p
+                  class="lg:text-balance text-base-500 font-medium 2xl:text-lg">
                   Hero sections, feature displays, footers, pricing pages and
                   more help you build standout marketing websites that impress
                   visitors, showcase key features, and grow your audience.
                 </p>
               </div>
+
               <section class="mt-12 flex flex-col gap-12 lg:gap-24">
                 <div
                   class="flex flex-col gap-6 scroll-mt-16"
@@ -212,10 +212,8 @@ import { forms, elements, overlay, navigation } from "@/data/entries.json";
             x-show="selectedTab === 'application'"
             role="tabpanel"
             @tab-select.window="$el.style.display = $event.detail === 'application' ? 'block' : 'none'">
-            <div
-              class="prose-styles grid grid-cols-1 gap-4 relative lg:grid-cols-3 items-start">
-              <h2 class="!mt-0 2xl:text-lg">Application UI</h2>
-              <p class="lg:col-span-2 2xl:text-lg">
+            <div class="max-w-xl">
+              <p class="lg:text-balance text-base-500 font-medium 2xl:text-lg">
                 Form layouts, tables, and modals help build responsive web apps.
                 Create user-friendly forms, manage data with sortable tables,
                 and use modals for smooth interactions .
@@ -270,12 +268,10 @@ import { forms, elements, overlay, navigation } from "@/data/entries.json";
             x-show="selectedTab === 'ecommerce'"
             role="tabpanel"
             @tab-select.window="$el.style.display = $event.detail === 'ecommerce' ? 'block' : 'none'">
-            >
             <div>
-              <div
-                class="prose-styles grid grid-cols-1 gap-4 relative lg:grid-cols-3 items-start">
-                <h2 class="!mt-0 2xl:text-lg">Coming soon — ECommerce</h2>
-                <p class="lg:col-span-2 2xl:text-lg">
+              <div class="max-w-xl">
+                <p
+                  class="lg:text-balance text-base-500 font-medium 2xl:text-lg">
                   Core e-commerce tools: checkout forms, shopping carts, and
                   product views for a smooth shopping experience.
                 </p>

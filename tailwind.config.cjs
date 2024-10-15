@@ -5,8 +5,6 @@ module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
-
-
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
         mono: ["JetBrains Mono", ...defaultTheme.fontFamily.mono],
@@ -16,8 +14,6 @@ module.exports = {
           "0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.3)",
         whiteOnWhite:
           "0 8px 12px -3px rgba(0, 0, 0, 0.05), 0 3px 5px -4px rgba(0, 0, 0, 0.05) ",
-
-
         xs: "0 0 0 0.5px #0e3f7e0a, 0 0.5px 0.5px -0.25px #2a33450a, 0 1.5px 1.5px -0.75px #2a33460a, 0 3px 3px -1.5px #2a33460a, 0 6px 6px -3px #0e3f7e0a, 0 12px 12px -6px #0e3f7e0a;",
         sm: "0 0 0 1px #0e3f7e0a, 0 1px 1px -0.5px #2a33450a, 0 3px 3px -1.5px #2a33460a, 0 6px 6px -3px #2a33460a, 0 12px 12px -6px #0e3f7e0a, 0 24px 24px -12px #0e3f7e0a;",
         md: "0 0 0 2px #0e3f7e0a, 0 2px 2px -1px #2a33450a, 0 6px 6px -3px #2a33460a, 0 12px 12px -6px #2a33460a, 0 24px 24px -12px #0e3f7e0a, 0 48px 48px -24px #0e3f7e0a;",
@@ -48,12 +44,12 @@ module.exports = {
           800: "#003dd4",
           900: "#02379e",
           950: "#0f1a3a",
-          /*
+          // Only for oxbow inside use
          1000: "#1A2551",
           1100: "#172148",
           1200: "#141d40",
           1300: "#0f1a3a",
-          1400: "#0a142e", */
+          1400: "#0a142e",
         },
         base: {
           25: "#fafafa",
