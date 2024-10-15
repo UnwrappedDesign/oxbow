@@ -62,7 +62,7 @@ const user = Astro.locals.user;
     </div>
   </div>
   <div
-    class="w-full flex flex-col max-w-5xl 2xl:max-w-screen-xl mx-auto px-8 lg:bg-none md:flex-row md:items-center md:justify-between py-4"
+    class="w-full flex flex-col max-w-5xl 2xl:max-w-[100rem] mx-auto px-8 lg:bg-none md:flex-row md:items-center md:justify-between py-4"
     x-data="{ open: false }">
     <div class="items-center flex justify-between flex-row lg:justify-start">
       <a
@@ -127,7 +127,7 @@ const user = Astro.locals.user;
     </div>
     <nav
       :class="{'flex': open, 'hidden': !open}"
-      class="items-center flex-col flex-grow hidden justify-end md:flex text-sm lg:text-sm md:flex-row md:pb-0 gap-x-4 gap-y-4 xl:text-sm 2xl:text-lg text-black">
+      class="items-center flex-col flex-grow hidden justify-end md:flex text-sm lg:text-sm md:flex-row md:pb-0 gap-x-4 gap-y-4 xl:text-sm 2xl:text-base text-black">
       <button
         class="cursor-pointer hidden lg:inline-flex"
         onclick="document.querySelector('ninja-keys').open()">
@@ -153,32 +153,35 @@ const user = Astro.locals.user;
         <a
           x-show="!username"
           href="https://lexingtonthemes.com"
+          class="text-base-500 hover:text-accent-500 font-medium"
           >Astro &amp; Tailwind CSS Templates</a
         >
         <a
           href="/pricing#features"
           x-cloak
           x-show="!username"
+          class="text-base-500 hover:text-accent-500 font-medium"
           >What's included</a
         >
         <a
           href="/faq"
           x-cloak
           x-show="!username"
+          class="text-base-500 hover:text-accent-500 font-medium hidden lg:block"
           >Faq</a
         >
         <a
           x-show="!username"
-          class="hidden lg:block"
           href="/getting-started"
           x-cloak
+          class="text-base-500 hover:text-accent-500 font-medium hidden lg:block"
           >Getting Started</a
         >
         <a
-          class="hidden lg:block"
           href="/login"
           x-cloak
           x-show="!username"
+          class="text-base-500 hover:text-accent-500 font-medium hidden lg:block"
           >Log in</a
         >
         <a
@@ -187,11 +190,10 @@ const user = Astro.locals.user;
           x-cloak
           id="access-navigation-cta"
           data-umami-event="access-navigation-cta"
-          class="items-center inline-flex h-9 gap-2 focus:outline-none text-sm focus:ring-2 focus:ring-offset-2 py-1 rounded-full border duration-200 px-4 bg-accent-500 border-transparent 2xl:h-10 2xl:text-base focus:ring-white hover:bg-black/10 hover:text-black ring-1 ring-transparent text-white">
+          class="flex items-center justify-center duration-200 focus:ring-2 transition-shadow focus:outline-none text-white bg-accent-600 hover:bg-accent-700 focus:ring-accent-500/50 h-9 px-4 py-3 text-sm 2xl:text-base font-medium rounded-lg ">
           Get all access for <span>$49</span>
         </a>
       </div>
-
       <div
         x-popover
         x-cloak
@@ -262,8 +264,8 @@ const user = Astro.locals.user;
                 ></path><path
                   d="M15.5 17c0 1 1.5 3 2 3c1.5 0 2.833 -1.667 3.5 -3c.667 -1.667 .5 -5.833 -1.5 -11.5c-1.457 -1.015 -3 -1.34 -4.5 -1.5l-.972 1.923a11.913 11.913 0 0 0 -4.053 0l-.975 -1.923c-1.5 .16 -3.043 .485 -4.5 1.5c-2 5.667 -2.167 9.833 -1.5 11.5c.667 1.333 2 3 3.5 3c.5 0 2 -2 2 -3"
                 ></path><path d="M7 16.5c3.5 1 6.5 1 10 0"></path></svg
-              >Discord </a
-            >
+              >Discord
+            </a>
             <a
               class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex"
               role="menuitem"
@@ -343,7 +345,7 @@ const user = Astro.locals.user;
               tabindex="-1"
               href="https://lexingtonthemes.com/"
               ><svg
-                class="size-4 "
+                class="size-4"
                 viewBox="0 0 147 148"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg">
@@ -480,12 +482,9 @@ const user = Astro.locals.user;
     </nav>
   </div>
 </div>
-
 <script>
   import Alpine from "alpinejs";
-
   import { auth } from "@/firebase/client";
-
   document.addEventListener("alpine:init", () => {
     Alpine.data("navigation", () => ({
       username: "",
