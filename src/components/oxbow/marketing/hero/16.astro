@@ -1,128 +1,47 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-import Filters from "@/components/fundations/icons/Filters.astro";
-import WaveSquare from "@/components/fundations/icons/WaveSquare.astro";
-import ArrowIteration from "@/components/fundations/icons/ArrowIteration.astro";
-import Plus from "@/components/fundations/icons/Plus.astro";
-const data = [
-  {
-    icon: "Filters",
-    category: "Live editing",
-    text: "Instantly see the result of every change you make.",
-  },
-  {
-    icon: "WaveSquare",
-    category: "Autocompletion",
-    text: "Spotless will suggest the right classes for you as you type.",
-  },
-  {
-    icon: "ArrowIteration",
-    category: "Hide/show classes",
-    text: "Hide or show classes to see how your design changes.",
-  },
-  {
-    icon: "Plus",
-    category: "Color preview",
-    text: "See the color of every class in the autocompletion view.",
-  },
-];
 ---
 
 <section>
-  <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
-    <div class="max-w-xl text-center mx-auto lg:text-balance">
-      <Text
-        tag="p"
-        variant="textSM"
-        class="font-bold uppercase text-accent-600">
-        Tagline
-      </Text>
-      <Text
-        tag="h2"
-        variant="displayMD"
-        class="mt-4 font-semibold text-base-900">
-        Stay in the know with our real time notifications that provide instant
-        updates.
-      </Text>
-       <Text
-          tag="p"
-          variant="textBase"
-          class="mt-4 text-base-500 font-medium">
-        The fastest method for working together on staging and temporary
-        environments.
-      </Text>
-      <div
-        class="flex flex-wrap items-center gap-2 justify-center mx-auto mt-12">
-        <Button
-          variant="accent"
-          size="sm">
-          Get started
-        </Button>
-        <Button
-          variant="alternative"
-          size="sm">
-          Learn more
-        </Button>
-      </div>
+  <div class="px-8 pt-24 mx-auto md:px-12 lg:px-24 max-w-7xl">
+    <Text
+      tag="p"
+      variant="textSM"
+      class="font-bold uppercase text-accent-600">
+      Tagline
+    </Text>
+    <Text
+      tag="h2"
+      variant="display2XL"
+      class="mt-4 font-semibold text-base-900 lg:text-balance">
+      Transforming the banking experience for a digital future
+    </Text>
+    <Text
+      class="mt-4 text-base-500 font-medium"
+      tag="p"
+      variant="textBase">
+      The fastest method for working together on staging and temporary
+      environments.
+    </Text>
+    <div class="flex flex-wrap items-center gap-2 mt-12">
+      <Button
+        variant="accent"
+        size="sm">
+        Get started
+      </Button>
+      <Button
+        variant="alternative"
+        size="sm">
+        Learn more
+      </Button>
     </div>
-    <div class="mx-auto mt-12 lg:mt-24">
-      <img
-        class="mx-auto"
-        src="/images/phoneReal1.png"
-        alt="#_"
-      />
-    </div>
-    <dl
-      class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-4 lg:gap-y-16 mt-12 text-center">
-      {
-        data.map((section) => (
-          <div>
-            <div class="text-accent-500 flex flex-col gap-3 items-center">
-              {section.icon === "Filters" && (
-                <Filters
-                  class="text-accent-600"
-                  size="base"
-                />
-              )}
-              {section.icon === "WaveSquare" && (
-                <WaveSquare
-                  class="text-accent-600"
-                  size="base"
-                />
-              )}
-              {section.icon === "ArrowIteration" && (
-                <ArrowIteration
-                  class="text-accent-600"
-                  size="base"
-                />
-              )}
-              {section.icon === "Plus" && (
-                <Plus
-                  class="text-accent-600"
-                  size="base"
-                />
-              )}
-              <dt>
-                <Text
-                  variant="textLG"
-                  tag="h3"
-                  class="mt-4 text-base-900 font-medium">
-                  {section.category}
-                </Text>
-              </dt>
-            </div>
-            <dd>
-              <Text
-                tag="p"
-                variant="textBase"
-                class="mt-2 text-base-500 font-medium">
-                {section.text}
-              </Text>
-            </dd>
-          </div>
-        ))
-      }
-    </dl>
+  </div>
+  <div class="mx-auto mt-12 max-w-screen w-full">
+    <img
+      class="mx-auto object-cover size-full max-h-[40rem] border-y"
+      src="/images/dashboardLight.svg"
+      alt="#_"
+    />
   </div>
 </section>
