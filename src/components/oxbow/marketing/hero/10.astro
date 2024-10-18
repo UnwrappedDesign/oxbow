@@ -1,135 +1,165 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-const avatars = [
-  { src: "/avatars/1.jpg", alt: "#_" },
-  { src: "/avatars/2.jpg", alt: "#_" },
-  { src: "/avatars/3.jpg", alt: "#_" },
-  { src: "/avatars/4.jpg", alt: "#_" },
+const stats = [
+  {
+    label: "Working Individuals",
+    value: "30%",
+  },
+  {
+    label: "Super low fee",
+    value: "40%",
+  },
+  {
+    label: "Great Commitment",
+    value: "50%",
+  },
+];
+import Filters from "@/components/fundations/icons/Filters.astro";
+import WaveSquare from "@/components/fundations/icons/WaveSquare.astro";
+import ArrowIteration from "@/components/fundations/icons/ArrowIteration.astro";
+import Plus from "@/components/fundations/icons/Plus.astro";
+const data = [
+  {
+    icon: "Filters",
+    category: "Live editing",
+    text: "Instantly see the result of every change you make.",
+  },
+  {
+    icon: "WaveSquare",
+    category: "Autocompletion",
+    text: "Spotless will suggest the right classes for you as you type.",
+  },
+  {
+    icon: "ArrowIteration",
+    category: "Hide/show classes",
+    text: "Hide or show classes to see how your design changes.",
+  },
+  {
+    icon: "Plus",
+    category: "Color preview",
+    text: "See the color of every class in the autocompletion view.",
+  },
 ];
 ---
-<section class="relative overflow-hidden">
-  <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl">
-    <div class="grid items-start grid-cols-1 gap-12 md:grid-cols-2">
-      <div class="max-w-xs lg:max-w-2xl lg:mx-0 lg:py-32 lg:flex-auto lg:pr-32">
-        <div>
-          <div class="flex -space-x-4 mt-8">
-            {
-              avatars.map((avatar, index) => (
-                <img
-                  class="inline-block size-12 object-cover object-center rounded-xl -rotate-12 ring-2 ring-white hover:-translate-y-2 duration-300"
-                  src={avatar.src}
-                  alt={avatar.alt}
-                />
-              ))
-            }
-            <a
-              class="flex items-center justify-center size-12 z-10 text-xs font-medium text-base-500 bg-white rounded-xl -rotate-12 ring-2 ring-base-200"
-              href="#"
-              >+99</a
-            >
-          </div>
-          <Text
-            tag="p"
-            variant="textBase"
-            class="mt-12 text-base-500 font-medium">
-            Integrating with existing systems is smooth and hassle-free, thanks
-            to our incredible flexible approach. Equipped with advanced features
-            and tools, our solution effortlessly manages complex tasks and
-            workflows.
-          </Text>
-          <Text
-            tag="p"
-            variant="textBase"
-            class="mt-4 text-base-500 font-medium">
-            Our cutting-edge design offers a fresh, modern look that transforms
-            your project into a standout experience.
-          </Text>
-          <div class="flex flex-wrap sm:items-center justify-start gap-4 mt-12">
-            <Button
-              variant="accent"
-              size="sm">
-              Get started
-            </Button>
-            <div class="text-sm text-base-500 font-medium lg:items-center">
-              <Text
-                tag="span"
-                class="block"
-                variant="textMD">
-                This is some support text
-              </Text>
-              <Text
-                tag="span"
-                class="block"
-                variant="textMD">
-                and this is also.
-              </Text>
-            </div>
+
+<div class="relative">
+  <div
+    class="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-24 lg:px-8 relative">
+    <div
+      class="px-8 pb-24 pt-10 lg:col-span-7 lg:px-0 sm:py-48 xl:col-span-6 flex flex-col justify-end">
+      <div class="mx-auto max-w-3xl lg:mx-0 lg:px-16 z-50">
+        <Text
+          tag="h2"
+          variant="displayLG"
+          class="mt-4 font-semibold text-base-900 md:text-balance">
+          Transforming the bank experience for a digital future
+        </Text>
+        <div class="flex flex-wrap lg:items-center gap-4 mt-12">
+          <Button
+            variant="accent"
+            size="sm">
+            Get started
+          </Button>
+          <div class="text-sm text-base-500 font-medium lg:items-center">
+            <Text
+              tag="span"
+              class="block"
+              variant="textMD">
+              This is some support text
+            </Text>
+            <Text
+              tag="span"
+              class="block"
+              variant="textMD">
+              and this is also.
+            </Text>
           </div>
         </div>
-      </div>
-      <div class="lg:mt-0">
-        <div
-          class="absolute transform lg:-translate-y-1/2 lg:left-2/2 lg:scale-150 lg:top-1/2 lg:translate-x-8 sm:left-1/2 sm:top-0 sm:translate-x-8">
-          <div class="flex items-center space-x-6 lg:space-x-8">
-            <div class="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-              <div class="h-full w-44">
-                <img
-                  alt="#_"
-                  class="object-cover"
-                  src="/images/phone1.png"
-                />
+        <div class="grid grid-cols-1 mt-8 gap-x-4 gap-y-4 sm:grid-cols-3">
+          {
+            stats.map((stat) => (
+              <div class="flex flex-col">
+                <Text
+                  tag="h3"
+                  variant="textXL"
+                  class="text-accent-700">
+                  {stat.value}
+                </Text>
+                <Text
+                  tag="h3"
+                  variant="textSM"
+                  class=" text-base-500 font-medium">
+                  {stat.label}
+                </Text>
               </div>
-              <div class="h-full w-44">
-                <img
-                  alt="#_"
-                  class="object-cover"
-                  src="/images/phone2.png"
-                />
-              </div>
-            </div>
-            <div class="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-              <div class="h-full w-44">
-                <img
-                  alt="#_"
-                  class="object-cover"
-                  src="/images/phone3.png"
-                />
-              </div>
-              <div class="h-full w-44">
-                <img
-                  alt="#_"
-                  class="object-cover"
-                  src="/images/phone5.png"
-                />
-              </div>
-              <div class="h-full w-44">
-                <img
-                  alt="#_"
-                  class="object-cover"
-                  src="/images/phone2.png"
-                />
-              </div>
-            </div>
-            <div class="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-              <div class="h-full w-44">
-                <img
-                  alt="#_"
-                  class="object-cover"
-                  src="/images/phone6.png"
-                />
-              </div>
-              <div class="h-full w-44">
-                <img
-                  alt="#_"
-                  class="object-cover"
-                  src="/images/phone7.png"
-                />
-              </div>
-            </div>
-          </div>
+            ))
+          }
         </div>
       </div>
     </div>
+    <div
+      class="relative lg:col-span-5 lg:-mr-8 xl:absolute xl:inset-0 xl:left-1/3 xl:mr-0 lg:border-l">
+      <img
+        class="aspect-[3/2] w-full bg-base-50 object-left object-cover lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
+        src="/images/dashboardLight.svg"
+        alt="Dashboard preview"
+      />
+    </div>
   </div>
-</section>
+  <div
+    class="px-8 pb-12 mx-auto md:px-12 lg:px-24 max-w-7xl relative lg:-mt-24">
+    <dl
+      class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-12 lg:grid-cols-4 lg:gap-y-16 relative">
+      {
+        data.map((section) => (
+          <div class="bg-white rounded-xl shadow p-8">
+            <div class="text-accent-500 flex flex-col gap-3 ">
+              {section.icon === "Filters" && (
+                <Filters
+                  class="text-accent-600"
+                  size="base"
+                />
+              )}
+              {section.icon === "WaveSquare" && (
+                <WaveSquare
+                  class="text-accent-600"
+                  size="base"
+                />
+              )}
+              {section.icon === "ArrowIteration" && (
+                <ArrowIteration
+                  class="text-accent-600"
+                  size="base"
+                />
+              )}
+              {section.icon === "Plus" && (
+                <Plus
+                  class="text-accent-600"
+                  size="base"
+                />
+              )}
+
+              <dt>
+                <Text
+                  variant="textLG"
+                  tag="h3"
+                  class="text-base-900 font-medium">
+                  {section.category}
+                </Text>
+              </dt>
+            </div>
+            <dd>
+              <Text
+                tag="p"
+                variant="textBase"
+                class="mt-2 text-base-500 font-medium">
+                {section.text}
+              </Text>
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</div>
