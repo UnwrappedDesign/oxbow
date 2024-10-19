@@ -9,6 +9,7 @@ const templates: { [key: string]: Template[] } = {
   // Page sections
   pageSections: [
     { name: "Hero Sections", link: "/playground/marketing/hero", image: "heros.png" },
+    { name: "Bento Grids", link: "/playground/marketing/bento-grids", image: "bento.png" },
     { name: "Features Sections", link: "/playground/marketing/features", image: "features.png" },
     { name: "Timeline Sections", link: "/playground/marketing/timeline", image: "timeline.png" },
     { name: "Steps Sections", link: "/playground/marketing/steps", image: "steps.png" },
@@ -34,7 +35,7 @@ const templates: { [key: string]: Template[] } = {
   // Elements
   elements: [
     { name: "Buttons", link: "/playground/application/buttons", image: "buttons.png" },
-    { name: "Typography", link: "/playground/application/typography", image: "buttons.png" },
+    { name: "Typography", link: "/playground/application/typography", image: "type.png" },
     { name: "Button Groups", link: "/playground/application/button-groups", image: "buttonGroups.png" },
     { name: "Badges", link: "/playground/application/badges", image: "badges.png" },
     { name: "Banners", link: "/playground/application/banners", image: "banners.png" },
