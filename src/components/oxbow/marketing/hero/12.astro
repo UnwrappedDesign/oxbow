@@ -1,56 +1,57 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-const logos = [
+const data = [
   {
-    src: "/brands/1.svg",
-    width: 158,
-    height: 48,
-  },
-  {
-    src: "/brands/2.svg",
-    width: 158,
-    height: 48,
-  },
-  {
-    src: "/brands/3.svg",
-    width: 158,
-    height: 48,
+    name: "Fernando Monte",
+    title: "Creator of Lexingtonthemes.com",
+    testimonial:
+      "Being in the financial industry, we were always looking for ways to enhance our transactions' security and efficiency.",
+    imgSrc: "/avatars/1.jpg",
   },
 ];
 ---
 
 <div class="relative">
-  <div class="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-24 lg:px-8">
-    <div
-      class="px-8 pb-24 pt-10 sm:pb-32 lg:col-span-7 lg:px-0 lg:pb-56 lg:pt-48 xl:col-span-6">
+  <div class="lg:absolute lg:inset-0 lg:right-1/2">
+    <div class="h-full">
+      <img
+        class="h-64 w-full bg-base-50 object-cover sm:h-80 lg:h-full lg:border-r object-right"
+        src="/images/dashboardLight.svg"
+        alt="#_"
+      />
+    </div>
+  </div>
+  <div
+    class="px-8 pb-24 pt-10 sm:pb-32 lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:pb-56 lg:pt-48">
+    <div class="lg:col-start-2 lg:pl-12">
       <div class="mx-auto max-w-2xl lg:mx-0 lg:px-12">
-        <img
-          class="h-20"
-          src="/images/oxbow/blueLineLogo.png"
-          alt="#_"
-        />
+        <Text
+          tag="p"
+          variant="textSM"
+          class="font-bold uppercase text-accent-600">
+          Tagline
+        </Text>
         <Text
           tag="h2"
-          variant="displayLG"
-          class="mt-12 font-semibold text-base-900 lg:text-balance">
+          variant="displayMD"
+          class="mt-4 font-semibold text-base-900">
           Transforming the banking experience for a digital future
         </Text>
         <Text
-          class="mt-4 text-base-500 font-medium"
           tag="p"
-          variant="textBase">
-          Integrating with existing systems is smooth and hassle-free, thanks to
-          our incredible flexible approach. Equipped with advanced features and
-          tools, our solution effortlessly manages complex tasks and workflows.
+          variant="textBase"
+          class="mt-4 text-base-500 font-medium">
+          The fastest method for working together on staging and temporary
+          environments.
         </Text>
-        <div class="flex flex-wrap lg:items-center gap-4 mt-12">
+        <div class="flex flex-wrap gap-4 mt-12">
           <Button
             variant="accent"
             size="sm">
             Get started
           </Button>
-          <div class="text-sm text-base-500 font-medium lg:items-center">
+          <div class="text-sm text-base-500 md:text-left">
             <Text
               tag="span"
               class="block"
@@ -65,28 +66,50 @@ const logos = [
             </Text>
           </div>
         </div>
-        <div
-          class="mx-auto grid mt-10 grid-cols-4 items-center gap-x-8 gap-y-10 sm:grid-cols-4 sm:gap-x-10">
+        <ul
+          role="list"
+          class="mt-6 pt-6 border-t">
           {
-            logos.map((logo) => (
-              <img
-                src={logo.src}
-                alt="#_"
-                width={logo.width}
-                height={logo.height}
-              />
+            data.map((member) => (
+              <>
+                <li>
+                  <figure class="flex flex-col  h-full ">
+                    <Text
+                      tag="blockquote"
+                      variant="textLG"
+                      class=" text-base-500 italic font-medium">
+                      {member.testimonial}
+                    </Text>
+                    <figcaption>
+                      <div class="flex items-center gap-2 mt-8">
+                        <img
+                          class="nline-block size-12 rounded-full"
+                          src={member.imgSrc}
+                          alt="#_"
+                        />
+                        <div>
+                          <Text
+                            tag="p"
+                            variant="textMD"
+                            class=" text-base-900  font-medium">
+                            {member.name}
+                          </Text>
+                          <Text
+                            tag="p"
+                            variant="textSM"
+                            class=" text-base-500  font-medium">
+                            {member.title}
+                          </Text>
+                        </div>
+                      </div>
+                    </figcaption>
+                  </figure>
+                </li>
+              </>
             ))
           }
-        </div>
+        </ul>
       </div>
-    </div>
-    <div
-      class="relative lg:col-span-5 lg:-mr-8 xl:absolute xl:inset-0 xl:left-1/2 xl:mr-0 lg:border-l">
-      <img
-        class="aspect-[3/2] w-full bg-base-50 object-left object-cover lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
-        src="/images/dashboardLight.svg"
-        alt="#_"
-      />
     </div>
   </div>
 </div>
