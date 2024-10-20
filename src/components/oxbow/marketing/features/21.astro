@@ -1,47 +1,45 @@
 ---
-
 import Text from "@/components/fundations/typography/Text.astro";
-
 
 const data = [
   {
-    image: "/images/whiteCard.svg",
-
+    image: "/widgets/progressCircles.svg",
+    icon: "Filters",
     category: "Live editing",
     text: "Instantly see the result of every change you make.",
   },
   {
-    image: "/images/blueCard.svg",
-
+    image: "/widgets/figmaComp2.svg",
+    icon: "WaveSquare",
     category: "Autocompletion",
     text: "Spotless will suggest the right classes for you as you type.",
   },
   {
-    image: "/images/darkCard.svg",
-
+    image: "/widgets/figmaComp.svg",
+    icon: "ArrowIteration",
     category: "Hide/show classes",
     text: "Hide or show classes to see how your design changes.",
-  }
+  },
 ];
 ---
 
 <section>
   <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
+
     <dl
-      class="grid grd-cols-1 md:grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-3 lg:gap-y-16">
+      class="-mx-3 grid grid-cols-1 gap-y-10 lg:grid-cols-3 lg:text-center xl:-mx-12 xl:divide-x xl:divide-slate-400/20">
       {
         data.map((section) => (
-
-        <div class="p-1 bg-base-50 rounded-3xl">
-          <div class="rounded-[1.3rem] overflow-hidden shadow">
-            <img
-              src={section.image}
-              alt="#_"
-              class="w-full"
-            />
-          </div>
-          <div class="px-4 py-6">
-           <dt >
+          <div class="grid auto-rows-min grid-cols-1 items-center gap-8 px-4 sm:grid-cols-2  lg:grid-cols-1 xl:px-8">
+            <div class="rounded-2xl overflow-hidden shadow">
+              <img
+                src={section.image}
+                alt="#_"
+                class="w-full"
+              />
+            </div>
+            <div class="px-4 ">
+              <dt>
                 <Text
                   variant="textLG"
                   tag="h3"
@@ -49,19 +47,18 @@ const data = [
                   {section.category}
                 </Text>
               </dt>
-             <dd>
-              <Text
-                tag="p"
-                variant="textBase"
-                class="mt-2 text-base-500 font-medium">
-                {section.text}
-              </Text>
-            </dd>
+              <dd>
+                <Text
+                  tag="p"
+                  variant="textBase"
+                  class="mt-2 text-base-500 font-medium">
+                  {section.text}
+                </Text>
+              </dd>
+            </div>
           </div>
-        </div>
         ))
       }
     </dl>
-
   </div>
 </section>
