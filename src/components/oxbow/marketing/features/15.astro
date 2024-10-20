@@ -2,21 +2,21 @@
 import Text from "@/components/fundations/typography/Text.astro";
 const items = [
   {
-    imgSrc: "/images/blueCard.svg",
+    imgSrc: "/widgets/progressCircles.svg",
     imgAlt: "#_",
     title: "Easy navigation",
     description:
       "Hover over any element to see its Tailwind classes. Press Space to easily pin and edit your settings.",
   },
   {
-    imgSrc: "/images/darkCard.svg",
+    imgSrc: "/widgets/calendar.svg",
     imgAlt: "#_",
     title: "Persistence",
     description:
       "Spotless will remember all your changes to every element so you can copy all changes at once!",
   },
   {
-    imgSrc: "/images/whiteCard.svg",
+    imgSrc: "/widgets/figmaComp2.svg",
     imgAlt: "#_",
     title: "Screenshot tool",
     description:
@@ -26,38 +26,20 @@ const items = [
 ---
 <section>
   <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
-    <div class="text-center max-w-xl mx-auto lg:text-balance">
-      <Text
-        tag="p"
-        variant="textSM"
-        class="font-bold uppercase text-accent-600">
-        Tagline
-      </Text>
-      <Text
-        tag="h2"
-        variant="displayMD"
-        class="mt-4 font-semibold text-base-900 lg:text-balance">
-        Transforming the banking experience for a digital future
-      </Text>
-       <Text
-          tag="p"
-          variant="textBase"
-          class="mt-4 text-base-500 font-medium">
-        The fastest method for working together on staging and temporary
-        environments.
-      </Text>
-    </div>
+
     <dl
-      class="grid sm:grid-cols-2 mt-12 text-center gap-x-6 gap-y-12 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16">
+      class="grid sm:grid-cols-2  text-center gap-x-6 items-baseline gap-y-12 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16">
       {
         items.map((item) => (
           <div class="flex flex-col h-full justify-between">
             <div>
-              <img
-                class=" shadow rounded-3xl w-full"
-                src={item.imgSrc}
-                alt={item.imgAlt}
-              />
+              <div class="p-6 pb-0  bg-base-50 rounded-2xl overflow-hidden">
+                <img
+                  class=" shadow rounded-t-2xl size-full"
+                  src={item.imgSrc}
+                  alt={item.imgAlt}
+                />
+              </div>
               <dt class="mt-4">
                 <Text
                   tag="h3"
