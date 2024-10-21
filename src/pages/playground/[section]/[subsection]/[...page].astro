@@ -1,14 +1,19 @@
 ---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Playground from "@/components/global/Playground.astro";
 import { paginate } from "@/utils/pagination";
-const PAGE_SIZE = 10;
+
 const { section, subsection, page } = Astro.params;
+
+const PAGE_SIZE = 10;
+
 const components = await Astro.glob(`@/components/oxbow/**/*.astro`);
 const sectionComponents = components.filter((component) => {
   const sectionRegex = new RegExp(`${section}\/${subsection}\/.+\.astro$`, "i");
   return component.file?.match(sectionRegex);
 });
+
 const currentPage = parseInt(page ?? "1", 10) || 1;
 const paginationData = paginate(
   `/playground/${section}/${subsection}`,
@@ -16,96 +21,80 @@ const paginationData = paginate(
   currentPage,
   PAGE_SIZE
 );
----
 
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/screenshots/*.png')
+
+---
 <BaseLayout>
   <section>
-    <div class="max-w-5xl 2xl:max-w-[100rem] mx-auto px-8 pt-12 lg:pt-32">
-      <div class="uppercase text-sm text-base-500 font-medium">
-        <span>
-          <a
-            href="/"
-            class="text-accent-500 hover:text-base-500 font-medium">
-            Home</a
-          > / Page {paginationData.currentPage}</span
-        >
-        /
-        <span class="space-x-2">
-          {
-            paginationData.url.prev ? (
-              <a
-                class="text-accent-500 hover:text-base-500 font-medium"
-                href={paginationData.url.prev}>
-                Previous
-              </a>
-            ) : null
-          }
-          <span>·</span>
-          {
-            paginationData.url.next ? (
-              <a
-                class="text-accent-500 hover:text-base-500 font-medium"
-                href={paginationData.url.next}>
-                Next
-              </a>
-            ) : null
-          }
-        </span>
-        <h1
-          class="text-4xl mt-4 font-semibold tracking-tight text-black lg:text-balance 2xl:text-6xl">
-          {subsection.replace(/-/g, " ")}
-        </h1>
-      </div>
-    </div>
-    <div class="maxc-w-screen 2xl:max-w-[100rem] mx-auto px-8">
-      <div class="pb-32 mt-12 space-y-12">
+     <div class="max-w-5xl pt-12 lg:pt-32 2xl:max-w-[100rem] mx-auto px-8">
+          <h1
+            class="text-4xl font-semibold tracking-tight text-black lg:text-balance 2xl:text-6xl">
+            Heros
+          </h1>
+     </div>
+      <div class="max-w-screen 2xl:max-w-[100rem] mx-auto px-8 mt-12">
+      <div
+        id="masonry-grid"
+        class="gap-4 mt-12">
         {
-          paginationData.data.map((component, index) => (
-            <Playground
-              componentIndex={(currentPage - 1) * PAGE_SIZE + index + 1}
-              componentPath={component.file.replace(/.*\/src/, "src")}
-              playgroundRef={`${section}-${subsection}-${currentPage}-component-${index}`}>
-              <component.default />
-            </Playground>
-          ))
+          paginationData.data.map((component, index) => {
+            const imagePath = "/src/screenshots/" + component.file.split('/').slice(-3).join('_').replace('.astro', '.png');
+
+            return images[imagePath] && (
+              <a
+                href="#_"
+                class="group inline-block w-full relative">
+                <div class="absolute top-1 left-2 -mt-4 z-10">
+                  <div class="bg-white text-black rounded-full p-2 border size-6 items-center flex justify-center text-xs"> <!-- Added a border for visibility -->
+                    {index + 1}
+                  </div>
+                </div>
+                <Image
+                  src={images[imagePath]()}
+                  alt=""
+                  class="w-full object-cover border rounded-lg group-hover:ring-2 group-hover:ring-offset-2 group-hover:ring-base-200 duration-300  relative"
+                />
+              </a>
+            )
+          })
         }
-        <div class="flex items-center justify-between w-full">
-          {
-            paginationData.url.prev ? (
-              <a
-                class="items-center flex px-4 py-1 text-sm text-base-500 transition border rounded-full focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200 hover:text-accent-500 ring-2 ring-offset-2 ring-transparent focus:ring-accent-500 duration-300"
-                href={paginationData.url.prev}>
-                Previous
-              </a>
-            ) : null
-          }
-          {
-            paginationData.url.next ? (
-              <a
-                class="items-center flex px-4 py-1 ml-auto text-sm text-base-500 transition border rounded-full focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200 hover:text-accent-500 ring-2 ring-offset-2 ring-transparent focus:ring-accent-500 duration-300"
-                href={paginationData.url.next}>
-                Next
-              </a>
-            ) : null
-          }
-        </div>
       </div>
     </div>
   </section>
-  <script>
-    function resizeIFramesToFitContent() {
-      const iframes = document.querySelectorAll("iframe");
-      iframes.forEach((iframe) => {
-        try {
-          iframe.height =
-            iframe.contentWindow?.document.body.scrollHeight + "px";
-        } catch (e) {}
-      });
-      requestAnimationFrame(resizeIFramesToFitContent);
-    }
-    addEventListener(
-      "load",
-      requestAnimationFrame.bind(this, resizeIFramesToFitContent)
-    );
-  </script>
 </BaseLayout>
+
+<script type="module">
+ const masonryGrid = document.getElementById("masonry-grid");
+const columnWidth = 300; // Adjust this value as needed
+const gap = 18; // Adjust this value to change the gap (in pixels)
+function createMasonryGrid() {
+  const gridWidth = masonryGrid.offsetWidth;
+  const columns = Math.floor(gridWidth / columnWidth) || 1;
+  // Reset the grid layout
+  masonryGrid.style.columnCount = columns.toString();
+  masonryGrid.style.columnGap = `${gap}px`;
+  // Remove any existing grid styles
+  masonryGrid.style.display = 'block';
+  masonryGrid.style.gridTemplateColumns = '';
+  masonryGrid.style.gridTemplateRows = '';
+  const items = Array.from(masonryGrid.children);
+  items.forEach((item) => {
+    // Reset item styles
+    item.style.gridRowStart = '';
+    item.style.gridColumnStart = '';
+    // Add styles for masonry layout
+    item.style.breakInside = 'avoid';
+    item.style.marginBottom = `${gap}px`; // Set the vertical gap between items
+  });
+}
+// Initial layout
+createMasonryGrid();
+// Update layout on window resize
+window.addEventListener("resize", createMasonryGrid);
+// Update layout when all images are loaded
+window.addEventListener("load", createMasonryGrid);
+// Optional: Update layout when new images are added
+const observer = new MutationObserver(createMasonryGrid);
+observer.observe(masonryGrid, { childList: true, subtree: true });
+</script>
