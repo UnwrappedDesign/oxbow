@@ -34,8 +34,8 @@ const templates: { [key: string]: Template[] } = {
      ],
   // Elements
   elements: [
-    { name: "Buttons", link: "/playground/application/buttons", image: "buttons.png" },
     { name: "Typography", link: "/playground/application/typography", image: "type.png" },
+    { name: "Buttons", link: "/playground/application/buttons", image: "buttons.png" },
     { name: "Button Groups", link: "/playground/application/button-groups", image: "buttonGroups.png" },
     { name: "Badges", link: "/playground/application/badges", image: "badges.png" },
     { name: "Banners", link: "/playground/application/banners", image: "banners.png" },
