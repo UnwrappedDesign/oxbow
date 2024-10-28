@@ -36,7 +36,6 @@ const entriesWithQuantity = entries
   // Filter out entries with quantity 0
   .filter((entry) => entry.quantity > 0);
 ---
-
 <ul
   class="col-span-3 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 sm:gap-y-10 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 xl:gap-x-8">
   {
@@ -44,12 +43,12 @@ const entriesWithQuantity = entries
       <li class="relative ">
         <div class="group relative group rounded-lg ">
           <Image
-            class="object-bottom  object-cove    rounded-lg ring-4 ring-base-50 hover:ring-base-100 border border-base-200 duration-300"
+            class="object-bottom  object-cover  "
             alt={template.name}
             src={template.image()}
           />
-          <div>
-            <h4 class="mt-4 text-sm 2xl:text-base font-medium text-base-900 group-hover:text-accent-600">
+          <div class="flex items-center justify-between mt-2  ">
+            <p class=" text-sm 2xl:text-base font-medium text-base-900 group-hover:text-accent-600">
               <a
                 class="flex justify-between gap-2 items-center"
                 title={template.name}
@@ -60,9 +59,30 @@ const entriesWithQuantity = entries
                   New
                 </span>
               </a>
-            </h4>
-            <p class="relative mt-1.5 text-xs 2xl:text-sm font-medium text-base-400">
-              {template.quantity} components
+            </p>
+            <p class="relative flex items-center gap-1 text-xs 2xl:text-sm font-medium text-base-400">
+              {template.quantity}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-components size-3">
+                <>
+                  <path
+                    stroke="none"
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  />
+                  <path d="M3 12l3 3l3 -3l-3 -3z" />
+                  <path d="M15 12l3 3l3 -3l-3 -3z" />
+                  <path d="M9 6l3 3l3 -3l-3 -3z" />
+                  <path d="M9 18l3 3l3 -3l-3 -3z" />
+                </>
+              </svg>
             </p>
           </div>
         </div>
