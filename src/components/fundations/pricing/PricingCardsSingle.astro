@@ -4,6 +4,7 @@ import Button from "../buttons/Button.astro";
 import Badge from "../badges/Badge.astro";
 import Check from "../icons/Check.astro";
 import Text from "../typography/Text.astro";
+
 // Props from the parent component
 const {
   tierName = "Core", // Default tier is 'Core'
@@ -17,6 +18,7 @@ const {
   isCentered = false, // New prop to control if the card is centered
   isRight = false, // New prop to control if the card is right
 } = Astro.props;
+
 // Define default details for each tier
 const tierDetails = {
   Core: {
@@ -48,9 +50,11 @@ const tierDetails = {
     priceAnnual: "$149.00",
   },
 };
+
 // Get the baked-in tier details
 const { audience, description, priceMonthly, priceAnnual } =
   tierDetails[tierName];
+
 // Define default features for each tier
 const defaultFeatures = {
   Core: [
@@ -87,8 +91,10 @@ const defaultFeatures = {
     "24/7 support",
   ],
 };
+
 // Get the features for the current tier
 const features = defaultFeatures[tierName] || [];
+
 // Define the color classes based on the colorMode
 const colorClasses = {
   white: {
@@ -142,19 +148,30 @@ const colorClasses = {
     featuresTextColor: "text-base-200",
   },
 }[colorMode];
+
 // Define rounding classes based on the roundedDesktop prop
-let roundingClass = "rounded-3xl"; // Default rounding
+let roundingClass = roundedDesktop;
 if (roundedDesktop === "left") {
-  roundingClass = " lg:rounded-r-none"; // Rounds left, no right
+  roundingClass = "rounded-3xl lg:rounded-r-none"; // Rounds left, no right
 } else if (roundedDesktop === "right") {
-  roundingClass = "lg:rounded-l-none "; // Rounds right, no left
+  roundingClass = "rounded-3xl lg:rounded-l-none"; // Rounds right, no left
 } else if (roundedDesktop === "none") {
   roundingClass = "lg:rounded-none"; // No rounding if specified
 }
+
+// Define padding classes based on position props
+const paddingClasses = [
+  isLeft && "lg:pr-0",
+  isCentered && "lg:px-0",
+  isRight && "lg:pl-0",
+  "lg:py-1",
+]
+  .filter(Boolean)
+  .join(" ");
 ---
 
 <div
-  class={`flex flex-col h-full rounded-3xl ${isLeft ? "lg:pr-0 lg:py-1" : "p-1"} ${isCentered ? "lg:px-0 lg:py-1" : "p-1"} ${isRight ? "lg:pl-0 lg:py-1" : "p-1"} ${roundingClass} ${colorClasses.cardBg}`}>
+  class={`flex flex-col h-full p-1 ${paddingClasses} ${roundingClass} ${colorClasses.cardBg}`}>
   <div>
     <div
       class={`flex flex-col gap-4 p-8 ${colorClasses.innerBg} h-full ${roundingClass} shadow `}>
