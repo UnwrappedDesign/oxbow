@@ -12,24 +12,45 @@ const sectionComponents = components.filter((component) => {
 });
 
 const component = sectionComponents[parseInt(index) - 1];
+const formattedSubsection = subsection.replace("-", " ");
+const formattedIndex = index.replace("-", " ");
 ---
 
 <BaseLayout>
   <section>
     <div class="max-w-5xl pt-12 lg:pt-32 2xl:max-w-[100rem] mx-auto px-8">
-      <h1
-        class="text-4xl font-semibold tracking-tight text-black lg:text-balance 2xl:text-6xl"
+      <button
+        class="flex items-center gap-2 text-base-500 hover:text-accent-500"
+        onclick="history.back();">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left size-5"
+          ><path
+            stroke="none"
+            d="M0 0h24v24H0z"
+            fill="none"
+          ></path><path d="M5 12l14 0"></path><path d="M5 12l6 6"></path><path
+            d="M5 12l6 -6"></path></svg
+        >Go Back</button
       >
-        {subsection}
-        {index}
+
+      <h1
+        class="text-4xl uppercase mt-4 font-semibold tracking-tight text-black lg:text-balance 2xl:text-6xl">
+        {subsection.replace(/-/g, " ")}
+        {index.replace(/-/g, " ")}
       </h1>
     </div>
     <div class="max-w-screen 2xl:max-w-[100rem] mx-auto px-8 mt-12">
       <Playground
         componentIndex={parseInt(index)}
         componentPath={component.file.replace(/.*\/src/, "src")}
-        playgroundRef={`${section}-${subsection}-${index}`}
-      >
+        playgroundRef={`${section}-${subsection}-${index}`}>
         <component.default />
       </Playground>
     </div>
@@ -47,6 +68,6 @@ const component = sectionComponents[parseInt(index) - 1];
   }
   addEventListener(
     "load",
-    requestAnimationFrame.bind(this, resizeIFramesToFitContent),
+    requestAnimationFrame.bind(this, resizeIFramesToFitContent)
   );
 </script>
