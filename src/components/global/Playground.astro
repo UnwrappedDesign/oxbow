@@ -101,17 +101,26 @@ const ppcode = canSeeCode ? await prettier.format(code, {
               <div class="flex items-center gap-2">
                 <button
                   @click="tab = 'preview'" :class="tab === 'preview' ? 'bg-base-50' : 'bg-black/0'"
+                  data-umami-event="click-view-preview"
+                  data-umami-data-id={user?.uid}
+                  data-umami-event-componentref={componentPath}
                   class="backdrop-blur pointer-events-auto flex focus:text-accent-500 rounded-md px-4 h-7 py-1 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200 0">
                   Preview
                 </button>
                 <button
                   @click="tab = 'code'" :class="tab === 'code' ? 'bg-base-50' : 'bg-black/0'"
+                  data-umami-event="click-view-code"
+                  data-umami-data-id={user?.uid}
+                  data-umami-event-componentref={componentPath}
                   class="pointer-events-auto flex rounded-md px-4 py-1 focus:text-accent-500 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200 0">
                   Code
                 </button>
                 <div class="mx-1 h-4 w-[2px] bg-base-50" />
                 <button
                   x-data="{ copied: false }"
+                  data-umami-event="click-copy-component"
+                  data-umami-data-id={user?.uid}
+                  data-umami-event-componentref={componentPath}
                   class="pointer-events-auto relative w-20 flex rounded-md focus:text-accent-500 px-4 py-1 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200 0"
                   @click={`copied=true; $clipboard($refs.code${componentIndex}.innerText); setTimeout(()=> { copied = false; }, 2000);`}
                 >
