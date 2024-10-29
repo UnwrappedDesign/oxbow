@@ -1,115 +1,87 @@
-<div class="flex px-8 py-12 bg-white h-full border border-base-200 relative">
+---
+import Text from "@/components/fundations/typography/Text.astro";
+const features = [
+  {
+    text: "1 User",
+  },
+  {
+    text: "All components and blocks",
+  },
+  {
+    text: "Lifetime access",
+  },
+  {
+    text: "Unlimited projects",
+  },
+  {
+    text: "Discord Support",
+  },
+];
+---
+
+<div class="flex px-8 py-12 bg-base-50 h-full border border-base-200 relative">
   <div class="flex flex-col h-full justify-between size-full">
     <div>
-      <p
-        class="text-base sm:text-lg md:text-xl text-black font-medium flex items-center gap-1">
-        <span class="text-md flex items-center gap-2">
-          <span class="text-md"> ✺ </span> Individual
-        </span> —
-        <span class="text-md">
-          $49 <del class="ml-2 opacity-50">$149</del></span
-        >
-      </p>
-      <p class="text-md text-base-600 font-medium mt-1">
+      <Text
+        tag="p"
+        variant="textLG"
+        class="text-black font-medium flex items-center gap-1">
+        <Text tag="span">Individual</Text> —
+        <Text tag="span">
+          $49 <del class="ml-2 opacity-50">$149</del>
+        </Text>
+      </Text>
+      <Text
+        tag="p"
+        variant="textMD"
+        class="text-neutral-600 font-medium mt-1">
         Perfect for personal use, freelance and individual client work.
-      </p>
+      </Text>
       <div class="mt-8">
-        <p class="text-sm text-black uppercase font-bold mt-1">Includes</p>
+        <Text
+          tag="p"
+          variant="textSM"
+          class="text-black uppercase font-bold mt-1"
+          >Includes</Text
+        >
         <ul
           class="flex flex-col text-base-600 font-medium mt-2 space-y-2"
           role="list">
-          <li class="flex items-center gap-2">
-            <svg
-              class="size-2"
-              viewBox="0 0 100 100"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <circle
-                cx="50"
-                cy="50"
-                r="50"
-                fill="currentColor"
-              ></circle>
-            </svg>
-            <div class="flex items-center gap-1 w-full">
-              <span class="text-base"> 1 User </span>
-            </div>
-          </li><li class="flex items-center gap-2">
-            <svg
-              class="size-2"
-              viewBox="0 0 100 100"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <circle
-                cx="50"
-                cy="50"
-                r="50"
-                fill="currentColor"
-              ></circle>
-            </svg>
-            <div class="flex items-center gap-1 w-full">
-              <span class="text-base"> All components </span>
-            </div>
-          </li><li class="flex items-center gap-2">
-            <svg
-              class="size-2"
-              viewBox="0 0 100 100"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <circle
-                cx="50"
-                cy="50"
-                r="50"
-                fill="currentColor"
-              ></circle>
-            </svg>
-            <div class="flex items-center gap-1 w-full">
-              <span class="text-base"> Lifetime access </span>
-            </div>
-          </li><li class="flex items-center gap-2">
-            <svg
-              class="size-2"
-              viewBox="0 0 100 100"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <circle
-                cx="50"
-                cy="50"
-                r="50"
-                fill="currentColor"
-              ></circle>
-            </svg>
-            <div class="flex items-center gap-1 w-full">
-              <span class="text-base"> Unlimited projects </span>
-            </div>
-          </li>
-          <li class="flex items-center gap-2">
-            <svg
-              class="size-2"
-              viewBox="0 0 100 100"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <circle
-                cx="50"
-                cy="50"
-                r="50"
-                fill="currentColor"
-              ></circle>
-            </svg>
-            <div class="flex items-center gap-1 w-full">
-              <span class="text-base"> Discord Support </span>
-            </div>
-          </li>
+          {
+            features.map((feature) => (
+              <li class="flex items-center gap-2">
+                <svg
+                  class="size-2"
+                  viewBox="0 0 100 100"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="50"
+                    fill="currentColor"
+                  />
+                </svg>
+                <div class="flex items-center gap-1 w-full">
+                  <Text
+                    tag="span"
+                    variant="textBase">
+                    {feature.text}
+                  </Text>
+                </div>
+              </li>
+            ))
+          }
         </ul>
       </div>
     </div>
     <div class="mt-8 w-full flex">
-      <a
+      <Text
+        tag="a"
         href="/api/buy/individual"
-        class="rounded-full flex items-center transition-all duration-200 focus:ring-2 focus:ring-offset-2 focus:outline-none text-white bg-accent-500 hover:bg-accent-600 focus:ring-accent-600 h-9 px-4 py-2 text-sm font-medium w-full justify-center"
-       >
+        class="rounded-full flex items-center transition-all duration-200 focus:ring-2 focus:ring-offset-2 focus:outline-none text-white bg-accent-500 hover:bg-accent-600 focus:ring-accent-600 h-9 px-4 py-2 text-sm font-medium w-full justify-center">
         Buy for $49
-      </a>
+      </Text>
     </div>
   </div>
 </div>

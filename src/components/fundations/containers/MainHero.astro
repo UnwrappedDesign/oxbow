@@ -1,0 +1,82 @@
+---
+import Text from "@/components/fundations/typography/Text.astro";
+import AlpineTailwind from "@/components/global/AlpineTailwind.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
+interface Props {
+  title: string;
+  subtitle?: string; // Make subtitle optional
+  highlightText?: string;
+  showAlpineTailwind?: boolean; // Optional prop to show AlpineTailwind
+  showThemeNavigator?: boolean; // Optional prop to show ThemeNavigator
+  textCentered?: boolean; // Optional prop to center text
+  additionalText?: string; // Optional prop for additional text
+  additionalTextClasses?: string; // Optional classes for additional text
+  slot?: any;
+}
+
+const {
+  title,
+  subtitle,
+  highlightText,
+  showAlpineTailwind = true, // Default to true if not specified
+  textCentered = false, // Default to false if not specified
+  additionalText,
+  additionalTextClasses = "", // Default to empty if not specified
+} = Astro.props;
+---
+
+<section>
+  <Wrapper
+    variant="hero"
+    class="py-12">
+    <div class={`flex flex-col ${textCentered ? "justify-center" : ""}`}>
+      {
+        showAlpineTailwind && (
+          <div class={`flex ${textCentered ? "justify-center" : ""}`}>
+            <AlpineTailwind />
+          </div>
+        )
+      }
+      {/* Render AlpineTailwind only if specified */}
+      <Text
+        tag="h1"
+        variant="displayXL"
+        class={`text-black tracking-tighter font-semibold text-balance font-display mt-2 ${textCentered ? "text-center text-balance" : ""}`}>
+        {title}
+      </Text>
+      <div
+        class={`flex flex-col ${textCentered ? "text-center text-balance max-w-xl mx-auto" : ""}`}>
+        {
+          subtitle && ( // Render subtitle only if it exists
+            <Text
+              tag="p"
+              variant="textBase"
+              class={`text-base-600 text-pretty mt-4 ${textCentered ? "text-center" : ""}`}>
+              {subtitle}
+            </Text>
+          )
+        }
+        {
+          highlightText && ( // Render highlightText only if it exists
+            <Text
+              tag="span"
+              variant="text-base-600 text-pretty">
+              {highlightText}
+            </Text>
+          )
+        }
+        {
+          additionalText && ( // Render additionalText only if it exists
+            <Text
+              tag="p"
+              variant="textMD"
+              class={`${additionalTextClasses}`}>
+              {additionalText}
+            </Text>
+          )
+        }
+      </div>
+    </div>
+  </Wrapper>
+</section>

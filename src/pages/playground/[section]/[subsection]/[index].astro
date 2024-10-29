@@ -2,15 +2,14 @@
 import type { ImageMetadata } from "astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Playground from "@/components/global/Playground.astro";
-
+import Text from "@/components/fundations/typography/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 const { section, subsection, index } = Astro.params;
-
 const components = await Astro.glob(`@/components/oxbow/**/*.astro`);
 const sectionComponents = components.filter((component) => {
   const sectionRegex = new RegExp(`${section}\/${subsection}\/.+\.astro$`, "i");
   return component.file?.match(sectionRegex);
 });
-
 const component = sectionComponents[parseInt(index) - 1];
 const formattedSubsection = subsection.replace("-", " ");
 const formattedIndex = index.replace("-", " ");
@@ -18,7 +17,7 @@ const formattedIndex = index.replace("-", " ");
 
 <BaseLayout>
   <section>
-    <div class="max-w-5xl pt-12 lg:pt-32 2xl:max-w-[100rem] mx-auto px-8">
+    <Wrapper variant="hero">
       <button
         class="flex items-center gap-2 text-base-500 hover:text-accent-500"
         onclick="history.back();">
@@ -39,21 +38,26 @@ const formattedIndex = index.replace("-", " ");
             d="M5 12l6 -6"></path></svg
         >Go Back</button
       >
-
-      <h1
-        class="text-4xl uppercase mt-4 font-semibold tracking-tight text-black lg:text-balance 2xl:text-6xl">
+      <Text
+        tag="h1"
+        variant="displayMD"
+        class="uppercase mt-4 font-semibold tracking-tight text-black">
         {subsection.replace(/-/g, " ")}
         {index.replace(/-/g, " ")}
-      </h1>
-    </div>
-    <div class="max-w-screen 2xl:max-w-[100rem] mx-auto px-8 mt-12">
+      </Text>
+    </Wrapper>
+  </section>
+  <section>
+    <Wrapper
+      variant="wide"
+      class="mt-12">
       <Playground
         componentIndex={parseInt(index)}
         componentPath={component.file.replace(/.*\/src/, "src")}
         playgroundRef={`${section}-${subsection}-${index}`}>
         <component.default />
       </Playground>
-    </div>
+    </Wrapper>
   </section>
 </BaseLayout>
 <script>

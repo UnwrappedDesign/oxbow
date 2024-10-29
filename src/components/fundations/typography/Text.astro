@@ -59,17 +59,21 @@ export interface Props {
   for?: string; // Add 'for' attribute for label tags
   id?: string; // Add 'id' attribute for label tags
   href?: string; // Add 'href' attribute for anchor tags
+  title?: string; // Add 'title' attribute for anchor tags
+  ariaLabel?: string; // Add 'aria-label' attribute for anchor tags
+  role?: string; // Add 'role' attribute for anchor tags
+  tabindex?: number; // Add 'tabindex' attribute for accessibility
 }
 
 // Define the text styles with all specified variants
 const textStyles: { [key: string]: string } = {
   display6XL:
     "text-4xl leading-tight tracking-tight sm:text-7xl md:text-9xl lg:text-[12rem]",
-    display5XL:
+  display5XL:
     "text-4xl leading-tight tracking-tight sm:text-7xl md:text-8xl lg:text-[10rem]",
-    display4XL:
+  display4XL:
     "text-4xl leading-tight tracking-tight sm:text-7xl md:text-8xl lg:text-9xl",
-     display3XL:
+  display3XL:
     "text-4xl leading-tight tracking-tight sm:text-6xl md:text-7xl lg:text-8xl",
   display2XL:
     "text-4xl leading-tight tracking-tight sm:text-5xl md:text-6xl lg:text-7xl",
@@ -95,6 +99,7 @@ const {
   level = 2, // default to level 2 for headings
   class: className = "",
   for: htmlFor, // Capture 'for' attribute
+  tabindex, // Capture tabindex attribute
   ...rest
 } = Astro.props;
 
@@ -110,7 +115,10 @@ if (["h1", "h2", "h3", "h4", "h5", "h6"].includes(Tag)) {
 }
 ---
 
-<Tag class={combinedClasses} {...rest}>
+<Tag
+  class={combinedClasses}
+  tabindex={tabindex}
+  {...rest}>
   <slot name="left-icon" />
   <slot />
   <slot name="right-icon" />
