@@ -1,19 +1,26 @@
 ---
 import { reviews } from "../../data/reviews.json";
+import Text from "@/components/fundations/typography/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import MainHero from "@/components/fundations/containers/MainHero.astro";
 ---
 
 <section>
-  <div class="mx-auto px-8 max-w-7xl lg:px-24 py-12">
+  <Wrapper class="py-12">
     <div class="gap-3 lg:grid lg:grid-cols-2 justify-between">
-      <h2 class="text-black font-medium text-3xl tracking-tighter">
+      <Text
+        tag="h2"
+        variant="displaySM"
+        class="text-black font-medium tracking-tighter">
         Reviews and opinions
-      </h2>
+      </Text>
       <div class="flex flex-wrap gap-2 lg:ml-auto mt-3 lg:mt-0">
-        <a
+        <Text
+          tag="a"
           href="/customers"
           class="rounded-full flex items-center transition-all duration-200 focus:ring-2 focus:ring-offset-2 focus:outline-none text-base-700 bg-white ring-offset-2 ring-offset-base-50 hover:text-accent-600 focus:ring-accent-500 h-9 px-4 py-2 text-sm font-medium justify-center w-auto ring-1 ring-base-200">
           See them all
-        </a>
+        </Text>
       </div>
     </div>
     <ul
@@ -24,29 +31,38 @@ import { reviews } from "../../data/reviews.json";
           <>
             <li class="py-4 lg:py-8 relative">
               <div class="grid items-start grid-cols-1 gap-6  ">
-                <div class="order-last ">
-                  <p class="text-base-600 text-pretty">"{template.text}"</p>
-                </div>
                 <div class="inline-flex items-center gap-3">
                   <div class="flex-shrink-0">
                     <img
                       alt={template.name}
                       src={template.image}
-                      class="w-10 h-10 rounded-full lg:h-16 lg:w-16 grayscale"
+                      class="size-10 rounded-full lg:size-12 grayscale"
                     />
                   </div>
-                  <div class="flex-1 min-w-0 relative">
-                    <p class="text-sm font-medium text-black">
+                  <div class="flex-1 min-w-0  font-medium text-black">
+                    <Text
+                      tag="p"
+                      variant="textSM">
                       {template.name}
-                    </p>
-                    <p class="text-sm text-base-600">{template.work}</p>
+                    </Text>
+                    <Text
+                      tag="p"
+                      variant="textSM">
+                      {template.work}
+                    </Text>
                   </div>
                 </div>
+                <Text
+                  tag="p"
+                  variant="textBase"
+                  class="text-base-600 text-pretty">
+                  "{template.text}"
+                </Text>
               </div>
             </li>
           </>
         ))
       }
     </ul>
-  </div>
+  </Wrapper>
 </section>

@@ -1,26 +1,24 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
 import { reviews } from "@/data/reviews.json";
 import Cta from "@/components/global/Cta.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import MainHero from "@/components/fundations/containers/MainHero.astro";
 ---
 
 <BaseLayout>
+  <MainHero
+    showAlpineTailwind={false}
+    title="Meet Oxbow's customers and supporters"
+    subtitle="Oxbow UI enables individuals and businesses of all sizes to launch their products quickly, in days instead of months. Explore our range of customizable components and begin creating your ideal website today."
+  />
   <section>
-    <div class="mx-auto px-8 max-w-7xl lg:px-24 pt-12 relative">
-      <div class="pb-5 max-w-3xl">
-        <p class="text-base-900 font-medium text-4xl tracking-tighter">
-          Meet Oxbow's customers and supporters
-        </p>
-        <p class="mt-4 text-base-600">
-          Oxbow UI enables individuals and businesses of all sizes to launch
-          their products quickly, in days instead of months. Explore our range
-          of customizable components and begin creating your ideal website
-          today.
-        </p>
-      </div>
-
+    <Wrapper
+      variant="standard"
+      class="py-12">
       <ul
-        class="w-full border-y divide-y mt-8"
+        class="w-full border-y divide-y"
         role="list">
         {
           reviews.map((template) => (
@@ -28,21 +26,32 @@ import Cta from "@/components/global/Cta.astro";
               <li class="py-4 lg:py-8">
                 <div class="grid items-start grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-24">
                   <div class="order-last lg:col-span-2">
-                    <p class="text-base-600 text-pretty">"{template.text}"</p>
+                    <Text
+                      tag="p"
+                      variant="textBase"
+                      class="text-base-600 text-pretty">
+                      "{template.text}"
+                    </Text>
                   </div>
                   <div class="inline-flex items-center gap-3">
                     <div class="flex-shrink-0">
                       <img
                         alt="a picture of {template.name}"
                         src={template.image}
-                        class="w-10 h-10 rounded-full lg:h-16 lg:w-16 grayscale"
+                        class="size-10 rounded-full lg:size-12 grayscale"
                       />
                     </div>
-                    <div class="flex-1 min-w-0">
-                      <p class="text-sm font-medium text-black">
+                    <div class="flex-1 min-w-0 font-medium text-black">
+                      <Text
+                        tag="p"
+                        variant="textSM">
                         {template.name}
-                      </p>
-                      <p class="text-sm text-base-600">{template.work}</p>
+                      </Text>
+                      <Text
+                        tag="p"
+                        variant="textSM">
+                        {template.work}
+                      </Text>
                     </div>
                   </div>
                 </div>
@@ -51,8 +60,7 @@ import Cta from "@/components/global/Cta.astro";
           ))
         }
       </ul>
-    </div>
+    </Wrapper>
   </section>
-
   <Cta />
 </BaseLayout>
