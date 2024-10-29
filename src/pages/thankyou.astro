@@ -1,0 +1,147 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import MainHero from "@/components/fundations/containers/MainHero.astro";
+const todo = [
+  {
+    link: "/getting-started",
+    title: "Getting Started",
+    subtitle:
+      "Take a look at the breif getting started guide to get started with Oxbow UI if you want to use the Oxbow's styles and typography",
+  },
+  {
+    link: "/",
+    title: "Explore all blocks",
+    subtitle:
+      "Explore all blocks in different categories to get a better understanding of all the blocks available.",
+  },
+];
+const resources = [
+  {
+    link: "https://lexingtonthemes.com/",
+    title: "Lexington Themes",
+    subtitle:
+      "Free and premium multipage themes crafted with Astro JS and Tailwind CSS",
+  },
+  {
+    link: "https://colorsandfonts.com/",
+    title: "Colors & Fonts",
+    subtitle:
+      "Color & typography tools for web developers & digital designers.",
+  },
+  {
+    link: "https://mossaik.app/",
+    title: "Mossaik",
+    subtitle:
+      "Explore all blocks in different categories to get a better understanding of all the blocks available.",
+  },
+];
+---
+
+<BaseLayout>
+  <MainHero
+    textCentered={true}
+    showAlpineTailwind={false}
+    title="Thank You for Choosing Oxbow UI!"
+    subtitle="Clck on the button below to ge your magic link!"
+  />
+  <section>
+    <Wrapper
+      variant="narrow"
+      class="items-center justify-center flex">
+      <div class="space-y-3 items-center justify-center flex flex-col">
+        <button
+          type="submit"
+          aria-label="Get your link"
+          class="rounded-full flex items-center transition-all duration-200 focus:ring-2 focus:ring-offset-2 focus:outline-none text-white bg-accent-500 hover:bg-accent-600 focus:ring-accent-600 h-9 px-4 py-2 text-sm font-medium w-full justify-center">
+          Get your link
+        </button>
+        <div class="prose-styles">
+          <small
+            >By clicking continue, you agree to our <a href="/terms"
+              >Terms of Service</a
+            > and
+            <a href="/privacy"> Privacy Policy. </a>
+          </small>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+  <section>
+    <Wrapper
+      variant="narrow"
+      class="py-12 space-y-12">
+      <div>
+        <h2 class="text-base font-semibold text-base-900">What to do next?</h2>
+        <ul
+          role="list"
+          class="mt-2 flex flex-col border-b border-t border-base-200 py-2 divide-y divide-base-200">
+          {
+            todo.map((option) => (
+              <li class="w-full py-4 relative">
+                <Text
+                  tag="h3"
+                  variant="textBase"
+                  class="font-medium text-base-900">
+                  <Text
+                    tag="a"
+                    href={option.link}
+                    class="focus:outline-none flex items-center justify-between">
+                    <Text
+                      tag="span"
+                      class="absolute inset-0"
+                      aria-hidden="true"
+                    />
+                    <span>{option.title}</span>
+                    <span aria-hidden="true"> &rarr;</span>
+                  </Text>
+                </Text>
+                <Text
+                  tag="p"
+                  class="mt-1 text-base-500">
+                  {option.subtitle}
+                </Text>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div>
+        <h2 class="text-base font-semibold text-base-900">Other resources</h2>
+        <ul
+          role="list"
+          class="mt-2 flex flex-col border-b border-t border-base-200 py-2 divide-y divide-base-200">
+          {
+            resources.map((option) => (
+              <li class="w-full py-4 relative">
+                <Text
+                  tag="h3"
+                  variant="textBase"
+                  class="font-medium text-base-900">
+                  <Text
+                    tag="a"
+                    href={option.link}
+                    class="focus:outline-none flex items-center justify-between">
+                    <Text
+                      tag="span"
+                      class="absolute inset-0"
+                      aria-hidden="true"
+                    />
+                    <span>{option.title}</span>
+                    <span aria-hidden="true"> &rarr;</span>
+                  </Text>
+                </Text>
+                <Text
+                  tag="p"
+                  class="mt-1 text-base-500">
+                  {option.subtitle}
+                </Text>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>
