@@ -1,70 +1,14 @@
 ---
-import Button from "@/components/fundations/buttons/Button.astro";
-import Individual from "@/components/pricing/Individual.astro";
+import { AstroSeo } from "@astrolib/seo";
+import Cta from "@/components/global/Cta.astro";
 import Free from "@/components/pricing/Free.astro";
 import Team from "@/components/pricing/Team.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { AstroSeo } from "@astrolib/seo";
 import Included from "@/components/global/Included.astro";
-import Cta from "@/components/global/Cta.astro";
-const pricingData = [
-  {
-    img: "/images/oxbow/windLogoDark.png",
-    type: "Teams",
-    price: "$199",
-    futurePrice: "$399",
-    audience: "Companies, teams & clients",
-    features: [
-      "Same as individual — plus get access to your team. This tier gives you access to up to 5 people.",
-    ],
-    cardStyles: "relative flex  p-8 bg-white  ",
-    purchaseButton: {
-      text: "Buy for",
-      class:
-        "inline-flex 2xl:text-base h-10 items-center focus:outline-none bg-white border border-base-300 focus:ring-2 focus:ring-black focus:ring-offset-2 font-medium hover:bg-base-50 px-4 py-1 rounded-full text-black text-sm duration-200 w-full text-center justify-center",
-      link: "/api/buy/team",
-    },
-  },
-  {
-    img: "/images/oxbow/windLogo.png",
-    type: "Individual",
-    price: "$49 ",
-    futurePrice: "$149",
-    audience: "Personal and clients",
-    features: [
-      "All components ",
-      "Lifetime access ",
-      "Unlimited projects ",
-      "Free updates ",
-      "Use in SaaS",
-      "Email support",
-      "Discord support",
-    ],
-    cardStyles: "relative flex  p-8 bg-base-50 order-first lg:order-none",
-    purchaseButton: {
-      text: "Buy for ",
-      class:
-        "text-white h-10 2xl:text-base bg-black focus:ring-2 focus:ring-white focus:ring-offset-2 inline-flex items-center px-4 py-1 rounded-full border border-transparent hover:bg-black/10 hover:text-black ring-1 ring-transparent duration-200 text-sm w-full justify-center",
-      link: "/api/buy/individual",
-    },
-  },
-  {
-    img: "/images/oxbow/windLogo.png",
-    type: "Demos",
-    price: "$0",
-    audience: "Every category has a free demo",
-    features: ["1 Component from every category ready to copy to clipboard"],
-    cardStyles: " relative flex  p-8 bg-white ",
-    purchaseButton: {
-      text: "Browse components",
-      class:
-        "inline-flex 2xl:text-base h-10 items-center focus:outline-none bg-white border border-base-300 focus:ring-2 focus:ring-black focus:ring-offset-2 font-medium hover:bg-base-50 px-4 py-1 rounded-full text-black text-sm duration-200 w-full text-center justify-center",
-      link: "/",
-    },
-  },
-];
+import Individual from "@/components/pricing/Individual.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import MainHero from "@/components/fundations/containers/MainHero.astro";
 ---
-
 <AstroSeo
   title="Oxbow UI - Pricing "
   description="Unlock permanent access to all components, elements and layouts and future additions for a one-time payment."
@@ -101,136 +45,21 @@ const pricingData = [
   }}
 />
 <BaseLayout>
-  <section class="relative overflow-hidden">
-    <div class="mx-auto px-8 max-w-7xl lg:px-24 pt-12 relative">
-      <div class="max-w-3xl 2xl:max-w-4xl mx-auto text-center text-balance">
-        <div
-          class="flex items-center gap-4 text-sm 2xl:text-lg mx-auto text-base-500 justify-center">
-          <div class="inline-flex gap-2 items-center">
-            <svg
-              class="flex-none inline size-6"
-              viewBox="0 0 64 64"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <g clip-path="url(#clip0_459_2)">
-                <path
-                  d="M32 12.75C23.4668 12.75 18.1332 17.0168 16 25.55C19.2 21.2833 22.9333 19.6832 27.2 20.75C29.6343 21.3585 31.3743 23.2498 33.3003 25.0795C36.4378 28.2643 40.0687 31.95 48 31.95C56.5332 31.95 61.8668 27.6832 64 19.15C60.8 23.4167 57.0667 25.0167 52.8 23.95C50.3657 23.3415 48.6257 21.4503 46.6997 19.6205C43.5622 16.4358 39.9313 12.75 32 12.75ZM16 31.95C7.46675 31.95 2.13325 36.2168 0 44.75C3.2 40.4833 6.93325 38.8833 11.2 39.95C13.6342 40.5585 15.3742 42.4497 17.3002 44.2795C20.4377 47.4642 24.0687 51.15 32 51.15C40.5332 51.15 45.8668 46.8833 48 38.35C44.8 42.6168 41.0667 44.2167 36.8 43.15C34.3657 42.5415 32.6258 40.6502 30.6998 38.8205C27.5623 35.6357 23.9313 31.95 16 31.95Z"
-                  fill="#38BDF9"
-                  stroke="#38BDF9"
-                  stroke-width="0.25"
-                ></path>
-              </g>
-              <defs>
-                <clipPath id="clip0_459_2">
-                  <rect
-                    width="64"
-                    height="64"
-                    fill="white"
-                  ></rect>
-                </clipPath>
-              </defs>
-            </svg> Tailwind CSS
-          </div>
-          ·
-          <div class="inline-flex gap-2 items-center">
-            <svg
-              class="flex-none inline size-6"
-              viewBox="0 0 64 64"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <g clip-path="url(#clip0_460_7)">
-                <path
-                  d="M49.7769 17L63.9992 31.16L49.7769 45.3197L35.5547 31.1597L49.7769 17Z"
-                  fill="#77C1D2"
-                ></path>
-                <path
-                  d="M14.2222 17L43.7067 46.355H15.2622L0 31.16L14.2222 17Z"
-                  fill="#2D3441"
-                ></path>
-              </g>
-              <defs>
-                <clipPath id="clip0_460_7">
-                  <rect
-                    width="64"
-                    height="29.5"
-                    fill="white"
-                    transform="translate(0 17)"
-                  ></rect>
-                </clipPath>
-              </defs>
-            </svg>
-            Alpine JS
-          </div>
-        </div>
-        <h1
-          class="text-4xl mt-8 font-semibold tracking-tight text-black 2xl:text-6xl lg:text-balance">
-          One-time payment for lifetime access and future updates.
-        </h1>
-        <p
-          class="mt-3 inline-flex items-center rounded-md bg-zinc-50 px-2 py-1 text-xs 2xl:text-base font-medium text-accent-600 ring-1 ring-inset ring-zinc-500/10">
-          No subscription required
-        </p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mt-8">
-        <Team />
-        <Individual />
-        <Free />
-      </div>
-
-      <div class="grid grid-cols-1 mt-5 md:grid-cols-2 items-center w-full">
-        <div class="inline-flex items-center gap-3">
-          <h1 class="text-base-500 2xl:text-lg">Secure Payment via</h1>
-          <img
-            class="h-5"
-            src="/images/oxbow/lemon.svg"
-            alt=""
-          />
-        </div>
-        <div class="mt-3 md:mt-0 lg:ml-auto">
-          <ul
-            class="flex flex-wrap list-none"
-            role="list">
-            <li>
-              <img
-                height="50"
-                src="/images/oxbow/paypal.svg"
-                alt=""
-              />
-            </li>
-            <li>
-              <img
-                height="50"
-                src="/images/oxbow/applepay.svg"
-                alt=""
-              />
-            </li>
-            <li>
-              <img
-                height="50"
-                src="/images/oxbow/googlepay.svg"
-                alt=""
-              />
-            </li>
-            <li>
-              <img
-                height="50"
-                src="/images/oxbow/mastercard.svg"
-                alt=""
-              />
-            </li>
-            <li>
-              <img
-                height="50"
-                src="/images/oxbow/visa.svg"
-                alt=""
-              />
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+  <MainHero
+    textCentered={true}
+    title="One-time payment for lifetime access and future updates"
+    additionalText="No subscription required"
+    additionalTextClasses="px-2 mt-1 font-medium text-accent-600 justify-center   "
+  />
+  <section>
+    <Wrapper
+      variant="standard"
+      class="grid grid-cols-1 md:grid-cols-3 gap-2">
+      <Team />
+      <Individual />
+      <Free />
+    </Wrapper>
   </section>
-
   <Included />
   <Cta />
 </BaseLayout>
