@@ -1,4 +1,6 @@
 ---
+import Text from "@/components/fundations/typography/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 const siteLinks = [
   {
     category: "Navigation",
@@ -8,7 +10,7 @@ const siteLinks = [
       { title: "Pricing", href: "/pricing" },
       { title: "Support", href: "/support" },
       { title: "Affiliates", href: "/affiliates" },
-      { title: "Reviews", href: "/customers" },
+      { title: "Customers", href: "/customers" },
     ],
   },
   {
@@ -26,13 +28,15 @@ const siteLinks = [
 ---
 
 <footer>
-  <div class="mx-auto px-8 max-w-7xl lg:px-24  pt-24 relative">
+  <Wrapper class="pt-24 relative">
     <div class="flex flex-col gap-12">
       <div class="gap-8">
         <div class="border-b pb-5 sm:flex items-start sm:justify-between">
-          <a
+          <Text
+            tag="a"
+            variant="textBase"
             href="/"
-            class="flex items-center w-full gap-3 font-medium sm:w-auto group 2xl:text-base not-prose"
+            class="flex items-center w-full gap-3 font-medium sm:w-auto group"
             ><span
               class="duration-300 group-hover:text-accent-600 group-hover:animate-pulse"
               ><img
@@ -40,31 +44,47 @@ const siteLinks = [
                 src="/images/oxbow/windLogo.png"
                 alt="#_"
               /></span
-            > oxbow ui</a
+            > oxbow ui</Text
           >
-          <p class="text-base-600 font-medium text-xs lg:text-sm max-w-xl">
+          <Text
+            tag="p"
+            variant="textBase"
+            class="text-base-600 font-medium max-w-xl">
             Premium components, elements and layouts For freelancers,
             developers, businesses, and personal use. Beautifully crafted with
             Tailwind CSS — Simple & easy to customise.
-          </p>
+          </Text>
         </div>
 
-        <div class="flex flex-col gap-6 prose-styles">
+        <div class="flex flex-col gap-24 pt-8">
           {
             siteLinks.map((category) => (
               <div>
-                <h2>{category.category}</h2>
+                <Text
+                  tag="h3"
+                  variant="textLG"
+                  class="font-semibold text-black">
+                  {category.category}
+                </Text>
                 <ul
-                  class="w-full space-y-2 not-prose"
+                  class="w-full space-y-1 mt-4"
                   role="list">
                   {category.items.map((item) => (
                     <li>
-                      <a
-                        class="flex items-center justify-between w-full hover:text-accent-500"
+                      <Text
+                        tag="a"
+                        variant="textBase"
+                        class="flex items-center text-base-600  justify-between w-full font-normal focus:outline-none hover:text-accent-600"
                         href={item.href}>
                         {item.title}
-                        <span>&rarr;</span>
-                      </a>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="size-4"
+                          fill="currentColor"
+                          viewBox="0 0 256 256">
+                          <path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z" />
+                        </svg>
+                      </Text>
                     </li>
                   ))}
                 </ul>
@@ -85,19 +105,26 @@ const siteLinks = [
         ></path>
       </svg>
 
-      <div
-        class="relative bg-white border-t col-span-full prose-styles 2xl:text-lg">
-        <p>
-          <span x-data="{ year: new Date().getFullYear() }">
-            <span>© Oxbow UI</span>
-            <span x-text="year"></span>
-          </span> — All rights reserved. Oxbow UI is not affiliated with the Tailwind
+      <div class="relative bg-white border-t col-span-full py-8">
+        <Text
+          tag="p"
+          variant="textBase"
+          class="text-base-600">
+          <Text
+            tag="span"
+            x-data="{ year: new Date().getFullYear() }">
+            <Text tag="span">© Oxbow UI</Text>
+            <Text
+              tag="span"
+              x-text="year"
+            />
+          </Text> — All rights reserved. Oxbow UI is not affiliated with the Tailwind
           Labs team, nor is it endorsed or sponsored by them. This website was built
           with Astro JS & Tailwind CSS, crafted in Åland Islands & Spain by
           <a href="https://michaelandreuzza.com">Michael Andreuzza</a>
           and <a href="https://gabriel.perales.me/">Gabriel Perales</a>.
-        </p>
+        </Text>
       </div>
     </div>
-  </div>
+  </Wrapper>
 </footer>
