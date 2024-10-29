@@ -23,6 +23,7 @@ interface ImportMeta {
 declare global {
   interface Window {
     Alpine: Alpine;
+    umami: any;
   }
   
   namespace App {
