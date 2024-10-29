@@ -1,26 +1,44 @@
+---
+import Text from "@/components/fundations/typography/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+---
+
 <section x-data="loginForm()">
-  <div class="max-w-xl mx-auto px-8 py-12 lg:py-32">
-    <div class="prose-styles text-center text-balance">
-      <h1 x-text="emailSent ? 'Check Your Inbox' : 'Sign in with your email'">
-      </h1>
-      <p
+  <Wrapper
+    variant="hero"
+    class="lg:py-32">
+    <div class="text-center text-balance max-w-xl mx-auto">
+      <Text
+        tag="h1"
+        variant="displayXL"
+        class="text-black tracking-tighter font-semibold text-balance font-display"
+        x-text="emailSent ? 'Check Your Inbox' : 'Sign in with your email'"
+      />
+      <Text
         x-cloak
-        x-show="!emailSent">
+        tag="p"
+        variant="textBase"
+        x-show="!emailSent"
+        class="text-base-600 text-pretty mt-4">
         Please enter the email address linked to your account, and we will send
         a unique sign-in link to your inbox.
-      </p>
-      <p
+      </Text>
+      <Text
         x-cloak
-        x-show="emailSent">
+        tag="p"
+        variant="textBase"
+        x-show="emailSent"
+        class="text-base-600 text-pretty mt-4">
         Please click the link in the email we sent to sign in to your account.
         If you can't find the email, be sure to check your spam folder.
-      </p>
+      </Text>
     </div>
     <form
+    x-cloak
       @submit.prevent="sendEmail()"
-      x-cloak
-      x-show="!emailSent || errorMessage">
-      <div class="space-y-3 mt-6 pt-6 border-t">
+      x-show="!emailSent || errorMessage"
+      >
+      <div class="space-y-3 mt-6 pt-6 border-t max-w-xl mx-auto">
         <div>
           <label
             for="email"
@@ -37,7 +55,7 @@
             placeholder="email@example.com"
             required
             aria-required="true"
-            class="block w-full px-4 py-2 h-10 2xl:h-12 border-2 focus:ring-2 focus:ring-accent-500 bg-chalk border-transparent ring-1 ring-base-200 duration-300 rounded-lg appearance-none text-accent-500 placeholder-base-300 focus:border-accent-300 focus:outline-none sm:text-sm"
+            class="block w-full px-4 py-2 h-10  border-2 focus:ring-2 focus:ring-accent-500 bg-chalk border-transparent ring-1 ring-base-200 duration-300 rounded-lg appearance-none text-accent-500 placeholder-base-300 focus:border-accent-300 focus:outline-none sm:text-sm"
           />
           <div class="mt-4 space-y-2 text-xs text-base-500">
             <div
@@ -69,16 +87,19 @@
       x-cloak
       x-show="emailSent"
       class="mt-6 pt-6 border-t">
-      <div class="prose-styles">
-        <p>Didn't receive the email?</p>
-        <button
-          class="rounded-full flex items-center transition-all duration-200 focus:ring-2 focus:ring-offset-2 focus:outline-none text-white bg-accent-500 hover:bg-accent-600 focus:ring-accent-600 h-9 px-4 py-2 text-sm font-medium w-full justify-center"
-          @click="clearForm()">
-          Try again
-        </button>
-      </div>
+      <Text
+        tag="p"
+        variant="textBase"
+        class="text-base-600 text-pretty mt-4"
+        >Didn't receive the email?</Text
+      >
+      <button
+        class="rounded-full flex items-center transition-all duration-200 focus:ring-2 focus:ring-offset-2 focus:outline-none text-white bg-accent-500 hover:bg-accent-600 focus:ring-accent-600 h-9 px-4 py-2 text-sm font-medium w-full justify-center"
+        @click="clearForm()">
+        Try again
+      </button>
     </div>
-  </div>
+  </Wrapper>
 </section>
 <script>
   import Alpine from "alpinejs";

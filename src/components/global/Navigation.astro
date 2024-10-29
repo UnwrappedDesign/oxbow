@@ -1,52 +1,8 @@
 ---
 const user = Astro.locals.user;
+import Text from "@/components/fundations/typography/Text.astro";
 ---
 
-<div
-  x-show="showAlert"
-  x-data="{ showAlert: false }"
-  x-cloak
-  role="alert"
-  class="relative isolate flex items-center gap-x-6 overflow-hidden bg-base-50 px-6 py-2.5 sm:px-3.5">
-  <div class="flex flex-wrap items-center mx-auto relative sr-only">
-    <button
-      @click="showAlert = false"
-      class="underline border text-base-900 absolute right-0 focus:bg-white focus:text-accent-700 hover:bg-white hover:text-accent-500 rounded-full p-0.5"
-      ><svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="size-3 icon icon-tabler icon-tabler-x"
-        viewBox="0 0 24 24"
-        stroke-width="2"
-        stroke="currentColor"
-        fill="none"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        ><path
-          stroke="none"
-          d="M0 0h24v24H0z"
-          fill="none"
-        ></path><path d="M18 6l-12 12"></path><path d="M6 6l12 12"></path></svg
-      ></button
-    >
-    <p
-      class="text-xs md:text-sm leading-6 font-medium text-black 2xl:text-sm lg:pr-20">
-      Hey there! We noticed you're visiting from [Country]. We support parity
-      pricing, here is a <span class="text-accent-600 font-bold uppercase"
-        >[X]%</span
-      > discount. Just apply the code <span
-        class="text-accent-600 font-bold uppercase">[DISCOUNT_CODE]</span
-      > at checkout.
-      <span class="items-baseline inline-flex sr-only">
-        Get a &nbsp; <strong class="text-accent-600 font-bold uppercase"
-          >40% discount.
-        </strong> &nbsp; Apply code &nbsp; <strong
-          class="text-accent-600 font-bold uppercase"
-          >OXBOW40
-        </strong> &nbsp; at checkout.
-      </span>
-    </p>
-  </div>
-</div>
 <div
   class="items-center w-full mx-auto relative"
   x-data={`{...navigation(), username: "${user?.email ?? ""}"}`}>
@@ -54,20 +10,31 @@ const user = Astro.locals.user;
     x-cloak
     x-show="!username"
     class="flex items-center justify-center py-2 lg:h-12 bg-base-50 border-b px-8">
-    <div
-      class="text-xs md:text-base leading-6 font-medium text-black 2xl:text-lg">
-      <strong class="font-semibold text-accent-500">Beta Pricing:</strong> Get it
-      for <strong class="font-semibold text-accent-500">$49</strong> during the beta
-      phase, including all features and future updates.
-    </div>
+    <Text
+      tag="p"
+      variant="textBase"
+      class="font-medium text-black">
+      <Text
+        tag="strong"
+        class="font-semibold text-accent-500"
+        >Beta Pricing:</Text
+      > Get it for
+      <Text
+        tag="strong"
+        class="font-semibold text-accent-500"
+        >$49</Text
+      > during the beta phase, including all features and future updates.
+    </Text>
   </div>
   <div
     class="w-full flex flex-col mx-auto px-8 max-w-7xl lg:px-24 lg:bg-none md:flex-row md:items-center md:justify-between py-4"
     x-data="{ open: false }">
     <div class="items-center flex justify-between flex-row lg:justify-start">
-      <a
+      <Text
+        tag="a"
+        variant="textBase"
         href="/"
-        class="flex items-center w-full gap-3 font-medium sm:w-auto group 2xl:text-lg"
+        class="flex items-center w-full gap-3 font-medium sm:w-auto group"
         ><span
           class="duration-300 group-hover:text-accent-600 group-hover:animate-pulse"
           ><img
@@ -75,7 +42,7 @@ const user = Astro.locals.user;
             src="/images/oxbow/windLogo.png"
             alt="#_"
           /></span
-        > oxbow ui</a
+        > oxbow ui</Text
       >
       <button
         class="cursor-pointer sm:hidden"
@@ -127,7 +94,7 @@ const user = Astro.locals.user;
     </div>
     <nav
       :class="{'flex': open, 'hidden': !open}"
-      class="items-center flex-col flex-grow hidden justify-end md:flex text-sm lg:text-sm md:flex-row md:pb-0 gap-x-4 gap-y-4 xl:text-sm 2xl:text-base text-black">
+      class="items-center flex-col flex-grow text-base-500 hidden font-medium justify-end md:flex md:flex-row md:pb-0 gap-x-4 gap-y-4">
       <button
         class="cursor-pointer hidden lg:inline-flex"
         onclick="document.querySelector('ninja-keys').open()">
@@ -150,36 +117,44 @@ const user = Astro.locals.user;
       </button>
       <div class="hidden lg:block h-6 w-px bg-base-200"></div>
       <div class="flex flex-col md:flex-row items-center gap-3">
-        <a
+        <Text
+          tag="a"
+          variant="textBase"
           x-show="!username"
           href="https://lexingtonthemes.com"
-          class="text-base-500 hover:text-accent-500 font-medium"
-          >Astro &amp; Tailwind CSS Templates</a
+          class="hover:text-accent-500 font-medium"
+          >Astro &amp; Tailwind CSS Templates</Text
         >
 
-        <a
+        <Text
+          x-cloak
+          tag="a"
+          variant="textBase"
           x-show="!username"
           href="/getting-started"
-          x-cloak
-          class="text-base-500 hover:text-accent-500 font-medium hidden lg:block"
-          >Getting Started</a
+          class="hover:text-accent-500 hidden lg:block"
+          >Getting Started</Text
         >
-        <a
+        <Text
+          x-cloak
+          tag="a"
           href="/login"
-          x-cloak
+          variant="textBase"
           x-show="!username"
-          class="text-base-500 hover:text-accent-500 font-medium hidden lg:block"
-          >Log in</a
+          class="hover:text-accent-500 hidden lg:block"
+          >Log in</Text
         >
-        <a
-          x-show="!username"
-          href="/pricing"
+        <Text
           x-cloak
+          tag="a"
+          href="/pricing"
+          variant="textBase"
+          x-show="!username"
           id="access-navigation-cta"
           data-umami-event="access-navigation-cta"
-          class="flex items-center justify-center duration-200 focus:ring-2 transition-shadow focus:outline-none text-white bg-accent-500 hover:bg-accent-600 focus:ring-accent-500/50 h-9 px-4 py-3 text-sm 2xl:text-base font-medium rounded-lg">
-          Get all access for <span>$49</span>
-        </a>
+          class="rounded-full flex items-center transition-all duration-200 focus:ring-2 focus:ring-offset-2 focus:outline-none text-white bg-accent-500 hover:bg-accent-600 focus:ring-accent-600 h-10 px-4 py-2 font-medium w-auto justify-center">
+          Get all access for <span> $49</span>
+        </Text>
       </div>
       <div
         x-popover
@@ -210,29 +185,35 @@ const user = Astro.locals.user;
         <div
           x-popover:panel
           x-transition.origin.top.left
-          class="absolute right-0 top-full z-50 -mr-0.5 mt-3 w-48 origin-top-right divide-y divide-base-200 rounded-lg bg-white text-sm font-normal text-base-600 shadow ring-1 ring-base-900/5 focus:outline-none sm:-mr-3.5 transform opacity-100 scale-100">
-          <p
+          class="absolute right-0 top-full z-50 -mr-0.5 mt-3 w-48 origin-top-right divide-y divide-base-200 rounded-lg bg-white font-normal text-base-600 shadow ring-1 ring-base-900/5 focus:outline-none sm:-mr-3.5 transform opacity-100 scale-100">
+          <div
             class="truncate px-3.5 py-3"
             role="none">
-            <span
-              class="block text-xs text-base-500"
+            <Text
+              tag="span"
               role="none"
-              >Signed in as</span
+              variant="textSM"
+              class="block text-base-500"
+              >Signed in as</Text
             >
-            <span
-              class="mt-0.5 font-semibold"
+            <Text
+              tag="span"
               role="none"
+              variant="textSM"
               x-text="username"
-            ></span>
-          </p>
+              class="mt-0.5 font-semibold"
+            />
+          </div>
           <div
             class="py-1.5"
             role="none">
-            <a
-              class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex"
+            <Text
+              tag="a"
+              tabindex={-1}
               role="menuitem"
-              tabindex="-1"
-              href="https://discord.gg/9WH6G2XJRa">
+              variant="textSM"
+              href="https://discord.gg/9WH6G2XJRa"
+              class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -252,12 +233,14 @@ const user = Astro.locals.user;
                   d="M15.5 17c0 1 1.5 3 2 3c1.5 0 2.833 -1.667 3.5 -3c.667 -1.667 .5 -5.833 -1.5 -11.5c-1.457 -1.015 -3 -1.34 -4.5 -1.5l-.972 1.923a11.913 11.913 0 0 0 -4.053 0l-.975 -1.923c-1.5 .16 -3.043 .485 -4.5 1.5c-2 5.667 -2.167 9.833 -1.5 11.5c.667 1.333 2 3 3.5 3c.5 0 2 -2 2 -3"
                 ></path><path d="M7 16.5c3.5 1 6.5 1 10 0"></path></svg
               >Discord
-            </a>
-            <a
-              class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex"
+            </Text>
+            <Text
+              tag="a"
+              tabindex={-1}
               role="menuitem"
-              tabindex="-1"
-              href="/support">
+              href="/support"
+              variant="textSM"
+              class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -276,13 +259,15 @@ const user = Astro.locals.user;
                 ></path><path d="M15 15l3.35 3.35"></path><path
                   d="M9 15l-3.35 3.35"></path><path d="M5.65 5.65l3.35 3.35"
                 ></path><path d="M18.35 5.65l-3.35 3.35"></path></svg
-              >Support</a
+              >Support</Text
             >
-            <a
-              class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex"
+            <Text
+              tag="a"
+              tabindex={-1}
               role="menuitem"
-              tabindex="-1"
               href="/license"
+              variant="textSM"
+              class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -300,13 +285,15 @@ const user = Astro.locals.user;
                   d="M15 21h-9a3 3 0 0 1 -3 -3v-1h10v2a2 2 0 0 0 4 0v-14a2 2 0 1 1 2 2h-2m2 -4h-11a3 3 0 0 0 -3 3v11"
                 ></path><path d="M9 7l4 0"></path><path d="M9 11l4 0"
                 ></path></svg
-              >License</a
+              >License</Text
             >
-            <a
-              class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex"
+            <Text
+              tag="a"
+              tabindex={-1}
               role="menuitem"
-              tabindex="-1"
+              variant="textSM"
               href="/getting-started"
+              class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -324,13 +311,15 @@ const user = Astro.locals.user;
                   d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"
                 ></path><path d="M11 14h1v4h1"></path><path d="M12 11h.01"
                 ></path></svg
-              >Docs</a
+              >Docs</Text
             >
-            <a
-              class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex"
+            <Text
+              tag="a"
+              tabindex={-1}
               role="menuitem"
-              tabindex="-1"
+              variant="textSM"
               href="https://lexingtonthemes.com/"
+              class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex"
               ><svg
                 class="size-4"
                 viewBox="0 0 147 148"
@@ -408,17 +397,19 @@ const user = Astro.locals.user;
                   fill="currentColor"
                   fill-opacity="0.2"
                 ></path>
-              </svg>Astro Themes</a
+              </svg>Astro Themes</Text
             >
           </div>
           <div
             class="py-1.5"
             role="none">
-            <a
-              class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex"
+            <Text
+              tag="a"
+              tabindex={-1}
               role="menuitem"
-              tabindex="-1"
+              variant="textSM"
               href="https://oxbow.lemonsqueezy.com/billing"
+              class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -436,14 +427,14 @@ const user = Astro.locals.user;
                   d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"
                 ></path><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"
                 ></path></svg
-              >Account portal ↗</a
+              >Account portal ↗</Text
             >
             <button
               type="button"
-              class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex w-full"
-              role="menuitem"
               tabindex="-1"
+              role="menuitem"
               @click="signOut()"
+              class="py-1.5 px-3.5 hover:bg-base-50 text-sm hover:text-accent-500 items-center gap-2 flex w-full"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
