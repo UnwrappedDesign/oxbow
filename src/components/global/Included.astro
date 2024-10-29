@@ -1,4 +1,6 @@
 ---
+import Text from "@/components/fundations/typography/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 const features = [
   {
     title: "No subscription required",
@@ -144,7 +146,6 @@ const logos = [
     href: "https://vitejs.dev/guide/#scaffolding-your-first-vite-project",
     image: "vite.svg",
   },
-
   // Add more items as needed
 ];
 const started = [
@@ -186,24 +187,34 @@ const lifetime = [
 <section
   class="scroll-mt-24"
   id="features">
-  <div class="mx-auto px-8 max-w-7xl lg:px-24 py-12 space-y-24">
+  <Wrapper
+    variant="standard"
+    class="py-12 space-y-24">
     <section class="grid grid-cols-1 pt-10 gap-y-6 gap-8">
       <div class="border-b pb-5 sm:flex sm:items-center sm:justify-between">
-        <h3 class="text-black font-medium text-3xl tracking-tighter">
+        <Text
+          tag="h3"
+          variant="textXL"
+          class="text-black font-medium tracking-tighter">
           What's included
-        </h3>
+        </Text>
       </div>
       <ul
         class="grid grid-cols-1 gap-6 lg:gap-12 md:grid-cols-2 lg:grid-cols-3 mt-12">
         {
           features.map((feature) => (
             <li>
-              <p class="text-base 2xl:text-lg text-base-500 text-pretty">
-                <strong class="font-semibold text-black">
+              <Text
+                tag="p"
+                variant="textBase"
+                class=" text-base-500 text-pretty">
+                <Text
+                  tag="strong"
+                  class="font-semibold text-black">
                   {feature.title}
-                </strong>
+                </Text>
                 — {feature.description}
-              </p>
+              </Text>
             </li>
           ))
         }
@@ -214,18 +225,22 @@ const lifetime = [
         <div class="sm:flex sm:items-center sm:justify-between">
           <div
             class="grid grid-cols-1 gap-4 lg:gap-12 md:grid-cols-2 items-start">
-            <div>
-              <p class="text-black font-medium text-3xl tracking-tighter">
-                All components, elements and layouts
-              </p>
-            </div>
-            <div>
-              <p class="text-base-600 2xl:text-lg">
-                <strong class="text-black"
-                  >Premium components, elements and layouts!</strong
-                > ━ Save months of time and build your startup landing page in hours!
-              </p>
-            </div>
+            <Text
+              tag="h3"
+              variant="textXL"
+              class="text-black font-medium tracking-tighter">
+              All components, elements and layouts
+            </Text>
+            <Text
+              tag="p"
+              variant="textBase"
+              class="text-base-600">
+              <Text
+                tag="strong"
+                class="text-black"
+                >Premium components, elements and layouts!</Text
+              > ━ Save months of time and build your startup landing page in hours!
+            </Text>
           </div>
         </div>
       </div>
@@ -243,10 +258,17 @@ const lifetime = [
                 loading="lazy"
                 decoding="async"
               />
-              <p class="text-base 2xl:text-lg text-base-500 text-pretty mt-4">
-                <strong class="font-semibold text-black">{inside.title}</strong>
+              <Text
+                tag="p"
+                variant="textBase"
+                class=" text-base-500 text-pretty mt-4">
+                <Text
+                  tag="strong"
+                  class=" text-black">
+                  {inside.title}
+                </Text>
                 — {inside.description}
-              </p>
+              </Text>
             </li>
           ))
         }
@@ -255,10 +277,17 @@ const lifetime = [
         {
           insideTech.map((inside) => (
             <li>
-              <p class="text-base 2xl:text-lg text-base-500 text-pretty">
-                <strong class="font-semibold text-black">{inside.title}</strong>
+              <Text
+                tag="p"
+                variant="textBase"
+                class=" text-base-500 text-pretty">
+                <Text
+                  tag="strong"
+                  class=" text-black">
+                  {inside.title}
+                </Text>
                 — {inside.description}
-              </p>
+              </Text>
             </li>
           ))
         }
@@ -266,21 +295,29 @@ const lifetime = [
     </section>
     <section class="grid grid-cols-1 pt-10 gap-y-6 gap-8">
       <div class="border-b pb-5 sm:flex sm:items-center sm:justify-between">
-        <h3 class="text-black font-medium text-3xl tracking-tighter">
+        <Text
+          tag="h3"
+          variant="textXL"
+          class="text-black font-medium tracking-tighter">
           Get started without configuring anything
-        </h3>
+        </Text>
       </div>
       <ul
         class="grid grid-cols-1 gap-6 lg:gap-12 md:grid-cols-2 lg:grid-cols-3 mt-12">
         {
           started.map((started) => (
             <li>
-              <p class="text-base 2xl:text-lg text-base-500 text-pretty">
-                <strong class="font-semibold text-black">
+              <Text
+                tag="p"
+                variant="textBase"
+                class=" text-base-500 text-pretty">
+                <Text
+                  tag="strong"
+                  class=" text-black">
                   {started.title}
-                </strong>
+                </Text>
                 — {started.description}
-              </p>
+              </Text>
             </li>
           ))
         }
@@ -290,7 +327,8 @@ const lifetime = [
         {
           logos.map((item) => (
             <li>
-              <a
+              <Text
+                tag="a"
                 href={item.href}
                 class="duration-200 hover:opacity-100">
                 <img
@@ -298,7 +336,7 @@ const lifetime = [
                   class="size-8 mx-auto"
                   alt={item.image}
                 />
-              </a>
+              </Text>
             </li>
           ))
         }
@@ -306,9 +344,12 @@ const lifetime = [
     </section>
     <section class="grid grid-cols-1 pt-10 pb-12 gap-8">
       <div class="border-b pb-5 sm:flex sm:items-center sm:justify-between">
-        <h3 class="text-black font-medium text-3xl tracking-tighter">
+        <Text
+          tag="h3"
+          variant="textXL"
+          class="text-black font-medium tracking-tighter">
           Lifetime access
-        </h3>
+        </Text>
       </div>
       <ul
         role="list"
@@ -316,16 +357,21 @@ const lifetime = [
         {
           lifetime.map((lifetime) => (
             <li>
-              <p class="text-base 2xl:text-lg text-base-500 text-pretty">
-                <strong class="font-semibold text-black">
+              <Text
+                tag="p"
+                variant="textBase"
+                class=" text-base-500 text-pretty">
+                <Text
+                  tag="strong"
+                  class=" text-black">
                   {lifetime.title}
-                </strong>
+                </Text>
                 — {lifetime.description}
-              </p>
+              </Text>
             </li>
           ))
         }
       </ul>
     </section>
-  </div>
+  </Wrapper>
 </section>
