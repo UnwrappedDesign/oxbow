@@ -13,16 +13,18 @@ interface Props {
   additionalText?: string; // Optional prop for additional text
   additionalTextClasses?: string; // Optional classes for additional text
   slot?: any;
+  showButton?: boolean; // New optional prop
 }
 
 const {
   title,
   subtitle,
   highlightText,
-  showAlpineTailwind = true, // Default to true if not specified
-  textCentered = false, // Default to false if not specified
+  showAlpineTailwind = true,
+  textCentered = false,
   additionalText,
-  additionalTextClasses = "", // Default to empty if not specified
+  additionalTextClasses = "",
+  showButton = false, // Default to false if not specified
 } = Astro.props;
 ---
 
@@ -38,7 +40,6 @@ const {
           </div>
         )
       }
-      {/* Render AlpineTailwind only if specified */}
       <Text
         tag="h1"
         variant="displayLG"
@@ -48,7 +49,7 @@ const {
       <div
         class={`flex flex-col ${textCentered ? "text-center text-balance max-w-xl mx-auto" : ""}`}>
         {
-          subtitle && ( // Render subtitle only if it exists
+          subtitle && (
             <Text
               tag="p"
               variant="textBase"
@@ -58,7 +59,7 @@ const {
           )
         }
         {
-          highlightText && ( // Render highlightText only if it exists
+          highlightText && (
             <Text
               tag="span"
               variant="text-base-600 text-pretty">
@@ -67,13 +68,29 @@ const {
           )
         }
         {
-          additionalText && ( // Render additionalText only if it exists
+          additionalText && (
             <Text
               tag="p"
               variant="textMD"
               class={`${additionalTextClasses}`}>
               {additionalText}
             </Text>
+          )
+        }
+        {
+          showButton && ( // Conditionally render the button
+            <div class="flex mt-8">
+              <Text
+                tag="a"
+                href="/pricing"
+                variant="textBase"
+                id="access-navigation-cta"
+                data-umami-event="access-navigation-cta"
+                class="rounded-full md:hidden flex items-center transition-all gap-x-2 duration-200 focus:ring-2 focus:ring-offset-2 focus:outline-none text-white bg-accent-500 hover:bg-accent-600 focus:ring-accent-600 h-10 px-4 py-2 font-medium w-auto justify-center"
+              >
+                Get all access for <span> $59</span><del class="text-white/70"> $149</del>
+              </Text>
+            </div>
           )
         }
       </div>
