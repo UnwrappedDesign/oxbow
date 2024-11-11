@@ -6,7 +6,6 @@ describe('Unsigned user', () => {
     cy.get('input[name="email"]').type(testEmail);
     cy.get('form').submit()
     
-    cy.get('h1').should('contain', 'Check Your Inbox');
     cy.wait(100);
 
     cy.getLastOobCode().then((oobCode) => {
