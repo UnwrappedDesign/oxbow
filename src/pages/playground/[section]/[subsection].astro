@@ -21,7 +21,8 @@ const formattedSubsection = subsection.replace("-", " ");
     <Wrapper variant="hero">
       <button
         class="flex items-center gap-2 text-base-500 hover:text-accent-500"
-        onclick="history.back();">
+        onclick="history.back();"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -31,59 +32,57 @@ const formattedSubsection = subsection.replace("-", " ");
           stroke-linecap="round"
           stroke-linejoin="round"
           class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left size-5"
-          ><path
-            stroke="none"
-            d="M0 0h24v24H0z"
-            fill="none"
-          ></path><path d="M5 12l14 0"></path><path d="M5 12l6 6"></path><path
+          ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+            d="M5 12l14 0"></path><path d="M5 12l6 6"></path><path
             d="M5 12l6 -6"></path></svg
         >Go Back</button
       >
       <Text
         tag="h1"
         variant="displayMD"
-        class="uppercase mt-4 font-semibold tracking-tight text-black">
+        class="uppercase mt-4 font-semibold tracking-tight text-black"
+      >
         {subsection.replace(/-/g, " ")}
       </Text>
     </Wrapper>
-    <Wrapper
-      variant="wide"
-      class="mt-12">
+    <Wrapper variant="standard" class="mt-12">
       <div
-        id="masonry-grid"
-        class="relative w-full">
+        class="relative w-full grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-5"
+      >
         {
           sectionComponents.map((component, index) => {
-            const imagePath =
-              "/src/screenshots/" +
-              component.file
-                .split("/")
-                .slice(-3)
-                .join("_")
-                .replace(".astro", ".png");
-            return (
-              images[imagePath] && (
-                <Text
-                  tag="a"
-                  href={`/playground/${section}/${subsection}/${index + 1}`}
-                  class="masonry-item absolute w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-2 group">
-                  <div class=" absolute top-2 right-2 p-1">
-                    <div class="group-hover:flex items-center gap-1 bg-white py-1 mt-1 hidden px-2 border border-base-200 rounded text-xs">
-                      <span class="text-black capitalize">
+            const imagePath = `/src/screenshots/${component.file
+              .split("/")
+              .slice(-3)
+              .join("_")
+              .replace(".astro", ".png")}`;
 
-                        {subsection.replace(/-/g, " ")}
-                        {index + 1}
-                      </span>
-                      {index === 0 && <span class=""> Free</span>}
-                    </div>
+            if (!images[imagePath]) {
+              return null;
+            }
+
+            return (
+              <Text
+                tag="a"
+                href={`/playground/${section}/${subsection}/${index + 1}`}
+                class="relative group"
+              >
+                <div class="absolute top-2 right-2 p-1">
+                  <div class="group-hover:flex items-center gap-1 bg-white py-1 mt-1 hidden px-2 border border-base-200 rounded text-xs">
+                    <span class="text-black capitalize">
+                      {subsection.replace(/-/g, " ")}
+                      {index + 1}
+                    </span>
+                    {index === 0 && <span> Free</span>}
                   </div>
-                  <Image
-                    src={images[imagePath]()}
-                    alt=""
-                    class="w-full object-cover mt-1 border border-base-200 cursor-pointer"
-                  />
-                </Text>
-              )
+                </div>
+
+                <Image
+                  src={images[imagePath]()}
+                  alt={`${subsection} preview ${index + 1}`}
+                  class="w-full object-cover mt-1 border border-base-200 cursor-pointer"
+                />
+              </Text>
             );
           })
         }
@@ -91,82 +90,3 @@ const formattedSubsection = subsection.replace("-", " ");
     </Wrapper>
   </section>
 </BaseLayout>
-
-<script type="module">
-  const masonryGrid = document.getElementById("masonry-grid");
-  const gap = 2;
-
-  function getColumnWidth() {
-    const windowWidth = window.innerWidth;
-    if (windowWidth >= 1280) return masonryGrid.offsetWidth / 5; // xl
-    if (windowWidth >= 1024) return masonryGrid.offsetWidth / 4; // lg
-    if (windowWidth >= 768) return masonryGrid.offsetWidth / 3; // md
-    if (windowWidth >= 640) return masonryGrid.offsetWidth / 2; // sm
-    return masonryGrid.offsetWidth; // default (1 column)
-  }
-
-  function createMasonryLayout() {
-    if (!masonryGrid) return;
-
-    const items = Array.from(
-      masonryGrid.getElementsByClassName("masonry-item")
-    );
-    const columnWidth = getColumnWidth();
-    const columnCount = Math.floor(masonryGrid.offsetWidth / columnWidth);
-    const columns = Array.from({ length: columnCount }, () => []);
-
-    items.forEach((item) => {
-      const img = item.querySelector("img");
-      if (img) {
-        img.style.width = "100%";
-        img.style.height = "auto";
-
-        const onImageLoad = () => {
-          const shortestColumn = columns.reduce(
-            (minCol, col, i) =>
-              col.reduce((sum, item) => sum + item.offsetHeight, 0) <
-              columns[minCol].reduce((sum, item) => sum + item.offsetHeight, 0)
-                ? i
-                : minCol,
-            0
-          );
-
-          columns[shortestColumn].push(item);
-
-          const x = shortestColumn * columnWidth;
-          const y = columns[shortestColumn]
-            .slice(0, -1)
-            .reduce((sum, item) => sum + item.offsetHeight + gap, 0);
-
-          item.style.transform = `translate(${x}px, ${y}px)`;
-
-          const maxHeight = Math.max(
-            ...columns.map((col) =>
-              col.reduce((sum, item) => sum + item.offsetHeight + gap, 0)
-            )
-          );
-          masonryGrid.style.height = `${maxHeight}px`;
-        };
-
-        if (img.complete) {
-          onImageLoad();
-        } else {
-          img.onload = onImageLoad;
-        }
-      }
-    });
-  }
-
-  // Initial layout
-  createMasonryLayout();
-
-  // Update layout on window resize
-  window.addEventListener("resize", createMasonryLayout);
-
-  // Update layout when all images are loaded
-  window.addEventListener("load", createMasonryLayout);
-
-  // Optional: Update layout when new images are added
-  const observer = new MutationObserver(createMasonryLayout);
-  observer.observe(masonryGrid, { childList: true, subtree: true });
-</script>
