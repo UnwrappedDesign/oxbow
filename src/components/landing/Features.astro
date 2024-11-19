@@ -1,120 +1,59 @@
 ---
 import { Image } from "astro:assets";
-import shwocase from "@/images/assets/showcase.png";
-import Button from "@/components/fundations/buttons/Button.astro";
+import showcase from "@/images/assets/showcase.png";
 import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+const inside = [
+  {
+    img: "/images/oxbow/marketing.png",
+    title: "Marketing",
+    description:
+      "Offers hero sections, feature segments, newsletter sign-up forms, and more to boost your marketing efforts.",
+  },
+  {
+    img: "/images/oxbow/application.png",
+    title: "Application",
+    description:
+      " Includes buttons, form controls, application layouts, dialogs, and more to enhance your application’s user interface.",
+  },
+  {
+    img: "/images/oxbow/ecommerce.png",
+    title: "eCommerce",
+    description:
+      "Provides checkout forms, shopping carts, product views, and more tailored for ecommerce functionalities.",
+  },
+];
 ---
 
 <section>
-  <Wrapper variant="standardPaddingless" class="relative">
-    <Image class="-mt-32" src={shwocase} alt="shwocase" />
-    <div
-      class="grid grid-cols-1 border-dashed sr-only md:grid-cols-2 lg:grid-cols-6 lg:grid-rows-2 border-y border-base-200"
+  <Wrapper variant="standard" class="relative">
+    <ul
+      class="grid grid-cols-1 -mt-8 text-center gap-x-6 gap-y-6 sm:grid-cols-2 sm:gap-y-10 md:grid-cols-3 xl:gap-x-8"
     >
-      <div
-        class="relative border-b border-dashed lg:col-span-2 lg:border-b-0 border-base-200"
-      >
-        <div class="relative flex flex-col h-full overflow-hidden">
-          <div class="p-8 border-b border-dashed border-base-200">
-            <Text
-              tag="p"
-              variant="textLG"
-              class="font-mono font-medium tracking-tight text-black text-lg/7 text-balance"
-            >
-              Marketing
+      {
+        inside.map((inside) => (
+          <li>
+            <Text tag="p" variant="textBase" class=" text-base-500 text-pretty">
+              <Text tag="strong" class="text-black ">
+                {inside.title}
+              </Text>
+              — {inside.description}
             </Text>
-            <Text tag="p" variant="textSM" class="max-w-lg mt-2 text-base-500">
-              Offers hero sections, feature segments, newsletter sign-up forms,
-              and more to boost your marketing efforts.
-            </Text>
-          </div>
-        </div>
-      </div>
-      <div
-        class="relative border-b border-dashed lg:col-span-2 lg:border-b-0 border-base-200 lg:border-l"
-      >
-        <div class="relative flex flex-col h-full overflow-hidden">
-          <div class="p-8 border-b border-dashed border-base-200">
-            <Text
-              tag="p"
-              variant="textLG"
-              class="font-mono font-medium tracking-tight text-black text-lg/7 text-balance"
-            >
-              Application
-            </Text>
-            <Text tag="p" variant="textSM" class="max-w-lg mt-2 text-base-500">
-              Includes buttons, form controls, application layouts, dialogs, and
-              more to enhance your user interface.
-            </Text>
-          </div>
-        </div>
-      </div>
-      <div
-        class="relative border-b border-dashed lg:col-span-2 lg:border-b-0 border-base-200 lg:border-l"
-      >
-        <div class="relative flex flex-col h-full overflow-hidden">
-          <div class="p-8 border-b border-dashed border-base-200">
-            <Text
-              tag="p"
-              variant="textLG"
-              class="font-mono font-medium tracking-tight text-black text-lg/7 text-balance"
-            >
-              eCommerce
-            </Text>
-            <Text tag="p" variant="textSM" class="max-w-lg mt-2 text-base-500">
-              Provides checkout forms, shopping carts, product views, and more
-              tailored for ecommerce functionalities.
-            </Text>
-          </div>
-        </div>
-      </div>
-      <div
-        class="relative border-t border-dashed lg:col-span-3 border-base-200"
-      >
-        <div class="relative flex flex-col h-full overflow-hidden">
-          <div
-            class="relative flex items-center justify-center w-full h-full gap-12 overflow-hidden border-t border-dashed min-h-80 border-base-200"
-          >
-          </div>
-          <div class="order-first p-8">
-            <Text
-              tag="p"
-              variant="textLG"
-              class="font-mono font-medium tracking-tight text-black text-lg/7 text-balance"
-            >
-              Vanilla HTML & Tailwind CSS
-            </Text>
-            <Text tag="p" variant="textSM" class="max-w-lg mt-2 text-base-500">
-              Interactive components include a functional example in HTML &
-              Tailwind CSS included where necessary.
-            </Text>
-          </div>
-        </div>
-      </div>
-      <div
-        class="relative border-t border-dashed lg:col-span-3 border-base-200 lg:border-l"
-      >
-        <div class="relative flex flex-col h-full overflow-hidden">
-          <div
-            class="relative flex items-center justify-center w-full h-full gap-12 overflow-hidden border-t border-dashed min-h-80 border-base-200"
-          >
-          </div>
-          <div class="order-first p-8">
-            <Text
-              tag="p"
-              variant="textLG"
-              class="font-mono font-medium tracking-tight text-black text-lg/7 text-balance"
-            >
-              Diverse Selection
-            </Text>
-            <Text tag="p" variant="textSM" class="max-w-lg mt-2 text-base-500">
-              Each category provides a variety of UI patterns, helping you
-              easily find the perfect foundation for any project.
-            </Text>
-          </div>
-        </div>
-      </div>
-    </div>
+          </li>
+        ))
+      }
+    </ul>
+  </Wrapper>
+</section>
+<section class="border-b border-base-200">
+  <Wrapper
+    variant="standardPaddingless"
+    class="relative -mt-12 overflow-hidden"
+  >
+    <Image
+      class="object-cover object-center -mb-24 drop-shadow"
+      src={showcase}
+      alt="showcase"
+    />
   </Wrapper>
 </section>
