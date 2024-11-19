@@ -1,5 +1,7 @@
 ---
 import { Image } from "astro:assets";
+
+
 import type { Template } from "@/data/entries.json";
 interface Props {
   entries: Template[];
@@ -38,20 +40,20 @@ const entriesWithQuantity = entries
 ---
 
 <ul
-  class="col-span-3 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 sm:gap-y-10 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 xl:gap-x-8">
+  class="grid grid-cols-1 col-span-3 gap-x-6 gap-y-6 sm:grid-cols-2 sm:gap-y-10 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 xl:gap-x-8">
   {
     entriesWithQuantity.map((template) => (
       <li class="relative ">
-        <div class="group relative group rounded-lg ">
+        <div class="relative rounded-lg group ">
           <Image
-            class="object-bottom  object-cover  "
+            class="object-cover object-bottom "
             alt={template.name}
             src={template.image()}
           />
-          <div class="flex items-center justify-between mt-2  ">
-            <p class=" text-sm 2xl:text-base font-medium text-base-900 group-hover:text-accent-600">
+          <div class="flex items-center justify-between mt-2 ">
+            <p class="text-sm font-medium 2xl:text-base text-base-900 group-hover:text-accent-600">
               <a
-                class="flex justify-between gap-2 items-center"
+                class="flex items-center justify-between gap-2"
                 title={template.name}
                 href={template.link}>
                 <span class="absolute -inset-2.5 z-10" />
@@ -61,7 +63,7 @@ const entriesWithQuantity = entries
                 </span>
               </a>
             </p>
-            <p class="relative flex items-center gap-1 text-xs 2xl:text-sm font-medium text-base-400">
+            <p class="relative flex items-center gap-1 text-xs font-medium 2xl:text-sm text-base-400">
               {template.quantity}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
