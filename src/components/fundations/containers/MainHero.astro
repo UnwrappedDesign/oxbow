@@ -1,7 +1,7 @@
 ---
 import Text from "@/components/fundations/typography/Text.astro";
 import AlpineTailwind from "@/components/global/AlpineTailwind.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro"
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 
 interface Props {
   title: string;
@@ -29,9 +29,7 @@ const {
 ---
 
 <section>
-  <Wrapper
-    variant="hero"
-    class="py-12">
+  <Wrapper variant="hero" class="py-12">
     <div class={`flex flex-col ${textCentered ? "justify-center" : ""}`}>
       {
         showAlpineTailwind && (
@@ -43,52 +41,51 @@ const {
       <Text
         tag="h1"
         variant="displayLG"
-        class={`text-black tracking-tighter font-semibold text-balance font-display mt-2 ${textCentered ? "text-center text-balance" : ""}`}>
+        class={`text-black tracking-tighter font-semibold max-w-2xl mx-auto text-balance font-display 2xl:text-8xl mt-4 ${textCentered ? "text-center text-balance" : ""}`}
+      >
         {title}
       </Text>
       <div
-        class={`flex flex-col ${textCentered ? "text-center text-balance max-w-xl mx-auto" : ""}`}>
+        class={`flex flex-col ${textCentered ? "text-center text-balance max-w-xl mx-auto " : ""}`}
+      >
         {
           subtitle && (
             <Text
               tag="p"
-              variant="textBase"
-              class={`text-base-600 text-pretty mt-4 ${textCentered ? "text-center" : ""}`}>
+              variant="textLG"
+              class={`text-base-600 text-balance mt-4 2xl:text-3xl ${textCentered ? "text-center" : ""}`}
+            >
               {subtitle}
             </Text>
           )
         }
         {
           highlightText && (
-            <Text
-              tag="span"
-              variant="text-base-600 text-pretty">
+            <Text tag="span" variant="text-base-600 text-pretty">
               {highlightText}
             </Text>
           )
         }
         {
           additionalText && (
-            <Text
-              tag="p"
-              variant="textMD"
-              class={`${additionalTextClasses}`}>
+            <Text tag="p" variant="textMD" class={`${additionalTextClasses}`}>
               {additionalText}
             </Text>
           )
         }
         {
           showButton && ( // Conditionally render the button
-            <div class="flex mt-8">
+            <div class={`flex mt-8 ${textCentered ? "justify-center" : ""}`}>
               <Text
                 tag="a"
                 href="/pricing"
                 variant="textBase"
                 id="access-navigation-cta"
                 data-umami-event="access-navigation-cta"
-                class="rounded-full md:hidden flex items-center transition-all gap-x-2 duration-200 focus:ring-2 focus:ring-offset-2 focus:outline-none text-white bg-accent-500 hover:bg-accent-600 focus:ring-accent-600 h-10 px-4 py-2 font-medium w-auto justify-center"
+                class="flex items-center justify-center w-auto h-10 px-4 py-2 font-medium text-white transition-all duration-200 rounded-full md:hidden gap-x-2 focus:ring-2 focus:ring-offset-2 focus:outline-none bg-accent-950 hover:bg-accent-600 focus:ring-accent-600"
               >
-                Get all access for <span> $59</span><del class="text-white/70"> $149</del>
+                Get all access for <del class="text-white/70"> $149</del>{" "}
+                <span> $59</span>
               </Text>
             </div>
           )

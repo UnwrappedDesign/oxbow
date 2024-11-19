@@ -1,0 +1,59 @@
+---
+import { Image } from "astro:assets";
+import showcase from "@/images/assets/showcase.png";
+import Text from "@/components/fundations/typography/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+const inside = [
+  {
+    img: "/images/oxbow/marketing.png",
+    title: "Marketing",
+    description:
+      "Offers hero sections, feature segments, newsletter sign-up forms, and more to boost your marketing efforts.",
+  },
+  {
+    img: "/images/oxbow/application.png",
+    title: "Application",
+    description:
+      " Includes buttons, form controls, application layouts, dialogs, and more to enhance your application’s user interface.",
+  },
+  {
+    img: "/images/oxbow/ecommerce.png",
+    title: "eCommerce",
+    description:
+      "Provides checkout forms, shopping carts, product views, and more tailored for ecommerce functionalities.",
+  },
+];
+---
+
+<section>
+  <Wrapper variant="standard" class="relative">
+    <ul
+      class="grid grid-cols-1 -mt-8 text-center gap-x-6 gap-y-6 sm:grid-cols-2 sm:gap-y-10 md:grid-cols-3 xl:gap-x-8"
+    >
+      {
+        inside.map((inside) => (
+          <li>
+            <Text tag="p" variant="textBase" class=" text-base-500 text-pretty">
+              <Text tag="strong" class="text-black ">
+                {inside.title}
+              </Text>
+              — {inside.description}
+            </Text>
+          </li>
+        ))
+      }
+    </ul>
+  </Wrapper>
+</section>
+<section class="border-b border-base-200">
+  <Wrapper
+    variant="standardPaddingless"
+    class="relative -mt-12 overflow-hidden"
+  >
+    <Image
+      class="object-cover object-center -mb-24 drop-shadow"
+      src={showcase}
+      alt="showcase"
+    />
+  </Wrapper>
+</section>
