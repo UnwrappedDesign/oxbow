@@ -1,26 +1,44 @@
 ---
 import Text from "@/components/fundations/typography/Text.astro";
-
 ---
+
 <div
-x-cloak
-x-show="!username"
-class="flex items-center justify-center py-2 lg:h-12 bg-accent-600 border-b px-8"
+  x-cloak
+  x-show="!username"
+  class="flex items-center justify-center py-2 lg:h-12 bg-accent-600 border-b px-8"
 >
-<Text tag="p" variant="textBase" class="font-medium text-white">
   <Text tag="p" variant="textBase" class="font-medium text-white">
-    <Text tag="strong" class="font-semibold text-white" />
-    <Text
-      tag="span"
-      class="font-semibold uppercase text-white font-sans"
-      >Last chance</Text
-    > — Get a
-    <Text
-      tag="strong"
-      class="font-semibold uppercase text-white font-sans"
-      >60% Discount.
+    <Text tag="p" variant="textBase" class="font-medium text-white">
+      <Text tag="strong" class="font-semibold text-white" />
+      <Text tag="span" class="font-semibold uppercase text-white font-sans"
+        >BLACK WEEK</Text
+      > — Get a
+      <Text tag="strong" class="font-semibold uppercase text-white font-sans"
+        >70% Discount.
+      </Text>
+      <!-- Discount already applied at checkout. -->
+      Use the code <Text
+        tag="strong"
+        class="font-semibold uppercase text-white font-sans"
+        >OXBOW70
+      </Text>at checkout. Only
+
+      <span id="countdown-days"></span> days left
     </Text>
-    Discount already applied at checkout.
   </Text>
-</Text>
 </div>
+<script type="module">
+  document.addEventListener("DOMContentLoaded", () => {
+    const targetDate = new Date(2024, 11, 2);
+    const countdownElement = document.getElementById("countdown-days");
+    const updateCountdown = () => {
+      const diff = targetDate - new Date();
+      countdownElement.textContent = Math.max(
+        0,
+        Math.floor(diff / (1000 * 60 * 60 * 24))
+      );
+    };
+    updateCountdown();
+    setInterval(updateCountdown, 3600000); // Update every hour
+  });
+</script>
