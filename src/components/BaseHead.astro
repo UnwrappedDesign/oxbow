@@ -94,8 +94,18 @@ const umamiWebsiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
 ></script>
 <script>
   import * as amplitude from '@amplitude/analytics-browser';
+  import { sessionReplayPlugin } from '@amplitude/plugin-session-replay-browser';
 
-  amplitude.init('cc7bc3ea3a00c1eb00bd5d091a6b9f9c', {"serverZone":"EU","autocapture":{"elementInteractions":true}});
+  amplitude.init(
+    'cc7bc3ea3a00c1eb00bd5d091a6b9f9c', 
+    {"serverZone":"EU","autocapture":{"elementInteractions":true}}
+  );
+
+  const sessionReplayTracking = sessionReplayPlugin({
+    sampleRate: 1
+  });
+
+  amplitude.add(sessionReplayTracking);
 </script>
 
 {
