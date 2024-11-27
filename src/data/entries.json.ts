@@ -26,6 +26,7 @@ const templates: { [key: string]: Template[] } = {
     { name: "Contact Sections", link: "/playground/marketing/contact", image: "contact.png" },
     { name: "Newsletter Call to Action", link: "/playground/marketing/cta-newsletter", image: "newsletter.png" },
     { name: "Call to Actions", link: "/playground/marketing/cta", image: "cta.png" },
+    { name: "Gallery", link: "/playground/marketing/gallery", image: "gallery.png" },
   ],
   // Page Examples
    pageExamples: [
