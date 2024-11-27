@@ -5,7 +5,8 @@ import OfferBanner60Accent from "@/components/global/OfferBanner60Accent.astro";
 ---
 
 <div
-  class="items-center w-full mx-auto relative"
+  class="items-center w-full mx-auto top-0 z-50 bg-white"
+  :class="{ 'fixed': window.location.pathname === '/' }"
   x-data={`{...navigation(), username: "${user?.email ?? ""}"}`}
 >
   <OfferBanner60Accent />
@@ -129,10 +130,10 @@ import OfferBanner60Accent from "@/components/global/OfferBanner60Accent.astro";
           tag="a"
           href="/pricing"
           variant="textBase"
-          x-show="!username"
+          x-show="!username && window.location.pathname !== '/pricing'"
           id="access-eigation-cta"
           data-umami-event="access-navigation-cta"
-          class="rounded-full flex items-center transition-all shrink-0 gap-x-2 duration-200 focus:ring-2 focus:ring-offset-2 focus:outline-none text-white bg-accent-950 hover:bg-accent-600 focus:ring-accent-600 h-10 px-4 py-2 font-medium w-auto justify-center"
+          class="rounded-full flex items-center transition-all shrink-0 gap-x-2 duration-200 focus:ring-2 focus:ring-offset-2 focus:outline-none text-white bg-accent-600 hover:bg-accent-700 focus:ring-accent-600 h-10 px-4 py-2 font-medium w-auto justify-center"
         >
           Get all access for <del class="text-white/70"> $149</del>
           <span> $45</span>
