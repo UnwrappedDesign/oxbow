@@ -1,0 +1,53 @@
+---
+import { AstroSeo } from "@astrolib/seo";
+import Cta from "@/components/global/Cta.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Reviews from "@/components/global/Reviews.astro";
+import ToolEntries from "@/components/tools/ToolEntries.astro";
+import MainHero from "@/components/fundations/containers/MainHero.astro";
+---
+
+<AstroSeo
+  title="Oxbow UI - Free Tailwind CSS Tools "
+  description="Free Tailwind CSS Tools to enhhance your projects. "
+  canonical="https://www.oxbowui.com"
+  openGraph={{
+    url: "https://www.oxbowui.com/images/OpenGraph/twitter.png",
+    title: "Oxbow UI - Home",
+    description: "Free Tailwind CSS Tools to enhhance your projects.",
+    images: [
+      {
+        url: "https://www.oxbowui.com/images/OpenGraph/facebook.png",
+        width: 1200,
+        height: 630,
+        alt: "oxbow",
+        type: "image/png",
+      },
+      {
+        url: "https://www.oxbowui.com/images/OpenGraph/twitter.png",
+        width: 4096,
+        height: 4096,
+        alt: "oxbow",
+        type: "image/png",
+      },
+      { url: "https://www.oxbowui.com/images/OpenGraph/facebook.ong" },
+      { url: "https://www.oxbowui.com/images/OpenGraph/twitter.png" },
+    ],
+    site_name: "oxbow",
+  }}
+  twitter={{
+    handle: "@Mike_Andreuzza",
+    site: "https://www.oxbowui.com",
+    cardType: "summary_large_image",
+  }}
+/>
+<BaseLayout>
+  <MainHero
+    showAlpineTailwind={false}
+    title="Free tools for Tailwind CSS"
+    subtitle="Free resources to make Tailwind development easier"
+  />
+  <ToolEntries />
+  <Reviews />
+  <Cta />
+</BaseLayout>
