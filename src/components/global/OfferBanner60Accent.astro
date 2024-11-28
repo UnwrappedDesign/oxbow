@@ -24,17 +24,32 @@ import Text from "@/components/fundations/typography/Text.astro";
   </Text>
 </div>
 <script type="module">
-  document.addEventListener("DOMContentLoaded", () => {
+  // Vanilla JavaScript Countdown
+  document.addEventListener("DOMContentLoaded", function () {
+    // Set the target date to December 2, 2024, at midnight
     const targetDate = new Date(2024, 11, 2);
+    targetDate.setHours(0, 0, 0, 0); // Reset time to midnight
+
     const countdownElement = document.getElementById("countdown-days");
-    const updateCountdown = () => {
-      const diff = targetDate - new Date();
-      countdownElement.textContent = Math.max(
-        0,
-        Math.floor(diff / (1000 * 60 * 60 * 24))
-      );
-    };
+
+    function updateCountdown() {
+      const now = new Date();
+      now.setHours(0, 0, 0, 0); // Reset current time to midnight
+
+      const diff = targetDate - now;
+
+      if (diff > 0) {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        countdownElement.textContent = days;
+      } else {
+        countdownElement.textContent = 0; // If date has passed
+      }
+    }
+
+    // Initial calculation
     updateCountdown();
-    setInterval(updateCountdown, 3600000); // Update every hour
+
+    // Update every 1 hour
+    setInterval(updateCountdown, 1000 * 60 * 60);
   });
 </script>
