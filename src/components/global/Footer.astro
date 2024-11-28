@@ -28,96 +28,77 @@ const siteLinks = [
 ---
 
 <footer>
-  <Wrapper class="pt-24 relative">
+  <Wrapper class=" relative">
     <div class="flex flex-col gap-12">
-      <div class="gap-8">
-        <div class="border-b pb-5 sm:flex items-start sm:justify-between">
-          <Text
-            tag="a"
-            variant="textBase"
-            href="/"
-            class="flex items-center w-full gap-3 font-medium sm:w-auto group"
-            ><span
-              class="duration-300 group-hover:text-accent-600 group-hover:animate-pulse"
-              ><img
-                class="h-7 2xl:h-9"
-                src="/images/oxbow/windLogo.png"
-                alt="#_"
-              /></span
-            > oxbow ui</Text
-          >
-          <Text
-            tag="p"
-            variant="textBase"
-            class="text-base-600 font-medium max-w-xl">
-            Premium components, elements and layouts For freelancers,
-            developers, businesses, and personal use. Beautifully crafted with
-            Tailwind CSS — Simple & easy to customise.
-          </Text>
-        </div>
-
-        <div class="flex flex-col gap-24 pt-8">
-          {
-            siteLinks.map((category) => (
-              <div>
-                <Text
-                  tag="h3"
-                  variant="textLG"
-                  class="font-semibold text-black">
-                  {category.category}
-                </Text>
-                <ul
-                  class="w-full space-y-1 mt-4"
-                  role="list">
-                  {category.items.map((item) => (
-                    <li>
-                      <Text
-                        tag="a"
-                        variant="textBase"
-                        class="flex items-center text-base-600  justify-between w-full font-normal focus:outline-none hover:text-accent-600"
-                        href={item.href}>
-                        {item.title}
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="size-4"
-                          fill="currentColor"
-                          viewBox="0 0 256 256">
-                          <path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z" />
-                        </svg>
-                      </Text>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))
-          }
-        </div>
+      <div class="border-b pb-5 sm:flex items-start sm:justify-between">
+        <Text
+          tag="a"
+          variant="textBase"
+          href="/"
+          class="flex items-center w-full gap-3 font-medium sm:w-auto group"
+          ><span
+            class="duration-300 group-hover:text-accent-600 group-hover:animate-pulse"
+            ><img
+              class="h-7 2xl:h-9"
+              src="/images/oxbow/windLogo.png"
+              alt="#_"
+            /></span
+          > oxbow ui</Text
+        >
+        <Text
+          tag="p"
+          variant="textBase"
+          class="text-base-600 font-medium max-w-xl"
+        >
+          Premium components, elements and layouts For freelancers, developers,
+          businesses, and personal use. Beautifully crafted with Tailwind CSS —
+          Simple & easy to customise.
+        </Text>
       </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-6 gap-12">
+        {
+          siteLinks.map((category) => (
+            <div>
+              <Text tag="h3" variant="textLG" class="font-semibold text-black">
+                {category.category}
+              </Text>
+              <ul class="w-full space-y-1 mt-4" role="list">
+                {category.items.map((item) => (
+                  <li>
+                    <Text
+                      tag="a"
+                      variant="textBase"
+                      class="flex items-center text-base-600  justify-between w-full font-normal focus:outline-none hover:text-accent-600"
+                      href={item.href}
+                    >
+                      {item.title}
+                    </Text>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+
       <svg
         class="-mb-[3.6rem] lg:-mb-[4rem] text-black
          mt-24"
         viewBox="0 0 2531 452"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg">
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path
           d="M167.474 451.463C67.1668 451.463 0.295087 385.853 0.295087 284.284C0.295087 182.714 67.1668 117.104 167.474 117.104C265.889 117.104 332.761 182.714 332.761 284.284C332.761 385.853 265.889 451.463 167.474 451.463ZM93.0323 284.284C93.0323 339.169 122.683 375.128 167.474 375.128C210.373 375.128 240.024 339.169 240.024 284.284C240.024 229.398 210.373 193.439 167.474 193.439C122.683 193.439 93.0323 229.398 93.0323 284.284ZM326.96 442L429.16 283.653L330.114 126.567H427.268L460.703 189.654C473.321 217.412 472.059 237.6 472.059 253.371H505.495C505.495 237.6 504.864 218.043 517.481 189.654L551.548 126.567H647.439L550.917 283.653L653.117 442H554.071L517.481 376.39C504.864 349.263 505.495 329.706 505.495 315.196H472.059C472.059 329.706 472.69 349.263 460.073 376.39L422.851 442H326.96ZM885.768 451.463C825.205 451.463 794.293 419.92 777.26 366.296H746.347V372.605C758.965 392.162 772.844 422.443 777.26 442H685.784V0.394434H777.26V64.1118C777.26 116.474 765.273 161.265 746.347 196.593V202.902H777.26C794.293 148.648 829.621 117.104 885.768 117.104C966.519 117.104 1025.19 185.869 1025.19 284.284C1025.19 382.699 966.519 451.463 885.768 451.463ZM776.629 284.284C776.629 339.8 808.172 375.128 854.225 375.128C900.909 375.128 932.452 339.8 932.452 284.284C932.452 228.768 900.909 193.439 854.225 193.439C808.172 193.439 776.629 228.768 776.629 284.284ZM1216.39 451.463C1116.08 451.463 1049.21 385.853 1049.21 284.284C1049.21 182.714 1116.08 117.104 1216.39 117.104C1314.8 117.104 1381.67 182.714 1381.67 284.284C1381.67 385.853 1314.8 451.463 1216.39 451.463ZM1141.94 284.284C1141.94 339.169 1171.59 375.128 1216.39 375.128C1259.28 375.128 1288.94 339.169 1288.94 284.284C1288.94 229.398 1259.28 193.439 1216.39 193.439C1171.59 193.439 1141.94 229.398 1141.94 284.284ZM1463.59 442L1377.79 126.567H1466.75L1508.38 291.223C1515.95 322.766 1518.48 361.249 1517.22 387.115H1548.13C1547.5 361.249 1547.5 322.766 1556.33 291.223L1603.64 126.567H1694.49L1741.8 291.223C1751.27 322.766 1751.27 361.249 1750 387.115H1780.92C1780.29 361.249 1782.18 322.766 1790.38 291.223L1832.02 126.567H1920.34L1834.54 442H1708.37L1649.7 207.318L1590.4 442H1463.59ZM2385.17 126.567V442H2303.15C2306.31 420.551 2315.77 391.531 2324.6 371.974V365.665H2293.69C2282.34 418.658 2246.38 451.463 2189.6 451.463C2122.1 451.463 2084.88 405.41 2084.88 323.397V126.567H2176.35V306.995C2176.35 351.786 2194.65 375.128 2231.24 375.128C2265.93 375.128 2293.69 340.431 2293.69 295.008V126.567H2385.17ZM2439.46 442V126.567H2529.67V442H2439.46ZM2439.46 86.823V0.394434H2530.93V86.823H2439.46Z"
-          fill="currentColor"
-        ></path>
+          fill="currentColor"></path>
       </svg>
 
       <div class="relative bg-white border-t col-span-full py-8">
-        <Text
-          tag="p"
-          variant="textBase"
-          class="text-base-600">
-          <Text
-            tag="span"
-            x-data="{ year: new Date().getFullYear() }">
+        <Text tag="p" variant="textBase" class="text-base-600">
+          <Text tag="span" x-data="{ year: new Date().getFullYear() }">
             <Text tag="span">© Oxbow UI</Text>
-            <Text
-              tag="span"
-              x-text="year"
-            />
+            <Text tag="span" x-text="year" />
           </Text> — All rights reserved. Oxbow UI is not affiliated with the Tailwind
           Labs team, nor is it endorsed or sponsored by them. This website was built
           with Astro JS & Tailwind CSS, crafted in Åland Islands & Spain by
