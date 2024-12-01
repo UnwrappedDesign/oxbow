@@ -26,30 +26,40 @@ import Text from "@/components/fundations/typography/Text.astro";
 <script type="module">
   // Vanilla JavaScript Countdown
   document.addEventListener("DOMContentLoaded", function () {
-    // Set the target date to December 2, 2024, at midnight
-    const targetDate = new Date(2024, 11, 2);
+    // Set the target date to December 3, 2024, at midnight
+    const targetDate = new Date(2024, 11, 3);
     targetDate.setHours(0, 0, 0, 0); // Reset time to midnight
 
     const countdownElement = document.getElementById("countdown-days");
+    const linkElement = document.getElementById("black-friday-cta-navigation");
 
     function updateCountdown() {
       const now = new Date();
-      now.setHours(0, 0, 0, 0); // Reset current time to midnight
-
       const diff = targetDate - now;
 
       if (diff > 0) {
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        countdownElement.textContent = days;
+        const hours = Math.floor(
+          (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+
+        if (days > 0) {
+          // Show days and hours
+          countdownElement.textContent = `${days} day${days > 1 ? 's' : ''} and ${hours} hour${hours > 1 ? 's' : ''}`;
+        } else {
+          // Show only hours
+          countdownElement.textContent = `${hours} hour${hours > 1 ? 's' : ''}`;
+        }
       } else {
-        countdownElement.textContent = 0; // If date has passed
+        // Countdown has ended, remove the Link element
+        linkElement.remove();
       }
     }
 
     // Initial calculation
     updateCountdown();
 
-    // Update every 1 hour
-    setInterval(updateCountdown, 1000 * 60 * 60);
+    // Update every 1 minute
+    setInterval(updateCountdown, 1000 * 60);
   });
 </script>
