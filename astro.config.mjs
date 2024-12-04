@@ -6,6 +6,8 @@ import alpinejs from "@astrojs/alpinejs";
 import { defineConfig } from 'astro/config';
 import { loadEnv } from "vite";
 
+import react from '@astrojs/react';
+
 const { PUBLIC_APP_BASE_URL } = loadEnv(process.env.NODE_ENV, process.cwd(), "");
 
 const localhost = PUBLIC_APP_BASE_URL?.includes('localhost') ?? false;
@@ -30,11 +32,7 @@ export default defineConfig({
     drafts: true
   },
   site: 'https://oxbowui.com',
-  integrations: [
-    sitemap(),
-    mdx(),
-    alpinejs({ entrypoint: 'src/alpine' })
-  ],
+  integrations: [sitemap(), mdx(), alpinejs({ entrypoint: 'src/alpine' }), react()],
   adapter: localhost ? node({mode: 'standalone'}) : netlify(),
   output: 'server'
 });
