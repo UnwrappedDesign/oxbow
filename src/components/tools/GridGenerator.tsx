@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useCallback, useMemo } from "react"
 import { X, ArrowDownRight } from 'lucide-react'
 import { Rnd } from "react-rnd"
 
@@ -19,23 +19,25 @@ export default function GridGenerator() {
   const [items, setItems] = useState<GridItem[]>([])
   const [format, setFormat] = useState("jsx")
   const gridRef = useRef<HTMLDivElement>(null)
-  const gapSize = gap // Convert gap to pixels
+  const gapSize = gap * 2 // Convert gap to pixels
   
-  const calculateHeight = (rows: number) => (gridRef.current?.clientHeight || 0 - gapSize * (rows - 1)) / rows
-  const calculateWidth = (columns: number) => (gridRef.current?.clientWidth || 100 - gapSize * (columns - 1)) / columns
+  const getCellHeight = useCallback(() => (gridRef.current?.clientHeight - gapSize * (rows - 1)) / rows, [gridRef, gapSize, rows])
+  const getCellWidth = useCallback(() => (gridRef.current?.clientWidth - gapSize * (columns - 1)) / columns, [gridRef, gapSize, columns])
 
-  const handleAddItem = (event: React.MouseEvent, x: number, y: number) => {
-    const clientHeight = gridRef.current?.clientHeight || 0
-    const clientWidth = gridRef.current?.clientWidth || 0
-    const cellHeight = (clientHeight - gapSize * (rows - 1)) / rows
-    const cellWidth = (clientWidth - gapSize * (columns - 1)) / columns
-  
+  const getCellX = (x: number) => (x - 1) * getCellWidth() + gapSize * (x - 1)
+  const getCellY = (y: number) => (y - 1) * getCellHeight() + gapSize * (y - 1)
+  const xToCol = (x: number) => Math.round(x / (getCellWidth() + gapSize)) + 1
+  const yToRow = (y: number) => Math.round(y / (getCellHeight() + gapSize)) + 1
+  const getCellWidthPx = (w: number) => (w * getCellWidth()) + (w - 1) * gapSize
+  const getCellHeightPx = (h: number) => (h * getCellHeight()) + (h - 1) * gapSize
+
+  const handleAddItem = (x: number, y: number) => {
     const newItem: GridItem = {
       id: `item-${items.length + 1}`,
-      x: x * cellWidth + x * gapSize,
-      y: y * cellHeight + y * gapSize,
-      w: cellWidth,
-      h: cellHeight
+      x,
+      y,
+      w: 1,
+      h: 1
     }
     setItems([...items, newItem])
   }
@@ -44,113 +46,57 @@ export default function GridGenerator() {
     setItems(items.filter(item => item.id !== id))
   }
 
-  const onResize = (id: string, ref: HTMLElement, position: { x: number; y: number }, delta: { width: number; height: number }) => {
-    const clientHeight = gridRef.current?.clientHeight || 0
-    const clientWidth = gridRef.current?.clientWidth || 0
-    const cellHeight = (clientHeight - gapSize * (rows - 1)) / rows
-    const cellWidth = (clientWidth - gapSize * (columns - 1)) / columns
-
+  const onResizeStop = (id: string, ref: HTMLElement, delta: { width: number, height: number }) => {
     const item = items.find(item => item.id === id)
-    if (!item) return
 
-    const newWidth = item.w + delta.width
-    const newHeight = item.h + delta.height
+    const width = item.w + Math.round(delta.width / getCellWidth())
+    const height = item.h + Math.round(delta.height / getCellHeight())
 
-    const colSpan = Math.round(newWidth / (cellWidth + gapSize))
-    const rowSpan = Math.round(newHeight / (cellHeight + gapSize))
-
-    const adjustedWidth = colSpan * cellWidth + (colSpan - 1) * gapSize
-    const adjustedHeight = rowSpan * cellHeight + (rowSpan - 1) * gapSize
-
-    ref.style.width = `${adjustedWidth}px`
-    ref.style.height = `${adjustedHeight}px`
-  }
-
-
-  const onResizeStop = (id: string, node: HTMLElement, position: { x: number, y: number }, delta: { width: number, height: number }) => {
-    const clientHeight = gridRef.current?.clientHeight || 0
-    const clientWidth = gridRef.current?.clientWidth || 0
-    const cellHeight = (clientHeight - gapSize * (rows - 1)) / rows
-    const cellWidth = (clientWidth - gapSize * (columns - 1)) / columns
-
-    console.log(delta)
     setItems(items.map(item => 
       item.id === id 
         ? { 
             ...item, 
-            w: Math.round((item.w + delta.width) / (cellWidth + gapSize)) * cellWidth + (Math.round((item.w + delta.width) / (cellWidth + gapSize)) - 1) * gapSize,
-            h: Math.round((item.h + delta.height) / (cellHeight + gapSize)) * cellHeight + (Math.round((item.h + delta.height) / (cellHeight + gapSize)) - 1) * gapSize
+            w: width,
+            h: height
           }
         : item
     ))
   }
 
   const onDragStop = (id: string, data: { x: number, y: number, deltaX: number, deltaY: number, lastX: number, lastY: number }) => {
-    const clientHeight = gridRef.current?.clientHeight || 0
-    const clientWidth = gridRef.current?.clientWidth || 0
-    const cellHeight = (clientHeight - gapSize * (rows - 1)) / rows
-    const cellWidth = (clientWidth - gapSize * (columns - 1)) / columns
-
-    const column = Math.round(data.x / (cellWidth + gapSize))
-    const row = Math.round(data.y / (cellHeight + gapSize))
-
     setItems(items.map(item => 
       item.id === id 
         ? { 
             ...item, 
-            x: column * cellWidth + column * gapSize,
-            y: row * cellHeight + row * gapSize
+            x: xToCol(data.x),
+            y: yToRow(data.y)
           }
         : item
     ))
   }
 
-  const generateCode = () => {
-    const cellHeight = calculateHeight(rows)
-    const cellWidth = calculateWidth(columns)
-
-    const gridClass = `grid grid-cols-${columns} grid-rows-${rows} gap-[${gapSize}px]`
+  const generateCode = useMemo(() => {
+    const gridClass = `grid grid-cols-${columns} grid-rows-${rows} gap-${gap}`
     
     const itemsCode = items.map(item => {
-      const colSpan = Math.round((item.w + gapSize) / (cellWidth + gapSize))
-      const rowSpan = Math.round((item.h + gapSize) / (cellHeight + gapSize))
-      const colStart = Math.round(item.x / (cellWidth + gapSize)) + 1
-      const rowStart = Math.round(item.y / (cellHeight + gapSize)) + 1  
-      const className = `col-start-${colStart} row-start-${rowStart} col-span-${colSpan} row-span-${rowSpan}`
+      const className = `col-start-${item.x} row-start-${item.y} col-span-${item.w} row-span-${item.h}`
       
       if (format === "jsx") {
-        return `  <div key="${item.id}" className="${className}">
-    ${item.id.replace('item-', '')}
-  </div>`
+        return [`  <div key="${item.id}" className="${className}">`, `    ${item.id.replace('item-', '')}`, '  </div>'].join('\n')
       }
-      return `  <div class="${className}">
-    ${item.id.replace('item-', '')}
-  </div>`
+      return [`  <div class="${className}">`, `    ${item.id.replace('item-', '')}`, '  </div>'].join('\n')
     }).join('\n')
     
-    if (format === "jsx") {
-      return `<div className="${gridClass}">
-${itemsCode}
-</div>`
-    }
-    
-    return `<div class="${gridClass}">
-${itemsCode}
-</div>`
-  }
+    return format === "html" ? [`<div class="${gridClass}">`, itemsCode, '</div>'].join('\n') : [`<div className="${gridClass}">`, itemsCode, '</div>'].join('\n')
+  }, [format, columns, rows, gap, items])
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(generateCode())
+    navigator.clipboard.writeText(generateCode)
   }
 
   const handleReset = () => {
     setItems([])
   }
-
-  useEffect(() => {
-    generateCode()
-
-  }, [format, columns, rows, gap])
 
   return (
     <div className="min-h-screen bg-gradient-to-b bg-base-50 p-6">
@@ -206,13 +152,13 @@ ${itemsCode}
             }}
           >
             {Array.from({ length: rows * columns }).map((_, index) => {
-              const x = index % columns
-              const y = Math.floor(index / columns)
+              const x = index % columns + 1
+              const y = Math.floor(index / columns) + 1
               return (
                 <div
                   key={index}
                   className="flex items-center justify-center p-4 rounded-lg text-white relative bg-gray-700 text-2xl"
-                  onClick={(event) => handleAddItem(event, x, y)}
+                  onClick={() => handleAddItem(x, y)}
                 >
                   +
                 </div>
@@ -223,8 +169,8 @@ ${itemsCode}
           {items.map((item) => (
             <Rnd
               key={item.id}
-              size={{ width: item.w, height: item.h }}
-              position={{ x: item.x, y: item.y }}
+              size={{ width: getCellWidthPx(item.w), height: getCellHeightPx(item.h) }}
+              position={{ x: getCellX(item.x), y: getCellY(item.y) }}
               bounds="parent"
               enableResizing={{
                 bottom: true,
@@ -232,8 +178,7 @@ ${itemsCode}
                 left: false,
                 top: false
               }}
-              onResize={(e, direction, ref, delta, position) => onResize(item.id, ref, position, delta)}
-              onResizeStop={(e, direction, ref, delta, position) => onResizeStop(item.id, ref, position, delta)}
+              onResizeStop={(e, d, ref, delta) => onResizeStop(item.id, ref, delta)}
               onDragStop={(e, data) => onDragStop(item.id, data)}
               className="bg-blue-100 rounded-lg p-4 flex items-center justify-center relative border-2 border-gray-500"
             >
@@ -251,30 +196,50 @@ ${itemsCode}
             </Rnd>
           ))}
         </div>
-
-        <div className="flex justify-between items-start">
-          <div className="flex items-center space-x-2">
-            <input type="radio" value="jsx" id="jsx" name="format" onChange={(e) => setFormat(e.target.value)} />
-            <label htmlFor="jsx">JSX</label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <input type="radio" value="html" id="html" name="format" onChange={(e) => setFormat(e.target.value)} />
-            <label htmlFor="html">HTML</label>
-          </div>
-
-          <div className="flex gap-4">
-            <button onClick={handleReset}>
+        <div className="flex justify-end gap-4 py-8">
+            <button
+              className="flex items-center justify-center transition-all duration-200 focus:ring-2 focus:outline-none text-base-500 bg-white hover:text-accent-500 ring-1 ring-base-200 focus:ring-accent-500 h-9 px-4 py-2 text-sm font-medium rounded-md"
+              onClick={handleReset}
+            >
               Reset
             </button>
-            <button onClick={handleCopy}>
+            <button 
+              className="flex items-center justify-center transition-all duration-200 focus:ring-2 focus:outline-none text-white bg-accent-600 hover:bg-accent-700 focus:ring-accent-500/50 h-9 px-4 py-2 text-sm font-medium rounded-md"
+              onClick={handleCopy}
+            >
               Copy
             </button>
+        </div>
+        <div className="flex justify-between items-start">
+          <div className="flex justify-center p-12 mx-auto">
+            <span className="inline-flex isolate">
+              <button
+                className={`
+                  flex items-center justify-center focus:z-10 transition-all duration-300 focus:ring-2 focus:ring-offset-1 focus:outline-none text-base-500 ring-1 ring-base-200 focus:ring-accent-500 focus:ring-offset-white h-10 px-6 py-3 text-base font-medium rounded-l-md
+                  ${format === "html" ? "bg-accent-500 text-white" : "text-base-500 bg-white hover:text-accent-500"}
+                `}
+                onClick={() => setFormat("html")}
+              >
+                HTML
+              </button>
+              <button
+                className={`
+                  flex items-center justify-center focus:z-10 transition-all duration-300 focus:ring-2 focus:ring-offset-1 focus:outline-none text-base-500 ring-1 ring-base-200 focus:ring-accent-500 focus:ring-offset-white h-10 px-6 py-3 text-base font-medium -ml-px rounded-r-lg 
+                  ${format === "jsx" ? "bg-accent-500 text-white" : "text-base-500 bg-white hover:text-accent-500"}
+                `}
+                onClick={() => setFormat("jsx")}
+              >
+                JSX
+              </button>
+            </span>
           </div>
+
+
         </div>
 
         <div className="bg-gray-800 p-4">
           <pre className="text-gray-300 overflow-x-auto">
-            <code>{generateCode()}</code>
+            <code>{generateCode}</code>
           </pre>
         </div>
       </div>
