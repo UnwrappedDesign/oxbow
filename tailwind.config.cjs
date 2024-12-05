@@ -13,6 +13,18 @@ module.exports = {
     {
       pattern: /^gap-/,
     },
+    {
+      pattern: /^bg-/,
+    },
+    {
+      pattern: /^from-/,
+    },
+    {
+      pattern: /^to-/,
+    },
+    {
+      pattern: /^ring-/,
+    },
   ],
   theme: {
     extend: {
