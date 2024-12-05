@@ -18,6 +18,7 @@ export default function GridGenerator() {
   const [gap, setGap] = useState(8);
   const [items, setItems] = useState<GridItem[]>([]);
   const [format, setFormat] = useState("jsx");
+  const [isCopied, setIsCopied] = useState(false);
   const gridRef = useRef<HTMLDivElement>(null);
   const gapSize = gap * 2; // Convert gap to pixels
 
@@ -55,7 +56,6 @@ export default function GridGenerator() {
 
   const onResizeStop = (
     id: string,
-    ref: HTMLElement,
     delta: { width: number; height: number },
   ) => {
     const item = items.find((item) => item.id === id);
@@ -129,6 +129,10 @@ export default function GridGenerator() {
 
   const handleCopy = () => {
     navigator.clipboard.writeText(generateCode);
+    setIsCopied(true);
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 3000);
   };
 
   const handleReset = () => {
@@ -227,7 +231,7 @@ export default function GridGenerator() {
               top: false,
             }}
             onResizeStop={(e, d, ref, delta) =>
-              onResizeStop(item.id, ref, delta)
+              onResizeStop(item.id, delta)
             }
             onDragStop={(e, data) => onDragStop(item.id, data)}
             className="bg-white rounded-lg p-4 flex items-center justify-center relative ring-2 ring-accent-500"
@@ -278,7 +282,7 @@ export default function GridGenerator() {
             className="pointer-events-auto relative w-20 flex rounded-md focus:text-accent-500 px-4 py-1 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200"
             onClick={handleCopy}
           >
-            Copy
+            {isCopied ? "Copied!" : "Copy"}
           </button>
         </div>
       </div>
