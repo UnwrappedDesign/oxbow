@@ -24,12 +24,18 @@ export default function GridGenerator() {
   const gapSize = gap * 2; // Convert gap to pixels
 
   const getCellHeight = useCallback(
-    () => (gridRef.current?.clientHeight - gapSize * (rows - 1)) / rows,
-    [gridRef, gapSize, rows],
+    () => 70,
+    [],
   );
+  
   const getCellWidth = useCallback(
     () => (gridRef.current?.clientWidth - gapSize * (columns - 1)) / columns,
     [gridRef, gapSize, columns],
+  );
+
+  const getGridHeight = useCallback(
+    () => (rows * getCellHeight()) + (gapSize * (rows - 1)),
+    [rows, getCellHeight, gapSize],
   );
 
   const getCellX = (x: number) => (x - 1) * getCellWidth() + gapSize * (x - 1);
@@ -194,17 +200,17 @@ export default function GridGenerator() {
       </div>
 
       <div
-        className="relative rounded-lg w-full mt-8 min-h-[600px]"
-        style={{ height: gridRef.current?.clientHeight }}
+        className="relative rounded-lg w-full my-12"
       >
         <div
           ref={gridRef}
           className={`
-              absolute top-0 left-0 grid font-mono text-white text-sm text-center font-bold rounded-lg w-full h-full
+              grid font-mono text-white text-sm text-center font-bold rounded-lg w-full h-full
               grid-cols-${columns} grid-rows-${rows}
             `}
           style={{
             gridGap: `${gapSize}px`,
+            minHeight: getGridHeight()
           }}
         >
           {Array.from({ length: rows * columns }).map((_, index) => {
@@ -261,7 +267,7 @@ export default function GridGenerator() {
           </Rnd>
         ))}
       </div>
-      <div className="flex items-center justify-between w-full mt-12">
+      <div className="flex items-center justify-between w-full">
           <h3 className="texr-base-500 text-base">Get your code</h3>
         
         <div className="flex items-center gap-2 ">
