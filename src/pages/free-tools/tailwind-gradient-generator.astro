@@ -1,0 +1,23 @@
+---
+import { AstroSeo } from "@astrolib/seo";
+import Cta from "@/components/global/Cta.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+import GradientGenerator from "@/components/tools/GradientGenerator.tsx";
+import MainHero from "@/components/fundations/containers/MainHero.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+---
+
+<BaseLayout>
+  <MainHero
+    showAlpineTailwind={false}
+    title="Tailwind Gradient Generator"
+    subtitle="Generate Tailwind CSS gradients"
+  />
+  <section>
+    <Wrapper variant="standard">
+      <GradientGenerator client:only="react" />
+    </Wrapper>
+  </section>
+  <Cta />
+</BaseLayout>
