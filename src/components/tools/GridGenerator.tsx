@@ -13,12 +13,13 @@ interface GridItem {
 }
 
 export default function GridGenerator() {
-  const [columns, setColumns] = useState(5);
-  const [rows, setRows] = useState(5);
+  const [columns, setColumns] = useState(4);
+  const [rows, setRows] = useState(4);
   const [gap, setGap] = useState(8);
   const [items, setItems] = useState<GridItem[]>([]);
   const [format, setFormat] = useState("jsx");
   const [isCopied, setIsCopied] = useState(false);
+  const [isResizing, setIsResizing] = useState(false);
   const gridRef = useRef<HTMLDivElement>(null);
   const gapSize = gap * 2; // Convert gap to pixels
 
@@ -54,6 +55,10 @@ export default function GridGenerator() {
     setItems(items.filter((item) => item.id !== id));
   };
 
+  const onResizeStart = (id: string) => {
+    setIsResizing(true);
+  };
+
   const onResizeStop = (
     id: string,
     delta: { width: number; height: number },
@@ -74,6 +79,7 @@ export default function GridGenerator() {
           : item,
       ),
     );
+    setIsResizing(false);
   };
 
   const onDragStop = (
@@ -87,6 +93,7 @@ export default function GridGenerator() {
       lastY: number;
     },
   ) => {
+    if (isResizing) return;
     setItems(
       items.map((item) =>
         item.id === id
@@ -230,6 +237,9 @@ export default function GridGenerator() {
               left: false,
               top: false,
             }}
+            onResizeStart={() =>
+              onResizeStart(item.id)
+            }
             onResizeStop={(e, d, ref, delta) =>
               onResizeStop(item.id, delta)
             }
@@ -238,7 +248,8 @@ export default function GridGenerator() {
           >
             <button
               onClick={() => handleRemoveItem(item.id)}
-              className="absolute top-2 right-2 text-base-500 hover:text-base-700"
+              onTouchEnd={() => handleRemoveItem(item.id)}
+              className="absolute top-2 right-2 p-3 text-base-500 hover:text-base-700 z-10"
               aria-label={`Remove item ${item.id}`}
             >
               <X className="size-4" />
