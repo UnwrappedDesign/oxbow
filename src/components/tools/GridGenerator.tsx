@@ -27,7 +27,7 @@ export default function GridGenerator() {
     () => 70,
     [],
   );
-  
+
   const getCellWidth = useCallback(
     () => (gridRef.current?.clientWidth - gapSize * (columns - 1)) / columns,
     [gridRef, gapSize, columns],
@@ -268,7 +268,7 @@ export default function GridGenerator() {
         ))}
       </div>
       <div className="flex items-center justify-between w-full">
-          <h3 className="texr-base-500 text-base">Get your code</h3>
+        <h3 className="texr-base-500 text-base">Get your code</h3>
         
         <div className="flex items-center gap-2 ">
           <button
