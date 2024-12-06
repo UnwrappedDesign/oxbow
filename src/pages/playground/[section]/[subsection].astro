@@ -14,6 +14,8 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/screenshots/*.png"
 );
 const formattedSubsection = subsection.replace("-", " ");
+
+const user = Astro.locals.user;
 ---
 
 <BaseLayout>
@@ -67,13 +69,21 @@ const formattedSubsection = subsection.replace("-", " ");
                 href={`/playground/${section}/${subsection}/${index + 1}`}
                 class="relative group"
               >
+                {!user && index === 0 && (
+                  <div class="absolute top-2 left-2 p-1">
+                    <span
+                      class="flex items-center gap-1 text-white py-1 mt-1 px-2 border border-accent-800 rounded text-xs bg-accent-600"
+                    >
+                      Demo
+                    </span>
+                  </div>
+                )}
                 <div class="absolute top-2 right-2 p-1">
                   <div class="group-hover:flex items-center gap-1 bg-white py-1 mt-1 hidden px-2 border border-base-200 rounded text-xs">
                     <span class="text-black capitalize">
                       {subsection.replace(/-/g, " ")}
                       {index + 1}
                     </span>
-                    {index === 0 && <span> Free</span>}
                   </div>
                 </div>
 
