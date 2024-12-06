@@ -1,0 +1,77 @@
+---
+import type { ImageMetadata } from "astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Playground from "@/components/global/Playground.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+const { section, subsection, index } = Astro.params;
+const components = await Astro.glob(`@/components/oxbow/**/*.astro`);
+const sectionComponents = components.filter((component) => {
+  const sectionRegex = new RegExp(`${section}\/${subsection}\/.+\.astro$`, "i");
+  return component.file?.match(sectionRegex);
+});
+const component = sectionComponents[parseInt(index) - 1];
+const formattedSubsection = subsection.replace("-", " ");
+const formattedIndex = index.replace("-", " ");
+---
+
+<BaseLayout>
+  <section>
+    <Wrapper variant="hero">
+      <button
+        class="flex items-center gap-2 text-base-500 hover:text-accent-500"
+        onclick="history.back();">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left size-5"
+          ><path
+            stroke="none"
+            d="M0 0h24v24H0z"
+            fill="none"
+          ></path><path d="M5 12l14 0"></path><path d="M5 12l6 6"></path><path
+            d="M5 12l6 -6"></path></svg
+        >Go Back</button
+      >
+      <Text
+        tag="h1"
+        variant="displayMD"
+        class="uppercase mt-4 font-semibold tracking-tight text-black">
+        {subsection.replace(/-/g, " ")}
+        {index.replace(/-/g, " ")}
+      </Text>
+    </Wrapper>
+  </section>
+  <section>
+    <Wrapper
+      variant="wide"
+      class="mt-12">
+      <Playground
+        componentIndex={parseInt(index)}
+        componentPath={component.file.replace(/.*\/src/, "src")}
+        playgroundRef={`${section}-${subsection}-${index}`}>
+        <component.default />
+      </Playground>
+    </Wrapper>
+  </section>
+</BaseLayout>
+<script>
+  function resizeIFramesToFitContent() {
+    const iframes = document.querySelectorAll("iframe");
+    iframes.forEach((iframe) => {
+      try {
+        iframe.height = iframe.contentWindow?.document.body.scrollHeight + "px";
+      } catch (e) {}
+    });
+    requestAnimationFrame(resizeIFramesToFitContent);
+  }
+  addEventListener(
+    "load",
+    requestAnimationFrame.bind(this, resizeIFramesToFitContent)
+  );
+</script>
