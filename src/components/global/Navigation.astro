@@ -1,144 +1,37 @@
 ---
 const user = Astro.locals.user;
 import Text from "@/components/fundations/typography/Text.astro";
-
+import Wrapper from "../fundations/containers/Wrapper.astro";
 ---
 
 <div
-  class="items-center w-full mx-auto top-0 z-50 bg-base-50"
+  class="items-center w-full mx-auto top-0 z-50 bg-white border-b "
   :class="{ 'fixed': window.location.pathname === '/' }"
   x-data={`{...navigation(), username: "${user?.email ?? ""}"}`}
 >
-  <div
-    class="w-full flex flex-col mx-auto px-8 max-w-7xl lg:px-24 lg:bg-none md:flex-row md:items-center md:justify-between py-4"
-    x-data="{ open: false }"
-  >
-    <div class="items-center flex justify-between flex-row lg:justify-start">
-      <Text
-        tag="a"
-        href="/"
-        class="flex items-center w-full gap-3 font-medium sm:w-auto group"
-        ><span
-          class="duration-300 group-hover:text-accent-600 group-hover:animate-pulse"
-          ><img
-            class="h-7 2xl:h-9"
-            src="/images/oxbow/windLogo.png"
-            alt="#_"
-          /></span
-        > oxbow ui</Text
-      >
-      <button
-        class="cursor-pointer sm:hidden"
-        onclick="document.querySelector('ninja-keys').open()"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="icon icon-tabler icons-tabler-outline icon-tabler-search size-6"
-          ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-            d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path><path
-            d="M21 21l-6 -6"></path></svg
-        >
-      </button>
-      <button
-        aria-label="open"
-        @click="open = !open"
-        class="items-center inline-flex focus:outline-none text-black focus:text-accent-500 hover:text-accent-600 justify-center md:hidden p-2"
-        ><svg
-          viewBox="0 0 24 24"
-          class="size-6"
-          fill="none"
-          stroke="currentColor"
-        >
-          <path
-            d="M4 6h16M4 12h16M4 18h16"
-            :class="{'hidden': open, 'inline-flex': !open }"
-            class="inline-flex"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"></path>
-          <path
-            d="M6 18L18 6M6 6l12 12"
-            :class="{'hidden': !open, 'inline-flex': open }"
-            class="hidden"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"></path>
-        </svg></button
-      >
-    </div>
-    <nav
-      :class="{'flex': open, 'hidden': !open}"
-      class="items-center flex-col flex-grow text-base-500 hidden font-medium justify-end md:flex md:flex-row md:pb-0 gap-x-4 gap-y-4"
+  <Wrapper variant="standard">
+    <div
+      class="w-full flex flex-col lg:bg-none md:flex-row md:items-center md:justify-between py-4"
+      x-data="{ open: false }"
     >
-      <button
-        class="cursor-pointer hidden lg:inline-flex"
-        onclick="document.querySelector('ninja-keys').open()"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="icon icon-tabler icons-tabler-outline icon-tabler-search size-5"
-          ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-            d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path><path
-            d="M21 21l-6 -6"></path></svg
-        >
-      </button>
-      <div class="hidden lg:block h-6 w-px bg-base-200"></div>
-      <div class="flex flex-col md:flex-row items-center gap-3">
+      <div class="items-center flex justify-between flex-row lg:justify-start">
         <Text
           tag="a"
-          variant="textBase"
-          x-show="!username"
-          href="https://lexingtonthemes.com"
-          class="hover:text-accent-500 font-medium"
-          ><Text tag="span" class="md:hidden lg:inline"
-            >Astro &amp; Tailwind
-          </Text> Templates</Text
+          href="/"
+          class="flex items-center w-full gap-3 font-medium sm:w-auto group"
+          ><span
+            class="duration-300 group-hover:text-accent-600 group-hover:animate-pulse"
+            ><img
+              class="h-7 2xl:h-9"
+              src="/images/oxbow/windLogo.png"
+              alt="#_"
+            /></span
+          > oxbow ui</Text
         >
-
-        <Text
-          x-cloak
-          tag="a"
-          variant="textBase"
-          x-show="!username"
-          href="/getting-started"
-          class="hover:text-accent-500 hidden lg:block">Getting Started</Text
+        <button
+          class="cursor-pointer sm:hidden"
+          onclick="document.querySelector('ninja-keys').open()"
         >
-        <Text
-          x-cloak
-          tag="a"
-          href="/login"
-          variant="textBase"
-          x-show="!username"
-          class="hover:text-accent-500 hidden lg:block">Log in</Text
-        >
-        <Text
-          x-cloak
-          tag="a"
-          href="/pricing"
-          variant="textBase"
-          x-show="!username && window.location.pathname !== '/pricing'"
-          id="access-eigation-cta"
-          data-umami-event="access-navigation-cta"
-          class="rounded-full flex items-center transition-all shrink-0 gap-x-2 duration-200 focus:ring-2 focus:ring-offset-2 focus:outline-none text-white bg-accent-600 hover:bg-accent-700 focus:ring-accent-600 h-10 px-4 py-2 font-medium w-auto justify-center"
-        >
-          Get all access for <del class="opacity-45">$149</del> $67
-        </Text>
-      </div>
-      <div x-popover x-cloak x-show="!!username" class="relative">
-        <button x-popover:button type="button" class="flex items-center gap-2">
-          Account
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -147,247 +40,365 @@ import Text from "@/components/fundations/typography/Text.astro";
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="size-4 icon icon-tabler icons-tabler-outline icon-tabler-chevron-down"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-search size-6"
             ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-              d="M6 9l6 6l6 -6"></path></svg
+              d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path><path
+              d="M21 21l-6 -6"></path></svg
           >
         </button>
-        <div
-          x-popover:panel
-          x-transition.origin.top.left
-          class="absolute right-0 top-full z-50 -mr-0.5 mt-3 w-48 origin-top-right divide-y divide-base-200 rounded-lg bg-white font-normal text-base-600 shadow ring-1 ring-base-900/5 focus:outline-none sm:-mr-3.5 transform opacity-100 scale-100"
+        <button
+          aria-label="open"
+          @click="open = !open"
+          class="items-center inline-flex focus:outline-none text-black focus:text-accent-500 hover:text-accent-600 justify-center md:hidden p-2"
+          ><svg
+            viewBox="0 0 24 24"
+            class="size-6"
+            fill="none"
+            stroke="currentColor"
+          >
+            <path
+              d="M4 6h16M4 12h16M4 18h16"
+              :class="{'hidden': open, 'inline-flex': !open }"
+              class="inline-flex"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"></path>
+            <path
+              d="M6 18L18 6M6 6l12 12"
+              :class="{'hidden': !open, 'inline-flex': open }"
+              class="hidden"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"></path>
+          </svg></button
         >
-          <div class="truncate px-3.5 py-3" role="none">
-            <Text
-              tag="span"
-              role="none"
-              variant="textSM"
-              class="block text-base-500">Signed in as</Text
+      </div>
+      <nav
+        :class="{'flex': open, 'hidden': !open}"
+        class="items-center flex-col flex-grow text-base-500 hidden font-medium justify-end md:flex md:flex-row md:pb-0 gap-x-4 gap-y-4"
+      >
+        <button
+          class="cursor-pointer hidden lg:inline-flex"
+          onclick="document.querySelector('ninja-keys').open()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-search size-5"
+            ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+              d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path><path
+              d="M21 21l-6 -6"></path></svg
+          >
+        </button>
+        <div class="hidden lg:block h-6 w-px bg-base-200"></div>
+        <div class="flex flex-col md:flex-row items-center gap-3">
+          <Text
+            tag="a"
+            variant="textBase"
+            x-show="!username"
+            href="https://lexingtonthemes.com"
+            class="hover:text-accent-500 font-medium"
+            ><Text tag="span" class="md:hidden lg:inline"
+              >Astro &amp; Tailwind
+            </Text> Templates</Text
+          >
+
+          <Text
+            x-cloak
+            tag="a"
+            variant="textBase"
+            x-show="!username"
+            href="/getting-started"
+            class="hover:text-accent-500 hidden lg:block">Getting Started</Text
+          >
+          <Text
+            x-cloak
+            tag="a"
+            href="/login"
+            variant="textBase"
+            x-show="!username"
+            class="hover:text-accent-500 hidden lg:block">Log in</Text
+          >
+          <Text
+            x-cloak
+            tag="a"
+            href="/pricing"
+            variant="textBase"
+            x-show="!username && window.location.pathname !== '/pricing'"
+            id="access-eigation-cta"
+            data-umami-event="access-navigation-cta"
+            class="rounded-full flex items-center transition-all shrink-0 gap-x-2 duration-200 focus:ring-2 focus:ring-offset-2 focus:outline-none text-white bg-accent-600 hover:bg-accent-700 focus:ring-accent-600 h-10 px-4 py-2 font-medium w-auto justify-center"
+          >
+            Get all access for <del class="opacity-45">$149</del> $67
+          </Text>
+        </div>
+        <div x-popover x-cloak x-show="!!username" class="relative">
+          <button
+            x-popover:button
+            type="button"
+            class="flex items-center gap-2"
+          >
+            Account
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="size-4 icon icon-tabler icons-tabler-outline icon-tabler-chevron-down"
+              ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                d="M6 9l6 6l6 -6"></path></svg
             >
-            <Text
-              tag="span"
-              role="none"
-              variant="textSM"
-              x-text="username"
-              class="mt-0.5 font-semibold"
-            />
-          </div>
-          <div class="py-1.5" role="none">
-            <Text
-              tag="a"
-              tabindex={-1}
-              role="menuitem"
-              variant="textSM"
-              href="https://discord.gg/9WH6G2XJRa"
-              class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-brand-discord size-4"
-                ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-                  d="M8 12a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path><path
-                  d="M14 12a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path><path
-                  d="M15.5 17c0 1 1.5 3 2 3c1.5 0 2.833 -1.667 3.5 -3c.667 -1.667 .5 -5.833 -1.5 -11.5c-1.457 -1.015 -3 -1.34 -4.5 -1.5l-.972 1.923a11.913 11.913 0 0 0 -4.053 0l-.975 -1.923c-1.5 .16 -3.043 .485 -4.5 1.5c-2 5.667 -2.167 9.833 -1.5 11.5c.667 1.333 2 3 3.5 3c.5 0 2 -2 2 -3"
-                ></path><path d="M7 16.5c3.5 1 6.5 1 10 0"></path></svg
-              >Discord
-            </Text>
-            <Text
-              tag="a"
-              tabindex={-1}
-              role="menuitem"
-              href="/support"
-              variant="textSM"
-              class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-lifebuoy size-4"
-                ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-                  d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path><path
-                  d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path><path
-                  d="M15 15l3.35 3.35"></path><path d="M9 15l-3.35 3.35"
-                ></path><path d="M5.65 5.65l3.35 3.35"></path><path
-                  d="M18.35 5.65l-3.35 3.35"></path></svg
-              >Support</Text
-            >
-            <Text
-              tag="a"
-              tabindex={-1}
-              role="menuitem"
-              href="/license"
-              variant="textSM"
-              class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex"
-              ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-license size-4"
-                ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-                  d="M15 21h-9a3 3 0 0 1 -3 -3v-1h10v2a2 2 0 0 0 4 0v-14a2 2 0 1 1 2 2h-2m2 -4h-11a3 3 0 0 0 -3 3v11"
-                ></path><path d="M9 7l4 0"></path><path d="M9 11l4 0"
-                ></path></svg
-              >License</Text
-            >
-            <Text
-              tag="a"
-              tabindex={-1}
-              role="menuitem"
-              variant="textSM"
-              href="/getting-started"
-              class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex"
-              ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-file-info size-4"
-                ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-                  d="M14 3v4a1 1 0 0 0 1 1h4"></path><path
-                  d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"
-                ></path><path d="M11 14h1v4h1"></path><path d="M12 11h.01"
-                ></path></svg
-              >Docs</Text
-            >
-            <Text
-              tag="a"
-              tabindex={-1}
-              role="menuitem"
-              variant="textSM"
-              href="https://lexingtonthemes.com/"
-              class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex"
-              ><svg
-                class="size-4"
-                viewBox="0 0 147 148"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+          </button>
+          <div
+            x-popover:panel
+            x-transition.origin.top.left
+            class="absolute right-0 top-full z-50 -mr-0.5 mt-3 w-48 origin-top-right divide-y divide-base-200 rounded-lg bg-white font-normal text-base-600 shadow ring-1 ring-base-900/5 focus:outline-none sm:-mr-3.5 transform opacity-100 scale-100"
+          >
+            <div class="truncate px-3.5 py-3" role="none">
+              <Text
+                tag="span"
+                role="none"
+                variant="textSM"
+                class="block text-base-500">Signed in as</Text
               >
-                <path
-                  d="M77.0546 0.147949H69.9463V147.148H77.0546V0.147949Z"
-                  fill="currentColor"></path>
-                <path
-                  d="M77.0546 0.147949H69.9463V147.148H77.0546V0.147949Z"
-                  fill="currentColor"
-                  fill-opacity="0.2"></path>
-                <path
-                  d="M147 70.0938H0V77.2021H147V70.0938Z"
-                  fill="currentColor"></path>
-                <path
-                  d="M147 70.0938H0V77.2021H147V70.0938Z"
-                  fill="currentColor"
-                  fill-opacity="0.2"></path>
-                <path
-                  d="M24.0282 19.1578L19.002 24.1841L122.946 128.128L127.972 123.101L24.0282 19.1578Z"
-                  fill="currentColor"></path>
-                <path
-                  d="M24.0282 19.1578L19.002 24.1841L122.946 128.128L127.972 123.101L24.0282 19.1578Z"
-                  fill="currentColor"
-                  fill-opacity="0.2"></path>
-                <path
-                  d="M122.946 19.1564L19.002 123.1L24.0282 128.126L127.972 24.1827L122.946 19.1564Z"
-                  fill="currentColor"></path>
-                <path
-                  d="M122.946 19.1564L19.002 123.1L24.0282 128.126L127.972 24.1827L122.946 19.1564Z"
-                  fill="currentColor"
-                  fill-opacity="0.2"></path>
-                <path
-                  d="M6.7933 42.6484L4.11133 49.2314L140.248 104.695L142.93 98.1115L6.7933 42.6484Z"
-                  fill="currentColor"></path>
-                <path
-                  d="M6.7933 42.6484L4.11133 49.2314L140.248 104.695L142.93 98.1115L6.7933 42.6484Z"
-                  fill="currentColor"
-                  fill-opacity="0.2"></path>
-                <path
-                  d="M97.9631 4.26955L42.5 140.406L49.083 143.088L104.546 6.95152L97.9631 4.26955Z"
-                  fill="currentColor"></path>
-                <path
-                  d="M97.9631 4.26955L42.5 140.406L49.083 143.088L104.546 6.95152L97.9631 4.26955Z"
-                  fill="currentColor"
-                  fill-opacity="0.2"></path>
-                <path
-                  d="M140.41 42.8958L4.03809 97.7856L6.69233 104.38L143.064 49.4902L140.41 42.8958Z"
-                  fill="currentColor"></path>
-                <path
-                  d="M140.41 42.8958L4.03809 97.7856L6.69233 104.38L143.064 49.4902L140.41 42.8958Z"
-                  fill="currentColor"
-                  fill-opacity="0.2"></path>
-                <path
-                  d="M49.3122 4.18875L42.7178 6.84229L97.5928 143.214L104.187 140.561L49.3122 4.18875Z"
-                  fill="currentColor"></path>
-                <path
-                  d="M49.3122 4.18875L42.7178 6.84229L97.5928 143.214L104.187 140.561L49.3122 4.18875Z"
-                  fill="currentColor"
-                  fill-opacity="0.2"></path>
-              </svg>Astro Themes</Text
-            >
-          </div>
-          <div class="py-1.5" role="none">
-            <Text
-              tag="a"
-              tabindex={-1}
-              role="menuitem"
-              variant="textSM"
-              href="https://oxbow.lemonsqueezy.com/billing"
-              class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex"
-              ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-settings size-4"
-                ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-                  d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"
-                ></path><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"
-                ></path></svg
-              >Account portal ↗</Text
-            >
-            <button
-              type="button"
-              tabindex="-1"
-              role="menuitem"
-              @click="signOut()"
-              class="py-1.5 px-3.5 hover:bg-base-50 text-sm hover:text-accent-500 items-center gap-2 flex w-full"
-              ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-logout-2 size-4"
-                ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-                  d="M10 8v-2a2 2 0 0 1 2 -2h7a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-2"
-                ></path><path d="M15 12h-12l3 -3"></path><path d="M6 15l-3 -3"
-                ></path></svg
-              >Sign out</button
-            >
+              <Text
+                tag="span"
+                role="none"
+                variant="textSM"
+                x-text="username"
+                class="mt-0.5 font-semibold"
+              />
+            </div>
+            <div class="py-1.5" role="none">
+              <Text
+                tag="a"
+                tabindex={-1}
+                role="menuitem"
+                variant="textSM"
+                href="https://discord.gg/9WH6G2XJRa"
+                class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-discord size-4"
+                  ><path stroke="none" d="M0 0h24v24H0z" fill="none"
+                  ></path><path d="M8 12a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"
+                  ></path><path d="M14 12a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"
+                  ></path><path
+                    d="M15.5 17c0 1 1.5 3 2 3c1.5 0 2.833 -1.667 3.5 -3c.667 -1.667 .5 -5.833 -1.5 -11.5c-1.457 -1.015 -3 -1.34 -4.5 -1.5l-.972 1.923a11.913 11.913 0 0 0 -4.053 0l-.975 -1.923c-1.5 .16 -3.043 .485 -4.5 1.5c-2 5.667 -2.167 9.833 -1.5 11.5c.667 1.333 2 3 3.5 3c.5 0 2 -2 2 -3"
+                  ></path><path d="M7 16.5c3.5 1 6.5 1 10 0"></path></svg
+                >Discord
+              </Text>
+              <Text
+                tag="a"
+                tabindex={-1}
+                role="menuitem"
+                href="/support"
+                variant="textSM"
+                class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-lifebuoy size-4"
+                  ><path stroke="none" d="M0 0h24v24H0z" fill="none"
+                  ></path><path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"
+                  ></path><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"
+                  ></path><path d="M15 15l3.35 3.35"></path><path
+                    d="M9 15l-3.35 3.35"></path><path d="M5.65 5.65l3.35 3.35"
+                  ></path><path d="M18.35 5.65l-3.35 3.35"></path></svg
+                >Support</Text
+              >
+              <Text
+                tag="a"
+                tabindex={-1}
+                role="menuitem"
+                href="/license"
+                variant="textSM"
+                class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-license size-4"
+                  ><path stroke="none" d="M0 0h24v24H0z" fill="none"
+                  ></path><path
+                    d="M15 21h-9a3 3 0 0 1 -3 -3v-1h10v2a2 2 0 0 0 4 0v-14a2 2 0 1 1 2 2h-2m2 -4h-11a3 3 0 0 0 -3 3v11"
+                  ></path><path d="M9 7l4 0"></path><path d="M9 11l4 0"
+                  ></path></svg
+                >License</Text
+              >
+              <Text
+                tag="a"
+                tabindex={-1}
+                role="menuitem"
+                variant="textSM"
+                href="/getting-started"
+                class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-file-info size-4"
+                  ><path stroke="none" d="M0 0h24v24H0z" fill="none"
+                  ></path><path d="M14 3v4a1 1 0 0 0 1 1h4"></path><path
+                    d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"
+                  ></path><path d="M11 14h1v4h1"></path><path d="M12 11h.01"
+                  ></path></svg
+                >Mini Docs</Text
+              >
+              <Text
+                tag="a"
+                tabindex={-1}
+                role="menuitem"
+                variant="textSM"
+                href="tools"
+                class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-tools size-4"
+                  ><path stroke="none" d="M0 0h24v24H0z" fill="none"
+                  ></path><path d="M3 21h4l13 -13a1.5 1.5 0 0 0 -4 -4l-13 13v4"
+                  ></path><path d="M14.5 5.5l4 4"></path><path
+                    d="M12 8l-5 -5l-4 4l5 5"></path><path d="M7 8l-1.5 1.5"
+                  ></path><path d="M16 12l5 5l-4 4l-5 -5"></path><path
+                    d="M16 17l-1.5 1.5"></path></svg
+                >Free Tools</Text
+              >
+            </div>
+            <div class="py-1.5" role="none">
+              <Text
+                tag="a"
+                tabindex={-1}
+                role="menuitem"
+                variant="textSM"
+                href="https://lexingtonthemes.com/"
+                class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex"
+                ><svg
+                  class="size-4"
+                  viewBox="0 0 147 148"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M77.0546 0.147949H69.9463V147.148H77.0546V0.147949Z"
+                    fill="currentColor"></path>
+                  <path
+                    d="M77.0546 0.147949H69.9463V147.148H77.0546V0.147949Z"
+                    fill="currentColor"
+                    fill-opacity="0.2"></path>
+                  <path
+                    d="M147 70.0938H0V77.2021H147V70.0938Z"
+                    fill="currentColor"></path>
+                  <path
+                    d="M147 70.0938H0V77.2021H147V70.0938Z"
+                    fill="currentColor"
+                    fill-opacity="0.2"></path>
+                  <path
+                    d="M24.0282 19.1578L19.002 24.1841L122.946 128.128L127.972 123.101L24.0282 19.1578Z"
+                    fill="currentColor"></path>
+                  <path
+                    d="M24.0282 19.1578L19.002 24.1841L122.946 128.128L127.972 123.101L24.0282 19.1578Z"
+                    fill="currentColor"
+                    fill-opacity="0.2"></path>
+                  <path
+                    d="M122.946 19.1564L19.002 123.1L24.0282 128.126L127.972 24.1827L122.946 19.1564Z"
+                    fill="currentColor"></path>
+                  <path
+                    d="M122.946 19.1564L19.002 123.1L24.0282 128.126L127.972 24.1827L122.946 19.1564Z"
+                    fill="currentColor"
+                    fill-opacity="0.2"></path>
+                  <path
+                    d="M6.7933 42.6484L4.11133 49.2314L140.248 104.695L142.93 98.1115L6.7933 42.6484Z"
+                    fill="currentColor"></path>
+                  <path
+                    d="M6.7933 42.6484L4.11133 49.2314L140.248 104.695L142.93 98.1115L6.7933 42.6484Z"
+                    fill="currentColor"
+                    fill-opacity="0.2"></path>
+                  <path
+                    d="M97.9631 4.26955L42.5 140.406L49.083 143.088L104.546 6.95152L97.9631 4.26955Z"
+                    fill="currentColor"></path>
+                  <path
+                    d="M97.9631 4.26955L42.5 140.406L49.083 143.088L104.546 6.95152L97.9631 4.26955Z"
+                    fill="currentColor"
+                    fill-opacity="0.2"></path>
+                  <path
+                    d="M140.41 42.8958L4.03809 97.7856L6.69233 104.38L143.064 49.4902L140.41 42.8958Z"
+                    fill="currentColor"></path>
+                  <path
+                    d="M140.41 42.8958L4.03809 97.7856L6.69233 104.38L143.064 49.4902L140.41 42.8958Z"
+                    fill="currentColor"
+                    fill-opacity="0.2"></path>
+                  <path
+                    d="M49.3122 4.18875L42.7178 6.84229L97.5928 143.214L104.187 140.561L49.3122 4.18875Z"
+                    fill="currentColor"></path>
+                  <path
+                    d="M49.3122 4.18875L42.7178 6.84229L97.5928 143.214L104.187 140.561L49.3122 4.18875Z"
+                    fill="currentColor"
+                    fill-opacity="0.2"></path>
+                </svg>Astro Themes</Text
+              >
+              <button
+                type="button"
+                tabindex="-1"
+                role="menuitem"
+                @click="signOut()"
+                class="py-1.5 px-3.5 hover:bg-base-50 text-sm hover:text-accent-500 items-center gap-2 flex w-full"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-logout-2 size-4"
+                  ><path stroke="none" d="M0 0h24v24H0z" fill="none"
+                  ></path><path
+                    d="M10 8v-2a2 2 0 0 1 2 -2h7a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-2"
+                  ></path><path d="M15 12h-12l3 -3"></path><path d="M6 15l-3 -3"
+                  ></path></svg
+                >Sign out</button
+              >
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
-  </div>
+      </nav>
+    </div>
+  </Wrapper>
 </div>
 <script>
   import Alpine from "alpinejs";

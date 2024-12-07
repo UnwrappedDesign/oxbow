@@ -154,7 +154,7 @@ export default function GridGenerator() {
 
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 w-full">
+      <div className="grid grid-cols-3 md:grid-cols-3 gap-2 w-full">
         <div className="flex flex-col gap-1">
           <label htmlFor="columns" className="text-sm text-base-500">
             Columns
@@ -267,8 +267,8 @@ export default function GridGenerator() {
           </Rnd>
         ))}
       </div>
-      <div className="flex items-center justify-between w-full">
-        <h3 className="texr-base-500 text-base">Get your code</h3>
+      <div className="flex flex-col md:flex-row md:items-center justify-between w-full">
+        <h3 className="text-base-500 text-base">Get your code</h3>
         
         <div className="flex items-center gap-2 ">
           <button

@@ -3,42 +3,45 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
 import Text from "@/components/fundations/typography/Text.astro";
 import PricingCardsSingle from "@/components/fundations/pricing/PricingCardsSingle.astro";
 ---
+
 <section x-data="{duration: 'monthly'}">
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-screen-xl relative">
     <div class="max-w-xl text-center mx-auto">
       <Text
         tag="p"
         variant="textSM"
-        class="font-bold uppercase text-accent-600">
+        class="font-bold uppercase text-accent-600"
+      >
         Tagline
       </Text>
       <Text
         tag="h2"
-        variant="displayMD"
-        class="mt-4 font-semibold text-base-900 lg:text-balance">
+        variant="displayBase"
+        class="mt-4 font-semibold text-base-900 lg:text-balance"
+      >
         Equip your business with world class software
       </Text>
       <Text
         tag="p"
         variant="textBase"
-        class="mt-4 text-base-500 font-medium lg:text-balance">
+        class="mt-4 text-base-500 font-medium lg:text-balance"
+      >
         Choose a plan that works the best for you and your team. Start small,
         upgrade when you need to.
       </Text>
       <div
         aria-labelledby="pricing-toggle"
-        class="w-full relative mt-8 ring-1 ring-base-200 ring-offset-2 bg-white overflow-hidden justify-center gap-4 mx-auto lg:mx-0 inline-flex p-1 rounded-md max-w-52 shadow z-0">
+        class="w-full relative mt-8 ring-1 ring-base-200 ring-offset-2 bg-white overflow-hidden justify-center gap-4 mx-auto lg:mx-0 inline-flex p-1 rounded-md max-w-52 shadow z-0"
+      >
         <!-- Monthly Pricing Button: Sets 'duration' to 'monthly' when clicked -->
         <PricingToggle />
       </div>
     </div>
     <div
-      class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-12 mx-auto">
+      class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-12 mx-auto"
+    >
       <!-- Tier one -->
-      <PricingCardsSingle
-        tierName="Core"
-        showFeatures={false}
-      />
+      <PricingCardsSingle tierName="Core" showFeatures={false} />
       <!-- Tier two -->
       <PricingCardsSingle
         tierName="Momentum"

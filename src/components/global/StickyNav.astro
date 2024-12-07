@@ -1,0 +1,71 @@
+---
+import Text from "@/components/fundations/typography/Text.astro";
+---
+
+<nav
+  class="sticky top-4 bg-white text-black pt-4 z-20 px-8 border pb-0 rounded-xl ring-4 ring-base-50"
+>
+  <div class="flex space-x-4 relative">
+    <Text
+      tag="a"
+      variant="textBase"
+      href="#marketing"
+      class="hover:text-accent-500 font-medium border-b-2 pb-4 border-transparent"
+      >Marketing</Text
+    >
+    <Text
+      tag="a"
+      variant="textBase"
+      href="#application"
+      class="hover:text-accent-500 font-medium border-b-2 pb-4 border-transparent"
+      >Application</Text
+    >
+    <Text
+      tag="p"
+      variant="textBase"
+      title="Coming soon"
+      disabled
+      class="font-medium border-b-2 pb-4 border-transparent cursor-not-allowed opacity-50"
+      >eCommerce</Text
+    >
+  </div>
+</nav>
+
+<script type="module">
+  document.addEventListener("DOMContentLoaded", () => {
+    const links = document.querySelectorAll("nav a"); // Select all links in the navigation
+    const sections = document.querySelectorAll("section[id]"); // Select all sections with an id
+
+    // Add default active class to the Marketing link
+    const defaultLink = document.querySelector('a[href="#marketing"]');
+    defaultLink.classList.add("text-accent-500", "border-accent-500");
+    defaultLink.classList.remove("border-transparent");
+
+    const observerOptions = {
+      root: null, // Default root (viewport)
+      threshold: 0.5, // Trigger when 50% of the section is in view
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const link = document.querySelector(`a[href="#${entry.target.id}"]`);
+
+        // Check if the section is intersecting (visible)
+        if (entry.isIntersecting) {
+          // Add 'text-accent-500' and 'border-accent-500', remove 'border-transparent'
+          link.classList.add("text-accent-500", "border-accent-500");
+          link.classList.remove("border-transparent");
+        } else {
+          // Remove 'text-accent-500' and 'border-accent-500', add 'border-transparent'
+          link.classList.remove("text-accent-500", "border-accent-500");
+          link.classList.add("border-transparent");
+        }
+      });
+    }, observerOptions);
+
+    // Observe each section
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+  });
+</script>

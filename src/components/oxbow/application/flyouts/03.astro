@@ -21,23 +21,20 @@ const links = [
   { name: "Version control", link: "#" },
 ];
 ---
+
 <div class="h-[60rem]">
   <div class="flex items-center justify-center w-full py-12 mx-auto">
     <!--- When in use set x-data="{ open: false }" -->
-    <div
-      class="relative"
-      x-data="{ open: true }">
+    <div class="relative" x-data="{ open: true }">
       <Button
         aria-expanded="false"
         @click="open = !open"
         variant="text"
         size="sm"
-        gap="sm">
+        gap="sm"
+      >
         <span>Help Center</span>
-        <ChevronDown
-          size="sm"
-          slot="right-icon"
-        />
+        <ChevronDown size="sm" slot="right-icon" />
       </Button>
       <div
         x-show="open"
@@ -49,17 +46,18 @@ const links = [
         x-transition:leave-start="opacity-100 translate-y-0"
         x-transition:leave-end="opacity-0 translate-y-1"
         class="absolute z-10 flex w-screen px-4 mt-5 -translate-x-1/2 left-1/2 max-w-max"
-        style="display: none;">
+        style="display: none;"
+      >
         <div
-          class="flex-auto w-screen max-w-md overflow-hidden bg-white shadow-lg rounded-3xl ring-1 ring-base-900/5 lg:max-w-3xl">
+          class="flex-auto w-screen max-w-md overflow-hidden bg-white shadow-lg rounded-3xl ring-1 ring-base-900/5 lg:max-w-3xl"
+        >
           <div class="grid grid-cols-1 p-8 gap-x-0 gap-y-1 lg:grid-cols-2">
-            <div
-              class="p-4"
-              role="none">
+            <div class="p-4" role="none">
               <Text
                 tag="h3"
                 variant="textBase"
-                class="text-base-900 font-medium">
+                class="text-base-900 font-medium"
+              >
                 Benefits
               </Text>
               <div class="mt-2">
@@ -99,19 +97,22 @@ const links = [
               <Text
                 tag="h3"
                 variant="textBase"
-                class="text-base-900 font-medium">
+                class="text-base-900 font-medium"
+              >
                 Browse by feature
               </Text>
               <div
                 class="mt-4 pt-4 border-t border-gray-200 space-y-2"
-                role="none">
+                role="none"
+              >
                 {
                   links.map((feature) => (
                     <Text
                       tag="a"
                       href="#_"
-                      variant="textMD"
-                       class="hover:text-accent-500 font-medium block text-base-500 ">
+                      variant="textBase"
+                      class="hover:text-accent-500 font-medium block text-base-500 "
+                    >
                       {feature.name}
                     </Text>
                   ))
@@ -121,27 +122,26 @@ const links = [
           </div>
           <div class="p-8 pt-0">
             <div
-              class="grid items-end grid-cols-1 p-8 md:grid-cols-3 bg-base-50 rounded-2xl">
+              class="grid items-end grid-cols-1 p-8 md:grid-cols-3 bg-base-50 rounded-2xl"
+            >
               <div class="md:col-span-2">
                 <Text
                   tag="h2"
                   variant="textLG"
-                  class="font-semibold text-base-900">
+                  class="font-semibold text-base-900"
+                >
                   Ready to get started?
                 </Text>
                 <Text
                   tag="p"
                   variant="textBase"
-                  class="mt-2 text-base-500 font-medium lg:text-balance">
+                  class="mt-2 text-base-500 font-medium lg:text-balance"
+                >
                   Take your markup to the next level with Oxbow
                 </Text>
               </div>
               <div class="mt-4 lg:justify-self-end">
-                <Button
-                  variant="accent"
-                  size="sm">
-                  Get started
-                </Button>
+                <Button variant="accent" size="sm"> Get started </Button>
               </div>
             </div>
           </div>

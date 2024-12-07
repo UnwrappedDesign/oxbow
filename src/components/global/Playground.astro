@@ -18,135 +18,134 @@ const ppcode = canSeeCode ? await prettier.format(code, {
 ---
 <section x-data={`{ tab: 'preview', viewportSize: 'desktop' }`} class="not-prose" >
   <div class="relative">
-    <div class="pointer-events-none inset-x-0 top-0 z-10 md:left-auto">
-      <div class="flex items-center justify-between py-2 gap-1">
-        <a
-          class="pointer-events-auto rounded-md border bg-white p-1 text-base-500 flex items-center justify-center size-7 text-xs"
-          href={`#${componentIndex}`}
-        >
-        {componentIndex}
-        </a>
-        <div class="flex items-center justify-end w-full gap-2">
-          <span class="isolate md:inline-flex h-7 gap-1 hidden" x-show="tab === 'preview'">
-            <button
-              class="pointer-events-auto relative inline-flex items-center rounded p-1 focus:text-accent-500 text-xs font-semibold text-base-900 hover:bg-white "
-              @click="viewportSize = 'mobile'" :class="viewportSize === 'mobile' ? 'bg-white' : 'bg-black/0'"
+   
+    <div class="flex items-center justify-between pb-2 gap-1">
+      <a
+        class="pointer-events-auto rounded-md border bg-white p-1 text-base-500 flex items-center justify-center size-7 text-xs"
+        href={`#${componentIndex}`}
+      >
+      {componentIndex}
+      </a>
+      <div class="flex items-center justify-end w-full gap-2">
+        <span class="isolate md:inline-flex h-7 gap-1 hidden" x-show="tab === 'preview'">
+          <button
+            class="pointer-events-auto relative inline-flex items-center rounded p-1 focus:text-accent-500 text-xs font-semibold text-base-900 hover:bg-white "
+            @click="viewportSize = 'mobile'" :class="viewportSize === 'mobile' ? 'bg-white' : 'bg-black/0'"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-device-mobile size-[20px]"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-device-mobile size-[20px]"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <path
-                  d="M6 5a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-14z"
-                ></path>
-                <path d="M11 4h2"></path>
-                <path d="M12 17v.01"></path>
-              </svg>
-            </button>
-            <button
-              class="pointer-events-auto relative  inline-flex items-center rounded  p-1 focus:text-accent-500 text-xs font-semibold text-base-900 hover:bg-white "
-              @click="viewportSize = 'tablet'" :class="viewportSize === 'tablet' ? 'bg-white' : 'bg-black/0'"
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path
+                d="M6 5a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-14z"
+              ></path>
+              <path d="M11 4h2"></path>
+              <path d="M12 17v.01"></path>
+            </svg>
+          </button>
+          <button
+            class="pointer-events-auto relative  inline-flex items-center rounded  p-1 focus:text-accent-500 text-xs font-semibold text-base-900 hover:bg-white "
+            @click="viewportSize = 'tablet'" :class="viewportSize === 'tablet' ? 'bg-white' : 'bg-black/0'"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-device-ipad-horizontal size-[22px]"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-device-ipad-horizontal size-[22px]"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <path
-                  d="M3 6a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-12z"
-                ></path>
-                <path d="M9 17h6"></path>
-              </svg>
-            </button>
-            <button
-              class="pointer-events-auto relative  inline-flex items-center rounded p-1 focus:text-accent-500 text-xs font-semibold text-base-900 hover:bg-white "
-              @click="viewportSize = 'desktop'" :class="viewportSize === 'desktop' ? 'bg-white' : 'bg-black/0 '"
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path
+                d="M3 6a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-12z"
+              ></path>
+              <path d="M9 17h6"></path>
+            </svg>
+          </button>
+          <button
+            class="pointer-events-auto relative  inline-flex items-center rounded p-1 focus:text-accent-500 text-xs font-semibold text-base-900 hover:bg-white "
+            @click="viewportSize = 'desktop'" :class="viewportSize === 'desktop' ? 'bg-white' : 'bg-black/0 '"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-device-desktop size-[22px]"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-device-desktop size-[22px]"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <path
-                  d="M3 5a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1v-10z"
-                ></path>
-                <path d="M7 20h10"></path>
-                <path d="M9 16v4"></path>
-                <path d="M15 16v4"></path>
-              </svg>
-            </button>
-          </span>
-          <div class="mx-1 h-4 w-[2px] bg-white hidden md:inline-block"></div>
-          {
-            canSeeCode ? (
-              <div class="flex items-center gap-2">
-                <button
-                  @click="tab = 'preview'" :class="tab === 'preview' ? 'bg-white' : 'bg-black/0'"
-                  data-umami-event="click-view-preview"
-                  data-umami-data-id={user?.uid}
-                  data-umami-event-componentref={componentPath}
-                  class=" pointer-events-auto flex focus:text-accent-500 rounded-md px-4 h-7 py-1 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200 ">
-                  Preview
-                </button>
-                <button
-                  @click="tab = 'code'" :class="tab === 'code' ? 'bg-white' : 'bg-black/0'"
-                  data-umami-event="click-view-code"
-                  data-umami-data-id={user?.uid}
-                  data-umami-event-componentref={componentPath}
-                  class="pointer-events-auto flex rounded-md px-4 py-1 focus:text-accent-500 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200">
-                  Code
-                </button>
-                <div class="mx-1 h-4 w-[2px] bg-white" />
-                <button
-                  x-data="{ copied: false }"
-                  data-umami-event="click-copy-component"
-                  data-umami-data-id={user?.uid}
-                  data-umami-event-componentref={componentPath}
-                  class="pointer-events-auto relative w-20 flex rounded-md focus:text-accent-500 px-4 py-1 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200"
-                  @click={`copied=true; $clipboard($refs.code${componentIndex}.innerText); setTimeout(()=> { copied = false; }, 2000);`}
-                >
-                  <span
-                    x-text="copied ? 'Copied!' : 'Copy'"
-                    class="transition"
-                  />
-                </button>
-              </div>
-            ) : (
-              <a
-                class="pointer-events-auto relative font-medium flex rounded-md px-4 py-1 text-sm focus:text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200 text-accent-600  duration-300"
-                href="/pricing"
-                data-umami-event="click-get-access"
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path
+                d="M3 5a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1v-10z"
+              ></path>
+              <path d="M7 20h10"></path>
+              <path d="M9 16v4"></path>
+              <path d="M15 16v4"></path>
+            </svg>
+          </button>
+        </span>
+        <div class="mx-1 h-4 w-[2px] bg-white hidden md:inline-block"></div>
+        {
+          canSeeCode ? (
+            <div class="flex items-center gap-2">
+              <button
+                @click="tab = 'preview'" :class="tab === 'preview' ? 'bg-white' : 'bg-black/0'"
+                data-umami-event="click-view-preview"
                 data-umami-data-id={user?.uid}
                 data-umami-event-componentref={componentPath}
+                class=" pointer-events-auto flex focus:text-accent-500 rounded-md px-4 h-7 py-1 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200 ">
+                Preview
+              </button>
+              <button
+                @click="tab = 'code'" :class="tab === 'code' ? 'bg-white' : 'bg-black/0'"
+                data-umami-event="click-view-code"
+                data-umami-data-id={user?.uid}
+                data-umami-event-componentref={componentPath}
+                class="pointer-events-auto flex rounded-md px-4 py-1 focus:text-accent-500 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200">
+                Code
+              </button>
+              <div class="mx-1 h-4 w-[2px] bg-white" />
+              <button
+                x-data="{ copied: false }"
+                data-umami-event="click-copy-component"
+                data-umami-data-id={user?.uid}
+                data-umami-event-componentref={componentPath}
+                class="pointer-events-auto relative w-20 flex rounded-md focus:text-accent-500 px-4 py-1 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200"
+                @click={`copied=true; $clipboard($refs.code${componentIndex}.innerText); setTimeout(()=> { copied = false; }, 2000);`}
               >
-                Get Access
-              </a>
-            )
-          }
-        </div>
+                <span
+                  x-text="copied ? 'Copied!' : 'Copy'"
+                  class="transition"
+                />
+              </button>
+            </div>
+          ) : (
+            <a
+              class="pointer-events-auto relative font-medium flex rounded-md px-4 py-1 text-sm focus:text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200 text-accent-600  duration-300"
+              href="/pricing"
+              data-umami-event="click-get-access"
+              data-umami-data-id={user?.uid}
+              data-umami-event-componentref={componentPath}
+            >
+              Get Access
+            </a>
+          )
+        }
       </div>
     </div>
     <div
-      class="relative min-h-[400] w-full flex border border-gray-200  ring-4 ring-base-200 bg-white overflow-hidden rounded-lg"
+      class="relative min-h-[400] w-full flex border border-gray-200  ring-4 ring-base-50 bg-white overflow-hidden rounded-lg"
     >
       <div
         x-show="tab === 'preview'"
