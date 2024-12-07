@@ -1,7 +1,6 @@
 ---
 import { Image } from "astro:assets";
 
-
 import type { Template } from "@/data/entries.json";
 interface Props {
   entries: Template[];
@@ -40,22 +39,24 @@ const entriesWithQuantity = entries
 ---
 
 <ul
-  class="grid grid-cols-1 col-span-3 gap-x-6 gap-y-6 sm:grid-cols-2 sm:gap-y-10 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 xl:gap-x-8">
+  class="grid grid-cols-1 col-span-4 gap-x-6 gap-y-6 sm:grid-cols-2 sm:gap-y-10 md:grid-cols-3 xl:gap-x-8"
+>
   {
     entriesWithQuantity.map((template) => (
       <li class="relative ">
         <div class="relative rounded-lg group ">
           <Image
-            class="object-cover object-bottom "
+            class="object-cover object-bottom rounded-xl ring-4 ring-base-50 group-hover:ring-base-100 transition-all duration-300 ease-in-out"
             alt={template.name}
             src={template.image()}
           />
-          <div class="flex items-center justify-between mt-2 ">
+          <div class="flex flex-col mt-2 ">
             <p class="text-sm font-medium 2xl:text-base text-base-900 group-hover:text-accent-600">
               <a
                 class="flex items-center justify-between gap-2"
                 title={template.name}
-                href={template.link}>
+                href={template.link}
+              >
                 <span class="absolute -inset-2.5 z-10" />
                 <span class="relative">{template.name}</span>
                 <span class="inline-flex  items-center font-medium z-10 text-accent-500 sr-only bottom-2 right-2 bg-base-50 px-2.5 py-1 text-xs rounded-md">
@@ -64,29 +65,7 @@ const entriesWithQuantity = entries
               </a>
             </p>
             <p class="relative flex items-center gap-1 text-xs font-medium 2xl:text-sm text-base-400">
-              {template.quantity}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-components size-3">
-                <>
-                  <path
-                    stroke="none"
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  />
-                  <path d="M3 12l3 3l3 -3l-3 -3z" />
-                  <path d="M15 12l3 3l3 -3l-3 -3z" />
-                  <path d="M9 6l3 3l3 -3l-3 -3z" />
-                  <path d="M9 18l3 3l3 -3l-3 -3z" />
-                </>
-              </svg>
+              {template.quantity} Components
             </p>
           </div>
         </div>

@@ -50,22 +50,19 @@ const blogPosts = [
 
 <div class="h-[50rem]">
   <!--- When in use set x-data="{ open: false }" -->
-  <div
-    class="relative z-50 py-12 isolate"
-    x-data="{ open: true }">
+  <div class="relative z-50 py-12 isolate" x-data="{ open: true }">
     <div
-      class="flex items-center justify-center px-8 mx-auto max-w-7xl md:px-12 lg:px-24">
+      class="flex items-center justify-center px-8 mx-auto max-w-7xl md:px-12 lg:px-24"
+    >
       <Button
         aria-expanded="false"
         @click="open = !open"
         variant="text"
         size="sm"
-        gap="sm">
+        gap="sm"
+      >
         <span>Help Center</span>
-        <ChevronDown
-          size="sm"
-          slot="right-icon"
-        />
+        <ChevronDown size="sm" slot="right-icon" />
       </Button>
     </div>
     <!-- Flyout menu -->
@@ -78,16 +75,16 @@ const blogPosts = [
       x-transition:leave="transition ease-in duration-150"
       x-transition:leave-start="opacity-100 translate-y-0"
       x-transition:leave-end="opacity-0 -translate-y-1"
-      class="absolute inset-x-0 top-0 px-8 py-12 pt-16 -z-10 md:px-12 lg:px-24">
+      class="absolute inset-x-0 top-0 px-8 py-12 pt-16 -z-10 md:px-12 lg:px-24"
+    >
       <div
-        class="p-8 mx-auto mt-12 bg-white shadow-lg max-w-7xl ring-1 ring-base-900/5 rounded-3xl lg:p-12">
+        class="p-8 mx-auto mt-12 bg-white shadow-lg max-w-7xl ring-1 ring-base-900/5 rounded-3xl lg:p-12"
+      >
         <div
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12"
+        >
           <div>
-            <Text
-              tag="h3"
-              variant="textBase"
-              class="text-base-900 font-medium">
+            <Text tag="h3" variant="textBase" class="text-base-900 font-medium">
               Benefits
             </Text>
             <div class="mt-2">
@@ -125,18 +122,21 @@ const blogPosts = [
                     <Text
                       tag="h3"
                       variant="textBase"
-                      class="text-base-900 font-medium">
+                      class="text-base-900 font-medium"
+                    >
                       {categoryItem.category}
                     </Text>
                     <div
                       class="mt-4 pt-4 border-t border-gray-200 space-y-2"
-                      role="none">
+                      role="none"
+                    >
                       {categoryItem.features.map((feature) => (
                         <Text
                           tag="a"
                           href="#_"
-                          variant="textMD"
-                          class="hover:text-accent-500 font-medium block text-base-500 ">
+                          variant="textBase"
+                          class="hover:text-accent-500 font-medium block text-base-500 "
+                        >
                           {feature.name}
                         </Text>
                       ))}
@@ -156,21 +156,20 @@ const blogPosts = [
                     src={post.imageUrl}
                   />
                   <div>
-                    <Text
-                      href="#_"
-                      tag="a"
-                      variant="textMD">
+                    <Text href="#_" tag="a" variant="textBase">
                       <span class="absolute inset-0 sm:rounded-2xl" />
                       <Text
                         tag="h3"
                         variant="textBase"
-                        class="text-base-900 font-medium group-hover:text-accent-500">
+                        class="text-base-900 font-medium group-hover:text-accent-500"
+                      >
                         {post.title}
                       </Text>
                       <Text
                         tag="h3"
                         variant="textSM"
-                        class="text-base-500 font-medium">
+                        class="text-base-500 font-medium"
+                      >
                         {post.subtitle}
                       </Text>
                     </Text>
