@@ -41,15 +41,17 @@ const user = Astro.locals.user;
       >
       <Text
         tag="h1"
-        variant="displayMD"
+        variant="displayBase"
         class="uppercase mt-4 font-semibold tracking-tight text-black"
       >
         {subsection.replace(/-/g, " ")}
       </Text>
     </Wrapper>
-    <Wrapper variant="standard" class="mt-12">
+  </section>
+  <section class="border-t border-base-200">
+    <Wrapper variant="standard" class="py-12">
       <div
-        class="relative w-full grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-5"
+        class="relative w-full grid grid-cols-1 gap-4 md:grid-cols-2 gap-y-12 lg:grid-cols-3"
       >
         {
           sectionComponents.map((component, index) => {
@@ -64,35 +66,37 @@ const user = Astro.locals.user;
             }
 
             return (
-              <Text
-                tag="a"
+              <a
                 href={`/playground/${section}/${subsection}/${index + 1}`}
-                class="relative group"
+                class="relative group flex flex-col "
               >
-                {!user && index === 0 && (
-                  <div class="absolute top-2 left-2 p-1">
-                    <span
-                      class="flex items-center gap-1 text-white py-1 mt-1 px-2 border border-accent-800 rounded text-xs bg-accent-600"
+                <div class="flex items-center gap-2 ">
+                  <Text
+                    tag="span"
+                    variant="textXS"
+                    class="text-base-500 capitalize"
+                  >
+                    {subsection.replace(/-/g, " ")}
+                    Component {index + 1}
+                  </Text>
+
+                  {!user && index === 0 && (
+                    <Text
+                      tag="span"
+                      variant="textXS"
+                      class="   text-accent-600"
                     >
-                      Demo
-                    </span>
-                  </div>
-                )}
-                <div class="absolute top-2 right-2 p-1">
-                  <div class="group-hover:flex items-center gap-1 bg-white py-1 mt-1 hidden px-2 border border-base-200 rounded text-xs">
-                    <span class="text-black capitalize">
-                      {subsection.replace(/-/g, " ")}
-                      {index + 1}
-                    </span>
-                  </div>
+                      — &nbsp; Demo
+                    </Text>
+                  )}
                 </div>
 
                 <Image
                   src={images[imagePath]()}
                   alt={`${subsection} preview ${index + 1}`}
-                  class="w-full object-cover mt-1 border border-base-200 cursor-pointer"
+                  class="w-full object-cover mt-1 border  border-base-200 rounded ring-4 ring-base-50 group-hover:ring-base-100 transition-all duration-300 ease-in-out cursor-pointer"
                 />
-              </Text>
+              </a>
             );
           })
         }

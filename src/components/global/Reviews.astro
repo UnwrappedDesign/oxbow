@@ -2,30 +2,32 @@
 import { reviews } from "../../data/reviews.json";
 import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-import MainHero from "@/components/fundations/containers/MainHero.astro";
 ---
 
-<section>
-  <Wrapper class="py-12">
+<section class="border-t border-base-200">
+  <Wrapper variant="standard" class="py-12">
     <div class="gap-3 lg:grid lg:grid-cols-2 justify-between">
       <Text
         tag="h2"
         variant="displaySM"
-        class="text-black font-medium tracking-tighter">
+        class="text-black font-medium tracking-tighter"
+      >
         Reviews and opinions
       </Text>
       <div class="flex flex-wrap gap-2 lg:ml-auto mt-3 lg:mt-0">
         <Text
           tag="a"
           href="/customers"
-          class="rounded-full flex items-center transition-all duration-200 focus:ring-2 focus:ring-offset-2 focus:outline-none text-base-700 bg-white ring-offset-2 ring-offset-base-50 hover:text-accent-600 focus:ring-accent-500 h-9 px-4 py-2 text-sm font-medium justify-center w-auto ring-1 ring-base-200">
+          class="rounded-full flex items-center transition-all duration-200 focus:ring-2 focus:ring-offset-2 focus:outline-none text-base-700 bg-white ring-offset-2 ring-offset-base-50 hover:text-accent-600 focus:ring-accent-500 h-9 px-4 py-2 text-sm font-medium justify-center w-auto ring-1 ring-base-200"
+        >
           See them all
         </Text>
       </div>
     </div>
     <ul
-      class="w-full mt-4 border-y divide-y relative lg:grid-cols-2 grid lg:divide-y-0 lg:gap-x-12"
-      role="list">
+      class="w-full mt-4 border-t  relative lg:grid-cols-2 grid  lg:gap-x-12"
+      role="list"
+    >
       {
         reviews.slice(0, 2).map((template) => (
           <>
@@ -40,14 +42,10 @@ import MainHero from "@/components/fundations/containers/MainHero.astro";
                     />
                   </div>
                   <div class="flex-1 min-w-0  font-medium text-black">
-                    <Text
-                      tag="p"
-                      variant="textSM">
+                    <Text tag="p" variant="textSM">
                       {template.name}
                     </Text>
-                    <Text
-                      tag="p"
-                      variant="textSM">
+                    <Text tag="p" variant="textSM">
                       {template.work}
                     </Text>
                   </div>
@@ -55,7 +53,8 @@ import MainHero from "@/components/fundations/containers/MainHero.astro";
                 <Text
                   tag="p"
                   variant="textBase"
-                  class="text-base-600 text-pretty">
+                  class="text-base-600 text-pretty"
+                >
                   "{template.text}"
                 </Text>
               </div>

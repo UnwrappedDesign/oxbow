@@ -105,17 +105,9 @@ boxShadow: {
 
 ## Typography
 
-For typography we are using Inter, but we have customized and added stylistic sets.
+For typography we are using Geist
 
-You can grab the CDN from Rasmus website.
-
-```html
-<!-- HTML in your document's head -->
-<Text  rel="preconnect" href="https://rsms.me/" />
-<Text  rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-```
-
-We are using this stylistic sets and you can learn more about it [here](https://rsms.me/inter/)
+You can grab the CDN from Google Fonts [here](https://fonts.google.com/?query=geist)
 
 ```css
 /* CSS */

@@ -1,0 +1,230 @@
+---
+import { AstroSeo } from "@astrolib/seo";
+import Cta from "@/components/global/Cta.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Reviews from "@/components/global/Reviews.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import EntryStructure from "@/components/landing/EntryStructure.astro";
+import StickyNav from "@/components/global/StickyNav.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+//
+// Marketing
+//
+import { pageSections } from "@/data/entries.json";
+import { pageExamples } from "@/data/entries.json";
+// Application
+//
+import { forms, elements, overlay, navigation } from "@/data/entries.json";
+---
+
+<AstroSeo
+  title="Oxbow UI - Components "
+  description="Find components, elements and layouts "
+  canonical="https://www.oxbowui.com/components"
+  openGraph={{
+    url: "https://www.oxbowui.com/images/OpenGraph/twitter.png",
+    title: "Oxbow UI - Home",
+    description: "Find components, elements and layouts ",
+    images: [
+      {
+        url: "https://www.oxbowui.com/images/OpenGraph/facebook.png",
+        width: 1200,
+        height: 630,
+        alt: "oxbow",
+        type: "image/png",
+      },
+      {
+        url: "https://www.oxbowui.com/images/OpenGraph/twitter.png",
+        width: 4096,
+        height: 4096,
+        alt: "oxbow",
+        type: "image/png",
+      },
+      { url: "https://www.oxbowui.com/images/OpenGraph/facebook.ong" },
+      { url: "https://www.oxbowui.com/images/OpenGraph/twitter.png" },
+    ],
+    site_name: "oxbow",
+  }}
+  twitter={{
+    handle: "@Mike_Andreuzza",
+    site: "https://www.oxbowui.com",
+    cardType: "summary_large_image",
+  }}
+/>
+<BaseLayout>
+  <section id="entries">
+    <Wrapper variant="standard" class="relative pb-12 pt-8">
+      <StickyNav />
+      <section id="marketing" class="flex flex-col scroll-mt-16 pt-20">
+        <div>
+          <div
+            class="border-b border-base-200 pb-5 grid grid-cols-1 lg:grid-cols-3 gap-4"
+          >
+            <Text tag="h3" variant="textXL" class="font-semibold text-base-900">
+              Marketing
+            </Text>
+            <Text
+              tag="p"
+              variant="textBase"
+              class="font-medium lg:text-balance text-base-500 lg:col-span-2"
+            >
+              Hero sections, feature displays, footers, pricing pages, ready to
+              grab landing pages and more to help you create standout marketing
+              websites that impress and grow your audience.
+            </Text>
+          </div>
+
+          <div class="flex flex-col gap-12 mt-12 lg:gap-12">
+            <div
+              class="grid grid-cols-1 lg:grid-cols-5 gap-6 scroll-mt-16"
+              id="pageSections"
+            >
+              <div>
+                <div class="lg:sticky lg:pb-16 top-24">
+                  <Text
+                    tag="h3"
+                    variant="textBase"
+                    class="font-semibold text-base-900"
+                  >
+                    Page sections
+                  </Text>
+                </div>
+              </div>
+              <EntryStructure entries={pageSections} />
+            </div>
+            <div
+              class="grid grid-cols-1 lg:grid-cols-5 gap-6 scroll-mt-16"
+              id="pageExamples"
+            >
+              <div>
+                <div class="lg:sticky lg:pb-16 top-24">
+                  <Text
+                    tag="h3"
+                    variant="textBase"
+                    class="font-semibold text-base-900"
+                  >
+                    Landing Pages
+                  </Text>
+                </div>
+              </div>
+              <EntryStructure entries={pageExamples} />
+            </div>
+          </div>
+        </div>
+      </section>
+    </Wrapper>
+  </section>
+
+  <section class="border-t border-base-200">
+    <Wrapper variant="standard" class="relative py-12">
+      <section id="application" class="flex flex-col scroll-mt-16">
+        <div
+          class="border-b border-base-200 pb-5 grid grid-cols-1 lg:grid-cols-3 gap-4"
+        >
+          <Text tag="h3" variant="textXL" class="font-semibold text-base-900">
+            Application
+          </Text>
+          <Text
+            tag="p"
+            variant="textBase"
+            class="font-medium lg:text-balance text-base-500 lg:col-span-2"
+          >
+            Find navigation, buttons, forms, command palettes, typography,
+            application layouts, dialogs, and more to make your application’s
+            user interface pretty.
+          </Text>
+        </div>
+
+        <div class="flex flex-col gap-12 mt-12 lg:gap-12">
+          <div
+            class="grid grid-cols-1 lg:grid-cols-5 gap-6 scroll-mt-16"
+            id="navigation"
+          >
+            <div>
+              <div class="lg:sticky lg:pb-16 top-24">
+                <Text
+                  tag="h3"
+                  variant="textBase"
+                  class="font-semibold text-base-900"
+                >
+                  Navigation
+                </Text>
+              </div>
+            </div>
+            <EntryStructure entries={navigation} />
+          </div>
+          <div
+            class="grid grid-cols-1 lg:grid-cols-5 gap-6 scroll-mt-16"
+            id="overlay"
+          >
+            <div>
+              <div class="lg:sticky lg:pb-16 top-24">
+                <Text
+                  tag="h3"
+                  variant="textBase"
+                  class="font-semibold text-base-900">Overlay</Text
+                >
+              </div>
+            </div>
+            <EntryStructure entries={overlay} />
+          </div>
+          <div
+            class="grid grid-cols-1 lg:grid-cols-5 gap-6 scroll-mt-16"
+            id="forms"
+          >
+            <div>
+              <div class="lg:sticky lg:pb-16 top-24">
+                <Text
+                  tag="h3"
+                  variant="textBase"
+                  class="font-semibold text-base-900">Forms</Text
+                >
+              </div>
+            </div>
+            <EntryStructure entries={forms} />
+          </div>
+          <div
+            class="grid grid-cols-1 lg:grid-cols-5 gap-6 scroll-mt-16"
+            id="elements"
+          >
+            <div>
+              <div class="lg:sticky lg:pb-16 top-24">
+                <Text
+                  tag="h3"
+                  variant="textBase"
+                  class="font-semibold text-base-900"
+                >
+                  Elements
+                </Text>
+              </div>
+            </div>
+            <EntryStructure entries={elements} />
+          </div>
+        </div>
+      </section>
+    </Wrapper>
+  </section>
+  <section class="border-t border-base-200">
+    <Wrapper variant="standard" class="relative py-12">
+      <section id="ecommerce" class="opacity-50">
+        <div
+          class="border-b border-base-200 pb-5 grid grid-cols-1 lg:grid-cols-3 gap-4"
+        >
+          <Text tag="h3" variant="textXL" class="font-semibold text-base-900">
+            eCommerce — Comming soon
+          </Text>
+          <Text
+            tag="p"
+            variant="textBase"
+            class="font-medium lg:text-balance text-base-500 lg:col-span-2"
+          >
+            Checkout forms, shopping carts, promo sections, store fronts,
+            product overviews and all the basics to build your store.
+          </Text>
+        </div>
+      </section>
+    </Wrapper>
+  </section>
+  <Reviews />
+  <Cta />
+</BaseLayout>

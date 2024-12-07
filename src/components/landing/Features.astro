@@ -1,33 +1,221 @@
 ---
 import { Image } from "astro:assets";
 import showcase from "@/images/assets/showcase.png";
+import Code from "@/components/fundations/icons/Code.astro";
+import marketingImage from "@/screenshots/marketing_hero_03.png";
 import Text from "@/components/fundations/typography/Text.astro";
+import Devices from "@/components/fundations/icons/Devices.astro";
+import Component from "@/components/fundations/icons/Component.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-const inside = [
+
+const data = [
   {
-    img: "/images/oxbow/marketing.png",
-    title: "Marketing",
-    description:
-      "Offers hero sections, feature segments, newsletter sign-up forms, and more to boost your marketing efforts.",
+    icon: "Component",
+    category: "Components",
+    text: "Over 400 well-designed and carefully built components that follow accessibility standards and are easy to customize.",
   },
   {
-    img: "/images/oxbow/application.png",
-    title: "Application",
-    description:
-      " Includes buttons, form controls, application layouts, dialogs, and more to enhance your application’s user interface.",
+    icon: "Code",
+    category: "Tailwind, Alpine  and more ",
+    text: "Interactive examples built with Alpine JS and plain HTML, with more frameworks coming soon.",
   },
   {
-    img: "/images/oxbow/ecommerce.png",
-    title: "eCommerce",
-    description:
-      "Provides checkout forms, shopping carts, product views, and more tailored for ecommerce functionalities.",
+    icon: "Devices",
+    category: "Responsive",
+    text: "Each example is fully Devices, thoughtfully crafted, and set up to look great on screens of any size.",
   },
 ];
 ---
 
+<section class="border-t border-base-200">
+  <Wrapper variant="standard" class="relative py-12">
+    <div
+      class="overflow-hidden rounded-xl bg-gradient-to-t from-base-200 to-base-50 ring-4 ring-base-50 border border-base-200"
+    >
+      <Image
+        class="object-cover h-full max-h-96 lg:-mt-12 w-full object-top drop-shadow-xl scale-110"
+        src={showcase}
+        alt="showcase"
+      />
+    </div>
+    <dl
+      class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16 mt-12"
+    >
+      {
+        data.map((section) => (
+          <div>
+            <div class=" flex gap-3 items-center">
+              {section.icon === "Component" && (
+                <Component class="text-accent-600" size="base" />
+              )}
+              {section.icon === "Code" && (
+                <Code class="text-accent-600" size="base" />
+              )}
+              {section.icon === "Devices" && (
+                <Devices class="text-accent-600" size="base" />
+              )}
+
+              <dt>
+                <Text
+                  tag="h3"
+                  variant="textLG"
+                  class="text-base-900 font-medium"
+                >
+                  {section.category}
+                </Text>
+              </dt>
+            </div>
+            <dd>
+              <Text
+                tag="p"
+                variant="textBase"
+                class="mt-2 text-base-500 font-medium"
+              >
+                {section.text}
+              </Text>
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+    <div class="grid grid-cols-1 gap-4 lg:items-center lg:grid-cols-2 mt-12">
+      <div
+        class="bg-accent-700 relative p-8 ring-4 ring-base-50 border border-accnt-200 rounded-xl h-full text-center flex flex-col justify-center items-center lg:p-12 overflow-hidden"
+      >
+        <div class="relative items-center text-balance">
+          <Text tag="p" variant="textXS" class="font-bold uppercase text-white">
+            Get acces
+          </Text>
+          <Text
+            tag="h3"
+            variant="displaySM"
+            class="mt-4 text-white font-semibold"
+          >
+            Get lifetime access to all components, elements, and layouts for
+            only <del class="opacity-45">$149</del> $67
+          </Text>
+          <Text
+            tag="p"
+            variant="textBase"
+            class="mt-2 text-base-200 font-medium"
+          >
+            Own them forever with lifetime updates, unlimited usage, and
+            support—no subscription required!
+          </Text>
+          <div class="flex mt-8 justify-center">
+            <Text
+              tag="a"
+              href="/pricing"
+              aria-label="Pricing"
+              title="Get full access"
+              id="access-footer-cta"
+              data-umami-event="access-footer-cta"
+              class="flex items-center justify-center w-full sm:w-auto ring-4 ring-base-50/20 h-12 px-6 py-2 font-medium text-accent-600 transition-all duration-200 rounded-full focus:ring-2 focus:ring-offset-2 focus:outline-none bg-white border border-base-200 hover:text-accent-950 focus:ring-base-50/10"
+            >
+              Get access for <span><del class="opacity-70">$149</del> $67</span>
+            </Text>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 h-full">
+        <div
+          class="bg-white ring-4 ring-base-50 border border-base-200 rounded-xl flex flex-col h-full justify-between relative overflow-hidden"
+        >
+          <div class="p-8 relative">
+            <Text
+              tag="p"
+              variant="textXS"
+              class="font-bold uppercase text-accent-600"
+            >
+              Marketing
+            </Text>
+            <Text
+              tag="h3"
+              variant="textLG"
+              class="mt-4 text-base-900 font-medium"
+            >
+              Landing pages?
+            </Text>
+            <Text
+              tag="p"
+              variant="textSM"
+              class="mt-2 text-base-500 font-medium"
+            >
+              Hero sections, feature displays, footers, pricing pages, ready to
+              grab landing pages and more to help you create standout marketing
+              websites that impress and grow your audience.
+            </Text>
+          </div>
+          <div class="lg:absolute -bottom-4 -right-8 ml-8 -mb-4">
+            <Image
+              class="rounded-l-xl ring-4 ring-base-50 border border-base-200 shadow h-full"
+              src={marketingImage}
+              alt="hero images"
+            />
+          </div>
+        </div>
+        <div
+          class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-1 h-full"
+        >
+          <div
+            class="ring-4 ring-base-50 border border-base-200 rounded-xl p-8"
+          >
+            <Text
+              tag="p"
+              variant="textXS"
+              class="font-bold uppercase text-accent-600"
+            >
+              Application
+            </Text>
+            <Text
+              tag="h3"
+              variant="textLG"
+              class="mt-4 text-base-900 font-medium"
+            >
+              Building a webapp?
+            </Text>
+            <Text
+              tag="p"
+              variant="textSM"
+              class="mt-2 text-base-500 font-medium"
+            >
+              Find navigation, buttons, forms, command palettes, typography,
+              application layouts, dialogs, and more to make your application’s
+              user interface pretty.
+            </Text>
+          </div>
+          <div
+            class="ring-4 ring-base-50 border border-base-200 rounded-xl p-8"
+          >
+            <Text
+              tag="p"
+              variant="textXS"
+              class="font-bold uppercase text-accent-600">eCommerce</Text
+            >
+            <Text
+              tag="h3"
+              variant="textLG"
+              class="mt-4 text-base-900 font-medium"
+            >
+              Got a store?
+            </Text>
+            <Text
+              tag="p"
+              variant="textSM"
+              class="mt-2 text-base-500 font-medium"
+            >
+              Checkout forms, shopping carts, promo sections, store fronts,
+              product overviews and all the basics to build your store.
+            </Text>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Wrapper>
+</section>
 <section>
   <Wrapper variant="standardPaddingless">
-    <div class="relative overflow-hidden">
+    <div class="relative overflow-hidden hidden">
       <Image
         src={showcase}
         alt="showcase"
@@ -40,24 +228,4 @@ const inside = [
       </div>
     </div>
   </Wrapper>
-  <!-- <section>
-  <Wrapper variant="standard" class="relative">
-    <ul
-      class="grid grid-cols-1 mt-12 gap-x-6 gap-y-6 sm:grid-cols-2 sm:gap-y-10 md:grid-cols-3 xl:gap-x-8"
-    >
-      {
-        inside.map((inside) => (
-          <li>
-            <Text tag="p" variant="textBase" class=" text-base-500 text-pretty">
-              <Text tag="strong" class="text-black ">
-                {inside.title}
-              </Text>
-              — {inside.description}
-            </Text>
-          </li>
-        ))
-      }
-    </ul>
-  </Wrapper>
-</section> -->
 </section>
