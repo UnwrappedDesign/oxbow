@@ -171,30 +171,32 @@ const paddingClasses = [
 ---
 
 <div
-  class={`flex flex-col h-full p-1 ${paddingClasses} ${roundingClass} ${colorClasses.cardBg}`}>
+  class={`flex flex-col h-full p-1 ${paddingClasses} ${roundingClass} ${colorClasses.cardBg}`}
+>
   <div>
     <div
-      class={`flex flex-col gap-4 p-8 ${colorClasses.innerBg} h-full shadow `}>
+      class={`flex flex-col gap-4 p-8 ${colorClasses.innerBg} h-full shadow `}
+    >
       <div class="flex items-start justify-between w-full">
         <div>
           <Text
             tag="h3"
             variant="textXL"
-            class={`font-medium ${colorClasses.titleColor}`}>
+            class={`font-medium ${colorClasses.titleColor}`}
+          >
             {tierName}
           </Text>
           <Text
             tag="p"
-            variant="textMD"
-            class={`font-medium ${colorClasses.subTitleColor}`}>
+            variant="textBase"
+            class={`font-medium ${colorClasses.subTitleColor}`}
+          >
             {audience}
           </Text>
         </div>
         {
           isPopular && (
-            <Badge
-              variant="muted"
-              size="xs">
+            <Badge variant="muted" size="xs">
               Popular
             </Badge>
           )
@@ -202,35 +204,32 @@ const paddingClasses = [
       </div>
       <Text
         tag="p"
-        variant="textMD"
-        class={`font-medium ${colorClasses.introColor}`}>
+        variant="textBase"
+        class={`font-medium ${colorClasses.introColor}`}
+      >
         {description}
       </Text>
     </div>
   </div>
   <div class="p-8">
     <p
-      class={`font-semibold flex lg:text-3xl items-baseline text-2xl tracking-tighter ${colorClasses.priceColor}`}>
+      class={`font-semibold flex lg:text-3xl items-baseline text-2xl tracking-tighter ${colorClasses.priceColor}`}
+    >
       <span
         data-monthly={priceMonthly}
         data-annual={priceAnnual}
-        x-text="$el.dataset[duration]"
-      ></span>
+        x-text="$el.dataset[duration]"></span>
       <span
-        class={`text-sm font-normal font-sans tracking-normal ${colorClasses.monthYearTextColor}`}>
+        class={`text-sm font-normal font-sans tracking-normal ${colorClasses.monthYearTextColor}`}
+      >
         <span x-show="duration === 'monthly'">/month</span>
-        <span
-          x-show="duration === 'annual'"
-          style="display: none;"
+        <span x-show="duration === 'annual'" style="display: none;"
           >/annually</span
         >
       </span>
     </p>
     <div class="w-full mt-4">
-      <Button
-        class="w-full"
-        variant={buttonVariant}
-        size="sm">
+      <Button class="w-full" variant={buttonVariant} size="sm">
         Get Started
       </Button>
     </div>
@@ -240,18 +239,18 @@ const paddingClasses = [
           <Text
             tag="p"
             variant="textSM"
-            class={`font-medium uppercase ${colorClasses.featuresTextColor}`}>
+            class={`font-medium uppercase ${colorClasses.featuresTextColor}`}
+          >
             {tierName} plan includes:
           </Text>
           <ul
             class={`flex flex-col mt-4 gap-y-3 ${colorClasses.featuresTextColor} ${featuresLayout === "grid" ? "grid grid-cols-1 lg:grid-cols-2" : ""}`}
-            role="list">
+            role="list"
+          >
             {features.map((feature) => (
               <li class="flex items-center gap-2">
                 <Check size="sm" />
-                <Text
-                  tag="span"
-                  variant="textMD">
+                <Text tag="span" variant="textBase">
                   {feature}
                 </Text>
               </li>

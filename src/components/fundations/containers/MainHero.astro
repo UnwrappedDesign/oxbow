@@ -30,7 +30,7 @@ const {
 
 <section
   x-data="{ currentPath: window.location.pathname }"
-  :class="currentPath === '/' ? 'lg:pt-32 pt-16 pb-0' : ''"
+  :class="currentPath === '/' ? ' pt-16 pb-0' : ''"
 >
   <Wrapper variant="hero" class="py-12">
     <div class={`flex flex-col ${textCentered ? "justify-center" : ""}`}>
@@ -43,8 +43,8 @@ const {
       }
       <Text
         tag="h1"
-        variant="display2XL"
-        class={`text-black tracking-tighter font-semibold text-balance font-display 2xl:text-6xl mt-4 ${textCentered ? "text-center text-balance " : ""}`}
+        variant="displayLG"
+        class={`text-black tracking-tight font-bold text-balance font-display  mt-4 ${textCentered ? "text-center text-balance " : ""}`}
       >
         {title}
       </Text>
@@ -56,7 +56,7 @@ const {
             <Text
               tag="p"
               variant="textLG"
-              class={`text-base-600 text-balance mt-4 2xl:text-3xl ${textCentered ? "text-center" : ""}`}
+              class={`text-base-600 text-balance mt-4  ${textCentered ? "text-center" : ""}`}
             >
               {subtitle}
             </Text>
@@ -71,7 +71,7 @@ const {
         }
         {
           additionalText && (
-            <Text tag="p" variant="textMD" class={`${additionalTextClasses}`}>
+            <Text tag="p" variant="textBase" class={`${additionalTextClasses}`}>
               {additionalText}
             </Text>
           )
@@ -87,17 +87,17 @@ const {
                 variant="textBase"
                 id="access-navigation-cta"
                 data-umami-event="access-navigation-cta"
-                class="flex items-center justify-center w-full sm:w-auto h-10 px-4 py-2 font-medium text-white transition-all duration-200 rounded-full  gap-x-2 focus:ring-2 focus:ring-offset-2 focus:outline-none bg-accent-950 hover:bg-accent-900 focus:ring-accent-900"
+                class="flex items-center justify-center w-full border border-accent-950 ring-4 ring-base-50 sm:w-auto h-12 px-6 py-2 font-medium text-white transition-all duration-200 rounded-full  gap-x-2 focus:ring-2 focus:ring-offset-2 focus:outline-none bg-accent-950 hover:bg-accent-900 focus:ring-accent-900"
               >
                 Get all access for <del class="opacity-45">$149</del> $67
               </Text>
               <Text
                 tag="a"
-                href="#entries"
+                href="/components"
                 variant="textBase"
                 id="access-navigation-cta"
                 data-umami-event="access-navigation-cta"
-                class="flex items-center justify-center w-full sm:w-auto  h-10 px-4 py-2 font-medium text-base-500 transition-all duration-200 rounded-full  gap-x-2 focus:ring-2 focus:ring-offset-2 focus:outline-none bg-white ring-1 ring-base-200 hover:text-accent-600 focus:ring-accent-600"
+                class="flex items-center justify-center w-full sm:w-auto ring-4 ring-base-50  h-12 px-6 py-2 font-medium text-accent-600 transition-all duration-200 rounded-full   focus:ring-2 focus:ring-offset-2 focus:outline-none bg-white border border-base-200 hover:text-accent-950 focus:ring-accent-600"
               >
                 Browse components
               </Text>

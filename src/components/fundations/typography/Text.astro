@@ -53,16 +53,17 @@ export interface Props {
     | "h4"
     | "h5"
     | "h6";
-  variant?: string; // Consider renaming it 'textVariant' for clarity
-  level?: number; // Added level prop for heading levels
   class?: string;
-  for?: string; // Add 'for' attribute for label tags
   id?: string; // Add 'id' attribute for label tags
+  for?: string; // Add 'for' attribute for label tags
+  level?: number; // Added level prop for heading levels
   href?: string; // Add 'href' attribute for anchor tags
-  title?: string; // Add 'title' attribute for anchor tags
-  ariaLabel?: string; // Add 'aria-label' attribute for anchor tags
   role?: string; // Add 'role' attribute for anchor tags
+  title?: string; // Add 'title' attribute for anchor tags
   tabindex?: number; // Add 'tabindex' attribute for accessibility
+  ariaLabel?: string; // Add 'aria-label' attribute for anchor tags
+  disabled?: boolean; // Add 'disabled' attribute for accessibility
+  variant?: string; // Consider renaming it 'textVariant' for clarity
 }
 
 // Define the text styles with all specified variants
@@ -81,14 +82,13 @@ const textStyles: { [key: string]: string } = {
     "text-3xl leading-tight tracking-tight sm:text-4xl md:text-5xl lg:text-6xl",
   displayLG:
     "text-2xl leading-tight tracking-tight sm:text-3xl md:text-4xl lg:text-5xl",
-  displayMD:
+  displayBase:
     "text-xl leading-tight tracking-tight sm:text-2xl md:text-3xl lg:text-4xl",
   displaySM: "text-lg leading-tight sm:text-xl md:text-2xl lg:text-3xl",
   displayXS: "text-base leading-tight sm:text-lg md:text-xl lg:text-2xl",
   textXL: "text-lg leading-normal sm:text-xl md:text-2xl",
   textLG: "text-base leading-normal sm:text-lg md:text-xl",
   textBase: "text-base leading-normal",
-  textMD: "text-md leading-normal ",
   textSM: "text-sm leading-normal ",
   textXS: "text-xs leading-normal ",
 };
@@ -115,10 +115,7 @@ if (["h1", "h2", "h3", "h4", "h5", "h6"].includes(Tag)) {
 }
 ---
 
-<Tag
-  class={combinedClasses}
-  tabindex={tabindex}
-  {...rest}>
+<Tag class={combinedClasses} tabindex={tabindex} {...rest}>
   <slot name="left-icon" />
   <slot />
   <slot name="right-icon" />

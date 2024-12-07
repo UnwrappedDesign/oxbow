@@ -29,38 +29,30 @@ const data = [
 <section>
   <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div
-      class="list-none grid grid-cols-1 bg-base-50 items-center lg:grid-cols-2 gap-4 lg:gap-24 rounded-3xl p-8 lg:p-10 relative overflow-clip">
+      class="list-none grid grid-cols-1 bg-base-50 items-center lg:grid-cols-2 gap-4 lg:gap-24 rounded-3xl p-8 lg:p-10 relative overflow-clip"
+    >
       <div class="pt-8 text-center lg:text-left">
         <Text
           tag="p"
           variant="textSM"
-          class="font-bold uppercase text-accent-600">
+          class="font-bold uppercase text-accent-600"
+        >
           Tagline
         </Text>
         <Text
           tag="h2"
-          variant="displayMD"
-          class="mt-4 font-semibold text-base-900 lg:text-balance">
+          variant="displayBase"
+          class="mt-4 font-semibold text-base-900 lg:text-balance"
+        >
           Transforming the banking experience for a digital future
         </Text>
-        <Text
-          tag="p"
-          variant="textBase"
-          class="mt-4 text-base-500 font-medium">
+        <Text tag="p" variant="textBase" class="mt-4 text-base-500 font-medium">
           The fastest method for working together on staging and temporary
           environments.
         </Text>
         <div class="flex flex-wrap items-center gap-2 mx-auto mt-8">
-          <Button
-            variant="accent"
-            size="sm">
-            Get started
-          </Button>
-          <Button
-            variant="alternative"
-            size="sm">
-            Learn more
-          </Button>
+          <Button variant="accent" size="sm"> Get started </Button>
+          <Button variant="alternative" size="sm"> Learn more </Button>
         </div>
       </div>
       <div class="items-center h-full mt-12 lg:mt-0">
@@ -75,24 +67,27 @@ const data = [
       <div class="gap-6 grid grid-cols-1 sm:grid-cols-2 gap-y-12 lg:col-span-2">
         {
           data.map((section) => (
-            <div >
+            <div>
               <div>
                 <Text
                   variant="textLG"
                   tag="h3"
-                  class="text-base-900 font-medium">
+                  class="text-base-900 font-medium"
+                >
                   {section.category}
                 </Text>
                 <Text
                   tag="p"
                   variant="textBase"
-                  class="mt-4 text-base-500 font-medium">
+                  class="mt-4 text-base-500 font-medium"
+                >
                   {section.text}
                 </Text>
               </div>
               <ul
                 role="list"
-                class="space-y-1 mt-6 text-base font-medium text-base-900 list-none">
+                class="space-y-1 mt-6 text-base font-medium text-base-900 list-none"
+              >
                 {section.items.map((item) => (
                   <li>
                     <div class=" flex  items-center gap-4 ">
@@ -101,9 +96,7 @@ const data = [
                         size="base"
                         slot="icon"
                       />
-                      <Text
-                        tag="span"
-                        variant="textBase">
+                      <Text tag="span" variant="textBase">
                         {item}
                       </Text>
                     </div>
@@ -119,11 +112,10 @@ const data = [
           x-data="{ activeSlide: 0, slides: ['/widgets/activity.svg', '/widgets/hits.svg', '/widgets/traffic.svg'] }"
           class="h-full relative"
           role="region"
-          aria-label="Image Slider">
+          aria-label="Image Slider"
+        >
           <!-- Template for each slide image -->
-          <template
-            x-for="(slide, index) in slides"
-            :key="index">
+          <template x-for="(slide, index) in slides" :key="index">
             <div
               x-show="activeSlide === index"
               x-transition:enter="transition ease-out duration-500"
@@ -133,7 +125,8 @@ const data = [
               x-transition:leave-start="opacity-100 transform scale-100"
               x-transition:leave-end="opacity-0 transform scale-95"
               class="size-full absolute inset-0"
-              :aria-hidden="activeSlide !== index">
+              :aria-hidden="activeSlide !== index"
+            >
               <!-- Slide image -->
               <img
                 :src="slide"
@@ -146,22 +139,23 @@ const data = [
           <button
             @click="activeSlide = activeSlide === 0 ? slides.length - 1 : activeSlide - 1"
             class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white border text-base-900 rounded-full size-10 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-500"
-            aria-label="Previous Slide">
+            aria-label="Previous Slide"
+          >
             &larr;
           </button>
           <!-- Next slide button -->
           <button
             @click="activeSlide = activeSlide === slides.length - 1 ? 0 : activeSlide + 1"
             class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white border text-base-900 rounded-full size-10 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-500"
-            aria-label="Next Slide">
+            aria-label="Next Slide"
+          >
             &rarr;
           </button>
           <!-- Pagination indicators -->
           <div
-            class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-            <template
-              x-for="(slide, index) in slides"
-              :key="index">
+            class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2"
+          >
+            <template x-for="(slide, index) in slides" :key="index">
               <button
                 @click="activeSlide = index"
                 :class="{'bg-base-800': activeSlide === index, 'bg-base-400': activeSlide !== index}"

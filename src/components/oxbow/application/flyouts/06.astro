@@ -21,24 +21,22 @@ const links = [
   { name: "HQ editing tools", link: "#" },
 ];
 ---
+
 <div class="h-[50rem]">
   <!--- When in use set x-data="{ open: false }" -->
-  <div
-    class="relative z-50 py-12 isolate"
-    x-data="{ open: true }">
+  <div class="relative z-50 py-12 isolate" x-data="{ open: true }">
     <div
-      class="flex items-center justify-center px-8 mx-auto max-w-7xl md:px-12 lg:px-24">
+      class="flex items-center justify-center px-8 mx-auto max-w-7xl md:px-12 lg:px-24"
+    >
       <Button
         aria-expanded="false"
         @click="open = !open"
         variant="text"
         size="sm"
-        gap="sm">
+        gap="sm"
+      >
         <span>Help Center</span>
-        <ChevronDown
-          size="sm"
-          slot="right-icon"
-        />
+        <ChevronDown size="sm" slot="right-icon" />
       </Button>
     </div>
     <!-- Flyout menu -->
@@ -51,16 +49,16 @@ const links = [
       x-transition:leave="transition ease-in duration-150"
       x-transition:leave-start="opacity-100 translate-y-0"
       x-transition:leave-end="opacity-0 -translate-y-1"
-      class="absolute inset-x-0 top-0 px-8 py-12 pt-16 -z-10 md:px-12 lg:px-24">
+      class="absolute inset-x-0 top-0 px-8 py-12 pt-16 -z-10 md:px-12 lg:px-24"
+    >
       <div
-        class="p-8 mx-auto mt-12 bg-white shadow-lg max-w-7xl ring-1 ring-base-900/5 rounded-3xl lg:p-12">
+        class="p-8 mx-auto mt-12 bg-white shadow-lg max-w-7xl ring-1 ring-base-900/5 rounded-3xl lg:p-12"
+      >
         <div
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12"
+        >
           <div>
-            <Text
-              tag="h3"
-              variant="textBase"
-              class="text-base-900 font-medium">
+            <Text tag="h3" variant="textBase" class="text-base-900 font-medium">
               Benefits
             </Text>
             <div class="mt-2">
@@ -91,10 +89,7 @@ const links = [
             </div>
           </div>
           <div>
-            <Text
-              tag="h3"
-              variant="textBase"
-              class="text-base-900 font-medium">
+            <Text tag="h3" variant="textBase" class="text-base-900 font-medium">
               Enhance Productivity
             </Text>
             <div class="mt-2">
@@ -125,21 +120,21 @@ const links = [
               />
             </div>
           </div>
-          <div >
+          <div>
             <div class="relative">
               <span class="absolute inset-y-0 left-0 flex items-center pl-3">
                 <svg
                   class="text-base-400 size-5"
                   viewBox="0 0 24 24"
                   fill="none"
-                  aria-hidden="true">
+                  aria-hidden="true"
+                >
                   <path
                     d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
                     stroke="currentColor"
                     stroke-width="2"
                     stroke-linecap="round"
-                    stroke-linejoin="round"
-                  ></path>
+                    stroke-linejoin="round"></path>
                 </svg>
               </span>
               <input
@@ -151,14 +146,16 @@ const links = [
             </div>
             <div
               class="mt-4 pt-4 border-t border-gray-200 space-y-2"
-              role="none">
+              role="none"
+            >
               {
                 links.map((feature) => (
                   <Text
                     tag="a"
                     href="#_"
-                    variant="textMD"
-                    class="hover:text-accent-500 font-medium block text-base-500 ">
+                    variant="textBase"
+                    class="hover:text-accent-500 font-medium block text-base-500 "
+                  >
                     {feature.name}
                   </Text>
                 ))
