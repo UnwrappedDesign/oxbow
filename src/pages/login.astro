@@ -2,31 +2,17 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import LoginForm from "@/components/global/LoginForm.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import MainHero from "@/components/fundations/containers/MainHero.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-
 ---
+
 <BaseLayout>
-  <section>
-    <Wrapper
-      variant="hero"
-      class="lg:py-32">
-      <div class="text-center text-balance max-w-xl mx-auto">
-        <Text
-          tag="h1"
-          variant="displayXL"
-          class="text-black tracking-tighter font-semibold text-balance font-display"
-        >
-          Sign in with your email
-        </Text>
-        <Text
-          tag="p"
-          variant="textBase"
-          class="text-base-600 text-pretty mt-4">
-          Please enter the email address linked to your account, and we will send
-          a unique sign-in link to your inbox.
-        </Text>
-      </div>  
-      <LoginForm />
-    </Wrapper>
-  </section>
+  <MainHero
+    textCentered={true}
+    showAlpineTailwind={false}
+    title=" Sign in with your email"
+    subtitle="Please enter the email address linked to your account, and we will send a unique sign-in link to your inbox."
+  />
+  
+  <LoginForm />
 </BaseLayout>
