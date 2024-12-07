@@ -3,19 +3,10 @@ import { AstroSeo } from "@astrolib/seo";
 import Cta from "@/components/global/Cta.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Reviews from "@/components/global/Reviews.astro";
-import Text from "@/components/fundations/typography/Text.astro";
-import EntryStructure from "@/components/landing/EntryStructure.astro";
-import MainHero from "@/components/fundations/containers/MainHero.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Features from "@/components/landing/Features.astro";
-//
-// Marketing
-//
-import { pageSections } from "@/data/entries.json";
-import { pageExamples } from "@/data/entries.json";
-// Application
-//
-import { forms, elements, overlay, navigation } from "@/data/entries.json";
+import Text from "@/components/fundations/typography/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import MainHero from "@/components/fundations/containers/MainHero.astro";
 ---
 
 <AstroSeo
@@ -55,184 +46,12 @@ import { forms, elements, overlay, navigation } from "@/data/entries.json";
 />
 <BaseLayout>
   <MainHero
-    title="Premium components and UI Blocks"
-    subtitle=" Beautifully crafted with Tailwind CSS and Alpine JS — Simple & easy to customise."
+    title="Premium components and UI Blocks built with Tailwind CSS"
+    subtitle="Explore over 400 premium-quality, fully responsive, and meticulously created component and UI blocks examples, ready to integrate into your Tailwind projects and tailor to your exact needs."
     showButton={true}
   />
   <Features />
 
-  <section id="entries">
-    <Wrapper variant="standard" class="relative py-12">
-      <div
-        x-data="{
-    selectedTab: localStorage.getItem('selectedTab') || 'marketing',
-    setTab(tab) {
-      this.selectedTab = tab;
-      localStorage.setItem('selectedTab', tab);
-    }
-  }"
-        x-init="$nextTick(() => $dispatch('tab-select', selectedTab))"
-        class="relative"
-      >
-        <div
-          role="tablist"
-          class="relative flex items-stretch gap-2 -mb-px border-b"
-        >
-          <button
-            @click="setTab('marketing'); $dispatch('tab-select', 'marketing')"
-            :class="selectedTab === 'marketing' ? 'border-accent-600 bg-base-50 text-accent-600' : 'border-transparent text-base-500'"
-            class="inline-flex border-b-2 text-sm 2xl:text-lg w-28 2xl:w-40 py-2.5 pr-6 focus:outline-none font-medium"
-            role="tab"
-            :aria-selected="selectedTab === 'marketing'"
-            >Marketing
-          </button>
-          <button
-            @click="setTab('application'); $dispatch('tab-select', 'application')"
-            :class="selectedTab === 'application' ? 'border-accent-600 bg-base-50' : 'border-transparent text-base-500'"
-            class="inline-flex border-b-2 text-sm 2xl:text-lg group w-28 2xl:w-40 py-2.5 pr-6 focus:outline-none font-medium"
-            role="tab"
-            :aria-selected="selectedTab === 'application'"
-            >Application
-          </button>
-          <button
-            @click="setTab('ecommerce'); $dispatch('tab-select', 'ecommerce')"
-            title="coming soon"
-            disabled
-            :class="selectedTab === 'ecommerce' ? 'border-accent-600 bg-base-50' : 'border-transparent text-base-500'"
-            class="inline-flex border-b-2 text-sm 2xl:text-lg group w-28 2xl:w-40 py-2.5 pr-6 focus:outline-none disabled:opacity-40 font-medium"
-            role="tab"
-            :aria-selected="selectedTab === 'ecommerce'"
-          >
-            <span class="group-hover:hidden">eCommerce</span>
-            <span class="hidden group-hover:block">Coming soon</span>
-          </button>
-        </div>
-        <div x-tabs:panels class="relative pt-6">
-          <section
-            id="marketing"
-            class="flex flex-col scroll-mt-16"
-            x-show="selectedTab === 'marketing'"
-            role="tabpanel"
-            @tab-select.window="$el.style.display = $event.detail === 'marketing' ? 'block' : 'none'"
-          >
-            <div>
-              <div class="max-w-xl">
-                <Text
-                  tag="p"
-                  variant="textBase"
-                  class="font-medium lg:text-balance text-base-500"
-                >
-                  Hero sections, feature displays, footers, pricing pages and
-                  more help you build standout marketing websites that impress
-                  visitors, showcase key features, and grow your audience.
-                </Text>
-              </div>
-              <section class="flex flex-col gap-12 mt-12 lg:gap-24">
-                <div class="flex flex-col gap-6 scroll-mt-16" id="pageSections">
-                  <div class="pb-2 border-b">
-                    <Text
-                      tag="h3"
-                      variant="textXL"
-                      class="font-semibold text-base-900"
-                    >
-                      Page sections
-                    </Text>
-                  </div>
-                  <EntryStructure entries={pageSections} />
-                </div>
-                <div class="flex flex-col gap-6 scroll-mt-16" id="pageExamples">
-                  <div class="pb-2 border-b">
-                    <Text
-                      tag="h3"
-                      variant="textXL"
-                      class="font-semibold text-base-900"
-                    >
-                      Landing Pages
-                    </Text>
-                  </div>
-                  <EntryStructure entries={pageExamples} />
-                </div>
-              </section>
-            </div>
-          </section>
-          <section
-            id="application"
-            class="flex flex-col scroll-mt-16"
-            x-show="selectedTab === 'application'"
-            role="tabpanel"
-            @tab-select.window="$el.style.display = $event.detail === 'application' ? 'block' : 'none'"
-          >
-            <div class="max-w-xl">
-              <Text
-                tag="p"
-                variant="textBase"
-                class="font-medium lg:text-balance text-base-500"
-              >
-                Form layouts, tables, and modals help build responsive web apps.
-                Create user-friendly forms, manage data with sortable tables,
-                and use modals for smooth interactions .
-              </Text>
-            </div>
-            <section class="flex flex-col gap-12 mt-12 lg:gap-24">
-              <div class="flex flex-col gap-6 scroll-mt-16" id="navigation">
-                <div class="pb-2 border-b">
-                  <Text
-                    tag="h3"
-                    variant="textXL"
-                    class="font-semibold text-base-900"
-                  >
-                    Navigation
-                  </Text>
-                </div>
-                <EntryStructure entries={navigation} />
-              </div>
-              <div class="flex flex-col gap-6 scroll-mt-16" id="overlay">
-                <div class="pb-2 border-b">
-                  <h3 class="text-base font-semibold text-base-900">Overlay</h3>
-                </div>
-                <EntryStructure entries={overlay} />
-              </div>
-              <div class="flex flex-col gap-6 scroll-mt-16" id="forms">
-                <div class="pb-2 border-b">
-                  <h3 class="text-base font-semibold text-base-900">Forms</h3>
-                </div>
-                <EntryStructure entries={forms} />
-              </div>
-              <div class="flex flex-col gap-6 scroll-mt-16" id="elements">
-                <div class="pb-2 border-b">
-                  <Text
-                    tag="h3"
-                    variant="textXL"
-                    class="font-semibold text-base-900"
-                  >
-                    Elements
-                  </Text>
-                </div>
-                <EntryStructure entries={elements} />
-              </div>
-            </section>
-          </section>
-          <section
-            id="ecommerce"
-            x-show="selectedTab === 'ecommerce'"
-            role="tabpanel"
-            @tab-select.window="$el.style.display = $event.detail === 'ecommerce' ? 'block' : 'none'"
-          >
-            <div class="max-w-xl">
-              <Text
-                tag="p"
-                variant="textBase"
-                class="font-medium lg:text-balance text-base-500"
-              >
-                Core e-commerce tools: checkout forms, shopping carts, and
-                product views for a smooth shopping experience.
-              </Text>
-            </div>
-          </section>
-        </div>
-      </div>
-    </Wrapper>
-  </section>
   <Reviews />
   <Cta />
 </BaseLayout>

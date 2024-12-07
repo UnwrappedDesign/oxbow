@@ -1,6 +1,6 @@
 ---
 import { AstroSeo } from "@astrolib/seo";
-import Cta from "@/components/global/Cta.astro";
+import Reviews from "@/components/global/Reviews.astro";
 import Free from "@/components/pricing/Free.astro";
 import Team from "@/components/pricing/Team.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
@@ -8,7 +8,9 @@ import Included from "@/components/global/Included.astro";
 import Individual from "@/components/pricing/Individual.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import MainHero from "@/components/fundations/containers/MainHero.astro";
+import PaymentBrands from "@/components/global/PaymentBrands.astro";
 ---
+
 <AstroSeo
   title="Oxbow UI - Pricing "
   description="Unlock permanent access to all components, elements and layouts and future additions for a one-time payment."
@@ -51,15 +53,18 @@ import MainHero from "@/components/fundations/containers/MainHero.astro";
     additionalText="No subscription required"
     additionalTextClasses="px-2 mt-1 font-medium text-accent-600 justify-center   "
   />
-  <section>
+  <section class="border-t border-base-200">
     <Wrapper
       variant="standard"
-      class="grid grid-cols-1 md:grid-cols-3 gap-2">
+      class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 py-12"
+    >
       <Team />
       <Individual />
       <Free />
     </Wrapper>
   </section>
+
+  <PaymentBrands />
   <Included />
-  <Cta />
+  <Reviews />
 </BaseLayout>

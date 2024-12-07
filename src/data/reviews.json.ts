@@ -39,14 +39,14 @@ const alin: Template = {
 const jonSullivan: Template = {
   name: "Jon sullivan",
   work: "Software Engineer",
-  text: "That new set of UI components, Oxbow, is absolutely killer. I looked through quite a few (though there are just so dang many! 🎉) and really love them",
+  text: "That new set of UI components, Oxbow, is absolutely killer. I looked through quite a few (though there are just so dang many!) and really love them",
   image: "/reviews/jonSullivan.jpg",
 };
 
 export const byName = {
-  alexHughes,
-  ianHawes,
   jonSullivan,
+  ianHawes,
+  alexHughes,
   carl,
   eelco,
   alin,

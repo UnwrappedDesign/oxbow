@@ -13,19 +13,17 @@ import User from "@/components/fundations/icons/User.astro";
 <section>
   <div class="px-8 py-32 mx-auto max-w-7xl lg:px-16 md:px-12">
     <div
-      class="flex items-center justify-between w-full mx-auto pb-4 border-b border-base-200">
-      <nav
-        aria-label="Breadcrumb"
-        class="flex-1 pb-5">
-        <ol
-          role="list"
-          class="flex items-center space-x-2">
+      class="flex items-center justify-between w-full mx-auto pb-4 border-b border-base-200"
+    >
+      <nav aria-label="Breadcrumb" class="flex-1 pb-5">
+        <ol role="list" class="flex items-center space-x-2">
           <li>
             <Text
               tag="a"
               href="#_"
-              variant="textMD"
-              class="p-2 hover:bg-base-50  hover:text-accent-500 items-center rounded-lg gap-2 flex text-base-500  font-medium">
+              variant="textBase"
+              class="p-2 hover:bg-base-50 hover:text-accent-500 items-center rounded-lg gap-2 flex text-base-500 font-medium"
+            >
               Home
               <ChevronRight size="base" />
             </Text>
@@ -35,8 +33,9 @@ import User from "@/components/fundations/icons/User.astro";
             <Text
               tag="a"
               href="#_"
-              variant="textMD"
-              class="p-2 hover:bg-base-50  hover:text-accent-500 items-center rounded-lg gap-2 flex text-base-500  font-medium">
+              variant="textBase"
+              class="p-2 hover:bg-base-50 hover:text-accent-500 items-center rounded-lg gap-2 flex text-base-500 font-medium"
+            >
               Help Center
             </Text>
           </li>
@@ -46,17 +45,16 @@ import User from "@/components/fundations/icons/User.astro";
         <div
           class="relative flex items-center"
           @click.away="open = false"
-          x-data="{ open: false }">
+          x-data="{ open: false }"
+        >
           <IconButton
             @click="open = !open"
             aria-haspopup="true"
             aria-expanded="false"
             variant="text"
-            size="sm">
-            <ThreeDots
-              size="base"
-              slot="icon"
-            />
+            size="sm"
+          >
+            <ThreeDots size="base" slot="icon" />
           </IconButton>
           <div
             x-show="open"
@@ -67,66 +65,51 @@ import User from "@/components/fundations/icons/User.astro";
             x-transition:leave="transition ease-in duration-150"
             x-transition:leave-start="opacity-100 translate-y-0"
             x-transition:leave-end="opacity-0 translate-y-1"
-            class="origin-top-center absolute divide-y overflow-hidden divide-base-200 left-auto right-8 transform mt-2 w-56 rounded-xl shadow-lg bg-white ring-1 ring-base-200  focus:outline-none"
+            class="origin-top-center absolute divide-y overflow-hidden divide-base-200 left-auto right-8 transform mt-2 w-56 rounded-xl shadow-lg bg-white ring-1 ring-base-200 focus:outline-none"
             role="menu"
             aria-orientation="vertical"
-            aria-labelledby="menu-button">
-            <div
-              class="p-1.5"
-              role="none">
+            aria-labelledby="menu-button"
+          >
+            <div class="p-1.5" role="none">
               <Text
                 tag="a"
                 href="#_"
                 variant="textSM"
-                class="p-2 hover:bg-base-50  hover:text-accent-500 items-center rounded-lg gap-2 flex text-base-500">
-                <InfoCircle
-                  class="left-icon"
-                  size="sm"
-                />
+                class="p-2 hover:bg-base-50 hover:text-accent-500 items-center rounded-lg gap-2 flex text-base-500"
+              >
+                <InfoCircle class="left-icon" size="sm" />
                 FAQ
               </Text>
               <Text
                 tag="a"
                 href="#_"
                 variant="textSM"
-                class="p-2 hover:bg-base-50  hover:text-accent-500 items-center rounded-lg gap-2 flex text-base-500">
-                <Lifebuoy
-                  class="left-icon"
-                  size="sm"
-                />
+                class="p-2 hover:bg-base-50 hover:text-accent-500 items-center rounded-lg gap-2 flex text-base-500"
+              >
+                <Lifebuoy class="left-icon" size="sm" />
                 Support
               </Text>
               <Text
                 tag="a"
                 href="#_"
                 variant="textSM"
-                class="p-2 hover:bg-base-50  hover:text-accent-500 items-center rounded-lg gap-2 flex text-base-500">
-                <Settings
-                  class="left-icon"
-                  size="sm"
-                />
+                class="p-2 hover:bg-base-50 hover:text-accent-500 items-center rounded-lg gap-2 flex text-base-500"
+              >
+                <Settings class="left-icon" size="sm" />
                 Account
               </Text>
               <Text
                 tag="a"
                 href="#_"
                 variant="textSM"
-                class="p-2 hover:bg-base-50  hover:text-accent-500 items-center rounded-lg gap-2 flex text-base-500">
-                <User
-                  class="left-icon"
-                  size="sm"
-                />
+                class="p-2 hover:bg-base-50 hover:text-accent-500 items-center rounded-lg gap-2 flex text-base-500"
+              >
+                <User class="left-icon" size="sm" />
                 Profile
               </Text>
             </div>
-            <div
-              class="p-1.5 bg-base-50"
-              role="none">
-              <Button
-                class="w-full"
-                variant="alternative"
-                gap="xs"
-                size="xs">
+            <div class="p-1.5 bg-base-50" role="none">
+              <Button class="w-full" variant="alternative" gap="xs" size="xs">
                 <span> Sign out</span>
               </Button>
             </div>
