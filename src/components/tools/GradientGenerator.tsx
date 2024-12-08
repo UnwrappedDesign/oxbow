@@ -2,27 +2,26 @@ import { useState } from "react";
 
 const tailwindColors = [
   "red",
-"orange",
-"amber",
-"yellow",
-"lime",
-"green",
-"emerald",
-"teal",
-"cyan",
-"sky",
-"blue",
-"indigo",
-"violet",
-"purple",
-"fuchsia",
-"pink",
-"rose",
-"gray",
-"stone",
-"zinc",
-"neutral"
-
+  "orange",
+  "amber",
+  "yellow",
+  "lime",
+  "green",
+  "emerald",
+  "teal",
+  "cyan",
+  "sky",
+  "blue",
+  "indigo",
+  "violet",
+  "purple",
+  "fuchsia",
+  "pink",
+  "rose",
+  "gray",
+  "stone",
+  "zinc",
+  "neutral",
 ] as const;
 
 const tailwindColorShades = [
@@ -88,8 +87,9 @@ export default function GradientGenerator() {
 
   return (
     <div id="generator">
-      <div className="relative flex flex-col gap-2">
-        <div className="grid grid-cols-1 lg:grid-cols-4  md:items-end gap-2 w-full">
+    
+      <div className="lg:sticky lg:top-0 z-10 my-8 bg-white py-4">
+        <div className="grid grid-cols-1 lg:grid-cols-4  md:items-end gap-2 w-full ">
           <div className="w-full">
             <label className="text-base-500 text-base">Direction</label>
             <select
@@ -124,50 +124,52 @@ export default function GradientGenerator() {
           <div className=" relative lg:flex">
             {mode === "text" && (
               <div className="w-full">
-                  <label className="text-base-500 text-base">Your Text</label>
-                  <input
-                    className="block w-full px-4 py-2 h-10 border-2 focus:ring-2 focus:ring-accent-500 bg-chalk border-transparent ring-1 ring-base-200 duration-300 rounded-lg appearance-none text-accent-500 placeholder-base-300 focus:border-accent-300 focus:outline-none sm:text-sm"
-                    value={text}
-                    onChange={(e) => setText(e.target.value)}
-                  />
-               
+                <label className="text-base-500 text-base">Your Text</label>
+                <input
+                  className="block w-full px-4 py-2 h-10 border-2 focus:ring-2 focus:ring-accent-500 bg-chalk border-transparent ring-1 ring-base-200 duration-300 rounded-lg appearance-none text-accent-500 placeholder-base-300 focus:border-accent-300 focus:outline-none sm:text-sm"
+                  value={text}
+                  onChange={(e) => setText(e.target.value)}
+                />
               </div>
             )}
           </div>
         </div>
-        <div className="flex  items-center mt-8">
-          <label className="text-base-500 text-base">Mode</label>
-          <div className="block h-6 ml-4 w-px bg-base-200"></div>
-          <div className="flex items-center gap-2 ">
-            <button
-              className={`
-                        pointer-events-auto flex focus:text-accent-500 rounded-md px-4 h-7 py-1 text-sm  transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200
-                        ${mode === "background" ? "bg-white text-accent-500" : "text-base-500 "}
-                      `}
-              onClick={() => setMode("background")}
-            >
-              Background
-            </button>
-            <button
-              className={`
-                        pointer-events-auto flex focus:text-accent-500 rounded-md px-4 h-7 py-1 text-sm  transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200
-                        ${mode === "text" ? "bg-white text-accent-500" : "text-base-500"}
-                      `}
-              onClick={() => setMode("text")}
-            >
-              Text
-            </button>
+        <div className=" bg-white mt-4">
+          <div className="flex  items-center  bg-white py-2">
+            <label className="text-base-500 text-base">Mode</label>
+            <div className="block h-6 ml-4 w-px bg-base-200"></div>
+            <div className="flex items-center gap-2 ">
+              <button
+                className={`
+                              pointer-events-auto flex focus:text-accent-500 rounded-md px-4 h-7 py-1 text-sm  transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200
+                              ${mode === "background" ? "bg-white text-accent-500" : "text-base-500 "}
+                            `}
+                onClick={() => setMode("background")}
+              >
+                Background
+              </button>
+              <button
+                className={`
+                              pointer-events-auto flex focus:text-accent-500 rounded-md px-4 h-7 py-1 text-sm  transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200
+                              ${mode === "text" ? "bg-white text-accent-500" : "text-base-500"}
+                            `}
+                onClick={() => setMode("text")}
+              >
+                Text
+              </button>
+            </div>
+          </div>
+  
+          <div
+            className={`flex items-center justify-center relative w-full rounded-xl lg:sticky   ring-4 ring-base-100 border border-base-200 p-32  ${generateTwGradient()}`}
+          >
+            {mode === "text" ? (
+              <p className="text-8xl font-bold text-center">{text}</p>
+            ) : null}
           </div>
         </div>
-
-        <div
-          className={`flex items-center justify-center relative w-full rounded-xl  ring-4 ring-base-100 border border-base-200 p-32  ${generateTwGradient()}`}
-        >
-          {mode === "text" ? (
-            <p className="text-8xl font-bold text-center">{text}</p>
-          ) : null}
-        </div>
       </div>
+
       <div className="flex items-center gap-x-8 mt-12">
         <button
           className={`text-base-500 text-base ${tab === "from" ? "text-base-800" : "text-base-400"}`}
@@ -185,13 +187,15 @@ export default function GradientGenerator() {
       <div className="border-t pt-2 border-base-200  mt-4 grid grid-cols-1 gap-x-4 md:grid-cols-2 gap-y-24 lg:grid-cols-11">
         {tailwindColors.map((color) => (
           <div>
-            <p className="text-base-500 text-sm font-medium capitalize">{color}</p>
+            <p className="text-base-500 text-xs font-medium capitalize">
+              {color}
+            </p>
             <div className="flex flex-col gap-4  mt-2">
               {colorShades(color).map((colorShade) => (
                 <div>
                   <button
                     className={`w-full  h-12 rounded-lg  focus:outline-none bg-${colorShade} 
-                          ${tab === "from" ? (fromColor === colorShade ? "ring-2 ring-base-200 ring-offset-2" : "") : toColor === colorShade ? "ring-2 ring-base-200" : ""}`}
+                            ${tab === "from" ? (fromColor === colorShade ? "ring-2 ring-base-200 ring-offset-2" : "") : toColor === colorShade ? "ring-2 ring-base-200" : ""}`}
                     onClick={() => {
                       if (tab === "from") {
                         setFromColor(colorShade);

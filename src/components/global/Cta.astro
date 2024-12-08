@@ -8,9 +8,9 @@ const isIndexPage = Astro.url.pathname === "/";
 
 <section class="border-t border-base-200">
   <!-- Conditionally render this section based on the page -->
-  {
-    !isIndexPage && (
-      <Wrapper variant="standard" class="py-12 space-y-12">
+  <Wrapper variant="standard" class="py-12 space-y-12">
+    {
+      !isIndexPage && (
         <div class="relative p-10 lg:p-10 bg-accent-600 overflow-hidden ring-4 ring-base-100 rounded-xl border border-base-200">
           <img
             class="invert absolute opacity-10 lg:-right-64 -top-12"
@@ -23,16 +23,37 @@ const isIndexPage = Astro.url.pathname === "/";
               variant="displayBase"
               class="text-white font-medium text-pretty"
             >
-              Get lifetime access to every component, elements and layouts
-              available today for <del class="opacity-45">$149</del> $67 and own
-              it forever. Plus, new additions, lifetime updates, use on
-              unlimited projects and enjoy lifetime support.
-              <br />
-              <br />
-              <Text tag="span" class="text-white/80 italic lg:block">
-                No subscription required!
-              </Text>
+              Unlock lifetime access for just $67 (Originally $149)!
             </Text>
+            <Text
+              tag="p"
+              variant="displaySM"
+              class="text-white/80 text-balance mt-2"
+            >
+              Gain unlimited access to every component and UI block – yours to
+              own forever. Plus, enjoy these perks:
+            </Text>
+            <ul class="mt-8 text-white">
+              <li>
+                <Text tag="p" variant="textXL" class="">
+                  <span class="font-semibold">— Lifetime updates</span> to stay
+                  ahead with the latest features.
+                </Text>
+              </li>
+              <li>
+                <Text tag="p" variant="textXL" class="">
+                  <span class="font-semibold">— Unlimited usage </span>across
+                  all your projects.
+                </Text>
+              </li>
+              <li>
+                <Text tag="p" variant="textXL" class="">
+                  <span class="font-semibold">— Lifetime support </span>to
+                  assist you every step of the way.
+                </Text>
+              </li>
+            </ul>
+
             <div class="flex mt-8">
               <Text
                 tag="a"
@@ -41,19 +62,16 @@ const isIndexPage = Astro.url.pathname === "/";
                 title="Get full access"
                 id="access-footer-cta"
                 data-umami-event="access-footer-cta"
-                class="rounded-full flex items-center transition-all duration-200 focus:ring-2 focus:ring-offset-2 focus:outline-none text-base-700 bg-white ring-offset-2 ring-offset-accent-500 hover:text-accent-600 focus:ring-base-200 h-9 px-4 py-2 text-sm font-medium justify-center"
+                class="flex items-center justify-center w-full sm:w-auto ring-4 ring-base-50/20  h-12 px-6 py-2 font-medium text-accent-600 transition-all duration-200 rounded-full   focus:ring-2 focus:ring-offset-2 focus:outline-none bg-white border border-base-200 hover:text-accent-950 focus:ring-accent-600"
               >
                 Get access for <del class="opacity-45">$149</del> $67
               </Text>
             </div>
           </div>
         </div>
-      </Wrapper>
-    )
-  }
+      )
+    }
 
-  <!-- Lexington Section (Always shown) -->
-  <Wrapper variant="standard" class="py-12 space-y-12">
     <div
       class="relative px-6 pt-16 overflow-hidden isolate bg-white rounded-xl ring-4 ring-base-50 border border-base-200 sm:px-16 md:pt-24 lg:flex lg:gap-x-12 lg:px-12 lg:pt-0 lg:col-span-3"
     >
@@ -124,7 +142,7 @@ const isIndexPage = Astro.url.pathname === "/";
       </div>
       <div class="relative mt-8 h-80">
         <img
-          class="absolute left-0 top-0 object-cover w-[57rem] max-w-none bg-white"
+          class="absolute left-0 top-0 object-cover w-[57rem] max-w-none bg-white rounded-2xl ring-4 ring-base-50 border border-base-200"
           src="https://www.colorsandfonts.com/images/lexington.png"
           alt="Lexington Themes"
           width="1824"
