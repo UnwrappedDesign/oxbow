@@ -43,7 +43,15 @@ const jonSullivan: Template = {
   image: "/reviews/jonSullivan.jpg",
 };
 
+const rhys: Template = {
+  name: "Rhys Jones",
+  work: "Professor at Harvard University",
+  text: "Pretty jazzed to get stuck in with Oxbow! I've also purchased Lexington themes in the past for Astro, and as always, the quality of work is top-notch. Thank you for creating such amazing products. It helps tremendously with solo dev work!",
+  image: "/reviews/rhys.avif",
+};
+
 export const byName = {
+  rhys,
   jonSullivan,
   ianHawes,
   alexHughes,
