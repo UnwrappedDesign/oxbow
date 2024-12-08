@@ -219,7 +219,7 @@ export default function GridGenerator() {
             return (
               <div
                 key={index}
-                className="flex items-center justify-center p-4 rounded-lg text-accent-500  relative border border-base-200  ring-4 ring-base-100 bg-white text-2xl"
+                className="flex items-center justify-center p-4 rounded-lg text-accent-500 cursor-pointer  relative border border-base-200  ring-4 ring-base-100 bg-white text-2xl"
                 onClick={() => handleAddItem(x, y)}
               >
                 +
@@ -255,12 +255,12 @@ export default function GridGenerator() {
             <button
               onClick={() => handleRemoveItem(item.id)}
               onTouchEnd={() => handleRemoveItem(item.id)}
-              className="absolute top-2 right-2 p-3 text-base-500 hover:text-base-700 z-10"
+              className="absolute top-2 right-2  text-base-500 hover:text-accent-500 z-10"
               aria-label={`Remove item ${item.id}`}
             >
               <X className="size-4" />
             </button>
-            <span>{item.id.replace("item-", "")}</span>
+            <span className="text-accent-500">{item.id.replace("item-", "")}</span>
             <div className="absolute bottom-0 right-0 size-6 rounded-bl flex items-center justify-center">
               <ArrowDownRight className="size-4 text-accent-500" />
             </div>

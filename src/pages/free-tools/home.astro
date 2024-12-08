@@ -1,0 +1,122 @@
+---
+import { AstroSeo } from "@astrolib/seo";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import MainHero from "@/components/fundations/containers/MainHero.astro";
+import Cta from "@/components/global/Cta.astro";
+
+// Cards
+import { Image } from "astro:assets";
+import gridGenerator from "@/images/tools/gridGenerator.png";
+import gradientGenerator from "@/images/tools/gradientGenerator.png";
+
+const sections = [
+  {
+    title: "Layout",
+    subtitle: "Tailwind CSS grid generator",
+    description:
+      "Easily create responsive, customizable grid layouts with Tailwind CSS. Define columns and gaps to generate the required utility classes for your design.",
+    imageSrc: gridGenerator,
+    altText: "Tailwind CSS grid generator tool preview",
+    link: "/free-tools/tailwind-css-grid-generator",
+  },
+  {
+    title: "Colors",
+    subtitle: "Tailwind CSS gradient generator",
+    description:
+      "Create beautiful, responsive gradients with Tailwind CSS. Customize your gradient's colors, direction, and opacity, and generate the utility classes instantly.",
+    imageSrc: gradientGenerator,
+    altText: "Tailwind CSS gradient generator tool preview",
+    link: "/free-tools/tailwind-css-gradient-generator",
+  },
+];
+---
+
+<AstroSeo
+  title="Oxbow UI - Tailwind CSS tools hub "
+  description="Welcome to the ultimate collection of Tailwind CSS tools designed to streamline your workflow. From creating custom grids and gradients to generating utility classes and more, our suite of intuitive tools empowers you to speed up your development process. Whether you're building layouts, customizing styles, or experimenting with Tailwind’s utilities, our tools make it easier than ever to design with precision. Save time, enhance your creativity, and build your Tailwind CSS projects faster with all the resources you need in one place."
+  canonical="https://www.oxbowui.com/free-tools/home"
+  openGraph={{
+    url: "https://www.oxbowui.com/images/OpenGraph/twitter.png",
+    title: "Oxbow UI - Tailwind CSS tools hub",
+    description: "",
+    images: [
+      {
+        url: "https://www.oxbowui.com/images/OpenGraph/facebook.png",
+        width: 1200,
+        height: 630,
+        alt: "oxbow",
+        type: "image/png",
+      },
+      {
+        url: "https://www.oxbowui.com/images/OpenGraph/twitter.png",
+        width: 4096,
+        height: 4096,
+        alt: "oxbow",
+        type: "image/png",
+      },
+      { url: "https://www.oxbowui.com/images/OpenGraph/facebook.ong" },
+      { url: "https://www.oxbowui.com/images/OpenGraph/twitter.png" },
+    ],
+    site_name: "oxbow",
+  }}
+  twitter={{
+    handle: "@Mike_Andreuzza",
+    site: "https://www.oxbowui.com",
+    cardType: "summary_large_image",
+  }}
+/>
+<BaseLayout>
+  <MainHero
+    showAlpineTailwind={false}
+    title="Tailwind CSS tools hub"
+    subtitle="All-in-one tools to supercharge your Tailwind CSS development"
+  />
+  <section class="border-t border-base-200">
+    <Wrapper variant="standard" class="py-12">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4">
+        {
+          sections.map((section) => (
+            <a
+              href={section.link}
+              class="bg-white ring-4 ring-base-50 border hover:ring-base-100 duration-300 border-base-200 rounded-xl flex flex-col h-full justify-between relative overflow-hidden"
+            >
+              <div class="p-8 relative">
+                <Text
+                  tag="p"
+                  variant="textXS"
+                  class="font-bold uppercase text-accent-600"
+                >
+                  {section.title}
+                </Text>
+                <Text
+                  tag="h3"
+                  variant="textLG"
+                  class="mt-4 text-base-900 font-medium"
+                >
+                  {section.subtitle}
+                </Text>
+                <Text
+                  tag="p"
+                  variant="textSM"
+                  class="mt-2 text-base-500 font-medium"
+                >
+                  {section.description}
+                </Text>
+              </div>
+              <div class="-right-8 ml-8 -mb-4">
+                <Image
+                  class="rounded-l-xl ring-4 ring-base-50 border border-base-200 shadow h-full"
+                  src={section.imageSrc}
+                  alt={section.altText}
+                />
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </Wrapper>
+  </section>
+  <Cta />
+</BaseLayout>
