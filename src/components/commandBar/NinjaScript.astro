@@ -1,5 +1,8 @@
 <script type="module">
+  import { pageSections, pageExamples, elements, navigation, overlay, forms } from "../../data/entries.json.ts";
+
   const ninja = document.querySelector("ninja-keys");
+
   ninja.data = [
     {
       id: "Home",
@@ -25,209 +28,24 @@
         {
           id: "Marketing",
           title: "Marketing Components",
-          hotkey: "ctrl+m",
           parent: "Components",
           children: [
-            {
-              id: "heroes",
-              title: "Heroes",
-              keywords:
-                "header, hero, hero section, main image, top section, introductory section, welcome section, main header, ",
-              parent: "Marketing",
+            ...pageSections.map((section) => ({
+              id: section.name,
+              title: section.name,
+              keywords: section.tags.join(", "),
               handler: () => {
-                window.open("/playground/marketing/hero", "_self");
+                window.open(section.link, "_self");
               },
-            },
-             {
-              id: "bento-grids",
-              title: "Bento Grids",
-              keywords:
-                "bento grids, grid layout, grid system, responsive grid, flexible grid, adaptive grid, fluid grid, responsive design, web design, user interface, UI design, interface design, graphic design, visual design",
-              parent: "Marketing",
+            })),
+            ...pageExamples.map((example) => ({
+              id: example.name,
+              title: example.name,
+              keywords: example.tags.join(", "),
               handler: () => {
-                window.open("/playground/marketing/bento-grids", "_self");
+                window.open(example.link, "_self");
               },
-            },
-            {
-              id: "features",
-              title: "Features",
-              keywords:
-                "features, feature section, benefits, key features, highlights, main features, what we offer, services, capabilities, advantages, functionalities, static",
-              parent: "Marketing",
-              handler: () => {
-                window.open("/playground/marketing/features", "_self");
-              },
-            },
-            {
-              id: "timeline",
-              title: "Timeline",
-              keywords:
-                "UI timeline, event timeline, chronological order, milestone tracking, timeline visualization, historical data, project timeline, timeline component, interactive timeline, time-based features",
-              parent: "Marketing",
-              handler: () => {
-                window.open("/playground/marketing/timeline", "_self");
-              },
-            },
-            {
-              id: "steps",
-              title: "Steps",
-              keywords:
-                "steps, progress steps, step indicator, step-by-step guide, process steps, progress indicator",
-              parent: "Marketing",
-              handler: () => {
-                window.open("/playground/marketing/steps", "_self");
-              },
-            },
-            {
-              id: "pricing",
-              title: "Pricing",
-              keywords:
-                "pricing, pricing plans, cost, pricing table, subscription, rates, plans, fees, price list, packages",
-              parent: "Marketing",
-              handler: () => {
-                window.open("/playground/marketing/pricing", "_self");
-              },
-            },
-            {
-              id: "faq",
-              title: "FAQ",
-              keywords:
-                "FAQ, frequently asked questions, help, support, questions, answers, common questions, customer support, help center, information",
-              parent: "Marketing",
-              handler: () => {
-                window.open("/playground/marketing/faq", "_self");
-              },
-            },
-            {
-              id: "team",
-              title: "Team",
-              keywords:
-                "team, our team, meet the team, staff, team members, personnel, about us, team section, people, crew",
-              parent: "Marketing",
-              handler: () => {
-                window.open("/playground/marketing/team", "_self");
-              },
-            },
-            {
-              id: "blog-entries",
-              title: "Blog Entries",
-              keywords:
-                "blog entries, blog posts, articles, news, updates, blog section, posts, latest posts, blog updates, recent articles",
-              parent: "Marketing",
-              handler: () => {
-                window.open("/playground/marketing/blog-entries", "_self");
-              },
-            },
-            {
-              id: "blog-content",
-              title: "Blog Content",
-              keywords:
-                "blog content, article content, blog post, blog details, post content, article details, blog text, post details, read more, in-depth article",
-              parent: "Marketing",
-              handler: () => {
-                window.open("/playground/marketing/blog-content", "_self");
-              },
-            },
-            {
-              id: "testimonials",
-              title: "Testimonials",
-              keywords:
-                "testimonials, customer reviews, feedback, client opinions, user reviews, customer experiences, client testimonials",
-              parent: "Marketing",
-              handler: () => {
-                window.open("/playground/marketing/testimonials", "_self");
-              },
-            },
-            {
-              id: "logoclouds",
-              title: "Logo Clouds",
-              keywords:
-                "logo clouds, brand logos, partner logos, client logos, sponsor logos, logo display, brand partners",
-              parent: "Marketing",
-              handler: () => {
-                window.open("/playground/marketing/logo-clouds", "_self");
-              },
-            },
-            {
-              id: "stats",
-              title: "Stats",
-              keywords:
-                "stats, statistics, data, analytics, metrics, performance data, key figures, data visualization",
-              parent: "Marketing",
-              handler: () => {
-                window.open("/playground/marketing/stats", "_self");
-              },
-            },
-            {
-              id: "footers",
-              title: "Footers",
-              keywords:
-                "footers, website footer, page footer, footer design, footer layout, bottom section, site footer",
-              parent: "Marketing",
-              handler: () => {
-                window.open("/playground/marketing/footers", "_self");
-              },
-            },
-            {
-              id: "contact",
-              title: "Contact",
-              keywords:
-                "contact form, get in touch, contact us, support page, customer service, inquiry form, communication, contact section, reach out, contact details",
-              parent: "Marketing",
-              handler: () => {
-                window.open("/playground/marketing/contact", "_self");
-              },
-            },
-            {
-              id: "newsletter",
-              title: "Newsletter",
-              keywords:
-                "newsletter, email newsletter, subscribe, newsletter signup, email updates, newsletter subscription",
-              parent: "Marketing",
-              handler: () => {
-                window.open("/playground/marketing/cta-newsletter", "_self");
-              },
-            },
-            {
-              id: "gallery",
-              title: "Galleries",
-              keywords:
-                "galleries, photo gallery, image collection, visual gallery, portfolio, photo album, image showcase, static",
-              parent: "Marketing",
-              handler: () => {
-                window.open("/playground/marketing/gallery", "_self");
-              },
-            },
-            {
-              id: "cta",
-              title: "Cta",
-              keywords:
-                "call to action, cta button, marketing cta, lead generation, customer engagement, action link, conversion button, click here, promotional link, web conversion",
-              parent: "Marketing",
-              handler: () => {
-                window.open("/playground/marketing/cta", "_self");
-              },
-            },
-            {
-              id: "landingPages",
-              title: "Landing Pages",
-              keywords:
-                "landing page, marketing pages, conversion pages, homepage design, startup landing, SaaS landing, product launch pages, business templates, promotional pages, one-page website, responsive landing page, website templates, marketing design, call-to-action, lead generation, user engagement",
-              parent: "Marketing",
-              handler: () => {
-                window.open("/playground/marketing/landing-pages", "_self");
-              },
-            },
-            {
-              id: "pricingPages",
-              title: "Pricing Pages",
-              keywords:
-                "pricing plans, subscription tiers, feature comparison, price tables, monthly vs annual pricing, freemium model, enterprise pricing, product packages, price point strategy, value proposition, pricing structure, discount offers, pricing transparency, cost breakdown, payment options",
-              parent: "Marketing",
-              handler: () => {
-                window.open("/playground/marketing/pricing-pages", "_self");
-              },
-            },
+            })),
           ],
         },
         {
@@ -235,252 +53,38 @@
           title: "Application Components",
           parent: "Components",
           children: [
-            {
-              id: "buttons",
-              title: "Buttons",
-              keywords:
-                "buttons, action buttons, clickable buttons, UI buttons, button elements, call to action",
-              parent: "Application",
+            ...elements.map((element) => ({
+              id: element.name,
+              title: element.name,
+              keywords: element.tags.join(", "),
               handler: () => {
-                window.open("/playground/application/buttons", "_self");
+                window.open(element.link, "_self");
               },
-            },
-            {
-              id: "buttons-group",
-              title: "Buttons Groups",
-              keywords:
-                "button groups, groups, action buttons groups, clickable buttons groups, UI buttons, button group elements, call to action",
-              parent: "Application",
+            })),
+            ...navigation.map((navigation) => ({
+              id: navigation.name,
+              title: navigation.name,
+              keywords: navigation.tags.join(", "),
               handler: () => {
-                window.open("/playground/application/button-groups", "_self");
+                window.open(navigation.link, "_self");
               },
-            },
-             {
-              id: "typography",
-              title: "Typography",
-              keywords:
-                "typography, font, type, text, headings, body, paragraph, font family, font size, ",
-              parent: "Application",
+            })),
+            ...overlay.map((overlay) => ({
+              id: overlay.name,
+              title: overlay.name,
+              keywords: overlay.tags.join(", "),
               handler: () => {
-                window.open("/playground/application/typography", "_self");
+                window.open(overlay.link, "_self");
               },
-            },
-            {
-              id: "badges",
-              title: "Badges",
-              keywords:
-                "badges, UI badges, notification badges, label badges, status badges, tag badges, badge elements",
-              parent: "Application",
+            })),
+            ...forms.map((form) => ({
+              id: form.name,
+              title: form.name,
+              keywords: form.tags.join(", "),
               handler: () => {
-                window.open("/playground/application/badges", "_self");
+                window.open(form.link, "_self");
               },
-            },
-            {
-              id: "notifications",
-              title: "Notifications",
-              keywords:
-                "alerts, updates, messages, notifications, application, user alerts, push notifications, app notifications, reminders, system alerts",
-              parent: "Application",
-              handler: () => {
-                window.open("/playground/application/notifications", "_self");
-              },
-            },
-
-            {
-              id: "signIn",
-              title: "Sign in",
-              keywords:
-                "login, authentication, user, account, access, credential, email, password, username, authorize, authentication",
-              parent: "Application",
-              handler: () => {
-                window.open("/playground/application/sign-in", "_self");
-              },
-            },
-            {
-              id: "signUp",
-              title: "Sign up",
-              keywords:
-                "register, new, account, create, user, profile, join, membership, enroll, subscribe, registration, sign, on",
-              parent: "Application",
-              handler: () => {
-                window.open("/playground/application/sign-up", "_self");
-              },
-            },
-            {
-              id: "navbars",
-              title: "Navbars",
-              keywords:
-                "navbars, navigation bars, menus, navigation menu, site navigation, top nav, header nav",
-              parent: "Application",
-              handler: () => {
-                window.open("/playground/application/navbars", "_self");
-              },
-            },
-            {
-              id: "flyouts",
-              title: "Flyout menus",
-              keywords:
-                "flyout menus, dropdown menus, expandable menus, hidden menus, hover menus, slideout menus",
-              parent: "Application",
-              handler: () => {
-                window.open("/playground/application/flyouts", "_self");
-              },
-            },
-            {
-              id: "breadcrumb",
-              title: "Breadcrumb",
-              keywords:
-                "breadcrumb, navigation, page hierarchy, breadcrumb trail, page path, nested pages, site navigation",
-              parent: "Application",
-              handler: () => {
-                window.open("/playground/application/breadcrumbs", "_self");
-              },
-            },
-            {
-              id: "pagination",
-              title: "Pagination",
-              keywords:
-                "pagination, page navigation, paginated content, pagination controls, page links, page numbers",
-              parent: "Application",
-              handler: () => {
-                window.open("/playground/application/pagination", "_self");
-              },
-            },
-            {
-              id: "tabs",
-              title: "Tabs",
-              keywords:
-                "tabs, tab navigation, tabbed content, tab controls, tab panel, UI tabs, section switching",
-              parent: "Application",
-              handler: () => {
-                window.open("/playground/application/tabs", "_self");
-              },
-            },
-            {
-              id: "banner",
-              title: "Banners",
-              keywords:
-                "banner, notification, alert banner, announcement, promotional banner, warning message, header banner",
-              parent: "Application",
-              handler: () => {
-                window.open("/playground/application/banners", "_self");
-              },
-            },
-            {
-              id: "alert",
-              title: "Alerts",
-              keywords:
-                "alert, notification, alert message, announcement, warning alert, error alert, success alert, information alert",
-              parent: "Application",
-              handler: () => {
-                window.open("/playground/application/alerts", "_self");
-              },
-            },
-            {
-              id: "avatars",
-              title: "Avatars",
-              keywords:
-                "avatar, profile picture, user icon, profile image, user avatar, profile photo, user profile, user picture, profile display, account image",
-              parent: "Application",
-              handler: () => {
-                window.open("/playground/application/avatars", "_self");
-              },
-            },
-            {
-              id: "tables",
-              title: "Tables",
-              keywords:
-                "tables, data tables, table elements, tabular data, table design, table layout",
-              parent: "Application",
-              handler: () => {
-                window.open("/playground/application/tables", "_self");
-              },
-            },
-            {
-              id: "emptyStates",
-              title: "Empty States",
-              keywords:
-                "empty states, empty state elements, empty state design, empty state layout, placeholder, loading, error, offline, maintenance, unavailable, disabled, maintenance mode, offline mode, maintenance page, unavailable page, disabled page",
-              parent: "Application",
-              handler: () => {
-                window.open("/playground/application/emptyStates", "_self");
-              },
-            },
-            /*
-            {
-              id: "megamenu",
-              title: "Mega Menu",
-              keywords:
-                "mega menu, large menus, multi-column menus, expanded menus, navigation mega menu",
-              parent: "Application",
-              handler: () => {
-                window.open("/playground/application/megamenu", "_self");
-              },
-            },
-            {
-              id: "sidebars",
-              title: "Sidebars",
-              keywords:
-                "sidebars, side navigation, sidebar menu, vertical navigation, side menu, collapsible sidebar",
-              parent: "Application",
-              handler: () => {
-                window.open("/playground/application/sidebars", "_self");
-              },
-            },
-            {
-              id: "verticalnav",
-              title: "Vertical navigation",
-              keywords:
-                "vertical navigation, vertical nav, side nav, side navigation, vertical menu, vertical navbar",
-              parent: "Application",
-              handler: () => {
-                window.open("/playground/application/verticalnav", "_self");
-              },
-            },
-            {
-              id: "inputs",
-              title: "Inputs",
-              keywords:
-                "inputs, input fields, form inputs, text inputs, input elements, user input, data input",
-              parent: "Application",
-              handler: () => {
-                window.open("/playground/application/inputs", "_self");
-              },
-            },
-
-
-            {
-              id: "tooltips",
-              title: "Tooltips",
-              keywords:
-                "tooltips, tooltip elements, hover tooltips, info tooltips, tooltip design, informational tooltips",
-              parent: "Application",
-              handler: () => {
-                window.open("/playground/application/tooltips", "_self");
-              },
-            },
-
-            {
-              id: "calendars",
-              title: "Calendars",
-              keywords:
-                "calendars, date pickers, calendar elements, scheduling, date selection, calendar UI",
-              parent: "Application",
-              handler: () => {
-                window.open("/playground/application/calendars", "_self");
-              },
-            },
-            {
-              id: "modals",
-              title: "Modals",
-              keywords:
-                "modals, popup modals, modal dialogs, modal windows, modal boxes, UI modals, overlay modals",
-              parent: "Application",
-              handler: () => {
-                window.open("/playground/application/modals", "_self");
-              },
-            },
-            */
+            })),
           ],
         },
       ],
