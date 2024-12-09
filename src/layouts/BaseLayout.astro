@@ -42,6 +42,8 @@ const customToken = uid ? await auth.createCustomToken(uid) : null;
       } from "firebase/auth";
       import { auth } from "@/firebase/client";
 
+      import * as amplitude from "@amplitude/analytics-browser";
+
       class AstroFirebase extends HTMLElement {
         constructor() {
           super();
@@ -58,6 +60,8 @@ const customToken = uid ? await auth.createCustomToken(uid) : null;
                 window.umami?.identify({
                   id: credentials.user.uid,
                 });
+
+                amplitude.setUserId(credentials.user.uid);
                 console.log("Successfully signed in with custom token");
               })
               .catch((error) => {

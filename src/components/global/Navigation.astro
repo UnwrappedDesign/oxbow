@@ -403,11 +403,14 @@ import Wrapper from "../fundations/containers/Wrapper.astro";
 <script>
   import Alpine from "alpinejs";
   import { auth } from "@/firebase/client";
+  import * as amplitude from "@amplitude/analytics-browser";
+
   document.addEventListener("alpine:init", () => {
     Alpine.data("navigation", () => ({
       username: "",
       async signOut() {
         await auth.signOut();
+        amplitude.reset();
         window.location.assign("/api/auth/signout");
       },
     }));

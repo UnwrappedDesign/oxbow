@@ -3,6 +3,7 @@ import "../styles/global.css";
 
 const umamiScriptSrc = import.meta.env.PUBLIC_UMAMI_URL;
 const umamiWebsiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
+const amplitudeKey = import.meta.env.PUBLIC_AMPLITUDE_KEY;
 ---
 
 <meta charset="UTF-8" />
@@ -47,14 +48,19 @@ const umamiWebsiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
 </script>
 <script type="module" src="https://unpkg.com/ninja-keys?module"></script>
 
+
 <script>
   import * as amplitude from "@amplitude/analytics-browser";
+  const amplitudeKey = import.meta.env.PUBLIC_AMPLITUDE_KEY;
 
-  amplitude.init("cc7bc3ea3a00c1eb00bd5d091a6b9f9c", {
-    serverZone: "EU",
-    autocapture: { elementInteractions: true },
-  });
+  if (amplitudeKey) {
+    amplitude.init(amplitudeKey, {
+      serverZone: "EU",
+      autocapture: { elementInteractions: true },
+    });
+  }
 </script>
+
 
 {
   umamiScriptSrc && (
