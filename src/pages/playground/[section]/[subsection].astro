@@ -4,6 +4,8 @@ import { Image } from "astro:assets";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import { formatDistanceToNowStrict } from "date-fns";
+import updates from "@/data/updates.json";
 const { section, subsection } = Astro.params;
 const components = await Astro.glob(`@/components/oxbow/**/*.astro`);
 const sectionComponents = components.filter((component) => {
@@ -16,6 +18,8 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 const formattedSubsection = subsection.replace("-", " ");
 
 const user = Astro.locals.user;
+
+const SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000;
 ---
 
 <BaseLayout>
@@ -55,6 +59,8 @@ const user = Astro.locals.user;
       >
         {
           sectionComponents.map((component, index) => {
+            const filePath = component.file.split("/").slice(-3).join("/");
+
             const imagePath = `/src/screenshots/${component.file
               .split("/")
               .slice(-3)
@@ -65,9 +71,13 @@ const user = Astro.locals.user;
               return null;
             }
 
+            const updatedAt = new Date(updates[filePath] * 1000);
+
+            const isUpdatedLastWeek = updatedAt > new Date(Date.now() - SEVEN_DAYS);
+
             return (
               <a
-                href={`/playground/${section}/${subsection}/${index + 1}`}
+                href={`/playground/${filePath.replace(".astro", "")}`}
                 class="relative group flex flex-col "
               >
                 <div class="flex items-center gap-2 ">
@@ -87,6 +97,16 @@ const user = Astro.locals.user;
                       class="text-accent-600"
                     >
                       — &nbsp; Demo
+                    </Text>
+                  )}
+
+                  {isUpdatedLastWeek && (
+                    <Text
+                      tag="span"
+                      variant="textXS"
+                      class="text-accent-600"
+                    >
+                      Updated {formatDistanceToNowStrict(updatedAt, {unit: "day", roundingMethod: "ceil"})} ago
                     </Text>
                   )}
                 </div>
