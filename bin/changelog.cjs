@@ -144,14 +144,55 @@ class ChangelogGenerator {
     }
 
     /**
+     * Read existing changelog content
+     * @returns {string} Existing changelog content or empty string if file doesn't exist
+     */
+    readExistingChangelog() {
+        try {
+            return fs.readFileSync(this.changelogFile, 'utf8');
+        } catch (error) {
+            // If file doesn't exist, return empty string
+            if (error.code === 'ENOENT') {
+                return '';
+            }
+            throw error;
+        }
+    }
+
+    /**
+     * Extract dates from existing changelog
+     * @param {string} content - Existing changelog content
+     * @returns {Set<string>} Set of dates in YYYY-MM-DD format
+     */
+    extractExistingDates(content) {
+        const dateRegex = /## (\d{4}-\d{2}-\d{2})/g;
+        const dates = new Set();
+        let match;
+        while ((match = dateRegex.exec(content)) !== null) {
+            dates.add(match[1]);
+        }
+        return dates;
+    }
+
+    /**
      * Generate changelog markdown
      * @param {Object} changes - Git changes to document
      */
     generateChangelogMarkdown(changes) {
-        let markdown = `# Changelog for Oxbow Components\n\n`;
+        const existingContent = this.readExistingChangelog();
+        const existingDates = this.extractExistingDates(existingContent);
+
+        let markdown = '';
+        
+        // If no existing content, add the header
+        if (!existingContent) {
+            markdown = `# Changelog for Oxbow Components\n\n`;
+        }
 
         // Sort dates in descending order
-        const sortedDates = Object.keys(changes).sort((a, b) => new Date(b) - new Date(a));
+        const sortedDates = Object.keys(changes)
+            .filter(date => !existingDates.has(date)) // Only process new dates
+            .sort((a, b) => new Date(b) - new Date(a));
 
         for (const date of sortedDates) {
             const dateChanges = changes[date];
@@ -190,6 +231,18 @@ class ChangelogGenerator {
             }
         }
 
+        // Combine new entries with existing content
+        if (existingContent) {
+            // Find the position after the header
+            const headerEndPos = existingContent.indexOf('\n\n');
+            if (headerEndPos !== -1) {
+                // Insert new content after the header
+                return existingContent.slice(0, headerEndPos + 2) + 
+                       markdown + 
+                       existingContent.slice(headerEndPos + 2);
+            }
+        }
+
         return markdown;
     }
 
@@ -209,12 +262,16 @@ class ChangelogGenerator {
         // Generate markdown
         const markdown = this.generateChangelogMarkdown(changes);
 
-        // Write to changelog file
-        try {
-            fs.writeFileSync(this.changelogFile, markdown);
-            console.log(`Changelog generated: ${this.changelogFile}`);
-        } catch (error) {
-            console.error('Error writing changelog:', error);
+        // Only write if there are actual changes to write
+        if (markdown.trim()) {
+            try {
+                fs.writeFileSync(this.changelogFile, markdown);
+                console.log(`Changelog updated: ${this.changelogFile}`);
+            } catch (error) {
+                console.error('Error writing changelog:', error);
+            }
+        } else {
+            console.log('No new changes to add to changelog');
         }
     }
 }
