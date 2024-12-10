@@ -242,6 +242,12 @@ const templates: { [key: string]: Template[] } = {
       image: "notifications.png",
       tags: ["notification", "notification section", "notification content", "notification image", "notification link"] 
     },
+    { 
+      name: "Alerts", 
+      link: "/playground/application/alerts", 
+      image: "alerts.png",
+      tags: ["alerts", "alerts section", "alerts content", "alerts image", "alerts link"] 
+    },
   ],
   // Forms
   forms: [
