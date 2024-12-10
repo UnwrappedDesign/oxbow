@@ -88,7 +88,7 @@ export default function GradientGenerator() {
   return (
     <div id="generator">
     
-      <div className="lg:sticky lg:top-0 z-10 my-8 bg-white py-4">
+      <div className="lg:sticky lg:top-0 z-10  bg-white py-2">
         <div className="grid grid-cols-1 lg:grid-cols-4  md:items-end gap-2 w-full ">
           <div className="w-full">
             <label className="text-base-500 text-base">Direction</label>
@@ -168,9 +168,7 @@ export default function GradientGenerator() {
             ) : null}
           </div>
         </div>
-      </div>
-
-      <div className="flex items-center gap-x-8 mt-12">
+      <div className="flex items-center gap-x-8 mt-8">
         <button
           className={`text-base-500 text-base ${tab === "from" ? "text-base-800" : "text-base-400"}`}
           onClick={() => setTab("from")}
@@ -184,6 +182,8 @@ export default function GradientGenerator() {
           To Color
         </button>
       </div>
+      </div>
+
       <div className="border-t pt-2 border-base-200  mt-4 grid grid-cols-1 gap-x-4 md:grid-cols-2 gap-y-24 lg:grid-cols-11">
         {tailwindColors.map((color) => (
           <div>
