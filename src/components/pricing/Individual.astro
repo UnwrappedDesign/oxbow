@@ -5,13 +5,22 @@ const features = [
     text: "1 User",
   },
   {
-    text: "All components and blocks",
-  },
-  {
     text: "Lifetime access",
   },
   {
     text: "Unlimited projects",
+  },
+  {
+    text: "Over 400 components",
+  },
+  {
+    text: "Marketing components",
+  },
+  {
+    text: "Application components",
+  },
+  {
+    text: "eCommerce components",
   },
   {
     text: "Discord Support",
@@ -20,67 +29,58 @@ const features = [
 ---
 
 <div
-  class="flex p-8 bg-white h-full border border-base-200 rounded-2xl ring-4 ring-base-50 group-hover:ring-base-100 relative order-first lg:order-none"
+  class="flex flex-col h-full gap-8 justify-between order-first lg:order-none p-8 border-t border-base-200 lg:border-t-0 lg:border-x"
 >
-  <div class="flex flex-col h-full justify-between size-full">
-    <div>
-      <Text
-        tag="p"
-        variant="textXL"
-        class="text-black font-medium flex items-center gap-1"
+  <div>
+    <Text
+      tag="p"
+      variant="textXL"
+      class="text-black font-medium flex items-center gap-1"
+    >
+      <Text tag="span">Individual</Text> —
+      <Text tag="span"> <del class="opacity-45">$149</del> $67</Text>
+    </Text>
+    <Text tag="p" variant="textBase" class="text-neutral-600 font-medium mt-1">
+      Perfect for personal and clients.
+    </Text>
+    <div class="mt-8">
+      <Text tag="p" variant="textSM" class="text-black uppercase font-bold mt-1"
+        >Includes</Text
       >
-        <Text tag="span">Individual</Text> —
-        <Text tag="span"> <del class="opacity-45">$149</del> $67</Text>
-      </Text>
-      <Text
-        tag="p"
-        variant="textBase"
-        class="text-neutral-600 font-medium mt-1"
+      <ul
+        class="flex flex-col text-base-600 font-medium mt-2 space-y-2"
+        role="list"
       >
-        Perfect for personal and clients.
-      </Text>
-      <div class="mt-8">
-        <Text
-          tag="p"
-          variant="textSM"
-          class="text-black uppercase font-bold mt-1">Includes</Text
-        >
-        <ul
-          class="flex flex-col text-base-600 font-medium mt-2 space-y-2"
-          role="list"
-        >
-          {
-            features.map((feature) => (
-              <li class="flex items-center gap-2">
-                <svg
-                  class="size-1.5"
-                  viewBox="0 0 100 100"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <circle cx="50" cy="50" r="50" fill="currentColor" />
-                </svg>
-                <div class="flex items-center gap-1 w-full">
-                  <Text tag="span" variant="textBase">
-                    {feature.text}
-                  </Text>
-                </div>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-    </div>
-    <div class="mt-8 w-full flex">
-      <Text
-        tag="a"
-        href="/api/buy/individual"
-        id="purchase-individual-license"
-        data-umami-event="purchase individual license"
-        class="flex items-center justify-center w-full border border-accent-500 ring-4 ring-base-50 h-12 px-6 py-2 font-medium text-white transition-all duration-200 rounded-full gap-x-2 focus:ring-2 focus:ring-offset-2 focus:outline-none bg-accent-700 hover:bg-accent-900 focus:ring-accent-900"
-      >
-        Buy for <del class="opacity-45">$149</del> $67
-      </Text>
+        {
+          features.map((feature) => (
+            <li class="flex items-center gap-2">
+              <svg
+                class="size-1.5"
+                viewBox="0 0 100 100"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle cx="50" cy="50" r="50" fill="currentColor" />
+              </svg>
+              <div class="flex items-center gap-1 w-full">
+                <Text tag="span" variant="textBase">
+                  {feature.text}
+                </Text>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </div>
+
+  <Text
+    tag="a"
+    href="/api/buy/individual"
+    id="purchase-individual-license"
+    data-umami-event="purchase individual license"
+    class="flex items-center justify-center w-full border border-accent-500 ring-4 ring-base-50 h-12 px-6 py-2 font-medium text-white transition-all duration-200 rounded-full gap-x-2 focus:ring-2 focus:ring-offset-2 focus:outline-none bg-accent-700 hover:bg-accent-900 focus:ring-accent-900"
+  >
+    Buy for <del class="opacity-45">$149</del> $67
+  </Text>
 </div>

@@ -5,13 +5,22 @@ const features = [
     text: "5 User",
   },
   {
-    text: "All components and blocks",
-  },
-  {
     text: "Lifetime access",
   },
   {
     text: "Unlimited projects",
+  },
+  {
+    text: "Over 400 components",
+  },
+  {
+    text: "Marketing components",
+  },
+  {
+    text: "Application components",
+  },
+  {
+    text: "eCommerce components",
   },
   {
     text: "Discord Support",
@@ -19,69 +28,59 @@ const features = [
 ];
 ---
 
-
 <div
-  class="flex p-8 bg-white border border-base-200 rounded-2xl ring-4 ring-base-50 group-hover:ring-base-100 h-full"
+  class="flex flex-col h-full gap-8 justify-between p-8 border-t border-base-200 lg:border-none"
 >
-  <div class="flex flex-col h-full justify-between size-full">
-    <div>
-      <Text
-        tag="p"
-        variant="textXL"
-        class="text-black font-medium flex items-center gap-1"
+  <div>
+    <Text
+      tag="p"
+      variant="textXL"
+      class="text-black font-medium flex items-center gap-1"
+    >
+      <Text tag="span"> Teams </Text> —
+      <Text tag="span"> $399 </Text>
+    </Text>
+    <Text tag="p" variant="textBase" class="text-neutral-600 font-medium mt-1">
+      For companies, teams, and clients.
+    </Text>
+    <div class="mt-8">
+      <Text tag="p" variant="textSM" class="text-black uppercase font-bold mt-1"
+        >Includes</Text
       >
-        <Text tag="span"> Teams </Text> —
-        <Text tag="span"> $399 </Text>
-      </Text>
-      <Text
-        tag="p"
-        variant="textBase"
-        class="text-neutral-600 font-medium mt-1"
+      <ul
+        class="flex flex-col text-base-600 font-medium mt-2 space-y-2"
+        role="list"
       >
-        For companies, teams, and clients.
-      </Text>
-      <div class="mt-8">
-        <Text
-          tag="p"
-          variant="textSM"
-          class="text-black uppercase font-bold mt-1">Includes</Text
-        >
-        <ul
-          class="flex flex-col text-base-600 font-medium mt-2 space-y-2"
-          role="list"
-        >
-          {
-            features.map((feature) => (
-              <li class="flex items-center gap-2">
-                <svg
-                  class="size-1.5"
-                  viewBox="0 0 100 100"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <circle cx="50" cy="50" r="50" fill="currentColor" />
-                </svg>
-                <div class="flex items-center gap-1 w-full">
-                  <Text tag="span" variant="textBase">
-                    {feature.text}
-                  </Text>
-                </div>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-    </div>
-    <div class="mt-8 w-full flex">
-      <Text
-        tag="a"
-        id="purchase-team-license"
-        data-umami-event="purchase team license"
-        href="/api/buy/team"
-        class="flex items-center justify-center w-full ring-4 ring-base-50 h-12 px-6 py-2 font-medium text-accent-600 transition-all duration-200 rounded-full focus:ring-2 focus:ring-offset-2 focus:outline-none bg-white border border-base-200 hover:text-accent-950 focus:ring-accent-600"
-      >
-        Buy for $399
-      </Text>
+        {
+          features.map((feature) => (
+            <li class="flex items-center gap-2">
+              <svg
+                class="size-1.5"
+                viewBox="0 0 100 100"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle cx="50" cy="50" r="50" fill="currentColor" />
+              </svg>
+              <div class="flex items-center gap-1 w-full">
+                <Text tag="span" variant="textBase">
+                  {feature.text}
+                </Text>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </div>
+
+  <Text
+    tag="a"
+    id="purchase-team-license"
+    data-umami-event="purchase team license"
+    href="/api/buy/team"
+    class="flex items-center justify-center w-full ring-4 ring-base-50 h-12 px-6 py-2 font-medium text-accent-600 transition-all duration-200 rounded-full focus:ring-2 focus:ring-offset-2 focus:outline-none bg-white border border-base-200 hover:text-accent-950 focus:ring-accent-600"
+  >
+    Buy for $399
+  </Text>
 </div>
