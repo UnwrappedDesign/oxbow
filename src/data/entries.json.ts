@@ -138,39 +138,7 @@ const templates: { [key: string]: Template[] } = {
       tags: ["pricing page", "pricing page section", "pricing page content", "pricing page image", "pricing page link"],
     },
   ],
-  // Elements
-  elements: [
-    { 
-      name: "Typography", 
-      link: "/playground/application/typography", 
-      image: "type.png",
-      tags: ["typography", "typography section", "typography content", "typography image", "typography link"],
-    },
-    { 
-      name: "Buttons", 
-      link: "/playground/application/buttons", 
-      image: "buttons.png",
-      tags: ["button", "button section", "button content", "button image", "button link"],
-    },
-    { 
-      name: "Empty states", 
-      link: "/playground/application/emptyStates", 
-      image: "emptystates.png",
-      tags: ["empty state", "empty state section", "empty state content", "empty state image", "empty state link"],
-    },
-    { 
-      name: "Avatars", 
-      link: "/playground/application/avatars", 
-      image: "avatars.png",
-      tags: ["avatar", "avatar section", "avatar content", "avatar image", "avatar link"],
-    },
-    { 
-      name: "Tables", 
-      link: "/playground/application/tables", 
-      image: "tables.png",
-      tags: ["table", "table section", "table content", "table image", "table link"],
-    },
-  ],
+  
   // Navigation
   navigation: [
     { 
@@ -306,21 +274,54 @@ const templates: { [key: string]: Template[] } = {
       tags: ["radio group", "radio group section", "radio group content", "radio group image", "radio group link"] 
     },
   ],
+  // Elements
+  elements: [
+    { 
+      name: "Typography", 
+      link: "/playground/application/typography", 
+      image: "type.png",
+      tags: ["typography", "typography section", "typography content", "typography image", "typography link"],
+    },
+    { 
+      name: "Buttons", 
+      link: "/playground/application/buttons", 
+      image: "buttons.png",
+      tags: ["button", "button section", "button content", "button image", "button link"],
+    },
+    { 
+      name: "Empty states", 
+      link: "/playground/application/emptyStates", 
+      image: "emptystates.png",
+      tags: ["empty state", "empty state section", "empty state content", "empty state image", "empty state link"],
+    },
+    { 
+      name: "Avatars", 
+      link: "/playground/application/avatars", 
+      image: "avatars.png",
+      tags: ["avatar", "avatar section", "avatar content", "avatar image", "avatar link"],
+    },
+    { 
+      name: "Tables", 
+      link: "/playground/application/tables", 
+      image: "tables.png",
+      tags: ["table", "table section", "table content", "table image", "table link"],
+    },
+  ],
 };
 
 // Export sections
-export const { pageSections, pageExamples, elements, navigation, overlay, forms } = templates;
+export const { pageSections, pageExamples, navigation, overlay, forms, elements, } = templates;
 
 // Export all entries by name
 export const byName = {
   // Marketing
   pageSections: Object.fromEntries(pageSections.map(template => [template.name, template])),
-  pageExamples: Object.fromEntries(pageSections.map(template => [template.name, template])),
+  pageExamples: Object.fromEntries(pageExamples.map(template => [template.name, template])),
   // Application
-  elements: Object.fromEntries(elements.map(template => [template.name, template])),
   navigation: Object.fromEntries(navigation.map(template => [template.name, template])),
-  overlay: Object.fromEntries(overlay.map(template => [template.name, template])),
   forms: Object.fromEntries(forms.map(template => [template.name, template])),
+  overlay: Object.fromEntries(overlay.map(template => [template.name, template])),
+  elements: Object.fromEntries(elements.map(template => [template.name, template])),
 };
 
 export const allEntries = Object.values(byName).flatMap(category => Object.values(category));
