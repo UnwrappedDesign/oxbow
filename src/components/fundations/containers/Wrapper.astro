@@ -1,6 +1,12 @@
 ---
 interface Props {
-  variant?: "hero" | "standard" | "narrow" | "wide" | "standardPaddingless"; // Define any variants you need
+  variant?:
+    | "hero"
+    | "standard"
+    | "narrow"
+    | "wide"
+    | "widePaddingless"
+    | "standardPaddingless"; // Define any variants you need
   class?: string; // Optional prop for additional classes
 }
 
@@ -8,10 +14,10 @@ const { variant = "standard", class: extraClass = "" } = Astro.props;
 
 // Map each variant to its specific classes
 const variantClasses = {
-  hero: "mx-auto px-8 max-w-7xl   2xl:max-w-[85rem] py-12  lg:border-x border-base-200 ",
-  standard:
-    "mx-auto px-8 max-w-7xl   2xl:max-w-[85rem] lg:border-x border-base-200 ",
-  standardPaddingless: "mx-auto  max-w-screen ",
+  hero: "mx-auto px-8 max-w-7xl    py-12  lg:border-x border-base-200 ",
+  standard: "mx-auto px-8 max-w-7xl    lg:border-x border-base-200 ",
+  standardPaddingless: "mx-auto  max-w-7xl    lg:border-x border-base-200 ",
+  widePaddingless: "mx-auto  max-w-screen ",
   narrow: "max-w-xl 2xl:max-w-3xl mx-auto px-8 ",
   wide: "max-w-screen 2xl:max-w-[100rem] mx-auto px-8 ",
 };

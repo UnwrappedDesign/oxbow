@@ -10,65 +10,54 @@ const features = [
 ];
 ---
 
-<div
-  class="flex p-8 bg-white h-full border border-base-200 rounded-2xl ring-4 ring-base-50 group-hover:ring-base-100"
->
-  <div class="flex flex-col h-full justify-between size-full">
-    <div>
-      <Text
-        tag="p"
-        variant="textXL"
-        class="text-black font-medium flex items-center gap-1"
+<div class="flex flex-col h-full gap-8 justify-between p-8 border-t border-base-200 lg:border-none">
+  <div>
+    <Text
+      tag="p"
+      variant="textXL"
+      class="text-black font-medium flex items-center gap-1"
+    >
+      <Text tag="span"> Free blocks </Text>
+      —
+      <Text tag="span">$0</Text>
+    </Text>
+    <Text tag="p" variant="textBase" class="text-neutral-600 font-medium mt-1">
+      Testing and personal.
+    </Text>
+    <div class="mt-8">
+      <Text tag="p" variant="textBase" class="text-neutral-600 font-medium mt-1"
+        >Includes</Text
       >
-        <Text tag="span"> Free blocks </Text>
-        —
-        <Text tag="span">$0</Text>
-      </Text>
-      <Text
-        tag="p"
-        variant="textBase"
-        class="text-neutral-600 font-medium mt-1"
+      <ul
+        class="flex flex-col text-base-600 font-medium mt-2 space-y-2"
+        role="list"
       >
-        Testing and personal.
-      </Text>
-      <div class="mt-8">
-        <Text
-          tag="p"
-          variant="textBase"
-          class="text-neutral-600 font-medium mt-1">Includes</Text
-        >
-        <ul
-          class="flex flex-col text-base-600 font-medium mt-2 space-y-2"
-          role="list"
-        >
-          {
-            features.map((feature) => (
-              <li class="flex items-center gap-2">
-                <svg
-                  class="size-1.5"
-                  viewBox="0 0 100 100"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <circle cx="50" cy="50" r="50" fill="currentColor" />
-                </svg>
-                <Text tag="span" variant="textBase">
-                  {feature.text}
-                </Text>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-    </div>
-    <div class="mt-8 w-full flex flex-col">
-      <Text
-        tag="a"
-        href="/"
-        class="flex items-center justify-center w-full ring-4 ring-base-50 h-12 px-6 py-2 font-medium text-accent-600 transition-all duration-200 rounded-full focus:ring-2 focus:ring-offset-2 focus:outline-none bg-white border border-base-200 hover:text-accent-950 focus:ring-accent-600"
-      >
-        Browser all components
-      </Text>
+        {
+          features.map((feature) => (
+            <li class="flex items-center gap-2">
+              <svg
+                class="size-1.5"
+                viewBox="0 0 100 100"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle cx="50" cy="50" r="50" fill="currentColor" />
+              </svg>
+              <Text tag="span" variant="textBase">
+                {feature.text}
+              </Text>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </div>
+
+  <Text
+    tag="a"
+    href="/"
+    class="flex items-center justify-center w-full ring-4 ring-base-50 h-12 px-6 py-2 font-medium text-accent-600 transition-all duration-200 rounded-full focus:ring-2 focus:ring-offset-2 focus:outline-none bg-white border border-base-200 hover:text-accent-950 focus:ring-accent-600"
+  >
+    Browser all components
+  </Text>
 </div>
