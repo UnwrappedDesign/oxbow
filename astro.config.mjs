@@ -17,6 +17,9 @@ console.log("Loading app with NODE_ENV: ", process.env.NODE_ENV);
 
 // https://astro.build/config
 export default defineConfig({
+  redirects: {
+    '/free-tools/home': '/free-tools'
+  },
   markdown: {
     drafts: true,
     shikiConfig: {
