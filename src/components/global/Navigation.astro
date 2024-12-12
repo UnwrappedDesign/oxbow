@@ -5,16 +5,16 @@ import Wrapper from "../fundations/containers/Wrapper.astro";
 ---
 
 <div
-  class="items-center w-full mx-auto top-0 z-50 bg-white border-b "
+  class="top-0 z-50 items-center w-full mx-auto bg-white border-b"
   :class="{ 'fixed': window.location.pathname === '/' }"
   x-data={`{...navigation(), username: "${user?.email ?? ""}"}`}
 >
   <Wrapper variant="standard">
     <div
-      class="w-full flex flex-col lg:bg-none md:flex-row md:items-center md:justify-between py-4"
+      class="flex flex-col w-full py-4 lg:bg-none md:flex-row md:items-center md:justify-between"
       x-data="{ open: false }"
     >
-      <div class="items-center flex justify-between flex-row lg:justify-start">
+      <div class="flex flex-row items-center justify-between lg:justify-start">
         <Text
           tag="a"
           href="/"
@@ -49,7 +49,7 @@ import Wrapper from "../fundations/containers/Wrapper.astro";
         <button
           aria-label="open"
           @click="open = !open"
-          class="items-center inline-flex focus:outline-none text-black focus:text-accent-500 hover:text-accent-600 justify-center md:hidden p-2"
+          class="inline-flex items-center justify-center p-2 text-black focus:outline-none focus:text-accent-500 hover:text-accent-600 md:hidden"
           ><svg
             viewBox="0 0 24 24"
             class="size-6"
@@ -75,10 +75,10 @@ import Wrapper from "../fundations/containers/Wrapper.astro";
       </div>
       <nav
         :class="{'flex': open, 'hidden': !open}"
-        class="items-center flex-col flex-grow text-base-500 hidden font-medium justify-end md:flex md:flex-row md:pb-0 gap-x-4 gap-y-4"
+        class="flex-col items-center justify-end flex-grow hidden font-medium text-base-500 md:flex md:flex-row md:pb-0 gap-x-4 gap-y-4"
       >
         <button
-          class="cursor-pointer hidden lg:inline-flex"
+          class="hidden cursor-pointer lg:inline-flex"
           onclick="document.querySelector('ninja-keys').open()"
         >
           <svg
@@ -95,14 +95,14 @@ import Wrapper from "../fundations/containers/Wrapper.astro";
               d="M21 21l-6 -6"></path></svg
           >
         </button>
-        <div class="hidden lg:block h-6 w-px bg-base-200"></div>
-        <div class="flex flex-col md:flex-row items-center gap-3">
+        <div class="hidden w-px h-6 lg:block bg-base-200"></div>
+        <div class="flex flex-col items-center gap-3 md:flex-row">
           <Text
             tag="a"
             variant="textBase"
             x-show="!username"
             href="https://lexingtonthemes.com"
-            class="hover:text-accent-500 font-medium"
+            class="font-medium hover:5ext-accent-600"
             ><Text tag="span" class="md:hidden lg:inline"
               >Astro &amp; Tailwind
             </Text> Templates</Text
@@ -114,7 +114,8 @@ import Wrapper from "../fundations/containers/Wrapper.astro";
             variant="textBase"
             x-show="!username"
             href="/getting-started"
-            class="hover:text-accent-500 hidden lg:block">Getting Started</Text
+            class="hidden font-medium hover:5ext-accent-600 lg:block"
+            >Getting Started</Text
           >
           <Text
             x-cloak
@@ -122,7 +123,8 @@ import Wrapper from "../fundations/containers/Wrapper.astro";
             href="/login"
             variant="textBase"
             x-show="!username"
-            class="hover:text-accent-500 hidden lg:block">Log in</Text
+            class="hidden font-medium hover:5ext-accent-600 lg:block"
+            >Log in</Text
           >
           <Text
             x-cloak
@@ -132,7 +134,7 @@ import Wrapper from "../fundations/containers/Wrapper.astro";
             x-show="!username && window.location.pathname !== '/pricing'"
             id="access-navigation-cta"
             data-umami-event="access-navigation-cta"
-            class="rounded-full flex items-center transition-all shrink-0 gap-x-2 duration-200 focus:ring-2 focus:ring-offset-2 focus:outline-none text-white bg-accent-600 hover:bg-accent-700 focus:ring-accent-600 h-10 px-4 py-2 font-medium w-auto justify-center"
+            class="flex items-center justify-center w-auto h-10 px-4 py-2 font-medium text-white transition-all duration-200 rounded-full shrink-0 gap-x-2 focus:ring-2 focus:ring-offset-2 focus:outline-none bg-accent-600 hover:bg-accent-700 focus:ring-accent-600"
           >
             Get all access for <del class="opacity-45">$149</del> $67
           </Text>
@@ -184,7 +186,7 @@ import Wrapper from "../fundations/containers/Wrapper.astro";
                 role="menuitem"
                 variant="textSM"
                 href="https://discord.gg/9WH6G2XJRa"
-                class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex"
+                class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 font-medium items-center gap-2 flex"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -209,7 +211,7 @@ import Wrapper from "../fundations/containers/Wrapper.astro";
                 role="menuitem"
                 href="/support"
                 variant="textSM"
-                class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex"
+                class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 font-medium items-center gap-2 flex"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -232,9 +234,32 @@ import Wrapper from "../fundations/containers/Wrapper.astro";
                 tag="a"
                 tabindex={-1}
                 role="menuitem"
+                href="/changelog"
+                variant="textSM"
+                class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 font-medium items-center gap-2 flex"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline size-4 icon-tabler-refresh"
+                  ><path stroke="none" d="M0 0h24v24H0z" fill="none"
+                  ></path><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"
+                  ></path><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"
+                  ></path></svg
+                >Changelog</Text
+              >
+              <Text
+                tag="a"
+                tabindex={-1}
+                role="menuitem"
                 href="/license"
                 variant="textSM"
-                class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex"
+                class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 font-medium items-center gap-2 flex"
                 ><svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -257,7 +282,7 @@ import Wrapper from "../fundations/containers/Wrapper.astro";
                 role="menuitem"
                 variant="textSM"
                 href="/getting-started"
-                class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex"
+                class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 font-medium items-center gap-2 flex"
                 ><svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -272,7 +297,7 @@ import Wrapper from "../fundations/containers/Wrapper.astro";
                     d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"
                   ></path><path d="M11 14h1v4h1"></path><path d="M12 11h.01"
                   ></path></svg
-                >Mini Docs</Text
+                >Getting Started</Text
               >
               <Text
                 tag="a"
@@ -280,7 +305,7 @@ import Wrapper from "../fundations/containers/Wrapper.astro";
                 role="menuitem"
                 variant="textSM"
                 href="/free-tools"
-                class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex"
+                class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 font-medium items-center gap-2 flex"
                 ><svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -306,7 +331,7 @@ import Wrapper from "../fundations/containers/Wrapper.astro";
                 role="menuitem"
                 variant="textSM"
                 href="https://lexingtonthemes.com/"
-                class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 items-center gap-2 flex"
+                class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 font-medium items-center gap-2 flex"
                 ><svg
                   class="size-4"
                   viewBox="0 0 147 148"
@@ -376,7 +401,7 @@ import Wrapper from "../fundations/containers/Wrapper.astro";
                 tabindex="-1"
                 role="menuitem"
                 @click="signOut()"
-                class="py-1.5 px-3.5 hover:bg-base-50 text-sm hover:text-accent-500 items-center gap-2 flex w-full"
+                class="py-1.5 px-3.5 hover:bg-base-50 text-sm hover:text-accent-500 font-medium items-center gap-2 flex w-full"
                 ><svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
