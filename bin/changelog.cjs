@@ -186,7 +186,7 @@ class ChangelogGenerator {
         
         // If no existing content, add the header
         if (!existingContent) {
-            markdown = `# Changelog for Oxbow Components\n\n`;
+            markdown = `# Changelog for Oxbow UI Components\n\n`;
         }
 
         // Sort dates in descending order
