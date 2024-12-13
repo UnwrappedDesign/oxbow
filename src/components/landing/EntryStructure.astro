@@ -2,9 +2,12 @@
 import { Image } from "astro:assets";
 
 import type { Template } from "@/data/entries.json";
+import updates from "@/data/updates.json";
+
 interface Props {
   entries: Template[];
 }
+
 const { entries } = Astro.props; // Make sure entries is correctly passed and used
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/images/**/*.{jpeg,jpg,png,gif}"
@@ -36,40 +39,59 @@ const entriesWithQuantity = entries
   })
   // Filter out entries with quantity 0
   .filter((entry) => entry.quantity > 0);
+
+const updatedSubsections = Object.keys(updates).reduce((acc, path) => {
+  const [section, subsection] = path.split("/");
+  acc[subsection] = acc[subsection] ? acc[subsection] > updates[path] ? acc[subsection] : updates[path] : updates[path];
+  return acc;
+}, {});
+
+const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
 ---
 
 <ul
   class="grid grid-cols-1 col-span-4 gap-x-6 gap-y-6 sm:grid-cols-2 sm:gap-y-10 md:grid-cols-3 xl:gap-x-8"
 >
   {
-    entriesWithQuantity.map((template) => (
-      <li class="relative ">
-        <div class="relative rounded-lg group ">
-          <Image
-            class="object-cover object-bottom rounded-xl ring-4 ring-base-50 group-hover:ring-base-100 transition-all duration-300 ease-in-out"
-            alt={template.name}
-            src={template.image()}
-          />
-          <div class="flex flex-col mt-2 ">
-            <p class="text-sm font-medium 2xl:text-base text-base-900 group-hover:text-accent-600">
-              <a
-                class="flex items-center justify-between gap-2"
-                title={template.name}
-                href={template.link}
-              >
-                <span class="absolute -inset-2.5 z-10" />
-                <span class="relative">{template.name}</span>
-                <span class="inline-flex  items-center font-medium z-10 text-accent-500 sr-only bottom-2 right-2 bg-base-50 px-2.5 py-1 text-xs rounded-md">
-                  New
-                </span>
-              </a>
-            </p>
-            <p class="relative flex items-center gap-1 text-xs font-medium 2xl:text-sm text-base-400">
-              {template.quantity} Components
-            </p>
+    entriesWithQuantity.map((template) => {
+      const subsection = template.link.split("/").pop();
+      const updated = updatedSubsections[subsection];
+
+      const updatedAt = new Date(updated * 1000);
+
+      const isUpdatedLastWeek = updatedAt > SEVEN_DAYS_AGO;
+
+      return (
+        <li class="relative ">
+          <div class="relative rounded-lg group ">
+            <Image
+              class="object-cover object-bottom rounded-xl ring-4 ring-base-50 group-hover:ring-base-100 transition-all duration-300 ease-in-out"
+              alt={template.name}
+              src={template.image()}
+            />
+            <div class="flex flex-col mt-2 ">
+              <p class="text-sm font-medium 2xl:text-base text-base-900 group-hover:text-accent-600">
+                <a
+                  class="flex items-center justify-between gap-2"
+                  title={template.name}
+                  href={template.link}
+                >
+                  <span class="absolute -inset-2.5 z-10" />
+                  <span class="relative">{template.name}</span>
+                  {isUpdatedLastWeek && (
+                    <span class="inline-flex items-center font-medium z-10 text-accent-500 bottom-2 right-2 bg-base-50 px-2.5 py-1 text-xs rounded-md">
+                      New
+                    </span>
+                  )}
+                </a>
+              </p>
+              <p class="relative flex items-center gap-1 text-xs font-medium 2xl:text-sm text-base-400">
+                {template.quantity} Components
+              </p>
+            </div>
           </div>
-        </div>
-      </li>
-    ))
+        </li>
+      )
+    })
   }
 </ul>

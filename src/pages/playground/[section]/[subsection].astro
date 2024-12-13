@@ -19,7 +19,7 @@ const formattedSubsection = subsection.replace("-", " ");
 
 const user = Astro.locals.user;
 
-const SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000;
+const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
 ---
 
 <BaseLayout>
@@ -73,7 +73,7 @@ const SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000;
 
             const updatedAt = new Date(updates[filePath] * 1000);
 
-            const isUpdatedLastWeek = updatedAt > new Date(Date.now() - SEVEN_DAYS);
+            const isUpdatedLastWeek = updatedAt > SEVEN_DAYS_AGO;
 
             return (
               <a
