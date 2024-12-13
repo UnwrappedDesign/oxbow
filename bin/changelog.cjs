@@ -50,25 +50,16 @@ class ChangelogGenerator {
     /**
      * Extract the most specific (bottom-level) folder from a file path
      * @param {string} filePath - Full file path
-     * @returns {string} Most specific folder name
+     * @returns {string[]} Array of path parts
      */
-    extractMostSpecificFolder(filePath) {
+    extractPathParts(filePath) {
         // Remove target directory prefix
         const relativePath = filePath.replace(new RegExp(`^${this.targetDir}`), '').replace(/^\//, '');
         
         // Split path into components
         const pathParts = relativePath.split('/');
         
-        // If no path parts, return 'root'
-        if (pathParts.length === 0) return 'root';
-        
-        // If file is directly in target directory, use filename without extension
-        if (pathParts.length === 1) {
-            return path.basename(pathParts[0], path.extname(pathParts[0]));
-        }
-        
-        // Return the folder just before the filename
-        return pathParts[pathParts.length - 2];
+        return pathParts;
     }
 
     /**
@@ -109,26 +100,27 @@ class ChangelogGenerator {
                         
                         // Ensure file is within target directory
                         if (filePath.startsWith(this.targetDir.replace(/^\.\//, ''))) {
-                            // Extract most specific folder name
-                            const folderName = this.extractMostSpecificFolder(filePath);
+                            const [section, subSection, _componentName] = this.extractPathParts(filePath).slice(-3);
+
+                            const path = `${section}/${subSection}`;
 
                             // Skip blacklisted folders
-                            if (this.isFolderBlacklisted(folderName)) {
+                            if (this.isFolderBlacklisted(path)) {
                                 continue;
                             }
 
                             switch (changeType) {
                                 case 'A':
-                                    changes[currentDate].added[folderName] = 
-                                        (changes[currentDate].added[folderName] || 0) + 1;
+                                    changes[currentDate].added[path] = 
+                                        (changes[currentDate].added[path] || 0) + 1;
                                     break;
                                 case 'M':
-                                    changes[currentDate].modified[folderName] = 
-                                        (changes[currentDate].modified[folderName] || 0) + 1;
+                                    changes[currentDate].modified[path] = 
+                                        (changes[currentDate].modified[path] || 0) + 1;
                                     break;
                                 case 'R':
-                                    changes[currentDate].renamed[folderName] = 
-                                        (changes[currentDate].renamed[folderName] || 0) + 1;
+                                    changes[currentDate].renamed[path] = 
+                                        (changes[currentDate].renamed[path] || 0) + 1;
                                     break;
                             }
                         }
@@ -204,28 +196,31 @@ class ChangelogGenerator {
                 continue;
             }
 
-            markdown += `## ${date}\n\n`;
+            markdown += `## **${date}**\n\n`;
 
             if (Object.keys(dateChanges.added).length > 0) {
                 markdown += '### Added\n';
-                for (const [folder, count] of Object.entries(dateChanges.added).sort()) {
-                    markdown += `- ${folder}: ${count} component${count > 1 ? 's' : ''}\n`;
+                for (const [path, count] of Object.entries(dateChanges.added).sort()) {
+                    const [section, subSection] = path.split('/');
+                    markdown += `- ${subSection}: [${count} component${count > 1 ? 's' : ''}](https://oxbowui.com/playground/${section}/${subSection})\n`;
                 }
                 markdown += '\n';
             }
 
             if (Object.keys(dateChanges.modified).length > 0) {
                 markdown += '### Modified\n';
-                for (const [folder, count] of Object.entries(dateChanges.modified).sort()) {
-                    markdown += `- ${folder}: ${count} component${count > 1 ? 's' : ''}\n`;
+                for (const [path, count] of Object.entries(dateChanges.modified).sort()) {
+                    const [section, subSection] = path.split('/');
+                    markdown += `- ${subSection}: [${count} component${count > 1 ? 's' : ''}](https://oxbowui.com/playground/${section}/${subSection})\n`;
                 }
                 markdown += '\n';
             }
 
             if (Object.keys(dateChanges.renamed).length > 0) {
                 markdown += '### Renamed\n';
-                for (const [folder, count] of Object.entries(dateChanges.renamed).sort()) {
-                    markdown += `- ${folder}: ${count} component${count > 1 ? 's' : ''}\n`;
+                for (const [path, count] of Object.entries(dateChanges.renamed).sort()) {
+                    const [section, subSection] = path.split('/');
+                    markdown += `- ${subSection}: [${count} component${count > 1 ? 's' : ''}](https://oxbowui.com/playground/${section}/${subSection})\n`;
                 }
                 markdown += '\n';
             }
