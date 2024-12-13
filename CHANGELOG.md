@@ -1,467 +1,480 @@
-# Changelog for Oxbow Components
+# Changelog for Oxbow UI Components
 
-## 2024-12-08
-
-### Modified
-- avatars: 3 components
-- banners: 1 component
-- bento-grids: 3 components
-- blog-content: 5 components
-- blog-entries: 10 components
-- breadcrumbs: 4 components
-- contact: 7 components
-- cta: 7 components
-- cta-newsletter: 5 components
-- faq: 15 components
-- features: 16 components
-- flyouts: 4 components
-- footers: 20 components
-- hero: 12 components
-- logo-clouds: 7 components
-- navbars: 6 components
-- pricing: 19 components
-- sign-in: 6 components
-- sign-up: 5 components
-- stats: 12 components
-- steps: 3 components
-- team: 15 components
-- testimonials: 14 components
-- timeline: 3 components
-- typography: 2 components
-
-## 2024-11-27
+## **2024-12-10**
 
 ### Modified
-- gallery: 1 component
+- alerts: [2 components](https://oxbowui.com/playground/application/alerts)
 
-## 2024-10-28
-
-### Modified
-- faq: 5 components
-
-## 2024-10-21
+## **2024-12-08**
 
 ### Modified
-- testimonials: 1 component
+- avatars: [3 components](https://oxbowui.com/playground/application/avatars)
+- banners: [1 component](https://oxbowui.com/playground/application/banners)
+- breadcrumbs: [4 components](https://oxbowui.com/playground/application/breadcrumbs)
+- flyouts: [4 components](https://oxbowui.com/playground/application/flyouts)
+- navbars: [6 components](https://oxbowui.com/playground/application/navbars)
+- sign-in: [6 components](https://oxbowui.com/playground/application/sign-in)
+- sign-up: [5 components](https://oxbowui.com/playground/application/sign-up)
+- typography: [2 components](https://oxbowui.com/playground/application/typography)
+- bento-grids: [3 components](https://oxbowui.com/playground/marketing/bento-grids)
+- blog-content: [5 components](https://oxbowui.com/playground/marketing/blog-content)
+- blog-entries: [10 components](https://oxbowui.com/playground/marketing/blog-entries)
+- contact: [7 components](https://oxbowui.com/playground/marketing/contact)
+- cta: [7 components](https://oxbowui.com/playground/marketing/cta)
+- cta-newsletter: [5 components](https://oxbowui.com/playground/marketing/cta-newsletter)
+- faq: [15 components](https://oxbowui.com/playground/marketing/faq)
+- features: [16 components](https://oxbowui.com/playground/marketing/features)
+- footers: [20 components](https://oxbowui.com/playground/marketing/footers)
+- hero: [12 components](https://oxbowui.com/playground/marketing/hero)
+- logo-clouds: [7 components](https://oxbowui.com/playground/marketing/logo-clouds)
+- pricing: [19 components](https://oxbowui.com/playground/marketing/pricing)
+- stats: [12 components](https://oxbowui.com/playground/marketing/stats)
+- steps: [3 components](https://oxbowui.com/playground/marketing/steps)
+- team: [15 components](https://oxbowui.com/playground/marketing/team)
+- testimonials: [14 components](https://oxbowui.com/playground/marketing/testimonials)
+- timeline: [3 components](https://oxbowui.com/playground/marketing/timeline)
 
-## 2024-10-20
+## **2024-11-27**
 
 ### Modified
-- bento-grids: 2 components
-- features: 14 components
+- gallery: [1 component](https://oxbowui.com/playground/marketing/gallery)
 
-## 2024-10-19
+## **2024-10-28**
+
+### Modified
+- faq: [5 components](https://oxbowui.com/playground/marketing/faq)
+
+## **2024-10-21**
+
+### Modified
+- testimonials: [1 component](https://oxbowui.com/playground/marketing/testimonials)
+
+## **2024-10-20**
+
+### Modified
+- bento-grids: [2 components](https://oxbowui.com/playground/marketing/bento-grids)
+- features: [14 components](https://oxbowui.com/playground/marketing/features)
+
+## **2024-10-19**
 
 ### Added
-- bento-grids: 8 components
-- typography: 15 components
+- typography: [15 components](https://oxbowui.com/playground/application/typography)
+- bento-grids: [8 components](https://oxbowui.com/playground/marketing/bento-grids)
 
 ### Modified
-- features: 9 components
-- hero: 17 components
-- typography: 1 component
+- typography: [1 component](https://oxbowui.com/playground/application/typography)
+- features: [9 components](https://oxbowui.com/playground/marketing/features)
+- hero: [17 components](https://oxbowui.com/playground/marketing/hero)
 
-## 2024-10-18
+## **2024-10-18**
 
 ### Added
-- hero: 8 components
+- hero: [8 components](https://oxbowui.com/playground/marketing/hero)
 
 ### Modified
-- hero: 17 components
+- hero: [17 components](https://oxbowui.com/playground/marketing/hero)
 
-## 2024-10-16
+## **2024-10-16**
 
 ### Added
-- features: 1 component
-- hero: 4 components
+- features: [1 component](https://oxbowui.com/playground/marketing/features)
+- hero: [4 components](https://oxbowui.com/playground/marketing/hero)
 
 ### Modified
-- hero: 10 components
+- hero: [10 components](https://oxbowui.com/playground/marketing/hero)
 
-## 2024-10-15
+## **2024-10-15**
 
 ### Modified
-- alerts: 2 components
-- avatars: 7 components
-- blog-content: 5 components
-- blog-entries: 8 components
-- commandbar: 1 component
-- contact: 2 components
-- cta: 2 components
-- features: 1 component
-- hero: 8 components
-- sign-in: 3 components
-- sign-up: 3 components
-- stats: 2 components
-- steps: 1 component
-- team: 16 components
-- testimonials: 17 components
+- alerts: [2 components](https://oxbowui.com/playground/application/alerts)
+- avatars: [7 components](https://oxbowui.com/playground/application/avatars)
+- commandbar: [1 component](https://oxbowui.com/playground/application/commandbar)
+- sign-in: [3 components](https://oxbowui.com/playground/application/sign-in)
+- sign-up: [3 components](https://oxbowui.com/playground/application/sign-up)
+- blog-content: [5 components](https://oxbowui.com/playground/marketing/blog-content)
+- blog-entries: [8 components](https://oxbowui.com/playground/marketing/blog-entries)
+- contact: [2 components](https://oxbowui.com/playground/marketing/contact)
+- cta: [2 components](https://oxbowui.com/playground/marketing/cta)
+- features: [1 component](https://oxbowui.com/playground/marketing/features)
+- hero: [8 components](https://oxbowui.com/playground/marketing/hero)
+- stats: [2 components](https://oxbowui.com/playground/marketing/stats)
+- steps: [1 component](https://oxbowui.com/playground/marketing/steps)
+- team: [16 components](https://oxbowui.com/playground/marketing/team)
+- testimonials: [17 components](https://oxbowui.com/playground/marketing/testimonials)
 
-## 2024-10-14
+## **2024-10-14**
 
 ### Added
-- typography: 1 component
+- typography: [1 component](https://oxbowui.com/playground/application/typography)
 
 ### Modified
-- alerts: 10 components
-- avatars: 3 components
-- banners: 8 components
-- blog-content: 5 components
-- blog-entries: 10 components
-- breadcrumbs: 5 components
-- commandbar: 4 components
-- contact: 7 components
-- cta: 10 components
-- cta-newsletter: 5 components
-- emptyStates: 2 components
-- faq: 17 components
-- features: 29 components
-- flyouts: 10 components
-- footers: 20 components
-- hero: 19 components
-- logo-clouds: 9 components
-- navbars: 6 components
-- notifications: 5 components
-- pagination: 1 component
-- pricing: 20 components
-- pricing-pages: 2 components
-- sign-in: 6 components
-- sign-up: 5 components
-- stats: 20 components
-- steps: 8 components
-- team: 16 components
-- testimonials: 17 components
-- timeline: 3 components
+- alerts: [10 components](https://oxbowui.com/playground/application/alerts)
+- avatars: [3 components](https://oxbowui.com/playground/application/avatars)
+- banners: [8 components](https://oxbowui.com/playground/application/banners)
+- breadcrumbs: [5 components](https://oxbowui.com/playground/application/breadcrumbs)
+- commandbar: [4 components](https://oxbowui.com/playground/application/commandbar)
+- emptyStates: [2 components](https://oxbowui.com/playground/application/emptyStates)
+- flyouts: [10 components](https://oxbowui.com/playground/application/flyouts)
+- navbars: [6 components](https://oxbowui.com/playground/application/navbars)
+- notifications: [5 components](https://oxbowui.com/playground/application/notifications)
+- pagination: [1 component](https://oxbowui.com/playground/application/pagination)
+- sign-in: [6 components](https://oxbowui.com/playground/application/sign-in)
+- sign-up: [5 components](https://oxbowui.com/playground/application/sign-up)
+- blog-content: [5 components](https://oxbowui.com/playground/marketing/blog-content)
+- blog-entries: [10 components](https://oxbowui.com/playground/marketing/blog-entries)
+- contact: [7 components](https://oxbowui.com/playground/marketing/contact)
+- cta: [10 components](https://oxbowui.com/playground/marketing/cta)
+- cta-newsletter: [5 components](https://oxbowui.com/playground/marketing/cta-newsletter)
+- faq: [17 components](https://oxbowui.com/playground/marketing/faq)
+- features: [29 components](https://oxbowui.com/playground/marketing/features)
+- footers: [20 components](https://oxbowui.com/playground/marketing/footers)
+- hero: [19 components](https://oxbowui.com/playground/marketing/hero)
+- logo-clouds: [9 components](https://oxbowui.com/playground/marketing/logo-clouds)
+- pricing: [20 components](https://oxbowui.com/playground/marketing/pricing)
+- pricing-pages: [2 components](https://oxbowui.com/playground/marketing/pricing-pages)
+- stats: [20 components](https://oxbowui.com/playground/marketing/stats)
+- steps: [8 components](https://oxbowui.com/playground/marketing/steps)
+- team: [16 components](https://oxbowui.com/playground/marketing/team)
+- testimonials: [17 components](https://oxbowui.com/playground/marketing/testimonials)
+- timeline: [3 components](https://oxbowui.com/playground/marketing/timeline)
 
-## 2024-10-10
+## **2024-10-10**
 
 ### Added
-- pricing: 3 components
+- pricing: [3 components](https://oxbowui.com/playground/marketing/pricing)
 
 ### Modified
-- cta-newsletter: 3 components
-- features: 2 components
-- footers: 1 component
-- pricing: 17 components
+- cta-newsletter: [3 components](https://oxbowui.com/playground/marketing/cta-newsletter)
+- features: [2 components](https://oxbowui.com/playground/marketing/features)
+- footers: [1 component](https://oxbowui.com/playground/marketing/footers)
+- pricing: [17 components](https://oxbowui.com/playground/marketing/pricing)
 
-## 2024-10-08
+## **2024-10-08**
 
 ### Added
-- banners: 1 component
+- banners: [1 component](https://oxbowui.com/playground/application/banners)
 
 ### Modified
-- alerts: 10 components
-- avatars: 3 components
-- banners: 7 components
-- breadcrumbs: 5 components
-- buttons: 2 components
-- commandbar: 5 components
-- contact: 1 component
-- emptyStates: 2 components
-- pagination: 1 component
-- tables: 3 components
-- tabs: 1 component
+- alerts: [10 components](https://oxbowui.com/playground/application/alerts)
+- avatars: [3 components](https://oxbowui.com/playground/application/avatars)
+- banners: [7 components](https://oxbowui.com/playground/application/banners)
+- breadcrumbs: [5 components](https://oxbowui.com/playground/application/breadcrumbs)
+- buttons: [2 components](https://oxbowui.com/playground/application/buttons)
+- commandbar: [5 components](https://oxbowui.com/playground/application/commandbar)
+- emptyStates: [2 components](https://oxbowui.com/playground/application/emptyStates)
+- pagination: [1 component](https://oxbowui.com/playground/application/pagination)
+- tables: [3 components](https://oxbowui.com/playground/application/tables)
+- tabs: [1 component](https://oxbowui.com/playground/application/tabs)
+- contact: [1 component](https://oxbowui.com/playground/marketing/contact)
 
-## 2024-10-07
-
-### Modified
-- blog-content: 1 component
-- blog-entries: 10 components
-- contact: 8 components
-- cta-newsletter: 3 components
-- faq: 9 components
-- features: 1 component
-- flyouts: 10 components
-- footers: 20 components
-- hero: 2 components
-- logo-clouds: 1 component
-- navbars: 6 components
-- sign-in: 6 components
-- sign-up: 5 components
-- team: 14 components
-- testimonials: 2 components
-- timeline: 2 components
-
-## 2024-10-06
+## **2024-10-07**
 
 ### Modified
-- contact: 7 components
-- cta: 10 components
-- cta-newsletter: 5 components
-- features: 1 component
-- flyouts: 12 components
-- footers: 40 components
-- hero: 2 components
-- logo-clouds: 8 components
-- navbars: 6 components
-- pricing: 15 components
-- sign-in: 6 components
-- sign-up: 5 components
-- stats: 20 components
-- testimonials: 1 component
+- flyouts: [10 components](https://oxbowui.com/playground/application/flyouts)
+- navbars: [6 components](https://oxbowui.com/playground/application/navbars)
+- sign-in: [6 components](https://oxbowui.com/playground/application/sign-in)
+- sign-up: [5 components](https://oxbowui.com/playground/application/sign-up)
+- blog-content: [1 component](https://oxbowui.com/playground/marketing/blog-content)
+- blog-entries: [10 components](https://oxbowui.com/playground/marketing/blog-entries)
+- contact: [8 components](https://oxbowui.com/playground/marketing/contact)
+- cta-newsletter: [3 components](https://oxbowui.com/playground/marketing/cta-newsletter)
+- faq: [9 components](https://oxbowui.com/playground/marketing/faq)
+- features: [1 component](https://oxbowui.com/playground/marketing/features)
+- footers: [20 components](https://oxbowui.com/playground/marketing/footers)
+- hero: [2 components](https://oxbowui.com/playground/marketing/hero)
+- logo-clouds: [1 component](https://oxbowui.com/playground/marketing/logo-clouds)
+- team: [14 components](https://oxbowui.com/playground/marketing/team)
+- testimonials: [2 components](https://oxbowui.com/playground/marketing/testimonials)
+- timeline: [2 components](https://oxbowui.com/playground/marketing/timeline)
 
-## 2024-10-05
-
-### Modified
-- blog-content: 5 components
-- blog-entries: 10 components
-- commandbar: 1 component
-- faq: 17 components
-- features: 26 components
-- hero: 6 components
-- pricing: 17 components
-- stats: 1 component
-- steps: 8 components
-- tables: 1 component
-- team: 16 components
-- testimonials: 19 components
-- timeline: 3 components
-
-## 2024-10-04
+## **2024-10-06**
 
 ### Modified
-- features: 6 components
-- hero: 3 components
+- flyouts: [12 components](https://oxbowui.com/playground/application/flyouts)
+- navbars: [6 components](https://oxbowui.com/playground/application/navbars)
+- sign-in: [6 components](https://oxbowui.com/playground/application/sign-in)
+- sign-up: [5 components](https://oxbowui.com/playground/application/sign-up)
+- contact: [7 components](https://oxbowui.com/playground/marketing/contact)
+- cta: [10 components](https://oxbowui.com/playground/marketing/cta)
+- cta-newsletter: [5 components](https://oxbowui.com/playground/marketing/cta-newsletter)
+- features: [1 component](https://oxbowui.com/playground/marketing/features)
+- footers: [40 components](https://oxbowui.com/playground/marketing/footers)
+- hero: [2 components](https://oxbowui.com/playground/marketing/hero)
+- logo-clouds: [8 components](https://oxbowui.com/playground/marketing/logo-clouds)
+- pricing: [15 components](https://oxbowui.com/playground/marketing/pricing)
+- stats: [20 components](https://oxbowui.com/playground/marketing/stats)
+- testimonials: [1 component](https://oxbowui.com/playground/marketing/testimonials)
 
-## 2024-10-03
+## **2024-10-05**
+
+### Modified
+- commandbar: [1 component](https://oxbowui.com/playground/application/commandbar)
+- tables: [1 component](https://oxbowui.com/playground/application/tables)
+- blog-content: [5 components](https://oxbowui.com/playground/marketing/blog-content)
+- blog-entries: [10 components](https://oxbowui.com/playground/marketing/blog-entries)
+- faq: [17 components](https://oxbowui.com/playground/marketing/faq)
+- features: [26 components](https://oxbowui.com/playground/marketing/features)
+- hero: [6 components](https://oxbowui.com/playground/marketing/hero)
+- pricing: [17 components](https://oxbowui.com/playground/marketing/pricing)
+- stats: [1 component](https://oxbowui.com/playground/marketing/stats)
+- steps: [8 components](https://oxbowui.com/playground/marketing/steps)
+- team: [16 components](https://oxbowui.com/playground/marketing/team)
+- testimonials: [19 components](https://oxbowui.com/playground/marketing/testimonials)
+- timeline: [3 components](https://oxbowui.com/playground/marketing/timeline)
+
+## **2024-10-04**
+
+### Modified
+- features: [6 components](https://oxbowui.com/playground/marketing/features)
+- hero: [3 components](https://oxbowui.com/playground/marketing/hero)
+
+## **2024-10-03**
 
 ### Added
-- button-groups: 5 components
-- buttons: 3 components
+- button-groups: [5 components](https://oxbowui.com/playground/application/button-groups)
+- buttons: [3 components](https://oxbowui.com/playground/application/buttons)
 
 ### Modified
-- alerts: 2 components
-- avatars: 1 component
-- badges: 5 components
-- banners: 3 components
-- blog-entries: 7 components
-- buttons: 11 components
-- contact: 4 components
-- cta: 12 components
-- cta-newsletter: 5 components
-- emptyStates: 1 component
-- faq: 1 component
-- features: 1 component
-- flyouts: 4 components
-- footers: 15 components
-- hero: 24 components
-- landing-pages: 3 components
-- logo-clouds: 1 component
-- navbars: 6 components
-- notifications: 2 components
-- pagination: 5 components
-- pricing: 19 components
-- pricing-pages: 3 components
-- sign-in: 7 components
-- sign-up: 6 components
-- stats: 5 components
-- steps: 1 component
-- tables: 4 components
-- tabs: 1 component
-- team: 5 components
-- testimonials: 16 components
+- alerts: [2 components](https://oxbowui.com/playground/application/alerts)
+- avatars: [1 component](https://oxbowui.com/playground/application/avatars)
+- badges: [5 components](https://oxbowui.com/playground/application/badges)
+- banners: [3 components](https://oxbowui.com/playground/application/banners)
+- buttons: [11 components](https://oxbowui.com/playground/application/buttons)
+- emptyStates: [1 component](https://oxbowui.com/playground/application/emptyStates)
+- flyouts: [4 components](https://oxbowui.com/playground/application/flyouts)
+- navbars: [6 components](https://oxbowui.com/playground/application/navbars)
+- notifications: [2 components](https://oxbowui.com/playground/application/notifications)
+- pagination: [5 components](https://oxbowui.com/playground/application/pagination)
+- sign-in: [7 components](https://oxbowui.com/playground/application/sign-in)
+- sign-up: [6 components](https://oxbowui.com/playground/application/sign-up)
+- tables: [4 components](https://oxbowui.com/playground/application/tables)
+- tabs: [1 component](https://oxbowui.com/playground/application/tabs)
+- blog-entries: [7 components](https://oxbowui.com/playground/marketing/blog-entries)
+- contact: [4 components](https://oxbowui.com/playground/marketing/contact)
+- cta: [12 components](https://oxbowui.com/playground/marketing/cta)
+- cta-newsletter: [5 components](https://oxbowui.com/playground/marketing/cta-newsletter)
+- faq: [1 component](https://oxbowui.com/playground/marketing/faq)
+- features: [1 component](https://oxbowui.com/playground/marketing/features)
+- footers: [15 components](https://oxbowui.com/playground/marketing/footers)
+- hero: [24 components](https://oxbowui.com/playground/marketing/hero)
+- landing-pages: [3 components](https://oxbowui.com/playground/marketing/landing-pages)
+- logo-clouds: [1 component](https://oxbowui.com/playground/marketing/logo-clouds)
+- pricing: [19 components](https://oxbowui.com/playground/marketing/pricing)
+- pricing-pages: [3 components](https://oxbowui.com/playground/marketing/pricing-pages)
+- stats: [5 components](https://oxbowui.com/playground/marketing/stats)
+- steps: [1 component](https://oxbowui.com/playground/marketing/steps)
+- team: [5 components](https://oxbowui.com/playground/marketing/team)
+- testimonials: [16 components](https://oxbowui.com/playground/marketing/testimonials)
 
-## 2024-09-30
-
-### Modified
-- badges: 5 components
-- blog-entries: 5 components
-- cta: 1 component
-- features: 11 components
-- gallery: 15 components
-- hero: 5 components
-- pricing: 2 components
-- sign-in: 1 component
-- stats: 3 components
-- testimonials: 3 components
-- timeline: 1 component
-
-## 2024-09-29
-
-### Added
-- buttons: 1 component
+## **2024-09-30**
 
 ### Modified
-- alerts: 7 components
-- avatars: 5 components
-- badges: 7 components
-- banners: 7 components
-- blog-content: 5 components
-- blog-entries: 10 components
-- breadcrumbs: 5 components
-- buttons: 9 components
-- commandbar: 4 components
-- contact: 7 components
-- cta: 10 components
-- cta-newsletter: 5 components
-- emptyStates: 2 components
-- faq: 17 components
-- features: 30 components
-- flyouts: 10 components
-- footers: 20 components
-- gallery: 15 components
-- hero: 20 components
-- landing-pages: 3 components
-- logo-clouds: 10 components
-- navbars: 6 components
-- notifications: 5 components
-- pagination: 6 components
-- pricing: 17 components
-- pricing-pages: 3 components
-- sign-in: 6 components
-- sign-up: 5 components
-- stats: 20 components
-- steps: 8 components
-- tables: 4 components
-- tabs: 4 components
-- team: 16 components
-- testimonials: 19 components
-- timeline: 3 components
+- badges: [5 components](https://oxbowui.com/playground/application/badges)
+- sign-in: [1 component](https://oxbowui.com/playground/application/sign-in)
+- blog-entries: [5 components](https://oxbowui.com/playground/marketing/blog-entries)
+- cta: [1 component](https://oxbowui.com/playground/marketing/cta)
+- features: [11 components](https://oxbowui.com/playground/marketing/features)
+- gallery: [15 components](https://oxbowui.com/playground/marketing/gallery)
+- hero: [5 components](https://oxbowui.com/playground/marketing/hero)
+- pricing: [2 components](https://oxbowui.com/playground/marketing/pricing)
+- stats: [3 components](https://oxbowui.com/playground/marketing/stats)
+- testimonials: [3 components](https://oxbowui.com/playground/marketing/testimonials)
+- timeline: [1 component](https://oxbowui.com/playground/marketing/timeline)
 
-## 2024-09-24
+## **2024-09-29**
 
 ### Added
-- avatars: 7 components
-- emptyStates: 2 components
-- tables: 4 components
+- buttons: [1 component](https://oxbowui.com/playground/application/buttons)
 
 ### Modified
-- buttons: 2 components
-- contact: 3 components
-- navbars: 3 components
-- pagination: 1 component
-- pricing: 6 components
-- pricing-pages: 1 component
-- sign-in: 5 components
-- sign-up: 5 components
+- __test__: [1 component](https://oxbowui.com/playground/__test__/__test__)
+- test.astro: [1 component](https://oxbowui.com/playground/__test__/test.astro)
+- alerts: [7 components](https://oxbowui.com/playground/application/alerts)
+- avatars: [5 components](https://oxbowui.com/playground/application/avatars)
+- badges: [7 components](https://oxbowui.com/playground/application/badges)
+- banners: [7 components](https://oxbowui.com/playground/application/banners)
+- breadcrumbs: [5 components](https://oxbowui.com/playground/application/breadcrumbs)
+- buttons: [9 components](https://oxbowui.com/playground/application/buttons)
+- commandbar: [4 components](https://oxbowui.com/playground/application/commandbar)
+- emptyStates: [2 components](https://oxbowui.com/playground/application/emptyStates)
+- flyouts: [10 components](https://oxbowui.com/playground/application/flyouts)
+- navbars: [6 components](https://oxbowui.com/playground/application/navbars)
+- notifications: [5 components](https://oxbowui.com/playground/application/notifications)
+- pagination: [6 components](https://oxbowui.com/playground/application/pagination)
+- sign-in: [6 components](https://oxbowui.com/playground/application/sign-in)
+- sign-up: [5 components](https://oxbowui.com/playground/application/sign-up)
+- tables: [4 components](https://oxbowui.com/playground/application/tables)
+- tabs: [4 components](https://oxbowui.com/playground/application/tabs)
+- blog-content: [5 components](https://oxbowui.com/playground/marketing/blog-content)
+- blog-entries: [10 components](https://oxbowui.com/playground/marketing/blog-entries)
+- contact: [7 components](https://oxbowui.com/playground/marketing/contact)
+- cta: [10 components](https://oxbowui.com/playground/marketing/cta)
+- cta-newsletter: [5 components](https://oxbowui.com/playground/marketing/cta-newsletter)
+- faq: [17 components](https://oxbowui.com/playground/marketing/faq)
+- features: [30 components](https://oxbowui.com/playground/marketing/features)
+- footers: [20 components](https://oxbowui.com/playground/marketing/footers)
+- gallery: [15 components](https://oxbowui.com/playground/marketing/gallery)
+- hero: [20 components](https://oxbowui.com/playground/marketing/hero)
+- landing-pages: [3 components](https://oxbowui.com/playground/marketing/landing-pages)
+- logo-clouds: [10 components](https://oxbowui.com/playground/marketing/logo-clouds)
+- pricing: [17 components](https://oxbowui.com/playground/marketing/pricing)
+- pricing-pages: [3 components](https://oxbowui.com/playground/marketing/pricing-pages)
+- stats: [20 components](https://oxbowui.com/playground/marketing/stats)
+- steps: [8 components](https://oxbowui.com/playground/marketing/steps)
+- team: [16 components](https://oxbowui.com/playground/marketing/team)
+- testimonials: [19 components](https://oxbowui.com/playground/marketing/testimonials)
+- timeline: [3 components](https://oxbowui.com/playground/marketing/timeline)
 
-## 2024-09-13
+## **2024-09-24**
 
 ### Added
-- landing-pages: 1 component
-- pricing-pages: 3 components
+- avatars: [7 components](https://oxbowui.com/playground/application/avatars)
+- emptyStates: [2 components](https://oxbowui.com/playground/application/emptyStates)
+- tables: [4 components](https://oxbowui.com/playground/application/tables)
 
 ### Modified
-- faq: 2 components
-- landing-pages: 3 components
-- testimonials: 1 component
+- buttons: [2 components](https://oxbowui.com/playground/application/buttons)
+- navbars: [3 components](https://oxbowui.com/playground/application/navbars)
+- pagination: [1 component](https://oxbowui.com/playground/application/pagination)
+- sign-in: [5 components](https://oxbowui.com/playground/application/sign-in)
+- sign-up: [5 components](https://oxbowui.com/playground/application/sign-up)
+- contact: [3 components](https://oxbowui.com/playground/marketing/contact)
+- pricing: [6 components](https://oxbowui.com/playground/marketing/pricing)
+- pricing-pages: [1 component](https://oxbowui.com/playground/marketing/pricing-pages)
 
-## 2024-09-12
+## **2024-09-13**
 
 ### Added
-- badges: 7 components
-- commandbar: 4 components
-- landing-pages: 2 components
-- testimonials: 4 components
+- landing-pages: [1 component](https://oxbowui.com/playground/marketing/landing-pages)
+- pricing-pages: [3 components](https://oxbowui.com/playground/marketing/pricing-pages)
 
 ### Modified
-- alerts: 2 components
-- blog-entries: 1 component
-- breadcrumbs: 2 components
-- features: 3 components
-- flyouts: 9 components
-- notifications: 5 components
-- pagination: 1 component
-- pricing: 16 components
-- sign-in: 5 components
-- testimonials: 4 components
+- faq: [2 components](https://oxbowui.com/playground/marketing/faq)
+- landing-pages: [3 components](https://oxbowui.com/playground/marketing/landing-pages)
+- testimonials: [1 component](https://oxbowui.com/playground/marketing/testimonials)
 
-## 2024-09-11
+## **2024-09-12**
 
 ### Added
-- alerts: 10 components
-- breadcrumbs: 3 components
-- flyouts: 10 components
-- pagination: 6 components
-- tabs: 4 components
+- badges: [7 components](https://oxbowui.com/playground/application/badges)
+- commandbar: [4 components](https://oxbowui.com/playground/application/commandbar)
+- landing-pages: [2 components](https://oxbowui.com/playground/marketing/landing-pages)
+- testimonials: [4 components](https://oxbowui.com/playground/marketing/testimonials)
 
 ### Modified
-- banners: 13 components
-- blog-content: 5 components
-- blog-entries: 10 components
-- breadcrumbs: 2 components
-- buttons: 9 components
-- contact: 7 components
-- cta: 10 components
-- cta-newsletter: 5 components
-- faq: 17 components
-- features: 30 components
-- flyouts: 10 components
-- footers: 20 components
-- gallery: 15 components
-- hero: 20 components
-- logo-clouds: 9 components
-- navbars: 6 components
-- notifications: 6 components
-- pricing: 41 components
-- sign-in: 6 components
-- sign-up: 5 components
-- stats: 20 components
-- steps: 8 components
-- team: 16 components
-- testimonials: 17 components
-- timeline: 3 components
+- alerts: [2 components](https://oxbowui.com/playground/application/alerts)
+- breadcrumbs: [2 components](https://oxbowui.com/playground/application/breadcrumbs)
+- flyouts: [9 components](https://oxbowui.com/playground/application/flyouts)
+- notifications: [5 components](https://oxbowui.com/playground/application/notifications)
+- pagination: [1 component](https://oxbowui.com/playground/application/pagination)
+- sign-in: [5 components](https://oxbowui.com/playground/application/sign-in)
+- blog-entries: [1 component](https://oxbowui.com/playground/marketing/blog-entries)
+- features: [3 components](https://oxbowui.com/playground/marketing/features)
+- pricing: [16 components](https://oxbowui.com/playground/marketing/pricing)
+- testimonials: [4 components](https://oxbowui.com/playground/marketing/testimonials)
 
-## 2024-09-09
+## **2024-09-11**
 
 ### Added
-- breadcrumbs: 2 components
-
-## 2024-09-06
-
-### Added
-- navbars: 6 components
-
-## 2024-09-01
-
-### Added
-- banners: 7 components
+- alerts: [10 components](https://oxbowui.com/playground/application/alerts)
+- breadcrumbs: [3 components](https://oxbowui.com/playground/application/breadcrumbs)
+- flyouts: [10 components](https://oxbowui.com/playground/application/flyouts)
+- pagination: [6 components](https://oxbowui.com/playground/application/pagination)
+- tabs: [4 components](https://oxbowui.com/playground/application/tabs)
 
 ### Modified
-- blog-content: 5 components
-- blog-entries: 10 components
-- buttons: 9 components
-- contact: 7 components
-- cta: 10 components
-- cta-newsletter: 5 components
-- faq: 17 components
-- features: 30 components
-- footers: 20 components
-- gallery: 15 components
-- hero: 20 components
-- logo-clouds: 9 components
-- notifications: 5 components
-- pricing: 20 components
-- sign-in: 6 components
-- sign-up: 5 components
-- stats: 20 components
-- steps: 8 components
-- team: 16 components
-- testimonials: 17 components
-- timeline: 3 components
+- __test__: [1 component](https://oxbowui.com/playground/__test__/__test__)
+- test.astro: [1 component](https://oxbowui.com/playground/__test__/test.astro)
+- banners: [13 components](https://oxbowui.com/playground/application/banners)
+- breadcrumbs: [2 components](https://oxbowui.com/playground/application/breadcrumbs)
+- buttons: [9 components](https://oxbowui.com/playground/application/buttons)
+- flyouts: [10 components](https://oxbowui.com/playground/application/flyouts)
+- navbars: [6 components](https://oxbowui.com/playground/application/navbars)
+- notifications: [6 components](https://oxbowui.com/playground/application/notifications)
+- sign-in: [6 components](https://oxbowui.com/playground/application/sign-in)
+- sign-up: [5 components](https://oxbowui.com/playground/application/sign-up)
+- blog-content: [5 components](https://oxbowui.com/playground/marketing/blog-content)
+- blog-entries: [10 components](https://oxbowui.com/playground/marketing/blog-entries)
+- contact: [7 components](https://oxbowui.com/playground/marketing/contact)
+- cta: [10 components](https://oxbowui.com/playground/marketing/cta)
+- cta-newsletter: [5 components](https://oxbowui.com/playground/marketing/cta-newsletter)
+- faq: [17 components](https://oxbowui.com/playground/marketing/faq)
+- features: [30 components](https://oxbowui.com/playground/marketing/features)
+- footers: [20 components](https://oxbowui.com/playground/marketing/footers)
+- gallery: [15 components](https://oxbowui.com/playground/marketing/gallery)
+- hero: [20 components](https://oxbowui.com/playground/marketing/hero)
+- logo-clouds: [9 components](https://oxbowui.com/playground/marketing/logo-clouds)
+- pricing: [41 components](https://oxbowui.com/playground/marketing/pricing)
+- stats: [20 components](https://oxbowui.com/playground/marketing/stats)
+- steps: [8 components](https://oxbowui.com/playground/marketing/steps)
+- team: [16 components](https://oxbowui.com/playground/marketing/team)
+- testimonials: [17 components](https://oxbowui.com/playground/marketing/testimonials)
+- timeline: [3 components](https://oxbowui.com/playground/marketing/timeline)
 
-## 2024-08-30
+## **2024-09-09**
 
 ### Added
-- blog-content: 5 components
-- blog-entries: 10 components
-- buttons: 9 components
-- contact: 7 components
-- cta: 10 components
-- cta-newsletter: 5 components
-- faq: 20 components
-- features: 30 components
-- footers: 20 components
-- gallery: 15 components
-- hero: 20 components
-- logo-clouds: 10 components
-- notifications: 5 components
-- pricing: 20 components
-- sign-in: 6 components
-- sign-up: 5 components
-- stats: 20 components
-- steps: 8 components
-- team: 17 components
-- testimonials: 20 components
-- timeline: 3 components
+- breadcrumbs: [2 components](https://oxbowui.com/playground/application/breadcrumbs)
+
+## **2024-09-06**
+
+### Added
+- navbars: [6 components](https://oxbowui.com/playground/application/navbars)
+
+## **2024-09-01**
+
+### Added
+- banners: [7 components](https://oxbowui.com/playground/application/banners)
+
+### Modified
+- __test__: [1 component](https://oxbowui.com/playground/__test__/__test__)
+- test.astro: [1 component](https://oxbowui.com/playground/__test__/test.astro)
+- buttons: [9 components](https://oxbowui.com/playground/application/buttons)
+- notifications: [5 components](https://oxbowui.com/playground/application/notifications)
+- sign-in: [6 components](https://oxbowui.com/playground/application/sign-in)
+- sign-up: [5 components](https://oxbowui.com/playground/application/sign-up)
+- blog-content: [5 components](https://oxbowui.com/playground/marketing/blog-content)
+- blog-entries: [10 components](https://oxbowui.com/playground/marketing/blog-entries)
+- contact: [7 components](https://oxbowui.com/playground/marketing/contact)
+- cta: [10 components](https://oxbowui.com/playground/marketing/cta)
+- cta-newsletter: [5 components](https://oxbowui.com/playground/marketing/cta-newsletter)
+- faq: [17 components](https://oxbowui.com/playground/marketing/faq)
+- features: [30 components](https://oxbowui.com/playground/marketing/features)
+- footers: [20 components](https://oxbowui.com/playground/marketing/footers)
+- gallery: [15 components](https://oxbowui.com/playground/marketing/gallery)
+- hero: [20 components](https://oxbowui.com/playground/marketing/hero)
+- logo-clouds: [9 components](https://oxbowui.com/playground/marketing/logo-clouds)
+- pricing: [20 components](https://oxbowui.com/playground/marketing/pricing)
+- stats: [20 components](https://oxbowui.com/playground/marketing/stats)
+- steps: [8 components](https://oxbowui.com/playground/marketing/steps)
+- team: [16 components](https://oxbowui.com/playground/marketing/team)
+- testimonials: [17 components](https://oxbowui.com/playground/marketing/testimonials)
+- timeline: [3 components](https://oxbowui.com/playground/marketing/timeline)
+
+## **2024-08-30**
+
+### Added
+- __test__: [1 component](https://oxbowui.com/playground/__test__/__test__)
+- test.astro: [1 component](https://oxbowui.com/playground/__test__/test.astro)
+- buttons: [9 components](https://oxbowui.com/playground/application/buttons)
+- notifications: [5 components](https://oxbowui.com/playground/application/notifications)
+- sign-in: [6 components](https://oxbowui.com/playground/application/sign-in)
+- sign-up: [5 components](https://oxbowui.com/playground/application/sign-up)
+- blog-content: [5 components](https://oxbowui.com/playground/marketing/blog-content)
+- blog-entries: [10 components](https://oxbowui.com/playground/marketing/blog-entries)
+- contact: [7 components](https://oxbowui.com/playground/marketing/contact)
+- cta: [10 components](https://oxbowui.com/playground/marketing/cta)
+- cta-newsletter: [5 components](https://oxbowui.com/playground/marketing/cta-newsletter)
+- faq: [20 components](https://oxbowui.com/playground/marketing/faq)
+- features: [30 components](https://oxbowui.com/playground/marketing/features)
+- footers: [20 components](https://oxbowui.com/playground/marketing/footers)
+- gallery: [15 components](https://oxbowui.com/playground/marketing/gallery)
+- hero: [20 components](https://oxbowui.com/playground/marketing/hero)
+- logo-clouds: [10 components](https://oxbowui.com/playground/marketing/logo-clouds)
+- pricing: [20 components](https://oxbowui.com/playground/marketing/pricing)
+- stats: [20 components](https://oxbowui.com/playground/marketing/stats)
+- steps: [8 components](https://oxbowui.com/playground/marketing/steps)
+- team: [17 components](https://oxbowui.com/playground/marketing/team)
+- testimonials: [20 components](https://oxbowui.com/playground/marketing/testimonials)
+- timeline: [3 components](https://oxbowui.com/playground/marketing/timeline)
 
