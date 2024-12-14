@@ -1,4 +1,5 @@
 ---
+import Text from "@/components/fundations/typography/Text.astro";
 import { Image } from "astro:assets";
 
 import type { Template } from "@/data/entries.json";
@@ -42,7 +43,11 @@ const entriesWithQuantity = entries
 
 const updatedSubsections = Object.keys(updates).reduce((acc, path) => {
   const [section, subsection] = path.split("/");
-  acc[subsection] = acc[subsection] ? acc[subsection] > updates[path] ? acc[subsection] : updates[path] : updates[path];
+  acc[subsection] = acc[subsection]
+    ? acc[subsection] > updates[path]
+      ? acc[subsection]
+      : updates[path]
+    : updates[path];
   return acc;
 }, {});
 
@@ -70,7 +75,7 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
               src={template.image()}
             />
             <div class="flex flex-col mt-2 ">
-              <p class="text-sm font-medium 2xl:text-base text-base-900 group-hover:text-accent-600">
+              <Text tag="p" variant="textSM" class=" font-medium 2xl:text-base text-base-900 group-hover:text-accent-600">
                 <a
                   class="flex items-center justify-between gap-2"
                   title={template.name}
@@ -80,18 +85,22 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
                   <span class="relative">{template.name}</span>
                   {isUpdatedLastWeek && (
                     <span class="inline-flex items-center font-medium z-10 text-accent-500 bottom-2 right-2 bg-base-50 px-2.5 py-1 text-xs rounded-md">
-                      New
+                      Updated
                     </span>
                   )}
                 </a>
-              </p>
-              <p class="relative flex items-center gap-1 text-xs font-medium 2xl:text-sm text-base-400">
+              </Text>
+              <Text
+                tag="p"
+                variant="textXS"
+                class="relative flex items-center gap-1  font-medium 2xl:text-sm text-base-400"
+              >
                 {template.quantity} Components
-              </p>
+              </Text>
             </div>
           </div>
         </li>
-      )
+      );
     })
   }
 </ul>
