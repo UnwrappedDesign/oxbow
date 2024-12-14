@@ -1,6 +1,7 @@
 ---
 import Text from "@/components/fundations/typography/Text.astro";
 import { Image } from "astro:assets";
+import { formatDistanceToNowStrict } from "date-fns";
 
 import type { Template } from "@/data/entries.json";
 import updates from "@/data/updates.json";
@@ -75,27 +76,24 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
               src={template.image()}
             />
             <div class="flex flex-col mt-2 ">
-              <Text
-                tag="p"
-                variant="textSM"
-                class=" font-medium 2xl:text-base text-base-900 group-hover:text-accent-600"
-              >
+ 
                 <a
                   class="flex items-center justify-between gap-2"
                   title={template.name}
                   href={template.link}
                 >
-                  <span class="absolute -inset-2.5 z-10" />
-                  <span class="relative">{template.name}</span>
-                  {isUpdatedLastWeek && (
-                    <span class="inline-flex items-center font-medium z-10 text-accent-500 bottom-2 right-2 bg-base-50 px-2.5 py-1 text-xs rounded-md">
-                      Updated
-                    </span>
-                  )}
-                 {/*  <div
-                    class="relative"
-                    x-data="{ showTooltip: false, tooltipDate: '2024-12-14' }"
+                  <Text
+                    tag="p"
+                    variant="textSM"
+                    class="relativefont-medium 2xl:text-base text-base-900 group-hover:text-accent-600"
                   >
+                    {template.name}
+                  </Text>
+                  {isUpdatedLastWeek && (
+                    <div
+                      class="relative"
+                      x-data="{ showTooltip: false }"
+                    >
                     <span
                       @mouseenter="showTooltip = true"
                       @mouseleave="showTooltip = false"
@@ -105,13 +103,16 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
                     </span>
                     <div
                       x-show="showTooltip"
-                      x-text="tooltipDate"
-                      class="absolute bottom-full right-0 mb-2 bg-gray-700 text-white text-xs px-2 py-1 rounded shadow-md"
-                      style="display: none;"
-                    />
-                  </div> */}
+                      class="absolute bottom-full text-center right-0 mb-1 bg-gray-700 text-white text-xs px-2 py-1 rounded shadow-md min-w-24"
+                    >
+                      {formatDistanceToNowStrict(updatedAt, {
+                        unit: "day",
+                        roundingMethod: "ceil",
+                      })}{" ago"}
+                      </div>
+                    </div>
+                  )}
                 </a>
-              </Text>
               <Text
                 tag="p"
                 variant="textXS"
