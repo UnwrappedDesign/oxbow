@@ -237,7 +237,7 @@ const templates: { [key: string]: Template[] } = {
       image: "formlayouts.png",
       tags: ["form layout", "form layout section", "form layout content", "form layout image", "form layout link"] 
     },
-    { 
+    /* { 
       name: "Inputs", 
       link: "/playground/application/inputs", 
       image: "inputs.png",
@@ -272,7 +272,7 @@ const templates: { [key: string]: Template[] } = {
       link: "/playground/application/radiogroups", 
       image: "radiogroups.png",
       tags: ["radio group", "radio group section", "radio group content", "radio group image", "radio group link"] 
-    },
+    }, */
   ],
   // Elements
   elements: [
