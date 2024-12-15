@@ -71,8 +71,8 @@ export default function GridGenerator() {
   ) => {
     const item = items.find((item) => item.id === id);
 
-    const width = item.w + Math.round(delta.width / getCellWidth());
-    const height = item.h + Math.round(delta.height / getCellHeight());
+    const width = item.w + Math.round(delta.width / (getCellWidth() + gapSize));
+    const height = item.h + Math.round(delta.height / (getCellHeight() + gapSize));
 
     setItems(
       items.map((item) =>
