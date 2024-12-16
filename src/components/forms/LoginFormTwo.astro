@@ -1,0 +1,137 @@
+---
+import Text from "@/components/fundations/typography/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+const { btnLabel = "Get your link" } = Astro.props;
+---
+
+<section>
+  <Wrapper variant="standard">
+    <div x-data="loginForm()" class="max-w-xl mx-auto pb-12">
+      <form
+        x-cloak
+        @submit.prevent="sendEmail()"
+        x-show="!emailSent || errorMessage"
+      >
+        <div class="space-y-2">
+          <div>
+            <label for="email" class="sr-only"> Email </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              x-model="email"
+              x-on:input="clearErrorMessage"
+              autocomplete="on"
+              placeholder="email@example.com"
+              required
+              aria-required="true"
+              class="block w-full px-4 py-2 h-10 border-2 focus:ring-2 focus:ring-accent-500 bg-chalk border-transparent ring-1 ring-base-200 duration-300 rounded-lg appearance-none text-accent-500 placeholder-base-300 focus:border-accent-300 focus:outline-none sm:text-sm"
+            />
+            <div class="mt-4 space-y-2 text-xs text-base-500">
+              <div x-cloak x-show="!!errorMessage">
+                <p x-text="errorMessage"></p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <label for="password" class="sr-only"> Password </label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+            
+              placeholder="Enter your password"
+              required
+              aria-required="true"
+              class="block w-full px-4 py-2 h-10 border-2 focus:ring-2 focus:ring-accent-500 bg-chalk border-transparent ring-1 ring-base-200 duration-300 rounded-lg appearance-none text-accent-500 placeholder-base-300 focus:border-accent-300 focus:outline-none sm:text-sm"
+            />
+           
+          </div>
+
+          <div class="space-y-3">
+            <button
+              type="submit"
+              aria-label="Get your link"
+              :disabled="emailSent"
+              x-text={`emailSent ? 'Check Your Inbox' : '${btnLabel}'`}
+              class="flex items-center justify-center w-full border border-accent-950 ring-4 ring-base-50 h-12 px-6 py-2 font-medium text-white transition-all duration-200 rounded-full gap-x-2 focus:ring-2 focus:ring-offset-2 focus:outline-none bg-accent-950 hover:bg-accent-900 focus:ring-accent-900"
+            >
+              {btnLabel}
+            </button>
+            <div class="prose-styles text-center">
+              <small
+                >By clicking 'Get your link', you agree to our <a href="/terms"
+                  >Terms of Service</a
+                > and
+                <a href="/privacy"> Privacy Policy. </a>
+              </small>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div x-cloak x-show="emailSent" class="flex flex-col gap-4">
+        <Text
+          tag="p"
+          variant="textBase"
+          class="text-base-600 text-pretty text-center"
+          >Didn't receive the email?</Text
+        >
+        <button
+          class="flex items-center justify-center w-full border border-accent-950 ring-4 ring-base-50 h-12 px-6 py-2 font-medium text-white transition-all duration-200 rounded-full gap-x-2 focus:ring-2 focus:ring-offset-2 focus:outline-none bg-accent-950 hover:bg-accent-900 focus:ring-accent-900"
+          @click="clearForm()"
+        >
+          Try again
+        </button>
+      </div>
+    </div>
+  </Wrapper>
+</section>
+<script>
+  import Alpine from "alpinejs";
+  import { sendSignInLinkToEmail } from "firebase/auth";
+  import { auth } from "@/firebase/client";
+  document.addEventListener("alpine:init", () => {
+    const url = new URL(window.location.href);
+    const email = url.searchParams.get("email");
+    Alpine.data("loginForm", () => ({
+      email: email || "",
+      emailSent: false,
+      errorMessage: "",
+      clearErrorMessage() {
+        this.errorMessage = "";
+      },
+      clearForm() {
+        this.email = "";
+        this.emailSent = false;
+        this.errorMessage = "";
+      },
+      async sendEmail() {
+        const baseUrl = import.meta.env.PUBLIC_APP_BASE_URL;
+        const actionCodeSettings = {
+          url: `${baseUrl}/email-signin`,
+          handleCodeInApp: true,
+        };
+        try {
+          window.localStorage.setItem("emailForSignIn", this.email);
+          await sendSignInLinkToEmail(auth, this.email, actionCodeSettings);
+          this.emailSent = true;
+        } catch (error) {
+          console.log("error", error.code, error.message);
+          if (error.code === "auth/admin-restricted-operation") {
+            console.log("error auth/admin-restricted-operation");
+            this.errorMessage = [
+              "We couldn't find an account linked to this email address.",
+              "Please check the email address or create a new account.",
+            ].join(" ");
+          } else {
+            console.log("error else");
+            this.errorMessage = [
+              "We were unable to send the sign-in link to your email.",
+              "Please check your email address and try again.",
+            ].join(" ");
+          }
+        }
+      },
+    }));
+  });
+</script>
