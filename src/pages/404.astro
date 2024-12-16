@@ -1,0 +1,80 @@
+---
+import { AstroSeo } from "@astrolib/seo";
+import Cta from "@/components/global/Cta.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import MainHero from "@/components/fundations/containers/MainHero.astro";
+---
+
+<AstroSeo
+  title="Oxbow UI - 404 "
+  description="Free and premium components, elements and layouts For freelancers, developers, businesses, and personal use. Beautifully crafted with Tailwind CSS  — Simple & easy to customise."
+  canonical="https://www.oxbowui.com"
+  openGraph={{
+    url: "https://www.oxbowui.com/images/OpenGraph/twitter.png",
+    title: "Oxbow UI - Home",
+    description:
+      "Free and premium components, elements and layouts For freelancers, developers, businesses, and personal use. Beautifully crafted with Tailwind CSS  — Simple & easy to customise.",
+    images: [
+      {
+        url: "https://www.oxbowui.com/images/OpenGraph/facebook.png",
+        width: 1200,
+        height: 630,
+        alt: "oxbow",
+        type: "image/png",
+      },
+      {
+        url: "https://www.oxbowui.com/images/OpenGraph/twitter.png",
+        width: 4096,
+        height: 4096,
+        alt: "oxbow",
+        type: "image/png",
+      },
+      { url: "https://www.oxbowui.com/images/OpenGraph/facebook.ong" },
+      { url: "https://www.oxbowui.com/images/OpenGraph/twitter.png" },
+    ],
+    site_name: "oxbow",
+  }}
+  twitter={{
+    handle: "@Mike_Andreuzza",
+    site: "https://www.oxbowui.com",
+    cardType: "summary_large_image",
+  }}
+/>
+<BaseLayout>
+  <MainHero
+    title="Page not found"
+    subtitle="Sorry, we couldn't find the page you were looking for. In the meantime, you may want to return to the homepage or browse all components"
+    showButton={false}
+    showAlpineTailwind={false}
+  />
+
+  <Wrapper variant="standard" class="pb-12">
+    <div>
+      <div class="flex gap-2 flex-wrap">
+        <Text
+          tag="a"
+          href="/pricing"
+          variant="textBase"
+          id="404-home"
+          data-umami-event="404 home"
+          class="flex items-center justify-center w-full h-12 px-6 py-2 font-medium text-white transition-all duration-200 border rounded-full border-accent-950 ring-4 ring-base-50 sm:w-auto gap-x-2 focus:ring-2 focus:ring-offset-2 focus:outline-none bg-accent-950 hover:bg-accent-900 focus:ring-accent-900"
+        >
+          Go back gome
+        </Text>
+        <Text
+          tag="a"
+          href="/components"
+          variant="textBase"
+          id="404-components"
+          data-umami-event="404-components"
+          class="flex items-center justify-center w-full h-12 px-6 py-2 font-medium transition-all duration-200 bg-white border rounded-full sm:w-auto ring-4 ring-base-50 text-accent-600 focus:ring-2 focus:ring-offset-2 focus:outline-none border-base-200 hover:text-accent-950 focus:ring-accent-600"
+        >
+          Browse components
+        </Text>
+      </div>
+    </div>
+  </Wrapper>
+  <Cta />
+</BaseLayout>
