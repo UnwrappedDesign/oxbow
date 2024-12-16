@@ -1,9 +1,13 @@
 ---
-import type { ImageMetadata } from "astro";
+// Fundation
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Playground from "@/components/global/Playground.astro";
+import Playground from "@/components/playground/Playground.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import IconButton from "@/components/fundations/buttons/IconButton.astro";
+import ChevronLeft from "@/components/fundations/icons/ChevronLeft.astro";
+import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
+// Parameters
 const { section, subsection, index } = Astro.params;
 const components = await Astro.glob(`@/components/oxbow/**/*.astro`);
 const sectionComponents = components.filter((component) => {
@@ -18,31 +22,60 @@ const formattedIndex = index.replace("-", " ");
 <BaseLayout>
   <section>
     <Wrapper variant="hero">
-      <button
-        class="flex items-center gap-2 text-base-500 hover:text-accent-500"
-        onclick="history.back();"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left size-5"
-          ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-            d="M5 12l14 0"></path><path d="M5 12l6 6"></path><path
-            d="M5 12l6 -6"></path></svg
-        >Go Back</button
-      >
-      <Text
-        tag="h1"
-        variant="displayBase"
-        class="uppercase mt-4 font-semibold tracking-tight text-black"
-      >
-        {`${subsection.replace(/-/g, " ")} #${index.replace(/-/g, " ")}`}
-      </Text>
+      <div class="items-end flex justify-between w-full">
+        <div>
+          <button
+            class="flex items-center gap-2 text-base-500 hover:text-accent-500"
+            onclick="history.back();"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left size-5"
+              ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                d="M5 12l14 0"></path><path d="M5 12l6 6"></path><path
+                d="M5 12l6 -6"></path></svg
+            >Go Back</button
+          >
+          <Text
+            tag="h1"
+            variant="displayBase"
+            class="uppercase mt-4 font-semibold tracking-tight text-black"
+          >
+            {`${subsection.replace(/-/g, " ")} #${index.replace(/-/g, " ")}`}
+          </Text>
+        </div>
+        <div>
+          <nav class="relative z-0 inline-flex gap-1.5 sr-only" aria-label="Pagination">
+            <!-- Previous Page Button -->
+
+            <IconButton
+              disable
+              aria-label="Go to previous page"
+              variant="alternative"
+              size="xs"
+            >
+              <ChevronLeft size="sm" slot="icon" />
+              <span class="sr-only">Previous</span>
+            </IconButton>
+
+            <!-- Next Page Button -->
+            <IconButton
+              aria-label="Go to next page"
+              variant="alternative"
+              size="xs"
+            >
+              <ChevronRight size="sm" slot="icon" />
+              <span class="sr-only">Next</span>
+            </IconButton>
+          </nav>
+        </div>
+      </div>
     </Wrapper>
   </section>
   <section class="border-t border-base-200">
