@@ -288,6 +288,12 @@ const templates: { [key: string]: Template[] } = {
       image: "buttons.png",
       tags: ["button", "button section", "button content", "button image", "button link"],
     },
+     { 
+      name: "Badges", 
+      link: "/playground/application/badges", 
+      image: "badges.png",
+      tags: ["badge", "badge section", "badge content", "badge image", "badge link"],
+    },
     { 
       name: "Empty states", 
       link: "/playground/application/emptyStates", 
