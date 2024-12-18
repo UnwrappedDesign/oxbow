@@ -591,7 +591,7 @@ const templates: { [key: string]: Template[] } = {
      {
       name: "Buttons Groups",
       link: "/playground/application/button-groups",
-      image: "buttonsGroups.png",
+      image: "buttonGroups.png",
       tags: [
         "button group",
         "button group section",
