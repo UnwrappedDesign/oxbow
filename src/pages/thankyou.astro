@@ -45,38 +45,29 @@ const resources = [
   <MainHero
     textCentered={true}
     showAlpineTailwind={false}
-    title="Thank You for Choosing Oxbow UI!"
-    subtitle="Click on the button below to get your magic link!"
+    title="Thank you for choosing Oxbow UI!"
+    subtitle="Click on the button below to get your magic link and start building!"
   />
+  <LoginForm />
+
   <section>
-    <Wrapper
-      variant="narrow"
-      class="items-center justify-center flex">
-      <div class="space-y-3 items-center justify-center flex flex-col">
-        <LoginForm />
-      </div>
-    </Wrapper>
-  </section>
-  <section>
-    <Wrapper
-      variant="narrow"
-      class="py-12 space-y-12">
-      <div>
+    <Wrapper variant="standard" class="py-8 space-y-12 border-t">
+      <div class="max-w-xl mx-auto">
         <h2 class="text-base font-semibold text-base-900">What to do next?</h2>
-        <ul
-          role="list"
-          class="mt-2 flex flex-col border-b border-t border-base-200 py-2 divide-y divide-base-200">
+        <ul role="list" class="mt-2 flex flex-col">
           {
             todo.map((option) => (
               <li class="w-full py-4 relative">
                 <Text
                   tag="h3"
                   variant="textBase"
-                  class="font-medium text-base-900">
+                  class="font-medium text-base-900"
+                >
                   <Text
                     tag="a"
                     href={option.link}
-                    class="focus:outline-none flex items-center justify-between">
+                    class="focus:outline-none flex items-center justify-between"
+                  >
                     <Text
                       tag="span"
                       class="absolute inset-0"
@@ -88,7 +79,9 @@ const resources = [
                 </Text>
                 <Text
                   tag="p"
-                  class="mt-1 text-base-500">
+                  variant="textSM"
+                  class="mt-1 text-base-500 text-balance"
+                >
                   {option.subtitle}
                 </Text>
               </li>
@@ -96,22 +89,23 @@ const resources = [
           }
         </ul>
       </div>
-      <div>
+      <hr class="max-w-xl mx-auto" />
+      <div class="max-w-xl mx-auto">
         <h2 class="text-base font-semibold text-base-900">Other resources</h2>
-        <ul
-          role="list"
-          class="mt-2 flex flex-col border-b border-t border-base-200 py-2 divide-y divide-base-200">
+        <ul role="list" class="mt-2 flex flex-col">
           {
             resources.map((option) => (
               <li class="w-full py-4 relative">
                 <Text
                   tag="h3"
                   variant="textBase"
-                  class="font-medium text-base-900">
+                  class="font-medium text-base-900"
+                >
                   <Text
                     tag="a"
                     href={option.link}
-                    class="focus:outline-none flex items-center justify-between">
+                    class="focus:outline-none flex items-center justify-between"
+                  >
                     <Text
                       tag="span"
                       class="absolute inset-0"
@@ -123,7 +117,9 @@ const resources = [
                 </Text>
                 <Text
                   tag="p"
-                  class="mt-1 text-base-500">
+                  variant="textSM"
+                  class="mt-1 text-base-500 text-balance"
+                >
                   {option.subtitle}
                 </Text>
               </li>
