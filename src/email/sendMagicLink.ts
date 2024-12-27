@@ -7,18 +7,19 @@ const getTemplate = (email: string, link: string) => {
   const date = new Date().toUTCString();
   
   return dedent`
-    Hello,
-
-    We received a request to sign in to Oxbow UI using this email address, at ${date}.
-    If you want to sign in with your ${email} account, click this link:
-      
-    <a href="${link}">Sign in to Oxbow UI</a>
-
-    If you did not request this link, you can safely ignore this email.
-
-    Thanks,
-
-    Your Oxbow UI team
+    <p>Hello,</p>
+    <br />
+    <p>We received a request to sign in to Oxbow UI using this email address, at ${date}.</p>
+    <br />
+    <p>If you want to sign in with your ${email} account, click this link:</p>
+    <br />
+    <p><a href="${link}">Sign in to Oxbow UI</a></p>
+    <br />
+    <p>If you did not request this link, you can safely ignore this email.</p>
+    <br />
+    <p>Thanks,</p>
+    <br />
+    <p>Your Oxbow UI team</p>
   `;
 };
 
