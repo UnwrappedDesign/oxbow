@@ -26,7 +26,7 @@ const resend = new Resend(resendApiKey);
 
 export const sendMagicLink = (email: string, link: string) => {
   return resend.emails.send({
-    from: 'Oxbow UI <onboarding@resend.dev>',
+    from: 'Oxbow UI <noreply@oxbowui.com>',
     to: email,
     subject: 'Sign in to Oxbow UI',
     html: getTemplate(email, link),
