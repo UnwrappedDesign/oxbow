@@ -49,7 +49,7 @@ export const POST: APIRoute = async ({ request }) => {
       handleCodeInApp: true,
     };
 
-    auth.generateSignInWithEmailLink(email, actionCodeSettings)
+    await auth.generateSignInWithEmailLink(email, actionCodeSettings)
       .then(link => sendMagicLink(email, link))
       .catch(error => {
         console.error(`Error sending magic link to ${email}: ${error}`);
