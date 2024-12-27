@@ -25,9 +25,9 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   try {
-    const event = stripe.webhooks.constructEvent(body, signature, secret) as Stripe.CheckoutSessionAsyncPaymentSucceededEvent;
+    const event = stripe.webhooks.constructEvent(body, signature, secret) as Stripe.CheckoutSessionCompletedEvent;
 
-    if (event.type !== 'checkout.session.async_payment_succeeded') {
+    if (event.type !== 'checkout.session.completed') {
       return new Response('Event not supported', { status: 200 });
     }
 
