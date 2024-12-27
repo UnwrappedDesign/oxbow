@@ -1,10 +1,12 @@
 import type { APIRoute } from 'astro';
+import Stripe from 'stripe';
 import { getAuth } from "firebase-admin/auth";
 import { app } from "@/firebase/server";
-import Stripe from 'stripe';
+import { sendMagicLink } from '@/email/sendMagicLink';
 
-const stripeId = import.meta.env.STRIPE_ID;
+const stripeId = import.meta.env.STRIPE_API_KEY;
 const secret = import.meta.env.STRIPE_SECRET;
+const baseUrl = import.meta.env.PUBLIC_APP_BASE_URL;
 
 const stripe = new Stripe(stripeId);
 
@@ -41,6 +43,16 @@ export const POST: APIRoute = async ({ request }) => {
       email,
       displayName: email,
     });
+
+    const actionCodeSettings = {
+      url: `${baseUrl}/email-signin`,
+      handleCodeInApp: true,
+    };
+
+    auth.generateSignInWithEmailLink(email, actionCodeSettings)
+      .then(link => {
+        sendMagicLink(email, link);
+      });
 
     return new Response(`User created: ${user.uid}`, { status: 200 });
   } catch (error) {
