@@ -51,7 +51,9 @@ export const POST: APIRoute = async ({ request }) => {
 
     auth.generateSignInWithEmailLink(email, actionCodeSettings)
       .then(link => {
-        sendMagicLink(email, link);
+        sendMagicLink(email, link).catch(error => {
+          console.error(`Error sending magic link ${link} to ${email}: ${error}`);
+        });
       });
 
     return new Response(`User created: ${user.uid}`, { status: 200 });
