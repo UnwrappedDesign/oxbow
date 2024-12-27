@@ -24,8 +24,8 @@ const getTemplate = (email: string, link: string) => {
 
 const resend = new Resend(resendApiKey);
 
-export const sendMagicLink = async (email: string, link: string) => {
-  await resend.emails.send({
+export const sendMagicLink = (email: string, link: string) => {
+  return resend.emails.send({
     from: 'Oxbow UI <onboarding@resend.dev>',
     to: email,
     subject: 'Sign in to Oxbow UI',
