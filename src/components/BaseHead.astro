@@ -1,6 +1,5 @@
 ---
 import "../styles/global.css";
-
 const umamiScriptSrc = import.meta.env.PUBLIC_UMAMI_URL;
 const umamiWebsiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
 const amplitudeKey = import.meta.env.PUBLIC_AMPLITUDE_KEY;
@@ -32,11 +31,12 @@ const amplitudeKey = import.meta.env.PUBLIC_AMPLITUDE_KEY;
 <meta name="msapplication-TileColor" content="#ffffff" />
 <meta name="theme-color" content="#ffffff" />
 <link rel="sitemap" href="/sitemap-index.xml" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap" rel="stylesheet">
-
-
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap"
+  rel="stylesheet"
+/>
 <script type="importmap">
   {
     "imports": {
@@ -47,12 +47,9 @@ const amplitudeKey = import.meta.env.PUBLIC_AMPLITUDE_KEY;
   }
 </script>
 <script type="module" src="https://unpkg.com/ninja-keys?module"></script>
-
-
 <script>
   import * as amplitude from "@amplitude/analytics-browser";
   const amplitudeKey = import.meta.env.PUBLIC_AMPLITUDE_KEY;
-
   if (amplitudeKey) {
     amplitude.init(amplitudeKey, {
       serverZone: "EU",
@@ -60,10 +57,47 @@ const amplitudeKey = import.meta.env.PUBLIC_AMPLITUDE_KEY;
     });
   }
 </script>
-
-
 {
   umamiScriptSrc && (
     <script defer src={umamiScriptSrc} data-website-id={umamiWebsiteId} />
   )
 }
+<!--
+// Tolt
+//
+// Esto lo he cogido de la pgina de tolt, 
+// en la pestaña de Integrations/Stripe payment links, 
+// he anadido la integracion de Stripe.
+//
+// Posiblemente no funcione, lo mismo que Umami no funcionaba...o que no se renderizaba.
+-->
+<script
+  async
+  src="https://cdn.tolt.io/tolt.js"
+  data-tolt="pk_CHgTzSffUCXwtc3xhwn5E3nP"></script>
+<!--- 
+// Sends referral to Stripe
+-->
+<script type="module">
+  function updateButtonUrls() {
+    var buttons = document.querySelectorAll(
+      'a[href^="https://buy.stripe.com"]'
+    );
+    if (window.tolt_referral) {
+      for (var i = 0; i < buttons.length; i++) {
+        var btn = buttons[i];
+        if (btn.href.indexOf("client_reference_id") === -1) {
+          btn.href = btn.href + "?client_reference_id=" + window.tolt_referral;
+        }
+      }
+    }
+  }
+  setTimeout(updateButtonUrls, 1000);
+  setTimeout(updateButtonUrls, 1900);
+  setTimeout(updateButtonUrls, 2600);
+  window.addEventListener("tolt_referral_ready", function () {
+    if (window.tolt_referral) {
+      updateButtonUrls();
+    }
+  });
+</script>
