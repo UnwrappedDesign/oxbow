@@ -39,6 +39,13 @@ const resources = [
       "Explore all blocks in different categories to get a better understanding of all the blocks available.",
   },
 ];
+const accounts = [
+  {
+    link: "https://billing.stripe.com/p/login/fZefZe38O7mhbhC8ww",
+    title: "Stripe",
+    subtitle: "Manage your account here, invoices, payments, etc.",
+  },
+];
 ---
 
 <BaseLayout>
@@ -95,6 +102,46 @@ const resources = [
         <ul role="list" class="mt-2 flex flex-col">
           {
             resources.map((option) => (
+              <li class="w-full py-4 relative">
+                <Text
+                  tag="h3"
+                  variant="textBase"
+                  class="font-medium text-base-900"
+                >
+                  <Text
+                    tag="a"
+                    href={option.link}
+                    class="focus:outline-none flex items-center justify-between"
+                  >
+                    <Text
+                      tag="span"
+                      class="absolute inset-0"
+                      aria-hidden="true"
+                    />
+                    <span>{option.title}</span>
+                    <span aria-hidden="true"> &rarr;</span>
+                  </Text>
+                </Text>
+                <Text
+                  tag="p"
+                  variant="textSM"
+                  class="mt-1 text-base-500 text-balance"
+                >
+                  {option.subtitle}
+                </Text>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <hr class="max-w-xl mx-auto" />
+      <div class="max-w-xl mx-auto">
+        <h2 class="text-base font-semibold text-base-900">
+          Manage your account
+        </h2>
+        <ul role="list" class="mt-2 flex flex-col">
+          {
+            accounts.map((option) => (
               <li class="w-full py-4 relative">
                 <Text
                   tag="h3"
