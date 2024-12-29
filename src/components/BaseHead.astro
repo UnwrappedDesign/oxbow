@@ -62,15 +62,6 @@ const amplitudeKey = import.meta.env.PUBLIC_AMPLITUDE_KEY;
     <script defer src={umamiScriptSrc} data-website-id={umamiWebsiteId} />
   )
 }
-<!--
-// Tolt
-//
-// Esto lo he cogido de la pgina de tolt, 
-// en la pestaña de Integrations/Stripe payment links, 
-// he anadido la integracion de Stripe.
-//
-// Posiblemente no funcione, lo mismo que Umami no funcionaba...o que no se renderizaba.
--->
 <script
   async
   src="https://cdn.tolt.io/tolt.js"
@@ -87,7 +78,9 @@ const amplitudeKey = import.meta.env.PUBLIC_AMPLITUDE_KEY;
       for (var i = 0; i < buttons.length; i++) {
         var btn = buttons[i];
         if (btn.href.indexOf("client_reference_id") === -1) {
-          btn.href = btn.href + "?client_reference_id=" + window.tolt_referral;
+          var url = new URL(btn.href);
+          url.searchParams.set("client_reference_id", window.tolt_referral);
+          btn.href = url.toString();
         }
       }
     }
