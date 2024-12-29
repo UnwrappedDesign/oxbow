@@ -5,7 +5,7 @@
 
   ninja.data = [
     {
-      id: "Home",
+      id: "home",
       title: "Home",
       keywords: "home, index, root",
       handler: () => {
@@ -22,41 +22,19 @@
       },
     },
     {
-      id: "Components",
+      id: "components",
       title: "Components",
       children: [
         {
-          id: "Marketing",
-          title: "Marketing Components",
-          parent: "Components",
-          children: [
-            ...pageSections.map((section) => ({
-              id: section.name,
-              title: section.name,
-              keywords: section.tags.join(", "),
-              handler: () => {
-                window.open(section.link, "_self");
-              },
-            })),
-            ...pageExamples.map((example) => ({
-              id: example.name,
-              title: example.name,
-              keywords: example.tags.join(", "),
-              handler: () => {
-                window.open(example.link, "_self");
-              },
-            })),
-          ],
-        },
-        {
-          id: "Application",
+          id: "application-components",
           title: "Application Components",
-          parent: "Components",
+          parent: "components",
           children: [
             ...elements.map((element) => ({
               id: element.name,
               title: element.name,
               keywords: element.tags.join(", "),
+              parent: "application-components",
               handler: () => {
                 window.open(element.link, "_self");
               },
@@ -65,6 +43,7 @@
               id: navigation.name,
               title: navigation.name,
               keywords: navigation.tags.join(", "),
+              parent: "application-components",
               handler: () => {
                 window.open(navigation.link, "_self");
               },
@@ -73,6 +52,7 @@
               id: overlay.name,
               title: overlay.name,
               keywords: overlay.tags.join(", "),
+              parent: "application-components",
               handler: () => {
                 window.open(overlay.link, "_self");
               },
@@ -81,8 +61,34 @@
               id: form.name,
               title: form.name,
               keywords: form.tags.join(", "),
+              parent: "application-components",
               handler: () => {
                 window.open(form.link, "_self");
+              },
+            })),
+          ],
+        },
+        {
+          id: "marketing-components",
+          title: "Marketing Components",
+          parent: "components",
+          children: [
+            ...pageSections.map((section) => ({
+              id: section.name,
+              title: section.name,
+              keywords: section.tags.join(", "),
+              parent: "marketing-components",
+              handler: () => {
+                window.open(section.link, "_self");
+              },
+            })),
+            ...pageExamples.map((example) => ({
+              id: example.name,
+              title: example.name,
+              keywords: example.tags.join(", "),
+              parent: "marketing-components",
+              handler: () => {
+                window.open(example.link, "_self");
               },
             })),
           ],
