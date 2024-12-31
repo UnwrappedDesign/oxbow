@@ -1,24 +1,162 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/forms";
 
-body {
+@plugin "tailwind-scrollbar-hide";
+
+@layer components {
+  /* Global  */
+  .prose-styles {
+    @apply prose prose-headings:text-base-900 text-sm  text-base-500   prose-a:text-accent-500  prose-a:no-underline hover:prose-a:underline  prose-a:font-normal prose-strong:text-accent-600    prose-blockquote:text-base-500  prose-blockquote:border-base-400  prose-headings:text-[16px]  prose-ul:leading-tight prose-ul:[list-style-type:'⏤'] prose-ul:space-y-2.5 prose-strong:font-medium prose-pre:border prose-pre:border-base-200   prose-headings:font-normal max-w-none prose-li:marker:text-base-900  mt-0 prose-h1:text-2xl 2xl:prose-lg  prose-code:text-accent-600;
+  }
+
+  /* Table of contents */
+  .prose-table-of-contents {
+    @apply prose-headings:text-black prose-sm text-base-600 prose-a:hover:text-accent-600 prose-a:hover:underline;
+  }
+}
+@theme {
+  /* Typography */
+  --font-sans: "Geist", sans-serif;
+  --font-mono: "Geist Mono", monospace;
+  /* Colors */
+  /* Black */
+  --color-black: #0f1a3a;
+
+  /* Accent */
+  --color-accent-25: #f5fbff;
+  --color-accent-50: #ebf7ff;
+  --color-accent-100: #d2edff;
+  --color-accent-200: #afdfff;
+  --color-accent-300: #78ceff;
+  --color-accent-400: #38b1ff;
+  --color-accent-500: #0b8aff;
+  --color-accent-600: #0065ff;
+  --color-accent-700: #004cff;
+  --color-accent-800: #003dd4;
+  --color-accent-900: #02379e;
+  --color-accent-950: #0f1a3a;
+  --color-accent-1000: #1a2551;
+  --color-accent-1100: #172148;
+  --color-accent-1200: #141d40;
+  --color-accent-1300: #0f1a3a;
+  --color-accent-1400: #0a142e;
+
+  /* Base */
+  --color-base-25: #fafafa;
+  --color-base-50: #f9fafb;
+  --color-base-100: #f3f4f6;
+  --color-base-200: #e5e7eb;
+  --color-base-300: #d1d5db;
+  --color-base-400: #9ca3af;
+  --color-base-500: #6b7280;
+  --color-base-600: #4b5563;
+  --color-base-700: #374151;
+  --color-base-800: #1f2937;
+  --color-base-900: #111827;
+  --color-base-950: #030712;
+
+  /* Green */
+  --color-green-25: #edfcf5;
+  --color-green-50: #cafae4;
+  --color-green-100: #97f5d2;
+  --color-green-200: #5fe2be;
+  --color-green-300: #37c6ab;
+  --color-green-400: #06a192;
+  --color-green-500: #048a89;
+  --color-green-600: #036a73;
+  --color-green-700: #014d5d;
+  --color-green-800: #01384d;
+  --color-green-900: #012c3c;
+  --color-green-950: #011e2e;
+
+  /* Red */
+  --color-red-25: #fff0ef;
+  --color-red-50: #fed9d5;
+  --color-red-100: #feacad;
+  --color-red-200: #fd838f;
+  --color-red-300: #fb6382;
+  --color-red-400: #f9316d;
+  --color-red-500: #d6236a;
+  --color-red-600: #b31865;
+  --color-red-700: #900f5c;
+  --color-red-800: #770955;
+  --color-red-900: #5f0743;
+  --color-red-950: #4a032f;
+
+  /* Yellow */
+  --color-yellow-25: #fffaf0;
+  --color-yellow-50: #fff3d5;
+  --color-yellow-100: #ffe4ab;
+  --color-yellow-200: #ffd181;
+  --color-yellow-300: #ffbe62;
+  --color-yellow-400: #ffa02e;
+  --color-yellow-500: #db7e21;
+  --color-yellow-600: #b75f17;
+  --color-yellow-700: #93450e;
+  --color-yellow-800: #7a3108;
+  --color-yellow-900: #602706;
+  --color-yellow-950: #4d1c03;
+  /* Shadows */
+  --shadow-xs: 0 0 0 0.5px #0e3f7e0a, 0 0.5px 0.5px -0.25px #2a33450a,
+    0 1.5px 1.5px -0.75px #2a33460a, 0 3px 3px -1.5px #2a33460a,
+    0 6px 6px -3px #0e3f7e0a, 0 12px 12px -6px #0e3f7e0a;
+  --shadow-sm: 0 0 0 1px #0e3f7e0a, 0 1px 1px -0.5px #2a33450a,
+    0 3px 3px -1.5px #2a33460a, 0 6px 6px -3px #2a33460a,
+    0 12px 12px -6px #0e3f7e0a, 0 24px 24px -12px #0e3f7e0a;
+  --shadow-md: 0 0 0 2px #0e3f7e0a, 0 2px 2px -1px #2a33450a,
+    0 6px 6px -3px #2a33460a, 0 12px 12px -6px #2a33460a,
+    0 24px 24px -12px #0e3f7e0a, 0 48px 48px -24px #0e3f7e0a;
+  --shadow-lg: 0 0 0 4px #0e3f7e0a, 0 4px 4px -2px #2a33450a,
+    0 12px 12px -6px #2a33460a, 0 24px 24px -12px #2a33460a,
+    0 48px 48px -24px #0e3f7e0a, 0 96px 96px -48px #0e3f7e0a;
+  --shadow-xl: 0 0 0 6px #0e3f7e0a, 0 6px 6px -3px #2a33450a,
+    0 18px 18px -9px #2a33460a, 0 36px 36px -18px #2a33460a,
+    0 72px 72px -36px #0e3f7e0a, 0 144px 144px -72px #0e3f7e0a;
+  --shadow-2xl: 0 0 0 8px #0e3f7e0a, 0 8px 8px -4px #2a33450a,
+    0 24px 24px -12px #2a33460a, 0 48px 48px -24px #2a33460a,
+    0 96px 96px -48px #0e3f7e0a, 0 192px 192px -96px #0e3f7e0a;
+  --shadow-3xl: 0 0 0 10px #0e3f7e0a, 0 10px 10px -5px #2a33450a,
+    0 30px 30px -15px #2a33460a, 0 60px 60px -30px #2a33460a,
+    0 120px 120px -60px #0e3f7e0a, 0 240px 240px -120px #0e3f7e0a;
+  --shadow: 0 0 0 1px #0e3f7e0a, 0 1px 1px -0.5px #2a33450a,
+    0 3px 3px -1.5px #2a33460a, 0 6px 6px -3px #2a33460a,
+    0 12px 12px -6px #0e3f7e0a, 0 24px 24px -12px #0e3f7e0a;
+  
+}
+:root {
   font-family: "Geist", sans-serif;
   font-variant-numeric: tabular-nums;
   /* Typography */
   font-feature-settings:
-    "liga" 1,
-    "calt" 1,
-    /* Contextual Alternates */ "dlig" 1,
-    /* Round quotes & commas */ "ss03" 1,
-    /* Discretionary Ligatures */ "ss07" 1,
-    /* Square punctuation */ "ss08" 1,
-    /* Square quotes */ "zero" 1,
-    /* Slashed zero */ "tnum" 1,
-    /* Tabular numbers */ "cv03" 1,
-    /* Open six */ "cv04" 1,
-    /* Open nine */ "cv01" 1,
-    /* Alternate one */ "cv09",
-    /* Flat-top three */ "cv02" 1; /* Open 4 */
+  "liga" 1,
+  "calt" 1,
+  /* Contextual Alternates */ "dlig" 1,
+  /* Round quotes & commas */ "ss03" 1,
+  /* Discretionary Ligatures */ "ss07" 1,
+  /* Square punctuation */ "ss08" 1,
+  /* Square quotes */ "zero" 1,
+  /* Slashed zero */ "tnum" 1,
+  /* Tabular numbers */ "cv03" 1,
+  /* Open six */ "cv04" 1,
+  /* Open nine */ "cv01" 1,
+  /* Alternate one */ "cv09",
+  /* Flat-top three */ "cv02" 1; 
+  /* Styling the code blocks*/
+  --astro-code-color-text: theme("colors.base.400");
+  --astro-code-token-link: theme("colors.accent.600");
+  --astro-code-token-comment: theme("colors.base.400");
+  --astro-code-token-string: theme("colors.accent.500");
+  --astro-code-token-constant: theme("colors.accent.500");
+  --astro-code-background: theme("colors.white");
+  --astro-code-token-keyword: theme("colors.accent.500");
+  --astro-code-token-function: theme("colors.accent.500");
+  --astro-code-token-parameter: theme("colors.accent.500");
+  --astro-code-token-punctuation: theme("colors.accent.500");
+  --astro-code-token-string-expression: theme("colors.base.950");
 }
+
+
 /* Hidding emulators*/
 .firebase-emulator-warning {
   color: #66666650 !important;
@@ -27,11 +165,6 @@ body {
   font-size: 0.8rem !important;
 }
 
-.prose-styles {
-  /*@apply prose prose-headings:text-base-900 text-sm  text-base-500   prose-a:text-accent-500  prose-a:no-underline hover:prose-a:underline  prose-a:font-normal prose-strong:text-accent-600    prose-blockquote:text-base-500  prose-blockquote:border-base-400  prose-headings:text-[16px]  prose-ul:leading-tight prose-ul:[list-style-type:'⏤'] prose-ul:space-y-2.5 prose-strong:font-medium prose-pre:border prose-pre:border-base-200   prose-headings:font-normal max-w-none prose-li:marker:text-base-900  mt-0 prose-h1:text-2xl 2xl:prose-lg  prose-code:text-accent-600;*/
-}
-/* Styling Inter font with custom settings, it's cooler like this*/
-/* CSS */
 /* Styling  Ninja Keys */
 ninja-keys::part(ninja-input) {
   color: #ffffff;
@@ -57,37 +190,9 @@ ninja-keys::part(ninja-action) {
 ninja-keys::part(ninja-selected) {
   border-left: 4px solid #fff;
 }
-/* Styling the code blocks*/
-/*DArk*/
-/* :root {
-  --astro-code-color-text: theme('colors.base.200');
-  --astro-code-color-background: theme('colors.black');
-  --astro-code-token-constant: theme('colors.base.400');
-  --astro-code-token-string: theme('colors.base.300');
-  --astro-code-token-comment: theme('colors.base.500');
-  --astro-code-token-keyword: theme('colors.base.600');
-  --astro-code-token-parameter: theme('colors.base.400');
-  --astro-code-token-function: theme('colors.base.400');
-  --astro-code-token-string-expression: theme('colors.white');
-  --astro-code-token-punctuation: theme('colors.base.400');
-  --astro-code-token-link: theme('colors.base.400');
-} */
-/*Light*/
-:root {
-/*
-  --astro-code-color-text: theme("colors.base.400");
-  --astro-code-token-link: theme("colors.accent.600");
-  --astro-code-token-comment: theme("colors.base.400");
-  --astro-code-token-string: theme("colors.accent.500");
-  --astro-code-token-constant: theme("colors.accent.500");
-  --astro-code-color-background: theme("colors.white");
-  --astro-code-token-keyword: theme("colors.accent.500");
-  --astro-code-token-function: theme("colors.accent.500");
-  --astro-code-token-parameter: theme("colors.accent.500");
-  --astro-code-token-punctuation: theme("colors.accent.500");
-  --astro-code-token-string-expression: theme("colors.base.950");
-*/
-}
+
+
+
 code {
   counter-reset: step;
   counter-increment: step 0;
@@ -101,6 +206,7 @@ code .line::before {
   text-align: right;
   color: #9da3ae;
 }
+
 [x-cloak] {
   display: none !important;
 }
