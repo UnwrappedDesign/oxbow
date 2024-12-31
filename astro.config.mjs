@@ -22,6 +22,9 @@ console.log("Loading app with NODE_ENV: ", process.env.NODE_ENV);
 
 // https://astro.build/config
 export default defineConfig({
+  devOptions: {
+    devToolbar: false,
+  },
   redirects: {
     "/free-tools/home": "/free-tools",
   },
