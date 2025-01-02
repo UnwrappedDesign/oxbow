@@ -292,6 +292,7 @@ const templates: { [key: string]: Template[] } = {
         "gallery link",
       ],
     },
+    
   ],
   // Page Examples
   pageExamples: [
@@ -319,6 +320,23 @@ const templates: { [key: string]: Template[] } = {
         "pricing page link",
       ],
     },
+  ],
+
+  // Page Examples
+  emails: [
+    {
+      name: "Emails",
+      link: "/playground/marketing/emails",
+      image: "emails.png",
+      tags: [
+        "email",
+        "email marketing",
+        "email receipt",
+        "email confirmation",
+        "email",
+      ],
+    },
+    
   ],
 
   // Navigation
@@ -655,6 +673,7 @@ const templates: { [key: string]: Template[] } = {
 export const {
   pageSections,
   pageExamples,
+  emails,
   navigation,
   overlay,
   forms,
@@ -669,6 +688,9 @@ export const byName = {
   ),
   pageExamples: Object.fromEntries(
     pageExamples.map((template) => [template.name, template]),
+  ),
+  emails: Object.fromEntries(
+    emails.map((template) => [template.name, template]),
   ),
   // Application
   navigation: Object.fromEntries(
