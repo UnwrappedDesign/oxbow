@@ -6,6 +6,9 @@ export interface Template {
 }
 // Define the templates in a structured array format
 const templates: { [key: string]: Template[] } = {
+  // Marketing
+  //
+  //
   // Page sections
   pageSections: [
     {
@@ -292,8 +295,9 @@ const templates: { [key: string]: Template[] } = {
         "gallery link",
       ],
     },
-    
   ],
+  //
+  //
   // Page Examples
   pageExamples: [
     {
@@ -322,7 +326,10 @@ const templates: { [key: string]: Template[] } = {
     },
   ],
 
-  // Emails
+  //  Emails
+  //
+  //
+  // eCommerc emails
   emailsEcommerce: [
     {
       name: "Receipt",
@@ -336,9 +343,10 @@ const templates: { [key: string]: Template[] } = {
         "email",
       ],
     },
-    
   ],
-
+  //  Applicaton
+  //
+  //
   // Navigation
   navigation: [
     {
@@ -606,7 +614,7 @@ const templates: { [key: string]: Template[] } = {
         "button link",
       ],
     },
-     {
+    {
       name: "Buttons Groups",
       link: "/playground/application/button-groups",
       image: "buttonGroups.png",
@@ -667,6 +675,9 @@ const templates: { [key: string]: Template[] } = {
       ],
     },
   ],
+  //  eCommerce
+  //
+  //
 };
 
 // Export sections

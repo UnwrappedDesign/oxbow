@@ -1,5 +1,44 @@
 # TO DO: Component and Blocks List
 
+## Ecommerce
+## Home Page
+- Product Overviews
+- Category Previews
+- Promo Sections
+- Search Components 
+
+## Category or Product Listing Page
+- Product Lists
+- Filters
+- Product Comparisons (Compare features and pricing of multiple products)
+
+## Product Detail Page
+- Product Quick Views
+- Product Overviews
+- Product Features
+- Reviews
+- Incentives (e.g., discounts, special offers)
+
+## Cart Page
+- Shopping Carts
+- Incentives (e.g., free shipping thresholds)
+
+## Checkout Page
+- Checkout Forms
+- Payment Methods (Display and manage payment options)
+- Order Summaries
+
+## Account or Dashboard Page
+- Account Dashboard (Manage user profiles and orders)
+- Order History
+- Payment Methods (Manage saved payment options)
+
+## Search Results Page
+- Search Components
+- Filters
+- Product Lists
+---------------------------------------
+
 ## Emails
 
 ### Notification
@@ -25,7 +64,7 @@
 - Suspicious Login
 - Legal
 
-### Ecommerce
+### Emial Ecommerce
 - Order Confirmation
 - Delivery Confirmation
 - Invoice/Receipt
@@ -44,27 +83,6 @@
 - Seasonal Campaigns
 - Early Access Invitations
 -----------------------------
-
-## Ecommerce
-- Product overviews
-- Product lists
-- Category previews
-- Shopping carts
-- Filters
-- Product quick views
-- Product features
-- Promo sections
-- Checkout forms
-- Reviews
-- Order summaries
-- Order history
-- Incentives
-- Wishlist (Add/remove items and view saved products)
-- Account Dashboard (Manage user profiles and orders)
-- Payment Methods (Display and manage payment options)
-- Search Components (Dynamic product search with autosuggestions)
-- Product Comparisons (Compare features and pricing of multiple products)
----------------------------------------
 
 ## Elements
 
