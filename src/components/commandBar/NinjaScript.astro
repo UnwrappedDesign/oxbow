@@ -1,5 +1,13 @@
 <script>
-  import { pageSections, pageExamples, elements, navigation, overlay, forms } from "../../data/entries.json.ts";
+  import {
+    pageSections,
+    pageExamples,
+    elements,
+    navigation,
+    overlay,
+    forms,
+    emailsEcommerce,
+  } from "../../data/entries.json.ts";
 
   const ninja = document.querySelector("ninja-keys");
 
@@ -25,6 +33,31 @@
       id: "components",
       title: "Components",
       children: [
+        {
+          id: "marketing-components",
+          title: "Marketing Components",
+          parent: "components",
+          children: [
+            ...pageSections.map((section) => ({
+              id: section.name,
+              title: section.name,
+              keywords: section.tags.join(", "),
+              parent: "marketing-components",
+              handler: () => {
+                window.open(section.link, "_self");
+              },
+            })),
+            ...pageExamples.map((example) => ({
+              id: example.name,
+              title: example.name,
+              keywords: example.tags.join(", "),
+              parent: "marketing-components",
+              handler: () => {
+                window.open(example.link, "_self");
+              },
+            })),
+          ],
+        },
         {
           id: "application-components",
           title: "Application Components",
@@ -69,26 +102,17 @@
           ],
         },
         {
-          id: "marketing-components",
-          title: "Marketing Components",
+          id: "email-components",
+          title: "emailsEcommerce",
           parent: "components",
           children: [
-            ...pageSections.map((section) => ({
-              id: section.name,
-              title: section.name,
-              keywords: section.tags.join(", "),
-              parent: "marketing-components",
+            ...emailsEcommerce.map((emailsEcommerce) => ({
+              id: emailsEcommerce.name,
+              title: emailsEcommerce.name,
+              keywords: emailsEcommerce.tags.join(", "),
+              parent: "email-components",
               handler: () => {
-                window.open(section.link, "_self");
-              },
-            })),
-            ...pageExamples.map((example) => ({
-              id: example.name,
-              title: example.name,
-              keywords: example.tags.join(", "),
-              parent: "marketing-components",
-              handler: () => {
-                window.open(example.link, "_self");
+                window.open(emailsEcommerce.link, "_self");
               },
             })),
           ],
