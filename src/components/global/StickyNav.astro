@@ -3,10 +3,10 @@
 import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 const navItems = [
-  { href: "#marketing", text: "Marketing" },
-  { href: "#application", text: "Application" },
-  { href: "#emails", text: "Emails" },
-  { text: "eCommerce", disabled: true, title: "Coming soon" },
+  { href: "#marketing", text: "Marketing", umami: "marketing" },
+  { href: "#application", text: "Application",umami: "application" },
+  { href: "#emails", text: "Emails",umami: "emails" },
+  { text: "eCommerce", disabled: true, title: "Coming soon", umami: "eCommerce" },
 ];
 ---
 
@@ -28,6 +28,8 @@ const navItems = [
           ) : (
             <Text
               tag="a"
+              id={item.umami}
+              data-umami-event={item.umami}
               variant="textBase"
               href={item.href}
               class="nav-link hover:text-accent-500 font-medium border-b-2 pb-4 border-transparent"
