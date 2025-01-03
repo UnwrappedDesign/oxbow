@@ -322,12 +322,12 @@ const templates: { [key: string]: Template[] } = {
     },
   ],
 
-  // Page Examples
-  emails: [
+  // Emails
+  emailsEcommerce: [
     {
-      name: "Emails",
+      name: "Receipt",
       link: "/playground/marketing/emails",
-      image: "emails.png",
+      image: "emails-receipts.png",
       tags: [
         "email",
         "email marketing",
@@ -673,7 +673,7 @@ const templates: { [key: string]: Template[] } = {
 export const {
   pageSections,
   pageExamples,
-  emails,
+  emailsEcommerce,
   navigation,
   overlay,
   forms,
@@ -689,8 +689,8 @@ export const byName = {
   pageExamples: Object.fromEntries(
     pageExamples.map((template) => [template.name, template]),
   ),
-  emails: Object.fromEntries(
-    emails.map((template) => [template.name, template]),
+  emailsEcommerce: Object.fromEntries(
+    emailsEcommerce.map((template) => [template.name, template]),
   ),
   // Application
   navigation: Object.fromEntries(

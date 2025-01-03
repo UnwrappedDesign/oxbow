@@ -55,7 +55,7 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
   <section class="border-t border-base-200">
     <Wrapper variant="standard" class="py-12">
       <div
-        class="relative w-full grid grid-cols-1 gap-x-6 md:grid-cols-2 gap-y-12 xl:gap-x-8 lg:gap-y-24 lg:grid-cols-3 items-end"
+        class="relative w-full grid grid-cols-1 gap-x-6 md:grid-cols-2 gap-y-12 xl:gap-x-8 lg:gap-y-24 lg:grid-cols-3 items-start"
       >
         {
           sectionComponents.map((component, index) => {
@@ -80,12 +80,7 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
                 href={`/playground/${filePath.replace(".astro", "")}`}
                 class="relative group flex flex-col "
               >
-                <Image
-                  src={images[imagePath]()}
-                  alt={`${subsection} preview ${index + 1}`}
-                  class="w-full object-cover  border  border-base-200 rounded-xl ring-4 ring-base-50 group-hover:ring-base-100 transition-all duration-300 ease-in-out cursor-pointer"
-                />
-                <div class="flex flex-col  mt-2">
+                <div class="flex flex-col">
                   <div class="flex items-center justify-between gap-2">
                     <div class="flex items-center gap-2">
                       <Text
@@ -127,6 +122,11 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
                     </Text>
                   )}
                 </div>
+                <Image
+                  src={images[imagePath]()}
+                  alt={`${subsection} preview ${index + 1}`}
+                  class="w-full object-cover  border mt-2  border-base-200 rounded-xl ring-4 ring-base-50 group-hover:ring-base-100 transition-all duration-300 ease-in-out cursor-pointer"
+                />
               </a>
             );
           })
