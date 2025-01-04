@@ -17,6 +17,10 @@ const sectionComponents = components.filter((component) => {
 const component = sectionComponents[parseInt(index) - 1];
 const formattedSubsection = subsection.replace("-", " ");
 const formattedIndex = index.replace("-", " ");
+
+/* const sectionDescription =
+  sectionComponents.find((component) => component.description)?.description ||
+  ""; */
 ---
 
 <BaseLayout>
@@ -49,9 +53,19 @@ const formattedIndex = index.replace("-", " ");
           >
             {`${subsection.replace(/-/g, " ")} #${index.replace(/-/g, " ")}`}
           </Text>
+         <!--  {
+            sectionDescription && (
+              <Text tag="p" variant="textBase" class="mt-4 text-base-500">
+                {sectionDescription}
+              </Text>
+            )
+          } -->
         </div>
         <div>
-          <nav class="relative z-0 inline-flex gap-1.5 sr-only" aria-label="Pagination">
+          <nav
+            class="relative z-0 inline-flex gap-1.5 sr-only"
+            aria-label="Pagination"
+          >
             <!-- Previous Page Button -->
 
             <IconButton

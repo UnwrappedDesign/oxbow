@@ -7,10 +7,8 @@ const navItems = [
   { href: "#application", text: "Application" },
   { href: "#emails", text: "Emails" },
   {
+    href: "#ecommerce",
     text: "eCommerce",
-    disabled: true,
-    title: "Coming soon",
-    umami: "eCommerce",
   },
 ];
 ---
@@ -19,38 +17,24 @@ const navItems = [
   <Wrapper variant="standard" class="pt-0 border-b">
     <div class="flex space-x-4 relative bg-white pt-4">
       {
-        navItems.map((item) =>
-          item.disabled ? (
-            <Text
-              tag="p"
-              variant="textBase"
-              title={item.title}
-              disabled
-              class="font-medium border-b-2 pb-4 border-transparent cursor-not-allowed opacity-50"
-            >
-              {item.text}
-            </Text>
-          ) : (
-            <Text
-              tag="a"
-              variant="textBase"
-              href={item.href}
-              class="nav-link hover:text-accent-500 font-medium border-b-2 pb-4 border-transparent"
-            >
-              {item.text}
-            </Text>
-          )
-        )
+        navItems.map((item) => (
+          <Text
+            tag="a"
+            variant="textBase"
+            href={item.href}
+            class="nav-link hover:text-accent-500 font-medium border-b-2 pb-4 border-transparent"
+          >
+            {item.text}
+          </Text>
+        ))
       }
     </div>
   </Wrapper>
 </nav>
-
 <script>
   function updateActiveLink() {
     const sections = document.querySelectorAll("section[id]");
     const navLinks = document.querySelectorAll(".nav-link");
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -70,9 +54,7 @@ const navItems = [
       },
       { rootMargin: "-50% 0px -50% 0px" }
     );
-
     sections.forEach((section) => observer.observe(section));
-
     navLinks.forEach((link) => {
       link.addEventListener("click", (e) => {
         e.preventDefault();
@@ -84,6 +66,5 @@ const navItems = [
       });
     });
   }
-
   document.addEventListener("DOMContentLoaded", updateActiveLink);
 </script>
