@@ -2,6 +2,7 @@
 
 ## Ecommerce
 ## Home Page
+- Prduct list
 - Product Overviews
 - Category Previews
 - Promo Sections
@@ -40,6 +41,9 @@
 ---------------------------------------
 
 ## Emails
+inspo:
+- https://www.mailersend.com/templates/drag-and-drop-editor
+- https://postmarkapp.com/transactional-email-templates
 
 ### Notification
 - Comment Notification

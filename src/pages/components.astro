@@ -8,14 +8,22 @@ import EntryStructure from "@/components/landing/EntryStructure.astro";
 import StickyNav from "@/components/global/StickyNav.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 //
-// Marketing
 //
+// Marketing
 import { pageSections } from "@/data/entries.json";
 import { pageExamples } from "@/data/entries.json";
-import { emailsEcommerce } from "@/data/entries.json";
-// Application
 //
+//
+// Application
 import { forms, elements, overlay, navigation } from "@/data/entries.json";
+//
+//
+// Emails
+import { emailsEcommerce } from "@/data/entries.json";
+//
+//
+// Ecommerce
+import { storeSections } from "@/data/entries.json";
 ---
 
 <AstroSeo
@@ -244,12 +252,12 @@ import { forms, elements, overlay, navigation } from "@/data/entries.json";
   </section>
   <section class="border-t border-base-200">
     <Wrapper variant="standard" class="relative py-12">
-      <section id="ecommerce" class="opacity-50">
+      <section id="ecommerce">
         <div
           class="border-b border-base-200 pb-5 grid grid-cols-1 lg:grid-cols-3 gap-4"
         >
           <Text tag="h3" variant="textXL" class="font-semibold text-base-900">
-            eCommerce — Comming soon
+            eCommerce
           </Text>
           <Text
             tag="p"
@@ -259,6 +267,25 @@ import { forms, elements, overlay, navigation } from "@/data/entries.json";
             Checkout forms, shopping carts, promo sections, store fronts,
             product overviews and all the basics to build your store.
           </Text>
+        </div>
+        <div class="flex flex-col gap-12 mt-12 lg:gap-12">
+          <div
+            class="grid grid-cols-1 lg:grid-cols-5 gap-6 scroll-mt-24"
+            id="storeSections"
+          >
+            <div>
+              <div class="lg:sticky lg:pb-16 top-24">
+                <Text
+                  tag="h3"
+                  variant="textBase"
+                  class="font-semibold text-base-900"
+                >
+                  Pages
+                </Text>
+              </div>
+            </div>
+            <EntryStructure entries={storeSections} />
+          </div>
         </div>
       </section>
     </Wrapper>
