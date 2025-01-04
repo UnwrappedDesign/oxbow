@@ -1,0 +1,79 @@
+---
+import Text from "@/components/fundations/typography/Text.astro";
+
+const products = [
+  {
+    image: "/store/backpacks/1.jpeg",
+    title: "Black Backpack",
+    description:
+      "A sleek, minimalist design perfect for everyday use, offering practicality and style with a durable, waterproof finish.",
+    price: "$140.00",
+    link: "#_",
+    colors: ["bg-[#000000]", "bg-[#fafafa]"], // Add the color codes here
+  },
+  {
+    image: "/store/backpacks/2.jpeg",
+    title: "Beige Backpack",
+    description:
+      "A spacious, travel-friendly backpack with leather accents, ideal for adventures or long trips, combining functionality and elegance.",
+    price: "$280.00",
+    link: "#_",
+    colors: ["bg-[#D4A373]", "bg-[#A67B5B]"], // Add the color codes here
+  },
+  {
+    image: "/store/backpacks/3.jpeg",
+    title: "Gray Backpack",
+    description:
+      "A versatile and modern backpack with a rugged look, featuring multiple compartments for organized storage.",
+    price: "120.00",
+    colors: ["bg-[#708090]", "bg-[#C0C0C0]"], // Add the color codes here
+  },
+];
+---
+
+<section>
+  <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 relative">
+      {
+        products.map((article) => (
+          <a href="#_" class="flex flex-col gap-4 ">
+            <div class="relative aspect-[4/3]">
+              <img
+                src={article.image}
+                alt={article.title}
+                class="absolute inset-0 size-full rounded-2xl bg-base-50 object-cover"
+              />
+            </div>
+            <div>
+              <div class="flex items-center w-full justify-between">
+                <Text
+                  tag="h3"
+                  variant="textBase"
+                  class="text-base-900 font-medium"
+                >
+                  {article.title}
+                </Text>
+                <ul role="list" class="flex items-center gap-x-3">
+                  {article.colors.map((color, index) => (
+                    <li
+                      class={`size-4 rounded-full border border-black/10 ${color}`}
+                    >
+                      <span class="sr-only">{color}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <Text
+                tag="h3"
+                variant="textBase"
+                class="text-base-500 font-medium"
+              >
+                {article.price}
+              </Text>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

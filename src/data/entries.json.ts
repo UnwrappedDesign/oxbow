@@ -333,7 +333,7 @@ const templates: { [key: string]: Template[] } = {
   emailsEcommerce: [
     {
       name: "Receipt",
-      link: "/playground/marketing/emails",
+      link: "/playground/emails/receipts",
       image: "emails-receipts.png",
       tags: [
         "email",
@@ -677,22 +677,47 @@ const templates: { [key: string]: Template[] } = {
   ],
   //  eCommerce
   //
-  //
+  // Store Sections
+  storeSections: [
+    {
+      name: "Product List",
+      link: "/playground/ecommerce/product-lists",
+      image: "productList.png",
+      tags: [
+        "pruduct lists",
+        "product list section",
+        "product list content",
+        "product list image",
+        "product list link",
+        "product list",
+        "product list item",
+       
+      ],
+    },
+  ],
 };
 
 // Export sections
 export const {
+  // Marketing
   pageSections,
   pageExamples,
-  emailsEcommerce,
+  // Application
   navigation,
   overlay,
   forms,
   elements,
+  // Emails
+  emailsEcommerce,
+  // eCommerce
+  storeSections,
 } = templates;
 
 // Export all entries by name
 export const byName = {
+  //
+  //
+  //
   // Marketing
   pageSections: Object.fromEntries(
     pageSections.map((template) => [template.name, template]),
@@ -700,9 +725,22 @@ export const byName = {
   pageExamples: Object.fromEntries(
     pageExamples.map((template) => [template.name, template]),
   ),
+  //
+  //
+  //
+  //
   emailsEcommerce: Object.fromEntries(
     emailsEcommerce.map((template) => [template.name, template]),
   ),
+  //
+  //
+  // eCommerce
+  storeSections: Object.fromEntries(
+    storeSections.map((template) => [template.name, template]),
+  ),
+  //
+  //
+  //
   // Application
   navigation: Object.fromEntries(
     navigation.map((template) => [template.name, template]),
