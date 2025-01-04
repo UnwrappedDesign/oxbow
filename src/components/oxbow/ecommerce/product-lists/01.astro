@@ -1,0 +1,65 @@
+---
+
+import Text from "@/components/fundations/typography/Text.astro";
+
+const products = [
+  {
+    image: "/store/backpacks/1.jpeg",
+    title: "Black Backpack",
+
+    price: "$140.00",
+    link: "#_",
+  },
+  {
+    image: "/store/backpacks/2.jpeg",
+    title: "Beige Backpack",
+
+    price: "$280.00",
+    link: "#_",
+  },
+  {
+    image: "/store/backpacks/3.jpeg",
+    title: "Gray Backpack",
+
+    price: "120.00",
+  },
+];
+---
+
+<section>
+  <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 relative">
+      {
+        products.map((article) => (
+          <a href="#_" class="flex flex-col gap-4 justify-between">
+            <div class="relative aspect-[4/3] ">
+              <img
+                src={article.image}
+                alt="#_"
+                class="absolute inset-0 size-full   rounded-2xl bg-base-50 object-cover"
+              />
+            </div>
+            <div>
+              <div class="flex items-center w-full justify-between ">
+                <Text
+                  tag="h3"
+                  variant="textBase"
+                  class="text-base-900 font-medium"
+                >
+                  {article.title}
+                </Text>
+                <Text
+                  tag="h3"
+                  variant="textBase"
+                  class="text-base-500 font-medium"
+                >
+                  {article.price}
+                </Text>
+              </div>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
