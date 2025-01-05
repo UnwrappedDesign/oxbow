@@ -36,7 +36,7 @@ const products = [
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 relative">
       {
         products.map((article) => (
-          <div class="flex flex-col gap-4 ">
+          <div class="flex flex-col gap-2 ">
             <a href="#_">
               <div class="relative aspect-[8/12] ">
                 <img
@@ -49,7 +49,7 @@ const products = [
                 <div class="flex items-center w-full justify-between mt-4">
                   <Text
                     tag="h3"
-                    variant="textBase"
+                    variant="textSM"
                     class="text-base-900 font-medium"
                   >
                     {article.title}
@@ -57,28 +57,20 @@ const products = [
                   <ul role="list" class="flex items-center gap-x-1">
                     {article.colors.map((color, index) => (
                       <li
-                        class={`size-4 rounded-full border border-black/10 ${color}`}
+                        class={`size-3 rounded-full border border-black/10 ${color}`}
                       >
                         <span class="sr-only">{color}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-                <Text
-                  tag="p"
-                  variant="textSM"
-                  class="mt-2 text-base-500 font-medium"
-                >
+                <Text tag="p" variant="textSM" class="mt-2 text-base-500 ">
                   {article.description}
                 </Text>
               </div>
             </a>
             <div class="mt-12 flex items-center justify-between w-full">
-              <Text
-                tag="h3"
-                variant="textBase"
-                class="text-base-500 font-medium"
-              >
+              <Text tag="h3" variant="textSM" class="text-base-500 ">
                 {article.price}
               </Text>
               <button>Add to cart</button>

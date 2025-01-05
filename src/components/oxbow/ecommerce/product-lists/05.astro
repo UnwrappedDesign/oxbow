@@ -1,0 +1,81 @@
+---
+import Text from "@/components/fundations/typography/Text.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+const products = [
+  {
+    image: "/store/shoes/airforceblack/3.jpg",
+    title: "Nike Air Force 1´07 Fresh",
+    price: "$140.00",
+    discountedPrice: "$99.00",
+    description: "23 Different Colors",
+    link: "#_",
+  },
+  {
+    image: "/store/shoes/airforcewhite/2.png",
+    title: "Nike Air Force 1 LE",
+    price: "$280.00",
+    discountedPrice: "$149.00",
+    description: "40 Different Colors",
+    link: "#_",
+  },
+  {
+    image: "/store/shoes/airmax/3.png",
+    title: "Nike Air Max 90",
+    price: "$120.00",
+    discountedPrice: "$80.00",
+    description: "10 Different Colors",
+    link: "#_",
+  },
+];
+---
+
+<section>
+  <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
+  
+    <div
+      class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 relative"
+    >
+      {
+        products.map((article) => (
+          <div>
+            <div class="relative">
+              <div class="relative h-72 w-full overflow-hidden rounded-lg">
+                <img
+                  src={article.image}
+                  alt="#_"
+                  class="size-full object-cover"
+                />
+              </div>
+              <div class="relative mt-2">
+                <Text
+                  tag="h3"
+                  variant="textSM"
+                  class="text-base-900 font-medium"
+                >
+                  {article.title}
+                </Text>
+                <Text tag="p" variant="textSM" class=" text-base-500 ">
+                  {article.description}
+                </Text>
+              </div>
+              <div class="absolute inset-x-0 top-0 flex  items-end justify-end overflow-hidden rounded-lg p-4">
+                <Text
+                  tag="h3"
+                  variant="textSM"
+                  class="text-base-500  flex items-center gap-x-1 relative"
+                >
+                  {article.price}
+                </Text>
+              </div>
+            </div>
+            <div class="mt-6">
+              <Button size="xs" variant="muted" class="w-full">
+                Add to cart<span class="sr-only">, {article.title}</span>
+              </Button>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
