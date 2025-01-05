@@ -1,0 +1,85 @@
+---
+import Text from "@/components/fundations/typography/Text.astro";
+
+import Heart from "@/components/fundations/icons/Heart.astro";
+import Cart from "@/components/fundations/icons/Cart.astro";
+const products = [
+  {
+    image: "/store/jackets/1.png",
+    title: "Contrast Hooded Puch Pocket",
+    price: "$140.00",
+    discountedPrice: "$99.00",
+    description: "23 Different Colors",
+    link: "#_",
+  },
+  {
+    image: "/store/jackets/2.png",
+    title: "Relaxed Shirt jacket",
+    price: "$280.00",
+    discountedPrice: "$149.00",
+    description: "40 Different Colors",
+    link: "#_",
+  },
+  {
+    image: "/store/jackets/3.png",
+    title: "Padded Soft Bomber",
+    price: "$120.00",
+    discountedPrice: "$80.00",
+    description: "10 Different Colors",
+    link: "#_",
+  },
+];
+---
+
+<section>
+  <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 relative">
+      {
+        products.map((article) => (
+          <div>
+            <div class="relative">
+              <div class="relative aspect-[8/10] w-full overflow-hidden rounded-lg">
+                <img
+                  src={article.image}
+                  alt="#_"
+                  class="size-full object-cover"
+                />
+              </div>
+              <div class="relative mt-2">
+                <div class="flex items-center w-full justify-between">
+                  <Text
+                    tag="h3"
+                    variant="textSM"
+                    class="text-base-900 font-medium"
+                  >
+                    {article.title}
+                  </Text>
+                  <Text
+                    tag="p"
+                    variant="textSM"
+                    class="text-base-500  flex items-center gap-x-1 relative"
+                  >
+                    {article.price}
+                  </Text>
+                </div>
+                <Text tag="p" variant="textSM" class=" text-base-500 ">
+                  {article.description}
+                </Text>
+              </div>
+              <div class="absolute inset-x-0 top-0 flex  items-end justify-end overflow-hidden rounded-lg p-4">
+                <div class="flex items-center gap-x-1">
+                  <button class="text-base-500">
+                    <Heart size="sm" />
+                  </button>
+                  <button class="text-base-500">
+                    <Cart size="sm" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
