@@ -1,0 +1,99 @@
+---
+import Text from "@/components/fundations/typography/Text.astro";
+const products = [
+  {
+    image: "/store/shoes/airforceblack/3.jpg",
+    title: "Nike Air Force 1´07 Fresh",
+    description: "23 Different Colors",
+    price: "$140.00",
+    link: "#_",
+    colors: ["bg-black", "bg-white"], // Add the color codes here
+  },
+  {
+    image: "/store/shoes/airforcewhite/2.png",
+    title: "Nike Air Force 1 LE",
+    description: "40 Different Colors",
+    price: "$280.00",
+    link: "#_",
+    colors: ["bg-white", "bg-red-500", "bg-cyan-500"], // Add the color codes here
+  },
+  {
+    image: "/store/shoes/airmax/3.png",
+    title: "Nike Air Max 90",
+    description: "10 Different Colors",
+    price: "120.00",
+    colors: ["bg-black", "bg-slate-600", "bg-yellow-400"], // Add the color codes here
+  },
+  {
+    image: "/store/shoes/gazelle/1.png",
+    title: "Gazelle",
+    description: "10 Different Colors",
+    price: "120.00",
+    colors: ["bg-orange-500", "bg-blue-400"], // Add the color codes here
+  },
+  {
+    image: "/store/shoes/campus/1.png",
+    title: "Campus",
+    description: "13 Different Colors",
+    price: "80.00",
+    colors: ["bg-[#2e4b40]", "bg-blue-400"], // Add the color codes here
+  },
+  {
+    image: "/store/shoes/la/1.png",
+    title: "LA Trainer",
+    description: "13 Different Colors",
+    price: "80.00",
+    colors: ["bg-[#2e4b40]", "bg-blue-400"], // Add the color codes here
+  },
+];
+---
+
+<section>
+  <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
+    <div
+      class="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 relative"
+    >
+      {
+        products.map((article) => (
+          <a href="#_" class="flex flex-row gap-4 ">
+            <div class="relative aspect-[4/3] w-32 h-auto">
+              <img
+                src={article.image}
+                alt={article.title}
+                class="absolute inset-0 size-full rounded-2xl bg-base-50 object-cover"
+              />
+            </div>
+            <div class="flex flex-col gap-2 h-full justify-between">
+              <div>
+                <Text
+                  tag="h3"
+                  variant="textSM"
+                  class="text-base-900 font-medium"
+                >
+                  {article.title}
+                </Text>
+                <Text tag="p" variant="textSM" class="mt-1 text-base-500 ">
+                  {article.description}
+                </Text>
+              </div>
+              <div class="flex  gap-2  justify-between">
+                <Text tag="h3" variant="textSM" class="text-base-500">
+                  {article.price}
+                </Text>
+                <ul role="list" class="flex items-center gap-x-1">
+                  {article.colors.map((color, index) => (
+                    <li
+                      class={`size-3 rounded-full border border-black/10 ${color}`}
+                    >
+                      <span class="sr-only">{color}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

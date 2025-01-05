@@ -1,0 +1,83 @@
+---
+import Text from "@/components/fundations/typography/Text.astro";
+const products = [
+  {
+    image: "/store/jackets/1.png",
+    title: "Contrast Hooded Puch Pocket",
+    price: "$140.00",
+    description: "Charcoal +3",
+    colors: ["bg-[#454648]"],
+    link: "#_",
+  },
+  {
+    image: "/store/jackets/2.png",
+    title: "Nike Air Force 1 LE",
+    price: "$280.00",
+    description: "Gray +5",
+    colors: ["bg-[#c9c7c2]"],
+    link: "#_",
+  },
+  {
+    image: "/store/jackets/3.png",
+    title: "Nike Air Max 90",
+    price: "$120.00",
+    description: "Nero +2",
+    colors: ["bg-[#252525]"],
+    link: "#_",
+  },
+];
+---
+
+<section>
+  <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 relative">
+      {
+        products.map((article) => (
+          <div>
+            <div class="relative">
+              <div class="relative aspect-[8/10] w-full overflow-hidden rounded-lg">
+                <img
+                  src={article.image}
+                  alt="#_"
+                  class="size-full object-cover"
+                />
+              </div>
+              <div class="relative mt-2">
+                <div class="flex items-center w-full justify-between">
+                  <Text
+                    tag="h3"
+                    variant="textSM"
+                    class="text-base-900 font-medium"
+                  >
+                    {article.title}
+                  </Text>
+                  <Text
+                    tag="p"
+                    variant="textSM"
+                    class="text-base-500  flex items-center gap-x-1 relative"
+                  >
+                    {article.price}
+                  </Text>
+                </div>
+                <div class="flex items-center gap-1 ">
+                  <ul role="list" class="flex items-center gap-x-1">
+                    {article.colors.map((color, index) => (
+                      <li
+                        class={`size-3 rounded-full border border-black/10 ${color}`}
+                      >
+                        <span class="sr-only">{color}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Text tag="p" variant="textSM" class=" text-base-500 ">
+                    {article.description}
+                  </Text>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
