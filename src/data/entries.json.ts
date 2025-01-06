@@ -694,6 +694,21 @@ const templates: { [key: string]: Template[] } = {
        
       ],
     },
+     {
+      name: "Product Details",
+      link: "/playground/ecommerce/product-details",
+      image: "productDetails.png",
+      tags: [
+        "pruduct details",
+        "product details section",
+        "product details content",
+        "product details image",
+        "product details link",
+        "product details",
+        "product details item",
+       
+      ],
+    },
   ],
 };
 
