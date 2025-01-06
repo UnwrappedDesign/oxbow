@@ -1,0 +1,59 @@
+---
+import Text from "@/components/fundations/typography/Text.astro";
+const products = [
+  {
+    image: "/store/shoes/airmax/1.png",
+    title: "Trainers",
+  },
+  {
+    image: "/store/jackets/1.png",
+    title: "Hoodies",
+    link: "#_",
+  },
+  {
+    image: "/store/backpacks/1.jpeg",
+    title: "Backpacks",
+  },
+];
+---
+
+<section>
+  <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 relative">
+      {
+        products.map((article) => (
+          <div>
+            <div class="relative">
+              <div class="relative aspect-[8/10] w-full overflow-hidden rounded-lg">
+                <img
+                  src={article.image}
+                  alt="#_"
+                  class="size-full object-cover"
+                />
+              </div>
+              <div class="relative mt-2">
+                <div class="flex items-center w-full justify-between">
+                  <Text
+                    tag="h3"
+                    variant="textSM"
+                    class="text-base-900 font-medium"
+                  >
+                    {article.title}
+                  </Text>
+                </div>
+                <div
+                  class="flex items-center gap-1 
+                "
+                >
+                  <Text tag="a" variant="textSM" class=" text-base-500 ">
+                    Shop now
+                  </Text>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
