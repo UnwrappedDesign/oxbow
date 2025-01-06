@@ -1,0 +1,371 @@
+---
+import Text from "@/components/fundations/typography/Text.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+
+---
+
+<section class="relative">
+  <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- Product Image Gallery -->
+      <div
+        class="lg:overflow-y-autoSpazio Bianco — SAAS multi page theme
+↳ Astro v5 & Tailwind v4
+↳ 60+ pages
+↳ 300+ components
+https://lexingtonthemes.com/info/spaziobianco/"
+      >
+        <div
+          class="flex flex-col gap-8"
+          x-data="{ 
+            images: [
+              { src: '/store/shoes/airmax/1.png', alt: 'Product image 1' },
+              { src: '/store/shoes/airmax/2.png', alt: 'Product image 2' },
+              { src: '/store/shoes/airmax/3.png', alt: 'Product image 3' },
+              { src: '/store/shoes/airmax/4.png', alt: 'Product image 4' },
+              { src: '/store/shoes/airmax/5.png', alt: 'Product image 5' },
+            ] 
+          }"
+        >
+          <template x-for="(image, index) in images" :key="image.src">
+            <img
+              :src="image.src"
+              :alt="image.alt"
+              class="w-full object-cover aspect-square rounded-2xl"
+              :class="{ 'hidden lg:block': index !== 0 }"
+            />
+          </template>
+        </div>
+      </div>
+      <!-- Product Details -->
+      <div class="lg:sticky lg:top-24 lg:self-start">
+        <div class="flex flex-col">
+          <Text tag="h1" variant="textXL" class="font-medium"
+            >Nike Air Force 1´07 Fresh</Text
+          >
+          <Text tag="p" variant="textLG" class="mt-1"
+            >$152 <del class="opacity-70">$190</del>
+            <span class="text-green-400">20% Off</span></Text
+          >
+          <Text tag="p" variant="textSM" class="text-base-500 mt-2">
+            Men's shoes
+          </Text>
+          <Text tag="p" variant="textSM" class="text-base-500 mt-8">
+            Hitti ng the field in the late '60s, adidas airmaxS quickly became
+            soccer's "it" shoe.
+          </Text>
+          <div class="grid cols-1 md:grid-cols-2 gap-4 mt-4">
+            <!-- Color Selector -->
+            <div x-data="{ activeColor: null }">
+              <Text tag="p" variant="textXS" class="text-base-500 uppercase">
+                Color
+              </Text>
+              <fieldset
+                aria-label="Choose a color"
+                class="mt-2"
+                x-data="{ 
+                  colors: [
+                    { name: ' Black', ring: 'ring-gray-700', bg: 'bg-gray-400' },
+                    { name: ' Gray', ring: 'ring-gray-300', bg: 'bg-gray-200' },
+                    { name: ' Purple', ring: 'ring-purple-300', bg: 'bg-purple-200' },
+                    { name: ' Pink', ring: 'ring-pink-300', bg: 'bg-pink-200' },
+                    { name: ' Red', ring: 'ring-red-300', bg: 'bg-red-200' },
+                    { name: ' Orange', ring: 'ring-orange-300', bg: 'bg-orange-200' },
+                    { name: ' Yellow', ring: 'ring-yellow-300', bg: 'bg-yellow-200' },
+                    { name: ' Blue', ring: 'ring-blue-300', bg: 'bg-blue-200' },
+                    { name: ' Cyan', ring: 'ring-cyan-300', bg: 'bg-cyan-200' },
+                    { name: ' Green', ring: 'ring-green-300', bg: 'bg-green-200' },
+                    { name: ' Teal', ring: 'ring-teal-300', bg: 'bg-teal-200' },
+                  ],
+                  activeColor: ' Black' 
+                }"
+              >
+                <div class="flex flex-wrap items-center gap-3">
+                  <template x-for="color in colors" :key="color.name">
+                    <label
+                      :aria-label="color.name"
+                      class="relative -m-0.5 duration-300 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none"
+                      :class="{ 'ring-2 ring-offset-2 ring-base-900': activeColor === color.name }"
+                    >
+                      <input
+                        type="radio"
+                        name="color-choice"
+                        :value="color.name"
+                        class="sr-only"
+                        @click="activeColor = color.name"
+                      />
+                      <span
+                        aria-hidden="true"
+                        class="size-6 rounded-full ring-1"
+                        :class="`${color.ring} ${color.bg}`"></span>
+                    </label>
+                  </template>
+                </div>
+              </fieldset>
+            </div>
+            <!-- Sizing -->
+            <div
+              x-data="{
+                  sizeSystem: 'US',
+                  activeSize: null,
+                  sizes: {
+                      US: ['6', '7', '8', '9', '10', '11', '12', '13'],
+                      EU: ['39', '40', '41', '42', '43', '44', '45', '46']
+                  }
+              }"
+            >
+              <div class="flex items-center justify-between">
+                <Text tag="p" variant="textXS" class="text-base-500 uppercase">
+                  Shoe size
+                </Text>
+                <div>
+                  <label for="size-system" class="sr-only">Size System</label>
+                  <select
+                    id="size-system"
+                    x-model="sizeSystem"
+                    @change="activeSize = null"
+                    class="block w-auto h-8 pl-2.5 pr-8 py-2 text-xs text-base-900 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2"
+                  >
+                    <option value="US">US</option>
+                    <option value="EU">EU</option>
+                  </select>
+                </div>
+              </div>
+              <div class="grid grid-cols-4 gap-2 mt-2">
+                <template x-for="size in sizes[sizeSystem]" :key="size">
+                  <div>
+                    <input
+                      type="radio"
+                      :id="'size-' + size"
+                      :value="size"
+                      name="size-choice"
+                      x-model="activeSize"
+                      class="sr-only peer"
+                    />
+                    <label
+                      :for="'size-' + size"
+                      x-text="size"
+                      class="flex items-center justify-center px-3 py-2 text-sm font-medium bg-white ring-1
+                         ring-base-200 rounded-md cursor-pointer duration-300 peer-checked:ring-2 peer-checked:ring-base-900 peer-checked:text-accent-500 text-base-500 peer-checked:ring-offset-2"
+                    ></label>
+                  </div>
+                </template>
+              </div>
+            </div>
+          </div>
+          <!-- Action Buttons -->
+          <div class="flex flex-row gap-2 mt-8">
+            <Button size="sm" variant="default" class="w-full"
+              >Add to Cart</Button
+            >
+            <Button size="sm" variant="muted" class="w-full">Buy Now</Button>
+          </div>
+          <!-- Free shipping notice -->
+          <Text tag="p" variant="textSM" class="text-base-500 mt-1"
+            >Shop now. Pay in 30 days with Klarna. <a
+              href="#_"
+              class="underline text-black">Learn more</a
+            ></Text
+          >
+          <!-- Tab section -->
+          <div x-data="{ tab: 'tab1' }" class="mt-8">
+            <ul class="flex gap-4 text-sm text-base-500 border-b">
+              <li class="-mb-px">
+                <a
+                  @click.prevent="tab = 'tab1'"
+                  href="#_"
+                  class="inline-block py-2 font-medium bg-white text-accent-500 border-b-2 border-accent-500"
+                  :class="{ ' bg-white text-accent-500 border-b-2 border-accent-500' : tab === 'tab1' }"
+                >
+                  Details</a
+                >
+              </li>
+              <li class="-mb-px">
+                <a
+                  @click.prevent="tab = 'tab2'"
+                  href="#_"
+                  class="inline-block py-2 font-medium"
+                  :class="{ ' bg-white text-accent-500 border-b-2 border-accent-500' : tab === 'tab2' }"
+                >
+                  Shipping</a
+                >
+              </li>
+              <li class="-mb-px">
+                <a
+                  @click.prevent="tab = 'tab3'"
+                  href="#_"
+                  class="inline-block py-2 font-medium"
+                  :class="{ ' bg-white text-accent-500 border-b-2 border-accent-500' : tab === 'tab3' }"
+                >
+                  Returns</a
+                >
+              </li>
+              <li class="-mb-px">
+                <a
+                  @click.prevent="tab = 'tab4'"
+                  href="#_"
+                  class="inline-block py-2 font-medium"
+                  :class="{ ' bg-white text-accent-500 border-b-2 border-accent-500' : tab === 'tab4' }"
+                >
+                  Reviews</a
+                >
+              </li>
+            </ul>
+            <div class="py-4 pt-4 text-left text-base-500 content">
+              <div x-show="tab==='tab1'">
+                <section class="py-4">
+                  <Text tag="p" variant="sm">
+                    This product is crafted from high-quality materials designed
+                    for durability and comfort. It features modern design
+                    elements and is perfect for everyday use.
+                  </Text>
+                  <ul
+                    role="list"
+                    class="list-disc space-y-1 pl-5 mt-4 text-sm text-base-600 marker:text-accent-500"
+                  >
+                    <li class="pl-2">Versatile lace configurations</li>
+                    <li class="pl-2">Breathable and spacious interior fit</li>
+                    <li class="pl-2">Durable leather overlays</li>
+                    <li class="pl-2">Cushioned insole for added comfort</li>
+                    <li class="pl-2">Reinforced eyelets for secure lacing</li>
+                    <li class="pl-2">Stitching built for durability</li>
+                    <li class="pl-2">Water-resistant materials</li>
+                  </ul>
+                </section>
+              </div>
+              <div x-show="tab==='tab2'" style="display: none;">
+                <section class="py-4">
+                  <Text tag="p" variant="sm">
+                    We offer free standard shipping on all orders above $50.
+                    Express shipping options are available at checkout for an
+                    additional fee.
+                  </Text>
+                </section>
+              </div>
+              <div x-show="tab==='tab3'" style="display: none;">
+                <section class="py-4">
+                  <Text tag="p" variant="sm">
+                    We accept returns within 30 days of purchase. Items must be
+                    in their original condition and packaging. Please visit our
+                    returns page for more details.
+                  </Text>
+                </section>
+              </div>
+              <div x-show="tab==='tab4'" style="display: none;">
+                <section class="py-4">
+                  <Text tag="p" variant="sm">
+                    We accept returns within 30 days of purchase. Items must be
+                    in their original condition and packaging. Please visit our
+                    returns page for more details.
+                  </Text>
+                  <div
+                    class="flex flex-col gap-y-2"
+                    x-data="{ 
+                    testimonials: [
+                      {
+                        name: 'John Doe',
+                        date: '2023-12-01',
+                        datetime: '2023-12-01',
+                        rating: 5,
+                        img: 'https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80',
+                        text: 'The Nike Air Max 90 Black exceeded my expectations! Super comfortable and perfect for both running and casual wear.',
+                      },
+                      {
+                        name: 'Jane Smith',
+                        date: '2023-11-15',
+                        datetime: '2023-11-15',
+                        rating: 4,
+                        img: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80',
+                        text: 'Stylish and lightweight. I wear them everywhere, but the fit was slightly snug at first. Broke in nicely after a few days.',
+                      },
+                      {
+                        name: 'Mike Johnson',
+                        date: '2023-10-25',
+                        datetime: '2023-10-25',
+                        rating: 5,
+                        img: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80',
+                        text: 'Amazing cushioning and support! The design is timeless. These shoes are my go-to for every occasion.',
+                      },
+                      {
+                        name: 'Sarah Lee',
+                        date: '2023-09-10',
+                        datetime: '2023-09-10',
+                        rating: 4,
+                        img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80',
+                        text: 'Love the sleek black look! Perfect match for any outfit. My only issue is they scuff a bit easily.',
+                      },
+                      {
+                        name: 'Emily Wilson',
+                        date: '2023-08-05',
+                        datetime: '2023-08-05',
+                        rating: 5,
+                        img: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80',
+                        text: 'These are hands down the most comfortable Air Max I’ve ever owned. Highly recommend them!',
+                      },
+                    ] 
+                  }"
+                  >
+                    <template
+                      x-for="testimonial in testimonials"
+                      :key="testimonial.datetime"
+                    >
+                      <div class="flex gap-x-4 text-sm text-gray-500 py-4">
+                        <div class="flex-none">
+                          <img
+                            :src="testimonial.img"
+                            :alt="testimonial.name"
+                            class="size-10 rounded-full bg-gray-100"
+                          />
+                        </div>
+                        <div class="">
+                          <h3
+                            class="font-medium text-gray-900"
+                            x-text="testimonial.name"
+                          >
+                          </h3>
+                          <p>
+                            <time
+                              :datetime="testimonial.datetime"
+                              x-text="testimonial.date"></time>
+                          </p>
+
+                          <div class="mt-4 flex items-center">
+                            <template
+                              x-for="star in Array(testimonial.rating).fill()"
+                              :key="star"
+                            >
+                              <svg
+                                class="size-5 shrink-0 text-yellow-400"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                                aria-hidden="true"
+                              >
+                                <path
+                                  fill-rule="evenodd"
+                                  d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
+                                  clip-rule="evenodd"></path>
+                              </svg>
+                            </template>
+                          </div>
+                          <p
+                            class="sr-only"
+                            x-text="`${testimonial.rating} out of 5 stars`"
+                          >
+                          </p>
+
+                          <div class="mt-4 text-sm/6 text-gray-500">
+                            <p x-text="testimonial.text"></p>
+                          </div>
+                        </div>
+                      </div>
+                    </template>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
