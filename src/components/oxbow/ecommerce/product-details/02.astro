@@ -1,0 +1,275 @@
+---
+import Text from "@/components/fundations/typography/Text.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
+import Plus from "@/components/fundations/icons/Plus.astro";
+const productInfo = [
+  {
+    title: "Details",
+    description:
+      "This product is crafted from high-quality materials designed for durability and comfort. It features modern design elements and is perfect for everyday use.",
+  },
+  {
+    title: "Shipping",
+    description:
+      "We offer free standard shipping on all orders above $50. Express shipping options are available at checkout for an additional fee.",
+  },
+  {
+    title: "Returns",
+    description:
+      "We accept returns within 30 days of purchase. Items must be in their original condition and packaging. Please visit our returns page for more details.",
+  },
+];
+---
+
+<section>
+  <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb">
+      <ol role="list" class="flex items-center space-x-2">
+        <li>
+          <Text
+            tag="a"
+            href="#_"
+            variant="textXS"
+            class="flex items-center gap-1 text-base-500 hover:text-accent-500 font-medium"
+          >
+            Shop
+            <ChevronRight size="sm" />
+          </Text>
+        </li>
+        <li>
+          <Text
+            tag="a"
+            href="#_"
+            variant="textXS"
+            class="flex items-center gap-1 text-base-500 hover:text-accent-500 font-medium"
+          >
+            Category
+            <ChevronRight size="sm" />
+          </Text>
+        </li>
+        <li>
+          <Text
+            tag="a"
+            href="#_"
+            variant="textXS"
+            class="flex items-center gap-1 text-base-500 hover:text-accent-500 font-medium truncate"
+          >
+            Nike Air Force 1´07 Fresh
+          </Text>
+        </li>
+      </ol>
+    </nav>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+      <!-- Product Image Gallery -->
+      <div
+        x-data="{ 
+                activeImage: 0,
+                images: [
+                    '/store/shoes/airmax/1.png',
+                    '/store/shoes/airmax/2.png',
+                    '/store/shoes/airmax/3.png',
+                    '/store/shoes/airmax/4.png',
+                    '/store/shoes/airmax/5.png',
+                    '/store/shoes/airmax/6.png'
+                ]
+            }"
+        class="flex flex-col gap-2"
+      >
+        <!-- Main Image -->
+        <div class="aspect-square bg-base-200 rounded-2xl overflow-hidden">
+          <img
+            :src="images[activeImage]"
+            class="size-full object-cover aspect-square"
+            alt="Product image"
+          />
+        </div>
+        <!-- Thumbnails -->
+        <div class="grid grid-cols-6 gap-2 w-fulll">
+          <template x-for="(image, index) in images" :key="index">
+            <button
+              @click="activeImage = index"
+              :class="{'ring-2 ring-base-100 ': activeImage === index}"
+              class="size-full bg-base-200 rounded-xl overflow-hidden aspect-square"
+            >
+              <img
+                :src="image"
+                class="size-full object-cover aspect-square"
+                alt="Product thumbnail"
+              />
+            </button>
+          </template>
+        </div>
+      </div>
+      <!-- Product Details -->
+      <div>
+        <div class="flex items-center justify-between">
+          <Text tag="h1" variant="textXL" class="font-medium"
+            >Nike Air Force 1´07 Fresh</Text
+          >
+          <Text tag="p" variant="textXL">$190</Text>
+        </div>
+        <Text tag="p" variant="textBase" class="text-base-500 mt-4">
+          Hitting the field in the late '60s, adidas airmaxS quickly became
+          soccer's "it" shoe. Click to find your retro-inspired adidas airmax
+          TRAINERS at adidas.fi
+        </Text>
+        <div class="flex flex-col gap-4 mt-4">
+          <!-- Color Selector -->
+          <div x-data="{ activeColor: null }">
+            <Text tag="p" variant="textXS" class="text-base-500 uppercase">
+              Color
+            </Text>
+            <fieldset aria-label="Choose a color" class="mt-2">
+              <div class="flex items-center gap-x-3">
+                <label
+                  aria-label="Washed Black"
+                  class="relative -m-0.5 duration-300 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none"
+                  :class="{ 'ring-2 ring-offset-2 ring-base-900': activeColor === 'Washed Black' }"
+                >
+                  <input
+                    type="radio"
+                    name="color-choice"
+                    value="Washed Black"
+                    class="sr-only"
+                    @click="activeColor = 'Washed Black'"
+                  />
+                  <span
+                    aria-hidden="true"
+                    class="size-6 rounded-full ring-1 ring-black bg-black"
+                  ></span>
+                </label>
+
+                <label
+                  aria-label="Blue"
+                  class="relative -m-0.5 duration-300 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none"
+                  :class="{ 'ring-2 ring-offset-2 ring-base-900': activeColor === 'Blue' }"
+                >
+                  <input
+                    type="radio"
+                    name="color-choice"
+                    value="Blue"
+                    class="sr-only"
+                    @click="activeColor = 'Blue'"
+                  />
+                  <span
+                    aria-hidden="true"
+                    class="size-6 rounded-full ring-1 ring-base-200 bg-white"
+                  ></span>
+                </label>
+
+                <label
+                  aria-label="Green"
+                  class="relative -m-0.5 duration-300 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none"
+                  :class="{ 'ring-2 ring-offset-2 ring-base-900': activeColor === 'Green' }"
+                >
+                  <input
+                    type="radio"
+                    name="color-choice"
+                    value="Green"
+                    class="sr-only"
+                    @click="activeColor = 'Green'"
+                  />
+                  <span
+                    aria-hidden="true"
+                    class="size-6 rounded-full ring-1 ring-blue-600 bg-blue-600"
+                  ></span>
+                </label>
+              </div>
+            </fieldset>
+          </div>
+          <!-- Sizing -->
+          <div
+            x-data="{
+              sizeSystem: 'US',
+              activeSize: null,
+              sizes: {
+                  US: ['6', '7', '8', '9', '10', '11', '12', '13'],
+                  EU: ['39', '40', '41', '42', '43', '44', '45', '46']
+              }
+          }"
+          >
+            <div class="flex items-center justify-between">
+              <Text tag="p" variant="textXS" class="text-base-500 uppercase">
+                Shoe size
+              </Text>
+              <div>
+                <label for="size-system" class="sr-only">Size System</label>
+                <select
+                  id="size-system"
+                  x-model="sizeSystem"
+                  @change="activeSize = null"
+                  class="block w-auto h-8 pl-2.5 pr-8 py-2 text-xs text-base-900 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2"
+                >
+                  <option value="US">US</option>
+                  <option value="EU">EU</option>
+                </select>
+              </div>
+            </div>
+            <div class="grid grid-cols-4 gap-2 mt-2">
+              <template x-for="size in sizes[sizeSystem]" :key="size">
+                <div>
+                  <input
+                    type="radio"
+                    :id="'size-' + size"
+                    :value="size"
+                    name="size-choice"
+                    x-model="activeSize"
+                    class="sr-only peer"
+                  />
+                  <label
+                    :for="'size-' + size"
+                    x-text="size"
+                    class="flex items-center justify-center px-3 py-2 text-sm font-medium bg-white ring-1
+                     ring-base-200 rounded-md cursor-pointer duration-300 peer-checked:ring-2 peer-checked:ring-base-900 peer-checked:text-accent-500 text-base-500 peer-checked:ring-offset-2"
+                  ></label>
+                </div>
+              </template>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-row gap-2 mt-8">
+          <Button size="sm" variant="default" class="w-full">Add to Cart</Button
+          >
+          <Button size="sm" variant="muted" class="w-full">Buy Now</Button>
+        </div>
+        <!-- Free shipping notice -->
+        <Text tag="p" variant="textSM" class="text-base-500 mt-1"
+          >Free shipping over $50 if you behave</Text
+        >
+        <!-- Accordion sections -->
+        <div class="divide-y divide-base-200 border-y mt-8">
+          {
+            productInfo.map((faq) => (
+              <details class="group cursor-pointer ">
+                <Text
+                  tag="summary"
+                  variant="textBase"
+                  class="text-base-900 font-medium flex  items-center justify-between w-full py-4  text-left select-none hover:text-accent-500 focus:text-accent-500"
+                >
+                  {faq.title}
+                  <Plus
+                    class="duration-300 ease-out  transform group-open:-rotate-45"
+                    size="sm"
+                  />
+                </Text>
+                <div class="py-4 pt-2 text-sm text-base-500">
+                  <Text
+                    tag="p"
+                    variant="textBase"
+                    class="text-base-500 font-medium"
+                  >
+                    {faq.description}
+                  </Text>
+                </div>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
