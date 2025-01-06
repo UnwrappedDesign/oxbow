@@ -1,0 +1,441 @@
+---
+import Text from "@/components/fundations/typography/Text.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+import X from "@/components/fundations/icons/X.astro";
+import IconButton from "@/components/fundations/buttons/IconButton.astro";
+
+const productData = {
+  benefits: [
+    "Originally designed for performance running, visible Max Air cushioning puts the history of comfort beneath your feet.",
+    "Padded, low-cut collar looks sleek and feels great.",
+    "Rubber Waffle outsole delivers durable traction and heritage style.",
+    "Flex grooves in the outsole help make every step feel natural.",
+  ],
+  details: [
+    "Classic laces",
+    "Variable-width lacing",
+    "Colour Shown: Smoke Grey/Anthracite/White/Light Smoke Grey",
+    "Style: HF6358-004",
+  ],
+};
+---
+
+<section class="relative">
+  <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl">
+    <!-- Product Image Gallery -->
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <img
+        src="/store/shoes/airmax/1.png"
+        alt="image.alt"
+        class="w-full object-cover aspect-square rounded-2xl"
+      />
+      <div class="hidden lg:grid gap-4 grid-cols-2">
+        <img
+          src="/store/shoes/airmax/2.png"
+          alt="image.alt"
+          class="w-full object-cover aspect-square rounded-2xl"
+        />
+        <img
+          src="/store/shoes/airmax/3.png"
+          alt="image.alt"
+          class="w-full object-cover aspect-square rounded-2xl"
+        />
+        <img
+          src="/store/shoes/airmax/4.png"
+          alt="image.alt"
+          class="w-full object-cover aspect-square rounded-2xl"
+        />
+        <img
+          src="/store/shoes/airmax/5.png"
+          alt="image.alt"
+          class="w-full object-cover aspect-square rounded-2xl"
+        />
+      </div>
+    </div>
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-2 mt-8">
+      <!-- Tab section -->
+      <div x-data="{ tab: 'tab1' }" class="order-last lg:order-none">
+        <ul class="flex gap-4 text-sm text-base-500 border-b">
+          <li class="-mb-px">
+            <a
+              @click.prevent="tab = 'tab1'"
+              href="#_"
+              class="inline-block py-2 font-medium bg-white text-accent-500 border-b-2 border-accent-500"
+              :class="{ ' bg-white text-accent-500 border-b-2 border-accent-500' : tab === 'tab1' }"
+            >
+              Details</a
+            >
+          </li>
+          <li class="-mb-px">
+            <a
+              @click.prevent="tab = 'tab2'"
+              href="#_"
+              class="inline-block py-2 font-medium"
+              :class="{ ' bg-white text-accent-500 border-b-2 border-accent-500' : tab === 'tab2' }"
+            >
+              Shipping</a
+            >
+          </li>
+          <li class="-mb-px">
+            <a
+              @click.prevent="tab = 'tab3'"
+              href="#_"
+              class="inline-block py-2 font-medium"
+              :class="{ ' bg-white text-accent-500 border-b-2 border-accent-500' : tab === 'tab3' }"
+            >
+              Returns</a
+            >
+          </li>
+          <li class="-mb-px">
+            <a
+              @click.prevent="tab = 'tab4'"
+              href="#_"
+              class="inline-block py-2 font-medium"
+              :class="{ ' bg-white text-accent-500 border-b-2 border-accent-500' : tab === 'tab4' }"
+            >
+              Reviews</a
+            >
+          </li>
+        </ul>
+        <div class="py-4 pt-4 text-left text-base-500 content">
+          <div x-show="tab==='tab1'">
+            <section class="py-4">
+              <Text tag="p" variant="sm">
+                This product is crafted from high-quality materials designed for
+                durability and comfort. It features modern design elements and
+                is perfect for everyday use.
+              </Text>
+              <ul
+                role="list"
+                class="list-disc space-y-1 pl-5 mt-4 text-sm text-base-600 marker:text-accent-500"
+              >
+                <li class="pl-2">Versatile lace configurations</li>
+                <li class="pl-2">Breathable and spacious interior fit</li>
+                <li class="pl-2">Durable leather overlays</li>
+                <li class="pl-2">Cushioned insole for added comfort</li>
+                <li class="pl-2">Reinforced eyelets for secure lacing</li>
+                <li class="pl-2">Stitching built for durability</li>
+                <li class="pl-2">Water-resistant materials</li>
+              </ul>
+
+              <div x-data="{ open: false }" class="flex mt-8">
+                <!-- Button to trigger the modal -->
+                <Button @click="open = true" size="sm" variant="muted">
+                  Read more
+                </Button>
+
+                <!-- Modal -->
+                <div
+                  x-show="open"
+                  x-transition
+                  class="fixed inset-0 z-10 flex items-center justify-center bg-base-900/80"
+                >
+                  <div
+                    class="bg-white rounded-3xl shadow-lg max-w-3xl w-full p-4 lg:p-12 relative"
+                    @click.outside="open = false"
+                  >
+                    <!-- Close button -->
+                    <IconButton
+                      variant="muted"
+                      size="xs"
+                      @click="open = false"
+                      class="absolute top-4 right-4 lg:top-12 lg:right-12 text-base-600 hover:text-base-900 focus:outline-none"
+                    >
+                      <X size="xs" slot="icon" />
+                    </IconButton>
+
+                    <!-- Modal content -->
+                    <div>
+                      <div class="flex flex-row gap-4">
+                        <div class="relative aspect-[4/3] w-32 h-auto">
+                          <img
+                            src="/store/shoes/airforceblack/3.jpg"
+                            alt="Nike Air Force 1´07 Fresh"
+                            class="absolute inset-0 size-full rounded-2xl bg-base-50 object-cover"
+                          />
+                        </div>
+                        <div class="flex flex-col gap-2 h-full justify-between">
+                          <div>
+                            <Text
+                              tag="h3"
+                              variant="textLG"
+                              class="text-base-900"
+                            >
+                              Nike Air Force 1´07 Fresh
+                            </Text>
+                            <Text
+                              class="text-sm leading-normal mt-1 text-base-500"
+                            >
+                              23 Different Colors
+                            </Text>
+                          </div>
+                          <Text tag="h3" variant="textSM" class="text-base-500">
+                            $140.00
+                          </Text>
+                        </div>
+                      </div>
+                      <Text
+                        tag="p"
+                        variant="textBase"
+                        class="text-base-500 mt-4"
+                      >
+                        Hitting the field in the late '60s, adidas airmaxS
+                        quickly became soccer's "it" shoe.
+                      </Text>
+                      <div class="mt-8 flex flex-col gap-4">
+                        <div>
+                          <Text
+                            tag="p"
+                            variant="textBase"
+                            class="text-base-900 font-medium"
+                          >
+                            Benefits
+                          </Text>
+                          <ul
+                            role="list"
+                            class="list-disc space-y-1 pl-5 mt-4 text-sm text-base-600 marker:text-accent-500"
+                          >
+                            {
+                              productData.benefits.map((benefit) => (
+                                <li class="pl-2">{benefit}</li>
+                              ))
+                            }
+                          </ul>
+                        </div>
+                        <div>
+                          <Text
+                            tag="p"
+                            variant="textBase"
+                            class="text-base-900 font-medium"
+                          >
+                            Product details
+                          </Text>
+                          <ul
+                            role="list"
+                            class="list-disc space-y-1 pl-5 mt-4 text-sm text-base-600 marker:text-accent-500"
+                          >
+                            {
+                              productData.details.map((detail) => (
+                                <li class="pl-2">{detail}</li>
+                              ))
+                            }
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div x-show="tab==='tab2'" style="display: none;">
+            <section class="py-4">
+              <Text tag="p" variant="sm">
+                We offer free standard shipping on all orders above $50. Express
+                shipping options are available at checkout for an additional
+                fee.
+              </Text>
+            </section>
+          </div>
+          <div x-show="tab==='tab3'" style="display: none;">
+            <section class="py-4">
+              <Text tag="p" variant="sm">
+                We accept returns within 30 days of purchase. Items must be in
+                their original condition and packaging. Please visit our returns
+                page for more details.
+              </Text>
+            </section>
+          </div>
+          <div x-show="tab==='tab4'" style="display: none;">
+            <section class="py-4">
+              <div
+                class="flex flex-col"
+                x-data="{ 
+                  testimonials: [
+                    {
+                      name: 'Fernando Monte',
+                      date: '2025-12-01',
+                      datetime: '2025-12-01',
+                      img: '/avatars/1.jpg',
+                      text: 'The Nike Air Max 90 Black exceeded my expectations! Super comfortable and perfect for both running and casual wear.',
+                    },
+                    {
+                      name: 'Juan  Echanove',
+                      date: '2025-11-15',
+                      datetime: '2025-11-15',
+                      img: '/avatars/2.jpg',
+                      text: 'Stylish and lightweight. I wear them everywhere, but the fit was slightly snug at first. Broke in nicely after a few days.',
+                    },
+                  ] 
+                }"
+              >
+                <template
+                  x-for="testimonial in testimonials"
+                  :key="testimonial.datetime"
+                >
+                  <div class="flex gap-x-4 py-4">
+                    <div class="flex-none">
+                      <img
+                        :src="testimonial.img"
+                        :alt="testimonial.name"
+                        class="size-10 rounded-full bg-base-100"
+                      />
+                    </div>
+                    <div>
+                      <Text
+                        tag="h3"
+                        variant="textBase"
+                        class="font-medium text-base-900"
+                        x-text="testimonial.name"
+                      />
+                      <Text variant="textXS" class="text-base-500">
+                        <time
+                          :datetime="testimonial.datetime"
+                          x-text="testimonial.date"></time>
+                      </Text>
+                      <Text
+                        tag="p"
+                        variant="textSM"
+                        class="mt-1 text-base-500"
+                        x-text="testimonial.text"
+                      />
+                    </div>
+                  </div>
+                </template>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+      <!-- Product Details -->
+      <div>
+        <Text tag="h1" variant="textXL" class="font-medium"
+          >Nike Air Force 1´07 Fresh</Text
+        >
+        <Text tag="p" variant="textLG" class="mt-1"
+          >$152 <del class="opacity-70">$190</del>
+          <span class="text-green-400">20% Off</span></Text
+        >
+        <Text tag="p" variant="textSM" class="text-base-500 mt-2">
+          Men's shoes
+        </Text>
+        <Text tag="p" variant="textSM" class="text-base-500 mt-8">
+          Hitting the field in the late '60s, adidas airmaxS quickly became
+          soccer's "it" shoe.
+        </Text>
+        <div class="grid cols-1 md:grid-cols-2 gap-4 mt-4">
+          <!-- Color Selector -->
+          <div x-data="{ activeColor: null }">
+            <Text tag="p" variant="textXS" class="text-base-500 uppercase">
+              Color
+            </Text>
+            <fieldset
+              aria-label="Choose a color"
+              class="mt-2"
+              x-data="{ 
+                    colors: [
+                      { name: ' Black', ring: 'ring-base-700', bg: 'bg-base-400' },
+                      { name: ' Gray', ring: 'ring-base-300', bg: 'bg-base-200' },
+                      { name: ' Purple', ring: 'ring-purple-300', bg: 'bg-purple-200' },
+                      { name: ' Pink', ring: 'ring-pink-300', bg: 'bg-pink-200' },
+                      { name: ' Red', ring: 'ring-red-300', bg: 'bg-red-200' },
+                      { name: ' Orange', ring: 'ring-orange-300', bg: 'bg-orange-200' },
+                      { name: ' Yellow', ring: 'ring-yellow-300', bg: 'bg-yellow-200' },
+                      { name: ' Blue', ring: 'ring-blue-300', bg: 'bg-blue-200' },
+                      { name: ' Cyan', ring: 'ring-cyan-300', bg: 'bg-cyan-200' },
+                      { name: ' Green', ring: 'ring-green-300', bg: 'bg-green-200' },
+                      { name: ' Teal', ring: 'ring-teal-300', bg: 'bg-teal-200' },
+                    ],
+                    activeColor: ' Black' 
+                  }"
+            >
+              <div class="flex flex-wrap items-center gap-3">
+                <template x-for="color in colors" :key="color.name">
+                  <label
+                    :aria-label="color.name"
+                    class="relative -m-0.5 duration-300 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none"
+                    :class="{ 'ring-2 ring-offset-2 ring-base-900': activeColor === color.name }"
+                  >
+                    <input
+                      type="radio"
+                      name="color-choice"
+                      :value="color.name"
+                      class="sr-only"
+                      @click="activeColor = color.name"
+                    />
+                    <span
+                      aria-hidden="true"
+                      class="size-6 rounded-full ring-1"
+                      :class="`${color.ring} ${color.bg}`"></span>
+                  </label>
+                </template>
+              </div>
+            </fieldset>
+          </div>
+          <!-- Sizing -->
+          <div
+            x-data="{
+                    sizeSystem: 'US',
+                    activeSize: null,
+                    sizes: {
+                        US: ['6', '7', '8', '9', '10', '11', '12', '13'],
+                        EU: ['39', '40', '41', '42', '43', '44', '45', '46']
+                    }
+                }"
+          >
+            <div class="flex items-center justify-between">
+              <Text tag="p" variant="textXS" class="text-base-500 uppercase">
+                Shoe size
+              </Text>
+              <div>
+                <label for="size-system" class="sr-only">Size System</label>
+                <select
+                  id="size-system"
+                  x-model="sizeSystem"
+                  @change="activeSize = null"
+                  class="block w-auto h-8 pl-2.5 pr-8 py-2 text-xs text-base-900 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2"
+                >
+                  <option value="US">US</option>
+                  <option value="EU">EU</option>
+                </select>
+              </div>
+            </div>
+            <div class="grid grid-cols-4 gap-2 mt-2">
+              <template x-for="size in sizes[sizeSystem]" :key="size">
+                <div>
+                  <input
+                    type="radio"
+                    :id="'size-' + size"
+                    :value="size"
+                    name="size-choice"
+                    x-model="activeSize"
+                    class="sr-only peer"
+                  />
+                  <label
+                    :for="'size-' + size"
+                    x-text="size"
+                    class="flex items-center justify-center px-3 py-2 text-sm font-medium bg-white ring-1
+                           ring-base-200 rounded-md cursor-pointer duration-300 peer-checked:ring-2 peer-checked:ring-base-900 peer-checked:text-accent-500 text-base-500 peer-checked:ring-offset-2"
+                  ></label>
+                </div>
+              </template>
+            </div>
+          </div>
+        </div>
+        <!-- Action Buttons -->
+        <div class="flex flex-row gap-2 mt-8">
+          <Button size="sm" variant="default" class="w-full">Add to Cart</Button
+          >
+          <Button size="sm" variant="muted" class="w-full">Buy Now</Button>
+        </div>
+        <!-- Free shipping notice -->
+        <Text tag="p" variant="textSM" class="text-base-500 mt-1"
+          >Shop now. Pay in 30 days with Klarna. <a
+            href="#_"
+            class="underline text-black">Learn more</a
+          ></Text
+        >
+      </div>
+    </div>
+  </div>
+</section>
