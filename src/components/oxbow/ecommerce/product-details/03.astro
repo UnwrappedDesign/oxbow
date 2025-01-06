@@ -37,46 +37,48 @@ const productInfo = [
                     '/store/shoes/airmax/6.png'
                 ]
             }"
-        class="lg:sticky lg:top-24 lg:self-start flex flex-col gap-2"
+        class="lg:sticky lg:top-24 lg:self-start"
       >
-        <!-- Main Image -->
-        <div class="aspect-square bg-base-200 rounded-2xl overflow-hidden">
-          <img
-            :src="images[activeImage]"
-            class="size-full object-cover aspect-square"
-            alt="Product image"
-          />
-        </div>
-        <!-- Thumbnails -->
-        <div class="grid grid-cols-6 gap-2 w-full">
-          <template x-for="(image, index) in images" :key="index">
-            <button
-              @click="activeImage = index"
-              :class="{'ring-2 ring-base-900 ': activeImage === index}"
-              class="size-full bg-base-200 rounded-xl overflow-hidden aspect-square"
-            >
-              <img
-                :src="image"
-                class="size-full object-cover aspect-square"
-                alt="Product thumbnail"
-              />
-            </button>
-          </template>
+        <div class="grid grid-cols-7 gap-2">
+          <!-- Thumbnails -->
+          <div class="col-span-1 grid grid-cols-1 gap-2">
+            <template x-for="(image, index) in images" :key="index">
+              <button
+                @click="activeImage = index"
+                :class="{'ring-2 ring-base-900': activeImage === index}"
+                class="size-full bg-base-200 rounded-lg lg:rounded-xl overflow-hidden aspect-square"
+              >
+                <img
+                  :src="image"
+                  class="size-full object-cover aspect-square"
+                  alt="Product thumbnail"
+                />
+              </button>
+            </template>
+          </div>
+          <!-- Main Image -->
+          <div class="col-span-6 bg-base-200 rounded-2xl overflow-hidden">
+            <img
+              :src="images[activeImage]"
+              class="size-full object-cover aspect-square"
+              alt="Product image"
+            />
+          </div>
         </div>
       </div>
       <!-- Product Details -->
       <div class="flex flex-col">
         <div class="flex items-center justify-between">
-          <Text tag="h1" variant="textXL" class="font-medium"
+          <Text tag="h1" variant="textLG" class="font-medium"
             >Nike Air Force 1´07 Fresh</Text
           >
-          <Text tag="p" variant="textXL">$190</Text>
+          <Text tag="p" variant="textLG">$190</Text>
         </div>
-        <Text tag="p" variant="textBase" class="text-base-500 mt-4">
+        <Text tag="p" variant="textSM" class="text-base-500 mt-4">
           Hitting the field in the late '60s, adidas airmaxS quickly became
           soccer's "it" shoe. 
         </Text>
-        <div class="flex flex-col gap-4 mt-4">
+        <div class="grid cols-1 md:grid-cols-2 gap-4 mt-4">
           <!-- Color Selector -->
           <div x-data="{ activeColor: null }">
             <Text tag="p" variant="textXS" class="text-base-500 uppercase">
@@ -86,8 +88,8 @@ const productInfo = [
               aria-label="Choose a color"
               class="mt-2"
               x-data="{ 
-            colors: [
-              { name: ' Black', ring: 'ring-gray-700', bg: 'bg-gray-400' },
+              colors: [
+                { name: ' Black', ring: 'ring-gray-700', bg: 'bg-gray-400' },
     { name: ' Gray', ring: 'ring-gray-300', bg: 'bg-gray-200' },
     { name: ' Purple', ring: 'ring-purple-300', bg: 'bg-purple-200' },
     { name: ' Pink', ring: 'ring-pink-300', bg: 'bg-pink-200' },
@@ -98,9 +100,9 @@ const productInfo = [
     { name: ' Cyan', ring: 'ring-cyan-300', bg: 'bg-cyan-200' },
     { name: ' Green', ring: 'ring-green-300', bg: 'bg-green-200' },
     { name: ' Teal', ring: 'ring-teal-300', bg: 'bg-teal-200' },
-            ],
-            activeColor: null 
-          }"
+              ],
+              activeColor: ' Black' 
+            }"
             >
               <div class="flex flex-wrap items-center gap-3">
                 <template x-for="color in colors" :key="color.name">

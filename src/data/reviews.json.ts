@@ -52,8 +52,8 @@ const rhys: Template = {
 
 export const byName = {
   rhys,
-  jonSullivan,
   ianHawes,
+  jonSullivan,
   alexHughes,
   carl,
   eelco,
