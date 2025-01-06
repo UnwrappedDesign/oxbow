@@ -2,16 +2,12 @@
 
 ## Ecommerce
 ## Home Page
-- Prduct list
-- Product Overviews
+- Prduct list // 10 Done
+- Product Details 7 // Done
 - Category Previews
 - Promo Sections
 - Search Components 
-
-## Category or Product Listing Page
-- Product Lists
 - Filters
-- Product Comparisons (Compare features and pricing of multiple products)
 
 ## Product Detail Page
 - Product Quick Views
