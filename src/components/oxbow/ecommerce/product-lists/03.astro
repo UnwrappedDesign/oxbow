@@ -1,6 +1,7 @@
 ---
+export const description =
+  "Simple cards with long description, color, price and add to card below image"; 
 import Text from "@/components/fundations/typography/Text.astro";
-
 const products = [
   {
     image: "/store/backpacks/1.jpeg",
@@ -37,7 +38,7 @@ const products = [
       {
         products.map((article) => (
           <div class="flex flex-col gap-2 ">
-            <a href="#_">
+            <div class="relative">
               <div class="relative aspect-[8/12] ">
                 <img
                   src={article.image}
@@ -53,6 +54,9 @@ const products = [
                     class="text-base-900 font-medium"
                   >
                     {article.title}
+                    <a href="#_">
+                      <span class="absolute inset-0" />
+                    </a>
                   </Text>
                   <ul role="list" class="flex items-center gap-x-1">
                     {article.colors.map((color, index) => (
@@ -68,7 +72,7 @@ const products = [
                   {article.description}
                 </Text>
               </div>
-            </a>
+            </div>
             <div class="mt-12 flex items-center justify-between w-full">
               <Text tag="h3" variant="textSM" class="text-base-500 ">
                 {article.price}

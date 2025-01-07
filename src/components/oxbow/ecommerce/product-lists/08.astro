@@ -1,4 +1,5 @@
 ---
+export const description = "Simple cards with add to cart cta";
 import Text from "@/components/fundations/typography/Text.astro";
 import Cart from "@/components/fundations/icons/Cart.astro";
 
@@ -57,7 +58,7 @@ const products = [
     >
       {
         products.map((article) => (
-          <a href="#_" class="flex flex-col  bg-white">
+          <div class="flex flex-col  bg-white ">
             <div class="relative aspect-[4/3] w-full h-auto">
               <img
                 src={article.image}
@@ -67,13 +68,16 @@ const products = [
             </div>
             <div class="flex flex-col gap-2 h-full justify-between mt-2">
               <div>
-                <div class="flex items-center w-full justify-between">
+                <div class="flex items-center w-full justify-between ">
                   <Text
                     tag="h3"
                     variant="textSM"
-                    class="text-base-900 font-medium"
+                    class="text-base-900 font-medium relative"
                   >
                     {article.title}
+                    <a href="#_">
+                      <span class="absolute inset-0" />
+                    </a>
                   </Text>
                   <button class="text-base-500">
                     <Cart size="sm" />
@@ -87,7 +91,7 @@ const products = [
                 </Text>
               </div>
             </div>
-          </a>
+          </div>
         ))
       }
     </div>

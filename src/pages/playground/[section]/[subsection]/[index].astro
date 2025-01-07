@@ -1,5 +1,5 @@
 ---
-// Fundation
+// Foundation
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Playground from "@/components/playground/Playground.astro";
 import Text from "@/components/fundations/typography/Text.astro";
@@ -7,6 +7,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import IconButton from "@/components/fundations/buttons/IconButton.astro";
 import ChevronLeft from "@/components/fundations/icons/ChevronLeft.astro";
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
+
 // Parameters
 const { section, subsection, index } = Astro.params;
 const components = await Astro.glob(`@/components/oxbow/**/*.astro`);
@@ -18,18 +19,17 @@ const component = sectionComponents[parseInt(index) - 1];
 const formattedSubsection = subsection.replace("-", " ");
 const formattedIndex = index.replace("-", " ");
 
-/* const sectionDescription =
-  sectionComponents.find((component) => component.description)?.description ||
-  ""; */
+// Get the description for the current component
+const componentDescription = component?.description || "";
 ---
 
 <BaseLayout>
   <section>
-    <Wrapper variant="hero">
+    <Wrapper variant="hero" class="lg:!py-4">
       <div class="items-end flex justify-between w-full">
         <div>
           <button
-            class="flex items-center gap-2 text-base-500 hover:text-accent-500"
+            class="flex items-center gap-2 text-sm text-base-500 hover:text-accent-500"
             onclick="history.back();"
           >
             <svg
@@ -40,26 +40,26 @@ const formattedIndex = index.replace("-", " ");
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left size-5"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left size-4"
               ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
                 d="M5 12l14 0"></path><path d="M5 12l6 6"></path><path
                 d="M5 12l6 -6"></path></svg
-            >Go Back</button
+            >Go back</button
           >
           <Text
             tag="h1"
-            variant="displayBase"
-            class="uppercase mt-4 font-semibold tracking-tight text-black"
+            variant="textXL"
+            class="mt-4 capitalize font-semibold tracking-tight text-black"
           >
             {`${subsection.replace(/-/g, " ")} #${index.replace(/-/g, " ")}`}
           </Text>
-         <!--  {
-            sectionDescription && (
-              <Text tag="p" variant="textBase" class="mt-4 text-base-500">
-                {sectionDescription}
+          {
+            componentDescription && (
+              <Text tag="p" variant="textSM" class=" text-base-500">
+                {componentDescription}
               </Text>
             )
-          } -->
+          }
         </div>
         <div>
           <nav
@@ -67,7 +67,6 @@ const formattedIndex = index.replace("-", " ");
             aria-label="Pagination"
           >
             <!-- Previous Page Button -->
-
             <IconButton
               disable
               aria-label="Go to previous page"
@@ -93,7 +92,7 @@ const formattedIndex = index.replace("-", " ");
     </Wrapper>
   </section>
   <section class="border-t border-base-200">
-    <Wrapper variant="wide" class="py-12">
+    <Wrapper variant="wide">
       <Playground
         componentIndex={parseInt(index)}
         componentPath={component.file.replace(/.*\/src/, "src")}

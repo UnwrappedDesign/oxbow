@@ -1,4 +1,6 @@
 ---
+export const description =
+"Small cards with  with description and color choices";
 import Text from "@/components/fundations/typography/Text.astro";
 const products = [
   {
@@ -57,7 +59,7 @@ const products = [
     >
       {
         products.map((article) => (
-          <a href="#_" class="flex flex-row gap-4 ">
+          <div  class="flex flex-row gap-4 relative">
             <div class="relative aspect-[4/3] w-32 h-auto">
               <img
                 src={article.image}
@@ -73,6 +75,9 @@ const products = [
                   class="text-base-900 font-medium"
                 >
                   {article.title}
+                  <a href="#_">
+                      <span class="absolute inset-0" />
+                    </a>
                 </Text>
                 <Text tag="p" variant="textSM" class="mt-1 text-base-500 ">
                   {article.description}
@@ -93,7 +98,7 @@ const products = [
                 </ul>
               </div>
             </div>
-          </a>
+          </div>
         ))
       }
     </div>
