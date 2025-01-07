@@ -1,4 +1,6 @@
 ---
+export const description =
+  "Simple cards with  add to cart CTA and overlayed price";
 import Text from "@/components/fundations/typography/Text.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
 const products = [
@@ -31,10 +33,7 @@ const products = [
 
 <section>
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
-  
-    <div
-      class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 relative"
-    >
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 relative">
       {
         products.map((article) => (
           <div>
@@ -54,8 +53,11 @@ const products = [
                 >
                   {article.title}
                 </Text>
-                <Text tag="p" variant="textSM" class=" text-base-500 ">
+                <Text tag="p" variant="textSM" class=" text-base-500 relative">
                   {article.description}
+                  <a href="#_">
+                      <span class="absolute inset-0" />
+                    </a>
                 </Text>
               </div>
               <div class="absolute inset-x-0 top-0 flex  items-end justify-end overflow-hidden rounded-lg p-4">

@@ -1,4 +1,6 @@
 ---
+export const description =
+  "Simple cards with  price and discouned  price below image and cta";
 import Text from "@/components/fundations/typography/Text.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
 const products = [
@@ -61,7 +63,7 @@ const products = [
     >
       {
         products.map((article) => (
-          <div class="flex flex-col gap-2 ">
+          <div class="flex flex-col gap-2 relative">
             <div class="relative aspect-[4/4] ">
               <img
                 src={article.image}
@@ -86,6 +88,9 @@ const products = [
               >
                 <del class="opacity-70">{article.discountedPrice}</del>
                 <span class="text-base-900"> {article.price}</span>
+                <a href="#_">
+                      <span class="absolute inset-0" />
+                    </a>
               </Text>
               <Text tag="p" variant="textSM" class="mt-8 text-base-500 ">
                 {article.description}
