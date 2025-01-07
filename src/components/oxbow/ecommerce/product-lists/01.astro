@@ -1,4 +1,6 @@
 ---
+export const description =
+  "Simple cards with description and price below image";
 import Text from "@/components/fundations/typography/Text.astro";
 const products = [
   {
@@ -26,7 +28,7 @@ const products = [
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 relative">
       {
         products.map((article) => (
-          <a href="#_" class="flex flex-col gap-2 justify-between">
+          <div class="flex flex-col gap-2 justify-between relative">
             <div class="relative aspect-[4/3] ">
               <img
                 src={article.image}
@@ -42,13 +44,16 @@ const products = [
                   class="text-base-900 font-medium"
                 >
                   {article.title}
+                  <a href="#_">
+                    <span class="absolute inset-0" />
+                  </a>
                 </Text>
                 <Text tag="h3" variant="textSM" class="text-base-500 ">
                   {article.price}
                 </Text>
               </div>
             </div>
-          </a>
+          </div>
         ))
       }
     </div>
