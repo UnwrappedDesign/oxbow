@@ -228,7 +228,7 @@ const templates: { [key: string]: Template[] } = {
         "footer link",
       ],
     },
-    {
+   /*  {
       name: "Status Sections",
       link: "/playground/marketing/status",
       image: "status.png",
@@ -242,7 +242,7 @@ const templates: { [key: string]: Template[] } = {
         "status icon",
         "status link",
       ],
-    },
+    }, */
     {
       name: "Contact Sections",
       link: "/playground/marketing/contact",
@@ -373,7 +373,7 @@ const templates: { [key: string]: Template[] } = {
         "flyout menu link",
       ],
     },
-    {
+   /*  {
       name: "Sidebars",
       link: "/playground/application/sidebars",
       image: "sidebars.png",
@@ -384,7 +384,7 @@ const templates: { [key: string]: Template[] } = {
         "sidebar image",
         "sidebar link",
       ],
-    },
+    }, */
     {
       name: "Vertical navigation",
       link: "/playground/application/verticalnav",
@@ -442,7 +442,7 @@ const templates: { [key: string]: Template[] } = {
   ],
   // Overlays
   overlay: [
-    {
+    /* {
       name: "Modals",
       link: "/playground/application/modals",
       image: "modals.png",
@@ -453,8 +453,8 @@ const templates: { [key: string]: Template[] } = {
         "modal image",
         "modal link",
       ],
-    },
-    {
+    }, */
+   /*  {
       name: "Slideover",
       link: "/playground/application/slideover",
       image: "slideover.png",
@@ -465,7 +465,7 @@ const templates: { [key: string]: Template[] } = {
         "slideover image",
         "slideover link",
       ],
-    },
+    }, */
     {
       name: "Notifications",
       link: "/playground/application/notifications",
