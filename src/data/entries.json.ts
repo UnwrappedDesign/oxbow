@@ -385,7 +385,7 @@ const templates: { [key: string]: Template[] } = {
         "sidebar link",
       ],
     }, */
-    {
+    /* {
       name: "Vertical navigation",
       link: "/playground/application/verticalnav",
       image: "verticalnav.png",
@@ -396,7 +396,7 @@ const templates: { [key: string]: Template[] } = {
         "vertical navigation image",
         "vertical navigation link",
       ],
-    },
+    }, */
     {
       name: "Breadcrumbs",
       link: "/playground/application/breadcrumbs",
