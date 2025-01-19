@@ -1,0 +1,47 @@
+---
+export const description = "Search input with clear button";
+import Text from "@/components/fundations/typography/Text.astro";
+---
+
+<div
+  class="flex flex-wrap max-w-md items-end justify-center gap-4 py-12 mx-auto"
+>
+  <div class="space-y-1" x-data="{ inputValue: '' }">
+    <Text
+      for="input-clear"
+      tag="label"
+      variant="textSM"
+      class="text-base-500 font-medium"
+    >
+      Search
+    </Text>
+    <div class="relative">
+      <input
+        type="text"
+        id="input-clear"
+        name="input-clear"
+        x-model="inputValue"
+        placeholder="Enter text"
+        class="block w-full h-10 pl-4 pr-10 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+      />
+      <button
+        x-show="inputValue"
+        @click="inputValue = ''"
+        class="absolute inset-y-0 right-0 pr-3 flex items-center text-base-400 hover:text-base-500"
+      >
+        <svg
+          class="h-5 w-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"></path></svg
+        >
+      </button>
+    </div>
+  </div>
+</div>
