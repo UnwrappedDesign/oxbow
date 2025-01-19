@@ -1,5 +1,6 @@
 ---
 export const description = "Input with outer tags";
+import Badge from "@/components/fundations/badges/Badge.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
 
@@ -41,9 +42,7 @@ import Text from "@/components/fundations/typography/Text.astro";
         class="flex-1 h-10 px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
       />
       <template x-for="(tag, index) in tags" :key="index" class="flex flex-col">
-        <span
-          class="flex items-center justify-between w-auto px-2 py-1 text-sm bg-base-50 text-base-500 rounded-md group"
-        >
+        <Badge variant="muted" size="xs" class="flex items-center gap-1">
           <span x-text="tag"></span>
           <button
             @click="removeTag(index)"
@@ -65,7 +64,8 @@ import Text from "@/components/fundations/typography/Text.astro";
                 d="M18 6l-12 12"></path><path d="M6 6l12 12"></path></svg
             >
           </button>
-        </span>
+        </Badge>
+        
       </template>
     </div>
     <p class="text-sm text-base-400 mt-1">Press Enter to add a tag</p>
