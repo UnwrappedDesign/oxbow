@@ -1,0 +1,33 @@
+---
+export const description = "Textarea with Line Limit";
+import Text from "@/components/fundations/typography/Text.astro";
+---
+
+<div
+  class="flex flex-wrap max-w-md items-end justify-center gap-4 py-12 mx-auto"
+>
+  <div
+    class="space-y-1 w-full"
+    x-data="{ text: '', maxLines: 4 }"
+    x-init="$watch('text', () => { 
+  const lines = text.split('\n'); 
+  if (lines.length > maxLines) text = lines.slice(0, maxLines).join('\n'); 
+})"
+  >
+    <Text
+      for="line-limit-textarea"
+      tag="label"
+      variant="textSM"
+      class="text-base-500 font-medium"
+    >
+      Line-limited textarea
+    </Text>
+    <textarea
+      id="line-limit-textarea"
+      x-model="text"
+      rows="4"
+      placeholder="Max 4 lines"
+      class="block w-full px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+    ></textarea>
+  </div>
+</div>

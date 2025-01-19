@@ -1,0 +1,31 @@
+---
+export const description = "Textarea with Character Highlight";
+import Text from "@/components/fundations/typography/Text.astro";
+---
+
+<div
+  class="flex flex-wrap max-w-md items-end justify-center gap-4 py-12 mx-auto"
+>
+  <div class="space-y-1 w-full" x-data="{ text: '', threshold: 50 }">
+    <Text
+      for="highlight-textarea"
+      tag="label"
+      variant="textSM"
+      class="text-base-500 font-medium"
+    >
+      Highlight excess characters
+    </Text>
+    <textarea
+      id="highlight-textarea"
+      x-model="text"
+      rows="4"
+      placeholder="Type your message"
+      class="block w-full px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+      :class="{ 'ring-red-500 focus:ring-red-500': text.length > threshold }"
+    ></textarea>
+    <div class="mt-2 text-sm text-base-500">
+      Characters: <span x-text="text.length"></span> (Limit: <span
+        x-text="threshold"></span>)
+    </div>
+  </div>
+</div>

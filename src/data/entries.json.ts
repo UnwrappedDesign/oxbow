@@ -557,13 +557,13 @@ const templates: { [key: string]: Template[] } = {
       image: "inputs.png",
       tags: ["input", "input section", "input content", "input image", "input link"] 
     },
-    /* 
     { 
       name: "Textarea", 
       link: "/playground/application/textarea", 
       image: "textarea.png",
       tags: ["textarea", "textarea section", "textarea content", "textarea image", "textarea link"] 
     },
+    /* 
     { 
       name: "Checkboxes", 
       link: "/playground/application/checkboxes", 
