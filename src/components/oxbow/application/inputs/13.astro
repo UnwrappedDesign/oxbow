@@ -1,0 +1,64 @@
+---
+export const description = "Input with inner tags";
+import Text from "@/components/fundations/typography/Text.astro";
+---
+
+<div
+  class="flex flex-wrap max-w-md items-end justify-center gap-4 py-12 mx-auto"
+>
+  <div
+    class="space-y-1"
+    x-data="{ 
+  tags: ['Tag 1', 'Tag 2'],
+  newTag: '',
+  addTag() {
+    if (this.newTag.trim() !== '' && !this.tags.includes(this.newTag.trim())) {
+      this.tags.push(this.newTag.trim())
+      this.newTag = ''
+    }
+  },
+  removeTag(index) {
+    this.tags.splice(index, 1)
+  }
+}"
+  >
+    <Text
+      for="input-inner-tags"
+      tag="label"
+      variant="textSM"
+      class="text-base-500 font-medium"
+    >
+      Tags
+    </Text>
+    <div class="relative">
+      <div
+        class="flex flex-wrap items-center gap-2 p-1 min-h-10 bg-white border border-transparent rounded-lg ring-1 ring-base-200 focus-within:border-base-300 focus-within:ring-accent-500 focus-within:ring-offset-2 focus-within:ring-2"
+      >
+        <input
+          type="text"
+          id="input-inner-tags"
+          name="input-inner-tags"
+          placeholder="Add a tag"
+          x-model="newTag"
+          @keydown.enter.prevent="addTag()"
+          class="flex-1 min-w-[120px] h-8 px-2 text-sm text-accent-700 bg-transparent border-none focus:outline-none focus:ring-0"
+        />
+        <template x-for="(tag, index) in tags" :key="index">
+          <span
+            class="inline-flex items-center px-2 py-1 text-sm bg-base-50 text-base-500 rounded-md"
+          >
+            <span x-text="tag" class="max-w-[150px] truncate"></span>
+            <button
+              @click="removeTag(index)"
+              class="ml-1 text-base-400 hover:text-base-600"
+              type="button"
+            >
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-x size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
+            </button>
+          </span>
+        </template>
+      </div>
+    </div>
+    <p class="text-sm text-base-400 mt-1">Press Enter to add a tag</p>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+---
+export const description = "Simple input with label";
+import Text from "@/components/fundations/typography/Text.astro";
+---
+
+<div
+  class="flex flex-wrap max-w-md items-end justify-center gap-4 py-12 mx-auto"
+>
+  <div class="space-y-1" x-data="{ count: 0 }">
+    <Text
+      for="input-plus-minus"
+      tag="label"
+      variant="textSM"
+      class="text-base-500 font-medium"
+    >
+      Quantity
+    </Text>
+    <div class="flex items-center">
+      <button
+        @click="count--"
+        class="px-3 py-2 bg-base-100 rounded-l-lg hover:bg-base-200 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2"
+        >-</button
+      >
+      <input
+        type="number"
+        id="input-plus-minus"
+        name="input-plus-minus"
+        x-model="count"
+        class="w-16 h-10 px-0 text-center text-sm text-accent-700 border-t border-b border-base-200 focus:outline-none focus:ring-0"
+        readonly
+      />
+      <button
+        @click="count++"
+        class="px-3 py-2 bg-base-100 rounded-r-lg hover:bg-base-200 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2"
+        >+</button
+      >
+    </div>
+  </div>
+
+  <style>
+    /* Hide spinner arrows for input type number */
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input[type="number"] {
+      -moz-appearance: textfield; /* Firefox */
+    }
+  </style>
+</div>
