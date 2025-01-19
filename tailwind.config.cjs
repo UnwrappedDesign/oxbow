@@ -14,10 +14,7 @@ module.exports = {
       pattern: /^gap-/,
     },
     {
-      pattern: /^bg-(gray|purple|pink|red|orange|yellow|blue|cyan|green|teal)-[0-9]{3}/,
-    },
-    {
-      pattern: /^ring-(gray|purple|pink|red|orange|yellow|blue|cyan|green|teal)-[0-9]{3}/,
+      pattern: /^bg-/,
     },
     {
       pattern: /^from-/,
@@ -26,10 +23,9 @@ module.exports = {
       pattern: /^to-/,
     },
     {
-      pattern: /^ring-(2|base-900)/,
+      pattern: /^ring-/,
     },
   ],
-
 
   theme: {
     extend: {
