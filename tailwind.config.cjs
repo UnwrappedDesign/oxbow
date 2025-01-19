@@ -14,7 +14,10 @@ module.exports = {
       pattern: /^gap-/,
     },
     {
-      pattern: /^bg-/,
+      pattern: /^bg-(gray|purple|pink|red|orange|yellow|blue|cyan|green|teal)-[0-9]{3}/,
+    },
+    {
+      pattern: /^ring-(gray|purple|pink|red|orange|yellow|blue|cyan|green|teal)-[0-9]{3}/,
     },
     {
       pattern: /^from-/,
@@ -23,31 +26,10 @@ module.exports = {
       pattern: /^to-/,
     },
     {
-      pattern: /^ring-/,
+      pattern: /^ring-(2|base-900)/,
     },
-    'ring-gray-700',
-    'bg-gray-400',
-    'ring-gray-300',
-    'bg-gray-200',
-    'ring-purple-300',
-    'bg-purple-200',
-    'ring-pink-300',
-    'bg-pink-200',
-    'ring-red-300',
-    'bg-red-200',
-    'ring-orange-300',
-    'bg-orange-200',
-    'ring-yellow-300',
-    'bg-yellow-200',
-    'ring-blue-300',
-    'bg-blue-200',
-    'ring-cyan-300',
-    'bg-cyan-200',
-    'ring-green-300',
-    'bg-green-200',
-    'ring-teal-300',
-    'bg-teal-200',
   ],
+
 
   theme: {
     extend: {
