@@ -551,12 +551,13 @@ const templates: { [key: string]: Template[] } = {
         "form layout link",
       ],
     },
-    /* { 
+    { 
       name: "Inputs", 
       link: "/playground/application/inputs", 
       image: "inputs.png",
       tags: ["input", "input section", "input content", "input image", "input link"] 
     },
+    /* 
     { 
       name: "Textarea", 
       link: "/playground/application/textarea", 
