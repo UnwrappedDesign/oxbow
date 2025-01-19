@@ -1,0 +1,43 @@
+---
+export const description = "Range quantity input with + and - buttons";
+import Text from "@/components/fundations/typography/Text.astro";
+---
+
+<div
+  class="flex flex-wrap max-w-md items-end justify-center gap-4 py-12 mx-auto"
+>
+<div class="space-y-1" x-data="{ value: 50, min: 0, max: 100 }">
+  <Text for="input-chevrons" tag="label" variant="textSM" class="text-base-500 font-medium">
+    Value
+  </Text>
+  <div class="flex items-center">
+    <button @click="value = Math.max(min, value - 1)" class="px-3 py-2 h-10 bg-base-100 rounded-l-lg hover:bg-base-200 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+    </button>
+    <input
+      type="number"
+      id="input-chevrons"
+      name="input-chevrons"
+      x-model="value"
+      class="w-16 h-10 px-3 py-2 text-center text-sm text-accent-700 border-t border-b border-base-200 focus:outline-none focus:ring-0"
+      readonly
+    >
+    <button @click="value = Math.min(max, value + 1)" class="px-3 h-10 py-2 bg-base-100 rounded-r-lg hover:bg-base-200 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+    </button>
+  </div>
+</div>
+
+<style>
+  /* Hide spinner arrows for input type number */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+  }
+</style>
+</div>
