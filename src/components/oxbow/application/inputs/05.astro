@@ -2,43 +2,57 @@
 export const description = "Input with mention";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
+
 <div
   class="flex flex-wrap relative max-w-md items-end justify-center gap-4 pb-32 pt-12 mx-auto"
 >
-
-<div class="space-y-1" x-data="{ query: '', suggestions: ['Mike_Andreuzza', 'GPerales'], open: false }">
-  <Text for="input-mention" tag="label" variant="textSM" class="text-base-500 font-medium">
-    Username
-  </Text>
-  <div class="relative">
-    <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-base-400">@</span>
-    <input
-      type="text"
-      id="input-mention"
-      name="input-mention"
-      placeholder="username"
-      x-model="query"
-      @focus="open = true"
-      @click.away="open = false"
-      class="block w-full h-10 pl-8 pr-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
-    />
-    <!-- Dropdown -->
-    <div 
-      x-show="open" 
-      x-transition
-      class="absolute z-10 w-full mt-1 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5"
+  <div
+    class="space-y-1 w-full"
+    x-data="{ query: '', suggestions: ['Mike_Andreuzza', 'GPerales'], open: false }"
+  >
+    <Text
+      for="input-mention"
+      tag="label"
+      variant="textSM"
+      class="text-base-500 font-medium"
     >
-      <ul class="py-1">
-        <template x-for="suggestion in suggestions.filter(s => s.includes(query))" :key="suggestion">
-          <li 
-            x-text="suggestion"
-            @click="query = suggestion; open = false"
-            class="px-4 py-2 text-sm text-accent-700 hover:bg-accent-50 cursor-pointer"
-          ></li>
-        </template>
-      </ul>
+      Username
+    </Text>
+    <div class="relative">
+      <span
+        class="absolute inset-y-0 left-0 flex items-center pl-3 text-base-400"
+        >@</span
+      >
+      <input
+        type="text"
+        id="input-mention"
+        name="input-mention"
+        placeholder="username"
+        x-model="query"
+        @focus="open = true"
+        @click.away="open = false"
+        class="block w-full h-10 pl-8 pr-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+      />
+      <!-- Dropdown -->
+      <div
+        x-show="open"
+        x-transition
+        class="absolute z-10 w-full mt-1 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5"
+      >
+        <ul class="py-1">
+          <template
+            x-for="suggestion in suggestions.filter(s => s.includes(query))"
+            :key="suggestion"
+          >
+            <li
+              x-text="suggestion"
+              @click="query = suggestion; open = false"
+              class="px-4 py-2 text-sm text-accent-700 hover:bg-accent-50 cursor-pointer"
+            >
+            </li>
+          </template>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
-
 </div>
