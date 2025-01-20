@@ -1,0 +1,56 @@
+---
+export const description = "Radio Buttons with Icons";
+import Text from "@/components/fundations/typography/Text.astro";
+import Badge from "@/components/fundations/badges/Badge.astro";
+---
+<div class="flex max-w-md mx-auto items-center p-12">
+  <div class="flex flex-col gap-2" x-data="{ selected: 'email' }">
+    <div class="flex items-center gap-3 p-4 border rounded-lg border-base-200">
+      <input
+        id="radio-email"
+        name="radio-with-icons"
+        type="radio"
+        value="email"
+        x-model="selected"
+        class="size-4 rounded-full border-base-300 text-accent-600 focus:ring-accent-600 shadow"
+      />
+      <div class="flex items-center gap-3">
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-mail size-5 text-base-500"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg>
+        <Text
+          for="radio-email"
+          tag="label"
+          class="block text-sm font-medium text-base-500"
+        >
+          Email Notifications
+        </Text>
+      </div>
+    </div>
+  
+    <div class="flex items-center gap-3 p-4 border rounded-lg border-base-200">
+      <input
+        id="radio-sms"
+        name="radio-with-icons"
+        type="radio"
+        value="sms"
+        x-model="selected"
+        class="size-4 rounded-full border-base-300 text-accent-600 focus:ring-accent-600 shadow"
+      />
+      <div class="flex items-center gap-3">
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-device-mobile-message size-5 text-base-500"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11 3h10v8h-3l-4 2v-2h-3z" /><path d="M15 16v4a1 1 0 0 1 -1 1h-8a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1h2" /><path d="M10 18v.01" /></svg>
+        <Text
+          for="radio-sms"
+          tag="label"
+          class="block text-sm font-medium text-base-500"
+        >
+          SMS Notifications
+        </Text>
+      </div>
+    </div>
+  
+    <div class="mt-2 text-sm text-base-500">
+      Selected: <span x-text="selected"></span>
+    </div>
+  </div>
+  
+
+</div>

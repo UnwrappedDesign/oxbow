@@ -1,0 +1,65 @@
+---
+export const description = "Radio Group for Plan Selection";
+import Text from "@/components/fundations/typography/Text.astro";
+import Badge from "@/components/fundations/badges/Badge.astro";
+---
+
+<div class="flex max-w-md mx-auto items-center p-12">
+  <div class="flex flex-col gap-8" x-data="{ selectedPlan: 'basic' }">
+    <div class="flex items-start gap-3">
+      <input
+        id="radio-basic"
+        name="plan"
+        type="radio"
+        value="basic"
+        x-model="selectedPlan"
+        class="size-4 rounded-full border-base-300 text-accent-600 focus:ring-accent-600 shadow"
+      />
+      <div>
+        <label
+          for="radio-basic"
+          class="block text-sm font-medium text-base-500"
+        >
+          Basic
+        </label>
+        <p class="text-sm text-base-400">$10/month for basic features.</p>
+      </div>
+    </div>
+    <div class="flex items-start gap-3">
+      <input
+        id="radio-pro"
+        name="plan"
+        type="radio"
+        value="pro"
+        x-model="selectedPlan"
+        class="size-4 rounded-full border-base-300 text-accent-600 focus:ring-accent-600 shadow"
+      />
+      <div>
+        <label for="radio-pro" class="block text-sm font-medium text-base-500">
+          Pro
+          <Badge variant="accent" size="xs" class="ml-2"> Popular </Badge>
+        </label>
+        <p class="text-sm text-base-400">$30/month for advanced features.</p>
+      </div>
+    </div>
+    <div class="flex items-start gap-3">
+      <input
+        id="radio-enterprise"
+        name="plan"
+        type="radio"
+        value="enterprise"
+        x-model="selectedPlan"
+        class="size-4 rounded-full border-base-300 text-accent-600 focus:ring-accent-600 shadow"
+      />
+      <div>
+        <label
+          for="radio-enterprise"
+          class="block text-sm font-medium text-base-500"
+        >
+          Enterprise
+        </label>
+        <p class="text-sm text-base-400">Custom pricing for enterprises.</p>
+      </div>
+    </div>
+  </div>
+</div>
