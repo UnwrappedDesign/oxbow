@@ -1,0 +1,36 @@
+---
+export const description = "Checkbox with Expansion";
+import Text from "@/components/fundations/typography/Text.astro";
+---
+<div
+  class="flex  max-w-md mx-auto items-center p-12"
+>
+<div class="flex flex-col gap-1 " x-data="{ expanded: false }">
+  <div class="flex items-start gap-3">
+    <input
+      id="terms-acceptance-checkbox"
+      name="terms-acceptance-checkbox"
+      type="checkbox"
+      @change="expanded = !expanded"
+      class="size-4 rounded border-base-300 text-accent-600 focus:ring-accent-600 shadow"
+    />
+    <div>
+      <Text
+        for="terms-acceptance-checkbox"
+        tag="label"
+        class="block text-sm font-medium text-base-500"
+      >
+        Accept terms and conditions
+      </Text>
+      <Text tag="p" variant="textSM" class=" text-base-400">
+        Please review and accept the terms and conditions to proceed.
+      </Text>
+    </div>
+  </div>
+  <div x-show="expanded" class="mt-2 ml-7 text-sm text-base-400">
+    By checking this box, you confirm that you have read and agreed to the terms and conditions of our service.
+  </div>
+</div>
+
+
+</div>

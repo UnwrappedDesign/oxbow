@@ -1,0 +1,24 @@
+---
+export const description = "Basic Checkbox with State Tracking";
+import Text from "@/components/fundations/typography/Text.astro";
+---
+<div
+  class="flex  max-w-md mx-auto items-center p-12"
+>
+<div class="flex items-center gap-2 w-full"  x-data="{ checked: false }">
+    <input
+      id="basic-checkbox"
+      name="basic-checkbox"
+      type="checkbox"
+      x-model="checked"
+      class="size-4 rounded border-base-300 text-accent-600 focus:ring-accent-600 shadow"
+    />
+    <Text
+      for="basic-checkbox"
+      tag="label"
+      class="block text-sm text-base-500"
+    >
+      Basic checkbox (<span x-text="checked ? 'Checked' : 'Unchecked'"></span>)
+    </Text>
+  </div>
+</div>

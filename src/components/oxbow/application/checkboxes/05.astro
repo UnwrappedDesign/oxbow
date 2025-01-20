@@ -1,0 +1,27 @@
+---
+export const description = "Checkbox with Counter";
+import Text from "@/components/fundations/typography/Text.astro";
+---
+<div
+  class="flex  max-w-md mx-auto items-center p-12"
+>
+<div class="flex items-center gap-2 w-full" x-data="{ count: 0 }">
+    <input
+      id="counter-checkbox"
+      name="counter-checkbox"
+      type="checkbox"
+      @change="count += $event.target.checked ? 1 : -1"
+      class="size-4 rounded border-base-300 text-accent-600 focus:ring-accent-600 shadow"
+    />
+    <Text
+      for="counter-checkbox"
+      tag="label"
+      class="block text-sm text-base-500"
+    >
+      Checkbox clicked <span x-text="count"></span> times
+    </Text>
+  </div>
+  
+
+  
+</div>
