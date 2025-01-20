@@ -1,0 +1,44 @@
+---
+export const description = "Radio Button Group for Mood Rating";
+import Text from "@/components/fundations/typography/Text.astro";
+---
+
+<div class="flex max-w-md mx-auto items-center p-12">
+  <div class="flex flex-col gap-2" x-data="{ mood: '' }">
+    <div class="flex items-center gap-2">
+      <label class="flex items-center">
+        <input
+          type="radio"
+          name="mood"
+          value="happy"
+          x-model="mood"
+          class="hidden"
+        />
+        <span class="text-2xl cursor-pointer">😊</span>
+      </label>
+      <label class="flex items-center">
+        <input
+          type="radio"
+          name="mood"
+          value="neutral"
+          x-model="mood"
+          class="hidden"
+        />
+        <span class="text-2xl cursor-pointer">😐</span>
+      </label>
+      <label class="flex items-center">
+        <input
+          type="radio"
+          name="mood"
+          value="sad"
+          x-model="mood"
+          class="hidden"
+        />
+        <span class="text-2xl cursor-pointer">😢</span>
+      </label>
+    </div>
+    <p class="mt-2 text-sm text-base-500">
+      Selected mood: <span x-text="mood"></span>
+    </p>
+  </div>
+</div>

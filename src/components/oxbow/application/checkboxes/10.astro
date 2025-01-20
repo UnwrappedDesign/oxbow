@@ -1,0 +1,36 @@
+---
+export const description = "Checkbox with Indication Badge";
+import Text from "@/components/fundations/typography/Text.astro";
+import Badge from "@/components/fundations/badges/Badge.astro";
+---
+<div class="flex max-w-md mx-auto items-center p-12">
+  <div
+    class="flex gap-2 flex-col w-full" x-data="{ checked: false }">
+  <div class="flex items-center gap-3 justify-between w-full">
+    <div class="flex items-center gap-3 h-full">
+      <input
+        id="badge-checkbox"
+        name="badge-checkbox"
+        type="checkbox"
+        x-model="checked"
+        class="size-4 rounded border-base-300 text-accent-600 focus:ring-accent-600 shadow"
+      />
+      <Text
+        for="badge-checkbox"
+        tag="label"
+        class="block text-sm text-base-500"
+      >
+        Checkbox with badge
+      </Text>
+    </div>
+    <Badge
+    x-show="checked"
+    variant="accent"
+    size="xs">
+    Checked
+  </Badge>
+    
+  </div>
+</div>
+
+</div>

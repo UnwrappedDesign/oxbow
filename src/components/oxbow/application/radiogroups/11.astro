@@ -1,0 +1,95 @@
+---
+export const description = "Radio Group for Theme Selection";
+import Text from "@/components/fundations/typography/Text.astro";
+---
+
+<div class="flex max-w-md mx-auto items-center p-12">
+  <div class="flex flex-col gap-2" x-data="{ theme: 'light' }">
+    <p class="text-base-500 text-sm font-medium">Choose a theme</p>
+    <div class="flex gap-6">
+      <!-- Light Theme -->
+      <label class="flex flex-col  gap-2 cursor-pointer">
+        <div
+          class="flex items-center justify-center h-24 ring-1 ring-base-100 bg-base-50 rounded"
+        >
+          <img
+            src="/images/forms/light.png"
+            alt="Light theme placeholder"
+            class="rounded"
+          />
+        </div>
+        <div class="flex items-center gap-2">
+          <input
+            type="radio"
+            name="theme"
+            value="light"
+            x-model="theme"
+            class="size-4 accent-accent-600 border-base-300"
+          />
+          <span
+            class="text-sm font-medium"
+            :class="{ 'text-accent-600': theme === 'light', 'text-base-500': theme !== 'light' }"
+          >
+            Light
+          </span>
+        </div>
+      </label>
+
+      <!-- Dark Theme -->
+      <label class="flex flex-col  gap-2 cursor-pointer">
+        <div
+          class="flex items-center justify-center h-24  ring-1 ring-base-100 bg-base-50 rounded"
+        >
+          <img
+             src="/images/forms/dark.png"
+            alt="Dark theme placeholder"
+            class="rounded"
+          />
+        </div>
+       <div  class="flex items-center gap-2 ">
+          <input
+            type="radio"
+            name="theme"
+            value="dark"
+            x-model="theme"
+            class="size-4 accent-accent-600 border-base-300"
+          />
+          <span
+            class="text-sm font-medium"
+            :class="{ 'text-accent-600': theme === 'dark', 'text-base-500': theme !== 'dark' }"
+          >
+            Dark
+          </span>
+       </div>
+      </label>
+
+      <!-- System Theme -->
+      <label class="flex flex-col  gap-2 cursor-pointer">
+        <div
+          class="flex items-center justify-center h-24 ring-1 ring-base-100 bg-base-50 rounded"
+        >
+          <img
+             src="/images/forms/system.png"
+            alt="System theme placeholder"
+            class="rounded"
+          />
+        </div>
+        <div  class="flex items-center gap-2 ">
+          <input
+            type="radio"
+            name="theme"
+            value="system"
+            x-model="theme"
+            class="size-4 accent-accent-600 border-base-300"
+          />
+          <span
+            class="text-sm font-medium"
+            :class="{ 'text-accent-600': theme === 'system', 'text-base-500': theme !== 'system' }"
+          >
+            System
+          </span>
+        </div>
+      </label>
+    </div>
+  </div>
+</div>

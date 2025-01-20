@@ -563,7 +563,6 @@ const templates: { [key: string]: Template[] } = {
       image: "textarea.png",
       tags: ["textarea", "textarea section", "textarea content", "textarea image", "textarea link"] 
     },
-    /* 
     { 
       name: "Checkboxes", 
       link: "/playground/application/checkboxes", 
@@ -571,23 +570,25 @@ const templates: { [key: string]: Template[] } = {
       tags: ["checkbox", "checkbox section", "checkbox content", "checkbox image", "checkbox link"] 
     },
     { 
+      name: "Radio Groups", 
+      link: "/playground/application/radiogroups", 
+      image: "radiogroups.png",
+      tags: ["radio group", "radio group section", "radio group content", "radio group image", "radio group link"] 
+    },
+    { 
       name: "Toggles", 
       link: "/playground/application/toggles", 
       image: "toggles.png",
       tags: ["toggle", "toggle section", "toggle content", "toggle image", "toggle link"] 
     },
+    /* 
     { 
       name: "Selects", 
       link: "/playground/application/selects", 
       image: "selects.png",
       tags: ["select", "select section", "select content", "select image", "select link"] 
     },
-    { 
-      name: "Radio Groups", 
-      link: "/playground/application/radiogroups", 
-      image: "radiogroups.png",
-      tags: ["radio group", "radio group section", "radio group content", "radio group image", "radio group link"] 
-    }, */
+     */
   ],
   // Elements
   elements: [

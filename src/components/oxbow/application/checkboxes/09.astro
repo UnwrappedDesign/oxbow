@@ -1,0 +1,21 @@
+---
+export const description = "Checkbox with Color Themes";
+import Text from "@/components/fundations/typography/Text.astro";
+---
+
+<div class="flex max-w-md mx-auto items-center p-12">
+  <div class="flex gap-2 flex-col w-full" x-data="{ theme: 'light' }">
+    <input
+      id="theme-checkbox"
+      name="theme-checkbox"
+      type="checkbox"
+      x-model="theme"
+      :value="'dark'"
+      :checked="theme === 'dark'"
+      class="size-4 rounded border-base-300 text-accent-600 focus:ring-accent-600 shadow"
+    />
+    <Text for="theme-checkbox" tag="label" class="block text-sm text-base-500">
+      Dark mode
+    </Text>
+  </div>
+</div>

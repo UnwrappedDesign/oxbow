@@ -1,0 +1,32 @@
+---
+export const description = "Checkbox with Hover Tooltip";
+import Text from "@/components/fundations/typography/Text.astro";
+---
+
+<div
+  class="flex  max-w-md mx-auto items-center p-12"
+>
+<div class="flex items-center gap-2 w-full" x-data="{ tooltip: false }">
+    <input
+      id="hover-tooltip"
+      name="hover-tooltip"
+      type="checkbox"
+      @mouseover="tooltip = true"
+      @mouseleave="tooltip = false"
+      class="size-4 rounded border-base-300 text-accent-600 focus:ring-accent-600 shadow"
+    />
+    <Text
+      for="hover-tooltip"
+      tag="label"
+      class="block text-sm text-base-500 relative"
+    >
+      Hover over me
+      <span
+        x-show="tooltip"
+        class="absolute top-6 left-0 px-2 py-1 text-xs text-white bg-black rounded"
+      >
+        Tooltip text
+      </span>
+    </Text>
+  </div>
+</div>
