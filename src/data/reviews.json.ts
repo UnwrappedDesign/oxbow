@@ -49,8 +49,15 @@ const rhys: Template = {
   text: "Pretty jazzed to get stuck in with Oxbow! I've also purchased Lexington themes in the past for Astro, and as always, the quality of work is top-notch. Thank you for creating such amazing products. It helps tremendously with solo dev work!",
   image: "/reviews/rhys.avif",
 };
+const mubs: Template = {
+  name: "Mubs",
+  work: "mubashariqbal.com",
+  text: "Purchased a license for Oxbow UI (oxbowui.com) by @michaelandreuzza.com will be using it for parts if not all of the project.  Only $67 right now, seems like real bargain. Will be starting with a simple landing page, while I build out the functionality.",
+  image: "/reviews/mubs.jpg",
+};
 
 export const byName = {
+  mubs,
   rhys,
   ianHawes,
   jonSullivan,
