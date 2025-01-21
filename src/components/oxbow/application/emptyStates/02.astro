@@ -1,72 +1,83 @@
 ---
+export const description = "Enhanced file upload empty state";
+
 import Text from "@/components/fundations/typography/Text.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
 ---
 
 <section>
   <div class="relative px-8 py-12 mx-auto md:px-12 lg:px-24 max-w-7xl">
-    <div class="text-center lg:text-balance max-w-xl mx-auto">
-      <div>
-        <label
-          for="cover-photo"
-          class="sr-only"
-          >upload</label
+    <Text
+      tag="h3"
+      variant="textSM"
+      class="text-base-900 font-medium text-center">Upload Your Files</Text
+    >
+    <div
+      class="flex flex-col items-center mt-4 justify-center w-full max-w-lg mx-auto"
+    >
+      <label
+        for="dropzone-file"
+        class="flex flex-col items-center justify-center w-full h-64 border border-dashed border-base-200 rounded-lg cursor-pointer bg-white hover:bg-base-50 transition-colors duration-200 ease-in-out mb-4"
+      >
+        <div class="flex flex-col items-center justify-center p-8">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-cloud-upload size-8 text-accent-500"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path
+              d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1"
+            ></path>
+            <path d="M9 15l3 -3l3 3"></path>
+            <path d="M12 12l0 9"></path>
+          </svg>
+          <Text
+            tag="p"
+            variant="textSM"
+            class="mt-2 font-semibold text-base-500"
+          >
+            Click to upload or drag and drop
+          </Text>
+          <Text tag="p" variant="textXs" class="mt-2 text-base-400">
+            SVG, PNG, JPG, or GIF (MAX. 800x400px)
+          </Text>
+        </div>
+        <input id="dropzone-file" type="file" class="hidden" multiple />
+      </label>
+
+      <div class="w-full bg-base-200 rounded-full h-2.5 mb-4">
+        <div class="bg-accent-500 h-2.5 rounded-full" style="width: 0%"></div>
+      </div>
+      <div class="flex items-center justify-between gap-4 mt-2 w-full">
+        <Text tag="p" variant="textXS" class="text-base-400 w-1/2">
+          Maximum file size: 5MB | Up to 10 files
+        </Text>
+        <Button  size="xs" variant="accent">
+          Browse files
+        </Button>
+
+      </div>
+
+      <div class="w-full mt-8">
+        <Text
+          tag="h3"
+          variant="textSM"
+          class="font-semibold text-base-700 mb-2"
         >
-        <div
-          class="mt-2 flex justify-center rounded-lg border border-dashed border-base-300 px-6 py-10">
-          <div class="text-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-photo size-20 mx-auto text-base-300"
-              ><path
-                stroke="none"
-                d="M0 0h24v24H0z"
-                fill="none"
-              ></path><path d="M15 8h.01"></path><path
-                d="M3 6a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v12a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3v-12z"
-              ></path><path d="M3 16l5 -5c.928 -.893 2.072 -.893 3 0l5 5"
-              ></path><path d="M14 14l1 -1c.928 -.893 2.072 -.893 3 0l3 3"
-              ></path></svg
-            >
-            <div
-              class="mt-4 flex text-sm leading-6 text-base-600 justify-center">
-              <label
-                for="file-upload"
-                class="relative cursor-pointer rounded-md bg-white font-medium text-accent-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-accent-600 focus-within:ring-offset-2 hover:text-accent-500 p-1">
-                <div class="flex gap-2 items-center">
-                  <Text
-                    tag="p"
-                    variant="textSM"
-                    class="text-base-500 font-medium">
-                    Drag and drop an image, or
-                  </Text>
-                  <Button
-                    variant="muted"
-                    size="xs">
-                    Browser
-                  </Button>
-                </div>
-                <input
-                  id="file-upload"
-                  name="file-upload"
-                  type="file"
-                  class="sr-only"
-                />
-              </label>
-            </div>
-            <Text
-              tag="p"
-              variant="textXS"
-              class="text-base-500 font-medium mt-4">
-              Minimum 1600px width recommended. Max 10MB each (20MB for videos)
-            </Text>
-          </div>
+          Recently Uploaded
+        </Text>
+        <div class="border-t border-base-100 rounded-lg p-4 text-center">
+          <Text tag="p" variant="textSM" class="text-base-500"
+            >No files uploaded yet</Text
+          >
         </div>
       </div>
     </div>
