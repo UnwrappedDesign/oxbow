@@ -6,6 +6,8 @@ import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import { formatDistanceToNowStrict } from "date-fns";
 import updates from "@/data/updates.json";
+import DynamicGrid from "@/components/DynamicGrid.astro";
+
 const { section, subsection } = Astro.params;
 const components = await Astro.glob(`@/components/oxbow/**/*.astro`);
 const sectionComponents = components.filter((component) => {
@@ -20,6 +22,41 @@ const formattedSubsection = subsection.replace("-", " ");
 const user = Astro.locals.user;
 
 const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+
+// Define the number of columns based on the current page
+const gridColumns = {
+  // Marketing
+  "marketing/hero": 3,
+  "marketing/features": 3,
+  "marketing/logo-clouds": 2,
+  // Application
+  "application/navbars": 1,
+  "application/breadcrumbs": 2,
+  "application/pagination": 1,
+  "application/tabs": 1,
+  "application/notifications": 2,
+  "application/alerts": 1,
+  "application/banners": 1,
+  "application/inputs": 2,
+  "application/textarea": 2,
+  "application/checkboxes": 2,
+  "application/radiogroups": 2,
+  "application/toggles": 2,
+  "application/typography": 2,
+  "application/buttons": 2,
+  "application/button-groups": 2,
+  "application/badges": 2,
+  "application/avatars": 2,
+};
+
+// Get the current page path
+const currentPage = `${section}/${subsection}`;
+
+// Set the number of columns, defaulting to 3 if not specified
+const lgColumns = gridColumns[currentPage] || 3;
+
+// Define the grid columns class based on the lgColumns
+const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
 ---
 
 <BaseLayout>
@@ -55,7 +92,7 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
   <section class="border-t border-base-200">
     <Wrapper variant="standard" class="py-8">
       <div
-        class="relative w-full grid grid-cols-1 gap-x-6 md:grid-cols-2 gap-y-12 xl:gap-x-8 lg:gap-y-24 lg:grid-cols-3 items-start"
+        class={`relative w-full grid grid-cols-1 gap-x-6 md:grid-cols-2 gap-y-12 xl:gap-x-8 lg:gap-y-24 ${gridColumnsClass} items-start`}
       >
         {
           sectionComponents.map((component, index) => {
@@ -124,7 +161,7 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
                 </div>
 
                 <Image
-                  src={images[imagePath]()}
+                  src={images[imagePath]() || "/placeholder.svg"}
                   alt={`${subsection} preview ${index + 1}`}
                   class="w-full object-cover  border mt-2  border-base-200 rounded-xl ring-4 ring-base-50 group-hover:ring-base-100 transition-all duration-300 ease-in-out cursor-pointer"
                 />
