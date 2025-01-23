@@ -57,9 +57,9 @@ const mubs: Template = {
 };
 
 export const byName = {
-  mubs,
   rhys,
   ianHawes,
+  mubs,
   jonSullivan,
   alexHughes,
   carl,
