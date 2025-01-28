@@ -6,12 +6,12 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 const isIndexPage = Astro.url.pathname === "/";
 ---
 
-<section class="border-t border-base-200">
+<section>
   <!-- Conditionally render this section based on the page -->
   <Wrapper variant="standard" class="py-12 space-y-12">
     {
       !isIndexPage && (
-        <div class="relative p-10 lg:p-10 bg-accent-600 overflow-hidden ring-4 ring-base-100 rounded-xl border border-base-200">
+        <div class="relative p-10 lg:p-10 bg-accent-950 overflow-hidden  rounded-xl border border-base-200">
           <img
             class="invert absolute opacity-10 lg:-right-64 -top-12"
             src="/images/oxbow/oxbowLogoDark.png"
@@ -21,22 +21,22 @@ const isIndexPage = Astro.url.pathname === "/";
             <Text
               tag="p"
               variant="textXS"
-              class="font-bold mt-4 uppercase text-white"
+              class="font-medium mt-4 uppercase text-white"
             >
-              Get acces
+              Get access
             </Text>
             <Text
               tag="h3"
-              variant="displayLG"
-              class="mt-4 text-white font-semibold text-balance"
+              variant="textXL"
+              class="mt-4 text-white font-medium text-balance"
             >
               Get lifetime access to all components, elements, and layouts for
               only <del class="opacity-45">$149</del> $67
             </Text>
             <Text
               tag="p"
-              variant="textXL"
-              class="mt-2 text-base-200 font-medium text-balance max-w-xl"
+              variant="textBase"
+              class="mt-2 text-base-400  text-balance max-w-xl"
             >
               Own them forever with lifetime updates, unlimited usage, and
               support—no subscription required!
@@ -50,11 +50,10 @@ const isIndexPage = Astro.url.pathname === "/";
                 title="Get full access"
                 id="access-footer-cta"
                 data-umami-event="access-footer-cta"
-                class="flex items-center justify-center w-full sm:w-auto ring-4 gap-2 ring-base-50/20  h-12 px-6 py-2 font-medium text-accent-600 transition-all duration-200 rounded-full   focus:ring-2 focus:ring-offset-2 focus:outline-none bg-white border border-base-200 hover:text-accent-950 focus:ring-accent-600"
+                class="flex items-center justify-center w-auto  gap-1   h-9 px-4 py-2 font-medium text-accent-600 transition-all duration-200 rounded-full   focus:ring-2 focus:ring-offset-2 focus:outline-none bg-white border border-base-200 hover:text-accent-950 focus:ring-accent-600"
               >
-                Get access for
+                Get access
                 <span>
-                  {" "}
                   <del class="opacity-45">$149</del> $67
                 </span>
               </Text>
@@ -65,7 +64,7 @@ const isIndexPage = Astro.url.pathname === "/";
     }
 
     <div
-      class="relative px-6 pt-16 overflow-hidden isolate bg-white rounded-xl ring-4 ring-base-50 border border-base-200 sm:px-16 md:pt-24 lg:flex lg:gap-x-12 lg:px-12 lg:pt-0 lg:col-span-3"
+      class="relative px-8 pt-12 overflow-hidden isolate bg-base-50 rounded-xl md:pt-24 lg:flex lg:gap-x-12 lg:pt-0 lg:col-span-3"
     >
       <div
         class="max-w-xs mx-auto text-center lg:mx-0 lg:flex-auto lg:py-12 lg:text-left"
@@ -112,29 +111,38 @@ const isIndexPage = Astro.url.pathname === "/";
             <span class="ml-2.5">Tailwind CSS</span>
           </div>
         </div>
-        <Text
-          tag="p"
-          variant="textXL"
-          class="mt-4 font-medium tracking-tight text-black"
-        >
-          Lexington Themes
-        </Text>
-        <Text tag="p" variant="textBase" class="max-w-2xl mt-4 text-base-500">
-          Premium multipage themes &amp; UI Kits Beautifully crafted with Astro
-          JS and Tailwind CSS.
-        </Text>
-        <div class="mt-8 flex">
-          <Text
-            tag="a"
-            href="https://lexingtonthemes.com"
-            class="flex items-center justify-center w-full border border-accent-950 ring-4 ring-base-50 sm:w-auto h-12 px-6 py-2 font-medium text-white transition-all duration-200 rounded-full gap-x-2 focus:ring-2 focus:ring-offset-2 focus:outline-none bg-accent-950 hover:bg-accent-900 focus:ring-accent-900"
-            >Visit Lexington
-          </Text>
+        <div class="flex flex-col h-full justify-between">
+          <div>
+            <Text
+              tag="p"
+              variant="textBase"
+              class="mt-8 font-semibold tracking-tight text-black"
+            >
+              Lexington Themes
+            </Text>
+            <Text
+              tag="p"
+              variant="textSM"
+              class="max-w-2xl mt-1 text-base-500 font-medium"
+            >
+              Premium multipage themes &amp; UI Kits Beautifully crafted with
+              Astro JS and Tailwind CSS.
+            </Text>
+          </div>
+          <div class="mt-8 flex">
+            <Text
+              tag="a"
+              variant="textSM"
+              href="https://lexingtonthemes.com"
+              class="flex items-center justify-center w-full border border-accent-950 ring-4 ring-base-50 sm:w-auto h-10 px-4 py-2 font-medium text-white transition-all duration-200 rounded-full gap-x-2 focus:ring-2 focus:ring-offset-2 focus:outline-none bg-accent-950 hover:bg-accent-900 focus:ring-accent-900"
+              >See all themes
+            </Text>
+          </div>
         </div>
       </div>
       <div class="relative mt-8 h-80">
         <img
-          class="absolute left-0 top-0 object-cover w-[57rem] max-w-none bg-white rounded-2xl ring-4 ring-base-50 border border-base-200"
+          class="absolute left-0 top-0 object-cover w-[57rem] max-w-none bg-white rounded-2xl"
           src="/images/bundle.png"
           alt="Lexington Themes"
           width="1824"
