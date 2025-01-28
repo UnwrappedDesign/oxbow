@@ -4,28 +4,8 @@ import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 ---
 
-<section class="border-t border-base-200">
+<section>
   <Wrapper variant="standard" class="py-6">
-    <div class="gap-3 lg:grid lg:grid-cols-2 justify-between">
-      <Text
-        tag="h2"
-        variant="displaySM"
-        class="text-black font-medium tracking-tighter"
-      >
-        Reviews and opinions
-      </Text>
-      <div class="flex flex-wrap gap-2 lg:ml-auto mt-3 lg:mt-0">
-        <Text
-          tag="a"
-          href="/customers"
-          class="rounded-full flex items-center transition-all duration-200 focus:ring-2 focus:ring-offset-2 focus:outline-none text-base-700 bg-white ring-offset-2 ring-offset-base-50 hover:text-accent-600 focus:ring-accent-500 h-9 px-4 py-2 text-sm font-medium justify-center w-auto ring-1 ring-base-200"
-        >
-          See them all
-        </Text>
-      </div>
-    </div>
-  </Wrapper>
-  <Wrapper variant="standard" class="py-12 border-t">
     <ul class="w-full relative lg:grid-cols-2 grid gap-12" role="list">
       {
         reviews.slice(0, 2).map((template) => (
@@ -34,8 +14,8 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
               <div class="flex flex-col h-full justify-between gap-6  ">
                 <Text
                   tag="p"
-                  variant="textLG"
-                  class="text-accent-950 font-medium text-pretty"
+                  variant="textSM"
+                  class="text-base-500 text-balance font-medium   mt-4"
                 >
                   "{template.text}"
                 </Text>
@@ -62,5 +42,14 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
         ))
       }
     </ul>
+    <div class="flex flex-wrap gap-2 lg:ml-auto mt-8">
+      <Text
+        tag="a"
+        href="/customers"
+        class="rounded-full flex items-center transition-all duration-200 focus:ring-2 focus:ring-offset-2 focus:outline-none text-base-700 bg-white ring-offset-2 ring-offset-base-50 hover:text-accent-600 focus:ring-accent-500 h-8 px-4 py-2 text-xs font-medium justify-center w-auto ring-1 ring-base-200"
+      >
+        Read them all
+      </Text>
+    </div>
   </Wrapper>
 </section>
