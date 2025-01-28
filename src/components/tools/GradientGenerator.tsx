@@ -137,12 +137,12 @@ export default function GradientGenerator() {
         <div className=" bg-white mt-4">
           <div className="flex  items-center  bg-white py-2">
             <label className="text-base-500 text-base">Mode</label>
-            <div className="block h-6 ml-4 w-px bg-base-200"></div>
+            <div className="block h-6 mx-4 w-px bg-base-200"></div>
             <div className="flex items-center gap-2 ">
               <button
                 className={`
                               pointer-events-auto flex focus:text-accent-500 rounded-md px-4 h-7 py-1 text-sm  transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200
-                              ${mode === "background" ? "bg-white text-accent-500" : "text-base-500 "}
+                              ${mode === "background" ? "bg-base-50 text-accent-500" : "text-base-500 "}
                             `}
                 onClick={() => setMode("background")}
               >
@@ -151,7 +151,7 @@ export default function GradientGenerator() {
               <button
                 className={`
                               pointer-events-auto flex focus:text-accent-500 rounded-md px-4 h-7 py-1 text-sm  transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200
-                              ${mode === "text" ? "bg-white text-accent-500" : "text-base-500"}
+                              ${mode === "text" ? "bg-base-50 text-accent-500" : "text-base-500"}
                             `}
                 onClick={() => setMode("text")}
               >
@@ -161,14 +161,14 @@ export default function GradientGenerator() {
           </div>
   
           <div
-            className={`flex items-center justify-center relative w-full rounded-xl lg:sticky   ring-4 ring-base-100 border border-base-200 p-32  ${generateTwGradient()}`}
+            className={`flex items-center justify-center relative w-full rounded-xl lg:sticky   border border-base-200 p-32  ${generateTwGradient()}`}
           >
             {mode === "text" ? (
               <p className="text-8xl font-bold text-center">{text}</p>
             ) : null}
           </div>
         </div>
-      <div className="flex items-center gap-x-8 mt-8">
+      <div className="flex items-center gap-x-8 mt-8 border-b border-base-200">
         <button
           className={`text-base-500 text-base ${tab === "from" ? "text-base-800" : "text-base-400"}`}
           onClick={() => setTab("from")}
