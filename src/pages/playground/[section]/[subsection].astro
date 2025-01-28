@@ -40,7 +40,7 @@ const gridColumns = {
   "application/buttons": 2,
   "application/avatars": 2,
   "application/textarea": 2,
-  "application/pagination": 1,
+  "application/pagination": 2,
   "application/checkboxes": 2,
   "application/typography": 2,
   "application/breadcrumbs": 2,
@@ -63,36 +63,37 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
   <section>
     <Wrapper variant="hero">
       <button
-        class="flex items-center gap-2 text-base-500 hover:text-accent-500"
+        class="flex items-center gap-2 text-sm text-base-500 hover:text-accent-500"
         onclick="history.back();"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left size-5"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left size-4"
           ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-            d="M5 12l14 0"></path><path d="M5 12l6 6"></path><path
-            d="M5 12l6 -6"></path></svg
+            d="M15 6l-6 6l6 6"></path></svg
         >Go Back</button
       >
       <Text
         tag="h1"
-        variant="displayBase"
-        class="uppercase mt-4 font-semibold tracking-tight text-black"
+        variant="textXL"
+        class="mt-4 capitalize font-medium tracking-tight text-black"
       >
         {subsection.replace(/-/g, " ")}
       </Text>
     </Wrapper>
   </section>
-  <section class="border-t border-base-200">
-    <Wrapper variant="standard" class="py-8">
+  <section>
+    <Wrapper variant="standard" class="py-6">
       <div
-        class={`relative w-full grid grid-cols-1 gap-x-6 md:grid-cols-2 gap-y-12 xl:gap-x-8 lg:gap-y-24 ${gridColumnsClass} items-start`}
+        class={`relative w-full grid grid-cols-1 gap-x-4 md:grid-cols-2 gap-y-12  lg:gap-y-12 ${gridColumnsClass} items-start`}
       >
         {
           sectionComponents.map((component, index) => {
@@ -134,7 +135,7 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
                         <Text
                           tag="span"
                           variant="textXS"
-                          class="flex items-center font-medium  text-accent-500 b bg-base-50 px-2.5 h-7 py-1 text-xs rounded-md"
+                          class="flex items-center font-medium  text-accent-500 bg-base-50 px-2.5 h-7 py-1 text-xs rounded-md"
                         >
                           Open Demo
                         </Text>
@@ -163,7 +164,7 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
                 <Image
                   src={images[imagePath]() || "/placeholder.svg"}
                   alt={`${subsection} preview ${index + 1}`}
-                  class="w-full object-cover  border mt-2  border-base-200 rounded-xl ring-4 ring-base-50 group-hover:ring-base-100 transition-all duration-300 ease-in-out cursor-pointer"
+                  class="w-full object-cover  border mt-2  border-base-200 rounded-lg  transition-all duration-300 ease-in-out cursor-pointer"
                 />
               </a>
             );
