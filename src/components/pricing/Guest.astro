@@ -1,34 +1,19 @@
 ---
 import Text from "@/components/fundations/typography/Text.astro";
-const teamLicenseUrl = import.meta.env.PRODUCT_TEAM_LICENSE_URL;
-
 const features = [
   {
-    text: "5 Users",
-  },
-  {
-    text: "Lifetime access",
-  },
-  {
-    text: "Unlimited projects",
-  },
-  {
-    text: "Over 400+ components and blocks",
+    text: "Over 30+ components and blocks",
   },
   {
     text: "Marketing, application  & eCommerce ",
-  },
-
-  {
-    text: "Discord Support",
   },
 ];
 ---
 <div class="flex flex-col h-full justify-between">
   <div>
     <div class="flex flex-col gap-2">
-      <Text tag="p" variant="textLG" class="text-back font-medium 2xl:text-xl">
-         Teams — $399
+      <Text tag="p" variant="textLG" class="text-black font-medium 2xl:text-xl">
+         Guest — Free forever
       </Text>
     </div>
     <Text
@@ -36,7 +21,7 @@ const features = [
       variant="textSM"
       class="text-base-500 font-medium mt-1 2xl:text-lg text-balance"
     >
-      Companies, teams & clients
+      Testing and personal use
     </Text>
     <ul
       class="flex flex-col text-base-500 font-medium mt-8 space-y-1"
@@ -45,7 +30,7 @@ const features = [
       {
         features.map((feature) => (
           <li class="flex items-center gap-2">
-            <div class=" ring-1 ring-base-100  p-[0.110rem]  shadow  rounded-sm ">
+            <div class=" ring-1 ring-base-100     p-[0.110rem]  shadow  rounded-sm ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -61,21 +46,17 @@ const features = [
               </svg>
             </div>
             <div class="flex items-center gap-1 w-full">
-              <Text
-                tag="span"
-                variant="textSM"
-                class="2xl:text-lg  flex items-center gap-1"
-              >
+              <Text tag="span" variant="textSM" class="2xl:text-lg">
                 {feature.text}
                 {/*  {feature.badge && (
-                  <Text
-                    tag="span"
-                    variant="textSM"
-                    class=" font-medium  text-accent-600"
-                  >
-                    // {feature.badge}
-                  </Text>
-                )} */}
+                <Text
+                  tag="span"
+                  variant="textSM"
+                  class="text-accent-500 items-center font-medium "
+                >
+                  {feature.badge} //
+                </Text>
+              )} */}
               </Text>
             </div>
           </li>
@@ -85,15 +66,13 @@ const features = [
   </div>
   <div class="mt-8 flex">
     <Text
-      tag="a"
-      variant="textSM"
-      id="purchase-team-license"
-      data-umami-event="purchase team license"
-      href={teamLicenseUrl}
-      class="flex items-center justify-center w-auto h-9 px-4 py-2 font-medium transition-all duration-200 bg-white border rounded-full  text-accent-600 focus:ring-2 focus:ring-offset-2 focus:outline-none border-base-200 hover:text-accent-950 focus:ring-accent-600"
-    >
-      Buy for $399
-    </Text>
+    tag="a"
+    variant="textSM"
+    href="/components"
+    class="flex items-center justify-center w-auto h-9 px-4 py-2 font-medium transition-all duration-200 bg-white border rounded-full  text-accent-600 focus:ring-2 focus:ring-offset-2 focus:outline-none border-base-200 hover:text-accent-950 focus:ring-accent-600"
+  >
+    Browser all components
+  </Text>
   </div>
 </div>
 
