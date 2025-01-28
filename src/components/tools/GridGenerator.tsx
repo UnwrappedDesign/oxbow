@@ -1,9 +1,7 @@
 "use client";
-
 import { useState, useRef, useCallback, useMemo } from "react";
 import { X, ArrowDownRight } from "lucide-react";
 import { Rnd } from "react-rnd";
-
 interface GridItem {
   id: string;
   x: number;
@@ -11,7 +9,6 @@ interface GridItem {
   w: number;
   h: number;
 }
-
 export default function GridGenerator() {
   const [columns, setColumns] = useState(4);
   const [rows, setRows] = useState(4);
@@ -22,22 +19,18 @@ export default function GridGenerator() {
   const [isResizing, setIsResizing] = useState(false);
   const gridRef = useRef<HTMLDivElement>(null);
   const gapSize = gap * 2; // Convert gap to pixels
-
   const getCellHeight = useCallback(
     () => 70,
     [],
   );
-
   const getCellWidth = useCallback(
     () => (gridRef.current?.clientWidth - gapSize * (columns - 1)) / columns,
     [gridRef, gapSize, columns],
   );
-
   const getGridHeight = useCallback(
     () => (rows * getCellHeight()) + (gapSize * (rows - 1)),
     [rows, getCellHeight, gapSize],
   );
-
   const getCellX = (x: number) => (x - 1) * getCellWidth() + gapSize * (x - 1);
   const getCellY = (y: number) => (y - 1) * getCellHeight() + gapSize * (y - 1);
   const xToCol = (x: number) => Math.round(x / (getCellWidth() + gapSize)) + 1;
@@ -45,7 +38,6 @@ export default function GridGenerator() {
   const getCellWidthPx = (w: number) => w * getCellWidth() + (w - 1) * gapSize;
   const getCellHeightPx = (h: number) =>
     h * getCellHeight() + (h - 1) * gapSize;
-
   const handleAddItem = (x: number, y: number) => {
     const newItem: GridItem = {
       id: `item-${items.length + 1}`,
@@ -56,24 +48,19 @@ export default function GridGenerator() {
     };
     setItems([...items, newItem]);
   };
-
   const handleRemoveItem = (id: string) => {
     setItems(items.filter((item) => item.id !== id));
   };
-
   const onResizeStart = (id: string) => {
     setIsResizing(true);
   };
-
   const onResizeStop = (
     id: string,
     delta: { width: number; height: number },
   ) => {
     const item = items.find((item) => item.id === id);
-
     const width = item.w + Math.round(delta.width / (getCellWidth() + gapSize));
     const height = item.h + Math.round(delta.height / (getCellHeight() + gapSize));
-
     setItems(
       items.map((item) =>
         item.id === id
@@ -87,7 +74,6 @@ export default function GridGenerator() {
     );
     setIsResizing(false);
   };
-
   const onDragStop = (
     id: string,
     data: {
@@ -112,14 +98,11 @@ export default function GridGenerator() {
       ),
     );
   };
-
   const generateCode = useMemo(() => {
     const gridClass = `grid grid-cols-${columns} grid-rows-${rows} gap-${gap}`;
-
     const itemsCode = items
       .map((item) => {
         const className = `col-start-${item.x} row-start-${item.y} col-span-${item.w} row-span-${item.h}`;
-
         if (format === "jsx") {
           return [
             `  <div key="${item.id}" className="${className}">`,
@@ -134,12 +117,10 @@ export default function GridGenerator() {
         ].join("\n");
       })
       .join("\n");
-
     return format === "html"
       ? [`<div class="${gridClass}">`, itemsCode, "</div>"].join("\n")
       : [`<div className="${gridClass}">`, itemsCode, "</div>"].join("\n");
   }, [format, columns, rows, gap, items]);
-
   const handleCopy = () => {
     navigator.clipboard.writeText(generateCode);
     setIsCopied(true);
@@ -147,11 +128,9 @@ export default function GridGenerator() {
       setIsCopied(false);
     }, 3000);
   };
-
   const handleReset = () => {
     setItems([]);
   };
-
   return (
     <div>
       <div className="grid grid-cols-3 md:grid-cols-3 gap-2 w-full">
@@ -198,7 +177,6 @@ export default function GridGenerator() {
           />
         </div>
       </div>
-
       <div
         className="relative rounded-lg w-full my-12"
       >
@@ -219,7 +197,7 @@ export default function GridGenerator() {
             return (
               <div
                 key={index}
-                className="flex items-center justify-center p-4 rounded-lg text-accent-500 cursor-pointer  relative border border-base-200  ring-4 ring-base-100 bg-white text-2xl"
+                className="flex items-center justify-center p-4 rounded-lg text-accent-500 cursor-pointer  relative border border-base-200   bg-white text-2xl"
                 onClick={() => handleAddItem(x, y)}
               >
                 +
@@ -227,7 +205,6 @@ export default function GridGenerator() {
             );
           })}
         </div>
-
         {items.map((item) => (
           <Rnd
             key={item.id}
@@ -269,12 +246,11 @@ export default function GridGenerator() {
       </div>
       <div className="flex flex-col md:flex-row md:items-center justify-between w-full">
         <h3 className="text-base-500 text-base">Get your code</h3>
-        
         <div className="flex items-center gap-2 ">
           <button
             className={`
-                    pointer-events-auto flex focus:text-accent-500 rounded-md px-4 h-7 py-1 text-sm  transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200
-                    ${format === "html" ? "bg-white text-accent-500" : "text-base-500 "}
+                    pointer-events-auto flex focus:text-accent-500 rounded-md px-4 h-7  py-1 text-sm  transition focus-visible:outline-none focus-ring-none
+                    ${format === "html" ? "bg-base-50 text-accent-500" : "text-base-500 "}
                   `}
             onClick={() => setFormat("html")}
           >
@@ -282,30 +258,29 @@ export default function GridGenerator() {
           </button>
           <button
             className={`
-                    pointer-events-auto flex focus:text-accent-500 rounded-md px-4 h-7 py-1 text-sm  transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200
-                    ${format === "jsx" ? "bg-white text-accent-500" : "text-base-500"}
+                    pointer-events-auto flex focus:text-accent-500 rounded-md px-4 h-7  py-1 text-sm  transition focus-visible:outline-none focus-ring-none
+                    ${format === "jsx" ? "bg-base-50 text-accent-500" : "text-base-500"}
                   `}
             onClick={() => setFormat("jsx")}
           >
             JSX
           </button>
           <button
-            className="pointer-events-auto relative w-20 flex rounded-md focus:text-accent-500 px-4 py-1 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200"
+            className="pointer-events-auto justify-center relative w-20 bg-base-50 flex rounded-md focus:text-accent-500 px-4 py-1 text-sm text-base-900 transition focus-visible:outline-none focus-ring-none"
             onClick={handleReset}
           >
             Reset
           </button>
           <button
-            className="pointer-events-auto relative w-20 flex rounded-md focus:text-accent-500 px-4 py-1 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200"
+            className="pointer-events-auto relative w-20 justify-center bg-base-50 flex rounded-md focus:text-accent-500 px-4 py-1 text-sm text-base-900 transition focus-visible:outline-none focus-ring-none"
             onClick={handleCopy}
           >
             {isCopied ? "Copied!" : "Copy"}
           </button>
         </div>
       </div>
-
-      <div className="bg-white p-4 mt-2 rounded-lg ring-4 ring-base-100 border border-base-200">
-        <pre className="text-accent-500   overflow-x-auto">
+      <div className="bg-white p-4 mt-2 rounded-lg  border border-base-200">
+        <pre className="text-accent-500 text-sm   overflow-x-auto">
           <code>{generateCode}</code>
         </pre>
       </div>

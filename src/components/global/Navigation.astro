@@ -5,7 +5,7 @@ import Wrapper from "../fundations/containers/Wrapper.astro";
 ---
 
 <div
-  class="top-0 z-50 items-center w-full mx-auto bg-white border-b"
+  class="top-0 z-50 items-center w-full mx-auto bg-white"
   :class="{ 'fixed': window.location.pathname === '/' }"
   x-data={`{...navigation(), username: "${user?.email ?? ""}"}`}
 >
@@ -99,7 +99,7 @@ import Wrapper from "../fundations/containers/Wrapper.astro";
         <div class="flex flex-col items-center gap-3 md:flex-row">
           <Text
             tag="a"
-            variant="textBase"
+            variant="textSM"
             x-show="!username"
             href="https://lexingtonthemes.com"
             class="font-medium hover:text-accent-600"
@@ -111,7 +111,7 @@ import Wrapper from "../fundations/containers/Wrapper.astro";
           <Text
             x-cloak
             tag="a"
-            variant="textBase"
+            variant="textSM"
             x-show="!username"
             href="/getting-started"
             class="hidden font-medium hover:text-accent-600 lg:block"
@@ -121,7 +121,7 @@ import Wrapper from "../fundations/containers/Wrapper.astro";
             x-cloak
             tag="a"
             href="/login"
-            variant="textBase"
+            variant="textSM"
             x-show="!username"
             class="hidden font-medium hover:text-accent-600 lg:block"
             >Log in</Text
@@ -130,20 +130,20 @@ import Wrapper from "../fundations/containers/Wrapper.astro";
             x-cloak
             tag="a"
             href="/pricing"
-            variant="textBase"
+            variant="textSM"
             x-show="!username && window.location.pathname !== '/pricing'"
             id="access-navigation-cta"
             data-umami-event="access-navigation-cta"
-            class="flex items-center justify-center w-auto h-10 px-4 py-2 font-medium text-white transition-all duration-200 rounded-full shrink-0 gap-x-2 focus:ring-2 focus:ring-offset-2 focus:outline-none bg-accent-600 hover:bg-accent-700 focus:ring-accent-600"
+            class="flex items-center justify-center w-auto h-8 px-4 py-2 font-medium text-white transition-all duration-200 rounded-full shrink-0 gap-x-1 focus:ring-2 focus:ring-offset-2 focus:outline-none bg-accent-600 hover:bg-accent-700 focus:ring-accent-600"
           >
-            Get all access for <del class="opacity-45">$149</del> $67
+            Get access <del class="opacity-45">$149</del> $67
           </Text>
         </div>
         <div x-popover x-cloak x-show="!!username" class="relative">
           <button
             x-popover:button
             type="button"
-            class="flex items-center gap-2"
+            class="flex items-center gap-2 text-sm"
           >
             Account
             <svg
