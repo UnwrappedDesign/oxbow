@@ -44,7 +44,7 @@ export default defineConfig({
   },
   site: 'https://oxbowui.com',
   integrations: [sitemap(), mdx(), alpinejs({ entrypoint: 'src/alpine' }), react()],
-  adapter: localhost ? node({mode: 'standalone'}) : netlify(),
+  adapter: localhost ? node({ mode: 'standalone' }) : netlify(),
   output: 'server',
   vite: {
     plugins: [tailwindcss()]
