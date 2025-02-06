@@ -1,6 +1,8 @@
 import { defineMiddleware } from "astro/middleware";
-import { getAstroPostHTML } from "astro-posthtml";
-import _minifyClassnames from "posthtml-minify-classnames";
+// @ts-ignore
+import postcss from 'posthtml-postcss'
+import postcssRename from 'postcss-rename'
+import posthtml from "posthtml";
 
 const excludeClasses = [
   // Text classes
@@ -49,7 +51,6 @@ const excludeClasses = [
   "translate-x-0",
   // Furation
   "duration-200",
-
   // Gradients
   "bg-gradient-to-b",
   "from-accent-500",
@@ -57,21 +58,13 @@ const excludeClasses = [
   // Size
   "size-12",
   "w-1/2",
-
 ];
 
-const minifyClassnames = _minifyClassnames({
-  genNameId: false,
-  filter: new RegExp(`^\.(${excludeClasses.join("|")})$`),
-  customAttributes: [
-    "x-transition:enter",
-    "x-transition:enter-start",
-    "x-transition:enter-end",
-    "x-transition:leave",
-    "x-transition:leave-start",
-    "x-transition:leave-end",
-  ],
-});
+const postcssOptions = {
+  from: "/styles/global.css",
+  to: "/styles/global.css",
+}
+const filterType = /^text\/css$/
 
 import { getAuth } from "firebase-admin/auth";
 import { app } from "@/firebase/server";
@@ -79,6 +72,10 @@ import { app } from "@/firebase/server";
 const mode = import.meta.env.MODE;
 
 export const onRequest = defineMiddleware(async (context, next) => {
+  if (context.isPrerendered) {
+    return next();
+  }
+
   try {
     if (context.cookies.has("__session")) {
       const auth = getAuth(app);
@@ -96,11 +93,49 @@ export const onRequest = defineMiddleware(async (context, next) => {
 
   if (
     /^\/iframe\/.*(01).astro$/.test(context.url.pathname) ||
-    !context.url.pathname.startsWith(`/iframe/`) ||
+    !context.url.pathname.startsWith(`/iframe/`) || 
     mode === "development"
   ) {
     return next();
   }
 
-  return getAstroPostHTML([minifyClassnames])(context, next);
+  const response = await next();
+  const html = await response.text();
+
+  let cssMap = {}
+  const postcssPLugins = [postcssRename({
+    strategy: "minimal",
+    except: excludeClasses,
+    outputMapCallback: (map) => {
+      cssMap = {
+        ...cssMap,
+        ...map
+      }
+      return map
+    }
+  })]
+
+  const result = await posthtml()
+    .use(postcss(postcssPLugins, postcssOptions, filterType))
+    .use(tree => {
+      tree.walk(node => {
+        if (node.attrs) {
+          const classes = node.attrs.class ? node.attrs.class.split(" ") : []
+          node.attrs.class = classes.map(className => {
+            if (excludeClasses.includes(className)) {
+              return className
+            }
+            if (cssMap[className]) {
+              return cssMap[className]
+            }
+            return className
+          }).join(" ")
+        }
+        return node
+      })
+      return tree
+    })
+    .process(html);
+
+  return new Response(result.html, response);
 });
