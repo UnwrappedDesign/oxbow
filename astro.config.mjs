@@ -3,7 +3,8 @@ import netlify from "@astrojs/netlify";
 import node from "@astrojs/node";
 import sitemap from "@astrojs/sitemap";
 import alpinejs from "@astrojs/alpinejs";
-import { defineConfig } from "astro/config";
+import tailwindcss from '@tailwindcss/vite';
+import { defineConfig } from 'astro/config';
 import { loadEnv } from "vite";
 
 import react from "@astrojs/react";
@@ -21,6 +22,9 @@ console.log("Loading app with NODE_ENV: ", process.env.NODE_ENV);
 
 // https://astro.build/config
 export default defineConfig({
+  devOptions: {
+    devToolbar: false,
+  },
   redirects: {
     "/free-tools/home": "/free-tools",
   },
@@ -38,13 +42,11 @@ export default defineConfig({
     skipInline: false,
     drafts: true,
   },
-  site: "https://oxbowui.com",
-  integrations: [
-    sitemap(),
-    mdx(),
-    alpinejs({ entrypoint: "src/alpine" }),
-    react(),
-  ],
-  adapter: localhost ? node({ mode: "standalone" }) : netlify(),
-  output: "server",
+  site: 'https://oxbowui.com',
+  integrations: [sitemap(), mdx(), alpinejs({ entrypoint: 'src/alpine' }), react()],
+  adapter: localhost ? node({ mode: 'standalone' }) : netlify(),
+  output: 'server',
+  vite: {
+    plugins: [tailwindcss()]
+  }
 });
