@@ -1,6 +1,8 @@
 <script>
   import {
     pageSections,
+    emailsEcommerce,
+    storeSections,
     pageExamples,
     elements,
     navigation,
@@ -96,6 +98,31 @@
               parent: "application-components",
               handler: () => {
                 window.open(form.link, "_self");
+              },
+            })),
+          ],
+        },
+        {
+          id: "ecommerce-components",
+          title: "Ecommerce components",
+          parent: "components",
+          children: [
+            ...storeSections.map((section) => ({
+              id: section.name,
+              title: section.name,
+              keywords: section.tags.join(", "),
+              parent: "ecommerce-components",
+              handler: () => {
+                window.open(section.link, "_self");
+              },
+            })),
+            ...emailsEcommerce.map((email) => ({
+              id: email.name,
+              title: email.name,
+              keywords: email.tags.join(", "),
+              parent: "ecommerce-components",
+              handler: () => {
+                window.open(email.link, "_self");
               },
             })),
           ],
