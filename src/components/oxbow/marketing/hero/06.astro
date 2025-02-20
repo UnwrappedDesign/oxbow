@@ -1,4 +1,5 @@
 ---
+export const description = "Split with overlayed text, features and full height image";
 import Button from "@/components/fundations/buttons/Button.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 const stats = [
@@ -43,7 +44,8 @@ const data = [
 ];
 ---
 
-<div class="relative">
+<div class="relative overflow-hidden">
+  <div class="absolute inset-0 bg-white/60 size-full z-20"></div>
   <div
     class="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-24 lg:px-8 relative"
   >
@@ -53,7 +55,7 @@ const data = [
       <div class="mx-auto max-w-3xl lg:mx-0 lg:px-16 z-50">
         <Text
           tag="h2"
-          variant="displayLG"
+          variant="displayBase"
           class="mt-4 font-semibold text-base-900 md:text-balance"
         >
           Transforming the bank experience for a digital future
@@ -100,7 +102,7 @@ const data = [
     </div>
   </div>
   <div
-    class="px-8 pb-12 mx-auto md:px-12 lg:px-24 max-w-7xl relative lg:-mt-24"
+    class="px-8 pb-12 mx-auto md:px-12 lg:px-24 max-w-7xl relative lg:-mt-42 z-30"
   >
     <dl
       class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-y-16 relative"
@@ -135,7 +137,7 @@ const data = [
             <dd>
               <Text
                 tag="p"
-                variant="textBase"
+                variant="textSM"
                 class="mt-2 text-base-500 font-medium"
               >
                 {section.text}

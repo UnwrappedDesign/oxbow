@@ -1,5 +1,6 @@
 ---
-import Button from "@/components/fundations/buttons/Button.astro";
+export const description =
+  "Left aligned with grid";
 import Text from "@/components/fundations/typography/Text.astro";
 const data = [
   {
@@ -36,63 +37,13 @@ const stats = [
     value: "842",
   },
 ];
-const logos = [
-  {
-    src: "/brands/1.svg",
-    width: 158,
-    height: 48,
-    colSpan: "col-span-2 lg:col-span-1",
-  },
-  {
-    src: "/brands/2.svg",
-    width: 158,
-    height: 48,
-    colSpan: "col-span-2 lg:col-span-1",
-  },
-  {
-    src: "/brands/3.svg",
-    width: 158,
-    height: 48,
-    colSpan: "col-span-2 lg:col-span-1",
-  },
-  {
-    src: "/brands/4.svg",
-    width: 158,
-    height: 48,
-    colSpan: "col-span-2 sm:col-start-2 lg:col-span-1",
-  },
-  {
-    src: "/brands/5.svg",
-    width: 158,
-    height: 48,
-    colSpan: "col-span-2 col-start-2 sm:col-start-auto lg:col-span-1",
-  },
-];
+
 ---
 
 <section>
   <div class="mx-auto max-w-7xl md:px-12 lg:px-24 px-8 py-24 relative">
-    <div>
-      <Text
-        tag="p"
-        variant="textSM"
-        class="font-bold uppercase text-accent-600">
-        Tagline
-      </Text>
-      <Text
-        tag="h2"
-        variant="display5XL"
-        class="mt-4 font-black text-base-900 lg:text-balance">
-        Tyrone Owens
-      </Text>
-      <Text
-        class="mt-4 text-base-500 font-medium"
-        tag="p"
-        variant="displaySM">
-        UI/UX Interaction Designer based in London
-      </Text>
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-12 gap-12">
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
       <div class="order-last lg:order-none h-full flex flex-col">
         <dl class="flex flex-col gap-12 mt-auto order-last xl:order-none">
           {
@@ -102,7 +53,8 @@ const logos = [
                   <Text
                     variant="textLG"
                     tag="h3"
-                    class="text-base-900 font-medium">
+                    class="text-base-900 font-medium"
+                  >
                     {section.category}
                   </Text>
                 </dt>
@@ -110,7 +62,8 @@ const logos = [
                   <Text
                     tag="p"
                     variant="textSM"
-                    class="mt-2 text-base-500 font-medium">
+                    class="mt-2 text-base-500 font-medium"
+                  >
                     {section.text}
                   </Text>
                 </dd>
@@ -120,25 +73,20 @@ const logos = [
         </dl>
       </div>
       <div class="order-first lg:order-none sm:col-span-2">
-        <img
-          src="/pose/9.png"
-          alt=""
-        />
+        <img class="h-full" src="/pose/7.png" alt="" />
       </div>
       <div class="flex flex-col gap-6 lg:text-right justify-between">
         {
           stats.map((stat) => (
             <div class="flex flex-col">
-              <Text
-                tag="p"
-                variant="display2XL"
-                class="text-base-900">
+              <Text tag="p" variant="display2XL" class="text-base-900">
                 {stat.value}
               </Text>
               <Text
                 tag="h3"
                 variant="textBase"
-                class=" text-base-600 font-medium">
+                class=" text-base-600 font-medium"
+              >
                 {stat.label}
               </Text>
             </div>
@@ -146,19 +94,6 @@ const logos = [
         }
       </div>
     </div>
-    <div
-      class="mx-auto grid mt-10 grid-cols-4 items-center gap-x-8 gap-y-10 sm:grid-cols-6 sm:gap-x-10 lg:-mx-6 lg:grid-cols-5">
-      {
-        logos.map((logo) => (
-          <img
-            class={`${logo.colSpan} max-h-12 w-full object-contain `}
-            src={logo.src}
-            alt="#_"
-            width={logo.width}
-            height={logo.height}
-          />
-        ))
-      }
-    </div>
+    
   </div>
 </section>
