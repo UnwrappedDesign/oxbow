@@ -16,7 +16,7 @@ const customToken = uid ? await auth.createCustomToken(uid) : null;
   <head>
     <BaseHead />
   </head>
-  <body class="bg-white flex mx-auto flex-col min-h-svh ">
+  <body class="bg-[#f7f7f7] flex mx-auto flex-col min-h-svh">
     <Navigation />
     <main class="grow">
       <slot />
@@ -30,7 +30,7 @@ const customToken = uid ? await auth.createCustomToken(uid) : null;
       <slot name="footer" />
     </ninja-keys>
     <NinjaScript />
-    
+
     <astro-firebase data-customtoken={customToken}></astro-firebase>
     <script>
       import {
@@ -69,6 +69,5 @@ const customToken = uid ? await auth.createCustomToken(uid) : null;
       }
       customElements.define("astro-firebase", AstroFirebase);
     </script>
-   
   </body>
 </html>
