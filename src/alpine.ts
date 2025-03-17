@@ -62,4 +62,35 @@ export default (Alpine: Alpine) => {
         }
       },
     }));
+
+    Alpine.data("themeSelector", () => ({
+        colors: [
+          { name: 'Zinc', color: 'bg-zinc-500' },
+          { name: 'Red', color: 'bg-red-500' },
+          { name: 'Rose', color: 'bg-rose-500' },
+          { name: 'Orange', color: 'bg-orange-500' },
+          { name: 'Green', color: 'bg-green-500' },
+          { name: 'Blue', color: 'bg-blue-500' },
+          { name: 'Yellow', color: 'bg-yellow-500' },
+          { name: 'Violet', color: 'bg-violet-500' },
+        ],
+        selected: 'Zinc',
+        open: false,
+        toggleOpen() {
+          this.open = !this.open;
+        },
+        selectColor(color: string) {
+          this.selected = color;
+
+          [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950].forEach(shade => {
+            const iframe = document.querySelector('iframe');
+            const iframeDocument = iframe?.contentDocument;
+
+            if (iframeDocument) {
+              iframeDocument.documentElement.style.setProperty(`--color-accent-${shade}`, `var(--color-${color.toLowerCase()}-${shade})`);
+            }
+          });
+          this.open = false;
+        }
+    }))
 }
