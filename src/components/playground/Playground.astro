@@ -17,16 +17,7 @@ const ppcode = canSeeCode ? await prettier.format(code, {
                         })
                         : '';
 
-const colors = [
-  { name: 'Zinc', color: 'bg-zinc-500' },
-  { name: 'Red', color: 'bg-red-500' },
-  { name: 'Rose', color: 'bg-rose-500' },
-  { name: 'Orange', color: 'bg-orange-500' },
-  { name: 'Green', color: 'bg-green-500' },
-  { name: 'Blue', color: 'bg-blue-500' },
-  { name: 'Yellow', color: 'bg-yellow-500' },
-  { name: 'Violet', color: 'bg-violet-500' },
-];
+
 
 ---
 <section x-data={`{ tab: 'preview', viewportSize: 'desktop' }`} class="not-prose" >
@@ -77,20 +68,17 @@ const colors = [
                   <Text tag="p" variant="textXS" class="text-gray-500 mt-1">Customize your colors.</Text>
               
                   <div class="w-full mt-4">
-                      <div class="flex flex-wrap gap-3 m">
-                          {
-                            colors.map((color) => (
-                              <button 
-                                x-on:click={`selectColor('${color.name}')`}
-                                :class={`{'ring-1 ring-base-300': selected === '${color.name}'}`}
-                                class="pointer-events-auto flex focus:text-accent-500 rounded-md px-4 h-7 py-1 text-xs text-base-500 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200 bg-base-50 items-center gap-1 "
-                                >
-                                <div class={`size-2 rounded-full ${color.color}`}></div>
-                                <span>{color.name}</span>
-                              </button>
-                              )
-                            )
-                          }
+                      <div class="flex flex-wrap gap-3 max-w-sm">
+                        <template x-for="color in colors">
+                          <button 
+                            x-on:click="selectColor(color.name)"
+                            :class="selected === color.name ? 'ring-1 ring-base-300' : ''"
+                          class="pointer-events-auto flex focus:text-accent-500 rounded-md px-4 h-7 py-1 text-xs text-base-500 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200 bg-base-50 items-center gap-1 "
+                          >
+                            <div class="size-2 rounded-full" :class="color.color"></div>
+                            <span x-text="color.name"></span>
+                          </button>
+                        </template>
                       </div>
                   </div>
               </div>
