@@ -1,4 +1,5 @@
 ---
+import Text from "../fundations/typography/Text.astro";
 import { Code } from "astro:components";
 import * as prettier from "prettier";
 interface Props {
@@ -15,17 +16,87 @@ const ppcode = canSeeCode ? await prettier.format(code, {
                           parser: "html",
                         })
                         : '';
+
+const colors = [
+  { name: 'Zinc', color: 'bg-zinc-500' },
+  { name: 'Red', color: 'bg-red-500' },
+  { name: 'Rose', color: 'bg-rose-500' },
+  { name: 'Orange', color: 'bg-orange-500' },
+  { name: 'Green', color: 'bg-green-500' },
+  { name: 'Blue', color: 'bg-blue-500' },
+  { name: 'Yellow', color: 'bg-yellow-500' },
+  { name: 'Violet', color: 'bg-violet-500' },
+];
+
 ---
 <section x-data={`{ tab: 'preview', viewportSize: 'desktop' }`} class="not-prose" >
   <div class="relative">
    
     <div class="flex items-center justify-between pb-2 gap-1">
-      <a
-        class="pointer-events-auto rounded-md border border-base-200 bg-white p-1 text-base-500 flex items-center justify-center size-7 text-xs"
-        href={`#${componentIndex}`}
-      >
-        {componentIndex}
-      </a>
+      <div class="flex items-center gap-2">
+        <a
+          class="pointer-events-auto rounded-md border border-base-200 bg-white p-1 text-base-500 flex items-center justify-center size-7 text-xs"
+          href={`#${componentIndex}`}
+        >
+          {componentIndex}
+        </a>
+        <div x-data="themeSelector" class="relative w-100">
+            <button 
+                @click="toggleOpen" 
+                class="pointer-events-auto focus:text-accent-500 rounded-md px-4 h-7 py-1 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200 bg-base-50 flex items-center gap-2 "
+            >
+                <div class="flex items-center gap-2">
+                    <div 
+                        class="size-3 rounded-full"
+                        :class="{
+                            'bg-zinc-500': selected === 'Zinc',
+                            'bg-red-500': selected === 'Red',
+                            'bg-rose-500': selected === 'Rose',
+                            'bg-orange-500': selected === 'Orange',
+                            'bg-green-500': selected === 'Green',
+                            'bg-blue-500': selected === 'Blue',
+                            'bg-yellow-500': selected === 'Yellow',
+                            'bg-violet-500': selected === 'Violet'
+                        }"
+                    ></div>
+                    <span x-text="selected"></span>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+            <div 
+                x-show="open" 
+                x-on:click.away="toggleOpen"
+                class="absolute w-full mt-1 bg-white ring-1 ring-base-900/5 rounded-lg shadow border-base-200 z-50"
+                x-transition
+            >
+              
+                <div class="p-4 bg-white rounded-lg max-w-2xl">
+                  <Text tag="p" variant="textBase" class=" font-medium ">Color options</Text>
+                  <Text tag="p" variant="textXS" class="text-gray-500 mt-1">Customize your colors.</Text>
+              
+                  <div class="w-full mt-4">
+                      <div class="flex flex-wrap gap-3 m">
+                          {
+                            colors.map((color) => (
+                              <button 
+                                x-on:click={`selectColor('${color.name}')`}
+                                :class={`{'ring-1 ring-base-300': selected === '${color.name}'}`}
+                                class="pointer-events-auto flex focus:text-accent-500 rounded-md px-4 h-7 py-1 text-xs text-base-500 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200 bg-base-50 items-center gap-1 "
+                                >
+                                <div class={`size-2 rounded-full ${color.color}`}></div>
+                                <span>{color.name}</span>
+                              </button>
+                              )
+                            )
+                          }
+                      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+      </div>
       <div class="flex items-center justify-end w-full gap-2">
         <span class="isolate md:inline-flex h-7 gap-1 hidden" x-show="tab === 'preview'">
           <button
