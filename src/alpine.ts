@@ -65,16 +65,16 @@ export default (Alpine: Alpine) => {
 
     Alpine.data("themeSelector", () => ({
         colors: [
+          { name: 'Blue', color: 'bg-blue-500' },
           { name: 'Zinc', color: 'bg-zinc-500' },
           { name: 'Red', color: 'bg-red-500' },
           { name: 'Rose', color: 'bg-rose-500' },
           { name: 'Orange', color: 'bg-orange-500' },
           { name: 'Green', color: 'bg-green-500' },
-          { name: 'Blue', color: 'bg-blue-500' },
           { name: 'Yellow', color: 'bg-yellow-500' },
           { name: 'Violet', color: 'bg-violet-500' },
         ],
-        selected: 'Zinc',
+        selected: 'Blue',
         open: false,
         toggleOpen() {
           this.open = !this.open;
