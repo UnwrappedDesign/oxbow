@@ -39,16 +39,7 @@ const theme = ``;
                 <div class="flex items-center gap-2">
                     <div 
                         class="size-3 rounded-full"
-                        :class="{
-                            'bg-zinc-500': selected === 'Zinc',
-                            'bg-red-500': selected === 'Red',
-                            'bg-rose-500': selected === 'Rose',
-                            'bg-orange-500': selected === 'Orange',
-                            'bg-green-500': selected === 'Green',
-                            'bg-blue-500': selected === 'Blue',
-                            'bg-yellow-500': selected === 'Yellow',
-                            'bg-violet-500': selected === 'Violet'
-                        }"
+                        :class="{['bg-' + selected.toLowerCase() + '-500']: true}"
                     ></div>
                     <span x-text="selected"></span>
                 </div>
