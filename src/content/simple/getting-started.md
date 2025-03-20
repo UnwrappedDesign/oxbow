@@ -21,7 +21,6 @@ This are the objects so you can copy paste it on your config file ( `tailwind.co
 
 ```js
 accent: {
-    25: "#f5fbff",
     50: "#ebf7ff",
     100: "#d2edff",
     200: "#afdfff",
@@ -36,7 +35,6 @@ accent: {
 },
 // Uses Tailwind CSS Gray + a 25% tint
 base: {
-   25: "#fafafa",
    50: "#f9fafb",
    100: "#f3f4f6",
    200: "#e5e7eb",
@@ -50,7 +48,6 @@ base: {
    950: "#030712",
 },
 green: {
-    25: "#edfcf5",
     50: "#cafae4",
     100: "#97f5d2",
     200: "#5fe2be",
@@ -64,7 +61,6 @@ green: {
     950: "#011e2e",
 },
 red: {
-    25: "#fff0ef",
     50: "#fed9d5",
     100: "#feacad",
     200: "#fd838f",
@@ -78,7 +74,6 @@ red: {
     950: "#4a032f",
 },
 yellow: {
-    25: "#fffaf0",
     50: "#fff3d5",
     100: "#ffe4ab",
     200: "#ffd181",
@@ -96,7 +91,6 @@ yellow: {
 If you are using Tailwind v4 use this:
 ```sass
 /* Accent  */
---color-accent-25: #f5fbff;
 --color-accent-50: #ebf7ff;
 --color-accent-100: #d2edff;
 --color-accent-200: #afdfff;
@@ -109,7 +103,6 @@ If you are using Tailwind v4 use this:
 --color-accent-900: #02379e;
 --color-accent-950: #072364;
 /* Base */
---color-base-25: #fafafa;
 --color-base-50: #f9fafb;
 --color-base-100: #f3f4f6;
 --color-base-200: #e5e7eb;
@@ -122,7 +115,6 @@ If you are using Tailwind v4 use this:
 --color-base-900: #111827;
 --color-base-950: #030712;
 /* green */
---color-green-25: #edfcf5;
 --color-green-50: #cafae4;
 --color-green-100: #97f5d2;
 --color-green-200: #5fe2be;
@@ -135,7 +127,6 @@ If you are using Tailwind v4 use this:
 --color-green-900: #012c3c;
 --color-green-950: #011e2e;
 /* red */
---color-red-25: #fff0ef;
 --color-red-50: #fed9d5;
 --color-red-100: #feacad;
 --color-red-200: #fd838f;
@@ -148,7 +139,6 @@ If you are using Tailwind v4 use this:
 --color-red-900: #5f0743;
 --color-red-950: #4a032f;
 /* yellow */
---color-yellow-25: #fffaf0;
 --color-yellow-50: #fff3d5;
 --color-yellow-100: #ffe4ab;
 --color-yellow-200: #ffd181;
