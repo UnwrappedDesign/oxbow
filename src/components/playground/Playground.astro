@@ -17,11 +17,11 @@ const ppcode = canSeeCode ? await prettier.format(code, {
                         })
                         : '';
 
-
+const theme = ``;
 
 ---
-<section x-data={`{ tab: 'preview', viewportSize: 'desktop' }`} class="not-prose" >
-  <div class="relative">
+<section x-data="playground" class="not-prose">
+  <div class="relative"  @theme="setTheme($event.detail.color)">
    
     <div class="flex items-center justify-between pb-2 gap-1">
       <div class="flex items-center gap-2">
@@ -159,7 +159,8 @@ const ppcode = canSeeCode ? await prettier.format(code, {
           canSeeCode ? (
             <div class="flex items-center gap-2">
               <button
-                @click="tab = 'preview'" :class="tab === 'preview' ? 'bg-base-50' : 'bg-black/0'"
+                x-on:click="setTab('preview')" 
+                :class="tab === 'preview' ? 'bg-base-50' : 'bg-black/0'"
                 data-umami-event="click-view-preview"
                 data-umami-data-id={user?.uid}
                 data-umami-event-componentref={componentPath}
@@ -167,21 +168,30 @@ const ppcode = canSeeCode ? await prettier.format(code, {
                 Preview
               </button>
               <button
-                @click="tab = 'code'" :class="tab === 'code' ? 'bg-base-50' : 'bg-black/0'"
+                x-on:click="setTab('code')" 
+                :class="tab === 'code' ? 'bg-base-50' : 'bg-black/0'"
                 data-umami-event="click-view-code"
                 data-umami-data-id={user?.uid}
                 data-umami-event-componentref={componentPath}
                 class="pointer-events-auto flex rounded-md px-4 py-1 focus:text-accent-500 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200">
                 Code
               </button>
+              <button
+                x-on:click="setTab('theme')" 
+                :class="tab === 'theme' ? 'bg-base-50' : 'bg-black/0'"
+                data-umami-event="click-view-theme"
+                data-umami-data-id={user?.uid}
+                data-umami-event-componentref={componentPath}
+                class="pointer-events-auto flex rounded-md px-4 py-1 focus:text-accent-500 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200">
+                Theme
+              </button>
               <div class="mx-1 h-4 w-[2px] bg-white" />
               <button
-                x-data="{ copied: false }"
                 data-umami-event="click-copy-component"
                 data-umami-data-id={user?.uid}
                 data-umami-event-componentref={componentPath}
                 class="pointer-events-auto relative w-20 flex rounded-md focus:text-accent-500 px-4 py-1 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200"
-                @click={`copied=true; $clipboard($refs.code${componentIndex}.innerText); setTimeout(()=> { copied = false; }, 2000);`}
+                x-on:click="copyCode"
               >
                 <span
                   x-text="copied ? 'Copied!' : 'Copy'"
@@ -220,10 +230,17 @@ const ppcode = canSeeCode ? await prettier.format(code, {
       canSeeCode && (
         <div
           x-show="tab === 'code'"
-          x-ref={`code${componentIndex}`}
+          x-ref="code"
           class="flex-grow size-full  text-sm overflow-auto p-4 ov bg-white transition selection:bg-[#CEFDFE] selection:text-base-950"
         >
           <Code code={ppcode} lang="html" theme="css-variables" />
+        </div>
+        <div
+          x-show="tab === 'theme'"
+          x-ref="theme"
+          class="flex-grow size-full  text-sm overflow-auto p-4 ov bg-white transition selection:bg-[#CEFDFE] selection:text-base-950"
+        >
+          <div x-html="theme" />
         </div>
       )
     }
