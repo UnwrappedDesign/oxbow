@@ -1,4 +1,5 @@
 ---
+import Text from "../fundations/typography/Text.astro";
 import { Code } from "astro:components";
 import * as prettier from "prettier";
 interface Props {
@@ -15,17 +16,66 @@ const ppcode = canSeeCode ? await prettier.format(code, {
                           parser: "html",
                         })
                         : '';
+
+const theme = ``;
+
 ---
-<section x-data={`{ tab: 'preview', viewportSize: 'desktop' }`} class="not-prose" >
-  <div class="relative">
+<section x-data="playground" class="not-prose">
+  <div class="relative"  @theme="setTheme($event.detail.color)">
    
     <div class="flex items-center justify-between pb-2 gap-1">
-      <a
-        class="pointer-events-auto rounded-md border border-base-200 bg-white p-1 text-base-500 flex items-center justify-center size-7 text-xs"
-        href={`#${componentIndex}`}
-      >
-        {componentIndex}
-      </a>
+      <div class="flex items-center gap-2">
+        <a
+          class="pointer-events-auto rounded-md border border-base-200 bg-white p-1 text-base-500 flex items-center justify-center size-7 text-xs"
+          href={`#${componentIndex}`}
+        >
+          {componentIndex}
+        </a>
+        <div x-data="themeSelector" class="relative w-100">
+            <button 
+                @click="toggleOpen" 
+                class="pointer-events-auto focus:text-accent-500 rounded-md px-4 h-7 py-1 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200 bg-base-50 flex items-center gap-2 "
+            >
+                <div class="flex items-center gap-2">
+                    <div 
+                        class="size-3 rounded-full"
+                        :class="{['bg-' + selected.toLowerCase() + '-500']: true}"
+                    ></div>
+                    <span x-text="selected"></span>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+            <div 
+                x-show="open" 
+                x-on:click.away="toggleOpen"
+                class="absolute w-full mt-1 bg-white ring-1 ring-base-900/5 rounded-lg shadow border-base-200 z-50"
+                x-transition
+            >
+              
+                <div class="p-4 bg-white rounded-lg max-w-2xl">
+                  <Text tag="p" variant="textBase" class=" font-medium ">Color options</Text>
+                  <Text tag="p" variant="textXS" class="text-gray-500 mt-1">Customize your colors.</Text>
+              
+                  <div class="w-full mt-4">
+                      <div class="flex flex-wrap gap-3 max-w-sm">
+                        <template x-for="color in colors">
+                          <button 
+                            x-on:click="selectColor(color.name)"
+                            :class="selected === color.name ? 'ring-1 ring-base-300' : ''"
+                          class="pointer-events-auto flex focus:text-accent-500 rounded-md px-4 h-7 py-1 text-xs text-base-500 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200 bg-base-50 items-center gap-1 "
+                          >
+                            <div class="size-2 rounded-full" :class="color.color"></div>
+                            <span x-text="color.name"></span>
+                          </button>
+                        </template>
+                      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+      </div>
       <div class="flex items-center justify-end w-full gap-2">
         <span class="isolate md:inline-flex h-7 gap-1 hidden" x-show="tab === 'preview'">
           <button
@@ -100,7 +150,8 @@ const ppcode = canSeeCode ? await prettier.format(code, {
           canSeeCode ? (
             <div class="flex items-center gap-2">
               <button
-                @click="tab = 'preview'" :class="tab === 'preview' ? 'bg-base-50' : 'bg-black/0'"
+                x-on:click="setTab('preview')" 
+                :class="tab === 'preview' ? 'bg-base-50' : 'bg-black/0'"
                 data-umami-event="click-view-preview"
                 data-umami-data-id={user?.uid}
                 data-umami-event-componentref={componentPath}
@@ -108,21 +159,30 @@ const ppcode = canSeeCode ? await prettier.format(code, {
                 Preview
               </button>
               <button
-                @click="tab = 'code'" :class="tab === 'code' ? 'bg-base-50' : 'bg-black/0'"
+                x-on:click="setTab('code')" 
+                :class="tab === 'code' ? 'bg-base-50' : 'bg-black/0'"
                 data-umami-event="click-view-code"
                 data-umami-data-id={user?.uid}
                 data-umami-event-componentref={componentPath}
                 class="pointer-events-auto flex rounded-md px-4 py-1 focus:text-accent-500 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200">
                 Code
               </button>
+              <button
+                x-on:click="setTab('theme')" 
+                :class="tab === 'theme' ? 'bg-base-50' : 'bg-black/0'"
+                data-umami-event="click-view-theme"
+                data-umami-data-id={user?.uid}
+                data-umami-event-componentref={componentPath}
+                class="pointer-events-auto flex rounded-md px-4 py-1 focus:text-accent-500 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200">
+                Theme
+              </button>
               <div class="mx-1 h-4 w-[2px] bg-white" />
               <button
-                x-data="{ copied: false }"
                 data-umami-event="click-copy-component"
                 data-umami-data-id={user?.uid}
                 data-umami-event-componentref={componentPath}
                 class="pointer-events-auto relative w-20 flex rounded-md focus:text-accent-500 px-4 py-1 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200"
-                @click={`copied=true; $clipboard($refs.code${componentIndex}.innerText); setTimeout(()=> { copied = false; }, 2000);`}
+                x-on:click="copyCode"
               >
                 <span
                   x-text="copied ? 'Copied!' : 'Copy'"
@@ -161,10 +221,17 @@ const ppcode = canSeeCode ? await prettier.format(code, {
       canSeeCode && (
         <div
           x-show="tab === 'code'"
-          x-ref={`code${componentIndex}`}
+          x-ref="code"
           class="flex-grow size-full  text-sm overflow-auto p-4 ov bg-white transition selection:bg-[#CEFDFE] selection:text-base-950"
         >
           <Code code={ppcode} lang="html" theme="css-variables" />
+        </div>
+        <div
+          x-show="tab === 'theme'"
+          x-ref="theme"
+          class="flex-grow size-full  text-sm overflow-auto p-4 ov bg-white transition selection:bg-[#CEFDFE] selection:text-base-950"
+        >
+          <div x-html="theme" />
         </div>
       )
     }
