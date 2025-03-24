@@ -11,45 +11,38 @@ import MainHero from "@/components/fundations/containers/MainHero.astro";
   <MainHero
     showAlpineTailwind={false}
     title="Meet Oxbow's customers and supporters"
-    subtitle="Oxbow UI enables individuals and businesses of all sizes to launch their products quickly, in days instead of months. Explore our range of customizable components and begin creating your ideal website today."
   />
   <section>
-    <Wrapper
-      variant="standard"
-      class="py-12">
+    <Wrapper variant="standard" class="py-12">
       <ul
-        class="w-full border-y divide-y"
-        role="list">
+        class="w-full relative md:grod-cols-2 lg:grid-cols-4 grid mt-12 gap-y-12 lg:gap-y-24"
+        role="list"
+      >
         {
           reviews.map((template) => (
             <>
-              <li class="py-4 lg:py-8">
-                <div class="grid items-start grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-24">
-                  <div class="order-last lg:col-span-2">
-                    <Text
-                      tag="p"
-                      variant="textSM"
-                      class="text-base-500 text-pretty">
-                      "{template.text}"
-                    </Text>
-                  </div>
+              <li class=" h-full flex px-4 relative before:absolute after:absolute before:bg-base-800 before:top-0 before:left-0 before:h-6 before:w-0.5 after:top-8 after:bottom-0 after:left-0 after:w-0.5">
+                <div class="flex flex-col h-full justify-between gap-6  ">
+                  <Text
+                    tag="p"
+                    variant="textSM"
+                    class="text-base-500 text-balance font-medium  "
+                  >
+                    "{template.text}"
+                  </Text>
                   <div class="inline-flex items-center gap-3">
                     <div class="flex-shrink-0">
                       <img
-                        alt="a picture of {template.name}"
+                        alt={template.name}
                         src={template.image}
-                        class="size-10 rounded-full lg:size-12 grayscale"
+                        class="size-10 rounded-full  grayscale"
                       />
                     </div>
-                    <div class="flex-1 min-w-0 font-medium text-black">
-                      <Text
-                        tag="p"
-                        variant="textSM">
+                    <div class="flex-1 min-w-0  font-medium text-black">
+                      <Text tag="p" variant="textSM">
                         {template.name}
                       </Text>
-                      <Text
-                        tag="p"
-                        variant="textSM">
+                      <Text tag="p" variant="textSM">
                         {template.work}
                       </Text>
                     </div>

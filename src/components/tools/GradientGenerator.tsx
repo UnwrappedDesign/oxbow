@@ -184,7 +184,7 @@ export default function GradientGenerator() {
       </div>
       </div>
 
-      <div className="border-t pt-2 border-base-200 bg-white  mt-4 grid grid-cols-1 gap-x-4 md:grid-cols-2 gap-y-24 lg:grid-cols-11">
+      <div className="border-t border-x pt-2 border-base-200 bg-white  mt-4 grid grid-cols-1 gap-x-4 md:grid-cols-2 gap-y-24 lg:grid-cols-11">
         {tailwindColors.map((color) => (
           <div>
             <p className="text-base-500 text-xs font-medium capitalize">
