@@ -1,12 +1,14 @@
 ---
+// Ni idea
 const user = Astro.locals.user;
+// Fundations
 import Text from "@/components/fundations/typography/Text.astro";
-import Wrapper from "../fundations/containers/Wrapper.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
 ---
-
 <div
-  class="top-0 z-50 items-center w-full mx-auto bg-[#f7f7f7]"
-  :class="{ 'fixed': window.location.pathname === '/' }"
+  class="top-0 z-50 items-center w-full mx-auto duration-300"
+  :class="{ 'fixed bg-white': window.location.pathname === '/' }"
   x-data={`{...navigation(), username: "${user?.email ?? ""}"}`}
 >
   <Wrapper variant="standard">
@@ -103,18 +105,15 @@ import Wrapper from "../fundations/containers/Wrapper.astro";
             x-show="!username"
             href="https://lexingtonthemes.com"
             class="font-medium hover:text-accent-600"
-            ><Text tag="span" class="md:hidden lg:inline"
-              >Astro &amp; Tailwind
-            </Text> Templates</Text
+            ><span class="md:hidden lg:inline">Astro &amp; Tailwind </span> Templates</Text
           >
-
           <Text
             x-cloak
             tag="a"
             variant="textSM"
             x-show="!username"
             href="/getting-started"
-            class="hidden font-medium hover:text-accent-600 lg:block"
+            class="hidden font-medium hover:text-accent-600 md:block"
             >Getting Started</Text
           >
           <Text
@@ -123,21 +122,25 @@ import Wrapper from "../fundations/containers/Wrapper.astro";
             href="/login"
             variant="textSM"
             x-show="!username"
-            class="hidden font-medium hover:text-accent-600 lg:block"
+            class="hidden font-medium hover:text-accent-600 md:block"
             >Log in</Text
           >
-          <Text
+          <OxbowLink
+            gap="sm"
+            size="base"
+            variant="accent"
             x-cloak
-            tag="a"
             href="/pricing"
-            variant="textSM"
-            x-show="!username && window.location.pathname !== '/pricing'"
             id="access-navigation-cta"
             data-umami-event="access-navigation-cta"
-            class="flex items-center justify-center w-auto h-8 px-4 py-2 font-medium text-white transition-all duration-200 rounded-full shrink-0 gap-x-1 focus:ring-2 focus:ring-offset-2 focus:outline-none bg-accent-600 hover:bg-accent-700 focus:ring-accent-600"
+            x-show="!username && window.location.pathname !== '/pricing'"
+            class="w-auto"
           >
-            Get access <del class="opacity-45">$149</del> $67
-          </Text>
+            Get access
+            <span>
+              <del class="opacity-45">$149</del> $67
+            </span>
+          </OxbowLink>
         </div>
         <div x-popover x-cloak x-show="!!username" class="relative">
           <button

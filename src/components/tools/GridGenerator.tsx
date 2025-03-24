@@ -12,7 +12,7 @@ interface GridItem {
 export default function GridGenerator() {
   const [columns, setColumns] = useState(4);
   const [rows, setRows] = useState(4);
-  const [gap, setGap] = useState(8);
+  const [gap, setGap] = useState(0);
   const [items, setItems] = useState<GridItem[]>([]);
   const [format, setFormat] = useState("jsx");
   const [isCopied, setIsCopied] = useState(false);
@@ -133,7 +133,7 @@ export default function GridGenerator() {
   };
   return (
     <div>
-      <div className="grid grid-cols-3 md:grid-cols-3 gap-2 w-full">
+      <div className="grid grid-cols-3 md:grid-cols-4  w-full">
         <div className="flex flex-col gap-1">
           <label htmlFor="columns" className="text-sm text-base-500">
             Columns
@@ -145,7 +145,7 @@ export default function GridGenerator() {
             max={12}
             value={columns}
             onChange={(e) => setColumns(Number(e.target.value))}
-            className="block w-full px-4 py-2 h-10  border-2 focus:ring-2 focus:ring-accent-500 bg-chalk border-transparent ring-1 ring-base-200 duration-300 rounded-lg appearance-none text-accent-500 placeholder-base-300 focus:border-accent-300 focus:outline-none sm:text-sm"
+            className="block w-full px-4 py-2 h-12   focus:ring-2 focus:ring-accent-500 bg-chalk border border-base-200 duration-300  appearance-none text-accent-500 placeholder-base-300 focus:border-accent-300 focus:outline-none sm:text-sm"
           />
         </div>
         <div className="flex flex-col gap-1">
@@ -159,7 +159,7 @@ export default function GridGenerator() {
             max={12}
             value={rows}
             onChange={(e) => setRows(Number(e.target.value))}
-            className="block w-full px-4 py-2 h-10  border-2 focus:ring-2 focus:ring-accent-500 bg-chalk border-transparent ring-1 ring-base-200 duration-300 rounded-lg appearance-none text-accent-500 placeholder-base-300 focus:border-accent-300 focus:outline-none sm:text-sm"
+            className="block w-full px-4 py-2 h-12   focus:ring-2 focus:ring-accent-500 bg-chalk border border-base-200 duration-300  appearance-none text-accent-500 placeholder-base-300 focus:border-accent-300 focus:outline-none sm:text-sm"
           />
         </div>
         <div className="flex flex-col gap-1">
@@ -173,17 +173,17 @@ export default function GridGenerator() {
             max={16}
             value={gap}
             onChange={(e) => setGap(Number(e.target.value))}
-            className="block w-full px-4 py-2 h-10  border-2 focus:ring-2 focus:ring-accent-500 bg-chalk border-transparent ring-1 ring-base-200 duration-300 rounded-lg appearance-none text-accent-500 placeholder-base-300 focus:border-accent-300 focus:outline-none sm:text-sm"
+            className="block w-full px-4 py-2 h-12   focus:ring-2 focus:ring-accent-500 bg-chalk border border-base-200 duration-300  appearance-none text-accent-500 placeholder-base-300 focus:border-accent-300 focus:outline-none sm:text-sm"
           />
         </div>
       </div>
       <div
-        className="relative rounded-lg w-full my-12"
+        className="relative  w-full my-12"
       >
         <div
           ref={gridRef}
           className={`
-              grid font-mono text-white text-sm text-center font-bold rounded-lg w-full h-full
+              grid font-mono text-white text-sm text-center font-bold  w-full h-full
               grid-cols-${columns} grid-rows-${rows}
             `}
           style={{
@@ -197,7 +197,7 @@ export default function GridGenerator() {
             return (
               <div
                 key={index}
-                className="flex items-center justify-center p-4 rounded-lg text-accent-500 cursor-pointer  relative border border-base-200   bg-white text-2xl"
+                className="flex items-center justify-center p-4  text-accent-500 cursor-pointer  relative border border-base-200   bg-white text-2xl"
                 onClick={() => handleAddItem(x, y)}
               >
                 +
@@ -227,7 +227,7 @@ export default function GridGenerator() {
               onResizeStop(item.id, delta)
             }
             onDragStop={(e, data) => onDragStop(item.id, data)}
-            className="bg-white rounded-lg p-4 flex items-center justify-center relative ring-2 ring-accent-500"
+            className="bg-white  p-4 flex items-center justify-center relative ring-2 ring-accent-500"
           >
             <button
               onClick={() => handleRemoveItem(item.id)}
@@ -245,7 +245,7 @@ export default function GridGenerator() {
         ))}
       </div>
       <div className="flex flex-col md:flex-row md:items-center justify-between w-full">
-        <h3 className="text-base-500 text-base">Get your code</h3>
+        <h3 className="text-black text-xl font-medium">Get your code</h3>
         <div className="flex items-center gap-2 ">
           <button
             className={`
@@ -279,7 +279,7 @@ export default function GridGenerator() {
           </button>
         </div>
       </div>
-      <div className="bg-white p-4 mt-2 rounded-lg  border border-base-200">
+      <div className="bg-white p-4 mt-2   border border-base-200">
         <pre className="text-accent-500 text-sm   overflow-x-auto">
           <code>{generateCode}</code>
         </pre>

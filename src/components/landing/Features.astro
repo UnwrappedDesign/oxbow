@@ -1,102 +1,90 @@
 ---
+// Assets
 import { Image } from "astro:assets";
 import showcase from "@/images/assets/showcase.png";
-import Code from "@/components/fundations/icons/Code.astro";
 import marketingImage from "@/screenshots/marketing_hero_03.png";
+// Fundations
 import Text from "@/components/fundations/typography/Text.astro";
-import Devices from "@/components/fundations/icons/Devices.astro";
-import Component from "@/components/fundations/icons/Component.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
 
 const data = [
   {
     icon: "Component",
     category: "Components",
-    text: "Over 400 well-designed and carefully built components that follow accessibility standards and are easy to customize.",
+    text: "More than 400 easy-to-use components that are accessible and simple to customize.",
   },
   {
     icon: "Code",
-    category: "Tailwind, Alpine  and more ",
-    text: "Interactive examples built with Alpine JS and plain HTML, with more frameworks coming soon.",
+    category: "Tailwind, Alpine, and More",
+    text: "Ready-to-use blocks built with HTML, Tailwind CSS and Alpine JS.",
   },
   {
     icon: "Devices",
-    category: "Responsive",
-    text: "Each example is fully Devices, thoughtfully crafted, and set up to look great on screens of any size.",
+    category: "Responsive Design",
+    text: "Every example works on any screen size, so your design always looks good.",
+  },
+
+  {
+    icon: "ColorPicker",
+    category: "Pick your color",
+    text: "Customize each block with your brand’s accent color for a perfect match.",
   },
 ];
 ---
 
 <section>
-  <Wrapper variant="standard" class="relative py-6">
-    <div
-      class="overflow-hidden rounded-xl bg-gradient-to-t from-base-200 to-base-50 bg-base-50"
-    >
-      <Image
-        class="object-cover h-full max-h-96 lg:-mt-12 w-full object-top drop-shadow-xl scale-110"
-        src={showcase}
-        alt="showcase"
-      />
-    </div>
+  <Wrapper variant="standard" class="relative py-6 grid grid-cols-1">
     <dl
-      class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16 mt-12"
+      class="grid grid-cols-1 sm:grid-cols-2 gap-y-12 lg:grid-cols-4 lg:gap-y-16 mt-12 lg:mt-0"
     >
       {
         data.map((section) => (
-          <div>
-            <div class=" flex gap-3 items-center">
-              {section.icon === "Component" && (
-                <Component class="text-accent-600" size="base" />
-              )}
-              {section.icon === "Code" && (
-                <Code class="text-accent-600" size="base" />
-              )}
-              {section.icon === "Devices" && (
-                <Devices class="text-accent-600" size="base" />
-              )}
-
-              <dt>
-                <Text
-                  tag="h3"
-                  variant="textBase"
-                  class="text-base-900 font-semibold"
-                >
-                  {section.category}
-                </Text>
-              </dt>
-            </div>
-            <dd>
-              <Text
-                tag="p"
-                variant="textSM"
-                class="mt-2 text-base-500 font-medium"
-              >
-                {section.text}
-              </Text>
-            </dd>
+          <div class="px-4 relative before:absolute after:absolute before:bg-black before:top-0 before:left-0 before:h-6 before:w-0.5 after:top-8 after:bottom-0 after:left-0 after:w-0.5">
+            <Text tag="h3" variant="textBase" class="  text-black font-medium">
+              {section.category}
+            </Text>
+            <Text
+              tag="p"
+              variant="textSM"
+              class=" mt-2 text-base-500 text-pretty"
+            >
+              {section.text}
+            </Text>
           </div>
         ))
       }
     </dl>
     <div
-      class="grid grid-cols-1 gap-2 lg:items-center lg:grid-cols-2 mt-12 relative"
+      class="overflow-hidden border border-base-200 bg-linear-180 from-base-50 to-base-200 order-first lg:order-none mt-0 lg:mt-8"
     >
+      <Image
+        class="object-cover h-full max-h-96 lg:-mt-4 w-full object-top drop-shadow-2xl scale-110"
+        src={showcase}
+        alt="showcase"
+      />
+    </div>
+    <div class="grid grid-cols-1 lg:items-center lg:grid-cols-2 gap-y-12  relative mt-12 ">
       <div
-        class="bg-base-100 order-last relative p-8 rounded-xl h-full flex flex-col justify-between overflow-hidden"
+        class="bg-white order-last relative  px-4 lg:px-8  border lg:border-l-0 py-12 border-base-200 h-full flex flex-col justify-between overflow-hidden"
       >
-        <div>
-          <img class="size-12" src="/images/oxbow/whiteLineLogo.png" alt="#_" />
+        <div class="text-center">
+          <img
+            class="size-12 mx-auto"
+            src="/images/oxbow/oxbowLogo.png"
+            alt="#_"
+          />
           <Text
             tag="p"
             variant="textXS"
-            class="font-semibold mt-4 uppercase text-accent-600"
+            class="font-semibold mt-4 uppercase text-black"
           >
             Get access
           </Text>
           <Text
             tag="h3"
-            variant="textXL"
-            class="mt-4 text-base-900 font-semibold leading-tight"
+            variant="displaySM"
+            class="mt-4 text-black font-semibold leading-tight text-balance"
           >
             Get lifetime access to all components, elements, and layouts for
             only <del class="opacity-45">$149</del> $67
@@ -104,112 +92,81 @@ const data = [
           <Text
             tag="p"
             variant="textBase"
-            class="mt-2 text-base-500 font-medium"
+            class="mt-2 text-base-500 font-medium text-balance"
           >
             Own them forever with lifetime updates, unlimited usage, and
             support—no subscription required!
           </Text>
         </div>
-        <div class="flex mt-8">
-          <Text
-            tag="a"
+        <div class="flex mt-4 justify-center">
+          <OxbowLink
+            gap="sm"
+            size="base"
+            variant="accent"
             href="/pricing"
-            aria-label="Pricing"
-            title="Get full access"
-            id="access-footer-cta"
-            data-umami-event="access-footer-cta"
-            class="flex items-center justify-center w-full h-9 text-sm px-4 py-2 font-medium text-white transition-all duration-200 border rounded-full border-accent-950  sm:w-auto gap-x-1 focus:ring-2 focus:ring-offset-2 focus:outline-none bg-accent-950 hover:bg-accent-900 focus:ring-accent-900"
+            id="access-features-cta"
+            data-umami-event="access-features-cta"
+            class="w-auto"
           >
-            Get access <del class="opacity-70 mx-1">$149</del> $67
-          </Text>
+            Get access
+            <span>
+              <del class="opacity-45">$149</del> $67
+            </span>
+          </OxbowLink>
+          
         </div>
       </div>
-      <div class="grid grid-cols-1 gap-2 lg:grid-cols-2 h-full">
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-y-12 h-full">
         <div
-          class="bg-base-50 rounded-xl flex flex-col h-full justify-between relative overflow-hidden"
+          class="px-4 relative before:absolute after:absolute before:bg-black before:top-0 before:left-0 before:h-6 before:w-0.5 after:top-8 after:bottom-0 after:left-0 after:w-0.5"
         >
-          <div class="p-4 relative">
-            <Text
-              tag="p"
-              variant="textXS"
-              class="font-bold uppercase text-accent-600"
-            >
-              Marketing
-            </Text>
-            <Text
-              tag="h3"
-              variant="textBase"
-              class="mt-4 text-base-900 font-semibold"
-            >
-              Landing pages?
-            </Text>
-            <Text
-              tag="p"
-              variant="textSM"
-              class="mt-2 text-base-500 font-medium"
-            >
-              Hero sections, feature displays, footers, pricing pages, email
-              marketing ready to grab landing pages and more to help you create
-              standout marketing websites that impress and grow your audience.
-            </Text>
+          <div class="relative">
+            <span class="text-sm text-base-500">Marketing</span>
+            <h3 class="text-base mt-2 text-black font-medium">Landing pages</h3>
           </div>
-          <div class="lg:absolute -bottom-4 -right-4 ml-4 -mb-4">
-            <Image
-              class="rounded-l-xl border bg-base-50 border-base-200 h-full"
-              src={marketingImage}
-              alt="hero images"
-            />
-          </div>
+          <p class="text-sm mt-2 text-base-500 text-pretty">
+            Hero sections, features, footers, pricing, and ready-to-use landing
+            pages to help you build standout marketing websites.
+          </p>
+          <Image
+            src={marketingImage}
+            alt="hero images"
+            class="border border-base-200 aspect-auto mt-4"
+          />
         </div>
+
         <div
-          class="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-1 h-full"
+          class="grid grid-cols-1 gap-y-12 sm:grid-cols-2 lg:grid-cols-1 h-full"
         >
-          <div class="bg-base-50 b rounded-xl p-4">
-            <Text
-              tag="p"
-              variant="textXS"
-              class="font-bold uppercase text-accent-600"
-            >
-              Application
-            </Text>
-            <Text
-              tag="h3"
-              variant="textBase"
-              class="mt-4 text-base-900 font-semibold"
-            >
-              Building a webapp?
-            </Text>
-            <Text
-              tag="p"
-              variant="textSM"
-              class="mt-2 text-base-500 font-medium"
-            >
+          <div
+            class="px-4 relative before:absolute after:absolute before:bg-black before:top-0 before:left-0 before:h-6 before:w-0.5 after:top-8 after:bottom-0 after:left-0 after:w-0.5"
+          >
+            <div class="relative">
+              <span class="text-sm text-base-500">Application</span>
+              <h3 class="text-base mt-2 text-black font-medium">
+                Building a webapp?
+              </h3>
+            </div>
+            <p class="text-sm mt-2 text-base-500 text-pretty">
               Find navigation, buttons, forms, command palettes, typography,
               application layouts, dialogs, and more to make your application’s
               user interface pretty.
-            </Text>
+            </p>
           </div>
-          <div class="bg-base-50 rounded-xl p-4">
-            <Text
-              tag="p"
-              variant="textXS"
-              class="font-bold uppercase text-accent-600">eCommerce</Text
-            >
-            <Text
-              tag="h3"
-              variant="textBase"
-              class="mt-4 text-base-900 font-semibold"
-            >
-              Got a store?
-            </Text>
-            <Text
-              tag="p"
-              variant="textSM"
-              class="mt-2 text-base-500 font-medium"
-            >
-              Checkout forms, shopping carts, promo sections, store fronts,
-              product overviews and all the basics to build your store.
-            </Text>
+          <div
+            class="px-4 relative before:absolute after:absolute before:bg-black before:top-0 before:left-0 before:h-6 before:w-0.5 after:top-8 after:bottom-0 after:left-0 after:w-0.5"
+          >
+            <div class="relative">
+              <span class="text-sm text-base-500">Ecomerce</span>
+              <h3 class="text-base mt-2 text-black font-medium">
+                got a store?
+              </h3>
+            </div>
+            <p class="text-sm mt-2 text-base-500 text-pretty">
+              Hero sections, features, footers, pricing, and ready-to-use
+              landing pages to help you build standout marketing websites.
+            </p>
           </div>
         </div>
       </div>

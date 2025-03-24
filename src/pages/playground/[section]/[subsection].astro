@@ -26,7 +26,7 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
 // Define the number of columns based on the current page
 const gridColumns = {
   // Marketing
-  "marketing/hero": 3,
+  "marketing/hero": 4,
   "marketing/pricing": 2,
   "marketing/features": 3,
   "marketing/logo-clouds": 2,
@@ -94,7 +94,7 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
   <section>
     <Wrapper variant="standard" class="py-6">
       <div
-        class={`relative w-full grid grid-cols-1 gap-x-4 md:grid-cols-2 gap-y-12  lg:gap-y-12 ${gridColumnsClass} items-start`}
+        class={`relative w-full grid grid-cols-1  md:grid-cols-2 gap-y-12 lg:divide-x lg:divide-base-200 border-x border-base-200  lg:gap-y-20 ${gridColumnsClass} items-start`}
       >
         {
           sectionComponents.map((component, index) => {
@@ -120,30 +120,19 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
                 class="relative group flex flex-col"
               >
                 <div class="flex flex-col">
-                  <div class="flex items-center justify-between gap-2">
+                  <div class="flex flex-col gap-2">
                     <div class="flex items-center gap-2">
                       <Text
                         tag="p"
                         variant="textSM"
-                        class="font-medium 2xl:text-base text-base-900 group-hover:text-accent-600 capitalize"
+                        class="font-medium 2xl:text-base text-base-900 group-hover:text-accent-600 capitalize px-4 relative before:absolute after:absolute before:bg-black before:top-0 before:left-0 before:h-6 before:w-0.5 after:top-8 after:bottom-0 after:left-0 after:w-0.5 flex items-center gap-2"
                       >
-                        {subsection.replace(/-/g, " ")}
+                        <span> {(index + 1).toString().padStart(2, "0")}</span>
+                        <span> {subsection.replace(/-/g, " ")}</span>
+                        {!user && index === 0 && (
+                          <span class="text-accent-500">Open Demo</span>
+                        )}
                       </Text>
-                    </div>
-
-                    <div class="flex items-center gap-1">
-                      {!user && index === 0 && (
-                        <Text
-                          tag="span"
-                          variant="textXS"
-                          class="flex items-center font-medium  text-accent-500 bg-base-50 px-2.5 h-7 py-1 text-xs rounded-md"
-                        >
-                          Open Demo
-                        </Text>
-                      )}
-                      <div class="flex items-center justify-center font-medium  text-base-500 b bg-base-50 size-7 p-1 text-xs rounded group-hover:text-accent-600">
-                        {(index + 1).toString().padStart(2, "0")}
-                      </div>
                     </div>
                   </div>
                   {isUpdatedLastWeek && (
@@ -165,7 +154,7 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
                 <Image
                   src={images[imagePath]() || "/placeholder.svg"}
                   alt={`${subsection} preview ${index + 1}`}
-                  class="w-full object-cover  border mt-2  border-base-200 rounded-lg  transition-all duration-300 ease-in-out cursor-pointer"
+                  class="w-full object-cover  border-y   border-base-200 mt-4  transition-all duration-300 ease-in-out cursor-pointer"
                 />
               </a>
             );
