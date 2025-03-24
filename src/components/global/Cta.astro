@@ -5,13 +5,14 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
 // Check if the current page is the index page
 const isIndexPage = Astro.url.pathname === "/";
 ---
+
 <section>
   <!-- Conditionally render this section based on the page -->
-  <Wrapper variant="standard" class="py-12">
+  <Wrapper variant="standard" class="py-12 lg:py-24">
     {
       !isIndexPage && (
-        <div class="bg-white text-center p-8 lg:pt-20 pb-12 border-base-200 border  relative overflow-hidden">
-          <div class="relative">
+        <div class="bg-white text-center p-8 lg:py-20 border-base-200 border  relative overflow-hidden lg:col-span-2">
+          <div class="relative max-w-2xl mx-auto">
             <Text
               tag="h2"
               variant="displayLG"
@@ -43,14 +44,13 @@ const isIndexPage = Astro.url.pathname === "/";
                   <del class="opacity-45">$149</del> $67
                 </span>
               </OxbowLink>
-              
             </div>
           </div>
         </div>
       )
     }
     <div
-      class="relative overflow-hidden border border-base-200 grid grid-cols-1 gap-y-12 items-start lg:col-span-full lg:grid-cols-4"
+      class="relative overflow-hidden border border-base-200 bg-white lg:col-span-2 gap-y-12 items-start grid grid-cols-1 md:grid-cols-4"
     >
       <div class="text-center lg:text-left py-12">
         <Text
@@ -63,7 +63,7 @@ const isIndexPage = Astro.url.pathname === "/";
         <Text
           tag="p"
           variant="textBase"
-          class="mt-4 text-base-500 lg:text-balance max-w-sm mx-auto lg:mx-0"
+          class="mt-4 text-base-500 lg:text-balance max-w-xl mx-auto lg:mx-0"
         >
           Premium multipage themes &amp; UI Kits Beautifully crafted with Astro
           JS and Tailwind CSS.
@@ -86,7 +86,7 @@ const isIndexPage = Astro.url.pathname === "/";
         </div>
       </div>
       <img
-        class="lg:col-span-3"
+        class="md:col-span-3"
         src="/images/bundle.png"
         alt="Lexington Themes"
         width="1824"

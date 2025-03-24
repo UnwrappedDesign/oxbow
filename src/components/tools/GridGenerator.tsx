@@ -245,7 +245,7 @@ export default function GridGenerator() {
         ))}
       </div>
       <div className="flex flex-col md:flex-row md:items-center justify-between w-full">
-        <h3 className="text-black text-xl font-medium">Get your code</h3>
+        <h3 className="text-black text-base font-medium">Get your code</h3>
         <div className="flex items-center gap-2 ">
           <button
             className={`

@@ -6,6 +6,7 @@ import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
 ---
+
 <div
   class="top-0 z-50 items-center w-full mx-auto duration-300"
   :class="{ 'fixed bg-white': window.location.pathname === '/' }"
@@ -17,8 +18,7 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
       x-data="{ open: false }"
     >
       <div class="flex flex-row items-center justify-between lg:justify-start">
-        <Text
-          tag="a"
+        <a
           href="/"
           class="flex items-center w-full gap-3 font-medium sm:w-auto group"
           ><span
@@ -28,7 +28,7 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
               src="/images/oxbow/oxbowLogo.png"
               alt="#_"
             /></span
-          > oxbow ui</Text
+          > oxbow ui</a
         >
         <button
           class="cursor-pointer sm:hidden"
@@ -126,15 +126,14 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
             >Log in</Text
           >
           <OxbowLink
-            gap="sm"
-            size="base"
+            href="/pricing"
+            gap="xs"
+            size="sm"
             variant="accent"
             x-cloak
-            href="/pricing"
             id="access-navigation-cta"
             data-umami-event="access-navigation-cta"
             x-show="!username && window.location.pathname !== '/pricing'"
-            class="w-auto"
           >
             Get access
             <span>

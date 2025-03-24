@@ -2,22 +2,26 @@
 import { reviews } from "../../data/reviews.json";
 import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
 ---
 
 <section>
-  <Wrapper variant="standard" class="py-12 lg:py-24 ">
+  <Wrapper variant="standard" class="py-12 lg:py-24">
     <Text
       tag="h3"
       variant="displayXL"
       class="text-black font-medium tracking-tighter"
     >
-     We..., we got customers....
+      We..., we got customers....
     </Text>
-    <ul class="w-full relative md:grod-cols-2 lg:grid-cols-4 grid mt-12 gap-y-12" role="list">
+    <ul
+      class="w-full relative md:grod-cols-2 lg:grid-cols-4 grid mt-12 gap-y-12"
+      role="list"
+    >
       {
         reviews.slice(0, 4).map((template) => (
           <>
-            <li class=" h-full flex px-4 relative before:absolute after:absolute before:bg-black before:top-0 before:left-0 before:h-6 before:w-0.5 after:top-8 after:bottom-0 after:left-0 after:w-0.5">
+            <li class=" h-full flex px-4 relative before:absolute after:absolute before:bg-base-800 before:top-0 before:left-0 before:h-6 before:w-0.5 after:top-8 after:bottom-0 after:left-0 after:w-0.5">
               <div class="flex flex-col h-full justify-between gap-6  ">
                 <Text
                   tag="p"
@@ -50,13 +54,16 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
       }
     </ul>
     <div class="flex mt-12">
-      <Text
-        tag="a"
+      <OxbowLink
+        size="base"
+        variant="muted"
         href="/customers"
-        class="rounded-full flex items-center transition-all duration-200 focus:ring-2 focus:ring-offset-2 focus:outline-none text-base-700 bg-white ring-offset-2 ring-offset-base-50 hover:text-accent-600 focus:ring-accent-500 h-8 px-4 py-2 text-xs font-medium justify-center w-auto ring-1 ring-base-200"
+        id="access-footer-cta"
+        data-umami-event="access-footer-cta"
+        class="w-auto"
       >
         Read them all
-      </Text>
+      </OxbowLink>
     </div>
   </Wrapper>
 </section>
