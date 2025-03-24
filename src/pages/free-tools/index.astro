@@ -75,25 +75,19 @@ const sections = [
   />
   <section>
     <Wrapper variant="standard" class="py-12">
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-2">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2">
         {
           sections.map((section) => (
-            <a
-              href={section.link}
-              class="bg-base-50 duration-300 border-base-200 rounded-xl flex flex-col h-full justify-between relative overflow-hidden"
-            >
-              <div class="p-8 relative">
-                <Text
-                  tag="p"
-                  variant="textXS"
-                  class="font-bold uppercase text-accent-600"
-                >
+            <div class="px-4 relative before:absolute after:absolute before:bg-black before:top-0 before:left-0 before:h-6 before:w-0.5 after:top-8 after:bottom-0 after:left-0 after:w-0.5">
+              <a class="absolute inset-0 z-10" href={section.link} />
+              <div>
+                <Text tag="p" variant="textXS" class=" text-base-500">
                   {section.title}
                 </Text>
                 <Text
                   tag="h3"
                   variant="textLG"
-                  class="mt-4 text-base-900 font-medium"
+                  class=" mt-2 text-black font-medium"
                 >
                   {section.subtitle}
                 </Text>
@@ -105,14 +99,13 @@ const sections = [
                   {section.description}
                 </Text>
               </div>
-              <div class="-right-8 ml-8 -mb-4">
-                <Image
-                  class="rounded-l-xl  border border-r-0 border-base-200  h-full"
-                  src={section.imageSrc}
-                  alt={section.altText}
-                />
-              </div>
-            </a>
+
+              <Image
+                class="border border-base-200 aspect-auto mt-4 "
+                src={section.imageSrc}
+                alt={section.altText}
+              />
+            </div>
           ))
         }
       </div>

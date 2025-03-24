@@ -1,5 +1,8 @@
 ---
+// Fundations
 import Text from "@/components/fundations/typography/Text.astro";
+import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
+// Data
 const individualLicenseUrl = import.meta.env.PRODUCT_INDIVIDUAL_LICENSE_URL;
 const features = [
   {
@@ -17,26 +20,47 @@ const features = [
   {
     text: "Marketing, application  & eCommerce ",
   },
-
   {
     text: "Discord Support",
   },
 ];
 ---
-<div class="flex flex-col h-full justify-between order-first lg:order-none">
+
+<div
+  class="flex flex-col h-full justify-between px-4 relative before:absolute after:absolute before:bg-black before:top-0 before:left-0 before:h-6 before:w-0.5 after:top-8 after:bottom-0 after:left-0 after:w-0.5"
+>
   <div>
-    <div class="flex flex-col gap-2">
-      <Text tag="p" variant="textLG" class="text-black font-medium 2xl:text-xl">
-        Individual — <del class="opacity-45">$149</del> $67
-      </Text>
-    </div>
+    <Text tag="h3" variant="textLG" class="text-black font-semibold">
+      Individuals
+      <span
+        class="font-medium inline-flex items-center bg-base-900 ml-4 px-3 py-1 rounded-full text-white text-xs"
+      >
+        Popular AF
+      </span>
+    </Text>
+    <Text tag="p" variant="displaySM" class="text-back font-medium mt-16">
+      <del class="opacity-45">$149</del> $67
+    </Text>
     <Text
       tag="p"
       variant="textSM"
       class="text-base-500 font-medium mt-1 2xl:text-lg text-balance"
     >
-      Personal and clients.
+      Companies, teams & clients
     </Text>
+    <div class="mt-4 flex">
+      <OxbowLink
+        gap="sm"
+        size="base"
+        variant="accent"
+        href={individualLicenseUrl}
+        id="purchase-individual-license"
+        data-umami-event="purchase individual license"
+        class="w-full"
+      >
+        Buy for <span><del class="opacity-50">$149</del> $67</span>
+      </OxbowLink>
+    </div>
     <ul
       class="flex flex-col text-base-500 font-medium mt-8 space-y-1"
       role="list"
@@ -44,21 +68,21 @@ const features = [
       {
         features.map((feature) => (
           <li class="flex items-center gap-2">
-            <div class=" ring-1 ring-base-100     p-[0.110rem] bg-white/5 shadow  rounded-sm ">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="3"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-check size-2.5"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M5 12l5 5l10 -10" />
-              </svg>
-            </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-check"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M5 12l5 5l10 -10" />
+            </svg>
             <div class="flex items-center gap-1 w-full">
               <Text
                 tag="span"
@@ -66,7 +90,7 @@ const features = [
                 class="2xl:text-lg  flex items-center gap-1"
               >
                 {feature.text}
-                {/* {feature.badge && (
+                {/*  {feature.badge && (
                   <Text
                     tag="span"
                     variant="textSM"
@@ -82,17 +106,4 @@ const features = [
       }
     </ul>
   </div>
-  <div class="mt-8 flex">
-    <Text
-    tag="a"
-    variant="textSM"
-    href={individualLicenseUrl}
-    id="purchase-individual-license"
-    data-umami-event="purchase individual license"
-    class="flex items-center justify-center w-auto h-9 px-4 py-2 font-medium text-white transition-all duration-200 border rounded-full border-accent-700  gap-x-1 focus:ring-2 focus:ring-offset-2 focus:outline-none bg-accent-700 hover:bg-accent-950 focus:ring-accent-600"
-  >
-    Buy for <del class="opacity-45">$149</del> $67
-  </Text>
-  </div>
 </div>
-

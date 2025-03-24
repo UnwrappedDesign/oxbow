@@ -1,6 +1,6 @@
 @import "tailwindcss" source("../");
-@plugin "@tailwindcss/typography";
 @plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/typography";
 @plugin "tailwind-scrollbar-hide";
 @source "../../safelist.txt";
 @theme {
@@ -8,8 +8,7 @@
   --font-sans: "Geist", sans-serif;
   --font-mono: "Geist Mono", monospace;
   /* Colors */
-  /* Black */
-  --color-black: #0f1a3a;
+
   /* Accent */
   --color-accent-50: #ebf7ff;
   --color-accent-100: #d2edff;
@@ -22,6 +21,7 @@
   --color-accent-800: #003dd4;
   --color-accent-900: #02379e;
   --color-accent-950: #0f1a3a;
+  --color-accent-1000: #202938;
   /* Base */
   --color-base-50: #f9fafb;
   --color-base-100: #f3f4f6;
@@ -95,6 +95,38 @@
   --shadow: 0 0 0 1px #0e3f7e0a, 0 1px 1px -0.5px #2a33450a,
     0 3px 3px -1.5px #2a33460a, 0 6px 6px -3px #2a33460a,
     0 12px 12px -6px #0e3f7e0a, 0 24px 24px -12px #0e3f7e0a;
+
+    --shadow-dimensional: inset 0 0 0.5px 1px hsla(0, 0%, 100%, 0.1),
+    0 0 0 1px hsla(0, 0%, 0%, 0.05), 0 0.3px 0.4px hsla(0, 0%, 0%, 0.02),
+    0 0.9px 1.5px hsla(0, 0%, 0%, 0.05), 0 3.5px 6px hsla(0, 0%, 0%, 0.12);
+     /* Down*/
+  --background-image-gradient-down: radial-gradient(
+    140% 107.13% at 50% 10%,
+    transparent 37.41%,
+    #afdfff70 69.27%,
+    /* Neon purple */ #38b1ff 100% /* Electric cyan */
+  );
+  /*  Up*/
+  --background-image-gradient-up: radial-gradient(
+    131.66% 109.77% at 50% 97.75%,
+    transparent 37.41%,
+    #afdfff70 69.27%,
+    /* Same neon purple */ #38b1ff 100% /* Same electric cyan */
+  );
+  /* Right to Left */
+  --background-image-gradient-right-to-left: radial-gradient(
+    circle at right center,
+    transparent 37.41%,
+    #afdfff70 69.27%,
+    #38b1ff 100%
+  );
+  /* Left to Right */
+  --background-image-gradient-left-to-right: radial-gradient(
+    circle at left center,
+    transparent 37.41%,
+    #afdfff70 69.27%,
+    #38b1ff 100%
+  );
 }
 :root {
   font-family: "Geist", sans-serif;
@@ -114,18 +146,18 @@
     /* Open nine */ "cv01" 1,
     /* Alternate one */ "cv09",
     /* Flat-top three */ "cv02" 1;
-    /* Styling the code blocks*/
-    --astro-code-color-text: theme("colors.base.400");
-    --astro-code-token-link: theme("colors.accent.600");
-    --astro-code-token-comment: theme("colors.base.400");
-    --astro-code-token-string: theme("colors.accent.500");
-    --astro-code-token-constant: theme("colors.accent.500");
-    --astro-code-background: theme("colors.white");
-    --astro-code-token-keyword: theme("colors.accent.500");
-    --astro-code-token-function: theme("colors.accent.500");
-    --astro-code-token-parameter: theme("colors.accent.500");
-    --astro-code-token-punctuation: theme("colors.accent.500");
-    --astro-code-token-string-expression: theme("colors.base.950");
+  /* Styling the code blocks*/
+  --astro-code-color-text: theme("colors.base.400");
+  --astro-code-token-link: theme("colors.accent.600");
+  --astro-code-token-comment: theme("colors.base.400");
+  --astro-code-token-string: theme("colors.accent.500");
+  --astro-code-token-constant: theme("colors.accent.500");
+  --astro-code-background: theme("colors.white");
+  --astro-code-token-keyword: theme("colors.accent.500");
+  --astro-code-token-function: theme("colors.accent.500");
+  --astro-code-token-parameter: theme("colors.accent.500");
+  --astro-code-token-punctuation: theme("colors.accent.500");
+  --astro-code-token-string-expression: theme("colors.base.950");
 }
 /* Hidding emulators*/
 .firebase-emulator-warning {
@@ -142,23 +174,25 @@ ninja-keys::part(ninja-input) {
   margin-right: 2rem !important;
 }
 ninja-keys {
-  --ninja-modal-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3),
-    0 4px 6px -4px rgba(0, 0, 0, 0.3) !important;
-  --ninja-modal-background: #141414;
-  --ninja-overflow-background: #ffffff50;
-  --ninja-secondary-text-color: #ffffff;
-  --ninja-text-color: #ffffff;
-  --ninja-selected-background: #ffffff10;
-  --ninja-key-border-radius: 0.75rem;
-  --ninja-footer-background: #232323;
+  --ninja-width: 620px !important;
+  --ninja-modal-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2),
+    0 4px 6px -4px rgba(0, 0, 0, 0.2) !important;
+
   z-index: 100;
+}
+ninja-keys::part(ninja-input) {
+  color: var(--color-accent-950);
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 ninja-keys::part(ninja-action) {
   border-left: 4px solid transparent;
+  font-weight: 500;
 }
 ninja-keys::part(ninja-selected) {
-  border-left: 4px solid #fff;
+  border-left: 4px solid var(--color-blue-600);
 }
+
 code {
   counter-reset: step;
   counter-increment: step 0;

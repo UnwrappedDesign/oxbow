@@ -5,7 +5,6 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import applicationImage from "@/screenshots/application_sign-up_03.png";
 import ecommerceImage from "@/screenshots/application_flyouts_09.png";
 import marketingImage from "@/screenshots/marketing_hero_03.png";
-
 import Component from "@/components/fundations/icons/Component.astro";
 import Code from "@/components/fundations/icons/Code.astro";
 import Devices from "@/components/fundations/icons/Devices.astro";
@@ -74,7 +73,6 @@ const features = [
       "This includes all component, element and layout made to date, as well as future additions.",
   },
 ];
-
 const logos = [
   {
     href: "https://docs.adonisjs.com/guides/installation",
@@ -180,234 +178,129 @@ const started = [
 ];
 ---
 
-<section class="scroll-mt-24 " id="features">
-  <Wrapper variant="standard" class="py-6">
+<section class="scroll-mt-24" id="features">
+  <Wrapper
+    variant="standard"
+    class="py-12 lg:py-24 grid grid-cols-1 gap-y-12 sm:grid-cols-2 lg:grid-cols-4"
+  >
     <Text
       tag="h3"
-      variant="textLG"
+      variant="displaySM"
       class="text-black font-medium tracking-tighter"
     >
       What's included
     </Text>
-  
-    <ul class="grid mt-2 grid-cols-1sm:grid-cols-2 md:grid-cols-3 gap-2">
+    <ul
+      class="grid mt-2 grid-cols-1  md:grid-cols-3 gap-y-12 lg:col-span-3"
+    >
       <div
-        class="bg-base-50 rounded-xl flex flex-col h-full justify-between relative overflow-hidden"
+        class="px-4 relative before:absolute after:absolute before:bg-black before:top-0 before:left-0 before:h-6 before:w-0.5 after:top-8 after:bottom-0 after:left-0 after:w-0.5"
       >
-        <div class="p-4 relative">
-          <Text
-            tag="p"
-            variant="textXS"
-            class="font-bold uppercase text-accent-600"
-          >
-            Marketing
-          </Text>
-          <Text
-            tag="h3"
-            variant="textBase"
-            class="mt-4 text-base-950 font-medium"
-          >
-            Landing pages?
-          </Text>
-          <Text tag="p" variant="textSM" class="mt-2 text-base-500 font-medium">
-            Hero sections, feature displays, footers, pricing pages, ready to
-            grab landing pages and more to help you create standout marketing
-            websites that impress and grow your audience.
-          </Text>
+        <div class="relative">
+          <span class="text-sm text-base-500">Marketing</span>
+          <h3 class="text-base mt-2 text-black font-medium">Landing pages</h3>
         </div>
-        <div class="-right-8 ml-8 -mb-4">
-          <Image
-            class="rounded-l-xl ring-4 ring-base-50 border border-base-200 shadow h-full"
-            src={marketingImage}
-            alt="hero images"
-          />
-        </div>
+        <p class="text-sm mt-2 text-base-500 text-pretty">
+          Hero sections, features, footers, pricing, and ready-to-use landing
+          pages to help you build standout marketing websites.
+        </p>
+        <Image
+          src={marketingImage}
+          alt="hero images"
+          class="border border-base-200 aspect-auto mt-4"
+        />
       </div>
+
       <div
-        class="bg-base-50 rounded-xl flex flex-col h-full justify-between relative overflow-hidden"
+        class="px-4 relative before:absolute after:absolute before:bg-black before:top-0 before:left-0 before:h-6 before:w-0.5 after:top-8 after:bottom-0 after:left-0 after:w-0.5"
       >
-        <div class="p-4 relative">
-          <Text
-            tag="p"
-            variant="textXS"
-            class="font-bold uppercase text-accent-600"
-          >
-            Application
-          </Text>
-          <Text
-            tag="h3"
-            variant="textBase"
-            class="mt-4 text-base-950 font-medium"
-          >
+        <div class="relative">
+          <span class="text-sm text-base-500">Application</span>
+          <h3 class="text-base mt-2 text-black font-medium">
             Building a webapp?
-          </Text>
-          <Text tag="p" variant="textSM" class="mt-2 text-base-500 font-medium">
-            Find navigation, buttons, forms, command palettes, typography,
-            application layouts, dialogs, and more to make your application’s
-            user interface pretty.
-          </Text>
+          </h3>
         </div>
-        <div class="-right-8 ml-8 -mb-4">
-          <Image
-            class="rounded-l-xl ring-4 ring-base-50 border border-base-200 shadow h-full"
-            src={applicationImage}
-            alt="hero images"
-          />
-        </div>
+        <p class="text-sm mt-2 text-base-500 text-pretty">
+          Find navigation, buttons, forms, command palettes, typography,
+          application layouts, dialogs, and more to make your application’s user
+          interface pretty.
+        </p>
+        <Image
+          src={applicationImage}
+          alt="hero images"
+          class="border border-base-200 aspect-auto mt-4"
+        />
       </div>
       <div
-        class="bg-base-50 rounded-xl flex flex-col h-full justify-between relative overflow-hidden"
+        class="px-4 relative before:absolute after:absolute before:bg-black before:top-0 before:left-0 before:h-6 before:w-0.5 after:top-8 after:bottom-0 after:left-0 after:w-0.5"
       >
-        <div class="p-4 relative">
-          <Text
-            tag="p"
-            variant="textXS"
-            class="font-bold uppercase text-accent-600">eCommerce</Text
-          >
-          <Text
-            tag="h3"
-            variant="textLG"
-            class="mt-4 text-base-950 font-medium"
-          >
-            Got a store?
-          </Text>
-          <Text tag="p" variant="textSM" class="mt-2 text-base-500 font-medium">
-            Checkout forms, shopping carts, promo sections, store fronts,
-            product overviews and all the basics to build your store.
-          </Text>
+        <div class="relative">
+          <span class="text-sm text-base-500">Ecomerce</span>
+          <h3 class="text-base mt-2 text-black font-medium">got a store?</h3>
         </div>
-        <div class="-right-8 ml-8 -mb-4">
-          <Image
-            class="rounded-l-xl ring-4 ring-base-50 border border-base-200 shadow h-full"
-            src={ecommerceImage}
-            alt="hero images"
-          />
-        </div>
+        <p class="text-sm mt-2 text-base-500 text-pretty">
+          Hero sections, features, footers, pricing, and ready-to-use landing
+          pages to help you build standout marketing websites.
+        </p>
+        <Image
+          src={ecommerceImage}
+          alt="hero images"
+          class="border border-base-200 aspect-auto mt-4"
+        />
       </div>
       {
         features.map((feature) => (
-          <li class="pt-8 pr-8">
-            <div class=" flex gap-3 items-center">
-              {feature.icon === "Component" && (
-                <Component class="text-accent-600" size="base" />
-              )}
+          <li class="px-4 relative before:absolute after:absolute before:bg-black before:top-0 before:left-0 before:h-6 before:w-0.5 after:top-8 after:bottom-0 after:left-0 after:w-0.5">
+            <Text tag="h3" variant="textBase" class="  text-black font-medium">
+              {feature.title}
+            </Text>
 
-              {feature.icon === "Code" && (
-                <Code class="text-accent-600" size="base" />
-              )}
-              {feature.icon === "Devices" && (
-                <Devices class="text-accent-600" size="base" />
-              )}
-              {feature.icon === "Mail" && (
-                <Mail class="text-accent-600" size="base" />
-              )}
-
-              {feature.icon === "Tools" && (
-                <Tools class="text-accent-600" size="base" />
-              )}
-              {feature.icon === "LockOpen" && (
-                <LockOpen class="text-accent-600" size="base" />
-              )}
-              {feature.icon === "LoaderTwo" && (
-                <LoaderTwo class="text-accent-600" size="base" />
-              )}
-              {feature.icon === "Lifebuoy" && (
-                <Lifebuoy class="text-accent-600" size="base" />
-              )}
-              {feature.icon === "Home" && (
-                <Home class="text-accent-600" size="base" />
-              )}
-              <dt>
-                <Text
-                  tag="h3"
-                  variant="textBase"
-                  class="text-base-950 font-medium"
-                >
-                  {feature.title}
-                </Text>
-              </dt>
-            </div>
-            <dd>
-              <Text
-                tag="p"
-                variant="textSM"
-                class="mt-2 text-base-500 font-medium"
-              >
-                {feature.description}
-              </Text>
-            </dd>
-          </li>
-        ))
-      }
-    </ul>
-  </Wrapper>
-  <Wrapper variant="standard" class="py-12 border-t">
-    <Text
-    tag="h3"
-    variant="textLG"
-    class="text-black font-medium tracking-tighter"
-    >
-      Get started without configuring anything
-    </Text>
-    <ul
-      class="grid grid-cols-1 gap-6 lg:gap-12 md:grid-cols-2 lg:grid-cols-3 mt-8"
-    >
-      {
-        started.map((started) => (
-          <li>
-            <div class=" flex gap-3 items-center">
-              {started.icon === "Settings" && (
-                <Settings class="text-accent-600" size="base" />
-              )}
-
-              {started.icon === "Accessibility" && (
-                <Accessibility class="text-accent-600" size="base" />
-              )}
-              {started.icon === "Brain" && (
-                <Brain class="text-accent-600" size="base" />
-              )}
-
-              <dt>
-                <Text
-                  tag="h3"
-                  variant="textBase"
-                  class="text-base-950 font-medium"
-                >
-                  {started.title}
-                </Text>
-              </dt>
-            </div>
-            <dd>
-              <Text
-                tag="p"
-                variant="textSM"
-                class="mt-2 text-base-500 font-medium"
-              >
-                {started.description}
-              </Text>
-            </dd>
-          </li>
-        ))
-      }
-    </ul>
-    <ul class="gap-4 pt-6 grid grid-cols-5 lg:grid-cols-10 lg:gap-6 lg:-mx-8">
-      {
-        logos.map((item) => (
-          <li>
             <Text
-              tag="a"
-              href={item.href}
-              class="duration-200 hover:opacity-100"
+              tag="p"
+              variant="textSM"
+              class=" mt-2 text-base-500 text-pretty"
             >
-              <img
-                src={`/images/oxbow/frameworks/${item.image}`}
-                class="size-8 mx-auto"
-                alt={item.image}
-              />
+              {feature.description}
             </Text>
           </li>
         ))
       }
     </ul>
+  </Wrapper>
+  <Wrapper
+    variant="standard"
+    class="py-12 lg:py-24 grid grid-cols-1 gap-y-12 sm:grid-cols-2 lg:grid-cols-4"
+  >
+    <Text
+      tag="h3"
+      variant="displaySM"
+      class="text-black font-medium tracking-tighter"
+    >
+      Get started without configuring anything
+    </Text>
+    <div class="lg:col-span-3">
+      <ul class="grid grid-cols-1 md:grid-cols-2 gap-y-12 lg:grid-cols-3">
+        {
+          started.map((started) => (
+            <li class="px-4 relative before:absolute after:absolute before:bg-black before:top-0 before:left-0 before:h-6 before:w-0.5 after:top-8 after:bottom-0 after:left-0 after:w-0.5">
+              <Text
+                tag="h3"
+                variant="textBase"
+                class="  text-black font-medium"
+              >
+                {started.title}
+              </Text>
+              <Text
+                tag="p"
+                variant="textSM"
+                class=" mt-2 text-base-500 text-pretty"
+              >
+                {started.description}
+              </Text>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </Wrapper>
 </section>

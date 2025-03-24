@@ -5,17 +5,24 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 ---
 
 <section>
-  <Wrapper variant="standard" class="py-6">
-    <ul class="w-full relative lg:grid-cols-2 grid gap-12" role="list">
+  <Wrapper variant="standard" class="py-12 lg:py-24 ">
+    <Text
+      tag="h3"
+      variant="displayXL"
+      class="text-black font-medium tracking-tighter"
+    >
+     We..., we got customers....
+    </Text>
+    <ul class="w-full relative md:grod-cols-2 lg:grid-cols-4 grid mt-12 gap-y-12" role="list">
       {
-        reviews.slice(0, 2).map((template) => (
+        reviews.slice(0, 4).map((template) => (
           <>
-            <li class=" relative h-full flex">
+            <li class=" h-full flex px-4 relative before:absolute after:absolute before:bg-black before:top-0 before:left-0 before:h-6 before:w-0.5 after:top-8 after:bottom-0 after:left-0 after:w-0.5">
               <div class="flex flex-col h-full justify-between gap-6  ">
                 <Text
                   tag="p"
                   variant="textSM"
-                  class="text-base-500 text-balance font-medium   mt-4"
+                  class="text-base-500 text-balance font-medium  "
                 >
                   "{template.text}"
                 </Text>
@@ -42,7 +49,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
         ))
       }
     </ul>
-    <div class="flex flex-wrap gap-2 lg:ml-auto mt-8">
+    <div class="flex mt-12">
       <Text
         tag="a"
         href="/customers"

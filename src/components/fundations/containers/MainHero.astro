@@ -1,7 +1,10 @@
 ---
+// Fundations
 import Text from "@/components/fundations/typography/Text.astro";
-import AlpineTailwind from "@/components/global/AlpineTailwind.astro";
+import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Components
+import AlpineTailwind from "@/components/global/AlpineTailwind.astro";
 
 interface Props {
   title: string;
@@ -32,8 +35,13 @@ const {
   x-data="{ currentPath: window.location.pathname }"
   :class="currentPath === '/' ? ' pt-16 pb-0' : ''"
 >
-  <Wrapper variant="hero" class="py-12">
-    <div class={`flex flex-col ${textCentered ? "justify-center" : ""}`}>
+  <Wrapper
+    variant="hero"
+    class="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+  >
+    <div
+      class={`flex flex-col lg:col-span-2 ${textCentered ? "justify-center" : ""}`}
+    >
       {
         showAlpineTailwind && ( // Conditionally render AlpineTailwind
           <div class={`flex ${textCentered ? "justify-center" : ""}`}>
@@ -43,8 +51,8 @@ const {
       }
       <Text
         tag="h1"
-        variant="textXL"
-        class={`text-black tracking-tight 2xl:text-2xl mt-4    text-balance font-medium  max-w-2xl ${textCentered ? "text-center text-balance max-w-3xl  mx-auto" : ""}`}
+        variant="displayXL"
+        class={`text-black tracking-tight xl:text-4xl mt-4 text-balance  font-semibold  max-w-2xl ${textCentered ? "text-center text-balance max-w-3xl  mx-auto" : ""}`}
       >
         {title}
       </Text>
@@ -56,7 +64,7 @@ const {
             <Text
               tag="p"
               variant="textBase"
-              class={`text-base-500 text-balance font-medium mt-2 max-w-xl 2xl:text-lg ${textCentered ? "text-center text-balance max-w-lg mx-auto" : ""}`}
+              class={`text-base-500 text-balance font-medium mt-2 max-w-xl xl:text-lg ${textCentered ? "text-center text-balance max-w-lg mx-auto" : ""}`}
             >
               {subtitle}
             </Text>
@@ -81,26 +89,30 @@ const {
             <div
               class={`flex gap-2 flex-wrap mt-8 ${textCentered ? "justify-center" : ""}`}
             >
-              <Text
-                tag="a"
+              <OxbowLink
                 href="/pricing"
-                variant="textSM"
+                size="base"
+                variant="default"
+                gap="sm"
                 id="access-navigation-cta"
                 data-umami-event="access-navigation-cta"
-                class="flex items-center justify-center w-full h-9 text-sm px-4 py-2 font-medium text-white transition-all duration-200 border rounded-full border-accent-950  sm:w-auto gap-x-1 focus:ring-2 focus:ring-offset-2 focus:outline-none bg-accent-950 hover:bg-accent-900 focus:ring-accent-900"
+                class="w-full sm:w-auto "
               >
-                Get access <del class="opacity-45">$149</del> $67
-              </Text>
-              <Text
-                tag="a"
+                Get access
+                <span>
+                  <del class="opacity-45">$149</del> $67
+                </span>
+              </OxbowLink>
+              <OxbowLink
                 href="/components"
-                variant="textSM"
+                size="base"
+                variant="muted"
                 id="access-navigation-cta"
                 data-umami-event="access-navigation-cta"
-                class="flex items-center justify-center w-full h-9 text-sm  px-4 py-2 font-medium transition-all duration-200 bg-white border rounded-full sm:w-auto  text-base-500 focus:ring-2 focus:ring-offset-2 focus:outline-none border-base-200 hover:text-accent-950 focus:ring-accent-600"
+                class="w-full sm:w-auto"
               >
                 Browse components
-              </Text>
+              </OxbowLink>
             </div>
           )
         }

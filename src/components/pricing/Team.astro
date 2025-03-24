@@ -1,7 +1,9 @@
 ---
+// Fundations
 import Text from "@/components/fundations/typography/Text.astro";
+import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
+// Data
 const teamLicenseUrl = import.meta.env.PRODUCT_TEAM_LICENSE_URL;
-
 const features = [
   {
     text: "5 Users",
@@ -18,19 +20,22 @@ const features = [
   {
     text: "Marketing, application  & eCommerce ",
   },
-
   {
     text: "Discord Support",
   },
 ];
 ---
-<div class="flex flex-col h-full justify-between">
+
+<div
+  class="flex flex-col h-full justify-between px-4 relative before:absolute after:absolute before:bg-black before:top-0 before:left-0 before:h-6 before:w-0.5 after:top-8 after:bottom-0 after:left-0 after:w-0.5"
+>
   <div>
-    <div class="flex flex-col gap-2">
-      <Text tag="p" variant="textLG" class="text-back font-medium 2xl:text-xl">
-         Teams — $399
-      </Text>
-    </div>
+    <Text tag="h3" variant="textLG" class="text-black font-semibold">
+      Teams
+    </Text>
+    <Text tag="p" variant="displaySM" class="text-back font-medium mt-16">
+      $399
+    </Text>
     <Text
       tag="p"
       variant="textSM"
@@ -38,6 +43,19 @@ const features = [
     >
       Companies, teams & clients
     </Text>
+    <div class="mt-4 flex">
+      <OxbowLink
+        gap="sm"
+        size="base"
+        variant="muted"
+        href={teamLicenseUrl}
+        id="purchase-team-license"
+        data-umami-event="purchase team license"
+        class="w-full"
+      >
+        Buy for $399
+      </OxbowLink>
+    </div>
     <ul
       class="flex flex-col text-base-500 font-medium mt-8 space-y-1"
       role="list"
@@ -45,21 +63,21 @@ const features = [
       {
         features.map((feature) => (
           <li class="flex items-center gap-2">
-            <div class=" ring-1 ring-base-100  p-[0.110rem]  shadow  rounded-sm ">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="3"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-check size-2.5"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M5 12l5 5l10 -10" />
-              </svg>
-            </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-check"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M5 12l5 5l10 -10" />
+            </svg>
             <div class="flex items-center gap-1 w-full">
               <Text
                 tag="span"
@@ -83,17 +101,4 @@ const features = [
       }
     </ul>
   </div>
-  <div class="mt-8 flex">
-    <Text
-      tag="a"
-      variant="textSM"
-      id="purchase-team-license"
-      data-umami-event="purchase team license"
-      href={teamLicenseUrl}
-      class="flex items-center justify-center w-auto h-9 px-4 py-2 font-medium transition-all duration-200 bg-white border rounded-full  text-base-500 focus:ring-2 focus:ring-offset-2 focus:outline-none border-base-200 hover:text-accent-950 focus:ring-accent-600"
-    >
-      Buy for $399
-    </Text>
-  </div>
 </div>
-
