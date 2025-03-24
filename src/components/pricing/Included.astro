@@ -5,18 +5,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import applicationImage from "@/screenshots/application_sign-up_03.png";
 import ecommerceImage from "@/screenshots/application_flyouts_09.png";
 import marketingImage from "@/screenshots/marketing_hero_03.png";
-import Component from "@/components/fundations/icons/Component.astro";
-import Code from "@/components/fundations/icons/Code.astro";
-import Devices from "@/components/fundations/icons/Devices.astro";
-import Mail from "@/components/fundations/icons/Mail.astro";
-import Tools from "@/components/fundations/icons/Tools.astro";
-import LockOpen from "@/components/fundations/icons/LockOpen.astro";
-import LoaderTwo from "@/components/fundations/icons/LoaderTwo.astro";
-import Lifebuoy from "@/components/fundations/icons/Lifebuoy.astro";
-import Home from "@/components/fundations/icons/Home.astro";
-import Settings from "@/components/fundations/icons/Settings.astro";
-import Brain from "@/components/fundations/icons/Brain.astro";
-import Accessibility from "@/components/fundations/icons/Accessibility.astro";
+
 const features = [
   {
     icon: "Component",
@@ -73,89 +62,39 @@ const features = [
       "This includes all component, element and layout made to date, as well as future additions.",
   },
 ];
-const logos = [
+const sections = [
   {
-    href: "https://docs.adonisjs.com/guides/installation",
-    image: "adonis.svg",
+    category: "Marketing",
+    title: "Landing pages",
+    description:
+      "Hero sections, features, footers, pricing, and ready-to-use landing pages to help you build standout marketing websites.",
+    image: {
+      src: marketingImage,
+      alt: "hero images",
+    },
   },
   {
-    href: "https://angular.io/cli",
-    image: "angular.svg",
+    category: "Application",
+    title: "Building a webapp?",
+    description:
+      "Find navigation, buttons, forms, command palettes, typography, application layouts, dialogs, and more to make your application’s user interface pretty.",
+    image: {
+      src: applicationImage,
+      alt: "hero images",
+    },
   },
   {
-    href: "https://docs.astro.build/en/getting-started/#start-your-first-project",
-    image: "astro.svg",
+    category: "Ecommerce",
+    title: "Got a store?",
+    description:
+      "Checkout forms, shopping carts, promo sections, store fronts, product overviews, and all the basics to build your store.",
+    image: {
+      src: ecommerceImage,
+      alt: "hero images",
+    },
   },
-  {
-    href: "https://guides.emberjs.com/release/getting-started/quick-start/#toc_create-a-new-application",
-    image: "ember.svg",
-  },
-  {
-    href: "https://www.gatsbyjs.com/docs/reference/gatsby-cli/#how-to-use-gatsby-cli",
-    image: "gatsby.svg",
-  },
-  {
-    href: "https://laravel.com/docs/9.x#your-first-laravel-project",
-    image: "laravel.svg",
-  },
-  {
-    href: "https://www.meteor.com/developers/install",
-    image: "meteor.svg",
-  },
-  {
-    href: "https://nextjs.org/docs/api-reference/create-next-app",
-    image: "next.svg",
-  },
-  {
-    href: "https://nuxt.com/docs/getting-started/installation",
-    image: "nuxt.svg",
-  },
-  {
-    href: "https://parceljs.org/getting-started/webapp/",
-    image: "parcel.svg",
-  },
-  {
-    href: "https://hexdocs.pm/phoenix/installation.html",
-    image: "phoenix.svg",
-  },
-  {
-    href: "https://qwik.builder.io/docs/getting-started/",
-    image: "quick.svg",
-  },
-  {
-    href: "https://create-react-app.dev/docs/getting-started",
-    image: "reactApp.svg",
-  },
-  {
-    href: "https://remix.run/docs",
-    image: "remix.svg",
-  },
-  {
-    href: "https://rspack.dev/guide/start/quick-start#using-the-rspack-cli",
-    image: "rspack.svg",
-  },
-  {
-    href: "https://guides.rubyonrails.org/command_line.html",
-    image: "ruby.svg",
-  },
-  {
-    href: "https://www.solidjs.com/guides/getting-started",
-    image: "solid.svg",
-  },
-  {
-    href: "https://kit.svelte.dev/docs#introduction-getting-started",
-    image: "svelte.svg",
-  },
-  {
-    href: "https://symfony.com/download",
-    image: "symphony.svg",
-  },
-  {
-    href: "https://vitejs.dev/guide/#scaffolding-your-first-vite-project",
-    image: "vite.svg",
-  },
-  // Add more items as needed
 ];
+
 const started = [
   {
     icon: "Settings",
@@ -191,61 +130,26 @@ const started = [
       What's included
     </Text>
     <ul class="grid mt-2 grid-cols-1 md:grid-cols-3 gap-y-12 lg:col-span-3">
-      <div
-        class="px-4 relative before:absolute after:absolute before:bg-base-800 before:top-0 before:left-0 before:h-6 before:w-0.5 after:top-8 after:bottom-0 after:left-0 after:w-0.5"
-      >
-        <div class="relative">
-          <span class="text-sm text-base-500">Marketing</span>
-          <h3 class="text-base mt-2 text-black font-medium">Landing pages</h3>
-        </div>
-        <p class="text-sm mt-2 text-base-500 text-pretty">
-          Hero sections, features, footers, pricing, and ready-to-use landing
-          pages to help you build standout marketing websites.
-        </p>
-        <Image
-          src={marketingImage}
-          alt="hero images"
-          class="border border-base-200 aspect-auto mt-4"
-        />
-      </div>
-
-      <div
-        class="px-4 relative before:absolute after:absolute before:bg-base-800 before:top-0 before:left-0 before:h-6 before:w-0.5 after:top-8 after:bottom-0 after:left-0 after:w-0.5"
-      >
-        <div class="relative">
-          <span class="text-sm text-base-500">Application</span>
-          <h3 class="text-base mt-2 text-black font-medium">
-            Building a webapp?
-          </h3>
-        </div>
-        <p class="text-sm mt-2 text-base-500 text-pretty">
-          Find navigation, buttons, forms, command palettes, typography,
-          application layouts, dialogs, and more to make your application’s user
-          interface pretty.
-        </p>
-        <Image
-          src={applicationImage}
-          alt="hero images"
-          class="border border-base-200 aspect-auto mt-4"
-        />
-      </div>
-      <div
-        class="px-4 relative before:absolute after:absolute before:bg-base-800 before:top-0 before:left-0 before:h-6 before:w-0.5 after:top-8 after:bottom-0 after:left-0 after:w-0.5"
-      >
-        <div class="relative">
-          <span class="text-sm text-base-500">Ecomerce</span>
-          <h3 class="text-base mt-2 text-black font-medium">got a store?</h3>
-        </div>
-        <p class="text-sm mt-2 text-base-500 text-pretty">
-          Hero sections, features, footers, pricing, and ready-to-use landing
-          pages to help you build standout marketing websites.
-        </p>
-        <Image
-          src={ecommerceImage}
-          alt="hero images"
-          class="border border-base-200 aspect-auto mt-4"
-        />
-      </div>
+      {
+        sections.map(({ category, title, description, image }) => (
+          <li class="px-4 relative before:absolute after:absolute flex flex-col before:bg-base-800 before:top-0 before:left-0 before:h-6 before:w-0.5 after:top-8 after:bottom-0 after:left-0 after:w-0.5">
+            <div>
+              <div class="relative">
+                <span class="text-sm text-base-500">{category}</span>
+                <h3 class="text-base mt-2 text-black font-medium">{title}</h3>
+              </div>
+              <p class="text-sm mt-2 text-base-500 text-pretty">
+                {description}
+              </p>
+            </div>
+            <Image
+              src={image.src}
+              alt={image.alt}
+              class="border border-base-200 aspect-auto mt-4"
+            />
+          </li>
+        ))
+      }
       {
         features.map((feature) => (
           <li class="px-4 relative before:absolute after:absolute before:bg-base-800 before:top-0 before:left-0 before:h-6 before:w-0.5 after:top-8 after:bottom-0 after:left-0 after:w-0.5">
