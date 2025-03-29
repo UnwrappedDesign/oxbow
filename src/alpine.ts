@@ -33,6 +33,21 @@ export default (Alpine: Alpine) => {
         },
     }));
 
+    Alpine.store('themeConfig', {
+      init() {
+        this.color = localStorage.getItem('color') || 'blue';
+        this.theme = localStorage.getItem('theme') === 'true';
+      },
+      setColor(color: string) {
+        this.color = color; 
+        localStorage.setItem('color', color);
+      },
+      setTheme(theme: boolean) {
+        this.theme = theme;
+        localStorage.setItem('theme', theme.toString());
+      }
+    });
+
     Alpine.data("loginForm", () => ({
       email: "",
       emailSent: false,
@@ -76,34 +91,60 @@ export default (Alpine: Alpine) => {
 
     Alpine.data("themeSelector", () => ({
         init() {
+          this.useTheme = Alpine.store('themeConfig').theme;
+          this.selected = Alpine.store('themeConfig').color;
+
           this.$watch('selected', (theme: string) => {
-            this.$dispatch('theme', {color: theme.toLowerCase()});
+            Alpine.store('themeConfig').setColor(theme);
+            this.$dispatch('theme-change', {
+              color: theme,
+              theme: this.useTheme
+            });
+          });
+
+          this.$watch('useTheme', (useTheme: boolean) => {
+            Alpine.store('themeConfig').setTheme(useTheme);
+            this.$dispatch('theme-change', {
+              color: this.selected,
+              theme: useTheme
+            });
+
+            // update the theme in the url
+            const url = new URL(window.location.href);
+            url.searchParams.set('theme', !useTheme ? this.selected : '');
+            window.location.href = url.toString();
+          });
+
+          this.$dispatch('theme-change', {
+            color: this.selected,
+            theme: this.useTheme
           });
         },  
+        useTheme: false,
         colors: [
-          { name: 'Blue', color: 'bg-blue-500' },
-          { name: 'Red', color: 'bg-red-500' },
-          { name: 'Amber', color: 'bg-amber-500' },
-          { name: 'Yellow', color: 'bg-yellow-500' },
-          { name: 'Lime', color: 'bg-lime-500' },
-          { name: 'Green', color: 'bg-green-500' },
-          { name: 'Emerald', color: 'bg-emerald-500' },
-          { name: 'Teal', color: 'bg-teal-500' },
-          { name: 'Cyan', color: 'bg-cyan-500' },
-          { name: 'Sky', color: 'bg-sky-500' },
-          { name: 'Indigo', color: 'bg-indigo-500' },
-          { name: 'Violet', color: 'bg-violet-500' },
-          { name: 'Purple', color: 'bg-purple-500' },
-          { name: 'Fuchsia', color: 'bg-fuchsia-500' },
-          { name: 'Pink', color: 'bg-pink-500' },
-          { name: 'Rose', color: 'bg-rose-500' },
-          { name: 'Slate', color: 'bg-slate-500' },
-          { name: 'Gray', color: 'bg-gray-500' },
-          { name: 'Zinc', color: 'bg-zinc-500' },
-          { name: 'Neutral', color: 'bg-neutral-500' },
-          { name: 'Stone', color: 'bg-stone-500' },
+          'blue',
+          'red',
+          'amber',
+          'yellow',
+          'lime',
+          'green',
+          'emerald',
+          'teal',
+          'cyan',
+          'sky',
+          'indigo',
+          'violet',
+          'purple',
+          'fuchsia',
+          'pink',
+          'rose',
+          'slate',
+          'gray',
+          'zinc',
+          'neutral',
+          'stone',
         ],
-        selected: 'Blue',
+        selected: 'blue',
         open: false,
         toggleOpen() {
           this.open = !this.open;
@@ -111,6 +152,9 @@ export default (Alpine: Alpine) => {
         selectColor(color: string) {
           this.selected = color;
           this.open = false;
+        },
+        setUseTheme(useTheme: boolean) {
+          this.useTheme = useTheme;
         }
     }));
 
@@ -121,22 +165,40 @@ export default (Alpine: Alpine) => {
         code: string;
         copied: boolean;
         theme: string;
+        useTheme: boolean;
         copyCode(): void;
         setTab(tab: Playground["tab"]): void;
         setViewportSize(size: Playground["viewportSize"]): void;
         setCode(code: string): void;
-        setTheme(theme: string): void;
+        setTheme({color, theme}: {color: string, theme: boolean}): void;
     };
 
     Alpine.data("playground", (): Playground => ({
-        init() {
-          this.setTheme('blue');
+        async init() {
+          this.highlighter = await createHighlighter({
+            langs: ['css'],
+            themes: [shikiTheme] // register the theme
+          });
+
+          setTimeout(() => {
+            this.setTheme({
+              color: Alpine.store('themeConfig').color,
+              theme: Alpine.store('themeConfig').theme
+            });
+          }, 500);
+
+          this.$watch('useTheme', (useTheme: boolean) => {
+            if (!useTheme && this.tab === 'theme') {
+              this.setTab('preview');
+            }
+          });
         },
         copied: false,
         tab: "preview",
         viewportSize: "desktop",
         code: "",
         theme: "",
+        useTheme: false,
         copyCode() {
           this.copied = true;
           
@@ -162,10 +224,10 @@ export default (Alpine: Alpine) => {
         setCode(code: string) {
           this.code = code;
         },
-        async setTheme(themeColor: string) {
+        async setTheme({color, theme}: {color: string, theme: boolean}) {
           const shades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
           const variables = shades.map(shade => {
-            return `--color-accent-${shade}: var(--color-${themeColor.toLowerCase()}-${shade});`
+            return `--color-accent-${shade}: var(--color-${color.toLowerCase()}-${shade});`
           });
 
           shades.forEach(shade => {
@@ -173,7 +235,7 @@ export default (Alpine: Alpine) => {
             const iframeDocument = iframe?.contentDocument;
 
             if (iframeDocument) {
-              iframeDocument.documentElement.style.setProperty(`--color-accent-${shade}`, `var(--color-${themeColor.toLowerCase()}-${shade})`);
+              iframeDocument.documentElement.style.setProperty(`--color-accent-${shade}`, `var(--color-${color.toLowerCase()}-${shade})`);
             };
           });
 
@@ -182,15 +244,11 @@ export default (Alpine: Alpine) => {
             ${variables.join('\n  ')}
           }`;
 
-          const highlighter = await createHighlighter({
-            langs: ['css'],
-            themes: [shikiTheme] // register the theme
-          });
-
-          this.theme = await highlighter.codeToHtml(css, {
+          this.theme = await this.highlighter.codeToHtml(css, {
             lang: 'css',
             theme: 'css-variables',
           });
+          this.useTheme = theme;
         }
     }));
 }

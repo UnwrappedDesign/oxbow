@@ -12,17 +12,19 @@ const user = Astro.locals.user;
 const canSeeCode = user || componentIndex === 1;
 const code = canSeeCode ? await Astro.slots.render("default")
                       : '';
-const ppcode = canSeeCode ? await prettier.format(code, {
+let ppcode = canSeeCode ? await prettier.format(code, {
                           parser: "html",
                         })
                         : '';
 
-const theme = ``;
+const theme = Astro.url.searchParams.get('theme') || '';
 
+if (theme) {
+  ppcode = ppcode.replace(/-accent-/g, `-${theme}-`);
+}
 ---
-<section x-data="playground" class="not-prose ">
-  <div class="relative"  @theme="setTheme($event.detail.color)">
-   
+<section x-data="playground" class="not-prose">
+  <div class="relative" @theme-change="setTheme($event.detail)">
     <div class="flex items-center justify-between pb-2 gap-1 ">
       <div class="flex items-center gap-2">
         <a
@@ -33,15 +35,15 @@ const theme = ``;
         </a>
         <div x-data="themeSelector" class="relative w-100 z-10">
             <button 
-                @click="toggleOpen" 
-                class="pointer-events-auto focus:text-accent-500 rounded-md px-4 h-7 py-1 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200 bg-base-50 flex items-center gap-2 "
+                x-on:click="toggleOpen" 
+                class="pointer-events-auto cursor-pointer focus:text-accent-500 rounded-md px-4 h-7 py-1 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200 bg-base-50 flex items-center gap-2 "
             >
                 <div class="flex items-center gap-2">
                     <div 
                         class="size-3 rounded-full"
-                        :class="{['bg-' + selected.toLowerCase() + '-500']: true}"
+                        :class="{['bg-' + selected + '-500']: true}"
                     ></div>
-                    <span x-text="selected"></span>
+                    <span x-text="selected.charAt(0).toUpperCase() + selected.slice(1)"></span>
                 </div>
                 <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -53,21 +55,33 @@ const theme = ``;
                 class="absolute w-full mt-1 bg-white ring-1 ring-base-900/5 rounded-lg shadow border-base-200 z-50"
                 x-transition
             >
-              
                 <div class="p-4 bg-white rounded-lg max-w-2xl">
                   <Text tag="p" variant="textBase" class=" font-medium ">Color options</Text>
                   <Text tag="p" variant="textXS" class="text-gray-500 mt-1">Customize your colors.</Text>
+                  <div 
+                    x-show={canSeeCode}
+                    class="cursor-pointer mt-2 flex items-center gap-2 w-full">
+                    <input
+                      id="useTheme"
+                      type="checkbox"
+                      x-model="useTheme"
+                      class="cursor-pointer  size-4 rounded border-base-300 text-accent-600 focus:ring-accent-600 shadow"
+                    />
+                    <label for="useTheme" class="cursor-pointer leading-normal block text-sm text-base-500">
+                      Use theme
+                    </label>
+                  </div>
               
                   <div class="w-full mt-4">
                       <div class="flex flex-wrap gap-3 max-w-sm">
                         <template x-for="color in colors">
                           <button 
-                            x-on:click="selectColor(color.name)"
-                            :class="selected === color.name ? 'ring-1 ring-base-300' : ''"
+                            x-on:click="selectColor(color)"
+                            :class="selected === color ? 'ring-1 ring-base-300' : ''"
                           class="pointer-events-auto flex focus:text-accent-500 rounded-md px-4 h-7 py-1 text-xs text-base-500 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200 bg-base-50 items-center gap-1 "
                           >
-                            <div class="size-2 rounded-full" :class="color.color"></div>
-                            <span x-text="color.name"></span>
+                            <div class="size-2 rounded-full" :class="{['bg-' + color + '-500']: true}"></div>
+                            <span x-text="color.charAt(0).toUpperCase() + color.slice(1)"></span>
                           </button>
                         </template>
                       </div>
@@ -168,6 +182,7 @@ const theme = ``;
                 Code
               </button>
               <button
+                x-show="useTheme === true"
                 x-on:click="setTab('theme')" 
                 :class="tab === 'theme' ? 'bg-base-50' : 'bg-black/0'"
                 data-umami-event="click-view-theme"
