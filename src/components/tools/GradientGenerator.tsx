@@ -89,7 +89,7 @@ export default function GradientGenerator() {
     <div id="generator">
     
       <div className="lg:sticky lg:top-0 z-10 ">
-        <div className="grid grid-cols-1 lg:grid-cols-4  md:items-end  w-full bg-white border-x border-base-200">
+        <div className="grid grid-cols-1 lg:grid-cols-4  md:items-end  w-full bg-white ">
           <div className="w-full">
             <label className="sr-only">Direction</label>
             <select
@@ -134,7 +134,7 @@ export default function GradientGenerator() {
             )}
           </div>
         </div>
-        <div className="  bg-white border-x border-base-200">
+        <div className="  bg-white ">
           <div className="flex  items-center  py-2 bg-white">
             <label className="text-base-500 text-base">Mode</label>
             <div className="block h-6 mx-4 w-px bg-base-200"></div>
@@ -168,7 +168,7 @@ export default function GradientGenerator() {
             ) : null}
           </div>
         </div>
-      <div className="flex items-center gap-x-8 pt-8 border-x  border-b border-base-200 bg-white">
+      <div className="flex items-center gap-x-8 pt-8  border-b border-base-200 bg-white">
         <button
           className={`text-base-500 text-base ${tab === "from" ? "text-base-800" : "text-base-400"}`}
           onClick={() => setTab("from")}
@@ -184,7 +184,7 @@ export default function GradientGenerator() {
       </div>
       </div>
 
-      <div className="border-t border-x pt-2 border-base-200 bg-white  mt-4 grid grid-cols-1 gap-x-4 md:grid-cols-2 gap-y-24 lg:grid-cols-11">
+      <div className=" grid grid-cols-1 gap-x-4 md:grid-cols-2 gap-y-24 lg:grid-cols-11 mt-4">
         {tailwindColors.map((color) => (
           <div>
             <p className="text-base-500 text-xs font-medium capitalize">

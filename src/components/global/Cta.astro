@@ -11,10 +11,10 @@ const isIndexPage = Astro.url.pathname === "/";
 
 <section>
   <!-- Conditionally render this section based on the page -->
-  <Wrapper variant="standard" class="py-12 lg:py-24">
+  <Wrapper variant="standard" class="py-12">
     {
       !isIndexPage && (
-        <div class="bg-white text-center p-8 lg:py-20 border-base-200 border  relative overflow-hidden lg:col-span-2">
+        <div class=" text-center p-8 lg:py-12    relative overflow-hidden lg:col-span-2">
           <div class="relative max-w-2xl mx-auto">
             <Text
               tag="h2"
@@ -53,9 +53,9 @@ const isIndexPage = Astro.url.pathname === "/";
       )
     }
     <div
-      class="relative overflow-hidden border border-base-200 bg-white lg:col-span-2 gap-y-12 items-start grid grid-cols-1 md:grid-cols-4"
+      class="relative lg:col-span-2 gap-y-12 mt-24 items-start grid grid-cols-1 md:grid-cols-4"
     >
-      <div class="text-center lg:text-left py-12">
+      <div class="text-center lg:text-left pb-12">
         <Text
           tag="h2"
           variant="displaySM"
@@ -82,13 +82,12 @@ const isIndexPage = Astro.url.pathname === "/";
             class="w-auto"
           >
             See all themes
-            
           </OxbowLink>
         </div>
       </div>
       <Image
-      width={1824}
-      height={1080}
+        width={1824}
+        height={1080}
         class="md:col-span-3"
         src="/images/bundle.png"
         alt="Lexington Themes"

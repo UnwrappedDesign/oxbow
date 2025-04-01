@@ -6,22 +6,26 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
 ---
 
 <section>
-  <Wrapper variant="standard" class="py-12 lg:py-24">
+  <Wrapper
+    variant="standard"
+    class="py-12 lg:py-24 grid grid-cols-1 gap-y-12 sm:grid-cols-2 lg:grid-cols-4"
+  >
     <Text
       tag="h3"
-      variant="displayXL"
+      variant="displaySM"
       class="text-black font-medium tracking-tighter"
     >
       We have customers....
     </Text>
     <ul
-      class="w-full relative md:grod-cols-2 lg:grid-cols-4 grid mt-12 gap-y-12"
+      class="w-full relative md:grid-cols-2 lg:grid-cols-3 grid gap-y-12 gap-x-8 lg:col-span-3"
+      lg:col-span-3
       role="list"
     >
       {
-        reviews.slice(0, 4).map((template) => (
+        reviews.slice(0, 3).map((template) => (
           <>
-            <li class=" h-full flex px-4 relative before:absolute after:absolute before:bg-base-800 before:top-0 before:left-0 before:h-6 before:w-0.5 after:top-8 after:bottom-0 after:left-0 after:w-0.5">
+            <li class=" h-full flex  ">
               <div class="flex flex-col h-full justify-between gap-6  ">
                 <Text
                   tag="p"
