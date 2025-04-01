@@ -12,7 +12,7 @@ interface GridItem {
 export default function GridGenerator() {
   const [columns, setColumns] = useState(4);
   const [rows, setRows] = useState(4);
-  const [gap, setGap] = useState(0);
+  const [gap, setGap] = useState(4);
   const [items, setItems] = useState<GridItem[]>([]);
   const [format, setFormat] = useState("jsx");
   const [isCopied, setIsCopied] = useState(false);

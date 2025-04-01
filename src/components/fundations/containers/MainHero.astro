@@ -35,13 +35,8 @@ const {
   x-data="{ currentPath: window.location.pathname }"
   :class="currentPath === '/' ? ' pt-16 pb-0' : ''"
 >
-  <Wrapper
-    variant="hero"
-    class="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
-  >
-    <div
-      class={`flex flex-col lg:col-span-2 ${textCentered ? "justify-center" : ""}`}
-    >
+  <Wrapper variant="hero" class="py-12">
+    <div class={`flex flex-col  ${textCentered ? "justify-center" : ""}`}>
       {
         showAlpineTailwind && ( // Conditionally render AlpineTailwind
           <div class={`flex ${textCentered ? "justify-center" : ""}`}>
@@ -52,19 +47,19 @@ const {
       <Text
         tag="h1"
         variant="displayXL"
-        class={`text-black tracking-tight xl:text-4xl mt-4 text-balance  font-semibold  max-w-2xl ${textCentered ? "text-center text-balance max-w-3xl  mx-auto" : ""}`}
+        class={`text-black tracking-tight xl:text-3xl mt-4   font-semibold  max-w-lg ${textCentered ? "text-center text-balance max-w-3xl  mx-auto" : ""}`}
       >
         {title}
       </Text>
       <div
-        class={`flex flex-col ${textCentered ? "text-center text-balance max-w-xl mx-auto " : ""}`}
+        class={`flex flex-col ${textCentered ? "text-center text-balance max-w-lg mx-auto " : ""}`}
       >
         {
           subtitle && (
             <Text
               tag="p"
               variant="textBase"
-              class={`text-base-500 text-balance font-medium mt-2 max-w-xl xl:text-lg ${textCentered ? "text-center text-balance max-w-lg mx-auto" : ""}`}
+              class={`text-base-500 text-balance font-medium mt-2 max-w-xl ${textCentered ? "text-center text-balance max-w-lg mx-auto" : ""}`}
             >
               {subtitle}
             </Text>

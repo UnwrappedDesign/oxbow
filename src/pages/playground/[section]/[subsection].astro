@@ -100,7 +100,7 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
   <section>
     <Wrapper variant="standard" class="py-6">
       <div
-        class={`relative w-full grid grid-cols-1  md:grid-cols-2 gap-y-12 lg:divide-x lg:divide-base-200 border-x border-base-200  lg:gap-y-20 ${gridColumnsClass} items-start`}
+        class={`relative w-full grid grid-cols-1  md:grid-cols-2 gap-y-12 gap-x-4  lg:gap-y-20 ${gridColumnsClass} items-start`}
       >
         {
           sectionComponents.map((component, index) => {
@@ -131,7 +131,7 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
                       <Text
                         tag="p"
                         variant="textSM"
-                        class="font-medium 2xl:text-base text-base-900 group-hover:text-accent-600 capitalize px-4 relative before:absolute after:absolute before:bg-base-800 before:top-0 before:left-0 before:h-6 before:w-0.5 after:top-8 after:bottom-0 after:left-0 after:w-0.5 flex items-center gap-2"
+                        class="font-medium 2xl:text-base text-base-900 group-hover:text-accent-600 capitalize  flex items-center gap-2"
                       >
                         <span> {(index + 1).toString().padStart(2, "0")}</span>
                         <span> {subsection.replace(/-/g, " ")}</span>
@@ -160,7 +160,7 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
                 <Image
                   src={images[imagePath]() || "/placeholder.svg"}
                   alt={`${subsection} preview ${index + 1}`}
-                  class="w-full object-cover  border-y   border-base-200 mt-4  transition-all duration-300 ease-in-out cursor-pointer"
+                  class="w-full object-cover  outline   outline-base-200 rounded-lg  mt-2  transition-all duration-300 ease-in-out cursor-pointer"
                 />
               </a>
             );

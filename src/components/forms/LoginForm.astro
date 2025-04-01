@@ -6,12 +6,13 @@ const { btnLabel = "Get your link", email = false } = Astro.props;
 ---
 
 <section>
-  <Wrapper variant="standard" class="grid grid-cols-1 lg:grid-cols-4">
+  <Wrapper variant="standard" class="">
     <div x-data="loginForm()" class="pb-12">
       <form
         x-cloak
         @submit.prevent="sendEmail()"
         x-show="!emailSent || errorMessage"
+        class="max-w-xl mx-auto"
       >
         <div class="flex flex-col gap-1">
           <div>
@@ -26,7 +27,7 @@ const { btnLabel = "Get your link", email = false } = Astro.props;
               placeholder="email@example.com"
               required
               aria-required="true"
-              class="block w-full px-4 py-2 h-12   focus:ring-2 focus:ring-accent-500  border border-base-200 duration-300  appearance-none text-accent-500 placeholder-base-300 focus:border-accent-300 focus:outline-none sm:text-sm"
+              class="block w-full px-4 py-2 h-12 focus:ring-2 focus:ring-accent-500 border border-base-200 duration-300 appearance-none text-accent-500 placeholder-base-300 focus:border-accent-300 focus:outline-none sm:text-sm"
             />
             <div class="mt-4 space-y-2 text-xs text-base-500">
               <div x-cloak x-show="!!errorMessage">
@@ -63,12 +64,11 @@ const { btnLabel = "Get your link", email = false } = Astro.props;
                 </a>
               </small>
             </div>
-           <div class="mt-4">
+            <div class="mt-4">
               <Oxbowbutton
                 type="submit"
                 size="base"
                 variant="default"
-                
                 id="access-footer-cta"
                 data-umami-event="access-footer-cta"
                 :disabled="emailSent"
@@ -77,8 +77,7 @@ const { btnLabel = "Get your link", email = false } = Astro.props;
               >
                 {btnLabel}
               </Oxbowbutton>
-           </div>
-            
+            </div>
           </div>
         </div>
       </form>
