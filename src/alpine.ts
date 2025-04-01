@@ -36,7 +36,7 @@ export default (Alpine: Alpine) => {
     Alpine.store('themeConfig', {
       init() {
         this.color = localStorage.getItem('color') || 'blue';
-        this.theme = localStorage.getItem('theme') === 'true';
+        this.theme = Boolean(localStorage.getItem('theme'));
       },
       setColor(color: string) {
         this.color = color; 
@@ -93,6 +93,7 @@ export default (Alpine: Alpine) => {
         init() {
           this.useTheme = Alpine.store('themeConfig').theme;
           this.selected = Alpine.store('themeConfig').color;
+          this.updateQueryParams();
 
           this.$watch('selected', (theme: string) => {
             Alpine.store('themeConfig').setColor(theme);
@@ -100,6 +101,8 @@ export default (Alpine: Alpine) => {
               color: theme,
               theme: this.useTheme
             });
+            
+            this.updateQueryParams();
           });
 
           this.$watch('useTheme', (useTheme: boolean) => {
@@ -109,10 +112,7 @@ export default (Alpine: Alpine) => {
               theme: useTheme
             });
 
-            // update the theme in the url
-            const url = new URL(window.location.href);
-            url.searchParams.set('theme', !useTheme ? this.selected : '');
-            window.location.href = url.toString();
+            this.updateQueryParams();
           });
 
           this.$dispatch('theme-change', {
@@ -146,6 +146,15 @@ export default (Alpine: Alpine) => {
         ],
         selected: 'blue',
         open: false,
+        updateQueryParams() {
+          const url = new URL(window.location.href);
+          const theme = url.searchParams.get('theme');
+          const currentTheme = !this.useTheme ? this.selected : '';
+          if (theme !== currentTheme) {
+            url.searchParams.set('theme', currentTheme);
+            window.location.href = url.toString();
+          }
+        },
         toggleOpen() {
           this.open = !this.open;
         },
