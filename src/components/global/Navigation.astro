@@ -1,6 +1,16 @@
 ---
-// Ni idea
 const user = Astro.locals.user;
+// Icons
+import Tools from "@/components/fundations/icons/Tools.astro";
+import Discord from "@/components/fundations/icons/Discord.astro";
+import Refresh from "@/components/fundations/icons/Refresh.astro";
+import Lifebuoy from "@/components/fundations/icons/Lifebuoy.astro";
+import FileDots from "@/components/fundations/icons/FileDots.astro";
+import CircleInfo from "@/components/fundations/icons/CircleInfo.astro";
+import LogoutTwo from "@/components/fundations/icons/LogoutTwo.astro";
+
+// Assets
+import Logo from "@/components/assets/Logo.astro";
 // Fundations
 import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
@@ -8,30 +18,23 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
 ---
 
 <div
-  class="top-0 z-50 items-center w-full mx-auto duration-300"
-  :class="{ 'fixed bg-white': window.location.pathname === '/' }"
+  class="items-center w-full mx-auto duration-300"
   x-data={`{...navigation(), username: "${user?.email ?? ""}"}`}
 >
-  <Wrapper variant="standard">
+  <Wrapper
+    variant="standard"
+    class="border-t border-base-900 bg-base-950 w-full"
+  >
     <div
       class="flex flex-col w-full py-4 lg:bg-none md:flex-row md:items-center md:justify-between"
       x-data="{ open: false }"
     >
       <div class="flex flex-row items-center justify-between lg:justify-start">
-        <a
-          href="/"
-          class="flex items-center w-full gap-3 font-medium sm:w-auto group"
-          ><span
-            class="duration-300 group-hover:text-accent-600 group-hover:animate-pulse"
-            ><img
-              class="h-7 2xl:h-9"
-              src="/images/oxbow/oxbowLogo.png"
-              alt="#_"
-            /></span
-          > oxbow ui</a
+        <a href="/" class="flex items-center w-full gap-2 sm:w-auto text-white"
+          ><Logo class="h-7" /> oxbow ui</a
         >
         <button
-          class="cursor-pointer sm:hidden"
+          class="cursor-pointer sm:hidden text-white"
           onclick="document.querySelector('ninja-keys').open()"
         >
           <svg
@@ -51,7 +54,7 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
         <button
           aria-label="open"
           @click="open = !open"
-          class="inline-flex items-center justify-center p-2 text-black focus:outline-none focus:text-accent-500 hover:text-accent-600 md:hidden"
+          class="inline-flex items-center justify-center p-2 text-white focus:outline-none focus:text-accent-400 hover:text-white md:hidden"
           ><svg
             viewBox="0 0 24 24"
             class="size-6"
@@ -72,12 +75,12 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"></path>
-          </svg></button
-        >
+          </svg>
+        </button>
       </div>
       <nav
         :class="{'flex': open, 'hidden': !open}"
-        class="flex-col items-center justify-end flex-grow hidden font-medium text-base-500 md:flex md:flex-row md:pb-0 gap-x-4 gap-y-4"
+        class="flex-col items-center justify-end flex-grow hidden text-sm text-base-500 md:flex md:flex-row md:pb-0 gap-x-4 gap-y-4"
       >
         <button
           class="hidden cursor-pointer lg:inline-flex"
@@ -91,20 +94,20 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="icon icon-tabler icons-tabler-outline icon-tabler-search size-5"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-search size-4"
             ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
               d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path><path
               d="M21 21l-6 -6"></path></svg
           >
         </button>
-        <div class="hidden w-px h-6 lg:block bg-base-200"></div>
+        <div class="hidden w-px h-5 lg:block bg-base-600"></div>
         <div class="flex flex-col items-center gap-3 md:flex-row">
           <Text
             tag="a"
             variant="textSM"
             x-show="!username"
             href="https://lexingtonthemes.com"
-            class="font-medium hover:text-accent-600"
+            class="hover:text-white"
             ><span class="md:hidden lg:inline">Astro &amp; Tailwind </span> Templates</Text
           >
           <Text
@@ -113,8 +116,7 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
             variant="textSM"
             x-show="!username"
             href="/getting-started"
-            class="hidden font-medium hover:text-accent-600 md:block"
-            >Getting Started</Text
+            class="hidden hover:text-white md:block">Getting Started</Text
           >
           <Text
             x-cloak
@@ -122,13 +124,12 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
             href="/login"
             variant="textSM"
             x-show="!username"
-            class="hidden font-medium hover:text-accent-600 md:block"
-            >Log in</Text
+            class="hidden hover:text-white md:block">Log in</Text
           >
           <OxbowLink
             href="/pricing"
             gap="xs"
-            size="sm"
+            size="xs"
             variant="accent"
             x-cloak
             id="access-navigation-cta"
@@ -164,7 +165,7 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
           <div
             x-popover:panel
             x-transition.origin.top.left
-            class="absolute right-0 top-full z-50 -mr-0.5 mt-3 w-48 origin-top-right divide-y divide-base-200 rounded-lg bg-white font-normal text-base-600 shadow ring-1 ring-base-900/5 focus:outline-none sm:-mr-3.5 transform opacity-100 scale-100"
+            class="absolute right-0 top-full z-50 -mr-0.5 mt-3 w-48 origin-top-right divide-y divide-base-900 outline rounded-xl outline-base-900 shadow-2xl shadow-black bg-black font-normal text-base-400  ring-1 ring-base-900/5 focus:outline-none sm:-mr-3.5 transform opacity-100 scale-100"
           >
             <div class="truncate px-3.5 py-3" role="none">
               <Text
@@ -188,24 +189,10 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
                 role="menuitem"
                 variant="textSM"
                 href="https://discord.gg/9WH6G2XJRa"
-                class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 font-medium items-center gap-2 flex"
+                class="py-1.5 px-3.5 hover:bg-base-900 hover:text-white items-center gap-2 flex"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-discord size-4"
-                  ><path stroke="none" d="M0 0h24v24H0z" fill="none"
-                  ></path><path d="M8 12a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"
-                  ></path><path d="M14 12a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"
-                  ></path><path
-                    d="M15.5 17c0 1 1.5 3 2 3c1.5 0 2.833 -1.667 3.5 -3c.667 -1.667 .5 -5.833 -1.5 -11.5c-1.457 -1.015 -3 -1.34 -4.5 -1.5l-.972 1.923a11.913 11.913 0 0 0 -4.053 0l-.975 -1.923c-1.5 .16 -3.043 .485 -4.5 1.5c-2 5.667 -2.167 9.833 -1.5 11.5c.667 1.333 2 3 3.5 3c.5 0 2 -2 2 -3"
-                  ></path><path d="M7 16.5c3.5 1 6.5 1 10 0"></path></svg
-                >Discord
+                <Discord class="size-4" />
+                Discord
               </Text>
               <Text
                 tag="a"
@@ -213,24 +200,10 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
                 role="menuitem"
                 href="/support"
                 variant="textSM"
-                class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 font-medium items-center gap-2 flex"
+                class="py-1.5 px-3.5 hover:bg-base-900 hover:text-white items-center gap-2 flex"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-lifebuoy size-4"
-                  ><path stroke="none" d="M0 0h24v24H0z" fill="none"
-                  ></path><path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"
-                  ></path><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"
-                  ></path><path d="M15 15l3.35 3.35"></path><path
-                    d="M9 15l-3.35 3.35"></path><path d="M5.65 5.65l3.35 3.35"
-                  ></path><path d="M18.35 5.65l-3.35 3.35"></path></svg
-                >Support</Text
+              <Lifebuoy class="size-4" />
+              Support</Text
               >
               <Text
                 tag="a"
@@ -238,22 +211,10 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
                 role="menuitem"
                 href="/changelog"
                 variant="textSM"
-                class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 font-medium items-center gap-2 flex"
+                class="py-1.5 px-3.5 hover:bg-base-900 hover:text-white items-center gap-2 flex"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline size-4 icon-tabler-refresh"
-                  ><path stroke="none" d="M0 0h24v24H0z" fill="none"
-                  ></path><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"
-                  ></path><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"
-                  ></path></svg
-                >Changelog</Text
+              <Refresh class="size-4" />
+              Changelog</Text
               >
               <Text
                 tag="a"
@@ -261,22 +222,10 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
                 role="menuitem"
                 href="/license"
                 variant="textSM"
-                class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 font-medium items-center gap-2 flex"
-                ><svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-license size-4"
-                  ><path stroke="none" d="M0 0h24v24H0z" fill="none"
-                  ></path><path
-                    d="M15 21h-9a3 3 0 0 1 -3 -3v-1h10v2a2 2 0 0 0 4 0v-14a2 2 0 1 1 2 2h-2m2 -4h-11a3 3 0 0 0 -3 3v11"
-                  ></path><path d="M9 7l4 0"></path><path d="M9 11l4 0"
-                  ></path></svg
-                >License</Text
+                class="py-1.5 px-3.5 hover:bg-base-900 hover:text-white items-center gap-2 flex"
+                >
+                <FileDots class="size-4" />
+                License</Text
               >
               <Text
                 tag="a"
@@ -284,22 +233,10 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
                 role="menuitem"
                 variant="textSM"
                 href="/getting-started"
-                class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 font-medium items-center gap-2 flex"
-                ><svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-file-info size-4"
-                  ><path stroke="none" d="M0 0h24v24H0z" fill="none"
-                  ></path><path d="M14 3v4a1 1 0 0 0 1 1h4"></path><path
-                    d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"
-                  ></path><path d="M11 14h1v4h1"></path><path d="M12 11h.01"
-                  ></path></svg
-                >Getting Started</Text
+                class="py-1.5 px-3.5 hover:bg-base-900 hover:text-white items-center gap-2 flex"
+                >
+                <CircleInfo class="size-4" />
+                Getting Started</Text
               >
               <Text
                 tag="a"
@@ -307,23 +244,10 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
                 role="menuitem"
                 variant="textSM"
                 href="/free-tools"
-                class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 font-medium items-center gap-2 flex"
-                ><svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-tools size-4"
-                  ><path stroke="none" d="M0 0h24v24H0z" fill="none"
-                  ></path><path d="M3 21h4l13 -13a1.5 1.5 0 0 0 -4 -4l-13 13v4"
-                  ></path><path d="M14.5 5.5l4 4"></path><path
-                    d="M12 8l-5 -5l-4 4l5 5"></path><path d="M7 8l-1.5 1.5"
-                  ></path><path d="M16 12l5 5l-4 4l-5 -5"></path><path
-                    d="M16 17l-1.5 1.5"></path></svg
-                >Free Tools</Text
+                class="py-1.5 px-3.5 hover:bg-base-900 hover:text-white items-center gap-2 flex"
+                >
+                <Tools class="size-4" />
+                Free Tools</Text
               >
             </div>
             <div class="py-1.5" role="none">
@@ -333,92 +257,29 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
                 role="menuitem"
                 variant="textSM"
                 href="https://lexingtonthemes.com/"
-                class="py-1.5 px-3.5 hover:bg-base-50 hover:text-accent-500 font-medium items-center gap-2 flex"
-                ><svg
-                  class="size-4"
-                  viewBox="0 0 147 148"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
+                class="py-1.5 px-3.5 hover:bg-base-900 hover:text-white items-center gap-2 flex"
                 >
-                  <path
-                    d="M77.0546 0.147949H69.9463V147.148H77.0546V0.147949Z"
-                    fill="currentColor"></path>
-                  <path
-                    d="M77.0546 0.147949H69.9463V147.148H77.0546V0.147949Z"
-                    fill="currentColor"
-                    fill-opacity="0.2"></path>
-                  <path
-                    d="M147 70.0938H0V77.2021H147V70.0938Z"
-                    fill="currentColor"></path>
-                  <path
-                    d="M147 70.0938H0V77.2021H147V70.0938Z"
-                    fill="currentColor"
-                    fill-opacity="0.2"></path>
-                  <path
-                    d="M24.0282 19.1578L19.002 24.1841L122.946 128.128L127.972 123.101L24.0282 19.1578Z"
-                    fill="currentColor"></path>
-                  <path
-                    d="M24.0282 19.1578L19.002 24.1841L122.946 128.128L127.972 123.101L24.0282 19.1578Z"
-                    fill="currentColor"
-                    fill-opacity="0.2"></path>
-                  <path
-                    d="M122.946 19.1564L19.002 123.1L24.0282 128.126L127.972 24.1827L122.946 19.1564Z"
-                    fill="currentColor"></path>
-                  <path
-                    d="M122.946 19.1564L19.002 123.1L24.0282 128.126L127.972 24.1827L122.946 19.1564Z"
-                    fill="currentColor"
-                    fill-opacity="0.2"></path>
-                  <path
-                    d="M6.7933 42.6484L4.11133 49.2314L140.248 104.695L142.93 98.1115L6.7933 42.6484Z"
-                    fill="currentColor"></path>
-                  <path
-                    d="M6.7933 42.6484L4.11133 49.2314L140.248 104.695L142.93 98.1115L6.7933 42.6484Z"
-                    fill="currentColor"
-                    fill-opacity="0.2"></path>
-                  <path
-                    d="M97.9631 4.26955L42.5 140.406L49.083 143.088L104.546 6.95152L97.9631 4.26955Z"
-                    fill="currentColor"></path>
-                  <path
-                    d="M97.9631 4.26955L42.5 140.406L49.083 143.088L104.546 6.95152L97.9631 4.26955Z"
-                    fill="currentColor"
-                    fill-opacity="0.2"></path>
-                  <path
-                    d="M140.41 42.8958L4.03809 97.7856L6.69233 104.38L143.064 49.4902L140.41 42.8958Z"
-                    fill="currentColor"></path>
-                  <path
-                    d="M140.41 42.8958L4.03809 97.7856L6.69233 104.38L143.064 49.4902L140.41 42.8958Z"
-                    fill="currentColor"
-                    fill-opacity="0.2"></path>
-                  <path
-                    d="M49.3122 4.18875L42.7178 6.84229L97.5928 143.214L104.187 140.561L49.3122 4.18875Z"
-                    fill="currentColor"></path>
-                  <path
-                    d="M49.3122 4.18875L42.7178 6.84229L97.5928 143.214L104.187 140.561L49.3122 4.18875Z"
-                    fill="currentColor"
-                    fill-opacity="0.2"></path>
-                </svg>Astro Themes</Text
+                <svg class="size-4" viewBox="0 0 211 207" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_2347_10)">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M166.557 2.33105L206.482 42.4015L147.816 100.855L204.269 146.887V206.595H147.703V100.967L43.3903 204.903L3.46467 164.832L109.785 58.8968H3.14502V2.33105H166.557Z" fill="currentColor"/>
+                  </g>
+                  <defs>
+                  <clipPath id="clip0_2347_10">
+                  <rect width="210.613" height="206.713" fill="white" transform="translate(-0.000488281)"/>
+                  </clipPath>
+                  </defs>
+                  </svg>
+                  Astro Themes</Text
               >
               <button
                 type="button"
                 tabindex="-1"
                 role="menuitem"
                 @click="signOut()"
-                class="py-1.5 px-3.5 hover:bg-base-50 text-sm hover:text-accent-500 font-medium items-center gap-2 flex w-full"
-                ><svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-logout-2 size-4"
-                  ><path stroke="none" d="M0 0h24v24H0z" fill="none"
-                  ></path><path
-                    d="M10 8v-2a2 2 0 0 1 2 -2h7a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-2"
-                  ></path><path d="M15 12h-12l3 -3"></path><path d="M6 15l-3 -3"
-                  ></path></svg
-                >Sign out</button
+                class="py-1.5 px-3.5 hover:bg-base-900 text-sm hover:text-white items-center gap-2 flex w-full"
+                >
+                <LogoutTwo class="size-4" />
+                Sign out</button
               >
             </div>
           </div>

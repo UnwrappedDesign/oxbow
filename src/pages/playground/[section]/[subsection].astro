@@ -6,7 +6,6 @@ import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import { formatDistanceToNowStrict } from "date-fns";
 import updates from "@/data/updates.json";
-import DynamicGrid from "@/components/DynamicGrid.astro";
 
 const { section, subsection } = Astro.params;
 const components = await Astro.glob(`@/components/oxbow/**/*.astro`);
@@ -68,104 +67,113 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
 
 <BaseLayout>
   <section>
-    <Wrapper variant="hero">
-      <button
-        class="flex items-center gap-2 text-sm text-base-500 hover:text-accent-500"
-        onclick="history.back();"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left size-4"
-          ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-            d="M15 6l-6 6l6 6"></path></svg
-        >Go Back</button
-      >
-      <Text
-        tag="h1"
-        variant="textXL"
-        class="mt-4 capitalize font-medium tracking-tight text-black"
-      >
-        {subsection.replace(/-/g, " ")}
-      </Text>
+    <Wrapper variant="standard" class="border-t border-base-900">
+      <div class="flex items-center gap-2">
+        <button
+          class="flex items-center gap-2 text-sm text-base-500 hover:text-white"
+          onclick="history.back();"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left size-4"
+            ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+              d="M15 6l-6 6l6 6"></path></svg
+          >Go Back</button
+        >
+        <span aria-hidden="true" class="text-base-500">/</span>
+        <Text
+          tag="h1"
+          variant="textSM"
+          class="capitalize font-medium tracking-tight text-white"
+        >
+          {subsection.replace(/-/g, " ")}
+        </Text>
+      </div>
     </Wrapper>
   </section>
   <section>
-    <Wrapper variant="standard" class="py-6">
+    <Wrapper variant="standard" class="border-t border-base-900">
       <div
-        class={`relative w-full grid grid-cols-1  md:grid-cols-2 gap-y-12 gap-x-4  lg:gap-y-20 ${gridColumnsClass} items-start`}
+        class="outline rounded-xl outline-base-900 shadow-2xl shadow-black bg-black p-8 lg:p-12"
       >
-        {
-          sectionComponents.map((component, index) => {
-            const filePath = component.file.split("/").slice(-3).join("/");
+        <div
+          class={`relative w-full grid grid-cols-1  md:grid-cols-2 gap-y-12 gap-x-4  lg:gap-y-20 ${gridColumnsClass} items-start`}
+        >
+          {
+            sectionComponents.map((component, index) => {
+              const filePath = component.file.split("/").slice(-3).join("/");
 
-            const imagePath = `/src/screenshots/${component.file
-              .split("/")
-              .slice(-3)
-              .join("_")
-              .replace(".astro", ".png")}`;
+              const imagePath = `/src/screenshots/${component.file
+                .split("/")
+                .slice(-3)
+                .join("_")
+                .replace(".astro", ".png")}`;
 
-            if (!images[imagePath]) {
-              return null;
-            }
+              if (!images[imagePath]) {
+                return null;
+              }
 
-            const updatedAt = new Date(updates[filePath] * 1000);
+              const updatedAt = new Date(updates[filePath] * 1000);
 
-            const isUpdatedLastWeek = updatedAt > SEVEN_DAYS_AGO;
+              const isUpdatedLastWeek = updatedAt > SEVEN_DAYS_AGO;
 
-            return (
-              <a
-                href={`/playground/${filePath.replace(".astro", "")}`}
-                class="relative group flex flex-col"
-              >
-                <div class="flex flex-col">
-                  <div class="flex flex-col gap-2">
-                    <div class="flex items-center gap-2">
+              return (
+                <a
+                  href={`/playground/${filePath.replace(".astro", "")}`}
+                  class="relative group flex flex-col"
+                >
+                  <div class="flex flex-col">
+                    <div class="flex flex-col gap-2">
+                      <div class="flex items-center gap-2">
+                        <Text
+                          tag="p"
+                          variant="textSM"
+                          class="  text-base-500 group-hover:text-white capitalize  flex items-center gap-2"
+                        >
+                          <span>{(index + 1).toString().padStart(2, "0")}</span>
+                          <span> {subsection.replace(/-/g, " ")}</span>
+                          {!user && index === 0 && (
+                            <span class="text-white">Open Demo</span>
+                          )}
+                        </Text>
+                      </div>
+                    </div>
+                    {isUpdatedLastWeek && (
                       <Text
                         tag="p"
-                        variant="textSM"
-                        class="font-medium 2xl:text-base text-base-900 group-hover:text-accent-600 capitalize  flex items-center gap-2"
+                        variant="textXS"
+                        class="relative flex items-center gap-1 text-base-400"
                       >
-                        <span> {(index + 1).toString().padStart(2, "0")}</span>
-                        <span> {subsection.replace(/-/g, " ")}</span>
-                        {!user && index === 0 && (
-                          <span class="text-accent-500">Open Demo</span>
-                        )}
+                        Updated{" "}
+                        {formatDistanceToNowStrict(updatedAt, {
+                          unit: "day",
+                          roundingMethod: "ceil",
+                        })}{" "}
+                        ago
                       </Text>
-                    </div>
+                    )}
                   </div>
-                  {isUpdatedLastWeek && (
-                    <Text
-                      tag="p"
-                      variant="textXS"
-                      class="relative flex items-center gap-1  font-medium 2xl:text-sm text-base-400"
-                    >
-                      Updated{" "}
-                      {formatDistanceToNowStrict(updatedAt, {
-                        unit: "day",
-                        roundingMethod: "ceil",
-                      })}{" "}
-                      ago
-                    </Text>
-                  )}
-                </div>
 
-                <Image
-                  src={images[imagePath]() || "/placeholder.svg"}
-                  alt={`${subsection} preview ${index + 1}`}
-                  class="w-full object-cover  outline   outline-base-200 rounded-lg  mt-2  transition-all duration-300 ease-in-out cursor-pointer"
-                />
-              </a>
-            );
-          })
-        }
+                  <Image
+                    width={1000}
+                    height={1000}
+                    src={images[imagePath]() || "/placeholder.svg"}
+                    alt={`${subsection} preview ${index + 1}`}
+                    class="w-full object-cover  outline   outline-base-900 rounded-lg  mt-2  transition-all duration-300 ease-in-out cursor-pointer"
+                  />
+                </a>
+              );
+            })
+          }
+        </div>
       </div>
     </Wrapper>
   </section>

@@ -1,84 +1,77 @@
 ---
 // Assets
 import { Image } from "astro:assets";
+import Lex from "@/images/ads/lex.png";
+import AnimatedGradient from "@/components/assets/AnimatedGradient.astro";
+
 // Fundations
 import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
-// Check if the current page is the index page
-const isIndexPage = Astro.url.pathname === "/";
 ---
 
 <section>
-  <!-- Conditionally render this section based on the page -->
-  <Wrapper variant="standard" class="py-12">
-    {
-      !isIndexPage && (
-        <div class=" text-center p-8 lg:py-12    relative overflow-hidden lg:col-span-2">
-          <div class="relative max-w-2xl mx-auto">
-            <Text
-              tag="h2"
-              variant="displayLG"
-              class="text-black lg:text-balance font-semibold"
-            >
-              Get lifetime access to all components, elements, and layouts for
-              only <del class="opacity-45">$149</del> $67
-            </Text>
-            <Text
-              tag="p"
-              variant="textBase"
-              class="mt-4 text-base-500 lg:text-balance max-w-xl mx-auto"
-            >
-              Own them forever with lifetime updates, unlimited usage, and
-              support—no subscription required!
-            </Text>
-            <div class="mt-10 flex items-center justify-center gap-2">
-              <OxbowLink
-                gap="sm"
-                size="base"
-                variant="accent"
-                href="/pricing"
-                id="access-footer-cta"
-                data-umami-event="access-footer-cta"
-                class="w-auto"
-              >
-                See all themes
-                <span>
-                  <del class="opacity-45">$149</del> $67
-                </span>
-              </OxbowLink>
-            </div>
-          </div>
-        </div>
-      )
-    }
+  <Wrapper variant="standard" class="border-t border-base-900">
     <div
-      class="relative lg:col-span-2 gap-y-12 mt-24 items-start grid grid-cols-1 md:grid-cols-4"
+      class="relative overflow-hidden flex flex-col justify-end outline rounded-xl outline-base-900 shadow-2xl shadow-black bg-black p-8 lg:p-12 lg:mask-b-from-40% lg:mask-b-to-90%"
     >
-      <div class="text-center lg:text-left pb-12">
+      <AnimatedGradient class="absolute inset-0 z-0" />
+      <div class="relative flex flex-col gap-8 text-center py-24">
         <Text
-          tag="h2"
-          variant="displaySM"
-          class="text-black lg:text-balance font-semibold"
+          tag="h1"
+          variant="displayMD"
+          class="text-white lg:text-balance md:col-span-2 font-thin tracking-tighter font-mono uppercase"
+        >
+          Get lifetime access to all components, elements, and layouts for only <del
+            class="opacity-45">$149</del
+          > $67</Text
+        >
+        <div class="flex justify-center">
+          <OxbowLink
+            gap="sm"
+            size="base"
+            variant="default"
+            href="/pricing"
+            id="access-footer-cta"
+            data-umami-event="access-footer-cta"
+          >
+            Get full access
+          </OxbowLink>
+        </div>
+      </div>
+    </div>
+  </Wrapper>
+</section>
+
+<section>
+  <Wrapper variant="standard" class="border-t border-base-900">
+    <div
+      class="relative overflow-hidden  rounded-xl outline outline-base-900 shadow-2xl shadow-black bg-stripes"
+    >
+      <div class="text-center  p-8 lg:p-12">
+        <Text
+          tag="h3"
+          variant="textXL"
+          class="text-white xl:text-5xl font-normal tracking-tigt font-mono uppercase text-balance italic"
         >
           Lexington Themes
         </Text>
         <Text
           tag="p"
           variant="textBase"
-          class="mt-4 text-base-500 lg:text-balance max-w-xl mx-auto lg:mx-0"
+          class="mt-4 text-white lg:text-balance max-w-xl mx-auto l"
         >
           Premium multipage themes &amp; UI Kits Beautifully crafted with Astro
           JS and Tailwind CSS.
         </Text>
-        <div class="mt-8 flex justify-center lg:justify-start">
+        <div class="mt-8 flex justify-center ">
           <OxbowLink
             gap="sm"
             size="base"
-            variant="default"
-            href="https://lexingtonthemes.com"
+            variant="accent"
             id="lexington-cta"
             data-umami-event="lexington-cta"
+            href="https://lexingtonthemes.com"
             class="w-auto"
           >
             See all themes
@@ -86,10 +79,10 @@ const isIndexPage = Astro.url.pathname === "/";
         </div>
       </div>
       <Image
+        src={Lex}
         width={1824}
         height={1080}
-        class="md:col-span-3"
-        src="/images/bundle.png"
+        class="mt-12 scale-150 lg:mask-r-from-20% lg:mask-b-to-85%"
         alt="Lexington Themes"
       />
     </div>

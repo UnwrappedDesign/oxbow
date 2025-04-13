@@ -25,85 +25,54 @@ const features = [
   },
 ];
 ---
-
-<div
-  class="flex flex-col h-full justify-between  "
+<section
+  class="bg-linear-45 from-base-900 p-8 overflow-hidden relative rounded-xl outline outline-base-900 shadow-2xl shadow-base-950 flex flex-col justify-between h-full bg-base-950"
 >
-  <div>
-    <Text tag="h3" variant="textLG" class="text-black font-semibold">
-      Individuals
-      <span
-        class="font-medium inline-flex items-center bg-base-100 ml-4 px-3 py-1 rounded-full text-black text-xs"
-      >
-        Popular 
-      </span>
-    </Text>
-    <Text tag="p" variant="displaySM" class="text-back font-medium mt-16">
-      <del class="opacity-45">$149</del> $67
-    </Text>
-    <Text
-      tag="p"
-      variant="textSM"
-      class="text-base-500 font-medium mt-1 2xl:text-lg text-balance"
-    >
-      Companies, teams & clients
-    </Text>
-    <div class="mt-4 flex">
-      <OxbowLink
-        gap="sm"
-        size="base"
-        variant="accent"
-        href={individualLicenseUrl}
-        id="purchase-individual-license"
-        data-umami-event="purchase individual license"
-        class="w-full"
-      >
-        Buy for <span><del class="opacity-50">$149</del> $67</span>
-      </OxbowLink>
+  <div class="flex flex-col h-full justify-start">
+    <div class="flex flex-col gap-2">
+      <div class="flex flex-col gap-2">
+        <Text tag="h3" variant="textLg" class="text-white font-mono uppercase">
+          Personal
+
+        </Text>
+        <Text tag="p" variant="textXL" class="text-white mt-2">
+          <del class="opacity-45">$149</del> $67
+          <span class="text-xs text-base-500"> One time </span>
+          <span class="text-base-400 italic pt-1 block text-xs">
+            USD + Applicable local taxes
+          </span>
+        </Text>
+      </div>
+      <Text tag="p" variant="textSM" class="text-white tracking-wide mt-4">
+        For individual and client work 
+      </Text>
     </div>
-    <ul
-      class="flex flex-col text-base-500 font-medium mt-8 space-y-1"
-      role="list"
-    >
-      {
-        features.map((feature) => (
-          <li class="flex items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="icon icon-tabler icon-tabler-check"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              stroke="currentColor"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M5 12l5 5l10 -10" />
-            </svg>
-            <div class="flex items-center gap-1 w-full">
-              <Text
-                tag="span"
-                variant="textSM"
-                class="2xl:text-lg  flex items-center gap-1"
-              >
-                {feature.text}
-                {/*  {feature.badge && (
-                  <Text
-                    tag="span"
-                    variant="textSM"
-                    class=" font-medium  text-accent-600"
-                  >
-                    // {feature.badge}
-                  </Text>
-                )} */}
-              </Text>
-            </div>
-          </li>
-        ))
-      }
-    </ul>
+    <div class="mt-8">
+      <Text
+        tag="p"
+        variant="textSM"
+        class="uppercase font-mono text-white font-medium"
+      >
+        What you get:
+      </Text>
+      <ul
+        class="flex flex-col mt-4 text-sm text-base-500 font-medium gap-y-3 list-disc pl-3"
+        role="list"
+      >
+        {features.map((feature) => <li class="">{feature.text}</li>)}
+      </ul>
+    </div>
   </div>
-</div>
+  <div class="w-full mt-8">
+    <OxbowLink
+      id="purchase-team-license"
+      data-umami-event="purchase team license"
+      href={individualLicenseUrl}
+      size="sm"
+      variant="accent"
+      class="w-full"
+    >
+      Buy for <span><del class="opacity-50 ml-1">$149</del> $67</span>
+    </OxbowLink>
+  </div>
+</section>

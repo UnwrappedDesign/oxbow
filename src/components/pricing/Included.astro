@@ -5,7 +5,6 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import applicationImage from "@/screenshots/application_sign-up_03.png";
 import ecommerceImage from "@/screenshots/application_flyouts_09.png";
 import marketingImage from "@/screenshots/marketing_hero_03.png";
-
 const features = [
   {
     icon: "Component",
@@ -94,7 +93,6 @@ const sections = [
     },
   },
 ];
-
 const started = [
   {
     icon: "Settings",
@@ -117,74 +115,81 @@ const started = [
 ];
 ---
 
-<section class="scroll-mt-24" id="features">
-  <Wrapper
-    variant="standard"
-    class="py-12 lg:py-24 grid grid-cols-1 gap-y-12 sm:grid-cols-2 lg:grid-cols-4"
-  >
-    <Text
-      tag="h3"
-      variant="displaySM"
-      class="text-black font-medium tracking-tighter"
+<section>
+  <Wrapper variant="standard" class="border-t border-base-900">
+    <div
+      class="outline rounded-xl outline-base-900 shadow-2xl shadow-black p-8 bg-black"
     >
-      What's included
-    </Text>
-    <ul
-      class="grid mt-2 grid-cols-1 md:grid-cols-3 gap-y-12 lg:col-span-3 gap-x-8"
-    >
-      {
-        sections.map(({ category, title, description, image }) => (
-          <li class="  flex flex-col ">
-            <div>
-              <div class="relative">
-                <span class="text-sm text-base-500">{category}</span>
-                <h3 class="text-base mt-2 text-black font-medium">{title}</h3>
-              </div>
-              <p class="text-sm mt-2 text-base-500 text-pretty">
-                {description}
-              </p>
-            </div>
-            <Image
-              src={image.src}
-              alt={image.alt}
-              class="border border-base-200 aspect-auto mt-4"
-            />
-          </li>
-        ))
-      }
-      {
-        features.map((feature) => (
-          <li>
-            <Text tag="h3" variant="textBase" class="  text-black font-medium">
-              {feature.title}
-            </Text>
-
-            <Text
-              tag="p"
-              variant="textSM"
-              class=" mt-2 text-base-500 text-pretty"
-            >
-              {feature.description}
-            </Text>
-          </li>
-        ))
-      }
-    </ul>
-  </Wrapper>
-  <Wrapper
-    variant="standard"
-    class="py-12 lg:py-24 grid grid-cols-1 gap-y-12 sm:grid-cols-2 lg:grid-cols-4"
-  >
-    <Text
-      tag="h3"
-      variant="displaySM"
-      class="text-black font-medium tracking-tighter"
-    >
-      Get started without configuring anything
-    </Text>
-    <div class="lg:col-span-3">
+      <Text
+        tag="h3"
+        variant="textBase"
+        class="text-base-400 font-thin font-mono uppercase"
+      >
+        What's included
+      </Text>
       <ul
-        class="grid grid-cols-1 md:grid-cols-2 gap-y-12 lg:grid-cols-3 gap-x-8"
+        class="grid grid-cols-1 md:grid-cols-3 gap-y-12 lg:col-span-3 gap-x-8 mt-8"
+      >
+        {
+          sections.map(({ category, title, description, image }) => (
+            <li class="  flex flex-col ">
+              <div>
+                <div class="relative">
+                  <span class="text-sm text-base-400">{category}</span>
+                  <Text
+                    tag="h3"
+                    variant="textBase"
+                    class=" mt-2 text-white font-medium"
+                  >
+                    {title}
+                  </Text>
+                </div>
+                <Text tag="p" variant="textSM" class="mt-2 text-base-400">
+                  {description}
+                </Text>
+              </div>
+              <Image
+                src={image.src}
+                alt={image.alt}
+                class="outline outline-base-400 rounded-lg  aspect-auto mt-4"
+              />
+            </li>
+          ))
+        }
+        {
+          features.map((feature) => (
+            <li>
+              <Text
+                tag="h3"
+                variant="textBase"
+                class=" mt-2 text-white font-medium"
+              >
+                {feature.title}
+              </Text>
+              <Text tag="p" variant="textSM" class="mt-2 text-base-400">
+                {feature.description}
+              </Text>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </Wrapper>
+</section>
+<section class="scroll-mt-24" id="features">
+  <Wrapper variant="standard" class="border-t border-base-900">
+    <div
+      class="outline rounded-xl outline-base-900 shadow-2xl shadow-black p-8 bg-black"
+    >
+      <Text
+        tag="h3"
+        variant="textBase"
+        class="text-base-400 font-thin font-mono uppercase"
+      >
+        Get started without configuring anything
+      </Text>
+      <ul
+        class="grid grid-cols-1 md:grid-cols-2 gap-y-12 lg:grid-cols-3 gap-x-8 mt-8"
       >
         {
           started.map((started) => (
@@ -192,15 +197,11 @@ const started = [
               <Text
                 tag="h3"
                 variant="textBase"
-                class="  text-black font-medium"
+                class=" mt-2 text-white font-medium"
               >
                 {started.title}
               </Text>
-              <Text
-                tag="p"
-                variant="textSM"
-                class=" mt-2 text-base-500 text-pretty"
-              >
+              <Text tag="p" variant="textSM" class="mt-2 text-base-400">
                 {started.description}
               </Text>
             </li>

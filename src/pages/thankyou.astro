@@ -55,130 +55,147 @@ const accounts = [
 
 <BaseLayout>
   <MainHero
+    textCentered={true}
     showAlpineTailwind={false}
     title="Thank you for choosing Oxbow UI!"
-    subtitle="Click on the button below to get your magic link and start building!"
+    subtitle="Log in with the form below to get your magic link and start building!"
   />
   <LoginForm />
 
   <section>
-    <Wrapper variant="standard" class="py-8 space-y-12">
-      <div class="max-w-xl">
-        <Text tag="h3" variant="textBase" class="font-medium text-base-900"
-          >What to do next?</Text
-        >
-        <ul role="list" class="mt-2 flex flex-col">
-          {
-            todo.map((option) => (
-              <li class="w-full py-4 relative">
-                <Text
-                  tag="h3"
-                  variant="textBase"
-                  class="font-medium text-base-900"
-                >
+    <Wrapper variant="standard" class="border-t border-base-900">
+      <div
+        class="outline rounded-xl outline-base-900 shadow-2xl shadow-black bg-black divide-y divide-base-900"
+      >
+        <div class="p-8 lg:p-12">
+          <Text
+            tag="h3"
+            variant="textBase"
+            class="text-base-400 font-thin font-mono uppercase"
+            >What to do next?</Text
+          >
+          <ul role="list" class="mt-2 flex flex-col">
+            {
+              todo.map((option) => (
+                <li class="w-full py-4 relative">
                   <Text
-                    tag="a"
-                    href={option.link}
-                    class="focus:outline-none flex items-center justify-between"
+                    tag="h3"
+                    variant="textBase"
+                    class="font-medium text-white"
                   >
                     <Text
-                      tag="span"
-                      class="absolute inset-0"
-                      aria-hidden="true"
-                    />
-                    <span>{option.title}</span>
-                    <span aria-hidden="true"> &rarr;</span>
+                      tag="a"
+                      href={option.link}
+                      class="focus:outline-none flex items-center justify-between"
+                    >
+                      <Text
+                        tag="span"
+                        class="absolute inset-0"
+                        aria-hidden="true"
+                      />
+                      <span>{option.title}</span>
+                      <span aria-hidden="true"> &rarr;</span>
+                    </Text>
                   </Text>
-                </Text>
-                <Text
-                  tag="p"
-                  variant="textSM"
-                  class="mt-1 text-base-500 text-balance"
-                >
-                  {option.subtitle}
-                </Text>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-      <hr class="max-w-xl" />
-      <div class="max-w-xl">
-        <Text tag="h3" variant="textBase" class="font-medium text-base-900">Other resources</Text>
-        <ul role="list" class="mt-2 flex flex-col">
-          {
-            resources.map((option) => (
-              <li class="w-full py-4 relative">
-                <Text
-                  tag="h3"
-                  variant="textBase"
-                  class="font-medium text-base-900"
-                >
                   <Text
-                    tag="a"
-                    href={option.link}
-                    class="focus:outline-none flex items-center justify-between"
+                    tag="p"
+                    variant="textSM"
+                    class="mt-1 text-base-500 text-balance"
+                  >
+                    {option.subtitle}
+                  </Text>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div class="p-8 lg:p-12">
+          <Text
+            tag="h3"
+            variant="textBase"
+            class="text-base-400 font-thin font-mono uppercase"
+            >Other resources</Text
+          >
+          <ul role="list" class="mt-2 flex flex-col">
+            {
+              resources.map((option) => (
+                <li class="w-full py-4 relative">
+                  <Text
+                    tag="h3"
+                    variant="textBase"
+                    class="font-medium text-white"
                   >
                     <Text
-                      tag="span"
-                      class="absolute inset-0"
-                      aria-hidden="true"
-                    />
-                    <span>{option.title}</span>
-                    <span aria-hidden="true"> &rarr;</span>
+                      tag="a"
+                      href={option.link}
+                      class="focus:outline-none flex items-center justify-between"
+                    >
+                      <Text
+                        tag="span"
+                        class="absolute inset-0"
+                        aria-hidden="true"
+                      />
+                      <span>{option.title}</span>
+                      <span aria-hidden="true"> &rarr;</span>
+                    </Text>
                   </Text>
-                </Text>
-                <Text
-                  tag="p"
-                  variant="textSM"
-                  class="mt-1 text-base-500 text-balance"
-                >
-                  {option.subtitle}
-                </Text>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-      <hr class="max-w-xl" />
-      <div class="max-w-xl ">
-        <Text tag="h3" variant="textBase" class="font-medium text-base-900">
-          Manage your account
-        </Text>
-        <ul role="list" class="mt-2 flex flex-col">
-          {
-            accounts.map((option) => (
-              <li class="w-full py-4 relative">
-                <Text
-                  tag="h3"
-                  variant="textBase"
-                  class="font-medium text-base-900"
-                >
                   <Text
-                    tag="a"
-                    href={option.link}
-                    class="focus:outline-none flex items-center justify-between"
+                    tag="p"
+                    variant="textSM"
+                    class="mt-1 text-base-500 text-balance"
+                  >
+                    {option.subtitle}
+                  </Text>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div class="p-8 lg:p-12">
+          <Text
+            tag="h3"
+            variant="textBase"
+            class="text-base-400 font-thin font-mono uppercase"
+          >
+            Manage your account
+          </Text>
+          <ul role="list" class="mt-2 flex flex-col">
+            {
+              accounts.map((option) => (
+                <li class="w-full py-4 relative">
+                  <Text
+                    tag="h3"
+                    variant="textBase"
+                    class="font-medium text-white"
                   >
                     <Text
-                      tag="span"
-                      class="absolute inset-0"
-                      aria-hidden="true"
-                    />
-                    <span>{option.title}</span>
-                    <span aria-hidden="true"> &rarr;</span>
+                      tag="a"
+                      href={option.link}
+                      class="focus:outline-none flex items-center justify-between"
+                    >
+                      <Text
+                        tag="span"
+                        class="absolute inset-0"
+                        aria-hidden="true"
+                      />
+                      <span>{option.title}</span>
+                      <span aria-hidden="true"> &rarr;</span>
+                    </Text>
                   </Text>
-                </Text>
-                <Text
-                  tag="p"
-                  variant="textSM"
-                  class="mt-1 text-base-500 text-balance"
-                >
-                  {option.subtitle}
-                </Text>
-              </li>
-            ))
-          }
-        </ul>
+                  <Text
+                    tag="p"
+                    variant="textSM"
+                    class="mt-1 text-base-500 text-balance"
+                  >
+                    {option.subtitle}
+                  </Text>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
       </div>
     </Wrapper>
   </section>

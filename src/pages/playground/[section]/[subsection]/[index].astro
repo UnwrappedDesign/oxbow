@@ -25,35 +25,40 @@ const componentDescription = component?.description || "";
 
 <BaseLayout>
   <section>
-    <Wrapper variant="hero" class="lg:!py-4">
+    <Wrapper variant="standard" class="border-t border-base-900">
       <div class="items-end flex justify-between w-full">
-        <div>
-          <button
-            class="flex items-center gap-2 text-sm text-base-500 hover:text-accent-500"
-            onclick="history.back();"
+        <div class="flex flex-col md:flex-row md:items-center gap-2">
+          <div class="flex items-center gap-2">
+            <button
+              class="flex items-center gap-2 text-sm text-base-500 hover:text-white"
+              onclick="history.back();"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left size-4"
+                ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                  d="M15 6l-6 6l6 6"></path></svg
+              >Go back</button
+            >
+            <span aria-hidden="true" class="text-base-500">/</span>
+            <Text
+              tag="h1"
+              variant="textSM"
+              class="capitalize font-medium tracking-tight text-white"
+            >
+              {`${subsection.replace(/-/g, " ")} #${index.replace(/-/g, " ")}`}
+            </Text>
+          </div>
+          <span aria-hidden="true" class="text-base-500 hidden md:block">/</span
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left size-4"
-              ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-                d="M15 6l-6 6l6 6"></path></svg
-            >Go back</button
-          >
-          <Text
-            tag="h1"
-            variant="textXL"
-            class="mt-4 capitalize font-medium tracking-tight text-black"
-          >
-            {`${subsection.replace(/-/g, " ")} #${index.replace(/-/g, " ")}`}
-          </Text>
           {
             componentDescription && (
               <Text tag="p" variant="textSM" class=" text-base-500">
@@ -62,12 +67,12 @@ const componentDescription = component?.description || "";
             )
           }
         </div>
-        <div>
+        <!--   <div class=" sr-only">
           <nav
             class="relative z-0 inline-flex gap-1.5 sr-only"
             aria-label="Pagination"
           >
-            <!-- Previous Page Button -->
+            
             <IconButton
               disable
               aria-label="Go to previous page"
@@ -78,7 +83,7 @@ const componentDescription = component?.description || "";
               <span class="sr-only">Previous</span>
             </IconButton>
 
-            <!-- Next Page Button -->
+           
             <IconButton
               aria-label="Go to next page"
               variant="alternative"
@@ -88,12 +93,12 @@ const componentDescription = component?.description || "";
               <span class="sr-only">Next</span>
             </IconButton>
           </nav>
-        </div>
+        </div> -->
       </div>
     </Wrapper>
   </section>
   <section>
-    <Wrapper variant="wide">
+    <Wrapper variant="wide" class="border-t border-base-900">
       <Playground
         componentIndex={parseInt(index)}
         componentPath={component.file.replace(/.*\/src/, "src")}
