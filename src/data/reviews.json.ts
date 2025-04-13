@@ -25,7 +25,7 @@ const eelco: Template = {
 };
 
 const carl: Template = {
-  name: "maynuu.com",
+  name: "Carl Poppa",
   work: "maynuu.com",
   text: "Anything made by these guys is guaranteed style! quality! excellence!",
   image: "/reviews/carlPoppa.png",

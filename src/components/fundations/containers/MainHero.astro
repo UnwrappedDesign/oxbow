@@ -1,4 +1,6 @@
 ---
+// Assets
+import AnimatedGradient from "@/components/assets/AnimatedGradient.astro";
 // Fundations
 import Text from "@/components/fundations/typography/Text.astro";
 import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
@@ -17,6 +19,7 @@ interface Props {
   additionalTextClasses?: string; // Optional classes for additional text
   slot?: any;
   showButton?: boolean; // New optional prop
+  is404?: boolean;
 }
 
 const {
@@ -28,89 +31,134 @@ const {
   additionalText,
   additionalTextClasses = "",
   showButton = false, // Default to false if not specified
+  is404 = false,
 } = Astro.props;
 ---
 
 <section
   x-data="{ currentPath: window.location.pathname }"
-  :class="currentPath === '/' ? ' pt-16 pb-0' : ''"
+  :class="currentPath === '/' ? ' ' : ''"
 >
-  <Wrapper variant="hero" class="py-12">
-    <div class={`flex flex-col  ${textCentered ? "justify-center" : ""}`}>
-      {
-        showAlpineTailwind && ( // Conditionally render AlpineTailwind
-          <div class={`flex ${textCentered ? "justify-center" : ""}`}>
-            <AlpineTailwind />
+  <Wrapper
+    variant="standard"
+    class="border-t border-base-900 bg-base-950 h-[60dvh]"
+  >
+    <div
+      class="relative overflow-hidden h-full outline rounded-xl outline-base-900 shadow-2xl shadow-black p-8 bg-black flex flex-col itmes-end"
+    >
+      <AnimatedGradient
+        class="absolute inset-0 z-0 lg:mask-r-from-80% lg:mask-b-to-90%"
+      />
+      <div class="mt-auto relative">
+        <div
+          class={`flex flex-col relative  ${textCentered ? "justify-center" : ""}`}
+        >
+          {
+            showAlpineTailwind && ( // Conditionally render AlpineTailwind
+              <div class={`flex ${textCentered ? "justify-center" : ""}`}>
+                <AlpineTailwind />
+              </div>
+            )
+          }
+          <Text
+            tag="h1"
+            variant="displayMD"
+            class={`text-white lg:text-balance font-thin tracking-tighter font-mono mt-8 max-w-2xl uppercase ${textCentered ? "text-center text-balance max-w-3xl  mx-auto" : ""}`}
+          >
+            {title}
+          </Text>
+          <div
+            class={`flex flex-col ${textCentered ? "text-center text-balance max-w-lg mx-auto " : ""}`}
+          >
+            {
+              subtitle && (
+                <Text
+                  tag="p"
+                  variant="textBase"
+                  class={`text-base-300 text-balance mt-2 max-w-xl ${textCentered ? "text-center text-balance max-w-lg mx-auto" : ""}`}
+                >
+                  {subtitle}
+                </Text>
+              )
+            }
+            {
+              highlightText && (
+                <Text tag="span" variant="textBase">
+                  {highlightText}
+                </Text>
+              )
+            }
+            {
+              additionalText && (
+                <Text
+                  tag="p"
+                  variant="textSM"
+                  class={`${additionalTextClasses}`}
+                >
+                  {additionalText}
+                </Text>
+              )
+            }
+            {
+              showButton && ( // Conditionally render the button
+                <div
+                  class={`flex gap-2 flex-wrap mt-8  ${textCentered ? "justify-center" : ""}`}
+                >
+                  <OxbowLink
+                    href="/pricing"
+                    size="xs"
+                    variant="default"
+                    gap="sm"
+                    id="access-navigation-cta"
+                    data-umami-event="access-navigation-cta"
+                    class="w-full sm:w-auto "
+                  >
+                    Get access
+                    <span>
+                      <del class="opacity-45">$149</del> $67
+                    </span>
+                  </OxbowLink>
+                  <OxbowLink
+                    href="/components"
+                    size="xs"
+                    variant="muted"
+                    id="access-navigation-cta"
+                    data-umami-event="access-navigation-cta"
+                    class="w-full sm:w-auto"
+                  >
+                    Browse components
+                  </OxbowLink>
+                </div>
+              )
+            }
+            {
+              is404 && (
+                <div
+                  class={`flex gap-2 flex-wrap mt-8 ${textCentered ? "justify-center" : ""}`}
+                >
+                  <OxbowLink
+                    size="base"
+                    variant="muted"
+                    href="/"
+                    id="404-home"
+                    data-umami-event="404 home"
+                  >
+                    Go back home
+                  </OxbowLink>
+                  <OxbowLink
+                    size="base"
+                    variant="accent"
+                    href="/components"
+                    id="404-components"
+                    data-umami-event="404-components"
+                  >
+                    Browse components
+                  </OxbowLink>
+                </div>
+              )
+            }
           </div>
-        )
-      }
-      <Text
-        tag="h1"
-        variant="displayXL"
-        class={`text-black tracking-tight xl:text-3xl mt-4   font-semibold  max-w-lg ${textCentered ? "text-center text-balance max-w-3xl  mx-auto" : ""}`}
-      >
-        {title}
-      </Text>
-      <div
-        class={`flex flex-col ${textCentered ? "text-center text-balance max-w-lg mx-auto " : ""}`}
-      >
-        {
-          subtitle && (
-            <Text
-              tag="p"
-              variant="textBase"
-              class={`text-base-500 text-balance font-medium mt-2 max-w-xl ${textCentered ? "text-center text-balance max-w-lg mx-auto" : ""}`}
-            >
-              {subtitle}
-            </Text>
-          )
-        }
-        {
-          highlightText && (
-            <Text tag="span" variant="textBase">
-              {highlightText}
-            </Text>
-          )
-        }
-        {
-          additionalText && (
-            <Text tag="p" variant="textSM" class={`${additionalTextClasses}`}>
-              {additionalText}
-            </Text>
-          )
-        }
-        {
-          showButton && ( // Conditionally render the button
-            <div
-              class={`flex gap-2 flex-wrap mt-8 ${textCentered ? "justify-center" : ""}`}
-            >
-              <OxbowLink
-                href="/pricing"
-                size="base"
-                variant="default"
-                gap="sm"
-                id="access-navigation-cta"
-                data-umami-event="access-navigation-cta"
-                class="w-full sm:w-auto "
-              >
-                Get access
-                <span>
-                  <del class="opacity-45">$149</del> $67
-                </span>
-              </OxbowLink>
-              <OxbowLink
-                href="/components"
-                size="base"
-                variant="muted"
-                id="access-navigation-cta"
-                data-umami-event="access-navigation-cta"
-                class="w-full sm:w-auto"
-              >
-                Browse components
-              </OxbowLink>
-            </div>
-          )
-        }
+        </div>
       </div>
     </div>
   </Wrapper>
