@@ -22,7 +22,7 @@ const ppcode = canSeeCode ? await prettier.format(code, {
                         : '';
 const theme = ``;
 ---
-<section x-data="playground" class="not-prose ">
+<section x-data="playground" class="not-prose overflow-hidden">
   <div class="relative"  @theme="setTheme($event.detail.color)">
     <div class="flex items-center justify-between pb-2 gap-1 ">
       <div class="flex items-center gap-2">
@@ -55,23 +55,23 @@ const theme = ``;
             <div 
                 x-show="open" 
                 x-on:click.away="toggleOpen"
-                class="absolute w-full mt-1 outline outline-base-900 shadow-2xl shadow-black bg-black z-50 rounded-lg"
+                class="absolute w-full mt-1 outline outline-base-900 shadow-2xl shadow-black bg-black z-50 rounded-lg max-w-xs"
                 x-transition
             >
                 <div class="p-4  rounded-lg max-w-2xl">
-                  <Text tag="p" variant="textBase" class=" font-medium ">Color options</Text>
-                  <Text tag="p" variant="textXS" class="text-gray-500 mt-1">Customize your colors.</Text>
+                  <Text tag="p" variant="textBase" class=" font-medium text-white">Color options</Text>
+                  <Text tag="p" variant="textXS" class="text-base-500 mt-1">Customize your colors.</Text>
                   <div class="w-full mt-4">
-                      <div class="flex flex-wrap gap-3 max-w-sm">
+                      <div class="grid grid-cols-3 md:grid-cols-3 gap-2 ">
                         <template x-for="color in colors">
                           <OxbowButton 
                           size="xxs"
                           variant="muted"
                             x-on:click="selectColor(color.name)"
                             :class="selected === color.name ? 'outline outline-base-600' : ''"
-                            class="pointer-events-auto flex items-center justify-between"
+                            class="pointer-events-auto flex items-center w-full"
                           >
-                            <div class="size-2 rounded-full mr-2" :class="color.color"></div>
+                            <div class="size-2 rounded-full mr-2 shrink-0" :class="color.color"></div>
                             <span x-text="color.name"></span>
                           </OxbowButton>
                         </template>
