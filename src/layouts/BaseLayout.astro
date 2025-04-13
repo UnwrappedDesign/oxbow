@@ -16,15 +16,19 @@ const customToken = uid ? await auth.createCustomToken(uid) : null;
   <head>
     <BaseHead />
   </head>
-  <body class="bg-white flex mx-auto flex-col min-h-svh">
-    <Navigation />
-    <main class="grow z-1">
-      <slot />
-    </main>
-    <Footer />
+  <body class="bg-black">
+    <div
+      class="bg-stripes max-w-7xl mx-auto border-x border-base-900 px-2 md:px-0 w-full "
+    >
+      <Navigation />
+      <main class="grow z-1">
+        <slot />
+      </main>
+      <Footer />
+    </div>
 
     <ninja-keys
-      class="light"
+      class="dark"
       selectHotkey="enter"
       placeholder="Search for anything..."
     >

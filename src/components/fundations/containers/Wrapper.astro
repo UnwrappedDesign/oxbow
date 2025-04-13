@@ -1,44 +1,31 @@
 ---
 interface Props {
   variant?:
-    | "hero"
+
     | "wide"
     | "prose"
-    | "proseLeft"
-    | "narrow"
     | "standard"
-    | "widePaddingless"
-    | "standardPaddingless"; // Define any variants you need
+    | "stickyNav"
+    ; // Define any variants you need
   class?: string; // Optional prop for additional classes
 }
-
 const { variant = "standard", class: extraClass = "" } = Astro.props;
-
 // Map each variant to its specific classes
 const variantClasses = {
-  widePaddingless: "mx-auto  max-w-screen ",
-  //
   narrow: "max-w-xl 2xl:max-w-3xl mx-auto px-8 ",
   //
   prose:
-    "prose prose-headings:text-base-900 text-sm  text-base-500   prose-a:text-accent-500  prose-a:no-underline hover:prose-a:underline  prose-a:font-normal prose-strong:text-accent-600    prose-blockquote:text-base-500  prose-blockquote:border-base-400  prose-headings:text-[16px]  prose-ul:leading-tight prose-ul:[list-style-type:'⏤'] prose-ul:space-y-2.5 prose-strong:font-medium prose-pre:border prose-pre:border-base-200   prose-headings:font-normal max-w-none prose-li:marker:text-base-900  mt-0 prose-h1:text-2xl 2xl:prose-lg  prose-code:text-accent-600 prose-pre:scrollbar-hide prose-pre:rounded-none",
+    "prose prose-sm prose-headings:font-medium  text-base-500  prose-headings:text-white prose-blockquote:text-base-500   prose-blockquote:font-normal prose-blockquote:tracking-normal prose-img:border prose-img:border-base-200 prose-img:rounded-xl   prose-a:text-white prose-a:hover:text-accent-400  prose-hr:border-base-300 prose-pre:border-none prose-pre:rounded-none prose-strong:font-medium prose-strong:text-white prose-code:text-white prose-a:duration-200  max-w-none prose:font-sans prose-hr:border-base-800 prose-img:border-base-900 prose-tr:border-base-800 prose-thead:border-base-800 prose-pre:rounded-2xl",
   //
-  proseLeft:
-    "prose prose-headings:text-base-900 prose-xs text-xs  text-base-500   prose-a:text-accent-500  prose-a:no-underline hover:prose-a:underline  prose-a:font-normal prose-strong:text-accent-600    prose-blockquote:text-base-500  prose-blockquote:border-base-400  prose-headings:text-[16px]  prose-ul:leading-tight prose-ul:[list-style-type:'⏤'] prose-ul:space-y-2.5 prose-strong:font-medium prose-pre:border prose-pre:border-base-200   prose-headings:font-normal max-w-none prose-li:marker:text-base-900  mt-0 prose-h1:text-2xl 2xl:prose-lg  prose-code:text-accent-600 prose-pre:scrollbar-hide",
+  wide: "max-w-screen 2xl:max-w-[100rem] mx-auto bg-base-950 p-4 ",
   //
-  wide: "max-w-screen 2xl:max-w-[100rem] mx-auto px-8 ",
+  standard: "max-w-6xl bg-base-950  2xl:max-w-[1400px] mx-auto border-x border-base-900  p-4",
   //
-  standard: "mx-auto  max-w-6xl px-4",
-  //
-  standardPaddingless: "mx-auto  2xl:max-w-[72rem] max-w-[60rem]    ",
-  //
-  hero: "mx-auto  max-w-6xl px-4 pb-8 py-12  ",
+  stickyNav: "max-w-6xl bg-base-950  2xl:max-w-[1400px] mx-auto border-x border-base-900  px-4",
 };
-
 // Combine the classes for the specified variant with any extra classes
 const classes = `${variantClasses[variant]} ${extraClass}`.trim();
 ---
-
 <div class={classes}>
   <slot />
 </div>

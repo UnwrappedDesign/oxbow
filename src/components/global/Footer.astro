@@ -1,61 +1,7 @@
 ---
 import Text from "@/components/fundations/typography/Text.astro";
+import OxbowButton from "@/components/fundations/buttons/OxbowButton.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-const siteLinks = [
-  {
-    category: "Navigation",
-    items: [
-      { title: "Home", href: "/" },
-      { title: "Log in", href: "/login" },
-      { title: "Pricing", href: "/pricing" },
-      { title: "Support", href: "/support" },
-      { title: "Affiliates", href: "/affiliates" },
-      { title: "Customers", href: "/customers" },
-      { title: "Changelog", href: "/changelog" },
-    ],
-  },
-  {
-    category: "Legal",
-    items: [
-      { title: "Faq", href: "/faq" },
-      { title: "Terms", href: "/terms" },
-      { title: "Privacy", href: "/privacy" },
-
-      { title: "License", href: "/license" },
-      { title: "Refund", href: "/refund" },
-    ],
-  },
-
-  {
-    category: "Tools",
-    items: [
-      {
-        title: "All Tailwind CSS tools",
-        href: "/free-tools",
-      },
-      {
-        title: "Tailwind CSS Grid ",
-        href: "/free-tools/tailwind-css-grid-generator",
-      },
-      {
-        title: "Tailwind CSS Gradient",
-        href: "/free-tools/tailwind-css-gradient-generator",
-      },
-    ],
-  },
-];
-import { byName } from "@/data/entries.json";
-const dynamicTemplateLinks = Object.entries(byName).map(
-  ([category, templates]) => ({
-    category: category.replace(/([A-Z])/g, " $1").trim(),
-    items: Object.values(templates).map((template: any) => ({
-      title: template.name,
-      href: template.link,
-    })),
-  })
-);
-
-const allLinks = [...dynamicTemplateLinks];
 const social = [
   { label: "X", href: "https://x.com/OxbowUI" },
   { label: "BlueSky", href: "https://bsky.app/profile/oxbowui.com" },
@@ -64,97 +10,89 @@ const legalTwo = [
   { label: "Terms of use", href: "/legal/terms" },
   { label: "Privacy policy", href: "/legal/privacy" },
 ];
+// Assets
+import Logo from "@/components/assets/Logo.astro";
+// Fundations
+const navLinks = [
+  {
+    title: "Navigation",
+    links: [
+      { label: "Home", href: "/" },
+      { label: "Log in", href: "/login" },
+      { label: "Pricing", href: "/pricing" },
+      { label: "Support", href: "/support" },
+      { label: "Affiliates", href: "/affiliates" },
+      { label: "Customers", href: "/customers" },
+      { label: "Changelog", href: "/changelog" },
+    ],
+  },
+  {
+    title: "Legal",
+    links: [
+      { label: "Faq", href: "/faq" },
+      { label: "Terms", href: "/terms" },
+      { label: "Privacy", href: "/privacy" },
+      { label: "License", href: "/license" },
+      { label: "Refund", href: "/refund" },
+    ],
+  },
+  {
+    title: "Legal",
+    links: [
+      { label: "X", href: "https://x.com/OxbowUI" },
+      { label: "BlueSky", href: "https://bsky.app/profile/oxbowui.com" },
+    ],
+  },
+  {
+    title: "Tools",
+    links: [
+      {
+        label: "All Tailwind CSS tools",
+        href: "/free-tools",
+      },
+      {
+        label: "Tailwind CSS Grid ",
+        href: "/free-tools/tailwind-css-grid-generator",
+      },
+      {
+        label: "Tailwind CSS Gradient",
+        href: "/free-tools/tailwind-css-gradient-generator",
+      },
+    ],
+  },
+];
 ---
 
 <footer>
-  <Wrapper variant="standard" class="relative py-12 lg:py-24">
-    <div class="flex flex-col gap-12 b">
-      <div class="grid grid-cols-2 gap-y-12 md:grid-cols-4 lg:grid-cols-4">
-        {
-          siteLinks.map((category) => (
-            <div class="px-4 ">
-              <Text
-                tag="h3"
-                variant="textSM"
-                class="font-medium text-black capitalize"
+  <Wrapper variant="standard" class="border-t border-base-900">
+    <div class="mx-auto max-w-2xl lg:max-w-none">
+      <div
+        class="overflow-hidden outline rounded-xl outline-base-900 shadow-2xl shadow-black p-8 bg-black"
+      >
+        <a aria-label="hom" href="/">
+          <Logo class="h-12 lg:h-40 text-white mx-auto" />
+        </a>
+        <div class="flex flex-wrap justify-center text-center gap-2">
+          {
+            navLinks.map((section, index) => (
+              <ul
+                role="list"
+                class="mt-4 text-sm text-base-400 flex flex-wrap gap-4 "
               >
-                {category.category}
-              </Text>
-              <ul class="w-full mt-2 space-y-1" role="list">
-                {category.items.map((item) => (
+                {section.links.map((link) => (
                   <li>
-                    <Text
-                      tag="a"
-                      variant="textXS"
-                      class="flex items-center justify-between w-full font-normal text-base-600 focus:outline-none hover:text-accent-600"
-                      href={item.href}
-                    >
-                      {item.title}
-                    </Text>
+                    <a class="transition hover:text-white" href={link.href}>
+                      {link.label}
+                    </a>
                   </li>
                 ))}
               </ul>
-            </div>
-          ))
-        }
-      </div>
-
-      <div
-        class="relative flex flex-row justify-between w-full pt-2 pb-4 text-xs tracking-tight text-base-600 px-4"
-      >
-        <nav
-          role="navigation"
-          aria-label="sub nav"
-          class="flex flex-col justify-between w-full gap-4 md:flex-row md:items-center md"
-        >
-          <ul
-            class="flex flex-col gap-4 md:flex-row md:items-center"
-            role="list"
-          >
-            {
-              social.map((item) => (
-                <li>
-                  <Text
-                    tag="a"
-                    variant="textXS"
-                    class=" text-base-500 font-medium hover:text-accent-500"
-                    href={item.href}
-                  >
-                    {item.label}
-                  </Text>
-                </li>
-              ))
-            }
-          </ul>
-          <ul
-            class="flex flex-col gap-4 md:flex-row md:items-center"
-            role="list"
-          >
-            {
-              legalTwo.map((item) => (
-                <li>
-                  <Text
-                    tag="a"
-                    variant="textXS"
-                    class=" text-base-500 font-medium hover:text-accent-500"
-                    href={item.href}
-                  >
-                    {item.label}
-                  </Text>
-                </li>
-              ))
-            }
-            <li>
-              <Text
-                tag="span"
-                class="text-xs font-medium text-base-500"
-                x-data="{ year: new Date().getFullYear() }"
-              >
-                © <span x-text="year"></span> Oxbow UI
-              </Text>
-            </li>
-          </ul>
-        </nav>
+            ))
+          }
+        </div>
+        <p class="text-sm text-base-500 text-center mt-8">
+          © <span x-text="year"></span> Oxbow UI
+        </p>
       </div>
     </div>
   </Wrapper>

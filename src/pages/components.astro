@@ -63,26 +63,32 @@ import { storeSections } from "@/data/entries.json";
 <BaseLayout>
   <StickyNav />
   <section id="entries">
-    <Wrapper variant="standard" class="relative pb-12 pt-8">
+    <Wrapper variant="standard">
       <section id="marketing" class="flex flex-col scroll-mt-24">
-        <div>
+        <div
+          class="outline rounded-xl outline-base-900 shadow-2xl shadow-black bg-black"
+        >
           <div
-            class="border-b border-base-200 pb-5 grid grid-cols-1 lg:grid-cols-4 gap-4"
+            class="border-b border-base-900 pb-5 grid grid-cols-1 lg:grid-cols-4 gap-4 p-8"
           >
-            <Text tag="h3" variant="textLG" class="font-semibold text-base-900">
+            <Text
+              tag="h3"
+              variant="textLG"
+              class="text-base-500 font-thin font-mono uppercase"
+            >
               Marketing
             </Text>
             <Text
               tag="p"
-              variant="textSM"
-              class="font-medium text-base-500 lg:col-span-3 lg:text-balance"
+              variant="textBase"
+              class="text-base-400 lg:col-span-3"
             >
               Hero sections, feature displays, footers, pricing pages, ready to
               grab landing pages and more to help you create standout marketing
               websites that impress and grow your audience.
             </Text>
           </div>
-          <div class="flex flex-col gap-12 mt-12 lg:gap-12">
+          <div class="flex flex-col gap-12 lg:gap-12 p-8">
             <div
               class="grid grid-cols-1 lg:grid-cols-4 scroll-mt-24"
               id="pageSections"
@@ -90,9 +96,8 @@ import { storeSections } from "@/data/entries.json";
               <div>
                 <div class="lg:sticky lg:pb-16 top-24">
                   <Text
-                    tag="h3"
                     variant="textBase"
-                    class="font-semibold text-base-900"
+                    class="text-base-400 font-thin font-mono uppercase"
                   >
                     Page sections
                   </Text>
@@ -107,9 +112,8 @@ import { storeSections } from "@/data/entries.json";
               <div>
                 <div class="lg:sticky lg:pb-16 top-24">
                   <Text
-                    tag="h3"
                     variant="textBase"
-                    class="font-semibold text-base-900"
+                    class="text-base-400 font-thin font-mono uppercase"
                   >
                     Landing Pages
                   </Text>
@@ -123,162 +127,190 @@ import { storeSections } from "@/data/entries.json";
     </Wrapper>
   </section>
   <section>
-    <Wrapper variant="standard" class="relative py-12">
+    <Wrapper variant="standard" class="border-t border-base-900">
       <section id="application" class="flex flex-col scroll-mt-24">
         <div
-          class="border-b border-base-200 pb-5 grid grid-cols-1 lg:grid-cols-4 gap-4"
+          class="outline rounded-xl outline-base-900 shadow-2xl shadow-black bg-black"
         >
-          <Text tag="h3" variant="textLG" class="font-semibold text-base-900">
-            Application
-          </Text>
-          <Text
-            tag="p"
-            variant="textSM"
-            class="font-medium text-base-500 lg:col-span-3"
-          >
-            Find navigation, buttons, forms, command palettes, typography,
-            application layouts, dialogs, and more to make your application’s
-            user interface pretty.
-          </Text>
-        </div>
-        <div class="flex flex-col gap-12 mt-12 lg:gap-12">
           <div
-            class="grid grid-cols-1 lg:grid-cols-4 scroll-mt-24"
-            id="navigation"
+            class="border-b border-base-900 pb-5 grid grid-cols-1 lg:grid-cols-4 gap-4 p-8"
           >
-            <div>
-              <div class="lg:sticky lg:pb-16 top-24">
-                <Text
-                  tag="h3"
-                  variant="textBase"
-                  class="font-medium text-base-500"
-                >
-                  Navigation
-                </Text>
-              </div>
-            </div>
-            <EntryStructure entries={navigation} />
+            <Text
+              tag="h3"
+              variant="textLG"
+              class="text-base-500 font-thin font-mono uppercase"
+            >
+              Application
+            </Text>
+            <Text
+              tag="p"
+              variant="textBase"
+              class="text-base-400 lg:col-span-3"
+            >
+              Find navigation, buttons, forms, command palettes, typography,
+              application layouts, dialogs, and more to make your application’s
+              user interface pretty.
+            </Text>
           </div>
-          <div
-            class="grid grid-cols-1 lg:grid-cols-4 scroll-mt-24"
-            id="overlay"
-          >
-            <div>
-              <div class="lg:sticky lg:pb-16 top-24">
-                <Text
-                  tag="h3"
-                  variant="textBase"
-                  class="font-medium text-base-500">Overlay</Text
-                >
+          <div class="flex flex-col gap-12 p-8">
+            <div
+              class="grid grid-cols-1 lg:grid-cols-4 scroll-mt-24"
+              id="navigation"
+            >
+              <div>
+                <div class="lg:sticky lg:pb-16 top-24">
+                  <Text
+                    variant="textBase"
+                    class="text-base-400 font-thin font-mono uppercase"
+                  >
+                    Navigation
+                  </Text>
+                </div>
               </div>
+              <EntryStructure entries={navigation} />
             </div>
-            <EntryStructure entries={overlay} />
-          </div>
-          <div class="grid grid-cols-1 lg:grid-cols-4 scroll-mt-24" id="forms">
-            <div>
-              <div class="lg:sticky lg:pb-16 top-24">
-                <Text
-                  tag="h3"
-                  variant="textBase"
-                  class="font-medium text-base-500">Forms</Text
-                >
+            <div
+              class="grid grid-cols-1 lg:grid-cols-4 scroll-mt-24"
+              id="overlay"
+            >
+              <div>
+                <div class="lg:sticky lg:pb-16 top-24">
+                  <Text
+                    variant="textBase"
+                    class="text-base-400 font-thin font-mono uppercase"
+                    >Overlay</Text
+                  >
+                </div>
               </div>
+              <EntryStructure entries={overlay} />
             </div>
-            <EntryStructure entries={forms} />
-          </div>
-          <div
-            class="grid grid-cols-1 lg:grid-cols-4 scroll-mt-24"
-            id="elements"
-          >
-            <div>
-              <div class="lg:sticky lg:pb-16 top-24">
-                <Text
-                  tag="h3"
-                  variant="textBase"
-                  class="font-medium text-base-500"
-                >
-                  Elements
-                </Text>
+            <div
+              class="grid grid-cols-1 lg:grid-cols-4 scroll-mt-24"
+              id="forms"
+            >
+              <div>
+                <div class="lg:sticky lg:pb-16 top-24">
+                  <Text
+                    variant="textBase"
+                    class="text-base-400 font-thin font-mono uppercase"
+                    >Forms</Text
+                  >
+                </div>
               </div>
+              <EntryStructure entries={forms} />
             </div>
-            <EntryStructure entries={elements} />
+            <div
+              class="grid grid-cols-1 lg:grid-cols-4 scroll-mt-24"
+              id="elements"
+            >
+              <div>
+                <div class="lg:sticky lg:pb-16 top-24">
+                  <Text
+                    variant="textBase"
+                    class="text-base-400 font-thin font-mono uppercase"
+                  >
+                    Elements
+                  </Text>
+                </div>
+              </div>
+              <EntryStructure entries={elements} />
+            </div>
           </div>
         </div>
       </section>
     </Wrapper>
   </section>
   <section>
-    <Wrapper variant="standard" class="relative py-12">
+    <Wrapper variant="standard" class="border-t border-base-900">
       <section id="emails" class="flex flex-col scroll-mt-24">
         <div
-          class="border-b border-base-200 pb-5 grid grid-cols-1 lg:grid-cols-4 gap-4"
+          class="outline rounded-xl outline-base-900 shadow-2xl shadow-black bg-black"
         >
-          <Text tag="h3" variant="textLG" class="font-semibold text-base-900">
-            Emails
-          </Text>
-          <Text
-            tag="p"
-            variant="textSM"
-            class="font-medium text-base-500 lg:col-span-3"
+          <div
+            class="border-b border-base-900 pb-5 grid grid-cols-1 lg:grid-cols-4 gap-4 p-8"
           >
-            Find a variety of email layouts and pre-designed blocks to make your
-            emails visually appealing and well-structured.
-          </Text>
-        </div>
-        <div class="flex flex-col gap-12 mt-12 lg:gap-12">
-          <div class="grid grid-cols-1 lg:grid-cols-4 scroll-mt-24" id="emails">
-            <div>
-              <div class="lg:sticky lg:pb-16 top-24">
-                <Text
-                  tag="h3"
-                  variant="textBase"
-                  class="font-medium text-base-500"
-                >
-                  Ecommerce
-                </Text>
+            <Text
+              tag="h3"
+              variant="textLG"
+              class="text-base-500 font-thin font-mono uppercase"
+            >
+              Emails
+            </Text>
+            <Text
+              tag="p"
+              variant="textBase"
+              class="text-base-400 lg:col-span-3"
+            >
+              Find a variety of email layouts and pre-designed blocks to make
+              your emails visually appealing and well-structured.
+            </Text>
+          </div>
+          <div class="flex flex-col gap-12 p-8">
+            <div
+              class="grid grid-cols-1 lg:grid-cols-4 scroll-mt-24"
+              id="emails"
+            >
+              <div>
+                <div class="lg:sticky lg:pb-16 top-24">
+                  <Text
+                    tag="h3"
+                    variant="textBase"
+                    class="font-medium text-base-400"
+                  >
+                    Ecommerce
+                  </Text>
+                </div>
               </div>
+              <EntryStructure entries={emailsEcommerce} />
             </div>
-            <EntryStructure entries={emailsEcommerce} />
           </div>
         </div>
       </section>
     </Wrapper>
   </section>
   <section>
-    <Wrapper variant="standard" class="relative py-12">
+    <Wrapper variant="standard" class="border-t border-base-900">
       <section id="ecommerce">
         <div
-          class="border-b border-base-200 pb-5 grid grid-cols-1 lg:grid-cols-4 gap-4"
+          class="outline rounded-xl outline-base-900 shadow-2xl shadow-black bg-black"
         >
-          <Text tag="h3" variant="textLG" class="font-semibold text-base-900">
-            eCommerce
-          </Text>
-          <Text
-            tag="p"
-            variant="textSM"
-            class="font-medium text-base-500 lg:col-span-3"
-          >
-            Checkout forms, shopping carts, promo sections, store fronts,
-            product overviews and all the basics to build your store.
-          </Text>
-        </div>
-        <div class="flex flex-col gap-12 mt-12 lg:gap-12">
           <div
-            class="grid grid-cols-1 lg:grid-cols-4 scroll-mt-24"
-            id="storeSections"
+            class="border-b border-base-900 pb-5 grid grid-cols-1 lg:grid-cols-4 gap-4 p-8"
           >
-            <div>
-              <div class="lg:sticky lg:pb-16 top-24">
-                <Text
-                  tag="h3"
-                  variant="textBase"
-                  class="font-medium text-base-500"
-                >
-                  Pages
-                </Text>
+            <Text
+              tag="h3"
+              variant="textLG"
+              class="text-base-500 font-thin font-mono uppercase"
+            >
+              eCommerce
+            </Text>
+            <Text
+              tag="p"
+              variant="textBase"
+              class="text-base-400 lg:col-span-3"
+            >
+              Checkout forms, shopping carts, promo sections, store fronts,
+              product overviews and all the basics to build your store.
+            </Text>
+          </div>
+          <div class="flex flex-col gap-12 p-8">
+            <div
+              class="grid grid-cols-1 lg:grid-cols-4 scroll-mt-24"
+              id="storeSections"
+            >
+              <div>
+                <div class="lg:sticky lg:pb-16 top-24">
+                  <Text
+                    tag="h3"
+                    variant="textBase"
+                    class="font-medium text-base-400"
+                  >
+                    Pages
+                  </Text>
+                </div>
               </div>
+              <EntryStructure entries={storeSections} />
             </div>
-            <EntryStructure entries={storeSections} />
           </div>
         </div>
       </section>

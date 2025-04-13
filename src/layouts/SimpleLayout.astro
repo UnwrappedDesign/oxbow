@@ -1,46 +1,53 @@
 ---
-import BaseLayout from "./BaseLayout.astro";
+
+// Fundations
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
 ---
 
 <BaseLayout>
   <section>
-    <Wrapper variant="standard" class="pt-12 grid grid-cols-1  lg:grid-cols-4">
-      <Wrapper variant="prose" class="lg:col-span-2">
-        <slot />
+    
+    <section>
+      <Wrapper variant="standard" class="border-t border-base-900 py-24">
+        <Wrapper variant="prose" class="max-w-xl mx-auto">
+          <slot />
+        </Wrapper>
       </Wrapper>
-    </Wrapper>
+    </section>
   </section>
-</BaseLayout>
-<script type="module">
-  document.addEventListener("DOMContentLoaded", () => {
-    function copyToClipboard(text, button) {
-      navigator.clipboard
-        .writeText(text)
-        .then(() => {
-          button.textContent = "Copied!";
-          button.classList.add("copied");
-          setTimeout(() => {
-            button.textContent = "Copy";
-            button.classList.remove("copied");
-          }, 2000); // Reset button text and style after 2 seconds
-        })
-        .catch((err) => {
-          console.error("Failed to copy: ", err);
-          button.textContent = "Failed to copy";
-          setTimeout(() => {
-            button.textContent = "Copy";
-          }, 2000);
-        });
-    }
+  <script type="module">
+    document.addEventListener("DOMContentLoaded", () => {
+      function copyToClipboard(text, button) {
+        navigator.clipboard
+          .writeText(text)
+          .then(() => {
+            button.textContent = "Copied!";
+            button.classList.add("copied");
+            setTimeout(() => {
+              button.textContent = "Copy";
+              button.classList.remove("copied");
+            }, 2000); // Reset button text and style after 2 seconds
+          })
+          .catch((err) => {
+            console.error("Failed to copy: ", err);
+            button.textContent = "Failed to copy";
+            setTimeout(() => {
+              button.textContent = "Copy";
+            }, 2000);
+          });
+      }
 
-    document.querySelectorAll("pre code").forEach((block) => {
-      const button = document.createElement("button");
-      button.textContent = "Copy";
-      button.onclick = () => copyToClipboard(block.textContent, button);
-      button.className =
-        "copy-button border ml-auto bg-white shadow flex mb-4 w-16 text-black focus:text-accent-600 easy-out focus:ring-2 focus:ring-accent-600 duration-300 transition-all focus:ring-offset-2 text-center justify-center  px-2 rounded-md h-6 text-[0.68rem] items-center";
-      block.parentElement.insertBefore(button, block);
+      document.querySelectorAll("pre code").forEach((block) => {
+        const button = document.createElement("button");
+        button.textContent = "Copy";
+        button.onclick = () => copyToClipboard(block.textContent, button);
+        button.className =
+          "flex relative text-center font-medium items-center shadow-button justify-center overflow-hidden border border-transparent duration-300 ease-in-out transition-all outline-offset-4 hover:opacity-90 hover:shadow-none focus-visible:outline-none focus:outline-2 inset-shadow-xs inset-shadow-white/10 ring active:inset-shadow-transparent text-white bg-linear-to-r/oklch from-base-900 to-base-950 hover:bg-base-400 focus:outline-base-900 ring-base-900 h-7 px-4 py-1.5 text-xs rounded-sm pointer-events-auto w-20 ml-auto";
+        block.parentElement.insertBefore(button, block);
+      });
     });
-  });
-</script>
+  </script>
+</BaseLayout>
