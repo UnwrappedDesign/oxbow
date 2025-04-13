@@ -1,73 +1,45 @@
 ---
-import { reviews } from "../../data/reviews.json";
+import { reviews } from "@/data/reviews.json";
+import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
+
+// Assets
+import { Image } from "astro:assets";
+import Brand from "@/images/logos/1.svg";
+import AnimatedGradient from "@/components/assets/AnimatedGradient.astro";
+// Fundations
 import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
+// Randomize the reviews array
+const randomizedReviews = [...reviews].sort(() => Math.random() - 0.5);
 ---
 
 <section>
-  <Wrapper
-    variant="standard"
-    class="py-12 lg:py-24 grid grid-cols-1 gap-y-12 sm:grid-cols-2 lg:grid-cols-4"
-  >
-    <Text
-      tag="h3"
-      variant="displaySM"
-      class="text-black font-medium tracking-tighter"
-    >
-      We have customers....
-    </Text>
-    <ul
-      class="w-full relative md:grid-cols-2 lg:grid-cols-3 grid gap-y-12 gap-x-8 lg:col-span-3"
-      lg:col-span-3
-      role="list"
-    >
+  <Wrapper variant="standard" class="border-t border-base-900">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
       {
-        reviews.slice(0, 3).map((template) => (
-          <>
-            <li class=" h-full flex  ">
-              <div class="flex flex-col h-full justify-between gap-6  ">
-                <Text
-                  tag="p"
-                  variant="textSM"
-                  class="text-sm mt-2 text-base-500 text-pretty"
-                >
-                  "{template.text}"
+        randomizedReviews.slice(0, 2).map((template) => (
+          <div class="relative overflow-hidden textcenter rounded-xl outline outline-base-900 shadow-2xl shadow-black p-12 xl:p-32 bg-stripes">
+            <AnimatedGradient class="absolute inset-0 z-0 grayscale opacity-40" />
+            <div class="relative ">
+              <Text
+                tag="h3"
+                variant="textXL"
+                class="text-white xl:text-2xl font-normal tracking-tigt font-mono uppercase text-balance italic"
+              >
+                "{template.text}"
+              </Text>
+              <div class="mt-2  font-medium text-white text-right">
+                <Text tag="p" variant="textSM">
+                  {template.name}
                 </Text>
-                <div class="inline-flex items-center gap-3">
-                  <div class="flex-shrink-0">
-                    <img
-                      alt={template.name}
-                      src={template.image}
-                      class="size-10 rounded-full  grayscale"
-                    />
-                  </div>
-                  <div class="flex-1 min-w-0  font-medium text-black">
-                    <Text tag="p" variant="textSM">
-                      {template.name}
-                    </Text>
-                    <Text tag="p" variant="textSM">
-                      {template.work}
-                    </Text>
-                  </div>
-                </div>
+                <Text tag="p" variant="textSM">
+                  {template.work}
+                </Text>
               </div>
-            </li>
-          </>
+            </div>
+          </div>
         ))
       }
-    </ul>
-    <div class="flex mt-12">
-      <OxbowLink
-        size="base"
-        variant="muted"
-        href="/customers"
-        id="access-footer-cta"
-        data-umami-event="access-footer-cta"
-        class="w-auto"
-      >
-        Read them all
-      </OxbowLink>
     </div>
   </Wrapper>
 </section>

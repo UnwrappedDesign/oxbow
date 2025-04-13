@@ -1,44 +1,72 @@
 ---
+// Assets
+import AnimatedGradient from "@/components/assets/AnimatedGradient.astro";
+// Fundations
 import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Oxbowbutton from "@/components/fundations/buttons/OxbowButton.astro";
 const { btnLabel = "Get your link", email = false } = Astro.props;
 ---
 
-<section>
-  <Wrapper variant="standard" class="">
-    <div x-data="loginForm()" class="pb-12">
-      <form
-        x-cloak
-        @submit.prevent="sendEmail()"
-        x-show="!emailSent || errorMessage"
-        class="max-w-xl mx-auto"
-      >
-        <div class="flex flex-col gap-1">
+<section x-data="loginForm()">
+  <Wrapper
+    variant="standard"
+    class="h-[80dvh] flex flex-col items-end border-t border-base-900"
+  >
+    <div
+      class="relative flex flex-col bg-stripes justify-center lg:h-screen   w-full overflow-hidden outline rounded-xl outline-base-900 shadow-2xl shadow-black p-8 bg-black"
+    >
+      <div class="relative">
+        <Text
+          tag="h1"
+          variant="displayMD"
+          class="text-white lg:text-balance text-center font-thin tracking-tighter font-mono uppercase"
+        >
+          Sign in with your email
+        </Text>
+        <Text
+          tag="p"
+          variant="textBase"
+          class="text-base-400 max-w-xl mx-auto text-center mt-4 text-balance"
+        >
+          Please enter the email address linked to your account, and we will
+          send a unique sign-in link to your inbox.
+        </Text>
+        <!-- 
+        
+        // Form goes here
+        -->
+        <form
+          x-cloak
+          @submit.prevent="sendEmail()"
+          x-show="!emailSent || errorMessage"
+          class="mt-12 max-w-sm mx-auto"
+        >
           <div>
-            <label for="email" class="sr-only"> Email </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              x-model="email"
-              x-on:input="clearErrorMessage"
-              autocomplete="on"
-              placeholder="email@example.com"
-              required
-              aria-required="true"
-              class="block w-full px-4 py-2 h-12 focus:ring-2 focus:ring-accent-500 border border-base-200 duration-300 appearance-none text-accent-500 placeholder-base-300 focus:border-accent-300 focus:outline-none sm:text-sm"
-            />
-            <div class="mt-4 space-y-2 text-xs text-base-500">
-              <div x-cloak x-show="!!errorMessage">
+            <label for="email" class="text-sm text-base-300">Email</label>
+            <div class="mt-2.5">
+              <input
+                id="email"
+                name="email"
+                type="email"
+                x-model="email"
+                x-on:input="clearErrorMessage"
+                autocomplete="on"
+                placeholder="email@example.com"
+                required
+                aria-required="true"
+                class="block w-full h-12 px-4 py-2 text-sm text-white duration-300 bg-black/50 backdrop-blur-2xl border border-transparent rounded-xl appearance-none outline outline-base-900 placeholder-base-400 focus:border-base-900 focus:bg-transparent focus:outline-none focus:outline-accent-500 focus:outline-offset-2 focus:outline-2 sm:text-sm focus:ring-offset-base-950"
+              />
+              <div x-cloak x-show="!!errorMessage" class="mt-2 text-red-500">
                 <p x-text="errorMessage"></p>
               </div>
             </div>
-            <div></div>
+          </div>
+          <div>
             {
               email && (
                 <div>
-                  <label for="password" class="sr-only">
+                  <label for="password" class="text-sm text-base-300">
                     Password
                   </label>
                   <input
@@ -48,59 +76,55 @@ const { btnLabel = "Get your link", email = false } = Astro.props;
                     placeholder="Enter your password"
                     required
                     aria-required="true"
-                    class="block w-full px-4 py-2 h-12   focus:ring-2 focus:ring-accent-500  border border-base-200 duration-300  appearance-none text-accent-500 placeholder-base-300 focus:border-accent-300 focus:outline-none sm:text-sm"
+                    class="block w-full h-12 px-4 py-2 text-sm text-white duration-300 bg-black/50 backdrop-blur-2xl border border-transparent rounded-xl appearance-none outline outline-base-900 placeholder-base-400 focus:border-base-900 focus:bg-transparent focus:outline-none focus:outline-accent-500 focus:outline-offset-2 focus:outline-2 sm:text-sm focus:ring-offset-base-950"
                   />
                 </div>
               )
             }
-            <div class="text-sm text-base-500 font-medium">
-              <small
-                >By clicking 'Get your link', you agree to our <a
-                  href="/terms"
-                  class="text-accent-500 hover:underline">Terms of Service</a
-                > and
-                <a href="/privacy" class="text-accent-500 hover:underline">
-                  Privacy Policy.
-                </a>
-              </small>
-            </div>
-            <div class="mt-4">
-              <Oxbowbutton
-                type="submit"
-                size="base"
-                variant="default"
-                id="access-footer-cta"
-                data-umami-event="access-footer-cta"
-                :disabled="emailSent"
-                x-text={`emailSent ? 'Check Your Inbox' : '${btnLabel}'`}
-                class="w-full"
+          </div>
+          <Oxbowbutton
+            type="submit"
+            size="base"
+            variant="accent"
+            id="access-footer-cta"
+            data-umami-event="access-footer-cta"
+            :disabled="emailSent"
+            x-text={`emailSent ? 'Check Your Inbox' : '${btnLabel}'`}
+            class="w-full mt-2"
+          >
+            {btnLabel}
+          </Oxbowbutton>
+          <div class="text-xs text-base-500 font-medium mt-2">
+            <small
+              >By clicking 'Get your link', you agree to our <a
+                href="/terms"
+                class="text-white hover:underline">Terms of Service</a
+              > and
+              <a href="/privacy" class="text-white hover:underline">
+                Privacy Policy.
+              </a>
+            </small>
+          </div>
+          <div x-cloak x-show="emailSent" class="flex flex-col gap-4 mt-8">
+            <div>
+              <Text tag="p" variant="textBase" class="text-white font-medium"
+                >Didn't receive the email?</Text
               >
-                {btnLabel}
+              <Text tag="p" variant="textSM" class="text-base-600 mt-2"
+                >Add the email
+                <span class="font-medium">noreply@oxbowui.firebaseapp.com</span>
+                to your contacts to ensure you receive our emails and try again.</Text
+              >
+            </div>
+            <div class="mt-2 flex">
+              <Oxbowbutton size="base" variant="accent" @click="clearForm()" class="w-full">
+                Try again
               </Oxbowbutton>
             </div>
           </div>
-        </div>
-      </form>
-      <div x-cloak x-show="emailSent" class="flex flex-col gap-4">
-        <div>
-          <Text tag="p" variant="textBase" class="text-accent-950 font-medium"
-            >Didn't receive the email?</Text
-          >
-          <Text tag="p" variant="textSM" class="text-base-600 mt-2"
-            >Add the email
-            <span class="font-medium">noreply@oxbowui.firebaseapp.com</span> to your
-            contacts to ensure you receive our emails and try again.</Text
-          >
-        </div>
-        <div class="flex">
-          <button
-            class="flex items-center justify-center w-auto border border-accent-950 h-9 px-4 py-2 font-medium text-white transition-all duration-200 rounded-full focus:ring-2 focus:ring-offset-2 focus:outline-none bg-accent-950 hover:bg-accent-900 focus:ring-accent-900"
-            @click="clearForm()"
-          >
-            Try again
-          </button>
-        </div>
+        </form>
       </div>
     </div>
   </Wrapper>
 </section>
+

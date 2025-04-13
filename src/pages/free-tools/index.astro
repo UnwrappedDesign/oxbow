@@ -74,37 +74,34 @@ const sections = [
     subtitle="All-in-one tools to supercharge your Tailwind CSS development"
   />
   <section>
-    <Wrapper variant="standard" class="py-12">
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2">
+    <Wrapper variant="standard" class="border-t border-base-900">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 gap-y-24">
         {
           sections.map((section) => (
-            <div class="px-4 relative before:absolute after:absolute before:bg-base-800 before:top-0 before:left-0 before:h-6 before:w-0.5 after:top-8 after:bottom-0 after:left-0 after:w-0.5">
+            <div class="relative overflow-hidden group outline rounded-xl outline-base-900 shadow-2xl shadow-black bg-black p-8">
               <a class="absolute inset-0 z-10" href={section.link} />
-              <div>
-                <Text tag="p" variant="textXS" class=" text-base-500">
-                  {section.title}
-                </Text>
-                <Text
-                  tag="h3"
-                  variant="textLG"
-                  class=" mt-2 text-black font-medium"
-                >
-                  {section.subtitle}
-                </Text>
-                <Text
-                  tag="p"
-                  variant="textSM"
-                  class="mt-2 text-base-500 font-medium"
-                >
-                  {section.description}
-                </Text>
-              </div>
+              <div class="relative flex flex-col gap-4">
+                <Image
+                  src={section.imageSrc}
+                  alt={section.altText}
+                  width={1000}
+                  height={100}
+                  class="size-full aspect-16/10 object-cover object-center rounded-xl lg:mask-b-from-40% lg:mask-b-to-90%"
+                />
 
-              <Image
-                class="border border-base-200 aspect-auto mt-4 "
-                src={section.imageSrc}
-                alt={section.altText}
-              />
+                <div>
+                  <Text
+                    tag="h3"
+                    variant="textBase"
+                    class="leading-6 text-white font-medium"
+                  >
+                    {section.subtitle}
+                  </Text>
+                  <Text tag="p" variant="textSM" class="text-base-500 mt-1">
+                    {section.description}
+                  </Text>
+                </div>
+              </div>
             </div>
           ))
         }

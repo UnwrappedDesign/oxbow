@@ -1,5 +1,9 @@
 ---
-import Text from "../fundations/typography/Text.astro";
+// Fundations
+import Text from "@/components/fundations/typography/Text.astro";
+import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
+import OxbowButton from "@/components/fundations/buttons/OxbowButton.astro";
+// Components
 import { Code } from "astro:components";
 import * as prettier from "prettier";
 interface Props {
@@ -16,25 +20,24 @@ const ppcode = canSeeCode ? await prettier.format(code, {
                           parser: "html",
                         })
                         : '';
-
 const theme = ``;
-
 ---
 <section x-data="playground" class="not-prose ">
   <div class="relative"  @theme="setTheme($event.detail.color)">
-   
     <div class="flex items-center justify-between pb-2 gap-1 ">
       <div class="flex items-center gap-2">
         <a
-          class="pointer-events-auto rounded-md border border-base-200 bg-white p-1 text-base-500 flex items-center justify-center size-7 text-xs"
+          class="pointer-events-auto rounded-md outline outline-base-900 shadow-2xl shadow-black bg-black  p-1 text-base-400 flex items-center justify-center size-7 text-xs"
           href={`#${componentIndex}`}
         >
           {componentIndex}
         </a>
         <div x-data="themeSelector" class="relative w-100 z-10">
-            <button 
+            <OxbowButton 
+                size="xs"
+                variant="muted"
                 @click="toggleOpen" 
-                class="pointer-events-auto focus:text-accent-500 rounded-md px-4 h-7 py-1 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200 bg-base-50 flex items-center gap-2 "
+                class="pointer-events-auto flex items-center gap-2 justify-between"
             >
                 <div class="flex items-center gap-2">
                     <div 
@@ -43,32 +46,34 @@ const theme = ``;
                     ></div>
                     <span x-text="selected"></span>
                 </div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                </svg>
-            </button>
+               <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+               </span>
+            </OxbowButton>
             <div 
                 x-show="open" 
                 x-on:click.away="toggleOpen"
-                class="absolute w-full mt-1 bg-white ring-1 ring-base-900/5 rounded-lg shadow border-base-200 z-50"
+                class="absolute w-full mt-1 outline outline-base-900 shadow-2xl shadow-black bg-black z-50 rounded-lg"
                 x-transition
             >
-              
-                <div class="p-4 bg-white rounded-lg max-w-2xl">
+                <div class="p-4  rounded-lg max-w-2xl">
                   <Text tag="p" variant="textBase" class=" font-medium ">Color options</Text>
                   <Text tag="p" variant="textXS" class="text-gray-500 mt-1">Customize your colors.</Text>
-              
                   <div class="w-full mt-4">
                       <div class="flex flex-wrap gap-3 max-w-sm">
                         <template x-for="color in colors">
-                          <button 
+                          <OxbowButton 
+                          size="xxs"
+                          variant="muted"
                             x-on:click="selectColor(color.name)"
-                            :class="selected === color.name ? 'ring-1 ring-base-300' : ''"
-                          class="pointer-events-auto flex focus:text-accent-500 rounded-md px-4 h-7 py-1 text-xs text-base-500 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200 bg-base-50 items-center gap-1 "
+                            :class="selected === color.name ? 'outline outline-base-600' : ''"
+                            class="pointer-events-auto flex items-center justify-between"
                           >
-                            <div class="size-2 rounded-full" :class="color.color"></div>
+                            <div class="size-2 rounded-full mr-2" :class="color.color"></div>
                             <span x-text="color.name"></span>
-                          </button>
+                          </OxbowButton>
                         </template>
                       </div>
                   </div>
@@ -79,30 +84,14 @@ const theme = ``;
       <div class="flex items-center justify-end w-full gap-2">
         <span class="isolate md:inline-flex h-7 gap-1 hidden" x-show="tab === 'preview'">
           <button
-            class="pointer-events-auto relative inline-flex items-center rounded p-1 focus:text-accent-500 text-xs font-semibold text-base-900 hover:bg-white "
-            @click="viewportSize = 'mobile'" :class="viewportSize === 'mobile' ? 'bg-base-50' : 'bg-black/0'"
+            class="pointer-events-auto relative inline-flex items-center rounded p-1 focus:text-white text-base-500 outline outline-base-900 shadow-2xl shadow-black bg-black focus:outline-base-800"
+            @click="viewportSize = 'mobile'" :class="viewportSize === 'mobile' ? 'bg-base-900' : 'bg-black'"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-device-mobile size-[20px]"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-              <path
-                d="M6 5a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-14z"
-              ></path>
-              <path d="M11 4h2"></path>
-              <path d="M12 17v.01"></path>
-            </svg>
+          <svg class="size-[20px]" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 2.5C4 2.22386 4.22386 2 4.5 2H10.5C10.7761 2 11 2.22386 11 2.5V12.5C11 12.7761 10.7761 13 10.5 13H4.5C4.22386 13 4 12.7761 4 12.5V2.5ZM4.5 1C3.67157 1 3 1.67157 3 2.5V12.5C3 13.3284 3.67157 14 4.5 14H10.5C11.3284 14 12 13.3284 12 12.5V2.5C12 1.67157 11.3284 1 10.5 1H4.5ZM6 11.65C5.8067 11.65 5.65 11.8067 5.65 12C5.65 12.1933 5.8067 12.35 6 12.35H9C9.1933 12.35 9.35 12.1933 9.35 12C9.35 11.8067 9.1933 11.65 9 11.65H6Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
           </button>
           <button
-            class="pointer-events-auto relative  inline-flex items-center rounded  p-1 focus:text-accent-500 text-xs font-semibold text-base-900 hover:bg-white "
-            @click="viewportSize = 'tablet'" :class="viewportSize === 'tablet' ? 'bg-base-50' : 'bg-black/0'"
+            class="pointer-events-auto relative inline-flex items-center rounded p-1 focus:text-white text-base-500 outline outline-base-900 shadow-2xl shadow-black bg-black focus:outline-base-800"
+            @click="viewportSize = 'tablet'" :class="viewportSize === 'tablet' ? 'bg-base-900' : 'bg-black"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -122,98 +111,91 @@ const theme = ``;
             </svg>
           </button>
           <button
-            class="pointer-events-auto relative  inline-flex items-center rounded p-1 focus:text-accent-500 text-xs font-semibold text-base-900 hover:bg-white "
-            @click="viewportSize = 'desktop'" :class="viewportSize === 'desktop' ? 'bg-base-50' : 'bg-black/0 '"
+            class="pointer-events-auto relative inline-flex items-center rounded p-1 focus:text-white text-base-500 outline outline-base-900 shadow-2xl shadow-black bg-black focus:outline-base-800"
+            @click="viewportSize = 'desktop'" :class="viewportSize === 'desktop' ? 'bg-base-900' : 'bg-black'"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-device-desktop size-[22px]"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-              <path
-                d="M3 5a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1v-10z"
-              ></path>
-              <path d="M7 20h10"></path>
-              <path d="M9 16v4"></path>
-              <path d="M15 16v4"></path>
-            </svg>
+          <svg class="size-[20px]"  viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 3.25C1 3.11193 1.11193 3 1.25 3H13.75C13.8881 3 14 3.11193 14 3.25V10.75C14 10.8881 13.8881 11 13.75 11H1.25C1.11193 11 1 10.8881 1 10.75V3.25ZM1.25 2C0.559643 2 0 2.55964 0 3.25V10.75C0 11.4404 0.559644 12 1.25 12H5.07341L4.82991 13.2986C4.76645 13.6371 5.02612 13.95 5.37049 13.95H9.62951C9.97389 13.95 10.2336 13.6371 10.1701 13.2986L9.92659 12H13.75C14.4404 12 15 11.4404 15 10.75V3.25C15 2.55964 14.4404 2 13.75 2H1.25ZM9.01091 12H5.98909L5.79222 13.05H9.20778L9.01091 12Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
           </button>
         </span>
-        <div class="mx-1 h-4 w-[2px] bg-white hidden md:inline-block"></div>
+        <div aria-hidden="true" class="mx-1 h-4 w-[1px] bg-base-500 hidden md:inline-block"></div>
         {
           canSeeCode ? (
             <div class="flex items-center gap-2">
-              <button
+              <OxbowButton
+               size="xxs"
+                variant="muted"
                 x-on:click="setTab('preview')" 
-                :class="tab === 'preview' ? 'bg-base-50' : 'bg-black/0'"
+                :class="tab === 'preview' ? '!outline-base-700' : 'bg-black/0'"
                 data-umami-event="click-view-preview"
                 data-umami-data-id={user?.uid}
                 data-umami-event-componentref={componentPath}
-                class=" pointer-events-auto flex focus:text-accent-500 rounded-md px-4 h-7 py-1 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200 ">
+                class=" pointer-events-auto  ">
                 Preview
-              </button>
-              <button
+              </OxbowButton>
+              <OxbowButton
+               size="xxs"
+                variant="muted"
                 x-on:click="setTab('code')" 
-                :class="tab === 'code' ? 'bg-base-50' : 'bg-black/0'"
+                :class="tab === 'code' ? '!outline-base-700' : 'bg-black/0'"
                 data-umami-event="click-view-code"
                 data-umami-data-id={user?.uid}
                 data-umami-event-componentref={componentPath}
-                class="pointer-events-auto flex rounded-md px-4 py-1 focus:text-accent-500 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200">
+                class="pointer-events-auto ">
                 Code
-              </button>
-              <button
+              </OxbowButton>
+              <OxbowButton
+                size="xxs"
+                variant="muted"
                 x-on:click="setTab('theme')" 
-                :class="tab === 'theme' ? 'bg-base-50' : 'bg-black/0'"
+                :class="tab === 'theme' ? '!outline-base-700 ' : ''"
                 data-umami-event="click-view-theme"
                 data-umami-data-id={user?.uid}
                 data-umami-event-componentref={componentPath}
-                class="pointer-events-auto flex rounded-md px-4 py-1 focus:text-accent-500 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200">
+                class="pointer-events-auto">
                 Theme
-              </button>
-              <div class="mx-1 h-4 w-[2px] bg-white" />
-              <button
+              </OxbowButton>
+              <div aria-hidden="true" class="mx-1 h-4 w-[1px] bg-base-500" />
+              <OxbowButton
+                size="xxs"
+                variant="muted"
                 data-umami-event="click-copy-component"
                 data-umami-data-id={user?.uid}
                 data-umami-event-componentref={componentPath}
-                class="pointer-events-auto relative w-20 flex rounded-md focus:text-accent-500 px-4 py-1 text-sm text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200"
+                class="pointer-events-auto w-20"
                 x-on:click="copyCode"
               >
                 <span
                   x-text="copied ? 'Copied!' : 'Copy'"
                   class="transition"
                 />
-              </button>
+              </OxbowButton>
             </div>
           ) : (
-            <a
-              class="pointer-events-auto relative font-medium flex rounded-md px-4 py-1 text-sm focus:text-base-900 transition focus-visible:outline-none focus-visible:ring focus-visible:ring-base-200 text-accent-600  duration-300"
-              href="/pricing"
-              data-umami-event="click-get-access"
-              data-umami-data-id={user?.uid}
-              data-umami-event-componentref={componentPath}
+            <OxbowLink
+            size="xxs"
+            variant="muted"
+            href="/pricing"
+            data-umami-event="click-get-access"
+            data-umami-data-id={user?.uid}
+            data-umami-event-componentref={componentPath}
+            class="pointer-events-auto"
             >
               Get Access
-            </a>
+            </OxbowLink>
           )
         }
       </div>
     </div>
     <div
-    class="relative min-h-[400] w-full flex border border-gray-200   bg-white overflow-hidden rounded-lg z-1"
+    class="relative min-h-[400] w-full flex ooutline rounded-xl outline-base-900 shadow-2xl shadow-black bg-black z-1 overflow-hidden"
   >
     <div
       x-show="tab === 'preview'"
-      class="flex flex-grow w-full justify-center"
+      class="flex flex-grow w-full justify-center bg-white"
     >
       <div
         class="w-full overflow-auto transition-all duration-500 easy-in-out"
-        :class="{ 'max-w-sm  border-x border-base-200': viewportSize === 'mobile', 'max-w-screen-md  border-x border-base-200': viewportSize === 'tablet','max-w-full': viewportSize === 'desktop' }">
+        :class="{ 'max-w-sm  border-x border-base-900': viewportSize === 'mobile', 'max-w-screen-md  border-x border-base-900': viewportSize === 'tablet','max-w-full': viewportSize === 'desktop' }">
         <iframe  x-intersect.once="$el.src = $el.dataset.src" id={playgroundRef} width="100%" data-src={`/iframe/${componentPath}?iframeId=iframe-${componentIndex}`}/>
       </div>
     </div>
@@ -222,14 +204,14 @@ const theme = ``;
         <div
           x-show="tab === 'code'"
           x-ref="code"
-          class="flex-grow size-full  text-sm overflow-auto p-4 ov bg-white transition selection:bg-[#CEFDFE] selection:text-base-950"
+          class="flex-grow size-full  text-sm overflow-auto p-4  bg-base-900 transition selection:bg-accent-500 selection:text-base-950"
         >
-          <Code code={ppcode} lang="html" theme="css-variables" />
+          <Code code={ppcode} lang="html" theme="css-variables" class="scrollbar-hide"/>
         </div>
         <div
           x-show="tab === 'theme'"
           x-ref="theme"
-          class="flex-grow size-full  text-sm overflow-auto p-4 ov bg-white transition selection:bg-[#CEFDFE] selection:text-base-950"
+          class="flex-grow size-full  text-sm overflow-auto p-4 ov bg-base-900 transition selection:bg-accent-500 selection:text-base-950"
         >
           <div x-html="theme" />
         </div>
@@ -237,5 +219,4 @@ const theme = ``;
     }
   </div>
   </div>
-
 </section>

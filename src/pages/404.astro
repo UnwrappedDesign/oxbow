@@ -1,10 +1,12 @@
 ---
 import { AstroSeo } from "@astrolib/seo";
-import Cta from "@/components/global/Cta.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import MainHero from "@/components/fundations/containers/MainHero.astro";
+// Compoents
+import Cta from "@/components/global/Cta.astro";
 ---
 
 <AstroSeo
@@ -44,37 +46,10 @@ import MainHero from "@/components/fundations/containers/MainHero.astro";
 />
 <BaseLayout>
   <MainHero
+    is404={true}
     title="Page not found"
     subtitle="Sorry, we couldn't find the page you were looking for. In the meantime, you may want to return to the homepage or browse all components"
     showButton={false}
     showAlpineTailwind={false}
   />
-
-  <Wrapper variant="standard" class="pb-12">
-    <div>
-      <div class="flex gap-2 flex-wrap">
-        <Text
-          tag="a"
-          href="/"
-          variant="textBase"
-          id="404-home"
-          data-umami-event="404 home"
-          class="flex items-center justify-center w-full h-9 px-4 py-2 text-sm font-medium text-white transition-all duration-200 border rounded-full border-accent-950 sm:w-auto gap-x-1 focus:ring-2 focus:ring-offset-2 focus:outline-none bg-accent-950 hover:bg-accent-900 focus:ring-accent-900"
-        >
-          Go back gome
-        </Text>
-        <Text
-          tag="a"
-          href="/components"
-          variant="textBase"
-          id="404-components"
-          data-umami-event="404-components"
-          class="flex items-center justify-center w-full h-9 px-4 py-2 text-sm font-medium transition-all duration-200 bg-white border rounded-full sm:w-auto text-accent-600 focus:ring-2 focus:ring-offset-2 focus:outline-none border-base-200 hover:text-accent-950 focus:ring-accent-600"
-        >
-          Browse components
-        </Text>
-      </div>
-    </div>
-  </Wrapper>
-  <Cta />
 </BaseLayout>
