@@ -2,65 +2,33 @@
 import { Image } from "astro:assets";
 import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-import applicationImage from "@/screenshots/application_sign-up_03.png";
-import ecommerceImage from "@/screenshots/application_flyouts_09.png";
-import marketingImage from "@/screenshots/marketing_hero_03.png";
+import applicationImage from "@/screenshots/application_commandbar_03.png";
+import ecommerceImage from "@/screenshots/ecommerce_product-details_01.png";
+import marketingImage from "@/screenshots/marketing_hero_01.png";
+import emailImage from "@/screenshots/emails_receipts_03.png";
 const features = [
   {
-    icon: "Component",
-    title: "Components",
-    description:
-      "Over 400 well-designed and carefully built components that follow accessibility standards and are easy to customize.",
+    title: "400+ Components",
+    description: "Accessible, responsive, and easy to customize.",
   },
   {
-    icon: "Code",
-    title: "Tailwind, Alpine  and more ",
-    description:
-      "Interactive examples built with Alpine JS and plain HTML, with more frameworks coming soon.",
+    title: "Built with Tailwind & Alpine",
+    description: "Clean, interactive code you can drop into any project.",
   },
   {
-    icon: "Devices",
-    title: "Responsive",
-    description:
-      "Each example is fully Devices, thoughtfully crafted, and set up to look great on screens of any size.",
+    title: "One-Time Payment",
+    description: "Lifetime access. No subscriptions, no limits.",
   },
   {
-    icon: "Mail",
-    title: "No subscription required",
-    description:
-      "The bundle license is a one-time purchase. Oxbow UI will never charge you again after the initial payment.",
+    title: "Free Updates",
+    description: "New components and improvements included, always.",
   },
   {
-    icon: "Tools",
-    title: "Unlimited projects",
-    description:
-      "Oxbow's license allows you to use all components, elements and layouts as many times as you want.",
-  },
-  {
-    icon: "LockOpen",
-    title: "Lifetime access",
-    description:
-      "You get instant access to all components, elements and layouts right after payment, as well as anything added in the future.",
-  },
-  {
-    icon: "LoaderTwo",
-    title: "Free updates",
-    description:
-      "Any improvements, new components, elements and layouts are included with your original purchase.",
-  },
-  {
-    icon: "Lifebuoy",
-    title: "Support",
-    description:
-      "Whenever you any questions, you can reach out to us from the support page.",
-  },
-  {
-    icon: "Home",
-    title: "Everything available",
-    description:
-      "This includes all component, element and layout made to date, as well as future additions.",
+    title: "Fast Support",
+    description: "Get help anytime. We’re here when you need us.",
   },
 ];
+
 const sections = [
   {
     category: "Marketing",
@@ -92,22 +60,29 @@ const sections = [
       alt: "hero images",
     },
   },
+  {
+    category: "Email",
+    title: "Sending emails?",
+    description:
+      "We have a dedicated section for emails. with pre-made blocks to build your email in minutes.",
+    image: {
+      src: emailImage,
+      alt: "emal images",
+    },
+  },
 ];
 const started = [
   {
-    icon: "Settings",
     title: "Simple customization ",
     description:
       "The bundle license is a one-time purchase. Oxbow UI will never charge you again after the initial payment.",
   },
   {
-    icon: "Accessibility",
     title: "Keyboard accessibility",
     description:
       "All elements are keyboard accessible, ensuring a smooth experience for screen reader users.",
   },
   {
-    icon: "Brain",
     title: "Production ready",
     description:
       "The components are rigorously tested on the latest browsers, ensuring reliability and handling edge cases effectively.",
@@ -115,69 +90,8 @@ const started = [
 ];
 ---
 
-<section>
-  <Wrapper variant="standard" class="border-t border-base-900">
-    <div
-      class="outline rounded-xl outline-base-900 shadow-2xl shadow-black p-8 bg-black"
-    >
-      <Text
-        tag="h3"
-        variant="textBase"
-        class="text-base-400 font-thin font-mono uppercase"
-      >
-        What's included
-      </Text>
-      <ul
-        class="grid grid-cols-1 md:grid-cols-3 gap-y-12 lg:col-span-3 gap-x-8 mt-8"
-      >
-        {
-          sections.map(({ category, title, description, image }) => (
-            <li class="  flex flex-col ">
-              <div>
-                <div class="relative">
-                  <span class="text-sm text-base-400">{category}</span>
-                  <Text
-                    tag="h3"
-                    variant="textBase"
-                    class=" mt-2 text-white font-medium"
-                  >
-                    {title}
-                  </Text>
-                </div>
-                <Text tag="p" variant="textSM" class="mt-2 text-base-400">
-                  {description}
-                </Text>
-              </div>
-              <Image
-                src={image.src}
-                alt={image.alt}
-                class="outline outline-base-400 rounded-lg  aspect-auto mt-4"
-              />
-            </li>
-          ))
-        }
-        {
-          features.map((feature) => (
-            <li>
-              <Text
-                tag="h3"
-                variant="textBase"
-                class=" mt-2 text-white font-medium"
-              >
-                {feature.title}
-              </Text>
-              <Text tag="p" variant="textSM" class="mt-2 text-base-400">
-                {feature.description}
-              </Text>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </Wrapper>
-</section>
 <section class="scroll-mt-24" id="features">
-  <Wrapper variant="standard" class="border-t border-base-900">
+  <Wrapper variant="standard" class="border-t">
     <div
       class="outline rounded-xl outline-base-900 shadow-2xl shadow-black p-8 bg-black"
     >
@@ -208,6 +122,62 @@ const started = [
           ))
         }
       </ul>
+    </div>
+  </Wrapper>
+</section>
+<section>
+  <Wrapper variant="standard" class="border-t">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      {
+        sections.map(({ category, title, description, image }) => (
+          <div class="relative overflow-hidden group outline rounded-xl outline-base-900 shadow-2xl shadow-black bg-black p-8">
+            <div class="relative flex flex-col gap-4">
+              <Image
+                src={image.src}
+                alt={image.alt}
+                class="size-full aspect-16/10 object-cover object-top rounded-xl mask-b-from-white "
+              />
+              <div>
+                <div class="relative">
+                  <span class="text-sm text-base-400 font-mono uppercase font-thin">
+                    {category}
+                  </span>
+                  <Text
+                    tag="h3"
+                    variant="textBase"
+                    class="leading-6 text-white font-medium mt-4"
+                  >
+                    {title}
+                  </Text>
+                </div>
+                <Text tag="p" variant="textSM" class="text-base-500 mt-1">
+                  {description}
+                </Text>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 gap-y-12 lg:grid-cols-3 gap-x-8 outline rounded-xl outline-base-900 shadow-2xl shadow-black p-8 bg-black mt-4"
+    >
+      {
+        features.map((feature) => (
+          <li>
+            <Text
+              tag="h3"
+              variant="textBase"
+              class=" mt-2 text-white font-medium"
+            >
+              {feature.title}
+            </Text>
+            <Text tag="p" variant="textSM" class="mt-2 text-base-400">
+              {feature.description}
+            </Text>
+          </li>
+        ))
+      }
     </div>
   </Wrapper>
 </section>
