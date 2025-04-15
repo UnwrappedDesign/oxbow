@@ -1,5 +1,5 @@
 <script>
-  import 'ninja-keys';
+  import "ninja-keys";
   import {
     pageSections,
     emailsEcommerce,
@@ -10,10 +10,55 @@
     overlay,
     forms,
   } from "../../data/entries.json.ts";
-
   const ninja = document.querySelector("ninja-keys");
-
   ninja.data = [
+    {
+      id: "Theme",
+      title: "Change theme…",
+      children: ["Light Theme", "Dark Theme", "System Theme"],
+      hotkey: "ctrl+T",
+      handler: () => {
+        ninja.open({ parent: "Theme" });
+        return { keepOpen: true };
+      },
+    },
+    {
+      id: "Light Theme",
+      title: "Change theme to Light",
+      parent: "Theme",
+      handler: () => {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("theme", "light");
+        document.getElementById("ninja")?.classList.remove("dark");
+        document.getElementById("ninja")?.classList.add("light");
+      },
+    },
+    {
+      id: "Dark Theme",
+      title: "Change theme to Dark",
+      parent: "Theme",
+      handler: () => {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("theme", "dark");
+        document.getElementById("ninja")?.classList.remove("light");
+        document.getElementById("ninja")?.classList.add("dark");
+      },
+    },
+    {
+      id: "System Theme",
+      title: "Match system theme",
+      parent: "Theme",
+      handler: () => {
+        localStorage.removeItem("theme");
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+        document.documentElement.classList.toggle("dark", prefersDark);
+        const ninja = document.getElementById("ninja");
+        ninja?.classList.remove("dark", "light");
+        ninja?.classList.add(prefersDark ? "dark" : "light");
+      },
+    },
     {
       id: "home",
       title: "Home",
