@@ -11,27 +11,28 @@ const { btnLabel = "Get your link", email = false } = Astro.props;
 <section x-data="loginForm()">
   <Wrapper
     variant="standard"
-    class="h-[80dvh] flex flex-col items-end border-t border-base-900"
+    class="h-[80dvh] flex flex-col items-end border-t"
   >
     <div
-      class="relative flex flex-col bg-stripes justify-center lg:h-screen w-full overflow-hidden outline rounded-xl outline-base-900 shadow-2xl shadow-black p-8 bg-black"
+      class="relative flex flex-col bg-stripes-light dark:bg-stripes-dark justify-center lg:h-screen w-full overflow-hidden outline rounded-xl outline-base-100 dark:outline-base-900 shadow dark:shadow-2xl dark:shadow-black p-8 bg-white dark:bg-black"
     >
       <div class="relative">
         <Text
           tag="h1"
           variant="displayMD"
-          class="text-white lg:text-balance text-center font-thin tracking-tighter font-mono uppercase"
+          class="text-black dark:text-white lg:text-balance text-center tracking-tighter font-mono max-w-sm mx-auto"
         >
-          Sign in with your email
+          Welcome back to Oxbow UI, sign in.
         </Text>
         <Text
           tag="p"
           variant="textBase"
-          class="text-base-400 max-w-xl mx-auto text-center mt-4 text-balance"
+          class="text-base-500 dark:text-base-300 max-w-xl mx-auto text-center mt-4 text-balance"
         >
           Please enter the email address linked to your account, and we will
           send a unique sign-in link to your inbox.
         </Text>
+
         <!-- 
         
         // Form goes here
@@ -43,7 +44,9 @@ const { btnLabel = "Get your link", email = false } = Astro.props;
           class="mt-12 max-w-sm mx-auto"
         >
           <div>
-            <label for="email" class="text-sm text-base-300">Email</label>
+            <label for="email" class="text-sm text-base-500 dark:text-base-30"
+              >Email</label
+            >
             <div class="mt-2.5">
               <input
                 id="email"
@@ -55,12 +58,25 @@ const { btnLabel = "Get your link", email = false } = Astro.props;
                 placeholder="email@example.com"
                 required
                 aria-required="true"
-                class="block w-full h-12 px-4 py-2 text-sm text-white duration-300 bg-black/50 backdrop-blur-2xl border border-transparent rounded-xl appearance-none outline outline-base-900 placeholder-base-400 focus:border-base-900 focus:bg-transparent focus:outline-none focus:outline-accent-500 focus:outline-offset-2 focus:outline-2 sm:text-sm focus:ring-offset-base-950"
+                class="block w-full h-12 px-4 py-2 text-sm text-black dark:text-white duration-300 bg-white dark:bg-black/50 backdrop-blur-2xl border border-transparent rounded-xl appearance-none outline outline-base-100 dark:outline-base-900 placeholder-base-400 focus:border-base-100 dark:focus:border-base-900 focus:bg-transparent focus:outline-none focus:outline-accent-500 focus:outline-offset-2 focus:outline-2 sm:text-sm focus:ring-offset-base-950 dark:focus:ring-offset-base-950"
               />
               <div x-cloak x-show="!!errorMessage" class="mt-2 text-red-500">
                 <p x-text="errorMessage"></p>
               </div>
             </div>
+            <Text
+              tag="p"
+              variant="textXS"
+              class="text-base-500 font-medium text-center mt-2"
+            >
+              Dont' have an account?
+              <a
+                href="/pricing"
+                class="text-accent-500 font-medium hover:text-base-500"
+              >
+                Get full access
+              </a>
+            </Text>
           </div>
           <div>
             {
@@ -76,7 +92,7 @@ const { btnLabel = "Get your link", email = false } = Astro.props;
                     placeholder="Enter your password"
                     required
                     aria-required="true"
-                    class="block w-full h-12 px-4 py-2 text-sm text-white duration-300 bg-black/50 backdrop-blur-2xl border border-transparent rounded-xl appearance-none outline outline-base-900 placeholder-base-400 focus:border-base-900 focus:bg-transparent focus:outline-none focus:outline-accent-500 focus:outline-offset-2 focus:outline-2 sm:text-sm focus:ring-offset-base-950"
+                    class="block w-full h-12 px-4 py-2 text-sm text-black dark:text-white duration-300 bg-white dark:bg-black/50 backdrop-blur-2xl border border-transparent rounded-xl appearance-none outline outline-base-100 dark:outline-base-900 placeholder-base-400 focus:border-base-100 dark:focus:border-base-900 focus:bg-transparent focus:outline-none focus:outline-accent-500 focus:outline-offset-2 focus:outline-2 sm:text-sm focus:ring-offset-base-950 dark:focus:ring-offset-base-950"
                   />
                 </div>
               )
@@ -94,20 +110,27 @@ const { btnLabel = "Get your link", email = false } = Astro.props;
           >
             {btnLabel}
           </Oxbowbutton>
-          <div class="text-xs text-base-500 font-medium mt-2">
+          <span class="text-xs text-base-500 font-medium mt-2">
             <small
               >By clicking 'Get your link', you agree to our <a
                 href="/terms"
-                class="text-white hover:underline">Terms of Service</a
+                class="text-black dark:text-white hover:underline"
+                >Terms of Service</a
               > and
-              <a href="/privacy" class="text-white hover:underline">
+              <a
+                href="/privacy"
+                class="text-black dark:text-white hover:underline"
+              >
                 Privacy Policy.
               </a>
             </small>
-          </div>
+          </span>
           <div x-cloak x-show="emailSent" class="flex flex-col gap-4 mt-8">
             <div>
-              <Text tag="p" variant="textBase" class="text-white font-medium"
+              <Text
+                tag="p"
+                variant="textBase"
+                class="text-black dark:text-white font-medium"
                 >Didn't receive the email?</Text
               >
               <Text tag="p" variant="textSM" class="text-base-600 mt-2"

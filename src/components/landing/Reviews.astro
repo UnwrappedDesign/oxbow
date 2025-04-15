@@ -1,10 +1,6 @@
 ---
 import { reviews } from "@/data/reviews.json";
-import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
-
 // Assets
-import { Image } from "astro:assets";
-import Brand from "@/images/logos/1.svg";
 import AnimatedGradient from "@/components/assets/AnimatedGradient.astro";
 // Fundations
 import Text from "@/components/fundations/typography/Text.astro";
@@ -15,20 +11,20 @@ const randomizedReviews = [...reviews].sort(() => Math.random() - 0.5);
 
 <section>
   <Wrapper variant="standard" class="border-t">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
       {
-        randomizedReviews.slice(0, 2).map((template) => (
-          <div class="relative overflow-hidden textcenter rounded-xl outline outline-base-900 shadow-2xl shadow-base-950 p-12 xl:p-32 bg-stripes ">
-            <AnimatedGradient class="absolute inset-0 z-0 grayscale opacity-40" />
+        randomizedReviews.slice(0, 3).map((template) => (
+          <div class="relative overflow-hidden textcenter rounded-xl outline-base-100 shadow dark:outline-base-900 dark:shadow-2xl dark:shadow-black  dark:bg-base-950 p-8 bg-stripes-light dark:bg-stripes-dark ">
+            <AnimatedGradient class="absolute inset-0 z-0 grayscale opacity-0 dark:opacity-100" />
             <div class="relative ">
               <Text
                 tag="h3"
-                variant="textXL"
-                class="text-white xl:text-2xl font-normal tracking-tigt font-mono uppercase text-balance italic"
+                variant="textBase"
+                class="text-black dark:text-white  font-normal tracking-tigt font-mono uppercase text-balance italic"
               >
                 "{template.text}"
               </Text>
-              <div class="mt-2  font-medium text-white text-right">
+              <div class="mt-2  font-medium text-black dark:text-white text-right">
                 <Text tag="p" variant="textSM">
                   {template.name}
                 </Text>

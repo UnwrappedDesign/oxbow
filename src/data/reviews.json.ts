@@ -3,10 +3,10 @@ export interface Template {
   work: string;
   text: string;
   image: string;
-};
+}
 const ianHawes: Template = {
   name: "Ian Hawes",
-  work: "founder of immitranslate.com",
+  work: "Founder of immitranslate.com",
   text: "Always impressed with the designs of @michael_andreuzza and the components he produces. This is another kit worthy of a purchase. Congrats on the launch!",
   image: "/reviews/ianHawes.jpg",
 };
@@ -65,6 +65,5 @@ export const byName = {
   carl,
   eelco,
   alin,
-
 };
 export const reviews = Object.values(byName);

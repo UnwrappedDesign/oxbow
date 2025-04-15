@@ -146,7 +146,7 @@ export default function GridGenerator() {
             max={12}
             value={columns}
             onChange={(e) => setColumns(Number(e.target.value))}
-            className="block w-full h-12 px-4 py-2 text-sm text-white duration-300 bg-black/50 backdrop-blur-2xl border border-transparent rounded-xl appearance-none outline outline-base-900 placeholder-base-400 focus:border-base-900 focus:bg-transparent focus:outline-none focus:outline-accent-500 focus:outline-offset-2 focus:outline-2 sm:text-sm focus:ring-offset-base-950 apearence-none"
+            className="block w-full h-12 px-4 py-2 text-sm text-black dark:text-white duration-300 bg-white dark:bg-black/50 backdrop-blur-2xl border border-transparent rounded-xl appearance-none outline outline-base-100 dark:outline-base-900 placeholder-base-400 focus:border-base-100 dark:focus:border-base-900 focus:bg-transparent focus:outline-none focus:outline-accent-500 focus:outline-offset-2 focus:outline-2 sm:text-sm focus:ring-offset-base-950 dark:focus:ring-offset-base-950"
           />
         </div>
         <div className="flex flex-col gap-1">
@@ -160,7 +160,7 @@ export default function GridGenerator() {
             max={12}
             value={rows}
             onChange={(e) => setRows(Number(e.target.value))}
-            className="block w-full h-12 px-4 py-2 text-sm text-white duration-300 bg-black/50 backdrop-blur-2xl border border-transparent rounded-xl appearance-none outline outline-base-900 placeholder-base-400 focus:border-base-900 focus:bg-transparent focus:outline-none focus:outline-accent-500 focus:outline-offset-2 focus:outline-2 sm:text-sm focus:ring-offset-base-950 apearence-none"
+            className="block w-full h-12 px-4 py-2 text-sm text-black dark:text-white duration-300 bg-white dark:bg-black/50 backdrop-blur-2xl border border-transparent rounded-xl appearance-none outline outline-base-100 dark:outline-base-900 placeholder-base-400 focus:border-base-100 dark:focus:border-base-900 focus:bg-transparent focus:outline-none focus:outline-accent-500 focus:outline-offset-2 focus:outline-2 sm:text-sm focus:ring-offset-base-950 dark:focus:ring-offset-base-950"
           />
         </div>
         <div className="flex flex-col gap-1">
@@ -174,7 +174,7 @@ export default function GridGenerator() {
             max={16}
             value={gap}
             onChange={(e) => setGap(Number(e.target.value))}
-            className="block w-full h-12 px-4 py-2 text-sm text-white duration-300 bg-black/50 backdrop-blur-2xl border border-transparent rounded-xl appearance-none outline outline-base-900 placeholder-base-400 focus:border-base-900 focus:bg-transparent focus:outline-none focus:outline-accent-500 focus:outline-offset-2 focus:outline-2 sm:text-sm focus:ring-offset-base-950 apearence-none"
+            className="block w-full h-12 px-4 py-2 text-sm text-black dark:text-white duration-300 bg-white dark:bg-black/50 backdrop-blur-2xl border border-transparent rounded-xl appearance-none outline outline-base-100 dark:outline-base-900 placeholder-base-400 focus:border-base-100 dark:focus:border-base-900 focus:bg-transparent focus:outline-none focus:outline-accent-500 focus:outline-offset-2 focus:outline-2 sm:text-sm focus:ring-offset-base-950 dark:focus:ring-offset-base-950"
           />
         </div>
       </div>
@@ -184,7 +184,7 @@ export default function GridGenerator() {
         <div
           ref={gridRef}
           className={`
-              grid font-mono text-white text-sm text-center font-bold  w-full h-full
+              grid font-mono text-black dark:text-white text-sm text-center font-bold  w-full h-full
               grid-cols-${columns} grid-rows-${rows}
             `}
           style={{
@@ -198,7 +198,7 @@ export default function GridGenerator() {
             return (
               <div
                 key={index}
-                className="flex items-center justify-center outline rounded-xl outline-base-900 shadow-2xl shadow-black bg-black p-8   cursor-pointer  relative text-2xl"
+                className="flex items-center justify-center outline rounded-xl outline-base-100 dark:outline-base-900 shadow dark:shadow-2xl dark:shadow-black bg-white dark:bg-black p-8   cursor-pointer  relative text-2xl"
                 onClick={() => handleAddItem(x, y)}
               >
                 +
@@ -228,29 +228,29 @@ export default function GridGenerator() {
               onResizeStop(item.id, delta)
             }
             onDragStop={(e, data) => onDragStop(item.id, data)}
-            className="flex items-center justify-center outline rounded-xl outline-base-900 shadow-2xl shadow-black bg-base-900 p-4 bg-stripes    cursor-pointer  relative "
+            className="flex items-center justify-center outline rounded-xl outline-base-100 dark:outline-base-900 shadow dark:shadow-2xl dark:shadow-black bg-white dark:bg-base-900 p-4 bg-stripes-light dark:bg-stripes-dark    cursor-pointer  relative "
           >
             <button
               onClick={() => handleRemoveItem(item.id)}
               onTouchEnd={() => handleRemoveItem(item.id)}
-              className="absolute top-4 right-4  text-base-500 hover:text-white z-10"
+              className="absolute top-4 right-4  text-base-500 hover:text-black dark:text-hover:white z-10"
               aria-label={`Remove item ${item.id}`}
             >
               <X className="size-4" />
             </button>
-            <span className="text-white">{item.id.replace("item-", "")}</span>
-            <div className="absolute bottom-4 right-4 size-6 rounded-bl flex items-center justify-center">
-              <ArrowDownRight className="size-4 text-white" />
+            <span className="text-black dark:text-white">{item.id.replace("item-", "")}</span>
+            <div className="absolute bottom-4 right-4  rounded-bl flex items-center justify-center">
+              <ArrowDownRight className="size-4 text-black dark:text-white" />
             </div>
           </Rnd>
         ))}
       </div>
       <div className="flex flex-col md:flex-row md:items-center justify-between w-full pt-4">
-        <h3 className="text-white font-mono uppercase font-thin">Get your code</h3>
+        <h3 className="text-black dark:text-white font-mono uppercase ">Get your code</h3>
         <div className="flex items-center gap-2 ">
           <button
             className={`
-                    flex relative text-center font-medium items-center shadow-button justify-center overflow-hidden border border-transparent duration-300 ease-in-out transition-all outline-offset-4 hover:opacity-90 hover:shadow-none focus-visible:outline-none focus:outline-2 inset-shadow-xs inset-shadow-white/10 ring active:inset-shadow-transparent text-white bg-linear-to-r/oklch from-base-900 to-base-950 hover:bg-base-400 focus:outline-base-900 ring-base-900 h-7 px-4 py-1.5 text-xs rounded-sm pointer-events-auto
+                    flex relative text-center font-medium items-center shadow-button justify-center overflow-hidden border border-transparent duration-300 ease-in-out transition-all outline-offset-4 hover:opacity-90 hover:shadow-none focus-visible:outline-none  focus:outline-2 inset-shadow-xs inset-shadow-white/10 ring active:inset-shadow-transparent dark:text-white dark:bg-linear-to-r/oklch dark:from-base-900 dark:to-base-950  dark:hover:bg-base-400 dark:focus:outline-base-900 dark:ring-base-900 text-black bg-linear-10 from-base-100 to-base-200  hover:bg-base-400 focus:outline-base-200 ring-base-200 h-8 px-6 py-2 text-xs rounded-md gap-4 w-full sm:w-auto
                     ${format === "html" ? "!outline-base-700" : " "}
                   `}
             onClick={() => setFormat("html")}
@@ -259,7 +259,7 @@ export default function GridGenerator() {
           </button>
           <button
             className={`
-                  flex relative text-center font-medium items-center shadow-button justify-center overflow-hidden border border-transparent duration-300 ease-in-out transition-all outline-offset-4 hover:opacity-90 hover:shadow-none focus-visible:outline-none focus:outline-2 inset-shadow-xs inset-shadow-white/10 ring active:inset-shadow-transparent text-white bg-linear-to-r/oklch from-base-900 to-base-950 hover:bg-base-400 focus:outline-base-900 ring-base-900 h-7 px-4 py-1.5 text-xs rounded-sm pointer-events-auto
+                  flex relative text-center font-medium items-center shadow-button justify-center overflow-hidden border border-transparent duration-300 ease-in-out transition-all outline-offset-4 hover:opacity-90 hover:shadow-none focus-visible:outline-none  focus:outline-2 inset-shadow-xs inset-shadow-white/10 ring active:inset-shadow-transparent dark:text-white dark:bg-linear-to-r/oklch dark:from-base-900 dark:to-base-950  dark:hover:bg-base-400 dark:focus:outline-base-900 dark:ring-base-900 text-black bg-linear-10 from-base-100 to-base-200  hover:bg-base-400 focus:outline-base-200 ring-base-200 h-8 px-6 py-2 text-xs rounded-md gap-4 w-full sm:w-auto
                     ${format === "jsx" ? "!outline-base-700" : ""}
                   `}
             onClick={() => setFormat("jsx")}
@@ -267,21 +267,21 @@ export default function GridGenerator() {
             JSX
           </button>
           <button
-            className="flex relative text-center font-medium items-center shadow-button justify-center overflow-hidden border border-transparent duration-300 ease-in-out transition-all outline-offset-4 hover:opacity-90 hover:shadow-none focus-visible:outline-none focus:outline-2 inset-shadow-xs inset-shadow-white/10 ring active:inset-shadow-transparent text-white bg-linear-to-r/oklch from-base-900 to-base-950 hover:bg-base-400 focus:outline-base-900 ring-base-900 h-7 px-4 py-1.5 text-xs rounded-sm pointer-events-auto"
+            className="flex relative text-center font-medium items-center shadow-button justify-center overflow-hidden border border-transparent duration-300 ease-in-out transition-all outline-offset-4 hover:opacity-90 hover:shadow-none focus-visible:outline-none  focus:outline-2 inset-shadow-xs inset-shadow-white/10 ring active:inset-shadow-transparent dark:text-white dark:bg-linear-to-r/oklch dark:from-base-900 dark:to-base-950  dark:hover:bg-base-400 dark:focus:outline-base-900 dark:ring-base-900 text-black bg-linear-10 from-base-100 to-base-200  hover:bg-base-400 focus:outline-base-200 ring-base-200 h-8 px-6 py-2 text-xs rounded-md gap-4 w-full sm:w-auto"
             onClick={handleReset}
           >
             Reset
           </button>
           <button
-            className="flex relative text-center font-medium items-center shadow-button justify-center overflow-hidden border border-transparent duration-300 ease-in-out transition-all outline-offset-4 hover:opacity-90 hover:shadow-none focus-visible:outline-none focus:outline-2 inset-shadow-xs inset-shadow-white/10 ring active:inset-shadow-transparent text-white bg-linear-to-r/oklch from-base-900 to-base-950 hover:bg-base-400 focus:outline-base-900 ring-base-900 h-7 px-4 py-1.5 text-xs rounded-sm pointer-events-auto w-20"
+            className="flex relative text-center font-medium items-center shadow-button justify-center overflow-hidden border border-transparent duration-300 ease-in-out transition-all outline-offset-4 hover:opacity-90 hover:shadow-none focus-visible:outline-none  focus:outline-2 inset-shadow-xs inset-shadow-white/10 ring active:inset-shadow-transparent dark:text-white dark:bg-linear-to-r/oklch dark:from-base-900 dark:to-base-950  dark:hover:bg-base-400 dark:focus:outline-base-900 dark:ring-base-900 text-black bg-linear-10 from-base-100 to-base-200  hover:bg-base-400 focus:outline-base-200 ring-base-200 h-8 px-6 py-2 text-xs rounded-md gap-4   w-24"
             onClick={handleCopy}
           >
             {isCopied ? "Copied!" : "Copy"}
           </button>
         </div>
       </div>
-      <div className="bg-base-900 p-4 mt-2   outline rounded-xl outline-base-900 shadow-2xl shadow-black">
-        <pre className="text-base-400 text-sm   overflow-x-auto">
+      <div className=" bg-white dark:bg-base-900 p-4 mt-2   outline rounded-xl outline-base-100 dark:outline-base-900 shadow dark:shadow-2xl dark:shadow-black">
+        <pre className="text-base-500 dark:text-base-300 text-xs   overflow-x-auto">
           <code>{generateCode}</code>
         </pre>
       </div>

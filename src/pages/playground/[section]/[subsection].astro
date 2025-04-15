@@ -25,7 +25,7 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
 // Define the number of columns based on the current page
 const gridColumns = {
   // Marketing
-  "marketing/hero": 3,
+  "marketing/hero": 2,
   "marketing/pricing": 4,
   "marketing/features": 4,
   "marketing/logo-clouds": 4,
@@ -70,7 +70,7 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
     <Wrapper variant="standard" class="border-t">
       <div class="flex items-center gap-2">
         <button
-          class="flex items-center gap-2 text-sm text-base-500 hover:text-white"
+          class="flex items-center gap-2 text-sm text-base-500 dark:text-base-300 hover:text-black dark:hover:text-white cursor-pointer"
           onclick="history.back();"
         >
           <svg
@@ -88,7 +88,9 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
               d="M15 6l-6 6l6 6"></path></svg
           >Go Back</button
         >
-        <span aria-hidden="true" class="text-base-500">/</span>
+        <span aria-hidden="true" class="text-base-500 dark:text-base-300"
+          >/</span
+        >
         <Text
           tag="h1"
           variant="textSM"
@@ -102,7 +104,7 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
   <section>
     <Wrapper variant="standard" class="border-t">
       <div
-        class="outline rounded-xl outline-base-900 shadow-2xl shadow-black bg-black p-8 lg:p-12"
+        class="outline rounded-xl outline-base-100 dark:outline-base-900 shadow dark:shadow-2xl dark:shadow-black bg-white dark:bg-black p-8 lg:p-12"
       >
         <div
           class={`relative w-full grid grid-cols-1  md:grid-cols-2 gap-y-12 gap-x-4  lg:gap-y-20 ${gridColumnsClass} items-start`}
@@ -136,12 +138,14 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
                         <Text
                           tag="p"
                           variant="textSM"
-                          class="  text-base-500 group-hover:text-white capitalize  flex items-center gap-2"
+                          class="  text-base-500 dark:text-base-300 group-hover:text-black dark:group-hover:text-white capitalize  flex items-center gap-2"
                         >
                           <span>{(index + 1).toString().padStart(2, "0")}</span>
                           <span> {subsection.replace(/-/g, " ")}</span>
                           {!user && index === 0 && (
-                            <span class="text-white">Open Demo</span>
+                            <span class="text-blackdark:text-white">
+                              Open Demo
+                            </span>
                           )}
                         </Text>
                       </div>
@@ -167,7 +171,7 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
                     height={800}
                     src={images[imagePath]() || "/placeholder.svg"}
                     alt={`${subsection} preview ${index + 1}`}
-                    class="w-full object-cover  outline   outline-base-900 rounded-lg  mt-2  transition-all duration-300 ease-in-out cursor-pointer"
+                    class="w-full object-cover  outline  outline-base-100 dark:outline-base-900 rounded-lg  mt-2  transition-all duration-300 ease-in-out cursor-pointer"
                   />
                 </a>
               );

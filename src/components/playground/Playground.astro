@@ -22,19 +22,19 @@ const ppcode = canSeeCode ? await prettier.format(code, {
                         : '';
 const theme = ``;
 ---
-<section x-data="playground" class="not-prose overflow-hidden border-t ">
-  <div class="relative"  @theme="setTheme($event.detail.color)">
+<section x-data="playground" class="not-prose   ">
+  <div class="relative pt-2"  @theme="setTheme($event.detail.color)">
     <div class="flex items-center justify-between pb-2 gap-1 ">
       <div class="flex items-center gap-2">
         <a
-          class="pointer-events-auto rounded-md outline outline-base-900 shadow-2xl shadow-black bg-black  p-1 text-base-400 flex items-center justify-center size-7 text-xs"
+          class="pointer-events-auto rounded-md outline outline-base-100 dark:outline-base-900 shadow dark:shadow-2xl dark:shadow-black bg-white dark:bg-black  p-1 text-base-500 dark:text-base-300 flex items-center justify-center size-7 text-xs"
           href={`#${componentIndex}`}
         >
           {componentIndex}
         </a>
         <div x-data="themeSelector" class="relative w-100 z-10">
             <OxbowButton 
-                size="xs"
+                size="xxs"
                 variant="muted"
                 @click="toggleOpen" 
                 class="pointer-events-auto flex items-center gap-2 justify-between"
@@ -55,26 +55,29 @@ const theme = ``;
             <div 
                 x-show="open" 
                 x-on:click.away="toggleOpen"
-                class="absolute w-full mt-1 outline outline-base-900 shadow-2xl shadow-black bg-black z-50 rounded-lg max-w-xs"
+                class="absolute w-full mt-4 outline outline-base-100 dark:outline-base-900 dark:shadow-2xl shadow  dark:shadow-black bg-white dark:bg-black z-60 rounded-lg max-w-xs"
                 x-transition
             >
                 <div class="p-4  rounded-lg max-w-2xl">
-                  <Text tag="p" variant="textBase" class=" font-medium text-white">Color options</Text>
-                  <Text tag="p" variant="textXS" class="text-base-500 mt-1">Customize your colors.</Text>
+                  <Text tag="p" variant="textBase" class=" font-medium text-black dark:text-white">Color options</Text>
+                  <Text tag="p" variant="textXS" class="text-base-500 dark:text-base-300 mt-1">Customize your colors.</Text>
                   <div class="w-full mt-4">
                       <div class="grid grid-cols-3 md:grid-cols-3 gap-2 ">
-                        <template x-for="color in colors">
+                        <template x-for="color in colors" class="w-full ">
                           <OxbowButton 
-                          size="xxs"
-                          variant="muted"
+                            size="xxs"
+                            variant="muted"
                             x-on:click="selectColor(color.name)"
-                            :class="selected === color.name ? 'outline outline-base-600' : ''"
+                            :class="selected === color.name ? 'outline outline-white' : ''"
                             class="pointer-events-auto flex items-center w-full"
                           >
-                            <div class="size-2 rounded-full mr-2 shrink-0" :class="color.color"></div>
-                            <span x-text="color.name"></span>
+                            <div class="flex items-center justify-between w-full gap-2">
+                              <span x-text="color.name"></span>
+                              <span class="size-2 rounded-full shrink-0" :class="color.color"></span>
+                            </div>
                           </OxbowButton>
                         </template>
+                        
                       </div>
                   </div>
               </div>
@@ -84,21 +87,21 @@ const theme = ``;
       <div class="flex items-center justify-end w-full gap-2">
         <span class="isolate md:inline-flex h-7 gap-1 hidden" x-show="tab === 'preview'">
           <button
-            class="pointer-events-auto relative inline-flex items-center rounded p-1 focus:text-white text-base-500 outline outline-base-900 shadow-2xl shadow-black bg-black focus:outline-base-800"
+            class="pointer-events-auto relative inline-flex items-center rounded p-1 foucs:text-black dark:focus:text-white text-base-500 dark:text-base-300 outline outline-base-100 dark:outline-base-900 shadow dark:shadow-2xl dark:shadow-black bg-white dark:bg-black focus:outline-base-800"
             @click="viewportSize = 'mobile'" :class="viewportSize === 'mobile' ? 'bg-base-900' : 'bg-black'"
           >
           <svg class="size-[20px]" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 2.5C4 2.22386 4.22386 2 4.5 2H10.5C10.7761 2 11 2.22386 11 2.5V12.5C11 12.7761 10.7761 13 10.5 13H4.5C4.22386 13 4 12.7761 4 12.5V2.5ZM4.5 1C3.67157 1 3 1.67157 3 2.5V12.5C3 13.3284 3.67157 14 4.5 14H10.5C11.3284 14 12 13.3284 12 12.5V2.5C12 1.67157 11.3284 1 10.5 1H4.5ZM6 11.65C5.8067 11.65 5.65 11.8067 5.65 12C5.65 12.1933 5.8067 12.35 6 12.35H9C9.1933 12.35 9.35 12.1933 9.35 12C9.35 11.8067 9.1933 11.65 9 11.65H6Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
           </button>
           <button
-            class="pointer-events-auto relative inline-flex items-center rounded p-1 focus:text-white text-base-500 outline outline-base-900 shadow-2xl shadow-black bg-black focus:outline-base-800"
-            @click="viewportSize = 'tablet'" :class="viewportSize === 'tablet' ? 'bg-base-900' : 'bg-black"
+            class="pointer-events-auto relative inline-flex items-center rounded p-1 foucs:text-black dark:focus:text-white text-base-500 dark:text-base-300 outline outline-base-100 dark:outline-base-900 shadow dark:shadow-2xl dark:shadow-black bg-white dark:bg-black focus:outline-base-800"
+            @click="viewportSize = 'tablet'" :class="viewportSize === 'tablet' ? '' : '"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="2"
+              stroke-width="1.5"
               stroke-linecap="round"
               stroke-linejoin="round"
               class="icon icon-tabler icons-tabler-outline icon-tabler-device-ipad-horizontal size-[22px]"
@@ -111,13 +114,13 @@ const theme = ``;
             </svg>
           </button>
           <button
-            class="pointer-events-auto relative inline-flex items-center rounded p-1 focus:text-white text-base-500 outline outline-base-900 shadow-2xl shadow-black bg-black focus:outline-base-800"
+            class="pointer-events-auto relative inline-flex items-center rounded p-1 foucs:text-black dark:focus:text-white text-base-500 dark:text-base-300 outline outline-base-100 dark:outline-base-900 shadow dark:shadow-2xl dark:shadow-black bg-white dark:bg-black focus:outline-base-800"
             @click="viewportSize = 'desktop'" :class="viewportSize === 'desktop' ? 'bg-base-900' : 'bg-black'"
           >
           <svg class="size-[20px]"  viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 3.25C1 3.11193 1.11193 3 1.25 3H13.75C13.8881 3 14 3.11193 14 3.25V10.75C14 10.8881 13.8881 11 13.75 11H1.25C1.11193 11 1 10.8881 1 10.75V3.25ZM1.25 2C0.559643 2 0 2.55964 0 3.25V10.75C0 11.4404 0.559644 12 1.25 12H5.07341L4.82991 13.2986C4.76645 13.6371 5.02612 13.95 5.37049 13.95H9.62951C9.97389 13.95 10.2336 13.6371 10.1701 13.2986L9.92659 12H13.75C14.4404 12 15 11.4404 15 10.75V3.25C15 2.55964 14.4404 2 13.75 2H1.25ZM9.01091 12H5.98909L5.79222 13.05H9.20778L9.01091 12Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
           </button>
         </span>
-        <div aria-hidden="true" class="mx-1 h-4 w-[1px] bg-base-500 hidden md:inline-block"></div>
+        <div aria-hidden="true" class="mx-1 h-4 w-[1px]  bg-base-200 dark:bg-base-500 hidden md:inline-block"></div>
         {
           canSeeCode ? (
             <div class="flex items-center gap-2">
@@ -125,7 +128,7 @@ const theme = ``;
                size="xxs"
                 variant="muted"
                 x-on:click="setTab('preview')" 
-                :class="tab === 'preview' ? '!outline-base-700' : 'bg-black/0'"
+                :class="tab === 'preview' ? ' outline-base-100 !dark:outline-base-700' : 'bg-black/0'"
                 data-umami-event="click-view-preview"
                 data-umami-data-id={user?.uid}
                 data-umami-event-componentref={componentPath}
@@ -136,7 +139,7 @@ const theme = ``;
                size="xxs"
                 variant="muted"
                 x-on:click="setTab('code')" 
-                :class="tab === 'code' ? '!outline-base-700' : 'bg-black/0'"
+                :class="tab === 'code' ? 'outline-base-100 !dark:outline-base-700' : 'bg-black/0'"
                 data-umami-event="click-view-code"
                 data-umami-data-id={user?.uid}
                 data-umami-event-componentref={componentPath}
@@ -147,14 +150,14 @@ const theme = ``;
                 size="xxs"
                 variant="muted"
                 x-on:click="setTab('theme')" 
-                :class="tab === 'theme' ? '!outline-base-700 ' : ''"
+                :class="tab === 'theme' ? 'outline-base-100 !dark:outline-base-700' : ''"
                 data-umami-event="click-view-theme"
                 data-umami-data-id={user?.uid}
                 data-umami-event-componentref={componentPath}
                 class="pointer-events-auto">
                 Theme
               </OxbowButton>
-              <div aria-hidden="true" class="mx-1 h-4 w-[1px] bg-base-500" />
+              <div aria-hidden="true" class="mx-1 h-4 w-[1px] bg-base-200 dark:bg-base-500" />
               <OxbowButton
                 size="xxs"
                 variant="muted"
@@ -187,7 +190,7 @@ const theme = ``;
       </div>
     </div>
     <div
-    class="relative min-h-[400] w-full flex ooutline rounded-xl outline-base-900 shadow-2xl shadow-black bg-black z-1 overflow-hidden"
+    class="relative min-h-[400] w-full flex ooutline rounded-xl outline-base-100 dark:outline-base-900 sahdow  bg-white  dark:bg-black z-1 overflow-hidden"
   >
     <div
       x-show="tab === 'preview'"
