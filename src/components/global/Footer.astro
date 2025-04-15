@@ -1,15 +1,6 @@
 ---
-import Text from "@/components/fundations/typography/Text.astro";
-import OxbowButton from "@/components/fundations/buttons/OxbowButton.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-const social = [
-  { label: "X", href: "https://x.com/OxbowUI" },
-  { label: "BlueSky", href: "https://bsky.app/profile/oxbowui.com" },
-];
-const legalTwo = [
-  { label: "Terms of use", href: "/legal/terms" },
-  { label: "Privacy policy", href: "/legal/privacy" },
-];
+
 // Assets
 import Logo from "@/components/assets/Logo.astro";
 // Fundations
@@ -67,21 +58,24 @@ const navLinks = [
   <Wrapper variant="standard" class="border-t">
     <div class="mx-auto max-w-2xl lg:max-w-none">
       <div
-        class="overflow-hidden outline rounded-xl outline-base-900 shadow-2xl shadow-black p-8 bg-black"
+        class="overflow-hidden outline rounded-xl outline-base-100 dark:outline-base-900 shadow dark:shadow-2xl dark:shadow-black p-8 bg-white dark:bg-black"
       >
         <a aria-label="hom" href="/">
-          <Logo class="h-12 lg:h-40 text-white mx-auto" />
+          <Logo class="h-12 lg:h-40 text-accent-600 dark:text-white mx-auto" />
         </a>
         <div class="flex flex-wrap justify-center text-center gap-2">
           {
             navLinks.map((section, index) => (
               <ul
                 role="list"
-                class="mt-4 text-sm text-base-400 flex flex-wrap gap-4 "
+                class="mt-4 text-sm text-base-400 dark:text-base-300 flex flex-wrap gap-4 "
               >
                 {section.links.map((link) => (
                   <li>
-                    <a class="transition hover:text-white" href={link.href}>
+                    <a
+                      class="transition hover:text-black dark:hover:text-white duration-300"
+                      href={link.href}
+                    >
                       {link.label}
                     </a>
                   </li>

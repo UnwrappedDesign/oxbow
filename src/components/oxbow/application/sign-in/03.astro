@@ -6,10 +6,57 @@ import Chrome from "@/components/fundations/icons/Chrome.astro";
 import Meta from "@/components/fundations/icons/Meta.astro";
 ---
 
-<section>
-  <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
-    <div class="max-w-lg mx-auto">
-      <div class="text-center lg:text-balance">
+<div class="relative">
+  <div
+    class="lg:absolute lg:inset-0 lg:right-2/3 relative ring-8 m-4 ring-white rounded-2xl overflow-hidden"
+  >
+    <img
+      class="h-64 w-full bg-base-50 object-cover sm:h-80 lg:absolute lg:h-full"
+      src="/pose/1.jpg"
+      alt=""
+    />
+    <!-- Text overlay -->
+    <div
+      class="absolute inset-0 flex flex-col justify-start lg:bg-base-950 lg:bg-opacity-80 lg:p-10"
+    >
+      <div class="hidden md:block">
+        <img class="size-20" src="/images/oxbow/whiteLineLogo.png" alt="#_" />
+        <Text
+          class=""
+          tag="h3"
+          variant="textXL"
+          class="lg:text-white font-medium mt-12 lg:mt-52"
+        >
+          Welcome to Our Platform
+        </Text>
+        <Text tag="p" variant="textBase" class="mt-4 lg:text-white">
+          Welcome back! Please enter your email and password to sign in.
+          Discover a world where seamless connectivity empowers your every
+          interaction. Dive into an experience designed to effortlessly connect
+          you with what matters most, enhancing productivity and enabling you to
+          achieve more.
+        </Text>
+        <div class="flex mt-4">
+          <Text tag="p" variant="textSM" class="text-base-300 font-medium">
+            Don't have an account?
+            <Text
+              tag="a"
+              href="#_"
+              variant="textBase"
+              class="text-accent-500 font-medium hover:text-base-500"
+            >
+              Sign up
+            </Text>
+          </Text>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="pb-24 pt-16 sm:pb-32 sm:pt-24 lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-3 lg:pt-32 lg:pl-32"
+  >
+    <div class="lg:col-start-2 w-full px-8 lg:px-0">
+      <div class="text-center md:text-left lg:text-balance">
         <Text
           tag="p"
           variant="textSM"
@@ -102,60 +149,60 @@ import Meta from "@/components/fundations/icons/Meta.astro";
         <div class="mt-10">
           <Button class="w-full" variant="accent" size="base"> Sign in </Button>
         </div>
-      </form>
-      <div class="relative my-12">
-        <div class="absolute inset-0 flex items-center" aria-hidden="true">
-          <div class="w-full border-t border-base-200"></div>
+        <div class="relative my-12">
+          <div class="absolute inset-0 flex items-center" aria-hidden="true">
+            <div class="w-full border-t border-base-200"></div>
+          </div>
+          <div class="relative flex justify-center">
+            <Text
+              tag="span"
+              variant="textSM"
+              class="text-base-500 font-semibold bg-white px-4"
+            >
+              Or Sign in with
+            </Text>
+          </div>
         </div>
-        <div class="relative flex justify-center">
-          <Text
-            tag="span"
-            variant="textSM"
-            class="text-base-500 font-semibold bg-white px-4"
+        <div class="flex flex-col gap-y-4">
+          <Button
+            class="w-full justify-between"
+            variant="muted"
+            size="base"
+            gap="gapXS"
           >
-            Or Sign in with
-          </Text>
+            Sign in with Apple
+            <Apple size="sm" slot="right-icon" />
+          </Button>
+          <Button
+            class="w-full justify-between"
+            variant="muted"
+            size="base"
+            gap="gapXS"
+          >
+            Sign in with Meta
+            <Meta size="sm" slot="right-icon" />
+          </Button>
+          <Button
+            class="w-full justify-between"
+            variant="muted"
+            size="base"
+            gap="gapXS"
+          >
+            Sign in with Chrome
+            <Chrome size="sm" slot="right-icon" />
+          </Button>
         </div>
-      </div>
-      <div class="flex flex-col gap-y-4">
-        <Button
-          class="w-full justify-between"
-          variant="muted"
-          size="base"
-          gap="gapXS"
+        <Text
+          tag="p"
+          variant="textXS"
+          class="text-base-500 font-medium text-center mt-4"
         >
-          Sign in with Apple
-          <Apple size="sm" slot="right-icon" />
-        </Button>
-        <Button
-          class="w-full justify-between"
-          variant="muted"
-          size="base"
-          gap="gapXS"
-        >
-          Sign in with Meta
-          <Meta size="sm" slot="right-icon" />
-        </Button>
-        <Button
-          class="w-full justify-between"
-          variant="muted"
-          size="base"
-          gap="gapXS"
-        >
-          Sign in with Chrome
-          <Chrome size="sm" slot="right-icon" />
-        </Button>
-      </div>
-      <Text
-      tag="p"
-      variant="textXS"
-      class="text-base-500 font-medium text-center mt-4"
-    >
-      Dont' have an account? 
-      <a href="#_" class="text-accent-500 font-medium hover:text-base-500">
-        Sign up
-      </a>
-    </Text>
+          Dont' have an account?
+          <a href="#_" class="text-accent-500 font-medium hover:text-base-500">
+            Sign up
+          </a>
+        </Text>
+      </form>
     </div>
   </div>
-</section>
+</div>

@@ -38,14 +38,20 @@ const {
 <section
   x-data="{ currentPath: window.location.pathname }"
   :class="currentPath === '/' ? ' ' : ''"
+  class="relative"
 >
-  <Wrapper variant="standard" class="border-t h-[60dvh]">
+  <Wrapper
+    variant="standard"
+    class="border-t h-[60dvh] relative overflow-hidden"
+  >
+    <AnimatedGradient
+      class="absolute inset-0 z-0 pointer-events-none mask-y-from-0%"
+    />
     <div
-      class="relative overflow-hidden h-full outline rounded-xl outline-base-900 shadow-2xl shadow-black p-8 bg-black flex flex-col itmes-end"
+      class="pointer-events-none absolute inset-0 z-0 bg-white/5 dark:bg-black/5"
     >
-      <AnimatedGradient
-        class="absolute inset-0 z-0 lg:mask-r-from-80% lg:mask-b-to-90%"
-      />
+    </div>
+    <div class="relative h-full flex flex-col itmes-end z-10">
       <div class="mt-auto relative">
         <div
           class={`flex flex-col relative  ${textCentered ? "justify-center" : ""}`}
@@ -60,7 +66,7 @@ const {
           <Text
             tag="h1"
             variant="displayMD"
-            class={`text-white lg:text-balance font-thin tracking-tighter font-mono mt-8 max-w-2xl uppercase ${textCentered ? "text-center text-balance max-w-3xl  mx-auto" : ""}`}
+            class={`text-black dark:text-white lg:text-balance  tracking-tighter font-mono mt-8 max-w-2xl ${textCentered ? "text-center text-balance max-w-3xl  mx-auto" : ""}`}
           >
             {title}
           </Text>
@@ -72,7 +78,7 @@ const {
                 <Text
                   tag="p"
                   variant="textBase"
-                  class={`text-base-300 text-balance mt-2 max-w-xl ${textCentered ? "text-center text-balance max-w-lg mx-auto" : ""}`}
+                  class={`text-base-600 dark:text-base-300 text-balance mt-2 max-w-xl ${textCentered ? "text-center text-balance max-w-lg mx-auto" : ""}`}
                 >
                   {subtitle}
                 </Text>
@@ -102,6 +108,16 @@ const {
                   class={`flex gap-2 flex-wrap mt-8  ${textCentered ? "justify-center" : ""}`}
                 >
                   <OxbowLink
+                    href="/components"
+                    size="xs"
+                    variant="default"
+                    id="access-navigation-cta"
+                    data-umami-event="access-navigation-cta"
+                    class="w-full sm:w-auto"
+                  >
+                    Browse components
+                  </OxbowLink>
+                  <OxbowLink
                     href="/pricing#features"
                     size="xs"
                     variant="muted"
@@ -111,16 +127,6 @@ const {
                     class="w-full sm:w-auto "
                   >
                     See what's included
-                  </OxbowLink>
-                  <OxbowLink
-                    href="/components"
-                    size="xs"
-                    variant="default"
-                    id="access-navigation-cta"
-                    data-umami-event="access-navigation-cta"
-                    class="w-full sm:w-auto"
-                  >
-                    Browse components
                   </OxbowLink>
                 </div>
               )
@@ -132,21 +138,21 @@ const {
                 >
                   <OxbowLink
                     size="base"
-                    variant="muted"
-                    href="/"
-                    id="404-home"
-                    data-umami-event="404 home"
-                  >
-                    Go back home
-                  </OxbowLink>
-                  <OxbowLink
-                    size="base"
                     variant="accent"
                     href="/components"
                     id="404-components"
                     data-umami-event="404-components"
                   >
                     Browse components
+                  </OxbowLink>
+                  <OxbowLink
+                    size="base"
+                    variant="muted"
+                    href="/"
+                    id="404-home"
+                    data-umami-event="404 home"
+                  >
+                    Go back home
                   </OxbowLink>
                 </div>
               )

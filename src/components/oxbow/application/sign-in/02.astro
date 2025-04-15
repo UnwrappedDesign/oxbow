@@ -1,144 +1,161 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
 import Text from "@/components/fundations/typography/Text.astro";
+import Apple from "@/components/fundations/icons/Apple.astro";
+import Chrome from "@/components/fundations/icons/Chrome.astro";
+import Meta from "@/components/fundations/icons/Meta.astro";
 ---
 
 <section>
   <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
-    <div class="flex flex-col lg:flex-row gap-12 lg:gap-24 items-center">
-      <div class="w-full mx-auto">
-        <div class="max-w-lg">
-          <div class="lg:text-balance">
+    <div class="max-w-lg mx-auto">
+      <div class="text-center lg:text-balance">
+        <Text
+          tag="p"
+          variant="textSM"
+          class="font-bold uppercase text-accent-600"
+        >
+          Tagline
+        </Text>
+        <Text
+          tag="h2"
+          variant="displayMD"
+          class="mt-4 font-semibold text-base-900 lg:text-balance"
+        >
+          Sign in to your account
+        </Text>
+        <Text tag="p" variant="textBase" class="mt-4 text-base-500 font-medium">
+          Welcome back! Please enter your email and password to sign in.
+        </Text>
+      </div>
+      <form action="#" method="POST" class="mx-auto mt-12 max-w-lg">
+        <div class="flex flex-col gap-y-6">
+          <div>
             <Text
-              tag="p"
-              variant="textSM"
-              class="font-bold uppercase text-accent-600"
-            >
-              Tagline
-            </Text>
-            <Text
-              tag="h2"
-              variant="displayMD"
-              class="mt-4 font-semibold text-base-900 lg:text-balance"
-            >
-              Sign in to your account
-            </Text>
-            <Text
-              tag="p"
+              for="email"
+              tag="label"
               variant="textBase"
-              class="mt-4 text-base-500 font-medium"
+              class="text-base-500 font-medium"
             >
-              Welcome back! Please enter your email and password to sign in.
+              Email
+            </Text>
+            <div class="mt-2.5">
+              <input
+                type="email"
+                name="email"
+                id="email"
+                autocomplete="email"
+                required
+                aria-required="true"
+                aria-describedby="email-error"
+                placeholder="Your email"
+                class="block w-full h-10 px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+              />
+              <span id="email-error" class="text-red-600 text-sm hidden">
+                Please enter a valid email address.
+              </span>
+            </div>
+          </div>
+          <div>
+            <Text
+              for="email"
+              tag="label"
+              class="flex items-center justify-between"
+              variant="textBase"
+              class="text-base-500 font-medium"
+            >
+              Password
+              <Text for="email" tag="a" variant="link"> Forgot password? </Text>
+            </Text>
+            <div class="mt-2.5">
+              <input
+                type="password"
+                name="password"
+                id="password"
+                autocomplete="current-password"
+                required
+                aria-required="true"
+                aria-describedby="password-error"
+                placeholder="Your password"
+                class="block w-full h-10 px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+              />
+              <span id="password-error" class="text-red-600 text-sm hidden">
+                Please enter a valid password.
+              </span>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <input
+              id="remember-me"
+              name="remember-me"
+              type="checkbox"
+              class="size-4 rounded border-base-300 text-accent-600 focus:ring-accent-600 shadow"
+            />
+            <Text
+              for="remember-me"
+              tag="label"
+              class="block text-sm text-base-500 font-medium"
+              >Remember me
             </Text>
           </div>
-          <form action="#" method="POST" class="mx-auto mt-12 max-w-lg">
-            <div class="flex flex-col gap-y-6">
-              <div>
-                <Text
-                  for="email"
-                  tag="label"
-                  variant="textBase"
-                  class="text-base-500 font-medium"
-                >
-                  Email
-                </Text>
-                <div class="mt-2.5">
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    autocomplete="email"
-                    required
-                    aria-required="true"
-                    aria-describedby="email-error"
-                    placeholder="Your email"
-                    class="block w-full h-10 px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
-                  />
-                  <span id="email-error" class="text-red-600 text-sm hidden">
-                    Please enter a valid email address.
-                  </span>
-                </div>
-              </div>
-              <div>
-                <Text
-                  for="email"
-                  tag="label"
-                  class="flex items-center justify-between"
-                  variant="textBase"
-                  class="text-base-500 font-medium"
-                >
-                  Password
-                  <Text for="email" tag="a" variant="link">
-                    Forgot password?
-                  </Text>
-                </Text>
-                <div class="mt-2.5">
-                  <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    autocomplete="current-password"
-                    required
-                    aria-required="true"
-                    aria-describedby="password-error"
-                    placeholder="Your password"
-                    class="block w-full h-10 px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
-                  />
-                  <span id="password-error" class="text-red-600 text-sm hidden">
-                    Please enter a valid password.
-                  </span>
-                </div>
-              </div>
-              <div class="flex items-center mt-4 gap-3">
-                <input
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  class="size-4 rounded border-base-300 text-accent-600 focus:ring-accent-600 shadow"
-                />
-                <Text
-                  for="remember-me"
-                  tag="label"
-                  class="block text-sm text-base-500 font-medium"
-                  >Remember me
-                </Text>
-              </div>
-            </div>
-            <div class="mt-10">
-              <Button class="w-full" variant="accent" size="base">
-                Sign in
-              </Button>
-            </div>
-            <Text
-              tag="p"
-              variant="textXS"
-              class="text-base-500 font-medium mt-4"
-            >
-              Dont' have an account?
-              <a
-                href="#_"
-                class="text-accent-500 font-medium hover:text-base-500"
-              >
-                Sign up
-              </a>
-            </Text>
-          </form>
         </div>
-      </div>
-      <div
-        class="flex flex-col size-full items-center justify-center lg:ml-auto"
-      >
-        <div class="flex flex-col items-center justify-center size-full">
-          <img
-            alt="QR Code"
-            class="size-full mx-auto"
-            src="/assets/qr-lexingtonthemes.svg"
-          />
-          <Text tag="p" variant="textSM" class="mt-4 text-base-500 font-medium">
-            Log in with QR Code
+        <div class="mt-10">
+          <Button class="w-full" variant="accent" size="base"> Sign in </Button>
+        </div>
+      </form>
+      <div class="relative my-12">
+        <div class="absolute inset-0 flex items-center" aria-hidden="true">
+          <div class="w-full border-t border-base-200"></div>
+        </div>
+        <div class="relative flex justify-center">
+          <Text
+            tag="span"
+            variant="textSM"
+            class="text-base-500 font-semibold bg-white px-4"
+          >
+            Or Sign in with
           </Text>
         </div>
       </div>
+      <div class="flex flex-col gap-y-4">
+        <Button
+          class="w-full justify-between"
+          variant="muted"
+          size="base"
+          gap="gapXS"
+        >
+          Sign in with Apple
+          <Apple size="sm" slot="right-icon" />
+        </Button>
+        <Button
+          class="w-full justify-between"
+          variant="muted"
+          size="base"
+          gap="gapXS"
+        >
+          Sign in with Meta
+          <Meta size="sm" slot="right-icon" />
+        </Button>
+        <Button
+          class="w-full justify-between"
+          variant="muted"
+          size="base"
+          gap="gapXS"
+        >
+          Sign in with Chrome
+          <Chrome size="sm" slot="right-icon" />
+        </Button>
+      </div>
+      <Text
+      tag="p"
+      variant="textXS"
+      class="text-base-500 font-medium text-center mt-4"
+    >
+      Dont' have an account? 
+      <a href="#_" class="text-accent-500 font-medium hover:text-base-500">
+        Sign up
+      </a>
+    </Text>
     </div>
   </div>
 </section>
