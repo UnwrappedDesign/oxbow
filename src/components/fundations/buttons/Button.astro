@@ -9,33 +9,43 @@ const {
 } = Astro.props;
 // Default button
 const defaultClass = [
-  "text-white",
-  "bg-base-900",
-  "hover:bg-base-800",
-  "focus:outline-base-800",
+  "text-white ",
+  "shadow-base-800/30",
+  "inset-shadow-white/30",
+  "text-shadow-base-700",
+  "ring-base-700",
+  "bg-linear-to-b from-base-700 to-base-800 to-70%",
+  "focus:outline-base-700",
 ];
 // Accent button
 const accentClass = [
-  "text-white",
-  "bg-accent-600",
-  "hover:bg-accent-700",
+  "text-white ",
+  "shadow-accent-600/50",
+  "inset-shadow-white/20",
+  "text-shadow-accent-400",
+  "ring-accent-600",
+  "bg-linear-to-b from-accent-500 to-accent-600 to-70%",
   "focus:outline-accent-600",
 ];
 // Alternative button
 const alternativeClass = [
-  "text-base-500",
-  "bg-white",
-  "hover:text-accent-500",
-  "outline-2",
-  "outline-base-200",
-  "focus:outline-accent-500",
+  "text-base-950 ",
+  "shadow-base-400/40",
+  "inset-shadow-base-500/20",
+  "text-shadow-base-100",
+  "ring-base-50",
+  "bg-linear-to-b from-base-50 to-base-100 to-70%",
+  "focus:outline-base-200",
 ];
 // Muted button
 const mutedClass = [
-  "text-base-700",
-  "bg-base-50",
-  "hover:bg-white",
-  "focus:outline-base-200",
+  "text-base-950 ",
+  "shadow-base-500/40",
+  "inset-shadow-base-700/20",
+  "text-shadow-base-200",
+  "ring-base-200",
+  "bg-linear-to-b from-base-200 to-base-300 to-70%",
+  "focus:outline-base-400",
 ];
 // Text button
 const textClass = [
@@ -53,38 +63,53 @@ const linkClass = [
 ];
 // Success button
 const infoClass = [
-  "text-accent-700",
-  "bg-accent-600/10",
-  "hover:bg-accent-600/5",
-  "focus:outline-accent-600/20",
+  "text-accent-950 ",
+  "shadow-accent-200/50",
+  "inset-shadow-white/20",
+  "text-shadow-accent-200",
+  "ring-accent-200",
+  "bg-linear-to-b from-accent-100 to-accent-200 to-70%",
+  "focus:outline-accent-200",
 ];
 // Success button
 const successClass = [
-  "text-emerald-600",
-  "bg-emerald-600/10",
-  "hover:bg-emerald-600/5",
-  "focus:outline-emerald-600/20",
+  "text-white ",
+  "shadow-emerald-600/50",
+  "inset-shadow-white/20",
+  "text-shadow-emerald-500",
+  "ring-emerald-500",
+  "bg-linear-to-b from-emerald-400 to-emerald-500 to-70%",
+  "focus:outline-emerald-500",
 ];
 // Warning button
 const warningClass = [
-  "text-amber-600",
-  "bg-amber-600/10",
-  "hover:bg-amber-600/5",
-  "focus:outline-amber-600/10",
+  "text-white ",
+  "shadow-amber-600/50",
+  "inset-shadow-white/20",
+  "text-shadow-amber-500",
+  "ring-amber-500",
+  "bg-linear-to-b from-amber-400 to-amber-500 to-70%",
+  "focus:outline-amber-500",
 ];
 // Danger button
 const dangerClass = [
-  "text-rose-600",
-  "bg-rose-600/10",
-  "hover:bg-rose-600/5",
-  "focus:outline-rose-600",
+  "text-white ",
+  "shadow-rose-600/50",
+  "inset-shadow-white/20",
+  "text-shadow-rose-500",
+  "ring-rose-500",
+  "bg-linear-to-b from-rose-400 to-rose-500 to-70%",
+  "focus:outline-rose-500",
 ];
 // Meeta brand button
 const metaBrandClass = [
-  "text-white",
-  "bg-accent-500",
-  "hover:bg-accent-600",
-  "focus:outline-base-500/50",
+  "text-white ",
+  "shadow-accent-600/50",
+  "inset-shadow-white/20",
+  "text-shadow-accent-400",
+  "ring-accent-600",
+  "bg-linear-to-b from-accent-500 to-accent-600 to-70%",
+  "focus:outline-accent-600",
 ];
 // Meeta brand button
 const appleBrandClass = [
@@ -99,7 +124,6 @@ const chromeBrandClass = [
   "hover:bg-base-100",
   "focus:outline-base-500/50",
 ];
-
 // Size
 const xs = ["h-8", "px-4", "py-2", "text-xs", "rounded-md"];
 const sm = ["h-9", "px-4", "py-2", "text-sm", "rounded-md"];
@@ -119,15 +143,22 @@ const additionalClasses = className ? className.split(" ") : [];
 <button
   class:list={[
     "flex",
-    "text-center",
-    "justify-center",
-    "font-medium",
     "items-center",
-    "duration-500",
+    "justify-center",
+
+    "text-center",
+    "text-shadow-2xs",
+    "font-semibold",
+    "shadow-md ",
+    "ring inset-shadow-2xs",
+    "hover:shadow-none",
+    "items-center",
+    "duration-300",
     "ease-in-out",
     "transition-all",
     "focus:outline-2",
-    "focus:outline-offset-2",
+    "outline-offset-2",
+    "focus:ring-offset-white",
     variant === "info" && infoClass,
     variant === "muted" && mutedClass,
     variant === "accent" && accentClass,

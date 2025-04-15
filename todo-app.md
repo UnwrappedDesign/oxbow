@@ -37,14 +37,14 @@ Y despues meterlo en esta parte de la página:
     </button>
     <Text
       tag="h1"
-      variant="displayBase"
+      variant="displayMD"
       class="uppercase mt-4 font-semibold tracking-tight text-black"
     >
       {subsection.replace(/-/g, " ")}
     </Text>
     <Text
       tag="h1"
-      variant="displayBase"
+      variant="displayMD"
       class="uppercase mt-4 font-semibold tracking-tight text-black"
     >
       {subsection.description}
@@ -84,11 +84,9 @@ El markup ya lo tienes en la pagina
     </IconButton>
   </nav>
 </div>
-```
-
-## Container no copiable. La idea de este `container` es que en algunos bloques
-se pueda copiar el contenido de un `container` poro no el `container`. - Razón:
-Esot haria que el usuario no pierda tiempo en tener que borrar bloques y
+``` ## Container no copiable. La idea de este `container` es que en algunos
+bloques se pueda copiar el contenido de un `container` poro no el `container`. -
+Razón: Esot haria que el usuario no pierda tiempo en tener que borrar bloques y
 contenido que solo es necesario para mostrar el bloque que les ofrecemos. Te
 explico: Digamos que tenmos el bloque de los botones que se muestran todos los
 botones, lo que pasa que para que estos esten centrados, necesitan un wrapper y
