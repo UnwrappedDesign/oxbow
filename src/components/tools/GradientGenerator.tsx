@@ -77,13 +77,13 @@ export default function GradientGenerator() {
   };
   return (
     <div id="generator">
-      <div className="lg:sticky lg:top-2 z-10 bg-base-50 dark:bg-base-950">
-        <div className="flex  items-center   bg-base-50 dark:bg-base-950 ">
+      <div className="lg:sticky lg:top-2 z-10 bg-white dark:bg-base-950">
+        <div className="flex  items-center   bg-white dark:bg-base-950 ">
           <label className="sr-only">Mode</label>
           <div className="grid grid-cols-1 md:grid-cols-3 w-full gap-2 ">
             <button
               className={`
-                            flex relative text-center font-medium items-center shadow-button justify-center overflow-hidden border border-transparent duration-300 ease-in-out transition-all outline-offset-4 hover:opacity-90 hover:shadow-none focus-visible:outline-none  focus:outline-2 inset-shadow-xs inset-shadow-white/10 ring active:inset-shadow-transparent dark:text-white dark:bg-linear-to-r/oklch dark:from-base-900 dark:to-base-950  dark:hover:bg-base-400 dark:focus:outline-base-900 dark:ring-base-900 text-black bg-linear-10 from-base-100 to-base-200  hover:bg-base-400 focus:outline-base-200 ring-base-200 h-10 px-8 py-3 text-base rounded-lg gap-4 w-full sm:w-auto
+                            flex items-center text-center justify-center  font-semibold duration-500 ease-in-out transition-colors focus:outline-2 text-black bg-base-100 hover:bg-base-200 focus:outline-accent-500 dark:text-white dark:bg-base-800 dark:hover:bg-base-900 dark:focus:outline-base-700 h-10 px-6 py-3 text-base  rounded-lg w-full
                               ${mode === "background" ? "!outline-base-700" : "text-base-500 "}
                             `}
               onClick={() => setMode("background")}
@@ -92,7 +92,7 @@ export default function GradientGenerator() {
             </button>
             <button
               className={`
-                          flex relative text-center font-medium items-center shadow-button justify-center overflow-hidden border border-transparent duration-300 ease-in-out transition-all outline-offset-4 hover:opacity-90 hover:shadow-none focus-visible:outline-none  focus:outline-2 inset-shadow-xs inset-shadow-white/10 ring active:inset-shadow-transparent dark:text-white dark:bg-linear-to-r/oklch dark:from-base-900 dark:to-base-950  dark:hover:bg-base-400 dark:focus:outline-base-900 dark:ring-base-900 text-black bg-linear-10 from-base-100 to-base-200  hover:bg-base-400 focus:outline-base-200 ring-base-200 h-10 px-8 py-3 text-base rounded-lg gap-4 w-full sm:w-auto
+                          flex items-center text-center justify-center  font-semibold duration-500 ease-in-out transition-colors focus:outline-2 text-black bg-base-100 hover:bg-base-200 focus:outline-accent-500 dark:text-white dark:bg-base-800 dark:hover:bg-base-900 dark:focus:outline-base-700 h-10 px-6 py-3 text-base  rounded-lg w-full
                               ${mode === "text" ? "!outline-base-700" : "text-base-500"}
                             `}
               onClick={() => setMode("text")}
@@ -100,14 +100,14 @@ export default function GradientGenerator() {
               Text
             </button>
             <button
-              className="flex relative text-center font-medium items-center shadow-button justify-center overflow-hidden border border-transparent duration-300 ease-in-out transition-all outline-offset-4 hover:opacity-90 hover:shadow-none focus-visible:outline-none  focus:outline-2 inset-shadow-xs inset-shadow-white/10 ring active:inset-shadow-transparent dark:text-white dark:bg-linear-to-r/oklch dark:from-base-900 dark:to-base-950  dark:hover:bg-base-400 dark:focus:outline-base-900 dark:ring-base-900 text-black bg-linear-10 from-base-100 to-base-200  hover:bg-base-400 focus:outline-base-200 ring-base-200 h-10 px-8 py-3 text-base rounded-lg gap-4 w-full sm:w-auto"
+              className="flex items-center text-center justify-center  font-semibold duration-500 ease-in-out transition-colors focus:outline-2 text-black bg-base-100 hover:bg-base-200 focus:outline-accent-500 dark:text-white dark:bg-base-800 dark:hover:bg-base-900 dark:focus:outline-base-700 h-10 px-6 py-3 text-base  rounded-lg w-full"
               onClick={copyToClipboard}
             >
               <span>{copied ? "Copied!" : "Copy"}</span>
             </button>
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 pt-2 w-full bg-base-50 dark:bg-base-950">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 pt-2 w-full bg-white dark:bg-base-950">
           {mode === "text" && (
             <div className="w-full">
               <label className="sr-only">Your Text</label>
@@ -142,7 +142,7 @@ export default function GradientGenerator() {
             value={generateTwGradient()}
           />
         </div>
-        <div className="pt-2 bg-base-50 dark:bg-base-950">
+        <div className="pt-2 bg-white dark:bg-base-950">
           <div
             className={`flex items-center justify-center relative w-full  lg:sticky  z-90  p-24 outline rounded-xl outline-base-100 dark:outline-base-900 shadow dark:shadow-2xl dark:shadow-black overflow-hidden    ${generateTwGradient()}`}
           >
@@ -151,15 +151,15 @@ export default function GradientGenerator() {
             ) : null}
           </div>
         </div>
-        <div className="flex items-center gap-x-2  mt-2  bg-base-50 dark:bg-base-950 p-4 outline rounded-xl outline-base-100 dark:outline-base-900 shadow dark:shadow-2xl dark:shadow-black">
+        <div className="flex items-center gap-x-2  mt-2  bg-white dark:bg-base-950 p-4 outline rounded-xl outline-base-100 dark:outline-base-900 shadow dark:shadow-2xl dark:shadow-black">
           <button
-            className={` flex relative text-center font-medium items-center shadow-button justify-center overflow-hidden border border-transparent duration-300 ease-in-out transition-all outline-offset-4 hover:opacity-90 hover:shadow-none focus-visible:outline-none  focus:outline-2 inset-shadow-xs inset-shadow-white/10 ring active:inset-shadow-transparent dark:text-white dark:bg-linear-to-r/oklch dark:from-base-900 dark:to-base-950  dark:hover:bg-base-400 dark:focus:outline-base-900 dark:ring-base-900 text-black bg-linear-10 from-base-100 to-base-200  hover:bg-base-400 focus:outline-base-200 ring-base-200 h-8 px-6 py-2 text-xs rounded-md gap-4 w-full sm:w-auto ${tab === "from" ? "!outline-base-500 " : ""}`}
+            className={` flex items-center text-center justify-center font-semibold duration-500 ease-in-out transition-colors focus:outline-2 text-black bg-base-100 hover:bg-base-200 focus:outline-accent-500 dark:text-white dark:bg-base-800 dark:hover:bg-base-900 dark:focus:outline-base-700 h-10 px-6 py-3 text-base  rounded-lg w-full ${tab === "from" ? "!outline-base-500 " : ""}`}
             onClick={() => setTab("from")}
           >
             From Color
           </button>
           <button
-            className={`  flex relative text-center font-medium items-center shadow-button justify-center overflow-hidden border border-transparent duration-300 ease-in-out transition-all outline-offset-4 hover:opacity-90 hover:shadow-none focus-visible:outline-none  focus:outline-2 inset-shadow-xs inset-shadow-white/10 ring active:inset-shadow-transparent dark:text-white dark:bg-linear-to-r/oklch dark:from-base-900 dark:to-base-950  dark:hover:bg-base-400 dark:focus:outline-base-900 dark:ring-base-900 text-black bg-linear-10 from-base-100 to-base-200  hover:bg-base-400 focus:outline-base-200 ring-base-200 h-8 px-6 py-2 text-xs rounded-md gap-4 w-full sm:w-auto ${tab === "to" ? "!outline-base-700" : ""}`}
+            className={`  flex items-center text-center justify-center font-semibold duration-500 ease-in-out transition-colors focus:outline-2 text-black bg-base-100 hover:bg-base-200 focus:outline-accent-500 dark:text-white dark:bg-base-800 dark:hover:bg-base-900 dark:focus:outline-base-700 h-10 px-6 py-3 text-base  rounded-lg w-full ${tab === "to" ? "!outline-base-700" : ""}`}
             onClick={() => setTab("to")}
           >
             To Color
