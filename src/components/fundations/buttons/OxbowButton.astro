@@ -7,61 +7,56 @@ const {
   class: className,
   ...rest
 } = Astro.props;
-// Default button
+// Default link
 const defaultClass = [
-  "text-white ",
-
-  "inset-shadow-white/30",
-  "text-shadow-base-700",
-  "ring-base-700",
-  "bg-linear-to-b from-base-700 to-base-800 to-70%",
+  "text-white",
+  "bg-base-800",
+  "hover:bg-base-900",
   "focus:outline-base-700",
   // Dark
-  "dark:text-base-950 ",
-
-  "dark:inset-shadow-base-700/20",
-  "dark:text-shadow-base-200",
-  "dark:ring-base-200",
-  "dark:bg-linear-to-b dark:from-base-200 dark:to-base-300 to-70%",
-  "dark:focus:outline-base-400",
+  "dark:text-black",
+  "dark:bg-white",
+  "dark:hover:bg-base-200",
+  "dark:focus:outline-base-500",
 ];
 // Accent button
 const accentClass = [
-  "text-white ",
-
-  "inset-shadow-white/20",
-  "text-shadow-accent-500",
-  "ring-accent-600",
-  "bg-linear-to-b from-accent-500 to-accent-600 to-70%",
-  "focus:outline-accent-600",
+  "text-white",
+  "bg-accent-600",
+  "hover:bg-accent-700",
+  "focus:outline-accent-500",
 ];
 // Muted button
 const mutedClass = [
-  "text-base-950 ",
-
-  "inset-shadow-base-700/20",
-  "text-shadow-base-200",
-  "ring-base-200",
-  "bg-linear-to-b from-base-200 to-base-300 to-70%",
-  "focus:outline-base-400",
+  "text-black",
+  "bg-white",
+  "hover:bg-base-200",
+  "focus:outline-base-300",
   // Dark
-  "dark:text-white ",
-  "dark:shadow-base-800/30",
-  "dark:inset-shadow-white/30",
-  "dark:text-shadow-base-700",
-  "dark:ring-base-700",
-  "dark:bg-linear-to-b dark:from-base-700 dark:to-base-800 to-70%",
-  "dark:focus:outline-base-700",
+  "dark:text-white",
+  "dark:bg-black",
+  "dark:hover:bg-base-900",
+  "dark:focus:outline-base-800",
+];
+const alternativeClass = [
+  "text-black",
+  "bg-base-50",
+  "hover:bg-base-100",
+  "focus:outline-base-200",
+  // Dark
+  "dark:text-white",
+  "dark:bg-base-800",
+  "dark:hover:bg-base-900",
+  "dark:focus:outline-base-900",
 ];
 // Size (only applies if variant is not "link")
-const xxs = ["h-7", "px-4", "py-1.5", "text-xs rounded-sm"];
-const xs = ["h-8", "px-6", "py-2", "text-xs rounded-md"];
-const sm = ["h-9", "px-6", "py-2", "text-sm rounded-md"];
-const base = ["h-10", "px-8", "py-3", "text-base rounded-lg"];
-const md = ["h-11", "px-8", "py-3", "text-md rounded-lg"];
-const lg = ["h-12", "px-8", "py-3", "text-lg rounded-lg"];
-const xl = ["h-14", "px-12", "py-3", "text-lg rounded-xl"];
-
+const xxs = ["h-6", "px-3", "py-1", "text-[0.69rem]", "rounded-sm"];
+const xs = ["h-7.5", "px-6", "py-2", "text-xs rounded-md"];
+const sm = ["h-9", "px-4", "py-2", "text-sm", " rounded-md"];
+const base = ["h-10", "px-6", "py-3", "text-base", " rounded-lg"];
+const md = ["h-10", "px-6", "py-3", "text-base", " rounded-lg"];
+const lg = ["h-12", "px-6", "py-3", "text-lg", "rounded-lg"];
+const xl = ["h-14", "px-6", "py-3", "text-lg", " rounded-xl"];
 // Gap
 const gapXS = ["gap-2"];
 const gapSM = ["gap-4"];
@@ -70,30 +65,21 @@ const gapMD = ["gap-10"];
 const gapLG = ["gap-12"];
 const additionalClasses = className ? className.split(" ") : [];
 ---
-
 <button
   class:list={[
     "flex",
     "items-center",
     "justify-center",
     "text-center",
-    "text-shadow-2xs",
-    "font-semibold",
-    "shadow ",
-    
-    "ring inset-shadow-2xs",
-    "hover:shadow-none",
-    "items-center",
-    "duration-300",
+    "font-medium",
+    "duration-500",
     "ease-in-out",
-    "transition-all",
+    "transition",
     "focus:outline-2",
-    "outline-offset-2",
-    "focus:ring-offset-white",
-    "dark:focus:ring-offset-black",
-    variant === "default" && defaultClass,
-    variant === "accent" && accentClass,
     variant === "muted" && mutedClass,
+    variant === "accent" && accentClass,
+    variant === "default" && defaultClass,
+    variant === "alternative" && alternativeClass,
     variant === "none" && [],
     size === "xxs" && xxs,
     size === "xs" && xs,

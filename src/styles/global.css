@@ -8,6 +8,18 @@
   /* Typography */
   --font-sans: "Geist", sans-serif;
   --font-mono: "Geist Mono", monospace;
+   /* Accents */
+   --color-blue-light: #60beff;
+   --color-blue: #1da8ff;
+   --color-blue-dark: #007bff;
+   --color-green-light: #33cd8e;
+   --color-green: #00c172;
+   --color-green-dark: #00a651;
+   --color-yellow-light: #ffcd6c;
+   --color-yellow: #ffb112;
+   --color-yellow-dark: #ffa100;
+   --color-orange: #fa5925;
+   --color-orange-dark: #fd4202;
   /* Colors */
   --color-accent-50: #ebf7ff;
   --color-accent-100: #d2edff;
@@ -31,6 +43,12 @@
   --color-base-800: oklch(0.269 0 0);
   --color-base-900: oklch(0.205 0 0);
   --color-base-950: oklch(0.145 0 0);
+  --shadow-normal: rgba(14, 63, 126, 0.04) 0px 0px 0px 1px,
+    rgba(42, 51, 69, 0.04) 0px 1px 1px -0.5px,
+    rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px,
+    rgba(42, 51, 70, 0.04) 0px 6px 6px -3px,
+    rgba(14, 63, 126, 0.04) 0px 12px 12px -6px,
+    rgba(14, 63, 126, 0.04) 0px 24px 24px -12px;
   --background-image-stripes-dark: repeating-linear-gradient(
     125deg,
     transparent,
@@ -49,116 +67,88 @@
 :root {
   font-family: "Geist", sans-serif;
   font-variant-numeric: tabular-nums;
-  
-  /* Shiki code style */
-  --astro-code-foreground: theme(colors.base.500); /* Light gray for text */
-  --astro-code-background: theme(
-    colors.base.800
-  ); /* Dark gray for background */
-  --astro-code-token-punctuation: theme(
-    colors.base.200
-  ); /* Subtle light gray */
-  --astro-code-token-parameter: theme(
-    colors.base.300
-  ); /* Slightly lighter gray */
-  --astro-code-token-line-number: theme(
-    colors.base.400
-  ); /* Medium gray for line numbers */
-  --astro-code-token-comment: theme(
-    colors.base.400
-  ); /* Muted gray for comments */
-  --astro-code-token-cdata: theme(
-    colors.base.300
-  ); /* Same as parameter for consistency */
-  --astro-code-token-constant: theme(
-    colors.base.200
-  ); /* Slightly bright gray */
-  --astro-code-token-function: theme(
-    colors.base.100
-  ); /* Brightest gray for emphasis */
-  --astro-code-token-attr-name: theme(
-    colors.base.200
-  ); /* Attribute names in light gray */
-  --astro-code-token-builtin: theme(
-    colors.base.300
-  ); /* Subtle distinction for built-ins */
-  --astro-code-token-boolean: theme(colors.base.200); /* Similar to constants */
-  --astro-code-token-class-name: theme(
-    colors.base.300
-  ); /* Mid-tone gray for class names */
-  --astro-code-token-property: theme(
-    colors.base.200
-  ); /* Same as attr-name for properties */
-  --astro-code-token-selector: theme(
-    colors.base.100
-  ); /* Light gray for selectors */
-  --astro-code-token-string: theme(
-    colors.base.300
-  ); /* Slight contrast for strings */
-  --astro-code-token-string-expression: theme(
-    colors.base.200
-  ); /* Match other text tokens */
-  --astro-code-token-variable: theme(
-    colors.base.100
-  ); /* Light gray for variables */
-  --astro-code-token-keyword: theme(
-    colors.base.200
-  ); /* Slight contrast for keywords */
-  --astro-code-token-symbol: theme(
-    colors.base.100
-  ); /* Match text for consistency */
-  --astro-code-token-number: theme(
-    colors.base.100
-  ); /* Bright gray for numbers */
-  --astro-code-token-operator: theme(
-    colors.base.200
-  ); /* Slightly lighter gray */
-  --astro-code-token-deleted: theme(
-    colors.base.400
-  ); /* Dim gray for deleted tokens */
-  --astro-code-token-changed: theme(
-    colors.base.400
-  ); /* Medium gray for changes */
-  --astro-code-token-important: theme(
-    colors.base.100
-  ); /* Brightest gray for important text */
-  --astro-code-token-tag: theme(
-    colors.base.200
-  ); /* Slightly lighter for tags */
-  --astro-code-token-inserted: theme(
-    colors.base.300
-  ); /* Mid-tone gray for inserted text */
-  --astro-code-token-namespace: theme(
-    colors.base.200
-  ); /* Consistent with tags */
-  --astro-code-token-atrule: theme(colors.base.200); /* Same as namespace */
-  --astro-code-token-entity: theme(
-    colors.base.200
-  ); /* Match other identifiers */
-  --astro-code-token-highlight: theme(
-    colors.base.700
-  ); /* Slightly lighter background highlight */
-  --astro-code-token-alert: theme(
-    colors.base.100
-  ); /* Brightest gray for alerts */
-  --astro-code-token-emphasis: theme(
-    colors.base.300
-  ); /* Mid-tone for emphasis */
-  --astro-code-token-focus: theme(
-    colors.base.200
-  ); /* Bright for focused elements */
-  --astro-code-token-notice: theme(
-    colors.base.200
-  ); /* Match other noticeable elements */
-  --astro-code-token-attr-value: theme(colors.base.300); /* Same as strings */
-  --astro-code-token-regex: theme(
-    colors.base.300
-  ); /* Consistent with strings */
-  --astro-code-token-doctype: theme(colors.base.400); /* Muted for doctype */
-  --astro-code-token-prolog: theme(colors.base.400); /* Same as comments */
+  --astro-code-foreground: var(--color-base-800); /* Dark text */
+--astro-code-background: var(--color-white); /* Light background */
+--astro-code-token-punctuation: var(--color-base-500);
+--astro-code-token-parameter: var(--color-base-700);
+--astro-code-token-line-number: var(--color-base-500);
+--astro-code-token-comment: var(--color-base-500);
+--astro-code-token-cdata: var(--color-base-600);
+--astro-code-token-constant: var(--color-base-700);
+--astro-code-token-function: var(--color-base-500);
+--astro-code-token-attr-name: var(--color-base-700);
+--astro-code-token-builtin: var(--color-base-600);
+--astro-code-token-boolean: var(--color-base-700);
+--astro-code-token-class-name: var(--color-base-600);
+--astro-code-token-property: var(--color-base-700);
+--astro-code-token-selector: var(--color-base-800);
+--astro-code-token-string: var(--color-base-600);
+--astro-code-token-string-expression: var(--color-accent-500);
+--astro-code-token-variable: var(--color-base-800);
+--astro-code-token-keyword: var(--color-base-700);
+--astro-code-token-symbol: var(--color-base-800);
+--astro-code-token-number: var(--color-base-800);
+--astro-code-token-operator: var(--color-base-700);
+--astro-code-token-deleted: var(--color-base-400);
+--astro-code-token-changed: var(--color-base-500);
+--astro-code-token-important: var(--color-base-800);
+--astro-code-token-tag: var(--color-base-700);
+--astro-code-token-inserted: var(--color-base-600);
+--astro-code-token-namespace: var(--color-base-700);
+--astro-code-token-atrule: var(--color-base-700);
+--astro-code-token-entity: var(--color-base-700);
+--astro-code-token-highlight: var(--color-base-200); /* Light yellow-ish highlight */
+  --astro-code-token-alert: theme(colors.base.800);
+  --astro-code-token-emphasis: theme(colors.base.600);
+  --astro-code-token-focus: theme(colors.base.700);
+  --astro-code-token-notice: theme(colors.base.700);
+  --astro-code-token-attr-value: theme(colors.base.600);
+  --astro-code-token-regex: theme(colors.base.600);
   --astro-code-token-bold: inherit;
   --astro-code-token-italic: italic;
   --astro-code-token-underline: underline;
+}
+:root.dark {
+  code .line::before {
+    color: #ffffff50;
+  }
+  --astro-code-foreground: var(--color-base-500);
+--astro-code-background: var(--color-base-800);
+--astro-code-token-punctuation: var(--color-base-200);
+--astro-code-token-parameter: var(--color-base-300);
+--astro-code-token-line-number: var(--color-base-400);
+--astro-code-token-comment: var(--color-base-400);
+--astro-code-token-cdata: var(--color-base-300);
+--astro-code-token-constant: var(--color-base-200);
+--astro-code-token-function: var(--color-base-500);
+--astro-code-token-attr-name: var(--color-base-200);
+--astro-code-token-builtin: var(--color-base-300);
+--astro-code-token-boolean: var(--color-base-200);
+--astro-code-token-class-name: var(--color-base-300);
+--astro-code-token-property: var(--color-base-200);
+--astro-code-token-selector: var(--color-base-100);
+--astro-code-token-string: var(--color-base-300);
+--astro-code-token-string-expression: var(--color-base-300);
+--astro-code-token-variable: var(--color-base-100);
+--astro-code-token-keyword: var(--color-base-200);
+--astro-code-token-symbol: var(--color-base-100);
+--astro-code-token-number: var(--color-base-100);
+--astro-code-token-operator: var(--color-base-200);
+--astro-code-token-deleted: var(--color-base-400);
+--astro-code-token-changed: var(--color-base-400);
+--astro-code-token-important: var(--color-base-100);
+--astro-code-token-tag: var(--color-base-200);
+--astro-code-token-inserted: var(--color-base-300);
+--astro-code-token-namespace: var(--color-base-200);
+--astro-code-token-atrule: var(--color-base-200);
+--astro-code-token-entity: var(--color-base-200);
+--astro-code-token-highlight: var(--color-base-700);
+--astro-code-token-alert: var(--color-base-100);
+--astro-code-token-emphasis: var(--color-base-300);
+--astro-code-token-focus: var(--color-base-200);
+--astro-code-token-notice: var(--color-base-200);
+--astro-code-token-attr-value: var(--color-base-300);
+--astro-code-token-regex: var(--color-base-300);
 }
 /* Hidding emulators*/
 .firebase-emulator-warning {
@@ -169,7 +159,6 @@
 }
 /* Styling  Ninja Keys */
 ninja-keys::part(ninja-input) {
-  
   font-size: 1rem;
   margin-left: 2rem !important;
   margin-right: 2rem !important;
@@ -203,7 +192,7 @@ code .line::before {
   margin-right: 1.5rem;
   display: inline-block;
   text-align: right;
-  color: #ffffff50;
+  color: #999999;
 }
 [x-cloak] {
   display: none !important;

@@ -250,7 +250,7 @@ export default function GridGenerator() {
         <div className="flex items-center gap-2 ">
           <button
             className={`
-                    flex relative text-center font-medium items-center shadow-button justify-center overflow-hidden border border-transparent duration-300 ease-in-out transition-all outline-offset-4 hover:opacity-90 hover:shadow-none focus-visible:outline-none  focus:outline-2 inset-shadow-xs inset-shadow-white/10 ring active:inset-shadow-transparent dark:text-white dark:bg-linear-to-r/oklch dark:from-base-900 dark:to-base-950  dark:hover:bg-base-400 dark:focus:outline-base-900 dark:ring-base-900 text-black bg-linear-10 from-base-100 to-base-200  hover:bg-base-400 focus:outline-base-200 ring-base-200 h-8 px-6 py-2 text-xs rounded-md gap-4 w-full sm:w-auto
+                    flex items-center text-center justify-center font-semibold duration-500 ease-in-out transition focus:outline-2 text-black bg-base-50 hover:bg-base-100 focus:outline-base-200 dark:text-white dark:bg-base-800 dark:hover:bg-base-900 dark:focus:outline-base-900 h-7.5 px-6 py-2 text-xs rounded-md pointer-events-auto outline-base-100 !dark:outline-base-700
                     ${format === "html" ? "!outline-base-700" : " "}
                   `}
             onClick={() => setFormat("html")}
@@ -259,7 +259,7 @@ export default function GridGenerator() {
           </button>
           <button
             className={`
-                  flex relative text-center font-medium items-center shadow-button justify-center overflow-hidden border border-transparent duration-300 ease-in-out transition-all outline-offset-4 hover:opacity-90 hover:shadow-none focus-visible:outline-none  focus:outline-2 inset-shadow-xs inset-shadow-white/10 ring active:inset-shadow-transparent dark:text-white dark:bg-linear-to-r/oklch dark:from-base-900 dark:to-base-950  dark:hover:bg-base-400 dark:focus:outline-base-900 dark:ring-base-900 text-black bg-linear-10 from-base-100 to-base-200  hover:bg-base-400 focus:outline-base-200 ring-base-200 h-8 px-6 py-2 text-xs rounded-md gap-4 w-full sm:w-auto
+                  flex items-center text-center justify-center font-semibold duration-500 ease-in-out transition focus:outline-2 text-black bg-base-50 hover:bg-base-100 focus:outline-base-200 dark:text-white dark:bg-base-800 dark:hover:bg-base-900 dark:focus:outline-base-900 h-7.5 px-6 py-2 text-xs rounded-md pointer-events-auto outline-base-100 !dark:outline-base-700
                     ${format === "jsx" ? "!outline-base-700" : ""}
                   `}
             onClick={() => setFormat("jsx")}
@@ -267,13 +267,13 @@ export default function GridGenerator() {
             JSX
           </button>
           <button
-            className="flex relative text-center font-medium items-center shadow-button justify-center overflow-hidden border border-transparent duration-300 ease-in-out transition-all outline-offset-4 hover:opacity-90 hover:shadow-none focus-visible:outline-none  focus:outline-2 inset-shadow-xs inset-shadow-white/10 ring active:inset-shadow-transparent dark:text-white dark:bg-linear-to-r/oklch dark:from-base-900 dark:to-base-950  dark:hover:bg-base-400 dark:focus:outline-base-900 dark:ring-base-900 text-black bg-linear-10 from-base-100 to-base-200  hover:bg-base-400 focus:outline-base-200 ring-base-200 h-8 px-6 py-2 text-xs rounded-md gap-4 w-full sm:w-auto"
+            className="flex items-center text-center justify-center font-semibold duration-500 ease-in-out transition focus:outline-2 text-black bg-base-50 hover:bg-base-100 focus:outline-base-200 dark:text-white dark:bg-base-800 dark:hover:bg-base-900 dark:focus:outline-base-900 h-7.5 px-6 py-2 text-xs rounded-md pointer-events-auto outline-base-100 !dark:outline-base-700"
             onClick={handleReset}
           >
             Reset
           </button>
           <button
-            className="flex relative text-center font-medium items-center shadow-button justify-center overflow-hidden border border-transparent duration-300 ease-in-out transition-all outline-offset-4 hover:opacity-90 hover:shadow-none focus-visible:outline-none  focus:outline-2 inset-shadow-xs inset-shadow-white/10 ring active:inset-shadow-transparent dark:text-white dark:bg-linear-to-r/oklch dark:from-base-900 dark:to-base-950  dark:hover:bg-base-400 dark:focus:outline-base-900 dark:ring-base-900 text-black bg-linear-10 from-base-100 to-base-200  hover:bg-base-400 focus:outline-base-200 ring-base-200 h-8 px-6 py-2 text-xs rounded-md gap-4   w-24"
+            className="fflex items-center text-center justify-center  font-semibold duration-500 ease-in-out transition focus:outline-2 text-black bg-base-50 hover:bg-base-100 focus:outline-base-200 dark:text-white dark:bg-base-800 dark:hover:bg-base-900 dark:focus:outline-base-900 h-7.5 px-6 py-2 text-xs rounded-md pointer-events-auto outline-base-100 !dark:outline-base-700   w-24"
             onClick={handleCopy}
           >
             {isCopied ? "Copied!" : "Copy"}
