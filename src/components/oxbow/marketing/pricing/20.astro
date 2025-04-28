@@ -7,8 +7,8 @@ import Text from "@/components/fundations/typography/Text.astro";
 ---
 
 <section x-data="{duration: 'monthly'}">
-  <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-screen-xl relative">
-    <p class="text-base-500 lg:hidden text-center">
+  <div class="relative px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-screen-xl">
+    <p class="text-center text-base-500 lg:hidden">
       Pricing table for desktop use
     </p>
     <!---- Use only from xl: -->
@@ -35,18 +35,18 @@ import Text from "@/components/fundations/typography/Text.astro";
         <div class="md:ml-auto">
           <div
             aria-labelledby="pricing-toggle"
-            class="w-full relative mt-8 ring-1 ring-base-200 ring-offset-2 bg-white overflow-hidden justify-center gap-4 mx-auto lg:mx-0 inline-flex p-1 rounded-md max-w-52 shadow z-0"
+            class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-white shadow ring-1 ring-base-200 ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52"
           >
             <!-- Monthly Pricing Button: Sets 'duration' to 'monthly' when clicked -->
             <PricingToggle />
           </div>
         </div>
       </div>
-      <table class="w-full mt-8 mx-auto text-center bg-transparent">
+      <table class="w-full mx-auto mt-8 text-center bg-transparent">
         <thead>
           <tr class="align-top">
             <th class="w-1/3"> </th>
-            <th class="w-1/3 p-1 pr-0 font-normal text-left relative">
+            <th class="relative w-1/3 p-1 pr-0 font-normal text-left">
               <div
                 aria-hidden="true"
                 class="absolute inset-y-0 right-0 hidden w-full rounded-tl-3xl bg-base-50 sm:block"
@@ -61,14 +61,14 @@ import Text from "@/components/fundations/typography/Text.astro";
                       <Text
                         tag="h3"
                         variant="textXL"
-                        class="text-base-900 font-medium"
+                        class="font-medium text-base-900"
                       >
                         Core
                       </Text>
                       <Text
                         tag="p"
                         variant="textBase"
-                        class="text-base-500 font-medium"
+                        class="font-medium text-base-500"
                       >
                         For individuals
                       </Text>
@@ -77,7 +77,7 @@ import Text from "@/components/fundations/typography/Text.astro";
                   <Text
                     tag="p"
                     variant="textBase"
-                    class="text-base-500 font-medium"
+                    class="font-medium text-base-500"
                   >
                     This subscription tier caters to individuals and hobbyists
                     seeking fundamental features.
@@ -85,14 +85,14 @@ import Text from "@/components/fundations/typography/Text.astro";
                 </div>
                 <div class="p-8 pt-0 mt-8">
                   <p
-                    class="font-semibold lg:text-3xl flex items-baseline text-2xl tracking-tighter text-base-900"
+                    class="flex items-baseline text-2xl font-semibold tracking-tighter lg:text-3xl text-base-900"
                   >
                     <span
                       data-monthly="$29.00"
                       data-annual="$19.00"
                       x-text="$el.dataset[duration]"></span>
                     <span
-                      class="text-sm font-normal tracking-normal font-sans text-base-500"
+                      class="font-sans text-sm font-normal tracking-normal text-base-500"
                     >
                       <span x-show="duration === 'monthly'">
                         <span x-show="duration === 'monthly'">
@@ -115,7 +115,7 @@ import Text from "@/components/fundations/typography/Text.astro";
                 </div>
               </div>
             </th>
-            <th class="w-1/3 font-normal text-left relative p-1 px-0">
+            <th class="relative w-1/3 p-1 px-0 font-normal text-left">
               <div
                 aria-hidden="true"
                 class="absolute inset-y-0 right-0 hidden w-full rounded-tr-3xl bg-base-900 sm:block"
@@ -130,14 +130,14 @@ import Text from "@/components/fundations/typography/Text.astro";
                       <Text
                         tag="h3"
                         variant="textXL"
-                        class="text-white font-medium"
+                        class="font-medium text-white"
                       >
                         Momentum
                       </Text>
                       <Text
                         tag="p"
                         variant="textBase"
-                        class="text-base-300 font-medium"
+                        class="font-medium text-base-300"
                       >
                         For startups
                       </Text>
@@ -147,7 +147,7 @@ import Text from "@/components/fundations/typography/Text.astro";
                   <Text
                     tag="p"
                     variant="textBase"
-                    class="text-base-300 font-medium"
+                    class="font-medium text-base-300"
                   >
                     Designed with medium-sized businesses in mind, this
                     subscription tier provides advanced tools.
@@ -155,14 +155,14 @@ import Text from "@/components/fundations/typography/Text.astro";
                 </div>
                 <div class="p-8 pt-0 mt-8">
                   <p
-                    class="font-semibold lg:text-3xl flex items-baseline text-2xl tracking-tighter text-white"
+                    class="flex items-baseline text-2xl font-semibold tracking-tighter text-white lg:text-3xl"
                   >
                     <span
                       data-monthly="$49.00"
                       data-annual="$39.00"
                       x-text="$el.dataset[duration]"></span>
                     <span
-                      class="text-sm font-normal font-sans tracking-normal text-base-200"
+                      class="font-sans text-sm font-normal tracking-normal text-base-200"
                     >
                       <span x-show="duration === 'monthly'">
                         <span x-show="duration === 'monthly'">
@@ -192,14 +192,14 @@ import Text from "@/components/fundations/typography/Text.astro";
             <th
               scope="colgroup"
               colspan="4"
-              class="p-4 text-sm font-medium leading-6 text-left text-base-900 border-y border-base-200"
+              class="p-4 text-sm font-medium text-left leading-6 text-base-900 border-y border-base-200"
             >
               Usage
             </th>
           </tr>
           <tr>
             <th
-              class="p-3 text-sm bg-base-50 text-base-900 font-medium text-left border-b border-base-200"
+              class="p-3 text-sm font-medium text-left border-b bg-base-50 text-base-900 border-base-200"
             >
               <div class="flex items-center gap-2">
                 <Check size="sm" />Accounts
@@ -210,7 +210,7 @@ import Text from "@/components/fundations/typography/Text.astro";
           </tr>
           <tr>
             <th
-              class="p-3 text-sm text-base-900 font-medium text-left bg-base-50 border-b border-base-200"
+              class="p-3 text-sm font-medium text-left border-b text-base-900 bg-base-50 border-base-200"
             >
               <div class="flex items-center gap-2">
                 <Check size="sm" />
@@ -218,103 +218,103 @@ import Text from "@/components/fundations/typography/Text.astro";
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium text-base-900 bg-base-50 border-t border-base-200"
+              class="px-2 text-xs font-medium border-t text-base-900 bg-base-50 border-base-200"
               >3</td
             >
             <td
-              class="px-2 text-xs font-medium text-white bg-base-900 border-t border-base-800"
+              class="px-2 text-xs font-medium text-white border-t bg-base-900 border-base-800"
               >10</td
             >
           </tr>
           <tr>
             <th
-              class="p-3 text-sm bg-base-50 text-base-900 font-medium text-left border-b border-base-200"
+              class="p-3 text-sm font-medium text-left border-b bg-base-50 text-base-900 border-base-200"
             >
               <div class="flex items-center gap-2">
                 <Check size="sm" />Integrations
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium bg-base-50 text-base-900 border-t border-base-200"
+              class="px-2 text-xs font-medium border-t bg-base-50 text-base-900 border-base-200"
               >2</td
             >
             <td
-              class="px-2 text-xs font-medium text-white bg-base-900 border-t border-base-800"
+              class="px-2 text-xs font-medium text-white border-t bg-base-900 border-base-800"
             >
               YES
             </td>
           </tr>
           <tr>
             <th
-              class="p-3 text-sm text-base-900 font-medium text-left bg-base-50 border-b border-base-200"
+              class="p-3 text-sm font-medium text-left border-b text-base-900 bg-base-50 border-base-200"
             >
               <div class="flex items-center gap-2">
                 <Check size="sm" />Programs
               </div>
             </th>
             <td
-              class="px-2 text-base-900 bg-base-50 border-t border-base-200 text-xs font-medium"
+              class="px-2 text-xs font-medium border-t text-base-900 bg-base-50 border-base-200"
             >
               NO
             </td>
             <td
-              class="px-2 text-xs font-medium text-white bg-base-900 border-t border-base-800"
+              class="px-2 text-xs font-medium text-white border-t bg-base-900 border-base-800"
               >1</td
             >
           </tr>
           <tr>
             <th
-              class="p-3 text-sm bg-base-50 text-base-900 font-medium text-left border-b border-base-200"
+              class="p-3 text-sm font-medium text-left border-b bg-base-50 text-base-900 border-base-200"
             >
               <div class="flex items-center gap-2">
                 <Check size="sm" />Deployments
               </div>
             </th>
             <td
-              class="px-2 text-base-900 bg-base-50 border-t border-base-200 text-xs font-medium"
+              class="px-2 text-xs font-medium border-t text-base-900 bg-base-50 border-base-200"
             >
               NO
             </td>
             <td
-              class="px-2 text-xs font-medium text-white bg-base-900 border-t border-base-800"
+              class="px-2 text-xs font-medium text-white border-t bg-base-900 border-base-800"
             >
               YES
             </td>
           </tr>
           <tr>
             <th
-              class="p-3 text-sm text-base-900 bg-base-50 font-medium text-left border-b border-base-200"
+              class="p-3 text-sm font-medium text-left border-b text-base-900 bg-base-50 border-base-200"
             >
               <div class="flex items-center gap-2">
                 <Check size="sm" />Advanced Checkpoints
               </div>
             </th>
             <td
-              class="px-2 text-base-900 bg-base-50 border-t border-base-200 text-xs font-medium"
+              class="px-2 text-xs font-medium border-t text-base-900 bg-base-50 border-base-200"
             >
               NO
             </td>
             <td
-              class="px-2 text-xs font-medium text-white bg-base-900 border-t border-base-800"
+              class="px-2 text-xs font-medium text-white border-t bg-base-900 border-base-800"
             >
               YES
             </td>
           </tr>
           <tr>
             <th
-              class="p-3 text-sm bg-base-50 text-base-900 font-medium text-left border-b border-base-200"
+              class="p-3 text-sm font-medium text-left border-b bg-base-50 text-base-900 border-base-200"
             >
               <div class="flex items-center gap-2">
                 <Check size="sm" />Reporting tools
               </div>
             </th>
             <td
-              class="px-2 text-base-900 bg-base-50 border-t border-base-200 text-xs font-medium"
+              class="px-2 text-xs font-medium border-t text-base-900 bg-base-50 border-base-200"
             >
               NO
             </td>
             <td
-              class="px-2 text-xs font-medium text-white bg-base-900 border-t border-base-800"
+              class="px-2 text-xs font-medium text-white border-t bg-base-900 border-base-800"
             >
               YES
             </td>
@@ -323,14 +323,14 @@ import Text from "@/components/fundations/typography/Text.astro";
             <th
               scope="colgroup"
               colspan="4"
-              class="p-4 text-sm font-medium leading-6 text-left text-base-900 border-y border-base-200"
+              class="p-4 text-sm font-medium text-left leading-6 text-base-900 border-y border-base-200"
             >
               Features
             </th>
           </tr>
           <tr>
             <th
-              class="p-3 text-sm bg-base-50 text-base-900 font-medium text-left border-b border-base-200"
+              class="p-3 text-sm font-medium text-left border-b bg-base-50 text-base-900 border-base-200"
             >
               <div class="flex items-center gap-2">
                 <Check size="sm" />
@@ -343,54 +343,54 @@ import Text from "@/components/fundations/typography/Text.astro";
           </tr>
           <tr>
             <th
-              class="p-3 text-sm text-base-900 font-medium text-left bg-base-50 border-b border-base-200"
+              class="p-3 text-sm font-medium text-left border-b text-base-900 bg-base-50 border-base-200"
             >
               <div class="flex items-center gap-2">
                 <Check size="sm" />Dedicted Manager
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium text-base-900 bg-base-50 border-t border-base-200"
+              class="px-2 text-xs font-medium border-t text-base-900 bg-base-50 border-base-200"
               >No</td
             >
             <td
-              class="px-2 text-xs font-medium text-white bg-base-900 border-t border-base-800"
+              class="px-2 text-xs font-medium text-white border-t bg-base-900 border-base-800"
               >Yes</td
             >
           </tr>
           <tr>
             <th
-              class="p-3 text-sm bg-base-50 text-base-900 font-medium text-left border-b border-base-200"
+              class="p-3 text-sm font-medium text-left border-b bg-base-50 text-base-900 border-base-200"
             >
               <div class="flex items-center gap-2">
                 <Check size="sm" />Onboarding sessions
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium text-base-900 bg-base-50 border-t border-base-200"
+              class="px-2 text-xs font-medium border-t text-base-900 bg-base-50 border-base-200"
               >No</td
             >
             <td
-              class="px-2 text-xs font-medium text-white bg-base-900 border-t border-base-800"
+              class="px-2 text-xs font-medium text-white border-t bg-base-900 border-base-800"
             >
               No
             </td>
           </tr>
           <tr>
             <th
-              class="p-3 text-sm text-base-900 font-medium border-b border-base-200 text-left bg-base-50"
+              class="p-3 text-sm font-medium text-left border-b text-base-900 border-base-200 bg-base-50"
             >
               <div class="flex items-center gap-2">
                 <Check size="sm" />Dedicated support channel
               </div>
             </th>
             <td
-              class="px-2 text-base-900 bg-base-50 border-t border-base-200 text-xs font-medium"
+              class="px-2 text-xs font-medium border-t text-base-900 bg-base-50 border-base-200"
             >
               No
             </td>
             <td
-              class="px-2 text-xs font-medium text-white bg-base-900 border-t border-base-800"
+              class="px-2 text-xs font-medium text-white border-t bg-base-900 border-base-800"
               >No</td
             >
           </tr>
@@ -401,7 +401,7 @@ import Text from "@/components/fundations/typography/Text.astro";
             >
             </th>
             <th
-              class="w-1/4 px-2 py-6 rounded-br-3xl bg-base-900 border-t border-base-800"
+              class="w-1/4 px-2 py-6 border-t rounded-br-3xl bg-base-900 border-base-800"
             >
             </th>
           </tr>

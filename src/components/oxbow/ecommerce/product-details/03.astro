@@ -25,7 +25,7 @@ const productInfo = [
 ---
 
 <section>
-  <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
+  <div class="relative px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
       <!-- Product Image Gallery -->
       <div
@@ -49,21 +49,21 @@ const productInfo = [
               <button
                 @click="activeImage = index"
                 :class="{'ring-2 ring-base-900': activeImage === index}"
-                class="size-full bg-base-200 rounded-lg lg:rounded-xl overflow-hidden aspect-square"
+                class="overflow-hidden rounded-lg size-full bg-base-200 lg:rounded-xl aspect-square"
               >
                 <img
                   :src="image"
-                  class="size-full object-cover aspect-square"
+                  class="object-cover size-full aspect-square"
                   alt="Product thumbnail"
                 />
               </button>
             </template>
           </div>
           <!-- Main Image -->
-          <div class="col-span-6 bg-base-200 rounded-2xl overflow-hidden">
+          <div class="overflow-hidden col-span-6 bg-base-200 rounded-2xl">
             <img
               :src="images[activeImage]"
-              class="size-full object-cover aspect-square"
+              class="object-cover size-full aspect-square"
               alt="Product image"
             />
           </div>
@@ -77,14 +77,14 @@ const productInfo = [
           >
           <Text tag="p" variant="textLG">$190</Text>
         </div>
-        <Text tag="p" variant="textSM" class="text-base-500 mt-4">
+        <Text tag="p" variant="textSM" class="mt-4 text-base-500">
           Hitting the field in the late '60s, adidas airforcewhiteS quickly
           became soccer's "it" shoe.
         </Text>
-        <div class="grid cols-1 md:grid-cols-2 gap-4 mt-4">
+        <div class="mt-4 grid cols-1 md:grid-cols-2 gap-4">
           <!-- Color Selector -->
           <div x-data="{ activeColor: null }">
-            <Text tag="p" variant="textXS" class="text-base-500 uppercase">
+            <Text tag="p" variant="textXS" class="uppercase text-base-500">
               Color
             </Text>
             <fieldset
@@ -123,7 +123,7 @@ const productInfo = [
                     />
                     <span
                       aria-hidden="true"
-                      class="size-6 rounded-full ring-1"
+                      class="rounded-full size-6 ring-1"
                       :class="`${color.ring} ${color.bg}`"></span>
                   </label>
                 </template>
@@ -142,7 +142,7 @@ const productInfo = [
           }"
           >
             <div class="flex items-center justify-between">
-              <Text tag="p" variant="textXS" class="text-base-500 uppercase">
+              <Text tag="p" variant="textXS" class="uppercase text-base-500">
                 Shoe size
               </Text>
               <div>
@@ -158,7 +158,7 @@ const productInfo = [
                 </select>
               </div>
             </div>
-            <div class="grid grid-cols-4 gap-2 mt-2">
+            <div class="mt-2 grid grid-cols-4 gap-2">
               <template x-for="size in sizes[sizeSystem]" :key="size">
                 <div>
                   <input
@@ -172,8 +172,8 @@ const productInfo = [
                   <label
                     :for="'size-' + size"
                     x-text="size"
-                    class="flex items-center justify-center px-3 py-2 text-sm font-medium bg-white ring-1
-                     ring-base-200 rounded-md cursor-pointer duration-300 peer-checked:ring-2 peer-checked:ring-base-900 peer-checked:text-accent-500 text-base-500 peer-checked:ring-offset-2"
+                    class="flex items-center justify-center px-3 py-2 text-sm font-medium bg-white cursor-pointer ring-1
+  ring-base-200 rounded-md duration-300 peer-checked:ring-2 peer-checked:ring-base-900 peer-checked:text-accent-500 text-base-500 peer-checked:ring-offset-2"
                   ></label>
                 </div>
               </template>
@@ -182,24 +182,24 @@ const productInfo = [
         </div>
 
         <!-- Action Buttons -->
-        <div class="flex flex-row gap-2 mt-8">
+        <div class="flex flex-row mt-8 gap-2">
           <Button size="sm" variant="default" class="w-full">Add to Cart</Button
           >
           <Button size="sm" variant="muted" class="w-full">Buy Now</Button>
         </div>
         <!-- Free shipping notice -->
-        <Text tag="p" variant="textSM" class="text-base-500 mt-1"
+        <Text tag="p" variant="textSM" class="mt-1 text-base-500"
           >Free shipping over $50 if you behave</Text
         >
         <!-- Accordion sections -->
-        <div class="divide-y divide-base-200 border-y mt-8 border-base-200">
+        <div class="mt-8 divide-y divide-base-200 border-y border-base-200">
           {
             productInfo.map((info) => (
-              <details class="group cursor-pointer">
+              <details class="cursor-pointer group">
                 <Text
                   tag="summary"
                   variant="textSM"
-                  class="text-base-900 font-medium flex items-center justify-between w-full py-4 text-left select-none hover:text-accent-500 focus:text-accent-500"
+                  class="flex items-center justify-between w-full py-4 font-medium text-left select-none text-base-900 hover:text-accent-500 focus:text-accent-500"
                 >
                   {info.title}
                   <Plus

@@ -134,9 +134,9 @@ export default function GridGenerator() {
   };
   return (
     <div >
-      <div className="grid grid-cols-3 md:grid-cols-4 gap-2  w-full">
+      <div className="w-full grid grid-cols-3 md:grid-cols-4 gap-2 ">
         <div className="flex flex-col gap-1">
-          <label htmlFor="columns" className="text-sm text-base-300">
+          <label htmlFor="columns" className="text-sm text-base-500 dark:text-base-300">
             Columns
           </label>
           <input
@@ -146,11 +146,11 @@ export default function GridGenerator() {
             max={12}
             value={columns}
             onChange={(e) => setColumns(Number(e.target.value))}
-            className="block w-full h-12 px-4 py-2 text-sm text-black dark:text-white duration-300 bg-white dark:bg-black/50 backdrop-blur-2xl border border-transparent rounded-xl appearance-none outline outline-base-100 dark:outline-base-900 placeholder-base-400 focus:border-base-100 dark:focus:border-base-900 focus:bg-transparent focus:outline-none focus:outline-accent-500 focus:outline-offset-2 focus:outline-2 sm:text-sm focus:ring-offset-base-950 dark:focus:ring-offset-base-950"
+            className="block w-full h-12 px-4 py-2 text-sm text-black bg-white border border-transparent appearance-none dark:text-white duration-300 dark:bg-white/5 backdrop-blur-2xl rounded-xl outline outline-base-100 dark:outline-white/5 placeholder-base-400 focus:border-base-100 dark:focus:border-base-900 focus:bg-transparent focus:outline-none focus:outline-accent-500 focus:outline-offset-2 focus:outline-2 sm:text-sm focus:ring-offset-base-950 dark:focus:ring-offset-base-950"
           />
         </div>
         <div className="flex flex-col gap-1">
-          <label htmlFor="rows" className="text-sm text-base-300">
+          <label htmlFor="rows" className="text-sm text-base-500 dark:text-base-300">
             Rows
           </label>
           <input
@@ -160,11 +160,11 @@ export default function GridGenerator() {
             max={12}
             value={rows}
             onChange={(e) => setRows(Number(e.target.value))}
-            className="block w-full h-12 px-4 py-2 text-sm text-black dark:text-white duration-300 bg-white dark:bg-black/50 backdrop-blur-2xl border border-transparent rounded-xl appearance-none outline outline-base-100 dark:outline-base-900 placeholder-base-400 focus:border-base-100 dark:focus:border-base-900 focus:bg-transparent focus:outline-none focus:outline-accent-500 focus:outline-offset-2 focus:outline-2 sm:text-sm focus:ring-offset-base-950 dark:focus:ring-offset-base-950"
+            className="block w-full h-12 px-4 py-2 text-sm text-black bg-white border border-transparent appearance-none dark:text-white duration-300 dark:bg-white/5 backdrop-blur-2xl rounded-xl outline outline-base-100 dark:outline-white/5 placeholder-base-400 focus:border-base-100 dark:focus:border-base-900 focus:bg-transparent focus:outline-none focus:outline-accent-500 focus:outline-offset-2 focus:outline-2 sm:text-sm focus:ring-offset-base-950 dark:focus:ring-offset-base-950"
           />
         </div>
         <div className="flex flex-col gap-1">
-          <label htmlFor="gap" className="text-sm text-base-300">
+          <label htmlFor="gap" className="text-sm text-base-500 dark:text-base-300">
             Gap
           </label>
           <input
@@ -174,12 +174,12 @@ export default function GridGenerator() {
             max={16}
             value={gap}
             onChange={(e) => setGap(Number(e.target.value))}
-            className="block w-full h-12 px-4 py-2 text-sm text-black dark:text-white duration-300 bg-white dark:bg-black/50 backdrop-blur-2xl border border-transparent rounded-xl appearance-none outline outline-base-100 dark:outline-base-900 placeholder-base-400 focus:border-base-100 dark:focus:border-base-900 focus:bg-transparent focus:outline-none focus:outline-accent-500 focus:outline-offset-2 focus:outline-2 sm:text-sm focus:ring-offset-base-950 dark:focus:ring-offset-base-950"
+            className="block w-full h-12 px-4 py-2 text-sm text-black bg-white border border-transparent appearance-none dark:text-white duration-300 dark:bg-white/5 backdrop-blur-2xl rounded-xl outline outline-base-100 dark:outline-white/5 placeholder-base-400 focus:border-base-100 dark:focus:border-base-900 focus:bg-transparent focus:outline-none focus:outline-accent-500 focus:outline-offset-2 focus:outline-2 sm:text-sm focus:ring-offset-base-950 dark:focus:ring-offset-base-950"
           />
         </div>
       </div>
       <div
-        className="relative  w-full my-4"
+        className="relative w-full my-4 "
       >
         <div
           ref={gridRef}
@@ -198,7 +198,7 @@ export default function GridGenerator() {
             return (
               <div
                 key={index}
-                className="flex items-center justify-center outline rounded-xl outline-base-100 dark:outline-base-900 shadow dark:shadow-2xl dark:shadow-black bg-white dark:bg-black p-8   cursor-pointer  relative text-2xl"
+                className="relative flex items-center justify-center p-8 text-2xl cursor-pointer bg-base-50  outline rounded-xl outline-base-100 dark:outline-white/5 dark:bg-white/5"
                 onClick={() => handleAddItem(x, y)}
               >
                 +
@@ -228,25 +228,25 @@ export default function GridGenerator() {
               onResizeStop(item.id, delta)
             }
             onDragStop={(e, data) => onDragStop(item.id, data)}
-            className="flex items-center justify-center outline rounded-xl outline-base-100 dark:outline-base-900 shadow dark:shadow-2xl dark:shadow-black bg-white dark:bg-base-900 p-4 bg-stripes-light dark:bg-stripes-dark    cursor-pointer  relative "
+            className="relative flex items-center justify-center p-4 cursor-pointer bg-base-100  outline rounded-xl outline-base-100 dark:outline-white/5 dark:bg-base-700"
           >
             <button
               onClick={() => handleRemoveItem(item.id)}
               onTouchEnd={() => handleRemoveItem(item.id)}
-              className="absolute top-4 right-4  text-base-500 hover:text-black dark:text-hover:white z-10"
+              className="absolute z-10 top-4 right-4  text-base-500 hover:text-black dark:text-hover:white"
               aria-label={`Remove item ${item.id}`}
             >
               <X className="size-4" />
             </button>
             <span className="text-black dark:text-white">{item.id.replace("item-", "")}</span>
-            <div className="absolute bottom-4 right-4  rounded-bl flex items-center justify-center">
-              <ArrowDownRight className="size-4 text-black dark:text-white" />
+            <div className="absolute flex items-center justify-center rounded-bl bottom-4 right-4 ">
+              <ArrowDownRight className="text-black size-4 dark:text-white" />
             </div>
           </Rnd>
         ))}
       </div>
-      <div className="flex flex-col md:flex-row md:items-center justify-between w-full pt-4">
-        <h3 className="text-black dark:text-white font-mono uppercase ">Get your code</h3>
+      <div className="flex flex-col justify-between w-full pt-4 md:flex-row md:items-center">
+        <h3 className="font-mono text-black uppercase dark:text-white ">Get your code</h3>
         <div className="flex items-center gap-2 ">
           <button
             className={`
@@ -280,8 +280,8 @@ export default function GridGenerator() {
           </button>
         </div>
       </div>
-      <div className=" bg-white dark:bg-base-900 p-4 mt-2   outline rounded-xl outline-base-100 dark:outline-base-900 shadow dark:shadow-2xl dark:shadow-black">
-        <pre className="text-base-500 dark:text-base-300 text-xs   overflow-x-auto">
+      <div className="p-4 mt-2 bg-white  dark:bg-base-900 outline rounded-xl outline-base-100 dark:outline-white/5">
+        <pre className="overflow-x-auto text-xs text-base-500 dark:text-base-400 ">
           <code>{generateCode}</code>
         </pre>
       </div>

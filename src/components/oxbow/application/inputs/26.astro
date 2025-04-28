@@ -4,14 +4,14 @@ import Text from "@/components/fundations/typography/Text.astro";
 ---
 
 <div
-  class="flex flex-wrap max-w-md items-end justify-center gap-4 py-12 mx-auto"
+  class="flex flex-wrap items-end justify-center max-w-md py-12 mx-auto gap-4"
 >
-  <div class="space-y-1 w-full" x-data="{ copied: false }">
+  <div class="w-full space-y-1" x-data="{ copied: false }">
     <Text
       for="copy-input"
       tag="label"
       variant="textSM"
-      class="text-base-500 font-medium"
+      class="font-medium text-base-500"
     >
       Copy to Clipboard
     </Text>
@@ -21,16 +21,16 @@ import Text from "@/components/fundations/typography/Text.astro";
         id="copy-input"
         name="copy-input"
         value="Text to copy"
-        class="block w-full h-10 pl-4 pr-10 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+        class="block w-full h-10 py-2 pl-4 pr-10 text-sm bg-white border border-transparent rounded-lg appearance-none text-accent-700 duration-300 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
         readonly
       />
       <button
         @click="navigator.clipboard.writeText('Copy this text'); copied = true; setTimeout(() => copied = false, 2000)"
-        class="absolute inset-y-0 right-0 px-3 flex items-center"
+        class="absolute inset-y-0 right-0 flex items-center px-3"
       >
         <svg
           x-show="!copied"
-          class="h-5 w-5 text-base-400"
+          class="w-5 h-5 text-base-400"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -44,7 +44,7 @@ import Text from "@/components/fundations/typography/Text.astro";
         >
         <svg
           x-show="copied"
-          class="h-5 w-5 text-green-500"
+          class="w-5 h-5 text-green-500"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

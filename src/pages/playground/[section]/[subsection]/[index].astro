@@ -25,12 +25,12 @@ const componentDescription = component?.description || "";
 
 <BaseLayout>
   <section class="">
-    <Wrapper variant="standard" class="border-t">
-      <div class="items-end flex justify-between w-full">
+    <Wrapper variant="standard" class="py-2">
+      <div class="flex items-end justify-between w-full">
         <div class="flex flex-col md:flex-row md:items-center gap-2">
           <div class="flex items-center gap-2">
             <button
-              class="flex items-center gap-2 text-sm text-base-500 hover:text-black dark:hover:text-white"
+              class="flex items-center text-sm gap-2 text-base-500 hover:text-base-900 dark:hover:text-white"
               onclick="history.back();"
             >
               <svg
@@ -52,12 +52,12 @@ const componentDescription = component?.description || "";
             <Text
               tag="h1"
               variant="textSM"
-              class="capitalize font-medium text-black dark:text-white"
+              class="font-medium capitalize text-base-900 dark:text-white"
             >
               {`${subsection.replace(/-/g, " ")} #${index.replace(/-/g, " ")}`}
             </Text>
           </div>
-          <span aria-hidden="true" class="text-base-500 hidden md:block">/</span
+          <span aria-hidden="true" class="hidden text-base-500 md:block">/</span
           >
           {
             componentDescription && (
@@ -67,7 +67,7 @@ const componentDescription = component?.description || "";
             )
           }
         </div>
-        <!--   <div class=" sr-only">
+        <!--   <div class="sr-only ">
           <nav
             class="relative z-0 inline-flex gap-1.5 sr-only"
             aria-label="Pagination"
@@ -97,10 +97,8 @@ const componentDescription = component?.description || "";
       </div>
     </Wrapper>
   </section>
-  <section
-    class="overflow-hidden border-y border-base-100 dark:border-base-900"
-  >
-    <Wrapper variant="wide">
+  <section class="overflow-hidden">
+    <Wrapper variant="wide" class="py-8">
       <Playground
         componentIndex={parseInt(index)}
         componentPath={component.file.replace(/.*\/src/, "src")}

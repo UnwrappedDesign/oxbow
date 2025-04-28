@@ -5,7 +5,7 @@ import Text from "@/components/fundations/typography/Text.astro";
 ---
 
 <div
-  class="flex flex-wrap max-w-md items-end justify-center gap-4 py-12 mx-auto"
+  class="flex flex-wrap items-end justify-center max-w-md py-12 mx-auto gap-4"
 >
   <div
     class="space-y-1"
@@ -27,7 +27,7 @@ import Text from "@/components/fundations/typography/Text.astro";
       for="input-outer-tags"
       tag="label"
       variant="textSM"
-      class="text-base-500 font-medium"
+      class="font-medium text-base-500"
     >
       Tags
     </Text>
@@ -39,7 +39,7 @@ import Text from "@/components/fundations/typography/Text.astro";
         placeholder="Add a tag"
         x-model="newTag"
         @keydown.enter.prevent="addTag()"
-        class="flex-1 h-10 px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+        class="flex-1 h-10 px-4 py-2 text-sm bg-white border border-transparent rounded-lg appearance-none text-accent-700 duration-300 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
       />
       <template x-for="(tag, index) in tags" :key="index" class="flex flex-col">
         <Badge variant="muted" size="xs" class="flex items-center gap-1">
@@ -68,6 +68,6 @@ import Text from "@/components/fundations/typography/Text.astro";
         
       </template>
     </div>
-    <p class="text-sm text-base-400 mt-1">Press Enter to add a tag</p>
+    <p class="mt-1 text-sm text-base-400">Press Enter to add a tag</p>
   </div>
 </div>

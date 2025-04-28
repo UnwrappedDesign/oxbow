@@ -2,16 +2,16 @@
 export const description = "Checkbox with Toggle Al";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
-<div class="flex max-w-md mx-auto items-center p-12">
+<div class="flex items-center max-w-md p-12 mx-auto">
   <div
-    class="flex gap-2 flex-col w-full" x-data="{ options: ['Option 1', 'Option 2', 'Option 3'], selected: [], selectAll: false }" x-init="$watch('selectAll', value => selected = value ? [...options] : [])">
+    class="flex flex-col w-full gap-2" x-data="{ options: ['Option 1', 'Option 2', 'Option 3'], selected: [], selectAll: false }" x-init="$watch('selectAll', value => selected = value ? [...options] : [])">
   <div class="flex items-center gap-3">
     <input
       id="toggle-all-checkbox"
       name="toggle-all-checkbox"
       type="checkbox"
       x-model="selectAll"
-      class="size-4 rounded border-base-300 text-accent-600 focus:ring-accent-600 shadow"
+      class="rounded shadow size-4 border-base-300 text-accent-600 focus:ring-accent-600"
     />
     <Text for="toggle-all-checkbox" tag="label" class="block text-sm text-base-500">Select All</Text>
   </div>
@@ -22,7 +22,7 @@ import Text from "@/components/fundations/typography/Text.astro";
         :id="option"
         :value="option"
         x-model="selected"
-        class="size-4 rounded border-base-300 text-accent-600 focus:ring-accent-600 shadow"
+        class="rounded shadow size-4 border-base-300 text-accent-600 focus:ring-accent-600"
       />
       <Text :for="option" tag="label" class="block text-sm text-base-500" x-text="option"></Text>
     </div>

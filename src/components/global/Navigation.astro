@@ -21,9 +21,9 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
   class="items-center w-full mx-auto duration-300"
   x-data={`{...navigation(), username: "${user?.email ?? ""}"}`}
 >
-  <Wrapper variant="standard" class="border-t w-full">
+  <Wrapper variant="standard" class="w-full">
     <div
-      class="flex flex-col w-full py-4 lg:bg-none md:flex-row md:items-center md:justify-between"
+      class="flex flex-col w-full py-2 lg:bg-none md:flex-row md:items-center md:justify-between"
       x-data="{ open: false }"
     >
       <div class="flex flex-row items-center justify-between lg:justify-start">
@@ -33,7 +33,7 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
           ><Logo class="h-7" /> oxbow ui</a
         >
         <button
-          class="cursor-pointer sm:hidden text-black dark:text-white"
+          class="text-black cursor-pointer sm:hidden dark:text-white"
           onclick="document.querySelector('ninja-keys').open()"
         >
           <svg
@@ -53,7 +53,7 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
         <button
           aria-label="open"
           @click="open = !open"
-          class="inline-flex items-center justify-center p-2 focus:outline-none focus:text-accent-400 text-black dark:text-white md:hidden"
+          class="inline-flex items-center justify-center p-2 text-black focus:outline-none focus:text-accent-400 dark:text-white md:hidden"
           ><svg
             viewBox="0 0 24 24"
             class="size-6"
@@ -79,7 +79,7 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
       </div>
       <nav
         :class="{'flex': open, 'hidden': !open}"
-        class="flex-col items-center justify-end flex-grow hidden text-sm text-base-500 dark:text-base-300 md:flex md:flex-row md:pb-0 gap-x-4 gap-y-4"
+        class="flex-col items-center justify-end flex-grow hidden text-sm text-base-500 dark:text-base-400 md:flex md:flex-row md:pb-0 gap-x-4 gap-y-4"
       >
         <button
           class="hidden cursor-pointer lg:inline-flex"
@@ -131,23 +131,22 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
           <OxbowLink
             href="/pricing"
             gap="xs"
-            size="xs"
+            size="sm"
             variant="accent"
             x-cloak
             id="access-navigation-cta"
             data-umami-event="access-navigation-cta"
+            x-show="!username && window.location.pathname !== '/pricing'"
           >
             Get access
-            <span>
-              $69
-            </span>
+            <span> $69 </span>
           </OxbowLink>
         </div>
         <div x-popover x-cloak x-show="!!username" class="relative">
           <button
             x-popover:button
             type="button"
-            class="flex items-center gap-2 text-sm"
+            class="flex items-center text-sm gap-2"
           >
             Account
             <svg
@@ -166,7 +165,7 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
           <div
             x-popover:panel
             x-transition.origin.top.left
-            class="absolute right-0 top-full z-50 -mr-0.5 mt-3 w-48 origin-top-right divide-y divide-base-100 dark:divide-base-900 outline rounded-xl outline-base-100 dark:outline-base-900 shadow dark:shadow-2xl dark:shadow-black bg-white dark:bg-black font-normal text-base-500 dark:text-base-300 focus:outline-none sm:-mr-3.5 transform opacity-100 scale-100"
+            class="absolute right-0 top-full z-50 -mr-0.5 mt-3 w-48 origin-top-right divide-y divide-base-100 dark:divide-base-900 outline rounded-xl outline-base-100 dark:outline-base-900 shadow dark:shadow-2xl dark:shadow-black bg-white dark:bg-black font-normal text-base-500 dark:text-base-400 focus:outline-none sm:-mr-3.5 transform opacity-100 scale-100"
           >
             <div class="truncate px-3.5 py-3" role="none">
               <Text

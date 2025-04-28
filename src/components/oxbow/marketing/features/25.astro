@@ -27,9 +27,9 @@ const data = [
 ---
 
 <section>
-  <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
+  <div class="relative px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl">
     <div
-      class="list-none grid grid-cols-1 bg-base-50 items-center lg:grid-cols-2 gap-4 lg:gap-24 rounded-3xl p-8 lg:p-10 relative overflow-clip"
+      class="relative items-center p-8 list-none grid grid-cols-1 bg-base-50 lg:grid-cols-2 gap-4 lg:gap-24 rounded-3xl lg:p-10 overflow-clip"
     >
       <div class="pt-8 text-center lg:text-left">
         <Text
@@ -46,11 +46,11 @@ const data = [
         >
           Transforming the banking experience for a digital future
         </Text>
-        <Text tag="p" variant="textBase" class="mt-4 text-base-500 font-medium">
+        <Text tag="p" variant="textBase" class="mt-4 font-medium text-base-500">
           The fastest method for working together on staging and temporary
           environments.
         </Text>
-        <div class="flex flex-wrap items-center gap-2 mx-auto mt-8">
+        <div class="flex flex-wrap items-center mx-auto mt-8 gap-2">
           <Button variant="accent" size="sm"> Get started </Button>
           <Button variant="alternative" size="sm"> Learn more </Button>
         </div>
@@ -58,7 +58,7 @@ const data = [
       <div class="items-center h-full mt-12 lg:mt-0">
         <img
           alt="#"
-          class="absolute w-full rounded-2xl border shadow border-base-200"
+          class="absolute w-full border shadow rounded-2xl border-base-200"
           src="/images/dashboardLight.svg"
         />
       </div>
@@ -72,25 +72,25 @@ const data = [
                 <Text
                   variant="textLG"
                   tag="h3"
-                  class="text-base-900 font-medium"
+                  class="font-medium text-base-900"
                 >
                   {section.category}
                 </Text>
                 <Text
                   tag="p"
                   variant="textBase"
-                  class="mt-4 text-base-500 font-medium"
+                  class="mt-4 font-medium text-base-500"
                 >
                   {section.text}
                 </Text>
               </div>
               <ul
                 role="list"
-                class="space-y-1 mt-6 text-base font-medium text-base-900 list-none"
+                class="mt-6 text-base font-medium list-none space-y-1 text-base-900"
               >
                 {section.items.map((item) => (
                   <li>
-                    <div class=" flex  items-center gap-4 ">
+                    <div class="flex items-center  gap-4">
                       <CircleCheck
                         class="text-accent-600"
                         size="base"
@@ -110,7 +110,7 @@ const data = [
       <div class="block w-full lg:row-span-2">
         <div
           x-data="{ activeSlide: 0, slides: ['/widgets/activity.svg', '/widgets/hits.svg', '/widgets/traffic.svg'] }"
-          class="h-full relative"
+          class="relative h-full"
           role="region"
           aria-label="Image Slider"
         >
@@ -124,21 +124,21 @@ const data = [
               x-transition:leave="transition ease-in duration-500"
               x-transition:leave-start="opacity-100 transform scale-100"
               x-transition:leave-end="opacity-0 transform scale-95"
-              class="size-full absolute inset-0"
+              class="absolute inset-0 size-full"
               :aria-hidden="activeSlide !== index"
             >
               <!-- Slide image -->
               <img
                 :src="slide"
                 alt="#"
-                class="size-full object-contain shadow rounded-2xl"
+                class="object-contain shadow size-full rounded-2xl"
               />
             </div>
           </template>
           <!-- Previous slide button -->
           <button
             @click="activeSlide = activeSlide === 0 ? slides.length - 1 : activeSlide - 1"
-            class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white border text-base-900 rounded-full size-10 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-500"
+            class="absolute flex items-center justify-center bg-white border rounded-full left-4 top-1/2 transform -translate-y-1/2 text-base-900 size-10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-500"
             aria-label="Previous Slide"
           >
             &larr;
@@ -146,20 +146,20 @@ const data = [
           <!-- Next slide button -->
           <button
             @click="activeSlide = activeSlide === slides.length - 1 ? 0 : activeSlide + 1"
-            class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white border text-base-900 rounded-full size-10 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-500"
+            class="absolute flex items-center justify-center bg-white border rounded-full right-4 top-1/2 transform -translate-y-1/2 text-base-900 size-10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-500"
             aria-label="Next Slide"
           >
             &rarr;
           </button>
           <!-- Pagination indicators -->
           <div
-            class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2"
+            class="absolute flex bottom-4 left-1/2 transform -translate-x-1/2 space-x-2"
           >
             <template x-for="(slide, index) in slides" :key="index">
               <button
                 @click="activeSlide = index"
                 :class="{'bg-base-800': activeSlide === index, 'bg-base-400': activeSlide !== index}"
-                class="h-3 w-3 rounded-full focus:outline-none"
+                class="w-3 h-3 rounded-full focus:outline-none"
                 :aria-label="'Slide ' + (index + 1)"
                 :aria-current="activeSlide === index ? 'true' : 'false'"
               ></button>

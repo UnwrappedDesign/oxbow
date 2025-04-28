@@ -4,17 +4,17 @@ import Text from "@/components/fundations/typography/Text.astro";
 ---
 
 <div
-  class="flex flex-wrap relative max-w-md items-end justify-center gap-4 pb-32 pt-12 mx-auto"
+  class="relative flex flex-wrap items-end justify-center max-w-md pt-12 pb-32 mx-auto gap-4"
 >
   <div
-    class="space-y-1 w-full"
+    class="w-full space-y-1"
     x-data="{ query: '', suggestions: ['Mike_Andreuzza', 'GPerales'], open: false }"
   >
     <Text
       for="input-mention"
       tag="label"
       variant="textSM"
-      class="text-base-500 font-medium"
+      class="font-medium text-base-500"
     >
       Username
     </Text>
@@ -31,7 +31,7 @@ import Text from "@/components/fundations/typography/Text.astro";
         x-model="query"
         @focus="open = true"
         @click.away="open = false"
-        class="block w-full h-10 pl-8 pr-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+        class="block w-full h-10 py-2 pl-8 pr-4 text-sm bg-white border border-transparent rounded-lg appearance-none text-accent-700 duration-300 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
       />
       <!-- Dropdown -->
       <div
@@ -47,7 +47,7 @@ import Text from "@/components/fundations/typography/Text.astro";
             <li
               x-text="suggestion"
               @click="query = suggestion; open = false"
-              class="px-4 py-2 text-sm text-accent-700 hover:bg-accent-50 cursor-pointer"
+              class="px-4 py-2 text-sm cursor-pointer text-accent-700 hover:bg-accent-50"
             >
             </li>
           </template>

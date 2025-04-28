@@ -40,7 +40,7 @@ const articles = [
 ---
 
 <section>
-  <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
+  <div class="relative px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl">
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
       <div class="max-w-xl lg:text-balance">
         <Text
@@ -57,11 +57,11 @@ const articles = [
         >
           Insights and perspectives
         </Text>
-        <Text tag="p" variant="textBase" class="mt-4 text-base-500 font-medium">
+        <Text tag="p" variant="textBase" class="mt-4 font-medium text-base-500">
           Exploring topics, tips, and trends in the world of communication and
           privacy
         </Text>
-        <form class="w-full mt-8 flex flex-col sm:max-w-md gap-2">
+        <form class="flex flex-col w-full mt-8 sm:max-w-md gap-2">
           <label for="email-address" class="sr-only">Email address</label>
           <input
             id="email-address"
@@ -71,7 +71,7 @@ const articles = [
             placeholder="Enter your email"
             aria-placeholder="Enter your email"
             required=""
-            class="block w-full h-10 px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+            class="block w-full h-10 px-4 py-2 text-sm bg-white border border-transparent rounded-lg appearance-none text-accent-700 duration-300 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
           />
           <Button
             class="w-full sm:w-auto"
@@ -82,13 +82,13 @@ const articles = [
             Subscribe
           </Button>
         </form>
-        <Text tag="p" variant="textSM" class="mt-4 text-base-500 font-medium">
+        <Text tag="p" variant="textSM" class="mt-4 font-medium text-base-500">
           When you sign up, you accept our
           <Text
             tag="a"
             href="#_"
             variant="textSM"
-            class="text-accent-500 font-medium gap-2 hover:text-base-900"
+            class="font-medium text-accent-500 gap-2 hover:text-base-900"
           >
             Terms of service
           </Text>
@@ -97,21 +97,21 @@ const articles = [
             tag="a"
             href="#_"
             variant="textSM"
-            class="text-accent-500 font-medium gap-2 hover:text-base-900"
+            class="font-medium text-accent-500 gap-2 hover:text-base-900"
           >
             Privacy Policy
           </Text>
         </Text>
       </div>
-      <div class="flex flex-col gap-12 lg:col-span-2 relative">
+      <div class="relative flex flex-col gap-12 lg:col-span-2">
         {
           articles.map((article) => (
-            <article class="relative isolate flex flex-col gap-8 lg:flex-row group">
+            <article class="relative flex flex-col isolate gap-8 lg:flex-row group">
               <div class="relative aspect-[16/9] sm:aspect-[2/1] lg:aspect-square lg:w-64 lg:shrink-0">
                 <img
                   src={article.image}
                   alt="#_"
-                  class="absolute inset-0 size-full  rounded-2xl bg-base-50 object-cover"
+                  class="absolute inset-0 object-cover size-full  rounded-2xl bg-base-50"
                 />
               </div>
               <div class="flex flex-col justify-between">
@@ -120,7 +120,7 @@ const articles = [
                     <Text
                       tag="h3"
                       variant="textLG"
-                      class="text-base-900 font-medium group-hover:text-accent-600 duration-200"
+                      class="font-medium text-base-900 group-hover:text-accent-600 duration-200"
                     >
                       <span class="absolute inset-0" />
                       {article.title}
@@ -129,22 +129,22 @@ const articles = [
                   <Text
                     tag="p"
                     variant="textBase"
-                    class="mt-4 text-base-500 font-medium line-clamp-3"
+                    class="mt-4 font-medium text-base-500 line-clamp-3"
                   >
                     {article.description}
                   </Text>
                 </div>
-                <div class="relative flex items-center gap-x-4 mt-4">
+                <div class="relative flex items-center mt-4 gap-x-4">
                   <img
                     src={article.authorImage}
                     alt="#_"
-                    class="size-12 rounded-full bg-base-50 object-cover"
+                    class="object-cover rounded-full size-12 bg-base-50"
                   />
                   <div>
                     <Text
                       tag="h3"
                       variant="textBase"
-                      class=" text-base-900 font-medium"
+                      class="font-medium  text-base-900"
                     >
                       {article.author}
                     </Text>
