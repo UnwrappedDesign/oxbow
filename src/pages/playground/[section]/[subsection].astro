@@ -67,10 +67,10 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
 
 <BaseLayout>
   <section>
-    <Wrapper variant="standard" class="border-t">
+    <Wrapper variant="standard" class="py-4">
       <div class="flex items-center gap-2">
         <button
-          class="flex items-center gap-2 text-sm text-base-500 dark:text-base-300 hover:text-black dark:hover:text-white cursor-pointer"
+          class="flex items-center text-sm cursor-pointer gap-2 text-base-500 dark:text-base-400 hover:text-base-900 dark:hover:text-white"
           onclick="history.back();"
         >
           <svg
@@ -94,90 +94,83 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
         <Text
           tag="h1"
           variant="textSM"
-          class="capitalize font-medium tracking-tight text-white"
+          class="font-medium tracking-tight text-white capitalize"
         >
           {subsection.replace(/-/g, " ")}
         </Text>
       </div>
-    </Wrapper>
-  </section>
-  <section>
-    <Wrapper variant="standard" class="border-t">
+
       <div
-        class="outline rounded-xl outline-base-100 dark:outline-base-900 shadow dark:shadow-2xl dark:shadow-black bg-white dark:bg-black p-8 lg:p-12"
+        class={`relative w-full grid grid-cols-1  mt-8 pt-8 border-t border-base-200 dark:border-white/5 md:grid-cols-2 gap-y-12 gap-x-4  lg:gap-y-20 ${gridColumnsClass} items-start`}
       >
-        <div
-          class={`relative w-full grid grid-cols-1  md:grid-cols-2 gap-y-12 gap-x-4  lg:gap-y-20 ${gridColumnsClass} items-start`}
-        >
-          {
-            sectionComponents.map((component, index) => {
-              const filePath = component.file.split("/").slice(-3).join("/");
+        {
+          sectionComponents.map((component, index) => {
+            const filePath = component.file.split("/").slice(-3).join("/");
 
-              const imagePath = `/src/screenshots/${component.file
-                .split("/")
-                .slice(-3)
-                .join("_")
-                .replace(".astro", ".png")}`;
+            const imagePath = `/src/screenshots/${component.file
+              .split("/")
+              .slice(-3)
+              .join("_")
+              .replace(".astro", ".png")}`;
 
-              if (!images[imagePath]) {
-                return null;
-              }
+            if (!images[imagePath]) {
+              return null;
+            }
 
-              const updatedAt = new Date(updates[filePath] * 1000);
+            const updatedAt = new Date(updates[filePath] * 1000);
 
-              const isUpdatedLastWeek = updatedAt > SEVEN_DAYS_AGO;
+            const isUpdatedLastWeek = updatedAt > SEVEN_DAYS_AGO;
 
-              return (
-                <a
-                  href={`/playground/${filePath.replace(".astro", "")}`}
-                  class="relative group flex flex-col"
-                >
-                  <div class="flex flex-col">
-                    <div class="flex flex-col gap-2">
-                      <div class="flex items-center gap-2">
-                        <Text
-                          tag="p"
-                          variant="textSM"
-                          class="  text-base-500 dark:text-base-300 group-hover:text-black dark:group-hover:text-white capitalize  flex items-center gap-2"
-                        >
-                          <span>{(index + 1).toString().padStart(2, "0")}</span>
-                          <span> {subsection.replace(/-/g, " ")}</span>
-                          {!user && index === 0 && (
-                            <span class="text-blackdark:text-white">
-                              Open Demo
-                            </span>
-                          )}
-                        </Text>
-                      </div>
-                    </div>
-                    {isUpdatedLastWeek && (
+            return (
+              <a
+                href={`/playground/${filePath.replace(".astro", "")}`}
+                class="relative flex flex-col group"
+              >
+                <div class="flex flex-col">
+                  <div class="flex flex-col gap-2">
+                    <div class="flex items-center gap-2">
                       <Text
                         tag="p"
-                        variant="textXS"
-                        class="relative flex items-center gap-1 text-base-400"
+                        variant="textSM"
+                        class="flex items-center capitalize  text-base-500 dark:text-base-400 group-hover:text-base-900 dark:group-hover:text-white gap-2"
                       >
-                        Updated{" "}
-                        {formatDistanceToNowStrict(updatedAt, {
-                          unit: "day",
-                          roundingMethod: "ceil",
-                        })}{" "}
-                        ago
+                        <span>{(index + 1).toString().padStart(2, "0")}</span>
+                        <span> {subsection.replace(/-/g, " ")}</span>
+                        {!user && index === 0 && (
+                          <span class="text-base-900dark:text-white">
+                            Open Demo
+                          </span>
+                        )}
                       </Text>
-                    )}
+                    </div>
                   </div>
+                  {isUpdatedLastWeek && (
+                    <Text
+                      tag="p"
+                      variant="textXS"
+                      class="relative flex items-center gap-1 text-base-400"
+                    >
+                      Updated{" "}
+                      {formatDistanceToNowStrict(updatedAt, {
+                        unit: "day",
+                        roundingMethod: "ceil",
+                      })}{" "}
+                      ago
+                    </Text>
+                  )}
+                </div>
 
-                  <Image
-                    width={1000}
-                    height={1000}
-                    src={images[imagePath]() || "/placeholder.svg"}
-                    alt={`${subsection} preview ${index + 1}`}
-                    class="w-full object-cover  outline  outline-base-100 dark:outline-base-900 rounded-lg  mt-2  transition-all duration-300 ease-in-out cursor-pointer"
-                  />
-                </a>
-              );
-            })
-          }
-        </div>
+                <Image
+                  width={1000}
+                  height={1000}
+                  src={images[imagePath]() || "/placeholder.svg"}
+                  alt={`${subsection} preview ${index + 1}`}
+                  class="object-cover w-full mt-2 rounded-lg cursor-pointer  outline outline-base-100 dark:outline-base-900 transition-all duration-300 ease-in-out"
+                />
+              </a>
+            );
+          })
+        }
       </div>
     </Wrapper>
   </section>

@@ -55,39 +55,33 @@ const navLinks = [
 ---
 
 <footer>
-  <Wrapper variant="standard" class="border-t">
-    <div class="mx-auto max-w-2xl lg:max-w-none">
-      <div
-        class="overflow-hidden outline rounded-xl outline-base-100 dark:outline-base-900 shadow dark:shadow-2xl dark:shadow-black p-8 bg-white dark:bg-black"
-      >
-        <a aria-label="hom" href="/">
-          <Logo class="h-12 lg:h-40 text-accent-600 dark:text-white mx-auto" />
-        </a>
-        <div class="flex flex-wrap justify-center text-center gap-2">
-          {
-            navLinks.map((section, index) => (
-              <ul
-                role="list"
-                class="mt-4 text-sm text-base-400 dark:text-base-300 flex flex-wrap gap-4 "
-              >
-                {section.links.map((link) => (
-                  <li>
-                    <a
-                      class="transition hover:text-black dark:hover:text-white duration-300"
-                      href={link.href}
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            ))
-          }
-        </div>
-        <p class="text-sm text-base-500 text-center mt-8">
-          © <span x-text="year"></span> Oxbow UI
-        </p>
-      </div>
+  <Wrapper variant="standard" class="py-24">
+    <a aria-label="hom" href="/">
+      <Logo class="h-12 text-accent-600 dark:text-white" />
+    </a>
+    <div class="flex flex-wrap mt-2 gap-2">
+      {
+        navLinks.map((section) => (
+          <ul
+            role="list"
+            class="flex flex-wrap text-sm text-base-500 dark:text-base-400 gap-4 "
+          >
+            {section.links.map((link) => (
+              <li>
+                <a
+                  class="transition hover:text-black dark:hover:text-white duration-300"
+                  href={link.href}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        ))
+      }
     </div>
+    <p class="mt-8 text-xs text-base-400">
+      © <span>2025</span> Oxbow UI
+    </p>
   </Wrapper>
 </footer>

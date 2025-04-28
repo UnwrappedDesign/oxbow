@@ -1,7 +1,6 @@
 ---
+import { Image } from "astro:assets";
 import { reviews } from "@/data/reviews.json";
-// Assets
-import AnimatedGradient from "@/components/assets/AnimatedGradient.astro";
 // Fundations
 import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
@@ -10,21 +9,27 @@ const randomizedReviews = [...reviews].sort(() => Math.random() - 0.5);
 ---
 
 <section>
-  <Wrapper variant="standard" class="border-t">
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+  <Wrapper variant="standard" class="py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
       {
-        randomizedReviews.slice(0, 3).map((template) => (
-          <div class="relative overflow-hidden textcenter rounded-xl outline-base-100 shadow dark:outline-base-900 dark:shadow-2xl dark:shadow-black  dark:bg-base-950 p-8 bg-stripes-light dark:bg-stripes-dark ">
-            <AnimatedGradient class="absolute inset-0 z-0 grayscale opacity-0 dark:opacity-100" />
-            <div class="relative ">
-              <Text
-                tag="h3"
-                variant="textBase"
-                class="text-black dark:text-white  font-normal tracking-tigt font-mono uppercase text-balance italic"
-              >
-                "{template.text}"
-              </Text>
-              <div class="mt-2  font-medium text-black dark:text-white text-right">
+        randomizedReviews.slice(0, 2).map((template) => (
+          <div class="relative flex flex-col justify-between h-full">
+            <Text
+              tag="h3"
+              variant="textSM"
+              class="font-medium  text-base-500 dark:text-white text-balance"
+            >
+              "{template.text}"
+            </Text>
+            <div class="flex items-center pt-4 mt-4 border-t gap-2 border-base-200 dark:border-white/2">
+              <Image
+                src={template.image}
+                alt={template.name}
+                width={1000}
+                height={1000}
+                class="object-cover object-top rounded-full size-10"
+              />
+              <div class=" text-base-500 dark:text-base-400">
                 <Text tag="p" variant="textSM">
                   {template.name}
                 </Text>

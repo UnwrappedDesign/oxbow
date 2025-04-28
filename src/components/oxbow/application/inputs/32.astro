@@ -4,14 +4,14 @@ import Text from "@/components/fundations/typography/Text.astro";
 ---
 
 <div
-  class="flex flex-wrap max-w-md items-end justify-center gap-4 py-12 mx-auto"
+  class="flex flex-wrap items-end justify-center max-w-md py-12 mx-auto gap-4"
 >
-  <div class="space-y-1 w-full" x-data="{ otp: ['', ''] }">
+  <div class="w-full space-y-1" x-data="{ otp: ['', ''] }">
     <Text
       for="otp-double"
       tag="label"
       variant="textSM"
-      class="text-base-500 font-medium"
+      class="font-medium text-base-500"
     >
       OTP
     </Text>
@@ -24,7 +24,7 @@ import Text from "@/components/fundations/typography/Text.astro";
             :name="'otp-double-' + index"
             x-model="otp[index]"
             maxlength="1"
-            class="w-12 h-12 text-center text-2xl text-accent-700 border border-transparent rounded-lg appearance-none ring-1 ring-base-200 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2"
+            class="w-12 h-12 text-2xl text-center border border-transparent rounded-lg appearance-none text-accent-700 ring-1 ring-base-200 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2"
             @input="$event.target.nextElementSibling?.focus()"
           />
 
@@ -35,19 +35,19 @@ import Text from "@/components/fundations/typography/Text.astro";
           >
             <ul>
               <li
-                class="px-3 py-2 text-sm text-accent-700 hover:bg-base-100 cursor-pointer"
+                class="px-3 py-2 text-sm cursor-pointer text-accent-700 hover:bg-base-100"
                 @click="otp[index] = '1'"
               >
                 1
               </li>
               <li
-                class="px-3 py-2 text-sm text-accent-700 hover:bg-base-100 cursor-pointer"
+                class="px-3 py-2 text-sm cursor-pointer text-accent-700 hover:bg-base-100"
                 @click="otp[index] = '2'"
               >
                 2
               </li>
               <li
-                class="px-3 py-2 text-sm text-accent-700 hover:bg-base-100 cursor-pointer"
+                class="px-3 py-2 text-sm cursor-pointer text-accent-700 hover:bg-base-100"
                 @click="otp[index] = '3'"
               >
                 3

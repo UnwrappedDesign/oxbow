@@ -6,7 +6,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
 ---
 
 <section>
-  <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
+  <div class="relative px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl">
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
       <div class="flex flex-col order-last lg:order-none">
         <div class="flex items-center justify-between">
@@ -15,18 +15,18 @@ import Button from "@/components/fundations/buttons/Button.astro";
           >
           <Text tag="p" variant="textLG">$190</Text>
         </div>
-        <Text tag="p" variant="textBase" class="text-base-500 mt-4">
+        <Text tag="p" variant="textBase" class="mt-4 text-base-500">
           Hitting the field in the late '60s, adidas airmaxS quickly became
           soccer's "it" shoe.
         </Text>
         <!-- Tab section -->
         <div x-data="{ tab: 'tab1' }" class="mt-8">
-          <ul class="flex gap-4 text-sm text-base-500 border-b border-base-200">
+          <ul class="flex text-sm border-b gap-4 text-base-500 border-base-200">
             <li class="-mb-px">
               <a
                 @click.prevent="tab = 'tab1'"
                 href="#_"
-                class="inline-block py-2 font-medium bg-white text-accent-500 border-b-2 border-accent-500"
+                class="inline-block py-2 font-medium bg-white border-b-2 text-accent-500 border-accent-500"
                 :class="{ ' bg-white text-accent-500 border-b-2 border-accent-500' : tab === 'tab1' }"
               >
                 Details</a
@@ -73,7 +73,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
                 </Text>
                 <ul
                   role="list"
-                  class="list-disc space-y-1 pl-5 mt-4 text-sm text-base-600 marker:text-accent-500"
+                  class="pl-5 mt-4 text-sm list-disc space-y-1 text-base-600 marker:text-accent-500"
                 >
                   <li>Versatile lace configurations</li>
                   <li>Breathable and spacious interior fit</li>
@@ -135,12 +135,12 @@ import Button from "@/components/fundations/buttons/Button.astro";
                     x-for="testimonial in testimonials"
                     :key="testimonial.datetime"
                   >
-                    <div class="flex gap-x-4 py-4">
+                    <div class="flex py-4 gap-x-4">
                       <div class="flex-none">
                         <img
                           :src="testimonial.img"
                           :alt="testimonial.name"
-                          class="size-10 rounded-full bg-base-100"
+                          class="rounded-full size-10 bg-base-100"
                         />
                       </div>
                       <div>
@@ -186,27 +186,27 @@ import Button from "@/components/fundations/buttons/Button.astro";
                     '/store/shoes/airmax/6.png'
                 ]
             }"
-        class="flex flex-col gap-2 order-first lg:order-none"
+        class="flex flex-col order-first gap-2 lg:order-none"
       >
         <!-- Main Image -->
-        <div class="aspect-square bg-base-200 rounded-2xl overflow-hidden">
+        <div class="overflow-hidden aspect-square bg-base-200 rounded-2xl">
           <img
             :src="images[activeImage]"
-            class="size-full object-cover aspect-square"
+            class="object-cover size-full aspect-square"
             alt="Product image"
           />
         </div>
         <!-- Thumbnails -->
-        <div class="grid grid-cols-6 gap-2 w-full">
+        <div class="w-full grid grid-cols-6 gap-2">
           <template x-for="(image, index) in images" :key="index">
             <button
               @click="activeImage = index"
               :class="{'ring-2 ring-base-900 ': activeImage === index}"
-              class="size-full bg-base-200 rounded-xl overflow-hidden aspect-square"
+              class="overflow-hidden size-full bg-base-200 rounded-xl aspect-square"
             >
               <img
                 :src="image"
-                class="size-full object-cover aspect-square"
+                class="object-cover size-full aspect-square"
                 alt="Product thumbnail"
               />
             </button>
@@ -216,10 +216,10 @@ import Button from "@/components/fundations/buttons/Button.astro";
       <!-- Product Details -->
 
       <div>
-        <div class="flex flex-col gap-4 mt-4">
+        <div class="flex flex-col mt-4 gap-4">
           <!-- Color Selector -->
           <div x-data="{ activeColor: null }">
-            <Text tag="p" variant="textXS" class="text-base-500 uppercase">
+            <Text tag="p" variant="textXS" class="uppercase text-base-500">
               Color
             </Text>
             <fieldset
@@ -258,7 +258,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
                     />
                     <span
                       aria-hidden="true"
-                      class="size-6 rounded-full ring-1"
+                      class="rounded-full size-6 ring-1"
                       :class="`${color.ring} ${color.bg}`"></span>
                   </label>
                 </template>
@@ -277,7 +277,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
           }"
           >
             <div class="flex items-center justify-between">
-              <Text tag="p" variant="textXS" class="text-base-500 uppercase">
+              <Text tag="p" variant="textXS" class="uppercase text-base-500">
                 Shoe size
               </Text>
               <div>
@@ -293,7 +293,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
                 </select>
               </div>
             </div>
-            <div class="grid grid-cols-4 gap-2 mt-2">
+            <div class="mt-2 grid grid-cols-4 gap-2">
               <template x-for="size in sizes[sizeSystem]" :key="size">
                 <div>
                   <input
@@ -307,8 +307,8 @@ import Button from "@/components/fundations/buttons/Button.astro";
                   <label
                     :for="'size-' + size"
                     x-text="size"
-                    class="flex items-center justify-center px-3 py-2 text-sm font-medium bg-white ring-1
-                     ring-base-200 rounded-md cursor-pointer duration-300 peer-checked:ring-2 peer-checked:ring-base-900 peer-checked:text-accent-500 text-base-500 peer-checked:ring-offset-2"
+                    class="flex items-center justify-center px-3 py-2 text-sm font-medium bg-white cursor-pointer ring-1
+  ring-base-200 rounded-md duration-300 peer-checked:ring-2 peer-checked:ring-base-900 peer-checked:text-accent-500 text-base-500 peer-checked:ring-offset-2"
                   ></label>
                 </div>
               </template>
@@ -316,13 +316,13 @@ import Button from "@/components/fundations/buttons/Button.astro";
           </div>
         </div>
         <!-- Action Buttons -->
-        <div class="flex flex-col gap-2 mt-8">
+        <div class="flex flex-col mt-8 gap-2">
           <Button size="sm" variant="default" class="w-full">Add to Cart</Button
           >
           <Button size="sm" variant="muted" class="w-full">Buy Now</Button>
         </div>
         <!-- Free shipping notice -->
-        <Text tag="p" variant="textSM" class="text-base-500 mt-1"
+        <Text tag="p" variant="textSM" class="mt-1 text-base-500"
           >Free shipping over $50 if you behave</Text
         >
       </div>

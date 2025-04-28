@@ -22,26 +22,26 @@ const ppcode = canSeeCode ? await prettier.format(code, {
                         : '';
 const theme = ``;
 ---
-<section x-data="playground" class="not-prose   ">
+<section x-data="playground" class="not-prose ">
   <div class="relative"  @theme="setTheme($event.detail.color)">
     <div class="flex items-center justify-between pb-4 gap-1 ">
       <div class="flex items-center gap-1">
         <a
-          class="pointer-events-auto rounded-md outline outline-base-100 dark:outline-base-900  bg-white dark:bg-base-800  p-0.5 text-base-500 dark:text-base-300 flex items-center justify-center size-7 text-xs"
+          class="pointer-events-auto rounded-md outline outline-base-100 dark:outline-base-900  bg-white dark:bg-base-800  p-0.5 text-base-500 dark:text-base-400 flex items-center justify-center size-7 text-xs"
           href={`#${componentIndex}`}
         >
           {componentIndex}
         </a>
-        <div x-data="themeSelector" class="relative w-100 z-10">
+        <div x-data="themeSelector" class="relative z-10 w-100">
             <OxbowButton 
                 size="xs"
                 variant="alternative"
                 @click="toggleOpen" 
-                class="pointer-events-auto flex items-center gap-2 text-xs "
+                class="flex items-center text-xs pointer-events-auto gap-2 "
             >
                 <div class="flex items-center gap-2">
                     <div 
-                        class="size-3 rounded-full"
+                        class="rounded-full size-3"
                         :class="{['bg-' + selected.toLowerCase() + '-500']: true}"
                     ></div>
                     <span x-text="selected"></span>
@@ -54,12 +54,12 @@ const theme = ``;
             <div 
                 x-show="open" 
                 x-on:click.away="toggleOpen"
-                class="absolute w-full mt-2 outline outline-base-100 dark:outline-base-900 dark:shadow-2xl shadow  dark:shadow-black bg-white dark:bg-black z-60 rounded-lg max-w-xs"
+                class="absolute w-full max-w-xs mt-2 bg-white rounded-lg shadow outline outline-base-100 dark:outline-base-900 dark:shadow-2xl  dark:shadow-black dark:bg-black z-60"
                 x-transition
             >
-                <div class="p-4  rounded-lg max-w-2xl">
-                  <Text tag="p" variant="textBase" class=" font-medium text-black dark:text-white">Color options</Text>
-                  <Text tag="p" variant="textXS" class="text-base-500 dark:text-base-300 mt-1">Customize your colors.</Text>
+                <div class="max-w-2xl p-4 rounded-lg ">
+                  <Text tag="p" variant="textBase" class="font-medium text-black  dark:text-white">Color options</Text>
+                  <Text tag="p" variant="textXS" class="mt-1 text-base-500 dark:text-base-400">Customize your colors.</Text>
                   <div class="w-full mt-4">
                       <div class="grid grid-cols-3 md:grid-cols-3 gap-2 ">
                         <template x-for="color in colors" class="w-full ">
@@ -68,11 +68,11 @@ const theme = ``;
                             variant="alternative"
                             x-on:click="selectColor(color.name)"
                             :class="selected === color.name ? 'outline outline-white' : ''"
-                            class="pointer-events-auto flex items-center w-full"
+                            class="flex items-center w-full pointer-events-auto"
                           >
                             <div class="flex items-center justify-between w-full gap-2">
                               <span x-text="color.name"></span>
-                              <span class="size-2 rounded-full shrink-0" :class="color.color"></span>
+                              <span class="rounded-full size-2 shrink-0" :class="color.color"></span>
                             </div>
                           </OxbowButton>
                         </template>
@@ -84,15 +84,15 @@ const theme = ``;
         </div>
       </div>
       <div class="flex items-center justify-end w-full gap-1">
-        <span class="isolate md:inline-flex h-7 gap-1 hidden" x-show="tab === 'preview'">
+        <span class="hidden isolate md:inline-flex h-7 gap-1" x-show="tab === 'preview'">
           <button
-            class="pointer-events-auto rounded-md outline outline-base-100 dark:outline-base-900  bg-white dark:bg-base-800  p-1 text-base-500 dark:text-base-300 flex items-center justify-center size-7 text-xs focus:text-black"
+            class="flex items-center justify-center p-1 text-xs bg-white pointer-events-auto rounded-md outline outline-base-100 dark:outline-base-900  dark:bg-base-800 text-base-500 dark:text-base-400 size-7 focus:text-black"
             @click="viewportSize = 'mobile'" :class="viewportSize === 'mobile' ? 'bg-base-900' : 'bg-black'"
           >
           <svg class="size-[16px] m-auto" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 2.5C4 2.22386 4.22386 2 4.5 2H10.5C10.7761 2 11 2.22386 11 2.5V12.5C11 12.7761 10.7761 13 10.5 13H4.5C4.22386 13 4 12.7761 4 12.5V2.5ZM4.5 1C3.67157 1 3 1.67157 3 2.5V12.5C3 13.3284 3.67157 14 4.5 14H10.5C11.3284 14 12 13.3284 12 12.5V2.5C12 1.67157 11.3284 1 10.5 1H4.5ZM6 11.65C5.8067 11.65 5.65 11.8067 5.65 12C5.65 12.1933 5.8067 12.35 6 12.35H9C9.1933 12.35 9.35 12.1933 9.35 12C9.35 11.8067 9.1933 11.65 9 11.65H6Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
           </button>
           <button
-            class="pointer-events-auto rounded-md outline outline-base-100 dark:outline-base-900  bg-white dark:bg-base-800  p-1 text-base-500 dark:text-base-300 flex items-center justify-center size-7 text-xs focus:text-black"
+            class="flex items-center justify-center p-1 text-xs bg-white pointer-events-auto rounded-md outline outline-base-100 dark:outline-base-900  dark:bg-base-800 text-base-500 dark:text-base-400 size-7 focus:text-black"
             @click="viewportSize = 'tablet'" :class="viewportSize === 'tablet' ? '' : '"
           >
             <svg
@@ -113,7 +113,7 @@ const theme = ``;
             </svg>
           </button>
           <button
-            class="pointer-events-auto rounded-md outline outline-base-100 dark:outline-base-900  bg-white dark:bg-base-800  p-1 text-base-500 dark:text-base-300 flex items-center justify-center size-7 text-xs focus:text-black"
+            class="flex items-center justify-center p-1 text-xs bg-white pointer-events-auto rounded-md outline outline-base-100 dark:outline-base-900  dark:bg-base-800 text-base-500 dark:text-base-400 size-7 focus:text-black"
             @click="viewportSize = 'desktop'" :class="viewportSize === 'desktop' ? 'bg-base-900' : 'bg-black'"
           >
           <svg class="size-[16px] m-auto"  viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 3.25C1 3.11193 1.11193 3 1.25 3H13.75C13.8881 3 14 3.11193 14 3.25V10.75C14 10.8881 13.8881 11 13.75 11H1.25C1.11193 11 1 10.8881 1 10.75V3.25ZM1.25 2C0.559643 2 0 2.55964 0 3.25V10.75C0 11.4404 0.559644 12 1.25 12H5.07341L4.82991 13.2986C4.76645 13.6371 5.02612 13.95 5.37049 13.95H9.62951C9.97389 13.95 10.2336 13.6371 10.1701 13.2986L9.92659 12H13.75C14.4404 12 15 11.4404 15 10.75V3.25C15 2.55964 14.4404 2 13.75 2H1.25ZM9.01091 12H5.98909L5.79222 13.05H9.20778L9.01091 12Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
@@ -131,7 +131,7 @@ const theme = ``;
                 data-umami-event="click-view-preview"
                 data-umami-data-id={user?.uid}
                 data-umami-event-componentref={componentPath}
-                class=" pointer-events-auto  ">
+                class="pointer-events-auto ">
                 Preview
               </OxbowButton>
               <OxbowButton
@@ -163,7 +163,7 @@ const theme = ``;
                 data-umami-event="click-copy-component"
                 data-umami-data-id={user?.uid}
                 data-umami-event-componentref={componentPath}
-                class="pointer-events-auto w-20"
+                class="w-20 pointer-events-auto"
                 x-on:click="copyCode"
               >
                 <span
@@ -193,7 +193,7 @@ const theme = ``;
   >
     <div
       x-show="tab === 'preview'"
-      class="flex flex-grow w-full justify-center bg-white"
+      class="flex justify-center flex-grow w-full bg-white"
     >
       <div
         class="w-full overflow-auto transition-all duration-500 easy-in-out"
@@ -206,14 +206,14 @@ const theme = ``;
         <div
           x-show="tab === 'code'"
           x-ref="code"
-          class="flex-grow size-full   text-xs overflow-auto p-4 bg-white  dark:bg-base-800 transition selection:bg-base-100 dark:selection:bg-base-700"
+          class="flex-grow p-4 overflow-auto text-xs bg-white size-full  dark:bg-base-800 transition selection:bg-base-100 dark:selection:bg-base-700"
         >
           <Code code={ppcode} lang="html" theme="css-variables" class="scrollbar-hide"/>
         </div>
         <div
           x-show="tab === 'theme'"
           x-ref="theme"
-          class="flex-grow size-full  text-sm overflow-auto p-4 bg-white  dark:bg-base-800 transition selection:bg-base-100 dark:selection:bg-base-700"
+          class="flex-grow p-4 overflow-auto text-xs bg-white size-full  dark:bg-base-800 transition selection:bg-base-100 dark:selection:bg-base-700"
         >
           <div x-html="theme" />
         </div>

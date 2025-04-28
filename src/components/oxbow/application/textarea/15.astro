@@ -5,10 +5,10 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
 ---
 
 <div
-  class="flex flex-wrap max-w-md items-end justify-center gap-4 py-12 mx-auto"
+  class="flex flex-wrap items-end justify-center max-w-md py-12 mx-auto gap-4"
 >
   <div
-    class="space-y-2 w-full"
+    class="w-full space-y-2"
     x-data="{ text: '', emojis: ['💪', '🤣', '🔥', '👍', '🚀'] }"
   >
    <div>
@@ -16,7 +16,7 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
         for="emoji-picker-textarea"
         tag="label"
         variant="textSM"
-        class="text-base-500 font-medium"
+        class="font-medium text-base-500"
       >
         Emoji picker
       </Text>
@@ -25,10 +25,10 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
         x-model="text"
         rows="4"
         placeholder="Type your message"
-        class="block w-full px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+        class="block w-full px-4 py-2 text-sm bg-white border border-transparent rounded-lg appearance-none text-accent-700 duration-300 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
       ></textarea>
    </div>
-    <div class="flex gap-1 items-center mt-2">
+    <div class="flex items-center mt-2 gap-1">
       <template x-for="emoji in emojis" :key="emoji">
         <IconButton type="button" variant="alternative" size="xs" @click="text += emoji"
         x-text="emoji"/>

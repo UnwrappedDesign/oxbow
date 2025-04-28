@@ -92,85 +92,71 @@ const started = [
 ---
 
 <section class="scroll-mt-24" id="features">
-  <Wrapper variant="standard" class="border-t flex flex-col gap-y-20">
-    <ul
-      class="grid grid-cols-1 md:grid-cols-2 gap-y-12 lg:grid-cols-3 gap-x-8 text-center"
-    >
+  <Wrapper variant="standard" class="flex flex-col gap-y-20 py-8">
+    <ul class="grid grid-cols-1 md:grid-cols-2 gap-y-12 lg:grid-cols-3 gap-x-8">
       {
         started.map((started) => (
           <li>
             <Text
               tag="h3"
               variant="textBase"
-              class=" mt-2 text-black dark:text-white font-medium"
+              class="mt-2 font-medium text-base-900  dark:text-white"
             >
               {started.title}
             </Text>
             <Text
               tag="p"
               variant="textSM"
-              class="mt-2 text-base-500 dark:text-base-300 text-balance"
+              class="mt-2 text-base-500 dark:text-base-400 text-balance"
             >
               {started.description}
             </Text>
           </li>
         ))
       }
-    </ul>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-      {
-        sections.map(({ category, title, description, image }) => (
-          <div class="relative overflow-hidden group outline rounded-xl outline-base-100 dark:outline-base-900 shadow dark:shadow-2xl dark:shadow-black bg-white dark:bg-black p-4">
-            <div class="relative flex flex-col gap-4">
-              <Image
-                src={image.src}
-                alt={image.alt}
-                class="size-full aspect-16/10 object-cover object-top rounded-xl mask-b-from-white mask-b-from-5% dark:mask-b-from-0%"
-              />
-              <div>
-                <div class="relative">
-                  <span class="text-sm text-base-500 dark:text-base-300 text-balance font-mono uppercase">
-                    {category}
-                  </span>
-                  <Text
-                    tag="h3"
-                    variant="textBase"
-                    class="leading-6 text-black dark:text-white font-medium mt-4"
-                  >
-                    {title}
-                  </Text>
-                </div>
-                <Text tag="p" variant="textSM" class="text-base-500 mt-1">
-                  {description}
-                </Text>
-              </div>
-            </div>
-          </div>
-        ))
-      }
-    </div>
-
-    <div
-      class="grid grid-cols-1 md:grid-cols-2 gap-y-12 lg:grid-cols-3 gap-x-8 text-center"
-    >
       {
         features.map((feature) => (
           <div>
             <Text
               tag="h3"
               variant="textBase"
-              class=" mt-2 text-black dark:text-white font-medium"
+              class="mt-2 font-medium text-base-900  dark:text-white"
             >
               {feature.title}
             </Text>
             <Text
               tag="p"
               variant="textSM"
-              class="mt-2 text-base-500 dark:text-base-300 text-balance"
+              class="mt-2 text-base-500 dark:text-base-400 text-balance"
             >
               {feature.description}
             </Text>
+          </div>
+        ))
+      }
+    </ul>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
+      {
+        sections.map(({ category, title, description, image }) => (
+          <div class="relative flex flex-col gap-4">
+            <div>
+              <div class="relative">
+                <span class=" text-sm  text-base-500 dark:text-base-400 text-balance">
+                  {category}
+                </span>
+                <Text
+                  tag="h3"
+                  variant="textBase"
+                  class="mt-4 font-medium text-base-900 leading-6 dark:text-white"
+                >
+                  {title}
+                </Text>
+              </div>
+              <Text tag="p" variant="textSM" class="mt-1 text-base-500">
+                {description}
+              </Text>
+            </div>
           </div>
         ))
       }

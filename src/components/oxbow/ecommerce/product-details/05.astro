@@ -27,7 +27,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
             <img
               :src="image.src"
               :alt="image.alt"
-              class="w-full object-cover aspect-square rounded-2xl"
+              class="object-cover w-full aspect-square rounded-2xl"
               :class="{ 'hidden lg:block': index !== 0 }"
             />
           </template>
@@ -43,17 +43,17 @@ import Button from "@/components/fundations/buttons/Button.astro";
             >$152 <del class="opacity-70">$190</del>
             <span class="text-green-400">20% Off</span></Text
           >
-          <Text tag="p" variant="textSM" class="text-base-500 mt-2">
+          <Text tag="p" variant="textSM" class="mt-2 text-base-500">
             Men's shoes
           </Text>
-          <Text tag="p" variant="textSM" class="text-base-500 mt-8">
+          <Text tag="p" variant="textSM" class="mt-8 text-base-500">
             Hitting the field in the late '60s, adidas gazelleS quickly became
             soccer's "it" shoe.
           </Text>
-          <div class="grid cols-1 md:grid-cols-2 gap-4 mt-4">
+          <div class="mt-4 grid cols-1 md:grid-cols-2 gap-4">
             <!-- Color Selector -->
             <div x-data="{ activeColor: null }">
-              <Text tag="p" variant="textXS" class="text-base-500 uppercase">
+              <Text tag="p" variant="textXS" class="uppercase text-base-500">
                 Color
               </Text>
               <fieldset
@@ -92,7 +92,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
                       />
                       <span
                         aria-hidden="true"
-                        class="size-6 rounded-full ring-1"
+                        class="rounded-full size-6 ring-1"
                         :class="`${color.ring} ${color.bg}`"></span>
                     </label>
                   </template>
@@ -111,7 +111,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
               }"
             >
               <div class="flex items-center justify-between">
-                <Text tag="p" variant="textXS" class="text-base-500 uppercase">
+                <Text tag="p" variant="textXS" class="uppercase text-base-500">
                   Shoe size
                 </Text>
                 <div>
@@ -127,7 +127,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
                   </select>
                 </div>
               </div>
-              <div class="grid grid-cols-4 gap-2 mt-2">
+              <div class="mt-2 grid grid-cols-4 gap-2">
                 <template x-for="size in sizes[sizeSystem]" :key="size">
                   <div>
                     <input
@@ -141,8 +141,8 @@ import Button from "@/components/fundations/buttons/Button.astro";
                     <label
                       :for="'size-' + size"
                       x-text="size"
-                      class="flex items-center justify-center px-3 py-2 text-sm font-medium bg-white ring-1
-                         ring-base-200 rounded-md cursor-pointer duration-300 peer-checked:ring-2 peer-checked:ring-base-900 peer-checked:text-accent-500 text-base-500 peer-checked:ring-offset-2"
+                      class="flex items-center justify-center px-3 py-2 text-sm font-medium bg-white cursor-pointer ring-1
+  ring-base-200 rounded-md duration-300 peer-checked:ring-2 peer-checked:ring-base-900 peer-checked:text-accent-500 text-base-500 peer-checked:ring-offset-2"
                     ></label>
                   </div>
                 </template>
@@ -150,29 +150,29 @@ import Button from "@/components/fundations/buttons/Button.astro";
             </div>
           </div>
           <!-- Action Buttons -->
-          <div class="flex flex-row gap-2 mt-8">
+          <div class="flex flex-row mt-8 gap-2">
             <Button size="sm" variant="default" class="w-full"
               >Add to Cart</Button
             >
             <Button size="sm" variant="muted" class="w-full">Buy Now</Button>
           </div>
           <!-- Free shipping notice -->
-          <Text tag="p" variant="textSM" class="text-base-500 mt-1"
+          <Text tag="p" variant="textSM" class="mt-1 text-base-500"
             >Shop now. Pay in 30 days with Klarna. <a
               href="#_"
-              class="underline text-black">Learn more</a
+              class="text-black underline">Learn more</a
             ></Text
           >
           <!-- Tab section -->
           <div x-data="{ tab: 'tab1' }" class="mt-8">
             <ul
-              class="flex gap-4 text-sm text-base-500 border-b border-base-200"
+              class="flex text-sm border-b gap-4 text-base-500 border-base-200"
             >
               <li class="-mb-px">
                 <a
                   @click.prevent="tab = 'tab1'"
                   href="#_"
-                  class="inline-block py-2 font-medium bg-white text-accent-500 border-b-2 border-accent-500"
+                  class="inline-block py-2 font-medium bg-white border-b-2 text-accent-500 border-accent-500"
                   :class="{ ' bg-white text-accent-500 border-b-2 border-accent-500' : tab === 'tab1' }"
                 >
                   Details</a
@@ -219,7 +219,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
                   </Text>
                   <ul
                     role="list"
-                    class="list-disc space-y-1 pl-5 mt-4 text-sm text-base-600 marker:text-accent-500"
+                    class="pl-5 mt-4 text-sm list-disc space-y-1 text-base-600 marker:text-accent-500"
                   >
                     <li>Versatile lace configurations</li>
                     <li>Breathable and spacious interior fit</li>
@@ -281,12 +281,12 @@ import Button from "@/components/fundations/buttons/Button.astro";
                       x-for="testimonial in testimonials"
                       :key="testimonial.datetime"
                     >
-                      <div class="flex gap-x-4 py-4">
+                      <div class="flex py-4 gap-x-4">
                         <div class="flex-none">
                           <img
                             :src="testimonial.img"
                             :alt="testimonial.name"
-                            class="size-10 rounded-full bg-base-100"
+                            class="rounded-full size-10 bg-base-100"
                           />
                         </div>
                         <div>
