@@ -70,7 +70,7 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
     <Wrapper variant="standard" class="py-4">
       <div class="flex items-center gap-2">
         <button
-          class="flex items-center text-sm cursor-pointer gap-2 text-base-500 dark:text-base-400 hover:text-base-900 dark:hover:text-white"
+          class="flex items-center text-sm cursor-pointer gap-2 text-base-500 hover:text-base-900"
           onclick="history.back();"
         >
           <svg
@@ -88,9 +88,7 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
               d="M15 6l-6 6l6 6"></path></svg
           >Go Back</button
         >
-        <span aria-hidden="true" class="text-base-500 dark:text-base-300"
-          >/</span
-        >
+        <span aria-hidden="true" class="text-base-500">/</span>
         <Text
           tag="h1"
           variant="textSM"
@@ -101,7 +99,7 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
       </div>
 
       <div
-        class={`relative w-full grid grid-cols-1  mt-8 pt-8 border-t border-base-200 dark:border-white/5 md:grid-cols-2 gap-y-12 gap-x-4  lg:gap-y-20 ${gridColumnsClass} items-start`}
+        class={`relative w-full grid grid-cols-1  mt-8 pt-8 border-t border-base-200  md:grid-cols-2 gap-y-12 gap-x-4  lg:gap-y-20 ${gridColumnsClass} items-start`}
       >
         {
           sectionComponents.map((component, index) => {
@@ -132,14 +130,12 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
                       <Text
                         tag="p"
                         variant="textSM"
-                        class="flex items-center capitalize  text-base-500 dark:text-base-400 group-hover:text-base-900 dark:group-hover:text-white gap-2"
+                        class="flex items-center capitalize  text-base-500 group-hover:text-base-900 gap-2"
                       >
                         <span>{(index + 1).toString().padStart(2, "0")}</span>
                         <span> {subsection.replace(/-/g, " ")}</span>
                         {!user && index === 0 && (
-                          <span class="text-base-900dark:text-white">
-                            Open Demo
-                          </span>
+                          <span class="text-base-900 ">Open Demo</span>
                         )}
                       </Text>
                     </div>
@@ -165,7 +161,7 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
                   height={1000}
                   src={images[imagePath]() || "/placeholder.svg"}
                   alt={`${subsection} preview ${index + 1}`}
-                  class="object-cover w-full mt-2 rounded-lg cursor-pointer  outline outline-base-100 dark:outline-base-900 transition-all duration-300 ease-in-out"
+                  class="object-cover w-full mt-2 rounded-lg cursor-pointer  outline outline-base-100 transition-all duration-300 ease-in-out"
                 />
               </a>
             );

@@ -1,9 +1,4 @@
 ---
-// Assets
-import { Image } from "astro:assets";
-import Lex from "@/images/ads/lex.png";
-import AnimatedGradient from "@/components/assets/AnimatedGradient.astro";
-
 // Fundations
 import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
@@ -12,76 +7,30 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
 
 <section>
   <Wrapper variant="standard" class="py-8">
-    <div class="flex flex-col gap-4">
-      <div
-        class="relative flex flex-col justify-end p-8 overflow-hidden rounded-xl lg:p-12"
-      >
-        <AnimatedGradient class="absolute inset-0 z-0" />
-        <div class="relative flex flex-col py-24 text-center gap-8">
-          <Text
-            tag="h1"
-            variant="displayMD"
-            class="tracking-tight text-white lg:text-balance md:col-span-2"
+    <div
+      class="relative flex flex-col justify-end p-8 overflow-hidden rounded-xl lg:p-12"
+    >
+      <div class="relative flex flex-col py-24 text-center gap-8">
+        <Text
+          tag="h1"
+          variant="displayMD"
+          class="tracking-tight text-base-900 lg:text-balance font-medium"
+        >
+          Get lifetime access to all components, elements, and layouts for only
+          $69</Text
+        >
+        <div class="flex justify-center">
+          <OxbowLink
+            gap="sm"
+            size="base"
+            variant="muted"
+            href="/pricing"
+            id="access-footer-cta"
+            data-umami-event="access-footer-cta"
           >
-            Get lifetime access to all components, elements, and layouts for
-            only $69</Text
-          >
-          <div class="flex justify-center">
-            <OxbowLink
-              gap="sm"
-              size="base"
-              variant="muted"
-              href="/pricing"
-              id="access-footer-cta"
-              data-umami-event="access-footer-cta"
-            >
-              Get full access
-            </OxbowLink>
-          </div>
+            Get full access
+          </OxbowLink>
         </div>
-      </div>
-      <div
-        class="relative flex flex-col justify-between h-full overflow-hidden rounded-xl bg-base-50 dark:bg-white/2"
-      >
-        <div class="p-8 text-center lg:p-12">
-          <Text
-            tag="h3"
-            variant="displayMD"
-            class="font-medium tracking-tight text-base-900 dark:text-white tracking-tigt text-balance"
-          >
-            Lexington Themes
-          </Text>
-          <Text
-            tag="p"
-            variant="textBase"
-            class="max-w-xl mx-auto mt-2 text-base-500 dark:text-white lg:text-balance l"
-          >
-            Premium multipage themes &amp; UI Kits Beautifully crafted with
-            Astro JS and Tailwind CSS.
-          </Text>
-          <div class="flex justify-center mt-8">
-            <OxbowLink
-              gap="sm"
-              size="base"
-              variant="accent"
-              id="lexington-cta"
-              data-umami-event="lexington-cta"
-              href="https://lexingtonthemes.com"
-              class="w-auto"
-            >
-              See all themes
-            </OxbowLink>
-          </div>
-        </div>
-        <Image
-          src={Lex}
-          width={1404}
-          height={1000}
-          loading="eager"
-          decoding="async"
-          class="scale-120"
-          alt="Lexington Themes"
-        />
       </div>
     </div>
   </Wrapper>
