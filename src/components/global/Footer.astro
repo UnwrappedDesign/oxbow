@@ -1,4 +1,5 @@
 ---
+import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 
 // Assets
@@ -56,32 +57,47 @@ const navLinks = [
 
 <footer>
   <Wrapper variant="standard" class="py-24">
-    <a aria-label="hom" href="/">
-      <Logo class="h-12 text-accent-600 dark:text-white" />
-    </a>
-    <div class="flex flex-wrap mt-2 gap-2">
-      {
-        navLinks.map((section) => (
-          <ul
-            role="list"
-            class="flex flex-wrap text-sm text-base-500 dark:text-base-400 gap-4 "
-          >
-            {section.links.map((link) => (
-              <li>
-                <a
-                  class="transition hover:text-black dark:hover:text-white duration-300"
-                  href={link.href}
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        ))
-      }
+    <div class="grid grid-cols-1 md:grid-cols-4">
+      <a aria-label="hom" href="/">
+        <Logo class="h-12 text-accent-600" />
+      </a>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-2 lg:col-span-3">
+        {
+          navLinks.map((section) => (
+            <div>
+              <Text
+                tag="h3"
+                variant="textBase"
+                class="text-base-900 font-medium"
+              >
+                {section.title}
+              </Text>
+              <ul
+                role="list"
+                class="flex flex-col text-xs font-medium text-base-500  gap-1 mt-2"
+              >
+                {section.links.map((link) => (
+                  <li>
+                    <a
+                      class="transition hover:text-black  duration-300"
+                      href={link.href}
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
     </div>
-    <p class="mt-8 text-xs text-base-400">
+    <Text
+      tag="p"
+      variant="textXS"
+      class="text-xs text-base-500 pt-8 mt-8 border-t border-base-200"
+    >
       © <span>2025</span> Oxbow UI
-    </p>
+    </Text>
   </Wrapper>
 </footer>

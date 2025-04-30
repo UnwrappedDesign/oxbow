@@ -10,18 +10,18 @@ const randomizedReviews = [...reviews].sort(() => Math.random() - 0.5);
 
 <section>
   <Wrapper variant="standard" class="py-12">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
       {
-        randomizedReviews.slice(0, 2).map((template) => (
+        randomizedReviews.slice(0, 3).map((template) => (
           <div class="relative flex flex-col justify-between h-full">
             <Text
               tag="h3"
               variant="textSM"
-              class="font-medium  text-base-500 dark:text-white text-balance"
+              class="font-medium  text-base-500 text-balance"
             >
               "{template.text}"
             </Text>
-            <div class="flex items-center pt-4 mt-4 border-t gap-2 border-base-200 dark:border-white/2">
+            <div class="flex items-center pt-4 mt-4 border-t gap-2 border-base-200 ">
               <Image
                 src={template.image}
                 alt={template.name}
@@ -29,7 +29,7 @@ const randomizedReviews = [...reviews].sort(() => Math.random() - 0.5);
                 height={1000}
                 class="object-cover object-top rounded-full size-10"
               />
-              <div class=" text-base-500 dark:text-base-400">
+              <div class=" text-base-500">
                 <Text tag="p" variant="textSM">
                   {template.name}
                 </Text>

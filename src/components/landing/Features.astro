@@ -5,48 +5,45 @@ import showcase from "@/images/assets/showcase.png";
 // Fundations
 import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-const data = [
+const features = [
   {
     icon: "Component",
     category: "Components",
-    text: "More than 400 easy-to-use components that are accessible and simple to customize.",
+    text: "Over 400 components that are accessible, easy to use, and simple to customize.",
   },
   {
     icon: "Code",
-    category: "Tailwind, Alpine, and More",
-    text: "Ready-to-use blocks built with HTML, Tailwind CSS and Alpine JS.",
+    category: "Stack",
+    text: "Prebuilt blocks crafted with Tailwind CSS and Alpine JS for rapid development.",
   },
   {
     icon: "Devices",
     category: "Responsive Design",
-    text: "Every example works on any screen size, so your design always looks good.",
+    text: "Designed to work seamlessly on all screen sizes—mobile, tablet, or desktop.",
   },
   {
     icon: "ColorPicker",
     category: "Pick your color",
-    text: "Customize each block with your brand’s accent color for a perfect match.",
+    text: "Easily apply your brand’s color to any block for a consistent, professional look.",
   },
 ];
 ---
+
 <section>
   <Wrapper variant="standard" class="py-8">
     <dl
       class="grid grid-cols-1 sm:grid-cols-2 gap-y-12 lg:grid-cols-4 lg:gap-y-16 gap-8"
     >
       {
-        data.map((section) => (
+        features.map((section) => (
           <div>
-            <Text
-              tag="h3"
-              variant="textBase"
-              class="font-medium text-base-900  dark:text-white"
-            >
+            <Text tag="h3" variant="textLG" class="font-medium text-base-900 ">
               {section.category}
             </Text>
             <Text
               tag="p"
-              variant="textSM"
-              class="mt-2  text-base-500 dark:text-base-400 text-pretty"
+              variant="textBase"
+              class="mt-2  text-base-500 text-pretty"
             >
               {section.text}
             </Text>
@@ -55,10 +52,10 @@ const data = [
       }
     </dl>
     <div
-      class="order-first  mt-4 overflow-hidden rounded-xl bg-base-50 dark:bg-white/2 lg:order-none"
+      class="order-first mt-4 overflow-hidden rounded-xl bg-base-50 lg:order-none"
     >
       <Image
-        class="object-cover h-full lg:-mt-4 w-full object-top"
+        class="object-cover object-top w-full h-full lg:-mt-4"
         src={showcase}
         alt="showcase"
       />

@@ -29,11 +29,11 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
       <div class="flex flex-row items-center justify-between lg:justify-start">
         <a
           href="/"
-          class="flex items-center w-full gap-2 sm:w-auto text-base-950 dark:text-white"
+          class="flex items-center w-full gap-2 sm:w-auto text-base-950"
           ><Logo class="h-7" /> oxbow ui</a
         >
         <button
-          class="text-black cursor-pointer sm:hidden dark:text-white"
+          class="text-black cursor-pointer sm:hidden"
           onclick="document.querySelector('ninja-keys').open()"
         >
           <svg
@@ -53,7 +53,7 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
         <button
           aria-label="open"
           @click="open = !open"
-          class="inline-flex items-center justify-center p-2 text-black focus:outline-none focus:text-accent-400 dark:text-white md:hidden"
+          class="inline-flex items-center justify-center p-2 text-black focus:outline-none focus:text-accent-400 md:hidden"
           ><svg
             viewBox="0 0 24 24"
             class="size-6"
@@ -79,7 +79,7 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
       </div>
       <nav
         :class="{'flex': open, 'hidden': !open}"
-        class="flex-col items-center justify-end flex-grow hidden text-sm text-base-500 dark:text-base-400 md:flex md:flex-row md:pb-0 gap-x-4 gap-y-4"
+        class="flex-col items-center justify-end flex-grow hidden text-sm text-base-500 md:flex md:flex-row md:pb-0 gap-x-4 gap-y-4"
       >
         <button
           class="hidden cursor-pointer lg:inline-flex"
@@ -99,15 +99,14 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
               d="M21 21l-6 -6"></path></svg
           >
         </button>
-        <div class="hidden w-px h-5 lg:block bg-base-200 dark:bg-base-600">
-        </div>
+        <div class="hidden w-px h-5 lg:block bg-base-200"></div>
         <div class="flex flex-col items-center gap-3 md:flex-row">
           <Text
             tag="a"
             variant="textSM"
             x-show="!username"
             href="https://lexingtonthemes.com"
-            class="hover:text-accent-600 duration-300 dark:hover:text-white"
+            class="hover:text-accent-600 duration-300"
             ><span class="md:hidden lg:inline">Astro &amp; Tailwind </span> Templates</Text
           >
           <Text
@@ -116,7 +115,7 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
             variant="textSM"
             x-show="!username"
             href="/getting-started"
-            class="hidden hover:text-accent-600 duration-300 dark:hover:text-white md:block"
+            class="hidden hover:text-accent-600 duration-300 md:block"
             >Getting Started</Text
           >
           <Text
@@ -125,7 +124,7 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
             href="/login"
             variant="textSM"
             x-show="!username"
-            class="hidden hover:text-accent-600 duration-300 dark:hover:text-white md:block"
+            class="hidden hover:text-accent-600 duration-300 md:block"
             >Log in</Text
           >
           <OxbowLink
@@ -136,7 +135,6 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
             x-cloak
             id="access-navigation-cta"
             data-umami-event="access-navigation-cta"
-            x-show="!username && window.location.pathname !== '/pricing'"
           >
             Get access
             <span> $69 </span>
@@ -165,15 +163,14 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
           <div
             x-popover:panel
             x-transition.origin.top.left
-            class="absolute right-0 top-full z-50 -mr-0.5 mt-3 w-48 origin-top-right divide-y divide-base-100 dark:divide-base-900 outline rounded-xl outline-base-100 dark:outline-base-900 shadow dark:shadow-2xl dark:shadow-black bg-white dark:bg-black font-normal text-base-500 dark:text-base-400 focus:outline-none sm:-mr-3.5 transform opacity-100 scale-100"
+            class="absolute right-0 top-full z-50 -mr-0.5 mt-3 w-48 origin-top-right divide-y divide-base-100 outline rounded-xl outline-base-100 shadow bg-white font-normal text-base-500 focus:outline-none sm:-mr-3.5 transform opacity-100 scale-100"
           >
             <div class="truncate px-3.5 py-3" role="none">
               <Text
                 tag="span"
                 role="none"
                 variant="textSM"
-                class="block text-base-500 dark:text-base-300"
-                >Signed in as</Text
+                class="block text-base-500">Signed in as</Text
               >
               <Text
                 tag="span"
@@ -190,7 +187,7 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
                 role="menuitem"
                 variant="textSM"
                 href="https://discord.gg/9WH6G2XJRa"
-                class="py-1.5 px-3.5 hover:bg-base-100 dark:hover:bg-base-900 hover:text-accent-600 duration-300 dark:hover:text-white items-center gap-2 flex"
+                class="py-1.5 px-3.5 hover:bg-base-100 hover:text-accent-600 duration-300 items-center gap-2 flex"
               >
                 <Discord class="size-4" />
                 Discord
@@ -201,7 +198,7 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
                 role="menuitem"
                 href="/support"
                 variant="textSM"
-                class="py-1.5 px-3.5 hover:bg-base-100 dark:hover:bg-base-900 hover:text-accent-600 duration-300 dark:hover:text-white items-center gap-2 flex"
+                class="py-1.5 px-3.5 hover:bg-base-100 hover:text-accent-600 duration-300 items-center gap-2 flex"
               >
                 <Lifebuoy class="size-4" />
                 Support</Text
@@ -212,7 +209,7 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
                 role="menuitem"
                 href="/changelog"
                 variant="textSM"
-                class="py-1.5 px-3.5 hover:bg-base-100 dark:hover:bg-base-900 hover:text-accent-600 duration-300 dark:hover:text-white items-center gap-2 flex"
+                class="py-1.5 px-3.5 hover:bg-base-100 hover:text-accent-600 duration-300 items-center gap-2 flex"
               >
                 <Refresh class="size-4" />
                 Changelog</Text
@@ -223,7 +220,7 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
                 role="menuitem"
                 href="/license"
                 variant="textSM"
-                class="py-1.5 px-3.5 hover:bg-base-100 dark:hover:bg-base-900 hover:text-accent-600 duration-300 dark:hover:text-white items-center gap-2 flex"
+                class="py-1.5 px-3.5 hover:bg-base-100 hover:text-accent-600 duration-300 items-center gap-2 flex"
               >
                 <FileDots class="size-4" />
                 License</Text
@@ -234,7 +231,7 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
                 role="menuitem"
                 variant="textSM"
                 href="/getting-started"
-                class="py-1.5 px-3.5 hover:bg-base-100 dark:hover:bg-base-900 hover:text-accent-600 duration-300 dark:hover:text-white items-center gap-2 flex"
+                class="py-1.5 px-3.5 hover:bg-base-100 hover:text-accent-600 duration-300 items-center gap-2 flex"
               >
                 <CircleInfo class="size-4" />
                 Getting Started</Text
@@ -245,7 +242,7 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
                 role="menuitem"
                 variant="textSM"
                 href="/free-tools"
-                class="py-1.5 px-3.5 hover:bg-base-100 dark:hover:bg-base-900 hover:text-accent-600 duration-300 dark:hover:text-white items-center gap-2 flex"
+                class="py-1.5 px-3.5 hover:bg-base-100 hover:text-accent-600 duration-300 items-center gap-2 flex"
               >
                 <Tools class="size-4" />
                 Free Tools</Text
@@ -258,7 +255,7 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
                 role="menuitem"
                 variant="textSM"
                 href="https://lexingtonthemes.com/"
-                class="py-1.5 px-3.5 hover:bg-base-100 dark:hover:bg-base-900 hover:text-accent-600 duration-300 dark:hover:text-white items-center gap-2 flex"
+                class="py-1.5 px-3.5 hover:bg-base-100 hover:text-accent-600 duration-300 items-center gap-2 flex"
               >
                 <svg
                   class="size-4"
@@ -290,7 +287,7 @@ import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
                 tabindex="-1"
                 role="menuitem"
                 @click="signOut()"
-                class="py-1.5 px-3.5 hover:bg-base-900 text-sm hover:text-accent-600 duration-300 dark:hover:text-white items-center gap-2 flex w-full"
+                class="py-1.5 px-3.5 hover:bg-base-900 text-sm hover:text-accent-600 duration-300 items-center gap-2 flex w-full"
               >
                 <LogoutTwo class="size-4" />
                 Sign out</button
