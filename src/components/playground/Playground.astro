@@ -34,7 +34,7 @@ const theme = ``;
         </a>
         <div x-data="themeSelector" class="relative z-10 w-100">
             <OxbowButton 
-                size="xs"
+                size="mini"
                 variant="alternative"
                 @click="toggleOpen" 
                 class="flex items-center text-xs pointer-events-auto gap-2 "
@@ -64,7 +64,7 @@ const theme = ``;
                       <div class="grid grid-cols-3 md:grid-cols-3 gap-2 ">
                         <template x-for="color in colors" class="w-full ">
                           <OxbowButton 
-                            size="xs"
+                            size="mini"
                             variant="alternative"
                             x-on:click="selectColor(color.name)"
                             :class="selected === color.name ? 'outline-2 ' : ''"
@@ -124,7 +124,7 @@ const theme = ``;
           canSeeCode ? (
             <div class="flex items-center gap-1">
               <OxbowButton
-               size="xs"
+               size="mini"
                 variant="alternative"
                 x-on:click="setTab('preview')" 
                 :class="tab === 'preview' ? ' outline-base-100  ' : ''"
@@ -135,7 +135,7 @@ const theme = ``;
                 Preview
               </OxbowButton>
               <OxbowButton
-               size="xs"
+               size="mini"
                 variant="alternative"
                 x-on:click="setTab('code')" 
                 :class="tab === 'code' ? 'outline-base-100  ' : ''"
@@ -146,7 +146,7 @@ const theme = ``;
                 Code
               </OxbowButton>
              <OxbowButton
-                size="xs"
+                size="mini"
                 variant="alternative"
                 x-on:click="setTab('theme')" 
                 :class="tab === 'theme' ? 'outline-base-100  ' : ''"
@@ -158,7 +158,7 @@ const theme = ``;
               </OxbowButton> 
               <div aria-hidden="true" class="mx-1 h-4 w-[1px] bg-base-200  " />
               <OxbowButton
-                size="xs"
+                size="mini"
                 variant="alternative"
                 data-umami-event="click-copy-component"
                 data-umami-data-id={user?.uid}
@@ -174,7 +174,7 @@ const theme = ``;
             </div>
           ) : (
             <OxbowLink
-            size="xs"
+            size="mini"
             variant="alternative"
             href="/pricing"
             data-umami-event="click-get-access"
@@ -188,8 +188,8 @@ const theme = ``;
         }
       </div>
     </div>
-    <div
-    class="relative min-h-[400] w-full flex  rounded-xl outline-base-100 outline       sahdow  bg-white      z-1 overflow-hidden"
+  <div
+    class="relative min-h-[400] w-full flex  rounded-xl outline-base-100 outline sahdow bg-white z-1 overflow-hidden"
   >
     <div
       x-show="tab === 'preview'"

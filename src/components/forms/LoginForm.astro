@@ -31,7 +31,7 @@ const { btnLabel = "Get your link", email = false } = Astro.props;
       >
         <div class="flex flex-col gap-1">
           <div>
-           <div>
+            <div>
               <label for="email" class="text-sm text-base-500"> Email </label>
               <input
                 id="email"
@@ -43,14 +43,14 @@ const { btnLabel = "Get your link", email = false } = Astro.props;
                 placeholder="email@example.com"
                 required
                 aria-required="true"
-                class="w-full text-lg border-transparent outline-none bg-base-100 h-14 text-base-700 placeholder-base-400 focus:ring-inset focus:ring-base-800 focus:border-base-800 focus:bg-white"
+                class="w-full text-lg border-transparent outline-none bg-base-100 h-10 text-base-700 placeholder-base-400 focus:ring-inset focus:ring-base-800 focus:border-base-800 focus:bg-white rounded-lg"
               />
-           </div>
-           
+            </div>
+
             <div x-cloak x-show="!!errorMessage">
               <p x-text="errorMessage" class="pt-4 text-xs text-base-500"></p>
             </div>
-            
+
             {
               email && (
                 <div>
@@ -64,14 +64,14 @@ const { btnLabel = "Get your link", email = false } = Astro.props;
                     placeholder="Enter your password"
                     required
                     aria-required="true"
-                    class="w-full text-lg border-transparent outline-none bg-base-100 h-14 text-base-700 placeholder-base-400 focus:ring-inset focus:ring-base-800 focus:border-base-800 focus:bg-white"
+                    class="w-full text-lg border-transparent outline-none bg-base-100 h-10 text-base-700 placeholder-base-400 focus:ring-inset focus:ring-base-800 focus:border-base-800 focus:bg-white rounded-lg"
                   />
                 </div>
               )
             }
 
             <OxbowButton
-              size="lg"
+              size="md"
               variant="default"
               type="submit"
               :disabled="emailSent"
@@ -91,7 +91,7 @@ const { btnLabel = "Get your link", email = false } = Astro.props;
         Dont' have an account?
         <a
           href="/pricing"
-          class="font-medium text-accent-500 hover:text-base-500"
+          class="font-medium text-accent-600 hover:text-base-500"
         >
           Get full access
         </a>
@@ -113,7 +113,7 @@ const { btnLabel = "Get your link", email = false } = Astro.props;
         </div>
         <div class="flex mt-4">
           <OxbowButton
-            size="lg"
+            size="md"
             variant="default"
             class="w-full"
             @click="clearForm()"

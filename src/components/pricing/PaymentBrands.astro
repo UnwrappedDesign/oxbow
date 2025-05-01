@@ -1,38 +1,29 @@
 ---
+// Fundations
 import Text from "@/components/fundations/typography/Text.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-const paymentImages = [
-  { src: "/paypal.svg", alt: "PayPal logo" },
-  { src: "/applepay.svg", alt: "Apple Pay logo" },
-  { src: "/googlepay.svg", alt: "Google Pay logo" },
-  { src: "/mastercard.svg", alt: "MasterCard logo" },
-  { src: "/visa.svg", alt: "Visa logo" },
+const paymentMethods = [
+  "Visa",
+  "PayPal",
+  "Apple Pay",
+  "Google Pay",
+  "MasterCard",
 ];
 ---
 
-<section>
-  <Wrapper variant="standard" class="py-2">
-    <div class="flex flex-col gap-4 md:flex-row">
-      <div class="inline-flex items-center gap-3">
-        <Text tag="p" variant="textSM" class="font-medium text-black"
-          >Secure Payments via
-        </Text>
-        <div class="flex items-center font-medium gap-2">
-          <img class="h-5" src="/images/forms/polar.svg" alt="" />
-          <Text tag="p" variant="textSM" class="font-medium text-black"
-          >Polar
-        </Text>
-        </div>
-      </div>
-      <!-- <ul class="flex flex-wrap list-none gap-4" role="list">
-        {
-          paymentImages.map((image) => (
-            <li>
-              <img class="h-5" src={image.src} alt={image.alt} />
-            </li>
-          ))
-        }
-      </ul> -->
-    </div>
-  </Wrapper>
-</section>
+<div
+  class="flex flex-wrap items-center justify-between py-3 mt-4 text-center capitalize"
+>
+  <div>
+    <Text variant="textXS" class="font-semibold text-base-900">
+      Secure Payments via Polar.sh
+    </Text>
+  </div>
+  <div>
+    <Text
+      variant="textXS"
+      class="flex flex-wrap font-medium gap-2 text-base-600"
+    >
+      {paymentMethods.map((method) => <span>{method}</span>)}
+    </Text>
+  </div>
+</div>
