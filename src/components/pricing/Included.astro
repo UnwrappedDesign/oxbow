@@ -51,17 +51,17 @@ const sections = [
 ---
 <section class="scroll-mt-24" id="features">
   <Wrapper variant="standard" class="flex flex-col py-8 gap-y-20">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
       {
         sections.map(({ category, title, description, image }) => (
-          <div class="relative flex flex-col gap-4">
+          <div class="relative flex flex-col gap-4  bg-white rounded-xl shadow-oxbow overflow-hidden" >
             <div>
               <Image
                 src={image.src}
                 alt={image.alt}
-                class="rounded-lg aspect-4/2 outline outline-base-100"
+                class="aspect-4/2 "
               />
-              <div class="relative mt-2">
+              <div class="relative mt-2 p-6 sm:p-4 sm:pb-5 lg:p-6">
                 <span class="text-sm  text-base-500 text-balance">
                   {category}
                 </span>
@@ -72,10 +72,10 @@ const sections = [
                 >
                   {title}
                 </Text>
-              </div>
               <Text tag="p" variant="textSM" class="mt-1 text-base-500">
                 {description}
               </Text>
+              </div>
             </div>
           </div>
         ))
