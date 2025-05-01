@@ -6,30 +6,6 @@ import applicationImage from "@/screenshots/application_commandbar_03.png";
 import ecommerceImage from "@/screenshots/ecommerce_product-details_01.png";
 import marketingImage from "@/screenshots/marketing_hero_01.png";
 import emailImage from "@/screenshots/emails_receipts_03.png";
-const features = [
-  {
-    title: "400+ Components",
-    description: "Accessible, responsive, and easy to customize.",
-  },
-  {
-    title: "Built with Tailwind & Alpine",
-    description: "Clean, interactive code you can drop into any project.",
-  },
-  {
-    title: "One-Time Payment",
-    description: "Lifetime access. No subscriptions, no limits.",
-  },
-  {
-    title: "Free Updates",
-    description: "New components and improvements included, always.",
-  },
-  {
-    title: "Fast Support",
-    description:
-      "Get help anytime. We’re here when you need us, we are on Discord",
-  },
-];
-
 const sections = [
   {
     category: "Marketing",
@@ -72,76 +48,20 @@ const sections = [
     },
   },
 ];
-const started = [
-  {
-    title: "Simple customization ",
-    description:
-      "The bundle license is a one-time purchase. Oxbow UI will never charge you again after the initial payment.",
-  },
-  {
-    title: "Keyboard accessibility",
-    description:
-      "All elements are keyboard accessible, ensuring a smooth experience for screen reader users.",
-  },
-  {
-    title: "Production ready",
-    description:
-      "The components are rigorously tested on the latest browsers, ensuring reliability and handling edge cases effectively.",
-  },
-];
 ---
-
 <section class="scroll-mt-24" id="features">
   <Wrapper variant="standard" class="flex flex-col py-8 gap-y-20">
-    <ul class="grid grid-cols-1 md:grid-cols-2 gap-y-12 lg:grid-cols-3 gap-x-8">
-      {
-        started.map((started) => (
-          <li>
-            <Text
-              tag="h3"
-              variant="textBase"
-              class="mt-2 font-medium text-base-900 "
-            >
-              {started.title}
-            </Text>
-            <Text
-              tag="p"
-              variant="textSM"
-              class="mt-2 text-base-500  text-balance"
-            >
-              {started.description}
-            </Text>
-          </li>
-        ))
-      }
-      {
-        features.map((feature) => (
-          <div>
-            <Text
-              tag="h3"
-              variant="textBase"
-              class="mt-2 font-medium text-base-900 "
-            >
-              {feature.title}
-            </Text>
-            <Text
-              tag="p"
-              variant="textSM"
-              class="mt-2 text-base-500  text-balance"
-            >
-              {feature.description}
-            </Text>
-          </div>
-        ))
-      }
-    </ul>
-
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
       {
         sections.map(({ category, title, description, image }) => (
           <div class="relative flex flex-col gap-4">
             <div>
-              <div class="relative">
+              <Image
+                src={image.src}
+                alt={image.alt}
+                class="rounded-lg aspect-4/2 outline outline-base-100"
+              />
+              <div class="relative mt-2">
                 <span class="text-sm  text-base-500 text-balance">
                   {category}
                 </span>
