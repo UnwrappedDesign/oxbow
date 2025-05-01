@@ -47,45 +47,6 @@ base: {
    900: "#111827",
    950: "#030712",
 },
-green: {
-    50: "#cafae4",
-    100: "#97f5d2",
-    200: "#5fe2be",
-    300: "#37c6ab",
-    400: "#06a192",
-    500: "#048a89",
-    600: "#036a73",
-    700: "#014d5d",
-    800: "#01384d",
-    900: "#012c3c",
-    950: "#011e2e",
-},
-red: {
-    50: "#fed9d5",
-    100: "#feacad",
-    200: "#fd838f",
-    300: "#fb6382",
-    400: "#f9316d",
-    500: "#d6236a",
-    600: "#b31865",
-    700: "#900f5c",
-    800: "#770955",
-    900: "#5f0743",
-    950: "#4a032f",
-},
-yellow: {
-    50: "#fff3d5",
-    100: "#ffe4ab",
-    200: "#ffd181",
-    300: "#ffbe62",
-    400: "#ffa02e",
-    500: "#db7e21",
-    600: "#b75f17",
-    700: "#93450e",
-    800: "#7a3108",
-    900: "#602706",
-    950: "#4d1c03",
-},
 ```
 
 If you are using Tailwind v4 use this:
@@ -114,58 +75,10 @@ If you are using Tailwind v4 use this:
 --color-base-800: #1f2937;
 --color-base-900: #111827;
 --color-base-950: #030712;
-/* green */
---color-green-50: #cafae4;
---color-green-100: #97f5d2;
---color-green-200: #5fe2be;
---color-green-300: #37c6ab;
---color-green-400: #06a192;
---color-green-500: #048a89;
---color-green-600: #036a73;
---color-green-700: #014d5d;
---color-green-800: #01384d;
---color-green-900: #012c3c;
---color-green-950: #011e2e;
-/* red */
---color-red-50: #fed9d5;
---color-red-100: #feacad;
---color-red-200: #fd838f;
---color-red-300: #fb6382;
---color-red-400: #f9316d;
---color-red-500: #d6236a;
---color-red-600: #b31865;
---color-red-700: #900f5c;
---color-red-800: #770955;
---color-red-900: #5f0743;
---color-red-950: #4a032f;
-/* yellow */
---color-yellow-50: #fff3d5;
---color-yellow-100: #ffe4ab;
---color-yellow-200: #ffd181;
---color-yellow-300: #ffbe62;
---color-yellow-400: #ffa02e;
---color-yellow-500: #db7e21;
---color-yellow-600: #b75f17;
---color-yellow-700: #93450e;
---color-yellow-800: #7a3108;
---color-yellow-900: #602706;
---color-yellow-950: #4d1c03;
+
 ```
 
-## Shadows
 
-We are using a custom default shadow:
-
-for Tailwind v3 use this:
-```js
-boxShadow: {
-   DEFAULT: "0 0 0 1px #0e3f7e0a, 0 1px 1px -.5px #2a33450a, 0 3px 3px -1.5px #2a33460a, 0 6px 6px -3px #2a33460a, 0 12px 12px -6px #0e3f7e0a, 0 24px 24px -12px #0e3f7e0a;",
-},
-```
-For Tailwind v4 use this:
-```sass
---shadow:0 0 0 1px #0e3f7e0a, 0 1px 1px -.5px #2a33450a, 0 3px 3px -1.5px #2a33460a, 0 6px 6px -3px #2a33460a, 0 12px 12px -6px #0e3f7e0a, 0 24px 24px -12px #0e3f7e0a;
-```
 
 ## Typography
 
