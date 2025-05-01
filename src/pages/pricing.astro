@@ -1,14 +1,71 @@
 ---
+// Fudnations
 import { AstroSeo } from "@astrolib/seo";
+import Text from "@/components/fundations/typography/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
+import MainHero from "@/components/fundations/containers/MainHero.astro";
+// Sections
 import Reviews from "@/components/landing/Reviews.astro";
-import Guest from "@/components/pricing/Guest.astro";
-import Team from "@/components/pricing/Team.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Included from "@/components/pricing/Included.astro";
-import Individual from "@/components/pricing/Individual.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-import MainHero from "@/components/fundations/containers/MainHero.astro";
 import PaymentBrands from "@/components/pricing/PaymentBrands.astro";
+const tiers = [
+  {
+    id: "teams",
+    title: "Teams",
+    price: "$399",
+    subtitle: "One time",
+    subtitleNote: "USD + Applicable local taxes",
+    description: "For product teams and agencies",
+    features: [
+      "5 Users",
+      "Lifetime access",
+      "Unlimited projects",
+      "Over 400+ components and blocks",
+      "Marketing, application  & eCommerce",
+      "Discord Support",
+    ],
+    href: import.meta.env.PRODUCT_TEAM_LICENSE_URL,
+    btnText: "Buy for $399",
+    btnVariant: "muted",
+  },
+  {
+    id: "personal",
+    title: "Personal",
+    price: "$69",
+    subtitle: "One time",
+    subtitleNote: "USD + Applicable local taxes",
+    description: "For individual and client work",
+    features: [
+      "1 User",
+      "Lifetime access",
+      "Unlimited projects",
+      "Over 400+ components and blocks",
+      "Marketing, application  & eCommerce",
+      "Discord Support",
+    ],
+    href: import.meta.env.PRODUCT_INDIVIDUAL_LICENSE_URL,
+    btnText: "Buy for $69",
+    btnVariant: "accent",
+  },
+
+  {
+    id: "guest",
+    title: "Guest",
+    price: "Free",
+
+    subtitleNote: "No subscription needed. Just search around.",
+    description: "Testing and personal use",
+    features: [
+      "Over 30+ components and blocks",
+      "Marketing, application  & eCommerce",
+    ],
+    href: "/components",
+    btnText: "Get started",
+    btnVariant: "muted",
+  },
+];
 ---
 
 <AstroSeo
@@ -54,15 +111,92 @@ import PaymentBrands from "@/components/pricing/PaymentBrands.astro";
   />
   <PaymentBrands />
   <section>
-    <Wrapper variant="standard" class="py-8">
+    <Wrapper variant="standard" class="py-2">
       <div class="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
-        <Team />
-        <Individual />
-        <Guest />
+        {
+          tiers.map((tier) => (
+            <article class="relative flex flex-col justify-between h-full p-8 overflow-hidden  bg-base-50">
+              <div class="flex flex-col justify-start h-full ">
+                <div class="flex flex-col gap-2">
+                  <div>
+                    <Text
+                      tag="h3"
+                      variant="textBase"
+                      class="font-mono font-bold leading-6 uppercase "
+                    >
+                      {tier.title}
+                    </Text>
+                    <Text
+                      tag="p"
+                      variant="textSM"
+                      class="font-medium mt-1 text-base-500"
+                    >
+                      {tier.description}
+                    </Text>
+                  </div>
+                  <div class="flex items-center gap-x-4 mt-4">
+                    <p class="text-4xl  sm:text-3xl md:text-4xl font-bold uppercase font-mono upperase">
+                      {tier.price}
+                    </p>
+                    <div>
+                      {tier.subtitle && (
+                        <p class="text-xs  font-semibold">{tier.subtitle}</p>
+                      )}
+                      {tier.subtitleNote && (
+                        <p class="text-xs  text-base-500">
+                          {tier.subtitleNote}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-12 pb-12">
+                  <Text tag="p" variant="textSM" class="font-medium text-black">
+                    What you get:
+                  </Text>
+                  <ul
+                    role="list"
+                    class="mt-4 flex flex-col gap-y-3  text-sm text-base-500"
+                  >
+                    {tier.features.map((f) => (
+                      <li class="flex items-center gap-2">
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="size-4"
+                        >
+                          <line x1="12" y1="2" x2="12" y2="10" />
+                          <line x1="12" y1="14" x2="12" y2="22" />
+                          <line x1="2" y1="12" x2="10" y2="12" />
+                          <line x1="14" y1="12" x2="22" y2="12" />
+                        </svg>
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <div class="w-full mt-8">
+                <OxbowLink
+                  id={`purchase-${tier.id}-license`}
+                  data-umami-event={`purchase-${tier.id}-license`}
+                  href={tier.href}
+                  size="base"
+                  variant={tier.btnVariant}
+                  class="w-full"
+                >
+                  {tier.btnText}
+                </OxbowLink>
+              </div>
+            </article>
+          ))
+        }
       </div>
     </Wrapper>
   </section>
-
   <Included />
   <Reviews />
 </BaseLayout>

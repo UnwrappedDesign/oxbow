@@ -1,141 +1,127 @@
 ---
-// Assets
-import AnimatedGradient from "@/components/assets/AnimatedGradient.astro";
-// Fundations
 import Text from "@/components/fundations/typography/Text.astro";
+import OxbowButton from "@/components/fundations/buttons/OxbowButton.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-import Oxbowbutton from "@/components/fundations/buttons/OxbowButton.astro";
 const { btnLabel = "Get your link", email = false } = Astro.props;
 ---
 
-<section x-data="loginForm()">
+<section>
   <Wrapper variant="standard" class="h-[80dvh] flex flex-col py-24">
-    <div class="relative">
-      <Text
-        tag="h1"
-        variant="displayMD"
-        class="max-w-sm mx-auto tracking-tight text-center text-base-900 lg:text-balance"
-      >
-        Welcome back to Oxbow UI, sign in.
-      </Text>
-      <Text
-        tag="p"
-        variant="textBase"
-        class="max-w-xl mx-auto mt-4 text-center text-base-500 text-balance"
-      >
-        Please enter the email address linked to your account, and we will send
-        a unique sign-in link to your inbox.
-      </Text>
-
-      <!-- 
-    
-    // Form goes here
-    -->
+    <Text
+      tag="h1"
+      variant="displayMD"
+      class="max-w-sm mx-auto font-medium tracking-tight text-center text-base-900 lg:text-balance"
+    >
+      Welcome back to Oxbow UI, sign in.
+    </Text>
+    <Text
+      tag="p"
+      variant="textBase"
+      class="max-w-xl mx-auto mt-4 text-center text-base-500 text-balance"
+    >
+      Please enter the email address linked to your account, and we will send a
+      unique sign-in link to your inbox.
+    </Text>
+    <div x-data="loginForm()">
       <form
         x-cloak
         @submit.prevent="sendEmail()"
         x-show="!emailSent || errorMessage"
         class="max-w-sm mx-auto mt-12"
       >
-        <div>
-          <label for="email" class="text-sm text-base-500">Email</label>
-          <div class="mt-2.5">
-            <input
-              id="email"
-              name="email"
-              type="email"
-              x-model="email"
-              x-on:input="clearErrorMessage"
-              autocomplete="on"
-              placeholder="email@example.com"
-              required
-              aria-required="true"
-              class="block w-full h-12 px-4 py-2 text-sm bg-white border border-transparent appearance-none text-base-900 duration-300 backdrop-blur-2xl rounded-xl outline outline-base-100 placeholder-base-400 focus:border-base-100 focus:bg-transparent focus:outline-none focus:outline-accent-500 focus:outline-offset-2 focus:outline-2 sm:text-sm focus:ring-offset-base-950"
-            />
-            <div x-cloak x-show="!!errorMessage" class="mt-2 text-red-500">
-              <p x-text="errorMessage"></p>
-            </div>
-          </div>
-          <Text
-            tag="p"
-            variant="textXS"
-            class="mt-2 font-medium text-center text-base-500"
-          >
-            Dont' have an account?
-            <a
-              href="/pricing"
-              class="font-medium text-accent-500 hover:text-base-500"
-            >
-              Get full access
-            </a>
-          </Text>
-        </div>
-        <div>
-          {
-            email && (
-              <div>
-                <label for="password" class="text-sm text-base-300">
-                  Password
-                </label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  placeholder="Enter your password"
-                  required
-                  aria-required="true"
-                  class="block w-full h-12 px-4 py-2 text-sm bg-white border border-transparent appearance-none text-base-900  duration-300 backdrop-blur-2xl rounded-xl outline outline-base-100 placeholder-base-400 focus:border-base-100 focus:bg-transparent focus:outline-none focus:outline-accent-500 focus:outline-offset-2 focus:outline-2 sm:text-sm focus:ring-offset-base-950"
-                />
-              </div>
-            )
-          }
-        </div>
-        <Oxbowbutton
-          type="submit"
-          size="base"
-          variant="accent"
-          id="access-footer-cta"
-          data-umami-event="access-footer-cta"
-          :disabled="emailSent"
-          x-text={`emailSent ? 'Check Your Inbox' : '${btnLabel}'`}
-          class="w-full mt-2"
-        >
-          {btnLabel}
-        </Oxbowbutton>
-        <span class="mt-2 text-xs font-medium text-base-500">
-          <small
-            >By clicking 'Get your link', you agree to our <a
-              href="/terms"
-              class="text-base-900 hover:underline">Terms of Service</a
-            > and
-            <a href="/privacy" class="text-base-900 hover:underline">
-              Privacy Policy.
-            </a>
-          </small>
-        </span>
-        <div x-cloak x-show="emailSent" class="flex flex-col mt-8 gap-4">
+        <div class="flex flex-col gap-1">
           <div>
-            <Text tag="p" variant="textBase" class="font-medium text-base-900"
-              >Didn't receive the email?</Text
+           <div>
+              <label for="email" class="text-sm text-base-500"> Email </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                x-model="email"
+                x-on:input="clearErrorMessage"
+                autocomplete="on"
+                placeholder="email@example.com"
+                required
+                aria-required="true"
+                class="w-full text-lg border-transparent outline-none bg-base-100 h-14 text-base-700 placeholder-base-400 focus:ring-inset focus:ring-base-800 focus:border-base-800 focus:bg-white"
+              />
+           </div>
+           
+            <div x-cloak x-show="!!errorMessage">
+              <p x-text="errorMessage" class="pt-4 text-xs text-base-500"></p>
+            </div>
+            
+            {
+              email && (
+                <div>
+                  <label for="password" class="text-sm text-base-500">
+                    Password
+                  </label>
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    placeholder="Enter your password"
+                    required
+                    aria-required="true"
+                    class="w-full text-lg border-transparent outline-none bg-base-100 h-14 text-base-700 placeholder-base-400 focus:ring-inset focus:ring-base-800 focus:border-base-800 focus:bg-white"
+                  />
+                </div>
+              )
+            }
+
+            <OxbowButton
+              size="lg"
+              variant="default"
+              type="submit"
+              :disabled="emailSent"
+              x-text={`emailSent ? 'Check Your Inbox' : '${btnLabel}'`}
+              class="w-full mt-4"
             >
-            <Text tag="p" variant="textSM" class="mt-2 text-base-600"
-              >Add the email
-              <span class="font-medium">noreply@oxbowui.firebaseapp.com</span>
-              to your contacts to ensure you receive our emails and try again.</Text
-            >
-          </div>
-          <div class="flex mt-2">
-            <Oxbowbutton
-              size="base"
-              variant="accent"
-              @click="clearForm()"
-              class="w-full"
-            >
-              Try again
-            </Oxbowbutton>
+              {btnLabel}
+            </OxbowButton>
           </div>
         </div>
       </form>
+      <Text
+        tag="p"
+        variant="textXS"
+        class="mt-4 font-medium text-center text-base-500"
+      >
+        Dont' have an account?
+        <a
+          href="/pricing"
+          class="font-medium text-accent-500 hover:text-base-500"
+        >
+          Get full access
+        </a>
+      </Text>
+      <div
+        x-cloak
+        x-show="emailSent"
+        class="flex flex-col max-w-sm mx-auto mt-12 gap-4"
+      >
+        <div>
+          <Text tag="p" variant="textBase" class="font-medium text-base-900"
+            >Didn't receive the email?</Text
+          >
+          <Text tag="p" variant="textSM" class="mt-2 text-base-500"
+            >Add the email
+            <span class="font-medium">noreply@oxbowui.firebaseapp.com</span> to your
+            contacts to ensure you receive our emails and try again.</Text
+          >
+        </div>
+        <div class="flex mt-4">
+          <OxbowButton
+            size="lg"
+            variant="default"
+            class="w-full"
+            @click="clearForm()"
+          >
+            Try again
+          </OxbowButton>
+        </div>
+      </div>
     </div>
   </Wrapper>
 </section>

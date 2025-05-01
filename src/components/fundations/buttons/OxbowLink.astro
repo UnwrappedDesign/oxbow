@@ -8,44 +8,44 @@ const {
   class: className,
   ...rest
 } = Astro.props;
-// Default link
+// Default button
 const defaultClass = [
-  "text-white",
-  "bg-base-800",
+  "text-white ",
+  "bg-black",
   "hover:bg-base-700",
-  "focus:outline-base-500",
-
+  "ring-black",
+  "hover:ring-base-800",
 ];
 // Accent button
 const accentClass = [
-  "text-white",
+  "text-white ",
   "bg-accent-600",
   "hover:bg-accent-700",
-  "focus:outline-accent-500",
+  "ring-accent-600",
+  "hover:ring-accent-800",
 ];
 // Muted button
 const mutedClass = [
-  "text-black",
-  "bg-base-50",
-  "hover:bg-base-100",
-  "focus:outline-accent-500",
-
-];
-const alternativeClass = [
-  "text-black",
+  "text-base-500 ",
   "bg-base-100",
-  "hover:bg-base-200",
-  "focus:outline-accent-500",
-
+  "hover:bg-accent-200",
+  "ring-base-100",
+  "hover:ring-accent-800",
+];
+// alternative button
+const alternativeClass = [
+  "text-black ",
+  "bg-white",
+  "ring-base-200",
+  "hover:ring-base-300",
 ];
 // Size (only applies if variant is not "link")
-const xxs = ["h-7.5", "px-3", "py-1", "text-[0.69rem]", "rounded-sm"];
-const xs = ["h-8", "px-6", "py-2", "text-xs rounded-md"];
-const sm = ["h-9", "px-4", "py-2", "text-sm", " rounded-md"];
-const base = ["h-10", "px-6", "py-3", "text-base", " rounded-lg"];
-const md = ["h-10", "px-6", "py-3", "text-base", " rounded-lg"];
-const lg = ["h-12", "px-6", "py-3", "text-lg", "rounded-lg"];
-const xl = ["h-14", "px-6", "py-3", "text-lg", " rounded-xl"];
+const xs = ["h-8", "px-3.5", "py-2", "text-xs"];
+const sm = ["h-9", "px-4", "py-2", "text-sm"];
+const base = ["h-10", "px-4", "py-3", "text-base"];
+const md = ["h-11", "px-6", "py-3", "text-md"];
+const lg = ["h-12", "px-6", "py-3", "text-lg"];
+const xl = ["h-14", "px-6", "py-3", "text-lg"];
 // Gap
 const gapXS = ["gap-2"];
 const gapSM = ["gap-4"];
@@ -59,22 +59,24 @@ const additionalClasses = className ? className.split(" ") : [];
   href={href}
   class:list={[
     ...(variant === "link"
-      ? [...additionalClasses]
+      ? [...additionalClasses] // Apply custom classes for "link" variant
       : [
           "flex",
-          "items-center",
-          "justify-center",
           "text-center",
           "font-medium",
-          "duration-500",
+          "items-center",
+          "ring rounded-full",
+          "focus:z-1",
+          "focus:ring-2",
+          "focus:ring-inset",
+          "justify-center",
+          "duration-300",
           "ease-in-out",
-          "transition-colors",
-          "focus:outline-2",
+          "transition-all",
           variant === "muted" && mutedClass,
           variant === "accent" && accentClass,
           variant === "default" && defaultClass,
           variant === "alternative" && alternativeClass,
-          size === "xxs" && xxs,
           size === "xs" && xs,
           size === "sm" && sm,
           size === "base" && base,
