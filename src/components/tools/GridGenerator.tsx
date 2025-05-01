@@ -198,7 +198,7 @@ export default function GridGenerator() {
             return (
               <div
                 key={index}
-                className="relative flex items-center justify-center p-8 text-2xl cursor-pointer bg-base-50  outline rounded-xl outline-base-100"
+                className="relative flex items-center justify-center p-8 text-2xl cursor-pointer bg-white  outline rounded-xl outline-base-100"
                 onClick={() => handleAddItem(x, y)}
               >
                 +
@@ -228,7 +228,7 @@ export default function GridGenerator() {
               onResizeStop(item.id, delta)
             }
             onDragStop={(e, data) => onDragStop(item.id, data)}
-            className="relative flex items-center justify-center p-4 cursor-pointer bg-base-100  outline rounded-xl outline-base-100"
+            className="relative flex items-center justify-center p-4 cursor-pointer bg-white  outline-2 rounded-xl outline-accent-600"
           >
             <button
               onClick={() => handleRemoveItem(item.id)}
@@ -250,7 +250,7 @@ export default function GridGenerator() {
         <div className="flex items-center gap-2 ">
           <button
             className={`
-                    flex items-center text-center justify-center font-semibold duration-500 ease-in-out transition focus:outline-2 text-black bg-base-50 hover:bg-base-100 focus:outline-base-200        h-7.5 px-6 py-2 text-xs rounded-md pointer-events-auto outline-base-100  
+                    flex items-center text-center justify-center font-semibold duration-500 ease-in-out transition focus:outline-2 text-black bg-white hover:bg-base-100 focus:outline-base-200        h-7.5 px-6 py-2 text-xs rounded-md pointer-events-auto outline-base-100  
                     ${format === "html" ? "!outline-base-700" : " "}
                   `}
             onClick={() => setFormat("html")}
@@ -259,7 +259,7 @@ export default function GridGenerator() {
           </button>
           <button
             className={`
-                  flex items-center text-center justify-center font-semibold duration-500 ease-in-out transition focus:outline-2 text-black bg-base-50 hover:bg-base-100 focus:outline-base-200        h-7.5 px-6 py-2 text-xs rounded-md pointer-events-auto outline-base-100  
+                  flex items-center text-center justify-center font-semibold duration-500 ease-in-out transition focus:outline-2 text-black bg-white hover:bg-base-100 focus:outline-base-200        h-7.5 px-6 py-2 text-xs rounded-md pointer-events-auto outline-base-100  
                     ${format === "jsx" ? "!outline-base-700" : ""}
                   `}
             onClick={() => setFormat("jsx")}
@@ -267,13 +267,13 @@ export default function GridGenerator() {
             JSX
           </button>
           <button
-            className="flex items-center text-center justify-center font-semibold duration-500 ease-in-out transition focus:outline-2 text-black bg-base-50 hover:bg-base-100 focus:outline-base-200        h-7.5 px-6 py-2 text-xs rounded-md pointer-events-auto outline-base-100  "
+            className="flex items-center text-center justify-center font-semibold duration-500 ease-in-out transition focus:outline-2 text-black bg-white hover:bg-base-100 focus:outline-base-200        h-7.5 px-6 py-2 text-xs rounded-md pointer-events-auto outline-base-100  "
             onClick={handleReset}
           >
             Reset
           </button>
           <button
-            className="fflex items-center text-center justify-center  font-semibold duration-500 ease-in-out transition focus:outline-2 text-black bg-base-50 hover:bg-base-100 focus:outline-base-200        h-7.5 px-6 py-2 text-xs rounded-md pointer-events-auto outline-base-100     w-24"
+            className="fflex items-center text-center justify-center  font-semibold duration-500 ease-in-out transition focus:outline-2 text-black bg-white hover:bg-base-100 focus:outline-base-200        h-7.5 px-6 py-2 text-xs rounded-md pointer-events-auto outline-base-100     w-24"
             onClick={handleCopy}
           >
             {isCopied ? "Copied!" : "Copy"}

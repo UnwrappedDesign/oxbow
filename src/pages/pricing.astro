@@ -28,7 +28,9 @@ const tiers = [
     ],
     href: import.meta.env.PRODUCT_TEAM_LICENSE_URL,
     btnText: "Buy for $399",
-    btnVariant: "muted",
+    btnVariant: "alternative",
+    accentText: "text-base-900",
+    cardClass: "bg-white/10 outline outline-base-100 backdrop-blur-xl",
   },
   {
     id: "personal",
@@ -48,13 +50,13 @@ const tiers = [
     href: import.meta.env.PRODUCT_INDIVIDUAL_LICENSE_URL,
     btnText: "Buy for $69",
     btnVariant: "accent",
+    accentText: "text-accent-500",
+    cardClass: "bg-white shadow-oxbow",
   },
-
   {
     id: "guest",
     title: "Guest",
     price: "Free",
-
     subtitleNote: "No subscription needed. Just search around.",
     description: "Testing and personal use",
     features: [
@@ -63,7 +65,9 @@ const tiers = [
     ],
     href: "/components",
     btnText: "Get started",
-    btnVariant: "muted",
+    btnVariant: "alternative",
+    accentText: "text-base-900",
+    cardClass: "bg-white/10 outline outline-base-100 backdrop-blur-xl",
   },
 ];
 ---
@@ -115,32 +119,30 @@ const tiers = [
       <div class="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
         {
           tiers.map((tier) => (
-            <article class="relative flex flex-col justify-between h-full p-6 overflow-hidden  bg-white rounded-2xl">
+            <article
+              class={`relative flex flex-col justify-between h-full p-6 sm:p-4 sm:pb-5 lg:p-6 overflow-hidden rounded-xl ${tier.cardClass}`}
+            >
               <div class="flex flex-col justify-start h-full ">
                 <div class="flex flex-col gap-2">
                   <div>
                     <Text
                       tag="h3"
-                      variant="textBase"
-                      class="font-mono font-bold leading-6 uppercase "
+                      variant="textSM"
+                      class={`font-medium ${tier.accentText}  `}
                     >
                       {tier.title}
                     </Text>
-                    <Text
-                      tag="p"
-                      variant="textSM"
-                      class="font-medium mt-1 text-base-500"
-                    >
+                    <Text tag="p" variant="textSM" class=" mt-1 text-base-500">
                       {tier.description}
                     </Text>
                   </div>
                   <div class="flex items-center gap-x-4 mt-2">
-                    <p class="text-4xl  sm:text-3xl md:text-4xl font-bold uppercase font-mono upperase">
+                    <p class="text-4xl  sm:text-3xl md:text-4xl font-medium uppercase  upperase">
                       {tier.price}
                     </p>
                     <div>
                       {tier.subtitle && (
-                        <p class="text-xs  font-semibold">{tier.subtitle}</p>
+                        <p class="text-xs  font-medium">{tier.subtitle}</p>
                       )}
                       {tier.subtitleNote && (
                         <p class="text-xs  text-base-500">
@@ -150,9 +152,9 @@ const tiers = [
                     </div>
                   </div>
                 </div>
-                <div class="mt-8 ">
+                <div class="mt-8 pt-8 border-t border-base-100">
                   <Text tag="p" variant="textSM" class="font-medium text-black">
-                    What you get:
+                    Everything included:
                   </Text>
                   <ul
                     role="list"
@@ -161,17 +163,19 @@ const tiers = [
                     {tier.features.map((f) => (
                       <li class="flex items-center gap-1">
                         <svg
-                          viewBox="0 0 24 24"
+                          width="15"
+                          height="15"
+                          viewBox="0 0 15 15"
                           fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
                           xmlns="http://www.w3.org/2000/svg"
-                          class="size-3"
+                          class={`size-4 ${tier.accentText}`}
                         >
-                          <line x1="12" y1="2" x2="12" y2="10" />
-                          <line x1="12" y1="14" x2="12" y2="22" />
-                          <line x1="2" y1="12" x2="10" y2="12" />
-                          <line x1="14" y1="12" x2="22" y2="12" />
+                          <path
+                            d="M11.4669 3.72684C11.7558 3.91574 11.8369 4.30308 11.648 4.59198L7.39799 11.092C7.29783 11.2452 7.13556 11.3467 6.95402 11.3699C6.77247 11.3931 6.58989 11.3355 6.45446 11.2124L3.70446 8.71241C3.44905 8.48022 3.43023 8.08494 3.66242 7.82953C3.89461 7.57412 4.28989 7.55529 4.5453 7.78749L6.75292 9.79441L10.6018 3.90792C10.7907 3.61902 11.178 3.53795 11.4669 3.72684Z"
+                            fill="currentColor"
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                          />
                         </svg>
                         {f}
                       </li>
@@ -184,9 +188,9 @@ const tiers = [
                   id={`purchase-${tier.id}-license`}
                   data-umami-event={`purchase-${tier.id}-license`}
                   href={tier.href}
-                  size="md"
+                  size="base"
                   variant={tier.btnVariant}
-                  class="w-full"
+                  class="w-full "
                 >
                   {tier.btnText}
                 </OxbowLink>
