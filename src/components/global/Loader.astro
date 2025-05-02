@@ -5,79 +5,47 @@ import Wrapper from "../fundations/containers/Wrapper.astro";
 ---
 
 <style>
-  .container2 {
-    -webkit-transform: scaleY(-1);
-    transform: scaleY(-1);
-  }
-  .blob2 {
-    -webkit-transform: scaleX(-1);
-    transform: scaleX(-1);
-  }
-  .blob {
-    width: 112px;
-    height: 112px;
-    display: grid;
-    filter: blur(6px) contrast(20);
-    padding: 11.2px;
-    mix-blend-mode: darken;
+  /* Define a variable for easy resizing: */
+  :root {
+    --pulse-size: 48px;
   }
 
-  .blob:before,
-  .blob:after {
+  .pulse {
+    width: var(--pulse-size);
+    height: var(--pulse-size);
+    border-radius: 50%;
+    background: #2679f3;
+    /* start with no spread on the shadow */
+    box-shadow: 0 0 0 0 rgba(38, 121, 243, 0.5);
+    animation: pulse-kefe91md 3s infinite linear;
+    position: relative;
+  }
+
+  .pulse:before,
+  .pulse:after {
     content: "";
-    grid-area: 1/1;
-    width: 44.8px;
-    height: 44.8px;
-    background: #004cff;
-    animation: blob-rhf26m 2s infinite;
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inherit;
+    animation: inherit;
+    animation-delay: -0.5s;
   }
 
-  .blob:after {
+  .pulse:after {
     animation-delay: -1s;
   }
 
-  @keyframes blob-rhf26m {
-    0% {
-      transform: translate(0, 0);
-    }
-
-    25% {
-      transform: translate(100%, 0);
-    }
-
-    50% {
-      transform: translate(100%, 100%);
-    }
-
-    75% {
-      transform: translate(0, 100%);
-    }
-
+  @keyframes pulse-kefe91md {
     100% {
-      transform: translate(0, 0);
+      /* expand the shadow to twice the diameter */
+      box-shadow: 0 0 0 calc(var(--pulse-size) * 2) #0000;
     }
   }
 </style>
-<section class="relative">
-  <Wrapper variant="standard" class="py-24">
-    <div class="flex flex-col">
-      <div class="rotate-45">
-        <div class="flex items-center w-32 mx-auto container2">
-          <div class="mx-auto blob blob2"></div>
-          <div class="relative mx-auto blob"></div>
-        </div>
-        <div class="flex items-center w-32 mx-auto">
-          <div class="mx-auto blob blob2"></div>
-          <div class="relative mx-auto blob"></div>
-        </div>
-      </div>
 
-      <Text
-        tag="h1"
-        variant="displayMD"
-        class="pt-24 tracking-tight text-center text-base-900å lg:text-balance"
-        >Hold on, we are building the blocks...</Text
-      >
-    </div>
-  </Wrapper>
-</section>
+<div class="py-48 flex h-svh flex-col items-center justify-center bg-base-100">
+  <div class="flex flex-col max-w-xl mx-auto">
+    <div class="pulse mx-auto"></div>
+  </div>
+</div>
