@@ -1,52 +1,31 @@
 ---
 const { variant, size, class: className, ...rest } = Astro.props;
-// Default button
+// Default link
 const defaultClass = [
-  "text-white ",
-  "shadow-base-800/30",
-  "inset-shadow-white/30",
-  "text-shadow-base-700",
-  "ring-base-700",
-  "bg-linear-to-b from-base-700 to-base-800 to-70%",
-  "focus:outline-base-700",
+  "text-white",
+  "bg-base-900",
+  "hover:bg-base-950",
+  "focus:outline-base-950",
 ];
 // Accent button
 const accentClass = [
-  "text-white ",
-  "shadow-accent-600/50",
-  "inset-shadow-white/20",
-  "text-shadow-accent-400",
-  "ring-accent-600",
-  "bg-linear-to-b from-accent-500 to-accent-600 to-70%",
+  "text-white",
+  "bg-accent-500",
+  "hover:bg-accent-600",
   "focus:outline-accent-600",
-];
-// Alternative button
-const alternativeClass = [
-  "text-base-950 ",
-  "shadow-base-400/40",
-  "inset-shadow-base-500/20",
-  "text-shadow-base-100",
-  "ring-base-50",
-  "bg-linear-to-b from-base-50 to-base-100 to-70%",
-  "focus:outline-base-200",
 ];
 // Muted button
 const mutedClass = [
-  "text-base-950 ",
-  "shadow-base-500/40",
-  "inset-shadow-base-700/20",
-  "text-shadow-base-200",
-  "ring-base-200",
-  "bg-linear-to-b from-base-200 to-base-300 to-70%",
-  "focus:outline-base-400",
+  "text-black",
+  "bg-base-50",
+  "hover:bg-base-200",
+  "focus:outline-base-600",
 ];
-// Text button
-const textClass = [
-  "text-base-500",
+const alternativeClass = [
+  "text-black",
   "bg-white",
-  "hover:text-accent-600",
-  "hover:bg-base-50",
-  "focus:outline-accent-500",
+  "hover:bg-base-100",
+  "focus:outline-base-900",
 ];
 // Link button
 const linkClass = [
@@ -54,70 +33,6 @@ const linkClass = [
   "hover:text-accent-700",
   "focus:outline-accent-500",
 ];
-// Success button
-const infoClass = [
-  "text-accent-950 ",
-  "shadow-accent-200/50",
-  "inset-shadow-white/20",
-  "text-shadow-accent-200",
-  "ring-accent-200",
-  "bg-linear-to-b from-accent-100 to-accent-200 to-70%",
-  "focus:outline-accent-200",
-];
-// Success button
-const successClass = [
-  "text-white ",
-  "shadow-emerald-600/50",
-  "inset-shadow-white/20",
-  "text-shadow-emerald-500",
-  "ring-emerald-500",
-  "bg-linear-to-b from-emerald-400 to-emerald-500 to-70%",
-  "focus:outline-emerald-500",
-];
-// Warning button
-const warningClass = [
-  "text-white ",
-  "shadow-amber-600/50",
-  "inset-shadow-white/20",
-  "text-shadow-amber-500",
-  "ring-amber-500",
-  "bg-linear-to-b from-amber-400 to-amber-500 to-70%",
-  "focus:outline-amber-500",
-];
-// Danger button
-const dangerClass = [
-  "text-white ",
-  "shadow-rose-600/50",
-  "inset-shadow-white/20",
-  "text-shadow-rose-500",
-  "ring-rose-500",
-  "bg-linear-to-b from-rose-400 to-rose-500 to-70%",
-  "focus:outline-rose-500",
-];
-// Meeta brand button
-const metaBrandClass = [
-"text-white ",
-  "shadow-accent-600/50",
-  "inset-shadow-white/20",
-  "text-shadow-accent-400",
-  "ring-accent-600",
-  "bg-linear-to-b from-accent-500 to-accent-600 to-70%",
-  "focus:outline-accent-600",
-];
-// Apple brand button
-const appleBrandClass = [
-  "text-white",
-  "bg-black",
-  "hover:bg-base-700",
-  "focus:outline-base-500/50",
-];
-const chromeBrandClass = [
-  "text-white",
-  "bg-base-50",
-  "hover:bg-base-100",
-  "focus:outline-base-500/50",
-];
-
 // Updated size classes to match Button component
 const xs = ["size-8", "p-0.5", "text-xs", "rounded-md"];
 const sm = ["size-9", "p-2", "text-sm", "rounded-md"];
@@ -133,18 +48,13 @@ const xl = ["size-14", "p-3.5", "text-lg", "rounded-lg"];
     "items-center",
     "justify-center",
     "text-center",
-    "text-shadow-2xs",
-    "font-semibold",
-    "shadow-md ",
-    "ring inset-shadow-2xs",
-    "hover:shadow-none",
-    "items-center",
-    "duration-300",
+    "shadow-subtle",
+    "font-medium",
+    "duration-500",
     "ease-in-out",
-    "transition-all",
+    "transition-colors",
     "focus:outline-2",
-    "outline-offset-2",
-    "focus:ring-offset-white",
+    "focus:outline-offset-2",
     variant === "accent" && accentClass,
     variant === "default" && defaultClass,
     variant === "alternative" && alternativeClass,

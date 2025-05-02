@@ -1,59 +1,96 @@
 ---
-// Assets
-import { Image } from "astro:assets";
-import showcase from "@/images/assets/showcase.png";
 // Fundations
 import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-const features = [
-  {
-    icon: "Component",
-    category: "Components",
-    text: "Over 400 components that are accessible, easy to use, and simple to customize.",
-  },
-  {
-    icon: "Code",
-    category: "Stack",
-    text: "Prebuilt blocks crafted with Tailwind CSS and Alpine JS for rapid development.",
-  },
-  {
-    icon: "Devices",
-    category: "Responsive Design",
-    text: "Designed to work seamlessly on all screen sizes—mobile, tablet, or desktop.",
-  },
-  {
-    icon: "ColorPicker",
-    category: "Pick your color",
-    text: "Easily apply your brand’s color to any block for a consistent, professional look.",
-  },
-];
+// Widgets
+import Stack from "@/components/landing/widgets/Stack.astro";
+import Colors from "@/components/landing/widgets/Colors.astro";
+import Devices from "@/components/landing/widgets/Devices.astro";
+import Components from "@/components/landing/widgets/Components.astro";
 ---
-
 <section class="lg:border-t lg:border-base-200">
   <Wrapper variant="standard" class="lg:border-x lg:border-base-200">
-    <dl
-      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
-    >
-      {
-        features.map((section) => (
-          <div class="relative flex flex-col p-6 overflow-hidden bg-white gap-4  rounded-xl shadow-oxbow sm:p-4 sm:pb-5 lg:p-6">
-            <Text
-              tag="h3"
-              variant="textBase"
-              class="font-medium text-base-900 "
-            >
-              {section.category}
-            </Text>
-            <Text
-              tag="p"
-              variant="textSM"
-              class="mt-2  text-base-500 text-pretty"
-            >
-              {section.text}
-            </Text>
-          </div>
-        ))
-      }
-    </dl>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+      <div
+        class="relative flex flex-col justify-start h-full p-6 overflow-hidden bg-white gap-4 rounded-xl shadow-oxbow sm:p-4 sm:pb-5 lg:p-6 group"
+      >
+        <div>
+          <Text tag="h3" variant="textLG" class="font-medium text-base-900">
+            Components
+          </Text>
+          <Text
+            tag="p"
+            variant="textBase"
+            class="mt-2 text-base-600 text-balance"
+          >
+            Over 400 components that are accessible, easy to use, and simple to
+            customize.
+          </Text>
+        </div>
+        <div class="relative mt-auto">
+          <Components />
+        </div>
+      </div>
+      <div
+        class="relative flex flex-col justify-start h-full p-6 overflow-hidden bg-white gap-4 rounded-xl shadow-oxbow sm:p-4 sm:pb-5 lg:p-6 group"
+      >
+        <div>
+          <Text tag="h3" variant="textLG" class="font-medium text-base-900">
+            Stack
+          </Text>
+          <Text
+            tag="p"
+            variant="textBase"
+            class="mt-2 text-base-600 text-balance"
+          >
+            Prebuilt blocks crafted with Tailwind CSS and Alpine JS for rapid
+            development.
+          </Text>
+        </div>
+        <div class="relative mt-12">
+          <Stack />
+        </div>
+      </div>
+      <div
+        class="relative flex flex-col justify-start h-full p-6 overflow-hidden bg-white gap-4 rounded-xl shadow-oxbow sm:p-4 sm:pb-5 lg:p-6 group"
+      >
+        <div>
+          <Text tag="h3" variant="textLG" class="font-medium text-base-900">
+            Responsive Design
+          </Text>
+          <Text
+            tag="p"
+            variant="textBase"
+            class="mt-2 text-base-600 text-balance"
+          >
+            Designed to work seamlessly on all screen sizes—mobile, tablet, or
+            desktop.
+          </Text>
+        </div>
+        <div class="relative mt-12">
+          <Devices />
+        </div>
+      </div>
+      <div
+        class="relative flex flex-col justify-start h-full p-6 overflow-hidden bg-white gap-4 rounded-xl shadow-oxbow sm:p-4 sm:pb-5 lg:p-6 group"
+      >
+        <div>
+          <Text tag="h3" variant="textLG" class="font-medium text-base-900">
+            Pick your color
+          </Text>
+          <Text
+            tag="p"
+            variant="textBase"
+            class="mt-2 text-base-600 text-balance"
+          >
+            Easily apply your brand’s color to any block for a consistent,
+            professional look.
+          </Text>
+        </div>
+        <div class="relative mt-12">
+          <Colors />
+        </div>
+      </div>
+    </div>
   </Wrapper>
 </section>

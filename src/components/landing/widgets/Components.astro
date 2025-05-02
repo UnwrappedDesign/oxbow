@@ -1,0 +1,45 @@
+---
+// Fundations
+import Button from "@/components/fundations/buttons/Button.astro";
+import IconButton from "@/components/fundations/buttons/IconButton.astro";
+import HorizontalButtonGroup from "@/components/fundations/buttonGroups/HorizontalButtonGroup.astro";
+// Icons
+import ChevronLeft from "@/components/fundations/icons/ChevronLeft.astro";
+import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
+import ExternalLink from "@/components/fundations/icons/ExternalLink.astro";
+import PlaceHolderIcon from "@/components/fundations/icons/PlaceHolderIcon.astro";
+---
+
+<div
+  aria-hidden="true"
+  class="flex items-baseline flex-col h-full group-hover:scale-x-105 duration-500"
+>
+  <div class="flex items-center gap-2">
+    <IconButton variant="accent" size="base" class="shrink-0">
+      <PlaceHolderIcon size="sm" slot="icon" />
+    </IconButton>
+    <Button size="base" variant="muted" class="shrink-0"> Muted Button </Button>
+    <span class="inline-flex isolate shrink-0">
+      <HorizontalButtonGroup variant="default" position="right" size="base">
+        Live preview
+      </HorizontalButtonGroup>
+
+      <HorizontalButtonGroup
+        position="left"
+        variant="default"
+        size="base"
+        slot="centered"
+      >
+        <ExternalLink size="base" slot="centered-icon" />
+      </HorizontalButtonGroup>
+    </span>
+    <span class="inline-flex isolate shrink-0">
+      <HorizontalButtonGroup variant="default" position="right" size="base">
+        <ChevronLeft size="base" slot="left-icon" />
+      </HorizontalButtonGroup>
+      <HorizontalButtonGroup position="left" variant="default" size="base">
+        <ChevronRight size="base" slot="right-icon" />
+      </HorizontalButtonGroup>
+    </span>
+  </div>
+</div>
