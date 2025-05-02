@@ -7,76 +7,38 @@ const {
   class: className,
   ...rest
 } = Astro.props;
-// Default button
+// Default link
 const defaultClass = [
-  "text-white ",
-  "shadow-base-500/30",
-  "inset-shadow-white/30",
-  "text-shadow-base-700",
-  "ring-base-700",
-  "bg-linear-to-b from-base-700 to-base-800 to-70%",
-  "focus:outline-base-700",
+  "text-white",
+  "bg-accent-1200",
+  "hover:bg-accent-1000",
+  "focus:outline-accent-1000",
 ];
 // Accent button
 const accentClass = [
-  "text-white ",
-  "shadow-accent-600/20",
-  "inset-shadow-white/20",
-  "text-shadow-accent-500",
-  "ring-accent-600",
-  "bg-linear-to-b from-accent-500 to-accent-600 to-70%",
+  "text-white",
+  "bg-accent-500",
+  "hover:bg-accent-600",
   "focus:outline-accent-600",
-];
-// Alternative button
-const alternativeClass = [
-  "text-base-950 ",
-  "shadow-base-400/20",
-  "inset-shadow-base-500/20",
-  "text-shadow-base-100",
-  "ring-base-50",
-  "bg-linear-to-b from-base-50 to-base-100 to-70%",
-  "focus:outline-base-200",
 ];
 // Muted button
 const mutedClass = [
-  "text-base-950 ",
-  "shadow-base-500/10",
-  "inset-shadow-base-700/20",
-  "text-shadow-base-100",
-  "ring-base-200",
-  "bg-linear-to-b from-base-200 to-base-300 to-70%",
-  "focus:outline-base-400",
+  "text-black",
+  "bg-base-50",
+  "hover:bg-base-200",
+  "focus:outline-base-600",
 ];
-
+const alternativeClass = [
+  "text-black",
+  "bg-white",
+  "hover:bg-base-100",
+  "focus:outline-base-900",
+];
 // Link button
 const linkClass = [
   "text-accent-500",
   "hover:text-accent-700",
   "focus:outline-accent-500",
-];
-
-// Meeta brand button
-const metaBrandClass = [
-  "text-white ",
-  "shadow-accent-600/50",
-  "inset-shadow-white/20",
-  "text-shadow-accent-400",
-  "ring-accent-600",
-  "bg-linear-to-b from-accent-500 to-accent-600 to-70%",
-  "focus:outline-accent-600",
-];
-// Meeta brand button
-const appleBrandClass = [
-  "text-white",
-  "bg-black",
-  "hover:bg-base-700",
-  "focus:outline-base-500/50",
-];
-const chromeBrandClass = [
-  "text-white",
-  "bg-base-50",
-  "hover:bg-base-100",
-  "focus:outline-base-500/50",
 ];
 // Size
 const xs = ["h-8", "px-4", "py-2", "text-xs", "rounded-md"];
@@ -93,35 +55,24 @@ const gapMD = ["gap-10"];
 const gapLG = ["gap-12"];
 const additionalClasses = className ? className.split(" ") : [];
 ---
-
 <button
   class:list={[
-    "flex",
+       "flex",
     "items-center",
     "justify-center",
     "text-center",
-    "text-shadow-2xs",
-    "font-semibold",
-    "shadow-md ",
-    "ring inset-shadow-2xs",
-    "hover:shadow-none",
-    "items-center",
-    "duration-300",
+    "shadow-subtle",
+    "font-medium",
+    "duration-500",
     "ease-in-out",
-    "transition-all",
+    "transition-colors",
     "focus:outline-2",
-    "outline-offset-2",
-    "focus:ring-offset-white",
-    variant === "info" && infoClass,
+    "focus:outline-offset-2",
     variant === "muted" && mutedClass,
     variant === "accent" && accentClass,
     variant === "default" && defaultClass,
     variant === "alternative" && alternativeClass,
-
     variant === "link" && linkClass,
-    variant === "meta-brand" && metaBrandClass,
-    variant === "apple-brand" && appleBrandClass,
-    variant === "chrome-brand" && chromeBrandClass,
     size === "xs" && xs,
     size === "sm" && sm,
     size === "base" && base,
