@@ -1,19 +1,57 @@
 ---
 // Fundations
 import Button from "@/components/fundations/buttons/Button.astro";
-import IconButton from "@/components/fundations/buttons/IconButton.astro";
 import HorizontalButtonGroup from "@/components/fundations/buttonGroups/HorizontalButtonGroup.astro";
 // Icons
+
+import IconButton from "@/components/fundations/buttons/IconButton.astro";
 import ChevronLeft from "@/components/fundations/icons/ChevronLeft.astro";
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 import ExternalLink from "@/components/fundations/icons/ExternalLink.astro";
 import PlaceHolderIcon from "@/components/fundations/icons/PlaceHolderIcon.astro";
+import Badge from "@/components/fundations/badges/Badge.astro";
+import Notification from "@/components/fundations/badges/Notification.astro";
 ---
 
 <div
   aria-hidden="true"
-  class="flex items-baseline flex-col h-full group-hover:scale-x-105 duration-500"
->
+  class="flex items-baseline flex-col h-full gap-2 group-hover:scale-x-105 duration-500"
+><div class="flex flex-wrap justify-center gap-4 shrink-0">
+ 
+  <Badge variant="info" size="xs" class="shrink-0">
+    info
+    <Notification
+      slot="notification"
+      variant="info"
+      position="xs"
+      size="xs"
+    >
+      1
+    </Notification>
+  </Badge>
+  <nav class="relative z-0 inline-flex gap-1.5 shrink-0" aria-label="Pagination">
+    <!-- Previous Page Button -->
+    <IconButton
+      disabled
+      aria-label="Go to previous page"
+      variant="text"
+      size="xs"
+    >
+      <ChevronLeft size="xs" slot="icon" />
+      <span class="sr-only">Previous</span>
+    </IconButton>
+    <IconButton variant="text" size="xs"> 1 </IconButton>
+    <IconButton variant="text" size="xs"> 2 </IconButton>
+    <IconButton variant="text" size="xs"> ... </IconButton>
+    <IconButton variant="text" size="xs"> 9 </IconButton>
+    <IconButton variant="text" size="xs"> 10 </IconButton>
+    <!-- Next Page Button -->
+    <IconButton aria-label="Go to next page" variant="text" size="xs">
+      <ChevronRight size="xs" slot="icon" />
+      <span class="sr-only">Next</span>
+    </IconButton>
+  </nav>
+</div>
   <div class="flex items-center gap-2">
     <IconButton variant="accent" size="base" class="shrink-0">
       <PlaceHolderIcon size="sm" slot="icon" />

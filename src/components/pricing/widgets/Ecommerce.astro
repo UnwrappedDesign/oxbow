@@ -1,0 +1,41 @@
+<div class="w-full -mb-55 ">
+    <div
+    x-data="{ 
+            activeImage: 0,
+            images: [
+                '/store/shoes/airmax/1.png',
+                '/store/shoes/airmax/2.png',
+                '/store/shoes/airmax/3.png',
+                '/store/shoes/airmax/4.png',
+                '/store/shoes/airmax/5.png',
+                '/store/shoes/airmax/6.png'
+            ]
+        }"
+    class="flex flex-col order-first gap-2 lg:order-none"
+  >
+    <!-- Main Image -->
+    <div class="overflow-hidden aspect-square bg-white rounded-lg shadow-oxbow">
+      <img
+        :src="images[activeImage]"
+        class="object-cover size-full aspect-square"
+        alt="Product image"
+      />
+    </div>
+    <!-- Thumbnails -->
+    <div class="w-full grid grid-cols-6 gap-2 order-first">
+      <template x-for="(image, index) in images" :key="index">
+        <button
+          @click="activeImage = index"
+          :class="{'ring-2 ring-base-900 ': activeImage === index}"
+          class="overflow-hidden size-full bg-white rounded-lg aspect-square shadow-oxbow"
+        >
+          <img
+            :src="image"
+            class="object-cover size-full aspect-square"
+            alt="Product thumbnail"
+          />
+        </button>
+      </template>
+    </div>
+  </div>
+</div>

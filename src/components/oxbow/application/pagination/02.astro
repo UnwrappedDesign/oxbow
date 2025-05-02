@@ -1,22 +1,27 @@
 ---
+import Button from "@/components/fundations/buttons/Button.astro";
 import IconButton from "@/components/fundations/buttons/IconButton.astro";
 import ChevronLeft from "@/components/fundations/icons/ChevronLeft.astro";
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
+import Text from "@/components/fundations/typography/Text.astro";
 ---
 
 <section>
-  <div class="flex justify-center py-12 mx-auto">
+  <div
+    class="flex flex-col items-center justify-between w-full px-8 py-48 lg:flex-row gap-12 md:px-12 lg:px-24 max-w-7xl mx-auto">
+    <!-- Pagination Info -->
+
     <nav
-      class="relative z-0 inline-flex gap-1.5"
+      class="relative z-0 inline-flex items-center gap-2"
       aria-label="Pagination">
       <!-- Previous Page Button -->
       <IconButton
         disabled
         aria-label="Go to previous page"
         variant="text"
-        size="sm">
+        size="xs">
         <ChevronLeft
-          size="sm"
+          size="xs"
           slot="icon"
         />
         <span class="sr-only">Previous</span>
@@ -32,32 +37,68 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
         2
       </IconButton>
       <IconButton
-        variant="text"
+        variant="alternative"
         size="xs">
-        ...
+        3
       </IconButton>
       <IconButton
         variant="alternative"
         size="xs">
-        9
+        4
       </IconButton>
       <IconButton
         variant="alternative"
         size="xs">
-        10
+        5
       </IconButton>
+      <span class="text-base-500"> ... </span>
+      <IconButton
+        variant="alternative"
+        size="xs">
+        60
+      </IconButton>
+      <!-- Previous Page Button -->
+
+      <!-- "Go to page" input -->
+      <span class="items-center hidden md:flex space-x-2">
+        <Text
+          tag="p"
+          variant="textSM"
+          class="px-2 text-base-500">
+          Go to page
+        </Text>
+
+        <input
+          type="text"
+          class="block w-12 h-8 p-1 text-sm text-center bg-white border border-transparent rounded-lg shadow appearance-none text-accent-700 duration-300 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+          placeholder="60"
+        />
+      </span>
+      <Button
+        variant="accent"
+        size="xs">
+        Confirm
+      </Button>
+
       <!-- Next Page Button -->
       <IconButton
-
-        aria-label="Go to next page"
+        disabled
+        aria-label="Go to previous page"
         variant="text"
-        size="sm">
+        size="xs">
         <ChevronRight
-          size="sm"
+          size="xs"
           slot="icon"
         />
-        <span class="sr-only">Next</span>
+        <span class="sr-only">Previous</span>
       </IconButton>
     </nav>
+    <Text
+      tag="p"
+      variant="textSM"
+      class="text-base-500">
+      Showing <strong>1</strong> to <strong>10</strong> of <strong>60</strong>
+      pages
+    </Text>
   </div>
 </section>
