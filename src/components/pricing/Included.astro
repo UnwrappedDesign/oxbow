@@ -1,42 +1,13 @@
 ---
-import { Image } from "astro:assets";
+// Fundations
 import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-import applicationImage from "@/screenshots/application_commandbar_03.png";
-import ecommerceImage from "@/screenshots/ecommerce_product-details_01.png";
-import marketingImage from "@/screenshots/marketing_hero_01.png";
-import emailImage from "@/screenshots/emails_receipts_03.png";
+// Widgets
+import Marketing from "@/components/pricing/widgets/Marketing.astro";
+import Application from "@/components/pricing/widgets/Application.astro";
+import Ecommerce from "@/components/pricing/widgets/Ecommerce.astro";
+
 const sections = [
-  {
-    category: "Marketing",
-    title: "Landing pages",
-    description:
-      "Hero sections, features, footers, pricing, and ready-to-use landing pages to help you build standout marketing websites.",
-    image: {
-      src: marketingImage,
-      alt: "hero images",
-    },
-  },
-  {
-    category: "Application",
-    title: "Building a webapp?",
-    description:
-      "Find navigation, buttons, forms, command palettes, typography, application layouts, dialogs, and more to make your application’s user interface pretty.",
-    image: {
-      src: applicationImage,
-      alt: "hero images",
-    },
-  },
-  {
-    category: "Ecommerce",
-    title: "Got a store?",
-    description:
-      "Checkout forms, shopping carts, promo sections, store fronts, product overviews, and all the basics to build your store.",
-    image: {
-      src: ecommerceImage,
-      alt: "hero images",
-    },
-  },
   /* {
     category: "Email",
     title: "Sending emails?",
@@ -56,30 +27,83 @@ const sections = [
     class="flex flex-col gap-y-20 lg:border-x lg:border-base-200"
   >
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {
-        sections.map(({ category, title, description, image }) => (
-          <div class="relative flex flex-col overflow-hidden bg-white gap-4  rounded-xl shadow-oxbow">
-            <div>
-              <Image src={image.src} alt={image.alt} class="aspect-4/2 " />
-              <div class="relative p-6  sm:p-4 sm:pb-5 lg:p-6">
-                <span class="text-sm  text-base-500 text-balance">
-                  {category}
-                </span>
-                <Text
-                  tag="h3"
-                  variant="textBase"
-                  class="mt-4 font-medium text-base-900 leading-6 "
-                >
-                  {title}
-                </Text>
-                <Text tag="p" variant="textSM" class="mt-1 text-base-500">
-                  {description}
-                </Text>
-              </div>
-            </div>
-          </div>
-        ))
-      }
+      <div
+        class="relative flex flex-col justify-start h-full p-6 overflow-hidden bg-white gap-4 rounded-xl shadow-oxbow sm:p-4 sm:pb-5 lg:p-6 group"
+      >
+        <div>
+          <span class="text-sm text-base-500 text-balance"> Marketing </span>
+          <Text
+            tag="h3"
+            variant="textBase"
+            class="font-medium text-base-900 mt-4"
+          >
+            Landing pages
+          </Text>
+          <Text
+            tag="p"
+            variant="textSM"
+            class="mt-2 text-base-500 text-balance"
+          >
+            Hero sections, features, footers, pricing, and ready-to-use landing
+            pages to help you build standout marketing websites.
+          </Text>
+        </div>
+        <div class="relative mt-auto ">
+          <Marketing />
+        </div>
+      </div>
+      <div
+        class="relative flex flex-col justify-start h-full p-6 overflow-hidden bg-white gap-4 rounded-xl shadow-oxbow sm:p-4 sm:pb-5 lg:p-6 group"
+      >
+        <div>
+          <span class="text-sm text-base-500 text-balance"> Application </span>
+          <Text
+            tag="h3"
+            variant="textBase"
+            class="font-medium text-base-900 mt-4"
+          >
+            Building a webapp?
+          </Text>
+          <Text
+            tag="p"
+            variant="textSM"
+            class="mt-2 text-base-500 text-balance"
+          >
+            Find navigation, buttons, forms, command palettes, typography,
+            application layouts, dialogs, and more to make your application’s
+            user interface pretty.
+          </Text>
+        </div>
+        <div class="relative mt-auto ">
+          <Application />
+        </div>
+      </div>
+      <div
+        class="relative flex flex-col justify-start h-full p-6 overflow-hidden bg-white gap-4 rounded-xl shadow-oxbow sm:p-4 sm:pb-5 lg:p-6 group"
+      >
+        <div>
+          <span class="text-sm text-base-500 text-balance"> Ecommerce </span>
+          <Text
+            tag="h3"
+            variant="textBase"
+            class="font-medium text-base-900 mt-4"
+          >
+            Got a store?
+          </Text>
+          <Text
+            tag="p"
+            variant="textSM"
+            class="mt-2 text-base-500 text-balance"
+          >
+            Checkout forms, shopping carts, promo sections, store fronts,
+            product overviews, and all the basics to build your store.
+          </Text>
+        </div>
+        <div class="relative mt-auto -mr-22">
+          <Ecommerce />
+        </div>
+      </div>
+    
     </div>
   </Wrapper>
 </section>

@@ -1,0 +1,133 @@
+---
+import CommandbarButton from "@/components/fundations/buttons/CommandBarButton.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import Search from "@/components/fundations/icons/Search.astro";
+import Component from "@/components/fundations/icons/Component.astro";
+import Plus from "@/components/fundations/icons/Plus.astro";
+import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
+import ArrowBackwards from "@/components/fundations/icons/ArrowBackwards.astro";
+import ArrowDown from "@/components/fundations/icons/ArrowDown.astro";
+import ArrowUp from "@/components/fundations/icons/ArrowUp.astro";
+---
+
+<div
+  aria-hidden="true"
+  class="w-xl mx-auto overflow-hidden bg-white shadow-oxbow transition-all transform divide-y divide-base-200 rounded-lg shrink-0  -mb-38"
+>
+  <div class="relative">
+    <label for="search" class="sr-only">Search for anything</label>
+    <Search
+      class="pointer-events-none absolute top-3.5 left-4 text-base-400 group-hover:text-accent-500 duration-300"
+      size="base"
+      slot="icon"
+    />
+    <input
+      id="search"
+      type="text"
+      class="w-full h-12 pr-4 bg-transparent border-0 text-accent-500 placeholder-base-400 pl-11 focus:ring-0 sm:text-sm"
+      placeholder="Search for anything"
+      role="combobox"
+      aria-expanded="false"
+      aria-controls="options"
+      aria-activedescendant=""
+      aria-autocomplete="list"
+    />
+  </div>
+  <ul
+    class="p-2 overflow-y-auto space-y-3 max-h-96"
+    id="options"
+    role="listbox"
+    tabindex="0"
+  >
+    <li class="px-2">
+      <Text tag="p" variant="textSM" class="font-medium text-base-500 group-hover:text-base-900 duration-300">
+        Work
+      </Text>
+    </li>
+    <li id="option-1" role="option" tabindex="0" aria-selected="false">
+      <CommandbarButton
+        text="Search projects..."
+        hasKbd={true}
+        kbdKey="ST"
+        iconSlot={true}
+      >
+        <Component size="sm" slot="icon" />
+      </CommandbarButton>
+    </li>
+    <li id="option-2" role="option" tabindex="0" aria-selected="false">
+      <CommandbarButton
+        text="Create another project"
+        hasKbd={true}
+        kbdKey="CT"
+        iconSlot={true}
+      >
+        <Plus size="sm" slot="icon" />
+      </CommandbarButton>
+    </li>
+  </ul>
+  <ul
+    class="p-3 overflow-y-auto space-y-3 max-h-96"
+    id="options"
+    role="listbox"
+    tabindex="0"
+  >
+    <li class="px-2">
+      <Text tag="p" variant="textSM" class="font-medium text-base-500">
+        Recent Projects
+      </Text>
+    </li>
+    <li id="option-1" role="option" tabindex="0" aria-selected="false">
+      <CommandbarButton
+        text="Search for team"
+        hasKbd={true}
+        kbdKey="S"
+        iconSlot={true}
+      >
+        <UsersGroup size="sm" slot="icon" />
+      </CommandbarButton>
+    </li>
+    <li id="option-2" role="option" tabindex="0" aria-selected="false">
+      <CommandbarButton
+        text="Create a new team"
+        hasKbd={true}
+        kbdKey="C"
+        iconSlot={true}
+      >
+        <Plus size="sm" slot="icon" />
+      </CommandbarButton>
+    </li>
+  </ul>
+  <div
+    class="flex flex-wrap items-center bg-base-50 py-2.5 px-4 text-xs text-base-500"
+  >
+    <kbd
+      class="flex items-center justify-center mx-1 font-semibold bg-white border rounded size-5 text-base-900 border-base-200 sm:mx-2"
+    >
+      <ArrowBackwards size="xs" slot="icon" />
+    </kbd>
+    <span class="sm:hidden"> to select </span>
+    <span class="hidden sm:inline"> to select </span>
+    <kbd
+      class="flex items-center justify-center mx-1 font-semibold bg-white border rounded size-5 text-base-900 border-base-200 sm:mx-2"
+    >
+      <ArrowDown size="xs" slot="icon" />
+    </kbd>
+    <kbd
+      class="flex items-center justify-center mx-1 font-semibold bg-white border rounded size-5 text-base-900 border-base-200 sm:mx-2"
+    >
+      <ArrowUp size="xs" slot="icon" />
+    </kbd>
+    <span class="hidden sm:inline"> to navigate </span>
+    <kbd
+      class="flex items-center justify-center h-5 px-2 mx-1 font-medium bg-white border rounded text-base-500 border-base-200 w-7 sm:mx-2"
+    >
+      esc
+    </kbd>
+    to close
+    <kbd
+      class="flex items-center justify-center px-2 mx-1 font-medium bg-white border rounded size-5 text-base-500 border-base-200 sm:mx-2"
+    >
+      BS
+    </kbd>
+  </div>
+</div>
