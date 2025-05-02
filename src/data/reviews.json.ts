@@ -20,7 +20,7 @@ const alexHughes: Template = {
 const eelco: Template = {
   name: "Eelco Wiersma",
   work: "Creator of saas-ui.dev",
-  text: "Pretty amazing library 👏",
+  text: "Pretty amazing library ",
   image: "/reviews/eelco.jpg",
 };
 
@@ -33,7 +33,7 @@ const carl: Template = {
 const alin: Template = {
   name: "Alin Simion",
   work: "Software Engineer",
-  text: "I think this is an instant buy for me 👏 Congrats!",
+  text: "I think this is an instant buy for me, Congrats!",
   image: "/reviews/alinSimion.jpg",
 };
 const jonSullivan: Template = {

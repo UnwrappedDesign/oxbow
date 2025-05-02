@@ -59,8 +59,8 @@ const directionMap = {
 } as const;
 export default function GradientGenerator() {
   const [direction, setDirection] = useState(directionMap["to top right"]);
-  const [fromColor, setFromColor] = useState(colorShades("neutral")[8]);
-  const [toColor, setToColor] = useState(colorShades("neutral")[6]);
+  const [fromColor, setFromColor] = useState(colorShades("blue")[8]);
+  const [toColor, setToColor] = useState(colorShades("blue")[4]);
   const [copied, setCopied] = useState(false);
   const [tab, setTab] = useState<"from" | "to">("from");
   const [text, setText] = useState("Your Text");
@@ -76,14 +76,14 @@ export default function GradientGenerator() {
     }, 2000);
   };
   return (
-    <div id="generator">
-      <div className="z-10 bg-background lg:sticky lg:top-2 ">
-        <div className="flex items-center bg-background ">
+    <div id="generator" className="bg-base-100 ">
+      <div className="z-10 bg-base-100  lg:sticky lg:top-2">
+        <div className="flex items-center bg-base-100 ">
           <label className="sr-only">Mode</label>
           <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-2 ">
             <button
               className={`
-                            flex items-center text-center justify-center   duration-500 ease-in-out transition-colors focus:outline-2 text-black bg-white hover:bg-base-100 focus:outline-accent-500          h-10 px-6 py-3 text-base  rounded-lg w-full
+                            flex items-center justify-center text-center shadow-subtle font-medium duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 text-black bg-white hover:bg-base-100 focus:outline-base-900 h-9 px-4 py-2 text-sm rounded-md w-full
                               ${mode === "background" ? "!outline-base-700" : "text-base-500 "}
                             `}
               onClick={() => setMode("background")}
@@ -92,7 +92,7 @@ export default function GradientGenerator() {
             </button>
             <button
               className={`
-                          flex items-center text-center justify-center   duration-500 ease-in-out transition-colors focus:outline-2 text-black bg-white hover:bg-base-100 focus:outline-accent-500          h-10 px-6 py-3 text-base  rounded-lg w-full
+                          flex items-center justify-center text-center shadow-subtle font-medium duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 text-black bg-white hover:bg-base-100 focus:outline-base-900 h-9 px-4 py-2 text-sm rounded-md w-full
                               ${mode === "text" ? "!outline-base-700" : "text-base-500"}
                             `}
               onClick={() => setMode("text")}
@@ -100,19 +100,19 @@ export default function GradientGenerator() {
               Text
             </button>
             <button
-              className="flex items-center justify-center w-full h-10 px-6 py-3 text-base text-center text-black rounded-lg  duration-500 ease-in-out transition-colors focus:outline-2 bg-white hover:bg-base-100 focus:outline-accent-500"
+              className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-center text-black bg-white shadow-subtle duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 hover:bg-base-100 focus:outline-base-900 h-9 rounded-md"
               onClick={copyToClipboard}
             >
               <span>{copied ? "Copied!" : "Copy"}</span>
             </button>
           </div>
         </div>
-        <div className="w-full pt-2 bg-background grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 ">
+        <div className="w-full pt-2 bg-base-100 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 ">
           {mode === "text" && (
             <div className="w-full">
               <label className="sr-only">Your Text</label>
               <input
-                className="block w-full h-12 px-4 py-2 text-sm text-black bg-white border border-transparent appearance-none  duration-300 backdrop-blur-2xl rounded-xl outline outline-base-100 placeholder-base-400 focus:border-base-100 focus:bg-transparent focus:outline-none focus:outline-accent-500 focus:outline-offset-2 focus:outline-2 sm:text-sm focus:ring-offset-base-950"
+                className="block w-full h-10 px-3 py-2 text-sm bg-white border rounded-lg appearance-none focus:outline-none focus:ring-0 focus:border-base-200 text-base-600 border-base-100 leading-6 transition-colors duration-200 ease-in-out"
                 value={text}
                 onChange={(e) => setText(e.target.value)}
               />
@@ -121,7 +121,7 @@ export default function GradientGenerator() {
           <div className="w-full">
             <label className="sr-only">Direction</label>
             <select
-              className="block w-full h-12 px-4 py-2 text-sm text-black bg-white border border-transparent appearance-none  duration-300 backdrop-blur-2xl rounded-xl outline outline-base-100 placeholder-base-400 focus:border-base-100 focus:bg-transparent focus:outline-none focus:outline-accent-500 focus:outline-offset-2 focus:outline-2 sm:text-sm focus:ring-offset-base-950"
+              className="block w-full h-10 px-3 py-2 text-sm bg-white border rounded-lg appearance-none focus:outline-none focus:ring-0 focus:border-base-200 text-base-600 border-base-100 leading-6 transition-colors duration-200 ease-in-out"
               value={direction}
               onChange={(e) => setDirection(e.target.value as any)}
             >
@@ -138,35 +138,35 @@ export default function GradientGenerator() {
           </div>
           <input
             disabled
-            className="block w-full h-12 px-4 py-2 text-sm text-black bg-white border border-transparent appearance-none  duration-300 backdrop-blur-2xl rounded-xl outline outline-base-100 placeholder-base-400 focus:border-base-100 focus:bg-transparent focus:outline-none focus:outline-accent-500 focus:outline-offset-2 focus:outline-2 sm:text-sm focus:ring-offset-base-950"
+            className="block w-full h-10 px-3 py-2 text-sm bg-white border rounded-lg appearance-none focus:outline-none focus:ring-0 focus:border-base-200 text-base-600 border-base-100 leading-6 transition-colors duration-200 ease-in-out"
             value={generateTwGradient()}
           />
         </div>
-        <div className="pt-2 bg-background ">
+        <div className="pt-2 bg-base-100 ">
           <div
-            className={`flex items-center justify-center relative w-full  lg:sticky  z-90  p-24  rounded-lg        overflow-hidden    ${generateTwGradient()}`}
+            className={`flex items-center justify-center relative w-full lg:sticky  z-90 p-24 rounded-lg overflow-hidden  ${generateTwGradient()}`}
           >
             {mode === "text" ? (
               <p className="text-5xl font-bold text-center">{text}</p>
             ) : null}
           </div>
         </div>
-        <div className="flex items-center py-2  bg-background  gap-x-2 ">
+        <div className="flex items-center pt-2  bg-base-100 gap-x-2">
           <button
-            className={` flex items-center text-center justify-center  duration-500 ease-in-out transition-colors focus:outline-2 text-black bg-white hover:bg-base-50 focus:outline-accent-500          h-10 px-6 py-3 text-base  rounded-lg w-full ${tab === "from" ? "!outline-base-500 " : ""}`}
+            className={` flex items-center justify-center text-center shadow-subtle font-medium duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 text-black bg-white hover:bg-base-100 focus:outline-base-900 h-9 px-4 py-2 text-sm rounded-md w-full ${tab === "from" ? "!outline-base-500 " : ""}`}
             onClick={() => setTab("from")}
           >
             From Color
           </button>
           <button
-            className={`  flex items-center text-center justify-center  duration-500 ease-in-out transition-colors focus:outline-2 text-black bg-white hover:bg-base-50 focus:outline-accent-500          h-10 px-6 py-3 text-base  rounded-lg w-full ${tab === "to" ? "!outline-base-700" : ""}`}
+            className={`  flex items-center justify-center text-center shadow-subtle font-medium duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 text-black bg-white hover:bg-base-100 focus:outline-base-900 h-9 px-4 py-2 text-sm rounded-md w-full ${tab === "to" ? "!outline-base-700" : ""}`}
             onClick={() => setTab("to")}
           >
             To Color
           </button>
         </div>
       </div>
-      <div className="p-8 mt-4 bg-white  grid grid-cols-4 gap-x-4 md:grid-cols-8 gap-y-12 lg:grid-cols-12 outline rounded-xl outline-base-100">
+      <div className="p-8 mt-4 bg-white rounded-lg  grid grid-cols-4 gap-x-4 md:grid-cols-8 gap-y-12 lg:grid-cols-12 outline shadow-oxbow outline-base-100">
         {tailwindColors.map((color) => (
           <div>
             <p className="font-mono text-xs uppercase text-base-500 ">
@@ -195,7 +195,7 @@ export default function GradientGenerator() {
           </div>
         ))}
       </div>
-      <div className="flex flex-col flex-1 "></div>
+     
     </div>
   );
 }

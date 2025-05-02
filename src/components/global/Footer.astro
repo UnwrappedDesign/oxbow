@@ -30,10 +30,7 @@ const navLinks = [
   },
   {
     title: "Legal",
-    links: [
-     
-      { label: "BlueSky", href: "https://bsky.app/profile/oxbowui.com" },
-    ],
+    links: [{ label: "BlueSky", href: "https://bsky.app/profile/oxbowui.com" }],
   },
   {
     title: "Tools",
@@ -55,12 +52,17 @@ const navLinks = [
 ];
 ---
 
-<footer>
-  <Wrapper variant="standard" class="py-24">
-    <div class="grid grid-cols-1 md:grid-cols-4">
-      <a aria-label="hom" href="/">
-        <Logo class="h-12 text-accent-600" />
-      </a>
+<footer class=" lg:border-t lg:border-base-200">
+  <Wrapper variant="standard" class="lg:border-x lg:border-base-200 lg:py-12 ">
+    <div class="items-start grid grid-cols-1 md:grid-cols-4">
+      <div class="flex items-center gap-2">
+        <a aria-label="home" href="/">
+          <Logo class="h-8 text-accent-600" />
+        </a>
+        <Text tag="p" variant="textSM" class="text-base-500 font-meidum">
+          <span>2025</span> Oxbow UI®
+        </Text>
+      </div>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-2 lg:col-span-3">
         {
           navLinks.map((section) => (
@@ -92,12 +94,5 @@ const navLinks = [
         }
       </div>
     </div>
-    <Text
-      tag="p"
-      variant="textXS"
-      class="pt-8 mt-8 text-xs border-t text-base-500 border-base-200"
-    >
-      © <span>2025</span> Oxbow UI
-    </Text>
   </Wrapper>
 </footer>
