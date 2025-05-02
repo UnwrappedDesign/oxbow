@@ -8,14 +8,16 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 const randomizedReviews = [...reviews].sort(() => Math.random() - 0.5);
 ---
 
-<section class=" lg:border-t lg:border-base-200">
+<section class="border-t border-base-200">
   <Wrapper variant="standard" class="bg-white lg:border-x lg:border-base-200">
     <div class="flex justify-center p-12 lg:py-16">
       {
         randomizedReviews.slice(0, 1).map((template) => (
           <div class="relative flex flex-col gap-2 ">
             <Text
-              tag="h3" variant="displaySM" class=" font-medium text-balance text-center md:[word-spacing:0.025em]"
+              tag="h3"
+              variant="displaySM"
+              class=" font-medium text-balance text-center md:[word-spacing:0.025em]"
             >
               "{template.text}"
             </Text>
