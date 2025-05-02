@@ -2,108 +2,72 @@
 // Fundations
 import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-// Widgets
-import Marketing from "@/components/pricing/widgets/Marketing.astro";
-import Application from "@/components/pricing/widgets/Application.astro";
-import Ecommerce from "@/components/pricing/widgets/Ecommerce.astro";
+// Icons
+import Check from "@/components/fundations/icons/Check.astro";
 
-const sections = [
-  /* {
-    category: "Email",
-    title: "Sending emails?",
-    description:
-      "We have a dedicated section for emails. with pre-made blocks to build your email in minutes.",
-    image: {
-      src: emailImage,
-      alt: "emal images",
-    },
-  }, */
+const features = [
+  {
+    title: "400+ Components",
+    description: "More UI pieces than you'll know what to do with. All responsive, accessible, and begging to be customized.",
+  },
+  {
+    title: "Built with Tailwind & Alpine",
+    description: "Clean code, no nonsense. Drop it in and move on with your life.",
+  },
+  {
+    title: "One-Time Payment",
+    description: "Pay once. Own it forever. Subscriptions are for streaming services, not UI kits.",
+  },
+  {
+    title: "Free Updates",
+    description: "Yes, we’re actually giving you more stuff for free. Welcome to the rare club of not getting nickel-and-dimed.",
+  },
+  {
+    title: "Fast Support",
+    description: "Stuck? Ping us on Discord. We don’t ghost (unlike that one freelancer you hired).",
+  },
+  {
+    title: "Simple Customization",
+    description: "Make it yours without summoning a dev team. We don’t charge extra for using what you paid for.",
+  },
+  {
+    title: "Keyboard Accessibility",
+    description: "Your keyboard-savvy users won’t rage-quit. Everything works out of the box—no excuses.",
+  },
+  {
+    title: "Production Ready",
+    description: "Battle-tested on modern browsers, because ‘it works on my machine’ isn’t a real QA process.",
+  },
 ];
+
 ---
 
-<section class="scroll-mt-24 lg:border-t lg:border-base-200" id="features">
-  <Wrapper
-    variant="standard"
-    class="flex flex-col gap-y-20 lg:border-x lg:border-base-200"
-  >
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <div
-        class="relative flex flex-col justify-start h-full p-6 overflow-hidden bg-white gap-4 rounded-xl shadow-oxbow sm:p-4 sm:pb-5 lg:p-6 group"
-      >
-        <div>
-          <span class="text-sm text-base-500 text-balance"> Marketing </span>
-          <Text
-            tag="h3"
-            variant="textBase"
-            class="font-medium text-base-900 mt-4"
-          >
-            Landing pages
-          </Text>
-          <Text
-            tag="p"
-            variant="textSM"
-            class="mt-2 text-base-500 text-balance"
-          >
-            Hero sections, features, footers, pricing, and ready-to-use landing
-            pages to help you build standout marketing websites.
-          </Text>
-        </div>
-        <div class="relative mt-auto ">
-          <Marketing />
-        </div>
-      </div>
-      <div
-        class="relative flex flex-col justify-start h-full p-6 overflow-hidden bg-white gap-4 rounded-xl shadow-oxbow sm:p-4 sm:pb-5 lg:p-6 group"
-      >
-        <div>
-          <span class="text-sm text-base-500 text-balance"> Application </span>
-          <Text
-            tag="h3"
-            variant="textBase"
-            class="font-medium text-base-900 mt-4"
-          >
-            Building a webapp?
-          </Text>
-          <Text
-            tag="p"
-            variant="textSM"
-            class="mt-2 text-base-500 text-balance"
-          >
-            Find navigation, buttons, forms, command palettes, typography,
-            application layouts, dialogs, and more to make your application’s
-            user interface pretty.
-          </Text>
-        </div>
-        <div class="relative mt-auto ">
-          <Application />
-        </div>
-      </div>
-      <div
-        class="relative flex flex-col justify-start h-full p-6 overflow-hidden bg-white gap-4 rounded-xl shadow-oxbow sm:p-4 sm:pb-5 lg:p-6 group"
-      >
-        <div>
-          <span class="text-sm text-base-500 text-balance"> Ecommerce </span>
-          <Text
-            tag="h3"
-            variant="textBase"
-            class="font-medium text-base-900 mt-4"
-          >
-            Got a store?
-          </Text>
-          <Text
-            tag="p"
-            variant="textSM"
-            class="mt-2 text-base-500 text-balance"
-          >
-            Checkout forms, shopping carts, promo sections, store fronts,
-            product overviews, and all the basics to build your store.
-          </Text>
-        </div>
-        <div class="relative mt-auto -mr-22">
-          <Ecommerce />
-        </div>
-      </div>
-    
+<section class="scroll-mt-24 border-t border-base-200" id="features">
+  <Wrapper variant="standard" class="lg:border-x lg:border-base-200 ">
+    <div class="flex flex-col gap-1">
+      {
+        features.map((feature) => (
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 py-1">
+            <div class="flex items-center gap-2">
+              <Check size="sm" class="text-accent-500" />
+              <Text
+                tag="h3"
+                variant="textSM"
+                class=" font-medium text-base-900  dark:text-white"
+              >
+                {feature.title}
+              </Text>
+            </div>
+            <Text
+              tag="p"
+              variant="textSM"
+              class="mt-2 text-base-500 dark:text-base-400 lg:col-span-2"
+            >
+              {feature.description}
+            </Text>
+          </div>
+        ))
+      }
     </div>
   </Wrapper>
 </section>
