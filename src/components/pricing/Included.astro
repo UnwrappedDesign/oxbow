@@ -37,7 +37,7 @@ const sections = [
       alt: "hero images",
     },
   },
-  {
+  /* {
     category: "Email",
     title: "Sending emails?",
     description:
@@ -46,22 +46,22 @@ const sections = [
       src: emailImage,
       alt: "emal images",
     },
-  },
+  }, */
 ];
 ---
-<section class="scroll-mt-24" id="features">
-  <Wrapper variant="standard" class="flex flex-col py-8 gap-y-20">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+
+<section class="scroll-mt-24 lg:border-t lg:border-base-200" id="features">
+  <Wrapper
+    variant="standard"
+    class="flex flex-col gap-y-20 lg:border-x lg:border-base-200"
+  >
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {
         sections.map(({ category, title, description, image }) => (
-          <div class="relative flex flex-col gap-4  bg-white rounded-xl shadow-oxbow overflow-hidden" >
+          <div class="relative flex flex-col overflow-hidden bg-white gap-4  rounded-xl shadow-oxbow">
             <div>
-              <Image
-                src={image.src}
-                alt={image.alt}
-                class="aspect-4/2 "
-              />
-              <div class="relative mt-2 p-6 sm:p-4 sm:pb-5 lg:p-6">
+              <Image src={image.src} alt={image.alt} class="aspect-4/2 " />
+              <div class="relative p-6  sm:p-4 sm:pb-5 lg:p-6">
                 <span class="text-sm  text-base-500 text-balance">
                   {category}
                 </span>
@@ -72,9 +72,9 @@ const sections = [
                 >
                   {title}
                 </Text>
-              <Text tag="p" variant="textSM" class="mt-1 text-base-500">
-                {description}
-              </Text>
+                <Text tag="p" variant="textSM" class="mt-1 text-base-500">
+                  {description}
+                </Text>
               </div>
             </div>
           </div>

@@ -8,21 +8,24 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 const randomizedReviews = [...reviews].sort(() => Math.random() - 0.5);
 ---
 
-<section>
-  <Wrapper variant="standard" class="py-12">
-    <div
-      class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 pt-12 border-t border-base-200"
-    >
+<section class=" lg:border-t lg:border-base-200">
+  <Wrapper variant="standard" class="bg-white lg:border-x lg:border-base-200">
+    <div class="flex justify-center p-12 lg:py-16">
       {
-        randomizedReviews.slice(0, 2).map((template) => (
-          <div class="relative flex flex-col gap-2">
-            <div class="flex items-center  gap-4">
+        randomizedReviews.slice(0, 1).map((template) => (
+          <div class="relative flex flex-col gap-2 ">
+            <Text
+              tag="h3" variant="displaySM" class=" font-medium text-balance text-center md:[word-spacing:0.025em]"
+            >
+              "{template.text}"
+            </Text>
+            <div class="flex items-center justify-center mt-8  gap-4">
               <Image
                 src={template.image}
                 alt={template.name}
                 width={1000}
                 height={1000}
-                class="object-cover object-top rounded-full size-10"
+                class="object-cover object-top rounded-full size-14"
               />
               <div class=" text-base-500">
                 <Text tag="p" variant="textSM">
@@ -33,13 +36,6 @@ const randomizedReviews = [...reviews].sort(() => Math.random() - 0.5);
                 </Text>
               </div>
             </div>
-            <Text
-              tag="h3"
-              variant="textSM"
-              class="font-medium  text-base-500 text-balance mt-4"
-            >
-              "{template.text}"
-            </Text>
           </div>
         ))
       }

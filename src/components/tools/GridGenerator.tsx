@@ -146,7 +146,7 @@ export default function GridGenerator() {
             max={12}
             value={columns}
             onChange={(e) => setColumns(Number(e.target.value))}
-            className="block w-full h-12 px-4 py-2 text-sm text-black bg-white border border-transparent appearance-none  duration-300 backdrop-blur-2xl rounded-xl outline outline-base-100 placeholder-base-400 focus:border-base-100 focus:bg-transparent focus:outline-none focus:outline-accent-500 focus:outline-offset-2 focus:outline-2 sm:text-sm focus:ring-offset-base-950"
+            className="w-full h-10 px-3 py-2 text-sm bg-white border rounded-lg appearance-none focus:outline-none focus:ring-0 focus:border-base-200 text-base-600 border-base-100 leading-6 transition-colors duration-200 ease-in-out"
           />
         </div>
         <div className="flex flex-col gap-1">
@@ -160,7 +160,7 @@ export default function GridGenerator() {
             max={12}
             value={rows}
             onChange={(e) => setRows(Number(e.target.value))}
-            className="block w-full h-12 px-4 py-2 text-sm text-black bg-white border border-transparent appearance-none  duration-300 backdrop-blur-2xl rounded-xl outline outline-base-100 placeholder-base-400 focus:border-base-100 focus:bg-transparent focus:outline-none focus:outline-accent-500 focus:outline-offset-2 focus:outline-2 sm:text-sm focus:ring-offset-base-950"
+            className="w-full h-10 px-3 py-2 text-sm bg-white border rounded-lg appearance-none focus:outline-none focus:ring-0 focus:border-base-200 text-base-600 border-base-100 leading-6 transition-colors duration-200 ease-in-out"
           />
         </div>
         <div className="flex flex-col gap-1">
@@ -174,7 +174,7 @@ export default function GridGenerator() {
             max={16}
             value={gap}
             onChange={(e) => setGap(Number(e.target.value))}
-            className="block w-full h-12 px-4 py-2 text-sm text-black bg-white border border-transparent appearance-none  duration-300 backdrop-blur-2xl rounded-xl outline outline-base-100 placeholder-base-400 focus:border-base-100 focus:bg-transparent focus:outline-none focus:outline-accent-500 focus:outline-offset-2 focus:outline-2 sm:text-sm focus:ring-offset-base-950"
+            className="w-full h-10 px-3 py-2 text-sm bg-white border rounded-lg appearance-none focus:outline-none focus:ring-0 focus:border-base-200 text-base-600 border-base-100 leading-6 transition-colors duration-200 ease-in-out"
           />
         </div>
       </div>
@@ -198,7 +198,7 @@ export default function GridGenerator() {
             return (
               <div
                 key={index}
-                className="relative flex items-center justify-center p-8 text-2xl cursor-pointer bg-white  outline rounded-xl outline-base-100"
+                className="relative flex items-center justify-center p-8 text-2xl bg-white cursor-pointer  rounded-xl shadow-oxbow"
                 onClick={() => handleAddItem(x, y)}
               >
                 +
@@ -228,7 +228,7 @@ export default function GridGenerator() {
               onResizeStop(item.id, delta)
             }
             onDragStop={(e, data) => onDragStop(item.id, data)}
-            className="relative flex items-center justify-center p-4 cursor-pointer bg-white  outline-2 rounded-xl outline-accent-600"
+            className="relative flex items-center justify-center p-4 bg-white cursor-pointer  outline-2 rounded-xl outline-accent-600"
           >
             <button
               onClick={() => handleRemoveItem(item.id)}
@@ -246,11 +246,11 @@ export default function GridGenerator() {
         ))}
       </div>
       <div className="flex flex-col justify-between w-full pt-4 md:flex-row md:items-center">
-        <h3 className="font-mono text-black uppercase ">Get your code</h3>
+        <h3 className="text-base-900 ">Get your code</h3>
         <div className="flex items-center gap-2 ">
           <button
             className={`
-                    flex items-center text-center justify-center font-semibold duration-500 ease-in-out transition focus:outline-2 text-black bg-white hover:bg-base-100 focus:outline-base-200        h-7.5 px-6 py-2 text-xs rounded-md pointer-events-auto outline-base-100  
+                    flex items-center justify-center text-center shadow-subtle font-medium duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 text-black bg-white hover:bg-base-100 focus:outline-base-900 h-7 px-4 py-2 text-xs rounded-md w-full  
                     ${format === "html" ? "!outline-base-700" : " "}
                   `}
             onClick={() => setFormat("html")}
@@ -259,7 +259,7 @@ export default function GridGenerator() {
           </button>
           <button
             className={`
-                  flex items-center text-center justify-center font-semibold duration-500 ease-in-out transition focus:outline-2 text-black bg-white hover:bg-base-100 focus:outline-base-200        h-7.5 px-6 py-2 text-xs rounded-md pointer-events-auto outline-base-100  
+                  flex items-center justify-center text-center shadow-subtle font-medium duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 text-black bg-white hover:bg-base-100 focus:outline-base-900 h-7 px-4 py-2 text-xs rounded-md w-full  
                     ${format === "jsx" ? "!outline-base-700" : ""}
                   `}
             onClick={() => setFormat("jsx")}
@@ -267,20 +267,20 @@ export default function GridGenerator() {
             JSX
           </button>
           <button
-            className="flex items-center text-center justify-center font-semibold duration-500 ease-in-out transition focus:outline-2 text-black bg-white hover:bg-base-100 focus:outline-base-200        h-7.5 px-6 py-2 text-xs rounded-md pointer-events-auto outline-base-100  "
+            className="flex items-center justify-center w-full px-4 py-2 text-xs font-medium text-center text-black bg-white shadow-subtle duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 hover:bg-base-100 focus:outline-base-900 h-7 rounded-md "
             onClick={handleReset}
           >
             Reset
           </button>
           <button
-            className="fflex items-center text-center justify-center  font-semibold duration-500 ease-in-out transition focus:outline-2 text-black bg-white hover:bg-base-100 focus:outline-base-200        h-7.5 px-6 py-2 text-xs rounded-md pointer-events-auto outline-base-100     w-24"
+            className="flex items-center justify-center w-24 px-4 py-2 text-xs font-medium text-center text-black bg-white shadow-subtle duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 hover:bg-base-100 focus:outline-base-900 h-7 rounded-md"
             onClick={handleCopy}
           >
             {isCopied ? "Copied!" : "Copy"}
           </button>
         </div>
       </div>
-      <div className="p-4 mt-2 bg-white  outline rounded-xl outline-base-100">
+      <div className="p-4 mt-2 bg-white shadow-oxbow rounded-xl ">
         <pre className="overflow-x-auto text-xs text-base-500 ">
           <code>{generateCode}</code>
         </pre>
