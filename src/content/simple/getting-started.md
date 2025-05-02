@@ -50,48 +50,50 @@ base: {
 ```
 
 If you are using Tailwind v4 use this:
+
 ```sass
 /* Accent  */
---color-accent-50: #ebf7ff;
---color-accent-100: #d2edff;
---color-accent-200: #afdfff;
---color-accent-300: #78ceff;
---color-accent-400: #38b1ff;
---color-accent-500: #0b8aff;
---color-accent-600: #0065ff;
---color-accent-700: #004cff;
---color-accent-800: #003dd4;
---color-accent-900: #02379e;
---color-accent-950: #072364;
+--color-accent-50: oklch(96.21% 0.017 259.42);
+--color-accent-100: oklch(91.46% 0.038 259.29);
+--color-accent-200: oklch(82.89% 0.078 258.12);
+--color-accent-300: oklch(74.61% 0.12 258.41);
+--color-accent-400: oklch(66.62% 0.161 258.21);
+--color-accent-500: oklch(59.66% 0.199 258.86);
+--color-accent-600: oklch(50.93% 0.199 260.1);
+--color-accent-700: oklch(41.5% 0.157 259.78);
+--color-accent-800: oklch(31.61% 0.114 259.3);
+--color-accent-900: oklch(20.88% 0.065 257.42);
+--color-accent-950: oklch(15.76% 0.04 253.21);
 /* Base */
---color-base-50: #f9fafb;
---color-base-100: #f3f4f6;
---color-base-200: #e5e7eb;
---color-base-300: #d1d5db;
---color-base-400: #9ca3af;
---color-base-500: #6b7280;
---color-base-600: #4b5563;
---color-base-700: #374151;
---color-base-800: #1f2937;
---color-base-900: #111827;
---color-base-950: #030712;
+--color-base-50: oklch(0.985 0 0);
+--color-base-100: oklch(0.97 0 0);
+--color-base-200: oklch(0.922 0 0);
+--color-base-300: oklch(0.87 0 0);
+--color-base-400: oklch(0.708 0 0);
+--color-base-500: oklch(0.556 0 0);
+--color-base-600: oklch(0.439 0 0);
+--color-base-700: oklch(0.371 0 0);
+--color-base-800: oklch(0.269 0 0);
+--color-base-900: oklch(0.205 0 0);
+--color-base-950: oklch(0.145 0 0);
 
 ```
 
-
-
 ## Typography
 
-For typography we are using Geist. You can grab the CDN from  [Google Fonts](https://fonts.google.com/?query=geist)
+For typography we are using Geist. You can grab the CDN from [Google Fonts](https://fonts.google.com/?query=geist)
 
 IF you are using Tailwind v3 use this:
+
 ```js
 fontFamily: {
   sans: ["Geist", ...defaultTheme.fontFamily.sans],
   mono: ["Geist Mono", ...defaultTheme.fontFamily.mono],
 },
 ```
+
 If you are using Tailwind CSS V4
+
 ```sass
 --font-mono: "Geist Mono", sans-serif;
 --font-sans: "Geist", sans-serif;
