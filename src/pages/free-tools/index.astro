@@ -7,32 +7,9 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import MainHero from "@/components/fundations/containers/MainHero.astro";
 // Sections
 import Cta from "@/components/global/Cta.astro";
-
-// Cards
-import { Image } from "astro:assets";
-import gridGenerator from "@/images/tools/gridGenerator.png";
-import gradientGenerator from "@/images/tools/gradientGenerator.png";
-
-const sections = [
-  {
-    title: "Layout",
-    subtitle: "Tailwind CSS grid generator",
-    description:
-      "Build responsive grids without the guesswork. Set your columns, tweak the gaps, and get the utility classes instantly.",
-    imageSrc: gridGenerator,
-    altText: "Tailwind CSS grid generator tool preview",
-    link: "/free-tools/tailwind-css-grid-generator",
-  },
-  {
-    title: "Colors",
-    subtitle: "Tailwind CSS gradient generator",
-    description:
-      "Make gradients that don’t suck. Pick your colors, set the direction, and grab the classes — all in seconds.",
-    imageSrc: gradientGenerator,
-    altText: "Tailwind CSS gradient generator tool preview",
-    link: "/free-tools/tailwind-css-gradient-generator",
-  },
-];
+// Widgets
+import Grid from "@/components/tools/widgets/Grid.astro";
+import Gradients from "@/components/tools/widgets/Gradients.astro";
 ---
 
 <AstroSeo
@@ -75,42 +52,57 @@ const sections = [
     title="Tailwind CSS Tools that pull their weight"
     subtitle="Only two so far. But they're good. That’s the point."
   />
-
   <section class="border-t border-base-200">
     <Wrapper variant="standard" class="lg:border-x lg:border-base-200">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
-        {
-          sections.map((section) => (
-            <div class="relative flex flex-col overflow-hidden bg-white gap-4  rounded-xl shadow-oxbow">
-              <a class="absolute inset-0 z-10" href={section.link} />
-              <div class="relative flex flex-col gap-4">
-                <Image
-                  src={section.imageSrc}
-                  alt={section.altText}
-                  width={1000}
-                  height={1000}
-                  class="object-cover object-center size-full aspect-16/10 "
-                />
-
-                <div class="p-6 sm:p-4 sm:pb-5 lg:p-6">
-                  <Text
-                    tag="h3"
-                    variant="textBase"
-                    class="font-medium text-black "
-                  >
-                    {section.subtitle}
-                  </Text>
-                  <Text tag="p" variant="textSM" class="mt-1 text-base-500 ">
-                    {section.description}
-                  </Text>
-                </div>
-              </div>
-            </div>
-          ))
-        }
+        <div
+          class="relative flex flex-col justify-start h-full p-6 overflow-hidden bg-white gap-4 rounded-xl shadow-oxbow sm:p-4 sm:pb-5 lg:p-6 group"
+        >
+          <a
+            class="absolute inset-0 z-10"
+            href="/free-tools/tailwind-css-grid-generator"></a>
+          <div>
+            <Text tag="h3" variant="textBase" class="font-medium text-base-900">
+              Tailwind CSS grid generator
+            </Text>
+            <Text
+              tag="p"
+              variant="textSM"
+              class="mt-2 text-base-500 text-balance"
+            >
+              OBuild responsive grids without the guesswork. Set your columns,
+              tweak the gaps, and get the utility classes instantly.
+            </Text>
+          </div>
+          <div class="relative mt-auto">
+            <Grid />
+          </div>
+        </div>
+        <div
+          class="relative flex flex-col justify-start h-full p-6 overflow-hidden bg-white gap-4 rounded-xl shadow-oxbow sm:p-4 sm:pb-5 lg:p-6 group"
+        >
+          <a
+            class="absolute inset-0 z-10"
+            href="/free-tools/tailwind-css-grid-generator"></a>
+          <div>
+            <Text tag="h3" variant="textBase" class="font-medium text-base-900">
+              Tailwind CSS gradient generator
+            </Text>
+            <Text
+              tag="p"
+              variant="textSM"
+              class="mt-2 text-base-500 text-balance"
+            >
+              Make gradients that don’t suck. Pick your colors, set the
+              direction, and grab the classes — all in seconds.
+            </Text>
+          </div>
+          <div class="relative mt-auto">
+            <Gradients />
+          </div>
+        </div>
       </div>
     </Wrapper>
   </section>
-
   <Cta />
 </BaseLayout>
