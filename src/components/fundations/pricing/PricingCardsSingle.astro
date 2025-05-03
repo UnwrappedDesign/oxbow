@@ -19,78 +19,67 @@ const {
   isRight = false, // New prop to control if the card is right
 } = Astro.props;
 
-// Define default details for each tier
 const tierDetails = {
   Core: {
-    audience: "For individuals",
-    description:
-      "This subscription tier caters to individuals and hobbyists seeking features.",
+    audience: "Solo flyers & dabblers",
+    description: "All the basics so you don’t totally flail.",
     priceMonthly: "$29.00",
     priceAnnual: "$19.00",
   },
   Momentum: {
-    audience: "For startups",
-    description:
-      "Tailored for expanding businesses, this tier offers advanced tools and analytics.",
+    audience: "Startup grinders",
+    description: "Looks legit—analytics and buzzwords included.",
     priceMonthly: "$49.00",
     priceAnnual: "$39.00",
   },
   Growth: {
-    audience: "For corporates",
-    description:
-      "Designed for established businesses, providing comprehensive tools.",
+    audience: "Corporate big shots",
+    description: "Fancy tools to fake cutting-edge cred.",
     priceMonthly: "$99.00",
     priceAnnual: "$79.00",
   },
   Apex: {
-    audience: "For enterprises",
-    description:
-      "For large-scale operations, providing premium features and dedicated support.",
+    audience: "Red-carpet enterprises",
+    description: "White-glove everything—no peasants allowed.",
     priceMonthly: "$199.00",
     priceAnnual: "$149.00",
   },
 };
 
-// Get the baked-in tier details
-const { audience, description, priceMonthly, priceAnnual } =
-  tierDetails[tierName];
-
-// Define default features for each tier
 const defaultFeatures = {
   Core: [
-    "Unlimited members",
-    "1 Team",
-    "50 issues",
-    "Slack, GitHub, and API access",
-    "Basic reporting tools",
-    "Community support",
-    "Basic customization options",
+    "Unlimited members (but it's mostly you)",
+    "1 Team (you vs. you)",
+    "50 Issues (rookie mistakes covered)",
+    "Slack, GitHub & API",
+    "Basic reports",
   ],
   Momentum: [
     "Unlimited teams",
-    "Private teams and guests",
-    "Insights",
-    "Custom branding options",
-    "Collaboration tools",
-    "Mobile app access",
+    "Private squads",
+    "Deep “insights”",
+    "Custom branding",
+    "Mobile access",
   ],
   Growth: [
-    "Unlimited members",
+    "All members welcome",
     "Advanced analytics",
-    "Priority support",
-    "Custom API integration",
+    "Priority help",
+    "Custom APIs",
     "Unlimited storage",
-    "Enhanced security",
   ],
   Apex: [
-    "Dedicated account manager",
-    "Advanced team management",
+    "Your own account hype-person",
+    "Elite team controls",
     "Premium integrations",
-    "Tailored onboarding",
-    "White-label solutions",
+    "VIP onboarding",
     "24/7 support",
   ],
 };
+
+// Get the baked-in tier details
+const { audience, description, priceMonthly, priceAnnual } =
+  tierDetails[tierName];
 
 // Get the features for the current tier
 const features = defaultFeatures[tierName] || [];
@@ -108,7 +97,7 @@ const colorClasses = {
     featuresTextColor: "text-base-500",
   },
   light: {
-    cardBg: "bg-base-50 shadow",
+    cardBg: "bg-base-50 ",
     innerBg: "bg-white rounded-[1.3rem]",
     titleColor: "text-base-900",
     subTitleColor: "text-base-500",
@@ -118,7 +107,7 @@ const colorClasses = {
     featuresTextColor: "text-base-500",
   },
   dark: {
-    cardBg: "bg-base-950 shadow",
+    cardBg: "bg-base-950 ",
     innerBg: "bg-white/10 rounded-[1.3rem]",
     titleColor: "text-white",
     subTitleColor: "text-base-200",
@@ -128,7 +117,7 @@ const colorClasses = {
     featuresTextColor: "text-base-200",
   },
   baseDark: {
-    cardBg: "bg-base-900 shadow",
+    cardBg: "bg-base-900 ",
     innerBg: "bg-white/10 rounded-[1.3rem]",
     titleColor: "text-white",
     subTitleColor: "text-base-200",
@@ -138,7 +127,7 @@ const colorClasses = {
     featuresTextColor: "text-base-200",
   },
   accent: {
-    cardBg: "bg-accent-700 shadow",
+    cardBg: "bg-accent-600 ",
     innerBg: "bg-white/10 rounded-[1.3rem]",
     titleColor: "text-white",
     subTitleColor: "text-base-200",
@@ -170,30 +159,27 @@ const paddingClasses = [
   .join(" ");
 ---
 
-<div
-  class={`flex flex-col h-full p-1 ${paddingClasses} ${roundingClass} ${colorClasses.cardBg}`}
->
+<div class={`flex flex-col h-full p-8 ${roundingClass} ${colorClasses.cardBg}`}>
   <div>
-    <div
-      class={`flex flex-col gap-4 p-8 ${colorClasses.innerBg} ${roundingClass} h-full shadow `}
-    >
+    <div class="flex flex-col gap-4">
       <div class="flex items-start justify-between w-full">
         <div>
           <Text
             tag="h3"
-            variant="textXL"
+            variant="textLG"
             class={`font-medium ${colorClasses.titleColor}`}
           >
             {tierName}
           </Text>
           <Text
             tag="p"
-            variant="textBase"
+            variant="textSM"
             class={`font-medium ${colorClasses.subTitleColor}`}
           >
             {audience}
           </Text>
         </div>
+
         {
           isPopular && (
             <Badge variant="muted" size="xs">
@@ -202,55 +188,49 @@ const paddingClasses = [
           )
         }
       </div>
-      <Text
-        tag="p"
-        variant="textBase"
-        class={`font-medium ${colorClasses.introColor}`}
+      <p
+        class={`font-medium flex lg:text-3xl items-baseline text-2xl tracking-tighter ${colorClasses.priceColor}`}
       >
+        <span
+          data-monthly={priceMonthly}
+          data-annual={priceAnnual}
+          x-text="$el.dataset[duration]"></span>
+        <span
+          class={`text-sm font-normal font-sans tracking-normal ${colorClasses.monthYearTextColor}`}
+        >
+          <span x-show="duration === 'monthly'">/month</span>
+          <span x-show="duration === 'annual'" style="display: none;"
+            >/annually</span
+          >
+        </span>
+      </p>
+      <Text tag="p" variant="textSM" class={` ${colorClasses.introColor}`}>
         {description}
       </Text>
     </div>
   </div>
-  <div class="p-8">
-    <p
-      class={`font-semibold flex lg:text-3xl items-baseline text-2xl tracking-tighter ${colorClasses.priceColor}`}
-    >
-      <span
-        data-monthly={priceMonthly}
-        data-annual={priceAnnual}
-        x-text="$el.dataset[duration]"></span>
-      <span
-        class={`text-sm font-normal font-sans tracking-normal ${colorClasses.monthYearTextColor}`}
-      >
-        <span x-show="duration === 'monthly'">/month</span>
-        <span x-show="duration === 'annual'" style="display: none;"
-          >/annually</span
-        >
-      </span>
-    </p>
-    <div class="w-full mt-4">
-      <Button class="w-full" variant={buttonVariant} size="sm">
-        Get Started
-      </Button>
-    </div>
+  <div>
+    <Button class="w-full mt-4" variant={buttonVariant} size="sm">
+      Get Started
+    </Button>
     {
       showFeatures ? (
         <div class="mt-8">
           <Text
             tag="p"
-            variant="textSM"
-            class={`font-medium uppercase ${colorClasses.featuresTextColor}`}
+            variant="textBase"
+            class={`font-medium  ${colorClasses.featuresTextColor}`}
           >
             {tierName} plan includes:
           </Text>
           <ul
-            class={`flex flex-col mt-4 gap-y-3 ${colorClasses.featuresTextColor} ${featuresLayout === "grid" ? "grid grid-cols-1 lg:grid-cols-2" : ""}`}
+            class={`flex flex-col mt-2 gap-y-1 ${colorClasses.featuresTextColor} ${featuresLayout === "grid" ? "grid grid-cols-1 lg:grid-cols-2" : ""}`}
             role="list"
           >
             {features.map((feature) => (
-              <li class="flex items-center gap-2">
+              <li class="flex items-center gap-1">
                 <Check size="sm" />
-                <Text tag="span" variant="textBase">
+                <Text tag="span" variant="textSM">
                   {feature}
                 </Text>
               </li>
