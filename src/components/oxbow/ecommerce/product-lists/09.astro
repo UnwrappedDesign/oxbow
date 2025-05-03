@@ -1,6 +1,6 @@
 ---
 export const description =
-"Simple cards with overlayed add to cart and like cta";
+  "Simple cards with overlayed add to cart and like cta";
 import Text from "@/components/fundations/typography/Text.astro";
 import Heart from "@/components/fundations/icons/Heart.astro";
 import Cart from "@/components/fundations/icons/Cart.astro";
@@ -9,7 +9,7 @@ const products = [
     image: "/store/jackets/1.png",
     title: "Contrast Hooded Puch Pocket",
     price: "$140.00",
-    discountedPrice: "$99.00",
+    discountedPrice: "$129.00",
     description: "23 Different Colors",
     link: "#_",
   },
@@ -37,50 +37,49 @@ const products = [
     <div class="relative grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {
         products.map((article) => (
-            <div class="relative">
-              <div class="relative aspect-[8/10] w-full overflow-hidden rounded-lg">
-                <img
-                  src={article.image}
-                  alt="#_"
-                  class="object-cover size-full"
-                />
-              </div>
-              <div class="relative mt-2">
-                <div class="flex items-center justify-between w-full">
-                  <Text
-                    tag="h3"
-                    variant="textSM"
-                    class="font-medium text-base-900"
-                  >
-                    {article.title}
-                  </Text>
-                  <Text
-                    tag="p"
-                    variant="textSM"
-                    class="relative flex items-center text-base-500  gap-x-1"
-                  >
-                    {article.price}
-                  </Text>
-                </div>
-                <Text tag="p" variant="textSM" class=" text-base-500">
-                  {article.description}
-                  <a href="#_">
-                    <span class="absolute inset-0" />
-                  </a>
+          <div class="relative">
+            <div class="relative aspect-[8/10] w-full overflow-hidden rounded-lg">
+              <img
+                src={article.image}
+                alt="#_"
+                class="object-cover size-full"
+              />
+            </div>
+            <div class="relative mt-2">
+              <div class="flex items-center justify-between w-full">
+                <Text
+                  tag="h3"
+                  variant="textSM"
+                  class="font-medium text-base-900"
+                >
+                  {article.title}
+                </Text>
+                <Text
+                  tag="p"
+                  variant="textSM"
+                  class="relative flex items-center text-base-500  gap-x-1"
+                >
+                  {article.price}
                 </Text>
               </div>
-              <div class="absolute inset-x-0 top-0 flex items-end justify-end p-4 overflow-hidden rounded-lg ">
-                <div class="flex items-center gap-x-1">
-                  <button class="text-base-500">
-                    <Heart size="sm" />
-                  </button>
-                  <button class="text-base-500">
-                    <Cart size="sm" />
-                  </button>
-                </div>
+              <Text tag="p" variant="textSM" class=" text-base-500">
+                {article.description}
+                <a href="#_">
+                  <span class="absolute inset-0" />
+                </a>
+              </Text>
+            </div>
+            <div class="absolute inset-x-0 top-0 flex items-end justify-end p-4 overflow-hidden rounded-lg ">
+              <div class="flex items-center gap-x-1">
+                <button class="text-base-500">
+                  <Heart size="sm" />
+                </button>
+                <button class="text-base-500">
+                  <Cart size="sm" />
+                </button>
               </div>
             </div>
-          
+          </div>
         ))
       }
     </div>
