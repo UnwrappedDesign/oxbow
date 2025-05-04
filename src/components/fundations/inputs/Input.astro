@@ -20,7 +20,7 @@ const variantClasses = {
     "bg-white",
     "border",
     "border-transparent",
-    "text-accent-700",
+    "text-base-500",
     "ring-1",
     "ring-base-200",
     "placeholder-base-400",
@@ -85,10 +85,10 @@ const textareaClasses = {
 
 const checkboxRadioSizeClasses = {
   xs: ["w-3", "h-3"],
-  sm: ["w-4", "h-4"],
-  base: ["w-5", "h-5"],
-  md: ["w-6", "h-6"],
-  lg: ["w-7", "h-7"],
+  sm: ["w-3.5", "h-3.5"],
+  base: ["w-4", "h-4"], // Reduced from w-5 h-5 to w-4 h-4
+  md: ["w-4.5", "h-4.5"],
+  lg: ["w-5", "h-5"], // Reduced from w-7 h-7 to w-5 h-5
 };
 
 const checkboxRadioClasses = {
@@ -125,7 +125,7 @@ const checkboxRadioClasses = {
 };
 
 const labelClasses = {
-  default: "text-base-700",
+  default: "text-base-500",
   dark: "text-base-200",
   "transparent-light": "text-base-700",
   "transparent-dark": "text-base-200",
@@ -284,40 +284,47 @@ const errorTextColor = variant.includes("dark")
 
   {
     as === "checkbox" && (
-      <div class="flex items-start">
-        <div class="flex items-center h-5">
-          <input
-            {...rest}
-            type="checkbox"
-            id={id}
-            name={name}
-            class:list={inputClasses}
-            aria-required={rest.required ? "true" : undefined}
-            aria-invalid={error ? "true" : undefined}
-            aria-describedby={error ? `${id}-error` : undefined}
-          />
-        </div>
+      <div class="flex items-center">
+        <input
+          {...rest}
+          type="checkbox"
+          id={id}
+          name={name}
+          class:list={[
+            "rounded",
+
+            "border-base-300",
+            "text-accent-600",
+            "focus:ring-accent-500",
+            "focus:ring-offset-2",
+            "focus:ring-2",
+            "shadow",
+            // Force smaller size for checkboxes
+            size === "xs"
+              ? "w-3 h-3"
+              : size === "sm"
+                ? "w-3.5 h-3.5"
+                : size === "base"
+                  ? "w-4 h-4"
+                  : size === "md"
+                    ? "w-4.5 h-4.5"
+                    : "w-5 h-5",
+          ]}
+          aria-required={rest.required ? "true" : undefined}
+          aria-invalid={error ? "true" : undefined}
+          aria-describedby={error ? `${id}-error` : undefined}
+        />
         {label && (
-          <div class="ml-3 text-sm">
-            <label
-              for={id}
-              class={`font-medium ${labelClasses[variant] || labelClasses.default}`}
-            >
-              {label}
-            </label>
-            {rest.description && (
-              <p
-                class={`text-xs ${variant.includes("dark") ? "text-base-400" : "text-base-500"}`}
-              >
-                {rest.description}
-              </p>
-            )}
-          </div>
+          <label
+            for={id}
+            class={`ml-2 text-sm font-medium  ${labelClasses[variant] || labelClasses.default}`}
+          >
+            {label}
+          </label>
         )}
       </div>
     )
   }
-
   {
     as === "radio" && (
       <div class="space-y-2">
@@ -329,7 +336,13 @@ const errorTextColor = variant.includes("dark")
           </div>
         )}
         {options.map((opt) => (
-          <div class="flex items-center">
+          <div class="flex flex-col gap-1">
+            <label
+              for={`${id}-${opt.value}`}
+              class={` text-sm ${labelClasses[variant] || labelClasses.default}`}
+            >
+              {opt.label}
+            </label>
             <input
               {...rest}
               type="radio"
@@ -342,12 +355,6 @@ const errorTextColor = variant.includes("dark")
               aria-invalid={error ? "true" : undefined}
               aria-describedby={error ? `${id}-error` : undefined}
             />
-            <label
-              for={`${id}-${opt.value}`}
-              class={`ml-3 text-sm ${labelClasses[variant] || labelClasses.default}`}
-            >
-              {opt.label}
-            </label>
           </div>
         ))}
       </div>

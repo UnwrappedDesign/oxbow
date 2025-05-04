@@ -539,7 +539,7 @@ const templates: { [key: string]: Template[] } = {
         "sign in link",
       ],
     },
-    {
+    /* {
       name: "Form Layouts",
       link: "/playground/application/formlayouts",
       image: "formlayouts.png",
@@ -550,7 +550,7 @@ const templates: { [key: string]: Template[] } = {
         "form layout image",
         "form layout link",
       ],
-    },
+    }, */
     { 
       name: "Inputs", 
       link: "/playground/application/inputs", 
