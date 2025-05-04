@@ -51,8 +51,8 @@ const rhys: Template = {
 };
 const mubs: Template = {
   name: "Mubs",
-  work: "mubashariqbal.com",
-  text: "Purchased a license for Oxbow UI (oxbowui.com) by @michaelandreuzza.com will be using it for parts if not all of the project.  Only $67 right now, seems like real bargain. Will be starting with a simple landing page, while I build out the functionality.",
+  work: "https://mubs.me/",
+  text: "Purchased a license for Oxbow UI (oxbowui.com) by @michaelandreuzza.com will be using it for parts if not all of the project.   Will be starting with a simple landing page, while I build out the functionality.",
   image: "/reviews/mubs.jpg",
 };
 

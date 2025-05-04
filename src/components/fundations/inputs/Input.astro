@@ -1,0 +1,364 @@
+---
+// components/Input.astro
+
+const {
+  as = "input", // "input" | "textarea" | "select" | "checkbox" | "radio"
+  type = "text", // only when as="input"
+  id,
+  name,
+  label,
+  error,
+  options = [], // for select or radio group
+  variant = "default", // "default" | "dark" | "transparent-light" | "transparent-dark"
+  size = "base", // xs, sm, base, md, lg
+  class: className = "",
+  ...rest
+} = Astro.props;
+
+const variantClasses = {
+  default: [
+    "bg-white",
+    "border",
+    "border-transparent",
+    "text-accent-700",
+    "ring-1",
+    "ring-base-200",
+    "placeholder-base-400",
+    "focus:border-base-300",
+    "focus:bg-transparent",
+    "focus:outline-none",
+    "focus:ring-accent-500",
+    "focus:ring-offset-2",
+    "focus:ring-2",
+  ],
+  dark: [
+    "bg-base-800",
+    "text-base-100",
+    "border-base-700",
+    "ring-1",
+    "ring-base-700",
+    "placeholder-base-400",
+    "focus:ring-base-500",
+    "focus:ring-offset-2",
+    "focus:border-base-600",
+    "focus:outline-none",
+  ],
+  "transparent-light": [
+    "bg-transparent",
+    "border",
+    "border-base-200",
+    "text-accent-700",
+    "placeholder-base-400",
+    "focus:border-accent-500",
+    "focus:outline-none",
+    "focus:ring-1",
+    "focus:ring-accent-500",
+  ],
+  "transparent-dark": [
+    "bg-transparent",
+    "border",
+    "border-base-700",
+    "text-base-100",
+    "placeholder-base-500",
+    "focus:border-accent-400",
+    "focus:outline-none",
+    "focus:ring-1",
+    "focus:ring-accent-400",
+  ],
+};
+
+const sizeClasses = {
+  xs: ["h-8", "px-3", "text-xs", "rounded-md"],
+  sm: ["h-9", "px-4", "text-sm", "rounded-md"],
+  base: ["h-10", "px-4", "py-2", "text-sm", "rounded-md"],
+  md: ["h-11", "px-5", "text-base", "rounded-md"],
+  lg: ["h-12", "px-6", "text-base", "rounded-md"],
+};
+
+const textareaClasses = {
+  xs: ["px-3", "py-2", "text-xs", "rounded-md"],
+  sm: ["px-4", "py-2", "text-sm", "rounded-md"],
+  base: ["px-4", "py-3", "text-sm", "rounded-md"],
+  md: ["px-5", "py-3", "text-base", "rounded-md"],
+  lg: ["px-6", "py-4", "text-base", "rounded-md"],
+};
+
+const checkboxRadioSizeClasses = {
+  xs: ["w-3", "h-3"],
+  sm: ["w-4", "h-4"],
+  base: ["w-5", "h-5"],
+  md: ["w-6", "h-6"],
+  lg: ["w-7", "h-7"],
+};
+
+const checkboxRadioClasses = {
+  default: [
+    "text-accent-600",
+    "border-base-300",
+    "rounded",
+    "focus:ring-accent-500",
+    "focus:ring-offset-2",
+    "focus:ring-2",
+  ],
+  dark: [
+    "text-accent-500",
+    "border-base-600",
+    "rounded",
+    "focus:ring-accent-400",
+    "focus:ring-offset-base-800",
+    "focus:ring-2",
+  ],
+  "transparent-light": [
+    "text-accent-600",
+    "border-base-300",
+    "rounded",
+    "focus:ring-accent-500",
+    "focus:ring-2",
+  ],
+  "transparent-dark": [
+    "text-accent-500",
+    "border-base-600",
+    "rounded",
+    "focus:ring-accent-400",
+    "focus:ring-2",
+  ],
+};
+
+const labelClasses = {
+  default: "text-base-700",
+  dark: "text-base-200",
+  "transparent-light": "text-base-700",
+  "transparent-dark": "text-base-200",
+};
+const labelSizeClasses = {
+  xs: "text-xs",
+  sm: "text-sm",
+  base: "text-sm",
+  md: "text-base",
+  lg: "text-base",
+};
+
+const searchClasses = ["pl-10"];
+
+let inputClasses = [];
+if (as === "input" && (type === "checkbox" || type === "radio")) {
+  inputClasses = [
+    ...(checkboxRadioSizeClasses[size] || checkboxRadioSizeClasses.base),
+    ...(checkboxRadioClasses[variant] || checkboxRadioClasses.default),
+  ];
+} else if (as === "textarea") {
+  inputClasses = [
+    "block",
+    "w-full",
+    "min-h-[100px]",
+    "appearance-none",
+    "transition",
+    "duration-300",
+    "ease-in-out",
+    "resize-y",
+    ...(textareaClasses[size] || textareaClasses.base),
+    ...(variantClasses[variant] || variantClasses.default),
+  ];
+} else {
+  inputClasses = [
+    "block",
+    "w-full",
+    "appearance-none",
+    "transition",
+    "duration-300",
+    "ease-in-out",
+    ...(as === "input" && type === "search" ? searchClasses : []),
+    ...(sizeClasses[size] || sizeClasses.base),
+    ...(variantClasses[variant] || variantClasses.default),
+  ];
+}
+
+if (className) {
+  inputClasses = [...inputClasses, ...className.split(" ").filter(Boolean)];
+}
+
+const errorTextColor = variant.includes("dark")
+  ? "text-red-400"
+  : "text-red-600";
+---
+
+<div class="w-full">
+  {
+    as !== "checkbox" && as !== "radio" && label && (
+      <label
+        for={id}
+        class={`mb-1 block font-medium ${labelSizeClasses[size] || "text-sm"} ${labelClasses[variant] || labelClasses.default}`}
+      >
+        {label}
+      </label>
+    )
+  }
+
+  {
+    as === "input" && type !== "checkbox" && type !== "radio" && (
+      <div class="relative">
+        {type === "search" && (
+          <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class={`h-4 w-4 ${variant.includes("dark") ? "text-base-400" : "text-base-500"}`}
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+          </div>
+        )}
+        <input
+          {...rest}
+          type={type}
+          id={id}
+          name={name}
+          class:list={inputClasses}
+          aria-required={rest.required ? "true" : undefined}
+          aria-invalid={error ? "true" : undefined}
+          aria-describedby={error ? `${id}-error` : undefined}
+        />
+      </div>
+    )
+  }
+
+  {
+    as === "textarea" && (
+      <textarea
+        {...rest}
+        id={id}
+        name={name}
+        rows={rest.rows || "4"}
+        class:list={inputClasses}
+        aria-required={rest.required ? "true" : undefined}
+        aria-invalid={error ? "true" : undefined}
+        aria-describedby={error ? `${id}-error` : undefined}
+      />
+    )
+  }
+
+  {
+    as === "select" && (
+      <div class="relative">
+        <select
+          {...rest}
+          id={id}
+          name={name}
+          class:list={inputClasses}
+          aria-required={rest.required ? "true" : undefined}
+          aria-invalid={error ? "true" : undefined}
+          aria-describedby={error ? `${id}-error` : undefined}
+        >
+          {options.map((opt) => (
+            <option value={opt.value} selected={opt.value === rest.value}>
+              {opt.label}
+            </option>
+          ))}
+        </select>
+        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class={`h-4 w-4 ${variant.includes("dark") ? "text-base-400" : "text-base-500"}`}
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </div>
+      </div>
+    )
+  }
+
+  {
+    as === "checkbox" && (
+      <div class="flex items-start">
+        <div class="flex items-center h-5">
+          <input
+            {...rest}
+            type="checkbox"
+            id={id}
+            name={name}
+            class:list={inputClasses}
+            aria-required={rest.required ? "true" : undefined}
+            aria-invalid={error ? "true" : undefined}
+            aria-describedby={error ? `${id}-error` : undefined}
+          />
+        </div>
+        {label && (
+          <div class="ml-3 text-sm">
+            <label
+              for={id}
+              class={`font-medium ${labelClasses[variant] || labelClasses.default}`}
+            >
+              {label}
+            </label>
+            {rest.description && (
+              <p
+                class={`text-xs ${variant.includes("dark") ? "text-base-400" : "text-base-500"}`}
+              >
+                {rest.description}
+              </p>
+            )}
+          </div>
+        )}
+      </div>
+    )
+  }
+
+  {
+    as === "radio" && (
+      <div class="space-y-2">
+        {label && (
+          <div
+            class={`text-sm font-medium ${labelClasses[variant] || labelClasses.default}`}
+          >
+            {label}
+          </div>
+        )}
+        {options.map((opt) => (
+          <div class="flex items-center">
+            <input
+              {...rest}
+              type="radio"
+              id={`${id}-${opt.value}`}
+              name={name}
+              value={opt.value}
+              class:list={inputClasses}
+              checked={opt.value === rest.value}
+              aria-required={rest.required ? "true" : undefined}
+              aria-invalid={error ? "true" : undefined}
+              aria-describedby={error ? `${id}-error` : undefined}
+            />
+            <label
+              for={`${id}-${opt.value}`}
+              class={`ml-3 text-sm ${labelClasses[variant] || labelClasses.default}`}
+            >
+              {opt.label}
+            </label>
+          </div>
+        ))}
+      </div>
+    )
+  }
+
+  {
+    error && (
+      <p class={`mt-1 text-sm ${errorTextColor}`} id={`${id}-error`}>
+        {error}
+      </p>
+    )
+  }
+</div>

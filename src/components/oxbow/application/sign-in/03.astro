@@ -1,208 +1,144 @@
 ---
-import Button from "@/components/fundations/buttons/Button.astro";
+export const description =
+  "Split-screen sign-in: punch in your creds on the left, gaze at abstract art & a hype testimonial on the right.";
+
+// Assets
+import { Image } from "astro:assets";
+import A1 from "@/images/avatars/avatar1.jpeg";
+import Placeholder from "@/images/gradients/1.jpeg";
+// Fundations
+import Logo from "@/components/assets/Logo.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-import Apple from "@/components/fundations/icons/Apple.astro";
-import Chrome from "@/components/fundations/icons/Chrome.astro";
-import Meta from "@/components/fundations/icons/Meta.astro";
+import Input from "@/components/fundations/inputs/Input.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+// Icons
+import GoogleColor from "@/components/fundations/icons/GoogleColor.astro";
 ---
 
-<div class="relative">
-  <div
-    class="relative m-4 overflow-hidden lg:absolute lg:inset-0 lg:right-2/3 ring-8 ring-white rounded-2xl"
-  >
-    <img
-      class="object-cover w-full h-64 bg-base-50 sm:h-80 lg:absolute lg:h-full"
-      src="/pose/1.jpg"
-      alt=""
-    />
-    <!-- Text overlay -->
-    <div
-      class="absolute inset-0 flex flex-col justify-start lg:bg-base-950 lg:bg-opacity-80 lg:p-10"
-    >
-      <div class="hidden md:block">
-        <img class="size-20" src="/images/oxbow/whiteLineLogo.png" alt="#_" />
-        <Text
-          class=""
-          tag="h3"
-          variant="textXL"
-          class="mt-12 font-medium lg:text-white lg:mt-52"
+<div class="flex h-screen">
+  <div class="flex items-center justify-center w-full p-8 bg-white lg:w-1/2">
+    <div class="w-full max-w-md py-24 lg:py-32">
+      <div>
+        <a href="#_">
+          <span class="sr-only">Back to home</span>
+          <Logo class="h-24 text-accent-500" aria-hidden="true" /></a
         >
-          Welcome to Our Platform
+        <Text
+          tag="h1"
+          variant="displayMD"
+          class="mt-12 font-medium tracking-tight text-base-900"
+        >
+          Sign in
         </Text>
-        <Text tag="p" variant="textBase" class="mt-4 lg:text-white">
-          Welcome back! Please enter your email and password to sign in.
-          Discover a world where seamless connectivity empowers your every
-          interaction. Dive into an experience designed to effortlessly connect
-          you with what matters most, enhancing productivity and enabling you to
-          achieve more.
+        <Text
+          tag="p"
+          variant="textBase"
+          class="mt-4 text-base-500 text-balance"
+        >
+          Welcome back. You know the drill, email, password, maybe a tear or
+          two.
         </Text>
-        <div class="flex mt-4">
-          <Text tag="p" variant="textSM" class="font-medium text-base-300">
-            Don't have an account?
-            <Text
-              tag="a"
-              href="#_"
-              variant="textBase"
-              class="font-medium text-accent-500 hover:text-base-500"
-            >
-              Sign up
-            </Text>
+      </div>
+      <form class="mt-10 space-y-4">
+        <Input
+          id="email"
+          name="email"
+          type="email"
+          label="Email address"
+          placeholder="email@example.com"
+          variant="default"
+          size="base"
+        />
+        <Input
+          id="password"
+          name="password"
+          type="password"
+          label="Password"
+          placeholder="************"
+          variant="alternative"
+          size="base"
+        />
+        <div class="flex items-center gap-3">
+          <input
+            id="remember-me"
+            name="remember-me"
+            type="checkbox"
+            class="rounded shadow size-4 border-base-300 text-accent-600 focus:ring-accent-600"
+          />
+          <Text
+            for="remember-me"
+            tag="label"
+            variant="textSM"
+            class="block font-medium text-base-500"
+            >Remember me for 30 days
           </Text>
         </div>
-      </div>
+        <Button fullWidth variant="accent" size="base">
+          Sign in with email
+        </Button>
+        <Button
+          variant="alternative"
+          size="base"
+          gap="sm"
+          class="relative flex items-center w-full"
+        >
+          <GoogleColor slot="left-icon" class="size-4" />
+          Sign in with Google
+          <!-- Green dot indicator -->
+          <span
+            class="absolute w-2 h-2 bg-green-500 rounded-full right-3 top-1/2 -translate-y-1/2"
+          ></span>
+        </Button>
+      </form>
+      <Text tag="p" variant="textXS" class="mt-4 font-medium text-base-500">
+        Dont' have an account?
+        <a href="#_" class="font-medium text-accent-500 hover:text-base-500">
+          Sign up
+        </a>
+      </Text>
     </div>
   </div>
-  <div
-    class="pt-16 pb-24 sm:pb-32 sm:pt-24 lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-3 lg:pt-32 lg:pl-32"
-  >
-    <div class="w-full px-8 lg:col-start-2 lg:px-0">
-      <div class="text-center md:text-left lg:text-balance">
-        <Text
-          tag="p"
-          variant="textSM"
-          class="font-bold uppercase text-accent-600"
-        >
-          Tagline
+  <div class="relative hidden lg:block lg:w-1/2">
+    <Image
+      width={1200}
+      height={1200}
+      src={Placeholder}
+      alt="#_"
+      aria-hidden="true"
+      class="object-cover object-left w-full h-full bg-base-50"
+    />
+    <div class="absolute inset-0 bg-black/0"></div>
+    <div
+      class="absolute p-6 bg-white rounded-lg shadow-lg shadow-base-500/20 outline outline-base-200 bottom-20 left-10 right-10"
+    >
+      <div class="relative flex flex-col gap-2">
+        <Text tag="h3" variant="textBase" class="font-medium">
+          "I’ve seen enough UI kits to last a lifetime. Oxbow’s the first one
+          that didn’t make me roll my eyes."
         </Text>
-        <Text
-          tag="h2"
-          variant="displayMD"
-          class="mt-4 font-semibold text-base-900 lg:text-balance"
-        >
-          Sign in to your account
-        </Text>
-        <Text tag="p" variant="textBase" class="mt-4 font-medium text-base-500">
-          Welcome back! Please enter your email and password to sign in.
-        </Text>
+        <div class="flex items-center mt-2 gap-4">
+          <Image
+            src={A1}
+            alt="#_"
+            width={1000}
+            height={1000}
+            aria-hidden="true"
+            class="object-cover object-top rounded-full size-10"
+          />
+          <div>
+            <Text
+              tag="p"
+              variant="textBase"
+              class="font-semibold text-base-900"
+            >
+              Johan Snällström
+            </Text>
+            <Text tag="p" variant="textXS" class="text-base-500">
+              Software Engineer
+            </Text>
+          </div>
+        </div>
       </div>
-      <form action="#" method="POST" class="max-w-lg mx-auto mt-12">
-        <div class="flex flex-col gap-y-6">
-          <div>
-            <Text
-              for="email"
-              tag="label"
-              variant="textBase"
-              class="font-medium text-base-500"
-            >
-              Email
-            </Text>
-            <div class="mt-2.5">
-              <input
-                type="email"
-                name="email"
-                id="email"
-                autocomplete="email"
-                required
-                aria-required="true"
-                aria-describedby="email-error"
-                placeholder="Your email"
-                class="block w-full h-10 px-4 py-2 text-sm bg-white border border-transparent rounded-lg appearance-none text-accent-700 duration-300 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
-              />
-              <span id="email-error" class="hidden text-sm text-red-600">
-                Please enter a valid email address.
-              </span>
-            </div>
-          </div>
-          <div>
-            <Text
-              for="email"
-              tag="label"
-              class="flex items-center justify-between"
-              variant="textBase"
-              class="font-medium text-base-500"
-            >
-              Password
-              <Text for="email" tag="a" variant="link"> Forgot password? </Text>
-            </Text>
-            <div class="mt-2.5">
-              <input
-                type="password"
-                name="password"
-                id="password"
-                autocomplete="current-password"
-                required
-                aria-required="true"
-                aria-describedby="password-error"
-                placeholder="Your password"
-                class="block w-full h-10 px-4 py-2 text-sm bg-white border border-transparent rounded-lg appearance-none text-accent-700 duration-300 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
-              />
-              <span id="password-error" class="hidden text-sm text-red-600">
-                Please enter a valid password.
-              </span>
-            </div>
-          </div>
-          <div class="flex items-center gap-3">
-            <input
-              id="remember-me"
-              name="remember-me"
-              type="checkbox"
-              class="rounded shadow size-4 border-base-300 text-accent-600 focus:ring-accent-600"
-            />
-            <Text
-              for="remember-me"
-              tag="label"
-              class="block text-sm font-medium text-base-500"
-              >Remember me
-            </Text>
-          </div>
-        </div>
-        <div class="mt-10">
-          <Button class="w-full" variant="accent" size="base"> Sign in </Button>
-        </div>
-        <div class="relative my-12">
-          <div class="absolute inset-0 flex items-center" aria-hidden="true">
-            <div class="w-full border-t border-base-200"></div>
-          </div>
-          <div class="relative flex justify-center">
-            <Text
-              tag="span"
-              variant="textSM"
-              class="px-4 font-semibold bg-white text-base-500"
-            >
-              Or Sign in with
-            </Text>
-          </div>
-        </div>
-        <div class="flex flex-col gap-y-4">
-          <Button
-            class="justify-between w-full"
-            variant="muted"
-            size="base"
-            gap="gapXS"
-          >
-            Sign in with Apple
-            <Apple size="sm" slot="right-icon" />
-          </Button>
-          <Button
-            class="justify-between w-full"
-            variant="muted"
-            size="base"
-            gap="gapXS"
-          >
-            Sign in with Meta
-            <Meta size="sm" slot="right-icon" />
-          </Button>
-          <Button
-            class="justify-between w-full"
-            variant="muted"
-            size="base"
-            gap="gapXS"
-          >
-            Sign in with Chrome
-            <Chrome size="sm" slot="right-icon" />
-          </Button>
-        </div>
-        <Text
-          tag="p"
-          variant="textXS"
-          class="mt-4 font-medium text-center text-base-500"
-        >
-          Dont' have an account?
-          <a href="#_" class="font-medium text-accent-500 hover:text-base-500">
-            Sign up
-          </a>
-        </Text>
-      </form>
     </div>
   </div>
 </div>

@@ -1,0 +1,866 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+import MainHero from "@/components/fundations/containers/MainHero.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+---
+
+<BaseLayout>
+  <MainHero
+    title="Button overview"
+    showButton={false}
+    showAlpineTailwind={false}
+  />
+  <section class="border-t border-base-200">
+    <div class="flex flex-col w-full divide-y divide-base-200 ">
+      <!-- Button Variants -->
+      <Wrapper variant="standard" class="lg:border-x lg:border-base-200">
+        <h2 class="mb-4 text-xl font-medium">Button Variants</h2>
+        <div class="flex flex-wrap w-full gap-4">
+          <Button>Default Button</Button>
+          <Button variant="accent">Accent Button</Button>
+          <Button variant="muted">Muted Button</Button>
+          <Button variant="alternative">Alternative Button</Button>
+          <Button variant="outline">Outline Button</Button>
+          <Button variant="ghost">Ghost Button</Button>
+          <Button variant="link">Link Button</Button>
+        </div>
+      </Wrapper>
+
+      <!-- Button Sizes -->
+      <Wrapper variant="standard" class="lg:border-x lg:border-base-200">
+        <h2 class="mb-4 text-xl font-medium">Button Sizes</h2>
+        <div class="flex flex-wrap items-center w-full gap-4">
+          <Button size="xs">Extra Small</Button>
+          <Button size="sm">Small</Button>
+          <Button size="base">Base (Default)</Button>
+          <Button size="md">Medium</Button>
+          <Button size="lg">Large</Button>
+          <Button size="xl">Extra Large</Button>
+        </div>
+      </Wrapper>
+
+      <!-- Buttons with Icons -->
+      <Wrapper variant="standard" class="lg:border-x lg:border-base-200">
+        <h2 class="w-full mb-4 text-xl font-medium">Buttons with Icons</h2>
+
+        <h3 class="mb-2 text-xl ont-semimedium">Left Icon</h3>
+        <div class="flex flex-wrap mb-6 gap-4">
+          <Button gap="sm">
+            <svg
+              slot="left-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                clip-rule="evenodd"></path>
+            </svg>
+            Add Item
+          </Button>
+
+          <Button variant="accent">
+            <svg
+              slot="left-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                clip-rule="evenodd"></path>
+            </svg>
+            Download
+          </Button>
+        </div>
+
+        <h3 class="mb-2 text-xl ont-semimedium">Right Icon</h3>
+        <div class="flex flex-wrap mb-6 gap-4">
+          <Button>
+            Next Step
+            <svg
+              slot="right-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </Button>
+
+          <Button variant="outline">
+            View Details
+            <svg
+              slot="right-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </Button>
+        </div>
+
+        <h3 class="mb-2 text-xl ont-semimedium">Both Icons</h3>
+        <div class="flex flex-wrap mb-6 gap-4">
+          <Button>
+            <svg
+              slot="left-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                clip-rule="evenodd"></path>
+            </svg>
+            More Info
+            <svg
+              slot="right-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </Button>
+
+          <Button variant="ghost">
+            <svg
+              slot="left-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"
+                clip-rule="evenodd"></path>
+            </svg>
+            Sign Out
+            <svg
+              slot="right-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </Button>
+        </div>
+      </Wrapper>
+
+      <!-- Icon-Only Buttons -->
+      <Wrapper variant="standard" class="lg:border-x lg:border-base-200">
+        <h2 class="mb-4 text-xl font-medium">Icon-Only Buttons</h2>
+
+        <h3 class="mb-2 text-xl ont-semimedium">Using onlyIconSize</h3>
+        <div class="flex flex-wrap items-center w-full mb-6 gap-4">
+          <Button onlyIconSize="xs" aria-label="Search">
+            <svg
+              slot="left-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-4 h-4"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </Button>
+
+          <Button onlyIconSize="sm" variant="accent" aria-label="Add">
+            <svg
+              slot="left-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-4 h-4"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </Button>
+
+          <Button onlyIconSize="base" variant="outline" aria-label="Edit">
+            <svg
+              slot="left-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"
+              ></path>
+            </svg>
+          </Button>
+
+          <Button onlyIconSize="md" variant="ghost" aria-label="Delete">
+            <svg
+              slot="left-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </Button>
+
+          <Button onlyIconSize="lg" variant="muted" aria-label="Settings">
+            <svg
+              slot="left-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-6 h-6"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </Button>
+
+          <Button
+            onlyIconSize="xl"
+            variant="alternative"
+            aria-label="Notification"
+          >
+            <svg
+              slot="left-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-6 h-6"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"
+              ></path>
+            </svg>
+          </Button>
+        </div>
+
+        <h3 class="mb-2 text-xl ont-semimedium">
+          Auto-detected Icon-Only (using regular size)
+        </h3>
+        <div class="flex flex-wrap items-center w-full gap-4">
+          <Button size="xs" aria-label="Search">
+            <svg
+              slot="left-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-4 h-4"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </Button>
+
+          <Button size="sm" variant="accent" aria-label="Add">
+            <svg
+              slot="left-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-4 h-4"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </Button>
+
+          <Button size="base" variant="outline" aria-label="Edit">
+            <svg
+              slot="right-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"
+              ></path>
+            </svg>
+          </Button>
+        </div>
+      </Wrapper>
+
+      <!-- Button States -->
+      <Wrapper variant="standard" class="lg:border-x lg:border-base-200">
+        <h2 class="mb-4 text-xl font-medium">Button States</h2>
+
+        <h3 class="mb-2 text-xl ont-semimedium">Disabled Buttons</h3>
+        <div class="flex flex-wrap mb-6 gap-4">
+          <Button disabled>Disabled Default</Button>
+          <Button variant="accent" disabled>Disabled Accent</Button>
+          <Button variant="outline" disabled>Disabled Outline</Button>
+          <Button variant="ghost" disabled>Disabled Ghost</Button>
+          <Button onlyIconSize="md" disabled aria-label="Disabled Icon">
+            <svg
+              slot="left-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </Button>
+        </div>
+
+        <h3 class="mb-2 text-xl ont-semimedium">Loading Buttons</h3>
+        <div class="flex flex-wrap mb-6 gap-4">
+          <Button loading>Loading Default</Button>
+          <Button variant="accent" loading>Loading Accent</Button>
+          <Button variant="outline" loading>Loading Outline</Button>
+          <Button variant="ghost" loading>Loading Ghost</Button>
+          <Button onlyIconSize="md" loading aria-label="Loading Icon">
+            <svg
+              slot="left-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </Button>
+        </div>
+
+        <h3 class="mb-2 text-xl ont-semimedium">Full Width Buttons</h3>
+        <div class="max-w-md mb-6 space-y-4">
+          <Button fullWidth>Full Width Default</Button>
+          <Button variant="accent" fullWidth>Full Width Accent</Button>
+          <Button variant="outline" fullWidth>Full Width Outline</Button>
+        </div>
+      </Wrapper>
+
+      <!-- Button Gap Options -->
+      <Wrapper variant="standard" class="lg:border-x lg:border-base-200">
+        <h2 class="mb-4 text-xl font-medium">Button Gap Options</h2>
+        <div class="space-y-4">
+          <div>
+            <h3 class="mb-2 text-lg font-medium">Extra Small Gap (xs)</h3>
+            <Button gap="xs">
+              <svg
+                slot="left-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              XS Gap
+              <svg
+                slot="right-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </Button>
+          </div>
+
+          <div>
+            <h3 class="mb-2 text-lg font-medium">Small Gap (sm)</h3>
+            <Button gap="sm">
+              <svg
+                slot="left-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              SM Gap
+              <svg
+                slot="right-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </Button>
+          </div>
+
+          <div>
+            <h3 class="mb-2 text-lg font-medium">Base Gap (base)</h3>
+            <Button gap="base">
+              <svg
+                slot="left-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              Base Gap
+              <svg
+                slot="right-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </Button>
+          </div>
+
+          <div>
+            <h3 class="mb-2 text-lg font-medium">Medium Gap (md)</h3>
+            <Button gap="md">
+              <svg
+                slot="left-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              MD Gap
+              <svg
+                slot="right-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </Button>
+          </div>
+
+          <div>
+            <h3 class="mb-2 text-lg font-medium">Large Gap (lg)</h3>
+            <Button gap="lg">
+              <svg
+                slot="left-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              LG Gap
+              <svg
+                slot="right-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </Button>
+          </div>
+        </div>
+      </Wrapper>
+
+      <!-- Combined Examples -->
+      <Wrapper variant="standard" class="lg:border-x lg:border-base-200">
+        <h2 class="mb-4 text-xl font-medium">Combined Examples</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Example 1: Primary Action Button -->
+          <div class="p-6 border rounded-lg border-base-200">
+            <h3 class="mb-4 text-lg font-medium">Primary Action Button</h3>
+            <Button variant="accent" size="lg" fullWidth>
+              <svg
+                slot="left-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M3 3a1 1 0 000 2h10a1 1 0 100-2H3zm0 4a1 1 0 000 2h10a1 1 0 100-2H3zm0 4a1 1 0 100 2h10a1 1 0 100-2H3z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              Create New Project
+            </Button>
+          </div>
+
+          <!-- Example 2: Form Submit Button -->
+          <div class="p-6 border rounded-lg border-base-200">
+            <h3 class="mb-4 text-lg font-medium">Form Submit Button</h3>
+            <Button variant="default" size="md" fullWidth type="submit">
+              Submit Form
+              <svg
+                slot="right-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </Button>
+          </div>
+
+          <!-- Example 3: Delete Confirmation Button -->
+          <div class="p-6 border rounded-lg border-base-200">
+            <h3 class="mb-4 text-lg font-medium">Delete Confirmation Button</h3>
+            <Button
+              variant="outline"
+              size="base"
+              class="text-red-500 border-red-500 hover:bg-red-50 focus:outline-red-500"
+            >
+              <svg
+                slot="left-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                  clip-rule="evenodd"></path> 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                clip-rule="evenodd" />
+              </svg>
+              Delete Item
+            </Button>
+          </div>
+
+          <!-- Example 4: Social Media Share Button -->
+          <div class="p-6 border rounded-lg border-base-200">
+            <h3 class="mb-4 text-lg font-medium">Social Media Share Button</h3>
+            <Button
+              variant="ghost"
+              size="sm"
+              gap="xs"
+              class="text-blue-600 hover:bg-blue-50"
+            >
+              <svg
+                slot="left-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z"
+                ></path>
+              </svg>
+              Share on Twitter
+            </Button>
+          </div>
+
+          <!-- Example 5: Loading Submit Button -->
+          <div class="p-6 border rounded-lg border-base-200">
+            <h3 class="mb-4 text-lg font-medium">Loading Submit Button</h3>
+            <Button variant="accent" size="base" loading fullWidth>
+              Processing Payment
+            </Button>
+          </div>
+
+          <!-- Example 6: Icon Button Group -->
+          <div class="p-6 border rounded-lg border-base-200">
+            <h3 class="mb-4 text-lg font-medium">Icon Button Group</h3>
+            <div class="flex space-x-2">
+              <Button onlyIconSize="sm" variant="muted" aria-label="Previous">
+                <svg
+                  slot="left-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-4 h-4"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+              </Button>
+
+              <Button onlyIconSize="sm" variant="muted" aria-label="Next">
+                <svg
+                  slot="left-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-4 h-4"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Wrapper>
+
+      <!-- Button with Custom Classes -->
+      <Wrapper variant="standard" class="lg:border-x lg:border-base-200">
+        <h2 class="mb-4 text-xl font-medium">Buttons with Custom Classes</h2>
+        <div class="flex flex-wrap gap-4">
+          <Button
+            class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
+          >
+            Gradient Button
+          </Button>
+
+          <Button
+            class="text-yellow-900 bg-yellow-400 hover:bg-yellow-500 focus:outline-yellow-600"
+          >
+            Custom Yellow
+          </Button>
+
+          <Button
+            class="text-indigo-500 bg-transparent border-2 border-indigo-500 border-dashed hover:bg-indigo-50"
+          >
+            Dashed Border
+          </Button>
+
+          <Button
+            class="text-white bg-green-500 rounded-full hover:bg-green-600 focus:outline-green-700"
+          >
+            Rounded Button
+          </Button>
+
+          <Button
+            class="font-medium tracking-wider text-white uppercase bg-gray-800 textxs"
+          >
+            Uppercase Text
+          </Button>
+        </div>
+      </Wrapper>
+
+      <!-- Real-world Application Examples -->
+      <Wrapper variant="standard" class="lg:border-x lg:border-base-200">
+        <h2 class="mb-4 text-xl font-medium">
+          Real-world Application Examples
+        </h2>
+
+        <!-- Checkout Form -->
+        <div class="max-w-md p-6 mb-8 border rounded-lg">
+          <h3 class="mb-4 text-xl font-medium">Checkout Form</h3>
+          <form class="space-y-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-medium">Payment Method</label>
+              <div class="flex space-x-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  class="flex-1 border-2 border-accent-500"
+                >
+                  <svg
+                    slot="left-icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-5 h-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"></path>
+                    <path
+                      fill-rule="evenodd"
+                      d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  Credit Card
+                </Button>
+
+                <Button variant="outline" size="sm" class="flex-1">
+                  <svg
+                    slot="left-icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-5 h-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  PayPal
+                </Button>
+              </div>
+            </div>
+
+            <div class="pt-4">
+              <Button variant="accent" size="lg" fullWidth type="submit">
+                <svg
+                  slot="left-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                Complete Purchase
+              </Button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Dashboard Actions -->
+        <div class="p-6 mb-8 border rounded-lg">
+          <h3 class="mb-4 text-xl font-medium">Dashboard Actions</h3>
+          <div class="flex flex-wrap gap-3">
+            <Button variant="default" size="sm">
+              <svg
+                slot="left-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-4 h-4"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+                ></path>
+              </svg>
+              Dashboard
+            </Button>
+
+            <Button variant="ghost" size="sm">
+              <svg
+                slot="left-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-4 h-4"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              Profile
+            </Button>
+
+            <Button variant="ghost" size="sm">
+              <svg
+                slot="left-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-4 h-4"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              Settings
+            </Button>
+
+            <Button
+              variant="ghost"
+              size="sm"
+              class="ml-auto text-red-500 hover:bg-red-50"
+            >
+              <svg
+                slot="left-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-4 h-4"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              Logout
+            </Button>
+          </div>
+        </div>
+      </Wrapper>
+    </div>
+  </section>
+</BaseLayout>
