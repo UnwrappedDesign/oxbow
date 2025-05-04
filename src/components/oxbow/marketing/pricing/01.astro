@@ -1,30 +1,26 @@
 ---
-import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.astro";
+// Fundations
 import Text from "@/components/fundations/typography/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Components
+import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.astro";
 import PricingCardsSingle from "@/components/fundations/pricing/PricingCardsSingle.astro";
 ---
 
-<section x-data="{duration: 'monthly'}">
-  <div class="relative px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-screen-xl">
+<section x-data="{duration: 'monthly'}" class="bg-base-50">
+  <Wrapper variant="blockStandard" class="py-24">
     <div class="max-w-xl mx-auto text-center">
       <Text
-        tag="p"
-        variant="textSM"
-        class="font-bold uppercase text-accent-600"
-      >
-        Tagline
-      </Text>
-      <Text
-        tag="h2"
+        tag="h1"
         variant="displayMD"
-        class="mt-4 font-semibold text-base-900 lg:text-balance"
+        class="font-medium tracking-tight text-center text-base-900 lg:text-balance text-balance"
       >
         Equip your business with world class software
       </Text>
       <Text
         tag="p"
         variant="textBase"
-        class="mt-4 font-medium text-base-500 lg:text-balance"
+        class="max-w-2xl mx-auto mt-2 font-medium text-center text-base-600 text-balance"
       >
         Choose a plan that works the best for you and your team. Start small,
         upgrade when you need to.
@@ -37,11 +33,13 @@ import PricingCardsSingle from "@/components/fundations/pricing/PricingCardsSing
         <PricingToggle />
       </div>
     </div>
-    <div
-      class="mx-auto mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
-    >
+    <div class="mt-12 grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
       <!-- Tier one -->
-      <PricingCardsSingle tierName="Core" showFeatures={false} />
+      <PricingCardsSingle
+        tierName="Core"
+        showFeatures={false}
+        colorMode="light"
+      />
       <!-- Tier two -->
       <PricingCardsSingle
         tierName="Momentum"
@@ -52,9 +50,9 @@ import PricingCardsSingle from "@/components/fundations/pricing/PricingCardsSing
       <!-- Tier three -->
       <PricingCardsSingle
         tierName="Growth"
-        colorMode="light"
+        colorMode="dark"
         showFeatures={false}
       />
     </div>
-  </div>
+  </Wrapper>
 </section>

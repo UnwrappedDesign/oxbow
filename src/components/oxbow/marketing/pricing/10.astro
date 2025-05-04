@@ -1,59 +1,60 @@
 ---
-import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.astro";
+// Fundations
 import Text from "@/components/fundations/typography/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Components
+import PricingToggleDark from "@/components/fundations/buttonGroups/PricingToggleDark.astro";
 import PricingCardsSingle from "@/components/fundations/pricing/PricingCardsSingle.astro";
 ---
 
-<section x-data="{duration: 'monthly'}">
-  <div class="relative px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-screen-xl">
-    <div class="max-w-xl mx-auto text-center">
-      <Text
-        tag="p"
-        variant="textSM"
-        class="font-bold uppercase text-accent-600"
-      >
-        Tagline
-      </Text>
-      <Text
-        tag="h2"
-        variant="displayMD"
-        class="mt-4 font-semibold text-base-900 lg:text-balance"
-      >
-        Equip your business with world class software
-      </Text>
-      <Text
-        tag="p"
-        variant="textBase"
-        class="mt-4 font-medium text-base-500 lg:text-balance"
-      >
-        Choose a plan that works the best for you and your team. Start small,
-        upgrade when you need to.
-      </Text>
-      <div
-        aria-labelledby="pricing-toggle"
-        class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-white shadow ring-1 ring-base-200 ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52"
-      >
-        <!-- Monthly Pricing Button: Sets 'duration' to 'monthly' when clicked -->
-        <PricingToggle />
+<section x-data="{duration: 'monthly'}" class="bg-base-950">
+  <Wrapper variant="blockStandard" class="py-24">
+    <div
+      class="w-full max-w-lg mx-auto grid grid-cols-1 lg:max-w-none gap-y-12 lg:gap-0 lg:grid-cols-3 lg:items-start"
+    >
+      <div class="flex flex-col h-full gap-8 cols-span-full lg:col-span-1">
+        <div>
+          <Text
+            tag="h1"
+            variant="displaySM"
+            class="font-medium tracking-tight text-white text-balance"
+          >
+            Equip your business with world class software
+          </Text>
+          <Text
+            tag="p"
+            variant="textBase"
+            class="mt-2 font-medium text-base-300 text-balance"
+          >
+            Choose a plan that works the best for you and your team. Start
+            small, upgrade when you need to.
+          </Text>
+        </div>
+        <div
+          aria-labelledby="pricing-toggle"
+          class="relative z-0 inline-flex w-full p-1 mt-8 overflow-hidden shadow ring-1 ring-base-800 ring-offset-2 ring-offset-base-950 bg-900 gap-4 rounded-md max-w-52"
+        >
+          <PricingToggleDark />
+        </div>
       </div>
+      <PricingCardsSingle
+        tierName="Core"
+        roundedDesktop="left"
+        colorMode="baseDark"
+        isLeft={true}
+        buttonVariant="mutedDark"
+        noShadow={true}
+      />
+      <!-- Tier two -->
+      <PricingCardsSingle
+        tierName="Momentum"
+        isPopular={true}
+        roundedDesktop="none"
+        colorMode="accent"
+        roundedDesktop="right"
+        isRight={true}
+        noShadow={true}
+      />
     </div>
-    <div class="lg:-mx-24">
-      <div
-        class="mx-auto mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
-      >
-        <!-- Tier one -->
-        <PricingCardsSingle tierName="Core" />
-        <!-- Tier two -->
-        <PricingCardsSingle tierName="Momentum" colorMode="light" />
-        <!-- Tier three -->
-        <PricingCardsSingle
-          tierName="Growth"
-          isPopular={true}
-          buttonVariant="accent"
-        />
-        <!-- Tier four-->
-        <PricingCardsSingle tierName="Apex" />
-      </div>
-    </div>
-  </div>
+  </Wrapper>
 </section>

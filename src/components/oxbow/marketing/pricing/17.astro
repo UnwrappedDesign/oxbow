@@ -1,10 +1,13 @@
 ---
-import Button from "@/components/fundations/buttons/Button.astro";
-import Badge from "@/components/fundations/badges/Badge.astro";
-import Check from "@/components/fundations/icons/Check.astro";
-import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.astro";
-
+// Fundations
 import Text from "@/components/fundations/typography/Text.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Icons
+import Check from "@/components/fundations/icons/Check.astro";
+import Badge from "@/components/fundations/badges/Badge.astro";
+// Components
+import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.astro";
 ---
 
 <section x-data="{duration: 'monthly'}">
@@ -43,56 +46,51 @@ import Text from "@/components/fundations/typography/Text.astro";
           </div>
         </div>
       </div>
-      <table class="w-full mt-8 text-center bg-transparent mx-autom">
+      <table class="w-full mx-auto mt-8 text-center bg-transparent">
         <thead>
           <tr class="align-top">
-            <th class="w-1/3"></th>
+            <th class="w-1/3"> </th>
             <th class="relative w-1/3 p-1 pr-0 font-normal text-left">
               <div
                 aria-hidden="true"
-                class="absolute inset-y-0 right-0 hidden w-full rounded-tl-3xl bg-base-50 sm:block"
+                class="absolute inset-y-0 right-0 hidden w-full rounded-tl-xl bg-base-50 sm:block"
               >
               </div>
-              <div class="relative">
-                <div class="flex flex-col p-8 gap-4">
-                  <div class="flex items-start justify-between w-full">
-                    <div>
-                      <Text
-                        tag="h3"
-                        variant="textXL"
-                        class="font-medium text-base-900"
-                      >
-                        Core
-                      </Text>
-                      <Text
-                        tag="p"
-                        variant="textBase"
-                        class="font-medium text-base-500"
-                      >
-                        For individuals
-                      </Text>
-                    </div>
-                  </div>
-                  <Text
-                    tag="p"
-                    variant="textBase"
-                    class="font-medium text-base-500"
-                  >
-                    This subscription tier caters to individuals and hobbyists
-                    seeking fundamental features.
-                  </Text>
-                </div>
-                <div class="p-8 pt-0 mt-8">
-                  <p
-                    class="flex items-baseline text-2xl font-semibold tracking-tighter lg:text-3xl text-base-900"
-                  >
-                    <span
-                      data-monthly="$29.00"
-                      data-annual="$19.00"
-                      x-text="$el.dataset[duration]"></span>
-                    <span
-                      class="font-sans text-sm font-normal tracking-normal text-base-500"
+              <div class="relative p-6 sm:p-4 sm:pb-5 lg:p-6">
+                <div class="flex items-start justify-between w-full">
+                  <div>
+                    <Text
+                      tag="h3"
+                      variant="textBase"
+                      class="font-medium text-base-900"
                     >
+                      Core
+                    </Text>
+                    <Text
+                      tag="p"
+                      variant="textSM"
+                      class="font-medium text-base-500"
+                    >
+                      This subscription tier caters to individuals and hobbyists
+                      seeking fundamental features.
+                    </Text>
+                  </div>
+                </div>
+                <div class="mt-8">
+                  <p
+                    class="text-4xl font-medium sm:text-xl md:text-4xl text-base-900"
+                  >
+                  </p>
+                  <div class="flex items-center gap-x-4">
+                    <p
+                      class="text-4xl font-medium sm:text-xl md:text-4xl text-base-900"
+                    >
+                      <span
+                        data-monthly="$29"
+                        data-annual="$19"
+                        x-text="$el.dataset[duration]"></span>
+                    </p>
+                    <div class="text-xs font-medium capitalize text-base-900">
                       <span x-show="duration === 'monthly'">
                         <span x-show="duration === 'monthly'">
                           /month</span
@@ -104,63 +102,57 @@ import Text from "@/components/fundations/typography/Text.astro";
                       >
                         /annually</span
                       >
-                    </span>
-                  </p>
-                  <div class="mt-4">
-                    <Button class="w-full" variant="alternative" size="sm">
+                      <Text tag="p" variant="textXS" class="text-base-500"
+                        >USD + Local taxes</Text
+                      >
+                    </div>
+                  </div>
+                  <div class="mt-8">
+                    <Button class="w-full" variant="accent" size="sm">
                       Get Started
                     </Button>
                   </div>
                 </div>
               </div>
             </th>
-            <th class="relative w-1/3 p-1 pl-0 font-normal text-left">
+            <th class="relative w-1/3 p-1 px-0 font-normal text-left">
               <div
                 aria-hidden="true"
-                class="absolute inset-y-0 right-0 hidden w-full rounded-tr-3xl bg-base-900 sm:block"
+                class="absolute inset-y-0 right-0 hidden w-full rounded-tr-xl bg-base-900 sm:block"
               >
               </div>
-              <div class="relative">
-                <div class="flex flex-col p-8 gap-4">
-                  <div class="flex items-start justify-between w-full">
-                    <div>
-                      <Text
-                        tag="h3"
-                        variant="textXL"
-                        class="font-medium text-white"
-                      >
-                        Momentum
-                      </Text>
-                      <Text
-                        tag="p"
-                        variant="textBase"
-                        class="font-medium text-base-300"
-                      >
-                        For startups
-                      </Text>
-                    </div>
-                    <Badge variant="default" size="xs"> Popular </Badge>
-                  </div>
-                  <Text
-                    tag="p"
-                    variant="textBase"
-                    class="font-medium text-base-300"
-                  >
-                    Designed with medium-sized businesses in mind, this
-                    subscription tier provides advanced tools.
-                  </Text>
-                </div>
-                <div class="p-8 pt-0 mt-8">
-                  <p
-                    class="flex items-baseline text-2xl font-semibold tracking-tighter text-white lg:text-3xl"
-                  >
-                    <span
-                      data-monthly="$49.00"
-                      data-annual="$39.00"
-                      x-text="$el.dataset[duration]"></span>
-                    <span
-                      class="font-sans text-sm font-normal tracking-normal text-base-200"
+              <div class="relative p-6 sm:p-4 sm:pb-5 lg:p-6">
+                <div class="flex items-start justify-between w-full">
+                  <div>
+                    <Text
+                      tag="h3"
+                      variant="textBase"
+                      class="font-medium text-white"
                     >
+                      Momentum
+                    </Text>
+                    <Text
+                      tag="p"
+                      variant="textSM"
+                      class="font-medium text-base-300"
+                    >
+                      Designed with medium-sized businesses in mind, this
+                      subscription tier provides tools.
+                    </Text>
+                  </div>
+                  <Badge variant="default" size="xs"> Popular </Badge>
+                </div>
+                <div class="mt-8">
+                  <div class="flex items-center gap-x-4">
+                    <p
+                      class="text-4xl font-medium sm:text-xl md:text-4xl text-white"
+                    >
+                      <span
+                        data-monthly="$49"
+                        data-annual="$39"
+                        x-text="$el.dataset[duration]"></span>
+                    </p>
+                    <div class="text-xs font-medium capitalize text-base-200">
                       <span x-show="duration === 'monthly'">
                         <span x-show="duration === 'monthly'">
                           /month</span
@@ -172,9 +164,12 @@ import Text from "@/components/fundations/typography/Text.astro";
                       >
                         /annually</span
                       >
-                    </span>
-                  </p>
-                  <div class="mt-4">
+                      <Text tag="p" variant="textXS" class="text-base-300"
+                        >USD + Local taxes</Text
+                      >
+                    </div>
+                  </div>
+                  <div class="mt-8">
                     <Button class="w-full" variant="alternative" size="sm">
                       Get Started
                     </Button>
@@ -185,25 +180,30 @@ import Text from "@/components/fundations/typography/Text.astro";
           </tr>
         </thead>
         <tbody>
+          <tr class="overflow-hidden">
+            <th
+              scope="colgroup"
+              colspan="4"
+              class="p-4 text-sm font-medium text-left leading-6 text-base-900 border-y border-base-200"
+            >
+              Usage
+            </th>
+          </tr>
           <tr>
             <th
-              class="p-3 text-sm font-medium text-left rounded-l-lg bg-base-50 text-base-900"
+              class="p-3 text-sm font-medium text-left border-b bg-base-50 text-base-900 border-base-200"
             >
               <div class="flex items-center gap-2">
                 <Check size="sm" />Accounts
               </div>
             </th>
-            <td
-              class="px-2 text-xs font-medium border-t bg-base-50 text-base-900 border-base-200"
-              >5</td
-            >
-            <td
-              class="px-2 text-xs font-medium text-white border-t bg-base-900 border-base-800"
-              >10</td
-            >
+            <td class="px-2 text-xs font-medium bg-base-50 text-base-900">5</td>
+            <td class="px-2 text-xs font-medium text-white bg-base-900">10</td>
           </tr>
           <tr>
-            <th class="p-3 text-sm font-medium text-left text-base-900">
+            <th
+              class="p-3 text-sm font-medium text-left border-b text-base-900 bg-base-50 border-base-200"
+            >
               <div class="flex items-center gap-2">
                 <Check size="sm" />
                 Analytics
@@ -220,7 +220,7 @@ import Text from "@/components/fundations/typography/Text.astro";
           </tr>
           <tr>
             <th
-              class="p-3 text-sm font-medium text-left rounded-l-lg bg-base-50 text-base-900"
+              class="p-3 text-sm font-medium text-left border-b bg-base-50 text-base-900 border-base-200"
             >
               <div class="flex items-center gap-2">
                 <Check size="sm" />Integrations
@@ -238,7 +238,7 @@ import Text from "@/components/fundations/typography/Text.astro";
           </tr>
           <tr>
             <th
-              class="p-3 text-sm font-medium text-left rounded-l-lg text-base-900"
+              class="p-3 text-sm font-medium text-left border-b text-base-900 bg-base-50 border-base-200"
             >
               <div class="flex items-center gap-2">
                 <Check size="sm" />Programs
@@ -256,7 +256,7 @@ import Text from "@/components/fundations/typography/Text.astro";
           </tr>
           <tr>
             <th
-              class="p-3 text-sm font-medium text-left rounded-l-lg bg-base-50 text-base-900"
+              class="p-3 text-sm font-medium text-left border-b bg-base-50 text-base-900 border-base-200"
             >
               <div class="flex items-center gap-2">
                 <Check size="sm" />Deployments
@@ -275,7 +275,7 @@ import Text from "@/components/fundations/typography/Text.astro";
           </tr>
           <tr>
             <th
-              class="p-3 text-sm font-medium text-left rounded-l-lg text-base-900"
+              class="p-3 text-sm font-medium text-left border-b text-base-900 bg-base-50 border-base-200"
             >
               <div class="flex items-center gap-2">
                 <Check size="sm" />Advanced Checkpoints
@@ -294,7 +294,7 @@ import Text from "@/components/fundations/typography/Text.astro";
           </tr>
           <tr>
             <th
-              class="p-3 text-sm font-medium text-left rounded-l-lg bg-base-50 text-base-900"
+              class="p-3 text-sm font-medium text-left border-b bg-base-50 text-base-900 border-base-200"
             >
               <div class="flex items-center gap-2">
                 <Check size="sm" />Reporting tools
@@ -311,14 +311,89 @@ import Text from "@/components/fundations/typography/Text.astro";
               YES
             </td>
           </tr>
+          <tr class="overflow-hidden">
+            <th
+              scope="colgroup"
+              colspan="4"
+              class="p-4 text-sm font-medium text-left leading-6 text-base-900 border-y border-base-200"
+            >
+              Features
+            </th>
+          </tr>
+          <tr>
+            <th
+              class="p-3 text-sm font-medium text-left border-b bg-base-50 text-base-900 border-base-200"
+            >
+              <div class="flex items-center gap-2">
+                <Check size="sm" />
+                Service agreement
+              </div>
+            </th>
+            <td class="px-2 text-xs font-medium text-base-900 bg-base-50">No</td
+            >
+            <td class="px-2 text-xs font-medium text-white bg-base-900">No</td>
+          </tr>
+          <tr>
+            <th
+              class="p-3 text-sm font-medium text-left border-b text-base-900 bg-base-50 border-base-200"
+            >
+              <div class="flex items-center gap-2">
+                <Check size="sm" />Dedicted Manager
+              </div>
+            </th>
+            <td
+              class="px-2 text-xs font-medium border-t text-base-900 bg-base-50 border-base-200"
+              >No</td
+            >
+            <td
+              class="px-2 text-xs font-medium text-white border-t bg-base-900 border-base-800"
+              >Yes</td
+            >
+          </tr>
+          <tr>
+            <th
+              class="p-3 text-sm font-medium text-left border-b bg-base-50 text-base-900 border-base-200"
+            >
+              <div class="flex items-center gap-2">
+                <Check size="sm" />Onboarding sessions
+              </div>
+            </th>
+            <td
+              class="px-2 text-xs font-medium border-t text-base-900 bg-base-50 border-base-200"
+              >No</td
+            >
+            <td
+              class="px-2 text-xs font-medium text-white border-t bg-base-900 border-base-800"
+            >
+              No
+            </td>
+          </tr>
+          <tr>
+            <th
+              class="p-3 text-sm font-medium text-left border-b text-base-900 border-base-200 bg-base-50"
+            >
+              <div class="flex items-center gap-2">
+                <Check size="sm" />Dedicated support channel
+              </div>
+            </th>
+            <td
+              class="px-2 text-xs font-medium border-t text-base-900 bg-base-50 border-base-200"
+            >
+              No
+            </td>
+            <td
+              class="px-2 text-xs font-medium text-white border-t bg-base-900 border-base-800"
+              >No</td
+            >
+          </tr>
           <tr class="align-top">
             <th></th>
             <th
-              class="w-1/4 px-2 py-6 border-t border-base-200 bg-base-50 rounded-bl-3xl"
+              class="w-1/4 px-2 py-6 border-t border-base-200 bg-base-50 rounded-bl-xl"
             >
             </th>
             <th
-              class="w-1/4 px-2 py-6 border-t rounded-br-3xl bg-base-900 border-base-800"
+              class="w-1/4 px-2 py-6 border-t rounded-br-xl bg-base-900 border-base-800"
             >
             </th>
           </tr>

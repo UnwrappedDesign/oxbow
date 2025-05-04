@@ -1,31 +1,27 @@
 ---
-import Button from "@/components/fundations/buttons/Button.astro";
-import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.astro";
+// Fundations
 import Text from "@/components/fundations/typography/Text.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Components
+import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.astro";
 import PricingCardsSingle from "@/components/fundations/pricing/PricingCardsSingle.astro";
 ---
 
-<section x-data="{duration: 'monthly'}">
-  <div class="relative px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-screen-xl">
+<section x-data="{duration: 'monthly'}" class="bg-base-50">
+  <Wrapper variant="blockStandard" class="py-24">
     <div class="max-w-xl mx-auto text-center">
       <Text
-        tag="p"
-        variant="textSM"
-        class="font-bold uppercase text-accent-600"
-      >
-        Tagline
-      </Text>
-      <Text
-        tag="h2"
+        tag="h1"
         variant="displayMD"
-        class="mt-4 font-semibold text-base-900 lg:text-balance"
+        class="font-medium tracking-tight text-base-900 text-balance"
       >
         Equip your business with world class software
       </Text>
       <Text
         tag="p"
         variant="textBase"
-        class="mt-4 font-medium text-base-500 lg:text-balance"
+        class="mt-2 font-medium text-base-600 text-balance"
       >
         Choose a plan that works the best for you and your team. Start small,
         upgrade when you need to.
@@ -38,42 +34,43 @@ import PricingCardsSingle from "@/components/fundations/pricing/PricingCardsSing
         <PricingToggle />
       </div>
     </div>
-    <div class="max-w-2xl mx-auto mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2">
+    <div class="max-w-2xl mx-auto mt-12 grid grid-cols-1 gap-2 md:grid-cols-2">
       <!-- Tier one -->
-      <PricingCardsSingle tierName="Core" />
+      <PricingCardsSingle tierName="Core" colorMode="light" />
       <!-- Tier two -->
       <PricingCardsSingle
         tierName="Momentum"
         isPopular={true}
-        colorMode="dark"
+        buttonVariant="accent"
+        colorMode="light"
       />
       <!-- Info box -->
       <div
-        class="p-8 shadow bg-base-50 rounded-3xl col-span-full grid grid-cols-1 gap-12 md:grid-cols-3 md:items-end"
+        class="p-6 bg-white shadow-xl sm:p-4 sm:pb-5 lg:p-6 rounded-xl shadow-base-500/15 outline outline-base-200 col-span-full grid grid-cols-1 gap-12 md:grid-cols-3 md:items-end"
       >
         <div class="md:col-span-2">
           <Text
             tag="h2"
-            variant="textLG"
-            class="font-semibold text-base-900 lg:text-balance"
+            variant="textBase"
+            class="font-medium text-base-900 lg:text-balance"
           >
             Customize your plan!
           </Text>
           <Text
             tag="p"
-            variant="textBase"
-            class="mt-4 font-medium text-base-500 lg:text-balance"
+            variant="textSM"
+            class="mt-2 font-medium text-base-500 lg:text-balance"
           >
             Customize your plan to fit your needs, and get the best value for
             your money.
           </Text>
         </div>
         <div class="flex w-full md:ml-auto">
-          <Button class="w-full" variant="accent" size="sm">
+          <Button class="w-full" variant="default" size="sm">
             Customize!
           </Button>
         </div>
       </div>
     </div>
-  </div>
+  </Wrapper>
 </section>

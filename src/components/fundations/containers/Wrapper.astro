@@ -1,6 +1,6 @@
 ---
 interface Props {
-  variant?: "wide" | "prose" | "standard" | "stickyNav"; // Define any variants you need
+  variant?: "wide" | "prose" | "standard" | "stickyNav" | "blockStandard"; // Define any variants you need
   class?: string; // Optional prop for additional classes
 }
 const { variant = "standard", class: extraClass = "" } = Astro.props;
@@ -16,6 +16,10 @@ const variantClasses = {
   standard: "mx-auto p-8 lg:p-4 2xl:max-w-6xl 2xl:px-12 w-full  max-w-5xl  ",
   //
   stickyNav: "mx-auto px-8 lg:px-4 2xl:max-w-6xl 2xl:px-12 w-full  max-w-5xl  ",
+  //
+  // Classes for blocks never change
+  //
+  blockStandard: "mx-auto px-8  md:px-12 lg:px-20  w-full  max-w-6xl  ",
 };
 // Combine the classes for the specified variant with any extra classes
 const classes = `${variantClasses[variant]} ${extraClass}`.trim();

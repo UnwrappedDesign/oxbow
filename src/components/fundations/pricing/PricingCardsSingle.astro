@@ -1,56 +1,76 @@
 ---
-// Import necessary components
-import Button from "../buttons/Button.astro";
-import Badge from "../badges/Badge.astro";
-import Check from "../icons/Check.astro";
-import Text from "../typography/Text.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+import Check from "@/components/fundations/icons/Check.astro";
 
-// Props from the parent component
+interface Props {
+  tierName?: string;
+  isPopular?: boolean;
+  colorMode?: "white" | "light" | "dark" | "baseDark" | "accent";
+  showFeatures?: boolean;
+  buttonVariant?: 
+    | "default"
+    | "accent"
+    | "muted"
+    | "mutedDark"
+    | "alternative"
+    | "link"
+    | "outline"
+    | "ghost";
+  featuresLayout?: "list" | "grid";
+  roundedDesktop?: "rounded-xl" | "left" | "right" | "none";
+  isLeft?: boolean;
+  isCentered?: boolean;
+  isRight?: boolean;
+  noShadow?: boolean;
+}
+
 const {
-  tierName = "Core", // Default tier is 'Core'
+  tierName = "Core",
   isPopular,
-  colorMode = "light", // Default color mode is 'light'
-  showFeatures = true, // Controls whether to show the features
-  buttonVariant = "alternative", // Default button variant is 'alternative'
-  featuresLayout = "list", // New prop to control layout: 'list' or 'grid'
-  roundedDesktop = "rounded-3xl", // Default prop for rounded corners on desktop
-  isLeft = false, // New prop to control if the card is left
-  isCentered = false, // New prop to control if the card is centered
-  isRight = false, // New prop to control if the card is right
-} = Astro.props;
+  colorMode = "light",
+  showFeatures = true,
+  buttonVariant = "alternative",
+  featuresLayout = "list",
+  roundedDesktop = "rounded-xl",
+  isLeft = false,
+  isCentered = false,
+  isRight = false,
+  noShadow = false,
+} = Astro.props as Props;
 
 const tierDetails = {
   Core: {
     audience: "Solo flyers & dabblers",
     description: "All the basics so you don’t totally flail.",
-    priceMonthly: "$29.00",
-    priceAnnual: "$19.00",
+    priceMonthly: "$29",
+    priceAnnual: "$19",
   },
   Momentum: {
     audience: "Startup grinders",
-    description: "Looks legit—analytics and buzzwords included.",
-    priceMonthly: "$49.00",
-    priceAnnual: "$39.00",
+    description: "Analytics and buzzwords included.",
+    priceMonthly: "$49",
+    priceAnnual: "$39",
   },
   Growth: {
     audience: "Corporate big shots",
-    description: "Fancy tools to fake cutting-edge cred.",
-    priceMonthly: "$129.00",
-    priceAnnual: "$79.00",
+    description: "Fancy tools to fake cred.",
+    priceMonthly: "$99",
+    priceAnnual: "$79",
   },
   Apex: {
     audience: "Red-carpet enterprises",
-    description: "White-glove everything—no peasants allowed.",
-    priceMonthly: "$199.00",
-    priceAnnual: "$149.00",
+    description: "White-glove, nopeasants allowed.",
+    priceMonthly: "$199",
+    priceAnnual: "$149",
   },
 };
 
 const defaultFeatures = {
   Core: [
-    "Unlimited members (but it's mostly you)",
+    "Unlimited members (just you)",
     "1 Team (you vs. you)",
-    "50 Issues (rookie mistakes covered)",
+    "50 Issues ( mistakes covered)",
     "Slack, GitHub & API",
     "Basic reports",
   ],
@@ -77,18 +97,14 @@ const defaultFeatures = {
   ],
 };
 
-// Get the baked-in tier details
-const { audience, description, priceMonthly, priceAnnual } =
-  tierDetails[tierName];
-
-// Get the features for the current tier
+const { description, priceMonthly, priceAnnual } = tierDetails[tierName];
 const features = defaultFeatures[tierName] || [];
 
-// Define the color classes based on the colorMode
+// Define color classes without built-in shadow
 const colorClasses = {
   white: {
-    cardBg: "bg-white",
-    innerBg: "bg-white rounded-[1.3rem]",
+    cardBg: "bg-white outline outline-base-200",
+    borderColor: "border-base-200",
     titleColor: "text-base-900",
     subTitleColor: "text-base-500",
     introColor: "text-base-500",
@@ -97,8 +113,8 @@ const colorClasses = {
     featuresTextColor: "text-base-500",
   },
   light: {
-    cardBg: "bg-base-50 ",
-    innerBg: "bg-white rounded-[1.3rem]",
+    cardBg: "bg-base-50 outline outline-base-200",
+    borderColor: "border-base-200",
     titleColor: "text-base-900",
     subTitleColor: "text-base-500",
     introColor: "text-base-500",
@@ -107,18 +123,18 @@ const colorClasses = {
     featuresTextColor: "text-base-500",
   },
   dark: {
-    cardBg: "bg-base-950 ",
-    innerBg: "bg-white/10 rounded-[1.3rem]",
+    cardBg: "bg-base-950",
+    borderColor: "border-base-800",
     titleColor: "text-white",
-    subTitleColor: "text-base-200",
-    introColor: "text-base-200",
+    subTitleColor: "text-base-400",
+    introColor: "text-base-400",
     priceColor: "text-white",
-    monthYearTextColor: "text-white/50",
+    monthYearTextColor: "text-base-400",
     featuresTextColor: "text-base-200",
   },
   baseDark: {
-    cardBg: "bg-base-900 ",
-    innerBg: "bg-white/10 rounded-[1.3rem]",
+    cardBg: "bg-base-900",
+    borderColor: "border-base-800",
     titleColor: "text-white",
     subTitleColor: "text-base-200",
     introColor: "text-base-200",
@@ -127,8 +143,8 @@ const colorClasses = {
     featuresTextColor: "text-base-200",
   },
   accent: {
-    cardBg: "bg-accent-600 ",
-    innerBg: "bg-white/10 rounded-[1.3rem]",
+    cardBg: "bg-accent-500",
+    borderColor: "border-white/10",
     titleColor: "text-white",
     subTitleColor: "text-base-200",
     introColor: "text-base-200",
@@ -138,35 +154,31 @@ const colorClasses = {
   },
 }[colorMode];
 
-// Define rounding classes based on the roundedDesktop prop
-let roundingClass = roundedDesktop;
-if (roundedDesktop === "left") {
-  roundingClass = "rounded-3xl lg:rounded-r-none"; // Rounds left, no right
-} else if (roundedDesktop === "right") {
-  roundingClass = "rounded-3xl lg:rounded-l-none"; // Rounds right, no left
-} else if (roundedDesktop === "none") {
-  roundingClass = "lg:rounded-none"; // No rounding if specified
-}
+// <-- HERE: give roundingClass a plain `string` type
+let roundingClass: string = roundedDesktop;
 
-// Define padding classes based on position props
-const paddingClasses = [
-  isLeft && "lg:pr-0",
-  isCentered && "lg:px-0",
-  isRight && "lg:pl-0",
-  "lg:py-1",
-]
-  .filter(Boolean)
-  .join(" ");
+if (roundedDesktop === "left") {
+  roundingClass = "rounded-xl lg:rounded-r-none";
+} else if (roundedDesktop === "right") {
+  roundingClass = "rounded-xl lg:rounded-l-none";
+} else if (roundedDesktop === "none") {
+  roundingClass = "rounded-xl lg:rounded-none";
+}
 ---
 
-<div class={`flex flex-col h-full p-8 ${roundingClass} ${colorClasses.cardBg}`}>
+<div
+  class={`relative flex flex-col justify-between h-full p-6 sm:p-4 sm:pb-5 lg:p-6 overflow-hidden
+    ${roundingClass}
+    ${colorClasses.cardBg}
+    ${noShadow ? "" : "shadow-xl shadow-base-500/15"}`}
+>
   <div>
     <div class="flex flex-col gap-4">
       <div class="flex items-start justify-between w-full">
         <div>
           <Text
             tag="h3"
-            variant="textLG"
+            variant="textBase"
             class={`font-medium ${colorClasses.titleColor}`}
           >
             {tierName}
@@ -174,70 +186,64 @@ const paddingClasses = [
           <Text
             tag="p"
             variant="textSM"
-            class={`font-medium ${colorClasses.subTitleColor}`}
+            class={`mt-1 ${colorClasses.introColor}`}
           >
-            {audience}
+            {description}
           </Text>
         </div>
-
-        {
-          isPopular && (
-            <Badge variant="muted" size="xs">
-              Popular
-            </Badge>
-          )
-        }
+        {isPopular && (
+          <Text tag="span" variant="textXS" class={`mt-1 ${colorClasses.introColor}`}>
+            Popular
+          </Text>
+        )}
       </div>
-      <p
-        class={`font-medium flex lg:text-3xl items-baseline text-2xl tracking-tighter ${colorClasses.priceColor}`}
-      >
-        <span
-          data-monthly={priceMonthly}
-          data-annual={priceAnnual}
-          x-text="$el.dataset[duration]"></span>
-        <span
-          class={`text-sm font-normal font-sans tracking-normal ${colorClasses.monthYearTextColor}`}
-        >
-          <span x-show="duration === 'monthly'">/month</span>
-          <span x-show="duration === 'annual'" style="display: none;"
-            >/annually</span
-          >
-        </span>
-      </p>
-      <Text tag="p" variant="textSM" class={` ${colorClasses.introColor}`}>
-        {description}
-      </Text>
-    </div>
-  </div>
-  <div>
-    <Button class="w-full mt-4" variant={buttonVariant} size="sm">
-      Get Started
-    </Button>
-    {
-      showFeatures ? (
-        <div class="mt-8">
-          <Text
-            tag="p"
-            variant="textBase"
-            class={`font-medium  ${colorClasses.featuresTextColor}`}
-          >
-            {tierName} plan includes:
-          </Text>
-          <ul
-            class={`flex flex-col mt-2 gap-y-1 ${colorClasses.featuresTextColor} ${featuresLayout === "grid" ? "grid grid-cols-1 lg:grid-cols-2" : ""}`}
-            role="list"
-          >
-            {features.map((feature) => (
-              <li class="flex items-center gap-1">
-                <Check size="sm" />
-                <Text tag="span" variant="textSM">
-                  {feature}
-                </Text>
-              </li>
-            ))}
-          </ul>
+
+      <div class="flex items-center mt-2 gap-x-4">
+        <p class={`text-4xl font-medium sm:text-3xl md:text-4xl ${colorClasses.priceColor}`}>
+          <span
+            data-monthly={priceMonthly}
+            data-annual={priceAnnual}
+            x-text="$el.dataset[duration]"
+          ></span>
+        </p>
+
+        <div class={`text-xs font-medium capitalize ${colorClasses.monthYearTextColor}`}>
+          <div class="font-semibold">
+            <span x-show="duration === 'monthly'">month</span>
+            <span x-show="duration === 'annual'" style="display: none;">annually</span>
+          </div>
+          <p class={`${colorClasses.monthYearTextColor}`}>USD + Local taxes</p>
         </div>
-      ) : null
-    }
+      </div>
+    </div>
+
+    {showFeatures && (
+      <div class={`pt-8 mt-8 border-t ${colorClasses.borderColor}`}>
+        <Text
+          tag="p"
+          variant="textSM"
+          class={`font-medium ${colorClasses.featuresTextColor}`}
+        >
+          {tierName} plan includes:
+        </Text>
+        <ul
+          class={`flex flex-col mt-2 text-sm gap-3 ${colorClasses.featuresTextColor} ${
+            featuresLayout === "grid" ? "grid grid-cols-1 lg:grid-cols-2" : ""
+          }`}
+          role="list"
+        >
+          {features.map((feature) => (
+            <li class="flex items-center gap-1">
+              <Check size="sm" />
+              {feature}
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
   </div>
+
+  <Button class="w-full mt-4" variant={buttonVariant} size="sm">
+    Get Started
+  </Button>
 </div>

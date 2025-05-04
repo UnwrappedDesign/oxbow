@@ -6,6 +6,7 @@ import OxbowButton from "@/components/fundations/buttons/OxbowButton.astro";
 // Components
 import { Code } from "astro:components";
 import * as prettier from "prettier";
+import Button from "../fundations/buttons/Button.astro";
 interface Props {
   componentIndex: number;
   componentPath: string;
@@ -26,16 +27,16 @@ const theme = ``;
   <div class="relative"  @theme="setTheme($event.detail.color)">
     <div class="flex items-center justify-between pb-2 gap-1 ">
       <div class="inline-flex items-center p-1 bg-white rounded-lg gap-1 ">
-        <a
-          class="pointer-events-auto rounded-md outline outline-base-100  bg-white p-0.5 text-base-500 flex items-center justify-center size-7 text-xs"
+        <Button onlyIconSize="xs" variant="muted"
+          
           href={`#${componentIndex}`}
         >
           {componentIndex}
-        </a>
+        </Button>
         <div aria-hidden="true" class="mx-1 h-4 w-[1px]  bg-base-200   hidden md:inline-block"></div>
-          <div x-data="themeSelector" class="relative z-10 w100">
-              <OxbowButton 
-                size="mini"
+          <div x-data="themeSelector" class="relative focus:z-10">
+              <Button 
+                size="xxs"
                 variant="muted"
                 @click="toggleOpen" 
                 class="flex items-center text-xs pointer-events-auto gap-2 !shadow-none"
@@ -51,7 +52,7 @@ const theme = ``;
               <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
-            </OxbowButton>
+            </Button>
             <div 
                 x-show="open" 
                 x-on:click.away="toggleOpen"
@@ -86,16 +87,15 @@ const theme = ``;
       </div>
       <div class="items-center justify-end hidden p-1 bg-white rounded-lg  md:flex gap-1">
         <span class="items-center hidden isolate md:inline-flex  gap-1" x-show="tab === 'preview'">
-          <button
-             class="flex items-center justify-center p-1.5 text-xs bg-white pointer-events-auto rounded-sm outline outline-base-100  text-base-500 size-7 focus:text-black"
-             @click="viewportSize = 'mobile'" :class="viewportSize === 'mobile' ? '' : ''"
-             >
-             <svg class="m-auto " viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 2.5C4 2.22386 4.22386 2 4.5 2H10.5C10.7761 2 11 2.22386 11 2.5V12.5C11 12.7761 10.7761 13 10.5 13H4.5C4.22386 13 4 12.7761 4 12.5V2.5ZM4.5 1C3.67157 1 3 1.67157 3 2.5V12.5C3 13.3284 3.67157 14 4.5 14H10.5C11.3284 14 12 13.3284 12 12.5V2.5C12 1.67157 11.3284 1 10.5 1H4.5ZM6 11.65C5.8067 11.65 5.65 11.8067 5.65 12C5.65 12.1933 5.8067 12.35 6 12.35H9C9.1933 12.35 9.35 12.1933 9.35 12C9.35 11.8067 9.1933 11.65 9 11.65H6Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
-             </svg>
-          </button>
-          <button
-             class="flex items-center justify-center p-1.5 text-xs bg-white pointer-events-auto rounded-sm outline outline-base-100  text-base-500 size-7 focus:text-black"
+          <Button onlyIconSize="xs" variant="muted"
+          @click="viewportSize = 'mobile'" :class="viewportSize === 'mobile' ? '' : ''">
+            <svg slot="left-icon" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 2.5C4 2.22386 4.22386 2 4.5 2H10.5C10.7761 2 11 2.22386 11 2.5V12.5C11 12.7761 10.7761 13 10.5 13H4.5C4.22386 13 4 12.7761 4 12.5V2.5ZM4.5 1C3.67157 1 3 1.67157 3 2.5V12.5C3 13.3284 3.67157 14 4.5 14H10.5C11.3284 14 12 13.3284 12 12.5V2.5C12 1.67157 11.3284 1 10.5 1H4.5ZM6 11.65C5.8067 11.65 5.65 11.8067 5.65 12C5.65 12.1933 5.8067 12.35 6 12.35H9C9.1933 12.35 9.35 12.1933 9.35 12C9.35 11.8067 9.1933 11.65 9 11.65H6Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
+           </svg>
+          </Button>
+          
+          <Button
+             onlyIconSize="xs" variant="muted"
              @click="viewportSize = 'tablet'" :class="viewportSize === 'tablet' ? '' : '"
              >
              <svg
@@ -106,7 +106,7 @@ const theme = ``;
                 stroke-width="1.5"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="mx-auto icon icon-tabler icons-tabler-outline icon-tabler-device-ipad-horizontal "
+               
                 >
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                 <path
@@ -114,15 +114,15 @@ const theme = ``;
                    ></path>
                 <path d="M9 17h6"></path>
              </svg>
-          </button>
-          <button
-             class="flex items-center justify-center p-1.5 text-xs bg-white pointer-events-auto rounded-sm outline outline-base-100  text-base-500 size-7 focus:text-black"
-             @click="viewportSize = 'desktop'" :class="viewportSize === 'desktop' ? 'bg-base-900' : 'bg-black'"
+          </Button>
+          <Button
+             onlyIconSize="xs" variant="muted"
+             @click="viewportSize = 'desktop'" :class="viewportSize === 'desktop' ? '' : ''"
              >
-             <svg class="m-auto "  viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+             <svg   viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 3.25C1 3.11193 1.11193 3 1.25 3H13.75C13.8881 3 14 3.11193 14 3.25V10.75C14 10.8881 13.8881 11 13.75 11H1.25C1.11193 11 1 10.8881 1 10.75V3.25ZM1.25 2C0.559643 2 0 2.55964 0 3.25V10.75C0 11.4404 0.559644 12 1.25 12H5.07341L4.82991 13.2986C4.76645 13.6371 5.02612 13.95 5.37049 13.95H9.62951C9.97389 13.95 10.2336 13.6371 10.1701 13.2986L9.92659 12H13.75C14.4404 12 15 11.4404 15 10.75V3.25C15 2.55964 14.4404 2 13.75 2H1.25ZM9.01091 12H5.98909L5.79222 13.05H9.20778L9.01091 12Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
              </svg>
-          </button>
+          </Button>
        </span>
        <div aria-hidden="true" class="mx-1 h-4 w-[1px]  bg-base-200   hidden md:inline-block"></div>
         {

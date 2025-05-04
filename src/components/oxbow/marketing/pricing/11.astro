@@ -1,73 +1,54 @@
 ---
-import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.astro";
+// Fundations
 import Text from "@/components/fundations/typography/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Components
+import PricingToggleDark from "@/components/fundations/buttonGroups/PricingToggleDark.astro";
 import PricingCardsSingle from "@/components/fundations/pricing/PricingCardsSingle.astro";
 ---
 
-<section x-data="{duration: 'monthly'}">
-  <div class="relative px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-screen-xl">
+<section x-data="{duration: 'monthly'}" class="bg-base-950">
+  <Wrapper variant="blockStandard" class="py-24">
     <div class="max-w-xl mx-auto text-center">
       <Text
-        tag="p"
-        variant="textSM"
-        class="font-bold uppercase text-accent-600"
-      >
-        Tagline
-      </Text>
-      <Text
-        tag="h2"
+        tag="h1"
         variant="displayMD"
-        class="mt-4 font-semibold text-base-900 lg:text-balance"
+        class="font-medium tracking-tight text-white text-balance"
       >
         Equip your business with world class software
       </Text>
       <Text
         tag="p"
         variant="textBase"
-        class="mt-4 font-medium text-base-500 lg:text-balance"
+        class="mt-2 font-medium text-base-300 text-balance"
       >
         Choose a plan that works the best for you and your team. Start small,
         upgrade when you need to.
       </Text>
       <div
         aria-labelledby="pricing-toggle"
-        class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-white shadow ring-1 ring-base-200 ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52"
+        class="relative z-0 inline-flex w-full p-1 mt-8 overflow-hidden shadow ring-1 ring-base-800 ring-offset-2 ring-offset-base-950 bg-900 gap-4 rounded-md max-w-52"
       >
-        <!-- Monthly Pricing Button: Sets 'duration' to 'monthly' when clicked -->
-        <PricingToggle />
+        <PricingToggleDark />
       </div>
     </div>
-    <div class="lg:-mx-20">
-      <div
-        class="mx-auto mt-12 overflow-hidden grid grid-cols-1 gap-4 md:gap-0 sm:grid-cols-2 lg:grid-cols-4 lg:shadow lg:rounded-3xl"
-      >
-        <PricingCardsSingle
-          tierName="Core"
-          roundedDesktop="left"
-          isLeft={true}
-        />
-        <!-- Tier two -->
-        <PricingCardsSingle
-          tierName="Momentum"
-          colorMode="light"
-          roundedDesktop="none"
-          isCentered={true}
-        />
-        <!-- Tier three -->
-        <PricingCardsSingle
-          tierName="Growth"
-          isPopular={true}
-          roundedDesktop="none"
-          buttonVariant="accent"
-          isCentered={true}
-        />
-        <!-- Tier four-->
-        <PricingCardsSingle
-          tierName="Apex"
-          roundedDesktop="right"
-          isRight={true}
-        />
-      </div>
+    <div
+      class="lg:-mx-32 mt-12 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4"
+    >
+      <!-- Tier one -->
+      <PricingCardsSingle colorMode="baseDark" tierName="Core" buttonVariant="mutedDark" noShadow={true} />
+      <!-- Tier two -->
+      <PricingCardsSingle tierName="Momentum" colorMode="baseDark"  buttonVariant="mutedDark" noShadow={true} />
+      <!-- Tier three -->
+      <PricingCardsSingle
+        tierName="Growth"
+        isPopular={true}
+        colorMode="accent"
+        buttonVariant="alternative"
+        noShadow={true}
+      />
+      <!-- Tier four-->
+      <PricingCardsSingle colorMode="baseDark" tierName="Apex"  buttonVariant="mutedDark" noShadow={true} />
     </div>
-  </div>
+  </Wrapper>
 </section>

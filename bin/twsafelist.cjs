@@ -34,6 +34,7 @@ const tailwindColorShades = [
   "700",
   "800",
   "900",
+  "950",
 ];
 
 const directionMap = {
