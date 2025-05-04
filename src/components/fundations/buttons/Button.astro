@@ -42,54 +42,69 @@ const isDisabled = loading || rest.disabled;
 
 const defaultClass = [
   "text-white",
-  "bg-base-900",
-  "hover:bg-base-950",
-  "focus:outline-base-950",
+  "bg-accent-950",
+  "hover:bg-accent-900",
+  "focus:outline-accent-900",
+  "shadow-subtle",
 ];
+
 const accentClass = [
   "text-white",
   "bg-accent-500",
   "hover:bg-accent-600",
   "focus:outline-accent-600",
+  "shadow-subtle",
 ];
+
+const alternativeClass = [
+  "text-base-700",
+  "bg-white",
+  "outline",
+  "outline-base-200",
+  "hover:shadow-sm",
+  "focus:outline-base-900",
+];
+
 const mutedClass = [
-  "text-black",
+  "text-base-600",
   "bg-base-50",
   "hover:bg-base-200",
   "focus:outline-base-600",
 ];
-const alternativeClass = [
-  "text-black",
-  "bg-white",
-  "hover:text-base-600",
-  "focus:outline-base-900",
-];
+
 const outlineClass = [
-  "text-accent-500",
-  "border",
-  "border-accent-500",
-  "bg-transparent",
-  "hover:bg-accent-50",
-  "focus:outline-accent-600",
-];
-const ghostClass = [
   "text-base-700",
+  "outline",
+  "outline-base-500",
+  "bg-transparent",
+  "hover:bg-base-100",
+  "focus:outline-base-600",
+];
+
+const ghostClass = [
+  "text-base-600",
   "bg-transparent",
   "hover:bg-base-100",
   "focus:outline-base-300",
 ];
+
 const linkClass = [
   "text-accent-500",
-  "hover:text-accent-700",
-  "focus:outline-accent-500",
+  "bg-transparent",
+  "hover:underline",
+  "focus:underline",
+  "focus:outline-none",
+  "p-0", // remove padding
+  "h-auto", // allow height to match text
+  "rounded-none", // remove button shape
 ];
 
 const xs = ["h-8", "px-4", "py-2", "text-xs", "rounded-md"];
 const sm = ["h-9", "px-4", "py-2", "text-sm", "rounded-md"];
 const base = ["h-10", "px-6", "py-3", "text-base", "rounded-md"];
 const md = ["h-11", "px-6", "py-3", "text-base", "rounded-md"];
-const lg = ["h-12", "px-6", "py-3", "text-base", "rounded-md"];
-const xl = ["h-14", "px-6", "py-3", "text-lg", "rounded-md"];
+const lg = ["h-12", "px-6", "py-3", "text-lg", "rounded-md"];
+const xl = ["h-14", "px-6", "py-3", "text-xl", "rounded-md"];
 
 const iconXS = ["w-8", "h-8", "p-2", "rounded-md"];
 const iconSM = ["w-9", "h-9", "p-2", "rounded-md"];
@@ -173,7 +188,7 @@ const baseClasses = [
   "items-center",
   "justify-center",
   "text-center",
-  "shadow-subtle",
+
   "font-medium",
   "duration-500",
   "ease-in-out",
@@ -209,57 +224,28 @@ const spinnerHTML = `
       aria-disabled={isDisabled}
       tabindex={isDisabled ? "-1" : undefined}
       role="link"
-      class:list={baseClasses}
+      class:list={[...baseClasses, ...gapClass]}
       {...rest}
     >
       {loading && <Fragment set:html={spinnerHTML} />}
-      <span
-        class:list={[
-          "flex items-center justify-center",
-          loading && "invisible",
-          ...gapClass,
-        ]}
-      >
-        {Astro.slots.has("left-icon") && (
-          <span class="inline-flex items-center justify-center">
-            <slot name="left-icon" />
-          </span>
-        )}
-        <slot />
-        {Astro.slots.has("right-icon") && (
-          <span class="inline-flex items-center justify-center">
-            <slot name="right-icon" />
-          </span>
-        )}
-      </span>
+      {!loading && (
+        <>
+          {Astro.slots.has("left-icon") && <slot name="left-icon" />}
+          <slot />
+          {Astro.slots.has("right-icon") && <slot name="right-icon" />}
+        </>
+      )}
     </a>
   ) : (
-    <button
-      disabled={isDisabled}
-      aria-busy={loading}
-      class:list={baseClasses}
-      {...rest}
-    >
+    <button class:list={[...baseClasses, ...gapClass]}>
       {loading && <Fragment set:html={spinnerHTML} />}
-      <span
-        class:list={[
-          "flex items-center justify-center",
-          loading && "invisible",
-          ...gapClass,
-        ]}
-      >
-        {Astro.slots.has("left-icon") && (
-          <span class="inline-flex items-center justify-center">
-            <slot name="left-icon" />
-          </span>
-        )}
-        <slot />
-        {Astro.slots.has("right-icon") && (
-          <span class="inline-flex items-center justify-center">
-            <slot name="right-icon" />
-          </span>
-        )}
-      </span>
+      {!loading && (
+        <>
+          {Astro.slots.has("left-icon") && <slot name="left-icon" />}
+          <slot />
+          {Astro.slots.has("right-icon") && <slot name="right-icon" />}
+        </>
+      )}
     </button>
   )
 }
