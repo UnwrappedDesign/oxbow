@@ -3,7 +3,7 @@
 import { AstroSeo } from "@astrolib/seo";
 import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
 import MainHero from "@/components/fundations/containers/MainHero.astro";
 // Sections
 import Reviews from "@/components/landing/Reviews.astro";
@@ -19,18 +19,18 @@ const tiers = [
     subtitleNote: "USD + Applicable local taxes",
     description: "For teams that actually ship stuff.",
     features: [
-      "5 Users – no fighting over logins",
-      "Lifetime access – pay once, chill forever",
-      "Unlimited projects – go wild",
-      "400+ components – plug, play, impress",
-      "Marketing, app & eCom – all bases",
-      "Discord support – yes, real humans",
+      "5 Users ",
+      "Lifetime access",
+      "Unlimited projects ",
+      "400+ components ",
+      "Marketing, app & eCom",
+      "Discord support – yess",
     ],
     href: import.meta.env.PRODUCT_TEAM_LICENSE_URL,
     btnText: "Buy for $499",
-    btnVariant: "alternative",
+    btnVariant: "muted",
     accentText: "text-base-900",
-    cardClass: "bg-white/10 outline outline-base-100 backdrop-blur-xl",
+    cardClass: "",
   },
   {
     id: "personal",
@@ -40,12 +40,12 @@ const tiers = [
     subtitleNote: "USD + Applicable local taxes",
     description: "For solo devs and client wranglers.",
     features: [
-      "1 User – it’s all you",
-      "Lifetime access – no subscriptions, ever",
-      "Unlimited projects – side gigs welcome",
-      "400+ components – way too much",
-      "Marketing, app & eCom – versatile AF",
-      "Discord support – fast-ish and friendly",
+      "1 User ",
+      "Lifetime access",
+      "Unlimited projects",
+      "400+ components ",
+      "Marketing, app & eCom ",
+      "Discord support",
     ],
     href: import.meta.env.PRODUCT_INDIVIDUAL_LICENSE_URL,
     btnText: "Buy for $129",
@@ -58,17 +58,14 @@ const tiers = [
     title: "Guest",
     price: "Free",
     subtitle: "Just vibes",
-    subtitleNote: "  No credit card required",
+    subtitleNote: " No credit card required",
     description: "For browsing, testing, and curiosity.",
-    features: [
-      "30+ components – enough to peek",
-      "Marketing, app & eCom – all in",
-    ],
+    features: ["30+ components", "Marketing, app & eCom"],
     href: "/components",
     btnText: "Get started",
-    btnVariant: "alternative",
+    btnVariant: "muted",
     accentText: "text-base-900",
-    cardClass: "bg-white/10 outline outline-base-100 backdrop-blur-xl",
+    cardClass: "",
   },
 ];
 ---
@@ -112,7 +109,7 @@ const tiers = [
   <MainHero
     title="All content, forever. Because charging monthly for buttons is weird."
     additionalText="No subscription required"
-    additionalTextClasses="mt-2 font-medium text-black italic"
+    additionalTextClasses="mt-2  text-base-500 font-medium  italic text-sm"
   />
   <section class="border-t border-base-200">
     <Wrapper variant="standard" class="lg:border-x lg:border-base-200">
@@ -184,16 +181,25 @@ const tiers = [
                 </div>
               </div>
               <div class="w-full mt-8">
-                <OxbowLink
+                <Button
                   id={`purchase-${tier.id}-license`}
                   data-umami-event={`purchase-${tier.id}-license`}
                   href={tier.href}
-                  size="base"
-                  variant={tier.btnVariant}
-                  class="w-full "
+                  size="sm"
+                  variant={
+                    tier.btnVariant as
+                      | "default"
+                      | "accent"
+                      | "muted"
+                      | "alternative"
+                      | "link"
+                      | "outline"
+                      | "ghost"
+                  }
+                  class="w-full"
                 >
                   {tier.btnText}
-                </OxbowLink>
+                </Button>
               </div>
             </article>
           ))

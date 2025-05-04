@@ -1,0 +1,837 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Input from "@/components/fundations/inputs/Input.astro";
+import MainHero from "@/components/fundations/containers/MainHero.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+---
+
+<BaseLayout>
+  <MainHero
+    title="Input overview"
+    showButton={false}
+    showAlpineTailwind={false}
+  />
+
+  <section class="overflow-hidden border-t border-base-200">
+    <div class="flex flex-col w-full divide-y divide-base-200">
+      <!-- Basic Input Types -->
+      <Wrapper variant="standard" class="py-12 lg:border-x lg:border-base-200">
+        <h2 class="mb-4 text-2xl font-semibold">Basic Input Types</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Text Input -->
+          <Input
+            id="text-input"
+            name="text-input"
+            label="Text Input"
+            placeholder="Enter text"
+          />
+
+          <!-- Email Input -->
+          <Input
+            id="email-input"
+            name="email-input"
+            type="email"
+            label="Email Input"
+            placeholder="Enter email"
+          />
+
+          <!-- Password Input -->
+          <Input
+            id="password-input"
+            name="password-input"
+            type="password"
+            label="Password Input"
+            placeholder="Enter password"
+          />
+
+          <!-- Number Input -->
+          <Input
+            id="number-input"
+            name="number-input"
+            type="number"
+            label="Number Input"
+            placeholder="Enter number"
+            min="0"
+            max="100"
+          />
+
+          <!-- Search Input -->
+          <Input
+            id="search-input"
+            name="search-input"
+            type="search"
+            label="Search Input"
+            placeholder="Search..."
+          />
+
+          <!-- URL Input -->
+          <Input
+            id="url-input"
+            name="url-input"
+            type="url"
+            label="URL Input"
+            placeholder="Enter website URL"
+          />
+
+          <!-- Tel Input -->
+          <Input
+            id="tel-input"
+            name="tel-input"
+            type="tel"
+            label="Telephone Input"
+            placeholder="Enter phone number"
+          />
+
+          <!-- Date Input -->
+          <Input
+            id="date-input"
+            name="date-input"
+            type="date"
+            label="Date Input"
+          />
+
+          <!-- Time Input -->
+          <Input
+            id="time-input"
+            name="time-input"
+            type="time"
+            label="Time Input"
+          />
+
+          <!-- Datetime-local Input -->
+          <Input
+            id="datetime-input"
+            name="datetime-input"
+            type="datetime-local"
+            label="Date & Time Input"
+          />
+
+          <!-- Month Input -->
+          <Input
+            id="month-input"
+            name="month-input"
+            type="month"
+            label="Month Input"
+          />
+
+          <!-- Week Input -->
+          <Input
+            id="week-input"
+            name="week-input"
+            type="week"
+            label="Week Input"
+          />
+
+          <!-- Color Input -->
+          <Input
+            id="color-input"
+            name="color-input"
+            type="color"
+            label="Color Input"
+            class="h-10"
+          />
+
+          <!-- Range Input -->
+          <Input
+            id="range-input"
+            name="range-input"
+            type="range"
+            label="Range Input"
+            min="0"
+            max="100"
+            step="10"
+          />
+
+          <!-- File Input -->
+          <Input
+            id="file-input"
+            name="file-input"
+            type="file"
+            label="File Input"
+          />
+
+          <!-- Hidden Input (shown for demonstration) -->
+          <div>
+            <p class="block mb-1 text-sm font-medium text-base-700">
+              Hidden Input (shown for demo)
+            </p>
+            <Input
+              id="hidden-input"
+              name="hidden-input"
+              type="hidden"
+              value="hidden-value"
+            />
+            <p class="mt-1 text-xs text-base-500">Value: "hidden-value"</p>
+          </div>
+        </div>
+      </Wrapper>
+
+      <!-- Special Input Types -->
+      <Wrapper variant="standard" class="py-12 lg:border-x lg:border-base-200">
+        <h2 class="mb-4 text-2xl font-semibold">Special Input Types</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Textarea -->
+          <Input
+            as="textarea"
+            id="textarea-input"
+            name="textarea-input"
+            label="Textarea Input"
+            placeholder="Enter multiple lines of text"
+            rows="4"
+          />
+
+          <!-- Select -->
+          <Input
+            as="select"
+            id="select-input"
+            name="select-input"
+            label="Select Input"
+            options={[
+              { value: "", label: "Select an option" },
+              { value: "option1", label: "Option 1" },
+              { value: "option2", label: "Option 2" },
+              { value: "option3", label: "Option 3" },
+            ]}
+          />
+
+          <!-- Checkbox -->
+          <Input
+            as="checkbox"
+            id="checkbox-input"
+            name="checkbox-input"
+            label="Checkbox Input"
+            description="This is a description for the checkbox"
+          />
+
+          <!-- Radio Group -->
+          <Input
+            as="radio"
+            id="radio-input"
+            name="radio-input"
+            label="Radio Input Group"
+            options={[
+              { value: "option1", label: "Option 1" },
+              { value: "option2", label: "Option 2" },
+              { value: "option3", label: "Option 3" },
+            ]}
+          />
+        </div>
+      </Wrapper>
+
+      <!-- Variants -->
+      <Wrapper variant="standard" class="py-12 lg:border-x lg:border-base-200">
+        <h2 class="mb-4 text-2xl font-semibold">Variants</h2>
+
+        <!-- Default Variant -->
+        <div class="mb-8">
+          <h3 class="mb-4 text-xl font-medium">Default Variant</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Input
+              id="default-text"
+              name="default-text"
+              label="Text Input"
+              placeholder="Default variant"
+              variant="default"
+            />
+
+            <Input
+              as="textarea"
+              id="default-textarea"
+              name="default-textarea"
+              label="Textarea"
+              placeholder="Default variant"
+              variant="default"
+            />
+
+            <Input
+              as="select"
+              id="default-select"
+              name="default-select"
+              label="Select"
+              variant="default"
+              options={[
+                { value: "", label: "Default variant" },
+                { value: "option1", label: "Option 1" },
+                { value: "option2", label: "Option 2" },
+              ]}
+            />
+
+            <Input
+              as="checkbox"
+              id="default-checkbox"
+              name="default-checkbox"
+              label="Default variant checkbox"
+              variant="default"
+            />
+
+            <Input
+              as="radio"
+              id="default-radio"
+              name="default-radio"
+              label="Default variant radio"
+              variant="default"
+              options={[
+                { value: "option1", label: "Option 1" },
+                { value: "option2", label: "Option 2" },
+              ]}
+            />
+          </div>
+        </div>
+
+        <!-- Dark Variant -->
+        <div class="p-6 mb-8 rounded-lg bg-base-800">
+          <h3 class="mb-4 text-xl font-medium text-white">Dark Variant</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Input
+              id="dark-text"
+              name="dark-text"
+              label="Text Input"
+              placeholder="Dark variant"
+              variant="dark"
+            />
+
+            <Input
+              as="textarea"
+              id="dark-textarea"
+              name="dark-textarea"
+              label="Textarea"
+              placeholder="Dark variant"
+              variant="dark"
+            />
+
+            <Input
+              as="select"
+              id="dark-select"
+              name="dark-select"
+              label="Select"
+              variant="dark"
+              options={[
+                { value: "", label: "Dark variant" },
+                { value: "option1", label: "Option 1" },
+                { value: "option2", label: "Option 2" },
+              ]}
+            />
+
+            <Input
+              as="checkbox"
+              id="dark-checkbox"
+              name="dark-checkbox"
+              label="Dark variant checkbox"
+              variant="dark"
+            />
+
+            <Input
+              as="radio"
+              id="dark-radio"
+              name="dark-radio"
+              label="Dark variant radio"
+              variant="dark"
+              options={[
+                { value: "option1", label: "Option 1" },
+                { value: "option2", label: "Option 2" },
+              ]}
+            />
+          </div>
+        </div>
+
+        <!-- Transparent Light Variant -->
+        <div class="p-6 mb-8 border rounded-lg bg-base-100 border-base-200">
+          <h3 class="mb-4 text-xl font-medium">Transparent Light Variant</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Input
+              id="transparent-light-text"
+              name="transparent-light-text"
+              label="Text Input"
+              placeholder="Transparent light variant"
+              variant="transparent-light"
+            />
+
+            <Input
+              as="textarea"
+              id="transparent-light-textarea"
+              name="transparent-light-textarea"
+              label="Textarea"
+              placeholder="Transparent light variant"
+              variant="transparent-light"
+            />
+
+            <Input
+              as="select"
+              id="transparent-light-select"
+              name="transparent-light-select"
+              label="Select"
+              variant="transparent-light"
+              options={[
+                { value: "", label: "Transparent light variant" },
+                { value: "option1", label: "Option 1" },
+                { value: "option2", label: "Option 2" },
+              ]}
+            />
+
+            <Input
+              as="checkbox"
+              id="transparent-light-checkbox"
+              name="transparent-light-checkbox"
+              label="Transparent light variant checkbox"
+              variant="transparent-light"
+            />
+
+            <Input
+              as="radio"
+              id="transparent-light-radio"
+              name="transparent-light-radio"
+              label="Transparent light variant radio"
+              variant="transparent-light"
+              options={[
+                { value: "option1", label: "Option 1" },
+                { value: "option2", label: "Option 2" },
+              ]}
+            />
+          </div>
+        </div>
+
+        <!-- Transparent Dark Variant -->
+        <div class="p-6 mb-8 rounded-lg bg-base-800">
+          <h3 class="mb-4 text-xl font-medium text-white">
+            Transparent Dark Variant
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Input
+              id="transparent-dark-text"
+              name="transparent-dark-text"
+              label="Text Input"
+              placeholder="Transparent dark variant"
+              variant="transparent-dark"
+            />
+
+            <Input
+              as="textarea"
+              id="transparent-dark-textarea"
+              name="transparent-dark-textarea"
+              label="Textarea"
+              placeholder="Transparent dark variant"
+              variant="transparent-dark"
+            />
+
+            <Input
+              as="select"
+              id="transparent-dark-select"
+              name="transparent-dark-select"
+              label="Select"
+              variant="transparent-dark"
+              options={[
+                { value: "", label: "Transparent dark variant" },
+                { value: "option1", label: "Option 1" },
+                { value: "option2", label: "Option 2" },
+              ]}
+            />
+
+            <Input
+              as="checkbox"
+              id="transparent-dark-checkbox"
+              name="transparent-dark-checkbox"
+              label="Transparent dark variant checkbox"
+              variant="transparent-dark"
+            />
+
+            <Input
+              as="radio"
+              id="transparent-dark-radio"
+              name="transparent-dark-radio"
+              label="Transparent dark variant radio"
+              variant="transparent-dark"
+              options={[
+                { value: "option1", label: "Option 1" },
+                { value: "option2", label: "Option 2" },
+              ]}
+            />
+          </div>
+        </div>
+      </Wrapper>
+      <!-- Checkbox & Radio Sizes -->
+      <Wrapper variant="standard" class="py-12 lg:border-x lg:border-base-200">
+        <h2 class="mb-4 text-2xl font-semibold">Checkbox & Radio Sizes new</h2>
+        <div class="space-y-6">
+          <!-- Extra Small -->
+          <Input
+            as="checkbox"
+            id="checkbox-xs"
+            name="checkbox-xs"
+            label="Extra Small Checkbox"
+            size="xs"
+          />
+          <Input
+            as="radio"
+            id="radio-xs"
+            name="radio-size"
+            label="Extra Small Radio"
+            size="xs"
+            options={[
+              { value: "1", label: "Option 1" },
+              { value: "2", label: "Option 2" },
+            ]}
+          />
+
+          <!-- Small -->
+          <Input
+            as="checkbox"
+            id="checkbox-sm"
+            name="checkbox-sm"
+            label="Small Checkbox"
+            size="sm"
+          />
+          <Input
+            as="radio"
+            id="radio-sm"
+            name="radio-size"
+            label="Small Radio"
+            size="sm"
+            options={[
+              { value: "1", label: "Option 1" },
+              { value: "2", label: "Option 2" },
+            ]}
+          />
+
+          <!-- Base -->
+          <Input
+            as="checkbox"
+            id="checkbox-base"
+            name="checkbox-base"
+            label="Base Checkbox"
+            size="base"
+          />
+          <Input
+            as="radio"
+            id="radio-base"
+            name="radio-size"
+            label="Base Radio"
+            size="base"
+            options={[
+              { value: "1", label: "Option 1" },
+              { value: "2", label: "Option 2" },
+            ]}
+          />
+
+          <!-- Medium -->
+          <Input
+            as="checkbox"
+            id="checkbox-md"
+            name="checkbox-md"
+            label="Medium Checkbox"
+            size="md"
+          />
+          <Input
+            as="radio"
+            id="radio-md"
+            name="radio-size"
+            label="Medium Radio"
+            size="md"
+            options={[
+              { value: "1", label: "Option 1" },
+              { value: "2", label: "Option 2" },
+            ]}
+          />
+
+          <!-- Large -->
+          <Input
+            as="checkbox"
+            id="checkbox-lg"
+            name="checkbox-lg"
+            label="Large Checkbox"
+            size="lg"
+          />
+          <Input
+            as="radio"
+            id="radio-lg"
+            name="radio-size"
+            label="Large Radio"
+            size="lg"
+            options={[
+              { value: "1", label: "Option 1" },
+              { value: "2", label: "Option 2" },
+            ]}
+          />
+        </div>
+      </Wrapper>
+
+      <!-- Sizes -->
+      <Wrapper variant="standard" class="py-12 lg:border-x lg:border-base-200">
+        <h2 class="mb-4 text-2xl font-semibold">Sizes</h2>
+        <div class="space-y-6">
+          <!-- Extra Small -->
+          <div>
+            <h3 class="mb-2 text-lg font-medium">Extra Small (xs)</h3>
+            <Input
+              id="xs-size"
+              name="xs-size"
+              placeholder="Extra small input"
+              size="xs"
+            />
+          </div>
+
+          <!-- Small -->
+          <div>
+            <h3 class="mb-2 text-lg font-medium">Small (sm)</h3>
+            <Input
+              id="sm-size"
+              name="sm-size"
+              placeholder="Small input"
+              size="sm"
+            />
+          </div>
+
+          <!-- Base (Default) -->
+          <div>
+            <h3 class="mb-2 text-lg font-medium">Base (Default)</h3>
+            <Input
+              id="base-size"
+              name="base-size"
+              placeholder="Base input (default)"
+              size="base"
+            />
+          </div>
+
+          <!-- Medium -->
+          <div>
+            <h3 class="mb-2 text-lg font-medium">Medium (md)</h3>
+            <Input
+              id="md-size"
+              name="md-size"
+              placeholder="Medium input"
+              size="md"
+            />
+          </div>
+
+          <!-- Large -->
+          <div>
+            <h3 class="mb-2 text-lg font-medium">Large (lg)</h3>
+            <Input
+              id="lg-size"
+              name="lg-size"
+              placeholder="Large input"
+              size="lg"
+            />
+          </div>
+        </div>
+      </Wrapper>
+
+      <!-- States -->
+      <Wrapper variant="standard" class="py-12 lg:border-x lg:border-base-200">
+        <h2 class="mb-4 text-2xl font-semibold">States</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Default State -->
+          <Input
+            id="default-state"
+            name="default-state"
+            label="Default State"
+            placeholder="Normal input"
+          />
+
+          <!-- Disabled State -->
+          <Input
+            id="disabled-state"
+            name="disabled-state"
+            label="Disabled State"
+            placeholder="Disabled input"
+            disabled
+          />
+
+          <!-- Required State -->
+          <Input
+            id="required-state"
+            name="required-state"
+            label="Required State"
+            placeholder="Required input"
+            required
+          />
+
+          <!-- Error State -->
+          <Input
+            id="error-state"
+            name="error-state"
+            label="Error State"
+            placeholder="Input with error"
+            error="This field has an error message"
+          />
+
+          <!-- With Value -->
+          <Input
+            id="with-value"
+            name="with-value"
+            label="With Value"
+            value="This input has a value"
+          />
+
+          <!-- Read Only -->
+          <Input
+            id="readonly-state"
+            name="readonly-state"
+            label="Read Only State"
+            value="This input is read-only"
+            readonly
+          />
+        </div>
+      </Wrapper>
+
+      <!-- Form Examples -->
+      <Wrapper variant="standard" class="py-12 lg:border-x lg:border-base-200">
+        <h2 class="mb-4 text-2xl font-semibold">Form Examples</h2>
+
+        <!-- Contact Form -->
+        <div class="max-w-md p-6 mb-8 border rounded-lg border-base-200">
+          <h3 class="mb-4 text-xl font-medium">Contact Form</h3>
+          <form class="space-y-4">
+            <Input
+              id="contact-name"
+              name="contact-name"
+              label="Name"
+              placeholder="Your name"
+              required
+            />
+
+            <Input
+              id="contact-email"
+              name="contact-email"
+              type="email"
+              label="Email"
+              placeholder="Your email"
+              required
+            />
+
+            <Input
+              as="select"
+              id="contact-subject"
+              name="contact-subject"
+              label="Subject"
+              options={[
+                { value: "", label: "Select a subject" },
+                { value: "general", label: "General Inquiry" },
+                { value: "support", label: "Technical Support" },
+                { value: "billing", label: "Billing Question" },
+              ]}
+              required
+            />
+
+            <Input
+              as="textarea"
+              id="contact-message"
+              name="contact-message"
+              label="Message"
+              placeholder="Your message"
+              required
+            />
+
+            <Input
+              as="checkbox"
+              id="contact-terms"
+              name="contact-terms"
+              label="I agree to the terms and conditions"
+              required
+            />
+
+            <button
+              type="submit"
+              class="w-full px-4 py-2 text-white rounded-lg bg-accent-600 hover:bg-accent-700 transition-colors"
+            >
+              Send Message
+            </button>
+          </form>
+        </div>
+
+        <!-- Login Form -->
+        <div class="max-w-md p-6 mb-8 border rounded-lg border-base-200">
+          <h3 class="mb-4 text-xl font-medium">Login Form</h3>
+          <form class="space-y-4">
+            <Input
+              id="login-email"
+              name="login-email"
+              type="email"
+              label="Email"
+              placeholder="Your email"
+              required
+            />
+
+            <Input
+              id="login-password"
+              name="login-password"
+              type="password"
+              label="Password"
+              placeholder="Your password"
+              required
+            />
+
+            <Input
+              as="checkbox"
+              id="login-remember"
+              name="login-remember"
+              label="Remember me"
+            />
+
+            <button
+              type="submit"
+              class="w-full px-4 py-2 text-white rounded-lg bg-accent-600 hover:bg-accent-700 transition-colors"
+            >
+              Log In
+            </button>
+          </form>
+        </div>
+
+        <!-- Search Form -->
+        <div class="max-w-md p-6 border rounded-lg border-base-200">
+          <h3 class="mb-4 text-xl font-medium">Search Form</h3>
+          <form class="space-y-4">
+            <Input
+              id="search-form"
+              name="search-form"
+              type="search"
+              placeholder="Search for anything..."
+            />
+
+            <div class="grid grid-cols-2 gap-4">
+              <Input
+                as="select"
+                id="search-category"
+                name="search-category"
+                label="Category"
+                options={[
+                  { value: "", label: "All Categories" },
+                  { value: "products", label: "Products" },
+                  { value: "services", label: "Services" },
+                  { value: "articles", label: "Articles" },
+                ]}
+              />
+
+              <Input
+                as="select"
+                id="search-sort"
+                name="search-sort"
+                label="Sort By"
+                options={[
+                  { value: "relevance", label: "Relevance" },
+                  { value: "newest", label: "Newest" },
+                  { value: "oldest", label: "Oldest" },
+                  { value: "price-asc", label: "Price: Low to High" },
+                  { value: "price-desc", label: "Price: High to Low" },
+                ]}
+              />
+            </div>
+
+            <Input
+              as="checkbox"
+              id="search-advanced"
+              name="search-advanced"
+              label="Enable advanced search options"
+            />
+
+            <button
+              type="submit"
+              class="w-full px-4 py-2 text-white rounded-lg bg-accent-600 hover:bg-accent-700 transition-colors"
+            >
+              Search
+            </button>
+          </form>
+        </div>
+      </Wrapper>
+    </div>
+  </section>
+</BaseLayout>

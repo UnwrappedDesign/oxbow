@@ -1,27 +1,57 @@
 ---
+interface Props {
+  variant?:
+    | "default"
+    | "accent"
+    | "muted"
+    | "alternative"
+    | "link"
+    | "outline"
+    | "ghost";
+  size?: "xs" | "sm" | "base" | "md" | "lg" | "xl";
+  onlyIconSize?: "xs" | "sm" | "base" | "md" | "lg" | "xl";
+  gap?: "xs" | "sm" | "base" | "md" | "lg";
+  loading?: boolean;
+  fullWidth?: boolean;
+  class?: string;
+  href?: string;
+  target?: string;
+  rel?: string;
+  [key: string]: any;
+}
+
 const {
-  variant,
-  size,
+  variant = "default",
+  size = "base",
   onlyIconSize,
   gap,
+  loading = false,
+  fullWidth = false,
   class: className,
+  href,
+  target,
+  rel,
   ...rest
-} = Astro.props;
-// Default link
+} = Astro.props as Props;
+
+const isLink = typeof href === "string";
+const finalHref = isLink ? href : undefined;
+const finalTarget = target || undefined;
+const finalRel = finalTarget === "_blank" ? rel || "noopener noreferrer" : rel;
+const isDisabled = loading || rest.disabled;
+
 const defaultClass = [
   "text-white",
   "bg-base-900",
   "hover:bg-base-950",
   "focus:outline-base-950",
 ];
-// Accent button
 const accentClass = [
   "text-white",
   "bg-accent-500",
   "hover:bg-accent-600",
   "focus:outline-accent-600",
 ];
-// Muted button
 const mutedClass = [
   "text-black",
   "bg-base-50",
@@ -31,64 +61,205 @@ const mutedClass = [
 const alternativeClass = [
   "text-black",
   "bg-white",
-  "hover:bg-base-100",
+  "hover:text-base-600",
   "focus:outline-base-900",
 ];
-// Link button
+const outlineClass = [
+  "text-accent-500",
+  "border",
+  "border-accent-500",
+  "bg-transparent",
+  "hover:bg-accent-50",
+  "focus:outline-accent-600",
+];
+const ghostClass = [
+  "text-base-700",
+  "bg-transparent",
+  "hover:bg-base-100",
+  "focus:outline-base-300",
+];
 const linkClass = [
   "text-accent-500",
   "hover:text-accent-700",
   "focus:outline-accent-500",
 ];
-// Size
+
 const xs = ["h-8", "px-4", "py-2", "text-xs", "rounded-md"];
 const sm = ["h-9", "px-4", "py-2", "text-sm", "rounded-md"];
-const base = ["h-10", "px-6", "py-3", "text-base", "rounded-lg"];
-const md = ["h-11", "px-6", "py-3", "text-base", "rounded-lg"];
-const lg = ["h-12", "px-6", "py-3", "text-base", "rounded-lg"];
-const xl = ["h-14", "px-6", "py-3", "text-lg", "rounded-lg"];
-// Gap
+const base = ["h-10", "px-6", "py-3", "text-base", "rounded-md"];
+const md = ["h-11", "px-6", "py-3", "text-base", "rounded-md"];
+const lg = ["h-12", "px-6", "py-3", "text-base", "rounded-md"];
+const xl = ["h-14", "px-6", "py-3", "text-lg", "rounded-md"];
+
+const iconXS = ["w-8", "h-8", "p-2", "rounded-md"];
+const iconSM = ["w-9", "h-9", "p-2", "rounded-md"];
+const iconBase = ["w-10", "h-10", "p-2", "rounded-md"];
+const iconMD = ["w-11", "h-11", "p-2", "rounded-md"];
+const iconLG = ["w-12", "h-12", "p-3", "rounded-md"];
+const iconXL = ["w-14", "h-14", "p-3", "rounded-md"];
+
 const gapXS = ["gap-2"];
 const gapSM = ["gap-4"];
 const gapBase = ["gap-8"];
 const gapMD = ["gap-10"];
 const gapLG = ["gap-12"];
+
+const disabledClass = [
+  "opacity-50",
+  "cursor-not-allowed",
+  "pointer-events-none",
+];
+const loadingClass = ["relative", "opacity-80", "cursor-wait"];
 const additionalClasses = className ? className.split(" ") : [];
+
+const hasDefaultSlot = Astro.slots.has("default");
+const isIconOnly =
+  !hasDefaultSlot &&
+  (Astro.slots.has("left-icon") || Astro.slots.has("right-icon"));
+
+const variantClass =
+  {
+    default: defaultClass,
+    accent: accentClass,
+    muted: mutedClass,
+    alternative: alternativeClass,
+    outline: outlineClass,
+    ghost: ghostClass,
+    link: linkClass,
+  }[variant] || defaultClass;
+
+const sizeClass = onlyIconSize
+  ? {
+      xs: iconXS,
+      sm: iconSM,
+      base: iconBase,
+      md: iconMD,
+      lg: iconLG,
+      xl: iconXL,
+    }[onlyIconSize]
+  : !isIconOnly
+    ? {
+        xs,
+        sm,
+        base,
+        md,
+        lg,
+        xl,
+      }[size]
+    : {
+        xs: iconXS,
+        sm: iconSM,
+        base: iconBase,
+        md: iconMD,
+        lg: iconLG,
+        xl: iconXL,
+      }[size];
+
+const gapClass =
+  gap === "xs"
+    ? gapXS
+    : gap === "sm"
+      ? gapSM
+      : gap === "base"
+        ? gapBase
+        : gap === "md"
+          ? gapMD
+          : gap === "lg"
+            ? gapLG
+            : [];
+
+const baseClasses = [
+  "flex",
+  "items-center",
+  "justify-center",
+  "text-center",
+  "shadow-subtle",
+  "font-medium",
+  "duration-500",
+  "ease-in-out",
+  "transition-colors",
+  "focus:outline-2",
+  "focus:outline-offset-2",
+  variantClass,
+  sizeClass,
+  gapClass,
+  isDisabled && disabledClass,
+  loading && loadingClass,
+  fullWidth && "w-full",
+  ...additionalClasses,
+];
+
+const spinnerHTML = `
+  <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+    <svg class="w-5 h-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+    </svg>
+  </span>
+`;
 ---
-<button
-  class:list={[
-       "flex",
-    "items-center",
-    "justify-center",
-    "text-center",
-    "shadow-subtle",
-    "font-medium",
-    "duration-500",
-    "ease-in-out",
-    "transition-colors",
-    "focus:outline-2",
-    "focus:outline-offset-2",
-    variant === "muted" && mutedClass,
-    variant === "accent" && accentClass,
-    variant === "default" && defaultClass,
-    variant === "alternative" && alternativeClass,
-    variant === "link" && linkClass,
-    size === "xs" && xs,
-    size === "sm" && sm,
-    size === "base" && base,
-    size === "md" && md,
-    size === "lg" && lg,
-    size === "xl" && xl,
-    gap === "xs" && gapXS,
-    gap === "sm" && gapSM,
-    gap === "base" && gapBase,
-    gap === "md" && gapMD,
-    gap === "lg" && gapLG,
-    ...additionalClasses,
-  ]}
-  {...rest}
->
-  <slot name="left-icon" />
-  <slot />
-  <slot name="right-icon" />
-</button>
+
+{
+  isLink ? (
+    <a
+      href={finalHref}
+      target={finalTarget}
+      rel={finalRel}
+      aria-busy={loading}
+      aria-disabled={isDisabled}
+      tabindex={isDisabled ? "-1" : undefined}
+      role="link"
+      class:list={baseClasses}
+      {...rest}
+    >
+      {loading && <Fragment set:html={spinnerHTML} />}
+      <span
+        class:list={[
+          "flex items-center justify-center",
+          loading && "invisible",
+          ...gapClass,
+        ]}
+      >
+        {Astro.slots.has("left-icon") && (
+          <span class="inline-flex items-center justify-center">
+            <slot name="left-icon" />
+          </span>
+        )}
+        <slot />
+        {Astro.slots.has("right-icon") && (
+          <span class="inline-flex items-center justify-center">
+            <slot name="right-icon" />
+          </span>
+        )}
+      </span>
+    </a>
+  ) : (
+    <button
+      disabled={isDisabled}
+      aria-busy={loading}
+      class:list={baseClasses}
+      {...rest}
+    >
+      {loading && <Fragment set:html={spinnerHTML} />}
+      <span
+        class:list={[
+          "flex items-center justify-center",
+          loading && "invisible",
+          ...gapClass,
+        ]}
+      >
+        {Astro.slots.has("left-icon") && (
+          <span class="inline-flex items-center justify-center">
+            <slot name="left-icon" />
+          </span>
+        )}
+        <slot />
+        {Astro.slots.has("right-icon") && (
+          <span class="inline-flex items-center justify-center">
+            <slot name="right-icon" />
+          </span>
+        )}
+      </span>
+    </button>
+  )
+}

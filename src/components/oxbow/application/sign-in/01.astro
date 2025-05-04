@@ -1,68 +1,46 @@
 ---
-import Button from "@/components/fundations/buttons/Button.astro";
+export const description =
+  "Magic link login block: drop an email. Passwords are so last century.";
+
+// Fundations
 import Text from "@/components/fundations/typography/Text.astro";
+import Input from "@/components/fundations/inputs/Input.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
 ---
 
 <section>
   <div class="relative px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl">
-    <div class="max-w-lg mx-auto">
-      <div class="text-center lg:text-balance">
-        <img
-          class="h-20 mx-auto"
-          src="/images/oxbow/blueLineLogo.png"
-          alt="#_"
-        />
+    <div class="max-w-md mx-auto">
+      <div class="text-center">
         <Text
-          tag="h2"
+          tag="h1"
           variant="displayMD"
-          class="mt-4 font-semibold text-base-900 lg:text-balance"
+          class="font-medium tracking-tight text-base-900"
         >
-          Sign in to your account
+          Magic, but make it login
         </Text>
-        <Text tag="p" variant="textBase" class="mt-4 font-medium text-base-500">
-          Welcome back! Please enter your email and password to sign in.
-        </Text>
-      </div>
-      <form action="#" method="POST" class="max-w-lg mx-auto mt-12">
-        <div>
-          <Text
-            for="email"
-            tag="label"
-            variant="textBase"
-            class="font-medium text-base-500"
-          >
-            Email
-          </Text>
-          <div class="mt-2.5">
-            <input
-              type="email"
-              name="email"
-              id="email"
-              autocomplete="email"
-              required
-              aria-required="true"
-              aria-describedby="email-error"
-              placeholder="Your email"
-              class="block w-full h-10 px-4 py-2 text-sm bg-white border border-transparent rounded-lg appearance-none text-accent-700 duration-300 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
-            />
-            <span id="email-error" class="hidden text-sm text-red-600">
-              Please enter a valid email address.
-            </span>
-          </div>
-        </div>
-        <div class="mt-10">
-          <Button class="w-full" variant="accent" size="base"> Sign in </Button>
-        </div>
         <Text
           tag="p"
-          variant="textXS"
-          class="mt-4 font-medium text-center text-base-500"
+          variant="textBase"
+          class="mt-4 text-base-500 text-balance"
         >
-          Dont' have an account? 
-          <a href="#_" class="font-medium text-accent-500 hover:text-base-500">
-            Sign up
-          </a>
+          Drop your email below. We'll zap a link to your inbox, no passwords,
+          no drama, just login magic.
         </Text>
+      </div>
+      <form class="mt-10 space-y-4">
+        <Input
+          id="email"
+          name="email"
+          type="email"
+          label="Email address"
+          placeholder="email@example.com"
+          variant="default"
+          size="base"
+        />
+        <Button fullWidth variant="accent" size="base">
+          Send magic link
+        </Button>
       </form>
     </div>
   </div>

@@ -6,7 +6,6 @@ import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import { formatDistanceToNowStrict } from "date-fns";
 import updates from "@/data/updates.json";
-
 const { section, subsection } = Astro.params;
 const components = await Astro.glob(`@/components/oxbow/**/*.astro`);
 const sectionComponents = components.filter((component) => {
@@ -17,24 +16,20 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/screenshots/*.png"
 );
 const formattedSubsection = subsection.replace("-", " ");
-
 const user = Astro.locals.user;
-
 const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
-
 // Define the number of columns based on the current page
 const gridColumns = {
   // Marketing
   "marketing/hero": 2,
+  "marketing/steps": 2,
   "marketing/pricing": 2,
   "marketing/features": 4,
+  "marketing/timeline": 2,
   "marketing/logo-clouds": 4,
   "marketing/bento-grids": 4,
-  "marketing/timeline": 2,
-  "marketing/steps": 2,
   // Ecommerc
   "ecommerce/product-details": 2,
-
   // Application
   "application/tabs": 1,
   "application/alerts": 1,
@@ -47,6 +42,9 @@ const gridColumns = {
   "application/buttons": 2,
   "application/avatars": 2,
   "application/textarea": 2,
+  "application/commandbar": 2,
+  "application/sign-up": 2,
+  "application/sign-in": 2,
   "application/pagination": 2,
   "application/checkboxes": 2,
   "application/typography": 2,
@@ -55,15 +53,11 @@ const gridColumns = {
   "application/radiogroups": 2,
   "application/notifications": 2,
   "application/button-groups": 2,
-  "application/commandbar": 2,
 };
-
 // Get the current page path
 const currentPage = `${section}/${subsection}`;
-
 // Set the number of columns, defaulting to 3 if not specified
 const lgColumns = gridColumns[currentPage] || 4;
-
 // Define the grid columns class based on the lgColumns
 const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
 ---
@@ -110,21 +104,16 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
         {
           sectionComponents.map((component, index) => {
             const filePath = component.file.split("/").slice(-3).join("/");
-
             const imagePath = `/src/screenshots/${component.file
               .split("/")
               .slice(-3)
               .join("_")
               .replace(".astro", ".png")}`;
-
             if (!images[imagePath]) {
               return null;
             }
-
             const updatedAt = new Date(updates[filePath] * 1000);
-
             const isUpdatedLastWeek = updatedAt > SEVEN_DAYS_AGO;
-
             return (
               <a
                 href={`/playground/${filePath.replace(".astro", "")}`}
@@ -161,7 +150,6 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
                     </Text>
                   )}
                 </div>
-
                 <Image
                   width={1000}
                   height={1000}
