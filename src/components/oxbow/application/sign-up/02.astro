@@ -1,239 +1,119 @@
 ---
-import Button from "@/components/fundations/buttons/Button.astro";
+export const description =
+  "Centered sign-up block: email/password inputs, optional Google & Apple buttons, sign up like it's 1999.";
+
+// Fundations
 import Text from "@/components/fundations/typography/Text.astro";
-import Apple from "@/components/fundations/icons/Apple.astro";
-import Chrome from "@/components/fundations/icons/Chrome.astro";
-import Meta from "@/components/fundations/icons/Meta.astro";
+import Input from "@/components/fundations/inputs/Input.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+// Icons
+import AppleColor from "@/components/fundations/icons/AppleColor.astro";
+import GoogleColor from "@/components/fundations/icons/GoogleColor.astro";
 ---
 
 <section>
   <div class="relative px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl">
-    <div class="max-w-lg mx-auto">
+    <div class="max-w-md mx-auto">
       <div class="text-center lg:text-balance">
         <Text
-          tag="p"
-          variant="textSM"
-          class="font-bold uppercase text-accent-600"
+          tag="h1"
+          variant="displayMD"
+          class="font-medium tracking-tight text-base-900"
         >
-          Tagline
+          Create your account
         </Text>
         <Text
-          tag="h2"
-          variant="displayMD"
-          class="mt-4 font-semibold text-base-900 lg:text-balance"
+          tag="p"
+          variant="textBase"
+          class="mt-4 text-base-500 text-balance"
         >
-          Join our community
-        </Text>
-        <Text tag="p" variant="textBase" class="mt-4 font-medium text-base-500">
-          Sign up to join our community and start building your brand.
+          Join the party. Set up your account the old-fashioned way—email,
+          password, done.
         </Text>
       </div>
-      <form action="#" method="POST" class="max-w-lg mx-auto mt-12">
-        <div class="flex flex-col gap-y-6">
-          <div>
-            <Text
-              for="first-name"
-              tag="label"
-              variant="textBase"
-              class="font-medium text-base-500"
-            >
-              First name
-            </Text>
-            <div class="mt-2.5">
-              <input
-                type="text"
-                name="first-name"
-                id="first-name"
-                autocomplete="given-name"
-                required
-                aria-required="true"
-                aria-describedby="first-name-error"
-                placeholder="Your first name"
-                class="block w-full h-10 px-4 py-2 text-sm bg-white border border-transparent rounded-lg appearance-none text-accent-700 duration-300 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
-              />
-              <span id="first-name-error" class="hidden text-sm text-red-600">
-                Please enter your first name.
-              </span>
-            </div>
-          </div>
-          <div>
-            <Text
-              for="email"
-              tag="label"
-              variant="textBase"
-              class="font-medium text-base-500"
-            >
-              Email
-            </Text>
-            <div class="mt-2.5">
-              <input
-                type="email"
-                name="email"
-                id="email"
-                autocomplete="email"
-                required
-                aria-required="true"
-                aria-describedby="email-error"
-                placeholder="Your email"
-                class="block w-full h-10 px-4 py-2 text-sm bg-white border border-transparent rounded-lg appearance-none text-accent-700 duration-300 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
-              />
-              <span id="email-error" class="hidden text-sm text-red-600">
-                Please enter a valid email address.
-              </span>
-            </div>
-          </div>
-          <div>
-            <Text
-              for="password"
-              tag="label"
-              variant="textBase"
-              class="font-medium text-base-500"
-            >
-              Password
-            </Text>
-            <div class="mt-2.5">
-              <input
-                type="password"
-                name="password"
-                id="password"
-                autocomplete="current-password"
-                required
-                aria-required="true"
-                aria-describedby="password-error"
-                placeholder="Your password"
-                class="block w-full h-10 px-4 py-2 text-sm bg-white border border-transparent rounded-lg appearance-none text-accent-700 duration-300 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
-              />
-              <span id="password-error" class="hidden text-sm text-red-600">
-                Please enter a valid password.
-              </span>
-            </div>
-          </div>
-          <div>
-            <Text
-              for="confirm-password"
-              tag="label"
-              variant="textBase"
-              class="font-medium text-base-500"
-            >
-              Confirm Password
-            </Text>
-            <div class="mt-2.5">
-              <input
-                type="password"
-                name="confirm-password"
-                id="confirm-password"
-                autocomplete="new-password"
-                required
-                aria-required="true"
-                aria-describedby="confirm-password-error"
-                placeholder="Confirm your password"
-                class="block w-full h-10 px-4 py-2 text-sm bg-white border border-transparent rounded-lg appearance-none text-accent-700 duration-300 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
-              />
-              <span
-                id="confirm-password-error"
-                class="hidden text-sm text-red-600"
-              >
-                Passwords do not match.
-              </span>
-            </div>
-          </div>
-          <div class="space-y-2">
-            <div class="flex items-center gap-3">
-              <input
-                id="remember-me"
-                name="remember-me"
-                type="checkbox"
-                class="rounded shadow size-4 border-base-300 text-accent-600 focus:ring-accent-600"
-              />
-              <Text
-                for="remember-me"
-                tag="label"
-                class="block text-sm font-medium text-base-500"
-                >Remember me
-              </Text>
-            </div>
-            <div class="flex items-center mt-4 gap-3">
-              <input
-                id="agreement"
-                name="agreement"
-                type="checkbox"
-                class="rounded shadow size-4 border-base-300 text-accent-600 focus:ring-accent-600"
-              />
-              <Text
-                for="agreement"
-                tag="label"
-                class="block text-sm font-medium text-base-500"
-                >You agree to our
-                <Text
-                  tag="a"
-                  href="#_"
-                  variant="textBase"
-                  class="font-medium text-accent-500 hover:text-base-500"
-                >
-                  Terms of service
-                </Text>
-                and
-                <Text
-                  tag="a"
-                  href="#_"
-                  variant="textBase"
-                  class="font-medium text-accent-500 hover:text-base-500"
-                >
-                  Privacy Policy
-                </Text>
-              </Text>
-            </div>
-          </div>
-        </div>
-        <div class="mt-10">
-          <Button class="w-full" variant="accent" size="base"> Sign up </Button>
-        </div>
-      </form>
-      <div class="relative my-12">
-        <div class="absolute inset-0 flex items-center" aria-hidden="true">
-          <div class="w-full border-t border-base-200"></div>
-        </div>
-        <div class="relative flex justify-center text-sm font-medium leading-6">
-          <Text
-            tag="span"
-            variant="textSM"
-            class="px-4 font-semibold bg-white text-base-500"
+      <form class="mt-10 space-y-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <Button
+            variant="alternative"
+            size="base"
+            gap="sm"
+            fullWidth
+            class="flex items-center"
           >
-            Or Sign up with
-          </Text>
+            <GoogleColor slot="left-icon" class="size-4" />
+            Google
+          </Button>
+          <Button
+            variant="alternative"
+            size="base"
+            gap="sm"
+            fullWidth
+            class="flex items-center"
+          >
+            <AppleColor slot="left-icon" class="size-4" />
+            Apple
+          </Button>
         </div>
-      </div>
-      <div class="flex flex-col gap-y-4">
-        <Button
-          class="justify-between w-full"
-          variant="muted"
+        <div class="relative">
+          <div class="absolute inset-0 flex items-center" aria-hidden="true">
+            <div class="w-full border-t border-base-200"></div>
+          </div>
+          <div class="relative flex justify-center">
+            <span class="px-2 text-sm bg-white text-base-500"
+              >Or sign up with email</span
+            >
+          </div>
+        </div>
+        <Input
+          id="name"
+          name="name"
+          type="text"
+          label="Full name"
+          placeholder="Jane Doe"
+          variant="default"
           size="base"
-          gap="gapXS"
-        >
-          Sign up with Apple
-        </Button>
-        <Button
-          class="justify-between w-full"
-          variant="muted"
+        />
+
+        <Input
+          id="email"
+          name="email"
+          type="email"
+          label="Email address"
+          placeholder="email@example.com"
+          variant="default"
           size="base"
-          gap="gapXS"
-        >
-          Sign up with Meta
-        </Button>
-        <Button
-          class="justify-between w-full"
-          variant="muted"
+        />
+        <Input
+          id="password"
+          name="password"
+          type="password"
+          label="Password"
+          placeholder="************"
+          variant="alternative"
           size="base"
-          gap="gapXS"
-        >
-          Sign up with Chrome
-        </Button>
-      </div>
-      <Text
-        tag="p"
-        variant="textXS"
-        class="mt-4 font-medium text-center text-base-500"
-      >
+        />
+        <Input
+          id="confirm-password"
+          name="confirm-password"
+          type="password"
+          label="Confirm password"
+          placeholder="************"
+          variant="alternative"
+          size="base"
+        />
+        <Text tag="p" variant="textXS" class="font-medium text-base-500">
+          By creating an account, you agree to our
+          <a href="#_" class="font-medium text-accent-500 hover:text-base-500">
+            Terms of service
+          </a>
+          and
+          <a href="#_" class="font-medium text-accent-500 hover:text-base-500">
+            Privacy Policy
+          </a>
+        </Text>
+        <Button fullWidth variant="accent" size="base"> Create account </Button>
+      </form>
+      <Text tag="p" variant="textXS" class="mt-4 font-medium text-base-500">
         Already have an account?
         <a href="#_" class="font-medium text-accent-500 hover:text-base-500">
           Sign in
