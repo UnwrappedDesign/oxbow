@@ -1,72 +1,71 @@
 ---
-import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.astro";
+// Fundations
 import Text from "@/components/fundations/typography/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Components
+import PricingToggleDark from "@/components/fundations/buttonGroups/PricingToggleDark.astro";
 import PricingCardsSingle from "@/components/fundations/pricing/PricingCardsSingle.astro";
 ---
-
-<section x-data="{duration: 'monthly'}">
-  <div class="relative px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-screen-xl">
+<section x-data="{duration: 'monthly'}" class="bg-base-950">
+  <Wrapper variant="blockStandard" class="py-24">
     <div
       class="text-center md:text-left grid grid-cols-1 gap-12 md:grid-cols-2 md:items-end"
     >
-      <div>
-        <Text
-          tag="p"
-          variant="textSM"
-          class="font-bold uppercase text-accent-600"
-        >
-          Tagline
-        </Text>
-        <Text
-          tag="h2"
-          variant="displayMD"
-          class="mt-4 font-semibold text-base-900 lg:text-balance"
-        >
-          Equip your business with world class software
-        </Text>
-      </div>
+      <Text
+        tag="h1"
+        variant="displayMD"
+        class="font-medium tracking-tight text-white text-balance"
+      >
+        Equip your business with world class software
+      </Text>
       <div class="md:ml-auto">
         <div
           aria-labelledby="pricing-toggle"
-          class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-white shadow ring-1 ring-base-200 ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52"
+          class="relative z-0 inline-flex w-full p-1 mt-8 overflow-hidden shadow ring-1 ring-base-800 ring-offset-2 ring-offset-base-950 bg-900 gap-4 rounded-md max-w-52"
         >
           <!-- Monthly Pricing Button: Sets 'duration' to 'monthly' when clicked -->
-          <PricingToggle />
+          <PricingToggleDark />
         </div>
       </div>
     </div>
-    <div class="lg:-mx-20">
-      <div
-        class="mx-auto mt-12 overflow-hidden grid grid-cols-1 gap-4 md:gap-0 sm:grid-cols-2 lg:grid-cols-4 lg:shadow lg:rounded-3xl"
-      >
-        <PricingCardsSingle
-          tierName="Core"
-          roundedDesktop="left"
-          colorMode="white"
-          isLeft={true}
-        />
-        <!-- Tier two -->
-        <PricingCardsSingle
-          tierName="Momentum"
-          roundedDesktop="none"
-          isCentered={true}
-        />
-        <!-- Tier three -->
-        <PricingCardsSingle
-          tierName="Growth"
-          isPopular={true}
-          roundedDesktop="none"
-          colorMode="dark"
-          isCentered={true}
-        />
-        <!-- Tier four-->
-        <PricingCardsSingle
-          tierName="Apex"
-          colorMode="accent"
-          roundedDesktop="right"
-          isRight={true}
-        />
-      </div>
+    <div
+      class="lg:-mx-32 mt-12 grid grid-cols-1 gap-4 md:gap-0 sm:grid-cols-2 lg:grid-cols-4 lg:shadow lg:outline lg:outline-base-900 lg:rounded-xl"
+    >
+      <PricingCardsSingle
+        tierName="Core"
+        roundedDesktop="left"
+        colorMode="baseDark"
+        isLeft={true}
+        noShadow={true}
+        buttonVariant="mutedDark"
+      />
+      <!-- Tier two -->
+      <PricingCardsSingle
+        tierName="Momentum"
+        roundedDesktop="none"
+        colorMode="baseDark"
+        isCentered={true}
+        noShadow={true}
+        buttonVariant="mutedDark"
+      />
+      <!-- Tier three -->
+      <PricingCardsSingle
+        tierName="Growth"
+        isPopular={true}
+        roundedDesktop="none"
+        colorMode="baseDark"
+        isCentered={true}
+        noShadow={true}
+        buttonVariant="mutedDark"
+      />
+      <!-- Tier four-->
+      <PricingCardsSingle
+        tierName="Apex"
+        colorMode="accent"
+        roundedDesktop="right"
+        isRight={true}
+        noShadow={true}
+      />
     </div>
-  </div>
+  </Wrapper>
 </section>

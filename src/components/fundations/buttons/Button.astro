@@ -4,13 +4,14 @@ interface Props {
     | "default"
     | "accent"
     | "muted"
+    | "mutedDark"
     | "alternative"
     | "link"
     | "outline"
     | "ghost";
-  size?: "xs" | "sm" | "base" | "md" | "lg" | "xl";
-  onlyIconSize?: "xs" | "sm" | "base" | "md" | "lg" | "xl";
-  gap?: "xs" | "sm" | "base" | "md" | "lg";
+  size?: "xxs" | "xs" | "sm" | "base" | "md" | "lg" | "xl";
+  onlyIconSize?: "xxs" | "xs" | "sm" | "base" | "md" | "lg" | "xl";
+  gap?: "xxs" | "xs" | "sm" | "base" | "md" | "lg";
   loading?: boolean;
   fullWidth?: boolean;
   class?: string;
@@ -42,10 +43,10 @@ const isDisabled = loading || rest.disabled;
 
 const defaultClass = [
   "text-white",
-  "bg-accent-900",
-  "hover:bg-accent-800",
-  "focus:outline-accent-800",
-  "shadow-subtle",
+  "bg-base-900",
+  "hover:bg-base-950",
+  "focus:outline-base-950",
+  "shadow-sm",
 ];
 
 const accentClass = [
@@ -53,7 +54,7 @@ const accentClass = [
   "bg-accent-500",
   "hover:bg-accent-600",
   "focus:outline-accent-600",
-  "shadow-subtle",
+  "shadow-sm",
 ];
 
 const alternativeClass = [
@@ -63,6 +64,7 @@ const alternativeClass = [
   "outline-base-200",
   "hover:shadow-sm",
   "focus:outline-base-900",
+  "shadow-sm",
 ];
 
 const mutedClass = [
@@ -70,6 +72,12 @@ const mutedClass = [
   "bg-base-50",
   "hover:bg-base-200",
   "focus:outline-base-600",
+];
+const mutedDarkClass = [
+  "text-white",
+  "bg-base-800",
+  "hover:bg-base-900",
+  "focus:outline-base-500",
 ];
 
 const outlineClass = [
@@ -79,6 +87,7 @@ const outlineClass = [
   "bg-transparent",
   "hover:bg-base-100",
   "focus:outline-base-600",
+  "shadow-sm",
 ];
 
 const ghostClass = [
@@ -99,6 +108,7 @@ const linkClass = [
   "rounded-none", // remove button shape
 ];
 
+const xxs = ["h-7", "px-3", "py-1.5", "text-xs", "rounded"];
 const xs = ["h-8", "px-4", "py-2", "text-xs", "rounded-md"];
 const sm = ["h-9", "px-4", "py-2", "text-sm", "rounded-md"];
 const base = ["h-10", "px-6", "py-3", "text-base", "rounded-md"];
@@ -106,6 +116,7 @@ const md = ["h-11", "px-6", "py-3", "text-base", "rounded-md"];
 const lg = ["h-12", "px-6", "py-3", "text-lg", "rounded-md"];
 const xl = ["h-14", "px-6", "py-3", "text-xl", "rounded-md"];
 
+const iconXXS = ["w-7", "h-7", "p-2", "rounded"];
 const iconXS = ["w-8", "h-8", "p-2", "rounded-md"];
 const iconSM = ["w-9", "h-9", "p-2", "rounded-md"];
 const iconBase = ["w-10", "h-10", "p-2", "rounded-md"];
@@ -113,6 +124,7 @@ const iconMD = ["w-11", "h-11", "p-2", "rounded-md"];
 const iconLG = ["w-12", "h-12", "p-3", "rounded-md"];
 const iconXL = ["w-14", "h-14", "p-3", "rounded-md"];
 
+const gapXXS = ["gap-2"];
 const gapXS = ["gap-2"];
 const gapSM = ["gap-4"];
 const gapBase = ["gap-8"];
@@ -137,6 +149,7 @@ const variantClass =
     default: defaultClass,
     accent: accentClass,
     muted: mutedClass,
+    mutedDark: mutedDarkClass,
     alternative: alternativeClass,
     outline: outlineClass,
     ghost: ghostClass,
@@ -145,6 +158,7 @@ const variantClass =
 
 const sizeClass = onlyIconSize
   ? {
+      xxs: iconXXS,
       xs: iconXS,
       sm: iconSM,
       base: iconBase,
@@ -154,6 +168,7 @@ const sizeClass = onlyIconSize
     }[onlyIconSize]
   : !isIconOnly
     ? {
+        xxs,
         xs,
         sm,
         base,
@@ -162,6 +177,7 @@ const sizeClass = onlyIconSize
         xl,
       }[size]
     : {
+        xxs: iconXXS,
         xs: iconXS,
         sm: iconSM,
         base: iconBase,
@@ -170,25 +186,22 @@ const sizeClass = onlyIconSize
         xl: iconXL,
       }[size];
 
-const gapClass =
-  gap === "xs"
-    ? gapXS
-    : gap === "sm"
-      ? gapSM
-      : gap === "base"
-        ? gapBase
-        : gap === "md"
-          ? gapMD
-          : gap === "lg"
-            ? gapLG
-            : [];
+const gapMap = {
+  xxs: gapXXS,
+  xs: gapXS,
+  sm: gapSM,
+  base: gapBase,
+  md: gapMD,
+  lg: gapLG,
+};
+
+const gapClass = gapMap[gap] || [];
 
 const baseClasses = [
   "flex",
   "items-center",
   "justify-center",
   "text-center",
-
   "font-medium",
   "duration-500",
   "ease-in-out",
@@ -222,7 +235,7 @@ const spinnerHTML = `
       rel={finalRel}
       aria-busy={loading}
       aria-disabled={isDisabled}
-      tabindex={isDisabled ? "-1" : undefined}
+      tabIndex={isDisabled ? "-1" : undefined}
       role="link"
       class:list={[...baseClasses, ...gapClass]}
       {...rest}
@@ -237,7 +250,7 @@ const spinnerHTML = `
       )}
     </a>
   ) : (
-    <button class:list={[...baseClasses, ...gapClass]}>
+    <button class:list={[...baseClasses, ...gapClass]} {...rest}>
       {loading && <Fragment set:html={spinnerHTML} />}
       {!loading && (
         <>

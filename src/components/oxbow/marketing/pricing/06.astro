@@ -1,52 +1,51 @@
 ---
-import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.astro";
+// Fundations
 import Text from "@/components/fundations/typography/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Components
+import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.astro";
 import PricingCardsSingle from "@/components/fundations/pricing/PricingCardsSingle.astro";
 ---
 
-<section x-data="{duration: 'monthly'}">
-  <div class="relative px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-screen-xl">
+<section x-data="{duration: 'monthly'}" class="bg-base-50">
+  <Wrapper variant="blockStandard" class="py-24">
     <div
-      class="w-full grid grid-cols-1 lg:max-w-none gap-y-12 lg:gap-x-20 lg:grid-cols-3 lg:items-start">
+      class="w-full grid grid-cols-1 lg:max-w-none gap-y-12 lg:gap-x-20 lg:grid-cols-3 lg:items-start"
+    >
       <div class="flex flex-col h-full gap-8 cols-span-full lg:col-span-1">
         <div>
           <Text
-            tag="p"
-            variant="textSM"
-            class="font-bold uppercase text-accent-600">
-            Tagline
-          </Text>
-          <Text
-            tag="h2"
+            tag="h1"
             variant="displaySM"
-            class="mt-4 font-semibold text-base-900 lg:text-balance">
+            class="font-medium tracking-tight text-base-900 text-balance"
+          >
             Equip your business with world class software
           </Text>
           <Text
             tag="p"
             variant="textBase"
-            class="mt-4 font-medium text-base-500 lg:text-balance">
+            class="mt-2 font-medium  text-base-600 text-balance"
+          >
             Choose a plan that works the best for you and your team. Start
             small, upgrade when you need to.
           </Text>
         </div>
         <div
           aria-labelledby="pricing-toggle"
-          class="relative z-0 inline-flex justify-end w-full p-1 mx-auto overflow-hidden bg-white shadow ring-1 ring-base-200 ring-offset-2 gap-4 lg:mx-0 rounded-md">
+          class="relative z-0 inline-flex justify-end w-full p-1 mx-auto overflow-hidden bg-white shadow ring-1 ring-base-200 ring-offset-2 gap-4 lg:mx-0 rounded-md"
+        >
           <!-- Monthly Pricing Button: Sets 'duration' to 'monthly' when clicked -->
           <PricingToggle />
         </div>
       </div>
       <div
-        class="grid grid-cols-1 gap-4 lg:grid-cols-2 sm:col-span-2 cols-span-full">
+        class="grid grid-cols-1 gap-2 lg:grid-cols-2 sm:col-span-2 cols-span-full"
+      >
         <!-- Tier one -->
         <PricingCardsSingle tierName="Core" />
         <!-- Tier two -->
-        <PricingCardsSingle
-          tierName="Momentum"
-          colorMode="dark"
-        />
+        <PricingCardsSingle tierName="Momentum" colorMode="dark" />
       </div>
     </div>
-  </div>
+  </Wrapper>
 </section>
