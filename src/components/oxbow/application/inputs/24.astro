@@ -1,76 +1,34 @@
 ---
-export const description = "Range quantity input with + and - buttons";
+export const description = "Input with range";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
 
-<div
-  class="flex flex-wrap items-end justify-center max-w-md py-12 mx-auto gap-4"
->
-  <div class="w-full space-y-1" x-data="{ value: 50, min: 0, max: 100 }">
+<div class="max-w-xs mx-auto py-60">
+  <div class="space-y-1">
     <Text
-      for="input-chevrons"
+      for="range-from"
       tag="label"
       variant="textSM"
       class="font-medium text-base-500"
     >
-      Value
+      Range
     </Text>
     <div class="flex items-center">
-      <button
-        @click="value = Math.max(min, value - 1)"
-        class="h-10 px-3 py-2 rounded-l-lg bg-base-100 hover:bg-base-200 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2"
-      >
-        <svg
-          class="w-4 h-4"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-          ><path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M15 19l-7-7 7-7"></path></svg
-        >
-      </button>
       <input
         type="number"
-        id="input-chevrons"
-        name="input-chevrons"
-        x-model="value"
-        class="w-16 h-10 px-3 py-2 text-sm text-center border-t border-b text-accent-700 border-base-200 focus:outline-none focus:ring-0"
-        readonly
+        id="range-from"
+        name="range-from"
+        placeholder="From"
+        class="block w-full h-10 px-4 py-2 text-sm bg-white border border-transparent rounded-lg rounded-r-none appearance-none text-accent-700 duration-300 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
       />
-      <button
-        @click="value = Math.min(max, value + 1)"
-        class="h-10 px-3 py-2 rounded-r-lg bg-base-100 hover:bg-base-200 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2"
-      >
-        <svg
-          class="w-4 h-4"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-          ><path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M9 5l7 7-7 7"></path></svg
-        >
-      </button>
+
+      <input
+        type="number"
+        id="range-to"
+        name="range-to"
+        placeholder="To"
+        class="block w-full h-10 px-4 py-2 text-sm bg-white border border-l-0 border-transparent rounded-lg rounded-l-none appearance-none text-accent-700 duration-300 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+      />
     </div>
   </div>
-
-  <style>
-    /* Hide spinner arrows for input type number */
-    input[type="number"]::-webkit-inner-spin-button,
-    input[type="number"]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-
-    input[type="number"] {
-      -moz-appearance: textfield; /* Firefox */
-    }
-  </style>
 </div>

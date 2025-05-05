@@ -1,36 +1,37 @@
 ---
-export const description = "Search input with kbd";
+export const description = "Simple input with label";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
 
-<div
-  class="flex flex-wrap items-end justify-center max-w-md py-12 mx-auto gap-4"
->
-  <div class="space-y-1">
+<div class="max-w-xs mx-auto py-60">
+  <div class="w-full space-y-1" x-data="{ count: 0 }">
     <Text
-      for="input-kbd"
+      for="input-plus-minus"
       tag="label"
       variant="textSM"
       class="font-medium text-base-500"
     >
-      Search
+      Quantity
     </Text>
-    <div class="relative">
-      <input
-        type="text"
-        id="input-kbd"
-        name="input-kbd"
-        placeholder="Search"
-        class="block w-full h-10 py-2 pl-4 pr-20 text-sm bg-white border border-transparent rounded-lg appearance-none text-accent-700 duration-300 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
-      />
-      <span
-        class="absolute inset-y-0 right-0 flex items-center pr-3 text-sm text-base-400"
+    <div class="flex items-center">
+      <button
+        @click="count--"
+        class="px-3 py-2 rounded-l-lg bg-base-100 hover:bg-base-200 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2"
+        >-</button
       >
-        <kbd
-          class="px-2 py-1 text-xs font-semibold border rounded-lg text-base-700 bg-base-100 border-base-200"
-          >⌘K</kbd
-        >
-      </span>
+      <input
+        type="number"
+        id="input-plus-minus"
+        name="input-plus-minus"
+        x-model="count"
+        class="w-16 h-10 px-0 text-sm text-center border-t border-b text-accent-700 border-base-200 focus:outline-none focus:ring-0"
+        readonly
+      />
+      <button
+        @click="count++"
+        class="px-3 py-2 rounded-r-lg bg-base-100 hover:bg-base-200 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2"
+        >+</button
+      >
     </div>
   </div>
 </div>

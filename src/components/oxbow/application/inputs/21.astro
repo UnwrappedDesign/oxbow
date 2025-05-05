@@ -1,40 +1,61 @@
 ---
-export const description = "Search input with left icon";
+export const description = "Range quantity input with + and - buttons";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
 
-<div
-  class="flex flex-wrap items-end justify-center max-w-md py-12 mx-auto gap-4"
->
-  <div class="space-y-1">
+<div class="max-w-xs mx-auto py-60">
+  <div class="w-full space-y-1" x-data="{ value: 50, min: 0, max: 100 }">
     <Text
-      for="input-search-left-icon"
+      for="input-chevrons"
       tag="label"
       variant="textSM"
       class="font-medium text-base-500"
     >
-      Search
+      Value
     </Text>
-    <div class="relative">
-      <svg
-        class="absolute w-5 h-5 left-3 top-1/2 transform -translate-y-1/2 text-base-400"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-        ><path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg
+    <div class="flex items-center">
+      <button
+        @click="value = Math.max(min, value - 1)"
+        class="h-10 px-3 py-2 rounded-l-lg bg-base-100 hover:bg-base-200 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2"
       >
+        <svg
+          class="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"></path></svg
+        >
+      </button>
       <input
-        type="text"
-        id="input-search-left-icon"
-        name="input-search-left-icon"
-        placeholder="Search"
-        class="block w-full h-10 py-2 pl-10 pr-4 text-sm bg-white border border-transparent rounded-lg appearance-none text-accent-700 duration-300 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+        type="number"
+        id="input-chevrons"
+        name="input-chevrons"
+        x-model="value"
+        class="w-16 h-10 px-3 py-2 text-sm text-center border-t border-b text-accent-700 border-base-200 focus:outline-none focus:ring-0"
+        readonly
       />
+      <button
+        @click="value = Math.min(max, value + 1)"
+        class="h-10 px-3 py-2 rounded-r-lg bg-base-100 hover:bg-base-200 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2"
+      >
+        <svg
+          class="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5l7 7-7 7"></path></svg
+        >
+      </button>
     </div>
   </div>
 </div>

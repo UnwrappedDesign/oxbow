@@ -1,40 +1,44 @@
 ---
-export const description = "Stepper control";
+export const description = "CVV input";
+import Text from "@/components/fundations/typography/Text.astro";
 ---
 
-<div
-  class="flex flex-wrap items-end justify-center max-w-md py-12 mx-auto gap-4"
->
-  <div class="flex items-center justify-center w-full">
-    <label
-      for="dropzone-file"
-      class="flex flex-col items-center justify-center w-full h-64 max-w-lg bg-white border border-dashed rounded-lg cursor-pointer border-base-200 hover:bg-base-50 transition-colors duration-200 ease-in-out"
+<div class="max-w-xs mx-auto py-60">
+  <div class="space-y-1">
+    <Text
+      for="cvv"
+      tag="label"
+      variant="textSM"
+      class="font-medium text-base-500"
     >
-      <div class="flex flex-col items-center justify-center p-8">
+      CVV
+    </Text>
+    <div class="relative">
+      <input
+        type="text"
+        id="cvv"
+        name="cvv"
+        maxlength="3"
+        placeholder="CVV"
+        class="block w-full h-10 px-4 py-2 text-sm bg-white border border-transparent rounded-lg appearance-none text-accent-700 duration-300 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+      />
+      <span
+        class="absolute inset-y-0 right-0 flex items-center pr-3 text-base-400"
+      >
         <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
+          class="w-5 h-5"
           fill="none"
           stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="icon icon-tabler icons-tabler-outline icon-tabler-cloud-upload size-8 text-accent-500"
-          ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-            d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1"
-          ></path><path d="M9 15l3 -3l3 3"></path><path d="M12 12l0 9"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
           ></path></svg
         >
-        <p class="mt-2 text-sm font-semibold text-base-500">
-          Click to upload or drag and drop
-        </p>
-        <p class="mt-2 text-xs text-base-400">
-          SVG, PNG, JPG, or GIF (MAX. 800x400px)
-        </p>
-      </div>
-      <input id="dropzone-file" type="file" class="hidden" />
-    </label>
+      </span>
+    </div>
   </div>
 </div>
