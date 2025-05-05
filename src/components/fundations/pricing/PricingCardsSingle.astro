@@ -11,7 +11,6 @@ interface Props {
   buttonVariant?:
     | "default"
     | "accent"
-    | "muted"
     | "mutedDark"
     | "alternative"
     | "link"
@@ -22,6 +21,7 @@ interface Props {
   isCentered?: boolean;
   isRight?: boolean;
   noShadow?: boolean;
+  roundedDesktop?: "none" | "all" | "left" | "right";
 }
 
 const {
@@ -35,6 +35,7 @@ const {
   isCentered = false,
   isRight = false,
   noShadow = false,
+  roundedDesktop,
 } = Astro.props as Props;
 
 const tierDetails = {
@@ -149,11 +150,22 @@ const colorClasses = {
 
 // Rounding logic:
 // - mobile always rounded-xl
-// - at lg: remove rounding on one side for edges, keep full rounding for center
+// - at lg: apply desktop rounding based on props
 let roundingClass: string;
-if (isLeft) roundingClass = "rounded-xl lg:rounded-r-none";
-else if (isRight) roundingClass = "rounded-xl lg:rounded-l-none";
-else roundingClass = "rounded-xl";
+
+if (roundedDesktop === "none") {
+  roundingClass = "rounded-xl lg:rounded-none";
+} else if (roundedDesktop === "left") {
+  roundingClass = "rounded-xl lg:rounded-l-xl lg:rounded-r-none";
+} else if (roundedDesktop === "right") {
+  roundingClass = "rounded-xl lg:rounded-r-xl lg:rounded-l-none";
+} else if (isLeft) {
+  roundingClass = "rounded-xl lg:rounded-r-none";
+} else if (isRight) {
+  roundingClass = "rounded-xl lg:rounded-l-none";
+} else {
+  roundingClass = "rounded-xl";
+}
 ---
 
 <div
@@ -197,12 +209,13 @@ else roundingClass = "rounded-xl";
             x-text="$el.dataset[duration]"></span>
         </p>
         <div
-          class={`ml-auto text-xs font-medium capitalize ${colorClasses.monthYearTextColor}`}
+          class={` text-xs font-medium capitalize ${colorClasses.monthYearTextColor}`}
         >
           <div class="font-semibold">
             <span x-show="duration==='monthly'">month</span><span
               x-show="duration==='annual'"
-              style="display:none;">annually</span>
+              style="display:none;">annually</span
+            >
           </div>
           <p>USD + Local taxes</p>
         </div>
