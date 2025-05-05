@@ -8,7 +8,7 @@ interface Props {
   isPopular?: boolean;
   colorMode?: "white" | "light" | "dark" | "baseDark" | "accent";
   showFeatures?: boolean;
-  buttonVariant?: 
+  buttonVariant?:
     | "default"
     | "accent"
     | "muted"
@@ -18,7 +18,6 @@ interface Props {
     | "outline"
     | "ghost";
   featuresLayout?: "list" | "grid";
-  roundedDesktop?: "rounded-xl" | "left" | "right" | "none";
   isLeft?: boolean;
   isCentered?: boolean;
   isRight?: boolean;
@@ -32,7 +31,6 @@ const {
   showFeatures = true,
   buttonVariant = "alternative",
   featuresLayout = "list",
-  roundedDesktop = "rounded-xl",
   isLeft = false,
   isCentered = false,
   isRight = false,
@@ -100,13 +98,12 @@ const defaultFeatures = {
 const { description, priceMonthly, priceAnnual } = tierDetails[tierName];
 const features = defaultFeatures[tierName] || [];
 
-// Define color classes without built-in shadow
+// Color classes
 const colorClasses = {
   white: {
     cardBg: "bg-white outline outline-base-200",
     borderColor: "border-base-200",
     titleColor: "text-base-900",
-    subTitleColor: "text-base-500",
     introColor: "text-base-500",
     priceColor: "text-base-900",
     monthYearTextColor: "text-base-500",
@@ -116,7 +113,6 @@ const colorClasses = {
     cardBg: "bg-base-50 outline outline-base-200",
     borderColor: "border-base-200",
     titleColor: "text-base-900",
-    subTitleColor: "text-base-500",
     introColor: "text-base-500",
     priceColor: "text-base-900",
     monthYearTextColor: "text-base-500",
@@ -126,7 +122,6 @@ const colorClasses = {
     cardBg: "bg-base-950",
     borderColor: "border-base-800",
     titleColor: "text-white",
-    subTitleColor: "text-base-400",
     introColor: "text-base-400",
     priceColor: "text-white",
     monthYearTextColor: "text-base-400",
@@ -136,7 +131,6 @@ const colorClasses = {
     cardBg: "bg-base-900",
     borderColor: "border-base-800",
     titleColor: "text-white",
-    subTitleColor: "text-base-200",
     introColor: "text-base-200",
     priceColor: "text-white",
     monthYearTextColor: "text-white/50",
@@ -146,7 +140,6 @@ const colorClasses = {
     cardBg: "bg-accent-500",
     borderColor: "border-white/10",
     titleColor: "text-white",
-    subTitleColor: "text-base-200",
     introColor: "text-base-200",
     priceColor: "text-white",
     monthYearTextColor: "text-accent-100",
@@ -154,23 +147,17 @@ const colorClasses = {
   },
 }[colorMode];
 
-// <-- HERE: give roundingClass a plain `string` type
-let roundingClass: string = roundedDesktop;
-
-if (roundedDesktop === "left") {
-  roundingClass = "rounded-xl lg:rounded-r-none";
-} else if (roundedDesktop === "right") {
-  roundingClass = "rounded-xl lg:rounded-l-none";
-} else if (roundedDesktop === "none") {
-  roundingClass = "rounded-xl lg:rounded-none";
-}
+// Rounding logic:
+// - mobile always rounded-xl
+// - at lg: remove rounding on one side for edges, keep full rounding for center
+let roundingClass: string;
+if (isLeft) roundingClass = "rounded-xl lg:rounded-r-none";
+else if (isRight) roundingClass = "rounded-xl lg:rounded-l-none";
+else roundingClass = "rounded-xl";
 ---
 
 <div
-  class={`relative flex flex-col justify-between h-full p-6 sm:p-4 sm:pb-5 lg:p-6 overflow-hidden
-    ${roundingClass}
-    ${colorClasses.cardBg}
-    ${noShadow ? "" : "shadow-xl shadow-base-500/15"}`}
+  class={`relative flex flex-col justify-between h-full p-6 sm:p-4 sm:pb-5 lg:p-6 overflow-hidden ${roundingClass} ${colorClasses.cardBg} ${noShadow ? "" : "shadow-xl shadow-base-500/15"}`}
 >
   <div>
     <div class="flex flex-col gap-4">
@@ -179,71 +166,76 @@ if (roundedDesktop === "left") {
           <Text
             tag="h3"
             variant="textBase"
-            class={`font-medium ${colorClasses.titleColor}`}
+            class={`font-medium ${colorClasses.titleColor}`}>{tierName}</Text
           >
-            {tierName}
-          </Text>
           <Text
             tag="p"
             variant="textSM"
-            class={`mt-1 ${colorClasses.introColor}`}
+            class={`mt-1 ${colorClasses.introColor}`}>{description}</Text
           >
-            {description}
-          </Text>
         </div>
-        {isPopular && (
-          <Text tag="span" variant="textXS" class={`mt-1 ${colorClasses.introColor}`}>
-            Popular
-          </Text>
-        )}
+        {
+          isPopular && (
+            <Text
+              tag="span"
+              variant="textXS"
+              class={`mt-1 ${colorClasses.introColor}`}
+            >
+              Popular
+            </Text>
+          )
+        }
       </div>
 
       <div class="flex items-center mt-2 gap-x-4">
-        <p class={`text-4xl font-medium sm:text-3xl md:text-4xl ${colorClasses.priceColor}`}>
+        <p
+          class={`text-4xl font-medium sm:text-3xl md:text-4xl ${colorClasses.priceColor}`}
+        >
           <span
             data-monthly={priceMonthly}
             data-annual={priceAnnual}
-            x-text="$el.dataset[duration]"
-          ></span>
+            x-text="$el.dataset[duration]"></span>
         </p>
-
-        <div class={`text-xs font-medium capitalize ${colorClasses.monthYearTextColor}`}>
+        <div
+          class={`ml-auto text-xs font-medium capitalize ${colorClasses.monthYearTextColor}`}
+        >
           <div class="font-semibold">
-            <span x-show="duration === 'monthly'">month</span>
-            <span x-show="duration === 'annual'" style="display: none;">annually</span>
+            <span x-show="duration==='monthly'">month</span><span
+              x-show="duration==='annual'"
+              style="display:none;">annually</span>
           </div>
-          <p class={`${colorClasses.monthYearTextColor}`}>USD + Local taxes</p>
+          <p>USD + Local taxes</p>
         </div>
       </div>
     </div>
 
-    {showFeatures && (
-      <div class={`pt-8 mt-8 border-t ${colorClasses.borderColor}`}>
-        <Text
-          tag="p"
-          variant="textSM"
-          class={`font-medium ${colorClasses.featuresTextColor}`}
-        >
-          {tierName} plan includes:
-        </Text>
-        <ul
-          class={`flex flex-col mt-2 text-sm gap-3 ${colorClasses.featuresTextColor} ${
-            featuresLayout === "grid" ? "grid grid-cols-1 lg:grid-cols-2" : ""
-          }`}
-          role="list"
-        >
-          {features.map((feature) => (
-            <li class="flex items-center gap-1">
-              <Check size="sm" />
-              {feature}
-            </li>
-          ))}
-        </ul>
-      </div>
-    )}
+    {
+      showFeatures && (
+        <div class={`pt-8 mt-8 border-t ${colorClasses.borderColor}`}>
+          <Text
+            tag="p"
+            variant="textSM"
+            class={`font-medium ${colorClasses.featuresTextColor}`}
+          >
+            {tierName} plan includes:
+          </Text>
+          <ul
+            class={`flex flex-col mt-2 text-sm gap-3 ${colorClasses.featuresTextColor} ${featuresLayout === "grid" ? "grid grid-cols-1 lg:grid-cols-2" : ""}`}
+            role="list"
+          >
+            {features.map((feature) => (
+              <li class="flex items-center gap-1">
+                <Check size="sm" />
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
   </div>
 
-  <Button class="w-full mt-4" variant={buttonVariant} size="sm">
-    Get Started
-  </Button>
+  <Button class="w-full mt-4" variant={buttonVariant} size="sm"
+    >Get Started</Button
+  >
 </div>
