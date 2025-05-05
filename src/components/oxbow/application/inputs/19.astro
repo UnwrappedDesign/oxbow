@@ -1,47 +1,15 @@
 ---
-export const description = "Search input with clear button";
-import Text from "@/components/fundations/typography/Text.astro";
+export const description = "Tags input";
+import Input from "@/components/fundations/inputs/Input.astro";
 ---
 
-<div
-  class="flex flex-wrap items-end justify-center max-w-md py-12 mx-auto gap-4"
->
-  <div class="w-full space-y-1" x-data="{ inputValue: '' }">
-    <Text
-      for="input-clear"
-      tag="label"
-      variant="textSM"
-      class="font-medium text-base-500"
-    >
-      Search
-    </Text>
-    <div class="relative">
-      <input
-        type="text"
-        id="input-clear"
-        name="input-clear"
-        x-model="inputValue"
-        placeholder="Enter text"
-        class="block w-full h-10 py-2 pl-4 pr-10 text-sm bg-white border border-transparent rounded-lg appearance-none text-accent-700 duration-300 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
-      />
-      <button
-        x-show="inputValue"
-        @click="inputValue = ''"
-        class="absolute inset-y-0 right-0 flex items-center pr-3 text-base-400 hover:text-base-500"
-      >
-        <svg
-          class="w-5 h-5"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-          ><path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M6 18L18 6M6 6l12 12"></path></svg
-        >
-      </button>
-    </div>
-  </div>
+<div class="max-w-xs mx-auto py-60">
+  <Input
+    as="tags"
+    id="tags-input"
+    name="tags-input"
+    label="Tags"
+    placeholder="Add a tag"
+    initialTags={["Tailwind ", "Astro", "Alpine"]}
+  />
 </div>

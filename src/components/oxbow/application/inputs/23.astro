@@ -1,52 +1,59 @@
 ---
-export const description = "Simple input with label";
+export const description = "Copy to clipboar on click";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
 
-<div
-  class="flex flex-wrap items-end justify-center max-w-md py-12 mx-auto gap-4"
->
-  <div class="w-full space-y-1" x-data="{ count: 0 }">
+<div class="max-w-xs mx-auto py-60">
+  <div class="w-full space-y-1" x-data="{ copied: false }">
     <Text
-      for="input-plus-minus"
+      for="copy-input"
       tag="label"
       variant="textSM"
       class="font-medium text-base-500"
     >
-      Quantity
+      Copy to Clipboard
     </Text>
-    <div class="flex items-center">
-      <button
-        @click="count--"
-        class="px-3 py-2 rounded-l-lg bg-base-100 hover:bg-base-200 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2"
-        >-</button
-      >
+    <div class="relative">
       <input
-        type="number"
-        id="input-plus-minus"
-        name="input-plus-minus"
-        x-model="count"
-        class="w-16 h-10 px-0 text-sm text-center border-t border-b text-accent-700 border-base-200 focus:outline-none focus:ring-0"
+        type="text"
+        id="copy-input"
+        name="copy-input"
+        value="Text to copy"
+        class="block w-full h-10 py-2 pl-4 pr-10 text-sm bg-white border border-transparent rounded-lg appearance-none text-accent-700 duration-300 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
         readonly
       />
       <button
-        @click="count++"
-        class="px-3 py-2 rounded-r-lg bg-base-100 hover:bg-base-200 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2"
-        >+</button
+        @click="navigator.clipboard.writeText('Copy this text'); copied = true; setTimeout(() => copied = false, 2000)"
+        class="absolute inset-y-0 right-0 flex items-center px-3"
       >
+        <svg
+          x-show="!copied"
+          class="size-5 text-base-400"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+          ></path></svg
+        >
+        <svg
+          x-show="copied"
+          class="size-5 text-green-500"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M5 13l4 4L19 7"></path></svg
+        >
+      </button>
     </div>
   </div>
-
-  <style>
-    /* Hide spinner arrows for input type number */
-    input[type="number"]::-webkit-inner-spin-button,
-    input[type="number"]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-
-    input[type="number"] {
-      -moz-appearance: textfield; /* Firefox */
-    }
-  </style>
 </div>

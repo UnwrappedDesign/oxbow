@@ -1,61 +1,33 @@
 ---
-export const description = "Copy to clipboar with right button";
+export const description = "Card details input";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
 
-<div
-  class="flex flex-wrap items-end justify-center max-w-md py-12 mx-auto gap-4"
->
-  <div class="w-full space-y-1" x-data="{ copied: false }">
+<div class="max-w-xs mx-auto py-60">
+  <div x-data="{ cardNumber: '' }" class="space-y-2">
     <Text
-      for="copy-input"
+      for="card-number"
       tag="label"
-      variant="textSM"
+      variant="textBase"
       class="font-medium text-base-500"
     >
-      Copy to Clipboard
+      Card Number
     </Text>
-    <div class="relative">
-      <input
-        type="text"
-        id="copy-input"
-        name="copy-input"
-        value="Text to copy"
-        class="block w-full h-10 py-2 pl-4 pr-10 text-sm bg-white border border-transparent rounded-lg appearance-none text-accent-700 duration-300 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
-        readonly
-      />
-      <button
-        @click="navigator.clipboard.writeText('Copy this text'); copied = true; setTimeout(() => copied = false, 2000)"
-        class="absolute inset-y-0 right-0 flex items-center px-3"
-      >
-        <svg
-          x-show="!copied"
-          class="w-5 h-5 text-base-400"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-          ><path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
-          ></path></svg
-        >
-        <svg
-          x-show="copied"
-          class="w-5 h-5 text-green-500"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-          ><path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M5 13l4 4L19 7"></path></svg
-        >
-      </button>
-    </div>
+    <input
+      type="text"
+      id="card-number"
+      name="card-number"
+      x-model="cardNumber"
+      @input="
+    cardNumber = cardNumber
+      .replace(/\s+/g, '') // Remove all spaces
+      .replace(/[^0-9]/g, '') // Remove non-numeric characters
+      .match(/.{1,4}/g) // Split into groups of 4
+      ?.join(' ') || '' // Join groups with a space
+  "
+      maxlength="19"
+      placeholder="1234 5678 9012 3456"
+      class="block w-full h-10 px-4 py-2 text-sm bg-white border border-transparent rounded-lg appearance-none text-accent-700 duration-300 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+    />
   </div>
 </div>

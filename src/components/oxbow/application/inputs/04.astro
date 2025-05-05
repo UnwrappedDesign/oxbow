@@ -1,30 +1,15 @@
 ---
-export const description = "Input with feedback";
-import Text from "@/components/fundations/typography/Text.astro";
+export const description = "Number input";
+import Input from "@/components/fundations/inputs/Input.astro";
 ---
-
-<div
-  class="flex flex-wrap items-end justify-center max-w-md py-12 mx-auto gap-4"
->
-  <div class="w-full space-y-1" x-data="{ error: true }">
-    <Text
-      for="input-error"
-      tag="label"
-      variant="textSM"
-      class="font-medium text-base-500"
-    >
-      Email
-    </Text>
-    <input
-      type="email"
-      id="input-error"
-      name="input-error"
-      placeholder="Your email"
-      :class="error ? 'ring-red-500' : 'ring-base-200'"
-      class="block w-full h-10 px-4 py-2 text-sm bg-white border border-transparent rounded-lg appearance-none text-accent-700 duration-300 ring-1 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
-    />
-    <p x-show="error" class="text-sm text-red-500">
-      Please enter a valid email address
-    </p>
-  </div>
+<div class="max-w-xs mx-auto py-60">
+  <Input
+  id="number-input"
+  name="number-input"
+  type="number"
+  label="Number Input"
+  placeholder="Enter number"
+  min="0"
+  max="100"
+/>
 </div>

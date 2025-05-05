@@ -1,58 +1,14 @@
 ---
-export const description = "Input with mention";
-import Text from "@/components/fundations/typography/Text.astro";
+export const description = "Search input";
+import Input from "@/components/fundations/inputs/Input.astro";
 ---
 
-<div
-  class="relative flex flex-wrap items-end justify-center max-w-md pt-12 pb-32 mx-auto gap-4"
->
-  <div
-    class="w-full space-y-1"
-    x-data="{ query: '', suggestions: ['Mike_Andreuzza', 'GPerales'], open: false }"
-  >
-    <Text
-      for="input-mention"
-      tag="label"
-      variant="textSM"
-      class="font-medium text-base-500"
-    >
-      Username
-    </Text>
-    <div class="relative">
-      <span
-        class="absolute inset-y-0 left-0 flex items-center pl-3 text-base-400"
-        >@</span
-      >
-      <input
-        type="text"
-        id="input-mention"
-        name="input-mention"
-        placeholder="username"
-        x-model="query"
-        @focus="open = true"
-        @click.away="open = false"
-        class="block w-full h-10 py-2 pl-8 pr-4 text-sm bg-white border border-transparent rounded-lg appearance-none text-accent-700 duration-300 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
-      />
-      <!-- Dropdown -->
-      <div
-        x-show="open"
-        x-transition
-        class="absolute z-10 w-full mt-1 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5"
-      >
-        <ul class="py-1">
-          <template
-            x-for="suggestion in suggestions.filter(s => s.includes(query))"
-            :key="suggestion"
-          >
-            <li
-              x-text="suggestion"
-              @click="query = suggestion; open = false"
-              class="px-4 py-2 text-sm cursor-pointer text-accent-700 hover:bg-accent-50"
-            >
-            </li>
-          </template>
-        </ul>
-      </div>
-    </div>
-  </div>
+<div class="max-w-xs mx-auto py-60">
+  <Input
+    id="search-input"
+    name="search-input"
+    type="search"
+    label="Search Input"
+    placeholder="Search..."
+  />
 </div>

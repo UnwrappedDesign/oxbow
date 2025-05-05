@@ -37,11 +37,14 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 
           <!-- Password Input -->
           <Input
-            id="password-input"
-            name="password-input"
+            id="password"
+            name="password"
             type="password"
-            label="Password Input"
-            placeholder="Enter password"
+            label="Password"
+            placeholder="************"
+            variant="alternative"
+            size="base"
+            passwordToggle={true}
           />
 
           <!-- Number Input -->
@@ -162,6 +165,152 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
               value="hidden-value"
             />
             <p class="mt-1 text-xs text-base-500">Value: "hidden-value"</p>
+          </div>
+        </div>
+        <div class="mt-12">
+          <h2 class="text-lg mb-4">URL Input Examples</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Default URL input with select -->
+            <div>
+              <Input
+                as="url-with-select"
+                id="website-url"
+                name="website-url"
+                label="Website URL"
+                placeholder="example.com"
+                urlOptions={["https://", "http://", "ftp://", "mailto:"]}
+                defaultUrlOption="https://"
+              />
+            </div>
+
+            <!-- With error -->
+            <div>
+              <Input
+                as="url-with-select"
+                id="error-url"
+                name="error-url"
+                label="Website URL with Error"
+                placeholder="example.com"
+                error="Please enter a valid URL"
+              />
+            </div>
+
+            <!-- Different variant -->
+            <div>
+              <Input
+                as="url-with-select"
+                id="transparent-url"
+                name="transparent-url"
+                label="Transparent URL Input"
+                variant="transparent-light"
+                placeholder="example.com"
+                urlOptions={["https://", "http://"]}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12">
+          <h2 class="text-lg mb-4">Tag Input Example</h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Default tag input -->
+            <div>
+              <Input
+                as="tags"
+                id="tags-input"
+                name="tags-input"
+                label="Tags"
+                placeholder="Add a tag"
+                initialTags={["React", "Astro", "Alpine.js"]}
+              />
+            </div>
+
+            <!-- With error -->
+            <div>
+              <Input
+                as="tags"
+                id="error-tags"
+                name="error-tags"
+                label="Tags with Error"
+                placeholder="Add a tag"
+                error="Please add at least one tag"
+                initialTags={[]}
+                
+              />
+            </div>
+
+            <!-- Different variant -->
+            <div>
+              <Input
+                as="tags"
+                id="transparent-tags"
+                name="transparent-tags"
+                label="Transparent Tags"
+                variant="transparent-light"
+                placeholder="Add a tag"
+                initialTags={["UI", "UX", "Design"]}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12">
+          <h2 class="mb-4 text-lg">Mention Input Example</h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Default mention input -->
+            <div>
+              <Input
+                as="mention"
+                id="username-mention"
+                name="username-mention"
+                label="Username Mention"
+                placeholder="Type to mention someone"
+                suggestions={[
+                  "Mike_Andreuzza",
+                  "GPerales",
+                  "JohnDoe",
+                  "JaneSmith",
+                ]}
+              />
+            </div>
+
+            <!-- Dark variant -->
+            <div class="p-4 mb-6 rounded-lg bg-base-900">
+              <Input
+                as="mention"
+                id="dark-mention"
+                name="dark-mention"
+                label="Dark Mention"
+                variant="dark"
+                placeholder="Type to mention someone"
+                suggestions={[
+                  "Mike_Andreuzza",
+                  "GPerales",
+                  "JohnDoe",
+                  "JaneSmith",
+                ]}
+              />
+            </div>
+
+            <!-- With error -->
+            <div>
+              <Input
+                as="mention"
+                id="error-mention"
+                name="error-mention"
+                label="With Error"
+                placeholder="Type to mention someone"
+                error="Please select a valid username"
+                suggestions={[
+                  "Mike_Andreuzza",
+                  "GPerales",
+                  "JohnDoe",
+                  "JaneSmith",
+                ]}
+              />
+            </div>
           </div>
         </div>
       </Wrapper>
