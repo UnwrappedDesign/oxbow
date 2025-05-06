@@ -1,0 +1,413 @@
+---
+// Icons
+import X from "@/components/fundations/icons/X.astro";
+import Eye from "@/components/fundations/icons/Eye.astro";
+import Mail from "@/components/fundations/icons/Mail.astro";
+import Lock from "@/components/fundations/icons/Lock.astro";
+import EyeOff from "@/components/fundations/icons/EyeOff.astro";
+import Search from "@/components/fundations/icons/Search.astro";
+import Calendar from "@/components/fundations/icons/Calendar.astro";
+import CreditCard from "@/components/fundations/icons/CreditCard.astro";
+const {
+  type = "text",
+  id,
+  name,
+  label,
+  hint,
+  error,
+  isGrouped = false,
+  disabled = false,
+  variant = "default",
+  size = "base",
+  prefix,
+  class: className = "",
+  showLeftIcon = true,
+  showRightIcon = true,
+  passwordToggle = false,
+  iconPosition = "left",
+  formatCreditCard = false,
+  showPasswordStrength = false,
+  // Range specific props
+  isRange = false,
+  fromName,
+  fromId,
+  fromPlaceholder = "From",
+  toName,
+  toId,
+  toPlaceholder = "To",
+  noRounded = false,
+  noRoundedLeft = false,
+  noRoundedRight = false,
+  noRoundedTop = false,
+  noRoundedBottom = false,
+  noRoundedTopLeft = false,
+  noRoundedTopRight = false,
+  noRoundedBottomLeft = false,
+  noRoundedBottomRight = false,
+  isSquareSize = false,
+  ...rest
+} = Astro.props;
+const variantClasses = {
+  default: [
+    "bg-white", "border", "border-transparent", "text-base-500", "ring-1", "ring-base-200",
+    "placeholder-base-400", "focus:border-base-300", "focus:outline-none", "focus:ring-accent-500",
+    "focus:ring-offset-2", "focus:ring-2", "shadow-sm"
+  ],
+  dark: [
+    "bg-base-800", "text-base-100", "border-base-700", "ring-1", "ring-base-700",
+    "placeholder-base-400", "focus:ring-base-500", "focus:ring-offset-2",
+    "focus:border-base-600", "focus:outline-none"
+  ]
+};
+const sizeClasses = {
+  xxs: ["h-7", "px-3", "py-1.5", "text-xs", "rounded-md"],
+  xs: ["h-8", "px-4", "py-2", "text-xs", "rounded-md"],
+  sm: ["h-9", "px-4", "py-2", "text-xs", "rounded-md"],
+  base: ["h-10", "px-4", "py-2", "text-sm", "rounded-md"],
+  md: ["h-11", "px-4", "py-2", "text-sm", "rounded-md"],
+  lg: ["h-12", "px-4", "py-2.5", "text-base", "rounded-md"],
+  xl: ["h-14", "px-5", "py-3", "text-lg", "rounded-md"]
+};
+const squareSizeClasses = {
+  xxs: ["w-7", "h-7"],
+  xs: ["w-8", "h-8"],
+  sm: ["w-9", "h-9"],
+  base: ["w-10", "h-10"],
+  md: ["w-11", "h-11"],
+  lg: ["w-12", "h-12"],
+  xl: ["w-14", "h-14"]
+};
+const disabledClass = disabled
+  ? ["opacity-50", "cursor-not-allowed", "bg-base-100", "pointer-events-none"]
+  : [];
+const isPassword = type === "password" && passwordToggle;
+const isSearch = type === "search";
+const isEmail = type === "email";
+const isCreditCard = type === "text" && formatCreditCard;
+const isCVV = type === "text" && name?.toLowerCase().includes("cvv");
+const isExpiry = type === "text" && /exp(ir(y)?|date)/i.test(name || "");
+const hasLeftIcon =
+  showLeftIcon &&
+  ((isSearch && iconPosition === "left") || isEmail || isCreditCard || isExpiry);
+const hasRightIcon =
+  showRightIcon &&
+  ((isSearch && iconPosition === "right") || isPassword || isCVV);
+const inputPaddingClasses = [];
+if (prefix) inputPaddingClasses.push("pl-20");
+else if (hasLeftIcon) inputPaddingClasses.push("pl-10");
+const _noTopLeft = noRounded || noRoundedTop || noRoundedLeft || noRoundedTopLeft;
+const _noTopRight = noRounded || noRoundedTop || noRoundedRight || noRoundedTopRight;
+const _noBottomLeft = noRounded || noRoundedBottom || noRoundedLeft || noRoundedBottomLeft;
+const _noBottomRight = noRounded || noRoundedBottom || noRoundedRight || noRoundedBottomRight;
+let roundedClass = "rounded-md";
+if (_noTopLeft && _noTopRight && _noBottomLeft && _noBottomRight) {
+  roundedClass = "rounded-none";
+} else {
+  const parts = [];
+  if (!_noTopLeft) parts.push("rounded-tl-md");
+  if (!_noTopRight) parts.push("rounded-tr-md");
+  if (!_noBottomLeft) parts.push("rounded-bl-md");
+  if (!_noBottomRight) parts.push("rounded-br-md");
+  if (parts.length) roundedClass = parts.join(" ");
+}
+let inputClasses = [
+  ...(isSquareSize ? [] : ["w-full"]),
+  "block", "transition", "duration-300", "ease-in-out", "leading-tight", "align-middle",
+  "focus:z-10",
+  ...inputPaddingClasses,
+  ...(isSquareSize ? squareSizeClasses[size] : sizeClasses[size]).filter(c => !c.startsWith("rounded")),
+  ...disabledClass,
+  roundedClass,
+  ...variantClasses[variant],
+  ...className.split(" ")
+];
+const errorTextColor = variant === "dark" ? "text-red-400" : "text-red-600";
+const creditCardScript = `...`;
+const cvvScript = `...`;
+const expiryScript = `...`;
+// For range input we need a separate data attribute
+const xDataAttr = isRange 
+  ? "{ fromValue: '', toValue: '' }" 
+  : "{ value: '', showPassword: false }";
+// Modified range input classes with custom rounded corners
+const rangeFromClasses = [
+  ...inputClasses,
+  "rounded-r-none"
+].filter(c => !c.startsWith("rounded-md"));
+const rangeToClasses = [
+  ...inputClasses,
+  "rounded-l-none",
+  "border-l-0"
+].filter(c => !c.startsWith("rounded-md"));
+---
+{isRange && (
+  <div class="w-full">
+    <div class={`flex justify-between items-baseline ${isGrouped ? "" : "mb-1"}`}>
+      <label
+        for={fromId || `${id}-from`}
+        class={isGrouped
+          ? "sr-only"
+          : label
+            ? `font-medium text-base-500 ${
+                size === "xs" || size === "sm"
+                  ? "text-xs"
+                  : size === "base"
+                    ? "text-sm"
+                    : size === "lg"
+                      ? "text-base"
+                      : "text-lg"
+              }`
+            : "sr-only"}
+      >
+        {label || name || id || "Range"}
+      </label>
+      {hint && (
+        <span class={`text-base-400 ${
+          size === "xs" || size === "sm"
+            ? "text-xs"
+            : size === "base"
+              ? "text-sm"
+              : size === "lg"
+                ? "text-base"
+                : "text-lg"
+        }`}>
+          {hint}
+        </span>
+      )}
+    </div>
+    <div class="flex w-full gap-2" x-data={xDataAttr}>
+      <div class="relative z-0 focus-within:z-10 flex-1">
+        <input
+          id={fromId || `${id}-from`}
+          name={fromName || `${name}-from`}
+          type="text"
+      
+          placeholder={fromPlaceholder}
+          disabled={disabled ? true : undefined}
+          x-model="fromValue"
+          class:list={rangeFromClasses}
+          aria-required={rest.required ? "true" : undefined}
+          aria-invalid={error ? "true" : undefined}
+          aria-describedby={error ? `${id}-error` : undefined}
+          {...rest}
+        />
+        <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+          <button
+            x-show="fromValue"
+            type="button"
+            @click="fromValue = ''"
+            class="text-base-400 hover:text-base-600 focus:outline-none"
+            aria-label="Clear input"
+          >
+            <X size="sm" class="text-base-500" />
+          </button>
+        </div>
+      </div>
+      <div class="relative z-0 focus-within:z-10 flex-1">
+        <input
+          id={toId || `${id}-to`}
+          name={toName || `${name}-to`}
+          type="text"
+          placeholder={toPlaceholder}
+          disabled={disabled ? true : undefined}
+          x-model="toValue"
+          class:list={rangeToClasses}
+          aria-required={rest.required ? "true" : undefined}
+          aria-invalid={error ? "true" : undefined}
+          aria-describedby={error ? `${id}-error` : undefined}
+          {...rest}
+        />
+        <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+          <button
+            x-show="toValue"
+            type="button"
+            @click="toValue = ''"
+            class="text-base-400 hover:text-base-600 focus:outline-none"
+            aria-label="Clear input"
+          >
+            <X size="sm" class="text-base-500" />
+          </button>
+        </div>
+      </div>
+    </div>
+    {error && (
+      <p id={`${id}-error`} class={`mt-1 text-sm ${errorTextColor}`}>
+        {error}
+      </p>
+    )}
+  </div>
+)}
+{type === "otp" && (
+  <div class="w-full" x-data="{
+    value: '',
+    isFocused: false,
+    get digits() {
+      return this.value.padEnd(6).split('').slice(0, 6);
+    },
+    onInput(e) {
+      this.value = e.target.value.replace(/\\D/g, '').slice(0, 6);
+    }
+  }">
+    <div class={`flex justify-between items-baseline ${isGrouped ? '' : 'mb-1'}`}>
+      <label for={id} class={
+        isGrouped ? "sr-only" : label
+          ? `font-medium text-base-500 ${
+              size === "xs" || size === "sm"
+                ? "text-xs"
+                : size === "base"
+                  ? "text-sm"
+                  : size === "lg"
+                    ? "text-base"
+                    : "text-lg"
+            }` : "sr-only"
+      }>
+        {label || name || id || "Input"}
+      </label>
+      {hint && (
+        <span class={`text-base-400 ${
+          size === "xs" || size === "sm"
+            ? "text-xs"
+            : size === "base"
+              ? "text-sm"
+              : size === "lg"
+                ? "text-base"
+                : "text-lg"
+        }`}>
+          {hint}
+        </span>
+      )}
+    </div>
+    <div class="flex items-center gap-2 relative">
+      <template x-for="(digit, i) in digits" :key="i">
+        <div :class="[
+          'size-10 rounded-md text-center font-medium text-lg flex items-center justify-center transition-all',
+          'border bg-white text-base-500',
+          isFocused && value.length === i ? 'border-accent-500 ring-2 ring-accent-500' : 'border-base-300'
+        ]">
+          <span x-text="digit"></span>
+        </div>
+      </template>
+      <input
+        id={id}
+        name={name}
+        type="text"
+        inputmode="numeric"
+        autocomplete="one-time-code"
+        maxlength="6"
+        x-model="value"
+        x-on:input="onInput"
+        @focus="isFocused = true"
+        @blur="isFocused = false"
+        class="absolute inset-0 w-full h-full opacity-0 z-10 cursor-text"
+        aria-label={label || name || id || "OTP input"}
+      />
+    </div>
+    {error && (
+      <p id={`${id}-error`} class={`mt-1 text-sm ${errorTextColor}`}>
+        {error}
+      </p>
+    )}
+  </div>
+)}
+{type !== "otp" && !isRange && (
+  <div class="w-full">
+    <div class={`flex justify-between items-baseline ${isGrouped ? "" : "mb-1"}`}>
+      <label
+        for={id}
+        class={isGrouped
+          ? "sr-only"
+          : label
+            ? `font-medium text-base-500 ${
+                size === "xs" || size === "sm"
+                  ? "text-xs"
+                  : size === "base"
+                    ? "text-sm"
+                    : size === "lg"
+                      ? "text-base"
+                      : "text-lg"
+              }`
+            : "sr-only"}
+      >
+        {label || name || id || "Input"}
+      </label>
+      {hint && (
+        <span class={`text-base-400 ${
+          size === "xs" || size === "sm"
+            ? "text-xs"
+            : size === "base"
+              ? "text-sm"
+              : size === "lg"
+                ? "text-base"
+                : "text-lg"
+        }`}>
+          {hint}
+        </span>
+      )}
+    </div>
+    <div class="relative z-0 focus-within:z-10" x-data={xDataAttr}>
+      {prefix && (
+        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-base-400 select-none">
+          {prefix}
+        </span>
+      )}
+      {hasLeftIcon && (
+        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+          {isSearch && iconPosition === "left" && <Search size="sm" class="text-base-500" />}
+          {isEmail && <Mail size="sm" class="text-base-500" />}
+          {isCreditCard && <CreditCard size="sm" class="text-base-500" />}
+          {isExpiry && <Calendar size="sm" class="text-base-500" />}
+        </div>
+      )}
+      <input
+        {...rest}
+        id={id}
+        name={name}
+        type={type}
+        disabled={disabled ? true : undefined}
+        x-model="value"
+        x-bind:type={isPassword ? "showPassword ? 'text' : 'password'" : undefined}
+        class:list={inputClasses}
+        aria-required={rest.required ? "true" : undefined}
+        aria-invalid={error ? "true" : undefined}
+        aria-describedby={error ? `${id}-error` : undefined}
+        maxlength={isCreditCard ? "19" : isCVV ? "4" : isExpiry ? "5" : undefined}
+        inputmode={isCreditCard || isCVV || isExpiry ? "numeric" : isEmail ? "email" : undefined}
+      />
+      <div class="absolute inset-y-0 right-0 flex items-center pr-3 gap-2">
+        {isSearch && iconPosition === "right" && <Search size="sm" class="pointer-events-none text-base-500" />}
+        {isPassword && (
+          <button
+            type="button"
+            @click="showPassword = !showPassword"
+            class="text-base-500 focus:outline-none"
+            tabindex="-1"
+            aria-label="Toggle password visibility"
+          >
+            <Eye size="sm" x-show="!showPassword" />
+            <EyeOff size="sm" x-show="showPassword" />
+          </button>
+        )}
+        {isCVV && <Lock size="sm" class="pointer-events-none text-base-500" />}
+        {!isSquareSize && (
+          <button
+            x-show="value"
+            type="button"
+            @click="value = ''"
+            class="text-base-400 hover:text-base-600 focus:outline-none"
+            aria-label="Clear input"
+          >
+            <X size="sm" class="text-base-500" />
+          </button>
+        )}
+      </div>
+    </div>
+    {error && (
+      <p id={`${id}-error`} class={`mt-1 text-sm ${errorTextColor}`}>
+        {error}
+      </p>
+    )}
+  </div>
+)}
+{isCreditCard && <script set:html={creditCardScript} />}
+{isCVV && <script set:html={cvvScript} />}
+{isExpiry && <script set:html={expiryScript} />}

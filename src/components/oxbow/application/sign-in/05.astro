@@ -6,9 +6,10 @@ import { Image } from "astro:assets";
 import Placeholder from "@/images/gradients/2.jpeg";
 // Fundations
 import Logo from "@/components/assets/Logo.astro";
-import Text from "@/components/fundations/typography/Text.astro";
 import Input from "@/components/fundations/inputs/Input.astro";
+import Text from "@/components/fundations/typography/Text.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
+import TextInput from "@/components/fundations/inputs/TextInput.astro";
 // Icons
 import AppleColor from "@/components/fundations/icons/AppleColor.astro";
 import GoogleColor from "@/components/fundations/icons/GoogleColor.astro";
@@ -39,24 +40,24 @@ import GoogleColor from "@/components/fundations/icons/GoogleColor.astro";
         </Text>
       </div>
       <form class="mt-10 space-y-4">
-        <Input
+        <TextInput
           id="email"
           name="email"
+          label="Email Address"
           type="email"
-          label="Email address"
-          placeholder="email@example.com"
           variant="default"
           size="base"
+          placeholder="you@example.com"
         />
-        <Input
+        <TextInput
           id="password"
           name="password"
-          type="password"
           label="Password"
-          placeholder="************"
-          variant="alternative"
-          size="base"
+          type="password"
           passwordToggle={true}
+          size="base"
+          placeholder="••••••••"
+          required
         />
         <Input
           as="checkbox"

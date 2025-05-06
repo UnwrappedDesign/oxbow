@@ -18,6 +18,15 @@ interface Props {
   href?: string;
   target?: string;
   rel?: string;
+  noRounded?: boolean;
+  noRoundedLeft?: boolean;
+  noRoundedRight?: boolean;
+  noRoundedTop?: boolean;
+  noRoundedBottom?: boolean;
+  noRoundedTopLeft?: boolean;
+  noRoundedTopRight?: boolean;
+  noRoundedBottomLeft?: boolean;
+  noRoundedBottomRight?: boolean;
   [key: string]: any;
 }
 
@@ -32,14 +41,45 @@ const {
   href,
   target,
   rel,
+  noRounded = false,
+  noRoundedLeft = false,
+  noRoundedRight = false,
+  noRoundedTop = false,
+  noRoundedBottom = false,
+  noRoundedTopLeft = false,
+  noRoundedTopRight = false,
+  noRoundedBottomLeft = false,
+  noRoundedBottomRight = false,
   ...rest
 } = Astro.props as Props;
+
+const _noTopLeft =
+  noRounded || noRoundedTop || noRoundedLeft || noRoundedTopLeft;
+const _noTopRight =
+  noRounded || noRoundedTop || noRoundedRight || noRoundedTopRight;
+const _noBottomLeft =
+  noRounded || noRoundedBottom || noRoundedLeft || noRoundedBottomLeft;
+const _noBottomRight =
+  noRounded || noRoundedBottom || noRoundedRight || noRoundedBottomRight;
+
+let roundedClass = "rounded-md";
+if (_noTopLeft && _noTopRight && _noBottomLeft && _noBottomRight) {
+  roundedClass = "rounded-none";
+} else {
+  const parts = [];
+  if (!_noTopLeft) parts.push("rounded-tl-md");
+  if (!_noTopRight) parts.push("rounded-tr-md");
+  if (!_noBottomLeft) parts.push("rounded-bl-md");
+  if (!_noBottomRight) parts.push("rounded-br-md");
+  if (parts.length) roundedClass = parts.join(" ");
+}
 
 const isLink = typeof href === "string";
 const finalHref = isLink ? href : undefined;
 const finalTarget = target || undefined;
 const finalRel = finalTarget === "_blank" ? rel || "noopener noreferrer" : rel;
 const isDisabled = loading || rest.disabled;
+const tabIndexValue: string | undefined = isDisabled ? "-1" : undefined;
 
 const defaultClass = [
   "text-white",
@@ -103,26 +143,26 @@ const linkClass = [
   "hover:underline",
   "focus:underline",
   "focus:outline-none",
-  "p-0", // remove padding
-  "h-auto", // allow height to match text
-  "rounded-none", // remove button shape
+  "p-0",
+  "h-auto",
+  "rounded-none",
 ];
 
-const xxs = ["h-7", "px-3", "py-1.5", "text-xs", "rounded"];
-const xs = ["h-8", "px-4", "py-2", "text-xs", "rounded-md"];
-const sm = ["h-9", "px-4", "py-2", "text-sm", "rounded-md"];
-const base = ["h-10", "px-6", "py-3", "text-base", "rounded-md"];
-const md = ["h-11", "px-6", "py-3", "text-base", "rounded-md"];
-const lg = ["h-12", "px-6", "py-3", "text-lg", "rounded-md"];
-const xl = ["h-14", "px-6", "py-3", "text-xl", "rounded-md"];
+const xxs = ["h-7", "px-3", "py-1.5", "text-xs"];
+const xs = ["h-8", "px-4", "py-2", "text-xs"];
+const sm = ["h-9", "px-4", "py-2", "text-sm"];
+const base = ["h-10", "px-6", "py-3", "text-base"];
+const md = ["h-11", "px-6", "py-3", "text-base"];
+const lg = ["h-12", "px-6", "py-3", "text-lg"];
+const xl = ["h-14", "px-6", "py-3", "text-xl"];
 
-const iconXXS = ["w-7", "h-7", "p-2", "rounded"];
-const iconXS = ["w-8", "h-8", "p-2", "rounded-md"];
-const iconSM = ["w-9", "h-9", "p-2", "rounded-md"];
-const iconBase = ["w-10", "h-10", "p-2", "rounded-md"];
-const iconMD = ["w-11", "h-11", "p-2", "rounded-md"];
-const iconLG = ["w-12", "h-12", "p-3", "rounded-md"];
-const iconXL = ["w-14", "h-14", "p-3", "rounded-md"];
+const iconXXS = ["w-7", "h-7", "p-2"];
+const iconXS = ["w-8", "h-8", "p-2"];
+const iconSM = ["w-9", "h-9", "p-2"];
+const iconBase = ["w-10", "h-10", "p-2"];
+const iconMD = ["w-11", "h-11", "p-2"];
+const iconLG = ["w-12", "h-12", "p-3"];
+const iconXL = ["w-14", "h-14", "p-3"];
 
 const gapXXS = ["gap-2"];
 const gapXS = ["gap-2"];
@@ -208,9 +248,11 @@ const baseClasses = [
   "transition-colors",
   "focus:outline-2",
   "focus:outline-offset-2",
+  "focus:z-10",
   variantClass,
   sizeClass,
   gapClass,
+  roundedClass,
   isDisabled && disabledClass,
   loading && loadingClass,
   fullWidth && "w-full",
@@ -235,9 +277,8 @@ const spinnerHTML = `
       rel={finalRel}
       aria-busy={loading}
       aria-disabled={isDisabled}
-      tabIndex={isDisabled ? "-1" : undefined}
       role="link"
-      class:list={[...baseClasses, ...gapClass]}
+      class:list={baseClasses}
       {...rest}
     >
       {loading && <Fragment set:html={spinnerHTML} />}
@@ -250,7 +291,7 @@ const spinnerHTML = `
       )}
     </a>
   ) : (
-    <button class:list={[...baseClasses, ...gapClass]} {...rest}>
+    <button class:list={baseClasses} {...rest}>
       {loading && <Fragment set:html={spinnerHTML} />}
       {!loading && (
         <>

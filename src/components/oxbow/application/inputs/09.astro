@@ -1,8 +1,77 @@
 ---
-export const description = "Date input";
-import Input from "@/components/fundations/inputs/Input.astro";
+export const description = "Tags input";
 ---
-
-<div class="max-w-xs mx-auto py-60">
-  <Input id="date-input" name="date-input" type="date" label="Date Input" />
-</div>
+<div class="flex justify-center w-full max-w-sm px-12 py-48 mx-auto">
+    <div class="w-full">
+      <label
+        for="tags-input"
+        class="mb-1 block font-medium text-sm text-base-500"
+      >
+        Tags
+      </label>
+      <div
+        x-data="{ 
+            tags: [&#34;Tailwind &#34;,&#34;Astro&#34;,&#34;Alpine&#34;], 
+            newTag: '',
+            addTag() {
+              if (this.newTag.trim() !== '' &#38;&#38; !this.tags.includes(this.newTag.trim())) {
+                this.tags.push(this.newTag.trim())
+                this.newTag = ''
+              }
+            },
+            removeTag(index) {
+              this.tags.splice(index, 1)
+            }
+          }"
+        class="space-y-2"
+      >
+        <input
+          type="text"
+          id="tags-input"
+          name="tags-input"
+          placeholder="Add a tag"
+          x-model="newTag"
+          @keydown.enter.prevent="addTag()"
+          class="block w-full appearance-none transition duration-300 ease-in-out h-10 px-4 py-2 text-sm rounded-md bg-white border border-transparent text-base-500 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2"
+          placeholder="Add a tag"
+        />
+        <div class="flex flex-wrap gap-2 mt-2">
+          <template x-for="(tag, index) in tags" :key="index">
+            <span
+              class="inline-flex items-center font-medium relative text-base-700 bg-base-50 px-2.5 py-1 text-xs rounded-md flex items-center gap-1"
+            >
+              <span x-text="tag"></span>
+              <button
+                @click="removeTag(index)"
+                type="button"
+                class="inline-flex items-center justify-center size-4 rounded-full hover:bg-base-200 focus:outline-none focus:ring-2 focus:ring-accent-500"
+                aria-label="Remove tag"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-wave-x size-3"
+                  slot="left-icon"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M18 6l-12 12"></path>
+                  <path d="M6 6l12 12"></path>
+                </svg>
+              </button>
+            </span>
+          </template>
+        </div>
+        <p class="text-xs text-base-500">Press Enter to add a tag</p>
+        <input
+          type="hidden"
+          name="tags-input-values"
+          x-bind:value="JSON.stringify(tags)"
+        />
+      </div>
+    </div>
+  </div> 

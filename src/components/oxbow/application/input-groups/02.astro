@@ -1,0 +1,49 @@
+---
+export const description = "Block input group";
+import TextInput from "@/components/fundations/inputs/TextInput.astro";
+---
+
+<div
+  class="flex flex-col justify-center w-full max-w-md px-12 py-48 mx-auto gap-12"
+>
+  <div class="grid grid-cols-2">
+    <div class="col-span-full">
+      <TextInput
+        id="creditCard"
+        name="creditCard"
+        label="Credit Card Number"
+        type="text"
+        formatCreditCard={true}
+        variant="default"
+        size="base"
+        noRoundedBottom
+        placeholder="XXXX XXXX XXXX XXXX"
+        isGrouped={true}
+      />
+    </div>
+    <TextInput
+      id="expiry"
+      name="expiry"
+      label="Expiry Date"
+      type="text"
+      variant="default"
+      size="base"
+      noRoundedTop={true}
+      noRoundedBottomRight={true}
+      placeholder="MM/YY"
+      isGrouped={true}
+    />
+    <TextInput
+      id="cvv"
+      name="cvv"
+      label="CVV"
+      type="text"
+      variant="default"
+      size="base"
+      noRoundedTop={true}
+      noRoundedBottomLeft={true}
+      placeholder="123"
+      isGrouped={true}
+    />
+  </div>
+</div>

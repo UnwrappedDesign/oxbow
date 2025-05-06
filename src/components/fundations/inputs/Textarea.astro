@@ -1,0 +1,83 @@
+---
+const {
+  id,
+  name,
+  label,
+  error,
+  variant = "default",
+  size = "base",
+  class: className = "",
+  ...rest
+} = Astro.props;
+
+const variantClasses = {
+  default: [
+    "bg-white",
+    "border",
+    "text-base-500",
+    "ring-1",
+    "ring-base-200",
+    "placeholder-base-400",
+    "focus:border-base-300",
+    "focus:outline-none",
+    "focus:ring-accent-500",
+    "focus:ring-offset-2",
+    "focus:ring-2",
+  ],
+  dark: [
+    "bg-base-800",
+    "text-base-100",
+    "border-base-700",
+    "ring-1",
+    "ring-base-700",
+    "placeholder-base-400",
+    "focus:ring-base-500",
+    "focus:ring-offset-2",
+    "focus:border-base-600",
+    "focus:outline-none",
+  ],
+};
+
+const sizeClasses = {
+  base: ["px-4", "py-3", "text-sm", "rounded-md"],
+};
+
+let textareaClasses = [
+  "block",
+  "w-full",
+  "resize-y",
+  "transition",
+  "duration-300",
+  "ease-in-out",
+  ...sizeClasses[size],
+  ...variantClasses[variant],
+  ...className.split(" "),
+];
+
+const errorTextColor = variant === "dark" ? "text-red-400" : "text-red-600";
+---
+
+<div class="w-full">
+  {
+    label && (
+      <label for={id} class="block mb-1 text-sm font-medium text-base-500">
+        {label}
+      </label>
+    )
+  }
+  <textarea
+    {...rest}
+    id={id}
+    name={name}
+    rows={rest.rows || 4}
+    class:list={textareaClasses}
+    aria-invalid={!!error}
+    aria-describedby={error ? `${id}-error` : undefined}></textarea>
+  {
+    error && (
+      <p id={`${id}-error`} class={`mt-1 text-sm ${errorTextColor}`}>
+        {error}
+      </p>
+    )
+  }
+</div>

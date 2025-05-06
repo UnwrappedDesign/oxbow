@@ -1,21 +1,18 @@
 ---
 export const description =
   "Split-screen signup: hype on the left, email + password slog on the right.";
-
 // Assets
 import { Image } from "astro:assets";
 import A1 from "@/images/avatars/avatar1.jpeg";
 import Placeholder from "@/images/gradients/3.jpeg";
-
 // Fundations
 import Logo from "@/components/assets/Logo.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-import Input from "@/components/fundations/inputs/Input.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
+import TextInput from "@/components/fundations/inputs/TextInput.astro";
 // Icons
 import Check from "@/components/fundations/icons/Check.astro";
 ---
-
 <div class="flex h-screen">
   <div class="flex items-center justify-center w-full p-8 bg-white lg:w-2/3">
     <div class="w-full max-w-md py-24 lg:py-32">
@@ -99,34 +96,34 @@ radioGroupOptions: [
             </div>
           </template>
         </div>
-        <Input
+        <TextInput
           id="email"
           name="email"
+          label="Email Address"
           type="email"
-          label="Email address"
-          placeholder="email@example.com"
           variant="default"
           size="base"
+          placeholder="you@example.com"
         />
-        <Input
+        <TextInput
           id="password"
           name="password"
-          type="password"
           label="Password"
-          placeholder="************"
-          variant="alternative"
-          size="base"
-          passwordToggle={true}
-        />
-        <Input
-          id="confirm-password"
-          name="confirm-password"
           type="password"
-          label="Confirm password"
-          placeholder="************"
-          variant="alternative"
-          size="base"
           passwordToggle={true}
+          size="base"
+          placeholder="••••••••"
+          required
+        />
+        <TextInput
+          id="confirm-password"
+          name="confirmPassword"
+          label="Confirm Password"
+          type="password"
+          passwordToggle={true}
+          size="base"
+          placeholder="••••••••"
+          required
         />
         <Text tag="p" variant="textXS" class="font-medium text-base-500">
           By creating an account, you agree to our

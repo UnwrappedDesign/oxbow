@@ -1,13 +1,42 @@
 ---
 export const description = "Email input";
-import Input from "@/components/fundations/inputs/Input.astro";
+import TextInput from "@/components/fundations/inputs/TextInput.astro";
 ---
-<div class="max-w-xs mx-auto py-60">
-  <Input
-  id="email-input"
-  name="email-input"
-  type="email"
-  label="Email Input"
-  placeholder="Enter email"
-/>
+
+<div class="flex justify-center w-full max-w-4xl px-12 py-48 mx-auto">
+    <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <TextInput
+      id="email"
+      name="email"
+      label="Email address input with icon"
+      type="email"
+      variant="default"
+      size="base"
+      placeholder="you@example.com"
+      required
+    />
+     <TextInput
+      id="email"
+      name="email"
+      label="Email address input without icon"
+      type="email"
+      variant="default"
+      size="base"
+      placeholder="you@example.com"
+      required
+      showLeftIcon={false}
+    />
+    <TextInput
+      id="email"
+      name="email"
+      label="Email address input hint"
+      type="email"
+      hint="Optional"
+      variant="default"
+      size="base"
+      placeholder="you@example.com"
+      required
+      showLeftIcon={false}
+    />
+  </div>
 </div>
