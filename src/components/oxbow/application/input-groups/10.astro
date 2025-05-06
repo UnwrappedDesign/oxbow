@@ -1,0 +1,45 @@
+---
+export const description = "Value input group";
+import TextInput from "@/components/fundations/inputs/TextInput.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+// Icons
+import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
+import ChevronUp from "@/components/fundations/icons/ChevronUp.astro";
+---
+
+<div
+  class="flex flex-col justify-center w-full max-w-sm px-12 py-48 mx-auto gap-12"
+>
+  <div class="w-full space-y-1" x-data="{ value: 50, min: 0, max: 100 }">
+    <label class="text-sm font-medium text-base-500"> Value </label>
+    <div class="flex items-center">
+      <Button
+        @click="value = Math.max(min, value - 1)"
+        variant="alternative"
+        onlyIconSize="sm"
+        noRoundedRight
+      >
+        <ChevronDown slot="left-icon" size="sm" />
+      </Button>
+      <TextInput
+        size="sm"
+        isGrouped={true}
+        noRounded={true}
+        type="number"
+        id="input-chevrons"
+        name="input-chevrons"
+        x-model="value"
+        readonly
+      />
+      <Button
+        @click="value = Math.min(max, value + 1)"
+        variant="alternative"
+        onlyIconSize="sm"
+        no
+        noRoundedLeft
+      >
+        <ChevronUp slot="right-icon" size="sm" />
+      </Button>
+    </div>
+  </div>
+</div>

@@ -1,16 +1,27 @@
 ---
-export const description = "Read only input";
-import Input from "@/components/fundations/inputs/Input.astro";
+export const description = "Password input";
+import TextInput from "@/components/fundations/inputs/TextInput.astro";
 ---
-<div class="max-w-xs mx-auto py-60">
-  <Input
-    id="password"
-    name="password"
-    type="password"
-    label="Password"
-    placeholder="************"
-    variant="alternative"
-    size="base"
-    passwordToggle={true}
-  />
+
+<div class="flex justify-center w-full max-w-xl px-12 py-48 mx-auto">
+  <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+    <TextInput
+      id="password"
+      name="password"
+      label="Password"
+      type="password"
+      passwordToggle={true}
+      size="base"
+      placeholder="••••••••"
+      required
+    />
+
+    <TextInput
+      type="password"
+      name="password"
+      label="Password input without right icon"
+      showRightIcon={false}
+      placeholder="••••••••"
+    />
+  </div>
 </div>

@@ -1,0 +1,386 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import TextInput from "@/components/fundations/inputs/TextInput.astro";
+---
+
+<BaseLayout>
+  <section>
+    <Wrapper
+      variant="standard"
+      class="py-12 bg-white lg:border-x lg:border-base-200"
+    >
+      <Text tag="h1" variant="textBase" class="font-medium"> Text Input </Text>
+
+      <!-- Size variations -->
+      <Text tag="h2" variant="textSm" class="mt-8 mb-4 font-medium">
+        Size Variations
+      </Text>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <TextInput
+          id="input-xs"
+          name="input-xs"
+          label="Extra Small Input"
+          type="text"
+          variant="default"
+          size="xs"
+          placeholder="Extra small input"
+        />
+
+        <TextInput
+          id="input-sm"
+          name="input-sm"
+          label="Small Input"
+          type="text"
+          variant="default"
+          size="sm"
+          placeholder="Small input"
+        />
+
+        <TextInput
+          id="input-base"
+          name="input-base"
+          label="Base Input (Default)"
+          type="text"
+          variant="default"
+          size="base"
+          placeholder="Base input (default size)"
+        />
+
+        <TextInput
+          id="input-lg"
+          name="input-lg"
+          label="Large Input"
+          type="text"
+          variant="default"
+          size="lg"
+          placeholder="Large input"
+        />
+
+        <TextInput
+          id="input-xl"
+          name="input-xl"
+          label="Extra Large Input"
+          type="text"
+          variant="default"
+          size="xl"
+          placeholder="Extra large input"
+        />
+      </div>
+
+      <!-- Basic inputs -->
+      <Text tag="h2" variant="textSm" class="mt-8 mb-4 font-medium">
+        Basic Inputs
+      </Text>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <TextInput
+          id="email"
+          name="email"
+          label="Email address"
+          type="email"
+          variant="default"
+          size="base"
+          placeholder="you@example.com"
+          required
+        />
+
+        <TextInput
+          id="password"
+          name="password"
+          label="Password"
+          type="password"
+          passwordToggle={true}
+          size="base"
+          placeholder="••••••••"
+          required
+        />
+
+        <TextInput
+          id="name"
+          name="name"
+          label="Full Name"
+          type="text"
+          variant="default"
+          size="base"
+          placeholder="John Doe"
+        />
+      </div>
+      <div>
+        <Text tag="h2" variant="textSm" class="mt-8 mb-4 font-medium">
+          No icon
+        </Text>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <TextInput
+            type="email"
+            name="email"
+            label="Email without left icon"
+            showLeftIcon={false}
+            placeholder="email@example.com"
+          />
+
+          <TextInput
+            type="password"
+            name="password"
+            label="Password input without right icon"
+            showRightIcon={false}
+            placeholder="Password input without right icon"
+          />
+        </div>
+      </div>
+      <div>
+        <Text tag="h2" variant="textSm" class="mt-8 mb-4 font-medium">
+          Non rounded
+        </Text>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Full Rounded (Default) -->
+          <TextInput name="default" label="Default Rounded Input" />
+
+          <!-- No Rounded At All -->
+          <TextInput
+            name="square"
+            label="Fully Square Input"
+            noRounded={true}
+          />
+
+          <!-- No Rounded Left -->
+          <TextInput
+            name="noLeft"
+            label="No Rounded Left"
+            noRoundedLeft={true}
+          />
+
+          <!-- No Rounded Right -->
+          <TextInput
+            name="noRight"
+            label="No Rounded Right"
+            noRoundedRight={true}
+          />
+
+          <!-- No Rounded Top -->
+          <TextInput name="noTop" label="No Rounded Top" noRoundedTop={true} />
+
+          <!-- No Rounded Bottom -->
+          <TextInput
+            name="noBottom"
+            label="No Rounded Bottom"
+            noRoundedBottom={true}
+          />
+
+          <!-- Combo: No Rounded Left and Right -->
+          <TextInput
+            name="noLeftRight"
+            label="No Rounded Left & Right"
+            noRoundedLeft={true}
+            noRoundedRight={true}
+          />
+
+          <!-- Combo: No Rounded Top and Bottom -->
+          <TextInput
+            name="noTopBottom"
+            label="No Rounded Top & Bottom"
+            noRoundedTop={true}
+            noRoundedBottom={true}
+          />
+        </div>
+      </div>
+      <Text tag="h2" variant="textSm" class="mt-8 mb-4 font-medium">
+        Groo inputs
+      </Text>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="flex gap-px">
+          <!-- Left input -->
+          <TextInput
+            label="Phone Number"
+            name="areaCode"
+            placeholder="123"
+            noRoundedRight={true}
+            class="w-1/4"
+          />
+
+          <!-- Middle input -->
+          <TextInput
+            label="Phone Number"
+            name="prefix"
+            placeholder="456"
+            noRoundedLeft={true}
+            noRoundedRight={true}
+            class="w-1/4"
+          />
+
+          <!-- Right input -->
+          <TextInput
+            label="Phone Number"
+            name="lineNumber"
+            placeholder="7890"
+            noRoundedLeft={true}
+            class="w-1/2"
+          />
+        </div>
+      </div>
+
+      <div>
+        <!-- Search inputs -->
+        <Text tag="h2" variant="textSm" class="mt-8 mb-4 font-medium">
+          Search Inputs
+        </Text>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <TextInput
+            id="search-left"
+            name="search-left"
+            label="Search (Left Icon)"
+            type="search"
+            iconPosition="left"
+            variant="default"
+            size="base"
+            placeholder="Search with left icon"
+          />
+
+          <TextInput
+            id="search-right"
+            name="search-right"
+            label="Search (Right Icon)"
+            type="search"
+            iconPosition="right"
+            variant="default"
+            size="base"
+            placeholder="Search with right icon"
+          />
+
+          <TextInput
+            id="search-small"
+            name="search-small"
+            label="Small Search"
+            type="search"
+            iconPosition="left"
+            variant="default"
+            size="sm"
+            placeholder="Small search input"
+          />
+        </div>
+      </div>
+      <div>
+        <!-- Payment inputs -->
+        <Text tag="h2" variant="textSm" class="mt-8 mb-4 font-medium">
+          Payment Inputs
+        </Text>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <TextInput
+            id="creditCard"
+            name="creditCard"
+            label="Credit Card Number"
+            type="text"
+            formatCreditCard={true}
+            variant="default"
+            size="base"
+            placeholder="XXXX XXXX XXXX XXXX"
+          />
+
+          <TextInput
+            id="expiry"
+            name="expiry"
+            label="Expiry Date"
+            type="text"
+            variant="default"
+            size="base"
+            placeholder="MM/YY"
+          />
+
+          <TextInput
+            id="cvv"
+            name="cvv"
+            label="CVV"
+            type="text"
+            variant="default"
+            size="base"
+            placeholder="123"
+          />
+        </div>
+      </div>
+
+      <div>
+        <!-- Dark variant inputs -->
+        <Text tag="h2" variant="textSm" class="mt-8 mb-4 font-medium">
+          Dark Variant
+        </Text>
+        <div
+          class="p-6 rounded-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-base-800"
+        >
+          <TextInput
+            id="email-dark"
+            name="email-dark"
+            label="Email address"
+            type="email"
+            variant="dark"
+            size="base"
+            placeholder="you@example.com"
+          />
+
+          <TextInput
+            id="password-dark"
+            name="password-dark"
+            label="Password"
+            type="password"
+            passwordToggle={true}
+            variant="dark"
+            size="base"
+            placeholder="••••••••"
+          />
+
+          <TextInput
+            id="search-dark"
+            name="search-dark"
+            label="Search"
+            type="search"
+            iconPosition="right"
+            variant="dark"
+            size="base"
+            placeholder="Search..."
+          />
+        </div>
+      </div>
+      <div>
+        <!-- Error state examples -->
+        <Text tag="h2" variant="textSm" class="mt-8 mb-4 font-medium">
+          Error States
+        </Text>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <TextInput
+            id="email-error"
+            name="email-error"
+            label="Email address"
+            type="email"
+            variant="default"
+            size="base"
+            placeholder="you@example.com"
+            error="Please enter a valid email address"
+          />
+
+          <TextInput
+            id="password-error"
+            name="password-error"
+            label="Password"
+            type="password"
+            passwordToggle={true}
+            variant="default"
+            size="base"
+            placeholder="••••••••"
+            error="Password must be at least 8 characters"
+          />
+
+          <TextInput
+            id="creditCard-error"
+            name="creditCard-error"
+            label="Credit Card Number"
+            type="text"
+            formatCreditCard={true}
+            variant="default"
+            size="base"
+            placeholder="XXXX XXXX XXXX XXXX"
+            error="Invalid card number"
+          />
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

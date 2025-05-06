@@ -1,14 +1,75 @@
 ---
-export const description = "Search input";
-import Input from "@/components/fundations/inputs/Input.astro";
+export const description = "Banking inputs input";
+import TextInput from "@/components/fundations/inputs/TextInput.astro";
 ---
-
-<div class="max-w-xs mx-auto py-60">
-  <Input
-    id="search-input"
-    name="search-input"
-    type="search"
-    label="Search Input"
-    placeholder="Search..."
-  />
+<div
+  class="flex flex-col justify-center w-full max-w-4xl px-12 py-48 mx-auto gap-12"
+>
+  <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <TextInput
+      id="creditCard"
+      name="creditCard"
+      label="Credit Card Number"
+      type="text"
+      formatCreditCard={true}
+      variant="default"
+      size="base"
+      placeholder="XXXX XXXX XXXX XXXX"
+    
+     
+    />
+    <TextInput
+      id="expiry"
+      name="expiry"
+      label="Expiry Date"
+      type="text"
+      variant="default"
+      size="base"
+      placeholder="MM/YY"
+    />
+    <TextInput
+      id="cvv"
+      name="cvv"
+      label="CVV"
+      type="text"
+      variant="default"
+      size="base"
+      placeholder="123"
+    />
+  </div>
+   <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <TextInput
+      id="creditCard"
+      name="creditCard"
+      label="Credit Card Number no icon"
+      type="text"
+      formatCreditCard={true}
+      variant="default"
+      size="base"
+      placeholder="XXXX XXXX XXXX XXXX"
+      showLeftIcon={false}
+    
+     
+    />
+    <TextInput
+      id="expiry"
+      name="expiry"
+      label="Expiry Date no icon"
+      type="text"
+      variant="default"
+      size="base"
+      placeholder="MM/YY"
+      showLeftIcon={false}
+    />
+    <TextInput
+      id="cvv"
+      name="cvv"
+      label="CVV no icon"
+      type="text"
+      variant="default"
+      size="base"
+      placeholder="123"
+      showRightIcon={false}
+    />
+  </div>
 </div>

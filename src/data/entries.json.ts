@@ -228,7 +228,7 @@ const templates: { [key: string]: Template[] } = {
         "footer link",
       ],
     },
-   /*  {
+    /*  {
       name: "Status Sections",
       link: "/playground/marketing/status",
       image: "status.png",
@@ -373,7 +373,7 @@ const templates: { [key: string]: Template[] } = {
         "flyout menu link",
       ],
     },
-   /*  {
+    /*  {
       name: "Sidebars",
       link: "/playground/application/sidebars",
       image: "sidebars.png",
@@ -454,7 +454,7 @@ const templates: { [key: string]: Template[] } = {
         "modal link",
       ],
     }, */
-   /*  {
+    /*  {
       name: "Slideover",
       link: "/playground/application/slideover",
       image: "slideover.png",
@@ -551,35 +551,65 @@ const templates: { [key: string]: Template[] } = {
         "form layout link",
       ],
     }, */
-    { 
-      name: "Inputs", 
-      link: "/playground/application/inputs", 
+    {
+      name: "Inputs",
+      link: "/playground/application/inputs",
       image: "inputs.png",
-      tags: ["input", "input section", "input content", "input image", "input link"] 
+      tags: ["input"],
     },
-    { 
-      name: "Textarea", 
-      link: "/playground/application/textarea", 
+    {
+      name: "Input Groups",
+      link: "/playground/application/input-groups",
+      image: "inputsGroups.png",
+      tags: ["input", "input group", "group"],
+    },
+    {
+      name: "Textarea",
+      link: "/playground/application/textarea",
       image: "textarea.png",
-      tags: ["textarea", "textarea section", "textarea content", "textarea image", "textarea link"] 
+      tags: [
+        "textarea",
+        "textarea section",
+        "textarea content",
+        "textarea image",
+        "textarea link",
+      ],
     },
-    { 
-      name: "Checkboxes", 
-      link: "/playground/application/checkboxes", 
+    {
+      name: "Checkboxes",
+      link: "/playground/application/checkboxes",
       image: "checkboxes.png",
-      tags: ["checkbox", "checkbox section", "checkbox content", "checkbox image", "checkbox link"] 
+      tags: [
+        "checkbox",
+        "checkbox section",
+        "checkbox content",
+        "checkbox image",
+        "checkbox link",
+      ],
     },
-    { 
-      name: "Radio Groups", 
-      link: "/playground/application/radiogroups", 
+    {
+      name: "Radio Groups",
+      link: "/playground/application/radiogroups",
       image: "radiogroups.png",
-      tags: ["radio group", "radio group section", "radio group content", "radio group image", "radio group link"] 
+      tags: [
+        "radio group",
+        "radio group section",
+        "radio group content",
+        "radio group image",
+        "radio group link",
+      ],
     },
-    { 
-      name: "Toggles", 
-      link: "/playground/application/toggles", 
+    {
+      name: "Toggles",
+      link: "/playground/application/toggles",
       image: "toggles.png",
-      tags: ["toggle", "toggle section", "toggle content", "toggle image", "toggle link"] 
+      tags: [
+        "toggle",
+        "toggle section",
+        "toggle content",
+        "toggle image",
+        "toggle link",
+      ],
     },
     /* 
     { 
@@ -706,10 +736,9 @@ const templates: { [key: string]: Template[] } = {
         "product list link",
         "product list",
         "product list item",
-       
       ],
     },
-     {
+    {
       name: "Product Details",
       link: "/playground/ecommerce/product-details",
       image: "productDetails.png",
@@ -721,10 +750,9 @@ const templates: { [key: string]: Template[] } = {
         "product details link",
         "product details",
         "product details item",
-       
       ],
     },
-     {
+    {
       name: "Category Previews",
       link: "/playground/ecommerce/category-previews",
       image: "categoryPreviews.png",
@@ -736,7 +764,6 @@ const templates: { [key: string]: Template[] } = {
         "product details link",
         "product details",
         "product details item",
-       
       ],
     },
   ],
