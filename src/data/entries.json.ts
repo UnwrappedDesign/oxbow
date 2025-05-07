@@ -582,7 +582,7 @@ const templates: { [key: string]: Template[] } = {
     },
     {
       name: "Select",
-      link: "/playground/application/selects",
+      link: "/playground/application/select",
       image: "selects.png",
       tags: ["select", "select", "dropdown"],
     },
