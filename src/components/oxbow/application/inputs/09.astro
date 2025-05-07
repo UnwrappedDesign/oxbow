@@ -5,7 +5,7 @@ export const description = "Tags input";
     <div class="w-full">
       <label
         for="tags-input"
-        class="mb-1 block font-medium text-sm text-base-500"
+        class="block mb-1 text-sm font-medium text-base-500"
       >
         Tags
       </label>
@@ -32,10 +32,10 @@ export const description = "Tags input";
           placeholder="Add a tag"
           x-model="newTag"
           @keydown.enter.prevent="addTag()"
-          class="block w-full appearance-none transition duration-300 ease-in-out h-10 px-4 py-2 text-sm rounded-md bg-white border border-transparent text-base-500 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2"
+          class="block w-full h-10 px-4 py-2 text-sm bg-white border border-transparent appearance-none transition duration-300 ease-in-out rounded-md text-base-500 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2"
           placeholder="Add a tag"
         />
-        <div class="flex flex-wrap gap-2 mt-2">
+        <div class="flex flex-wrap mt-2 gap-2">
           <template x-for="(tag, index) in tags" :key="index">
             <span
               class="inline-flex items-center font-medium relative text-base-700 bg-base-50 px-2.5 py-1 text-xs rounded-md flex items-center gap-1"
@@ -44,7 +44,7 @@ export const description = "Tags input";
               <button
                 @click="removeTag(index)"
                 type="button"
-                class="inline-flex items-center justify-center size-4 rounded-full hover:bg-base-200 focus:outline-none focus:ring-2 focus:ring-accent-500"
+                class="inline-flex items-center justify-center rounded-full size-4 hover:bg-base-200 focus:outline-none focus:ring-2 focus:ring-accent-500"
                 aria-label="Remove tag"
               >
                 <svg
