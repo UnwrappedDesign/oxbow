@@ -3,8 +3,8 @@
 ## **2025-05-06**
 
 ### Added
-- input-groups: [10 components](https://oxbowui.com/playground/application/input-groups)
-- undefined: [1 component](https://oxbowui.com/playground/application/undefined)
+- input groups: [10 components](https://oxbowui.com/playground/application/input-groups)
+
 
 ### Modified
 - inputs: [10 components](https://oxbowui.com/playground/application/inputs)
