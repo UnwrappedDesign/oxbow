@@ -2,11 +2,12 @@
 // Fundations
 import Text from "@/components/fundations/typography/Text.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
-import Button from "@/components/fundations/buttons/Button.astro";
 // Components
 import { Code } from "astro:components";
 import * as prettier from "prettier";
-import Button from "../fundations/buttons/Button.astro";
+// Utils
+import { getUserThemeColor } from "@/utils/getUserTheme";
+
 interface Props {
   componentIndex: number;
   componentPath: string;
@@ -15,16 +16,52 @@ interface Props {
 const { componentIndex, componentPath, playgroundRef } = Astro.props;
 const user = Astro.locals.user;
 const canSeeCode = user || componentIndex === 1;
+
+// Get user's theme preference from custom claims
+const userThemeColor = getUserThemeColor(user, 'blue', Astro);
+
 const code = canSeeCode ? await Astro.slots.render("default")
                       : '';
-const ppcode = canSeeCode ? await prettier.format(code, {
-                          parser: "html",
-                        })
-                        : '';
+
+let ppcode = '';
+if (canSeeCode) {
+  // Format code with prettier
+  ppcode = await prettier.format(code, {
+    parser: "html",
+  });
+  
+  // Replace accent color classes wit h user's theme color if a user is logged in
+  const accentRegex = /(class=["'].*?)bg-accent-(\d+)(.*?["'])/g;
+  const textAccentRegex = /(class=["'].*?)text-accent-(\d+)(.*?["'])/g;
+  const borderAccentRegex = /(class=["'].*?)border-accent-(\d+)(.*?["'])/g;
+  const hoverRegex = /(class=["'].*?)hover:([^-]+)-accent-(\d+)(.*?["'])/g;
+  const fromAccentRegex = /(class=["'].*?)from-accent-(\d+)(.*?["'])/g;
+  const toAccentRegex = /(class=["'].*?)to-accent-(\d+)(.*?["'])/g;
+
+  // Replace background accent classes
+  ppcode = ppcode.replace(accentRegex, `$1bg-${userThemeColor}-$2$3`);
+  
+  // Replace text accent classes
+  ppcode = ppcode.replace(textAccentRegex, `$1text-${userThemeColor}-$2$3`);
+  
+  // Replace border accent classes
+  ppcode = ppcode.replace(borderAccentRegex, `$1border-${userThemeColor}-$2$3`);
+  
+  // Replace hover accent classes
+  ppcode = ppcode.replace(hoverRegex, `$1hover:$2-${userThemeColor}-$3$4`);
+  
+  // Replace from-accent (gradient) classes
+  ppcode = ppcode.replace(fromAccentRegex, `$1from-${userThemeColor}-$2$3`);
+  
+  // Replace to-accent (gradient) classes
+  ppcode = ppcode.replace(toAccentRegex, `$1to-${userThemeColor}-$2$3`);
+
+}
+
 const theme = ``;
 ---
 <section x-data="playground" class="not-prose ">
-  <div class="relative"  @theme="setTheme($event.detail.color)">
+  <div class="relative" @theme="setTheme($event.detail.color)">
     <div class="flex items-center justify-between pb-2 gap-1 ">
       <div class="inline-flex items-center p-1 bg-white rounded-lg gap-1 ">
         <Button onlyIconSize="xxs" variant="muted"
@@ -68,7 +105,7 @@ const theme = ``;
                           <Button 
                             size="xxs"
                             variant="muted"
-                            x-on:click="selectColor(color.name)"
+                            @click="selectColor(color.name)"
                             :class="selected === color.name ? 'outline-2 !outline-base-500' : ''"
                             class="flex items-center w-full pointer-events-auto !shadow-none"
                           >
@@ -131,7 +168,7 @@ const theme = ``;
               <Button
                size="xxs"
                 variant="muted"
-                x-on:click="setTab('preview')" 
+                x-on:click="setTab('preview');" 
                 :class="tab === 'preview' ? ' outline-base-100  ' : ''"
                 data-umami-event="click-view-preview"
                 data-umami-data-id={user?.uid}
@@ -150,17 +187,6 @@ const theme = ``;
                 class="pointer-events-auto !shadow-none">
                 Code
               </Button>
-             <Button
-                size="xxs"
-                variant="muted"
-                x-on:click="setTab('theme')" 
-                :class="tab === 'theme' ? 'outline-base-100  ' : ''"
-                data-umami-event="click-view-theme"
-                data-umami-data-id={user?.uid}
-                data-umami-event-componentref={componentPath}
-                class="pointer-events-auto !shadow-none">
-                Theme
-              </Button> 
               <div aria-hidden="true" class="mx-1 h-4 w-[1px]  bg-base-200   hidden md:inline-block"></div>
               <Button
                 size="xxs"
@@ -215,15 +241,33 @@ const theme = ``;
         >
           <Code code={ppcode} lang="html" theme="css-variables" class="scrollbar-hide"/>
         </div>
-        <div
-          x-show="tab === 'theme'"
-          x-ref="theme"
-          class="flex-grow p-4 overflow-auto text-xs bg-white size-full  transition selection:bg-base-100"
-        >
-          <div x-html="theme" />
-        </div>
       )
     }
   </div>
   </div>
 </section>
+
+<script define:vars={{ userThemeColor }}>
+  // Set initial theme based on user preference from claims/cookies
+  document.addEventListener('DOMContentLoaded', () => {
+    // Store the original server-rendered theme color for comparison
+    window.originalRenderedTheme = userThemeColor;
+    
+    // Wait for Alpine to initialize components
+    setTimeout(() => {
+      const playgrounds = document.querySelectorAll('section[x-data="playground"]');
+      
+      if (playgrounds.length > 0) {
+        
+        // Dispatch theme event to set the initial theme in the playground
+        playgrounds.forEach(playground => {
+          playground.dispatchEvent(new CustomEvent('theme', {
+            detail: {
+              color: userThemeColor
+            }
+          }));
+        });
+      }
+    }, 500); // Delay to ensure Alpine components are initialized
+  });
+</script>
