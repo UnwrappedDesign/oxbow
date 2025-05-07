@@ -1,0 +1,71 @@
+---
+const {
+  id,
+  name,
+  label,
+  variant = "default", // "default" | "dark" | "transparent-light" | "transparent-dark"
+  size = "base", // xs, sm, base, md, lg
+  error,
+  class: className = "",
+  ...rest
+} = Astro.props;
+
+const labelClasses = {
+  default: "text-base-500",
+  dark: "text-base-200",
+  "transparent-light": "text-base-700",
+  "transparent-dark": "text-base-200",
+};
+
+const checkboxSizeClasses = {
+  xs: "w-3 h-3",
+  sm: "w-3.5 h-3.5",
+  base: "size-4",
+  md: "w-4.5 h-4.5",
+  lg: "w-5 h-5",
+};
+
+const checkboxClasses = [
+  "rounded",
+  "border-base-300",
+  "text-accent-600",
+  "focus:ring-accent-500",
+  "focus:ring-offset-2",
+  "focus:ring-2",
+  "shadow",
+  checkboxSizeClasses[size] || checkboxSizeClasses.base,
+];
+
+if (className) {
+  checkboxClasses.push(...className.split(" ").filter(Boolean));
+}
+
+const errorTextColor = variant.includes("dark") ? "text-red-400" : "text-red-600";
+---
+
+<div class="flex items-center">
+  <input
+    type="checkbox"
+    id={id}
+    name={name}
+    class:list={checkboxClasses}
+    aria-required={rest.required ? "true" : undefined}
+    aria-invalid={error ? "true" : undefined}
+    aria-describedby={error ? `${id}-error` : undefined}
+    {...rest}
+  />
+  {label && (
+    <label
+      for={id}
+      class={`ml-2 text-sm font-medium ${labelClasses[variant] || labelClasses.default}`}
+    >
+      {label}
+    </label>
+  )}
+</div>
+
+{error && (
+  <p class={`mt-1 text-sm ${errorTextColor}`} id={`${id}-error`}>
+    {error}
+  </p>
+)}

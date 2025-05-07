@@ -8,58 +8,215 @@ const {
   variant = "default",
   size = "base",
   class: className = "",
+  hideLabel = false,
+  
+  isGrouped = false,
+  noRounded = false,
+  noRoundedLeft = false,
+  noRoundedRight = false,
+  noRoundedTop = false,
+  noRoundedBottom = false,
+  noRoundedTopLeft = false,
+  noRoundedTopRight = false,
+  noRoundedBottomLeft = false,
+  noRoundedBottomRight = false,
+  
+  // Alpine.js props
+  xData = "",
+  xInit = "",
+  xModel = "",
+  xOn = {},
+  xShow = "",
+  xEffect = "",
+  xTransition = "",
   ...rest
 } = Astro.props;
 
 const variantClasses = {
-  default: ["bg-white", "border", "text-base-500", "ring-1", "ring-base-200", "placeholder-base-400", "focus:border-base-300", "focus:outline-none", "focus:ring-accent-500", "focus:ring-offset-2", "focus:ring-2"],
-  dark: ["bg-base-800", "text-base-100", "border-base-700", "ring-1", "ring-base-700", "placeholder-base-400", "focus:ring-base-500", "focus:ring-offset-2", "focus:border-base-600", "focus:outline-none"],
+  default: [
+    "bg-white",
+    "border",
+    "border-transparent",
+    "text-base-500",
+    "ring-1",
+    "ring-base-200",
+    "placeholder-base-400",
+    "focus:border-base-300",
+    "focus:bg-transparent",
+    "focus:outline-none",
+    "focus:ring-accent-500",
+    "focus:ring-offset-2",
+    "focus:ring-2",
+  ],
 };
 
 const sizeClasses = {
-  base: ["h-10", "px-4", "py-2", "text-sm", "rounded-md"]
+  xxs: ["h-7", "px-3", "py-1.5", "text-xs"],
+  xs: ["h-8", "px-4", "py-2", "text-xs"],
+  sm: ["h-9", "px-4", "py-2", "text-xs"],
+  base: ["h-10", "px-4", "py-2", "text-sm"],
+  md: ["h-11", "px-4", "py-2", "text-sm"],
+  lg: ["h-12", "px-4", "py-2.5", "text-base"],
+  xl: ["h-14", "px-5", "py-3", "text-lg"],
 };
 
+const _noTopLeft =
+  noRounded || noRoundedTop || noRoundedLeft || noRoundedTopLeft;
+const _noTopRight =
+  noRounded || noRoundedTop || noRoundedRight || noRoundedTopRight;
+const _noBottomLeft =
+  noRounded || noRoundedBottom || noRoundedLeft || noRoundedBottomLeft;
+const _noBottomRight =
+  noRounded || noRoundedBottom || noRoundedRight || noRoundedBottomRight;
+
+let roundedClass = "rounded-md";
+if (_noTopLeft && _noTopRight && _noBottomLeft && _noBottomRight) {
+  roundedClass = "rounded-none";
+} else {
+  const parts = [];
+  if (!_noTopLeft) parts.push("rounded-tl-md");
+  if (!_noTopRight) parts.push("rounded-tr-md");
+  if (!_noBottomLeft) parts.push("rounded-bl-md");
+  if (!_noBottomRight) parts.push("rounded-br-md");
+  if (parts.length) roundedClass = parts.join(" ");
+}
+
 let selectClasses = [
-  "block", "w-full", "transition", "duration-300", "ease-in-out",
-  ...sizeClasses[size],
-  ...variantClasses[variant],
-  ...className.split(" ")
+  "block",
+  "w-full",
+  "transition",
+  "duration-300",
+  "ease-in-out",
+  ...(sizeClasses[size] || sizeClasses.base),
+  ...variantClasses.default,
+  roundedClass,
+  ...className.split(" "),
 ];
 
-const errorTextColor = variant === "dark" ? "text-red-400" : "text-red-600";
+const errorTextColor = "text-red-600";
+
+// Process Alpine.js event handlers
+const alpineEvents = Object.entries(xOn).map(([event, handler]) => {
+  return `@${event}="${handler}"`;
+}).join(" ");
+
+// Check if any Alpine.js directives are being used
+const hasAlpine = xData || xInit || xModel || Object.keys(xOn).length > 0 || xShow || xEffect || xTransition;
 ---
 
-<div class="w-full">
-  {label && (
-    <label for={id} class="block mb-1 text-sm font-medium text-base-500">
-      {label}
-    </label>
-  )}
-  <div class="relative">
-    <select
-      {...rest}
-      id={id}
-      name={name}
-      class:list={selectClasses}
-      aria-invalid={!!error}
-      aria-describedby={error ? `${id}-error` : undefined}
-    >
-      {options.map(opt => (
-        <option value={opt.value} selected={opt.value === rest.value}>
-          {opt.label}
-        </option>
-      ))}
-    </select>
-    <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-base-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-      </svg>
+{/* Version without Alpine.js */}
+{!hasAlpine && (
+  <div class="w-full">
+    {!hideLabel && (
+      <label
+        for={id}
+        class={`block mb-1 font-medium text-base-500 ${
+          size === "xs"
+            ? "text-xs"
+            : size === "sm"
+              ? "text-sm"
+              : size === "lg"
+                ? "text-base"
+                : "text-sm"
+        } ${isGrouped ? "sr-only" : ""}`}
+      >
+        {label}
+      </label>
+    )}
+
+    <div class="relative">
+      <select
+        {...rest}
+        id={id}
+        name={name}
+        class:list={selectClasses}
+        aria-invalid={!!error}
+        aria-describedby={error ? `${id}-error` : undefined}
+      >
+        <slot>
+          {options.map((opt) => (
+            <option value={opt.value} selected={opt.value === rest.value}>
+              {opt.label}
+            </option>
+          ))}
+        </slot>
+      </select>
+      <div
+        class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3"
+      >
+      </div>
     </div>
+
+    {error && (
+      <p id={`${id}-error`} class={`mt-1 text-sm ${errorTextColor}`}>
+        {error}
+      </p>
+    )}
   </div>
-  {error && (
-    <p id={`${id}-error`} class={`mt-1 text-sm ${errorTextColor}`}>
-      {error}
-    </p>
-  )}
-</div>
+)}
+
+{/* Version with Alpine.js */}
+{hasAlpine && (
+  <div class="w-full" 
+    x-data={xData}
+    x-init={xInit}
+    x-show={xShow}
+    x-effect={xEffect}
+    x-transition={xTransition}
+  >
+    {!hideLabel && (
+      <label
+        for={id}
+        class={`block mb-1 font-medium text-base-500 ${
+          size === "xs"
+            ? "text-xs"
+            : size === "sm"
+              ? "text-sm"
+              : size === "lg"
+                ? "text-base"
+                : "text-sm"
+        } ${isGrouped ? "sr-only" : ""}`}
+      >
+        {label}
+      </label>
+    )}
+
+    <div class="relative">
+      <select
+        {...rest}
+        id={id}
+        name={name}
+        class:list={selectClasses}
+        aria-invalid={!!error}
+        aria-describedby={error ? `${id}-error` : undefined}
+        x-model={xModel}
+        set:html={Object.keys(xOn).length > 0 ? alpineEvents : undefined}
+      >
+        <slot>
+          {options.map((opt) => (
+            <option value={opt.value} selected={opt.value === rest.value}>
+              {opt.label}
+            </option>
+          ))}
+        </slot>
+      </select>
+      <div
+        class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3"
+      >
+      </div>
+    </div>
+
+    {error && (
+      <p id={`${id}-error`} class={`mt-1 text-sm ${errorTextColor}`}>
+        {error}
+      </p>
+    )}
+    
+    <p 
+      x-show="errorMessage" 
+      x-text="errorMessage" 
+      class={`mt-1 text-sm ${errorTextColor}`} 
+      style="display: none;"
+    ></p>
+  </div>
+)}
