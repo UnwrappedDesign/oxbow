@@ -12,20 +12,38 @@ const templates: { [key: string]: Template[] } = {
   // Page sections
   pageSections: [
     {
-      name: "Hero Sections",
-      link: "/playground/marketing/hero",
-      image: "heros.png",
+      name: "Marketing Hero Sections",
+      link: "/playground/marketing/marketing-heros",
+      image: "marketingHeros.png",
       tags: [
-        "header",
         "hero",
-        "hero section",
-        "main image",
-        "top section",
-        "introductory section",
-        "welcome section",
-        "main header",
+        "marketing",
+        "landing page",
+        "saas hero",
+        "product hero",
+        "header",
+        "intro section",
+        "above the fold",
+        "conversion",
       ],
     },
+    {
+      name: "Portfolio Hero Sections",
+      link: "/playground/marketing/portfolio-heros",
+      image: "portfolioHeros.png",
+      tags: [
+        "portfolio",
+        "creative",
+        "hero",
+        "header",
+        "personal site",
+        "freelancer",
+        "self-introduction",
+        "about me",
+        "bold intro",
+      ],
+    },
+
     {
       name: "Bento Grids",
       link: "/playground/marketing/bento-grids",
@@ -325,7 +343,6 @@ const templates: { [key: string]: Template[] } = {
       ],
     },
   ],
-
   //  Emails
   //
   //
@@ -563,11 +580,11 @@ const templates: { [key: string]: Template[] } = {
       image: "inputsGroups.png",
       tags: ["input", "input group", "group"],
     },
-     {
+    {
       name: "Select",
       link: "/playground/application/selects",
       image: "selects.png",
-      tags: ["select", "select", "dropdown" ], 
+      tags: ["select", "select", "dropdown"],
     },
     {
       name: "Textarea",
@@ -774,7 +791,6 @@ const templates: { [key: string]: Template[] } = {
     },
   ],
 };
-
 // Export sections
 export const {
   // Marketing
@@ -790,7 +806,6 @@ export const {
   // eCommerce
   storeSections,
 } = templates;
-
 // Export all entries by name
 export const byName = {
   //
@@ -831,7 +846,6 @@ export const byName = {
     elements.map((template) => [template.name, template]),
   ),
 };
-
 export const allEntries = Object.values(byName).flatMap((category) =>
   Object.values(category),
 );
