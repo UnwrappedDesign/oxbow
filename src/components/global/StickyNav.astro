@@ -11,11 +11,12 @@ const navItems = [
   },
 ];
 ---
-<nav class="sticky top-0 left-0 right-0 bg-base-100 z-1 border-y border-base-200">
-  <Wrapper variant="stickyNav" class=" lg:border-x lg:border-base-200">
-    <div
-      class="relative flex pt-4 bg-base-100  space-x-4"
-    >
+
+<nav
+  class="sticky top-0 left-0 right-0 bg-base-100 z-5 border-y border-base-200"
+>
+  <Wrapper variant="stickyNav" class="lg:border-x lg:border-base-200">
+    <div class="relative flex pt-4 bg-base-100 space-x-4">
       {
         navItems.map((item) => (
           <Text
@@ -42,16 +43,10 @@ const navItems = [
             const currentId = entry.target.id;
             navLinks.forEach((link) => {
               if (link.getAttribute("href") === `#${currentId}`) {
-                link.classList.add(
-                  "text-black",
-                  "border-black"
-                );
+                link.classList.add("text-black", "border-black");
                 link.classList.remove("border-transparent");
               } else {
-                link.classList.remove(
-                  "text-black",
-                  "border-black"
-                );
+                link.classList.remove("text-black", "border-black");
                 link.classList.add("border-transparent");
               }
             });
