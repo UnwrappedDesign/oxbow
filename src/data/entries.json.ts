@@ -29,8 +29,8 @@ const templates: { [key: string]: Template[] } = {
     },
     {
       name: "Portfolio Hero Sections",
-      link: "/playground/marketing/portfolio-heros",
-      image: "portfolioHeros.png",
+      link: "/playground/marketing/creative-heros",
+      image: "creativeHeros.png",
       tags: [
         "portfolio",
         "creative",
