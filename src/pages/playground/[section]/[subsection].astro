@@ -6,21 +6,40 @@ import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import { formatDistanceToNowStrict } from "date-fns";
 import updates from "@/data/updates.json";
+
 const { section, subsection } = Astro.params;
 const components = await Astro.glob(`@/components/oxbow/**/*.astro`);
-const sectionComponents = components.filter((component) => {
-  const sectionRegex = new RegExp(`${section}\/${subsection}\/.+\.astro$`, "i");
-  return component.file?.match(sectionRegex);
-});
+
+const sectionRegex = new RegExp(`${section}/${subsection}/.+\\.astro$`, "i");
+
+const sectionComponents = components
+  .filter((component) => component.file?.match(sectionRegex))
+  .map((component) => {
+    const filePath = component.file.split("/").slice(-3).join("/");
+    const imagePath = `/src/screenshots/${component.file
+      .split("/")
+      .slice(-3)
+      .join("_")
+      .replace(".astro", ".png")}`;
+    return {
+      ...component,
+      filePath,
+      imagePath,
+      description: component?.description || "",
+    };
+  });
+
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/screenshots/*.png"
 );
+
 const formattedSubsection = subsection.replace("-", " ");
 const user = Astro.locals.user;
 const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
-// Define the number of columns based on the current page
+
 const gridColumns = {
   // Marketing
+  "marketing/team": 2,
   "marketing/hero": 2,
   "marketing/steps": 2,
   "marketing/pricing": 2,
@@ -30,7 +49,7 @@ const gridColumns = {
   "marketing/logo-clouds": 2,
   "marketing/bento-grids": 2,
   "marketing/landing-pages": 2,
-  // Ecommerc
+  // Ecommerce
   "ecommerce/product-details": 2,
   "ecommerce/product-list": 2,
   "ecommerce/category-previews": 2,
@@ -60,11 +79,9 @@ const gridColumns = {
   "application/notifications": 2,
   "application/button-groups": 2,
 };
-// Get the current page path
+
 const currentPage = `${section}/${subsection}`;
-// Set the number of columns, defaulting to 3 if not specified
 const lgColumns = gridColumns[currentPage] || 4;
-// Define the grid columns class based on the lgColumns
 const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
 ---
 
@@ -87,10 +104,12 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
             stroke-linecap="round"
             stroke-linejoin="round"
             class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left size-4"
-            ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-              d="M15 6l-6 6l6 6"></path></svg
-          >Go Back</button
-        >
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M15 6l-6 6l6 6"></path>
+          </svg>
+          Go Back
+        </button>
         <span aria-hidden="true" class="text-base-500">/</span>
         <Text
           tag="h1"
@@ -102,68 +121,72 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
       </div>
     </Wrapper>
   </section>
+
   <section class="border-t border-base-200">
     <Wrapper variant="standard" class="lg:border-x lg:border-base-200">
       <div
-        class={`relative w-full grid grid-cols-1   md:grid-cols-2 gap-y-12 gap-x-4  lg:gap-y-20 ${gridColumnsClass} items-start`}
+        class={`relative w-full grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-4 lg:gap-y-20 ${gridColumnsClass} items-start`}
       >
         {
-          sectionComponents.map((component, index) => {
-            const filePath = component.file.split("/").slice(-3).join("/");
-            const imagePath = `/src/screenshots/${component.file
-              .split("/")
-              .slice(-3)
-              .join("_")
-              .replace(".astro", ".png")}`;
-            if (!images[imagePath]) {
-              return null;
-            }
-            const updatedAt = new Date(updates[filePath] * 1000);
-            const isUpdatedLastWeek = updatedAt > SEVEN_DAYS_AGO;
-            return (
-              <a
-                href={`/playground/${filePath.replace(".astro", "")}`}
-                class="relative flex flex-col group"
-              >
-                <div class="flex flex-col gap-1">
-                  {isUpdatedLastWeek && (
-                    <Text
-                      tag="p"
-                      variant="textXS"
-                      class="relative flex items-center gap-1 text-base-400"
-                    >
-                      Updated
-                      {formatDistanceToNowStrict(updatedAt, {
-                        unit: "day",
-                        roundingMethod: "ceil",
-                      })}
-                      ago
-                    </Text>
-                  )}
-                  <div class="flex items-center gap-2">
-                    <Text
-                      tag="p"
-                      variant="textSM"
-                      class="flex items-center capitalize  text-base-500 group-hover:text-base-900 gap-2"
-                    >
-                      <span>{(index + 1).toString().padStart(2, "0")}</span>
-                      <span> {subsection.replace(/-/g, " ")}</span>
-                      {!user && index === 0 && (
-                        <span class="text-base-900 ">Open Demo</span>
-                      )}
-                    </Text>
+          sectionComponents.map(
+            ({ filePath, imagePath, description }, index) => {
+              if (!images[imagePath]) return null;
+
+              const updatedAt = new Date(updates[filePath] * 1000);
+              const isUpdatedLastWeek = updatedAt > SEVEN_DAYS_AGO;
+
+              return (
+                <a
+                  href={`/playground/${filePath.replace(".astro", "")}`}
+                  class="relative flex flex-col group"
+                >
+                  <div class="flex flex-col gap-1">
+                    {isUpdatedLastWeek && (
+                      <Text
+                        tag="p"
+                        variant="textXS"
+                        class="relative flex items-center gap-1 text-base-400"
+                      >
+                        Updated{" "}
+                        {formatDistanceToNowStrict(updatedAt, {
+                          unit: "day",
+                          roundingMethod: "ceil",
+                        })}{" "}
+                        ago
+                      </Text>
+                    )}
+                    <div class="flex items-center gap-2">
+                      <Text
+                        tag="p"
+                        variant="textXS"
+                        class="flex flex-wrap items-center font-medium  text-base-500 group-hover:text-base-600 gap-1"
+                      >
+                        <span>{(index + 1).toString().padStart(2, "0")}.</span>
+                        <span class="capitalize sr-only">
+                          {" "}
+                          {subsection.replace(/-/g, " ")}
+                        </span>
+
+                        {description.replace(/^./, (c) => c.toUpperCase())}
+                        {!user && index === 0 && (
+                          <span class="text-base-900 text-xs">Free Demo</span>
+                        )}
+                      </Text>
+                    </div>
                   </div>
-                </div>
-                <Image
-                  width={1000}
-                  height={1000}
-                  src={images[imagePath]() || "/placeholder.png"}
-                  alt={`${subsection} preview ${index + 1}`}
-                  class="object-cover w-full mt-2 rounded-lg cursor-pointer shadow-oxbow  transition-all duration-300 ease-in-out"
-                />
-              </a>
-            );
-          })
+                  <div class="overflow-hidden rounded-lg  shadow-oxbow outline outline-base-200 bg-white">
+                    <Image
+                      width={1000}
+                      height={1000}
+                      src={images[imagePath]() || "/placeholder.png"}
+                      alt={`${subsection} preview ${index + 1}`}
+                      class="object-cover   object-top"
+                    />
+                  </div>
+                </a>
+              );
+            }
+          )
         }
       </div>
     </Wrapper>
