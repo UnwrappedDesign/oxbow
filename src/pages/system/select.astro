@@ -2,26 +2,136 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Select from "@/components/fundations/inputs/Select.astro";
-const countryOptions = [
-  { value: "", label: "Select a country" },
-  { value: "us", label: "United States" },
-  { value: "ca", label: "Canada" },
-  { value: "uk", label: "United Kingdom" },
+
+// Add the missing exampleOptions definition
+const exampleOptions = [
+  { label: "United States", value: "us" },
+  { label: "Canada", value: "ca" },
+  { label: "United Kingdom", value: "uk" },
 ];
 ---
 
 <BaseLayout>
   <section>
-    <Wrapper variant="standard" class="bg-white lg:border-x lg:border-base-200">
-      <Select
-        id="country"
-        name="country"
-        label="Country"
-        options={countryOptions}
-        variant="default"
-        size="base"
-        required
-      />
+    <Wrapper
+      variant="standard"
+      class="bg-white lg:border-x lg:border-base-200 space-y-10 py-10"
+    >
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Select
+          id="country"
+          name="country"
+          label="Country"
+          options={exampleOptions}
+          value="ca"
+          variant="default"
+          size="sm"
+          class="text-base-900"
+        />
+
+        <Select
+          id="currency"
+          name="currency"
+          label="Currency (no rounded)"
+          options={exampleOptions}
+          size="sm"
+        />
+
+        <Select
+          id="region"
+          name="region"
+          label="Grouped Select"
+          options={exampleOptions}
+          isGrouped={true}
+        />
+
+        <Select
+          id="hidden-label"
+          name="hidden-label"
+          label="Hidden Label Select"
+          options={exampleOptions}
+          hideLabel={true}
+          size="xs"
+        />
+      </div>
+    </Wrapper>
+    <Wrapper
+      variant="standard"
+      class="bg-white lg:border-x lg:border-base-200 space-y-10 py-10"
+    >
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Select
+          id="no-rounded"
+          name="no-rounded"
+          label="No Rounded"
+          options={exampleOptions}
+          noRounded={true}
+        />
+
+        <Select
+          id="no-rounded-top"
+          name="no-rounded-top"
+          label="No Rounded Top"
+          options={exampleOptions}
+          noRoundedTop={true}
+        />
+
+        <Select
+          id="no-rounded-bottom"
+          name="no-rounded-bottom"
+          label="No Rounded Bottom"
+          options={exampleOptions}
+          noRoundedBottom={true}
+        />
+
+        <Select
+          id="no-rounded-left"
+          name="no-rounded-left"
+          label="No Rounded Left"
+          options={exampleOptions}
+          noRoundedLeft={true}
+        />
+
+        <Select
+          id="no-rounded-right"
+          name="no-rounded-right"
+          label="No Rounded Right"
+          options={exampleOptions}
+          noRoundedRight={true}
+        />
+
+        <Select
+          id="no-rounded-top-left"
+          name="no-rounded-top-left"
+          label="No Rounded Top Left"
+          options={exampleOptions}
+          noRoundedTopLeft={true}
+        />
+
+        <Select
+          id="no-rounded-top-right"
+          name="no-rounded-top-right"
+          label="No Rounded Top Right"
+          options={exampleOptions}
+          noRoundedTopRight={true}
+        />
+
+        <Select
+          id="no-rounded-bottom-left"
+          name="no-rounded-bottom-left"
+          label="No Rounded Bottom Left"
+          options={exampleOptions}
+          noRoundedBottomLeft={true}
+        />
+
+        <Select
+          id="no-rounded-bottom-right"
+          name="no-rounded-bottom-right"
+          label="No Rounded Bottom Right"
+          options={exampleOptions}
+          noRoundedBottomRight={true}
+        />
+      </div>
     </Wrapper>
   </section>
 </BaseLayout>

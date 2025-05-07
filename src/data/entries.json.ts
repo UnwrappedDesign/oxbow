@@ -563,6 +563,12 @@ const templates: { [key: string]: Template[] } = {
       image: "inputsGroups.png",
       tags: ["input", "input group", "group"],
     },
+     {
+      name: "Select",
+      link: "/playground/application/selects",
+      image: "selects.png",
+      tags: ["select", "select", "dropdown" ], 
+    },
     {
       name: "Textarea",
       link: "/playground/application/textarea",

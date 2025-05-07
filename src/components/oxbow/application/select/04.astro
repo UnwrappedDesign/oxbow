@@ -1,0 +1,50 @@
+---
+export const description = "Form validation with error message";
+import Select from "@/components/fundations/inputs/Select.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+// Remove duplicate imports
+const currencyOptions = [
+  { label: "USD ($)", value: "usd" },
+  { label: "EUR (€)", value: "eur" },
+  { label: "GBP (£)", value: "gbp" },
+  { label: "JPY (¥)", value: "jpy" },
+];
+---
+
+<div class="flex justify-center w-full px-12 py-48">
+  <div
+    class="flex items-end w-full max-w-sm"
+    x-data="{ 
+       currency: '', 
+       errorMessage: '',
+       validateCurrency() {
+         if (!this.currency) {
+           this.errorMessage = 'Please select a currency';
+           return false;
+         }
+         this.errorMessage = '';
+         return true;
+       }
+     }"
+  >
+    <Select
+      id="currency-validation"
+      name="currency"
+      label="Currency (required)"
+      options={currencyOptions}
+      xModel="currency"
+      noRoundedRight={true}
+      size="base"
+      xOn={{ change: "validateCurrency()" }}
+    />
+
+    <Button
+      variant="alternative"
+      size="base"
+      noRoundedLeft={true}
+      @click="validateCurrency() && alert('Form is valid! Selected currency: ' + currency)"
+    >
+      Submit
+    </Button>
+  </div>
+</div>

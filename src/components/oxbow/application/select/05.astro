@@ -1,0 +1,74 @@
+---
+export const description = "Conditional styling";
+import Select from "@/components/fundations/inputs/Select.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+const countryOptions = [
+  { label: "United States", value: "us" },
+  { label: "Canada", value: "ca" },
+  { label: "United Kingdom", value: "uk" },
+  { label: "Australia", value: "au" },
+  { label: "Germany", value: "de" },
+  { label: "France", value: "fr" },
+  { label: "Japan", value: "jp" },
+];
+---
+
+<div class="flex justify-center w-full px-12 py-48">
+  <div
+    class="flex flex-col w-full max-w-sm"
+    x-data="{ 
+       selectedOption: '',
+       getSelectClass() {
+         return {
+           'ring-green-500': this.selectedOption === 'us',
+           'ring-blue-500': this.selectedOption === 'ca',
+           'ring-red-500': this.selectedOption === 'uk'
+         };
+       }
+     }"
+  >
+    <Select
+      id="styled-select"
+      name="styled-select"
+      label="Select with Dynamic Styling"
+      options={countryOptions}
+      xModel="selectedOption"
+      xData="{ selectClass: getSelectClass() }"
+      xEffect="selectClass = getSelectClass()"
+      class="transition-all duration-300"
+      xOn={{ change: "selectClass = getSelectClass()" }}
+    />
+
+    <div
+      class="p-4 rounded-md mt-2 flex items-center gap-2"
+      :class="{
+      'bg-green-50': selectedOption === 'us',
+      'bg-blue-50': selectedOption === 'ca',
+      'bg-red-50': selectedOption === 'uk',
+      'bg-gray-50': !['us', 'ca', 'uk'].includes(selectedOption)
+    }"
+    >
+      <p class="text-xs text-base-500 font-medium">
+        Selected option: <span x-text="selectedOption || 'None'"></span>
+      </p>
+      <p
+        x-show="selectedOption === 'us'"
+        class="text-green-700 text-xs font-medium"
+      >
+        You selected the United States!
+      </p>
+      <p
+        x-show="selectedOption === 'ca'"
+        class="text-blue-700 text-xs font-medium"
+      >
+        You selected Canada!
+      </p>
+      <p
+        x-show="selectedOption === 'uk'"
+        class="text-red-700 text-xs font-medium"
+      >
+        You selected the United Kingdom!
+      </p>
+    </div>
+  </div>
+</div>
