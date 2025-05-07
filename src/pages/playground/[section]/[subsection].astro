@@ -124,24 +124,8 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
                 href={`/playground/${filePath.replace(".astro", "")}`}
                 class="relative flex flex-col group"
               >
-                <div class="flex items-center gap-2">
-                  <div class="flex items-center gap-2">
-                    <Text
-                      tag="p"
-                      variant="textSM"
-                      class="flex items-center capitalize  text-base-500 group-hover:text-base-900 gap-2"
-                    >
-                      <span>{(index + 1).toString().padStart(2, "0")}</span>
-                      <span> {subsection.replace(/-/g, " ")}</span>
-                      {!user && index === 0 && (
-                        <span class="text-base-900 ">Open Demo</span>
-                      )}
-                    </Text>
-                  </div>
+                <div class="flex flex-col gap-1">
                   {isUpdatedLastWeek && (
-                  <span aria-hidden="true" class="text-base-500">
-                    /
-                  </span>
                     <Text
                       tag="p"
                       variant="textXS"
@@ -155,6 +139,19 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
                       ago
                     </Text>
                   )}
+                  <div class="flex items-center gap-2">
+                    <Text
+                      tag="p"
+                      variant="textSM"
+                      class="flex items-center capitalize  text-base-500 group-hover:text-base-900 gap-2"
+                    >
+                      <span>{(index + 1).toString().padStart(2, "0")}</span>
+                      <span> {subsection.replace(/-/g, " ")}</span>
+                      {!user && index === 0 && (
+                        <span class="text-base-900 ">Open Demo</span>
+                      )}
+                    </Text>
+                  </div>
                 </div>
                 <Image
                   width={1000}
