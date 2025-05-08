@@ -1,0 +1,87 @@
+---
+export const description = "Simple with center text and image";
+import { Image } from "astro:assets";
+import DashboardLight from "@/images/assets/dashboardLight.svg";
+// Fundations
+import Text from "@/components/fundations/typography/Text.astro";
+import Kicker from "@/components/fundations/typography/Kicker.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+const stats = [
+  {
+    label: "Working Individuals",
+    value: "30%",
+  },
+  {
+    label: "Super low fee",
+    value: "40%",
+  },
+  {
+    label: "Great Commitment",
+    value: "50%",
+  },
+  {
+    label: "Massive Earnings",
+    value: "60M",
+  },
+];
+---
+
+<section class="overflow-hidden lg:p-8">
+  <div
+    class="mx-auto px-8 md:px-12 lg:px-42 w-full 2xl:max-w-7xl lg:bg-base-50 py-20 pb-0 overflow-hidden rounded-xl"
+  >
+    <div class="max-w-xl">
+      <Kicker
+        showLink={true}
+        href="#_"
+        linkText="Read further"
+        class="text-accent-500"
+      >
+        Killing busywork, one click at a time —
+      </Kicker>
+      <Text
+        tag="h2"
+        variant="displayMD"
+        class="mt-12 font-semibold tracking-tight text-base-900 lg:text-balance"
+      >
+        Teamwork without the group therapy
+      </Text>
+      <Text tag="p" variant="textSM" class="mt-4 text-base-500 lg:text-balance">
+        Launch environments, loop in teammates, and finally escape the nightmare
+        of version-controlled spreadsheets.
+      </Text>
+
+      <div class="flex flex-wrap items-center mt-8 gap-2">
+        <Button variant="accent" size="sm"> Get started </Button>
+        <Button variant="alternative" size="sm"> Learn more </Button>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-4 mt-12">
+      {
+        stats.map((stat) => (
+          <div class="flex flex-col">
+            <Text tag="p" variant="textBase" class="font-medium  text-base-900">
+              {stat.value}
+            </Text>
+            <Text tag="h3" variant="textSM" class="font-medium  text-base-500">
+              {stat.label}
+            </Text>
+          </div>
+        ))
+      }
+    </div>
+    <div
+      class="relative mt-4 overflow-hidden shadow rounded-t-lg border border-base-200 border-b-0"
+    >
+      <Image
+        width={1200}
+        height={1200}
+        loading="eager"
+        decoding="async"
+        alt="dashboard"
+        src={DashboardLight}
+        class="object-cover h-full -mb-12"
+      />
+    </div>
+  </div>
+</section>

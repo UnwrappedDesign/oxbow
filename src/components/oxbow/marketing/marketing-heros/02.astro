@@ -1,110 +1,184 @@
 ---
-export const description = "Left aligned with imaged";
+export const description = "Left aligned header with logo section";
 // Inages
 import { Image } from "astro:assets";
 import DashboardLight from "@/images/assets/dashboardLight.svg";
+import One from "@/images/brandsDark/1.svg";
+import Two from "@/images/brandsDark/2.svg";
+import Three from "@/images/brandsDark/3.svg";
+import Four from "@/images/brandsDark/4.svg";
+import Five from "@/images/brandsDark/5.svg";
+import Six from "@/images/brandsDark/6.svg";
+import Seven from "@/images/brandsDark/7.svg";
+import Eight from "@/images/brandsDark/8.svg";
+import Nine from "@/images/brandsDark/9.svg";
+import Ten from "@/images/brandsDark/10.svg";
+
 // Fundations
 import Text from "@/components/fundations/typography/Text.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
 import Kicker from "@/components/fundations/typography/Kicker.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 // Icons
-import Check from "@/components/fundations/icons/Check.astro";
+import Code from "@/components/fundations/icons/Code.astro";
+import Brain from "@/components/fundations/icons/Brain.astro";
+import Database from "@/components/fundations/icons/Database.astro";
+import Clock from "@/components/fundations/icons/Clock.astro";
+const logos = [
+  {
+    src: One,
+    width: 158,
+    height: 48,
+  },
+  {
+    src: Two,
+    width: 158,
+    height: 48,
+  },
+  {
+    src: Three,
+    width: 158,
+    height: 48,
+  },
+  {
+    src: Four,
+    width: 158,
+    height: 48,
+  },
+  {
+    src: Five,
+    width: 158,
+    height: 48,
+  },
+  {
+    src: Six,
+    width: 158,
+    height: 48,
+  },
+];
+
 const data = [
   {
-    category: "Works out of the box",
-    text: "No 42-step setup. No sacrificing your weekend. Just plug it in and pretend you did something really hard.",
-    items: ["Zero configuration hero", "Launch before lunch"],
+    icon: "Brain",
+    category: "Smarter defaults",
+    text: "Built to guess what you want before you even know you want it. Creepy? Maybe. Useful? Definitely.",
   },
   {
-    category: "Actually helpful features",
-    text: "We built the stuff people actually need — not just whatever looked good in a pitch deck.",
-    items: ["Tools that do things", "Not just buttons for show"],
+    icon: "Clock",
+    category: "Zero wasted time",
+    text: "We shaved off every unnecessary click so you can ship before your coffee gets cold.",
   },
   {
-    category: "Plays nice with others",
-    text: "Your stack is a mess. Ours isn't. We integrate without turning your app into a science experiment.",
-    items: ["API-friendly by default", "No blood sacrifices required"],
+    icon: "Code",
+    category: "Developer-first",
+    text: "No gatekeeping, no fluff — just tools that respect your time and don’t fight your keyboard.",
+  },
+  {
+    icon: "Database",
+    category: "Data you can trust",
+    text: "Clean, predictable, and drama-free. Like spreadsheets, if spreadsheets weren’t evil.",
   },
 ];
 ---
 
-<section>
+<section class="relative overflow-hidden">
   <Wrapper variant="blockStandard" class="py-24">
-    <div class="items-end grid grid-cols-1 lg:grid-cols-3 gap-12">
-      <div class="lg:col-span-2">
-        <Kicker
-          showLink={true}
-          href="#_"
-          linkText="Get it here"
-          class="text-accent-500"
-        >
-          Oxbow for desktop is ready —
-        </Kicker>
-
+    <div class="items-center grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <div>
         <Text
           tag="h1"
           variant="displayMD"
-          class="mt-12 font-semibold tracking-tight text-base-900 lg:text-balance"
+          class="font-semibold tracking-tight text-base-900 lg:text-balance"
         >
-          Making software suck less, one feature at a time.
+          Collaboration that doesn’t suck
         </Text>
-      </div>
-      <div class="flex flex-wrap mt-8 sm:items-center gap-4">
-        <Button variant="accent" size="sm"> Get started </Button>
-        <div class="text-xs text-base-500 lg:items-center">
-          <span class="block"> This is some support text </span>
-          <span class="block"> and this is also. </span>
+        <Text
+          tag="p"
+          variant="textSM"
+          class="mt-4 lg:text-balance text-base-500"
+        >
+          Share, edit, and ship without the Slack chaos, endless docs, or
+          meetings that could’ve been an emoji. It's teamwork, minus the team
+          pain.
+        </Text>
+
+        <div class="flex flex-wrap items-center mx-auto mt-8 gap-2">
+          <Button variant="accent" size="sm"> Get started </Button>
+          <Button variant="alternative" size="sm"> Learn more </Button>
         </div>
+        <Kicker
+          showLink={true}
+          href="#_"
+          linkText="Read further"
+          class="text-accent-500 mt-8"
+        >
+          Built in a weekend, somehow still better than the alternatives
+        </Kicker>
+      </div>
+
+      <div class="lg:col-span-2">
+        <Image
+          width={1200}
+          height={1200}
+          loading="eager"
+          decoding="async"
+          alt="dashboard"
+          src={DashboardLight}
+          class="object-cover h-full shadow outline rounded-lg outline-base-200"
+        />
       </div>
     </div>
-    <div class="mx-auto mt-12">
-      <Image
-        width={1200}
-        height={1200}
-        loading="eager"
-        decoding="async"
-        alt="dashboard"
-        src={DashboardLight}
-        class="object-cover h-full shadow outline rounded-2xl outline-base-200"
-      />
-    </div>
-    <div
-      class="mt-12 gap-x-2 gap-y-14 lg:gap-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-    >
+    <div class="flex flex-wrap justify-between items-center w-full gap-8 mt-12">
       {
-        data.map((section) => (
-          <div class="flex flex-col justify-between h-full">
-            <div>
-              <Text
-                tag="h3"
-                variant="textBase"
-                class="font-medium  text-base-900"
-              >
-                {section.category}
-              </Text>
-              <Text tag="p" variant="textSM" class="mt-2  text-base-500">
-                {section.text}
-              </Text>
-            </div>
-            <ul
-              role="list"
-              class="mt-6 font-medium  space-y-1 text-base-500"
-            >
-              {section.items.map((item, idx) => (
-                <li>
-                  <div class="flex items-center  gap-2">
-                    <Check class="text-accent-500" size="base" slot="icon" />
-                    <Text tag="span" variant="textSM">
-                      {item}
-                    </Text>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
+        logos.map((logo) => (
+          <Image
+            class="max-w-14 "
+            src={logo.src}
+            alt="#_"
+            width={logo.width}
+            height={logo.height}
+          />
         ))
       }
     </div>
+    <dl
+      class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8 lg:mt-24"
+    >
+      {
+        data.map((section) => (
+          <div>
+            <div class="flex items-center   text-accent-500 gap-2">
+              {section.icon === "Brain" && (
+                <Brain class="text-accent-600" size="base" />
+              )}
+              {section.icon === "Clock" && (
+                <Clock class="text-accent-600" size="base" />
+              )}
+              {section.icon === "Code" && (
+                <Code class="text-accent-600" size="base" />
+              )}
+              {section.icon === "Database" && (
+                <Database class="text-accent-600" size="base" />
+              )}
+
+              <dt>
+                <Text
+                  variant="textBase"
+                  tag="h3"
+                  class="m font-medium text-base-900"
+                >
+                  {section.category}
+                </Text>
+              </dt>
+            </div>
+            <dd>
+              <Text tag="p" variant="textSM" class="mt-2 text-base-500">
+                {section.text}
+              </Text>
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
   </Wrapper>
 </section>
