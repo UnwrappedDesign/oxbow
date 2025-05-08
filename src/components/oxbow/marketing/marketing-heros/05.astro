@@ -1,39 +1,146 @@
 ---
-export const description = "Split with full height image";
-import Button from "@/components/fundations/buttons/Button.astro";
+export const description = "Simple with center text, image and features";
+// Fundations
 import Text from "@/components/fundations/typography/Text.astro";
----
+import Button from "@/components/fundations/buttons/Button.astro";
+import Kicker from "@/components/fundations/typography/Kicker.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Icons
+import Plus from "@/components/fundations/icons/Plus.astro";
+import Filters from "@/components/fundations/icons/Filters.astro";
+import WaveSquare from "@/components/fundations/icons/WaveSquare.astro";
+import ArrowIteration from "@/components/fundations/icons/ArrowIteration.astro";
+import Brain from "@/components/fundations/icons/Brain.astro";
+import Clock from "@/components/fundations/icons/Clock.astro";
+import Code from "@/components/fundations/icons/Code.astro";
+import Database from "@/components/fundations/icons/Database.astro";
+const data = [
+  {
+    icon: "Filters",
+    category: "Live editing",
+    text: "Change stuff and see it instantly — like magic, but with fewer rabbits.",
+  },
+  {
+    icon: "WaveSquare",
+    category: "Autocompletion",
+    text: "We’ll finish your classes so you don’t have to play guessing games.",
+  },
+  {
+    icon: "ArrowIteration",
+    category: "Hide/show classes",
+    text: "Toggle styles like a control freak — minus the chaos.",
+  },
+  {
+    icon: "Plus",
+    category: "Color preview",
+    text: "No more color roulette. See exactly what you're adding before you commit.",
+  },
+  {
+    icon: "Brain",
+    category: "Instant reloads",
+    text: "Preview changes faster than your brain can process regret.",
+  },
+  {
+    icon: "Clock",
+    category: "Class stacking",
+    text: "Stack utility classes without feeling like you’re defusing a bomb.",
+  },
+  {
+    icon: "Code",
+    category: "Focus mode",
+    text: "Hide the noise. Focus on what matters. Like your sanity.",
+  },
+  {
+    icon: "Database",
+    category: "Clean output",
+    text: "Your code stays as clean as your intentions. No weird side effects, we promise.",
+  },
+];
 
-<div class="relative">
-  <div class="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-24 lg:px-8">
-    <div
-      class="flex flex-col justify-center px-8 py-20 lg:py-62 lg:col-span-7 lg:px-0 xl:col-span-6"
-    >
-      <div class="z-50 max-w-3xl mx-auto lg:mx-0 lg:px-12">
-        <Text
-          tag="h2"
-          variant="displayMD"
-          class="mt-4 font-semibold text-base-900 md:text-balance"
-        >
-          Transforming the bank experience for a digital future
-        </Text>
-        <div class="flex flex-wrap mt-12 md:items-center gap-4">
-          <Button variant="accent" size="sm"> Get started </Button>
-          <div class="text-sm font-medium text-base-500 lg:items-center">
-            <span class="block"> This is some support text </span>
-            <span class="block"> and this is also. </span>
-          </div>
-        </div>
+---
+<section>
+  <Wrapper variant="blockStandard" class="py-24">
+    <div class="max-w-xl mx-auto text-center lg:text-balance">
+      <Kicker
+        showLink={true}
+        href="#_"
+        linkText="Read further"
+        class="text-accent-500"
+      >
+        We’ve officially ruined your old workflow —
+      </Kicker>
+      <Text
+        tag="h2"
+        variant="displayMD"
+        class="mt-12 font-semibold text-base-900 tracking-tight lg:text-balance"
+      >
+        Real-time updates, because guessing is not a strategy
+      </Text>
+      <Text tag="p" variant="textSM" class="mt-4 text-base-500">
+        Stop refreshing your inbox. Stay synced on staging and temp environments
+        without the chaos.
+      </Text>
+      <div
+        class="flex flex-wrap items-center justify-center mx-auto mt-8 gap-2"
+      >
+        <Button variant="accent" size="sm"> Get started </Button>
+        <Button variant="alternative" size="sm"> Learn more </Button>
       </div>
     </div>
-    <div
-      class="relative lg:col-span-5 lg:-mr-8 xl:absolute xl:inset-0 xl:left-1/3 xl:mr-0 lg:border-l border-base-200"
+    <dl
+      class="mt-12 text-center grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-4 lg:gap-y-16"
     >
-      <img
-        class="aspect-[3/2] w-full bg-base-50 object-left object-cover lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
-        src="/images/dashboardLight.svg"
-        alt="Dashboard preview"
-      />
-    </div>
-  </div>
-</div>
+      {
+        data.map((section) => (
+          <div>
+            <div class="flex flex-col items-center text-accent-500 gap-3">
+              {section.icon === "Filters" && (
+                <Filters class="text-accent-600" size="base" />
+              )}
+              {section.icon === "WaveSquare" && (
+                <WaveSquare class="text-accent-600" size="base" />
+              )}
+              {section.icon === "ArrowIteration" && (
+                <ArrowIteration class="text-accent-600" size="base" />
+              )}
+              {section.icon === "Plus" && (
+                <Plus class="text-accent-600" size="base" />
+              )}
+              {section.icon === "Brain" && (
+                <Brain class="text-accent-600" size="base" />
+              )}
+               {section.icon === "Clock" && (
+                <Clock class="text-accent-600" size="base" />
+              )}
+              {section.icon === "Code" && (
+                <Code class="text-accent-600" size="base" />
+              )}
+              {section.icon === "Database" && (
+                <Database class="text-accent-600" size="base" />
+              )}
+
+              <dt>
+                <Text
+                  variant="textBase"
+                  tag="h3"
+                  class="mt-4 font-medium text-base-900"
+                >
+                  {section.category}
+                </Text>
+              </dt>
+            </div>
+            <dd>
+              <Text
+                tag="p"
+                variant="textSM"
+                class="mt-2 text-base-500"
+              >
+                {section.text}
+              </Text>
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </Wrapper>
+</section>

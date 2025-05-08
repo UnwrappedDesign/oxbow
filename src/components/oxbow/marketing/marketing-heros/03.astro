@@ -1,105 +1,94 @@
 ---
-export const description = "Left alinged with features and image";
-
-import Button from "@/components/fundations/buttons/Button.astro";
+export const description = "Split with image";
+import { Image } from "astro:assets";
+import DashboardLight from "@/images/assets/dashboardLight.svg";
+import Avatar1 from "@/images/avatars/1.jpg";
+import Avatar2 from "@/images/avatars/2.jpg";
+import Avatar3 from "@/images/avatars/3.jpg";
+import Avatar4 from "@/images/avatars/4.jpg";
+// Fundations
 import Text from "@/components/fundations/typography/Text.astro";
-import Filters from "@/components/fundations/icons/Filters.astro";
-import WaveSquare from "@/components/fundations/icons/WaveSquare.astro";
-import ArrowIteration from "@/components/fundations/icons/ArrowIteration.astro";
-
-const data = [
-  {
-    icon: "Filters",
-    category: "Innovative Design",
-    text: "Our cutting-edge design offers a fresh, modern look that transforms your project into a standout experience.",
-  },
-  {
-    icon: "WaveSquare",
-    category: "Powerful Functionality",
-    text: "Equipped with advanced features and tools, our solution effortlessly manages complex tasks and workflows.",
-  },
-  {
-    icon: "ArrowIteration",
-    category: "Easy Integration",
-    text: "Integrating with existing systems is smooth and hassle-free, thanks to our incredible flexible approach.",
-  },
+import Button from "@/components/fundations/buttons/Button.astro";
+import Kicker from "@/components/fundations/typography/Kicker.astro";
+const avatars = [
+  { src: Avatar1, alt: "#_" },
+  { src: Avatar2, alt: "#_" },
+  { src: Avatar3, alt: "#_" },
+  { src: Avatar4, alt: "#_" },
 ];
 ---
 
-<section class="overflow-hidden">
-  <div class="relative px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl">
-    <div class="items-end grid grid-cols-1 lg:grid-cols-3 gap-12">
-      <div class="max-w-2xl lg:col-span-2">
-        <Text
-          tag="p"
-          variant="textSM"
-          class="font-bold uppercase text-accent-600"
-        >
-          Tagline
-        </Text>
-        <Text
-          tag="h2"
-          variant="displayMD"
-          class="mt-4 font-semibold text-base-900 lg:text-balance"
-        >
-          Transforming the banking experience for a digital future
-        </Text>
-        <Text class="mt-4 font-medium text-base-500" tag="p" variant="textBase">
-          The fastest method for working together on staging and temporary
-          environments.
-        </Text>
-      </div>
-      <div class="flex flex-wrap items-center gap-2 lg:ml-auto">
+<section class="relative overflow-hidden">
+  <div
+    class="relative items-center px-8 py-24 mx-auto max-w-7xl lg:flex "
+  >
+    <div
+      class="max-w-2xl mx-auto lg:mx-0 lg:max-w-xl lg:flex-shrink-0 lg:pl-24"
+    >
+      <Kicker
+        showLink={true}
+        href="#_"
+        linkText="Read further"
+        class="text-accent-500"
+      >
+        We have rised $50 —
+      </Kicker>
+      <Text
+        tag="h1"
+        variant="displayLG"
+        class="mt-12 font-semibold tracking-tight text-base-900 lg:text-balance"
+      >
+        Software that gets out of your way
+      </Text>
+      <Text
+        class="mt-4 text-base-500 lg:text-balance"
+        tag="p"
+        variant="textBase"
+      >
+        Plug it in, skip the drama. Built to play nice with your stack and
+        handle the messy stuff so you don’t have to. No fluff, just features
+        that actually pull their weight.
+      </Text>
+
+      <div class="flex flex-wrap items-center mx-auto mt-8 gap-2">
         <Button variant="accent" size="sm"> Get started </Button>
         <Button variant="alternative" size="sm"> Learn more </Button>
       </div>
+      <div class="flex flex-wrap items-center mt-8 gap-2">
+        <div class="flex -space-x-2">
+          {
+            avatars.map((avatar) => (
+              <Image
+                width={200}
+                height={200}
+                src={avatar.src}
+                alt={avatar.alt}
+                class="inline-block object-cover object-center rounded-full size-8 outline-2 outline-white"/>
+            ))
+          }
+        </div>
+        <div class="text-xs text-base-500 lg:items-center">
+          <span class="block">Trusted by people</span>
+          <span class="block"> who’ve seen worse</span>
+        </div>
+      </div>
     </div>
-    <dl
-      class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16"
+    <div
+      class="flex max-w-2xl mx-auto mt-16 sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32"
     >
-      {
-        data.map((section) => (
-          <div>
-            <div class="flex items-center  gap-3">
-              {section.icon === "Filters" && (
-                <Filters class="text-accent-600" size="base" />
-              )}
-              {section.icon === "WaveSquare" && (
-                <WaveSquare class="text-accent-600" size="base" />
-              )}
-              {section.icon === "ArrowIteration" && (
-                <ArrowIteration class="text-accent-600" size="base" />
-              )}
-
-              <dt>
-                <Text
-                  variant="textLG"
-                  tag="h3"
-                  class="font-medium text-base-900"
-                >
-                  {section.category}
-                </Text>
-              </dt>
-            </div>
-            <dd>
-              <Text
-                tag="p"
-                variant="textBase"
-                class="mt-2 font-medium text-base-500"
-              >
-                {section.text}
-              </Text>
-            </dd>
-          </div>
-        ))
-      }
-    </dl>
-    <div class="mt-12">
-      <img
-        class="object-cover object-top w-full h-full shadow rounded-xl max-h-96"
-        src="/images/dashboardLight.svg"
-        alt="#_"
-      />
+      <div class="flex-none max-w-3xl sm:max-w-5xl lg:max-w-none">
+        <div class=" lg:-m-4">
+          <Image
+            width={1200}
+            height={1200}
+            loading="eager"
+            decoding="async"
+            alt="dashboard"
+            src={DashboardLight}
+            class="w-[76rem] shadow outline rounded-2xl outline-base-200"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </section>

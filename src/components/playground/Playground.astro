@@ -2,7 +2,7 @@
 // Fundations
 import Text from "@/components/fundations/typography/Text.astro";
 import OxbowLink from "@/components/fundations/buttons/OxbowLink.astro";
-import OxbowButton from "@/components/fundations/buttons/OxbowButton.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
 // Components
 import { Code } from "astro:components";
 import * as prettier from "prettier";
@@ -27,11 +27,11 @@ const theme = ``;
   <div class="relative"  @theme="setTheme($event.detail.color)">
     <div class="flex items-center justify-between pb-2 gap-1 ">
       <div class="inline-flex items-center p-1 bg-white rounded-lg gap-1 ">
-        <Button onlyIconSize="xs" variant="muted"
+        <Button onlyIconSize="xxs" variant="muted"
           
           href={`#${componentIndex}`}
         >
-          {componentIndex}
+          <span class="text-xs">{componentIndex}</span>
         </Button>
         <div aria-hidden="true" class="mx-1 h-4 w-[1px]  bg-base-200   hidden md:inline-block"></div>
           <div x-data="themeSelector" class="relative focus:z-10">
@@ -65,8 +65,8 @@ const theme = ``;
                   <div class="w-full mt-4">
                       <div class="grid grid-cols-3 md:grid-cols-3 gap-2 ">
                         <template x-for="color in colors" class="w-full ">
-                          <OxbowButton 
-                            size="mini"
+                          <Button 
+                            size="xxs"
                             variant="muted"
                             x-on:click="selectColor(color.name)"
                             :class="selected === color.name ? 'outline-2 !outline-base-500' : ''"
@@ -76,7 +76,7 @@ const theme = ``;
                               <span x-text="color.name"></span>
                               <span class="rounded-full size-1.5 shrink-0" :class="color.color"></span>
                             </div>
-                          </OxbowButton>
+                          </Button>
                         </template>
                         
                       </div>
@@ -87,7 +87,7 @@ const theme = ``;
       </div>
       <div class="items-center justify-end hidden p-1 bg-white rounded-lg  md:flex gap-1">
         <span class="items-center hidden isolate md:inline-flex  gap-1" >
-          <Button onlyIconSize="xs" variant="muted"
+          <Button onlyIconSize="xxs" variant="muted"
           @click="viewportSize = 'mobile'" :class="viewportSize === 'mobile' ? '' : ''">
             <svg slot="left-icon" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M4 2.5C4 2.22386 4.22386 2 4.5 2H10.5C10.7761 2 11 2.22386 11 2.5V12.5C11 12.7761 10.7761 13 10.5 13H4.5C4.22386 13 4 12.7761 4 12.5V2.5ZM4.5 1C3.67157 1 3 1.67157 3 2.5V12.5C3 13.3284 3.67157 14 4.5 14H10.5C11.3284 14 12 13.3284 12 12.5V2.5C12 1.67157 11.3284 1 10.5 1H4.5ZM6 11.65C5.8067 11.65 5.65 11.8067 5.65 12C5.65 12.1933 5.8067 12.35 6 12.35H9C9.1933 12.35 9.35 12.1933 9.35 12C9.35 11.8067 9.1933 11.65 9 11.65H6Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
@@ -95,7 +95,7 @@ const theme = ``;
           </Button>
           
           <Button
-             onlyIconSize="xs" variant="muted"
+             onlyIconSize="xxs" variant="muted"
              @click="viewportSize = 'tablet'" :class="viewportSize === 'tablet' ? '' : '"
              >
              <svg
@@ -116,7 +116,7 @@ const theme = ``;
              </svg>
           </Button>
           <Button
-             onlyIconSize="xs" variant="muted"
+             onlyIconSize="xxs" variant="muted"
              @click="viewportSize = 'desktop'" :class="viewportSize === 'desktop' ? '' : ''"
              >
              <svg   viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -128,8 +128,8 @@ const theme = ``;
         {
           canSeeCode ? (
             <div class="flex items-center gap-1 ">
-              <OxbowButton
-               size="mini"
+              <Button
+               size="xxs"
                 variant="muted"
                 x-on:click="setTab('preview')" 
                 :class="tab === 'preview' ? ' outline-base-100  ' : ''"
@@ -138,9 +138,9 @@ const theme = ``;
                 data-umami-event-componentref={componentPath}
                 class="pointer-events-auto !shadow-none">
                 Preview
-              </OxbowButton>
-              <OxbowButton
-               size="mini"
+              </Button>
+              <Button
+               size="xxs"
                 variant="muted"
                 x-on:click="setTab('code')" 
                 :class="tab === 'code' ? 'outline-base-100  ' : ''"
@@ -149,9 +149,9 @@ const theme = ``;
                 data-umami-event-componentref={componentPath}
                 class="pointer-events-auto !shadow-none">
                 Code
-              </OxbowButton>
-             <OxbowButton
-                size="mini"
+              </Button>
+             <Button
+                size="xxs"
                 variant="muted"
                 x-on:click="setTab('theme')" 
                 :class="tab === 'theme' ? 'outline-base-100  ' : ''"
@@ -160,10 +160,10 @@ const theme = ``;
                 data-umami-event-componentref={componentPath}
                 class="pointer-events-auto !shadow-none">
                 Theme
-              </OxbowButton> 
+              </Button> 
               <div aria-hidden="true" class="mx-1 h-4 w-[1px]  bg-base-200   hidden md:inline-block"></div>
-              <OxbowButton
-                size="mini"
+              <Button
+                size="xxs"
                 variant="muted"
                 data-umami-event="click-copy-component"
                 data-umami-data-id={user?.uid}
@@ -175,11 +175,11 @@ const theme = ``;
                   x-text="copied ? 'Copied!' : 'Copy'"
                   class="transition"
                 />
-              </OxbowButton>
+              </Button>
             </div>
           ) : (
             <OxbowLink
-            size="mini"
+            size="xxs"
             variant="default"
             href="/pricing"
             data-umami-event="click-get-access"

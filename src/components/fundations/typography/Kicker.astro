@@ -1,0 +1,28 @@
+---
+import Text from "@/components/fundations/typography/Text.astro";
+
+const {
+  class: className,
+  showLink = false,
+  href = "#_",
+  linkText = "Download",
+} = Astro.props;
+---
+
+<Text
+  tag="p"
+  variant="textSM"
+  class={`relative text-base-500 ${className ?? ""}`}
+>
+  <slot />
+  {
+    showLink && (
+      <>
+        <a href={href} class="relative font-semibold text-accent-500">
+          <span class="absolute inset-0" aria-hidden="true" />
+          {linkText}
+        </a>
+      </>
+    )
+  }
+</Text>
