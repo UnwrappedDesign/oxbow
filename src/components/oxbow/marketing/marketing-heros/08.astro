@@ -1,0 +1,137 @@
+---
+export const description = "Left aligned with imaged";
+// Inages
+import { Image } from "astro:assets";
+import DashboardLight from "@/images/assets/dashboardLight.svg";
+import Avatar1 from "@/images/avatars/1.jpg";
+import Avatar2 from "@/images/avatars/2.jpg";
+import Avatar3 from "@/images/avatars/3.jpg";
+import Avatar4 from "@/images/avatars/4.jpg";
+// Fundations
+import Text from "@/components/fundations/typography/Text.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+import Kicker from "@/components/fundations/typography/Kicker.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Icons
+import Check from "@/components/fundations/icons/Check.astro";
+const data = [
+  {
+    category: "Works out of the box",
+    text: "No 42-step setup. No sacrificing your weekend. Just plug it in and pretend you did something really hard.",
+    items: ["Zero configuration hero", "Launch before lunch"],
+  },
+  {
+    category: "Actually helpful features",
+    text: "We built the stuff people actually need — not just whatever looked good in a pitch deck.",
+    items: ["Tools that do things", "Not just buttons for show"],
+  },
+  {
+    category: "Plays nice with others",
+    text: "Your stack is a mess. Ours isn't. We integrate without turning your app into a science experiment.",
+    items: ["API-friendly by default", "No blood sacrifices required"],
+  },
+];
+const avatars = [
+  { src: Avatar1, alt: "#_" },
+  { src: Avatar2, alt: "#_" },
+  { src: Avatar3, alt: "#_" },
+  { src: Avatar4, alt: "#_" },
+];
+---
+
+<section>
+  <Wrapper variant="blockStandard" class="py-24">
+    <div class="items-end grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <div class="lg:col-span-2">
+        <Kicker
+          showLink={true}
+          href="#_"
+          linkText="Get it here"
+          class="text-accent-500"
+        >
+          Oxbow for desktop is ready —
+        </Kicker>
+
+        <Text
+          tag="h1"
+          variant="displayMD"
+          class="mt-12 font-semibold tracking-tight text-base-900 lg:text-balance"
+        >
+          Making software suck less, one feature at a time.
+        </Text>
+        <div class="flex flex-wrap mt-8 sm:items-center gap-4">
+          <Button variant="accent" size="sm"> Get started </Button>
+          <div class="text-xs text-base-500 lg:items-center">
+            <span class="block"> This is some support text </span>
+            <span class="block"> and this is also. </span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="flex flex-wrap items-center gap-2">
+          <div class="flex -space-x-2">
+            {
+              avatars.map((avatar) => (
+                <Image
+                  width={200}
+                  height={200}
+                  src={avatar.src}
+                  alt={avatar.alt}
+                  class="inline-block object-cover object-center rounded-full size-8 outline-2 outline-white"/>
+              ))
+            }
+          </div>
+          <div class="text-xs text-base-500 lg:items-center">
+            <span class="block">Trusted by people</span>
+            <span class="block"> who’ve seen worse</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mx-auto mt-12">
+      <Image
+        width={1200}
+        height={1200}
+        loading="eager"
+        decoding="async"
+        alt="dashboard"
+        src={DashboardLight}
+        class="object-cover h-full shadow outline rounded-lg outline-base-200"
+      />
+    </div>
+    <div
+      class="mt-12 gap-x-2 gap-y-14 lg:gap-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+    >
+      {
+        data.map((section) => (
+          <div class="flex flex-col justify-between h-full">
+            <div>
+              <Text
+                tag="h3"
+                variant="textBase"
+                class="font-medium  text-base-900"
+              >
+                {section.category}
+              </Text>
+              <Text tag="p" variant="textSM" class="mt-2  text-base-500">
+                {section.text}
+              </Text>
+            </div>
+            <ul role="list" class="mt-6 font-medium  space-y-1 text-base-500">
+              {section.items.map((item, idx) => (
+                <li>
+                  <div class="flex items-center  gap-2">
+                    <Check class="text-accent-500" size="base" slot="icon" />
+                    <Text tag="span" variant="textSM">
+                      {item}
+                    </Text>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </Wrapper>
+</section>
