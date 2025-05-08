@@ -1,98 +1,57 @@
 ---
-export const description = "Split with image";
-import Button from "@/components/fundations/buttons/Button.astro";
+export const description = "Simple with center text and image";
+import { Image } from "astro:assets";
+import DashboardLight from "@/images/assets/dashboardLight.svg";
+// Fundations
 import Text from "@/components/fundations/typography/Text.astro";
-import CircleCheck from "@/components/fundations/icons/CircleCheck.astro";
-const data = [
-  {
-    text: "Our cutting-edge design offers a fresh, modern look that transforms your project into a standout experience. ",
-    items: ["Revolutionizing communication", "Enhancing productivity"],
-  },
-];
+import Kicker from "@/components/fundations/typography/Kicker.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
 ---
 
-<section class="relative overflow-hidden">
-  <div
-    class="relative items-center px-6 py-24 mx-auto max-w-7xl lg:flex lg:px-8"
-  >
-    <div
-      class="max-w-2xl mx-auto lg:mx-0 lg:max-w-xl lg:flex-shrink-0 lg:px-12"
-    >
-      <Text
-        tag="p"
-        variant="textSM"
-        class="font-bold uppercase text-accent-600"
+<section class="overflow-hidden">
+  <Wrapper variant="blockStandard" class="pt-24">
+    <div class="max-w-xl mx-auto text-center lg:text-balance">
+      <Kicker
+        showLink={true}
+        href="#_"
+        linkText="Read further"
+        class="text-accent-500"
       >
-        Tagline
-      </Text>
+        We have changed the way you work —
+      </Kicker>
       <Text
         tag="h2"
-        variant="displayLG"
-        class="mt-4 font-semibold text-base-900 lg:text-balance"
+        variant="displayMD"
+        class="mt-12 font-semibold tracking-tight text-base-900 lg:text-balance"
       >
-        Transforming the banking experience for a digital future
+        Collaboration that doesn’t make you want to scream
       </Text>
-      <Text class="mt-4 font-medium text-base-500" tag="p" variant="textBase">
-        Integrating with existing systems is smooth and hassle-free, thanks to
-        our incredible flexible approach. Equipped with advanced features and
-        tools, our solution effortlessly manages complex tasks and workflows.
+      <Text tag="p" variant="textSM" class="mt-4 text-base-500 lg:text-balance">
+        Spin up staging, sync with your team, and stop pretending spreadsheets
+        are a workflow.
       </Text>
-      <div class="flex flex-wrap mt-12 gap-4 sm:items-center">
+
+      <div
+        class="flex flex-wrap items-center justify-center mx-auto mt-8 gap-2"
+      >
         <Button variant="accent" size="sm"> Get started </Button>
-        <div class="text-sm font-medium text-base-500 lg:items-center">
-          <span class="block"> This is some support text </span>
-          <span class="block"> and this is also. </span>
-        </div>
-      </div>
-      <div class="pt-6 mt-6 border-t border-base-200">
-        {
-          data.map((section) => (
-            <div class="mt-2">
-              <Text
-                class="font-medium  text-base-500"
-                tag="p"
-                variant="textBase"
-              >
-                {section.text}
-              </Text>
-              <ul
-                role="list"
-                class="mt-6 text-base font-medium list-none space-y-1 text-base-900"
-              >
-                {section.items.map((item) => (
-                  <li>
-                    <div class="flex items-center  gap-4">
-                      <CircleCheck
-                        class="text-accent-600"
-                        size="base"
-                        slot="icon"
-                      />
-                      <Text tag="span" variant="textBase">
-                        {item}
-                      </Text>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))
-        }
+        <Button variant="alternative" size="sm"> Learn more </Button>
       </div>
     </div>
+
     <div
-      class="flex max-w-2xl mx-auto mt-16 sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32"
+      class="relative mt-12 overflow-hidden shadow rounded-t-2xl outline outline-base-200"
     >
-      <div class="flex-none max-w-3xl sm:max-w-5xl lg:max-w-none">
-        <div class="-m-2 lg:-m-4">
-          <img
-            src="/images/dashboardLight.svg"
-            alt="#_"
-            width="2432"
-            height="1442"
-            class="w-[76rem] shadow rounded-2xl"
-          />
-        </div>
-      </div>
+      <Image
+        width={1200}
+        height={1200}
+        loading="eager"
+        decoding="async"
+        alt="dashboard"
+        src={DashboardLight}
+        class="object-cover h-full -mb-12"
+      />
     </div>
-  </div>
+  </Wrapper>
 </section>
