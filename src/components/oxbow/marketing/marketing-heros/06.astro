@@ -1,0 +1,91 @@
+---
+export const description = "Split screen sign in with testimonial";
+// Assets
+import { Image } from "astro:assets";
+import DashboardLight from "@/images/assets/dashboardLight.svg";
+import A1 from "@/images/avatars/avatar1.jpeg";
+// Fundations
+import Text from "@/components/fundations/typography/Text.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+import Kicker from "@/components/fundations/typography/Kicker.astro";
+---
+
+<div class="flex h-screen">
+  <div class="flex items-center justify-center w-full p-8 bg-white lg:w-1/2">
+    <div class="w-full max-w-md py-24 lg:py-32">
+      <div>
+        <Kicker
+          showLink={true}
+          href="#_"
+          linkText="Read further"
+          class="text-accent-500"
+        >
+          We have rised $50 —
+        </Kicker>
+        <Text
+          tag="h1"
+          variant="displayLG"
+          class="mt-12 font-semibold tracking-tight text-base-900 lg:text-balance"
+        >
+          Software that gets out of your way
+        </Text>
+        <Text
+          class="mt-4 text-base-500 lg:text-balance"
+          tag="p"
+          variant="textBase"
+        >
+          Plug it in, skip the drama. Built to play nice with your stack and
+          handle the messy stuff so you don’t have to. No fluff, just features
+          that actually pull their weight.
+        </Text>
+        <div class="flex flex-wrap items-center mx-auto mt-8 gap-2">
+          <Button variant="accent" size="sm"> Get started </Button>
+          <Button variant="alternative" size="sm"> Learn more </Button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="relative hidden lg:block lg:w-1/2 lg:border-l lg:border-base-200">
+    <Image
+      width={1200}
+      height={1200}
+      src={DashboardLight}
+      alt="#_"
+      aria-hidden="true"
+      class="object-cover object-left w-full h-full bg-base-50"
+    />
+    <div class="absolute inset-0 bg-black/0"></div>
+    <div
+      class="absolute p-6 bg-white rounded-lg shadow-lg shadow-base-500/20 outline outline-base-200 bottom-20 left-10 right-10"
+    >
+      <div class="relative flex flex-col gap-2">
+        <Text tag="h3" variant="textBase" class="font-medium">
+          "I’ve seen enough UI kits to last a lifetime. Oxbow’s the first one
+          that didn’t make me roll my eyes."
+        </Text>
+        <div class="flex items-center mt-2 gap-4">
+          <Image
+            src={A1}
+            alt="#_"
+            width={1000}
+            height={1000}
+            aria-hidden="true"
+            class="object-cover object-top rounded-full size-10"
+          />
+          <div>
+            <Text
+              tag="p"
+              variant="textBase"
+              class="font-semibold text-base-900"
+            >
+              Johan Snällström
+            </Text>
+            <Text tag="p" variant="textXS" class="text-base-500">
+              Software Engineer
+            </Text>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
