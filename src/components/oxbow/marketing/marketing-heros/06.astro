@@ -3,16 +3,43 @@ export const description = "Split screen sign in with testimonial";
 // Assets
 import { Image } from "astro:assets";
 import DashboardLight from "@/images/assets/dashboardLight.svg";
-import A1 from "@/images/avatars/avatar1.jpeg";
 // Fundations
 import Text from "@/components/fundations/typography/Text.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
 import Kicker from "@/components/fundations/typography/Kicker.astro";
+// Icons
+import Code from "@/components/fundations/icons/Code.astro";
+import Brain from "@/components/fundations/icons/Brain.astro";
+import Database from "@/components/fundations/icons/Database.astro";
+import Clock from "@/components/fundations/icons/Clock.astro";
+
+const data = [
+  {
+    icon: "Brain",
+    category: "Instant reloads",
+    text: "See your changes before your brain even realizes you hit save. Spooky fast.",
+  },
+  {
+    icon: "Clock",
+    category: "Class stacking",
+    text: "Pile on utility classes without the mental gymnastics or existential dread.",
+  },
+  {
+    icon: "Code",
+    category: "Focus mode",
+    text: "Block out the clutter and zero in. It’s like noise-canceling for your workflow.",
+  },
+  {
+    icon: "Database",
+    category: "Clean output",
+    text: "What you write is what you ship — no bloated junk or surprise div soup.",
+  },
+];
 ---
 
 <div class="flex h-screen">
   <div class="flex items-center justify-center w-full p-8 bg-white lg:w-1/2">
-    <div class="w-full max-w-md py-24 lg:py-32">
+    <div class="w-full max-w-md py-24 lg:py-48">
       <div>
         <Kicker
           showLink={true}
@@ -20,7 +47,7 @@ import Kicker from "@/components/fundations/typography/Kicker.astro";
           linkText="Read further"
           class="text-accent-500"
         >
-          We have rised $50 —
+          We’ve raised $50 — don’t ask how
         </Kicker>
         <Text
           tag="h1"
@@ -35,13 +62,50 @@ import Kicker from "@/components/fundations/typography/Kicker.astro";
           variant="textBase"
         >
           Plug it in, skip the drama. Built to play nice with your stack and
-          handle the messy stuff so you don’t have to. No fluff, just features
-          that actually pull their weight.
+          handle the messy stuff so you don’t have to. No fluff — just features
+          that show up and do their job.
         </Text>
-        <div class="flex flex-wrap items-center mx-auto mt-8 gap-2">
+
+        <div class="flex mt-8">
           <Button variant="accent" size="sm"> Get started </Button>
-          <Button variant="alternative" size="sm"> Learn more </Button>
         </div>
+        <dl class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8">
+          {
+            data.map((section) => (
+              <div>
+                <div class="flex items-center   text-accent-500 gap-2">
+                  {section.icon === "Brain" && (
+                    <Brain class="text-accent-600" size="base" />
+                  )}
+                  {section.icon === "Clock" && (
+                    <Clock class="text-accent-600" size="base" />
+                  )}
+                  {section.icon === "Code" && (
+                    <Code class="text-accent-600" size="base" />
+                  )}
+                  {section.icon === "Database" && (
+                    <Database class="text-accent-600" size="base" />
+                  )}
+
+                  <dt>
+                    <Text
+                      variant="textBase"
+                      tag="h3"
+                      class="m font-medium text-base-900"
+                    >
+                      {section.category}
+                    </Text>
+                  </dt>
+                </div>
+                <dd>
+                  <Text tag="p" variant="textSM" class="mt-2 text-base-500">
+                    {section.text}
+                  </Text>
+                </dd>
+              </div>
+            ))
+          }
+        </dl>
       </div>
     </div>
   </div>
@@ -54,38 +118,5 @@ import Kicker from "@/components/fundations/typography/Kicker.astro";
       aria-hidden="true"
       class="object-cover object-left w-full h-full bg-base-50"
     />
-    <div class="absolute inset-0 bg-black/0"></div>
-    <div
-      class="absolute p-6 bg-white rounded-lg shadow-lg shadow-base-500/20 outline outline-base-200 bottom-20 left-10 right-10"
-    >
-      <div class="relative flex flex-col gap-2">
-        <Text tag="h3" variant="textBase" class="font-medium">
-          "I’ve seen enough UI kits to last a lifetime. Oxbow’s the first one
-          that didn’t make me roll my eyes."
-        </Text>
-        <div class="flex items-center mt-2 gap-4">
-          <Image
-            src={A1}
-            alt="#_"
-            width={1000}
-            height={1000}
-            aria-hidden="true"
-            class="object-cover object-top rounded-full size-10"
-          />
-          <div>
-            <Text
-              tag="p"
-              variant="textBase"
-              class="font-semibold text-base-900"
-            >
-              Johan Snällström
-            </Text>
-            <Text tag="p" variant="textXS" class="text-base-500">
-              Software Engineer
-            </Text>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>

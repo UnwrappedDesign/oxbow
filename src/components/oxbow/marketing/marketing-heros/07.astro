@@ -1,0 +1,103 @@
+---
+export const description = "Split screen sign in with testimonial";
+// Assets
+import { Image } from "astro:assets";
+import DashboardLight from "@/images/assets/dashboardLight.svg";
+import One from "@/images/brandsDark/1.svg";
+import Two from "@/images/brandsDark/2.svg";
+import Three from "@/images/brandsDark/3.svg";
+import Four from "@/images/brandsDark/4.svg";
+// Fundations
+import Text from "@/components/fundations/typography/Text.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+import Kicker from "@/components/fundations/typography/Kicker.astro";
+
+const logos = [
+  {
+    src: One,
+    width: 158,
+    height: 48,
+  },
+  {
+    src: Two,
+    width: 158,
+    height: 48,
+  },
+  {
+    src: Three,
+    width: 158,
+    height: 48,
+  },
+  {
+    src: Four,
+    width: 158,
+    height: 48,
+  },
+];
+---
+
+<div class="flex h-screen">
+  <div class="flex items-center justify-center w-full p-8 bg-white lg:w-1/2">
+    <div class="w-full max-w-md py-24 lg:py-48">
+      <div>
+        <Kicker
+          showLink={true}
+          href="#_"
+          linkText="Read further"
+          class="text-accent-500"
+        >
+          Funded by questionable optimism
+        </Kicker>
+        <Text
+          tag="h1"
+          variant="displayLG"
+          class="mt-12 font-semibold tracking-tight text-base-900 lg:text-balance"
+        >
+          The tool you never asked for but now totally depend on
+        </Text>
+        <Text
+          class="mt-4 text-base-500 lg:text-balance"
+          tag="p"
+          variant="textBase"
+        >
+          Skip the onboarding circus and start actually getting things done.
+          It’s fast, friendly, and won’t try to sell you a webinar every five
+          minutes.
+        </Text>
+
+        <div class="flex flex-wrap mt-8 sm:items-center gap-4">
+            <Button variant="accent" size="sm"> Get started </Button>
+            <div class="text-xs text-base-500 lg:items-center">
+              <span class="block"> This is some support text </span>
+              <span class="block"> and this is also. </span>
+            </div>
+          </div>
+      </div>
+      <div class="flex flex-wrap items-center w-full gap-8 mt-12 lg:mt-24">
+        {
+          logos.map((logo) => (
+            <Image
+              class="max-w-14 "
+              src={logo.src}
+              alt="#_"
+              width={logo.width}
+              height={logo.height}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+  <div
+    class="relative hidden lg:block lg:w-1/2 lg:border-r lg:border-base-200 lg:order-first"
+  >
+    <Image
+      width={1200}
+      height={1200}
+      src={DashboardLight}
+      alt="#_"
+      aria-hidden="true"
+      class="object-cover object-left w-full h-full bg-base-50"
+    />
+  </div>
+</div>
