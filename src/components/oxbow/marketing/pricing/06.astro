@@ -1,53 +1,558 @@
 ---
-export const description = "Pricing section with grid and  two cards";
-
-// Fundations
-import Text from "@/components/fundations/typography/Text.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+export const description = "Simple pricing section";
 // Components
-import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.astro";
-import PricingCardsSingle from "@/components/fundations/pricing/PricingCardsSingle.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+import Select from "@/components/fundations/inputs/Select.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Icons (import all used ones)
+import Edit from "@/components/fundations/icons/Edit.astro";
+import Bulb from "@/components/fundations/icons/Bulb.astro";
+import ApiApp from "@/components/fundations/icons/ApiApp.astro";
+import Refresh from "@/components/fundations/icons/Refresh.astro";
+import CircleCheck from "@/components/fundations/icons/CircleCheck.astro";
+import Analytics from "@/components/fundations/icons/Analytics.astro";
+import Program from "@/components/fundations/icons/Program.astro";
+import Plug from "@/components/fundations/icons/Plug.astro";
+import Brain from "@/components/fundations/icons/Brain.astro";
+import Code from "@/components/fundations/icons/Code.astro";
+import Tools from "@/components/fundations/icons/Tools.astro";
+import Lifebuoy from "@/components/fundations/icons/Lifebuoy.astro";
+import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
 ---
 
-<section x-data="{duration: 'monthly'}" class="bg-base-50">
+<section x-data="{ duration: 'monthly' }" class="bg-base-50">
   <Wrapper variant="blockStandard" class="py-24">
-    <div
-      class="w-full grid grid-cols-1 lg:max-w-none gap-y-12 lg:gap-x-20 lg:grid-cols-3 lg:items-start"
-    >
-      <div class="flex flex-col h-full gap-8 cols-span-full lg:col-span-1">
+    <div class="max-w-xl text-center mx-auto">
+      <Text
+        tag="h1"
+        variant="displayMD"
+        class="font-medium tracking-tight text-base-900 text-balance"
+      >
+        Tools your team will actually use
+      </Text>
+      <Text
+        tag="p"
+        variant="textBase"
+        class="mt-2 font-medium text-base-600 text-balance"
+      >
+        Skip the bloat, skip the learning curve. When the docs are shorter than
+        your to-do list, you know it’s good.
+      </Text>
+      <div
+        aria-labelledby="pricing-toggle"
+        class="w-full relative mt-8 ring-1 ring-base-200 ring-offset-2 bg-white overflow-hidden justify-center gap-4 mx-auto lg:mx-0 inline-flex p-1 rounded-md max-w-52 shadow z-0"
+      >
+        <div
+          class="absolute inset-0 bg-base-50 rounded-md transition-transform duration-200 ease-in-out"
+          :class="duration === 'monthly' ? 'w-1/2 translate-x-0' : 'w-1/2 translate-x-full'"
+        >
+        </div>
+        <button
+          class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
+          :class="duration === 'monthly' ? 'text-base-600' : 'focus:text-base-900 hover:text-base-900'"
+          @click="duration = 'monthly'"
+          type="button"
+          :aria-pressed="duration === 'monthly'"
+        >
+          Monthly
+        </button>
+        <button
+          class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
+          :class="duration === 'annual' ? 'text-base-600' : 'focus:text-base-900 hover:text-base-900'"
+          @click="duration = 'annual'"
+          type="button"
+          :aria-pressed="duration === 'annual'"
+        >
+          Annual
+        </button>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-12">
+      <div class="bg-white rounded-lg outline outline-base-200 shadow p-4 lg:p-12">
         <div>
-          <Text
-            tag="h1"
-            variant="displaySM"
-            class="font-medium tracking-tight text-base-900 text-balance"
-          >
-            Equip your business with world class software
+          <div class="flex items-center justify-between gap-2">
+            <Text tag="h3" variant="displaySM" class="font-medium text-base-900"
+              >Core</Text
+            >
+            <div class="flex items-center gap-2">
+              <Text
+                tag="p"
+                variant="displaySM"
+                class="font-medium text-base-900"
+              >
+                <span
+                  data-monthly="$29"
+                  data-annual="$19"
+                  x-text="$el.dataset[duration]"></span>
+              </Text>
+              <div class="text-xs font-medium text-base-500">
+                <div class="font-medium">
+                  <span class="capitalize" x-show="duration==='monthly'"
+                    >month</span
+                  >
+                  <span
+                    class="capitalize"
+                    x-show="duration==='annual'"
+                    style="display: none">annually</span
+                  >
+                </div>
+                <p>USD + Local taxes</p>
+              </div>
+            </div>
+          </div>
+          <Text tag="p" variant="textBase" class="text-base-500 mt-2">
+            Essential AI copywriting tools to boost your content creation.
           </Text>
+        </div>
+        <div class="mt-4">
+          <Button size="base" variant="alternative" class="w-full">
+            Start free trial
+          </Button>
+        </div>
+        <div class="mt-8 py-8 border-t border-base-200 flex flex-col gap-4">
+          <div class="flex flex-col sm:flex-row items-start gap-4">
+            <div
+              class="bg-base-50 outline outline-base-100 text-accent-500 p-2 rounded-lg"
+            >
+              <Refresh size="sm" />
+            </div>
+            <Text tag="h3" variant="p" class="font-medium text-base-900">
+              Content Generation
+              <span aria-hidden="true">—</span>
+              <span class="text-base-500 font-normal">
+                Generate blog posts, social media content, and basic marketing
+                copy.
+              </span>
+            </Text>
+          </div>
+          <div class="flex flex-col sm:flex-row items-start gap-4">
+            <div
+              class="bg-base-50 outline outline-base-100 text-accent-500 p-2 rounded-lg"
+            >
+              <Edit size="sm" />
+            </div>
+            <Text tag="h3" variant="p" class="font-medium text-base-900">
+              AI Writing Assistant
+              <span aria-hidden="true">—</span>
+              <span class="text-base-500 font-normal">
+                Basic grammar checking and style suggestions for your content.
+              </span>
+            </Text>
+          </div>
+        </div>
+        <div class="pt-4 border-t border-base-200">
+          <Text tag="h3" variant="textBase" class="font-medium text-base-900"
+            >Word Credits</Text
+          >
+          <div class="space-y-4 mt-4">
+            <Select
+              id="core-credits"
+              name="core-credits"
+              label="Core Credits per project"
+              value="10"
+              variant="default"
+              size="base"
+              class="text-base-900"
+              options={[
+                { label: "10/project", value: "10" },
+                { label: "20/project", value: "20" },
+                { label: "50/project", value: "50" },
+              ]}
+            />
+            <Select
+              id="core-projects"
+              name="core-projects"
+              label="Projects"
+              value="10"
+              variant="default"
+              size="base"
+              class="text-base-900"
+              options={[
+                { label: "10/project", value: "10" },
+                { label: "20/project", value: "20" },
+                { label: "50/project", value: "50" },
+              ]}
+            />
+            <div class="flex items-center justify-between">
+              <Text tag="p" variant="textSM" class="text-base-500"
+                >Max Templates</Text
+              >
+              <Text tag="p" variant="textSM">
+                <span class="font-medium text-base-900">5</span>
+                <span class="text-base-500">(10,000 words each)</span>
+              </Text>
+            </div>
+            <div class="flex items-center justify-between">
+              <Text tag="p" variant="textSM" class="text-base-500"
+                >Price per 1,000 words</Text
+              >
+              <Text tag="p" variant="textSM">
+                <span class="font-medium text-base-900">$2</span>
+                <span class="text-base-500">(after credits)</span>
+              </Text>
+            </div>
+          </div>
           <Text
             tag="p"
             variant="textBase"
-            class="mt-2 font-medium text-base-600 text-balance"
+            class="mt-8 pt-8 border-t border-base-200 text-base-500 text-sm"
           >
-            Choose a plan that works the best for you and your team. Start
-            small, upgrade when you need to.
+            All plans include our basic AI model trained on general copywriting
+            principles. Upgrade for access to industry-specific models.
           </Text>
         </div>
-        <div
-          aria-labelledby="pricing-toggle"
-          class="relative z-0 inline-flex justify-end w-full p-1 mx-auto overflow-hidden bg-white shadow ring-1 ring-base-200 ring-offset-2 gap-4 lg:mx-0 rounded-md"
-        >
-          <!-- Monthly Pricing Button: Sets 'duration' to 'monthly' when clicked -->
-          <PricingToggle />
+        <div class="flex items-center gap-2 mt-4 pt-4 border-t border-base-200">
+          <CircleCheck size="sm" class="text-accent-500" />
+          <Text tag="p" variant="textSM" class="font-medium text-base-500">
+            Refunds are available for all paid plans.
+          </Text>
         </div>
       </div>
-      <div
-        class="grid grid-cols-1 gap-2 lg:grid-cols-2 sm:col-span-2 cols-span-full"
-      >
-        <!-- Tier one -->
-        <PricingCardsSingle tierName="Core" />
-        <!-- Tier two -->
-        <PricingCardsSingle tierName="Momentum" colorMode="dark" />
+      <div class="bg-base-900 rounded-lg outline outline-base-800 p-8 lg:p-12">
+        <div>
+          <div class="flex items-center justify-between gap-2">
+            <Text
+              tag="h3"
+              variant="displaySM"
+              class="font-medium text-base-100"
+            >
+              Pro
+            </Text>
+            <div class="flex items-center gap-2">
+              <Text
+                tag="p"
+                variant="displaySM"
+                class="font-medium text-base-100"
+              >
+                <span
+                  data-monthly="$59"
+                  data-annual="$45"
+                  x-text="$el.dataset[duration]"></span>
+              </Text>
+              <div class="text-xs font-medium text-base-400">
+                <div class="font-medium">
+                  <span class="capitalize" x-show="duration==='monthly'"
+                    >month</span
+                  >
+                  <span
+                    class="capitalize"
+                    x-show="duration==='annual'"
+                    style="display: none">annually</span
+                  >
+                </div>
+                <p>USD + Local taxes</p>
+              </div>
+            </div>
+          </div>
+          <Text tag="p" variant="textBase" class="text-base-400 mt-2">
+            Advanced AI tools for professional writers and content teams.
+          </Text>
+        </div>
+        <div class="mt-4">
+          <Button size="base" variant="accent" class="w-full"
+            >Start free trial</Button
+          >
+        </div>
+        <div class="mt-8 py-8 border-t border-base-800 flex flex-col gap-4">
+          <div class="flex flex-col sm:flex-row items-start gap-4">
+            <div
+              class="bg-base-800 outline outline-base-700 text-accent-500 p-2 rounded-lg"
+            >
+              <Refresh size="sm" />
+            </div>
+            <Text tag="h3" variant="p" class="font-medium text-base-100">
+              Unlimited Generation
+              <span aria-hidden="true">—</span>
+              <span class="text-base-400 font-normal">
+                Create long-form content without token limits.
+              </span>
+            </Text>
+          </div>
+          <div class="flex flex-col sm:flex-row items-start gap-4">
+            <div
+              class="bg-base-800 outline outline-base-700 text-accent-500 p-2 rounded-lg"
+            >
+              <Edit size="sm" />
+            </div>
+            <Text tag="h3" variant="p" class="font-medium text-base-100">
+              AI Editor+
+              <span aria-hidden="true">—</span>
+              <span class="text-base-400 font-normal">
+                Access tone shifting, rephrasing, and advanced style
+                suggestions.
+              </span>
+            </Text>
+          </div>
+          <div class="flex flex-col sm:flex-row items-start gap-4">
+            <div
+              class="bg-base-800 outline outline-base-700 text-accent-500 p-2 rounded-lg"
+            >
+              <Bulb size="sm" />
+            </div>
+            <Text tag="h3" variant="p" class="font-medium text-base-100">
+              Smart Templates
+              <span aria-hidden="true">—</span>
+              <span class="text-base-400 font-normal">
+                Industry-specific prompts for ads, landing pages, and more.
+              </span>
+            </Text>
+          </div>
+          <div class="flex flex-col sm:flex-row items-start gap-4">
+            <div
+              class="bg-base-800 outline outline-base-700 text-accent-500 p-2 rounded-lg"
+            >
+              <ApiApp size="sm" />
+            </div>
+            <Text tag="h3" variant="p" class="font-medium text-base-100">
+              API Access
+              <span aria-hidden="true">—</span>
+              <span class="text-base-400 font-normal">
+                Integrate your AI flows directly with your app or CMS.
+              </span>
+            </Text>
+          </div>
+        </div>
+        <div class="pt-4 border-t border-base-800">
+          <Text tag="h3" variant="textBase" class="font-medium text-base-100">
+            Word Credits
+          </Text>
+          <div class="space-y-4 mt-4">
+            <Select
+              id="pro-credits"
+              name="pro-credits"
+              label="Pro Credits per project"
+              value="50"
+              variant="dark"
+              size="base"
+              options={[
+                { label: "50/project", value: "50" },
+                { label: "100/project", value: "100" },
+                { label: "200/project", value: "200" },
+              ]}
+            />
+            <Select
+              id="pro-projects"
+              name="pro-projects"
+              label="Projects"
+              value="20"
+              variant="dark"
+              size="base"
+              options={[
+                { label: "10", value: "10" },
+                { label: "20", value: "20" },
+                { label: "50", value: "50" },
+              ]}
+            />
+            <div class="flex items-center justify-between">
+              <Text tag="p" variant="textSM" class="text-base-400"
+                >Max Templates</Text
+              >
+              <Text tag="p" variant="textSM">
+                <span class="font-medium text-base-100">25</span>
+                <span class="text-base-400">(25,000 words each)</span>
+              </Text>
+            </div>
+            <div class="flex items-center justify-between">
+              <Text tag="p" variant="textSM" class="text-base-400"
+                >Price per 1,000 words</Text
+              >
+              <Text tag="p" variant="textSM">
+                <span class="font-medium text-base-100">$1</span>
+                <span class="text-base-400">(after credits)</span>
+              </Text>
+            </div>
+          </div>
+          <Text
+            tag="p"
+            variant="textBase"
+            class="mt-8 pt-8 border-t border-base-800 text-base-400 text-sm"
+          >
+            Pro plans include access to our advanced AI models, fine-tuned for
+            marketing, legal, tech, and more.
+          </Text>
+        </div>
+        <div class="flex items-center gap-2 mt-4 pt-4 border-t border-base-800">
+          <CircleCheck size="sm" class="text-accent-500" />
+          <Text tag="p" variant="textSM" class="font-medium text-base-400">
+            Refunds are available for all paid plans.
+          </Text>
+        </div>
       </div>
+    </div>
+    <div class="overflow-x-auto mt-8 overflow-hidden ">
+      <table class="min-w-[640px] w-full table-auto border-collapse text-sm ">
+        <thead>
+          <tr>
+            <th class="sr-only">Feature</th>
+            <th class="py-3 text-base font-semibold text-base-900 text-center">
+              Core
+            </th>
+            <th class="py-3 text-Base font-semibold text-base-900 text-center">
+              Pro
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th
+              class="pl-4 py-4 text-sm font-medium text-left border-t text-base-900 border-base-200"
+            >
+              <div class="flex items-center gap-2">
+                <Analytics size="sm" />
+                Analytics
+              </div>
+            </th>
+            <td
+              class="px-2 text-xs font-medium bg-white border-t text-base-900 border-base-200 text-center"
+              >3</td
+            >
+            <td
+              class="px-2 text-xs font-medium text-white border-t bg-base-900 border-base-800 text-center"
+              >10</td
+            >
+          </tr>
+          <tr>
+            <th
+              class="pl-4 py-4 text-sm font-medium text-left border-t text-base-900 border-base-200"
+            >
+              <div class="flex items-center gap-2">
+                <UsersGroup size="sm" />
+                Accounts
+              </div>
+            </th>
+            <td
+              class="px-2 text-xs font-medium bg-white border-t text-base-900 border-base-200 text-center"
+              >5</td
+            >
+            <td
+              class="px-2 text-xs font-medium text-white border-t bg-base-900 border-base-800 text-center"
+              >10</td
+            >
+          </tr>
+          <tr>
+            <th
+              class="pl-4 py-4 text-sm font-medium text-left border-t text-base-900 border-base-200"
+            >
+              <div class="flex items-center gap-2">
+                <Plug size="sm" />
+                Integrations
+              </div>
+            </th>
+            <td
+              class="px-2 text-xs font-medium bg-white border-t text-base-900 border-base-200 text-center"
+              >2</td
+            >
+            <td
+              class="px-2 text-xs font-medium text-white border-t bg-base-900 border-base-800 text-center"
+              >YES</td
+            >
+          </tr>
+          <tr>
+            <th
+              class="pl-4 py-4 text-sm font-medium text-left border-t text-base-900 border-base-200"
+            >
+              <div class="flex items-center gap-2">
+                <Program size="sm" />
+                Programs
+              </div>
+            </th>
+            <td
+              class="px-2 text-xs font-medium bg-white border-t text-base-900 border-base-200 text-center"
+              >NO</td
+            >
+            <td
+              class="px-2 text-xs font-medium text-white border-t bg-base-900 border-base-800 text-center"
+              >1</td
+            >
+          </tr>
+          <tr>
+            <th
+              class="pl-4 py-4 text-sm font-medium text-left border-t text-base-900 border-base-200"
+            >
+              <div class="flex items-center gap-2">
+                <Brain size="sm" />
+                Deployments
+              </div>
+            </th>
+            <td
+              class="px-2 text-xs font-medium bg-white border-t text-base-900 border-base-200 text-center"
+              >NO</td
+            >
+            <td
+              class="px-2 text-xs font-medium text-white border-t bg-base-900 border-base-800 text-center"
+              >YES</td
+            >
+          </tr>
+          <tr>
+            <th
+              class="pl-4 py-4 text-sm font-medium text-left border-t text-base-900 border-base-200"
+            >
+              <div class="flex items-center gap-2">
+                <Code size="sm" />
+                Advanced Checkpoints
+              </div>
+            </th>
+            <td
+              class="px-2 text-xs font-medium bg-white border-t text-base-900 border-base-200 text-center"
+              >NO</td
+            >
+            <td
+              class="px-2 text-xs font-medium text-white border-t bg-base-900 border-base-800 text-center"
+              >YES</td
+            >
+          </tr>
+          <tr>
+            <th
+              class="pl-4 py-4 text-sm font-medium text-left border-t text-base-900 border-base-200"
+            >
+              <div class="flex items-center gap-2">
+                <Tools size="sm" />
+                Reporting tools
+              </div>
+            </th>
+            <td
+              class="px-2 text-xs font-medium bg-white border-t text-base-900 border-base-200 text-center"
+              >NO</td
+            >
+            <td
+              class="px-2 text-xs font-medium text-white border-t bg-base-900 border-base-800 text-center"
+              >YES</td
+            >
+          </tr>
+          <tr>
+            <th
+              class="pl-4 py-4 text-sm font-medium text-left border-t text-base-900 border-base-200"
+            >
+              <div class="flex items-center gap-2">
+                <Lifebuoy size="sm" />
+                Support
+              </div>
+            </th>
+            <td
+              class="px-2 text-xs font-medium bg-white border-t text-base-900 border-base-200 text-center"
+              >Discord community</td
+            >
+            <td
+              class="px-2 text-xs font-medium text-white border-t bg-base-900 border-base-800 text-center"
+              >Live chat</td
+            >
+          </tr>
+          <tr class="align-top">
+            <th class="border-t border-base-200"></th>
+            <th class="w-1/4 py-4 border-t border-base-200 px-2">
+              <Button class="w-full" variant="alternative" size="sm">
+                Start free trial
+              </Button>
+            </th>
+            <th class="w-1/4 py-4 px-2 border-t border-base-800">
+              <Button class="w-full" variant="accent" size="sm">
+                Start free trial
+              </Button>
+            </th>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </Wrapper>
 </section>
