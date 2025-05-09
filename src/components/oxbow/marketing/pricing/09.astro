@@ -4,12 +4,111 @@ export const description =
 
 // Fundations
 import Text from "@/components/fundations/typography/Text.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 // Icons
+// Icons (import all used ones)
+import Eye from "@/components/fundations/icons/Eye.astro";
+import Plus from "@/components/fundations/icons/Plus.astro";
+import Lock from "@/components/fundations/icons/Lock.astro";
+import Bulb from "@/components/fundations/icons/Bulb.astro";
+import Tool from "@/components/fundations/icons/Tool.astro";
+import Apps from "@/components/fundations/icons/Apps.astro";
 import Check from "@/components/fundations/icons/Check.astro";
-// Components
-import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.astro";
-import PricingCardsSingle from "@/components/fundations/pricing/PricingCardsSingle.astro";
+import Tools from "@/components/fundations/icons/Tools.astro";
+import Brain from "@/components/fundations/icons/Brain.astro";
+import Clock from "@/components/fundations/icons/Clock.astro";
+import Shield from "@/components/fundations/icons/Shield.astro";
+import ApiApp from "@/components/fundations/icons/ApiApp.astro";
+import Report from "@/components/fundations/icons/Report.astro";
+import UserPlus from "@/components/fundations/icons/UserPlus.astro";
+import Lifebuoy from "@/components/fundations/icons/Lifebuoy.astro";
+import Database from "@/components/fundations/icons/Database.astro";
+import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
+import InfoCircle from "@/components/fundations/icons/InfoCircle.astro";
+import CreditCard from "@/components/fundations/icons/CreditCard.astro";
+import ArrowIteration from "@/components/fundations/icons/ArrowIteration.astro";
+import SettingsExclamation from "@/components/fundations/icons/SettingsExclamation.astro";
+import AdjustmentsHorizontal from "@/components/fundations/icons/AdjustmentsHorizontal.astro";
+const pricingOptions = [
+  {
+    id: "core",
+    cardClass: "bg-white outline-base-200",
+    primaryTextColor: "text-base-900",
+    secondaryTextColor: "text-base-500",
+    featuresBorderColor: "border-base-200",
+    title: "Core",
+    monthly: "$29.00",
+    annual: "$19.00",
+    description: "For solo builders and side project warriors",
+    button: {
+      text: "Get Started",
+      variant: "default",
+    },
+    features: [
+      { icon: UserPlus, text: "Unlimited members" },
+      { icon: UsersGroup, text: "1 Teams" },
+      { icon: SettingsExclamation, text: "50 issues" },
+      { icon: ApiApp, text: "Slack, GitHub, and API access" },
+      { icon: Tools, text: "Basic reporting tools" },
+      { icon: Lifebuoy, text: "Community support" },
+      { icon: AdjustmentsHorizontal, text: "Basic customization options" },
+    ],
+  },
+  {
+    id: "momentum",
+    cardClass: "bg-base-900  outline-base-800",
+    primaryTextColor: "text-white",
+    secondaryTextColor: "text-base-400",
+    featuresBorderColor: "border-base-800",
+
+    title: "Momentum",
+    monthly: "$49.00",
+    annual: "$39.00",
+    description: "Perfect for growing teams that need more power.",
+    button: {
+      text: "Get Started",
+      variant: "accent",
+    },
+    features: [
+      { icon: Plus, text: "All Core plan features" },
+      { icon: UserPlus, text: "Unlimited teams" },
+      { icon: Lock, text: "Private teams and guest" },
+      { icon: Bulb, text: "Insights" },
+      { icon: ArrowIteration, text: "Integrations" },
+      { icon: Report, text: "Advanced reporting and analytics" },
+      { icon: Shield, text: "Custom branding options" },
+      { icon: Tool, text: "Collaboration tools" },
+      { icon: Apps, text: "Mobile app access" },
+      { icon: Database, text: "File storage" },
+    ],
+  },
+  {
+    id: "velocity",
+    cardClass: "bg-white  outline-base-200",
+    primaryTextColor: "text-base-900",
+    secondaryTextColor: "text-base-500",
+    featuresBorderColor: "border-base-200",
+
+    title: "Velocity",
+    monthly: "$99.00",
+    annual: "$79.00",
+    description: "Designed for fast-moving teams and startups.",
+    button: {
+      text: "Upgrade Now",
+      variant: "default",
+    },
+    features: [
+      { icon: Plus, text: "All Momentum plan features" },
+      { icon: Brain, text: "Priority infrastructure resources" },
+      { icon: Clock, text: "SSO and enterprise auth" },
+      { icon: Database, text: "Advanced security and permissions" },
+      { icon: InfoCircle, text: "Real-time performance dashboards" },
+      { icon: CreditCard, text: "24/7 premium support" },
+      { icon: Eye, text: "Launch planning and onboarding" },
+    ],
+  },
+];
 ---
 
 <section x-data="{duration: 'monthly'}" class="bg-base-50">
@@ -20,37 +119,122 @@ import PricingCardsSingle from "@/components/fundations/pricing/PricingCardsSing
         variant="displayMD"
         class="font-medium tracking-tight text-base-900 text-balance"
       >
-        Equip your business with world class software
+        Tools your team will actually use
       </Text>
       <Text
         tag="p"
         variant="textBase"
         class="mt-2 font-medium text-base-600 text-balance"
       >
-        Choose a plan that works the best for you and your team. Start small,
-        upgrade when you need to.
+        Skip the bloat, skip the learning curve. When the docs are shorter than
+        your to-do list, you know it’s good.
       </Text>
+
+      <!-- Pricing Toggle -->
       <div
         aria-labelledby="pricing-toggle"
         class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-white shadow ring-1 ring-base-200 ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52"
       >
-        <!-- Monthly Pricing Button: Sets 'duration' to 'monthly' when clicked -->
-        <PricingToggle />
+        <div
+          class="absolute inset-0 bg-base-50 rounded-md transition-transform duration-200 ease-in-out"
+          :class="duration === 'monthly' ? 'w-1/2 translate-x-0' : 'w-1/2 translate-x-full'"
+        >
+        </div>
+
+        <button
+          class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
+          :class="duration === 'monthly' ? 'text-base-600' : 'focus:text-base-900 hover:text-base-900'"
+          @click="duration = 'monthly'"
+          type="button"
+          :aria-pressed="duration === 'monthly'"
+        >
+          Monthly
+        </button>
+
+        <button
+          class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
+          :class="duration === 'annual' ? 'text-base-600' : 'focus:text-base-900 hover:text-base-900'"
+          @click="duration = 'annual'"
+          type="button"
+          :aria-pressed="duration === 'annual'"
+        >
+          Annual
+        </button>
       </div>
     </div>
-    <div
-      class="mx-auto mt-12 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3"
-    >
-      <!-- Tier one -->
-      <PricingCardsSingle tierName="Core" />
-      <!-- Tier two -->
-      <PricingCardsSingle
-        tierName="Momentum"
-        isPopular={true}
-        colorMode="dark"
-      />
-      <!-- Tier three -->
-      <PricingCardsSingle tierName="Growth" colorMode="accent" />
+
+    <!-- Pricing Cards -->
+    <div class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        pricingOptions.map((tier) => (
+          <div
+            class={`flex flex-col p-8  outline  rounded-xl shadow  ${tier.cardClass}`}
+          >
+            <div class="flex flex-col">
+              <Text
+                tag="h3"
+                variant="textBase"
+                class={` font-medium text-base-900 ${tier.primaryTextColor}`}
+              >
+                {tier.title}
+              </Text>
+              <Text
+                tag="p"
+                variant="textSM"
+                class={`mt-2 ${tier.secondaryTextColor}`}
+              >
+                {tier.description}
+              </Text>
+              <Text
+                variant="displaySM"
+                class={`font-medium flex items-baseline tracking-tighter mt-4 ${tier.primaryTextColor}`}
+              >
+                <span
+                  data-monthly={tier.monthly}
+                  data-annual={tier.annual}
+                  x-text="$el.dataset[duration]"
+                />
+                <span
+                  class={`text-sm font-normal  tracking-normal ${tier.secondaryTextColor}`}
+                >
+                  <span x-show="duration === 'monthly'">/month</span>
+                  <span x-show="duration === 'annual'" style="display: none;">
+                    /annually
+                  </span>
+                </span>
+              </Text>
+              <div class="w-full mt-4">
+                <Button class="w-full" variant={tier.button.variant} size="sm">
+                  {tier.button.text}
+                </Button>
+              </div>
+            </div>
+
+            <div class={`mt-8 pt-8 border-t ${tier.featuresBorderColor}  `}>
+              <Text
+                tag="p"
+                variant="textXS"
+                class={`font-medium uppercase ${tier.secondaryTextColor}`}
+              >
+                {tier.title === "Momentum"
+                  ? "Everything in Core plus:"
+                  : "Core plan includes:"}
+              </Text>
+              <ul
+                class={`flex flex-col mt-4 text-sm  gap-y-3 ${tier.primaryTextColor}`}
+                role="list"
+              >
+                {tier.features.map((feature, index) => (
+                  <li class="flex items-center gap-2">
+                    <feature.icon size="sm" />
+                    <span>{feature.text}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))
+      }
     </div>
     <div class="hidden mt-12 lg:block">
       <div class="pb-4 mt-20 border-b border-base-200">
@@ -81,7 +265,7 @@ import PricingCardsSingle from "@/components/fundations/pricing/PricingCardsSing
               <th
                 class="w-1/4 py-4 text-sm font-medium leading-6 text-base-900"
               >
-                Growth
+                Velocity
               </th>
             </tr>
           </thead>
