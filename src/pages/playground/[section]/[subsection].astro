@@ -88,6 +88,42 @@ const lgColumns = gridColumns[currentPage] || 4;
 const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
 ---
 
+<style>
+  .masonry-grid {
+    column-gap: 1rem;
+  }
+
+  .masonry-item {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+  }
+
+  /* Responsive column count */
+  @media (min-width: 1200px) {
+    .masonry-grid {
+      column-count: 4;
+    }
+  }
+
+  @media (min-width: 992px) and (max-width: 1199px) {
+    .masonry-grid {
+      column-count: 3;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    .masonry-grid {
+      column-count: 2;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .masonry-grid {
+      column-count: 1;
+    }
+  }
+</style>
+
 <BaseLayout>
   <section class="border-t border-base-200">
     <Wrapper variant="standard" class="lg:border-x lg:border-base-200">
@@ -127,9 +163,7 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
 
   <section class="border-t border-base-200">
     <Wrapper variant="standard" class="lg:border-x lg:border-base-200">
-      <div
-        class={`relative w-full grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-4 lg:gap-y-20 ${gridColumnsClass} items-start`}
-      >
+      <div class="masonry-grid">
         {
           sectionComponents.map(
             ({ filePath, imagePath, description }, index) => {
@@ -141,9 +175,9 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
               return (
                 <a
                   href={`/playground/${filePath.replace(".astro", "")}`}
-                  class="relative flex flex-col group"
+                  class="relative flex flex-col group masonry-item"
                 >
-                  <div class="flex flex-col gap-1">
+                  <div class="flex flex-col gap-1 sr-only">
                     {isUpdatedLastWeek && (
                       <Text
                         tag="p"

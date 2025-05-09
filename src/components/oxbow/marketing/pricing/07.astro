@@ -1,15 +1,84 @@
 ---
-export const description = "Pricing section with two wide cards";
-
-// Fundations
-import Text from "@/components/fundations/typography/Text.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+export const description = "Simple pricing section";
 // Components
-import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.astro";
-import PricingCardsSingle from "@/components/fundations/pricing/PricingCardsSingle.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Icons (import all used ones)
+import Eye from "@/components/fundations/icons/Eye.astro";
+import Plus from "@/components/fundations/icons/Plus.astro";
+import Lock from "@/components/fundations/icons/Lock.astro";
+import Bulb from "@/components/fundations/icons/Bulb.astro";
+import Tool from "@/components/fundations/icons/Tool.astro";
+import Apps from "@/components/fundations/icons/Apps.astro";
+import Tools from "@/components/fundations/icons/Tools.astro";
+import Shield from "@/components/fundations/icons/Shield.astro";
+import ApiApp from "@/components/fundations/icons/ApiApp.astro";
+import Report from "@/components/fundations/icons/Report.astro";
+import UserPlus from "@/components/fundations/icons/UserPlus.astro";
+import Lifebuoy from "@/components/fundations/icons/Lifebuoy.astro";
+import Database from "@/components/fundations/icons/Database.astro";
+import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
+import ArrowIteration from "@/components/fundations/icons/ArrowIteration.astro";
+import SettingsExclamation from "@/components/fundations/icons/SettingsExclamation.astro";
+import AdjustmentsHorizontal from "@/components/fundations/icons/AdjustmentsHorizontal.astro";
+const pricingOptions = [
+  {
+    id: "core",
+    cardClass: "bg-white outline-base-200",
+    primaryTextColor: "text-base-900",
+    secondaryTextColor: "text-base-500",
+    featuresBorderColor: "border-base-200",
+    title: "Core",
+    monthly: "$29.00",
+    annual: "$19.00",
+    description: "For freelancers and solo creators who need momentum.",
+    button: {
+      text: "Get Started",
+      variant: "default",
+    },
+    features: [
+      { icon: UserPlus, text: "Unlimited client requests" },
+      { icon: UsersGroup, text: "1 active project" },
+      { icon: SettingsExclamation, text: "3-day turnaround" },
+      { icon: ApiApp, text: "Slack and GitHub access" },
+      { icon: Tools, text: "Basic design/dev toolkit" },
+      { icon: Lifebuoy, text: "Email support" },
+      { icon: AdjustmentsHorizontal, text: "Basic revisions" },
+    ],
+  },
+  {
+    id: "momentum",
+    cardClass: "bg-base-900  outline-base-800",
+    primaryTextColor: "text-white",
+    secondaryTextColor: "text-base-400",
+    featuresBorderColor: "border-base-800",
+    title: "Momentum",
+    monthly: "$49.00",
+    annual: "$39.00",
+    description:
+      "Ideal for teams scaling fast with ongoing design or dev needs.",
+    button: {
+      text: "Get Started",
+      variant: "accent",
+    },
+    features: [
+      { icon: Plus, text: "All Core plan features" },
+      { icon: UserPlus, text: "Unlimited active projects" },
+      { icon: Lock, text: "Private workspace access" },
+      { icon: Bulb, text: "Creative direction insights" },
+      { icon: ArrowIteration, text: "Workflow integrations" },
+      { icon: Report, text: "Performance tracking reports" },
+      { icon: Shield, text: "Branding customization" },
+      { icon: Tool, text: "Real-time collaboration tools" },
+      { icon: Apps, text: "Mobile feedback access" },
+      { icon: Database, text: "Asset storage & versioning" },
+    ],
+  },
+];
 ---
 
-<section x-data="{duration: 'monthly'}" class="bg-base-50">
+<section x-data="{ duration: 'monthly' }" class="bg-base-50">
   <Wrapper variant="blockStandard" class="py-24">
     <div class="max-w-xl mx-auto text-center">
       <Text
@@ -17,34 +86,199 @@ import PricingCardsSingle from "@/components/fundations/pricing/PricingCardsSing
         variant="displayMD"
         class="font-medium tracking-tight text-base-900 text-balance"
       >
-        Equip your business with world class software
+        Tools your team will actually use
       </Text>
       <Text
         tag="p"
         variant="textBase"
         class="mt-2 font-medium text-base-600 text-balance"
       >
-        Choose a plan that works the best for you and your team. Start small,
-        upgrade when you need to.
+        Skip the bloat, skip the learning curve. When the docs are shorter than
+        your to-do list, you know it’s good.
       </Text>
       <div
         aria-labelledby="pricing-toggle"
         class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-white shadow ring-1 ring-base-200 ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52"
       >
-        <!-- Monthly Pricing Button: Sets 'duration' to 'monthly' when clicked -->
-        <PricingToggle />
+        <div
+          class="absolute inset-0 bg-base-50 rounded-md transition-transform duration-200 ease-in-out"
+          :class="duration === 'monthly' ? 'w-1/2 translate-x-0' : 'w-1/2 translate-x-full'"
+        >
+        </div>
+        <button
+          class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
+          :class="duration === 'monthly' ? 'text-base-600' : 'focus:text-base-900 hover:text-base-900'"
+          @click="duration = 'monthly'"
+          type="button"
+          :aria-pressed="duration === 'monthly'"
+        >
+          Monthly
+        </button>
+        <button
+          class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
+          :class="duration === 'annual' ? 'text-base-600' : 'focus:text-base-900 hover:text-base-900'"
+          @click="duration = 'annual'"
+          type="button"
+          :aria-pressed="duration === 'annual'"
+        >
+          Annual
+        </button>
       </div>
     </div>
-    <div class="mt-12 grid grid-cols-1 gap-2 sm:grid-cols-2">
-      <!-- Tier one -->
-      <PricingCardsSingle tierName="Core" featuresLayout="grid" />
-      <!-- Tier two -->
-      <PricingCardsSingle
-        tierName="Momentum"
-        isPopular={true}
-        colorMode="dark"
-        featuresLayout="grid"
-      />
+    <div class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        pricingOptions.map((tier) => (
+          <div
+            class={`flex flex-col p-8  outline  rounded-xl shadow  ${tier.cardClass}`}
+          >
+            <div class="flex flex-col">
+              <Text
+                tag="h3"
+                variant="textBase"
+                class={` font-medium text-base-900 ${tier.primaryTextColor}`}
+              >
+                {tier.title}
+              </Text>
+              <Text
+                tag="p"
+                variant="textSM"
+                class={`mt-2 ${tier.secondaryTextColor}`}
+              >
+                {tier.description}
+              </Text>
+              <Text
+                variant="displaySM"
+                class={`font-medium flex items-baseline tracking-tighter mt-4 ${tier.primaryTextColor}`}
+              >
+                <span
+                  data-monthly={tier.monthly}
+                  data-annual={tier.annual}
+                  x-text="$el.dataset[duration]"
+                />
+                <span
+                  class={`text-sm font-normal  tracking-normal ${tier.secondaryTextColor}`}
+                >
+                  <span x-show="duration === 'monthly'">/month</span>
+                  <span x-show="duration === 'annual'" style="display: none;">
+                    /annually
+                  </span>
+                </span>
+              </Text>
+              <div class="w-full mt-4">
+                <Button class="w-full" variant={tier.button.variant} size="sm">
+                  {tier.button.text}
+                </Button>
+              </div>
+            </div>
+            <div class={`mt-8 pt-8 border-t ${tier.featuresBorderColor}  `}>
+              <Text
+                tag="p"
+                variant="textXS"
+                class={`font-medium uppercase ${tier.secondaryTextColor}`}
+              >
+                {tier.title === "Momentum"
+                  ? "Everything in Core plus:"
+                  : "Core plan includes:"}
+              </Text>
+              <ul
+                class={`flex flex-col mt-4 text-sm  gap-y-3 ${tier.primaryTextColor}`}
+                role="list"
+              >
+                {tier.features.map((feature, index) => (
+                  <li class="flex items-center gap-2">
+                    <feature.icon size="sm" />
+                    <span>{feature.text}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))
+      }
+      <div class="flex flex-col gap-4">
+        <div
+          class="flex flex-col p-8 outline rounded-xl shadow bg-white outline-base-200"
+        >
+          <Text tag="h3" variant="textBase" class="font-medium text-base-900">
+            Addons
+          </Text>
+          <div class="flex flex-col sm:flex-row items-start gap-4 mt-4">
+            <div
+              class="bg-base-50 outline outline-base-100 text-accent-500 p-2 rounded-lg"
+            >
+              <Plus size="sm" />
+            </div>
+            <Text tag="p" variant="textBase" class="font-medium text-base-900">
+              Content Generation
+              <span aria-hidden="true">—</span>
+              <span class="text-base-500 font-normal">
+                Generate blog posts, social media content, and basic marketing
+                copy.
+              </span>
+            </Text>
+          </div>
+          <div class="flex flex-col sm:flex-row items-start gap-4 mt-4">
+            <div
+              class="bg-base-50 outline outline-base-100 text-accent-500 p-2 rounded-lg"
+            >
+              <Plus size="sm" />
+            </div>
+            <Text tag="p" variant="textBase" class="font-medium text-base-900">
+              Priority Support
+              <span aria-hidden="true">—</span>
+              <span class="text-base-500 font-normal">
+                Jump the queue with faster responses and hands-on help.
+              </span>
+            </Text>
+          </div>
+          <div class="flex flex-col sm:flex-row items-start gap-4 mt-4">
+            <div
+              class="bg-base-50 outline outline-base-100 text-accent-500 p-2 rounded-lg"
+            >
+              <Plus size="sm" />
+            </div>
+            <Text tag="p" variant="textBase" class="font-medium text-base-900">
+              Custom Integrations
+              <span aria-hidden="true">—</span>
+              <span class="text-base-500 font-normal">
+                Connect your stack: APIs, automation, and workflow hooks.
+              </span>
+            </Text>
+          </div>
+          <div class="flex flex-col sm:flex-row items-start gap-4 mt-4">
+            <div
+              class="bg-base-50 outline outline-base-100 text-accent-500 p-2 rounded-lg"
+            >
+              <Plus size="sm" />
+            </div>
+            <Text tag="p" variant="textBase" class="font-medium text-base-900">
+              UX Review
+              <span aria-hidden="true">—</span>
+              <span class="text-base-500 font-normal">
+                Get expert feedback on usability, flow, and clarity.
+              </span>
+            </Text>
+          </div>
+          <Button href="#_" variant="alternative" size="sm" class="w-full mt-4">
+            Contact us
+          </Button>
+        </div>
+        <div
+          class="flex flex-col p-8 outline rounded-xl shadow bg-white outline-base-200"
+        >
+          <Text tag="p" variant="textBase" class="font-medium text-base-900">
+            Custom
+            <span aria-hidden="true">—</span>
+            <span class="text-base-500 font-normal">
+              Need something tailored? We’ll scope and build to fit your exact
+              needs.
+            </span>
+          </Text>
+          <Button href="#_" variant="muted" size="sm" class="w-full mt-4">
+            Contact us
+          </Button>
+        </div>
+      </div>
     </div>
   </Wrapper>
 </section>

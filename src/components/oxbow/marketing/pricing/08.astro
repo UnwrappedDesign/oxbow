@@ -1,68 +1,263 @@
 ---
-export const description = "Pricing section with four cards";
-// Fundations
-import Text from "@/components/fundations/typography/Text.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+export const description = "Simple pricing section";
 // Components
-import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.astro";
-import PricingCardsSingle from "@/components/fundations/pricing/PricingCardsSingle.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Icons (import all used ones)
+import Eye from "@/components/fundations/icons/Eye.astro";
+import Plus from "@/components/fundations/icons/Plus.astro";
+import Lock from "@/components/fundations/icons/Lock.astro";
+import Bulb from "@/components/fundations/icons/Bulb.astro";
+import Tool from "@/components/fundations/icons/Tool.astro";
+import Apps from "@/components/fundations/icons/Apps.astro";
+import Tools from "@/components/fundations/icons/Tools.astro";
+import Brain from "@/components/fundations/icons/Brain.astro";
+import Clock from "@/components/fundations/icons/Clock.astro";
+import Shield from "@/components/fundations/icons/Shield.astro";
+import ApiApp from "@/components/fundations/icons/ApiApp.astro";
+import Report from "@/components/fundations/icons/Report.astro";
+import UserPlus from "@/components/fundations/icons/UserPlus.astro";
+import Lifebuoy from "@/components/fundations/icons/Lifebuoy.astro";
+import Database from "@/components/fundations/icons/Database.astro";
+import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
+import InfoCircle from "@/components/fundations/icons/InfoCircle.astro";
+import CreditCard from "@/components/fundations/icons/CreditCard.astro";
+import ArrowIteration from "@/components/fundations/icons/ArrowIteration.astro";
+import SettingsExclamation from "@/components/fundations/icons/SettingsExclamation.astro";
+import AdjustmentsHorizontal from "@/components/fundations/icons/AdjustmentsHorizontal.astro";
+const pricingOptions = [
+  {
+    id: "core",
+    cardClass: "bg-white outline-base-200",
+    primaryTextColor: "text-base-900",
+    secondaryTextColor: "text-base-500",
+    featuresBorderColor: "border-base-200",
+    title: "Core",
+    monthly: "$29.00",
+    annual: "$19.00",
+    description: "For solo builders and side project warriors",
+    button: {
+      text: "Get Started",
+      variant: "alternative",
+    },
+    features: [
+      { icon: UserPlus, text: "Unlimited members" },
+      { icon: UsersGroup, text: "1 Teams" },
+      { icon: SettingsExclamation, text: "50 issues" },
+      { icon: ApiApp, text: "Slack, GitHub, and API access" },
+      { icon: Tools, text: "Basic reporting tools" },
+      { icon: Lifebuoy, text: "Community support" },
+      { icon: AdjustmentsHorizontal, text: "Basic customization options" },
+    ],
+  },
+  {
+    id: "momentum",
+    isPopular: true,
+    cardClass: "bg-white outline-base-200",
+    primaryTextColor: "text-base-900",
+    secondaryTextColor: "text-base-500",
+    featuresBorderColor: "border-base-200",
+    title: "Momentum",
+    monthly: "$49.00",
+    annual: "$39.00",
+    description: "Perfect for growing teams that need more power.",
+    button: {
+      text: "Get Started",
+      variant: "alternative",
+    },
+    features: [
+      { icon: Plus, text: "All Core plan features" },
+      { icon: UserPlus, text: "Unlimited teams" },
+      { icon: Lock, text: "Private teams and guest" },
+      { icon: Bulb, text: "Insights" },
+      { icon: ArrowIteration, text: "Integrations" },
+      { icon: Report, text: "Advanced reporting" },
+      { icon: Shield, text: "Custom branding options" },
+      { icon: Tool, text: "Collaboration tools" },
+      { icon: Apps, text: "Mobile app access" },
+      { icon: Database, text: "File storage" },
+    ],
+  },
+  {
+    id: "velocity",
+    cardClass: "bg-white  outline-base-200",
+    primaryTextColor: "text-base-900",
+    secondaryTextColor: "text-base-500",
+    featuresBorderColor: "border-base-200",
+    title: "Velocity",
+    monthly: "$99.00",
+    annual: "$79.00",
+    description: "Designed for fast-moving teams and startups.",
+    button: {
+      text: "Upgrade Now",
+      variant: "alternative",
+    },
+    features: [
+      { icon: Plus, text: "All Momentum plan features" },
+      { icon: Brain, text: "Priority  resources" },
+      { icon: Clock, text: "SSO and enterprise auth" },
+      { icon: Database, text: "Advanced security " },
+      { icon: InfoCircle, text: "Real-time  dashboards" },
+      { icon: CreditCard, text: "24/7 premium support" },
+      { icon: Eye, text: "Launch planning " },
+    ],
+  },
+  {
+    id: "titan",
+    cardClass: "bg-white  outline-base-200",
+    primaryTextColor: "text-base-900",
+    secondaryTextColor: "text-base-500",
+    featuresBorderColor: "border-base-200",
+    title: "Titan",
+    monthly: "$199.00",
+    annual: "$149.00",
+    description:
+      "For teams who break things at scale (and need us to fix it fast).",
+    button: {
+      text: "Talk to Sales",
+      variant: "accent",
+    },
+    features: [
+      { icon: Plus, text: "All Velocity plan features" },
+      { icon: CreditCard, text: "Dedicated infrastructure" },
+      { icon: Brain, text: "Incident response SLAs" },
+      { icon: ArrowIteration, text: "Custom deployment options" },
+      { icon: Clock, text: "AI-enhanced performance " },
+      { icon: Database, text: "Global CDN optimization" },
+      { icon: Eye, text: "Direct line to support" },
+    ],
+  },
+];
 ---
-<section x-data="{duration: 'monthly'}" class="bg-base-50">
-  <Wrapper variant="blockStandard" class="py-24">
-    <div
-      class="text-center md:text-left grid grid-cols-1 gap-12 md:grid-cols-2 md:items-end"
-    >
-      <Text
-        tag="h1"
-        variant="displayMD"
-        class="font-medium tracking-tight text-base-900 text-balance"
-      >
-        Equip your business with world class software
-      </Text>
-      <div class="md:ml-auto">
-        <div
-          aria-labelledby="pricing-toggle"
-          class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-white shadow ring-1 ring-base-200 ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52"
+
+<section x-data="{ duration: 'monthly' }" class="bg-base-50">
+  <div class="py-24 mx-auto px-8 md:px-12 w-full max-w-screen 2xl:max-w-7xl">
+    <div class="items-end grid grid-cols-1 lg:grid-cols-2">
+      <div>
+        <Text
+          tag="h1"
+          variant="displaySM"
+          class="font-medium tracking-tight text-base-900 lg:text-balance"
         >
-          <!-- Monthly Pricing Button: Sets 'duration' to 'monthly' when clicked -->
-          <PricingToggle />
+          Equip your business with world class software
+        </Text>
+        <Text
+          tag="p"
+          variant="textBase"
+          class="mt-2 font-medium text-base-600 lg:text-balance"
+        >
+          Choose a plan that works the best for you and your team. Start small,
+          upgrade when you need to.
+        </Text>
+      </div>
+      <div
+        aria-labelledby="pricing-toggle"
+        class="relative z-0 inline-flex w-full p-1 mt-8 overflow-hidden bg-white shadow ring-1 ring-base-200 ring-offset-2 gap-4 rounded-md max-w-52 lg:ml-auto"
+      >
+        <div
+          class="absolute inset-0 bg-base-50 rounded-md transition-transform duration-200 ease-in-out"
+          :class="duration === 'monthly' ? 'w-1/2 translate-x-0' : 'w-1/2 translate-x-full'"
+        >
         </div>
+        <button
+          class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
+          :class="duration === 'monthly' ? 'text-base-600' : 'focus:text-base-900 hover:text-base-900'"
+          @click="duration = 'monthly'"
+          type="button"
+          :aria-pressed="duration === 'monthly'"
+        >
+          Monthly
+        </button>
+        <button
+          class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
+          :class="duration === 'annual' ? 'text-base-600' : 'focus:text-base-900 hover:text-base-900'"
+          @click="duration = 'annual'"
+          type="button"
+          :aria-pressed="duration === 'annual'"
+        >
+          Annual
+        </button>
       </div>
     </div>
+    <!-- Pricing Cards -->
     <div
-      class="mt-12 grid lg:-mx-20 grid-cols-1 gap-4 md:gap-0 sm:grid-cols-2 lg:grid-cols-4 lg:shadow lg:outline lg:outline-base-200 lg:rounded-xl"
+      class="mt-12 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 outline rounded-xl shadow outline-base-200 overflow-hidden lg:divide-x lg:divide-base-200"
     >
-      <PricingCardsSingle
-        tierName="Core"
-        roundedDesktop="left"
-        colorMode="white"
-        isLeft={true}
-        noShadow={true}
-      />
-      <!-- Tier two -->
-      <PricingCardsSingle
-        tierName="Momentum"
-        roundedDesktop="none"
-        isCentered={true}
-        noShadow={true}
-      />
-      <!-- Tier three -->
-      <PricingCardsSingle
-        tierName="Growth"
-        isPopular={true}
-        roundedDesktop="none"
-        colorMode="dark"
-        isCentered={true}
-        noShadow={true}
-      />
-      <!-- Tier four-->
-      <PricingCardsSingle
-        tierName="Apex"
-        colorMode="accent"
-        roundedDesktop="right"
-        isRight={true}
-        noShadow={true}
-      />
+      {
+        pricingOptions.map((tier) => (
+          <div class={`flex flex-col p-8  ${tier.cardClass}`}>
+            <div class="flex flex-col">
+              <div class="flex items-center justify-between gap-2">
+                <Text
+                  tag="h3"
+                  variant="textBase"
+                  class={` font-medium text-base-900 ${tier.primaryTextColor}`}
+                >
+                  {tier.title}
+                </Text>
+                {tier.isPopular && (
+                  <div class="text-xs font-medium text-white uppercase">
+                    Most Popular
+                  </div>
+                )}
+              </div>
+              <Text
+                tag="p"
+                variant="textSM"
+                class={`mt-2 ${tier.secondaryTextColor}`}
+              >
+                {tier.description}
+              </Text>
+              <Text
+                variant="displaySM"
+                class={`font-medium flex items-baseline tracking-tighter mt-4 ${tier.primaryTextColor}`}
+              >
+                <span
+                  data-monthly={tier.monthly}
+                  data-annual={tier.annual}
+                  x-text="$el.dataset[duration]"
+                />
+                <span
+                  class={`text-sm font-normal  tracking-normal ${tier.secondaryTextColor}`}
+                >
+                  <span x-show="duration === 'monthly'">/month</span>
+                  <span x-show="duration === 'annual'" style="display: none;">
+                    /annually
+                  </span>
+                </span>
+              </Text>
+              <div class="w-full mt-4">
+                <Button class="w-full" variant={tier.button.variant} size="sm">
+                  {tier.button.text}
+                </Button>
+              </div>
+            </div>
+            <div class={`mt-8 pt-8 border-t ${tier.featuresBorderColor}  `}>
+              <Text
+                tag="p"
+                variant="textXS"
+                class={`font-medium uppercase ${tier.secondaryTextColor}`}
+              >
+                {tier.title === "Momentum"
+                  ? "Everything in Core plus:"
+                  : "Core plan includes:"}
+              </Text>
+              <ul
+                class={`flex flex-col mt-4 text-sm  gap-y-3 ${tier.primaryTextColor}`}
+                role="list"
+              >
+                {tier.features.map((feature, index) => (
+                  <li class="flex items-center gap-2">
+                    <feature.icon size="sm" />
+                    <span>{feature.text}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))
+      }
     </div>
-  </Wrapper>
+  </div>
 </section>
