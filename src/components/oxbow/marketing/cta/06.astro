@@ -1,93 +1,56 @@
 ---
-import Button from "@/components/fundations/buttons/Button.astro";
-
+export const description = "Centered card CTA ";
+import Logo from "@/components/assets/Logo.astro";
+// Fundations
 import Text from "@/components/fundations/typography/Text.astro";
-
-const data = [
-  {
-    name: "Fernando Monte",
-    title: "Creator of Oxbowui.com",
-    testimonial:
-      "Being in the financial industry, we were always looking for ways to enhance our transactions' security and efficiency.",
-    imgSrc: "/avatars/2.jpg",
-  },
-];
+import Button from "@/components/fundations/buttons/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Icons
+import Check from "@/components/fundations/icons/Check.astro";
 ---
 
-<section>
-  <div class="relative px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl">
+<section class="overflow-hidden bg-base-50">
+  <Wrapper variant="blockStandard" class="py-24">
     <div
-      class="items-start max-w-md mx-auto grid grid-cols-1 lg:max-w-none md:grid-cols-2 lg:bg-base-50 lg:p-20 lg:rounded-3xl"
+      class="bg-linear-45 from-accent-700 to-accent-500 p-8 max-w-sm mx-auto rounded-lg"
     >
-      <div class="lg:pr-24 md:pr-12">
-        <img class="size-16" src="/images/oxbow/blueLineLogo.png" alt="#_" />
+      <div class="lg:text-balance">
         <Text
           tag="h2"
-          variant="displayMD"
-          class="font-semibold text-base-900 lg:text-balance"
+          variant="displaySM"
+          class="font-semibold tracking-tight text-white lg:text-balance"
         >
-          Get started with our app today
+          Join 29,000 designers who *actually* read our emails
         </Text>
-        <Text tag="p" variant="textBase" class="mt-4 font-medium text-base-500">
-          Streamline your workflow and collaborate seamlessly on staging and
-          temporary environments
+        <Text
+          tag="p"
+          variant="textSM"
+          class="mt-4 text-base-200 lg:text-balance"
+        >
+          No cringe tactics. No endless threads. Just good design stuff,
+          straight to your inbox. Occasionally funny.
         </Text>
-        <div class="flex flex-wrap items-center mt-8 gap-2">
-          <Button variant="accent" size="sm"> Get started </Button>
-          <Button variant="alternative" size="sm"> Learn more </Button>
+
+        <div class="flex flex-col gap-2 mt-8">
+          <div class="flex items-center gap-2 text-base-300">
+            <Check class="text-white" size="base" />
+            <Text tag="p" variant="textSM">Useful news, not “thoughts”</Text>
+          </div>
+          <div class="flex items-center gap-2 text-base-300">
+            <Check class="text-white" size="base" />
+            <Text tag="p" variant="textSM">No spam, pinky swear</Text>
+          </div>
+          <div class="flex items-center gap-2 text-base-300">
+            <Check class="text-white" size="base" />
+            <Text tag="p" variant="textSM">Unsubscribe without guilt</Text>
+          </div>
         </div>
-        <ul role="list" class="pt-6 mt-6 border-t">
-          {
-            data.map((member) => (
-              <>
-                <li>
-                  <figure class="flex flex-col h-full ">
-                    <Text
-                      tag="blockquote"
-                      variant="textBase"
-                      class="italic font-medium  text-base-500"
-                    >
-                      {member.testimonial}
-                    </Text>
-                    <figcaption>
-                      <div class="flex items-center mt-8 gap-2">
-                        <img
-                          class="rounded-full nline-block size-12"
-                          src={member.imgSrc}
-                          alt="#_"
-                        />
-                        <div>
-                          <Text
-                            tag="p"
-                            variant="textBase"
-                            class="font-medium  text-base-900"
-                          >
-                            {member.name}
-                          </Text>
-                          <Text
-                            tag="p"
-                            variant="textSM"
-                            class="font-medium  text-base-500"
-                          >
-                            {member.title}
-                          </Text>
-                        </div>
-                      </div>
-                    </figcaption>
-                  </figure>
-                </li>
-              </>
-            ))
-          }
-        </ul>
-      </div>
-      <div class="h-full mt-12 lg:-mt-32">
-        <img
-          src="/widgets/activity.svg"
-          alt="#_"
-          class="w-full shadow rounded-xl"
-        />
+
+        <div class="flex flex-col gap-2 mt-12">
+          <Button variant="default" size="base" gap="xs"> Fine, I’m In </Button>
+          <Button variant="muted" size="base"> Ugh, Maybe Later </Button>
+        </div>
       </div>
     </div>
-  </div>
+  </Wrapper>
 </section>

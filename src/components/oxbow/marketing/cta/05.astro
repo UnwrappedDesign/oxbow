@@ -1,44 +1,111 @@
 ---
-import Button from "@/components/fundations/buttons/Button.astro";
+export const description = "Splited CTA with text-and image";
+
+// Assets
+import Logo from "@/components/assets/Logo.astro";
+import { Image } from "astro:assets";
+import Activity from "@/images/assets/activity.svg";
+import Avatar1 from "@/images/avatars/1.jpg";
+
+// Foundations
 import Text from "@/components/fundations/typography/Text.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
+const data = [
+  {
+    name: "Tina Byte",
+    title: "Pixel Pusher at PushButton",
+    testimonial:
+      "I used to design dashboards that even I couldn’t navigate. Then I met Oxbow. Now I spend less time crying into my Tailwind sites and more time pretending I'm productive.",
+    img: Avatar1,
+  },
+];
 ---
 
 <section>
-  <div class="px-8 py-12 mx-auto md:px-12 lg:px-32 max-w-7xl">
+  <Wrapper variant="blockStandard" class="py-32">
     <div
-      class="relative px-6 pt-16 overflow-hidden shadow bg-base-50 isolate sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0"
+      class="items-start max-w-md mx-auto grid grid-cols-1 lg:max-w-none md:grid-cols-2 lg:bg-base-50 lg:p-20 lg:rounded-xl lg:shadow lg:outline lg:outline-base-200"
     >
-      <div class="max-w-xl lg:flex-auto lg:py-28">
-        <img class="size-16" src="/images/oxbow/blueLineLogo.png" alt="#_" />
+      <div class="lg:pr-24 md:pr-12">
+        <div class="rounded-full bg-accent-600 p-3 inline-block">
+          <Logo class="h-8 mx-auto text-white" />
+        </div>
         <Text
           tag="h2"
-          variant="displayXL"
-          class="font-semibold text-base-900 lg:text-balance"
+          variant="displaySM"
+          class="font-semibold text-base-900 lg:text-balance mt-8"
         >
-          Get started with our app today
+          Finally, a tool that won’t make you question your career choices
         </Text>
-        <Text
-          tag="p"
-          variant="textLG"
-          class="mt-4 font-medium text-base-500 lg:text-balance"
-        >
-          Streamline your workflow and collaborate seamlessly on staging and
-          temporary environments
+        <Text tag="p" variant="textBase" class="mt-4 font-medium text-base-500">
+          Say goodbye to clunky workflows, endless tabs, and the vague
+          existential dread of “collaboration.”
         </Text>
-        <div class="flex flex-wrap items-center mx-auto mt-12 gap-2">
-          <Button variant="accent" size="sm"> Get started </Button>
-          <Button variant="alternative" size="sm"> Learn more </Button>
+        <div class="flex flex-wrap items-center mt-8 gap-2">
+          <Button variant="accent" size="sm">Push the button</Button>
+          <Button variant="alternative" size="sm">Still skeptical?</Button>
         </div>
+
+        <article role="list" class="pt-6 mt-6 border-t border-base-200">
+          {
+            data.map((member) => (
+              <div>
+                <figure class="flex flex-col h-full">
+                  <Text
+                    tag="blockquote"
+                    variant="textSM"
+                    class="italic font-medium text-base-500"
+                  >
+                    "{member.testimonial}"
+                  </Text>
+                  <figcaption>
+                    <div class="flex items-center mt-8 gap-2">
+                      <Image
+                        src={member.img}
+                        alt={`Avatar of ${member.name}`}
+                        width={member.img.width}
+                        height={member.img.height}
+                        class="rounded-full inline-block size-12"
+                        loading="lazy"
+                      />
+
+                      <div>
+                        <Text
+                          tag="p"
+                          variant="textBase"
+                          class="font-medium text-base-900"
+                        >
+                          {member.name}
+                        </Text>
+                        <Text
+                          tag="p"
+                          variant="textSM"
+                          class="font-medium text-base-500"
+                        >
+                          {member.title}
+                        </Text>
+                      </div>
+                    </div>
+                  </figcaption>
+                </figure>
+              </div>
+            ))
+          }
+        </article>
       </div>
-      <div class="relative mt-16 h-80 lg:mt-8">
-        <img
-          class="absolute left-0 top-0 w-[57rem] max-w-none shadow rounded-3xl"
-          src="/widgets/activity.svg"
-          alt="#_"
-          width="1824"
-          height="1080"
+      <div class="h-full mt-12 lg:-mt-32 z-10">
+        <Image
+          src={Activity}
+          width={600}
+          height={800}
+          alt="Product showcase"
+          loading="eager"
+          decoding="async"
+          class="w-full shadow rounded-lg outline outline-base-200"
         />
       </div>
     </div>
-  </div>
+  </Wrapper>
 </section>

@@ -1,31 +1,105 @@
 ---
-import Button from "@/components/fundations/buttons/Button.astro";
+export const description = "Centered CTA with grid banner";
+// Fundations
 import Text from "@/components/fundations/typography/Text.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+import Kicker from "@/components/fundations/typography/Kicker.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Icons
+import Brain from "@/components/fundations/icons/Brain.astro";
+import Tools from "@/components/fundations/icons/Tools.astro";
+import Analytics from "@/components/fundations/icons/Analytics.astro";
+import Check from "@/components/fundations/icons/Check.astro";
+const features = [
+  {
+    icon: Brain,
+    title: "AI-Powered Guesswork",
+    text: "Our system figures it out for you, even when you have no clue what you're doing.",
+  },
+  {
+    icon: Tools,
+    title: "Math You Don’t Have to Do",
+    text: "Let us crunch the numbers while you pretend you’re in charge.",
+  },
+  {
+    icon: Analytics,
+    title: "Built-in Chaos Control",
+    text: "Wrangle your tasks before they spiral into a beautiful disaster.",
+  },
+];
 ---
 
-<section class="bg-base-50">
-  <div class="relative px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl">
-    <div class="justify-center max-w-xl mx-auto text-center">
-      <img
-        class="mx-auto size-24 lg:size-40"
-        src="/images/oxbow/blueLineLogo.png"
-        alt="#_"
-      />
-      <Text tag="h2" variant="displayMD" class="font-semibold text-base-900">
-        Get started with our app today
-      </Text>
+<section class="overflow-hidden">
+  <Wrapper variant="blockStandard" class="py-24">
+    <div class="max-w-xl lg:text-balance lg:text-center mx-auto">
+      <Kicker class="text-accent-500"> Probably Useful Software </Kicker>
       <Text
-        tag="p"
-        variant="textBase"
-        class="mt-4 font-medium text-base-500 lg:text-balance"
+        tag="h2"
+        variant="displayMD"
+        class="mt-12 font-semibold tracking-tight text-base-900 lg:text-balance"
       >
-        Streamline your workflow and collaborate seamlessly on staging and
-        temporary environments
+        Finally tame your to-do list, before it eats you alive
       </Text>
     </div>
-    <div class="flex flex-wrap items-center justify-center mx-auto mt-8 gap-2">
-      <Button variant="accent" size="sm"> Get started </Button>
-      <Button variant="alternative" size="sm"> Learn more </Button>
+    <dl
+      class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4 lg:text-center lg:text-balance"
+    >
+      {
+        features.map((feature) => (
+          <div>
+            <dt class="flex flex-col lg:items-center gap-2 text-orange-600">
+              {feature.icon && (
+                <feature.icon class="text-accent-600" size="base" />
+              )}
+              <Text tag="h3" variant="" class="font-semibold text-base-900">
+                {feature.title}
+              </Text>
+            </dt>
+            <dd>
+              <Text tag="p" variant="textSM" class="mt-2 text-base-500">
+                {feature.text}
+              </Text>
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+
+    <div
+      class="mt-8 p-4 lg:p-12 bg-white outline outline-base-200 rounded-lg shadow grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:items-end gap-8"
+    >
+      <div class="lg:col-span-2">
+        <Text
+          tag="h3"
+          variant="displaySM"
+          class="font-medium text-base-900 tracking-tight text-balance"
+        >
+          Start your <span class="text-accent-600">7-day free trial</span> and fake
+          productivity like a pro.
+        </Text>
+        <div class="flex flex-wrap mt-4 sm:items-center gap-4">
+          <Button variant="accent" size="sm"> Get started </Button>
+          <div class="text-xs text-base-500 lg:items-center">
+            <span class="block"> 4.80/5 According to our moms</span>
+            <span class="block"> (and 300+ reviews) </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-2 text-base-600">
+        <div class="flex items-center gap-2 text-base-600">
+          <Check class="text-accent-500" size="base" />
+          <Text tag="p" variant="textSM">No setup, no patience required</Text>
+        </div>
+        <div class="flex items-center gap-2 text-base-600">
+          <Check class="text-accent-500" size="base" />
+          <Text tag="p" variant="textSM">No credit card, pinky swear</Text>
+        </div>
+        <div class="flex items-center gap-2 text-base-600">
+          <Check class="text-accent-500" size="base" />
+          <Text tag="p" variant="textSM">Quit anytime (we won’t cry)</Text>
+        </div>
+      </div>
     </div>
-  </div>
+  </Wrapper>
 </section>

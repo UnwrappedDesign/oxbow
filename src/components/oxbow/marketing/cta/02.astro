@@ -1,68 +1,53 @@
 ---
-import Button from "@/components/fundations/buttons/Button.astro";
+export const description = "Centered CTA with logo and text";
+// Assets
+import Logo from "@/components/assets/Logo.astro";
+
+// Fundations
 import Text from "@/components/fundations/typography/Text.astro";
-const logos = [
-  {
-    src: "/brands/5.svg",
-    width: 158,
-    height: 48,
-    colSpan: "col-span-2 col-start-2 sm:col-start-auto lg:col-span-1",
-  },
-  {
-    src: "/brands/6.svg",
-    width: 158,
-    height: 48,
-    colSpan: "col-span-2 lg:col-span-1",
-  },
-  {
-    src: "/brands/9.svg",
-    width: 158,
-    height: 48,
-    colSpan: "col-span-2 lg:col-span-1",
-  },
-  {
-    src: "/brands/8.svg",
-    width: 158,
-    height: 48,
-    colSpan: "col-span-2 sm:col-start-2 lg:col-span-1",
-  },
-  {
-    src: "/brands/10.svg",
-    width: 158,
-    height: 48,
-    colSpan: "col-span-2 col-start-2 sm:col-start-auto lg:col-span-1",
-  },
-];
+import Button from "@/components/fundations/buttons/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 ---
 
-<section>
-  <div class="relative px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl">
-    <div
-      class="items-end p-8 grid grid-cols-1 sm:grid-cols-2 gap-4 bg-base-50 rounded-2xl"
-    >
-      <div>
-        <Text tag="h2" variant="displayMD" class="font-semibold text-base-900">
-          Get started with our app today
+<section class="overflow-hidden bg-base-50">
+  <Wrapper variant="blockStandard" class="py-24">
+    <div class="bg-base-900 p-8 lg:p-16 rounded-xl relative">
+      <div class="max-w-xl mx-auto text-center lg:text-balance">
+        <div class="absolute inset-x-0 -top-10 flex justify-center z-10">
+          <div class="rounded-2xl bg-accent-600 p-4 inline-block shadow-lg">
+            <Logo class="h-12 text-white" />
+          </div>
+        </div>
+        <Text
+          tag="h2"
+          variant="displayMD"
+          class="mt-12 font-semibold tracking-tight text-white lg:text-balance"
+        >
+          Get started with Oxbow
         </Text>
-      </div>
-      <div class="flex sm:ml-auto">
-        <Button variant="accent" size="sm"> Get started </Button>
+        <Text
+          tag="p"
+          variant="textSM"
+          class="mt-4 text-base-400 lg:text-balance"
+        >
+          Analytics without the bloat, fluff, or enterprise sales calls. Just
+          numbers you care about, and none you don’t.
+        </Text>
+        <div
+          class="text-white flex flex-wrap items-center justify-center mt-8 gap-y-2 gap-x-8"
+        >
+          <Text tag="p" variant="textSM">Used by 4K makers</Text>
+
+          <Text tag="p" variant="textSM">$0 Raised on Purpose</Text>
+
+          <Text tag="p" variant="textSM">Still not acquired (yet)</Text>
+        </div>
+        <div class="flex justify-center mt-12">
+          <Button variant="accent" size="base" gap="xs"
+            >Join now <span aria-hidden="true">—</span>Regret nothing</Button
+          >
+        </div>
       </div>
     </div>
-    <div
-      class="items-center mx-auto mt-10 grid grid-cols-4 gap-x-8 gap-y-10 sm:grid-cols-6 sm:gap-x-10 lg:-mx-6 lg:grid-cols-5"
-    >
-      {
-        logos.map((logo) => (
-          <img
-            class={`${logo.colSpan} max-h-12 w-full object-contain `}
-            src={logo.src}
-            alt="#_"
-            width={logo.width}
-            height={logo.height}
-          />
-        ))
-      }
-    </div>
-  </div>
+  </Wrapper>
 </section>

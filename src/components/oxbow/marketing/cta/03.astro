@@ -1,25 +1,91 @@
 ---
-import Button from "@/components/fundations/buttons/Button.astro";
+export const description = "Centered CTA with download buttons";
+// Fundations
 import Text from "@/components/fundations/typography/Text.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+import Kicker from "@/components/fundations/typography/Kicker.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
+const features = [
+  {
+    title:
+      "Start taking control of your workflow (before it takes control of you).",
+    subtitle:
+      "Customizable by people who know what they’re doing — or just pretending.",
+    text: "Ditch the clunky tools and upgrade to something that doesn’t feel like it was built in 2003.",
+  },
+  {
+    title:
+      "Start taking control of your workflow (before it takes control of you).",
+    subtitle:
+      "Customizable by people who know what they’re doing — or just pretending.",
+    text: "Yes, it actually works. No, you don’t need a course to understand the UI.",
+  },
+];
 ---
 
-<section>
-  <div class="relative px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl">
-    <div
-      class="items-center p-12 grid grid-cols-1 sm:grid-cols-2 gap-4 bg-accent-950 rounded-2xl"
-    >
-      <div>
-        <Text tag="h2" variant="displayMD" class="font-semibold text-white">
-          Get started with our app today
-        </Text>
-        <Text tag="p" variant="textBase" class="mt-4 font-medium text-base-300">
-          Streamline your workflow and collaborate seamlessly on staging and
-          temporary environments
-        </Text>
-      </div>
-      <div class="sm:ml-auto">
-        <Button variant="alternative" size="sm"> Get started </Button>
-      </div>
+<section class="overflow-hidden">
+  <Wrapper variant="blockStandard" class="py-24">
+    <div class="text-center lg:text-balance max-w-xl mx-auto">
+      <Kicker class="text-accent-500"> Download Oxbow </Kicker>
+      <Text
+        tag="h2"
+        variant="displayMD"
+        class="mt-12 font-semibold tracking-tight text-base-900 lg:text-balance"
+      >
+        Get Oxbow on your desktop. Finally.
+      </Text>
+      <Text tag="p" variant="textSM" class="mt-4 text-base-500 lg:text-balance">
+        After 3 years of “coming soon,” it’s here. Miracles do happen.
+      </Text>
     </div>
-  </div>
+    <dl
+      class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10 text-left max-w-3xl mx-auto"
+    >
+      {
+        features.map((item) => (
+          <div class="outline outline-base-200 shadow p-6 rounded-lg bg-base-50">
+            <dt>
+              <Text
+                tag="h3"
+                variant=""
+                class="text-lg font-medium text-base-900"
+              >
+                {item.title}
+              </Text>
+            </dt>
+            <div class="mt-24">
+              <dd>
+                <Text tag="p" variant="textBase" class=" text-base-600">
+                  {item.subtitle}
+                </Text>
+              </dd>
+              <dd class="mt-4 pt-4 border-t border-base-200">
+                <Text tag="p" variant="textSM" class="text-sm text-base-500">
+                  {item.text}
+                </Text>
+              </dd>
+            </div>
+          </div>
+        ))
+      }
+    </dl>
+
+    <div class="flex flex-wrap items-center justify-center gap-2 mt-8">
+      <Button size="base" variant="default" class="shrink-0">
+        Download for Mac
+      </Button>
+      <Button size="base" variant="accent" class="shrink-0">
+        Download for Windows
+      </Button>
+      <Button size="base" variant="alternative" class="shrink-0">
+        Download for Linux
+      </Button>
+    </div>
+
+    <p class="mt-6 text-xs text-white/60 italic">
+      *We are legally obligated to say it’s still in beta. But it’s solid.
+      Mostly.
+    </p>
+  </Wrapper>
 </section>
