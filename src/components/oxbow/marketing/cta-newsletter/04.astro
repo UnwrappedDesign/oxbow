@@ -1,69 +1,117 @@
 ---
-import Button from "@/components/fundations/buttons/Button.astro";
+export const description = "Splited CTA with text-and image";
 
+// Assets
+import { Image } from "astro:assets";
+import I2 from "@/images/assets/i2.svg";
+// Foundations
 import Text from "@/components/fundations/typography/Text.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+import TextInput from "@/components/fundations/inputs/TextInput.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Icons
+import Check from "@/components/fundations/icons/Check.astro";
 ---
 
 <section>
-  <div class="relative px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl">
-    <div class="p-8 bg-accent-950 lg:p-20 rounded-2xl">
-      <div class="justify-center max-w-xl mx-auto text-center">
-        <Text tag="h2" variant="displayMD" class="font-semibold text-white">
-          Join our newsletter
+  <Wrapper variant="blockStandard" class="py-32">
+    <div
+      class="items-center max-w-md mx-auto grid grid-cols-1 gap-12 lg:gap-24 lg:max-w-none md:grid-cols-2"
+    >
+      <div class="max-w-xl lg:text-balance lg:order-last">
+        <Text
+          tag="h2"
+          variant="displayXL"
+          class="font-semibold tracking-tight text-base-900 lg:text-balance"
+        >
+          Blast off with us.
         </Text>
-        <Text tag="p" variant="textBase" class="mt-4 font-medium text-base-300">
-          Stay up to date with our latest news and updates.
+        <Text
+          tag="p"
+          variant="textSM"
+          class="mt-4 text-base-500 lg:text-balance"
+        >
+          This isn’t another productivity app. It’s your ticket to looking
+          dangerously organized. Get on the list before your coworkers pretend
+          they found it first.
         </Text>
-      </div>
-      <form class="w-full mx-auto mt-8 sm:flex sm:max-w-md">
-        <Text for="email-address" class="sr-only" tag="label">
-          Email address
-        </Text>
-        <input
-          id="email-address"
-          type="email"
-          name="email-address"
-          autocomplete="email"
-          placeholder="Enter your email"
-          aria-placeholder="Enter your email"
-          required=""
-          class="block w-full h-10 px-4 py-2 text-sm text-white border border-transparent rounded-lg shadow appearance-none placeholder-base-200 duration-300 ring-1 ring-white/20 bg-accent-950 focus:border-white/20 ring-offset-accent-950 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm focus:ring-offset"
-        />
-        <div class="mt-2 sm:ml-2 sm:mt-0 sm:flex-shrink-0">
-          <Button
-            class="w-full sm:w-auto"
-            type="submit"
-            variant="accent"
-            size="base"
-          >
-            Subscribe
+
+        <div class="flex flex-col mt-8 gap-4">
+          <div class="flex items-center gap-2 text-base-600">
+            <div
+              class="p-2 rounded-lg bg-base-50 outline outline-base-100 text-accent-500"
+            >
+              <Check size="sm" />
+            </div>
+            <Text tag="p" variant="textSM">
+              Dashboards so sleek, you’ll want to share them in meetings — even
+              if no one asked.
+            </Text>
+          </div>
+          <div class="flex items-center gap-2 text-base-600">
+            <div
+              class="p-2 rounded-lg bg-base-50 outline outline-base-100 text-accent-500"
+            >
+              <Check size="sm" />
+            </div>
+            <Text tag="p" variant="textSM">
+              Automation that actually works (because you’ve got better things
+              to do than drag cards around).
+            </Text>
+          </div>
+          <div class="flex items-center gap-2 text-base-600">
+            <div
+              class="p-2 rounded-lg bg-base-50 outline outline-base-100 text-accent-500"
+            >
+              <Check size="sm" />
+            </div>
+            <Text tag="p" variant="textSM">
+              Alerts that whisper useful things — not scream for attention like
+              a toddler with a kazoo.
+            </Text>
+          </div>
+          <div class="flex items-center gap-2 text-base-600">
+            <div
+              class="p-2 rounded-lg bg-base-50 outline outline-base-100 text-accent-500"
+            >
+              <Check size="sm" />
+            </div>
+            <Text tag="p" variant="textSM">
+              A UI so crisp, it might just make your other tabs jealous.
+            </Text>
+          </div>
+        </div>
+
+        <div
+          class="flex flex-col md:flex-row w-full max-w-md lg:items-center mt-8 gap-2"
+        >
+          <TextInput
+            id="email"
+            name="email"
+            type="email"
+            placeholder="you@probablyimportant.com"
+            variant="default"
+            label="Email address"
+            size="sm"
+            isGrouped
+          />
+          <Button type="submit" size="sm" variant="accent" class="shrink-0">
+            Join the launch
           </Button>
         </div>
-      </form>
-      <Text
-        tag="p"
-        variant="textSM"
-        class="mt-4 font-medium text-center text-white"
-      >
-        When you sign up, you accept our
-        <Text
-          tag="a"
-          href="#_"
-          variant="textBase"
-          class="font-medium text-accent-500 hover:text-base-500"
-        >
-          Terms of service
-        </Text>
-        and
-        <Text
-          tag="a"
-          href="#_"
-          variant="textBase"
-          class="font-medium text-accent-500 hover:text-base-500"
-        >
-          Privacy Policy
-        </Text>
-      </Text>
+      </div>
+
+      <div class="h-full">
+        <Image
+          width={1200}
+          height={1200}
+          src={I2}
+          alt="i1"
+          loading="eager"
+          decoding="async"
+          class="w-full"
+        />
+      </div>
     </div>
-  </div>
+  </Wrapper>
 </section>

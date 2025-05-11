@@ -1,45 +1,93 @@
 ---
-import Button from "@/components/fundations/buttons/Button.astro";
-
+export const description = "Newsletter CTA with benefits";
+// Fundations
 import Text from "@/components/fundations/typography/Text.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+import Kicker from "@/components/fundations/typography/Kicker.astro";
+import TextInput from "@/components/fundations/inputs/TextInput.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Icons
+import Brain from "@/components/fundations/icons/Brain.astro";
+import Tools from "@/components/fundations/icons/Tools.astro";
+import Analytics from "@/components/fundations/icons/Analytics.astro";
+
+const features = [
+  {
+    icon: Brain,
+    title: "Stuff You’ll Actually Read",
+    text: "Snappy insights, not recycled productivity tweets from 2016.",
+  },
+  {
+    icon: Tools,
+    title: "No Hacks, Just Help",
+    text: "Real tips for building, designing, and maybe surviving Mondays.",
+  },
+  {
+    icon: Analytics,
+    title: "Sent With Restraint",
+    text: "One email a week. Two if we’re feeling needy. Never more.",
+  },
+];
 ---
 
-<section>
-  <div class="relative px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl">
-    <div class="items-end grid grid-cols-1 gap-4 sm:grid-cols-2">
-      <div>
-        <Text tag="h2" variant="displayMD" class="font-semibold text-base-900">
-          Join our newsletter
-        </Text>
-        <Text tag="p" variant="textBase" class="mt-4 font-medium text-base-500">
-          Stay up to date with our latest news and updates.
-        </Text>
-      </div>
-      <form class="w-full mt-8 sm:flex sm:max-w-md sm:ml-auto">
-        <Text for="email-address" class="sr-only" tag="label">
-          Email address
-        </Text>
-        <input
-          id="email-address"
-          type="email"
-          name="email-address"
-          autocomplete="email"
-          placeholder="Enter your email"
-          aria-placeholder="Enter your email"
-          required=""
-          class="block w-full h-10 px-4 py-2 text-sm bg-white border border-transparent rounded-lg appearance-none text-accent-700 duration-300 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
-        />
-        <div class="mt-2 sm:ml-2 sm:mt-0 sm:flex-shrink-0">
-          <Button
-            class="w-full sm:w-auto"
-            type="submit"
-            variant="accent"
-            size="base"
-          >
-            Subscribe
-          </Button>
-        </div>
-      </form>
+<section class="overflow-hidden">
+  <Wrapper variant="blockStandard" class="py-24">
+    <div class="max-w-xl mx-auto lg:text-balance lg:text-center">
+      <Kicker class="text-accent-500">
+        The only newsletter we’d read too
+      </Kicker>
+      <Text
+        tag="h2"
+        variant="displayMD"
+        class="mt-12 font-semibold tracking-tight text-base-900 lg:text-balance"
+      >
+        Want smarter ideas without the LinkedIn fluff?
+      </Text>
+      <Text tag="p" variant="textBase" class="mt-4 text-base-500">
+        Join the folks who like their updates useful, witty, and with just the
+        right amount of snark.
+      </Text>
     </div>
-  </div>
+
+    <dl
+      class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4 lg:text-center lg:text-balance"
+    >
+      {
+        features.map((feature) => (
+          <div>
+            <dt class="flex flex-col text-orange-600 lg:items-center gap-2">
+              {feature.icon && (
+                <feature.icon class="text-accent-600" size="base" />
+              )}
+              <Text tag="h3" variant="" class="font-semibold text-base-900">
+                {feature.title}
+              </Text>
+            </dt>
+            <dd>
+              <Text tag="p" variant="textSM" class="mt-2 text-base-500">
+                {feature.text}
+              </Text>
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+
+    <div class="flex w-full max-w-xs mx-auto items-center mt-12">
+      <TextInput
+        id="email"
+        name="email"
+        type="email"
+        placeholder="Your inbox deserves better"
+        variant="default"
+        label="Email address"
+        size="sm"
+        noRoundedRight
+        isGrouped
+      />
+      <Button type="submit" size="sm" variant="accent" noRoundedLeft={true}>
+        Subscribe
+      </Button>
+    </div>
+  </Wrapper>
 </section>
