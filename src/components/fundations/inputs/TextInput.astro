@@ -49,14 +49,31 @@ const {
 } = Astro.props;
 const variantClasses = {
   default: [
-    "bg-white", "border", "border-transparent", "text-base-500", "ring-1", "ring-base-200",
-    "placeholder-base-400", "focus:border-base-300", "focus:outline-none", "focus:ring-accent-500",
-    "focus:ring-offset-2", "focus:ring-2", "shadow-sm"
+   "bg-white",
+  "border",
+  "border-transparent",
+  "text-base-500",
+  "ring-1",
+  "ring-base-200",
+  "placeholder-base-400",
+  "focus:border-accent-500",
+  "focus:ring-accent-100",
+  "focus:ring-2",
+  "focus:outline-none",
+  "shadow-sm"
   ],
   dark: [
-    "bg-base-800", "text-base-100", "border-base-700", "ring-1", "ring-base-700",
-    "placeholder-base-400", "focus:ring-base-500", "focus:ring-offset-2",
-    "focus:border-base-600", "focus:outline-none"
+   "bg-base-800",
+  "text-base-100",
+  "border-base-700",
+  "ring-1",
+  "ring-base-700",
+  "placeholder-base-400",
+  "focus:border-base-500",
+  "focus:ring-base-50",
+  "focus:ring-2",
+  "focus:outline-none",
+  "shadow-sm"
   ]
 };
 const sizeClasses = {
@@ -344,63 +361,76 @@ const rangeToClasses = [
         </span>
       )}
     </div>
-    <div class="relative z-0 focus-within:z-10" x-data={xDataAttr}>
-      {prefix && (
-        <span class="absolute inset-y-0 left-0 flex items-center pl-3 select-none text-base-400">
-          {prefix}
-        </span>
-      )}
-      {hasLeftIcon && (
-        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-          {isSearch && iconPosition === "left" && <Search size="sm" class="text-base-500" />}
-          {isEmail && <Mail size="sm" class="text-base-500" />}
-          {isCreditCard && <CreditCard size="sm" class="text-base-500" />}
-          {isExpiry && <Calendar size="sm" class="text-base-500" />}
-        </div>
-      )}
-      <input
-        {...rest}
-        id={id}
-        name={name}
-        type={type}
-        disabled={disabled ? true : undefined}
-        x-model="value"
-        x-bind:type={isPassword ? "showPassword ? 'text' : 'password'" : undefined}
-        class:list={inputClasses}
-        aria-required={rest.required ? "true" : undefined}
-        aria-invalid={error ? "true" : undefined}
-        aria-describedby={error ? `${id}-error` : undefined}
-        maxlength={isCreditCard ? "19" : isCVV ? "4" : isExpiry ? "5" : undefined}
-        inputmode={isCreditCard || isCVV || isExpiry ? "numeric" : isEmail ? "email" : undefined}
-      />
-      <div class="absolute inset-y-0 right-0 flex items-center pr-3 gap-2">
-        {isSearch && iconPosition === "right" && <Search size="sm" class="pointer-events-none text-base-500" />}
-        {isPassword && (
-          <button
-            type="button"
-            @click="showPassword = !showPassword"
-            class="text-base-500 focus:outline-none"
-            tabindex="-1"
-            aria-label="Toggle password visibility"
-          >
-            <Eye size="sm" x-show="!showPassword" />
-            <EyeOff size="sm" x-show="showPassword" />
-          </button>
-        )}
-        {isCVV && <Lock size="sm" class="pointer-events-none text-base-500" />}
-        {!isSquareSize && (
-          <button
-            x-show="value"
-            type="button"
-            @click="value = ''"
-            class="text-base-400 hover:text-base-600 focus:outline-none"
-            aria-label="Clear input"
-          >
-            <X size="sm" class="text-base-500" />
-          </button>
-        )}
-      </div>
+    
+<div
+  class="relative z-0 focus-within:z-10"
+  {...(isPassword ? { 'x-data': '{ value: "", showPassword: false }' } : {})}
+>
+  {prefix && (
+    <span class="absolute inset-y-0 left-0 flex items-center pl-3 select-none text-base-400">
+      {prefix}
+    </span>
+  )}
+  {hasLeftIcon && (
+    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+      {isSearch && iconPosition === "left" && <Search size="sm" class="text-base-500" />}
+      {isEmail && <Mail size="sm" class="text-base-500" />}
+      {isCreditCard && <CreditCard size="sm" class="text-base-500" />}
+      {isExpiry && <Calendar size="sm" class="text-base-500" />}
     </div>
+  )}
+
+  <input
+    {...rest}
+    id={id}
+    name={name}
+    type={isPassword ? undefined : type}
+    x-model={isPassword ? "value" : undefined}
+    x-bind:type={isPassword ? "showPassword ? 'text' : 'password'" : undefined}
+    disabled={disabled ? true : undefined}
+    class:list={inputClasses}
+    aria-required={rest.required ? "true" : undefined}
+    aria-invalid={error ? "true" : undefined}
+    aria-describedby={error ? `${id}-error` : undefined}
+    maxlength={isCreditCard ? "19" : isCVV ? "4" : isExpiry ? "5" : undefined}
+    inputmode={isCreditCard || isCVV || isExpiry ? "numeric" : isEmail ? "email" : undefined}
+  />
+
+  {isPassword && (
+    <div class="absolute inset-y-0 right-0 flex items-center pr-3 gap-2">
+      <button
+        type="button"
+        @click="showPassword = !showPassword"
+        class="text-base-500 focus:outline-none"
+        tabindex="-1"
+        aria-label="Toggle password visibility"
+      >
+        <Eye size="sm" x-show="!showPassword" />
+        <EyeOff size="sm" x-show="showPassword" />
+      </button>
+
+      {!isSquareSize && (
+        <button
+          x-show="value"
+          type="button"
+          @click="value = ''"
+          class="text-base-400 hover:text-base-600 focus:outline-none"
+          aria-label="Clear input"
+        >
+          <X size="sm" class="text-base-500" />
+        </button>
+      )}
+    </div>
+  )}
+
+  {isCVV && (
+    <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+      <Lock size="sm" class="pointer-events-none text-base-500" />
+    </div>
+  )}
+</div>
+
+
     {error && (
       <p id={`${id}-error`} class={`mt-1 text-sm ${errorTextColor}`}>
         {error}

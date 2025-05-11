@@ -275,32 +275,41 @@ const templates: { [key: string]: Template[] } = {
         "contact link",
       ],
     },
-    {
-      name: "Newsletter Call to Action",
-      link: "/playground/marketing/cta-newsletter",
-      image: "newsletter.png",
-      tags: [
-        "newsletter",
-        "newsletter section",
-        "newsletter form",
-        "newsletter title",
-        "newsletter description",
-        "newsletter image",
-        "newsletter link",
-      ],
-    },
-    {
-      name: "Call to Actions",
-      link: "/playground/marketing/cta",
-      image: "cta.png",
-      tags: [
-        "call to action",
-        "call to action section",
-        "call to action content",
-        "call to action image",
-        "call to action link",
-      ],
-    },
+   {
+  name: "Newsletter Call to Action",
+  link: "/playground/marketing/cta-newsletter",
+  image: "newsletter.png",
+  tags: [
+    "newsletter signup",
+    "email capture",
+    "email form UI",
+    "subscribe section",
+    "email marketing",
+    "lead generation",
+    "conversion block",
+    "form design",
+    "newsletter UX",
+    "email CTA"
+  ],
+},
+{
+  name: "Call to Actions",
+  link: "/playground/marketing/cta",
+  image: "cta.png",
+  tags: [
+    "cta section",
+    "marketing block",
+    "conversion section",
+    "landing CTA",
+    "button callout",
+    "hero CTA",
+    "action prompt",
+    "engagement block",
+    "highlighted offer",
+    "UX conversion"
+  ],
+},
+
     {
       name: "Gallery",
       link: "/playground/marketing/gallery",
