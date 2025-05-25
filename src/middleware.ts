@@ -7,62 +7,6 @@ import { getAuth } from "firebase-admin/auth";
 import { app } from "@/firebase/server";
 import { shouldSkipCSSObfuscation } from "@/utils/canSeeCode";
 
-const excludeClasses = [
-  // Text classes
-  "text-white",
-  "text-accent-600",
-  "text-accent-500",
-  "text-base-400",
-  // Background classes
-  "bg-white",
-  "bg-base-100",
-  "bg-base-50",
-  // Border classes
-  "border-b-2",
-  "border-accent-500",
-  // Hover classes
-  "hover:shadow-none",
-  "hover:to-accent-800",
-  "hover:text-accent-500",
-  "hover:text-accent-400",
-  // Focus classes
-  "focus:ring-2",
-  "focus:ring-base-950",
-  "focus:ring-offset-2",
-  // Ring
-  "ring-offset-base-200",
-  // Shadow
-  "shadow",
-  // Visibility
-  "hidden",
-  "opacity-0",
-  "opacity-25",
-  "opacity-100",
-  // Displau classes
-  "flex",
-  "inset-0",
-  "absolute",
-  "inline-flex",
-  // Transition classes
-  "ease-in-out",
-  "transition-all",
-  "transition-transform",
-  // Transform classes
-  "translate-y-1",
-  "translate-y-0",
-  "translate-x-full",
-  "translate-x-0",
-  // Furation
-  "duration-200",
-  // Gradients
-  "bg-gradient-to-b",
-  "from-accent-500",
-  "to-accent-600",
-  // Size
-  "size-12",
-  "w-1/2",
-];
-
 const postcssOptions = {
   from: "/styles/global.css",
   to: "/styles/global.css",
@@ -70,6 +14,30 @@ const postcssOptions = {
 const filterType = /^text\/css$/
 
 const mode = import.meta.env.MODE;
+
+// Function to extract excludeFromObfuscation from component files
+async function getExcludeClassesFromComponents(): Promise<string[]> {
+  const excludeClasses: string[] = [];
+  
+  try {
+    // Import all component files that might have excludeFromObfuscation
+    const componentModules = import.meta.glob('/src/components/**/*.astro', { eager: true });
+    
+    for (const [path, module] of Object.entries(componentModules)) {
+      if (module && typeof module === 'object' && 'excludeFromObfuscation' in module) {
+        const componentExcludes = (module as any).excludeFromObfuscation;
+        if (Array.isArray(componentExcludes)) {
+          excludeClasses.push(...componentExcludes);
+        }
+      }
+    }
+  } catch (error) {
+    console.warn('Failed to load component excludeFromObfuscation:', error);
+  }
+  
+  // Remove duplicates
+  return [...new Set(excludeClasses)];
+}
 
 export const onRequest = defineMiddleware(async (context, next) => {
   if (context.isPrerendered) {
@@ -101,6 +69,9 @@ export const onRequest = defineMiddleware(async (context, next) => {
 
   const response = await next();
   const html = await response.text();
+
+  // Get exclude classes from components
+  const excludeClasses = await getExcludeClassesFromComponents();
 
   let cssMap = {}
   const postcssPLugins = [postcssRename({
