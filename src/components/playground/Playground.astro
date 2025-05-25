@@ -7,24 +7,26 @@ import { Code } from "astro:components";
 import * as prettier from "prettier";
 // Utils
 import { getUserThemeColor } from "@/utils/getUserTheme";
+import { canSeeCode } from "@/utils/canSeeCode";
 
 interface Props {
   componentIndex: number;
   componentPath: string;
   playgroundRef: string;
+  freeComponent?: boolean;
 }
-const { componentIndex, componentPath, playgroundRef } = Astro.props;
+const { componentIndex, componentPath, playgroundRef, freeComponent = false } = Astro.props;
 const user = Astro.locals.user;
-const canSeeCode = user || componentIndex === 1;
+const canSeeCodeValue = canSeeCode(user, freeComponent);
 
 // Get user's theme preference from custom claims
 const userThemeColor = getUserThemeColor(user, 'blue', Astro);
 
-const code = canSeeCode ? await Astro.slots.render("default")
+const code = canSeeCodeValue ? await Astro.slots.render("default")
                       : '';
 
 let ppcode = '';
-if (canSeeCode) {
+if (canSeeCodeValue) {
   // Format code with prettier
   ppcode = await prettier.format(code, {
     parser: "html",
@@ -163,7 +165,7 @@ const theme = ``;
        </span>
        <div aria-hidden="true" class="mx-1 h-4 w-[1px]  bg-base-200   hidden md:inline-block"></div>
         {
-          canSeeCode ? (
+          canSeeCodeValue ? (
             <div class="flex items-center gap-1 ">
               <Button
                size="xxs"
@@ -229,11 +231,11 @@ const theme = ``;
       <div
         class="w-full overflow-auto transition-all duration-500 easy-in-out border-x border-base-100"
         :class="{ 'max-w-sm  border-x border-base-100': viewportSize === 'mobile', 'max-w-screen-md  border-x border-base-100': viewportSize === 'tablet','max-w-full': viewportSize === 'desktop' }">
-        <iframe  x-intersect.once="$el.src = $el.dataset.src" id={playgroundRef} width="100%" data-src={`/iframe/${componentPath}?iframeId=iframe-${componentIndex}`}/>
+        <iframe  x-intersect.once="$el.src = $el.dataset.src" id={playgroundRef} width="100%" data-src={`/iframe/${componentPath}?iframeId=iframe-${componentIndex}&freeComponent=${freeComponent}`}/>
       </div>
     </div>
     {
-      canSeeCode && (
+      canSeeCodeValue && (
         <div
           x-show="tab === 'code'"
           x-ref="code"
