@@ -3,6 +3,9 @@ import { defineMiddleware } from "astro/middleware";
 import postcss from 'posthtml-postcss'
 import postcssRename from 'postcss-rename'
 import posthtml from "posthtml";
+import { getAuth } from "firebase-admin/auth";
+import { app } from "@/firebase/server";
+import { shouldSkipCSSObfuscation } from "@/utils/canSeeCode";
 
 const excludeClasses = [
   // Text classes
@@ -66,9 +69,6 @@ const postcssOptions = {
 }
 const filterType = /^text\/css$/
 
-import { getAuth } from "firebase-admin/auth";
-import { app } from "@/firebase/server";
-
 const mode = import.meta.env.MODE;
 
 export const onRequest = defineMiddleware(async (context, next) => {
@@ -91,11 +91,11 @@ export const onRequest = defineMiddleware(async (context, next) => {
     // forward request
   } catch (error) {}
 
-  if (
-    /^\/iframe\/.*(01).astro$/.test(context.url.pathname) ||
-    !context.url.pathname.startsWith(`/iframe/`) || 
-    mode === "development"
-  ) {
+  // Check if we should skip CSS obfuscation
+  const url = new URL(context.request.url);
+  const freeComponent = url.searchParams.get('freeComponent') === 'true';
+  
+  if (shouldSkipCSSObfuscation(context.url.pathname, mode, freeComponent)) {
     return next();
   }
 
