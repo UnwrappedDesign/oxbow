@@ -1,5 +1,4 @@
 "use client";
-import OxbowButton from "@/components/fundations/buttons/OxbowButton.astro";
 import { useState, useRef, useCallback, useMemo } from "react";
 import { X, ArrowDownRight } from "lucide-react";
 import { Rnd } from "react-rnd";
@@ -21,7 +20,7 @@ export default function GridGenerator() {
   const gridRef = useRef<HTMLDivElement>(null);
   const gapSize = gap * 2; // Convert gap to pixels
   const getCellHeight = useCallback(
-    () => 70,
+    () => 96,
     [],
   );
   const getCellWidth = useCallback(
