@@ -9,62 +9,57 @@ const features = [
   {
     title: "400+ Components",
     description:
-      "More UI pieces than you'll know what to do with. All responsive, accessible, and begging to be customized.",
+      "A large set of responsive, accessible UI elements ready to use in any project.",
   },
   {
     title: "Built with Tailwind & Alpine",
     description:
-      "Clean code, no nonsense. Drop it in and move on with your life.",
+      "Lightweight, modern tools that make it easy to build and maintain your site.",
   },
   {
     title: "One-Time Payment",
     description:
-      "Pay once. Own it forever. Subscriptions are for streaming services, not UI kits.",
+      "Pay once and use it forever. No subscriptions or hidden fees.",
   },
   {
     title: "Free Updates",
     description:
-      "Yes, we’re actually giving you more stuff for free. Welcome to the rare club of not getting nickel-and-dimed.",
+      "You’ll get new features and improvements over time—at no extra cost.",
   },
   {
     title: "Fast Support",
     description:
-      "Stuck? Ping us on Discord. We don’t ghost (unlike that one freelancer you hired).",
+      "If you run into a problem, we’re here to help. Just reach out.",
   },
   {
     title: "Simple Customization",
     description:
-      "Make it yours without summoning a dev team. We don’t charge extra for using what you paid for.",
+      "Make it your own without much effort. Everything’s built to be easy to tweak.",
   },
   {
     title: "Keyboard Accessibility",
     description:
-      "Your keyboard-savvy users won’t rage-quit. Everything works out of the box—no excuses.",
+      "Works great with a keyboard, so everyone can navigate with ease.",
   },
   {
     title: "Production Ready",
     description:
-      "Battle-tested on modern browsers, because ‘it works on my machine’ isn’t a real QA process.",
+      "Tested and reliable across modern browsers. Just plug it in and go.",
   },
 ];
 ---
 
 <section class="border-t scroll-mt-24 border-base-200" id="features">
   <Wrapper variant="standard" class="lg:border-x lg:border-base-200">
-    <div class="flex flex-col gap-1">
+    <div
+      class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-u gap-y-12 text-center"
+    >
       {
         features.map((feature) => (
-          <div class="py-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-            <div class="flex items-center gap-2">
-              <Check size="sm" class="text-accent-500" />
-              <Text
-                tag="h3"
-                variant="textSM"
-                class="font-medium  text-base-900"
-              >
-                {feature.title}
-              </Text>
-            </div>
+          <div class="p-4">
+            <Text tag="h3" variant="textSM" class="font-medium  text-base-900">
+              {feature.title}
+            </Text>
             <Text
               tag="p"
               variant="textSM"
