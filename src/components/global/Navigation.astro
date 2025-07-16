@@ -13,14 +13,17 @@ import LogoutTwo from "@/components/fundations/icons/LogoutTwo.astro";
 import Logo from "@/components/assets/Logo.astro";
 // Fundations
 import Text from "@/components/fundations/typography/Text.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import OfferBanner60Accent from "@/components/banners/OfferBanner60Accent.astro";
 ---
 
 <div
   class="items-center w-full mx-auto duration-300"
   x-data={`{...navigation(), username: "${user?.email ?? ""}"}`}
 >
+ {!user && <OfferBanner60Accent />}
+
   <Wrapper variant="standard" class="w-full lg:border-x lg:border-base-200">
     <div
       class="flex flex-col w-full py-2 lg:bg-none md:flex-row md:items-center md:justify-between"
@@ -138,7 +141,8 @@ import Button from "@/components/fundations/buttons/Button.astro";
             data-umami-event="access-navigation-cta"
           >
             Get access
-            <span> $129 </span>
+            <del class="text-white/80"> $129 </del>
+            <span> $49 </span>
           </Button>
         </div>
         <div x-popover x-cloak x-show="!!username" class="relative">
