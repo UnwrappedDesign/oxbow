@@ -5,60 +5,51 @@ import Text from "@/components/fundations/typography/Text.astro";
 <div
   x-cloak
   x-show="!username"
-  class="flex items-center justify-center px-8 py-2 border-b lg:h-12 bg-accent-950"
+  class="flex items-center justify-center px-8 py-2 lg:h-12 bg-accent-600"
 >
-  <Text tag="p" variant="textBase" class="font-medium text-white">
-    <Text tag="p" variant="textBase" class="font-medium text-white">
-      <Text tag="strong" class="font-semibold text-white" />
-      <Text tag="span" class="font-sans font-semibold text-white uppercase">
-        SUMMER SALE
-      </Text>
-      — Enjoy a
-      <Text tag="strong" class="font-sans font-semibold text-white uppercase">
-        62% Discount.
-      </Text>
-            Already applied at checkout.
-      <span id="countdown-days"></span>
-    </Text>
+  <Text tag="p" variant="textLG" class="font-medium text-white">
+    Summer Sale – Use code oxbow50 at checkout for a 50% discount.
   </Text>
-</div>
-<script type="module">
-  // Vanilla JavaScript Countdown
-  document.addEventListener("DOMContentLoaded", function () {
-    // Set the target date to December 3, 2024, at midnight
-    const targetDate = new Date(2024, 11, 3);
-    targetDate.setHours(0, 0, 0, 0); // Reset time to midnight
+  <script type="module">
+    // Vanilla JavaScript Countdown
+    document.addEventListener("DOMContentLoaded", function () {
+      // Set the target date to December 3, 2024, at midnight
+      const targetDate = new Date(2024, 11, 3);
+      targetDate.setHours(0, 0, 0, 0); // Reset time to midnight
 
-    const countdownElement = document.getElementById("countdown-days");
-    const linkElement = document.getElementById("black-friday-cta-navigation");
+      const countdownElement = document.getElementById("countdown-days");
+      const linkElement = document.getElementById(
+        "black-friday-cta-navigation"
+      );
 
-    function updateCountdown() {
-      const now = new Date();
-      const diff = targetDate - now;
+      function updateCountdown() {
+        const now = new Date();
+        const diff = targetDate - now;
 
-      if (diff > 0) {
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor(
-          (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        );
+        if (diff > 0) {
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor(
+            (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
 
-        if (days > 0) {
-          // Show days and hours
-          countdownElement.textContent = `${days} day${days > 1 ? "s" : ""} and ${hours} hour${hours > 1 ? "s" : ""}`;
+          if (days > 0) {
+            // Show days and hours
+            countdownElement.textContent = `${days} day${days > 1 ? "s" : ""} and ${hours} hour${hours > 1 ? "s" : ""}`;
+          } else {
+            // Show only hours
+            countdownElement.textContent = `${hours} hour${hours > 1 ? "s" : ""}`;
+          }
         } else {
-          // Show only hours
-          countdownElement.textContent = `${hours} hour${hours > 1 ? "s" : ""}`;
+          // Countdown has ended, remove the Link element
+          linkElement.remove();
         }
-      } else {
-        // Countdown has ended, remove the Link element
-        linkElement.remove();
       }
-    }
 
-    // Initial calculation
-    updateCountdown();
+      // Initial calculation
+      updateCountdown();
 
-    // Update every 1 minute
-    setInterval(updateCountdown, 1000 * 60);
-  });
-</script>
+      // Update every 1 minute
+      setInterval(updateCountdown, 1000 * 60);
+    });
+  </script>
+</div>
