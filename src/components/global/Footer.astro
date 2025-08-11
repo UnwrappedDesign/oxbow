@@ -1,6 +1,7 @@
 ---
 import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
 
 // Assets
 import Logo from "@/components/assets/Logo.astro";
@@ -14,7 +15,10 @@ const navLinks = [
       { label: "Pricing", href: "/pricing" },
       { label: "Support", href: "/support" },
       { label: "Affiliates", href: "https://oxbowui.affonso.io" },
-      { label: "Polar customer portal", href: "https://polar.sh/oxbow-ui/portal/request" },
+      {
+        label: "Polar customer portal",
+        href: "https://polar.sh/oxbow-ui/portal/request",
+      },
       { label: "Customers", href: "/customers" },
       { label: "Changelog", href: "/changelog" },
     ],
@@ -54,43 +58,62 @@ const navLinks = [
 ---
 
 <footer class="border-t border-base-200">
-  <Wrapper variant="standard" class="lg:border-x lg:border-base-200 lg:py-12">
-    <div class="items-start grid grid-cols-1 md:grid-cols-4">
-      <div class="flex items-center gap-2">
-        <a aria-label="home" href="/">
-          <Logo class="h-8 text-accent-600" />
-        </a>
-        <Text tag="p" variant="textSM" class="text-base-500 font-meidum">
-          <span>2025</span> Oxbow UI®
+  <Wrapper variant="wide" class="py-8">
+    <div class="bg-white p-4 lg:p-20 py-12 rounded-xl shadow-oxbow">
+      <div class="text-center">
+        <Logo class="h-12 mx-auto text-accent-500" />
+        <Text
+          tag="h2"
+          variant="displayMD"
+          class="font-semibold text-base-900 text-balance mt-8"
+        >
+          Lifetime access
         </Text>
+        <Text
+          tag="p"
+          variant="textLG"
+          class="font-medium text-base-500 text-balance mt-2 max-w-2xl mx-auto"
+        >
+          Get everything for $129. One-time payment. Lifetime access, updates,
+          and support included.
+        </Text>
+
+        <Button
+          size="base"
+          variant="accent"
+          href="/pricing"
+          id="full-access-cta-bottom"
+          data-umami-event="full-access-cta-bottom"
+          title="Get the full-access"
+          class="mt-8 w-fit mx-auto"
+        >
+          Full access for $129
+        </Button>
       </div>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-2 lg:col-span-3">
+
+      <div
+        class="grid grid-cols-2 gap-4 md:grid-cols-4 mt-12 pt-12 border-t border-base-100"
+      >
         {
-          navLinks.map((section) => (
-            <div>
-              <Text
-                tag="h3"
-                variant="textBase"
-                class="font-medium text-base-900"
-              >
+          navLinks.map((section, i) => (
+            <nav aria-label={section.title}>
+              <Text tag="h3" variant="textSM" class="font-medium text-base-900">
                 {section.title}
               </Text>
-              <ul
-                role="list"
-                class="flex flex-col mt-2 text-xs font-medium text-base-500  gap-1"
-              >
-                {section.links.map((link) => (
+              <ul role="list" class="flex flex-col mt-2 gap12">
+                {section.links.map((link, j) => (
                   <li>
                     <a
-                      class="transition hover:text-black  duration-300"
+                      class="font-medium text-base-600 hover:text-black focus:outline focus:outline-2 text-xs focus:outline-offset-2 focus:outline-accent-600"
                       href={link.href}
+                      title={link.label}
                     >
                       {link.label}
                     </a>
                   </li>
                 ))}
               </ul>
-            </div>
+            </nav>
           ))
         }
       </div>
