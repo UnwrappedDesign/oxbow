@@ -63,14 +63,15 @@ const variantClasses = {
   ],
 };
 const sizeClasses = {
-  xxs: ["h-7", "px-3", "py-1.5", "text-xs"],
-  xs: ["h-8", "px-4", "py-2", "text-xs"],
-  sm: ["h-9", "px-4", "py-2", "text-xs"],
-  base: ["h-10", "px-4", "py-2", "text-sm"],
-  md: ["h-11", "px-4", "py-2", "text-sm"],
-  lg: ["h-12", "px-4", "py-2.5", "text-base"],
-  xl: ["h-14", "px-5", "py-3", "text-lg"],
+  xxs: ["h-7", "pl-3", "pr-8", "py-1.5", "text-xs"],
+  xs: ["h-8", "pl-4", "pr-10", "py-2", "text-xs"],
+  sm: ["h-9", "pl-4", "pr-10", "py-2", "text-xs"],
+  base: ["h-10", "pl-4", "pr-10", "py-2", "text-sm"],
+  md: ["h-11", "pl-4", "pr-10", "py-2", "text-sm"],
+  lg: ["h-12", "pl-4", "pr-10", "py-2.5", "text-base"],
+  xl: ["h-14", "pl-5", "pr-12", "py-3", "text-lg"],
 };
+
 const _noTopLeft =
   noRounded || noRoundedTop || noRoundedLeft || noRoundedTopLeft;
 const _noTopRight =
@@ -92,10 +93,10 @@ if (_noTopLeft && _noTopRight && _noBottomLeft && _noBottomRight) {
 }
 let selectClasses = [
   "block",
-  
   "transition",
   "duration-300",
   "ease-in-out",
+  "appearance-none", // <--- add this
   ...(sizeClasses[size] || sizeClasses.base),
   ...(variantClasses[variant] || variantClasses.default),
   roundedClass,
