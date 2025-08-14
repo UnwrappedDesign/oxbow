@@ -58,21 +58,23 @@ const navLinks = [
 ---
 
 <footer class="border-t border-base-200">
-  <Wrapper variant="wide" class="py-8">
-    <div class="bg-white p-4 lg:p-20 py-12 rounded-xl shadow-oxbow">
-      <div class="text-center">
-        <Logo class="h-12 mx-auto text-accent-500" />
+  <Wrapper variant="standard" class="py-8 lg:border-x lg:border-base-200">
+    <div class="bg-white p-8 rounded-xl shadow-oxbow">
+      <div
+        class="text-center bg-linear-45 from-accent-500 to-accent-400 py-12 rounded-lg"
+      >
+        <Logo class="h-12 lg:size-24 mx-auto text-white" />
         <Text
           tag="h2"
           variant="displayMD"
-          class="font-semibold text-base-900 text-balance mt-8"
+          class="font-semibold text-white text-balance mt-8"
         >
           Lifetime access
         </Text>
         <Text
           tag="p"
           variant="textLG"
-          class="font-medium text-base-500 text-balance mt-2 max-w-2xl mx-auto"
+          class="font-medium text-white text-balance mt-2 max-w-2xl mx-auto"
         >
           Get everything for $129. One-time payment. Lifetime access, updates,
           and support included.
@@ -80,7 +82,7 @@ const navLinks = [
 
         <Button
           size="base"
-          variant="accent"
+          variant="muted"
           href="/pricing"
           id="full-access-cta-bottom"
           data-umami-event="full-access-cta-bottom"
@@ -91,16 +93,14 @@ const navLinks = [
         </Button>
       </div>
 
-      <div
-        class="grid grid-cols-2 gap-4 md:grid-cols-4 mt-12 pt-12 border-t border-base-100"
-      >
+      <div class="grid grid-cols-2 gap-4 md:grid-cols-4 mt-12">
         {
           navLinks.map((section, i) => (
             <nav aria-label={section.title}>
               <Text tag="h3" variant="textSM" class="font-medium text-base-900">
                 {section.title}
               </Text>
-              <ul role="list" class="flex flex-col mt-2 gap12">
+              <ul role="list" class="flex flex-col mt-4 ">
                 {section.links.map((link, j) => (
                   <li>
                     <a
