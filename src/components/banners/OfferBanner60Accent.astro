@@ -5,51 +5,9 @@ import Text from "@/components/fundations/typography/Text.astro";
 <div
   x-cloak
   x-show="!username"
-  class="flex items-center justify-center px-8 py-2 lg:h-12 bg-accent-600"
+  class="flex items-center justify-center px-8 py-2  bg-base-50 border-b border-base-200"
 >
-  <Text tag="p" variant="textLG" class="font-medium text-white">
-    Summer Sale – Use code oxbow50 at checkout for a 50% discount.
+  <Text tag="p" variant="textBase" class="font-medium text-accent-500 ">
+    Summer Sale – Use code <span class="bold uppercase">oxbow20</span> at checkout for a 20% discount.
   </Text>
-  <script type="module">
-    // Vanilla JavaScript Countdown
-    document.addEventListener("DOMContentLoaded", function () {
-      // Set the target date to December 3, 2024, at midnight
-      const targetDate = new Date(2024, 11, 3);
-      targetDate.setHours(0, 0, 0, 0); // Reset time to midnight
-
-      const countdownElement = document.getElementById("countdown-days");
-      const linkElement = document.getElementById(
-        "black-friday-cta-navigation"
-      );
-
-      function updateCountdown() {
-        const now = new Date();
-        const diff = targetDate - now;
-
-        if (diff > 0) {
-          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-          const hours = Math.floor(
-            (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-          );
-
-          if (days > 0) {
-            // Show days and hours
-            countdownElement.textContent = `${days} day${days > 1 ? "s" : ""} and ${hours} hour${hours > 1 ? "s" : ""}`;
-          } else {
-            // Show only hours
-            countdownElement.textContent = `${hours} hour${hours > 1 ? "s" : ""}`;
-          }
-        } else {
-          // Countdown has ended, remove the Link element
-          linkElement.remove();
-        }
-      }
-
-      // Initial calculation
-      updateCountdown();
-
-      // Update every 1 minute
-      setInterval(updateCountdown, 1000 * 60);
-    });
-  </script>
 </div>

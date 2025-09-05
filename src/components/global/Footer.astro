@@ -2,7 +2,6 @@
 import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
-
 // Assets
 import Logo from "@/components/assets/Logo.astro";
 // Fundations
@@ -56,67 +55,62 @@ const navLinks = [
   },
 ];
 ---
-
 <footer class="border-t border-base-200">
   <Wrapper variant="standard" class="py-8 lg:border-x lg:border-base-200">
-    <div class="bg-white p-8 rounded-xl shadow-oxbow">
-      <div
-        class="text-center bg-linear-45 from-accent-500 to-accent-400 py-12 rounded-lg"
+    <div
+      class="text-center bg-linear-45 from-accent-500 to-accent-400 py-12 rounded-lg"
+    >
+      <Logo class="h-12 lg:size-24 mx-auto text-white" />
+      <Text
+        tag="h2"
+        variant="displayMD"
+        class="font-semibold text-white text-balance mt-8"
       >
-        <Logo class="h-12 lg:size-24 mx-auto text-white" />
-        <Text
-          tag="h2"
-          variant="displayMD"
-          class="font-semibold text-white text-balance mt-8"
-        >
-          Lifetime access
-        </Text>
-        <Text
-          tag="p"
-          variant="textLG"
-          class="font-medium text-white text-balance mt-2 max-w-2xl mx-auto"
-        >
-          Get everything for $129. One-time payment. Lifetime access, updates,
-          and support included.
-        </Text>
-
-        <Button
-          size="base"
-          variant="muted"
-          href="/pricing"
-          id="full-access-cta-bottom"
-          data-umami-event="full-access-cta-bottom"
-          title="Get the full-access"
-          class="mt-8 w-fit mx-auto"
-        >
-          Full access for $129
-        </Button>
-      </div>
-
-      <div class="grid grid-cols-2 gap-4 md:grid-cols-4 mt-12">
-        {
-          navLinks.map((section, i) => (
-            <nav aria-label={section.title}>
-              <Text tag="h3" variant="textSM" class="font-medium text-base-900">
-                {section.title}
-              </Text>
-              <ul role="list" class="flex flex-col mt-4 ">
-                {section.links.map((link, j) => (
-                  <li>
-                    <a
-                      class="font-medium text-base-600 hover:text-black focus:outline focus:outline-2 text-xs focus:outline-offset-2 focus:outline-accent-600"
-                      href={link.href}
-                      title={link.label}
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          ))
-        }
-      </div>
+        Lifetime access
+      </Text>
+      <Text
+        tag="p"
+        variant="textLG"
+        class="font-medium text-white text-balance mt-2 max-w-2xl mx-auto"
+      >
+        Get everything for $99. One-time payment. Lifetime access, updates,
+        and support included.
+      </Text>
+      <Button
+        size="base"
+        variant="muted"
+        href="/pricing"
+        id="full-access-cta-bottom"
+        data-umami-event="full-access-cta-bottom"
+        title="Get the full-access"
+        class="mt-8 w-fit mx-auto"
+      >
+        Full access for $99
+      </Button>
+    </div>
+    <div class="grid grid-cols-2 gap-4 md:grid-cols-4 mt-12">
+      {
+        navLinks.map((section, i) => (
+          <nav aria-label={section.title}>
+            <Text tag="h3" variant="textSM" class="font-medium text-base-900">
+              {section.title}
+            </Text>
+            <ul role="list" class="flex flex-col mt-4 ">
+              {section.links.map((link, j) => (
+                <li>
+                  <a
+                    class="font-medium text-base-600 hover:text-black focus:outline focus:outline-2 text-xs focus:outline-offset-2 focus:outline-accent-600"
+                    href={link.href}
+                    title={link.label}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))
+      }
     </div>
   </Wrapper>
 </footer>

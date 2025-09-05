@@ -8,24 +8,26 @@ import { formatDistanceToNowStrict } from "date-fns";
 import updates from "@/data/updates.json";
 
 const { section, subsection } = Astro.params;
-const components = await Astro.glob(`@/components/oxbow/**/*.astro`);
-
+const modules = import.meta.glob('@/components/oxbow/**/*.astro', { eager: true });
+const keys = Object.keys(modules);
 const sectionRegex = new RegExp(`${section}/${subsection}/.+\\.astro$`, "i");
 
-const sectionComponents = components
-  .filter((component) => component.file?.match(sectionRegex))
-  .map((component) => {
-    const filePath = component.file.split("/").slice(-3).join("/");
-    const imagePath = `/src/screenshots/${component.file
+const sectionComponents = keys
+  .filter((k) => k.match(sectionRegex))
+  .sort()
+  .map((k) => {
+    const filePath = k.split("/").slice(-3).join("/");
+    const imagePath = `/src/screenshots/${k
       .split("/")
       .slice(-3)
       .join("_")
       .replace(".astro", ".png")}`;
+    const mod: any = (modules as any)[k] || {};
     return {
-      ...component,
+      file: k,
       filePath,
       imagePath,
-      description: component?.description || "",
+      description: mod.description || "",
     };
   });
 

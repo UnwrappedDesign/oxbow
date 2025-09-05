@@ -3,9 +3,11 @@ import IframeHead from "@/components/IframeHead.astro";
 
 const { componentPath } = Astro.params;
 
-const components = await Astro.glob(`@/components/oxbow/**/*.astro`);
-
-const component = components.find((c) => c.file.endsWith(componentPath));
+// Lazy module map, only load needed component
+const modules = import.meta.glob('@/components/oxbow/**/*.astro');
+const keys = Object.keys(modules);
+const matchKey = keys.find((k) => k.endsWith(componentPath));
+const component = matchKey ? await modules[matchKey]() : undefined;
 ---
 
 <html lang="en" class="selection:text-blue selection:bg-blue/5">
@@ -14,5 +16,22 @@ const component = components.find((c) => c.file.endsWith(componentPath));
   </head>
   <body>
     <component.default />
+    <script is:inline>
+      (function () {
+        const params = new URLSearchParams(window.location.search);
+        const iframeId = params.get('iframeId') || '';
+        function postHeight() {
+          try {
+            const h = document.documentElement.scrollHeight || document.body.scrollHeight || 0;
+            parent.postMessage({ type: 'oxbow-iframe-height', id: iframeId, height: h }, '*');
+          } catch (_) {}
+        }
+        window.addEventListener('load', postHeight);
+        const ro = new ResizeObserver(() => postHeight());
+        ro.observe(document.documentElement);
+        ro.observe(document.body);
+        setTimeout(postHeight, 0);
+      })();
+    </script>
   </body>
 </html>

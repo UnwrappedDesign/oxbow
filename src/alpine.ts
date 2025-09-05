@@ -6,7 +6,6 @@ import Clipboard from "@ryangjchandler/alpine-clipboard"
 import intersect from '@alpinejs/intersect'
 import { auth } from "@/firebase/client";
 import { sendSignInLinkToEmail } from "firebase/auth";
-import * as amplitude from "@amplitude/analytics-browser";
 import { createHighlighter } from 'shiki';
 import { createCssVariablesTheme } from 'shiki'
 
@@ -33,9 +32,53 @@ export default (Alpine: Alpine) => {
         username: "",
         async signOut() {
             await auth.signOut();
-            amplitude.reset();
             window.location.assign("/api/auth/signout");
         },
+    }));
+
+    // Selector for base palette (grays) used by components (text-base-*, bg-base-*)
+    Alpine.data("baseThemeSelector", () => ({
+        init() {
+          this.$watch('selected', (theme: string) => {
+            this.$dispatch('baseTheme', {color: theme.toLowerCase()});
+          });
+          this.loadBaseThemePreference();
+        },
+        colors: [
+          { name: 'Slate', color: 'bg-slate-500' },
+          { name: 'Gray', color: 'bg-gray-500' },
+          { name: 'Zinc', color: 'bg-zinc-500' },
+          { name: 'Neutral', color: 'bg-neutral-500' },
+          { name: 'Stone', color: 'bg-stone-500' },
+        ],
+        selected: 'Gray',
+        open: false,
+        toggleOpen() { this.open = !this.open; },
+        selectColor(color: string) {
+          const selectedLower = color.toLowerCase();
+          this.selected = color;
+          this.open = false;
+          this.$dispatch('baseTheme', { color: selectedLower });
+          try {
+            localStorage.setItem('oxbow_base_theme_color', selectedLower);
+            const expiryDate = new Date();
+            expiryDate.setDate(expiryDate.getDate() + 30);
+            document.cookie = `oxbow_base_theme_color=${selectedLower}; expires=${expiryDate.toUTCString()}; path=/; SameSite=Lax`;
+          } catch {}
+          document.querySelectorAll('[x-data="playground"]').forEach(playground => {
+            playground.dispatchEvent(new CustomEvent('baseTheme', { detail: { color: selectedLower } }));
+          });
+        },
+        async loadBaseThemePreference() {
+          let theme = 'gray';
+          try { const local = localStorage.getItem('oxbow_base_theme_color'); if (local) theme = local; } catch {}
+          this.selected = theme.charAt(0).toUpperCase() + theme.slice(1);
+          setTimeout(() => {
+            document.querySelectorAll('[x-data="playground"]').forEach(playground => {
+              playground.dispatchEvent(new CustomEvent('baseTheme', { detail: { color: theme } }));
+            });
+          }, 100);
+        }
     }));
 
     Alpine.data("loginForm", () => ({
@@ -107,11 +150,6 @@ export default (Alpine: Alpine) => {
           { name: 'Fuchsia', color: 'bg-fuchsia-500' },
           { name: 'Pink', color: 'bg-pink-500' },
           { name: 'Rose', color: 'bg-rose-500' },
-          { name: 'Slate', color: 'bg-slate-500' },
-          { name: 'Gray', color: 'bg-gray-500' },
-          { name: 'Zinc', color: 'bg-zinc-500' },
-          { name: 'Neutral', color: 'bg-neutral-500' },
-          { name: 'Stone', color: 'bg-stone-500' },
         ],
         selected: 'Blue',
         open: false,
@@ -350,6 +388,12 @@ export default (Alpine: Alpine) => {
               this.setTheme(event.detail.color);
             }
           });
+          // Listen for base (gray) palette changes
+          this.$el.addEventListener('baseTheme', (event: CustomEvent) => {
+            if (event.detail && event.detail.color) {
+              this.setBaseTheme(event.detail.color);
+            }
+          });
           
           // Check URL parameters for tab preference
           try {
@@ -422,27 +466,7 @@ export default (Alpine: Alpine) => {
             }, 400);
           }
           
-          // Check if we're switching to the 'code' tab 
-          if (tab === 'code' && prevTab !== 'code') {
-            try {
-              // Get current theme from localStorage
-              const currentTheme = localStorage.getItem('oxbow_current_theme');
-              // Get original server-rendered theme
-              
-              if (currentTheme && currentTheme !== originalTheme) {
-                console.log(`Switching to code tab with theme (${currentTheme}) different from server-rendered (${originalTheme}) - refreshing`);
-                
-                // Use a small timeout to allow the URL update to complete
-                setTimeout(() => {
-                  window.location.reload();
-                }, 200);
-              } else {
-                console.log('Current theme matches server-rendered theme - no refresh needed');
-              }
-            } catch (error) {
-              console.error('Error checking theme differences:', error);
-            }
-          }
+          // No reload on switching to code tab; render client-side smoothly
         },
         setViewportSize(size: Playground["viewportSize"]) {
           this.viewportSize = size;
@@ -456,14 +480,18 @@ export default (Alpine: Alpine) => {
             return `--color-accent-${shade}: var(--color-${themeColor.toLowerCase()}-${shade});`
           });
 
-          shades.forEach(shade => {
-            const iframe = document.querySelector('iframe');
-            const iframeDocument = iframe?.contentDocument;
-
-            if (iframeDocument) {
-              iframeDocument.documentElement.style.setProperty(`--color-accent-${shade}`, `var(--color-${themeColor.toLowerCase()}-${shade})`);
-            };
-          });
+          const rootEl = (this as any).$el as HTMLElement;
+          const iframe = (rootEl && rootEl.querySelector('iframe')) as HTMLIFrameElement | null;
+          const iframeDocument = iframe?.contentDocument || iframe?.contentWindow?.document || null;
+          if (iframeDocument) {
+            const rootVars = getComputedStyle(document.documentElement);
+            const palette = themeColor.toLowerCase();
+            shades.forEach(shade => {
+              const token = rootVars.getPropertyValue(`--color-${palette}-${shade}`).trim();
+              const value = token || `var(--color-${palette}-${shade})`;
+              iframeDocument.documentElement.style.setProperty(`--color-accent-${shade}`, value);
+            });
+          }
 
           const css = outdent`
           @theme {
@@ -479,6 +507,21 @@ export default (Alpine: Alpine) => {
             lang: 'css',
             theme: 'css-variables',
           });
+        },
+        setBaseTheme(baseColor: string) {
+          const shades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
+          const palette = baseColor.toLowerCase();
+          const rootEl = (this as any).$el as HTMLElement;
+          const iframe = (rootEl && rootEl.querySelector('iframe')) as HTMLIFrameElement | null;
+          const iframeDocument = iframe?.contentDocument || iframe?.contentWindow?.document || null;
+          if (iframeDocument) {
+            const rootVars = getComputedStyle(document.documentElement);
+            shades.forEach(shade => {
+              const token = rootVars.getPropertyValue(`--color-${palette}-${shade}`).trim();
+              const value = token || `var(--color-${palette}-${shade})`;
+              iframeDocument.documentElement.style.setProperty(`--color-base-${shade}`, value);
+            });
+          }
         }
     }));
 }

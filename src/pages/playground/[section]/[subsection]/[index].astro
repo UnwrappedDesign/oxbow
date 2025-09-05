@@ -10,21 +10,23 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 
 // Parameters
 const { section, subsection, index } = Astro.params;
-const components = await Astro.glob(`@/components/oxbow/**/*.astro`);
-const sectionComponents = components.filter((component) => {
-  const sectionRegex = new RegExp(`${section}\/${subsection}\/.+\.astro$`, "i");
-  return component.file?.match(sectionRegex);
-});
-const component = sectionComponents[parseInt(index) - 1];
+const modules = import.meta.glob('@/components/oxbow/**/*.astro');
+const keys = Object.keys(modules);
+const sectionRegex = new RegExp(`${section}\/${subsection}\/.+\\.astro$`, 'i');
+const sectionKeys = keys.filter((k) => k.match(sectionRegex));
+sectionKeys.sort();
+const currentKey = sectionKeys[parseInt(index) - 1];
+const componentModule = currentKey ? await modules[currentKey]() : undefined;
 
-// Get the description for the current component
-const componentDescription = component?.description || "";
-const freeComponent = component?.freeComponent || false;
+// Metadata from module exports
+const componentDescription = componentModule?.description || "";
+const freeComponent = componentModule?.freeComponent || false;
 
+const sectionLength = sectionKeys.length;
 const PreviewElement = parseInt(index) === 1 ? "div" : "a";
 const PreviewElementProps = parseInt(index) === 1 ? {} : { href: `/playground/${section}/${subsection}/${parseInt(index) - 1}` };
-const NextElement = parseInt(index) === sectionComponents.length ? "div" : "a";
-const NextElementProps = parseInt(index) === sectionComponents.length ? {} : { href: `/playground/${section}/${subsection}/${parseInt(index) + 1}` };
+const NextElement = parseInt(index) === sectionLength ? "div" : "a";
+const NextElementProps = parseInt(index) === sectionLength ? {} : { href: `/playground/${section}/${subsection}/${parseInt(index) + 1}` };
 
 ---
 
@@ -97,7 +99,7 @@ const NextElementProps = parseInt(index) === sectionComponents.length ? {} : { h
             </PreviewElement>
             <NextElement {...NextElementProps}>
               <IconButton
-                disable={parseInt(index) === sectionComponents.length}
+                disable={parseInt(index) === sectionLength}
                 aria-label="Go to next page"
                 variant="alternative"
                 size="xs"
@@ -115,27 +117,22 @@ const NextElementProps = parseInt(index) === sectionComponents.length ? {} : { h
     <Wrapper variant="wide" class="py-8 2xl:border-x 2xl:border-base-200">
       <Playground
         componentIndex={parseInt(index)}
-        componentPath={component.file.replace(/.*\/src/, "src")}
+        componentPath={currentKey ? currentKey.replace(/^\//, '') : ''}
         playgroundRef={`${section}-${subsection}-${index}`}
         freeComponent={freeComponent}
+        initialTabIsCode={Astro.url.searchParams.get('tab') === 'code'}
       >
-        <component.default />
+        <componentModule.default />
       </Playground>
     </Wrapper>
   </section>
 </BaseLayout>
-<script>
-  function resizeIFramesToFitContent() {
-    const iframes = document.querySelectorAll("iframe");
-    iframes.forEach((iframe) => {
-      try {
-        iframe.height = iframe.contentWindow?.document.body.scrollHeight + "px";
-      } catch (e) {}
-    });
-    requestAnimationFrame(resizeIFramesToFitContent);
-  }
-  addEventListener(
-    "load",
-    requestAnimationFrame.bind(this, resizeIFramesToFitContent)
-  );
+<script is:inline>
+  // Adjust iframe height when the preview posts its size
+  window.addEventListener('message', (e) => {
+    const d = e.data;
+    if (!d || d.type !== 'oxbow-iframe-height') return;
+    const iframe = document.getElementById(d.id);
+    if (iframe) iframe.style.height = (d.height || 0) + 'px';
+  });
 </script>
