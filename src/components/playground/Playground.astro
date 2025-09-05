@@ -14,25 +14,23 @@ interface Props {
   componentPath: string;
   playgroundRef: string;
   freeComponent?: boolean;
+  initialTabIsCode?: boolean;
 }
-const { componentIndex, componentPath, playgroundRef, freeComponent = false } = Astro.props;
+const { componentIndex, componentPath, playgroundRef, freeComponent = false, initialTabIsCode = false } = Astro.props;
 const user = Astro.locals.user;
 const canSeeCodeValue = canSeeCode(user, freeComponent);
 
 // Get user's theme preference from custom claims
 const userThemeColor = getUserThemeColor(user, 'blue', Astro);
 
-const code = canSeeCodeValue ? await Astro.slots.render("default")
-                      : '';
+const code = canSeeCodeValue ? await Astro.slots.render("default") : '';
 
 let ppcode = '';
-if (canSeeCodeValue) {
-  // Format code with prettier
-  ppcode = await prettier.format(code, {
-    parser: "html",
-  });
-  
-  // Replace accent color classes wit h user's theme color if a user is logged in
+if (canSeeCodeValue && initialTabIsCode) {
+  // Format only when we render the code tab on the server
+  ppcode = await prettier.format(code, { parser: 'html' });
+
+  // Replace accent color classes with user's theme color if a user is logged in
   const accentRegex = /(class=["'].*?)bg-accent-(\d+)(.*?["'])/g;
   const textAccentRegex = /(class=["'].*?)text-accent-(\d+)(.*?["'])/g;
   const borderAccentRegex = /(class=["'].*?)border-accent-(\d+)(.*?["'])/g;
@@ -62,7 +60,7 @@ if (canSeeCodeValue) {
 
 const theme = ``;
 ---
-<section x-data="playground">
+<section x-data="playground" data-iframe-id={`iframe-${componentIndex}`}>
   <div class="relative" @theme="setTheme($event.detail.color)">
     <div class="flex items-center justify-between pb-2 gap-1 ">
       <div class="inline-flex items-center p-1 bg-white rounded-lg gap-1 ">
@@ -72,58 +70,9 @@ const theme = ``;
         >
           <span class="text-xs">{componentIndex}</span>
         </Button>
-        <div aria-hidden="true" class="mx-1 h-4 w-[1px]  bg-base-200   hidden md:inline-block"></div>
-          <div x-data="themeSelector" class="relative focus:z-10">
-              <Button 
-                size="xxs"
-                variant="muted"
-                @click="toggleOpen" 
-                class="flex items-center text-xs pointer-events-auto gap-2 !shadow-none"
-              >
-                <div class="flex items-center gap-2">
-                    <div 
-                        class="rounded-full size-1.5"
-                        :class="{['bg-' + selected.toLowerCase() + '-500']: true}"
-                    ></div>
-                    <span x-text="selected"></span>
-                </div>
-               
-              <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </Button>
-            <div 
-                x-show="open" 
-                x-on:click.away="toggleOpen"
-                class="absolute mt-4 -ml-10 bg-white rounded-lg shadow  w-80 outline outline-base-100 z-60"
-                x-transition
-            >
-                <div class="p-4 rounded-lg ">
-                  <Text tag="p" variant="textBase" class="font-medium text-black ">Color options</Text>
-                  <Text tag="p" variant="textXS" class="mt-1 text-base-500 ">Customize your colors.</Text>
-                  <div class="w-full mt-4">
-                      <div class="grid grid-cols-3 md:grid-cols-3 gap-2 ">
-                        <template x-for="color in colors" class="w-full ">
-                          <Button 
-                            size="xxs"
-                            variant="muted"
-                            @click="selectColor(color.name)"
-                            :class="selected === color.name ? 'outline-2 !outline-base-500' : ''"
-                            class="flex items-center w-full pointer-events-auto !shadow-none"
-                          >
-                            <div class="flex items-center justify-between w-full gap-2">
-                              <span x-text="color.name"></span>
-                              <span class="rounded-full size-1.5 shrink-0" :class="color.color"></span>
-                            </div>
-                          </Button>
-                        </template>
-                        
-                      </div>
-                  </div>
-              </div>
-            </div>
+        
+        
         </div>
-      </div>
       <div class="items-center justify-end hidden p-1 bg-white rounded-lg  md:flex gap-1">
         <span class="items-center hidden isolate md:inline-flex  gap-1" >
           <Button onlyIconSize="xxs" variant="muted"
@@ -222,29 +171,27 @@ const theme = ``;
       </div>
     </div>
   <div
-    class="relative min-h-[400] w-full flex  rounded-xl shadow-oxbow bg-white z-1 overflow-hidden isolate"
+    class="relative min-h-[400px] w-full flex rounded-xl shadow-oxbow bg-white z-1 overflow-hidden isolate"
   >
     <div
       x-show="tab === 'preview'"
       class="flex justify-center flex-grow w-full bg-white"
     >
       <div
-        class="w-full overflow-auto transition-all duration-500 easy-in-out border-x border-base-100"
-        :class="{ 'max-w-sm  border-x border-base-100': viewportSize === 'mobile', 'max-w-screen-md  border-x border-base-100': viewportSize === 'tablet','max-w-full': viewportSize === 'desktop' }">
-        <iframe  x-intersect.once="$el.src = $el.dataset.src" id={playgroundRef} width="100%" data-src={`/iframe/${componentPath}?iframeId=iframe-${componentIndex}&freeComponent=${freeComponent}`}/>
+        class="w-full overflow-auto border-x border-base-100"
+        :class="{ 'max-w-sm border-x border-base-100': viewportSize === 'mobile', 'max-w-screen-md border-x border-base-100': viewportSize === 'tablet','max-w-full': viewportSize === 'desktop' }">
+        <iframe x-intersect.once="$el.src = $el.dataset.src" id={`iframe-${componentIndex}`} width="100%" data-src={`/iframe/${componentPath}?iframeId=iframe-${componentIndex}&freeComponent=${freeComponent}`}/>
       </div>
     </div>
-    {
-      canSeeCodeValue && (
-        <div
-          x-show="tab === 'code'"
-          x-ref="code"
-          class="flex-grow p-4 overflow-auto text-xs bg-white size-full  transition selection:bg-base-100"
-        >
-          <Code code={ppcode} lang="html" theme="css-variables" class="scrollbar-hide"/>
-        </div>
-      )
-    }
+    {canSeeCodeValue && (
+      <div
+        x-show="tab === 'code'"
+        x-ref="code"
+        class="flex-grow p-4 overflow-auto text-xs bg-white size-full selection:bg-base-100"
+      >
+        <Code code={initialTabIsCode ? ppcode : code} lang="html" theme="css-variables" class="scrollbar-hide"/>
+      </div>
+    )}
   </div>
   </div>
 </section>

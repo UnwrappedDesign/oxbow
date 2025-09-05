@@ -3,7 +3,6 @@ import "../styles/global.css";
 import { AstroSeo } from "@astrolib/seo";
 const umamiScriptSrc = import.meta.env.PUBLIC_UMAMI_URL;
 const umamiWebsiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
-const amplitudeKey = import.meta.env.PUBLIC_AMPLITUDE_KEY;
 const toltId = import.meta.env.PUBLIC_TOLT_ID;
 
 // Optional SEO props provided by layouts/pages
@@ -28,6 +27,7 @@ const {
   siteUrl = "https://oxbowui.com",
 } = (Astro.props ?? {}) as Props;
 const additionalStructured = (Astro.props as any)?.structuredData;
+const isPlayground = pathname?.startsWith('/playground') || pathname?.startsWith('/iframe');
 
 const siteName = "Oxbow UI";
 const defaultDescription =
@@ -149,6 +149,7 @@ const jsonLdCombined = Array.isArray(additionalStructured)
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="robots" content={noindex ? "noindex,nofollow" : "index,follow"} />
+<meta name="color-scheme" content="light dark" />
 
 <AstroSeo
   title={seoTitle}
@@ -215,24 +216,10 @@ const jsonLdCombined = Array.isArray(additionalStructured)
   href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap"
   rel="stylesheet"
 />
-<script>
-  import * as amplitude from "@amplitude/analytics-browser";
-  const amplitudeKey = import.meta.env.PUBLIC_AMPLITUDE_KEY;
-  if (amplitudeKey) {
-    amplitude.init(amplitudeKey, {
-      serverZone: "EU",
-      autocapture: { elementInteractions: true },
-    });
-  }
-</script>
-<script 
- defer 
- src="https://assets.onedollarstats.com/stonks.js"
- data-debug="oxbowui.com"
-></script>
-{
-  toltId && (
-    <script async src="https://cdn.tolt.io/tolt.js" data-tolt={toltId} />
-  )
-}
-<!-- Place in <head> tag --> <script async defer src="https://affonso.io/js/pixel.min.js" data-affonso="cm8mwmtfe000nqzz7zqtm6a0p" data-cookie_duration="30"> </script>
+{!isPlayground && (
+  <>
+    <script defer src="https://assets.onedollarstats.com/stonks.js" data-debug="oxbowui.com"></script>
+    {toltId && <script async src="https://cdn.tolt.io/tolt.js" data-tolt={toltId} />}
+    <script async defer src="https://affonso.io/js/pixel.min.js" data-affonso="cm8mwmtfe000nqzz7zqtm6a0p" data-cookie_duration="30"> </script>
+  </>
+)}

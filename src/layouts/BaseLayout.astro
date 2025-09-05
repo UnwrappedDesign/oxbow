@@ -1,5 +1,6 @@
 ---
 import { getAuth } from "firebase-admin/auth";
+import { ViewTransitions } from 'astro:transitions';
 import BaseHead from "@/components/BaseHead.astro";
 import Navigation from "@/components/global/Navigation.astro";
 import Footer from "@/components/global/Footer.astro";
@@ -48,7 +49,8 @@ const { title, description, image, noindex, structuredData }: HeadOverrides = (A
       structuredData={structuredData}
     />
   </head>
-  <body class="bg-base-100">
+  <body class="bg-base-100" style="background-color:#ffffff">
+    <ViewTransitions />
     <Navigation />
     <main class="grow z-1">
       <slot />
@@ -74,7 +76,6 @@ const { title, description, image, noindex, structuredData }: HeadOverrides = (A
       } from "firebase/auth";
       import { auth } from "@/firebase/client";
 
-      import * as amplitude from "@amplitude/analytics-browser";
 
       class AstroFirebase extends HTMLElement {
         constructor() {
@@ -93,7 +94,6 @@ const { title, description, image, noindex, structuredData }: HeadOverrides = (A
                   id: credentials.user.uid,
                 });
 
-                amplitude.setUserId(credentials.user.uid);
                 console.log("Successfully signed in with custom token");
               })
               .catch((error) => {

@@ -14,9 +14,9 @@ const { entries } = Astro.props; // Make sure entries is correctly passed and us
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/images/**/*.{jpeg,jpg,png,gif}"
 );
-const components = await Astro.glob("@/components/oxbow/**/*.astro");
-const componentBySection = components.reduce((acc, component) => {
-  const [section, subsection] = component.file
+const modules = import.meta.glob("@/components/oxbow/**/*.astro", { eager: true });
+const componentBySection = Object.keys(modules).reduce((acc, file) => {
+  const [section, subsection] = file
     .replace(/.*\/src\/components\/oxbow\//, "")
     .split("/");
   const path = ["/playground", section, subsection].filter(Boolean).join("/");
