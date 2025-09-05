@@ -8,10 +8,42 @@ import { app } from "@/firebase/server";
 const auth = getAuth(app);
 const uid = Astro.locals.user?.uid;
 const customToken = uid ? await auth.createCustomToken(uid) : null;
+const siteUrl = (Astro.site && Astro.site.toString()) || "https://oxbowui.com";
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? siteUrl).toString();
+const privatePaths = [
+  /^\/404$/,
+  /^\/login(\b|\/)/,
+  /^\/login-password(\b|\/)/,
+  /^\/email-signin(\b|\/)/,
+  /^\/thankyou(\b|\/)/,
+  /^\/webhooks\//,
+  /^\/api\//,
+  /^\/iframe\//,
+];
+const defaultNoindex = privatePaths.some((rx) => rx.test(Astro.url.pathname));
+
+// Optional per-page SEO overrides
+interface HeadOverrides {
+  title?: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+  structuredData?: any | any[];
+}
+const { title, description, image, noindex, structuredData }: HeadOverrides = (Astro.props ?? {}) as HeadOverrides;
 ---
 <html lang="en" class="scroll-smooth">
   <head>
-    <BaseHead />
+    <BaseHead
+      pathname={Astro.url.pathname}
+      canonicalUrl={canonicalUrl}
+      siteUrl={siteUrl}
+      title={title}
+      description={description}
+      image={image}
+      noindex={noindex ?? defaultNoindex}
+      structuredData={structuredData}
+    />
   </head>
   <body class="bg-[#f7f7f7]">
     <main class="grow z-1">

@@ -1,6 +1,5 @@
 ---
 // Fudnations
-import { AstroSeo } from "@astrolib/seo";
 import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
@@ -68,44 +67,74 @@ const tiers = [
     cardClass: "bg-white shadow-oxbow",
   },
 ];
+
+// Build Product + AggregateOffer JSON-LD for Pricing
+const siteUrl = (Astro.site && Astro.site.toString()) || "https://oxbowui.com";
+const canonical = new URL(Astro.url.pathname, Astro.site ?? siteUrl).toString();
+const logo = new URL('/favicons/apple-touch-icon.png', siteUrl).toString();
+const image = new URL('/images/OpenGraph/twitter.png', siteUrl).toString();
+
+function toPriceNumber(p: string) {
+  const n = (p || '').replace(/[^0-9.]/g, '');
+  return n || '0';
+}
+
+const offerList = tiers.map((t) => {
+  const price = toPriceNumber(t.price);
+  const isFree = /^free$/i.test(t.price);
+  const usersFeature = (t.features || []).find((f: string) => /users?/i.test(f));
+  const qty = usersFeature ? parseInt(usersFeature.replace(/[^0-9]/g, '')) || 1 : (t.id === 'personal' ? 1 : undefined);
+  return {
+    '@type': 'Offer',
+    name: t.title,
+    description: t.description,
+    price: isFree ? '0' : price,
+    priceCurrency: 'USD',
+    availability: 'https://schema.org/InStock',
+    url: t.href ? (String(t.href).startsWith('http') ? t.href : new URL(String(t.href), siteUrl).toString()) : canonical + '#' + t.id,
+    ...(qty ? { eligibleQuantity: { '@type': 'QuantitativeValue', value: qty, unitText: qty > 1 ? 'Users' : 'User' } } : {}),
+  };
+});
+
+const pricedOffers = offerList.filter((o: any) => o.price !== '0');
+const prices = pricedOffers.map((o: any) => parseFloat(o.price)).sort((a: number, b: number) => a - b);
+
+const pricingStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Oxbow UI — Full Access',
+  description: 'Production-ready Tailwind CSS UI components and layouts. One-time purchase, lifetime access. Personal and Teams licenses available.',
+  url: canonical,
+  image: [image],
+  brand: {
+    '@type': 'Brand',
+    name: 'Oxbow UI',
+    logo: { '@type': 'ImageObject', url: logo },
+  },
+  sku: 'oxbow-ui-full-access',
+  mpn: 'OXBOW-UI-FA',
+  publisher: {
+    '@type': 'Organization',
+    name: 'Oxbow UI',
+    url: siteUrl,
+    logo: { '@type': 'ImageObject', url: logo },
+  },
+  offers: {
+    '@type': 'AggregateOffer',
+    lowPrice: prices.length ? String(prices[0]) : '0',
+    highPrice: prices.length ? String(prices[prices.length - 1]) : '0',
+    priceCurrency: 'USD',
+    offerCount: String(offerList.length),
+    offers: offerList,
+  },
+};
 ---
 
-<AstroSeo
-  title="Oxbow UI - Pricing "
-  description="Unlock permanent access to all components, elements and layouts and future additions for a one-time payment."
-  canonical="https://www.oxbowui.com/pricing"
-  openGraph={{
-    url: "https://www.oxbowui.com/images/OpenGraph/twitter.png",
-    title: "Oxbow UI - Pricing",
-    description:
-      "Unlock permanent access to all components, elements and layouts and future additions for a one-time payment.",
-    images: [
-      {
-        url: "https://www.oxbowui.com/images/OpenGraph/facebook.png",
-        width: 1200,
-        height: 630,
-        alt: "Oxbow UI",
-        type: "image/png",
-      },
-      {
-        url: "https://www.oxbowui.com/images/OpenGraph/twitter.png",
-        width: 4096,
-        height: 4096,
-        alt: "Oxbow UI",
-        type: "image/png",
-      },
-      { url: "https://www.oxbowui.com/images/OpenGraph/facebook.ong" },
-      { url: "https://www.oxbowui.com/images/OpenGraph/twitter.png" },
-    ],
-    site_name: "Oxbow UI",
-  }}
-  twitter={{
-    handle: "@Mike_Andreuzza",
-    site: "https://www.oxbowui.com",
-    cardType: "summary_large_image",
-  }}
-/>
-<BaseLayout>
+<BaseLayout
+  title="Pricing - Oxbow UI"
+  description="Pay once, get lifetime access to Oxbow UI components. Personal and Teams licenses — no subscriptions."
+  structuredData={pricingStructuredData}
+>
   <MainHero
     textCentered
     showAlpineTailwind={false}
