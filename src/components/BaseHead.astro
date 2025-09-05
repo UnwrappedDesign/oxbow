@@ -1,9 +1,113 @@
 ---
 import "../styles/global.css";
+import { AstroSeo } from "@astrolib/seo";
 const umamiScriptSrc = import.meta.env.PUBLIC_UMAMI_URL;
 const umamiWebsiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
 const amplitudeKey = import.meta.env.PUBLIC_AMPLITUDE_KEY;
 const toltId = import.meta.env.PUBLIC_TOLT_ID;
+
+// Optional SEO props provided by layouts/pages
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalUrl?: string;
+  pathname?: string;
+  image?: string;
+  noindex?: boolean;
+  siteUrl?: string;
+  structuredData?: any | any[];
+}
+
+const {
+  title,
+  description,
+  canonicalUrl,
+  pathname = "/",
+  image = "/images/OpenGraph/twitter.png",
+  noindex = false,
+  siteUrl = "https://oxbowui.com",
+} = (Astro.props ?? {}) as Props;
+const additionalStructured = (Astro.props as any)?.structuredData;
+
+const siteName = "Oxbow UI";
+const defaultDescription =
+  description ??
+  "Free and premium components, elements and layouts for marketing, apps, and ecommerce. Beautifully crafted with Tailwind CSS — simple to customize and production‑ready.";
+
+const absCanonical = (canonicalUrl || new URL(pathname, siteUrl).toString());
+const absImage = image?.startsWith("http") ? image : new URL(image || "/images/OpenGraph/twitter.png", siteUrl).toString();
+
+function toTitleCase(s: string) {
+  return s
+    .replace(/[-_]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/(^|\s)\S/g, (t) => t.toUpperCase());
+}
+
+function clampText(input: string, max: number) {
+  if (!input) return input;
+  if (input.length <= max) return input;
+  const sliced = input.slice(0, max);
+  const lastSpace = sliced.lastIndexOf(" ");
+  const safe = lastSpace > 40 ? sliced.slice(0, lastSpace) : sliced;
+  return safe.replace(/[\s.,;:!-]+$/g, "") + "…";
+}
+
+const pathSegments = pathname
+  .split("/")
+  .filter(Boolean);
+const baseTitle =
+  title ||
+  (pathSegments.length === 0
+    ? siteName
+    : `${toTitleCase(pathSegments[pathSegments.length - 1])} - ${siteName}`);
+// Recommended: ~50–60 chars for titles, ~150–160 for descriptions
+const seoTitle = clampText(baseTitle, 60);
+const seoDescription = clampText(defaultDescription, 160);
+
+const breadcrumbItems = pathSegments.map((seg, idx) => {
+  const url = new URL("/" + pathSegments.slice(0, idx + 1).join("/"), siteUrl).toString();
+  return {
+    '@type': 'ListItem',
+    position: idx + 1,
+    item: {
+      '@id': url,
+      name: toTitleCase(seg),
+    },
+  };
+});
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    url: siteUrl,
+    name: siteName,
+    inLanguage: 'en',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: siteName,
+    url: siteUrl,
+    logo: new URL('/favicons/apple-touch-icon.png', siteUrl).toString(),
+  },
+  ...(breadcrumbItems.length
+    ? [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: breadcrumbItems,
+        },
+      ]
+    : []),
+];
+const jsonLdCombined = Array.isArray(additionalStructured)
+  ? [...jsonLd, ...additionalStructured]
+  : additionalStructured
+  ? [...jsonLd, additionalStructured]
+  : jsonLd;
 ---
 
 <script is:inline>
@@ -44,6 +148,41 @@ const toltId = import.meta.env.PUBLIC_TOLT_ID;
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="robots" content={noindex ? "noindex,nofollow" : "index,follow"} />
+
+<AstroSeo
+  title={seoTitle}
+  description={seoDescription}
+  canonical={absCanonical}
+  openGraph={{
+    url: absCanonical,
+    title: seoTitle,
+    description: seoDescription,
+    images: [{ url: absImage }],
+    site_name: siteName,
+  }}
+  twitter={{
+    handle: "@Mike_Andreuzza",
+    site: "@Mike_Andreuzza",
+    cardType: "summary_large_image",
+  }}
+/>
+<!-- Explicit OG/Twitter fallbacks to satisfy strict validators -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:url" content={absCanonical} />
+<meta property="og:title" content={seoTitle} />
+<meta property="og:description" content={seoDescription} />
+<meta property="og:image" content={absImage} />
+<meta property="og:image:alt" content="Oxbow UI" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@Mike_Andreuzza" />
+<meta name="twitter:creator" content="@Mike_Andreuzza" />
+<meta name="twitter:title" content={seoTitle} />
+<meta name="twitter:description" content={seoDescription} />
+<meta name="twitter:image" content={absImage} />
+<meta name="twitter:image:alt" content="Oxbow UI" />
 <!-- Favicon guidelines generated with https://favicon.io/ -->
 <link
   rel="apple-touch-icon"
@@ -67,6 +206,8 @@ const toltId = import.meta.env.PUBLIC_TOLT_ID;
 <meta name="msapplication-TileColor" content="#ffffff" />
 <meta name="theme-color" content="#ffffff" />
 <link rel="sitemap" href="/sitemap-index.xml" />
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLdCombined)}></script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
