@@ -6,17 +6,16 @@ import MainHero from "@/components/fundations/containers/MainHero.astro";
 // Components
 import CtaTools from "@/components/global/CtaTools.astro";
 import Cta from "@/components/global/Cta.astro";
-// Tools
-import GridGenerator from "@/components/tools/GridGenerator.tsx";
+import ColorPalette from "@/components/tools/ColorPalette";
 
 const site = (Astro.site && Astro.site.toString()) || "https://oxbowui.com";
 const url = new URL(Astro.url.pathname, site).toString();
-const title = "Tailwind CSS Grid Generator — Free Tool";
-const description = "Generate responsive Tailwind CSS grid layouts. Pick columns, spans, gaps and copy utility classes instantly.";
+const title = "Tailwind CSS Color Palette — Free Tool";
+const description = "Browse the full Tailwind CSS v4 color palette and copy utility classes instantly (bg-*, text-*, border-*).";
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
-  name: 'Tailwind CSS Grid Generator',
+  name: 'Tailwind CSS Color Palette',
   applicationCategory: 'DeveloperApplication',
   operatingSystem: 'Web',
   url,
@@ -28,14 +27,16 @@ const structuredData = {
 <BaseLayout title={title} description={description} structuredData={structuredData}>
   <MainHero
     showAlpineTailwind={false}
-    title="Tailwind Grid Generator"
-    subtitle="Generate Tailwind CSS grids"
+    title="Tailwind CSS Color Palette"
+    subtitle="Browse all Tailwind colors and copy utility classes with one click."
   />
   <CtaTools />
   <section class="border-t border-base-200">
-    <Wrapper variant="standard" class="lg:border-x lg:border-base-200">
-      <GridGenerator client:only="react" /></Wrapper
-    >
+    <Wrapper variant="standard" class="lg:border-x lg:border-base-200 py-6">
+      <div class="bg-white rounded-xl shadow-oxbow p-4">
+        <ColorPalette client:only="react" />
+      </div>
+    </Wrapper>
   </section>
 
 </BaseLayout>

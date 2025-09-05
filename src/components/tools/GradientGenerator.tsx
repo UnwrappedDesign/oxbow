@@ -1,5 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const tailwindColors = [
+  // Tailwind v4 default palette families
+  "slate",
+  "gray",
+  "zinc",
+  "neutral",
+  "stone",
   "red",
   "orange",
   "amber",
@@ -17,10 +23,6 @@ const tailwindColors = [
   "fuchsia",
   "pink",
   "rose",
-  "gray",
-  "stone",
-  "zinc",
-  "neutral",
 ] as const;
 const tailwindColorShades = [
   "50",
@@ -33,6 +35,7 @@ const tailwindColorShades = [
   "700",
   "800",
   "900",
+  "950",
 ] as const;
 const directions = [
   "to top",
@@ -60,27 +63,47 @@ const directionMap = {
 export default function GradientGenerator() {
   const [direction, setDirection] = useState(directionMap["to top right"]);
   const [fromColor, setFromColor] = useState(colorShades("blue")[8]);
+  const [viaColor, setViaColor] = useState(colorShades("blue")[6]);
+  const [useVia, setUseVia] = useState(false);
   const [toColor, setToColor] = useState(colorShades("blue")[4]);
   const [copied, setCopied] = useState(false);
-  const [tab, setTab] = useState<"from" | "to">("from");
+  const [tab, setTab] = useState<"from" | "via" | "to">("from");
   const [text, setText] = useState("Your Text");
   const [mode, setMode] = useState<"text" | "background">("background");
+
+  useEffect(() => {
+    if (!useVia && tab === "via") setTab("from");
+  }, [useVia, tab]);
+  const gradientClasses = [
+    `bg-gradient-to-${direction}`,
+    `from-${fromColor}`,
+    useVia ? `via-${viaColor}` : null,
+    `to-${toColor}`,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   const generateTwGradient = () => {
-    return `bg-gradient-to-${direction} from-${fromColor} to-${toColor} ${mode === "text" && "bg-clip-text text-transparent"}`;
+    // Class string to copy based on mode (no stray "false" token)
+    return mode === "text"
+      ? `${gradientClasses} bg-clip-text text-transparent`
+      : gradientClasses;
   };
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(generateTwGradient());
-    setCopied(true);
-    setTimeout(() => {
-      setCopied(false);
-    }, 2000);
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(generateTwGradient());
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch (e) {
+      console.error("Clipboard copy failed", e);
+    }
   };
   return (
-    <div id="generator" className="bg-base-100 ">
-      <div className="z-10 bg-base-100  lg:sticky lg:top-2">
-        <div className="flex items-center bg-base-100 ">
+    <div id="generator">
+      <div className="grid gap-3 lg:grid-cols-3">
+        <div className="space-y-2">
           <label className="sr-only">Mode</label>
-          <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-2 ">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-2">
             <button
               className={`
                             flex items-center justify-center text-center shadow-subtle font-medium duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 text-black bg-white hover:bg-base-100 focus:outline-base-900 h-9 px-4 py-2 text-sm rounded-md w-full
@@ -99,64 +122,98 @@ export default function GradientGenerator() {
             >
               Text
             </button>
-            <button
-              className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-center text-black bg-white shadow-subtle duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 hover:bg-base-100 focus:outline-base-900 h-9 rounded-md"
-              onClick={copyToClipboard}
+          </div>
+          <button
+            className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-center text-black bg-white shadow-subtle duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 hover:bg-base-100 focus:outline-base-900 h-9 rounded-md"
+            onClick={copyToClipboard}
+            aria-live="polite"
+          >
+            <span>{copied ? "Copied!" : "Copy classes"}</span>
+          </button>
+          <button
+              type="button"
+              role="switch"
+              aria-checked={useVia}
+              onClick={() => setUseVia((v) => !v)}
+              className={`flex items-center justify-between w-full h-9 px-3 text-sm bg-white border rounded-md shadow-subtle duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 focus:outline-base-900 border-base-200 ${
+                useVia ? "!outline-base-700 text-base-900" : "text-base-500"
+              }`}
             >
-              <span>{copied ? "Copied!" : "Copy"}</span>
+              <span className="select-none">Middle color</span>
+              <span
+                className={`relative inline-flex items-center h-5 w-9 rounded-full transition-colors duration-300 ${
+                  useVia ? "bg-base-900" : "bg-base-200"
+                }`}
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform duration-300 ${
+                    useVia ? "translate-x-4" : "translate-x-1"
+                  }`}
+                />
+              </span>
             </button>
-          </div>
-        </div>
-        <div className="w-full pt-2 bg-base-100 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 ">
-          {mode === "text" && (
+          <div className="grid grid-cols-1 gap-2">
+            {mode === "text" && (
+              <div className="w-full">
+                <label className="sr-only">Your Text</label>
+                <input
+                  className="block w-full h-10 px-3 py-2 text-sm bg-white border rounded-lg appearance-none focus:outline-none focus:ring-0 focus:border-base-200 text-base-600 border-base-100 leading-6 transition-colors duration-200 ease-in-out"
+                  value={text}
+                  onChange={(e) => setText(e.target.value)}
+                />
+              </div>
+            )}
             <div className="w-full">
-              <label className="sr-only">Your Text</label>
-              <input
+              <label className="sr-only">Direction</label>
+              <select
                 className="block w-full h-10 px-3 py-2 text-sm bg-white border rounded-lg appearance-none focus:outline-none focus:ring-0 focus:border-base-200 text-base-600 border-base-100 leading-6 transition-colors duration-200 ease-in-out"
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-              />
+                value={direction}
+                onChange={(e) => setDirection(e.target.value as any)}
+              >
+                {directions.map((dir) => (
+                  <option
+                    key={dir}
+                    className="px-4 py-3 cursor-pointer hover:bg-base-50"
+                    value={directionMap[dir]}
+                  >
+                    {dir}
+                  </option>
+                ))}
+              </select>
             </div>
-          )}
-          <div className="w-full">
-            <label className="sr-only">Direction</label>
-            <select
+            <input
+              readOnly
               className="block w-full h-10 px-3 py-2 text-sm bg-white border rounded-lg appearance-none focus:outline-none focus:ring-0 focus:border-base-200 text-base-600 border-base-100 leading-6 transition-colors duration-200 ease-in-out"
-              value={direction}
-              onChange={(e) => setDirection(e.target.value as any)}
-            >
-              {directions.map((dir) => (
-                <option
-                  key={dir}
-                  className="px-4 py-3 cursor-pointer hover:bg-base-50"
-                  value={directionMap[dir]}
-                >
-                  {dir}
-                </option>
-              ))}
-            </select>
+              value={generateTwGradient()}
+            />
           </div>
-          <input
-            disabled
-            className="block w-full h-10 px-3 py-2 text-sm bg-white border rounded-lg appearance-none focus:outline-none focus:ring-0 focus:border-base-200 text-base-600 border-base-100 leading-6 transition-colors duration-200 ease-in-out"
-            value={generateTwGradient()}
-          />
         </div>
-        <div className="pt-2 bg-base-100 ">
+        <div className="lg:col-span-2">
           <div
-            className={`flex items-center justify-center relative w-full lg:sticky  z-90 p-24 rounded-lg overflow-hidden  ${generateTwGradient()}`}
+            className={`flex items-center justify-center relative h-full w-full p-12 md:p-20 rounded-lg overflow-hidden border border-base-100 shadow-oxbow ${
+              mode === "background" ? gradientClasses : "bg-white"
+            }`}
+            aria-label="Gradient preview"
           >
             {mode === "text" ? (
-              <p className="text-5xl font-bold text-center">{text}</p>
+              <p className={`text-4xl md:text-4xl font-bold text-center ${generateTwGradient()}`}>{text}</p>
             ) : null}
           </div>
         </div>
-        <div className="flex items-center pt-2  bg-base-100 gap-x-2">
+      </div>
+      <div className="flex items-center pt-4  gap-x-2">
           <button
             className={` flex items-center justify-center text-center shadow-subtle font-medium duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 text-black bg-white hover:bg-base-100 focus:outline-base-900 h-9 px-4 py-2 text-sm rounded-md w-full ${tab === "from" ? "!outline-base-500 " : ""}`}
             onClick={() => setTab("from")}
           >
             From Color
+          </button>
+          <button
+            className={` flex items-center justify-center text-center shadow-subtle font-medium duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 text-black bg-white hover:bg-base-100 focus:outline-base-900 h-9 px-4 py-2 text-sm rounded-md w-full disabled:opacity-40 ${tab === "via" ? "!outline-base-700" : ""}`}
+            onClick={() => setTab("via")}
+            disabled={!useVia}
+          >
+            Via Color
           </button>
           <button
             className={`  flex items-center justify-center text-center shadow-subtle font-medium duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 text-black bg-white hover:bg-base-100 focus:outline-base-900 h-9 px-4 py-2 text-sm rounded-md w-full ${tab === "to" ? "!outline-base-700" : ""}`}
@@ -165,25 +222,35 @@ export default function GradientGenerator() {
             To Color
           </button>
         </div>
-      </div>
-      <div className="p-8 mt-4 bg-white rounded-lg  grid grid-cols-4 gap-x-4 md:grid-cols-8 gap-y-12 lg:grid-cols-12 outline shadow-oxbow outline-base-100">
+
+      <div className="p-6 mt-4 bg-white rounded-lg grid grid-cols-4 gap-x-4 md:grid-cols-8 gap-y-12 lg:grid-cols-12 outline shadow-oxbow outline-base-100">
         {tailwindColors.map((color) => (
-          <div>
+          <div key={color}>
             <p className="font-mono text-xs uppercase text-base-500 ">
               {color}
             </p>
             <div className="mt-2 grid grid-cols-1 gap-y-8 ">
               {colorShades(color).map((colorShade) => (
-                <div>
+                <div key={colorShade}>
                   <button
                     className={`size-12 aspect-square rounded-lg w-full h-full focus:outline-none ring-offset-4 focus:ring-offset-base-950 focus:ring-white duration-300 bg-${colorShade} 
-                            ${tab === "from" ? (fromColor === colorShade ? "ring-2  " : "") : toColor === colorShade ? "ring-2  " : ""}`}
+                            ${
+                              tab === "from"
+                                ? fromColor === colorShade
+                                  ? "ring-2"
+                                  : ""
+                                : tab === "via"
+                                ? viaColor === colorShade
+                                  ? "ring-2"
+                                  : ""
+                                : toColor === colorShade
+                                ? "ring-2"
+                                : ""
+                            }`}
                     onClick={() => {
-                      if (tab === "from") {
-                        setFromColor(colorShade);
-                      } else {
-                        setToColor(colorShade);
-                      }
+                      if (tab === "from") setFromColor(colorShade);
+                      else if (tab === "via") setViaColor(colorShade);
+                      else setToColor(colorShade);
                     }}
                   ></button>
                   <p className="font-mono text-xs uppercase text-base-500 ">
@@ -195,7 +262,7 @@ export default function GradientGenerator() {
           </div>
         ))}
       </div>
-     
+    
     </div>
   );
 }

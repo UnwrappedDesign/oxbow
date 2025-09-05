@@ -1,5 +1,11 @@
 const fs = require("fs");
 const tailwindColors = [
+  // Tailwind v4 default palette families
+  "slate",
+  "gray",
+  "zinc",
+  "neutral",
+  "stone",
   "red",
   "orange",
   "amber",
@@ -17,10 +23,6 @@ const tailwindColors = [
   "fuchsia",
   "pink",
   "rose",
-  "gray",
-  "stone",
-  "zinc",
-  "neutral",
 ];
 
 const tailwindColorShades = [
@@ -62,6 +64,7 @@ const safelist = [
     tailwindColorShades.flatMap((shade) => [
       `bg-${color}-${shade}`,
       `from-${color}-${shade}`,
+      `via-${color}-${shade}`,
       `to-${color}-${shade}`,
     ]),
   ),
