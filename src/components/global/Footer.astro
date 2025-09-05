@@ -6,7 +6,6 @@ import Button from "@/components/fundations/buttons/Button.astro";
 import Logo from "@/components/assets/Logo.astro";
 // Fundations
 
-
 const navLinks = [
   {
     title: "Navigation",
@@ -35,16 +34,12 @@ const navLinks = [
     ],
   },
   {
-    title: "Legal",
+    title: "Social",
     links: [{ label: "BlueSky", href: "https://bsky.app/profile/oxbowui.com" }],
   },
   {
     title: "Tools",
     links: [
-      {
-        label: "All Tailwind CSS tools",
-        href: "/free-tools",
-      },
       {
         label: "Tailwind CSS Grid ",
         href: "/free-tools/tailwind-css-grid-generator",
@@ -53,14 +48,19 @@ const navLinks = [
         label: "Tailwind CSS Gradient",
         href: "/free-tools/tailwind-css-gradient-generator",
       },
+      {
+        label: "Tailwind CSS Color Palette",
+        href: "/free-tools/tailwind-css-color-palette",
+      },
     ],
   },
 ];
 ---
+
 <footer class="border-t border-base-200">
   <Wrapper variant="standard" class="py-8 lg:border-x lg:border-base-200">
     <div
-      class="text-center bg-linear-45 from-accent-500 to-accent-400 py-12 rounded-lg"
+      class="text-center bg-gradient-to-br from-accent-500 to-accent-400 py-12 rounded-lg"
     >
       <Logo class="h-12 lg:size-24 mx-auto text-white" />
       <Text
@@ -75,8 +75,8 @@ const navLinks = [
         variant="textLG"
         class="font-medium text-white text-balance mt-2 max-w-2xl mx-auto"
       >
-        Get everything for $99. One-time payment. Lifetime access, updates,
-        and support included.
+        Get everything for $99. One-time payment. Lifetime access, updates, and
+        support included.
       </Text>
       <Button
         size="base"
@@ -97,13 +97,15 @@ const navLinks = [
             <Text tag="h3" variant="textSM" class="font-medium text-base-900">
               {section.title}
             </Text>
-            <ul role="list" class="flex flex-col mt-4 ">
+            <ul role="list" class="flex flex-col mt-4 space-y-2">
               {section.links.map((link, j) => (
                 <li>
                   <a
-                    class="font-medium text-base-600 hover:text-black focus:outline focus:outline-2 text-xs focus:outline-offset-2 focus:outline-accent-600"
+                    class="font-medium text-base-600 hover:text-black focus:outline focus:outline-2 text-sm focus:outline-offset-2 focus:outline-accent-600"
                     href={link.href}
                     title={link.label}
+                    target={link.href.startsWith('http') ? '_blank' : undefined}
+                    rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                   >
                     {link.label}
                   </a>
