@@ -16,10 +16,13 @@ import * as Changelog from "../../CHANGELOG.md";
     #changelog summary::marker { content: ""; }
   </style>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const container = document.getElementById('changelog');
-      if (!container) return;
+  <script is:inline>
+    // Build accordion on initial render and after Astro view transitions
+    (function () {
+      function buildAccordion() {
+        const container = document.getElementById('changelog');
+        if (!container) return;
+        if (container.querySelector('details')) return; // already built
 
       const headings = Array.from(container.querySelectorAll('h2'));
       if (!headings.length) return;
@@ -104,7 +107,14 @@ import * as Changelog from "../../CHANGELOG.md";
         list.appendChild(details);
       });
 
-      container.appendChild(list);
-    });
+        container.appendChild(list);
+      }
+
+      // Initial build
+      buildAccordion();
+      // Re-build after client-side navigations
+      window.addEventListener('astro:page-load', buildAccordion);
+      window.addEventListener('astro:after-swap', buildAccordion);
+    })();
   </script>
 </SimpleLayout>
