@@ -11,9 +11,8 @@
     forms,
   } from "../../data/entries.json.ts";
 
-  const ninja = document.querySelector("ninja-keys");
-
-  ninja.data = [
+  // Build command data once
+  const DATA = [
     {
       id: "home",
       title: "Home",
@@ -139,4 +138,55 @@
       ],
     },
   ];
+
+  function cloneData() {
+    // Prefer structuredClone if available for a fresh reference
+    try { return structuredClone ? structuredClone(DATA) : JSON.parse(JSON.stringify(DATA)); } catch { return DATA.slice(); }
+  }
+
+  function ensureData() {
+    const ninja = document.getElementById('ninja');
+    if (!ninja) return false;
+    try {
+      // @ts-ignore
+      const cur = ninja.data;
+      if (!cur || (Array.isArray(cur) && cur.length === 0)) {
+        // @ts-ignore
+        ninja.data = cloneData();
+      }
+      return true;
+    } catch { return false; }
+  }
+
+  async function initNinja() {
+    // Wait for the custom element to be defined and present in the DOM
+    await customElements.whenDefined('ninja-keys').catch(() => {});
+    let ninja = document.getElementById('ninja');
+    if (!ninja) {
+      // Try again on next frame if transitions haven't injected it yet
+      return void requestAnimationFrame(initNinja);
+    }
+    // Assign a fresh array so the element re-initializes its internal list
+    ensureData();
+
+    // Guard: when user triggers Cmd/Ctrl+K, make sure data exists
+    window.addEventListener('keydown', (e) => {
+      const isK = (e.key || '').toLowerCase() === 'k';
+      if ((e.metaKey || e.ctrlKey) && isK) {
+        ensureData();
+      }
+    });
+
+    // When the element gains focus (before opening), ensure data
+    ninja.addEventListener('focusin', ensureData);
+  }
+
+  // Initialize on first load and after Astro transitions
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNinja, { once: true });
+  } else {
+    initNinja();
+  }
+  window.addEventListener('astro:page-load', initNinja);
+  window.addEventListener('astro:after-swap', initNinja);
 </script>
