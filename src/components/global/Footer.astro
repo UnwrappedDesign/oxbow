@@ -52,6 +52,10 @@ const navLinks = [
         label: "Tailwind CSS Color Palette",
         href: "/free-tools/tailwind-css-color-palette",
       },
+      {
+        label: "Tailwind CSS Cheat Sheet",
+        href: "/free-tools/tailwind-css-cheat-sheet",
+      },
     ],
   },
 ];
@@ -101,11 +105,15 @@ const navLinks = [
               {section.links.map((link, j) => (
                 <li>
                   <a
-                    class="font-medium text-base-600 hover:text-black focus:outline focus:outline-2 text-sm focus:outline-offset-2 focus:outline-accent-600"
+                    class="font-medium text-base-600 hover:text-black focus-visible:outline focus-visible:outline-2 text-sm focus-visible:outline-offset-2 focus-visible:outline-accent-600"
                     href={link.href}
                     title={link.label}
-                    target={link.href.startsWith('http') ? '_blank' : undefined}
-                    rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    target={link.href.startsWith("http") ? "_blank" : undefined}
+                    rel={
+                      link.href.startsWith("http")
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
                   >
                     {link.label}
                   </a>

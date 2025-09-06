@@ -11,20 +11,25 @@ import ColorPalette from "@/components/tools/ColorPalette";
 const site = (Astro.site && Astro.site.toString()) || "https://oxbowui.com";
 const url = new URL(Astro.url.pathname, site).toString();
 const title = "Tailwind CSS Color Palette — Free Tool";
-const description = "Browse the full Tailwind CSS v4 color palette and copy utility classes instantly (bg-*, text-*, border-*).";
+const description =
+  "Browse the full Tailwind CSS v4 color palette and copy utility classes instantly (bg-*, text-*, border-*).";
 const structuredData = {
-  '@context': 'https://schema.org',
-  '@type': 'WebApplication',
-  name: 'Tailwind CSS Color Palette',
-  applicationCategory: 'DeveloperApplication',
-  operatingSystem: 'Web',
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Tailwind CSS Color Palette",
+  applicationCategory: "DeveloperApplication",
+  operatingSystem: "Web",
   url,
   description,
-  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
 };
 ---
 
-<BaseLayout title={title} description={description} structuredData={structuredData}>
+<BaseLayout
+  title={title}
+  description={description}
+  structuredData={structuredData}
+>
   <MainHero
     showAlpineTailwind={false}
     title="Tailwind CSS Color Palette"
@@ -33,10 +38,7 @@ const structuredData = {
   <CtaTools />
   <section class="border-t border-base-200">
     <Wrapper variant="standard" class="lg:border-x lg:border-base-200 py-6">
-      <div class="bg-white rounded-xl shadow-oxbow p-4">
-        <ColorPalette client:only="react" />
-      </div>
+      <ColorPalette client:only="react" />
     </Wrapper>
   </section>
-
 </BaseLayout>
