@@ -28,35 +28,37 @@ const featureTop = [
 <section>
   <div class="relative px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl">
     <dl class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {featureTop.map((feature) => (
-        <div class="flex flex-col justify-between h-full gap-8">
-          <div class="lg:text-balance">
-            <dt>
-              <Text
-                tag="h3"
-                variant="textLG"
-                class="font-medium text-base-900"
-              >
-                {feature.title}
-              </Text>
-            </dt>
-            <dd class="mt-2">
-              <Text
-                tag="p"
-                variant="textBase"
-                class="font-medium text-base-500"
-              >
-                {feature.description}
-              </Text>
-            </dd>
+      {
+        featureTop.map((feature) => (
+          <div class="flex flex-col justify-between h-full gap-8">
+            <div class="lg:text-balance">
+              <dt>
+                <Text
+                  tag="h3"
+                  variant="textLG"
+                  class="font-medium text-gray-900"
+                >
+                  {feature.title}
+                </Text>
+              </dt>
+              <dd class="mt-2">
+                <Text
+                  tag="p"
+                  variant="textBase"
+                  class="font-medium text-gray-500"
+                >
+                  {feature.description}
+                </Text>
+              </dd>
+            </div>
+            <img
+              class="shadow rounded-2xl"
+              src={feature.imgSrc}
+              alt={feature.altText}
+            />
           </div>
-          <img
-            class="shadow rounded-2xl"
-            src={feature.imgSrc}
-            alt={feature.altText}
-          />
-        </div>
-      ))}
+        ))
+      }
     </dl>
   </div>
 </section>

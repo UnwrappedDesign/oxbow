@@ -3,48 +3,49 @@ const { variant, size, class: className, ...rest } = Astro.props;
 // Variant classes
 const defaultClass = [
   "text-white",
-  "bg-base-900",
-  "hover:bg-base-950",
-  "focus:outline-base-950",
+  "bg-gray-900",
+  "hover:bg-gray-950",
+  "focus:outline-gray-950",
 ];
 const accentClass = [
   "text-white",
-  "bg-accent-500",
-  "hover:bg-accent-600",
-  "focus:outline-accent-600",
+  "bg-blue-500",
+  "hover:bg-blue-600",
+  "focus:outline-blue-600",
 ];
 const mutedClass = [
   "text-black",
-  "bg-base-50",
-  "hover:bg-base-200",
-  "focus:outline-base-600",
+  "bg-gray-50",
+  "hover:bg-gray-200",
+  "focus:outline-gray-600",
 ];
 const alternativeClass = [
   "text-black",
   "bg-white",
-  "hover:bg-base-100",
-  "focus:outline-base-900",
+  "hover:bg-gray-100",
+  "focus:outline-gray-900",
 ];
 const textClass = [
-  "text-base-500",
+  "text-gray-500",
   "bg-white",
-  "hover:text-accent-600",
-  "hover:bg-base-50",
-  "focus:outline-accent-500",
+  "hover:text-blue-600",
+  "hover:bg-gray-50",
+  "focus:outline-blue-500",
 ];
 const linkClass = [
-  "text-accent-500",
-  "hover:text-accent-700",
-  "focus:outline-accent-500",
+  "text-blue-500",
+  "hover:text-blue-700",
+  "focus:outline-blue-500",
 ];
 // Size classes
-const xs   = ["size-8",  "p-0.5",   "text-xs",    "rounded-md"];
-const sm   = ["size-9",  "p-2",     "text-sm",    "rounded-md"];
-const base = ["size-10", "p-2",     "text-base",  "rounded-md"];
-const md   = ["size-11", "p-2.5",   "text-base",  "rounded-md"];
-const lg   = ["size-12", "p-3",     "text-base",  "rounded-lg"];
-const xl   = ["size-14", "p-3.5",   "text-lg",    "rounded-lg"];
+const xs = ["size-8", "p-0.5", "text-xs", "rounded-md"];
+const sm = ["size-9", "p-2", "text-sm", "rounded-md"];
+const base = ["size-10", "p-2", "text-base", "rounded-md"];
+const md = ["size-11", "p-2.5", "text-base", "rounded-md"];
+const lg = ["size-12", "p-3", "text-base", "rounded-lg"];
+const xl = ["size-14", "p-3.5", "text-lg", "rounded-lg"];
 ---
+
 <button
   class:list={[
     "flex",
@@ -58,29 +59,29 @@ const xl   = ["size-14", "p-3.5",   "text-lg",    "rounded-lg"];
     "transition-colors",
     "focus:outline-2",
     "focus:outline-offset-2",
-    variant === "accent"      && accentClass,
-    variant === "default"     && defaultClass,
+    variant === "accent" && accentClass,
+    variant === "default" && defaultClass,
     variant === "alternative" && alternativeClass,
-    variant === "muted"       && mutedClass,
-    variant === "text"        && textClass,
-    variant === "link"        && linkClass,
-    size === "xs"   && xs,
-    size === "sm"   && sm,
+    variant === "muted" && mutedClass,
+    variant === "text" && textClass,
+    variant === "link" && linkClass,
+    size === "xs" && xs,
+    size === "sm" && sm,
     size === "base" && base,
-    size === "md"   && md,
-    size === "lg"   && lg,
-    size === "xl"   && xl,
+    size === "md" && md,
+    size === "lg" && lg,
+    size === "xl" && xl,
     className,
   ]}
   {...rest}
 >
   <slot />
- 
+
   <slot
     name="icon"
     class:list={[
       // only apply shadow-none if variant is link or text
-      (variant === "link" || variant === "text") && "shadow-none"
+      (variant === "link" || variant === "text") && "shadow-none",
     ]}
   />
 </button>

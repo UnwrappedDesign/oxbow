@@ -2,35 +2,46 @@
 export const description = "Checkbox with Toggle Al";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
+
 <div class="flex items-center max-w-md p-12 py-48 mx-auto">
   <div
-    class="flex flex-col w-full gap-2" x-data="{ options: ['Option 1', 'Option 2', 'Option 3'], selected: [], selectAll: false }" x-init="$watch('selectAll', value => selected = value ? [...options] : [])">
-  <div class="flex items-center gap-3">
-    <input
-      id="toggle-all-checkbox"
-      name="toggle-all-checkbox"
-      type="checkbox"
-      x-model="selectAll"
-      class="rounded shadow size-4 border-base-300 text-accent-600 focus:ring-accent-600"
-    />
-    <Text for="toggle-all-checkbox" tag="label" class="block text-sm text-base-500">Select All</Text>
-  </div>
-  <template x-for="option in options" :key="option">
+    class="flex flex-col w-full gap-2"
+    x-data="{ options: ['Option 1', 'Option 2', 'Option 3'], selected: [], selectAll: false }"
+    x-init="$watch('selectAll', value => selected = value ? [...options] : [])"
+  >
     <div class="flex items-center gap-3">
       <input
+        id="toggle-all-checkbox"
+        name="toggle-all-checkbox"
         type="checkbox"
-        :id="option"
-        :value="option"
-        x-model="selected"
-        class="rounded shadow size-4 border-base-300 text-accent-600 focus:ring-accent-600"
+        x-model="selectAll"
+        class="rounded shadow size-4 border-gray-300 text-blue-600 focus:ring-blue-600"
       />
-      <Text :for="option" tag="label" class="block text-sm text-base-500" x-text="option"></Text>
+      <Text
+        for="toggle-all-checkbox"
+        tag="label"
+        class="block text-sm text-gray-500">Select All</Text
+      >
     </div>
-  </template>
-  <div class="mt-2 text-sm text-base-500">
-    Selected: <span x-text="selected.join(', ')"></span>
+    <template x-for="option in options" :key="option">
+      <div class="flex items-center gap-3">
+        <input
+          type="checkbox"
+          :id="option"
+          :value="option"
+          x-model="selected"
+          class="rounded shadow size-4 border-gray-300 text-blue-600 focus:ring-blue-600"
+        />
+        <Text
+          :for="option"
+          tag="label"
+          class="block text-sm text-gray-500"
+          x-text="option"
+        />
+      </div>
+    </template>
+    <div class="mt-2 text-sm text-gray-500">
+      Selected: <span x-text="selected.join(', ')"></span>
+    </div>
   </div>
-</div>
-
-  
 </div>

@@ -1535,7 +1535,7 @@ export default function TwCheatSheet() {
             <button type="button" onClick={() => copy(cls)} className="w-full text-left font-mono text-[11px] leading-5 hover:underline">
               <span className="truncate">{copied === cls ? 'Copied' : cls}</span>
             </button>
-            <button type="button" onClick={() => copy(`${label}: auto`)} className="mt-0.5 w-full text-left font-mono text-[11px] leading-5 text-base-600 hover:underline">
+            <button type="button" onClick={() => copy(`${label}: auto`)} className="mt-0.5 w-full text-left font-mono text-[11px] leading-5 text-gray-600 hover:underline">
               {copied === `${label}: auto` ? 'Copied' : `${label}: auto`}
             </button>
           </li>
@@ -1557,10 +1557,10 @@ export default function TwCheatSheet() {
         <button type="button" onClick={() => copy(cls)} className="w-full text-left font-mono text-[11px] leading-5 hover:underline">
           <span className="truncate">{copied === cls ? 'Copied' : cls}</span>
         </button>
-        <button type="button" onClick={() => copy(cssText)} className="mt-0.5 w-full text-left font-mono text-[11px] leading-5 text-base-600 hover:underline">
+        <button type="button" onClick={() => copy(cssText)} className="mt-0.5 w-full text-left font-mono text-[11px] leading-5 text-gray-600 hover:underline">
           {copied === cssText ? 'Copied' : (
             <>
-              {label}: {formatRem(rem)}; <span className="text-base-500">({pxFromRem(rem)}px)</span>
+              {label}: {formatRem(rem)}; <span className="text-gray-500">({pxFromRem(rem)}px)</span>
             </>
           )}
         </button>
@@ -1606,10 +1606,10 @@ export default function TwCheatSheet() {
           const paddingCount = paddingKeys.reduce((n,k)=> n + ((byName[k]?.classes.length)||0), 0);
           const card = (
             <section key={cat.name} className="inline-block w-full align-top mb-8 break-inside-avoid">
-              <header className=" py-1.5 text-sm font-semibold text-accent-500">
+              <header className=" py-1.5 text-sm font-semibold text-blue-500">
                 {cat.name}
               </header>
-              <div className="divide-y divide-base-100 border-y border-base-100 mt-4 w-full">
+              <div className="divide-y divide-gray-100 border-y border-gray-100 mt-4 w-full">
                 {isSpacing ? (
                   <>
                     {/* Margin wrapper */}
@@ -1624,19 +1624,19 @@ export default function TwCheatSheet() {
                             className="w-full flex items-center justify-between  py-2 text-sm "
                             aria-expanded={isOpenParent}
                           >
-                            <span className="text-base-700">margin</span>
-                            <span className="flex items-center gap-2 text-xs text-base-500">
+                            <span className="text-gray-700">margin</span>
+                            <span className="flex items-center gap-2 text-xs text-gray-500">
                               <svg className={`size-3 transition-transform ${isOpenParent ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z"/></svg>
                             </span>
                           </button>
                           {isOpenParent && (
                             <div className=" pb-3 pt-1 space-y-1">
                               {groupDescription(cat.name, 'margin') && (
-                                <p className="text-xs italic text-base-600">{groupDescription(cat.name, 'margin')}</p>
+                                <p className="text-xs italic text-gray-600">{groupDescription(cat.name, 'margin')}</p>
                               )}
-                              <div className="flex items-center justify-between text-xs text-base-500 mt-4">
+                              <div className="flex items-center justify-between text-xs text-gray-500 mt-4">
                                 <a href="https://tailwindcss.com/docs/margin" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">Docs</a>
-                                <span className="inline-flex items-center justify-center min-w-5 h-5 px-1 rounded bg-base-100 border border-base-200">{marginCount}</span>
+                                <span className="inline-flex items-center justify-center min-w-5 h-5 px-1 rounded bg-gray-100 border border-gray-200">{marginCount}</span>
                               </div>
                               {marginKeys.map((k) => {
                                 const g = byName[k];
@@ -1646,18 +1646,18 @@ export default function TwCheatSheet() {
                                 return (
                                   <div key={k} className="">
                                     <button type="button" onClick={() => toggle(key)} className="w-full flex items-center justify-between px-2 py-1.5 text-sm" aria-expanded={isOpen}>
-                                      <span className="text-base-700">{k}</span>
-                                      <span className="flex items-center gap-2 text-xs text-base-500">
+                                      <span className="text-gray-700">{k}</span>
+                                      <span className="flex items-center gap-2 text-xs text-gray-500">
                                         <svg className={`size-3 transition-transform ${isOpen ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z"/></svg>
                                       </span>
                                     </button>
                                     {isOpen && (
                                       <div className="pl-2">
                                         <div>
-                                          <div className="flex items-center justify-end text-xs text-base-500 mb-1">
-                                            <span className="inline-flex items-center justify-center min-w-5 h-5 px-1 rounded bg-base-100 border border-base-200">{g.classes.length}</span>
+                                          <div className="flex items-center justify-end text-xs text-gray-500 mb-1">
+                                            <span className="inline-flex items-center justify-center min-w-5 h-5 px-1 rounded bg-gray-100 border border-gray-200">{g.classes.length}</span>
                                           </div>
-                                          <ul className="divide-y divide-base-100 border-y border-base-100 mt-4 max-h-72 overflow-y-auto pr-1">
+                                          <ul className="divide-y divide-gray-100 border-y border-gray-100 mt-4 max-h-72 overflow-y-auto pr-1">
                                              {g.classes.map((cls) => (
                                                <SpacingItem key={cls} cls={cls} kind="margin" keyName={k} />
                                              ))}
@@ -1681,19 +1681,19 @@ export default function TwCheatSheet() {
                       return (
                         <div>
                           <button type="button" onClick={() => toggle(parentKey)} className="w-full flex items-center justify-between  py-2 text-sm " aria-expanded={isOpenParent}>
-                            <span className="text-base-700">padding</span>
-                            <span className="flex items-center gap-2 text-xs text-base-500">
+                            <span className="text-gray-700">padding</span>
+                            <span className="flex items-center gap-2 text-xs text-gray-500">
                               <svg className={`size-3 transition-transform ${isOpenParent ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z"/></svg>
                             </span>
                           </button>
                           {isOpenParent && (
                             <div className=" pb-3 pt-1 space-y-1">
                               {groupDescription(cat.name, 'padding') && (
-                                <p className="text-xs italic text-base-600">{groupDescription(cat.name, 'padding')}</p>
+                                <p className="text-xs italic text-gray-600">{groupDescription(cat.name, 'padding')}</p>
                               )}
-                              <div className="flex items-center justify-between text-xs text-base-500 mt-4">
+                              <div className="flex items-center justify-between text-xs text-gray-500 mt-4">
                                 <a href="https://tailwindcss.com/docs/padding" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">Docs</a>
-                                <span className="inline-flex items-center justify-center min-w-5 h-5 px-1 rounded bg-base-100 border border-base-200">{paddingCount}</span>
+                                <span className="inline-flex items-center justify-center min-w-5 h-5 px-1 rounded bg-gray-100 border border-gray-200">{paddingCount}</span>
                               </div>
                               {paddingKeys.map((k) => {
                                 const g = byName[k];
@@ -1703,18 +1703,18 @@ export default function TwCheatSheet() {
                                 return (
                                   <div key={k}>
                                     <button type="button" onClick={() => toggle(key)} className="w-full flex items-center justify-between px-2 py-1.5 text-sm" aria-expanded={isOpen}>
-                                      <span className="text-base-700">{k}</span>
-                                      <span className="flex items-center gap-2 text-xs text-base-500">
+                                      <span className="text-gray-700">{k}</span>
+                                      <span className="flex items-center gap-2 text-xs text-gray-500">
                                         <svg className={`size-3 transition-transform ${isOpen ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z"/></svg>
                                       </span>
                                     </button>
                                     {isOpen && (
                                       <div className="pl-2">
                                         <div>
-                                          <div className="flex items-center justify-end text-xs text-base-500 mb-1">
-                                            <span className="inline-flex items-center justify-center min-w-5 h-5 px-1 rounded bg-base-100 border border-base-200">{g.classes.length}</span>
+                                          <div className="flex items-center justify-end text-xs text-gray-500 mb-1">
+                                            <span className="inline-flex items-center justify-center min-w-5 h-5 px-1 rounded bg-gray-100 border border-gray-200">{g.classes.length}</span>
                                           </div>
-                                           <ul className="divide-y divide-base-100 border-y border-base-100 mt-4 max-h-72 overflow-y-auto pr-1">
+                                           <ul className="divide-y divide-gray-100 border-y border-gray-100 mt-4 max-h-72 overflow-y-auto pr-1">
                                              {g.classes.map((cls) => (
                                                <SpacingItem key={cls} cls={cls} kind="padding" keyName={k} />
                                              ))}
@@ -1739,22 +1739,22 @@ export default function TwCheatSheet() {
                       return (
                         <div>
                            <button type="button" onClick={() => toggle(key)} className="w-full flex items-center justify-between py-2 text-sm" aria-expanded={isOpen}>
-                            <span className="text-base-700">gap</span>
-                            <span className="flex items-center gap-2 text-xs text-base-500">
+                            <span className="text-gray-700">gap</span>
+                            <span className="flex items-center gap-2 text-xs text-gray-500">
                               <svg className={`size-3 transition-transform ${isOpen ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z"/></svg>
                             </span>
                           </button>
                           {isOpen && (
                              <div className=" pb-3 pt-1">
                               {groupDescription(cat.name, 'gap') && (
-                                <p className="text-xs italic text-base-600">{groupDescription(cat.name, 'gap')}</p>
+                                <p className="text-xs italic text-gray-600">{groupDescription(cat.name, 'gap')}</p>
                               )}
-                              <div className="flex items-center justify-between text-xs text-base-500 mt-4">
+                              <div className="flex items-center justify-between text-xs text-gray-500 mt-4">
                                 <a href="https://tailwindcss.com/docs/gap" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">Docs</a>
-                                <span className="inline-flex items-center justify-center min-w-5 h-5 px-1 rounded bg-base-100 border border-base-200">{g.classes.length}</span>
+                                <span className="inline-flex items-center justify-center min-w-5 h-5 px-1 rounded bg-gray-100 border border-gray-200">{g.classes.length}</span>
                               </div>
                                <div>
-                                  <ul className="divide-y divide-base-100 border-y border-base-100 mt-4 max-h-72 overflow-y-auto pr-1">
+                                  <ul className="divide-y divide-gray-100 border-y border-gray-100 mt-4 max-h-72 overflow-y-auto pr-1">
                                     {g.classes.map((cls) => (
                                       <SpacingItem key={cls} cls={cls} kind="gap" keyName="gap" />
                                     ))}
@@ -1778,17 +1778,17 @@ export default function TwCheatSheet() {
                           className="w-full flex items-center justify-between py-2 text-sm"
                           aria-expanded={isOpen}
                         >
-                          <span className="text-base-700">{g.name}</span>
-                          <span className="flex items-center gap-2 text-xs text-base-500">
+                          <span className="text-gray-700">{g.name}</span>
+                          <span className="flex items-center gap-2 text-xs text-gray-500">
                             <svg className={`size-3 transition-transform ${isOpen ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z"/></svg>
                           </span>
                         </button>
                         {isOpen && (
                           <div className=" pb-3 pt-1">
                             {groupDescription(cat.name, g.name) && (
-                              <p className="text-xs italic text-base-600">{groupDescription(cat.name, g.name) as string}</p>
+                              <p className="text-xs italic text-gray-600">{groupDescription(cat.name, g.name) as string}</p>
                             )}
-                            <div className="flex items-center justify-between text-xs text-base-500 mt-4">
+                            <div className="flex items-center justify-between text-xs text-gray-500 mt-4">
                               {docsUrl(cat.name, g.name) && (
                                 <a
                                   href={docsUrl(cat.name, g.name) as string}
@@ -1800,10 +1800,10 @@ export default function TwCheatSheet() {
                                   Docs
                                 </a>
                               )}
-                              <span className="inline-flex items-center justify-center min-w-5 h-5 px-1 rounded bg-base-100 border border-base-200">{g.classes.length}</span>
+                              <span className="inline-flex items-center justify-center min-w-5 h-5 px-1 rounded bg-gray-100 border border-gray-200">{g.classes.length}</span>
                             </div>
                             <div>
-                              <ul className="divide-y divide-base-100 border-y border-base-100 mt-4 max-h-72 overflow-y-auto pr-1 text-[11px] leading-5 font-mono">
+                              <ul className="divide-y divide-gray-100 border-y border-gray-100 mt-4 max-h-72 overflow-y-auto pr-1 text-[11px] leading-5 font-mono">
                                 {g.classes.map((cls) => {
                                   const dot = colorDotClass(g.name, cls);
                                   const dyn = typeof window !== 'undefined' ? ((): string | null => {
@@ -1874,14 +1874,14 @@ export default function TwCheatSheet() {
                                         onClick={() => copy(cls)}
                                         className="w-full flex items-center gap-2 text-left hover:underline"
                                       >
-                                        {dot && <span className={`inline-block size-3 rounded-full ring-1 ring-base-200 shrink-0 ${dot}`} />}
+                                        {dot && <span className={`inline-block size-3 rounded-full ring-1 ring-gray-200 shrink-0 ${dot}`} />}
                                         <span className="truncate">{copied === cls ? 'Copied' : cls}</span>
                                       </button>
                                       {detail && (
                                         <button
                                           type="button"
                                           onClick={() => copy(detail)}
-                                          className="mt-0.5 w-full text-left text-[11px] leading-5 text-base-600 hover:underline break-words"
+                                          className="mt-0.5 w-full text-left text-[11px] leading-5 text-gray-600 hover:underline break-words"
                                         >
                                           {copied === detail ? 'Copied' : detail}
                                         </button>
@@ -1910,14 +1910,14 @@ export default function TwCheatSheet() {
       <div className="mb-4 flex items-center justify-end gap-2">
         <button
           type="button"
-          className="px-3 py-2 text-sm rounded-md border border-base-200 bg-white "
+          className="px-3 py-2 text-sm rounded-md border border-gray-200 bg-white "
           onClick={() => setOpen(Object.fromEntries(allKeys(filtered).map(k => [k, true])))}
         >
           Expand all
         </button>
         <button
           type="button"
-          className="px-3 py-2 text-sm rounded-md border border-base-200 bg-white "
+          className="px-3 py-2 text-sm rounded-md border border-gray-200 bg-white "
           onClick={() => setOpen({})}
         >
           Collapse all

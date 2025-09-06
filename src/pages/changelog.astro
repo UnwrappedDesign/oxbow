@@ -4,108 +4,145 @@ import * as Changelog from "../../CHANGELOG.md";
 ---
 
 <SimpleLayout>
-  <h1 class="text-2xl font-semibold text-base-900">Changelog</h1>
-  <p class="mt-1 mb-4 text-base-500">Release notes, updates, and fixes — organized by month.</p>
+  <h1 class="text-2xl font-semibold text-gray-900">Changelog</h1>
+  <p class="mt-1 mb-4 text-gray-500">
+    Release notes, updates, and fixes — organized by month.
+  </p>
   <section id="changelog" class="prose max-w-3xl">
     <Changelog.Content />
   </section>
 
   <style>
     /* Hide native disclosure markers; rely on custom SVG icon */
-    #changelog summary::-webkit-details-marker { display: none; }
-    #changelog summary::marker { content: ""; }
+    #changelog summary::-webkit-details-marker {
+      display: none;
+    }
+    #changelog summary::marker {
+      content: "";
+    }
   </style>
 
   <script is:inline>
     // Build accordion on initial render and after Astro view transitions
     (function () {
       function buildAccordion() {
-        const container = document.getElementById('changelog');
+        const container = document.getElementById("changelog");
         if (!container) return;
-        if (container.querySelector('details')) return; // already built
+        if (container.querySelector("details")) return; // already built
 
-      const headings = Array.from(container.querySelectorAll('h2'));
-      if (!headings.length) return;
+        const headings = Array.from(container.querySelectorAll("h2"));
+        if (!headings.length) return;
 
-      // Build sections with content under each h2 (date)
-      const sections = headings.map((h2) => {
-        const title = (h2.textContent || '').trim();
-        const match = title.match(/(\d{4})-(\d{2})-(\d{2})/);
-        let year = '0000', month = '01';
-        if (match) { year = match[1]; month = match[2]; }
-        const key = `${year}-${month}`;
+        // Build sections with content under each h2 (date)
+        const sections = headings.map((h2) => {
+          const title = (h2.textContent || "").trim();
+          const match = title.match(/(\d{4})-(\d{2})-(\d{2})/);
+          let year = "0000",
+            month = "01";
+          if (match) {
+            year = match[1];
+            month = match[2];
+          }
+          const key = `${year}-${month}`;
 
-        const nodes = [];
-        let el = h2.nextSibling;
-        while (el && !(el.nodeType === 1 && el.tagName === 'H2')) {
-          const next = el.nextSibling;
-          nodes.push(el);
-          el = next;
-        }
-        return { h2, title, key, year, month, nodes };
-      });
-
-      // Group by month key, preserve initial order
-      const groups = [];
-      const map = new Map();
-      for (const s of sections) {
-        if (!map.has(s.key)) {
-          map.set(s.key, { key: s.key, year: s.year, month: s.month, items: [] });
-          groups.push(map.get(s.key));
-        }
-        map.get(s.key).items.push(s);
-      }
-
-      // Clear current content
-      while (container.firstChild) container.removeChild(container.firstChild);
-
-      // Wrapper that applies divide-y between accordions
-      const list = document.createElement('div');
-      list.className = 'relative w-full mx-auto mt-6 divide-y divide-base-200';
-
-      const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-
-      groups.forEach((g, idx) => {
-        const details = document.createElement('details');
-        details.className = 'text-left cursor-pointer group py-4';
-
-        const summary = document.createElement('summary');
-        summary.className = 'flex items-center justify-between w-full pb-1 text-left select-none text-base-600 hover:text-accent-500';
-
-        const monthIndex = Math.max(0, Math.min(11, parseInt(g.month, 10) - 1));
-        const label = document.createElement('span');
-        label.textContent = `${MONTHS[monthIndex]} ${g.year}`;
-
-        const svgNS = 'http://www.w3.org/2000/svg';
-        const icon = document.createElementNS(svgNS, 'svg');
-        icon.setAttribute('class', 'w-5 h-5 duration-300 ease-out text-accent-500 transform group-open:-rotate-45');
-        icon.setAttribute('xmlns', svgNS);
-        icon.setAttribute('fill', 'none');
-        icon.setAttribute('viewBox', '0 0 24 24');
-        icon.setAttribute('stroke-width', '1.5');
-        icon.setAttribute('stroke', 'currentColor');
-        const path = document.createElementNS(svgNS, 'path');
-        path.setAttribute('stroke-linecap', 'round');
-        path.setAttribute('stroke-linejoin', 'round');
-        path.setAttribute('d', 'M12 6v12m6-6H6');
-        icon.appendChild(path);
-
-        summary.appendChild(label);
-        summary.appendChild(icon);
-
-        const panel = document.createElement('div');
-        panel.className = 'py-4 pt-2 text-base-500';
-
-        // Append each section back into the panel
-        g.items.forEach((s) => {
-          panel.appendChild(s.h2);
-          s.nodes.forEach((n) => panel.appendChild(n));
+          const nodes = [];
+          let el = h2.nextSibling;
+          while (el && !(el.nodeType === 1 && el.tagName === "H2")) {
+            const next = el.nextSibling;
+            nodes.push(el);
+            el = next;
+          }
+          return { h2, title, key, year, month, nodes };
         });
 
-        details.appendChild(summary);
-        details.appendChild(panel);
-        list.appendChild(details);
-      });
+        // Group by month key, preserve initial order
+        const groups = [];
+        const map = new Map();
+        for (const s of sections) {
+          if (!map.has(s.key)) {
+            map.set(s.key, {
+              key: s.key,
+              year: s.year,
+              month: s.month,
+              items: [],
+            });
+            groups.push(map.get(s.key));
+          }
+          map.get(s.key).items.push(s);
+        }
+
+        // Clear current content
+        while (container.firstChild)
+          container.removeChild(container.firstChild);
+
+        // Wrapper that applies divide-y between accordions
+        const list = document.createElement("div");
+        list.className =
+          "relative w-full mx-auto mt-6 divide-y divide-gray-200";
+
+        const MONTHS = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+
+        groups.forEach((g, idx) => {
+          const details = document.createElement("details");
+          details.className = "text-left cursor-pointer group py-4";
+
+          const summary = document.createElement("summary");
+          summary.className =
+            "flex items-center justify-between w-full pb-1 text-left select-none text-gray-600 hover:text-blue-500";
+
+          const monthIndex = Math.max(
+            0,
+            Math.min(11, parseInt(g.month, 10) - 1)
+          );
+          const label = document.createElement("span");
+          label.textContent = `${MONTHS[monthIndex]} ${g.year}`;
+
+          const svgNS = "http://www.w3.org/2000/svg";
+          const icon = document.createElementNS(svgNS, "svg");
+          icon.setAttribute(
+            "class",
+            "w-5 h-5 duration-300 ease-out text-blue-500 transform group-open:-rotate-45"
+          );
+          icon.setAttribute("xmlns", svgNS);
+          icon.setAttribute("fill", "none");
+          icon.setAttribute("viewBox", "0 0 24 24");
+          icon.setAttribute("stroke-width", "1.5");
+          icon.setAttribute("stroke", "currentColor");
+          const path = document.createElementNS(svgNS, "path");
+          path.setAttribute("stroke-linecap", "round");
+          path.setAttribute("stroke-linejoin", "round");
+          path.setAttribute("d", "M12 6v12m6-6H6");
+          icon.appendChild(path);
+
+          summary.appendChild(label);
+          summary.appendChild(icon);
+
+          const panel = document.createElement("div");
+          panel.className = "py-4 pt-2 text-gray-500";
+
+          // Append each section back into the panel
+          g.items.forEach((s) => {
+            panel.appendChild(s.h2);
+            s.nodes.forEach((n) => panel.appendChild(n));
+          });
+
+          details.appendChild(summary);
+          details.appendChild(panel);
+          list.appendChild(details);
+        });
 
         container.appendChild(list);
       }
@@ -113,8 +150,8 @@ import * as Changelog from "../../CHANGELOG.md";
       // Initial build
       buildAccordion();
       // Re-build after client-side navigations
-      window.addEventListener('astro:page-load', buildAccordion);
-      window.addEventListener('astro:after-swap', buildAccordion);
+      window.addEventListener("astro:page-load", buildAccordion);
+      window.addEventListener("astro:after-swap", buildAccordion);
     })();
   </script>
 </SimpleLayout>

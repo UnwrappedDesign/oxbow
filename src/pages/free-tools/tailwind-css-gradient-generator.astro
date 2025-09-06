@@ -12,30 +12,34 @@ import GradientGenerator from "@/components/tools/GradientGenerator.tsx";
 const site = (Astro.site && Astro.site.toString()) || "https://oxbowui.com";
 const url = new URL(Astro.url.pathname, site).toString();
 const title = "Tailwind CSS Gradient Generator — Free Tool";
-const description = "Create Tailwind CSS gradients fast. Choose colors and direction, preview live and copy utility classes in one click.";
+const description =
+  "Create Tailwind CSS gradients fast. Choose colors and direction, preview live and copy utility classes in one click.";
 const structuredData = {
-  '@context': 'https://schema.org',
-  '@type': 'WebApplication',
-  name: 'Tailwind CSS Gradient Generator',
-  applicationCategory: 'DeveloperApplication',
-  operatingSystem: 'Web',
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Tailwind CSS Gradient Generator",
+  applicationCategory: "DeveloperApplication",
+  operatingSystem: "Web",
   url,
   description,
-  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
 };
 ---
 
-<BaseLayout title={title} description={description} structuredData={structuredData}>
+<BaseLayout
+  title={title}
+  description={description}
+  structuredData={structuredData}
+>
   <MainHero
     showAlpineTailwind={false}
     title="Tailwind Gradient Generator"
     subtitle="Generate Tailwind CSS gradients"
   />
   <CtaTools />
-  <section class="border-t border-base-200">
-    <Wrapper variant="standard" class="lg:border-x lg:border-base-200">
+  <section class="border-t border-gray-200">
+    <Wrapper variant="standard" class="lg:border-x lg:border-gray-200">
       <GradientGenerator client:only="react" />
     </Wrapper>
   </section>
-
 </BaseLayout>

@@ -5,22 +5,24 @@ const {
   hasKbd = false,
   kbdKey = "S",
   iconSlot, // Slot for custom icons
-  additionalClasses = ""
+  additionalClasses = "",
 } = Astro.props;
 ---
 
-<button class={`flex p-2 items-center w-full text-xs text-base-500 duration-200 cursor-pointer select-none hover:text-accent-500 group rounded-md hover:bg-base-50 ${additionalClasses}`}>
+<button
+  class={`flex p-2 items-center w-full text-xs text-gray-500 duration-200 cursor-pointer select-none hover:text-blue-500 group rounded-md hover:bg-gray-50 ${additionalClasses}`}
+>
   <div class="flex items-center gap-2">
-    {iconSlot ? (
-      <slot name="icon"></slot>
-    ) : null}
+    {iconSlot ? <slot name="icon" /> : null}
     <span class="flex-auto truncate">{text}</span>
   </div>
-  {hasKbd && (
-    <span class="flex-none ml-auto text-xs font-semibold text-base-400">
-      <kbd class="flex items-center justify-center font-semibold bg-white border rounded size-4 text-base-500 border-base-200">
-        {kbdKey}
-      </kbd>
-    </span>
-  )}
+  {
+    hasKbd && (
+      <span class="flex-none ml-auto text-xs font-semibold text-gray-400">
+        <kbd class="flex items-center justify-center font-semibold bg-white border rounded size-4 text-gray-500 border-gray-200">
+          {kbdKey}
+        </kbd>
+      </span>
+    )
+  }
 </button>

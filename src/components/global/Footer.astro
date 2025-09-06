@@ -61,23 +61,16 @@ const navLinks = [
 ];
 ---
 
-<footer class="border-t border-base-200">
-  <Wrapper variant="standard" class="py-8 lg:border-x lg:border-base-200">
-    <div
-      class="text-center bg-gradient-to-br from-accent-500 to-accent-400 py-12 rounded-lg"
-    >
-      <Logo class="h-12 lg:size-24 mx-auto text-white" />
-      <Text
-        tag="h2"
-        variant="displayMD"
-        class="font-semibold text-white text-balance mt-8"
-      >
+<footer class="border-t border-gray-200">
+  <Wrapper variant="standard" class="py-8 lg:border-x lg:border-gray-200">
+    <div class="p-8 py-24 text-center rounded-xl bg-blue-500">
+      <Text tag="h2" variant="displayLG" class="font-medium text-white">
         Lifetime access
       </Text>
       <Text
         tag="p"
         variant="textLG"
-        class="font-medium text-white text-balance mt-2 max-w-2xl mx-auto"
+        class="mt-2 text-white/80 max-w-lg mx-auto text-balance"
       >
         Get everything for $99. One-time payment. Lifetime access, updates, and
         support included.
@@ -98,14 +91,18 @@ const navLinks = [
       {
         navLinks.map((section, i) => (
           <nav aria-label={section.title}>
-            <Text tag="h3" variant="textSM" class="font-medium text-base-900">
+            <Text
+              tag="h3"
+              variant="textBase"
+              class="font-semibold text-gray-900"
+            >
               {section.title}
             </Text>
-            <ul role="list" class="flex flex-col mt-4 space-y-2">
+            <ul role="list" class="flex flex-col mt-2 space-y-1">
               {section.links.map((link, j) => (
                 <li>
                   <a
-                    class="font-medium text-base-600 hover:text-black focus-visible:outline focus-visible:outline-2 text-sm focus-visible:outline-offset-2 focus-visible:outline-accent-600"
+                    class="font-medium text-gray-600 hover:text-black focus-visible:outline focus-visible:outline-2 text-sm focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                     href={link.href}
                     title={link.label}
                     target={link.href.startsWith("http") ? "_blank" : undefined}

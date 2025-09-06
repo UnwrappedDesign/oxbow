@@ -3,9 +3,9 @@ export const excludeFromObfuscation = [
   "w-1/2",
   "translate-x-0",
   "translate-x-full",
-  "text-base-600",
-  "focus:text-base-900",
-  "hover:text-base-900",
+  "text-gray-600",
+  "focus:text-gray-900",
+  "hover:text-gray-900",
 ];
 
 export const description = "Pricing section with three tiers";
@@ -40,10 +40,10 @@ import AdjustmentsHorizontal from "@/components/fundations/icons/AdjustmentsHori
 const pricingOptions = [
   {
     id: "core",
-    cardClass: "bg-white outline-base-200",
-    primaryTextColor: "text-base-900",
-    secondaryTextColor: "text-base-500",
-    featuresBorderColor: "border-base-200",
+    cardClass: "bg-white outline-gray-200",
+    primaryTextColor: "text-gray-900",
+    secondaryTextColor: "text-gray-500",
+    featuresBorderColor: "border-gray-200",
     title: "Core",
     monthly: "$29.00",
     annual: "$19.00",
@@ -64,10 +64,10 @@ const pricingOptions = [
   },
   {
     id: "momentum",
-    cardClass: "bg-accent-600  outline-accent-700",
+    cardClass: "bg-blue-600  outline-blue-700",
     primaryTextColor: "text-white",
-    secondaryTextColor: "text-base-200",
-    featuresBorderColor: "border-accent-500",
+    secondaryTextColor: "text-gray-200",
+    featuresBorderColor: "border-blue-500",
 
     title: "Momentum",
     monthly: "$49.00",
@@ -92,10 +92,10 @@ const pricingOptions = [
   },
   {
     id: "velocity",
-    cardClass: "bg-white  outline-base-200",
-    primaryTextColor: "text-base-900",
-    secondaryTextColor: "text-base-500",
-    featuresBorderColor: "border-base-200",
+    cardClass: "bg-white  outline-gray-200",
+    primaryTextColor: "text-gray-900",
+    secondaryTextColor: "text-gray-500",
+    featuresBorderColor: "border-gray-200",
 
     title: "Velocity",
     monthly: "$99.00",
@@ -118,20 +118,20 @@ const pricingOptions = [
 ];
 ---
 
-<section x-data="{ duration: 'monthly' }" class="bg-base-50">
+<section x-data="{ duration: 'monthly' }" class="bg-gray-50">
   <Wrapper variant="blockStandard" class="py-24">
     <div class="max-w-xl mx-auto text-center">
       <Text
         tag="h1"
         variant="displayMD"
-        class="font-medium tracking-tight text-base-900 text-balance"
+        class="font-medium tracking-tight text-gray-900 text-balance"
       >
         Tools your team will actually use
       </Text>
       <Text
         tag="p"
         variant="textBase"
-        class="mt-2 font-medium text-base-600 text-balance"
+        class="mt-2 font-medium text-gray-600 text-balance"
       >
         Skip the bloat, skip the learning curve. When the docs are shorter than
         your to-do list, you know it's good.
@@ -140,17 +140,17 @@ const pricingOptions = [
       <!-- Pricing Toggle -->
       <div
         aria-labelledby="pricing-toggle"
-        class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-white shadow ring-1 ring-base-200 ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52"
+        class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-white shadow ring-1 ring-gray-200 ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52"
       >
         <div
-          class="absolute inset-0 bg-base-50 rounded-md transition-transform duration-200 ease-in-out"
+          class="absolute inset-0 bg-gray-50 rounded-md transition-transform duration-200 ease-in-out"
           :class="duration === 'monthly' ? 'w-1/2 translate-x-0' : 'w-1/2 translate-x-full'"
         >
         </div>
 
         <button
           class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-          :class="duration === 'monthly' ? 'text-base-600' : 'focus:text-base-900 hover:text-base-900'"
+          :class="duration === 'monthly' ? 'text-gray-600' : 'focus:text-gray-900 hover:text-gray-900'"
           @click="duration = 'monthly'"
           type="button"
           :aria-pressed="duration === 'monthly'"
@@ -160,7 +160,7 @@ const pricingOptions = [
 
         <button
           class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-          :class="duration === 'annual' ? 'text-base-600' : 'focus:text-base-900 hover:text-base-900'"
+          :class="duration === 'annual' ? 'text-gray-600' : 'focus:text-gray-900 hover:text-gray-900'"
           @click="duration = 'annual'"
           type="button"
           :aria-pressed="duration === 'annual'"
@@ -181,7 +181,7 @@ const pricingOptions = [
               <Text
                 tag="h3"
                 variant="textBase"
-                class={` font-medium text-base-900 ${tier.primaryTextColor}`}
+                class={` font-medium text-gray-900 ${tier.primaryTextColor}`}
               >
                 {tier.title}
               </Text>

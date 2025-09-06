@@ -1,9 +1,9 @@
 ---
 export const excludeFromObfuscation = [
-  'opacity-0',
-  'translate-y-1',
-  'opacity-100',
-  'translate-y-0'
+  "opacity-0",
+  "translate-y-1",
+  "opacity-100",
+  "translate-y-0",
 ];
 
 import Button from "@/components/fundations/buttons/Button.astro";
@@ -20,20 +20,16 @@ import Subtask from "@/components/fundations/icons/Subtask.astro";
 <div class="h-[40rem]">
   <div class="flex items-center justify-center w-full py-12 mx-auto">
     <!--- When in use set x-data="{ open: false }" -->
-    <div
-      x-data="{ open: true }"
-      class="relative">
+    <div x-data="{ open: true }" class="relative">
       <Button
         aria-expanded="false"
         @click="open = !open"
         variant="text"
         size="sm"
-        gap="sm">
+        gap="sm"
+      >
         <span>Help Center</span>
-        <ChevronDown
-          size="sm"
-          slot="right-icon"
-        />
+        <ChevronDown size="sm" slot="right-icon" />
       </Button>
       <div
         x-show="open"
@@ -45,9 +41,11 @@ import Subtask from "@/components/fundations/icons/Subtask.astro";
         x-transition:leave-start="opacity-100 translate-y-0"
         x-transition:leave-end="opacity-0 translate-y-1"
         class="absolute z-10 flex w-screen px-4 mt-5 transition duration-200 ease-out -translate-x-1/2 left-1/2 max-w-max"
-        :class="{ 'opacity-0 translate-y-1': !open, 'opacity-100 translate-y-0': open }">
+        :class="{ 'opacity-0 translate-y-1': !open, 'opacity-100 translate-y-0': open }"
+      >
         <div
-          class="flex-auto w-screen max-w-sm p-4 text-sm bg-white shadow-lg leading-6 rounded-3xl ring-1 ring-base-900/5">
+          class="flex-auto w-screen max-w-sm p-4 text-sm bg-white shadow-lg leading-6 rounded-3xl ring-1 ring-gray-900/5"
+        >
           <div>
             <FlyoutLinkBox
               href="#_"

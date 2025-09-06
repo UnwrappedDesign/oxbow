@@ -352,24 +352,7 @@ const templates: { [key: string]: Template[] } = {
       ],
     },
   ],
-  //  Emails
-  //
-  //
-  // eCommerc emails
-  emailsEcommerce: [
-    {
-      name: "Receipt",
-      link: "/playground/emails/receipts",
-      image: "emails-receipts.png",
-      tags: [
-        "email",
-        "email marketing",
-        "email receipt",
-        "email confirmation",
-        "email",
-      ],
-    },
-  ],
+  
   //  Applicaton
   //
   //
@@ -810,8 +793,6 @@ export const {
   overlay,
   forms,
   elements,
-  // Emails
-  emailsEcommerce,
   // eCommerce
   storeSections,
 } = templates;
@@ -826,13 +807,6 @@ export const byName = {
   ),
   pageExamples: Object.fromEntries(
     pageExamples.map((template) => [template.name, template]),
-  ),
-  //
-  //
-  //
-  //
-  emailsEcommerce: Object.fromEntries(
-    emailsEcommerce.map((template) => [template.name, template]),
   ),
   //
   //

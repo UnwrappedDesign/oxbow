@@ -27,15 +27,18 @@ const {
   siteUrl = "https://oxbowui.com",
 } = (Astro.props ?? {}) as Props;
 const additionalStructured = (Astro.props as any)?.structuredData;
-const isPlayground = pathname?.startsWith('/playground') || pathname?.startsWith('/iframe');
+const isPlayground =
+  pathname?.startsWith("/playground") || pathname?.startsWith("/iframe");
 
 const siteName = "Oxbow UI";
 const defaultDescription =
   description ??
   "Free and premium components, elements and layouts for marketing, apps, and ecommerce. Beautifully crafted with Tailwind CSS — simple to customize and production‑ready.";
 
-const absCanonical = (canonicalUrl || new URL(pathname, siteUrl).toString());
-const absImage = image?.startsWith("http") ? image : new URL(image || "/images/OpenGraph/twitter.png", siteUrl).toString();
+const absCanonical = canonicalUrl || new URL(pathname, siteUrl).toString();
+const absImage = image?.startsWith("http")
+  ? image
+  : new URL(image || "/images/OpenGraph/twitter.png", siteUrl).toString();
 
 function toTitleCase(s: string) {
   return s
@@ -54,9 +57,7 @@ function clampText(input: string, max: number) {
   return safe.replace(/[\s.,;:!-]+$/g, "") + "…";
 }
 
-const pathSegments = pathname
-  .split("/")
-  .filter(Boolean);
+const pathSegments = pathname.split("/").filter(Boolean);
 const baseTitle =
   title ||
   (pathSegments.length === 0
@@ -67,12 +68,15 @@ const seoTitle = clampText(baseTitle, 60);
 const seoDescription = clampText(defaultDescription, 160);
 
 const breadcrumbItems = pathSegments.map((seg, idx) => {
-  const url = new URL("/" + pathSegments.slice(0, idx + 1).join("/"), siteUrl).toString();
+  const url = new URL(
+    "/" + pathSegments.slice(0, idx + 1).join("/"),
+    siteUrl
+  ).toString();
   return {
-    '@type': 'ListItem',
+    "@type": "ListItem",
     position: idx + 1,
     item: {
-      '@id': url,
+      "@id": url,
       name: toTitleCase(seg),
     },
   };
@@ -80,24 +84,24 @@ const breadcrumbItems = pathSegments.map((seg, idx) => {
 
 const jsonLd = [
   {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
+    "@context": "https://schema.org",
+    "@type": "WebSite",
     url: siteUrl,
     name: siteName,
-    inLanguage: 'en',
+    inLanguage: "en",
   },
   {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
+    "@context": "https://schema.org",
+    "@type": "Organization",
     name: siteName,
     url: siteUrl,
-    logo: new URL('/favicons/apple-touch-icon.png', siteUrl).toString(),
+    logo: new URL("/favicons/apple-touch-icon.png", siteUrl).toString(),
   },
   ...(breadcrumbItems.length
     ? [
         {
-          '@context': 'https://schema.org',
-          '@type': 'BreadcrumbList',
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
           itemListElement: breadcrumbItems,
         },
       ]
@@ -106,8 +110,8 @@ const jsonLd = [
 const jsonLdCombined = Array.isArray(additionalStructured)
   ? [...jsonLd, ...additionalStructured]
   : additionalStructured
-  ? [...jsonLd, additionalStructured]
-  : jsonLd;
+    ? [...jsonLd, additionalStructured]
+    : jsonLd;
 ---
 
 <script is:inline>
@@ -208,7 +212,11 @@ const jsonLdCombined = Array.isArray(additionalStructured)
 <meta name="theme-color" content="#ffffff" />
 <link rel="sitemap" href="/sitemap-index.xml" />
 
-<script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLdCombined)}></script>
+<script
+  type="application/ld+json"
+  is:inline
+  set:html={JSON.stringify(jsonLdCombined)}
+/>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -216,10 +224,32 @@ const jsonLdCombined = Array.isArray(additionalStructured)
   href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap"
   rel="stylesheet"
 />
-{!isPlayground && (
-  <>
-    <script defer src="https://assets.onedollarstats.com/stonks.js" data-debug="oxbowui.com"></script>
-    {toltId && <script async src="https://cdn.tolt.io/tolt.js" data-tolt={toltId} />}
-    <script async defer src="https://affonso.io/js/pixel.min.js" data-affonso="cm8mwmtfe000nqzz7zqtm6a0p" data-cookie_duration="30"> </script>
-  </>
-)}
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap"
+  rel="stylesheet"
+/>
+
+{
+  !isPlayground && (
+    <>
+      <script
+        defer
+        src="https://assets.onedollarstats.com/stonks.js"
+        data-debug="oxbowui.com"
+      />
+      {toltId && (
+        <script async src="https://cdn.tolt.io/tolt.js" data-tolt={toltId} />
+      )}
+      <script
+        async
+        defer
+        src="https://affonso.io/js/pixel.min.js"
+        data-affonso="cm8mwmtfe000nqzz7zqtm6a0p"
+        data-cookie_duration="30"
+      >
+        {" "}
+      </script>
+    </>
+  )
+}

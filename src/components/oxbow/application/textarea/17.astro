@@ -11,12 +11,12 @@ import Button from "@/components/fundations/buttons/Button.astro";
     class="w-full space-y-2"
     x-data="{ text: '', tags: ['#Important', '#Todo'] }"
   >
-   <div>
+    <div>
       <Text
         for="inline-tags-textarea"
         tag="label"
         variant="textSM"
-        class="font-medium text-base-500"
+        class="font-medium text-gray-500"
       >
         Inline tags
       </Text>
@@ -25,16 +25,20 @@ import Button from "@/components/fundations/buttons/Button.astro";
         x-model="text"
         rows="4"
         placeholder="Type and use inline tags"
-        class="block w-full px-4 py-2 text-sm bg-white border border-transparent rounded-lg appearance-none text-accent-700 duration-300 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+        class="block w-full px-4 py-2 text-sm bg-white border border-transparent rounded-lg appearance-none text-blue-700 duration-300 ring-1 ring-gray-200 placeholder-gray-400 focus:border-gray-300 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
       ></textarea>
-   </div>
+    </div>
     <div class="flex mt-2 gap-2">
       <template x-for="tag in tags" :key="tag">
-        <Button   @click="text += tag + ' '"
-        x-text="tag" type="button"  variant="muted" size="xs" >
+        <Button
+          @click="text += tag + ' '"
+          x-text="tag"
+          type="button"
+          variant="muted"
+          size="xs"
+        >
           Clear
         </Button>
-        
       </template>
     </div>
   </div>

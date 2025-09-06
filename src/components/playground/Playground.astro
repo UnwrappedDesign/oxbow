@@ -102,7 +102,7 @@ const theme = ``;
              </svg>
           </Button>
        </span>
-       <div aria-hidden="true" class="mx-1 h-4 w-[1px]  bg-base-200   hidden md:inline-block"></div>
+       <div aria-hidden="true" class="mx-1 h-4 w-[1px]  bg-gray-200   hidden md:inline-block"></div>
         {
           canSeeCodeValue ? (
             <div class="flex items-center gap-1 ">
@@ -110,7 +110,7 @@ const theme = ``;
                size="xxs"
                 variant="muted"
                 x-on:click="setTab('preview');" 
-                :class="tab === 'preview' ? ' outline-base-100  ' : ''"
+                :class="tab === 'preview' ? ' outline-gray-100  ' : ''"
                 data-umami-event="click-view-preview"
                 data-umami-data-id={user?.uid}
                 data-umami-event-componentref={componentPath}
@@ -121,14 +121,14 @@ const theme = ``;
                size="xxs"
                 variant="muted"
                 x-on:click="setTab('code')" 
-                :class="tab === 'code' ? 'outline-base-100  ' : ''"
+                :class="tab === 'code' ? 'outline-gray-100  ' : ''"
                 data-umami-event="click-view-code"
                 data-umami-data-id={user?.uid}
                 data-umami-event-componentref={componentPath}
                 class="pointer-events-auto !shadow-none">
                 Code
               </Button>
-              <div aria-hidden="true" class="mx-1 h-4 w-[1px]  bg-base-200   hidden md:inline-block"></div>
+              <div aria-hidden="true" class="mx-1 h-4 w-[1px]  bg-gray-200   hidden md:inline-block"></div>
               <Button
                 size="xxs"
                 variant="muted"
@@ -168,8 +168,8 @@ const theme = ``;
       class="flex justify-center flex-grow w-full bg-white"
     >
       <div
-        class="w-full overflow-auto border-x border-base-100"
-        :class="{ 'max-w-sm border-x border-base-100': viewportSize === 'mobile', 'max-w-screen-md border-x border-base-100': viewportSize === 'tablet','max-w-full': viewportSize === 'desktop' }">
+        class="w-full overflow-auto border-x border-gray-100"
+        :class="{ 'max-w-sm border-x border-gray-100': viewportSize === 'mobile', 'max-w-screen-md border-x border-gray-100': viewportSize === 'tablet','max-w-full': viewportSize === 'desktop' }">
         <iframe x-intersect.once="$el.src = $el.dataset.src" id={`iframe-${componentIndex}`} width="100%" data-src={`/iframe/${componentPath}?iframeId=iframe-${componentIndex}&freeComponent=${freeComponent}`}/>
       </div>
     </div>
@@ -177,7 +177,7 @@ const theme = ``;
       <div
         x-show="tab === 'code'"
         x-ref="code"
-        class="flex-grow p-4 overflow-auto text-xs bg-white size-full selection:bg-base-100"
+        class="flex-grow p-4 overflow-auto text-xs bg-sand-100 size-full selection:bg-gray-100"
       >
         <Code code={ppcode} lang="html" theme="css-variables" class="scrollbar-hide"/>
       </div>
