@@ -3,9 +3,9 @@ export const excludeFromObfuscation = [
   "w-1/2",
   "translate-x-0",
   "translate-x-full",
-  "text-base-600",
-  "focus:text-base-900",
-  "hover:text-base-900",
+  "text-gray-600",
+  "focus:text-gray-900",
+  "hover:text-gray-900",
 ];
 
 export const description = "Pricing section with three tiers and table";
@@ -30,36 +30,36 @@ import Lifebuoy from "@/components/fundations/icons/Lifebuoy.astro";
 import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
 ---
 
-<section x-data="{ duration: 'monthly' }" class="bg-base-50">
+<section x-data="{ duration: 'monthly' }" class="bg-gray-50">
   <Wrapper variant="blockStandard" class="py-24">
     <div class="max-w-xl mx-auto text-center">
       <Text
         tag="h1"
         variant="displayMD"
-        class="font-medium tracking-tight text-base-900 text-balance"
+        class="font-medium tracking-tight text-gray-900 text-balance"
       >
         Tools your team will actually use
       </Text>
       <Text
         tag="p"
         variant="textBase"
-        class="mt-2 font-medium text-base-600 text-balance"
+        class="mt-2 font-medium text-gray-600 text-balance"
       >
         Skip the bloat, skip the learning curve. When the docs are shorter than
         your to-do list, you know it's good.
       </Text>
       <div
         aria-labelledby="pricing-toggle"
-        class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-white shadow ring-1 ring-base-200 ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52"
+        class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-white shadow ring-1 ring-gray-200 ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52"
       >
         <div
-          class="absolute inset-0 bg-base-50 rounded-md transition-transform duration-200 ease-in-out"
+          class="absolute inset-0 bg-gray-50 rounded-md transition-transform duration-200 ease-in-out"
           :class="duration === 'monthly' ? 'w-1/2 translate-x-0' : 'w-1/2 translate-x-full'"
         >
         </div>
         <button
           class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-          :class="duration === 'monthly' ? 'text-base-600' : 'focus:text-base-900 hover:text-base-900'"
+          :class="duration === 'monthly' ? 'text-gray-600' : 'focus:text-gray-900 hover:text-gray-900'"
           @click="duration = 'monthly'"
           type="button"
           :aria-pressed="duration === 'monthly'"
@@ -68,7 +68,7 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
         </button>
         <button
           class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-          :class="duration === 'annual' ? 'text-base-600' : 'focus:text-base-900 hover:text-base-900'"
+          :class="duration === 'annual' ? 'text-gray-600' : 'focus:text-gray-900 hover:text-gray-900'"
           @click="duration = 'annual'"
           type="button"
           :aria-pressed="duration === 'annual'"
@@ -79,25 +79,25 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
     </div>
     <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4">
       <div
-        class="p-4 bg-white rounded-lg shadow outline outline-base-200 lg:p-12"
+        class="p-4 bg-white rounded-lg shadow outline outline-gray-200 lg:p-12"
       >
         <div>
           <div class="flex items-center justify-between gap-2">
-            <Text tag="h3" variant="displaySM" class="font-medium text-base-900"
+            <Text tag="h3" variant="displaySM" class="font-medium text-gray-900"
               >Core</Text
             >
             <div class="flex items-center gap-2">
               <Text
                 tag="p"
                 variant="displaySM"
-                class="font-medium text-base-900"
+                class="font-medium text-gray-900"
               >
                 <span
                   data-monthly="$29"
                   data-annual="$19"
                   x-text="$el.dataset[duration]"></span>
               </Text>
-              <div class="text-xs font-medium text-base-500">
+              <div class="text-xs font-medium text-gray-500">
                 <div class="font-medium">
                   <span class="capitalize" x-show="duration==='monthly'"
                     >month</span
@@ -112,7 +112,7 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
               </div>
             </div>
           </div>
-          <Text tag="p" variant="textBase" class="mt-2 text-base-500">
+          <Text tag="p" variant="textBase" class="mt-2 text-gray-500">
             Essential AI copywriting tools to boost your content creation.
           </Text>
         </div>
@@ -121,17 +121,17 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
             Start free trial
           </Button>
         </div>
-        <div class="flex flex-col py-8 mt-8 border-t border-base-200 gap-4">
+        <div class="flex flex-col py-8 mt-8 border-t border-gray-200 gap-4">
           <div class="flex flex-col items-start sm:flex-row gap-4">
             <div
-              class="p-2 rounded-lg bg-base-50 outline outline-base-100 text-accent-500"
+              class="p-2 rounded-lg bg-gray-50 outline outline-gray-100 text-blue-500"
             >
               <Refresh size="sm" />
             </div>
-            <Text tag="h3" variant="textBase" class="font-medium text-base-900">
+            <Text tag="h3" variant="textBase" class="font-medium text-gray-900">
               Content Generation
               <span aria-hidden="true">—</span>
-              <span class="font-normal text-base-500">
+              <span class="font-normal text-gray-500">
                 Generate blog posts, social media content, and basic marketing
                 copy.
               </span>
@@ -139,21 +139,21 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
           </div>
           <div class="flex flex-col items-start sm:flex-row gap-4">
             <div
-              class="p-2 rounded-lg bg-base-50 outline outline-base-100 text-accent-500"
+              class="p-2 rounded-lg bg-gray-50 outline outline-gray-100 text-blue-500"
             >
               <Edit size="sm" />
             </div>
-            <Text tag="h3" variant="textBase" class="font-medium text-base-900">
+            <Text tag="h3" variant="textBase" class="font-medium text-gray-900">
               AI Writing Assistant
               <span aria-hidden="true">—</span>
-              <span class="font-normal text-base-500">
+              <span class="font-normal text-gray-500">
                 Basic grammar checking and style suggestions for your content.
               </span>
             </Text>
           </div>
         </div>
-        <div class="pt-4 border-t border-base-200">
-          <Text tag="h3" variant="textBase" class="font-medium text-base-900"
+        <div class="pt-4 border-t border-gray-200">
+          <Text tag="h3" variant="textBase" class="font-medium text-gray-900"
             >Word Credits</Text
           >
           <div class="mt-4 space-y-4">
@@ -164,7 +164,7 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
               value="10"
               variant="default"
               size="base"
-              class="text-base-900"
+              class="text-gray-900"
               options={[
                 { label: "10/project", value: "10" },
                 { label: "20/project", value: "20" },
@@ -178,7 +178,7 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
               value="10"
               variant="default"
               size="base"
-              class="text-base-900"
+              class="text-gray-900"
               options={[
                 { label: "10/project", value: "10" },
                 { label: "20/project", value: "20" },
@@ -186,47 +186,47 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
               ]}
             />
             <div class="flex items-center justify-between">
-              <Text tag="p" variant="textSM" class="text-base-500"
+              <Text tag="p" variant="textSM" class="text-gray-500"
                 >Max Templates</Text
               >
               <Text tag="p" variant="textSM">
-                <span class="font-medium text-base-900">5</span>
-                <span class="text-base-500">(10,000 words each)</span>
+                <span class="font-medium text-gray-900">5</span>
+                <span class="text-gray-500">(10,000 words each)</span>
               </Text>
             </div>
             <div class="flex items-center justify-between">
-              <Text tag="p" variant="textSM" class="text-base-500"
+              <Text tag="p" variant="textSM" class="text-gray-500"
                 >Price per 1,000 words</Text
               >
               <Text tag="p" variant="textSM">
-                <span class="font-medium text-base-900">$2</span>
-                <span class="text-base-500">(after credits)</span>
+                <span class="font-medium text-gray-900">$2</span>
+                <span class="text-gray-500">(after credits)</span>
               </Text>
             </div>
           </div>
           <Text
             tag="p"
             variant="textBase"
-            class="pt-8 mt-8 text-sm border-t border-base-200 text-base-500"
+            class="pt-8 mt-8 text-sm border-t border-gray-200 text-gray-500"
           >
             All plans include our basic AI model trained on general copywriting
             principles. Upgrade for access to industry-specific models.
           </Text>
         </div>
-        <div class="flex items-center pt-4 mt-4 border-t gap-2 border-base-200">
-          <CircleCheck size="sm" class="text-accent-500" />
-          <Text tag="p" variant="textSM" class="font-medium text-base-500">
+        <div class="flex items-center pt-4 mt-4 border-t gap-2 border-gray-200">
+          <CircleCheck size="sm" class="text-blue-500" />
+          <Text tag="p" variant="textSM" class="font-medium text-gray-500">
             Refunds are available for all paid plans.
           </Text>
         </div>
       </div>
-      <div class="p-8 rounded-lg bg-base-900 outline outline-base-800 lg:p-12">
+      <div class="p-8 rounded-lg bg-gray-900 outline outline-gray-800 lg:p-12">
         <div>
           <div class="flex items-center justify-between gap-2">
             <Text
               tag="h3"
               variant="displaySM"
-              class="font-medium text-base-100"
+              class="font-medium text-gray-100"
             >
               Pro
             </Text>
@@ -234,14 +234,14 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
               <Text
                 tag="p"
                 variant="displaySM"
-                class="font-medium text-base-100"
+                class="font-medium text-gray-100"
               >
                 <span
                   data-monthly="$59"
                   data-annual="$45"
                   x-text="$el.dataset[duration]"></span>
               </Text>
-              <div class="text-xs font-medium text-base-300">
+              <div class="text-xs font-medium text-gray-300">
                 <div class="font-medium">
                   <span class="capitalize" x-show="duration==='monthly'"
                     >month</span
@@ -256,7 +256,7 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
               </div>
             </div>
           </div>
-          <Text tag="p" variant="textBase" class="mt-2 text-base-300">
+          <Text tag="p" variant="textBase" class="mt-2 text-gray-300">
             Advanced AI tools for professional writers &amp; content teams.
           </Text>
         </div>
@@ -265,31 +265,31 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
             >Start free trial</Button
           >
         </div>
-        <div class="flex flex-col py-8 mt-8 border-t border-base-800 gap-4">
+        <div class="flex flex-col py-8 mt-8 border-t border-gray-800 gap-4">
           <div class="flex flex-col items-start sm:flex-row gap-4">
             <div
-              class="p-2 rounded-lg bg-base-800 outline outline-base-700 text-white"
+              class="p-2 rounded-lg bg-gray-800 outline outline-gray-700 text-white"
             >
               <Refresh size="sm" />
             </div>
-            <Text tag="h3" variant="textBase" class="font-medium text-base-100">
+            <Text tag="h3" variant="textBase" class="font-medium text-gray-100">
               Unlimited Generation
               <span aria-hidden="true">—</span>
-              <span class="font-normal text-base-300">
+              <span class="font-normal text-gray-300">
                 Create long-form content without token limits.
               </span>
             </Text>
           </div>
           <div class="flex flex-col items-start sm:flex-row gap-4">
             <div
-              class="p-2 rounded-lg bg-base-800 outline outline-base-700 text-white"
+              class="p-2 rounded-lg bg-gray-800 outline outline-gray-700 text-white"
             >
               <Edit size="sm" />
             </div>
-            <Text tag="h3" variant="textBase" class="font-medium text-base-100">
+            <Text tag="h3" variant="textBase" class="font-medium text-gray-100">
               AI Editor+
               <span aria-hidden="true">—</span>
-              <span class="font-normal text-base-300">
+              <span class="font-normal text-gray-300">
                 Access tone shifting, rephrasing, and advanced style
                 suggestions.
               </span>
@@ -297,35 +297,35 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
           </div>
           <div class="flex flex-col items-start sm:flex-row gap-4">
             <div
-              class="p-2 rounded-lg bg-base-800 outline outline-base-700 text-white"
+              class="p-2 rounded-lg bg-gray-800 outline outline-gray-700 text-white"
             >
               <Bulb size="sm" />
             </div>
-            <Text tag="h3" variant="textBase" class="font-medium text-base-100">
+            <Text tag="h3" variant="textBase" class="font-medium text-gray-100">
               Smart Templates
               <span aria-hidden="true">—</span>
-              <span class="font-normal text-base-300">
+              <span class="font-normal text-gray-300">
                 Industry-specific prompts for ads, landing pages, and more.
               </span>
             </Text>
           </div>
           <div class="flex flex-col items-start sm:flex-row gap-4">
             <div
-              class="p-2 rounded-lg bg-base-800 outline outline-base-700 text-white"
+              class="p-2 rounded-lg bg-gray-800 outline outline-gray-700 text-white"
             >
               <ApiApp size="sm" />
             </div>
-            <Text tag="h3" variant="textBase" class="font-medium text-base-100">
+            <Text tag="h3" variant="textBase" class="font-medium text-gray-100">
               API Access
               <span aria-hidden="true">—</span>
-              <span class="font-normal text-base-300">
+              <span class="font-normal text-gray-300">
                 Integrate your AI flows directly with your app or CMS.
               </span>
             </Text>
           </div>
         </div>
-        <div class="pt-4 border-t border-base-800">
-          <Text tag="h3" variant="textBase" class="font-medium text-base-100">
+        <div class="pt-4 border-t border-gray-800">
+          <Text tag="h3" variant="textBase" class="font-medium text-gray-100">
             Word Credits
           </Text>
           <div class="mt-4 space-y-4">
@@ -356,36 +356,36 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
               ]}
             />
             <div class="flex items-center justify-between">
-              <Text tag="p" variant="textSM" class="text-base-300"
+              <Text tag="p" variant="textSM" class="text-gray-300"
                 >Max Templates</Text
               >
               <Text tag="p" variant="textSM">
-                <span class="font-medium text-base-100">25</span>
-                <span class="text-base-300">(25,000 words each)</span>
+                <span class="font-medium text-gray-100">25</span>
+                <span class="text-gray-300">(25,000 words each)</span>
               </Text>
             </div>
             <div class="flex items-center justify-between">
-              <Text tag="p" variant="textSM" class="text-base-300"
+              <Text tag="p" variant="textSM" class="text-gray-300"
                 >Price per 1,000 words</Text
               >
               <Text tag="p" variant="textSM">
-                <span class="font-medium text-base-100">$1</span>
-                <span class="text-base-300">(after credits)</span>
+                <span class="font-medium text-gray-100">$1</span>
+                <span class="text-gray-300">(after credits)</span>
               </Text>
             </div>
           </div>
           <Text
             tag="p"
             variant="textBase"
-            class="pt-8 mt-8 text-sm border-t border-base-800 text-base-300"
+            class="pt-8 mt-8 text-sm border-t border-gray-800 text-gray-300"
           >
             Pro plans include access to our advanced AI models, fine-tuned for
             marketing, legal, tech, and more.
           </Text>
         </div>
-        <div class="flex items-center pt-4 mt-4 border-t gap-2 border-base-800">
-          <CircleCheck size="sm" class="text-accent-500" />
-          <Text tag="p" variant="textSM" class="font-medium text-base-300">
+        <div class="flex items-center pt-4 mt-4 border-t gap-2 border-gray-800">
+          <CircleCheck size="sm" class="text-blue-500" />
+          <Text tag="p" variant="textSM" class="font-medium text-gray-300">
             Refunds are available for all paid plans.
           </Text>
         </div>
@@ -396,10 +396,10 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
         <thead>
           <tr>
             <th class="sr-only">Feature</th>
-            <th class="py-3 text-base font-semibold text-center text-base-900">
+            <th class="py-3 text-base font-semibold text-center text-gray-900">
               Core
             </th>
-            <th class="py-3 font-semibold text-center text-Base text-base-900">
+            <th class="py-3 font-semibold text-center text-Base text-gray-900">
               Pro
             </th>
           </tr>
@@ -407,7 +407,7 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
         <tbody>
           <tr>
             <th
-              class="py-4 pl-4 text-sm font-medium text-left border-t text-base-900 border-base-200"
+              class="py-4 pl-4 text-sm font-medium text-left border-t text-gray-900 border-gray-200"
             >
               <div class="flex items-center gap-2">
                 <Analytics size="sm" />
@@ -415,17 +415,17 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium text-center bg-white border-t text-base-900 border-base-200"
+              class="px-2 text-xs font-medium text-center bg-white border-t text-gray-900 border-gray-200"
               >3</td
             >
             <td
-              class="px-2 text-xs font-medium text-center text-white border-t bg-base-900 border-base-800"
+              class="px-2 text-xs font-medium text-center text-white border-t bg-gray-900 border-gray-800"
               >10</td
             >
           </tr>
           <tr>
             <th
-              class="py-4 pl-4 text-sm font-medium text-left border-t text-base-900 border-base-200"
+              class="py-4 pl-4 text-sm font-medium text-left border-t text-gray-900 border-gray-200"
             >
               <div class="flex items-center gap-2">
                 <UsersGroup size="sm" />
@@ -433,17 +433,17 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium text-center bg-white border-t text-base-900 border-base-200"
+              class="px-2 text-xs font-medium text-center bg-white border-t text-gray-900 border-gray-200"
               >5</td
             >
             <td
-              class="px-2 text-xs font-medium text-center text-white border-t bg-base-900 border-base-800"
+              class="px-2 text-xs font-medium text-center text-white border-t bg-gray-900 border-gray-800"
               >10</td
             >
           </tr>
           <tr>
             <th
-              class="py-4 pl-4 text-sm font-medium text-left border-t text-base-900 border-base-200"
+              class="py-4 pl-4 text-sm font-medium text-left border-t text-gray-900 border-gray-200"
             >
               <div class="flex items-center gap-2">
                 <Plug size="sm" />
@@ -451,17 +451,17 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium text-center bg-white border-t text-base-900 border-base-200"
+              class="px-2 text-xs font-medium text-center bg-white border-t text-gray-900 border-gray-200"
               >2</td
             >
             <td
-              class="px-2 text-xs font-medium text-center text-white border-t bg-base-900 border-base-800"
+              class="px-2 text-xs font-medium text-center text-white border-t bg-gray-900 border-gray-800"
               >YES</td
             >
           </tr>
           <tr>
             <th
-              class="py-4 pl-4 text-sm font-medium text-left border-t text-base-900 border-base-200"
+              class="py-4 pl-4 text-sm font-medium text-left border-t text-gray-900 border-gray-200"
             >
               <div class="flex items-center gap-2">
                 <Program size="sm" />
@@ -469,17 +469,17 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium text-center bg-white border-t text-base-900 border-base-200"
+              class="px-2 text-xs font-medium text-center bg-white border-t text-gray-900 border-gray-200"
               >NO</td
             >
             <td
-              class="px-2 text-xs font-medium text-center text-white border-t bg-base-900 border-base-800"
+              class="px-2 text-xs font-medium text-center text-white border-t bg-gray-900 border-gray-800"
               >1</td
             >
           </tr>
           <tr>
             <th
-              class="py-4 pl-4 text-sm font-medium text-left border-t text-base-900 border-base-200"
+              class="py-4 pl-4 text-sm font-medium text-left border-t text-gray-900 border-gray-200"
             >
               <div class="flex items-center gap-2">
                 <Brain size="sm" />
@@ -487,17 +487,17 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium text-center bg-white border-t text-base-900 border-base-200"
+              class="px-2 text-xs font-medium text-center bg-white border-t text-gray-900 border-gray-200"
               >NO</td
             >
             <td
-              class="px-2 text-xs font-medium text-center text-white border-t bg-base-900 border-base-800"
+              class="px-2 text-xs font-medium text-center text-white border-t bg-gray-900 border-gray-800"
               >YES</td
             >
           </tr>
           <tr>
             <th
-              class="py-4 pl-4 text-sm font-medium text-left border-t text-base-900 border-base-200"
+              class="py-4 pl-4 text-sm font-medium text-left border-t text-gray-900 border-gray-200"
             >
               <div class="flex items-center gap-2">
                 <Code size="sm" />
@@ -505,17 +505,17 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium text-center bg-white border-t text-base-900 border-base-200"
+              class="px-2 text-xs font-medium text-center bg-white border-t text-gray-900 border-gray-200"
               >NO</td
             >
             <td
-              class="px-2 text-xs font-medium text-center text-white border-t bg-base-900 border-base-800"
+              class="px-2 text-xs font-medium text-center text-white border-t bg-gray-900 border-gray-800"
               >YES</td
             >
           </tr>
           <tr>
             <th
-              class="py-4 pl-4 text-sm font-medium text-left border-t text-base-900 border-base-200"
+              class="py-4 pl-4 text-sm font-medium text-left border-t text-gray-900 border-gray-200"
             >
               <div class="flex items-center gap-2">
                 <Tools size="sm" />
@@ -523,17 +523,17 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium text-center bg-white border-t text-base-900 border-base-200"
+              class="px-2 text-xs font-medium text-center bg-white border-t text-gray-900 border-gray-200"
               >NO</td
             >
             <td
-              class="px-2 text-xs font-medium text-center text-white border-t bg-base-900 border-base-800"
+              class="px-2 text-xs font-medium text-center text-white border-t bg-gray-900 border-gray-800"
               >YES</td
             >
           </tr>
           <tr>
             <th
-              class="py-4 pl-4 text-sm font-medium text-left border-t text-base-900 border-base-200"
+              class="py-4 pl-4 text-sm font-medium text-left border-t text-gray-900 border-gray-200"
             >
               <div class="flex items-center gap-2">
                 <Lifebuoy size="sm" />
@@ -541,22 +541,22 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium text-center bg-white border-t text-base-900 border-base-200"
+              class="px-2 text-xs font-medium text-center bg-white border-t text-gray-900 border-gray-200"
               >Discord community</td
             >
             <td
-              class="px-2 text-xs font-medium text-center text-white border-t bg-base-900 border-base-800"
+              class="px-2 text-xs font-medium text-center text-white border-t bg-gray-900 border-gray-800"
               >Live chat</td
             >
           </tr>
           <tr class="align-top">
-            <th class="border-t border-base-200"></th>
-            <th class="w-1/4 px-2 py-4 border-t border-base-200">
+            <th class="border-t border-gray-200"></th>
+            <th class="w-1/4 px-2 py-4 border-t border-gray-200">
               <Button class="w-full" variant="alternative" size="sm">
                 Start free trial
               </Button>
             </th>
-            <th class="w-1/4 px-2 py-4 border-t border-base-800">
+            <th class="w-1/4 px-2 py-4 border-t border-gray-800">
               <Button class="w-full" variant="accent" size="sm">
                 Start free trial
               </Button>

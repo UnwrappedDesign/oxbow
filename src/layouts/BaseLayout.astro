@@ -1,6 +1,6 @@
 ---
 import { getAuth } from "firebase-admin/auth";
-import { ViewTransitions } from 'astro:transitions';
+import { ViewTransitions } from "astro:transitions";
 import BaseHead from "@/components/BaseHead.astro";
 import Navigation from "@/components/global/Navigation.astro";
 import Footer from "@/components/global/Footer.astro";
@@ -12,7 +12,10 @@ const auth = getAuth(app);
 const uid = Astro.locals.user?.uid;
 const customToken = uid ? await auth.createCustomToken(uid) : null;
 const siteUrl = (Astro.site && Astro.site.toString()) || "https://oxbowui.com";
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? siteUrl).toString();
+const canonicalUrl = new URL(
+  Astro.url.pathname,
+  Astro.site ?? siteUrl
+).toString();
 const privatePaths = [
   /^\/404$/,
   /^\/login(\b|\/)/,
@@ -33,7 +36,8 @@ interface HeadOverrides {
   noindex?: boolean;
   structuredData?: any | any[];
 }
-const { title, description, image, noindex, structuredData }: HeadOverrides = (Astro.props ?? {}) as HeadOverrides;
+const { title, description, image, noindex, structuredData }: HeadOverrides =
+  (Astro.props ?? {}) as HeadOverrides;
 ---
 
 <html lang="en" class="scroll-smooth">
@@ -49,7 +53,7 @@ const { title, description, image, noindex, structuredData }: HeadOverrides = (A
       structuredData={structuredData}
     />
   </head>
-  <body class="bg-base-100" style="background-color:#ffffff">
+  <body class="bg-zinc-100">
     <ViewTransitions />
     <Navigation />
     <main class="grow z-1">
@@ -69,13 +73,58 @@ const { title, description, image, noindex, structuredData }: HeadOverrides = (A
 
     <astro-firebase data-customtoken={customToken}></astro-firebase>
 
+    <script is:inline>
+      // Hide Firebase emulator warning (root + iframes), resilient to dynamic insertion
+      (function () {
+        const SEL = '.firebase-emulator-warning, .firegray-emulator-warning';
+        const hideIn = (doc) => {
+          try {
+            doc.querySelectorAll(SEL).forEach((el) => {
+              el.style.setProperty('display', 'none', 'important');
+              el.style.setProperty('visibility', 'hidden', 'important');
+            });
+          } catch {}
+        };
+
+        const observeDoc = (doc) => {
+          hideIn(doc);
+          try {
+            const mo = new MutationObserver(() => hideIn(doc));
+            mo.observe(doc.documentElement || doc, { childList: true, subtree: true });
+          } catch {}
+        };
+
+        const scan = () => {
+          observeDoc(document);
+          // Same-origin iframes (our /iframe pages) — hook load + observe
+          document.querySelectorAll('iframe').forEach((ifr) => {
+            try {
+              const onLoad = () => {
+                const d = ifr.contentDocument || ifr.contentWindow?.document;
+                if (d) observeDoc(d);
+              };
+              ifr.addEventListener('load', onLoad, { once: false });
+              onLoad();
+            } catch {}
+          });
+        };
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', scan, { once: true });
+        } else {
+          scan();
+        }
+        window.addEventListener('astro:page-load', scan);
+        window.addEventListener('astro:after-swap', scan);
+      })();
+    </script>
+
     <script>
       import {
         inMemoryPersistence,
         signInWithCustomToken,
       } from "firebase/auth";
       import { auth } from "@/firebase/client";
-
 
       class AstroFirebase extends HTMLElement {
         constructor() {
@@ -109,22 +158,29 @@ const { title, description, image, noindex, structuredData }: HeadOverrides = (A
       // Ensure changelog accordion is built on initial load and after client-side navigations
       (function () {
         function buildChangelogAccordion() {
-          const container = document.getElementById('changelog');
+          const container = document.getElementById("changelog");
           if (!container) return;
-          if (container.querySelector('details')) return; // already built
+          if (container.querySelector("details")) return; // already built
 
-          const headings = Array.from(container.querySelectorAll('h2'));
+          const headings = Array.from(container.querySelectorAll("h2"));
           if (!headings.length) return;
 
           const sections = headings.map((h2) => {
-            const title = (h2.textContent || '').trim();
+            const title = (h2.textContent || "").trim();
             const m = title.match(/(\d{4})-(\d{2})-(\d{2})/);
-            let year = '0000', month = '01';
-            if (m) { year = m[1]; month = m[2]; }
+            let year = "0000",
+              month = "01";
+            if (m) {
+              year = m[1];
+              month = m[2];
+            }
             const key = `${year}-${month}`;
             const nodes = [] as ChildNode[];
             let el: ChildNode | null = h2.nextSibling;
-            while (el && !(el.nodeType === 1 && (el as HTMLElement).tagName === 'H2')) {
+            while (
+              el &&
+              !(el.nodeType === 1 && (el as HTMLElement).tagName === "H2")
+            ) {
               const next = el.nextSibling;
               nodes.push(el);
               el = next;
@@ -136,40 +192,67 @@ const { title, description, image, noindex, structuredData }: HeadOverrides = (A
           const map = new Map<string, any>();
           for (const s of sections) {
             if (!map.has(s.key)) {
-              map.set(s.key, { key: s.key, year: s.year, month: s.month, items: [] as any[] });
+              map.set(s.key, {
+                key: s.key,
+                year: s.year,
+                month: s.month,
+                items: [] as any[],
+              });
               groups.push(map.get(s.key));
             }
             map.get(s.key).items.push(s);
           }
 
-          while (container.firstChild) container.removeChild(container.firstChild);
-          const list = document.createElement('div');
-          list.className = 'relative w-full mx-auto mt-6 divide-y divide-base-200';
-          const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+          while (container.firstChild)
+            container.removeChild(container.firstChild);
+          const list = document.createElement("div");
+          list.className =
+            "relative w-full mx-auto mt-6 divide-y divide-gray-200";
+          const MONTHS = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December",
+          ];
           groups.forEach((g) => {
-            const details = document.createElement('details');
-            details.className = 'text-left cursor-pointer group py-4';
-            const summary = document.createElement('summary');
-            summary.className = 'flex items-center justify-between w-full pb-1 text-left select-none text-base-600 hover:text-accent-500';
-            const monthIndex = Math.max(0, Math.min(11, parseInt(g.month, 10) - 1));
-            const label = document.createElement('span');
+            const details = document.createElement("details");
+            details.className = "text-left cursor-pointer group py-4";
+            const summary = document.createElement("summary");
+            summary.className =
+              "flex items-center justify-between w-full pb-1 text-left select-none text-gray-600 hover:text-blue-500";
+            const monthIndex = Math.max(
+              0,
+              Math.min(11, parseInt(g.month, 10) - 1)
+            );
+            const label = document.createElement("span");
             label.textContent = `${MONTHS[monthIndex]} ${g.year}`;
-            const svgNS = 'http://www.w3.org/2000/svg';
-            const icon = document.createElementNS(svgNS, 'svg');
-            icon.setAttribute('class', 'w-5 h-5 duration-300 ease-out text-accent-500 transform group-open:-rotate-45');
-            icon.setAttribute('fill', 'none');
-            icon.setAttribute('viewBox', '0 0 24 24');
-            icon.setAttribute('stroke-width', '1.5');
-            icon.setAttribute('stroke', 'currentColor');
-            const path = document.createElementNS(svgNS, 'path');
-            path.setAttribute('stroke-linecap', 'round');
-            path.setAttribute('stroke-linejoin', 'round');
-            path.setAttribute('d', 'M12 6v12m6-6H6');
+            const svgNS = "http://www.w3.org/2000/svg";
+            const icon = document.createElementNS(svgNS, "svg");
+            icon.setAttribute(
+              "class",
+              "w-5 h-5 duration-300 ease-out text-blue-500 transform group-open:-rotate-45"
+            );
+            icon.setAttribute("fill", "none");
+            icon.setAttribute("viewBox", "0 0 24 24");
+            icon.setAttribute("stroke-width", "1.5");
+            icon.setAttribute("stroke", "currentColor");
+            const path = document.createElementNS(svgNS, "path");
+            path.setAttribute("stroke-linecap", "round");
+            path.setAttribute("stroke-linejoin", "round");
+            path.setAttribute("d", "M12 6v12m6-6H6");
             icon.appendChild(path);
             summary.appendChild(label);
             summary.appendChild(icon);
-            const panel = document.createElement('div');
-            panel.className = 'py-4 pt-2 text-base-500';
+            const panel = document.createElement("div");
+            panel.className = "py-4 pt-2 text-gray-500";
             g.items.forEach((s: any) => {
               panel.appendChild(s.h2);
               s.nodes.forEach((n: ChildNode) => panel.appendChild(n));
@@ -181,10 +264,18 @@ const { title, description, image, noindex, structuredData }: HeadOverrides = (A
           container.appendChild(list);
         }
 
-        function run() { try { buildChangelogAccordion(); } catch (e) { /* noop */ } }
-        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run, { once: true }); else run();
-        window.addEventListener('astro:page-load', run);
-        window.addEventListener('astro:after-swap', run);
+        function run() {
+          try {
+            buildChangelogAccordion();
+          } catch (e) {
+            /* noop */
+          }
+        }
+        if (document.readyState === "loading")
+          document.addEventListener("DOMContentLoaded", run, { once: true });
+        else run();
+        window.addEventListener("astro:page-load", run);
+        window.addEventListener("astro:after-swap", run);
       })();
     </script>
   </body>

@@ -12,30 +12,34 @@ import GridGenerator from "@/components/tools/GridGenerator.tsx";
 const site = (Astro.site && Astro.site.toString()) || "https://oxbowui.com";
 const url = new URL(Astro.url.pathname, site).toString();
 const title = "Tailwind CSS Grid Generator — Free Tool";
-const description = "Generate responsive Tailwind CSS grid layouts. Pick columns, spans, gaps and copy utility classes instantly.";
+const description =
+  "Generate responsive Tailwind CSS grid layouts. Pick columns, spans, gaps and copy utility classes instantly.";
 const structuredData = {
-  '@context': 'https://schema.org',
-  '@type': 'WebApplication',
-  name: 'Tailwind CSS Grid Generator',
-  applicationCategory: 'DeveloperApplication',
-  operatingSystem: 'Web',
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Tailwind CSS Grid Generator",
+  applicationCategory: "DeveloperApplication",
+  operatingSystem: "Web",
   url,
   description,
-  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
 };
 ---
 
-<BaseLayout title={title} description={description} structuredData={structuredData}>
+<BaseLayout
+  title={title}
+  description={description}
+  structuredData={structuredData}
+>
   <MainHero
     showAlpineTailwind={false}
     title="Tailwind Grid Generator"
     subtitle="Generate Tailwind CSS grids"
   />
   <CtaTools />
-  <section class="border-t border-base-200">
-    <Wrapper variant="standard" class="lg:border-x lg:border-base-200">
+  <section class="border-t border-gray-200">
+    <Wrapper variant="standard" class="lg:border-x lg:border-gray-200">
       <GridGenerator client:only="react" /></Wrapper
     >
   </section>
-
 </BaseLayout>

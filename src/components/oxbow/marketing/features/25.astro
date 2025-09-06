@@ -3,10 +3,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 import CircleCheck from "@/components/fundations/icons/CircleCheck.astro";
 
-export const excludeFromObfuscation = [
-  'bg-base-800',
-  'bg-base-400'
-];
+export const excludeFromObfuscation = ["bg-gray-800", "bg-gray-400"];
 
 const data = [
   {
@@ -35,24 +32,24 @@ const data = [
 <section>
   <div class="relative px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl">
     <div
-      class="relative items-center p-8 list-none grid grid-cols-1 bg-base-50 lg:grid-cols-2 gap-4 lg:gap-24 rounded-3xl lg:p-10 overflow-clip"
+      class="relative items-center p-8 list-none grid grid-cols-1 bg-gray-50 lg:grid-cols-2 gap-4 lg:gap-24 rounded-3xl lg:p-10 overflow-clip"
     >
       <div class="pt-8 text-center lg:text-left">
         <Text
           tag="p"
           variant="textSM"
-          class="font-bold uppercase text-accent-600"
+          class="font-bold uppercase text-blue-600"
         >
           Tagline
         </Text>
         <Text
           tag="h2"
           variant="displayMD"
-          class="mt-4 font-semibold text-base-900 lg:text-balance"
+          class="mt-4 font-semibold text-gray-900 lg:text-balance"
         >
           Transforming the banking experience for a digital future
         </Text>
-        <Text tag="p" variant="textBase" class="mt-4 font-medium text-base-500">
+        <Text tag="p" variant="textBase" class="mt-4 font-medium text-gray-500">
           The fastest method for working together on staging and temporary
           environments.
         </Text>
@@ -64,7 +61,7 @@ const data = [
       <div class="items-center h-full mt-12 lg:mt-0">
         <img
           alt="#"
-          class="absolute w-full border shadow rounded-2xl border-base-200"
+          class="absolute w-full border shadow rounded-2xl border-gray-200"
           src="/images/dashboardLight.svg"
         />
       </div>
@@ -78,27 +75,27 @@ const data = [
                 <Text
                   variant="textLG"
                   tag="h3"
-                  class="font-medium text-base-900"
+                  class="font-medium text-gray-900"
                 >
                   {section.category}
                 </Text>
                 <Text
                   tag="p"
                   variant="textBase"
-                  class="mt-4 font-medium text-base-500"
+                  class="mt-4 font-medium text-gray-500"
                 >
                   {section.text}
                 </Text>
               </div>
               <ul
                 role="list"
-                class="mt-6 text-base font-medium list-none space-y-1 text-base-900"
+                class="mt-6 text-base font-medium list-none space-y-1 text-gray-900"
               >
                 {section.items.map((item) => (
                   <li>
                     <div class="flex items-center  gap-4">
                       <CircleCheck
-                        class="text-accent-600"
+                        class="text-blue-600"
                         size="base"
                         slot="icon"
                       />
@@ -144,7 +141,7 @@ const data = [
           <!-- Previous slide button -->
           <button
             @click="activeSlide = activeSlide === 0 ? slides.length - 1 : activeSlide - 1"
-            class="absolute flex items-center justify-center bg-white border rounded-full left-4 top-1/2 transform -translate-y-1/2 text-base-900 size-10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-500"
+            class="absolute flex items-center justify-center bg-white border rounded-full left-4 top-1/2 transform -translate-y-1/2 text-gray-900 size-10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             aria-label="Previous Slide"
           >
             &larr;
@@ -152,7 +149,7 @@ const data = [
           <!-- Next slide button -->
           <button
             @click="activeSlide = activeSlide === slides.length - 1 ? 0 : activeSlide + 1"
-            class="absolute flex items-center justify-center bg-white border rounded-full right-4 top-1/2 transform -translate-y-1/2 text-base-900 size-10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-500"
+            class="absolute flex items-center justify-center bg-white border rounded-full right-4 top-1/2 transform -translate-y-1/2 text-gray-900 size-10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             aria-label="Next Slide"
           >
             &rarr;
@@ -164,7 +161,7 @@ const data = [
             <template x-for="(slide, index) in slides" :key="index">
               <button
                 @click="activeSlide = index"
-                :class="{'bg-base-800': activeSlide === index, 'bg-base-400': activeSlide !== index}"
+                :class="{'bg-gray-800': activeSlide === index, 'bg-gray-400': activeSlide !== index}"
                 class="w-3 h-3 rounded-full focus:outline-none"
                 :aria-label="'Slide ' + (index + 1)"
                 :aria-current="activeSlide === index ? 'true' : 'false'"

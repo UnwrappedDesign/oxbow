@@ -4,6 +4,10 @@ import { Image } from "astro:assets";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+import GridIcon from "@/components/fundations/icons/Grid.astro";
+import ListIcon from "@/components/fundations/icons/List.astro";
+import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
 import { formatDistanceToNowStrict } from "date-fns";
 import updates from "@/data/updates.json";
 
@@ -13,6 +17,17 @@ const modules = import.meta.glob("@/components/oxbow/**/*.astro", {
 });
 const keys = Object.keys(modules);
 const sectionRegex = new RegExp(`${section}/${subsection}/.+\\.astro$`, "i");
+
+// Build category → blocks map from available components
+const triples = keys.map((k) => k.split("/").slice(-3)); // [section, subsection, file]
+const subsByCat = Object.fromEntries(
+  Array.from(new Set(triples.map(([sec]) => sec))).map((sec) => {
+    const subs = Array.from(
+      new Set(triples.filter(([s]) => s === sec).map(([, sub]) => sub))
+    ).sort();
+    return [sec, subs];
+  })
+);
 
 const sectionComponents = keys
   .filter((k) => k.match(sectionRegex))
@@ -41,55 +56,8 @@ const formattedSubsection = subsection.replace("-", " ");
 const user = Astro.locals.user;
 const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
 
-const gridColumns = {
-  // Marketing
-  "marketing/team": 2,
-  "marketing/steps": 2,
-  "marketing/faq": 2,
-  "marketing/pricing": 2,
-  "marketing/contact": 2,
-  "marketing/features": 2,
-  "marketing/timeline": 2,
-  "marketing/logo-clouds": 2,
-  "marketing/bento-grids": 2,
-  "marketing/landing-pages": 2,
-  "marketing/creative-heros": 2,
-  "marketing/marketing-heros": 2,
-  // Ecommerce
-  "ecommerce/product-details": 2,
-  "ecommerce/product-list": 2,
-  "ecommerce/category-previews": 2,
-  // Application
-  "application/tabs": 1,
-  "application/alerts": 1,
-  "application/inputs": 1,
-  "application/select": 1,
-  "application/input-groups": 1,
-  "application/badges": 2,
-  "application/tables": 2,
-  "application/navbars": 1,
-  "application/banners": 1,
-  "application/toggles": 2,
-  "application/buttons": 2,
-  "application/button-icon": 2,
-  "application/avatars": 2,
-  "application/textarea": 2,
-  "application/commandbar": 2,
-  "application/sign-up": 2,
-  "application/sign-in": 2,
-  "application/pagination": 2,
-  "application/checkboxes": 2,
-  "application/typography": 2,
-  "application/breadcrumbs": 2,
-  "application/emptyStates": 2,
-  "application/radiogroups": 2,
-  "application/notifications": 2,
-  "application/button-groups": 2,
-};
-
-const currentPage = `${section}/${subsection}`;
-const lgColumns = gridColumns[currentPage] || 4;
-const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
+// Removed legacy grid column configuration; layout is controlled via the
+// "masonry-grid" CSS or column view toggle now.
 ---
 
 <style>
@@ -129,45 +97,111 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
 </style>
 
 <BaseLayout>
-  <section class="border-t border-base-200">
-    <Wrapper variant="standard" class="lg:border-x lg:border-base-200">
-      <div class="flex items-center gap-2">
-        <button
-          class="flex items-center text-sm cursor-pointer gap- text-base-500 hover:text-base-900 group"
-          onclick="history.back();"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="size-4 group-hover:-translate-x-2 duration-300"
+  <div
+    x-data={`{ layout: 'grid', cat: '${section}', sub: '${subsection}', subs: {}, fmt(s){ return (s||'').replace(/-/g,' ').replace(/\b\w/g, c => c.toUpperCase()); } }`}
+    x-init="subs = JSON.parse($el.dataset.subs || '{}')"
+    data-subs={JSON.stringify(subsByCat)}
+  >
+  <section class="border-t border-zinc-200">
+    <Wrapper variant="standard" class="lg:border-x lg:border-zinc-200">
+      <div class="flex items-center justify-between gap-2">
+       <div class="flex items-center justify-between gap-2">
+          <button
+            class="flex items-center text-sm cursor-pointer gap- text-zinc-500 hover:text-zinc-900 group"
+            onclick="history.back();"
           >
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-            <path d="M15 6l-6 6l6 6"></path>
-          </svg>
-          Go Back
-        </button>
-        <span aria-hidden="true" class="text-base-500">/</span>
-        <Text
-          tag="h1"
-          variant="textSM"
-          class="font-medium tracking-tight capitalize text-base-900"
-        >
-          {subsection.replace(/-/g, " ")}
-        </Text>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="size-4 group-hover:-translate-x-2 duration-300"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M15 6l-6 6l6 6"></path>
+            </svg>
+            Go Back
+          </button>
+          <div class="flex items-center gap-2">
+            <span aria-hidden="true" class="text-zinc-500">/</span>
+            <Text
+              tag="h1"
+              variant="textSM"
+              class="font-medium tracking-tight capitalize text-zinc-900"
+            >
+              {subsection.replace(/-/g, " ")}
+            </Text>
+          </div>
+       </div>
+        <div class="items-center justify-end hidden p-1 bg-white rounded-lg gap-1 md:flex gap-1" x-data="{ openCat:false, openSub:false }">
+          <div class="relative">
+            <span class="sr-only">Category</span>
+            <Button size="xxs" variant="muted" class="pointer-events-auto !shadow-none inline-flex items-center gap-2 h-[28px] px-2 py-1" x-on:click.stop="openCat=!openCat">
+              <span class=" capitalize" x-text="fmt(cat)"></span>
+              <ChevronDown class="size-4" />
+            </Button>
+            <div x-show="openCat" x-transition @click.outside="openCat=false" class="absolute left-0 top-full z-50 mt-2 w-52 origin-top-left rounded-xl outline outline-zinc-100 shadow bg-white text-[13px] text-zinc-600 divide-y divide-zinc-100" x-cloak>
+              <div class="py-2 max-h-64 overflow-auto">
+                <template x-for="(list, key) in subs" :key="key">
+                  <a class="w-full flex items-center justify-between px-3 py-1.5 hover:bg-zinc-100" :href="`/playground/${key}/${(subs[key]||[])[0]||''}`" @click="openCat=false">
+                    <span class=" capitalize" x-text="fmt(key)"></span>
+                    <template x-if="cat===key">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-4 text-blue-600"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4-4a.75.75 0 011.06-1.06l3.353 3.353 7.528-9.884a.75.75 0 011.043-.136z" clip-rule="evenodd" /></svg>
+                    </template>
+                  </a>
+                </template>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative">
+            <span class="sr-only">Block</span>
+            <Button size="xxs" variant="muted" class="pointer-events-auto !shadow-none inline-flex items-center gap-2 h-[28px] px-2 py-1" x-on:click.stop="openSub=!openSub">
+              <span class=" capitalize" x-text="fmt(sub)"></span>
+              <ChevronDown class="size-4" />
+            </Button>
+            <div x-show="openSub" x-transition @click.outside="openSub=false" class="absolute left-0 top-full z-50 mt-2 w-64 origin-top-left rounded-xl outline outline-zinc-100 shadow bg-white text-[13px] text-zinc-600 divide-y divide-zinc-100" x-cloak>
+              <div class="py-2 max-h-64 overflow-auto">
+                <template x-for="name in (subs[cat]||[])" :key="name">
+                  <a class="w-full flex items-center justify-between px-3 py-1.5 hover:bg-zinc-100" :href="`/playground/${cat}/${name}`" @click="openSub=false">
+                    <span class=" capitalize" x-text="fmt(name)"></span>
+                    <template x-if="sub===name">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-4 text-blue-600"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4-4a.75.75 0 011.06-1.06l3.353 3.353 7.528-9.884a.75.75 0 011.043-.136z" clip-rule="evenodd" /></svg>
+                    </template>
+                  </a>
+                </template>
+              </div>
+            </div>
+          </div>
+          <Button
+            size="xxs"
+            variant="muted"
+            class="pointer-events-auto !shadow-none"
+            x-on:click="layout = (layout === 'grid' ? 'column' : 'grid')"
+            aria-label="Toggle layout"
+            title="Toggle layout"
+          >
+            <span class="sr-only" x-text="layout === 'grid' ? 'Column View' : 'Grid View'"></span>
+            <span x-show="layout === 'grid'" class="inline-flex items-center" aria-hidden="true">
+              <GridIcon class="size-4" />
+            </span>
+            <span x-show="layout !== 'grid'" class="inline-flex items-center" aria-hidden="true">
+              <ListIcon class="size-4" />
+            </span>
+          </Button>
+        </div>
       </div>
     </Wrapper>
   </section>
 
-  <section class="border-t border-base-200">
-    <Wrapper variant="standard" class="lg:border-x lg:border-base-200">
-      <div class="masonry-grid">
+  <section class="border-t border-zinc-200">
+    <Wrapper variant="standard" class="lg:border-x lg:border-zinc-200">
+      <div :class="layout === 'grid' ? 'masonry-grid' : 'flex flex-col gap-6'">
         {
           sectionComponents.map(
             ({ filePath, imagePath, description }, index) => {
@@ -179,14 +213,15 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
               return (
                 <a
                   href={`/playground/${filePath.replace(".astro", "")}`}
-                  class="relative flex flex-col group masonry-item"
+                  class="relative flex flex-col group"
+                  :class="layout === 'grid' ? 'masonry-item' : ''"
                 >
                   <div class="flex flex-col sr-only gap-1">
                     {isUpdatedLastWeek && (
                       <Text
                         tag="p"
                         variant="textXS"
-                        class="relative flex items-center gap-1 text-base-400"
+                        class="relative flex items-center gap-1 text-gray-400"
                       >
                         Updated{" "}
                         {formatDistanceToNowStrict(updatedAt, {
@@ -200,7 +235,7 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
                       <Text
                         tag="p"
                         variant="textXS"
-                        class="flex flex-wrap items-center font-medium  text-base-500 group-hover:text-base-600 gap-1"
+                        class="flex flex-wrap items-center font-medium  text-gray-500 group-hover:text-gray-600 gap-1"
                       >
                         <span>{(index + 1).toString().padStart(2, "0")}.</span>
                         <span class="capitalize sr-only">
@@ -210,12 +245,12 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
 
                         {description.replace(/^./, (c) => c.toUpperCase())}
                         {!user && index === 0 && (
-                          <span class="text-xs text-base-900">Free Demo</span>
+                          <span class="text-xs text-gray-900">Free Demo</span>
                         )}
                       </Text>
                     </div>
                   </div>
-                  <div class="mt-2 overflow-hidden bg-white rounded-lg shadow-oxbow outline outline-base-200">
+                  <div class="mt-2 overflow-hidden bg-white rounded-lg ">
                     <Image
                       width={1000}
                       height={1000}
@@ -232,4 +267,5 @@ const gridColumnsClass = `lg:grid-cols-${lgColumns}`;
       </div>
     </Wrapper>
   </section>
+  </div>
 </BaseLayout>

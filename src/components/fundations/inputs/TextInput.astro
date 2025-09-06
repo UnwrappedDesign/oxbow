@@ -52,25 +52,25 @@ const variantClasses = {
    "bg-white",
   "border",
   "border-transparent",
-  "text-base-500",
+  "text-gray-500",
   "ring-1",
-  "ring-base-200",
-  "placeholder-base-400",
-  "focus:border-accent-500",
-  "focus:ring-accent-100",
+  "ring-gray-200",
+  "placeholder-gray-400",
+  "focus:border-blue-500",
+  "focus:ring-blue-100",
   "focus:ring-2",
   "focus:outline-none",
   "shadow-sm"
   ],
   dark: [
-   "bg-base-800",
-  "text-base-100",
-  "border-base-700",
+   "bg-gray-800",
+  "text-gray-100",
+  "border-gray-700",
   "ring-1",
-  "ring-base-700",
-  "placeholder-base-400",
-  "focus:border-base-500",
-  "focus:ring-base-50",
+  "ring-gray-700",
+  "placeholder-gray-400",
+  "focus:border-gray-500",
+  "focus:ring-gray-50",
   "focus:ring-2",
   "focus:outline-none",
   "shadow-sm"
@@ -95,7 +95,7 @@ const squareSizeClasses = {
   xl: ["w-14", "h-14"]
 };
 const disabledClass = disabled
-  ? ["opacity-50", "cursor-not-allowed", "bg-base-100", "pointer-events-none"]
+  ? ["opacity-50", "cursor-not-allowed", "bg-gray-100", "pointer-events-none"]
   : [];
 const isPassword = type === "password" && passwordToggle;
 const isSearch = type === "search";
@@ -165,7 +165,7 @@ const rangeToClasses = [
         class={isGrouped
           ? "sr-only"
           : label
-            ? `font-medium text-base-500 ${
+            ? `font-medium text-gray-500 ${
                 size === "xs" || size === "sm"
                   ? "text-xs"
                   : size === "base"
@@ -179,7 +179,7 @@ const rangeToClasses = [
         {label || name || id || "Range"}
       </label>
       {hint && (
-        <span class={`text-base-400 ${
+        <span class={`text-gray-400 ${
           size === "xs" || size === "sm"
             ? "text-xs"
             : size === "base"
@@ -213,10 +213,10 @@ const rangeToClasses = [
             x-show="fromValue"
             type="button"
             @click="fromValue = ''"
-            class="text-base-400 hover:text-base-600 focus:outline-none"
+            class="text-gray-400 hover:text-gray-600 focus:outline-none"
             aria-label="Clear input"
           >
-            <X size="sm" class="text-base-500" />
+            <X size="sm" class="text-gray-500" />
           </button>
         </div>
       </div>
@@ -239,10 +239,10 @@ const rangeToClasses = [
             x-show="toValue"
             type="button"
             @click="toValue = ''"
-            class="text-base-400 hover:text-base-600 focus:outline-none"
+            class="text-gray-400 hover:text-gray-600 focus:outline-none"
             aria-label="Clear input"
           >
-            <X size="sm" class="text-base-500" />
+            <X size="sm" class="text-gray-500" />
           </button>
         </div>
       </div>
@@ -268,7 +268,7 @@ const rangeToClasses = [
     <div class={`flex justify-between items-baseline ${isGrouped ? '' : 'mb-1'}`}>
       <label for={id} class={
         isGrouped ? "sr-only" : label
-          ? `font-medium text-base-500 ${
+          ? `font-medium text-gray-500 ${
               size === "xs" || size === "sm"
                 ? "text-xs"
                 : size === "base"
@@ -281,7 +281,7 @@ const rangeToClasses = [
         {label || name || id || "Input"}
       </label>
       {hint && (
-        <span class={`text-base-400 ${
+        <span class={`text-gray-400 ${
           size === "xs" || size === "sm"
             ? "text-xs"
             : size === "base"
@@ -298,8 +298,8 @@ const rangeToClasses = [
       <template x-for="(digit, i) in digits" :key="i">
         <div :class="[
           'size-10 rounded-md text-center font-medium text-lg flex items-center justify-center transition-all',
-          'border bg-white text-base-500',
-          isFocused && value.length === i ? 'border-accent-500 ring-2 ring-accent-500' : 'border-base-300'
+          'border bg-white text-gray-500',
+          isFocused && value.length === i ? 'border-blue-500 ring-2 ring-blue-500' : 'border-gray-300'
         ]">
           <span x-text="digit"></span>
         </div>
@@ -334,7 +334,7 @@ const rangeToClasses = [
         class={isGrouped
           ? "sr-only"
           : label
-            ? `font-medium text-base-500 ${
+            ? `font-medium text-gray-500 ${
                 size === "xs" || size === "sm"
                   ? "text-xs"
                   : size === "base"
@@ -348,7 +348,7 @@ const rangeToClasses = [
         {label || name || id || "Input"}
       </label>
       {hint && (
-        <span class={`text-base-400 ${
+        <span class={`text-gray-400 ${
           size === "xs" || size === "sm"
             ? "text-xs"
             : size === "base"
@@ -367,16 +367,16 @@ const rangeToClasses = [
   {...(isPassword ? { 'x-data': '{ value: "", showPassword: false }' } : {})}
 >
   {prefix && (
-    <span class="absolute inset-y-0 left-0 flex items-center pl-3 select-none text-base-400">
+    <span class="absolute inset-y-0 left-0 flex items-center pl-3 select-none text-gray-400">
       {prefix}
     </span>
   )}
   {hasLeftIcon && (
     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-      {isSearch && iconPosition === "left" && <Search size="sm" class="text-base-500" />}
-      {isEmail && <Mail size="sm" class="text-base-500" />}
-      {isCreditCard && <CreditCard size="sm" class="text-base-500" />}
-      {isExpiry && <Calendar size="sm" class="text-base-500" />}
+      {isSearch && iconPosition === "left" && <Search size="sm" class="text-gray-500" />}
+      {isEmail && <Mail size="sm" class="text-gray-500" />}
+      {isCreditCard && <CreditCard size="sm" class="text-gray-500" />}
+      {isExpiry && <Calendar size="sm" class="text-gray-500" />}
     </div>
   )}
 
@@ -401,7 +401,7 @@ const rangeToClasses = [
       <button
         type="button"
         @click="showPassword = !showPassword"
-        class="text-base-500 focus:outline-none"
+        class="text-gray-500 focus:outline-none"
         tabindex="-1"
         aria-label="Toggle password visibility"
       >
@@ -414,10 +414,10 @@ const rangeToClasses = [
           x-show="value"
           type="button"
           @click="value = ''"
-          class="text-base-400 hover:text-base-600 focus:outline-none"
+          class="text-gray-400 hover:text-gray-600 focus:outline-none"
           aria-label="Clear input"
         >
-          <X size="sm" class="text-base-500" />
+          <X size="sm" class="text-gray-500" />
         </button>
       )}
     </div>
@@ -425,7 +425,7 @@ const rangeToClasses = [
 
   {isCVV && (
     <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-      <Lock size="sm" class="pointer-events-none text-base-500" />
+      <Lock size="sm" class="pointer-events-none text-gray-500" />
     </div>
   )}
 </div>

@@ -10,9 +10,9 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 
 // Parameters
 const { section, subsection, index } = Astro.params;
-const modules = import.meta.glob('@/components/oxbow/**/*.astro');
+const modules = import.meta.glob("@/components/oxbow/**/*.astro");
 const keys = Object.keys(modules);
-const sectionRegex = new RegExp(`${section}\/${subsection}\/.+\\.astro$`, 'i');
+const sectionRegex = new RegExp(`${section}\/${subsection}\/.+\\.astro$`, "i");
 const sectionKeys = keys.filter((k) => k.match(sectionRegex));
 sectionKeys.sort();
 const currentKey = sectionKeys[parseInt(index) - 1];
@@ -24,10 +24,15 @@ const freeComponent = componentModule?.freeComponent || false;
 
 const sectionLength = sectionKeys.length;
 const PreviewElement = parseInt(index) === 1 ? "div" : "a";
-const PreviewElementProps = parseInt(index) === 1 ? {} : { href: `/playground/${section}/${subsection}/${parseInt(index) - 1}` };
+const PreviewElementProps =
+  parseInt(index) === 1
+    ? {}
+    : { href: `/playground/${section}/${subsection}/${parseInt(index) - 1}` };
 const NextElement = parseInt(index) === sectionLength ? "div" : "a";
-const NextElementProps = parseInt(index) === sectionLength ? {} : { href: `/playground/${section}/${subsection}/${parseInt(index) + 1}` };
-
+const NextElementProps =
+  parseInt(index) === sectionLength
+    ? {}
+    : { href: `/playground/${section}/${subsection}/${parseInt(index) + 1}` };
 ---
 
 <!-- 
@@ -38,13 +43,13 @@ const NextElementProps = parseInt(index) === sectionLength ? {} : { href: `/play
   }
 </style> -->
 <BaseLayout>
-  <section class="border-t border-base-200">
-    <Wrapper variant="standard" class="lg:border-x lg:border-base-200">
+  <section class="border-t border-gray-200">
+    <Wrapper variant="standard" class="lg:border-x lg:border-gray-200">
       <div class="flex items-end justify-between w-full">
         <div class="flex flex-wrap items-center gap-2">
           <div class="flex items-center gap-2">
             <button
-              class="flex items-center text-sm gap-2 text-base-500 hover:text-base-900"
+              class="flex items-center text-sm gap-2 text-gray-500 hover:text-gray-900"
               onclick="history.back();"
             >
               <svg
@@ -62,30 +67,27 @@ const NextElementProps = parseInt(index) === sectionLength ? {} : { href: `/play
                   d="M15 6l-6 6l6 6"></path></svg
               >Go back</button
             >
-            <span aria-hidden="true" class="text-base-500">/</span>
+            <span aria-hidden="true" class="text-gray-500">/</span>
             <Text
               tag="h1"
               variant="textSM"
-              class="font-medium capitalize text-base-900"
+              class="font-medium capitalize text-gray-900"
             >
               {`${subsection.replace(/-/g, " ")} #${index.replace(/-/g, " ")}`}
             </Text>
           </div>
-          <span aria-hidden="true" class="hidden text-base-500 md:block">/</span
+          <span aria-hidden="true" class="hidden text-gray-500 md:block">/</span
           >
           {
             componentDescription && (
-              <Text tag="p" variant="textSM" class=" text-base-500">
+              <Text tag="p" variant="textSM" class=" text-gray-500">
                 {componentDescription}
               </Text>
             )
           }
         </div>
         <div>
-          <nav
-            class="relative z-0 inline-flex gap-1.5"
-            aria-label="Pagination"
-          >
+          <nav class="relative z-0 inline-flex gap-1.5" aria-label="Pagination">
             <PreviewElement {...PreviewElementProps}>
               <IconButton
                 disable={parseInt(index) === 1}
@@ -104,7 +106,7 @@ const NextElementProps = parseInt(index) === sectionLength ? {} : { href: `/play
                 variant="alternative"
                 size="xs"
               >
-              <ChevronRight size="sm" slot="icon" />
+                <ChevronRight size="sm" slot="icon" />
                 <span class="sr-only">Next</span>
               </IconButton>
             </NextElement>
@@ -113,14 +115,14 @@ const NextElementProps = parseInt(index) === sectionLength ? {} : { href: `/play
       </div>
     </Wrapper>
   </section>
-  <section class="border-t border-base-200">
-    <Wrapper variant="wide" class="py-8 2xl:border-x 2xl:border-base-200">
+  <section class="border-t border-gray-200">
+    <Wrapper variant="wide" class="py-8 2xl:border-x 2xl:border-gray-200">
       <Playground
         componentIndex={parseInt(index)}
-        componentPath={currentKey ? currentKey.replace(/^\//, '') : ''}
+        componentPath={currentKey ? currentKey.replace(/^\//, "") : ""}
         playgroundRef={`${section}-${subsection}-${index}`}
         freeComponent={freeComponent}
-        initialTabIsCode={Astro.url.searchParams.get('tab') === 'code'}
+        initialTabIsCode={Astro.url.searchParams.get("tab") === "code"}
       >
         <componentModule.default />
       </Playground>
@@ -129,10 +131,10 @@ const NextElementProps = parseInt(index) === sectionLength ? {} : { href: `/play
 </BaseLayout>
 <script is:inline>
   // Adjust iframe height when the preview posts its size
-  window.addEventListener('message', (e) => {
+  window.addEventListener("message", (e) => {
     const d = e.data;
-    if (!d || d.type !== 'oxbow-iframe-height') return;
+    if (!d || d.type !== "oxbow-iframe-height") return;
     const iframe = document.getElementById(d.id);
-    if (iframe) iframe.style.height = (d.height || 0) + 'px';
+    if (iframe) iframe.style.height = (d.height || 0) + "px";
   });
 </script>

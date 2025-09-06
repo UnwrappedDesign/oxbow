@@ -58,43 +58,67 @@ const groupedEntries = [
   description="Browse all Oxbow UI components, elements, and layouts for marketing, application, and ecommerce UIs."
   image="/images/OpenGraph/twitter.png"
 >
-  <StickyNav />
 
-  <section class="divide-y divide-base-200">
-    {
-      groupedEntries.map(({ id, title, description, groups }) => (
-        <section id={id}>
-          <Wrapper
-            variant="standard"
-            class="border-x lg:border-x lg:border-base-200"
-          >
+  <section
+    class="divide-y divide-zinc-200 border-t border-zinc-200"
+    x-data="{ tab: 'marketing', setTab(id){ this.tab = id; history.replaceState({}, '', `#${id}`) } }"
+    x-init="(() => { const id = location.hash?.slice(1); if (id) tab = id })()"
+  >
+  <Wrapper variant="standard" class="lg:border-x lg:border-zinc-200">
+      
+      <nav class="relative flex  space-x-2 bg-zinc-200/70 w-fit p-1 rounded-lg" role="tablist" aria-label="Components sections">
+        {groupedEntries.map(({ id, title }) => (
+          <a
+            role="tab"
+            href={`#${id}`}
+            data-id={id}
+            @click.prevent="setTab($el.dataset.id)"
+            :aria-selected={`tab === '${id}'`}
+            class="px-2 py-1.5 rounded-md  nav-link text-xs transition-colors "
+            :class={`tab === '${id}' ? 'text-black  bg-white  ' : 'text-zinc-700  hover:text-black hover:border-blue-300'`}
+          >{title}</a>
+        ))}
+      </nav>
+    </Wrapper>
+
+    {groupedEntries.map(({ id, title, description, groups }) => {
+      const firstGroup = groups[0]?.id || '';
+      return (
+        <section
+          id={id}
+          x-show={`tab === '${id}'`}
+          x-cloak
+          style={id === 'marketing' ? '' : 'display:none'}
+          x-data={`{ inner: '${firstGroup}', setInner(id){ this.inner = id } }`}
+        >
+          <Wrapper variant="standard" class="border-x lg:border-x lg:border-zinc-200">
             <section class="flex flex-col scroll-mt-24">
               <div>
-                <div class="py-8 pb-5 grid grid-cols-1 lg:grid-cols-4 gap-4">
-                  <Text
-                    tag="h3"
-                    variant="textbase"
-                    class="font-medium text-base-900"
-                  >
-                    {title}
-                  </Text>
-                  <Text
-                    tag="p"
-                    variant="textBase"
-                    class=" text-base-500 lg:col-span-3"
-                  >
-                    {description}
-                  </Text>
-                </div>
-                <div class="flex flex-col mt-8 gap-12">
-                  {groups.map(({ id: groupId, label, data }) => (
-                    <div class="flex flex-col gap-8 scroll-mt-24" id={groupId}>
-                      <Text
-                        variant="textBase"
-                        class="font-medium text-base-500"
-                      >
-                        {label}
-                      </Text>
+                  <Text tag="p" variant="textBase" class=" text-zinc-500 lg:col-span-3">{description}</Text>
+               
+                {/* Nested tabs for groups */}
+                <nav class="flex items-center gap-2 mt-12 bg-zinc-200/70 w-fit p-1 rounded-lg" role="tablist" aria-label={`${title} groups`}>
+                  {groups.map(({ id: groupId, label }) => (
+                    <a
+                      role="tab"
+                      href={`#${id}-${groupId}`}
+                      data-id={groupId}
+                      @click.prevent="setInner($el.dataset.id)"
+                      class="px-2 py-1.5 rounded-md  text-xs transition-colors"
+                      :class={`inner === '${groupId}' ? 'text-black  bg-white  ' : 'text-zinc-700  hover:text-black hover:border-blue-300'`}
+                    >{label}</a>
+                  ))}
+                </nav>
+
+                <div class="mt-8">
+                  {groups.map(({ id: groupId, label, data }, idx) => (
+                    <div
+                      id={groupId}
+                      x-show={`inner === '${groupId}'`}
+                      x-cloak
+                      style={idx === 0 ? '' : 'display:none'}
+                      class="flex flex-col gap-6"
+                    >
                       <EntryStructure entries={data} />
                     </div>
                   ))}
@@ -103,7 +127,7 @@ const groupedEntries = [
             </section>
           </Wrapper>
         </section>
-      ))
-    }
+      );
+    })}
   </section>
 </BaseLayout>

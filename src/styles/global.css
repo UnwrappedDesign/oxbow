@@ -8,10 +8,10 @@
   /* Typography */
   --font-sans: "Geist", sans-serif;
   --font-mono: "Geist Mono", monospace;
-  /* Accents */
-  --color-accent-light: #60beff;
-  --color-accent: #1da8ff;
-  --color-accent-dark: #007bff;
+  /* blues */
+  --color-blue-light: #60beff;
+  --color-blue: #1da8ff;
+  --color-blue-dark: #007bff;
   --color-green-light: #33cd8e;
   --color-green: #00c172;
   --color-green-dark: #00a651;
@@ -22,34 +22,7 @@
   --color-orange: #fa5925;
   --color-orange-dark: #fd4202;
   /* Colors */
-  --color-accent-25: #f5fbff;
-  --color-accent-50: oklch(95.82% 0.018 269.09);
-  --color-accent-100: oklch(90.6% 0.042 266.32);
-  --color-accent-200: oklch(82.18% 0.082 266.28);
-  --color-accent-300: oklch(72.97% 0.129 265.27);
-  --color-accent-400: oklch(64.02% 0.178 264.69);
-  --color-accent-500: oklch(56.4% 0.222 263.67);
-  --color-accent-600: oklch(47.87% 0.229 263.16);
-  --color-accent-700: oklch(39.32% 0.184 263.21);
-  --color-accent-800: oklch(30.16% 0.134 263.02);
-  --color-accent-900: oklch(19.65% 0.074 262.38);
-  --color-accent-950: oklch(14.72% 0.045 256.86);
-  --color-accent-1000: #1a2551;
-  --color-accent-1100: #172148;
-  --color-accent-1200: #141d40;
-  --color-accent-1300: #0f1a3a;
-  --color-accent-1400: #0a142e;
-  --color-base-50: oklch(0.985 0 0);
-  --color-base-100: oklch(0.97 0 0);
-  --color-base-200: oklch(0.922 0 0);
-  --color-base-300: oklch(0.87 0 0);
-  --color-base-400: oklch(0.708 0 0);
-  --color-base-500: oklch(0.556 0 0);
-  --color-base-600: oklch(0.439 0 0);
-  --color-base-700: oklch(0.371 0 0);
-  --color-base-800: oklch(0.269 0 0);
-  --color-base-900: oklch(0.205 0 0);
-  --color-base-950: oklch(0.145 0 0);
+
   --shadow-normal: rgba(14, 63, 126, 0.04) 0px 0px 0px 1px,
     rgba(42, 51, 69, 0.04) 0px 1px 1px -0.5px,
     rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px,
@@ -68,16 +41,16 @@
 :root {
   font-family: "Geist", sans-serif;
   font-variant-numeric: tabular-nums;
-  --astro-code-foreground: var(--color-base-00);
-  --astro-code-color-text: var(--color-base-300);
-  --astro-code-token-link: var(--color-accent-dark);
-  --astro-code-token-comment: var(--color-base-300);
-  --astro-code-token-string: var(--color-accent-light);
+  --astro-code-foreground: var(--color-gray-00);
+  --astro-code-color-text: var(--color-gray-300);
+  --astro-code-token-link: var(--color-blue-dark);
+  --astro-code-token-comment: var(--color-gray-300);
+  --astro-code-token-string: var(--color-blue-light);
   --astro-code-token-constant: var(--color-orange);
   --astro-code-background: white;
   --astro-code-token-keyword: var(--color-yellow-dark);
-  --astro-code-token-function: var(--color-accent);
-  --astro-code-token-parameter: var(--color-accent-dark);
+  --astro-code-token-function: var(--color-blue);
+  --astro-code-token-parameter: var(--color-blue-dark);
   --astro-code-token-punctuation: var(--color-orange-dark);
   --astro-code-token-string-expression: var(--color-green-dark);
   --astro-code-token-bold: inherit;
@@ -88,12 +61,11 @@
   --astro-code-token-underline: underline;
 }
 
-/* Hidding emulators*/
-.firebase-emulator-warning {
-  color: transparent !important;
-  border: transparent !important;
-  background-color: transparent !important;
-  font-size: 0.8rem !important;
+/* Hide Firebase emulator warning banners */
+.firebase-emulator-warning,
+.firegray-emulator-warning {
+  display: none !important;
+  visibility: hidden !important;
 }
 /* Styling  Ninja Keys */
 ninja-keys::part(ninja-input) {
@@ -108,7 +80,7 @@ ninja-keys {
   z-index: 100;
 }
 ninja-keys::part(ninja-input) {
-  color: var(--color-accent-950);
+  color: var(--color-blue-950);
   margin-left: 0 !important;
   margin-right: 0 !important;
 }
@@ -117,7 +89,7 @@ ninja-keys::part(ninja-action) {
   font-weight: 500;
 }
 ninja-keys::part(ninja-selected) {
-  border-left: 4px solid var(--color-accent-600);
+  border-left: 4px solid var(--color-blue-600);
 }
 code {
   counter-reset: step;
@@ -150,6 +122,5 @@ select {
   -moz-appearance: none;    /* Firefox */
   appearance: none;         /* estandar */
 }
-
 
 
