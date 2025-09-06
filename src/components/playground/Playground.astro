@@ -26,8 +26,8 @@ const userThemeColor = getUserThemeColor(user, 'blue', Astro);
 const code = canSeeCodeValue ? await Astro.slots.render("default") : '';
 
 let ppcode = '';
-if (canSeeCodeValue && initialTabIsCode) {
-  // Format only when we render the code tab on the server
+if (canSeeCodeValue) {
+  // Always format so the Code tab shows pretty output by default
   ppcode = await prettier.format(code, { parser: 'html' });
 
   // Replace accent color classes with user's theme color if a user is logged in
@@ -38,24 +38,14 @@ if (canSeeCodeValue && initialTabIsCode) {
   const fromAccentRegex = /(class=["'].*?)from-accent-(\d+)(.*?["'])/g;
   const toAccentRegex = /(class=["'].*?)to-accent-(\d+)(.*?["'])/g;
 
-  // Replace background accent classes
-  ppcode = ppcode.replace(accentRegex, `$1bg-${userThemeColor}-$2$3`);
-  
-  // Replace text accent classes
-  ppcode = ppcode.replace(textAccentRegex, `$1text-${userThemeColor}-$2$3`);
-  
-  // Replace border accent classes
-  ppcode = ppcode.replace(borderAccentRegex, `$1border-${userThemeColor}-$2$3`);
-  
-  // Replace hover accent classes
-  ppcode = ppcode.replace(hoverRegex, `$1hover:$2-${userThemeColor}-$3$4`);
-  
-  // Replace from-accent (gradient) classes
-  ppcode = ppcode.replace(fromAccentRegex, `$1from-${userThemeColor}-$2$3`);
-  
-  // Replace to-accent (gradient) classes
-  ppcode = ppcode.replace(toAccentRegex, `$1to-${userThemeColor}-$2$3`);
-
+  // Apply all replacements in sequence
+  ppcode = ppcode
+    .replace(accentRegex, `$1bg-${userThemeColor}-$2$3`)
+    .replace(textAccentRegex, `$1text-${userThemeColor}-$2$3`)
+    .replace(borderAccentRegex, `$1border-${userThemeColor}-$2$3`)
+    .replace(hoverRegex, `$1hover:$2-${userThemeColor}-$3$4`)
+    .replace(fromAccentRegex, `$1from-${userThemeColor}-$2$3`)
+    .replace(toAccentRegex, `$1to-${userThemeColor}-$2$3`);
 }
 
 const theme = ``;
@@ -189,7 +179,7 @@ const theme = ``;
         x-ref="code"
         class="flex-grow p-4 overflow-auto text-xs bg-white size-full selection:bg-base-100"
       >
-        <Code code={initialTabIsCode ? ppcode : code} lang="html" theme="css-variables" class="scrollbar-hide"/>
+        <Code code={ppcode} lang="html" theme="css-variables" class="scrollbar-hide"/>
       </div>
     )}
   </div>
