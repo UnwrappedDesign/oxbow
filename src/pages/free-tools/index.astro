@@ -8,36 +8,50 @@ import MainHero from "@/components/fundations/containers/MainHero.astro";
 const site = (Astro.site && Astro.site.toString()) || "https://oxbowui.com";
 const list = [
   {
-    name: 'Tailwind CSS Grid Generator',
-    path: '/free-tools/tailwind-css-grid-generator',
-    description: 'Generate responsive Tailwind CSS grid layouts and copy classes.'
+    name: "Tailwind CSS Grid Generator",
+    path: "/free-tools/tailwind-css-grid-generator",
+    description:
+      "Generate responsive Tailwind CSS grid layouts and copy classes.",
   },
   {
-    name: 'Tailwind CSS Gradient Generator',
-    path: '/free-tools/tailwind-css-gradient-generator',
-    description: 'Build smooth gradients and get the Tailwind classes instantly.'
+    name: "Tailwind CSS Gradient Generator",
+    path: "/free-tools/tailwind-css-gradient-generator",
+    description:
+      "Build smooth gradients and get the Tailwind classes instantly.",
   },
   {
-    name: 'Tailwind CSS Color Palette',
-    path: '/free-tools/tailwind-css-color-palette',
-    description: 'Browse all Tailwind colors and copy utility classes quickly.'
-  }
+    name: "Tailwind CSS Color Palette",
+    path: "/free-tools/tailwind-css-color-palette",
+    description: "Browse all Tailwind colors and copy utility classes quickly.",
+  },
+  {
+    name: "Tailwind CSS Cheat Sheet",
+    path: "/free-tools/tailwind-css-cheat-sheet",
+    description:
+      "Search and copy Tailwind classes across colors, spacing, layout, and more.",
+  },
 ];
 const itemListStructured = {
-  '@context': 'https://schema.org',
-  '@type': 'ItemList',
+  "@context": "https://schema.org",
+  "@type": "ItemList",
   itemListElement: list.map((item, index) => ({
-    '@type': 'ListItem',
+    "@type": "ListItem",
     position: index + 1,
     url: new URL(item.path, site).toString(),
     name: item.name,
     description: item.description,
   })),
 };
-const title = 'Free Tailwind CSS Tools — Oxbow UI';
-const description = 'Handy Tailwind CSS tools: grid generator, gradient generator, and full color palette browser. Fast, simple, and free.';
+const title = "Free Tailwind CSS Tools — Oxbow UI";
+const description =
+  "Handy Tailwind CSS tools: grid generator, gradient generator, and full color palette browser. Fast, simple, and free.";
 ---
-<BaseLayout title={title} description={description} structuredData={itemListStructured}>
+
+<BaseLayout
+  title={title}
+  description={description}
+  structuredData={itemListStructured}
+>
   <MainHero
     showAlpineTailwind={false}
     title="Practical tools built with Tailwind CSS"
@@ -45,11 +59,13 @@ const description = 'Handy Tailwind CSS tools: grid generator, gradient generato
   />
   <section class="border-t border-base-200">
     <Wrapper variant="standard" class="lg:border-x lg:border-base-200">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <div
           class="relative flex flex-col justify-start h-full p-6 overflow-hidden bg-white gap-4 rounded-xl shadow-oxbow sm:p-4 sm:pb-5 lg:p-6 group"
         >
-          <a class="absolute inset-0 z-10" href="/free-tools/tailwind-css-grid-generator"></a>
+          <a
+            class="absolute inset-0 z-10"
+            href="/free-tools/tailwind-css-grid-generator"></a>
           <div>
             <Text tag="h3" variant="textBase" class="font-medium text-base-900">
               Tailwind CSS Grid Generator
@@ -67,7 +83,9 @@ const description = 'Handy Tailwind CSS tools: grid generator, gradient generato
         <div
           class="relative flex flex-col justify-start h-full p-6 overflow-hidden bg-white gap-4 rounded-xl shadow-oxbow sm:p-4 sm:pb-5 lg:p-6 group"
         >
-          <a class="absolute inset-0 z-10" href="/free-tools/tailwind-css-gradient-generator"></a>
+          <a
+            class="absolute inset-0 z-10"
+            href="/free-tools/tailwind-css-gradient-generator"></a>
           <div>
             <Text tag="h3" variant="textBase" class="font-medium text-base-900">
               Tailwind CSS Gradient Generator
@@ -85,11 +103,40 @@ const description = 'Handy Tailwind CSS tools: grid generator, gradient generato
         <div
           class="relative flex flex-col justify-start h-full p-6 overflow-hidden bg-white gap-4 rounded-xl shadow-oxbow sm:p-4 sm:pb-5 lg:p-6 group"
         >
-          <a class="absolute inset-0 z-10" href="/free-tools/tailwind-css-color-palette"></a>
+          <a
+            class="absolute inset-0 z-10"
+            href="/free-tools/tailwind-css-color-palette"></a>
           <div>
-            <Text tag="h3" variant="textBase" class="font-medium text-base-900">Tailwind CSS Color Palette</Text>
-            <Text tag="p" variant="textSM" class="mt-2 text-base-500 text-balance">
-              Explore every Tailwind color and click to copy the utility class for quick use.
+            <Text tag="h3" variant="textBase" class="font-medium text-base-900"
+              >Tailwind CSS Color Palette</Text
+            >
+            <Text
+              tag="p"
+              variant="textSM"
+              class="mt-2 text-base-500 text-balance"
+            >
+              Explore every Tailwind color and click to copy the utility class
+              for quick use.
+            </Text>
+          </div>
+        </div>
+        <div
+          class="relative flex flex-col justify-start h-full p-6 overflow-hidden bg-white gap-4 rounded-xl shadow-oxbow sm:p-4 sm:pb-5 lg:p-6 group"
+        >
+          <a
+            class="absolute inset-0 z-10"
+            href="/free-tools/tailwind-css-cheat-sheet"></a>
+          <div>
+            <Text tag="h3" variant="textBase" class="font-medium text-base-900">
+              Tailwind CSS Cheat Sheet
+            </Text>
+            <Text
+              tag="p"
+              variant="textSM"
+              class="mt-2 text-base-500 text-balance"
+            >
+              Search and copy Tailwind classes across colors, spacing, layout,
+              and more.
             </Text>
           </div>
         </div>

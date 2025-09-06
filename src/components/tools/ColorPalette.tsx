@@ -53,7 +53,7 @@ export default function ColorPalette() {
                     key={label}
                     onClick={() => copy(toCopy)}
                     title={`Click to copy: ${toCopy}`}
-                    className={`relative h-14 rounded-md outline outline-1 outline-base-200 flex items-end justify-between p-2 text-[11px] font-mono ${cls} text-white/90`}
+                    className={`relative h-14 rounded-md  flex items-end justify-between p-2 text-[11px] font-mono ${cls} text-white/90`}
                   >
                     <span className="capitalize mix-blend-difference">{shade}</span>
                     {copied === toCopy && (

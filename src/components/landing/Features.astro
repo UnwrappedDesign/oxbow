@@ -2,157 +2,76 @@
 // Fundations
 import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-// Widgets
-import Stack from "@/components/landing/widgets/Stack.astro";
-import Colors from "@/components/landing/widgets/Colors.astro";
-import Devices from "@/components/landing/widgets/Devices.astro";
-import Components from "@/components/landing/widgets/Components.astro";
-// Widgets
-import Marketing from "@/components/landing/widgets/Marketing.astro";
-import Application from "@/components/landing/widgets/Application.astro";
-import Ecommerce from "@/components/landing/widgets/Ecommerce.astro";
+const features = [
+  {
+    title: "Components",
+    description:
+      "Over 400 components designed for clarity and ease. Accessible, flexible, and built to adapt to your needs.",
+  },
+  {
+    title: "Stack",
+    description:
+      "Prebuilt blocks designed for speed and clarity—crafted with Tailwind and Alpine for efficient, maintainable projects.",
+  },
+  {
+    title: "Responsive Design",
+    description:
+      "Designed to look great on any screen size—from small phones to large desktop monitors.",
+  },
+  {
+    title: "Pick your color",
+    description:
+      "Easily apply your brand colors across all components for a consistent, professional look.",
+  },
+  {
+    category: "Marketing",
+    title: "Landing pages",
+    description:
+      "Includes all the essential sections—hero, features, pricing, and more—for building effective landing pages.",
+  },
+  {
+    category: "Application",
+    title: "Building a webapp?",
+    description:
+      "Navigation, buttons, forms, and layouts—built to help your UI look thoughtful and well-designed.",
+  },
+  {
+    category: "Ecommerce",
+    title: "Got a store?",
+    description:
+      "Carts, checkouts, and promo sections—everything you need to sell, minus the product itself.",
+  },
+];
 ---
 
 <section class="border-t border-base-200">
   <Wrapper variant="standard" class="lg:border-x lg:border-base-200">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <div
-        class="relative flex flex-col justify-start h-full p-6 overflow-hidden bg-white gap-4 rounded-xl shadow-oxbow sm:p-4 sm:pb-5 lg:p-6 group lg:col-span-2"
-      >
-        <div>
-          <Text tag="h3" variant="textLG" class="font-medium text-base-900">
-            Components
-          </Text>
-          <Text
-            tag="p"
-            variant="textSM"
-            class="mt-2 text-base-500 text-balance lg:text-base"
-          >
-            Over 400 components designed for clarity and ease. Accessible,
-            flexible, and built to adapt to your needs.
-          </Text>
-        </div>
-      </div>
-      <div
-        class="relative flex flex-col justify-start h-full p-6 overflow-hidden bg-white gap-4 rounded-xl shadow-oxbow sm:p-4 sm:pb-5 lg:p-6 group"
-      >
-        <div>
-          <Text tag="h3" variant="textLG" class="font-medium text-base-900">
-            Stack
-          </Text>
-          <Text
-            tag="p"
-            variant="textSM"
-            class="mt-2 text-base-500 text-balance lg:text-base"
-          >
-            Prebuilt blocks designed for speed and clarity—crafted with Tailwind
-            and Alpine for efficient, maintainable projects.
-          </Text>
-        </div>
-      </div>
-      <div
-        class="relative flex flex-col justify-start h-full p-6 overflow-hidden bg-white gap-4 rounded-xl shadow-oxbow sm:p-4 sm:pb-5 lg:p-6 group"
-      >
-        <div>
-          <Text tag="h3" variant="textLG" class="font-medium text-base-900">
-            Responsive Design
-          </Text>
-          <Text
-            tag="p"
-            variant="textSM"
-            class="mt-2 text-base-500 text-balance lg:text-base"
-          >
-            Designed to look great on any screen size—from small phones to large
-            desktop monitors.
-          </Text>
-        </div>
-      </div>
-      <div
-        class="relative flex flex-col justify-start h-full p-6 overflow-hidden bg-white gap-4 rounded-xl shadow-oxbow sm:p-4 sm:pb-5 lg:p-6 group lg:col-span-2"
-      >
-        <div>
-          <Text tag="h3" variant="textLG" class="font-medium text-base-900">
-            Pick your color
-          </Text>
-          <Text
-            tag="p"
-            variant="textSM"
-            class="mt-2 text-base-500 text-balance lg:text-base"
-          >
-            Easily apply your brand colors across all components for a
-            consistent, professional look.
-          </Text>
-        </div>
-      </div>
-      <div
-        class="relative flex flex-col justify-start h-full p-6 overflow-hidden bg-white gap-4 rounded-xl shadow-oxbow sm:p-4 sm:pb-5 lg:p-6 group"
-      >
-        <div>
-          <span class="text-sm text-base-500 text-balance"> Marketing </span>
-          <Text
-            tag="h3"
-            variant="textBase"
-            class="mt-4 font-medium text-base-900"
-          >
-            Landing pages
-          </Text>
-          <Text
-            tag="p"
-            variant="textSM"
-            class="mt-2 text-base-500 text-balance lg:text-base"
-          >
-            Includes all the essential sections—hero, features, pricing, and
-            more—for building effective landing pages.
-          </Text>
-        </div>
-       
-      </div>
-      <div
-        class="relative flex flex-col justify-start h-full p-6 overflow-hidden bg-white gap-4 rounded-xl shadow-oxbow sm:p-4 sm:pb-5 lg:p-6 group"
-      >
-        <div>
-          <span class="text-sm text-base-500 text-balance"> Application </span>
-          <Text
-            tag="h3"
-            variant="textBase"
-            class="mt-4 font-medium text-base-900"
-          >
-            Building a webapp?
-          </Text>
-          <Text
-            tag="p"
-            variant="textSM"
-            class="mt-2 text-base-500 text-balance lg:text-base"
-          >
-            Navigation, buttons, forms, and layouts—built to help your UI look
-            thoughtful and well-designed.
-          </Text>
-        </div>
-        
-      </div>
-      <div
-        class="relative flex flex-col justify-start h-full p-6 overflow-hidden bg-white gap-4 rounded-xl shadow-oxbow sm:p-4 sm:pb-5 lg:p-6 group"
-      >
-        <div>
-          <span class="text-sm text-base-500 text-balance"> Ecommerce </span>
-          <Text
-            tag="h3"
-            variant="textBase"
-            class="mt-4 font-medium text-base-900"
-          >
-            Got a store?
-          </Text>
-          <Text
-            tag="p"
-            variant="textSM"
-            class="mt-2 text-base-500 text-balance lg:text-base"
-          >
-            Carts, checkouts, and promo sections—everything you need to sell,
-            minus the product itself.
-          </Text>
-        </div>
-       
-      </div>
+    <div
+      class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-u gap-y-12 text-center"
+    >
+      {
+        features.map((item) => (
+          <div class="p-4">
+            <div>
+              <Text
+                tag="h3"
+                variant="textSM"
+                class="font-medium  text-base-900"
+              >
+                {item.title}
+              </Text>
+              <Text
+                tag="p"
+                variant="textSM"
+                class="mt-2 text-base-500 lg:col-span-2"
+              >
+                {item.description}
+              </Text>
+            </div>
+          </div>
+        ))
+      }
     </div>
   </Wrapper>
-</section>
+</section>;
+

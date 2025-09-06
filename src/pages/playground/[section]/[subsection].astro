@@ -8,7 +8,9 @@ import { formatDistanceToNowStrict } from "date-fns";
 import updates from "@/data/updates.json";
 
 const { section, subsection } = Astro.params;
-const modules = import.meta.glob('@/components/oxbow/**/*.astro', { eager: true });
+const modules = import.meta.glob("@/components/oxbow/**/*.astro", {
+  eager: true,
+});
 const keys = Object.keys(modules);
 const sectionRegex = new RegExp(`${section}/${subsection}/.+\\.astro$`, "i");
 
