@@ -218,7 +218,7 @@ const theme = ``;
       <div
         x-show="tab === 'code'"
         x-ref="code"
-        class="flex-grow p-4 overflow-auto text-xs bg-sand-100 size-full selection:bg-zinc-100"
+        class="code-pane flex-grow p-4 text-xs bg-sand-100 size-full selection:bg-zinc-100"
       >
         <Code code={ppcode} lang="html" theme="css-variables" class="scrollbar-hide"/>
       </div>
@@ -226,6 +226,19 @@ const theme = ``;
   </div>
   </div>
 </section>
+
+<style>
+  :global(.code-pane pre) {
+    white-space: pre;
+    overflow-x: auto;
+    overflow-y: hidden;
+    word-break: normal;
+    word-wrap: normal;
+  }
+  :global(.code-pane code) {
+    white-space: inherit;
+  }
+</style>
 
 <script define:vars={{ userThemeColor }}>
   // Set initial theme based on user preference from claims/cookies

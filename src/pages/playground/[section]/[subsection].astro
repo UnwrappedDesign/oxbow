@@ -5,6 +5,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
+import PlaygroundCard from "@/components/playground/PlaygroundCard.astro";
 import GridIcon from "@/components/fundations/icons/Grid.astro";
 import ListIcon from "@/components/fundations/icons/List.astro";
 import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
@@ -41,10 +42,12 @@ const sectionComponents = keys
       .replace(".astro", ".png")}`;
     const mod: any = (modules as any)[k] || {};
     return {
-      file: k,
+      key: k,
       filePath,
       imagePath,
       description: mod.description || "",
+      free: !!mod.freeComponent,
+      component: mod?.default,
     };
   });
 
@@ -203,66 +206,41 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
     <Wrapper variant="standard" class="lg:border-x lg:border-zinc-200">
       <div :class="layout === 'grid' ? 'masonry-grid' : 'flex flex-col gap-6'">
         {
-          sectionComponents.map(
-            ({ filePath, imagePath, description }, index) => {
-              if (!images[imagePath]) return null;
+          sectionComponents.map(({ key, filePath, imagePath, description, free, component: C }, index) => {
+            const pathNoAstro = filePath.replace('.astro','');
+            const isSmall = /\/(buttons|button-icon|badges|breadcrumbs|checkboxes|inputs|input-groups|radiogroups|select|toggles|typography)\//i.test(pathNoAstro);
 
-              const updatedAt = new Date(updates[filePath] * 1000);
-              const isUpdatedLastWeek = updatedAt > SEVEN_DAYS_AGO;
-
+            if (isSmall && C) {
               return (
-                <a
-                  href={`/playground/${filePath.replace(".astro", "")}`}
-                  class="relative flex flex-col group"
-                  :class="layout === 'grid' ? 'masonry-item' : ''"
-                >
-                  <div class="flex flex-col sr-only gap-1">
-                    {isUpdatedLastWeek && (
-                      <Text
-                        tag="p"
-                        variant="textXS"
-                        class="relative flex items-center gap-1 text-zinc-400"
-                      >
-                        Updated{" "}
-                        {formatDistanceToNowStrict(updatedAt, {
-                          unit: "day",
-                          roundingMethod: "ceil",
-                        })}{" "}
-                        ago
-                      </Text>
-                    )}
-                    <div class="flex items-center gap-2">
-                      <Text
-                        tag="p"
-                        variant="textXS"
-                        class="flex flex-wrap items-center font-medium  text-zinc-500 group-hover:text-zinc-600 gap-1"
-                      >
-                        <span>{(index + 1).toString().padStart(2, "0")}.</span>
-                        <span class="capitalize sr-only">
-                          {" "}
-                          {subsection.replace(/-/g, " ")}
-                        </span>
-
-                        {description.replace(/^./, (c) => c.toUpperCase())}
-                        {!user && index === 0 && (
-                          <span class="text-xs text-zinc-900">Free Demo</span>
-                        )}
-                      </Text>
-                    </div>
-                  </div>
-                  <div class="mt-2 overflow-hidden bg-white rounded-lg ">
-                    <Image
-                      width={1000}
-                      height={1000}
-                      src={images[imagePath]() || "/placeholder.png"}
-                      alt={`${subsection} preview ${index + 1}`}
-                      class="object-cover object-top "
-                    />
-                  </div>
-                </a>
+                <div class="masonry-item">
+                  <PlaygroundCard componentIndex={index + 1} componentPath={`${pathNoAstro}.astro`} freeComponent={free}>
+                    <C />
+                  </PlaygroundCard>
+                  {description && (
+                    <Text tag="p" variant="textSM" class="mt-2 text-zinc-500">{description}</Text>
+                  )}
+                </div>
               );
             }
-          )
+
+            if (!images[imagePath]) return null;
+            const updatedAt = new Date(updates[filePath] * 1000);
+            const isUpdatedLastWeek = updatedAt > SEVEN_DAYS_AGO;
+            return (
+              <a href={`/playground/${pathNoAstro}`} class="relative flex flex-col group" :class="layout === 'grid' ? 'masonry-item' : ''">
+                <div class="flex flex-col sr-only gap-1">
+                  {isUpdatedLastWeek && (
+                    <Text tag="p" variant="textXS" class="relative flex items-center gap-1 text-zinc-400">
+                      Updated {formatDistanceToNowStrict(updatedAt, { unit: 'day', roundingMethod: 'ceil' })} ago
+                    </Text>
+                  )}
+                </div>
+                <div class="mt-2 overflow-hidden bg-white rounded-lg ">
+                  <Image width={1000} height={1000} src={images[imagePath]() || "/placeholder.png"} alt={`${subsection} preview ${index + 1}`} class="object-cover object-top " />
+                </div>
+              </a>
+            );
+          })
         }
       </div>
     </Wrapper>

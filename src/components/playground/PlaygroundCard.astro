@@ -1,0 +1,105 @@
+---
+// Compact playground card for small components rendered in grids
+import { Code } from "astro:components";
+import * as prettier from "prettier";
+import Button from "@/components/fundations/buttons/Button.astro";
+import { canSeeCode } from "@/utils/canSeeCode";
+import { getUserThemeColor } from "@/utils/getUserTheme";
+
+interface Props {
+  componentIndex: number;
+  componentPath: string; // like components/oxbow/application/buttons/01.astro
+  freeComponent?: boolean;
+}
+const { componentIndex, componentPath, freeComponent = false } = Astro.props as Props;
+const user = Astro.locals.user;
+const canSee = canSeeCode(user, freeComponent);
+const userThemeColor = getUserThemeColor(user, 'blue', Astro);
+
+const slotCode = canSee ? await Astro.slots.render("default") : '';
+
+// Extract copy region using the same convention as Playground
+let code = '';
+if (canSee) {
+  const startMarker = /<!--\s*copy:start\s*-->/i;
+  const endMarker = /<!--\s*copy:end\s*-->/i;
+  if (startMarker.test(slotCode) && endMarker.test(slotCode)) {
+    const start = slotCode.search(startMarker);
+    const afterStart = slotCode.slice(start).replace(startMarker, '');
+    code = afterStart.split(endMarker)[0] || '';
+  }
+  if (!code) {
+    // Typography special-case: copy just <Text>...</Text>
+    if (/\/typography\//i.test(componentPath)) {
+      const m = slotCode.match(/<Text[\s\S]*?<\/Text>/);
+      if (m) code = m[0];
+    }
+  }
+  if (!code) {
+    // Light wrapper strip
+    let s = slotCode;
+    s = s.replace(/^\s*<section[^>]*>/i, '').replace(/<\/section>\s*$/i, '');
+    s = s.replace(/^\s*<div[^>]*>/i, '').replace(/<\/div>\s*$/i, '');
+    code = s || slotCode;
+  }
+}
+
+let ppcode = '';
+if (canSee) {
+  ppcode = await prettier.format(code, { parser: 'html' });
+  const accentRegex = /(class=["'].*?)bg-accent-(\d+)(.*?["'])/g;
+  const textAccentRegex = /(class=["'].*?)text-accent-(\d+)(.*?["'])/g;
+  const borderAccentRegex = /(class=["'].*?)border-accent-(\d+)(.*?["'])/g;
+  const hoverRegex = /(class=["'].*?)hover:([^-]+)-accent-(\d+)(.*?["'])/g;
+  const fromAccentRegex = /(class=["'].*?)from-accent-(\d+)(.*?["'])/g;
+  const toAccentRegex = /(class=["'].*?)to-accent-(\d+)(.*?["'])/g;
+  ppcode = ppcode
+    .replace(accentRegex, `$1bg-${userThemeColor}-$2$3`)
+    .replace(textAccentRegex, `$1text-${userThemeColor}-$2$3`)
+    .replace(borderAccentRegex, `$1border-${userThemeColor}-$2$3`)
+    .replace(hoverRegex, `$1hover:$2-${userThemeColor}-$3$4`)
+    .replace(fromAccentRegex, `$1from-${userThemeColor}-$2$3`)
+    .replace(toAccentRegex, `$1to-${userThemeColor}-$2$3`);
+}
+---
+<section x-data="{ tab: 'preview', copied: false }" class="rounded-xl shadow-oxbow bg-white overflow-hidden isolate flex flex-col h-[460px]">
+  <div class="flex items-center justify-between p-2 gap-2 border-b border-zinc-100 shrink-0">
+    <div class="text-xs text-zinc-500">#{componentIndex}</div>
+    {canSee ? (
+      <div class="flex items-center gap-1">
+        <Button onlyIconSize="xxs" variant="muted" x-on:click="tab='preview'" :class="tab==='preview' && 'outline-zinc-100'" title="Preview" aria-label="Preview">
+          <Fragment slot="left-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8"/><circle cx="12" cy="12" r="3"/></svg></Fragment>
+        </Button>
+        <Button onlyIconSize="xxs" variant="muted" x-on:click="tab='code'" :class="tab==='code' && 'outline-zinc-100'" title="Code" aria-label="Code">
+          <Fragment slot="left-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></Fragment>
+        </Button>
+        <Button onlyIconSize="xxs" variant="muted" x-on:click="$clipboard($refs.code?.innerText||'')" title="Copy" aria-label="Copy">
+          <Fragment slot="left-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></Fragment>
+        </Button>
+      </div>
+    ) : null}
+  </div>
+  <div class="flex-1 overflow-hidden">
+    <div x-show="tab==='preview'" class="w-full h-full overflow-auto p-4">
+      <iframe x-intersect.once="$el.src = $el.dataset.src" class="w-full h-full block" data-src={`/iframe/${componentPath}?iframeId=card-${componentIndex}&freeComponent=${freeComponent}&context=card`} />
+    </div>
+    {canSee && (
+      <div x-show="tab==='code'" class="code-pane w-full h-full overflow-auto p-3 text-xs bg-sand-100" x-ref="code">
+        <Code code={ppcode} lang="html" theme="css-variables" class="scrollbar-hide" />
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  :global(.code-pane pre) {
+    white-space: pre;
+    overflow-x: auto;
+    overflow-y: hidden;
+    word-break: normal;
+    word-wrap: normal;
+  }
+  :global(.code-pane code) {
+    white-space: inherit;
+  }
+</style>
