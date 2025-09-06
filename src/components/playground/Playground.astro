@@ -23,7 +23,48 @@ const canSeeCodeValue = canSeeCode(user, freeComponent);
 // Get user's theme preference from custom claims
 const userThemeColor = getUserThemeColor(user, 'blue', Astro);
 
-const code = canSeeCodeValue ? await Astro.slots.render("default") : '';
+const rawSlotCode = canSeeCodeValue ? await Astro.slots.render("default") : '';
+
+// Allow authors to mark the actual snippet to show/copy using HTML comments
+// <!-- copy:start --> ... <!-- copy:end -->
+let code = '';
+if (canSeeCodeValue) {
+  const startMarker = /<!--\s*copy:start\s*-->/i;
+  const endMarker = /<!--\s*copy:end\s*-->/i;
+  if (startMarker.test(rawSlotCode) && endMarker.test(rawSlotCode)) {
+    const startIdx = rawSlotCode.search(startMarker);
+    const endIdx = rawSlotCode.search(endMarker);
+    if (startIdx > -1 && endIdx > startIdx) {
+      const afterStart = rawSlotCode.replace(startMarker, '__COPY_START__');
+      const between = afterStart.split('__COPY_START__')[1] || '';
+      code = between.split(rawSlotCode.match(endMarker)?.[0] || '<!-- copy:end -->')[0] || '';
+    }
+  }
+  // Fallback to full slot content if no markers were found
+  if (!code) {
+    // Special case: Typography – copy only the Text component
+    if (componentPath && /\/typography\//i.test(componentPath)) {
+      const m = rawSlotCode.match(/<Text[\s\S]*?<\/Text>/);
+      if (m) {
+        code = m[0];
+      }
+    }
+  }
+  if (!code) {
+    let s = rawSlotCode;
+    // Try to strip one outer <section> wrapper
+    const hasOuterSection = /^\s*<section[\s\S]*<\/section>\s*$/i.test(s);
+    if (hasOuterSection) {
+      s = s.replace(/^\s*<section[^>]*>/i, "").replace(/<\/section>\s*$/i, "");
+    }
+    // Try to strip one outer <div> wrapper
+    const hasOuterDiv = /^\s*<div[\s\S]*<\/div>\s*$/i.test(s);
+    if (hasOuterDiv) {
+      s = s.replace(/^\s*<div[^>]*>/i, "").replace(/<\/div>\s*$/i, "");
+    }
+    code = s || rawSlotCode;
+  }
+}
 
 let ppcode = '';
 if (canSeeCodeValue) {
@@ -102,7 +143,7 @@ const theme = ``;
              </svg>
           </Button>
        </span>
-       <div aria-hidden="true" class="mx-1 h-4 w-[1px]  bg-gray-200   hidden md:inline-block"></div>
+       <div aria-hidden="true" class="mx-1 h-4 w-[1px]  bg-zinc-200   hidden md:inline-block"></div>
         {
           canSeeCodeValue ? (
             <div class="flex items-center gap-1 ">
@@ -110,7 +151,7 @@ const theme = ``;
                size="xxs"
                 variant="muted"
                 x-on:click="setTab('preview');" 
-                :class="tab === 'preview' ? ' outline-gray-100  ' : ''"
+                :class="tab === 'preview' ? ' outline-zinc-100  ' : ''"
                 data-umami-event="click-view-preview"
                 data-umami-data-id={user?.uid}
                 data-umami-event-componentref={componentPath}
@@ -121,14 +162,14 @@ const theme = ``;
                size="xxs"
                 variant="muted"
                 x-on:click="setTab('code')" 
-                :class="tab === 'code' ? 'outline-gray-100  ' : ''"
+                :class="tab === 'code' ? 'outline-zinc-100  ' : ''"
                 data-umami-event="click-view-code"
                 data-umami-data-id={user?.uid}
                 data-umami-event-componentref={componentPath}
                 class="pointer-events-auto !shadow-none">
                 Code
               </Button>
-              <div aria-hidden="true" class="mx-1 h-4 w-[1px]  bg-gray-200   hidden md:inline-block"></div>
+              <div aria-hidden="true" class="mx-1 h-4 w-[1px]  bg-zinc-200   hidden md:inline-block"></div>
               <Button
                 size="xxs"
                 variant="muted"
@@ -168,8 +209,8 @@ const theme = ``;
       class="flex justify-center flex-grow w-full bg-white"
     >
       <div
-        class="w-full overflow-auto border-x border-gray-100"
-        :class="{ 'max-w-sm border-x border-gray-100': viewportSize === 'mobile', 'max-w-screen-md border-x border-gray-100': viewportSize === 'tablet','max-w-full': viewportSize === 'desktop' }">
+        class="w-full overflow-auto border-x border-zinc-100"
+        :class="{ 'max-w-sm border-x border-zinc-100': viewportSize === 'mobile', 'max-w-screen-md border-x border-zinc-100': viewportSize === 'tablet','max-w-full': viewportSize === 'desktop' }">
         <iframe x-intersect.once="$el.src = $el.dataset.src" id={`iframe-${componentIndex}`} width="100%" data-src={`/iframe/${componentPath}?iframeId=iframe-${componentIndex}&freeComponent=${freeComponent}`}/>
       </div>
     </div>
@@ -177,7 +218,7 @@ const theme = ``;
       <div
         x-show="tab === 'code'"
         x-ref="code"
-        class="flex-grow p-4 overflow-auto text-xs bg-sand-100 size-full selection:bg-gray-100"
+        class="flex-grow p-4 overflow-auto text-xs bg-sand-100 size-full selection:bg-zinc-100"
       >
         <Code code={ppcode} lang="html" theme="css-variables" class="scrollbar-hide"/>
       </div>

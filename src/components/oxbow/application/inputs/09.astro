@@ -3,10 +3,11 @@ export const description = "Tags input";
 ---
 
 <div class="flex justify-center w-full max-w-sm px-12 py-48 mx-auto">
+  <!-- copy:start -->
   <div class="w-full">
     <label
       for="tags-input"
-      class="block mb-1 text-sm font-medium text-gray-500"
+      class="block mb-1 text-sm font-medium text-zinc-500"
     >
       Tags
     </label>
@@ -33,19 +34,19 @@ export const description = "Tags input";
         placeholder="Add a tag"
         x-model="newTag"
         @keydown.enter.prevent="addTag()"
-        class="block w-full h-10 px-4 py-2 text-sm bg-white border border-transparent appearance-none transition duration-300 ease-in-out rounded-md text-gray-500 ring-1 ring-gray-200 placeholder-gray-400 focus:border-gray-300 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2"
+        class="block w-full h-10 px-4 py-2 text-sm bg-white border border-transparent appearance-none transition duration-300 ease-in-out rounded-md text-zinc-500 ring-1 ring-zinc-200 placeholder-zinc-400 focus:border-zinc-300 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2"
         placeholder="Add a tag"
       />
       <div class="flex flex-wrap mt-2 gap-2">
         <template x-for="(tag, index) in tags" :key="index">
           <span
-            class="inline-flex items-center font-medium relative text-gray-700 bg-gray-50 px-2.5 py-1 text-xs rounded-md flex items-center gap-1"
+            class="inline-flex items-center font-medium relative text-zinc-700 bg-zinc-50 px-2.5 py-1 text-xs rounded-md flex items-center gap-1"
           >
             <span x-text="tag"></span>
             <button
               @click="removeTag(index)"
               type="button"
-              class="inline-flex items-center justify-center rounded-full size-4 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              class="inline-flex items-center justify-center rounded-full size-4 hover:bg-zinc-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
               aria-label="Remove tag"
             >
               <svg
@@ -67,7 +68,7 @@ export const description = "Tags input";
           </span>
         </template>
       </div>
-      <p class="text-xs text-gray-500">Press Enter to add a tag</p>
+      <p class="text-xs text-zinc-500">Press Enter to add a tag</p>
       <input
         type="hidden"
         name="tags-input-values"
@@ -75,5 +76,5 @@ export const description = "Tags input";
       />
     </div>
   </div>
+  <!-- copy:end -->
 </div>
-

@@ -36,7 +36,7 @@ export default (Alpine: Alpine) => {
     },
   }));
 
-  // Selector for base palette (grays) used by components (text-gray-*, bg-gray-*)
+  // Selector for base palette (grays) used by components (text-zinc-*, bg-zinc-*)
   Alpine.data("baseThemeSelector", () => ({
     init() {
       this.$watch("selected", (theme: string) => {
@@ -46,7 +46,7 @@ export default (Alpine: Alpine) => {
     },
     colors: [
       { name: "Slate", color: "bg-slate-500" },
-      { name: "Gray", color: "bg-gray-500" },
+      { name: "Gray", color: "bg-zinc-500" },
       { name: "Zinc", color: "bg-zinc-500" },
       { name: "Neutral", color: "bg-neutral-500" },
       { name: "Stone", color: "bg-stone-500" },
@@ -574,7 +574,7 @@ export default (Alpine: Alpine) => {
               .trim();
             const value = token || `var(--color-${palette}-${shade})`;
             iframeDocument.documentElement.style.setProperty(
-              `--color-gray-${shade}`,
+              `--color-zinc-${shade}`,
               value,
             );
           });

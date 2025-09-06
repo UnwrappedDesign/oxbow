@@ -106,8 +106,8 @@ export default function GradientGenerator() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-2">
             <button
               className={`
-                            flex items-center justify-center text-center shadow-subtle font-medium duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 text-black bg-white hover:bg-gray-100 focus:outline-gray-900 h-9 px-4 py-2 text-sm rounded-md w-full
-                              ${mode === "background" ? "!outline-gray-700" : "text-gray-500 "}
+                            flex items-center justify-center text-center shadow-subtle font-medium duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 text-black bg-white hover:bg-zinc-100 focus:outline-zinc-900 h-9 px-4 py-2 text-sm rounded-md w-full
+                              ${mode === "background" ? "!outline-zinc-700" : "text-zinc-500 "}
                             `}
               onClick={() => setMode("background")}
             >
@@ -115,8 +115,8 @@ export default function GradientGenerator() {
             </button>
             <button
               className={`
-                          flex items-center justify-center text-center shadow-subtle font-medium duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 text-black bg-white hover:bg-gray-100 focus:outline-gray-900 h-9 px-4 py-2 text-sm rounded-md w-full
-                              ${mode === "text" ? "!outline-gray-700" : "text-gray-500"}
+                          flex items-center justify-center text-center shadow-subtle font-medium duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 text-black bg-white hover:bg-zinc-100 focus:outline-zinc-900 h-9 px-4 py-2 text-sm rounded-md w-full
+                              ${mode === "text" ? "!outline-zinc-700" : "text-zinc-500"}
                             `}
               onClick={() => setMode("text")}
             >
@@ -124,7 +124,7 @@ export default function GradientGenerator() {
             </button>
           </div>
           <button
-            className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-center text-black bg-white shadow-subtle duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 hover:bg-gray-100 focus:outline-gray-900 h-9 rounded-md"
+            className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-center text-black bg-white shadow-subtle duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 hover:bg-zinc-100 focus:outline-zinc-900 h-9 rounded-md"
             onClick={copyToClipboard}
             aria-live="polite"
           >
@@ -135,14 +135,14 @@ export default function GradientGenerator() {
               role="switch"
               aria-checked={useVia}
               onClick={() => setUseVia((v) => !v)}
-              className={`flex items-center justify-between w-full h-9 px-3 text-sm bg-white border rounded-md shadow-subtle duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 focus:outline-gray-900 border-gray-200 ${
-                useVia ? "!outline-gray-700 text-gray-900" : "text-gray-500"
+              className={`flex items-center justify-between w-full h-9 px-3 text-sm bg-white border rounded-md shadow-subtle duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 focus:outline-zinc-900 border-zinc-200 ${
+                useVia ? "!outline-zinc-700 text-zinc-900" : "text-zinc-500"
               }`}
             >
               <span className="select-none">Middle color</span>
               <span
                 className={`relative inline-flex items-center h-5 w-9 rounded-full transition-colors duration-300 ${
-                  useVia ? "bg-gray-900" : "bg-gray-200"
+                  useVia ? "bg-zinc-900" : "bg-zinc-200"
                 }`}
               >
                 <span
@@ -157,7 +157,7 @@ export default function GradientGenerator() {
               <div className="w-full">
                 <label className="sr-only">Your Text</label>
                 <input
-                  className="block w-full h-10 px-3 py-2 text-sm bg-white border rounded-lg appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 text-gray-600 border-gray-100 leading-6 transition-colors duration-200 ease-in-out"
+                  className="block w-full h-10 px-3 py-2 text-sm bg-white border rounded-lg appearance-none focus:outline-none focus:ring-0 focus:border-zinc-200 text-zinc-600 border-zinc-100 leading-6 transition-colors duration-200 ease-in-out"
                   value={text}
                   onChange={(e) => setText(e.target.value)}
                 />
@@ -166,14 +166,14 @@ export default function GradientGenerator() {
             <div className="w-full">
               <label className="sr-only">Direction</label>
               <select
-                className="block w-full h-10 px-3 py-2 text-sm bg-white border rounded-lg appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 text-gray-600 border-gray-100 leading-6 transition-colors duration-200 ease-in-out"
+                className="block w-full h-10 px-3 py-2 text-sm bg-white border rounded-lg appearance-none focus:outline-none focus:ring-0 focus:border-zinc-200 text-zinc-600 border-zinc-100 leading-6 transition-colors duration-200 ease-in-out"
                 value={direction}
                 onChange={(e) => setDirection(e.target.value as any)}
               >
                 {directions.map((dir) => (
                   <option
                     key={dir}
-                    className="px-4 py-3 cursor-pointer hover:bg-gray-50"
+                    className="px-4 py-3 cursor-pointer hover:bg-zinc-50"
                     value={directionMap[dir]}
                   >
                     {dir}
@@ -183,14 +183,14 @@ export default function GradientGenerator() {
             </div>
             <input
               readOnly
-              className="block w-full h-10 px-3 py-2 text-sm bg-white border rounded-lg appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 text-gray-600 border-gray-100 leading-6 transition-colors duration-200 ease-in-out"
+              className="block w-full h-10 px-3 py-2 text-sm bg-white border rounded-lg appearance-none focus:outline-none focus:ring-0 focus:border-zinc-200 text-zinc-600 border-zinc-100 leading-6 transition-colors duration-200 ease-in-out"
               value={generateTwGradient()}
             />
           </div>
         </div>
         <div className="lg:col-span-2">
           <div
-            className={`flex items-center justify-center relative h-full w-full p-12 md:p-20 rounded-lg overflow-hidden border border-gray-100 shadow-oxbow ${
+            className={`flex items-center justify-center relative h-full w-full p-12 md:p-20 rounded-lg overflow-hidden border border-zinc-100 shadow-oxbow ${
               mode === "background" ? gradientClasses : "bg-white"
             }`}
             aria-label="Gradient preview"
@@ -203,37 +203,37 @@ export default function GradientGenerator() {
       </div>
       <div className="flex items-center pt-4  gap-x-2">
           <button
-            className={` flex items-center justify-center text-center shadow-subtle font-medium duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 text-black bg-white hover:bg-gray-100 focus:outline-gray-900 h-9 px-4 py-2 text-sm rounded-md w-full ${tab === "from" ? "!outline-gray-500 " : ""}`}
+            className={` flex items-center justify-center text-center shadow-subtle font-medium duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 text-black bg-white hover:bg-zinc-100 focus:outline-zinc-900 h-9 px-4 py-2 text-sm rounded-md w-full ${tab === "from" ? "!outline-zinc-500 " : ""}`}
             onClick={() => setTab("from")}
           >
             From Color
           </button>
           <button
-            className={` flex items-center justify-center text-center shadow-subtle font-medium duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 text-black bg-white hover:bg-gray-100 focus:outline-gray-900 h-9 px-4 py-2 text-sm rounded-md w-full disabled:opacity-40 ${tab === "via" ? "!outline-gray-700" : ""}`}
+            className={` flex items-center justify-center text-center shadow-subtle font-medium duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 text-black bg-white hover:bg-zinc-100 focus:outline-zinc-900 h-9 px-4 py-2 text-sm rounded-md w-full disabled:opacity-40 ${tab === "via" ? "!outline-zinc-700" : ""}`}
             onClick={() => setTab("via")}
             disabled={!useVia}
           >
             Via Color
           </button>
           <button
-            className={`  flex items-center justify-center text-center shadow-subtle font-medium duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 text-black bg-white hover:bg-gray-100 focus:outline-gray-900 h-9 px-4 py-2 text-sm rounded-md w-full ${tab === "to" ? "!outline-gray-700" : ""}`}
+            className={`  flex items-center justify-center text-center shadow-subtle font-medium duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 text-black bg-white hover:bg-zinc-100 focus:outline-zinc-900 h-9 px-4 py-2 text-sm rounded-md w-full ${tab === "to" ? "!outline-zinc-700" : ""}`}
             onClick={() => setTab("to")}
           >
             To Color
           </button>
         </div>
 
-      <div className="p-6 mt-4 bg-white rounded-lg grid grid-cols-4 gap-x-4 md:grid-cols-8 gap-y-12 lg:grid-cols-12 outline shadow-oxbow outline-gray-100">
+      <div className="p-6 mt-4 bg-white rounded-lg grid grid-cols-4 gap-x-4 md:grid-cols-8 gap-y-12 lg:grid-cols-12 outline shadow-oxbow outline-zinc-100">
         {tailwindColors.map((color) => (
           <div key={color}>
-            <p className="font-mono text-xs uppercase text-gray-500 ">
+            <p className="font-mono text-xs uppercase text-zinc-500 ">
               {color}
             </p>
             <div className="mt-2 grid grid-cols-1 gap-y-8 ">
               {colorShades(color).map((colorShade) => (
                 <div key={colorShade}>
                   <button
-                    className={`size-12 aspect-square rounded-lg w-full h-full focus:outline-none ring-offset-4 focus:ring-offset-gray-950 focus:ring-white duration-300 bg-${colorShade} 
+                    className={`size-12 aspect-square rounded-lg w-full h-full focus:outline-none ring-offset-4 focus:ring-offset-zinc-950 focus:ring-white duration-300 bg-${colorShade} 
                             ${
                               tab === "from"
                                 ? fromColor === colorShade
@@ -253,7 +253,7 @@ export default function GradientGenerator() {
                       else setToColor(colorShade);
                     }}
                   ></button>
-                  <p className="font-mono text-xs uppercase text-gray-500 ">
+                  <p className="font-mono text-xs uppercase text-zinc-500 ">
                     {colorShade.split("-")[1]}
                   </p>
                 </div>

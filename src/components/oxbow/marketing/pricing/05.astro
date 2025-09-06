@@ -3,9 +3,9 @@ export const excludeFromObfuscation = [
   "w-1/2",
   "translate-x-0",
   "translate-x-full",
-  "text-gray-600",
-  "focus:text-gray-900",
-  "hover:text-gray-900",
+  "text-zinc-600",
+  "focus:text-zinc-900",
+  "hover:text-zinc-900",
 ];
 
 export const description = "Pricing section with three tiers";
@@ -90,43 +90,43 @@ const pricingOptions = [
 ];
 ---
 
-<section x-data="{ duration: 'monthly' }" class="bg-gray-50">
+<section x-data="{ duration: 'monthly' }" class="bg-zinc-50">
   <Wrapper variant="blockStandard" class="py-24">
     <div class="items-end grid grid-cols-1 lg:grid-cols-2">
       <div>
         <Text
           tag="h1"
           variant="displaySM"
-          class="font-medium tracking-tight text-gray-900 lg:text-balance"
+          class="font-medium tracking-tight text-zinc-900 lg:text-balance"
         >
           Equip your business with world class software
         </Text>
         <Text
           tag="p"
           variant="textBase"
-          class="mt-2 font-medium text-gray-600 lg:text-balance"
+          class="mt-2 font-medium text-zinc-600 lg:text-balance"
         >
           Choose a plan that works the best for you and your team. Start small,
           upgrade when you need to.
         </Text>
         <Kicker class="mt-4 text-blue-500">
-          All plans come with a <span class="font-medium text-gray-900"
+          All plans come with a <span class="font-medium text-zinc-900"
             >14-day free</span
           > trial period.
         </Kicker>
       </div>
       <div
         aria-labelledby="pricing-toggle"
-        class="relative z-0 inline-flex w-full p-1 mt-8 overflow-hidden bg-white shadow ring-1 ring-gray-200 ring-offset-2 gap-4 rounded-md max-w-52 lg:ml-auto"
+        class="relative z-0 inline-flex w-full p-1 mt-8 overflow-hidden bg-white shadow ring-1 ring-zinc-200 ring-offset-2 gap-4 rounded-md max-w-52 lg:ml-auto"
       >
         <div
-          class="absolute inset-0 bg-gray-50 rounded-md transition-transform duration-200 ease-in-out"
+          class="absolute inset-0 bg-zinc-50 rounded-md transition-transform duration-200 ease-in-out"
           :class="duration === 'monthly' ? 'w-1/2 translate-x-0' : 'w-1/2 translate-x-full'"
         >
         </div>
         <button
           class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-          :class="duration === 'monthly' ? 'text-gray-600' : 'focus:text-gray-900 hover:text-gray-900'"
+          :class="duration === 'monthly' ? 'text-zinc-600' : 'focus:text-zinc-900 hover:text-zinc-900'"
           @click="duration = 'monthly'"
           type="button"
           :aria-pressed="duration === 'monthly'"
@@ -135,7 +135,7 @@ const pricingOptions = [
         </button>
         <button
           class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-          :class="duration === 'annual' ? 'text-gray-600' : 'focus:text-gray-900 hover:text-gray-900'"
+          :class="duration === 'annual' ? 'text-zinc-600' : 'focus:text-zinc-900 hover:text-zinc-900'"
           @click="duration = 'annual'"
           type="button"
           :aria-pressed="duration === 'annual'"
@@ -151,48 +151,48 @@ const pricingOptions = [
           <div class="flex flex-col justify-between h-full">
             <div class="flex flex-col">
               <div class="flex items-center gap-2">
-                <div class="p-3 bg-white rounded-lg outline outline-gray-100 text-blue-500">
+                <div class="p-3 bg-white rounded-lg outline outline-zinc-100 text-blue-500">
                   {tier.logo && <tier.logo class="text-blue-600" size="sm" />}
                 </div>
                 <Text
                   tag="h3"
                   variant="textBase"
-                  class="font-medium  text-gray-500"
+                  class="font-medium  text-zinc-500"
                 >
                   {tier.title}
                 </Text>
               </div>
               <Text
                 variant="displaySM"
-                class="flex items-baseline mt-4 font-medium tracking-tighter text-gray-900"
+                class="flex items-baseline mt-4 font-medium tracking-tighter text-zinc-900"
               >
                 <span
                   data-monthly={tier.monthly}
                   data-annual={tier.annual}
                   x-text="$el.dataset[duration]"
                 />
-                <span class="text-sm font-normal tracking-normal  text-gray-500">
+                <span class="text-sm font-normal tracking-normal  text-zinc-500">
                   <span x-show="duration === 'monthly'">/month</span>
                   <span x-show="duration === 'annual'" style="display: none;">
                     /annually
                   </span>
                 </span>
               </Text>
-              <Text tag="p" variant="textSM" class="mt-2 text-gray-500">
+              <Text tag="p" variant="textSM" class="mt-2 text-zinc-500">
                 {tier.description}
               </Text>
-              <div class="pt-8 mt-8 border-t border-gray-200">
+              <div class="pt-8 mt-8 border-t border-zinc-200">
                 <Text
                   tag="p"
                   variant="textXS"
-                  class="font-medium uppercase  text-gray-500"
+                  class="font-medium uppercase  text-zinc-500"
                 >
                   {tier.title === "Momentum"
                     ? "Everything in Core plus:"
                     : "Core plan includes:"}
                 </Text>
                 <ul
-                  class="flex flex-col mt-4 text-sm text-gray-600 gap-y-3 "
+                  class="flex flex-col mt-4 text-sm text-zinc-600 gap-y-3 "
                   role="list"
                 >
                   {tier.features.map((feature, index) => (
@@ -213,7 +213,7 @@ const pricingOptions = [
                 <Text
                   tag="p"
                   variant="textSM"
-                  class="font-medium  text-gray-500"
+                  class="font-medium  text-zinc-500"
                 >
                   No credit card required
                 </Text>

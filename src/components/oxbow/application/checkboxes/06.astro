@@ -4,6 +4,7 @@ import Text from "@/components/fundations/typography/Text.astro";
 ---
 
 <div class="flex items-center max-w-md p-12 py-48 mx-auto">
+  <!-- copy:start -->
   <div
     class="flex flex-col w-full gap-2"
     x-data="{ options: ['Option 1', 'Option 2', 'Option 3'], selected: [] }"
@@ -15,19 +16,20 @@ import Text from "@/components/fundations/typography/Text.astro";
           :id="option"
           :value="option"
           x-model="selected"
-          class="rounded shadow size-4 border-gray-300 text-blue-600 focus:ring-blue-600"
+          class="rounded shadow size-4 border-zinc-300 text-blue-600 focus:ring-blue-600"
         />
         <Text
           :for="option"
           tag="label"
-          class="block text-sm text-gray-500"
+          class="block text-sm text-zinc-500"
           x-text="option"
         />
       </div>
     </template>
-    <div class="flex flex-col mt-2 text-sm text-gray-500">
+    <div class="flex flex-col mt-2 text-sm text-zinc-500">
       Selected:
       <span x-text="selected.join(', ')" class="flex flex-col"></span>
     </div>
   </div>
+  <!-- copy:end -->
 </div>
