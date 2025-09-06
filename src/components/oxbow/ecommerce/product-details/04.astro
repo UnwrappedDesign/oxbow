@@ -5,12 +5,12 @@ export const excludeFromObfuscation = [
   "border-b-2",
   "border-blue-500",
   "ring-2",
-  "ring-gray-900",
+  "ring-zinc-900",
   "ring-offset-2",
-  "ring-gray-700",
-  "bg-gray-400",
-  "ring-gray-300",
-  "bg-gray-200",
+  "ring-zinc-700",
+  "bg-zinc-400",
+  "ring-zinc-300",
+  "bg-zinc-200",
   "ring-purple-300",
   "bg-purple-200",
   "ring-pink-300",
@@ -47,13 +47,13 @@ import Button from "@/components/fundations/buttons/Button.astro";
           >
           <Text tag="p" variant="textLG">$190</Text>
         </div>
-        <Text tag="p" variant="textBase" class="mt-4 text-gray-500">
+        <Text tag="p" variant="textBase" class="mt-4 text-zinc-500">
           Hitting the field in the late '60s, adidas airmaxS quickly became
           soccer's "it" shoe.
         </Text>
         <!-- Tab section -->
         <div x-data="{ tab: 'tab1' }" class="mt-8">
-          <ul class="flex text-sm border-b gap-4 text-gray-500 border-gray-200">
+          <ul class="flex text-sm border-b gap-4 text-zinc-500 border-zinc-200">
             <li class="-mb-px">
               <a
                 @click.prevent="tab = 'tab1'"
@@ -95,7 +95,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
               >
             </li>
           </ul>
-          <div class="py-4 pt-4 text-left text-gray-500 content">
+          <div class="py-4 pt-4 text-left text-zinc-500 content">
             <div x-show="tab==='tab1'">
               <section class="py-4">
                 <Text tag="p" variant="sm">
@@ -105,7 +105,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
                 </Text>
                 <ul
                   role="list"
-                  class="pl-5 mt-4 text-sm list-disc space-y-1 text-gray-600 marker:text-blue-500"
+                  class="pl-5 mt-4 text-sm list-disc space-y-1 text-zinc-600 marker:text-blue-500"
                 >
                   <li>Versatile lace configurations</li>
                   <li>Breathable and spacious interior fit</li>
@@ -172,17 +172,17 @@ import Button from "@/components/fundations/buttons/Button.astro";
                         <img
                           :src="testimonial.img"
                           :alt="testimonial.name"
-                          class="rounded-full size-10 bg-gray-100"
+                          class="rounded-full size-10 bg-zinc-100"
                         />
                       </div>
                       <div>
                         <Text
                           tag="h3"
                           variant="textBase"
-                          class="font-medium text-gray-900"
+                          class="font-medium text-zinc-900"
                           x-text="testimonial.name"
                         />
-                        <Text variant="textXS" class="text-gray-500">
+                        <Text variant="textXS" class="text-zinc-500">
                           <time
                             :datetime="testimonial.datetime"
                             x-text="testimonial.date"></time>
@@ -190,7 +190,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
                         <Text
                           tag="p"
                           variant="textSM"
-                          class="mt-1 text-gray-500"
+                          class="mt-1 text-zinc-500"
                           x-text="testimonial.text"
                         />
                       </div>
@@ -221,7 +221,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
         class="flex flex-col order-first gap-2 lg:order-none"
       >
         <!-- Main Image -->
-        <div class="overflow-hidden aspect-square bg-gray-200 rounded-2xl">
+        <div class="overflow-hidden aspect-square bg-zinc-200 rounded-2xl">
           <img
             :src="images[activeImage]"
             class="object-cover size-full aspect-square"
@@ -233,8 +233,8 @@ import Button from "@/components/fundations/buttons/Button.astro";
           <template x-for="(image, index) in images" :key="index">
             <button
               @click="activeImage = index"
-              :class="{'ring-2 ring-gray-900 ': activeImage === index}"
-              class="overflow-hidden size-full bg-gray-200 rounded-xl aspect-square"
+              :class="{'ring-2 ring-zinc-900 ': activeImage === index}"
+              class="overflow-hidden size-full bg-zinc-200 rounded-xl aspect-square"
             >
               <img
                 :src="image"
@@ -251,7 +251,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
         <div class="flex flex-col mt-4 gap-4">
           <!-- Color Selector -->
           <div x-data="{ activeColor: null }">
-            <Text tag="p" variant="textXS" class="uppercase text-gray-500">
+            <Text tag="p" variant="textXS" class="uppercase text-zinc-500">
               Color
             </Text>
             <fieldset
@@ -259,8 +259,8 @@ import Button from "@/components/fundations/buttons/Button.astro";
               class="mt-2"
               x-data="{ 
             colors: [
-              { name: ' Black', ring: 'ring-gray-700', bg: 'bg-gray-400' },
-    { name: ' Gray', ring: 'ring-gray-300', bg: 'bg-gray-200' },
+              { name: ' Black', ring: 'ring-zinc-700', bg: 'bg-zinc-400' },
+    { name: ' Gray', ring: 'ring-zinc-300', bg: 'bg-zinc-200' },
     { name: ' Purple', ring: 'ring-purple-300', bg: 'bg-purple-200' },
     { name: ' Pink', ring: 'ring-pink-300', bg: 'bg-pink-200' },
     { name: ' Red', ring: 'ring-red-300', bg: 'bg-red-200' },
@@ -279,7 +279,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
                   <label
                     :aria-label="color.name"
                     class="relative -m-0.5 duration-300 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none"
-                    :class="{ 'ring-2 ring-offset-2 ring-gray-900': activeColor === color.name }"
+                    :class="{ 'ring-2 ring-offset-2 ring-zinc-900': activeColor === color.name }"
                   >
                     <input
                       type="radio"
@@ -309,7 +309,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
           }"
           >
             <div class="flex items-center justify-between">
-              <Text tag="p" variant="textXS" class="uppercase text-gray-500">
+              <Text tag="p" variant="textXS" class="uppercase text-zinc-500">
                 Shoe size
               </Text>
               <div>
@@ -318,7 +318,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
                   id="size-system"
                   x-model="sizeSystem"
                   @change="activeSize = null"
-                  class="block w-auto h-8 pl-2.5 pr-8 py-2 text-xs text-gray-900 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-gray-200 placeholder-gray-400 focus:border-gray-300 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2"
+                  class="block w-auto h-8 pl-2.5 pr-8 py-2 text-xs text-zinc-900 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-zinc-200 placeholder-zinc-400 focus:border-zinc-300 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2"
                 >
                   <option value="US">US</option>
                   <option value="EU">EU</option>
@@ -340,7 +340,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
                     :for="'size-' + size"
                     x-text="size"
                     class="flex items-center justify-center px-3 py-2 text-sm font-medium bg-white cursor-pointer ring-1
-  ring-gray-200 rounded-md duration-300 peer-checked:ring-2 peer-checked:ring-gray-900 peer-checked:text-blue-500 text-gray-500 peer-checked:ring-offset-2"
+  ring-zinc-200 rounded-md duration-300 peer-checked:ring-2 peer-checked:ring-zinc-900 peer-checked:text-blue-500 text-zinc-500 peer-checked:ring-offset-2"
                   ></label>
                 </div>
               </template>
@@ -354,7 +354,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
           <Button size="sm" variant="muted" class="w-full">Buy Now</Button>
         </div>
         <!-- Free shipping notice -->
-        <Text tag="p" variant="textSM" class="mt-1 text-gray-500"
+        <Text tag="p" variant="textSM" class="mt-1 text-zinc-500"
           >Free shipping over $50 if you behave</Text
         >
       </div>

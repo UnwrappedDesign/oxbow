@@ -6,6 +6,7 @@ interface Props {
     | "muted"
     | "mutedDark"
     | "alternative"
+    | "text"
     | "link"
     | "outline"
     | "ghost";
@@ -145,6 +146,17 @@ const ghostClass = [
   "focus:outline-zinc-300",
 ];
 
+const textClass = [
+  "text-zinc-500",
+  "bg-white",
+  "outline",
+  "outline-zinc-200",
+  "hover:text-blue-600",
+  "hover:bg-zinc-50",
+  "focus:outline-blue-500",
+  "shadow-sm",
+];
+
 const linkClass = [
   "text-blue-500",
   "bg-transparent",
@@ -201,6 +213,7 @@ const variantClass =
     alternative: alternativeClass,
     outline: outlineClass,
     ghost: ghostClass,
+    text: textClass,
     link: linkClass,
   }[variant] || defaultClass;
 
@@ -300,7 +313,12 @@ const spinnerHTML = `
       )}
     </a>
   ) : (
-    <button class:list={baseClasses} disabled={isDisabled} tabIndex={tabIndexValue} {...rest}>
+    <button
+      class:list={baseClasses}
+      disabled={isDisabled}
+      tabIndex={tabIndexValue}
+      {...rest}
+    >
       {loading && <Fragment set:html={spinnerHTML} />}
       {!loading && (
         <>

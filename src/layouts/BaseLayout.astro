@@ -76,12 +76,12 @@ const { title, description, image, noindex, structuredData }: HeadOverrides =
     <script is:inline>
       // Hide Firebase emulator warning (root + iframes), resilient to dynamic insertion
       (function () {
-        const SEL = '.firebase-emulator-warning, .firegray-emulator-warning';
+        const SEL = ".firebase-emulator-warning, .firegray-emulator-warning";
         const hideIn = (doc) => {
           try {
             doc.querySelectorAll(SEL).forEach((el) => {
-              el.style.setProperty('display', 'none', 'important');
-              el.style.setProperty('visibility', 'hidden', 'important');
+              el.style.setProperty("display", "none", "important");
+              el.style.setProperty("visibility", "hidden", "important");
             });
           } catch {}
         };
@@ -90,32 +90,35 @@ const { title, description, image, noindex, structuredData }: HeadOverrides =
           hideIn(doc);
           try {
             const mo = new MutationObserver(() => hideIn(doc));
-            mo.observe(doc.documentElement || doc, { childList: true, subtree: true });
+            mo.observe(doc.documentElement || doc, {
+              childList: true,
+              subtree: true,
+            });
           } catch {}
         };
 
         const scan = () => {
           observeDoc(document);
           // Same-origin iframes (our /iframe pages) — hook load + observe
-          document.querySelectorAll('iframe').forEach((ifr) => {
+          document.querySelectorAll("iframe").forEach((ifr) => {
             try {
               const onLoad = () => {
                 const d = ifr.contentDocument || ifr.contentWindow?.document;
                 if (d) observeDoc(d);
               };
-              ifr.addEventListener('load', onLoad, { once: false });
+              ifr.addEventListener("load", onLoad, { once: false });
               onLoad();
             } catch {}
           });
         };
 
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', scan, { once: true });
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", scan, { once: true });
         } else {
           scan();
         }
-        window.addEventListener('astro:page-load', scan);
-        window.addEventListener('astro:after-swap', scan);
+        window.addEventListener("astro:page-load", scan);
+        window.addEventListener("astro:after-swap", scan);
       })();
     </script>
 
@@ -207,7 +210,7 @@ const { title, description, image, noindex, structuredData }: HeadOverrides =
             container.removeChild(container.firstChild);
           const list = document.createElement("div");
           list.className =
-            "relative w-full mx-auto mt-6 divide-y divide-gray-200";
+            "relative w-full mx-auto mt-6 divide-y divide-zinc-200";
           const MONTHS = [
             "January",
             "February",
@@ -227,7 +230,7 @@ const { title, description, image, noindex, structuredData }: HeadOverrides =
             details.className = "text-left cursor-pointer group py-4";
             const summary = document.createElement("summary");
             summary.className =
-              "flex items-center justify-between w-full pb-1 text-left select-none text-gray-600 hover:text-blue-500";
+              "flex items-center justify-between w-full pb-1 text-left select-none text-zinc-600 hover:text-blue-500";
             const monthIndex = Math.max(
               0,
               Math.min(11, parseInt(g.month, 10) - 1)
@@ -252,7 +255,7 @@ const { title, description, image, noindex, structuredData }: HeadOverrides =
             summary.appendChild(label);
             summary.appendChild(icon);
             const panel = document.createElement("div");
-            panel.className = "py-4 pt-2 text-gray-500";
+            panel.className = "py-4 pt-2 text-zinc-500";
             g.items.forEach((s: any) => {
               panel.appendChild(s.h2);
               s.nodes.forEach((n: ChildNode) => panel.appendChild(n));

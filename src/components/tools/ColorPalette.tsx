@@ -214,12 +214,12 @@ export default function ColorPalette() {
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex items-center gap-2 px-3 py-2 text-sm rounded-md border border-gray-200 bg-white text-gray-700 h-[38px]"
+            className="inline-flex items-center gap-2 px-3 py-2 text-sm rounded-md border border-zinc-200 bg-white text-zinc-700 h-[38px]"
             aria-haspopup="menu"
             aria-expanded={open}
             title="Change copy format"
           >
-            <span className="text-gray-500">Format:</span>
+            <span className="text-zinc-500">Format:</span>
             <span className="font-mono">{format}</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -238,7 +238,7 @@ export default function ColorPalette() {
           {open && (
             <div
               role="menu"
-              className="absolute left-0 top-full z-50 mt-2 w-52 origin-top-left rounded-xl outline outline-gray-100 shadow bg-white text-[13px] text-gray-600 divide-y divide-gray-100"
+              className="absolute left-0 top-full z-50 mt-2 w-52 origin-top-left rounded-xl outline outline-zinc-100 shadow bg-white text-[13px] text-zinc-600 divide-y divide-zinc-100"
             >
               <div className="py-2">
                 {(['class','hex','rgb','hsl','oklch','var'] as Format[]).map((opt) => (
@@ -246,7 +246,7 @@ export default function ColorPalette() {
                     key={opt}
                     role="menuitem"
                     onClick={() => { setFormat(opt); setOpen(false); }}
-                    className="w-full flex items-center justify-between px-3 py-1.5 hover:bg-gray-100"
+                    className="w-full flex items-center justify-between px-3 py-1.5 hover:bg-zinc-100"
                   >
                     <span className="font-mono">{opt}</span>
                     {format === opt && (
@@ -257,7 +257,7 @@ export default function ColorPalette() {
                   </button>
                 ))}
               </div>
-              <div className="px-3 py-2 text-xs text-gray-500">
+              <div className="px-3 py-2 text-xs text-zinc-500">
                 Tip: clicking a swatch copies in this format.
               </div>
             </div>
@@ -268,13 +268,13 @@ export default function ColorPalette() {
           placeholder="Filter colors (e.g., blue, gray)"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="flex-1 px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 bg-white border rounded-md outline-none border-gray-200 focus:border-gray-300 h-[38px]"
+          className="flex-1 px-3 py-2 text-sm text-zinc-900 placeholder:text-zinc-400 bg-white border rounded-md outline-none border-zinc-200 focus:border-zinc-300 h-[38px]"
         />
       </div>
       <div className="space-y-8">
         {list.map((family) => (
           <section key={family}>
-            <div className="mb-2 text-sm font-medium capitalize text-gray-700">{family}</div>
+            <div className="mb-2 text-sm font-medium capitalize text-zinc-700">{family}</div>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-11 gap-2">
               {shades.map((shade) => {
                 const cls = className(family, shade);
@@ -294,7 +294,7 @@ export default function ColorPalette() {
                         <span className="absolute inset-0 grid text-[11px] font-mono place-items-center rounded-md bg-black/40 text-white">Copied</span>
                       )}
                     </button>
-                    <span className="mt-1 text-[11px] font-mono text-gray-600">{shade}</span>
+                    <span className="mt-1 text-[11px] font-mono text-zinc-600">{shade}</span>
                   </div>
                 );
               })}

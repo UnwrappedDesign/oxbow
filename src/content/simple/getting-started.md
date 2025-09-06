@@ -65,17 +65,17 @@ If you are using Tailwind v4 use this:
 --color-blue-900: oklch(20.88% 0.065 257.42);
 --color-blue-950: oklch(15.76% 0.04 253.21);
 /* Base */
---color-gray-50: oklch(0.985 0 0);
---color-gray-100: oklch(0.97 0 0);
---color-gray-200: oklch(0.922 0 0);
---color-gray-300: oklch(0.87 0 0);
---color-gray-400: oklch(0.708 0 0);
---color-gray-500: oklch(0.556 0 0);
---color-gray-600: oklch(0.439 0 0);
---color-gray-700: oklch(0.371 0 0);
---color-gray-800: oklch(0.269 0 0);
---color-gray-900: oklch(0.205 0 0);
---color-gray-950: oklch(0.145 0 0);
+--color-zinc-50: oklch(0.985 0 0);
+--color-zinc-100: oklch(0.97 0 0);
+--color-zinc-200: oklch(0.922 0 0);
+--color-zinc-300: oklch(0.87 0 0);
+--color-zinc-400: oklch(0.708 0 0);
+--color-zinc-500: oklch(0.556 0 0);
+--color-zinc-600: oklch(0.439 0 0);
+--color-zinc-700: oklch(0.371 0 0);
+--color-zinc-800: oklch(0.269 0 0);
+--color-zinc-900: oklch(0.205 0 0);
+--color-zinc-950: oklch(0.145 0 0);
 
 ```
 
