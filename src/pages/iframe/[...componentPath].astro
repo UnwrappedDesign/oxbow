@@ -2,6 +2,8 @@
 import IframeHead from "@/components/IframeHead.astro";
 
 const { componentPath } = Astro.params;
+const params = Astro.url.searchParams;
+const context = params.get('context');
 
 // Lazy module map, only load needed component
 const modules = import.meta.glob('@/components/oxbow/**/*.astro');
@@ -15,7 +17,15 @@ const component = matchKey ? await modules[matchKey]() : undefined;
     <IframeHead />
   </head>
   <body>
-    <component.default />
+    {
+      context === 'card' ? (
+        <div class="p-4 md:p-6">
+          <component.default />
+        </div>
+      ) : (
+        <component.default />
+      )
+    }
     <script is:inline>
       (function () {
         const params = new URLSearchParams(window.location.search);
