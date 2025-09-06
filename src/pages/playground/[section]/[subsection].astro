@@ -204,15 +204,15 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
 
   <section class="border-t border-zinc-200">
     <Wrapper variant="standard" class="lg:border-x lg:border-zinc-200">
-      <div :class="layout === 'grid' ? 'masonry-grid' : 'flex flex-col gap-6'">
+   <div :class="layout === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' : 'flex flex-col   gap-6'" >
         {
           sectionComponents.map(({ key, filePath, imagePath, description, free, component: C }, index) => {
             const pathNoAstro = filePath.replace('.astro','');
-            const isSmall = /\/(buttons|button-icon|badges|breadcrumbs|checkboxes|inputs|input-groups|radiogroups|select|toggles|typography)\//i.test(pathNoAstro);
+            const isSmall = /\/(buttons|button-groups|button-icon|badges|breadcrumbs|checkboxes|inputs|input-groups|radiogroups|select|toggles|typography|flyouts)\//i.test(pathNoAstro);
 
             if (isSmall && C) {
               return (
-                <div class="masonry-item">
+                <div  class="masonry-item">
                   <PlaygroundCard componentIndex={index + 1} componentPath={`${pathNoAstro}.astro`} freeComponent={free}>
                     <C />
                   </PlaygroundCard>

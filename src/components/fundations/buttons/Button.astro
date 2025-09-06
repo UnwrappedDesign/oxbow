@@ -30,7 +30,6 @@ interface Props {
   noRoundedBottomRight?: boolean;
   [key: string]: any;
 }
-
 const {
   variant = "default",
   size = "base",
@@ -53,7 +52,6 @@ const {
   noRoundedBottomRight = false,
   ...rest
 } = Astro.props as Props;
-
 const _noTopLeft =
   noRounded || noRoundedTop || noRoundedLeft || noRoundedTopLeft;
 const _noTopRight =
@@ -62,7 +60,6 @@ const _noBottomLeft =
   noRounded || noRoundedBottom || noRoundedLeft || noRoundedBottomLeft;
 const _noBottomRight =
   noRounded || noRoundedBottom || noRoundedRight || noRoundedBottomRight;
-
 let roundedClass = "rounded-md";
 if (_noTopLeft && _noTopRight && _noBottomLeft && _noBottomRight) {
   roundedClass = "rounded-none";
@@ -74,14 +71,12 @@ if (_noTopLeft && _noTopRight && _noBottomLeft && _noBottomRight) {
   if (!_noBottomRight) parts.push("rounded-br-md");
   if (parts.length) roundedClass = parts.join(" ");
 }
-
 const isLink = typeof href === "string";
 const finalHref = isLink ? href : undefined;
 const finalTarget = target || undefined;
 const finalRel = finalTarget === "_blank" ? rel || "noopener noreferrer" : rel;
 const isDisabled = loading || rest.disabled;
 const tabIndexValue: string | undefined = isDisabled ? "-1" : undefined;
-
 const defaultClass = [
   "text-white",
   "bg-zinc-900",
@@ -91,7 +86,6 @@ const defaultClass = [
   "focus:outline-zinc-950",
   "shadow-sm",
 ];
-
 const accentClass = [
   "text-white",
   "bg-blue-500",
@@ -101,7 +95,6 @@ const accentClass = [
   "focus:outline-blue-600",
   "shadow-sm",
 ];
-
 const alternativeClass = [
   "text-zinc-700",
   "bg-white",
@@ -111,7 +104,6 @@ const alternativeClass = [
   "focus:outline-zinc-900",
   "shadow-sm",
 ];
-
 const mutedClass = [
   "text-zinc-600",
   "bg-zinc-50",
@@ -120,32 +112,21 @@ const mutedClass = [
   "hover:bg-zinc-200",
   "focus:outline-zinc-600",
 ];
-const mutedDarkClass = [
-  "text-white",
-  "bg-zinc-800",
-  "outline",
-  "outline-zinc-800",
-  "hover:bg-zinc-900",
-  "focus:outline-zinc-500",
-];
-
 const outlineClass = [
   "text-zinc-700",
   "outline",
-  "outline-zinc-500",
+  "outline-zinc-600",
   "bg-transparent",
   "hover:bg-zinc-100",
   "focus:outline-zinc-600",
   "shadow-sm",
 ];
-
 const ghostClass = [
   "text-zinc-600",
   "bg-transparent",
   "hover:bg-zinc-100",
   "focus:outline-zinc-300",
 ];
-
 const textClass = [
   "text-zinc-500",
   "bg-white",
@@ -156,7 +137,6 @@ const textClass = [
   "focus:outline-blue-500",
   "shadow-sm",
 ];
-
 const linkClass = [
   "text-blue-500",
   "bg-transparent",
@@ -164,10 +144,8 @@ const linkClass = [
   "focus:underline",
   "focus:outline-none",
   "p-0",
-  "h-auto",
   "rounded-none",
 ];
-
 const xxs = ["h-7", "px-3", "py-1.5", "text-xs"];
 const xs = ["h-8", "px-4", "py-2", "text-xs"];
 const sm = ["h-9", "px-4", "py-2", "text-sm"];
@@ -175,7 +153,6 @@ const base = ["h-10", "px-6", "py-3", "text-base"];
 const md = ["h-11", "px-6", "py-3", "text-base"];
 const lg = ["h-12", "px-6", "py-3", "text-lg"];
 const xl = ["h-14", "px-6", "py-3", "text-xl"];
-
 const iconXXS = ["w-7", "h-7", "p-2"];
 const iconXS = ["w-8", "h-8", "p-2"];
 const iconSM = ["w-9", "h-9", "p-2"];
@@ -183,14 +160,12 @@ const iconBase = ["w-10", "h-10", "p-2"];
 const iconMD = ["w-11", "h-11", "p-2"];
 const iconLG = ["w-12", "h-12", "p-3"];
 const iconXL = ["w-14", "h-14", "p-3"];
-
 const gapXXS = ["gap-2"];
 const gapXS = ["gap-2"];
 const gapSM = ["gap-4"];
 const gapBase = ["gap-8"];
 const gapMD = ["gap-10"];
 const gapLG = ["gap-12"];
-
 const disabledClass = [
   "opacity-50",
   "cursor-not-allowed",
@@ -198,25 +173,21 @@ const disabledClass = [
 ];
 const loadingClass = ["relative", "opacity-80", "cursor-wait"];
 const additionalClasses = className ? className.split(" ") : [];
-
 const hasDefaultSlot = Astro.slots.has("default");
 const isIconOnly =
   !hasDefaultSlot &&
   (Astro.slots.has("left-icon") || Astro.slots.has("right-icon"));
-
 const variantClass =
   {
     default: defaultClass,
     accent: accentClass,
     muted: mutedClass,
-    mutedDark: mutedDarkClass,
     alternative: alternativeClass,
     outline: outlineClass,
     ghost: ghostClass,
     text: textClass,
     link: linkClass,
   }[variant] || defaultClass;
-
 const sizeClass = onlyIconSize
   ? {
       xxs: iconXXS,
@@ -246,7 +217,6 @@ const sizeClass = onlyIconSize
         lg: iconLG,
         xl: iconXL,
       }[size];
-
 const gapMap = {
   xxs: gapXXS,
   xs: gapXS,
@@ -255,9 +225,7 @@ const gapMap = {
   md: gapMD,
   lg: gapLG,
 };
-
 const gapClass = gapMap[gap] || [];
-
 const baseClasses = [
   "flex",
   "items-center",
@@ -280,7 +248,6 @@ const baseClasses = [
   fullWidth && "w-full",
   ...additionalClasses,
 ];
-
 const spinnerHTML = `
   <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
     <svg class="w-5 h-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
