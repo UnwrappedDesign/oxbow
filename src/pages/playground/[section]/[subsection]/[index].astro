@@ -10,17 +10,19 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 
 // Parameters
 const { section, subsection, index } = Astro.params;
-const modules = import.meta.glob("@/components/oxbow/**/*.astro");
+const modules = import.meta.glob("@/components/oxbow/**/*.astro", {
+  eager: true,
+});
 const keys = Object.keys(modules);
-const sectionRegex = new RegExp(`${section}\/${subsection}\/.+\\.astro$`, "i");
-const sectionKeys = keys.filter((k) => k.match(sectionRegex)).sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
-const idx = Math.max(0, Math.min(sectionKeys.length - 1, parseInt(index, 10) - 1));
-const currentKey = sectionKeys[idx];
-const componentModule = currentKey ? await modules[currentKey]() : undefined;
+const sectionRegex = new RegExp(`${section}/${subsection}/.+.astro$`, "i");
+const sectionKeys = keys.filter((k) => k.match(sectionRegex)).sort();
+const currentKey = sectionKeys[parseInt(index) - 1];
+const componentModule = currentKey ? modules[currentKey] : undefined;
 
 // Metadata from module exports
-const componentDescription = componentModule?.description || "";
-const freeComponent = componentModule?.freeComponent || false;
+const mod: any = componentModule;
+const componentDescription = mod?.description || "";
+const freeComponent = mod?.freeComponent || false;
 
 const sectionLength = sectionKeys.length;
 const PreviewElement = parseInt(index) === 1 ? "div" : "a";
@@ -124,7 +126,7 @@ const NextElementProps =
         freeComponent={freeComponent}
         initialTabIsCode={Astro.url.searchParams.get("tab") === "code"}
       >
-        <componentModule.default />
+        {mod?.default && <mod.default />}
       </Playground>
     </Wrapper>
   </section>
