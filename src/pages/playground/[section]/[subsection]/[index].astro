@@ -17,7 +17,15 @@ const keys = Object.keys(modules);
 
 // Improved regex: escape dots and ensure correct matching
 const sectionRegex = new RegExp(`${section}/${subsection}/[^/]+\\.astro$`, "i");
-const sectionKeys = keys.filter((k) => sectionRegex.test(k)).sort();
+
+// Filter and sort numerically by filename (e.g., 01.astro, 02.astro, ...)
+const sectionKeys = keys
+  .filter((k) => sectionRegex.test(k))
+  .sort((a, b) => {
+    const aNum = parseInt(a.match(/(\d+)\.astro$/)?.[1] || "0", 10);
+    const bNum = parseInt(b.match(/(\d+)\.astro$/)?.[1] || "0", 10);
+    return aNum - bNum;
+  });
 const currentKey = sectionKeys[parseInt(index) - 1];
 const componentModule = currentKey ? modules[currentKey] : undefined;
 
