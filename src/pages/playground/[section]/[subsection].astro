@@ -50,7 +50,10 @@ const sectionComponents = keys
       component: mod?.default,
     };
   });
-
+const allSmall = sectionComponents.every(({ filePath }) => {
+  const pathNoAstro = filePath.replace(".astro", "");
+  return /\/(buttons|button-groups|button-icon|badges|breadcrumbs|checkboxes|inputs|input-groups|radiogroups|select|toggles|typography|flyouts|alerts|avatars|banners)\//i.test(pathNoAstro);
+});
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/screenshots/*.png"
 );
@@ -59,8 +62,20 @@ const formattedSubsection = subsection.replace("-", " ");
 const user = Astro.locals.user;
 const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
 
-// Removed legacy grid column configuration; layout is controlled via the
-// "masonry-grid" CSS or column view toggle now.
+// Per-subsection grid overrides (edit as you like)
+const gridOverrides: Record<string, { md: number; lg: number }> = {
+  banners: { md: 1, lg: 1 },
+  
+  // default handled below
+};
+
+// Resolve the current subsection's grid counts (fallback to 2/2)
+const mdCols = gridOverrides[subsection]?.md ?? 2;
+const lgCols = gridOverrides[subsection]?.lg ?? 2;
+
+// Pre-build the class strings we’ll inject into Alpine’s :class
+const gridClass = `grid grid-cols-1 md:grid-cols-${mdCols} lg:grid-cols-${lgCols} gap-2`;
+const columnClass = `flex flex-col gap-px`;
 ---
 
 <style>
@@ -143,60 +158,100 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
        </div>
         <div class="items-center justify-end hidden p-1 bg-white rounded-lg gap-1 md:flex gap-1" x-data="{ openCat:false, openSub:false }">
           <div class="relative">
-            <span class="sr-only">Category</span>
-            <Button size="xxs" variant="muted" class="pointer-events-auto !shadow-none inline-flex items-center gap-2 h-[28px] px-2 py-1" x-on:click.stop="openCat=!openCat">
-              <span class=" capitalize" x-text="fmt(cat)"></span>
-              <ChevronDown class="size-4" />
-            </Button>
-            <div x-show="openCat" x-transition @click.outside="openCat=false" class="absolute left-0 top-full z-50 mt-2 w-52 origin-top-left rounded-xl outline outline-zinc-100 shadow bg-white text-[13px] text-zinc-600 divide-y divide-zinc-100" x-cloak>
-              <div class="py-2 max-h-64 overflow-auto">
-                <template x-for="(list, key) in subs" :key="key">
-                  <a class="w-full flex items-center justify-between px-3 py-1.5 hover:bg-zinc-100" :href="`/playground/${key}/${(subs[key]||[])[0]||''}`" @click="openCat=false">
-                    <span class=" capitalize" x-text="fmt(key)"></span>
-                    <template x-if="cat===key">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-4 text-blue-600"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4-4a.75.75 0 011.06-1.06l3.353 3.353 7.528-9.884a.75.75 0 011.043-.136z" clip-rule="evenodd" /></svg>
-                    </template>
-                  </a>
-                </template>
-              </div>
-            </div>
-          </div>
+  <span class="sr-only">Category</span>
+  <Button
+    size="xxs"
+    variant="muted"
+    class="pointer-events-auto !shadow-none inline-flex items-center gap-2 h-[28px] px-2 py-1"
+    x-on:click.stop="openCat=!openCat"
+  >
+    <span class="capitalize" x-text="fmt(cat)"></span>
+    <ChevronDown class="size-4" />
+  </Button>
 
-          <div class="relative">
-            <span class="sr-only">Block</span>
-            <Button size="xxs" variant="muted" class="pointer-events-auto !shadow-none inline-flex items-center gap-2 h-[28px] px-2 py-1" x-on:click.stop="openSub=!openSub">
-              <span class=" capitalize" x-text="fmt(sub)"></span>
-              <ChevronDown class="size-4" />
-            </Button>
-            <div x-show="openSub" x-transition @click.outside="openSub=false" class="absolute left-0 top-full z-50 mt-2 w-64 origin-top-left rounded-xl outline outline-zinc-100 shadow bg-white text-[13px] text-zinc-600 divide-y divide-zinc-100" x-cloak>
-              <div class="py-2 max-h-64 overflow-auto">
-                <template x-for="name in (subs[cat]||[])" :key="name">
-                  <a class="w-full flex items-center justify-between px-3 py-1.5 hover:bg-zinc-100" :href="`/playground/${cat}/${name}`" @click="openSub=false">
-                    <span class=" capitalize" x-text="fmt(name)"></span>
-                    <template x-if="sub===name">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-4 text-blue-600"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4-4a.75.75 0 011.06-1.06l3.353 3.353 7.528-9.884a.75.75 0 011.043-.136z" clip-rule="evenodd" /></svg>
-                    </template>
-                  </a>
-                </template>
-              </div>
-            </div>
-          </div>
-          <Button
-            size="xxs"
-            variant="muted"
-            class="pointer-events-auto !shadow-none"
-            x-on:click="layout = (layout === 'grid' ? 'column' : 'grid')"
-            aria-label="Toggle layout"
-            title="Toggle layout"
-          >
-            <span class="sr-only" x-text="layout === 'grid' ? 'Column View' : 'Grid View'"></span>
-            <span x-show="layout === 'grid'" class="inline-flex items-center" aria-hidden="true">
-              <GridIcon class="size-4" />
-            </span>
-            <span x-show="layout !== 'grid'" class="inline-flex items-center" aria-hidden="true">
-              <ListIcon class="size-4" />
-            </span>
-          </Button>
+  <div
+    x-show="openCat"
+    x-transition
+    @click.outside="openCat=false"
+    class="absolute right-0 top-full z-50 mt-2 w-52 origin-top-right rounded-xl outline outline-zinc-100 shadow bg-white text-[13px] text-zinc-600 divide-y divide-zinc-100"
+    x-cloak
+  >
+    <div class="py-2 max-h-64 overflow-auto">
+      <template x-for="(list, key) in subs" :key="key">
+        <a
+          class="w-full flex items-center justify-between px-3 py-1.5 hover:bg-zinc-100"
+          :href="`/playground/${key}/${(subs[key]||[])[0]||''}`"
+          @click="openCat=false"
+        >
+          <span class="capitalize" x-text="fmt(key)"></span>
+          <template x-if="cat===key">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-4 text-blue-600">
+              <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4-4a.75.75 0 011.06-1.06l3.353 3.353 7.528-9.884a.75.75 0 011.043-.136z" clip-rule="evenodd" />
+            </svg>
+          </template>
+        </a>
+      </template>
+    </div>
+  </div>
+</div>
+
+<div class="relative">
+  <span class="sr-only">Block</span>
+  <Button
+    size="xxs"
+    variant="muted"
+    class="pointer-events-auto !shadow-none inline-flex items-center gap-2 h-[28px] px-2 py-1"
+    x-on:click.stop="openSub=!openSub"
+  >
+    <span class="capitalize" x-text="fmt(sub)"></span>
+    <ChevronDown class="size-4" />
+  </Button>
+
+  <div
+    x-show="openSub"
+    x-transition
+    @click.outside="openSub=false"
+    class="absolute right-0 top-full z-50 mt-2 w-64 origin-top-right rounded-xl outline outline-zinc-100 shadow bg-white text-[13px] text-zinc-600 divide-y divide-zinc-100"
+    x-cloak
+  >
+    <div class="py-2 max-h-64 overflow-auto">
+      <template x-for="name in (subs[cat]||[])" :key="name">
+        <a
+          class="w-full flex items-center justify-between px-3 py-1.5 hover:bg-zinc-100"
+          :href="`/playground/${cat}/${name}`"
+          @click="openSub=false"
+        >
+          <span class="capitalize" x-text="fmt(name)"></span>
+          <template x-if="sub===name">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-4 text-blue-600">
+              <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4-4a.75.75 0 011.06-1.06l3.353 3.353 7.528-9.884a.75.75 0 011.043-.136z" clip-rule="evenodd" />
+            </svg>
+          </template>
+        </a>
+      </template>
+    </div>
+  </div>
+</div>
+
+          {!allSmall && (
+  <Button
+    size="xxs"
+    variant="muted"
+    class="pointer-events-auto !shadow-none"
+    x-on:click="layout = (layout === 'grid' ? 'column' : 'grid')"
+    aria-label="Toggle layout"
+    title="Toggle layout"
+  >
+    <span class="sr-only" x-text="layout === 'grid' ? 'Column View' : 'Grid View'"></span>
+    <span x-show="layout === 'grid'" class="inline-flex items-center" aria-hidden="true">
+      <GridIcon class="size-4" />
+    </span>
+    <span x-show="layout !== 'grid'" class="inline-flex items-center" aria-hidden="true">
+      <ListIcon class="size-4" />
+    </span>
+  </Button>
+)}
+
         </div>
       </div>
     </Wrapper>
@@ -204,11 +259,11 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
 <!--- PlaygroundCard  -->
   <section class="border-t border-zinc-200">
     <Wrapper variant="standard" >
-      <div :class="layout === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2 ' : 'flex flex-col gap-px'" >
+     <div :class={`layout === 'grid' ? '${gridClass}' : '${columnClass}'`}>
         {
           sectionComponents.map(({ key, filePath, imagePath, description, free, component: C }, index) => {
             const pathNoAstro = filePath.replace('.astro','');
-            const isSmall = /\/(buttons|button-groups|button-icon|badges|breadcrumbs|checkboxes|inputs|input-groups|radiogroups|select|toggles|typography|flyouts|alerts|avatars)\//i.test(pathNoAstro);
+            const isSmall = /\/(buttons|button-groups|button-icon|badges|breadcrumbs|checkboxes|inputs|input-groups|radiogroups|select|toggles|typography|flyouts|alerts|avatars|banners)\//i.test(pathNoAstro);
 
             if (isSmall && C) {
               return (
