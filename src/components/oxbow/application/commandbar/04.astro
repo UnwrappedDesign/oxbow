@@ -3,74 +3,71 @@ import Search from "@/components/fundations/icons/Search.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 import CommandBarUserCard from "@/components/fundations/wrappers/CommandBarUserCard.astro";
 ---
-
-<section class="overflow-hidden bg-zinc-50">
-  <div class="relative px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl">
-    <!-- copy:start -->
-    <div
-      class="max-w-xl p-3 mx-auto overflow-hidden bg-white shadow-lg transition-all transform rounded-xl ring-1 ring-zinc-200"
-    >
-      <!-- Input section with label and accessible search -->
-      <div class="relative rounded-lg bg-zinc-50 focus-within:bg-white">
-        <label for="search" class="sr-only">Search</label>
-        <Search
-          class="pointer-events-none absolute top-3.5 left-4 text-zinc-400"
-          size="base"
-          slot="icon"
-        />
-        <input
-          id="search"
-          type="text"
-          class="w-full h-12 pr-4 bg-transparent border-0 text-zinc-800 placeholder-zinc-400 pl-11 focus:ring-0 sm:text-sm"
-          placeholder="Search for anything"
-          role="combobox"
-          aria-expanded="false"
-          aria-controls="options"
-          aria-autocomplete="list"
-        />
-      </div>
-      <!-- Options list with roles and keyboard focusability -->
-      <ul
-        class="pt-3 overflow-y-auto space-y-6 max-h-96 scroll-py-3"
-        id="options"
-        role="listbox"
-        tabindex="0"
-      >
-        <li>
-          <Text tag="p" variant="textSM" class="font-medium text-zinc-500">
-            Search results (2)
-          </Text>
-        </li>
-        <li id="option-1" role="option" tabindex="0" aria-selected="false">
-          <CommandBarUserCard
-            name="Michael Andreuzza"
-            username="@Mike_Andreuzza"
-            location="Alicante, Spain"
-            avatarSrc="/avatars/1.jpg"
-            avatarAlt="Profile picture"
-          />
-        </li>
-        <li id="option-1" role="option" tabindex="0" aria-selected="false">
-          <CommandBarUserCard
-            name="Jordan McKenna"
-            username="@jordan_mckenna"
-            location="Milano, Italy"
-            avatarSrc="/avatars/4.jpg"
-            avatarAlt="Profile picture"
-          />
-        </li>
-        <li id="option-1" role="option" tabindex="0" aria-selected="false">
-          <CommandBarUserCard
-            name="Peter Lee"
-            username="@peter_lee"
-            location="London, UK"
-            avatarSrc="/avatars/6.jpg"
-            avatarAlt="Profile picture"
-          />
-        </li>
-        <!-- Add more items similarly with roles and attributes... -->
-      </ul>
+<div class="flex items-center justify-center p-8">
+  <!-- copy:start -->
+  <div
+    class="max-w-xl p-3 mx-auto w-full overflow-hidden bg-white shadow-lg transition-all transform rounded-xl ring-1 ring-zinc-200"
+  >
+    <!-- Input section with label and accessible search -->
+    <div class="relative rounded-lg bg-zinc-50 focus-within:bg-white">
+      <label for="search" class="sr-only">Search</label>
+      <Search
+        class="pointer-events-none absolute top-3.5 left-4 text-zinc-400"
+        size="base"
+        slot="icon"
+      />
+      <input
+        id="search"
+        type="text"
+        class="w-full h-12 pr-4 bg-transparent border-0 text-zinc-800 placeholder-zinc-400 pl-11 focus:ring-0 sm:text-sm"
+        placeholder="Search for anything"
+        role="combobox"
+        aria-expanded="false"
+        aria-controls="options"
+        aria-autocomplete="list"
+      />
     </div>
-    <!-- copy:end -->
+    <!-- Options list with roles and keyboard focusability -->
+    <ul
+      class="pt-3 overflow-y-auto space-y-6 max-h-96 scroll-py-3"
+      id="options"
+      role="listbox"
+      tabindex="0"
+    >
+      <li>
+        <Text tag="p" variant="textSM" class="font-medium text-zinc-500">
+          Search results (2)
+        </Text>
+      </li>
+      <li id="option-1" role="option" tabindex="0" aria-selected="false">
+        <CommandBarUserCard
+          name="Michael Andreuzza"
+          username="@Mike_Andreuzza"
+          location="Alicante, Spain"
+          avatarSrc="/avatars/1.jpg"
+          avatarAlt="Profile picture"
+        />
+      </li>
+      <li id="option-1" role="option" tabindex="0" aria-selected="false">
+        <CommandBarUserCard
+          name="Jordan McKenna"
+          username="@jordan_mckenna"
+          location="Milano, Italy"
+          avatarSrc="/avatars/4.jpg"
+          avatarAlt="Profile picture"
+        />
+      </li>
+      <li id="option-1" role="option" tabindex="0" aria-selected="false">
+        <CommandBarUserCard
+          name="Peter Lee"
+          username="@peter_lee"
+          location="London, UK"
+          avatarSrc="/avatars/6.jpg"
+          avatarAlt="Profile picture"
+        />
+      </li>
+      <!-- Add more items similarly with roles and attributes... -->
+    </ul>
   </div>
-</section>
+  <!-- copy:end -->
+</div>

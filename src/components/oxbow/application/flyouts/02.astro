@@ -5,9 +5,7 @@ export const excludeFromObfuscation = [
   "opacity-100",
   "translate-y-0",
 ];
-
 import Button from "@/components/fundations/buttons/Button.astro";
-import Text from "@/components/fundations/typography/Text.astro";
 import FlyoutLinkBox from "@/components/fundations/wrappers/FlyoutLinkBox.astro";
 import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
 import Refresh from "@/components/fundations/icons/Refresh.astro";
@@ -17,32 +15,73 @@ import Brain from "@/components/fundations/icons/Brain.astro";
 import Subtask from "@/components/fundations/icons/Subtask.astro";
 ---
 
-<div class="h-[40rem]">
-  <div class="flex items-center justify-center w-full py-12 mx-auto">
-    <!--- When in use set x-data="{ open: false }" -->
-    <!-- copy:start -->
-    <div x-data="{ open: true }" class="relative">
-      <Button
-        aria-expanded="false"
-        @click="open = !open"
-        variant="text"
-        size="sm"
-        gap="sm"
-      >
-        <span>Help Center</span>
-        <ChevronDown size="sm" slot="right-icon" />
-      </Button>
+<div class="flex items-center justify-center w-full p-8 mx-auto">
+  <!-- copy:start -->
+  <div
+    class="relative"
+    x-data="{
+      uid: Math.random().toString(36).slice(2),
+      open: false,
+      style: '',
+      gap: 8,
+      align() {
+        const r = this.$refs.btn.getBoundingClientRect();
+        const left = r.left + r.width / 2;     // center under button
+        const top  = r.bottom + this.gap;      // just below
+        this.style = `position:fixed; left:${left}px; top:${top}px; transform:translateX(-50%);`;
+      },
+      toggle() {
+        if (this.open) { this.open = false; return; }
+        // close others first
+        window.dispatchEvent(new CustomEvent('close-all-flyouts', { detail: this.uid }));
+        this.align();                          // position first
+        requestAnimationFrame(() => this.open = true); // then show (no jitter)
+      },
+      close() { this.open = false; }
+    }"
+    x-init="
+      // Close when someone else opens
+      window.addEventListener('close-all-flyouts', (e) => { if (e.detail !== uid) open = false });
+      // Keep position in sync while open
+      const realign = () => { if (open) align() };
+      window.addEventListener('resize', realign);
+      window.addEventListener('scroll', realign, { passive: true });
+    "
+  >
+    <Button
+      x-ref="btn"
+      aria-expanded="false"
+      @click.stop="toggle"
+      variant="text"
+      size="sm"
+      gap="sm"
+    >
+      <span>Button</span>
+      <ChevronDown size="sm" slot="right-icon" />
+    </Button>
+    <!-- Backdrop for click-outside -->
+    <div
+      x-show="open"
+      x-transition.opacity
+      class="fixed inset-0 z-[999]"
+      @click="close"
+      style="display:none"
+    >
+    </div>
+    <!-- Teleported dropdown (no clipping) -->
+    <template x-teleport="body">
       <div
         x-show="open"
-        @click.away="open = false"
+        :style="style"
+        class="z-[1000]"
+        style="display:none"
+        @keydown.escape.window="close"
         x-transition:enter="transition ease-out duration-200"
         x-transition:enter-start="opacity-0 translate-y-1"
         x-transition:enter-end="opacity-100 translate-y-0"
         x-transition:leave="transition ease-in duration-150"
         x-transition:leave-start="opacity-100 translate-y-0"
         x-transition:leave-end="opacity-0 translate-y-1"
-        class="absolute z-10 flex w-screen px-4 mt-5 transition duration-200 ease-out -translate-x-1/2 left-1/2 max-w-max"
-        :class="{ 'opacity-0 translate-y-1': !open, 'opacity-100 translate-y-0': open }"
       >
         <div
           class="flex-auto w-screen max-w-sm p-4 text-sm bg-white shadow-lg leading-6 rounded-3xl ring-1 ring-zinc-900/5"
@@ -81,7 +120,7 @@ import Subtask from "@/components/fundations/icons/Subtask.astro";
           </div>
         </div>
       </div>
-    </div>
-    <!-- copy:end -->
+    </template>
   </div>
+  <!-- copy:end -->
 </div>
