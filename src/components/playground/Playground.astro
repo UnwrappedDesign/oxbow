@@ -207,7 +207,7 @@ const theme = ``;
       <div
         class="w-full overflow-auto border-x border-zinc-100"
         :class="{ 'max-w-sm border-x border-zinc-100': viewportSize === 'mobile', 'max-w-screen-md border-x border-zinc-100': viewportSize === 'tablet','max-w-full': viewportSize === 'desktop' }">
-        {canSeeCodeValue ? <Fragment set:html={rawSlotCode} /> : null}
+  <Fragment set:html={await Astro.slots.render("default")} />
       </div>
     </div>
     {canSeeCodeValue && (
