@@ -7,11 +7,12 @@ import Text from "@/components/fundations/typography/Text.astro";
 export const excludeFromObfuscation = ["flex", "hidden"];
 ---
 <!-- copy:start -->
-<div class="justify-center w-full mx-auto bg-zinc-50">
+<header class="w-full mx-auto bg-zinc-50">
   <div
     x-data="{ open: false }"
     class="relative flex flex-col w-full px-8 py-2 mx-auto md:px-12 md:items-center md:justify-between md:flex-row lg:px-24 max-w-screen-xl"
   >
+    <!-- Brand + mobile toggle -->
     <div class="flex flex-row items-center justify-between text-black">
       <Text
         tag="a"
@@ -22,37 +23,48 @@ export const excludeFromObfuscation = ["flex", "hidden"];
         <img
           class="h-7 2xl:h-12"
           src="/images/oxbow/blueLineLogo.png"
-          alt="#_"
-        /> Oxbow UI
+          alt="Oxbow UI"
+        />
+        Oxbow UI
       </Text>
+
       <IconButton
         class="md:hidden"
         @click="open = !open"
+        :aria-expanded="open"
+        aria-controls="main-nav"
+        aria-label="Toggle navigation"
         variant="alternative"
         size="sm"
       >
         <Burger size="xs" slot="icon" />
       </IconButton>
     </div>
+
+    <!-- Primary navigation -->
     <nav
-      :class="{'flex': open, 'hidden': !open}"
+      id="main-nav"
+      :class="{ 'flex': open, 'hidden': !open }"
       class="flex-col items-center flex-grow hidden p-4 px-5 text-xs font-medium gap-3 text-zinc-500 md:px-0 md:pb-0 md:flex md:justify-start md:flex-row md:ml-4 lg:p-0 md:mt-0"
     >
       <Text
         href="#_"
         tag="a"
         variant="textBase"
-        class="font-medium hover:text-blue-500 text-zinc-500">Features</Text
+        class="font-medium hover:text-blue-500 text-zinc-500"
       >
+        Features
+      </Text>
       <Text
         href="#_"
         tag="a"
         variant="textBase"
         class="font-medium hover:text-blue-500 text-zinc-500 md:mr-auto"
-        >About</Text
       >
-      <Button variant="accent" size="sm"> Button </Button>
+        About
+      </Text>
+      <Button variant="accent" size="sm">Button</Button>
     </nav>
   </div>
-</div>
+</header>
 <!-- copy:end -->
