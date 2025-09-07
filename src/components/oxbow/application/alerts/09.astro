@@ -5,52 +5,49 @@ import CircleCheck from "@/components/fundations/icons/CircleCheck.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
 
-<section>
-  <div
-    class="items-center px-8 py-12 mx-auto max-w-7xl lg:px-16 md:px-12 lg:py-24 relative"
-  >
+<div class="flex items-center justify-center p-8 py-24 relative">
   <!-- copy:start -->
+  <div
+    class="absolute bottom-0 right-0 w-5/6 max-w-sm m-8 md:w-full"
+    x-data="{ isVisible: true }"
+    x-show="isVisible"
+    x-transition
+  >
     <div
-      class="absolute bottom-0 right-0 w-5/6 max-w-sm m-8 md:w-full"
-      x-data="{ isVisible: true }"
-      x-show="isVisible"
-      x-transition
+      role="alert"
+      aria-live="polite"
+      aria-atomic="true"
+      class="p-4 bg-white shadow-lg rounded-xl ring-1 ring-zinc-200"
     >
-      <div
-        role="alert"
-        aria-live="polite"
-        aria-atomic="true"
-        class="p-4 bg-white shadow-lg rounded-xl ring-1 ring-1-200"
-      >
-        <div class="flex flex-row">
-          <div class="px-2">
-            <CircleCheck class="text-emerald-500" size="base" slot="icon" />
-          </div>
-          <div class="ml-2 mr-6">
-            <Text tag="p" variant="textBase" class="font-medium text-zinc-900">
-              Successfully Saved!
-            </Text>
-            <Text
-              tag="p"
-              variant="textSM"
-              class="mt-2 font-medium text-zinc-500"
-            >
-              Anyone with a link has access.
-            </Text>
-          </div>
-          <IconButton
-            aria-label="Dismiss notification"
-            class="ml-auto"
-            @click="isVisible = false"
-            variant="transparentLight"
-            size="sm"
-          >
-            <CircleX size="base" slot="icon" />
-            <span class="sr-only">Close</span>
-          </IconButton>
+      <div class="flex flex-row">
+        <div class="px-2">
+          <CircleCheck class="text-emerald-500" size="base" slot="icon" />
         </div>
+        <div class="ml-2 mr-6">
+          <Text tag="p" variant="textBase" class="font-medium text-zinc-900">
+            Successfully Saved!
+          </Text>
+          <Text
+            tag="p"
+            variant="textSM"
+            class="mt-2 font-medium text-zinc-500"
+          >
+            Anyone with a link has access.
+          </Text>
+        </div>
+        <IconButton
+          aria-label="Dismiss notification"
+          class="ml-auto"
+          @click="isVisible = false"
+          variant="transparentLight"
+          size="sm"
+        >
+          <CircleX size="base" slot="icon" />
+          <span class="sr-only">Close</span>
+        </IconButton>
       </div>
     </div>
-    <!-- copy:end -->
   </div>
-</section>
+  <!-- copy:end -->
+</div>
+
