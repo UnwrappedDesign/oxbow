@@ -64,12 +64,17 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
 
 // Per-subsection grid overrides (edit as you like)
 const gridOverrides: Record<string, { md: number; lg: number }> = {
+  // Marketing
+  "marketing-heros": { md: 1, lg: 1 },
+  "bento-grids": { md: 1, lg: 1 },
+  "blog-entries": { md: 1, lg: 1 },
   // Application
   banners: { md: 1, lg: 1 },
   navbars: { md: 1, lg: 1 },
   flyouts: { md: 1, lg: 1 },
   typography: { md: 1, lg: 1 },
-  tables: { md: 1, lg: 21 },
+  tables: { md: 1, lg: 1 },
+  alerts: { md: 1, lg: 2 },
   pagination: { md: 1, lg: 2 },
   tabs: { md: 2, lg: 2 },
   textarea: { md: 1, lg: 2 },
@@ -91,6 +96,41 @@ const lgCols = gridOverrides[subsectionKey]?.lg ?? 2;
 // Pre-build the class strings we’ll inject into Alpine’s :class
 const gridClass = `grid grid-cols-1 md:grid-cols-${mdCols} lg:grid-cols-${lgCols} gap-2`;
 const columnClass = `flex flex-col gap-px`;
+const smallBlockCategories = [
+  // Application
+  "buttons",
+  "button-groups",
+  "button-icon",
+  "badges",
+  "breadcrumbs",
+  "checkboxes",
+  "inputs",
+  "input-groups",
+  "radiogroups",
+  "select",
+  "toggles",
+  "typography",
+  "flyouts",
+  "alerts",
+  "avatars",
+  "banners",
+  "commandbar",
+  "emptyStates",
+  "navbars",
+  "notifications",
+  "pagination",
+  "tables",
+  "tabs",
+  "textarea",
+  // Marketing
+  "creative-heros",
+  "bento-grids",
+  "blog-entries",
+];
+
+// turn it into a regex matcher
+const isSmallBlock = (pathNoAstro: string) =>
+  smallBlockCategories.some((cat) => pathNoAstro.includes(`/${cat}/`));
 
 ---
 
@@ -249,7 +289,7 @@ const columnClass = `flex flex-col gap-px`;
   </div>
 </div>
 
-          {!allSmall && (
+          <!-- {!allSmall && (
   <Button
     size="xxs"
     variant="muted"
@@ -266,7 +306,7 @@ const columnClass = `flex flex-col gap-px`;
       <ListIcon class="size-4" />
     </span>
   </Button>
-)}
+)} -->
 
         </div>
       </div>
@@ -277,22 +317,22 @@ const columnClass = `flex flex-col gap-px`;
     <Wrapper variant="standard" class="lg:border-x lg:border-zinc-200">
      <div :class={`layout === 'grid' ? '${gridClass}' : '${columnClass}'`}>
         {
-          sectionComponents.map(({ key, filePath, imagePath, description, free, component: C }, index) => {
-            const pathNoAstro = filePath.replace('.astro','');
-            const isSmall = /\/(buttons|button-groups|button-icon|badges|breadcrumbs|checkboxes|inputs|input-groups|radiogroups|select|toggles|typography|flyouts|alerts|avatars|banners|commandbar|emptyStates|navbars|notifications|pagination|select|tables|tabs|textarea|typography)\//i.test(pathNoAstro);
+  sectionComponents.map(({ key, filePath, imagePath, description, free, component: C }, index) => {
+    const pathNoAstro = filePath.replace(".astro", "");
+    const isSmall = isSmallBlock(pathNoAstro);
 
-            if (isSmall && C) {
-              return (
-                <div class="group">
-                  <PlaygroundCard componentIndex={index + 1} componentPath={`${pathNoAstro}.astro`} freeComponent={free}>
-                    <C />
-                  </PlaygroundCard>
-                  {description && (
-                    <Text tag="p" variant="textSM" class="sr-only">{description}</Text>
-                  )}
-                </div>
-              );
-            }
+    if (isSmall && C) {
+      return (
+        <div class="group">
+          <PlaygroundCard componentIndex={index + 1} componentPath={`${pathNoAstro}.astro`} freeComponent={free}>
+            <C />
+          </PlaygroundCard>
+          {description && (
+            <Text tag="p" variant="textSM" class="sr-only">{description}</Text>
+          )}
+        </div>
+      );
+    }
 
             if (!images[imagePath]) return null;
             const updatedAt = new Date(updates[filePath] * 1000);
