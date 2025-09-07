@@ -5,7 +5,6 @@ import * as prettier from "prettier";
 import { canSeeCode } from "@/utils/canSeeCode";
 import { getUserThemeColor } from "@/utils/getUserTheme";
 import Button from "@/components/fundations/buttons/Button.astro";
-
 interface Props {
   componentIndex: number;
   componentPath: string; // like components/oxbow/application/buttons/01.astro
@@ -15,9 +14,7 @@ const { componentIndex, componentPath, freeComponent = false } = Astro.props as 
 const user = Astro.locals.user;
 const canSee = canSeeCode(user, freeComponent);
 const userThemeColor = getUserThemeColor(user, 'blue', Astro);
-
 const slotCode = canSee ? await Astro.slots.render("default") : '';
-
 // Extract copy region using the same convention as Playground
 let code = '';
 if (canSee) {
@@ -43,7 +40,6 @@ if (canSee) {
     code = s || slotCode;
   }
 }
-
 let ppcode = '';
 if (canSee) {
   ppcode = await prettier.format(code, { parser: 'html' });
@@ -127,7 +123,6 @@ if (canSee) {
     )}
   </div>
 </section>
-
 <style>
   :global(.code-pane pre) {
     white-space: pre;
