@@ -1,41 +1,64 @@
 ---
 import HorizontalButtonGroup from "@/components/fundations/buttonGroups/HorizontalButtonGroup.astro";
 ---
+
 <section>
-  <div class="flex justify-center py-48 mx-auto">
+  <div class="flex justify-center p-8 mx-auto">
     <!-- copy:start -->
-    <span class="inline-flex isolate">
-      <HorizontalButtonGroup
-        variant="default"
-        position="right"
-        size="sm">
-        Previous
-      </HorizontalButtonGroup>
-      <HorizontalButtonGroup
-        variant="default"
-        position="middle"
-        size="sm">
-        1
-      </HorizontalButtonGroup>
-      <HorizontalButtonGroup
-        variant="default"
-        position="middle"
-        size="sm">
-        ...
-      </HorizontalButtonGroup>
-      <HorizontalButtonGroup
-        variant="default"
-        position="middle"
-        size="sm">
-        10
-      </HorizontalButtonGroup>
-      <HorizontalButtonGroup
-        position="left"
-        variant="default"
-        size="sm">
-        Next
-      </HorizontalButtonGroup>
-    </span>
+    <nav aria-label="Pagination">
+      <span class="inline-flex isolate">
+        <HorizontalButtonGroup
+          variant="default"
+          position="right"
+          size="sm"
+          aria-label="Go to previous page"
+          aria-disabled="true"
+          tabindex="-1"
+        >
+          Previous
+        </HorizontalButtonGroup>
+
+        <HorizontalButtonGroup
+          variant="default"
+          position="middle"
+          size="sm"
+          aria-current="page"
+          aria-label="Page 1, current page"
+        >
+          1
+        </HorizontalButtonGroup>
+
+        <HorizontalButtonGroup
+          variant="default"
+          position="middle"
+          size="sm"
+          aria-hidden="true"
+          aria-disabled="true"
+          tabindex="-1"
+          role="presentation"
+        >
+          ...
+        </HorizontalButtonGroup>
+
+        <HorizontalButtonGroup
+          variant="default"
+          position="middle"
+          size="sm"
+          aria-label="Go to page 10"
+        >
+          10
+        </HorizontalButtonGroup>
+
+        <HorizontalButtonGroup
+          position="left"
+          variant="default"
+          size="sm"
+          aria-label="Go to next page"
+        >
+          Next
+        </HorizontalButtonGroup>
+      </span>
+    </nav>
     <!-- copy:end -->
   </div>
 </section>

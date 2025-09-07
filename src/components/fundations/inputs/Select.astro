@@ -80,16 +80,19 @@ const _noBottomLeft =
   noRounded || noRoundedBottom || noRoundedLeft || noRoundedBottomLeft;
 const _noBottomRight =
   noRounded || noRoundedBottom || noRoundedRight || noRoundedBottomRight;
+// Only add one rounded class if all corners are rounded (default)
 let roundedClass = "rounded-md";
 if (_noTopLeft && _noTopRight && _noBottomLeft && _noBottomRight) {
   roundedClass = "rounded-none";
+} else if (!_noTopLeft && !_noTopRight && !_noBottomLeft && !_noBottomRight) {
+  roundedClass = "rounded-md";
 } else {
   const parts = [];
   if (!_noTopLeft) parts.push("rounded-tl-md");
   if (!_noTopRight) parts.push("rounded-tr-md");
   if (!_noBottomLeft) parts.push("rounded-bl-md");
   if (!_noBottomRight) parts.push("rounded-br-md");
-  if (parts.length) roundedClass = parts.join(" ");
+  roundedClass = parts.join(" ");
 }
 let selectClasses = [
   "block",
@@ -140,7 +143,7 @@ const hasAlpine =
           {label}
         </label>
       )}
-      <div class="relative">
+      <div class={`relative${!hideLabel && label ? " mt-1" : ""}`}>
         <select
           {...rest}
           id={id}
@@ -194,7 +197,7 @@ const hasAlpine =
           {label}
         </label>
       )}
-      <div class="relative">
+      <div class={`relative${!hideLabel && label ? " mt-1" : ""}`}>
         <select
           {...rest}
           id={id}

@@ -13,7 +13,7 @@ const countryOptions = [
 ];
 ---
 
-<div class="flex justify-center w-full px-12 py-48">
+<div class="flex justify-center p-8 mx-auto">
   <!-- copy:start -->
   <div
     class="flex flex-col w-full max-w-sm gap-2"
@@ -53,6 +53,7 @@ const countryOptions = [
         options={countryOptions}
         xModel="country"
         xOn={{ change: "loadStates()" }}
+        class="w-full"
       />
 
       <div>
@@ -60,7 +61,7 @@ const countryOptions = [
         <label for="state" class="block mb-1 text-sm font-medium text-zinc-500"
           >State/Province</label
         >
-        <Select id="state" name="state" x-model="state" c>
+        <Select id="state" name="state" x-model="state" class="w-full">
           <template x-for="option in stateOptions" :key="option.value">
             <option :value="option.value" x-text="option.label"></option>
           </template>

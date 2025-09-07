@@ -3,9 +3,8 @@ export const description = "Expandable textarea";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
 
-<div
-  class="flex flex-wrap items-end justify-center max-w-md py-12 mx-auto gap-4"
->
+<div class="flex flex-col justify-center p-8 mx-auto">
+  <!-- copy:start -->
   <div class="w-full space-y-1" x-data="{ text: '', rows: 2 }">
     <Text
       for="expandable-textarea"
@@ -24,4 +23,5 @@ import Text from "@/components/fundations/typography/Text.astro";
       @input="rows = Math.min(10, Math.floor((text.length / 20) + 2))"
     ></textarea>
   </div>
+  <!-- copy:end -->
 </div>

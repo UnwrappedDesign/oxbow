@@ -22,46 +22,109 @@ import User from "@/components/fundations/icons/User.astro";
           <ChevronRight size="base" />
         </Text>
       </li>
+
       <li class="relative flex items-center">
-        <div x-data="{ open: false }" class="flex items-center gap-2">
+        <!-- Teleportable, self-contained dropdown -->
+        <div
+          x-data="{
+            open: false,
+            style: '',
+            gap: 8,
+            align() {
+              const btn = this.$refs.trigger;
+              if (!btn) return;
+              const r = btn.getBoundingClientRect();
+              const left = r.left;                // left-align (change to r.left + r.width/2 for centered)
+              const top  = r.bottom + this.gap;   // just under the button
+              const minw = Math.max(128, r.width);// keep at least 128px
+              this.style = `position:fixed; left:${left}px; top:${top}px; min-width:${minw}px;`;
+            },
+            toggle() {
+              if (this.open) { this.open = false; return; }
+              this.align(); requestAnimationFrame(() => this.open = true);
+            },
+            close() { this.open = false; }
+          }"
+          x-init="
+            const realign = () => { if (open) align() };
+            window.addEventListener('resize', realign);
+            window.addEventListener('scroll', realign, { passive: true });
+          "
+          class="flex items-center gap-2"
+        >
           <button
-            @click="open = !open"
+            x-ref="trigger"
+            @click="toggle"
+            :aria-expanded="open"
+            aria-haspopup="menu"
+            aria-label="Open breadcrumb menu"
             class="flex items-center justify-center text-zinc-500 hover:text-blue-500 transition-colors"
           >
             <ThreeDots size="base" />
           </button>
+
           <ChevronRight size="base" class="text-zinc-500" />
 
+          <!-- Backdrop to catch outside clicks -->
           <div
             x-show="open"
-            @click.away="open = false"
-            x-transition:enter="transition ease-out duration-200"
-            x-transition:enter-start="opacity-0 translate-y-1"
-            x-transition:enter-end="opacity-100 translate-y-0"
-            x-transition:leave="transition ease-in duration-150"
-            x-transition:leave-start="opacity-100 translate-y-0"
-            x-transition:leave-end="opacity-0 translate-y-1"
-            class="absolute -top-1 left-1/2 -translate-x-1/2 w-32 bg-white shadow-lg rounded-xl ring-1 ring-zinc-200 divide-y divide-zinc-200 z-10"
+            x-transition.opacity
+            class="fixed inset-0 z-[999]"
+            style="display:none"
+            @click="close"
+            @keydown.escape.window="close"
+            aria-hidden="true"
           >
-            <div class="p-1.5">
-              <Text
-                tag="a"
-                href="#_"
-                variant="textSM"
-                class="flex items-center p-2 rounded-lg hover:bg-zinc-50 hover:text-blue-500 gap-2 text-zinc-500"
-              >
-                <User size="sm" />
-                Profile
-              </Text>
-            </div>
-            <div class="p-1.5 bg-zinc-50">
-              <Button class="w-full" variant="alternative" size="xs">
-                Sign out
-              </Button>
-            </div>
           </div>
+
+          <!-- The menu, teleported to body to avoid clipping -->
+          <template x-teleport="body">
+            <div
+              x-show="open"
+              :style="style"
+              style="display:none"
+              class="z-[1000]"
+              role="menu"
+              @keydown.escape.window="close"
+              x-transition:enter="transition ease-out duration-200"
+              x-transition:enter-start="opacity-0 translate-y-1"
+              x-transition:enter-end="opacity-100 translate-y-0"
+              x-transition:leave="transition ease-in duration-150"
+              x-transition:leave-start="opacity-100 translate-y-0"
+              x-transition:leave-end="opacity-0 translate-y-1"
+            >
+              <div
+                class="w-32 bg-white shadow-lg rounded-xl ring-1 ring-zinc-200 divide-y divide-zinc-200"
+              >
+                <div class="p-1.5">
+                  <Text
+                    tag="a"
+                    href="#_"
+                    variant="textSM"
+                    role="menuitem"
+                    class="flex items-center p-2 rounded-lg hover:bg-zinc-50 hover:text-blue-500 gap-2 text-zinc-500"
+                    @click="close"
+                  >
+                    <User size="sm" />
+                    Profile
+                  </Text>
+                </div>
+                <div class="p-1.5 bg-zinc-50">
+                  <Button
+                    class="w-full"
+                    variant="alternative"
+                    size="xs"
+                    @click="close"
+                  >
+                    Sign out
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </template>
         </div>
       </li>
+
       <li>
         <Text
           tag="a"

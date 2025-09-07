@@ -5,53 +5,86 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 ---
 
 <section>
-  <div
-    class="flex justify-center w-full px-8 py-48 mx-auto md:px-12 lg:px-24 max-w-7xl"
-  >
+<div class="flex justify-center p-8 mx-auto">
     <!-- copy:start -->
-    <nav class="flex items-center justify-center w-full px-4 sm:px-0 gap-4">
-      <Button gap="xs" size="xs" variant="alternative" class="md:hidden">
+    <nav
+      class="flex items-center justify-center w-full px-4 sm:px-0 gap-4"
+      aria-label="Pagination"
+    >
+      <!-- Mobile Previous -->
+      <Button
+        gap="xs"
+        size="xs"
+        variant="alternative"
+        class="md:hidden"
+        aria-label="Go to previous page"
+      >
         <ChevronLeft size="sm" slot="icon" slot="left-icon" />
         Previous
       </Button>
+
+      <!-- Desktop Pagination -->
       <div class="hidden md:-mt-px md:flex">
         <a
           href="#_"
           class="inline-flex items-center px-4 pb-4 text-sm font-medium border-b-2 border-transparent text-zinc-500 hover:border-zinc-300 hover:text-blue-500"
-          >1</a
+          aria-label="Go to page 1"
         >
+          1
+        </a>
         <a
           href="#_"
           class="inline-flex items-center px-4 pb-4 text-sm font-medium border-b-2 border-blue-500 text-blue-600"
-          aria-current="page">2</a
+          aria-current="page"
+          aria-label="Page 2, current page"
         >
+          2
+        </a>
         <a
           href="#_"
           class="inline-flex items-center px-4 pb-4 text-sm font-medium border-b-2 border-transparent text-zinc-500 hover:border-zinc-300 hover:text-blue-500"
-          >3</a
+          aria-label="Go to page 3"
         >
+          3
+        </a>
         <span
           class="inline-flex items-center px-4 pb-4 text-sm font-medium border-b-2 border-transparent text-zinc-500"
-          >...</span
+          aria-hidden="true"
         >
+          ...
+        </span>
         <a
           href="#_"
           class="inline-flex items-center px-4 pb-4 text-sm font-medium border-b-2 border-transparent text-zinc-500 hover:border-zinc-300 hover:text-blue-500"
-          >8</a
+          aria-label="Go to page 8"
         >
+          8
+        </a>
         <a
           href="#_"
           class="inline-flex items-center px-4 pb-4 text-sm font-medium border-b-2 border-transparent text-zinc-500 hover:border-zinc-300 hover:text-blue-500"
-          >9</a
+          aria-label="Go to page 9"
         >
+          9
+        </a>
         <a
           href="#_"
           class="inline-flex items-center px-4 pb-4 text-sm font-medium border-b-2 border-transparent text-zinc-500 hover:border-zinc-300 hover:text-blue-500"
-          >10</a
+          aria-label="Go to page 10"
         >
+          10
+        </a>
       </div>
-      <Button gap="xs" size="xs" variant="alternative" class="md:hidden">
-        Previous
+
+      <!-- Mobile Next -->
+      <Button
+        gap="xs"
+        size="xs"
+        variant="alternative"
+        class="md:hidden"
+        aria-label="Go to next page"
+      >
+        Next
         <ChevronRight size="sm" slot="icon" slot="right-icon" />
       </Button>
     </nav>

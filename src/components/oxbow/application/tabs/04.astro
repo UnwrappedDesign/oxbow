@@ -8,64 +8,62 @@ export const excludeFromObfuscation = [
 ];
 ---
 
-<section>
-  <div class="relative px-8 py-12 mx-auto md:px-12 lg:px-24 max-w-7xl">
-    <!-- copy:start -->
-    <div x-data="{ tab: 'tab1' }">
-      <div class="flex justify-center">
-        <ul
-          class="inline-flex w-auto p-2 text-sm border gap-4 text-zinc-500 border-zinc-200 rounded-xl"
-        >
-          <li>
-            <a
-              @click.prevent="tab = 'tab1'"
-              href="#_"
-              class="flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg h-9 transition-all duration-200"
-              :class="tab === 'tab1' ? 'bg-blue-700 text-white shadow-md' : 'bg-zinc-50 hover:text-blue-500'"
-            >
-              Marketing
-            </a>
-          </li>
-          <li>
-            <a
-              @click.prevent="tab = 'tab2'"
-              href="#_"
-              class="flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg h-9 transition-all duration-200"
-              :class="tab === 'tab2' ? 'bg-blue-700 text-white shadow-md' : 'bg-zinc-50 hover:text-blue-500'"
-            >
-              Application
-            </a>
-          </li>
-          <li>
-            <a
-              @click.prevent="tab = 'tab3'"
-              href="#_"
-              class="flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg h-9 transition-all duration-200"
-              :class="tab === 'tab3' ? 'bg-blue-700 text-white shadow-md' : 'bg-zinc-50 hover:text-blue-500'"
-            >
-              ECommerce
-            </a>
-          </li>
-        </ul>
+<div class="flex flex-col justify-center p-8 mx-auto">
+  <!-- copy:start -->
+  <div x-data="{ tab: 'tab1' }">
+    <div class="flex justify-center">
+      <ul
+        class="inline-flex w-auto p-2 text-sm border gap-4 text-zinc-500 border-zinc-200 rounded-xl"
+      >
+        <li>
+          <a
+            @click.prevent="tab = 'tab1'"
+            href="#_"
+            class="flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg h-9 transition-all duration-200"
+            :class="tab === 'tab1' ? 'bg-blue-700 text-white shadow-md' : 'bg-zinc-50 hover:text-blue-500'"
+          >
+            Marketing
+          </a>
+        </li>
+        <li>
+          <a
+            @click.prevent="tab = 'tab2'"
+            href="#_"
+            class="flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg h-9 transition-all duration-200"
+            :class="tab === 'tab2' ? 'bg-blue-700 text-white shadow-md' : 'bg-zinc-50 hover:text-blue-500'"
+          >
+            Application
+          </a>
+        </li>
+        <li>
+          <a
+            @click.prevent="tab = 'tab3'"
+            href="#_"
+            class="flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg h-9 transition-all duration-200"
+            :class="tab === 'tab3' ? 'bg-blue-700 text-white shadow-md' : 'bg-zinc-50 hover:text-blue-500'"
+          >
+            ECommerce
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="py-4 mt-4 text-left bg-white content">
+      <div x-show="tab==='tab1'" class="text-zinc-500">
+        <main class="py-4">
+          <p class="text-sm text-zinc-500">Marketing content</p>
+        </main>
       </div>
-      <div class="py-4 mt-4 text-left bg-white content">
-        <div x-show="tab==='tab1'" class="text-zinc-500">
-          <main class="py-4">
-            <p class="text-sm text-zinc-500">Marketing content</p>
-          </main>
-        </div>
-        <div x-show="tab==='tab2'" class="text-zinc-500" style="display: none;">
-          <main class="py-4">
-            <p class="text-sm text-zinc-500">Application content</p>
-          </main>
-        </div>
-        <div x-show="tab==='tab3'" class="text-zinc-500" style="display: none;">
-          <main class="py-4">
-            <p class="text-sm text-zinc-500">ECommerce content</p>
-          </main>
-        </div>
+      <div x-show="tab==='tab2'" class="text-zinc-500" style="display: none;">
+        <main class="py-4">
+          <p class="text-sm text-zinc-500">Application content</p>
+        </main>
+      </div>
+      <div x-show="tab==='tab3'" class="text-zinc-500" style="display: none;">
+        <main class="py-4">
+          <p class="text-sm text-zinc-500">ECommerce content</p>
+        </main>
       </div>
     </div>
-    <!-- copy:end -->
   </div>
-</section>
+  <!-- copy:end -->
+</div>
