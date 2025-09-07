@@ -1,29 +1,4 @@
 ---
-export async function getStaticPaths({ params }) {
-  const { section, subsection } = params;
-  const modules = import.meta.glob("@/components/oxbow/**/*.astro", {
-    eager: true,
-  });
-  const keys = Object.keys(modules);
-  const sectionRegex = new RegExp(
-    `${section}/${subsection}/[^/]+\\.astro$`,
-    "i"
-  );
-  const sectionKeys = keys
-    .filter((k) => sectionRegex.test(k))
-    .sort((a, b) => {
-      const aNum = parseInt(a.match(/(\d+)\.astro$/)?.[1] || "0", 10);
-      const bNum = parseInt(b.match(/(\d+)\.astro$/)?.[1] || "0", 10);
-      return aNum - bNum;
-    });
-  return sectionKeys.map((k, i) => ({
-    params: {
-      section,
-      subsection,
-      index: String(i + 1).padStart(2, "0"),
-    },
-  }));
-}
 // Foundation
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Playground from "@/components/playground/Playground.astro";
@@ -35,29 +10,17 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 
 // Parameters
 const { section, subsection, index } = Astro.params;
-const modules = import.meta.glob("@/components/oxbow/**/*.astro", {
-  eager: true,
-});
+const modules = import.meta.glob("@/components/oxbow/**/*.astro");
 const keys = Object.keys(modules);
-
-// Improved regex: escape dots and ensure correct matching
-const sectionRegex = new RegExp(`${section}/${subsection}/[^/]+\\.astro$`, "i");
-
-// Filter and sort numerically by filename (e.g., 01.astro, 02.astro, ...)
-const sectionKeys = keys
-  .filter((k) => sectionRegex.test(k))
-  .sort((a, b) => {
-    const aNum = parseInt(a.match(/(\d+)\.astro$/)?.[1] || "0", 10);
-    const bNum = parseInt(b.match(/(\d+)\.astro$/)?.[1] || "0", 10);
-    return aNum - bNum;
-  });
+const sectionRegex = new RegExp(`${section}/${subsection}/.+\\.astro$`, "i");
+const sectionKeys = keys.filter((k) => k.match(sectionRegex));
+sectionKeys.sort();
 const currentKey = sectionKeys[parseInt(index) - 1];
-const componentModule = currentKey ? modules[currentKey] : undefined;
+const componentModule = currentKey ? await modules[currentKey]() : undefined;
 
 // Metadata from module exports
-const mod: any = componentModule;
-const componentDescription = mod?.description || "";
-const freeComponent = mod?.freeComponent || false;
+const componentDescription = componentModule?.description || "";
+const freeComponent = componentModule?.freeComponent || false;
 
 const sectionLength = sectionKeys.length;
 const PreviewElement = parseInt(index) === 1 ? "div" : "a";
@@ -100,251 +63,78 @@ const NextElementProps =
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left size-4"
-                d="M15 6l-6 6l6 6"></svg></button
+                ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                  d="M15 6l-6 6l6 6"></path></svg
+              >Go back</button
             >
             <span aria-hidden="true" class="text-zinc-500">/</span>
             <Text
               tag="h1"
               variant="textSM"
               class="font-medium capitalize text-zinc-900"
-              {`${subsection.replace(/-/g, " ")} #${index.replace(/-/g, " ")}`}
-              <
-              Text
-            />
-            <span aria-hidden="true" class="hidden text-zinc-500 md:block"
-              >/</span
             >
-            {
-              componentDescription && (
-                <Text tag="p" variant="textSM" class=" text-zinc-500">
-                  {componentDescription}
-                </Text>
-              )
-            }
-            <div>
-              <nav
-                class="relative z-0 inline-flex gap-1.5"
-                aria-label="Pagination"
-              >
-                <PreviewElement {...PreviewElementProps}>
-                  <IconButton
-                    disable={parseInt(index) === 1}
-                    aria-label="Go to previous page"
-                    variant="alternative"
-                    size="xs"
-                  >
-                    <ChevronLeft size="sm" slot="icon" />
-                    <span class="sr-only">Previous</span>
-                  </IconButton>
-                </PreviewElement>
-                <NextElement {...NextElementProps}>
-                  <IconButton
-                    disable={parseInt(index) === sectionLength}
-                    aria-label="Go to next page"
-                    variant="alternative"
-                    size="xs"
-                  >
-                    <ChevronRight size="sm" slot="icon" />
-                    <span class="sr-only">Next</span>
-                  </IconButton>
-                </NextElement>
-              </nav>
-            </div>
+              {`${subsection.replace(/-/g, " ")} #${index.replace(/-/g, " ")}`}
+            </Text>
           </div>
-        </div>
-      </div>
-      <section class="border-t border-zinc-200">
-        <Wrapper variant="wide" class="py-8 2xl:border-x 2xl:border-zinc-200">
+          <span aria-hidden="true" class="hidden text-zinc-500 md:block">/</span
+          >
           {
-            mod?.default ? (
-              <Playground
-                componentIndex={parseInt(index)}
-                componentPath={currentKey ? currentKey.replace(/^\//, "") : ""}
-                playgroundRef={`${section}-${subsection}-${index}`}
-                freeComponent={freeComponent}
-                initialTabIsCode={Astro.url.searchParams.get("tab") === "code"}
-              >
-                <mod.default />
-              </Playground>
-            ) : (
-              <div class="text-red-600 font-mono p-4 bg-red-50 rounded">
-                <br />
-                <span class="text-xs">
-                  sectionKeys: {JSON.stringify(sectionKeys)}
-                  <br />
-                  currentKey: {currentKey}
-                </span>
-              </div>
+            componentDescription && (
+              <Text tag="p" variant="textSM" class=" text-zinc-500">
+                {componentDescription}
+              </Text>
             )
           }
-        </Wrapper>
-      </section>
+        </div>
+        <div>
+          <nav class="relative z-0 inline-flex gap-1.5" aria-label="Pagination">
+            <PreviewElement {...PreviewElementProps}>
+              <IconButton
+                disable={parseInt(index) === 1}
+                aria-label="Go to previous page"
+                variant="alternative"
+                size="xs"
+              >
+                <ChevronLeft size="sm" slot="icon" />
+                <span class="sr-only">Previous</span>
+              </IconButton>
+            </PreviewElement>
+            <NextElement {...NextElementProps}>
+              <IconButton
+                disable={parseInt(index) === sectionLength}
+                aria-label="Go to next page"
+                variant="alternative"
+                size="xs"
+              >
+                <ChevronRight size="sm" slot="icon" />
+                <span class="sr-only">Next</span>
+              </IconButton>
+            </NextElement>
+          </nav>
+        </div>
+      </div>
     </Wrapper>
-
-    <script is:inline>
-      // Adjust iframe height when the preview posts its size
-      window.addEventListener("message", (e) => {
-        const d = e.data;
-        if (!d || d.type !== "oxbow-iframe-height") return;
-        const iframe = document.getElementById(d.id);
-        if (iframe) iframe.style.height = (d.height || 0) + "px";
-      });
-    </script>
-    export async function getStaticPaths({ params }) { const { section, subsection
-    } = params; const modules = import.meta.glob("@/components/oxbow/**/*.astro",
-    { eager: true }); const keys = Object.keys(modules); const sectionRegex = new
-    RegExp(`${section}/${subsection}/[^/]+\\.astro$`, "i"); const sectionKeys = keys.filter((k)
-    => sectionRegex.test(k)).sort((a, b) => { const aNum = parseInt(a.match(/(\d+)\.astro$/)?.[1]
-    || "0", 10); const bNum = parseInt(b.match(/(\d+)\.astro$/)?.[1] || "0", 10);
-    return aNum - bNum; }); return sectionKeys.map((k, i) => ({ params: { section,
-    subsection, index: String(i + 1).padStart(2, '0'), }, })); } --- // Foundation
-    import BaseLayout from "@/layouts/BaseLayout.astro"; import Playground from "@/components/playground/Playground.astro";
-    import Text from "@/components/fundations/typography/Text.astro"; import Wrapper
-    from "@/components/fundations/containers/Wrapper.astro"; import IconButton from
-    "@/components/fundations/buttons/IconButton.astro"; import ChevronLeft from "@/components/fundations/icons/ChevronLeft.astro";
-    import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
-    // Parameters const { section, subsection, index } = Astro.params; const modules
-    = import.meta.glob("@/components/oxbow/**/*.astro", { eager: true, }); const
-    keys = Object.keys(modules); // Improved regex: escape dots and ensure correct
-    matching const sectionRegex = new RegExp(`${section}/${subsection}/[^/]+\\.astro$`,
-    "i"); // Filter and sort numerically by filename (e.g., 01.astro, 02.astro, ...)
-    const sectionKeys = keys .filter((k) => sectionRegex.test(k)) .sort((a, b) =>
-    { const aNum = parseInt(a.match(/(\d+)\.astro$/)?.[1] || "0", 10); const bNum
-    = parseInt(b.match(/(\d+)\.astro$/)?.[1] || "0", 10); return aNum - bNum; });
-    const currentKey = sectionKeys[parseInt(index) - 1]; const componentModule =
-    currentKey ? modules[currentKey] : undefined; // Metadata from module exports
-    const mod: any = componentModule; const componentDescription = mod?.description
-    || ""; const freeComponent = mod?.freeComponent || false; const sectionLength
-    = sectionKeys.length; const PreviewElement = parseInt(index) === 1 ? "div" :
-    "a"; parseInt(index) === 1 ? {} : { href: `/playground/${section}/${subsection}/${parseInt(index)
-    - 1}` }; const NextElement = parseInt(index) === sectionLength ? "div" : "a";
-    const NextElementProps = parseInt(index) === sectionLength ? {} : { href: `/playground/${section}/${subsection}/${parseInt(index)
-    + 1}` }; ---
-
-    <!-- 
-<style>
-  html {
-    overflow-y: auto;
-    scrollbar-gutter: stable;
-  }
-</style> -->
-    <BaseLayout>
-      <section class="border-t border-zinc-200">
-        <Wrapper variant="standard" class="lg:border-x lg:border-zinc-200">
-          <div class="flex items-end justify-between w-full">
-            <div class="flex flex-wrap items-center gap-2">
-              <div class="flex items-center gap-2">
-                <button
-                  class="flex items-center text-sm gap-2 text-zinc-500 hover:text-zinc-900"
-                  onclick="history.back();"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left size-4"
-                    d="M15 6l-6 6l6 6"></svg></button
-                >
-                <span aria-hidden="true" class="text-zinc-500">/</span>
-                <Text
-                  tag="h1"
-                  variant="textSM"
-                  class="font-medium capitalize text-zinc-900"
-                  {`${subsection.replace(/-/g, " ")} #${index.replace(/-/g, " ")}`}
-                  <
-                  Text
-                />
-                <span aria-hidden="true" class="hidden text-zinc-500 md:block"
-                  >/</span
-                >
-                {
-                  componentDescription && (
-                    <Text tag="p" variant="textSM" class=" text-zinc-500">
-                      {componentDescription}
-                    </Text>
-                  )
-                }
-                <div>
-                  <nav
-                    class="relative z-0 inline-flex gap-1.5"
-                    aria-label="Pagination"
-                  >
-                    <PreviewElement {...PreviewElementProps}>
-                      <IconButton
-                        disable={parseInt(index) === 1}
-                        aria-label="Go to previous page"
-                        variant="alternative"
-                        size="xs"
-                      >
-                        <ChevronLeft size="sm" slot="icon" />
-                        <span class="sr-only">Previous</span>
-                      </IconButton>
-                    </PreviewElement>
-                    <NextElement {...NextElementProps}>
-                      <IconButton
-                        disable={parseInt(index) === sectionLength}
-                        aria-label="Go to next page"
-                        variant="alternative"
-                        size="xs"
-                      >
-                        <ChevronRight size="sm" slot="icon" />
-                        <span class="sr-only">Next</span>
-                      </IconButton>
-                    </NextElement>
-                  </nav>
-                </div>
-              </div>
-            </div>
-          </div>
-          <section class="border-t border-zinc-200">
-            <Wrapper
-              variant="wide"
-              class="py-8 2xl:border-x 2xl:border-zinc-200"
-            >
-              {
-                mod?.default ? (
-                  <Playground
-                    componentIndex={parseInt(index)}
-                    componentPath={
-                      currentKey ? currentKey.replace(/^\//, "") : ""
-                    }
-                    playgroundRef={`${section}-${subsection}-${index}`}
-                    freeComponent={freeComponent}
-                    initialTabIsCode={
-                      Astro.url.searchParams.get("tab") === "code"
-                    }
-                  >
-                    <mod.default />
-                  </Playground>
-                ) : (
-                  <div class="text-red-600 font-mono p-4 bg-red-50 rounded">
-                    <br />
-                    <span class="text-xs">
-                      sectionKeys: {JSON.stringify(sectionKeys)}
-                      <br />
-                      currentKey: {currentKey}
-                    </span>
-                  </div>
-                )
-              }
-            </Wrapper>
-          </section>
-        </Wrapper>
-        <script is:inline>
-          // Adjust iframe height when the preview posts its size
-          window.addEventListener("message", (e) => {
-            const d = e.data;
-            if (!d || d.type !== "oxbow-iframe-height") return;
-            const iframe = document.getElementById(d.id);
-            if (iframe) iframe.style.height = (d.height || 0) + "px";
-          });
-        </script>
-      </section></BaseLayout>
-  </section></BaseLayout
->
+  </section>
+  <section class="border-t border-zinc-200">
+    <Wrapper variant="wide" class="py-8 2xl:border-x 2xl:border-zinc-200">
+      <Playground
+        componentIndex={parseInt(index)}
+        componentPath={currentKey ? currentKey.replace(/^\//, "") : ""}
+        playgroundRef={`${section}-${subsection}-${index}`}
+        freeComponent={freeComponent}
+        initialTabIsCode={Astro.url.searchParams.get("tab") === "code"}
+      >
+        <componentModule.default />
+      </Playground>
+    </Wrapper>
+  </section>
+</BaseLayout>
+<script is:inline>
+  // Adjust iframe height when the preview posts its size
+  window.addEventListener("message", (e) => {
+    const d = e.data;
+    if (!d || d.type !== "oxbow-iframe-height") return;
+    const iframe = document.getElementById(d.id);
+    if (iframe) iframe.style.height = (d.height || 0) + "px";
+  });
+</script>
