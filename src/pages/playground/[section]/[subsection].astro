@@ -65,16 +65,19 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
 // Per-subsection grid overrides (edit as you like)
 const gridOverrides: Record<string, { md: number; lg: number }> = {
   banners: { md: 1, lg: 1 },
+  navbars: { md: 1, lg: 1 },
   flyouts: { md: 1, lg: 1 },
   inputs: { md: 2, lg: 3 },
-  
+  "input-groups": { md: 2, lg: 3 }, 
   // default handled below
 };
 
-// Resolve the current subsection's grid counts (fallback to 2/2)
-const mdCols = gridOverrides[subsection]?.md ?? 2;
-const lgCols = gridOverrides[subsection]?.lg ?? 2;
+// Normalize subsection for lookup (keeps things case/char safe)
+const subsectionKey = (subsection || "").toLowerCase();
 
+// Resolve the current subsection's grid counts (fallback to 2/2)
+const mdCols = gridOverrides[subsectionKey]?.md ?? 2;
+const lgCols = gridOverrides[subsectionKey]?.lg ?? 2;
 // Pre-build the class strings we’ll inject into Alpine’s :class
 const gridClass = `grid grid-cols-1 md:grid-cols-${mdCols} lg:grid-cols-${lgCols} gap-2`;
 const columnClass = `flex flex-col gap-px`;
@@ -265,7 +268,7 @@ const columnClass = `flex flex-col gap-px`;
         {
           sectionComponents.map(({ key, filePath, imagePath, description, free, component: C }, index) => {
             const pathNoAstro = filePath.replace('.astro','');
-            const isSmall = /\/(buttons|button-groups|button-icon|badges|breadcrumbs|checkboxes|inputs|input-groups|radiogroups|select|toggles|typography|flyouts|alerts|avatars|banners|commandbar|emptyStates)\//i.test(pathNoAstro);
+            const isSmall = /\/(buttons|button-groups|button-icon|badges|breadcrumbs|checkboxes|inputs|input-groups|radiogroups|select|toggles|typography|flyouts|alerts|avatars|banners|commandbar|emptyStates|navbars)\//i.test(pathNoAstro);
 
             if (isSmall && C) {
               return (

@@ -8,8 +8,9 @@ import Burger from "@/components/fundations/icons/Burger.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 ---
+
 <!-- copy:start -->
-<div class="justify-center w-full mx-auto bg-zinc-50">
+<header class="justify-center w-full mx-auto bg-zinc-50">
   <!-- Banner Section -->
   <div
     class="flex items-center justify-center px-8 py-2 text-white lg:h-12 bg-gradient-to-b from-blue-500 to-blue-600"
@@ -56,6 +57,8 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
       <IconButton
         class="md:hidden"
         @click="open = !open"
+        :aria-expanded="open"
+        aria-controls="main-nav"
         variant="alternative"
         size="sm"
       >
@@ -64,11 +67,12 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
     </div>
     <!-- Navigation Menu -->
     <nav
+      id="main-nav"
       :class="{ 'flex': open, 'hidden': !open }"
       class="flex-col items-center flex-grow hidden p-4 px-5 gap-3 md:px-0 md:pb-0 md:flex md:justify-start md:flex-row lg:p-0"
     >
       <Button class="md:ml-auto" variant="accent" size="sm">Button</Button>
     </nav>
   </div>
-</div>
+</header>
 <!-- copy:end -->
