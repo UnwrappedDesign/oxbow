@@ -2,9 +2,9 @@
 // Compact playground card for small components rendered in grids
 import { Code } from "astro:components";
 import * as prettier from "prettier";
-import Button from "@/components/fundations/buttons/Button.astro";
 import { canSeeCode } from "@/utils/canSeeCode";
 import { getUserThemeColor } from "@/utils/getUserTheme";
+import Button from "@/components/fundations/buttons/Button.astro";
 
 interface Props {
   componentIndex: number;
@@ -62,38 +62,66 @@ if (canSee) {
     .replace(toAccentRegex, `$1to-${userThemeColor}-$2$3`);
 }
 ---
-<section x-data="{ tab: 'preview', copied: false }" class="rounded-xl shadow-oxbow bg-white overflow-hidden isolate flex flex-col ">
-  <div class="flex items-center justify-between gap-2 border-b border-zinc-100 shrink-0 p-1.5">
-     <Button onlyIconSize="xxs" variant="muted"
+<section x-data="{ tab: 'preview', copied: false }" class=" isolate flex flex-col relative  h-full bg-base-50 p-1 rounded-2xl   ">
+  <div class="flex items-center justify-between gap-2  shrink-0  w-full px-2 py-2">
+         <Button onlyIconSize="xxs" variant="alternative"
           href={`#${componentIndex}`}
         >
           <span class="text-xs">{componentIndex}</span>
         </Button>
     {canSee ? (
-      <div class="flex items-center gap-1 ">
-        <Button onlyIconSize="xxs" variant="muted" x-on:click="tab='preview'" :class="tab==='preview' && 'outline-zinc-100'" title="Preview" aria-label="Preview">
+      <div class="flex items-center gap-1">
+        <Button onlyIconSize="xxs" variant="alternative" class="text-base-500" x-on:click="tab='preview'" :class="tab==='preview' && 'outline-base-100'" title="Preview" aria-label="Preview">
           <Fragment slot="left-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8"/><circle cx="12" cy="12" r="3"/></svg></Fragment>
         </Button>
-        <Button onlyIconSize="xxs" variant="muted" x-on:click="tab='code'" :class="tab==='code' && 'outline-zinc-100'" title="Code" aria-label="Code">
+        <Button onlyIconSize="xxs" variant="alternative" class="text-base-500" x-on:click="tab='code'" :class="tab==='code' && 'outline-base-100'" title="Code" aria-label="Code">
           <Fragment slot="left-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></Fragment>
         </Button>
-        <Button onlyIconSize="xxs" variant="muted" x-on:click="$clipboard($refs.code?.innerText||'')" title="Copy" aria-label="Copy">
-          <Fragment slot="left-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></Fragment>
-        </Button>
+       <Button onlyIconSize="xxs" variant="alternative"  class="text-base-500" 
+         x-on:click="$clipboard($refs.code?.innerText||''); copied = true; setTimeout(() => copied = false, 2000)" 
+         title="Copy" 
+         aria-label="Copy"
+>
+  <Fragment slot="left-icon">
+    <svg 
+      x-show="!copied" 
+      viewBox="0 0 24 24" 
+      width="14" 
+      height="14" 
+      fill="none" 
+      stroke="currentColor" 
+      stroke-width="2" 
+      stroke-linecap="round" 
+      stroke-linejoin="round"
+    >
+      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+    </svg>
+    <svg 
+      x-show="copied" 
+      viewBox="0 0 24 24" 
+      width="14" 
+      height="14" 
+      fill="none" 
+      stroke="currentColor" 
+      stroke-width="2" 
+      stroke-linecap="round" 
+      stroke-linejoin="round"
+      class="text-accent-600"
+    >
+      <path d="M9 11l3 3 8-8"/>
+    </svg>
+  </Fragment>
+</Button>
       </div>
     ) : null}
   </div>
-  <div class="overflow-hidden scrollbar-hide">
-    <div x-show="tab==='preview'" class="w-full overflow-auto scrollbar-hide">
-      <iframe 
-        x-intersect.once="$el.src = $el.dataset.src" 
-        class="w-full block border-0" 
-        data-src={`/iframe/${componentPath}?iframeId=card-${componentIndex}&freeComponent=${freeComponent}&context=card`}
-        onload="this.style.height = this.contentWindow.document.body.scrollHeight + 'px'"
-      />
+  <div class=" flex flex-col items-start justify-start scrollbar-hide h-full ">
+    <div x-show="tab==='preview'" class="w-full overflow-auto scrollbar-hide outline outline-base-200 h-full rounded-xl bg-white">
+      {canSee ? <Fragment set:html={slotCode} /> : null}
     </div>
     {canSee && (
-      <div x-show="tab==='code'" class="code-pane size-full overflow-auto p-3 text-xs bg-white" x-ref="code">
+      <div x-show="tab==='code'" class="code-pane size-full overflow-auto p-3 text-xs bg-white rounded-xl outline outline-base-200 shadow-oxbow" x-ref="code">
         <Code code={ppcode} lang="html" theme="css-variables" class="scrollbar-hide" />
       </div>
     )}

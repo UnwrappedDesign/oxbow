@@ -1,23 +1,24 @@
 ---
-export const description = "Checkbox with Color Themes";
+export const description = "Right-Aligned Checkbox";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
 
-<div class="flex items-center max-w-md p-12 py-48 mx-auto">
+<div class="flex items-center justify-center p-8">
   <!-- copy:start -->
-  <div class="flex flex-col w-full gap-2" x-data="{ theme: 'light' }">
+  <div class="flex items-center justify-between w-full gap-2">
+    <Text
+      for="right-aligned-checkbox"
+      tag="label"
+      class="block text-sm text-zinc-500"
+    >
+      Right aligned checkbox
+    </Text>
     <input
-      id="theme-checkbox"
-      name="theme-checkbox"
+      id="right-aligned-checkbox"
+      name="right-aligned-checkbox"
       type="checkbox"
-      x-model="theme"
-      :value="'dark'"
-      :checked="theme === 'dark'"
       class="rounded shadow size-4 border-zinc-300 text-blue-600 focus:ring-blue-600"
     />
-    <Text for="theme-checkbox" tag="label" class="block text-sm text-zinc-500">
-      Dark mode
-    </Text>
   </div>
   <!-- copy:end -->
 </div>

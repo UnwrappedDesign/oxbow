@@ -207,7 +207,7 @@ const theme = ``;
       <div
         class="w-full overflow-auto border-x border-zinc-100"
         :class="{ 'max-w-sm border-x border-zinc-100': viewportSize === 'mobile', 'max-w-screen-md border-x border-zinc-100': viewportSize === 'tablet','max-w-full': viewportSize === 'desktop' }">
-        <iframe x-intersect.once="$el.src = $el.dataset.src" id={`iframe-${componentIndex}`} width="100%" data-src={`/iframe/${componentPath}?iframeId=iframe-${componentIndex}&freeComponent=${freeComponent}`}/>
+        {canSeeCodeValue ? <Fragment set:html={rawSlotCode} /> : null}
       </div>
     </div>
     {canSeeCodeValue && (

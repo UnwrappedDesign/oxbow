@@ -1,24 +1,32 @@
 ---
-export const description = "Right-Aligned Checkbox";
+export const description = "Checkbox with Label and Description";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
 
-<div class="flex items-center max-w-sm p-12 py-48 mx-auto">
+<div class="flex items-center justify-center p-8">
   <!-- copy:start -->
-  <div class="flex items-center justify-between w-full gap-2">
-    <Text
-      for="right-aligned-checkbox"
-      tag="label"
-      class="block text-sm text-zinc-500"
-    >
-      Right aligned checkbox
-    </Text>
-    <input
-      id="right-aligned-checkbox"
-      name="right-aligned-checkbox"
-      type="checkbox"
-      class="rounded shadow size-4 border-zinc-300 text-blue-600 focus:ring-blue-600"
-    />
+  <div class="flex flex-col gap-1">
+    <div class="flex items-start gap-3">
+      <input
+        id="checkbox-with-description"
+        name="checkbox-with-description"
+        type="checkbox"
+        class="rounded shadow size-4 border-zinc-300 text-blue-600 focus:ring-blue-600"
+      />
+      <div>
+        <Text
+          for="checkbox-with-description"
+          tag="label"
+          class="block text-sm font-medium text-zinc-500"
+        >
+          Subscribe to newsletter <span class="text-zinc-400">(Optional)</span>
+        </Text>
+        <Text tag="p" variant="textSM" class="text-zinc-400">
+          Stay updated with our latest news, articles, and offers by subscribing
+          to our newsletter.
+        </Text>
+      </div>
+    </div>
   </div>
   <!-- copy:end -->
 </div>
