@@ -14,8 +14,10 @@ const modules = import.meta.glob("@/components/oxbow/**/*.astro", {
   eager: true,
 });
 const keys = Object.keys(modules);
-const sectionRegex = new RegExp(`${section}/${subsection}/.+.astro$`, "i");
-const sectionKeys = keys.filter((k) => k.match(sectionRegex)).sort();
+
+// Improved regex: escape dots and ensure correct matching
+const sectionRegex = new RegExp(`${section}/${subsection}/[^/]+\\.astro$`, "i");
+const sectionKeys = keys.filter((k) => sectionRegex.test(k)).sort();
 const currentKey = sectionKeys[parseInt(index) - 1];
 const componentModule = currentKey ? modules[currentKey] : undefined;
 
@@ -119,15 +121,29 @@ const NextElementProps =
   </section>
   <section class="border-t border-zinc-200">
     <Wrapper variant="wide" class="py-8 2xl:border-x 2xl:border-zinc-200">
-      <Playground
-        componentIndex={parseInt(index)}
-        componentPath={currentKey ? currentKey.replace(/^\//, "") : ""}
-        playgroundRef={`${section}-${subsection}-${index}`}
-        freeComponent={freeComponent}
-        initialTabIsCode={Astro.url.searchParams.get("tab") === "code"}
-      >
-        {mod?.default && <mod.default />}
-      </Playground>
+      {
+        mod?.default ? (
+          <Playground
+            componentIndex={parseInt(index)}
+            componentPath={currentKey ? currentKey.replace(/^\//, "") : ""}
+            playgroundRef={`${section}-${subsection}-${index}`}
+            freeComponent={freeComponent}
+            initialTabIsCode={Astro.url.searchParams.get("tab") === "code"}
+          >
+            <mod.default />
+          </Playground>
+        ) : (
+          <div class="text-red-600 font-mono p-4 bg-red-50 rounded">
+            Component not found for this index.
+            <br />
+            <span class="text-xs">
+              sectionKeys: {JSON.stringify(sectionKeys)}
+              <br />
+              currentKey: {currentKey}
+            </span>
+          </div>
+        )
+      }
     </Wrapper>
   </section>
 </BaseLayout>
