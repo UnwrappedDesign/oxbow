@@ -29,84 +29,84 @@ const peopleData = [
 ];
 ---
 
-<section>
-  <div class="relative px-4 py-12 mx-auto md:px-12 lg:px-24 max-w-7xl">
-    <div class="flow-root">
-      <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-          <!-- copy:start -->
-          <table class="min-w-full">
-            <thead class="border-b border-zinc-200">
-              <tr>
-                <th
-                  scope="col"
-                  class="py-3.5 pl-4 pr-3 text-base font-medium tracking-tighter text-zinc-900 text-left"
-                  >Name</th
+<div class="flex flex-col justify-center p-8 mx-auto">
+  <!-- copy:start -->
+  <div class="flow-root">
+    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+        <!-- copy:start -->
+        <table class="min-w-full">
+          <thead class="border-b border-zinc-200">
+            <tr>
+              <th
+                scope="col"
+                class="py-3.5 pl-4 pr-3 text-base font-medium tracking-tighter text-zinc-900 text-left"
+                >Name</th
+              >
+              <th
+                scope="col"
+                class="px-3 py-3.5 text-base font-medium tracking-tighter text-zinc-900 text-left"
+                >Title</th
+              >
+              <th
+                scope="col"
+                class="px-3 py-3.5 text-base font-medium tracking-tighter text-zinc-900 text-left"
+                >Email</th
+              >
+              <th
+                scope="col"
+                class="px-3 py-3.5 text-base font-medium tracking-tighter text-zinc-900 text-left"
+                >Role</th
+              >
+              <th scope="col" class="relative py-3.5 pl-3 pr-3">
+                <span class="sr-only">Edit</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              peopleData.map((person, index) => (
+                <tr
+                  class={`even:bg-zinc-50 ${index % 2 === 1 ? "rounded-lg" : ""}`}
                 >
-                <th
-                  scope="col"
-                  class="px-3 py-3.5 text-base font-medium tracking-tighter text-zinc-900 text-left"
-                  >Title</th
-                >
-                <th
-                  scope="col"
-                  class="px-3 py-3.5 text-base font-medium tracking-tighter text-zinc-900 text-left"
-                  >Email</th
-                >
-                <th
-                  scope="col"
-                  class="px-3 py-3.5 text-base font-medium tracking-tighter text-zinc-900 text-left"
-                  >Role</th
-                >
-                <th scope="col" class="relative py-3.5 pl-3 pr-3">
-                  <span class="sr-only">Edit</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                peopleData.map((person, index) => (
-                  <tr
-                    class={`even:bg-zinc-50 ${index % 2 === 1 ? "rounded-lg" : ""}`}
+                  <td
+                    class={`whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium tracking-tighter text-zinc-900 ${
+                      index % 2 === 1 ? "rounded-l-lg" : ""
+                    }`}
                   >
-                    <td
-                      class={`whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium tracking-tighter text-zinc-900 ${
-                        index % 2 === 1 ? "rounded-l-lg" : ""
-                      }`}
+                    {person.name}
+                  </td>
+                  <td class="px-3 py-4 text-xs font-medium whitespace-nowrap text-zinc-500">
+                    {person.position}
+                  </td>
+                  <td class="px-3 py-4 text-xs font-medium whitespace-nowrap text-zinc-500">
+                    {person.email}
+                  </td>
+                  <td class="px-3 py-4 text-xs font-medium whitespace-nowrap text-zinc-500">
+                    {person.role}
+                  </td>
+                  <td
+                    class={`relative whitespace-nowrap py-4 pr-3 text-right ${
+                      index % 2 === 1 ? "rounded-r-lg" : ""
+                    }`}
+                  >
+                    <Button
+                      size="sm"
+                      type="submit"
+                      variant="link"
+                      class="ml-auto"
                     >
-                      {person.name}
-                    </td>
-                    <td class="px-3 py-4 text-xs font-medium whitespace-nowrap text-zinc-500">
-                      {person.position}
-                    </td>
-                    <td class="px-3 py-4 text-xs font-medium whitespace-nowrap text-zinc-500">
-                      {person.email}
-                    </td>
-                    <td class="px-3 py-4 text-xs font-medium whitespace-nowrap text-zinc-500">
-                      {person.role}
-                    </td>
-                    <td
-                      class={`relative whitespace-nowrap py-4 pr-3 text-right ${
-                        index % 2 === 1 ? "rounded-r-lg" : ""
-                      }`}
-                    >
-                      <Button
-                        size="sm"
-                        type="submit"
-                        variant="link"
-                        class="ml-auto"
-                      >
-                        Edit<span class="sr-only">Edit</span>
-                      </Button>
-                    </td>
-                  </tr>
-                ))
-              }
-            </tbody>
-          </table>
-          <!-- copy:end -->
-        </div>
+                      Edit<span class="sr-only">Edit</span>
+                    </Button>
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+        <!-- copy:end -->
       </div>
     </div>
   </div>
-</section>
+  <!-- copy:end -->
+</div>

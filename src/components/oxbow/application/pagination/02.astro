@@ -1,71 +1,98 @@
 ---
-// Fundations
 import Text from "@/components/fundations/typography/Text.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
 import IconButton from "@/components/fundations/buttons/IconButton.astro";
-// Icons
 import ChevronLeft from "@/components/fundations/icons/ChevronLeft.astro";
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 ---
 
 <section>
   <div
-    class="flex flex-col items-center justify-between w-full px-8 py-48 mx-auto lg:flex-row gap-12 md:px-12 lg:px-24 max-w-7xl"
+    class="flex flex-col items-center justify-between w-full p-8 mx-auto gap-8"
   >
     <!-- copy:start -->
-    <!-- Pagination Info -->
+    <nav aria-label="Pagination">
+      <ol role="list" class="relative z-0 inline-flex items-center gap-2">
+        <!-- Prev -->
+        <li>
+          <IconButton
+            disabled
+            aria-label="Go to previous page"
+            variant="text"
+            size="xs"
+          >
+            <ChevronLeft size="xs" slot="icon" />
+            <span class="sr-only">Previous</span>
+          </IconButton>
+        </li>
 
-    <nav
-      class="relative z-0 inline-flex items-center gap-2"
-      aria-label="Pagination"
-    >
-      <!-- Previous Page Button -->
-      <IconButton
-        disabled
-        aria-label="Go to previous page"
-        variant="text"
-        size="xs"
-      >
-        <ChevronLeft size="xs" slot="icon" />
-        <span class="sr-only">Previous</span>
-      </IconButton>
-      <IconButton variant="alternative" size="xs"> 1 </IconButton>
-      <IconButton variant="alternative" size="xs"> 2 </IconButton>
-      <IconButton variant="alternative" size="xs"> 3 </IconButton>
-      <IconButton variant="alternative" size="xs"> 4 </IconButton>
-      <IconButton variant="alternative" size="xs"> 5 </IconButton>
-      <span class="text-zinc-500"> ... </span>
-      <IconButton variant="alternative" size="xs"> 60 </IconButton>
-      <!-- Previous Page Button -->
+        <!-- Page numbers -->
+        <li>
+          <IconButton
+            variant="alternative"
+            size="xs"
+            aria-current="page"
+            aria-label="Page 1, current page"
+          >
+            1
+          </IconButton>
+        </li>
+        <li>
+          <IconButton variant="alternative" size="xs" aria-label="Go to page 2">
+            2
+          </IconButton>
+        </li>
 
-      <!-- "Go to page" input -->
-      <span class="items-center hidden md:flex space-x-2">
-        <Text tag="p" variant="textSM" class="px-2 text-zinc-500">
-          Go to page
-        </Text>
+        <li aria-hidden="true" class="text-zinc-500">…</li>
 
-        <input
-          type="text"
-          class="block w-12 h-8 p-1 text-sm text-center bg-white border border-transparent rounded-lg shadow appearance-none text-blue-700 duration-300 ring-1 ring-zinc-200 placeholder-zinc-400 focus:border-zinc-300 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
-          placeholder="60"
-        />
-      </span>
-      <Button variant="accent" size="xs"> Confirm </Button>
+        <li>
+          <IconButton
+            variant="alternative"
+            size="xs"
+            aria-label="Go to page 60"
+          >
+            60
+          </IconButton>
+        </li>
 
-      <!-- Next Page Button -->
-      <IconButton
-        disabled
-        aria-label="Go to previous page"
-        variant="text"
-        size="xs"
-      >
-        <ChevronRight size="xs" slot="icon" />
-        <span class="sr-only">Previous</span>
-      </IconButton>
+        <!-- Go to page -->
+        <li class="items-center hidden md:flex space-x-2">
+          <Text
+            tag="label"
+            variant="textSM"
+            class="px-2 text-zinc-500"
+            for="goto-page"
+          >
+            Go to page
+          </Text>
+          <input
+            id="goto-page"
+            type="number"
+            min="1"
+            max="60"
+            inputmode="numeric"
+            class="block w-16 h-8 p-1 text-sm text-center bg-white border border-transparent rounded-lg shadow appearance-none text-blue-700 duration-300 ring-1 ring-zinc-200 placeholder-zinc-400 focus:border-zinc-300 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+            placeholder="60"
+            aria-describedby="goto-help"
+          />
+          <Button variant="accent" size="xs" aria-label="Confirm page number">
+            Confirm
+          </Button>
+        </li>
+
+        <!-- Next -->
+        <li>
+          <IconButton aria-label="Go to next page" variant="text" size="xs">
+            <ChevronRight size="xs" slot="icon" />
+            <span class="sr-only">Next</span>
+          </IconButton>
+        </li>
+      </ol>
+      <p id="goto-help" class="sr-only">Enter a page number between 1 and 60</p>
     </nav>
+
     <Text tag="p" variant="textSM" class="text-zinc-500">
-      Showing <strong>1</strong> to <strong>10</strong> of <strong>60</strong>
-      pages
+      Showing <strong>1</strong> to <strong>10</strong> of <strong>60</strong> pages
     </Text>
     <!-- copy:end -->
   </div>

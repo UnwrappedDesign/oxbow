@@ -1,10 +1,14 @@
 ---
+
 import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
 // Assets
 import Logo from "@/components/assets/Logo.astro";
 // Fundations
+
+// Add prop to control CTA visibility
+const { isSignedIn = false } = Astro.props;
 
 const navLinks = [
   {
@@ -63,30 +67,32 @@ const navLinks = [
 
 <footer class="border-t border-zinc-200">
   <Wrapper variant="standard" class="py-8 lg:border-x lg:border-zinc-200">
-    <div class="p-8 py-24 text-center rounded-xl bg-blue-950">
-      <Text tag="h2" variant="displayLG" class="font-medium text-white">
-        Lifetime access
-      </Text>
-      <Text
-        tag="p"
-        variant="textLG"
-        class="mt-2 text-white/80 max-w-lg mx-auto text-balance"
-      >
-        Get everything for $99. One-time payment. Lifetime access, updates, and
-        support included.
-      </Text>
-      <Button
-        size="base"
-        variant="muted"
-        href="/pricing"
-        id="full-access-cta-bottom"
-        data-umami-event="full-access-cta-bottom"
-        title="Get the full-access"
-        class="mt-8 w-fit mx-auto"
-      >
-        Full access for $99
-      </Button>
-    </div>
+    {!isSignedIn && (
+      <div class="p-8 py-24 text-center rounded-xl bg-blue-950">
+        <Text tag="h2" variant="displayLG" class="font-medium text-white">
+          Lifetime access
+        </Text>
+        <Text
+          tag="p"
+          variant="textLG"
+          class="mt-2 text-white/80 max-w-lg mx-auto text-balance"
+        >
+          Get everything for $99. One-time payment. Lifetime access, updates, and
+          support included.
+        </Text>
+        <Button
+          size="base"
+          variant="muted"
+          href="/pricing"
+          id="full-access-cta-bottom"
+          data-umami-event="full-access-cta-bottom"
+          title="Get the full-access"
+          class="mt-8 w-fit mx-auto"
+        >
+          Full access for $99
+        </Button>
+      </div>
+    )}
     <div class="grid grid-cols-2 gap-4 md:grid-cols-4 mt-12">
       {
         navLinks.map((section, i) => (

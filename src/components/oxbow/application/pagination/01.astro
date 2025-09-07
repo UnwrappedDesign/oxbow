@@ -5,31 +5,62 @@ import ChevronLeft from "@/components/fundations/icons/ChevronLeft.astro";
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 ---
 
-<section>
-  <div class="flex justify-center py-48 mx-auto">
-    <!-- copy:start -->
-    <nav class="relative z-0 inline-flex gap-1.5" aria-label="Pagination">
-      <!-- Previous Page Button -->
-      <IconButton
-        disabled
-        aria-label="Go to previous page"
-        variant="text"
-        size="xs"
-      >
-        <ChevronLeft size="xs" slot="icon" />
-        <span class="sr-only">Previous</span>
-      </IconButton>
-      <IconButton variant="text" size="xs"> 1 </IconButton>
-      <IconButton variant="text" size="xs"> 2 </IconButton>
-      <IconButton variant="text" size="xs"> ... </IconButton>
-      <IconButton variant="text" size="xs"> 9 </IconButton>
-      <IconButton variant="text" size="xs"> 10 </IconButton>
-      <!-- Next Page Button -->
-      <IconButton aria-label="Go to next page" variant="text" size="xs">
-        <ChevronRight size="xs" slot="icon" />
-        <span class="sr-only">Next</span>
-      </IconButton>
-    </nav>
-    <!-- copy:end -->
-  </div>
-</section>
+<div class="flex justify-center p-8 mx-auto">
+  <!-- copy:start -->
+  <nav class="relative z-0" aria-label="Pagination">
+    <ol role="list" class="inline-flex items-center gap-1.5">
+      <!-- Previous -->
+      <li>
+        <IconButton
+          disabled
+          aria-label="Go to previous page"
+          variant="text"
+          size="xs"
+        >
+          <ChevronLeft size="xs" slot="icon" />
+          <span class="sr-only">Previous</span>
+        </IconButton>
+      </li>
+
+      <!-- Page numbers -->
+      <li>
+        <IconButton
+          variant="text"
+          size="xs"
+          aria-current="page"
+          aria-label="Page 1, current page"
+        >
+          1
+        </IconButton>
+      </li>
+      <li>
+        <IconButton variant="text" size="xs" aria-label="Go to page 2">
+          2
+        </IconButton>
+      </li>
+
+      <!-- Ellipsis -->
+      <li aria-hidden="true" class="px-1 text-zinc-500">…</li>
+
+      <li>
+        <IconButton variant="text" size="xs" aria-label="Go to page 9">
+          9
+        </IconButton>
+      </li>
+      <li>
+        <IconButton variant="text" size="xs" aria-label="Go to page 10">
+          10
+        </IconButton>
+      </li>
+
+      <!-- Next -->
+      <li>
+        <IconButton aria-label="Go to next page" variant="text" size="xs">
+          <ChevronRight size="xs" slot="icon" />
+          <span class="sr-only">Next</span>
+        </IconButton>
+      </li>
+    </ol>
+  </nav>
+  <!-- copy:end -->
+</div>

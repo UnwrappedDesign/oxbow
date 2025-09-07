@@ -67,7 +67,14 @@ const gridOverrides: Record<string, { md: number; lg: number }> = {
   banners: { md: 1, lg: 1 },
   navbars: { md: 1, lg: 1 },
   flyouts: { md: 1, lg: 1 },
+  tables: { md: 1, lg: 21 },
+  pagination: { md: 1, lg: 2 },
+  tabs: { md: 2, lg: 2 },
+  textarea: { md: 1, lg: 2 },
+  notifications: { md: 1, lg: 2 },
   inputs: { md: 2, lg: 3 },
+  select: { md: 2, lg: 3 },
+  radiogroups: { md: 2, lg: 2 },
   "input-groups": { md: 2, lg: 3 }, 
   // default handled below
 };
@@ -268,7 +275,7 @@ const columnClass = `flex flex-col gap-px`;
         {
           sectionComponents.map(({ key, filePath, imagePath, description, free, component: C }, index) => {
             const pathNoAstro = filePath.replace('.astro','');
-            const isSmall = /\/(buttons|button-groups|button-icon|badges|breadcrumbs|checkboxes|inputs|input-groups|radiogroups|select|toggles|typography|flyouts|alerts|avatars|banners|commandbar|emptyStates|navbars)\//i.test(pathNoAstro);
+            const isSmall = /\/(buttons|button-groups|button-icon|badges|breadcrumbs|checkboxes|inputs|input-groups|radiogroups|select|toggles|typography|flyouts|alerts|avatars|banners|commandbar|emptyStates|navbars|notifications|pagination|select|tables|tabs|textarea)\//i.test(pathNoAstro);
 
             if (isSmall && C) {
               return (
