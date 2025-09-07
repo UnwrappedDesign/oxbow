@@ -380,6 +380,7 @@ const rangeToClasses = [
     </div>
   )}
 
+
   <input
     {...rest}
     id={id}
@@ -395,6 +396,13 @@ const rangeToClasses = [
     maxlength={isCreditCard ? "19" : isCVV ? "4" : isExpiry ? "5" : undefined}
     inputmode={isCreditCard || isCVV || isExpiry ? "numeric" : isEmail ? "email" : undefined}
   />
+
+  {/* Render right search icon if type is search and iconPosition is right */}
+  {isSearch && iconPosition === "right" && (
+    <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+      <Search size="sm" class="text-zinc-500" />
+    </div>
+  )}
 
   {isPassword && (
     <div class="absolute inset-y-0 right-0 flex items-center pr-3 gap-2">

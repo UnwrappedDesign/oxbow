@@ -1,0 +1,80 @@
+---
+export const description = "Tags input";
+---
+
+<div class="flex items-center justify-center p-8">
+  <!-- copy:start -->
+  <div class="w-full">
+    <label
+      for="tags-input"
+      class="block mb-1 text-sm font-medium text-zinc-500"
+    >
+      Tags
+    </label>
+    <div
+      x-data="{ 
+            tags: [&quot;Tailwind &quot;,&quot;Astro&quot;,&quot;Alpine&quot;], 
+            newTag: '',
+            addTag() {
+              if (this.newTag.trim() !== '' && !this.tags.includes(this.newTag.trim())) {
+                this.tags.push(this.newTag.trim())
+                this.newTag = ''
+              }
+            },
+            removeTag(index) {
+              this.tags.splice(index, 1)
+            }
+          }"
+      class="space-y-2"
+    >
+      <input
+        type="text"
+        id="tags-input"
+        name="tags-input"
+        placeholder="Add a tag"
+        x-model="newTag"
+        @keydown.enter.prevent="addTag()"
+        class="block w-full h-10 px-4 py-2 text-sm bg-white border border-transparent appearance-none transition duration-300 ease-in-out rounded-md text-zinc-500 ring-1 ring-zinc-200 placeholder-zinc-400 focus:border-zinc-300 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2"
+        placeholder="Add a tag"
+      />
+      <div class="flex flex-wrap mt-2 gap-2">
+        <template x-for="(tag, index) in tags" :key="index">
+          <span
+            class="inline-flex items-center font-medium relative text-zinc-700 bg-zinc-50 px-2.5 py-1 text-xs rounded-md flex items-center gap-1"
+          >
+            <span x-text="tag"></span>
+            <button
+              @click="removeTag(index)"
+              type="button"
+              class="inline-flex items-center justify-center rounded-full size-4 hover:bg-zinc-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              aria-label="Remove tag"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-wave-x size-3"
+                slot="left-icon"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M18 6l-12 12"></path>
+                <path d="M6 6l12 12"></path>
+              </svg>
+            </button>
+          </span>
+        </template>
+      </div>
+      <p class="text-xs text-zinc-500">Press Enter to add a tag</p>
+      <input
+        type="hidden"
+        name="tags-input-values"
+        x-bind:value="JSON.stringify(tags)"
+      />
+    </div>
+  </div>
+  <!-- copy:end -->
+</div>

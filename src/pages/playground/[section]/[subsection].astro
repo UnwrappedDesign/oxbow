@@ -65,6 +65,8 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
 // Per-subsection grid overrides (edit as you like)
 const gridOverrides: Record<string, { md: number; lg: number }> = {
   banners: { md: 1, lg: 1 },
+  flyouts: { md: 1, lg: 1 },
+  inputs: { md: 2, lg: 3 },
   
   // default handled below
 };
@@ -263,7 +265,7 @@ const columnClass = `flex flex-col gap-px`;
         {
           sectionComponents.map(({ key, filePath, imagePath, description, free, component: C }, index) => {
             const pathNoAstro = filePath.replace('.astro','');
-            const isSmall = /\/(buttons|button-groups|button-icon|badges|breadcrumbs|checkboxes|inputs|input-groups|radiogroups|select|toggles|typography|flyouts|alerts|avatars|banners)\//i.test(pathNoAstro);
+            const isSmall = /\/(buttons|button-groups|button-icon|badges|breadcrumbs|checkboxes|inputs|input-groups|radiogroups|select|toggles|typography|flyouts|alerts|avatars|banners|commandbar|emptyStates)\//i.test(pathNoAstro);
 
             if (isSmall && C) {
               return (
