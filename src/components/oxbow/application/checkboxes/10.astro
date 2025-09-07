@@ -1,30 +1,35 @@
 ---
-export const description = "Checkbox with Indication Badge";
+export const description = "Checkbox with Expansion";
 import Text from "@/components/fundations/typography/Text.astro";
-import Badge from "@/components/fundations/badges/Badge.astro";
 ---
 
-<div class="flex items-center max-w-md p-12 mx-auto">
+<div class="flex items-center justify-center p-8">
   <!-- copy:start -->
-  <div class="flex flex-col w-full gap-2" x-data="{ checked: false }">
-    <div class="flex items-center justify-between w-full gap-3">
-      <div class="flex items-center h-full gap-3">
-        <input
-          id="badge-checkbox"
-          name="badge-checkbox"
-          type="checkbox"
-          x-model="checked"
-          class="rounded shadow size-4 border-zinc-300 text-blue-600 focus:ring-blue-600"
-        />
+  <div class="flex flex-col gap-1" x-data="{ expanded: false }">
+    <div class="flex items-start gap-3">
+      <input
+        id="terms-acceptance-checkbox"
+        name="terms-acceptance-checkbox"
+        type="checkbox"
+        @change="expanded = !expanded"
+        class="rounded shadow size-4 border-zinc-300 text-blue-600 focus:ring-blue-600"
+      />
+      <div>
         <Text
-          for="badge-checkbox"
+          for="terms-acceptance-checkbox"
           tag="label"
-          class="block text-sm text-zinc-500"
+          class="block text-sm font-medium text-zinc-500"
         >
-          Checkbox with badge
+          Accept terms and conditions
+        </Text>
+        <Text tag="p" variant="textSM" class="text-zinc-400">
+          Please review and accept the terms and conditions to proceed.
         </Text>
       </div>
-      <Badge x-show="checked" variant="accent" size="xs"> Checked </Badge>
+    </div>
+    <div x-show="expanded" class="mt-2 text-sm ml-7 text-zinc-400">
+      By checking this box, you confirm that you have read and agreed to the
+      terms and conditions of our service.
     </div>
   </div>
   <!-- copy:end -->

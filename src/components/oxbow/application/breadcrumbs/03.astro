@@ -1,119 +1,31 @@
 ---
+export const description = "Breadcrumb with buttons";
 import Button from "@/components/fundations/buttons/Button.astro";
-import IconButton from "@/components/fundations/buttons/IconButton.astro";
-import Text from "@/components/fundations/typography/Text.astro";
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
-import Lifebuoy from "@/components/fundations/icons/Lifebuoy.astro";
-import InfoCircle from "@/components/fundations/icons/InfoCircle.astro";
-import ThreeDots from "@/components/fundations/icons/ThreeDots.astro";
-import Settings from "@/components/fundations/icons/Settings.astro";
-import User from "@/components/fundations/icons/User.astro";
+import Home from "@/components/fundations/icons/Home.astro";
 ---
 
-<section>
-  <div class="items-center px-8 py-32 mx-auto max-w-7xl lg:px-16 md:px-12">
-    <div class="justify-center w-full mx-auto">
-      <!-- copy:start -->
-      <nav aria-label="Breadcrumb" class="flex-1 pb-5">
-        <ol role="list" class="flex items-center space-x-4">
-          <li>
-            <Text
-              tag="a"
-              href="#_"
-              variant="textBase"
-              class="flex items-center font-medium gap-2 text-zinc-500 hover:text-blue-500"
-            >
-              Home
-              <ChevronRight size="base" />
-            </Text>
-          </li>
-          <li
-            class="relative flex items-center"
-            @click.away="open = false"
-            x-data="{ open: false }"
-          >
-            <IconButton
-              @click="open = !open"
-              aria-haspopup="true"
-              aria-expanded="false"
-              variant="text"
-              size="sm"
-            >
-              <ThreeDots size="base" slot="icon" />
-            </IconButton>
-            <ChevronRight size="base" />
-            <div
-              x-show="open"
-              @click.away="open = false"
-              x-transition:enter="transition ease-out duration-200"
-              x-transition:enter-start="opacity-0 translate-y-1"
-              x-transition:enter-end="opacity-100 translate-y-0"
-              x-transition:leave="transition ease-in duration-150"
-              x-transition:leave-start="opacity-100 translate-y-0"
-              x-transition:leave-end="opacity-0 translate-y-1"
-              class="absolute w-56 mt-2 overflow-hidden bg-white shadow-lg origin-top-center divide-y divide-zinc-200 left-1/2 transform -translate-x-1/2 rounded-xl ring-1 ring-zinc-200 focus:outline-none"
-              role="menu"
-              aria-orientation="vertical"
-              aria-labelledby="menu-button"
-            >
-              <div class="p-1.5" role="none">
-                <Text
-                  tag="a"
-                  href="#_"
-                  variant="textSM"
-                  class="flex items-center p-2 rounded-lg hover:bg-zinc-50 hover:text-blue-500 gap-2 text-zinc-500"
-                >
-                  <InfoCircle class="left-icon" size="sm" />
-                  FAQ
-                </Text>
-                <Text
-                  tag="a"
-                  href="#_"
-                  variant="textSM"
-                  class="flex items-center p-2 rounded-lg hover:bg-zinc-50 hover:text-blue-500 gap-2 text-zinc-500"
-                >
-                  <Lifebuoy class="left-icon" size="sm" />
-                  Support
-                </Text>
-                <Text
-                  tag="a"
-                  href="#_"
-                  variant="textSM"
-                  class="flex items-center p-2 rounded-lg hover:bg-zinc-50 hover:text-blue-500 gap-2 text-zinc-500"
-                >
-                  <Settings class="left-icon" size="sm" />
-                  Account
-                </Text>
-                <Text
-                  tag="a"
-                  href="#_"
-                  variant="textSM"
-                  class="flex items-center p-2 rounded-lg hover:bg-zinc-50 hover:text-blue-500 gap-2 text-zinc-500"
-                >
-                  <User class="left-icon" size="sm" />
-                  Profile
-                </Text>
-              </div>
-              <div class="p-1.5 bg-zinc-50" role="none">
-                <Button class="w-full" variant="alternative" gap="xs" size="xs">
-                  <span> Sign out</span>
-                </Button>
-              </div>
-            </div>
-          </li>
-          <li>
-            <Text
-              tag="a"
-              href="#_"
-              variant="textBase"
-              class="flex items-center font-medium gap-2 text-zinc-500 hover:text-blue-500"
-            >
-              Help Center Overview
-            </Text>
-          </li>
-        </ol>
-      </nav>
-      <!-- copy:end -->
-    </div>
-  </div>
-</section>
+<div class="flex items-center justify-center p-6.5">
+  <!-- copy:start -->
+  <nav aria-label="Breadcrumb">
+    <ol role="list" class="flex items-center space-x-2">
+      <li>
+        <Button variant="alternative" gap="xs" size="xs">
+          <Home size="base" size="sm" slot="left-icon" />
+          Home
+          <ChevronRight size="base" size="sm" slot="right-icon" />
+        </Button>
+      </li>
+      <li>
+        <Button variant="alternative" gap="xs" size="xs">
+          Work
+          <ChevronRight size="base" size="sm" slot="right-icon" />
+        </Button>
+      </li>
+      <li>
+        <Button variant="default" gap="xs" size="xs"> Details </Button>
+      </li>
+    </ol>
+  </nav>
+  <!-- copy:end -->
+</div>

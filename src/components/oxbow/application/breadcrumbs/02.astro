@@ -1,63 +1,37 @@
 ---
-import Text from "@/components/fundations/typography/Text.astro";
+export const description = "Breadcrumb with dropdown menu";
 import Button from "@/components/fundations/buttons/Button.astro";
-import IconButton from "@/components/fundations/buttons/IconButton.astro";
+import Text from "@/components/fundations/typography/Text.astro";
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
-import Lifebuoy from "@/components/fundations/icons/Lifebuoy.astro";
-import InfoCircle from "@/components/fundations/icons/InfoCircle.astro";
 import ThreeDots from "@/components/fundations/icons/ThreeDots.astro";
-import Settings from "@/components/fundations/icons/Settings.astro";
 import User from "@/components/fundations/icons/User.astro";
 ---
 
-<section>
-  <div class="px-8 py-32 mx-auto max-w-7xl lg:px-16 md:px-12">
-    <div
-      class="flex items-center justify-between w-full pb-4 mx-auto border-b border-zinc-200"
-    >
-      <!-- copy:start -->
-      <nav aria-label="Breadcrumb" class="flex-1 pb-5">
-        <ol role="list" class="flex items-center space-x-2">
-          <li>
-            <Text
-              tag="a"
-              href="#_"
-              variant="textBase"
-              class="flex items-center p-2 font-medium rounded-lg hover:bg-zinc-50 hover:text-blue-500 gap-2 text-zinc-500"
-            >
-              Home
-              <ChevronRight size="base" />
-            </Text>
-          </li>
-
-          <li>
-            <Text
-              tag="a"
-              href="#_"
-              variant="textBase"
-              class="flex items-center p-2 font-medium rounded-lg hover:bg-zinc-50 hover:text-blue-500 gap-2 text-zinc-500"
-            >
-              Help Center
-            </Text>
-          </li>
-        </ol>
-      </nav>
-      <!-- copy:end -->
-      <div class="relative">
-        <div
-          class="relative flex items-center"
-          @click.away="open = false"
-          x-data="{ open: false }"
+<div class="flex items-center justify-center p-8">
+  <!-- copy:start -->
+  <nav aria-label="Breadcrumb">
+    <ol role="list" class="flex items-center space-x-2">
+      <li>
+        <Text
+          tag="a"
+          href="#_"
+          variant="textXS"
+          class="flex items-center font-medium gap-2 text-zinc-500 hover:text-blue-500"
         >
-          <IconButton
+          Home
+          <ChevronRight size="base" />
+        </Text>
+      </li>
+      <li class="relative flex items-center">
+        <div x-data="{ open: false }" class="flex items-center gap-2">
+          <button
             @click="open = !open"
-            aria-haspopup="true"
-            aria-expanded="false"
-            variant="text"
-            size="sm"
+            class="flex items-center justify-center text-zinc-500 hover:text-blue-500 transition-colors"
           >
-            <ThreeDots size="base" slot="icon" />
-          </IconButton>
+            <ThreeDots size="base" />
+          </button>
+          <ChevronRight size="base" class="text-zinc-500" />
+
           <div
             x-show="open"
             @click.away="open = false"
@@ -67,57 +41,38 @@ import User from "@/components/fundations/icons/User.astro";
             x-transition:leave="transition ease-in duration-150"
             x-transition:leave-start="opacity-100 translate-y-0"
             x-transition:leave-end="opacity-0 translate-y-1"
-            class="absolute left-auto w-56 mt-2 overflow-hidden bg-white shadow-lg origin-top-center divide-y divide-zinc-200 right-8 transform rounded-xl ring-1 ring-zinc-200 focus:outline-none"
-            role="menu"
-            aria-orientation="vertical"
-            aria-labelledby="menu-button"
+            class="absolute -top-1 left-1/2 -translate-x-1/2 w-32 bg-white shadow-lg rounded-xl ring-1 ring-zinc-200 divide-y divide-zinc-200 z-10"
           >
-            <div class="p-1.5" role="none">
+            <div class="p-1.5">
               <Text
                 tag="a"
                 href="#_"
                 variant="textSM"
                 class="flex items-center p-2 rounded-lg hover:bg-zinc-50 hover:text-blue-500 gap-2 text-zinc-500"
               >
-                <InfoCircle class="left-icon" size="sm" />
-                FAQ
-              </Text>
-              <Text
-                tag="a"
-                href="#_"
-                variant="textSM"
-                class="flex items-center p-2 rounded-lg hover:bg-zinc-50 hover:text-blue-500 gap-2 text-zinc-500"
-              >
-                <Lifebuoy class="left-icon" size="sm" />
-                Support
-              </Text>
-              <Text
-                tag="a"
-                href="#_"
-                variant="textSM"
-                class="flex items-center p-2 rounded-lg hover:bg-zinc-50 hover:text-blue-500 gap-2 text-zinc-500"
-              >
-                <Settings class="left-icon" size="sm" />
-                Account
-              </Text>
-              <Text
-                tag="a"
-                href="#_"
-                variant="textSM"
-                class="flex items-center p-2 rounded-lg hover:bg-zinc-50 hover:text-blue-500 gap-2 text-zinc-500"
-              >
-                <User class="left-icon" size="sm" />
+                <User size="sm" />
                 Profile
               </Text>
             </div>
-            <div class="p-1.5 bg-zinc-50" role="none">
-              <Button class="w-full" variant="alternative" gap="xs" size="xs">
-                <span> Sign out</span>
+            <div class="p-1.5 bg-zinc-50">
+              <Button class="w-full" variant="alternative" size="xs">
+                Sign out
               </Button>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+      </li>
+      <li>
+        <Text
+          tag="a"
+          href="#_"
+          variant="textXS"
+          class="flex items-center font-medium gap-2 text-zinc-500 hover:text-blue-500"
+        >
+          Help Center
+        </Text>
+      </li>
+    </ol>
+  </nav>
+  <!-- copy:end -->
+</div>

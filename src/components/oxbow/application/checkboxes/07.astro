@@ -1,47 +1,31 @@
 ---
-export const description = "Checkbox with Confirm Button";
+export const description = "Checkbox with Indication Badge";
 import Text from "@/components/fundations/typography/Text.astro";
-import Button from "@/components/fundations/buttons/Button.astro";
+import Badge from "@/components/fundations/badges/Badge.astro";
 ---
 
-<div class="flex items-center max-w-md p-12 py-48 mx-auto">
+<div class="flex items-center justify-center p-8">
   <!-- copy:start -->
-  <div
-    class="flex flex-col w-full gap-2"
-    x-data="{ checked: false, confirmed: false }"
-  >
-    <div class="flex items-center justify-between w-full gap-3">
-      <div class="flex items-center gap-3">
+  <div class="flex flex-col w-full gap-2" x-data="{ checked: false }">
+    <div class="flex items-center w-full gap-3">
+      <div class="flex items-center h-full gap-3">
         <input
-          id="confirm-checkbox"
-          name="confirm-checkbox"
+          id="badge-checkbox"
+          name="badge-checkbox"
           type="checkbox"
           x-model="checked"
           class="rounded shadow size-4 border-zinc-300 text-blue-600 focus:ring-blue-600"
         />
         <Text
-          for="confirm-checkbox"
+          for="badge-checkbox"
           tag="label"
           class="block text-sm text-zinc-500"
         >
-          Confirm this
+          With badge
         </Text>
       </div>
-      <div>
-        <Button
-          type="button"
-          size="xs"
-          variant="accent"
-          :disabled="!checked"
-          @click="confirmed = true"
-          class="w-auto"
-        >
-          Confirm
-        </Button>
-      </div>
+      <Badge x-show="checked" variant="accent" size="xs"> Checked </Badge>
     </div>
-
-    <span x-show="confirmed" class="text-sm text-blue-500">Confirmed!</span>
   </div>
   <!-- copy:end -->
 </div>
