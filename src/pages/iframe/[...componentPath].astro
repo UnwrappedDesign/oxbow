@@ -3,22 +3,34 @@ import IframeHead from "@/components/IframeHead.astro";
 
 const { componentPath } = Astro.params;
 const params = Astro.url.searchParams;
-const context = params.get('context');
+const context = params.get("context");
 
 // Lazy module map, only load needed component
-const modules = import.meta.glob('@/components/oxbow/**/*.astro');
+const modules = import.meta.glob("@/components/oxbow/**/*.astro");
 const keys = Object.keys(modules);
-const matchKey = keys.find((k) => k.endsWith(componentPath));
+// Fix: strip any leading /src/components/oxbow/ from componentPath
+let relComponentPath = componentPath.replace(/^\/src\/components\/oxbow\//, "");
+const matchKey = keys.find((k) => k.endsWith(relComponentPath));
 const component = matchKey ? await modules[matchKey]() : undefined;
 ---
 
 <html lang="en" class="selection:text-blue selection:bg-blue/5">
   <head>
     <IframeHead />
+    <style>
+      html,
+      body {
+        margin: 0 !important;
+        padding: 0 !important;
+        min-height: 0 !important;
+        height: auto !important;
+        box-sizing: border-box;
+      }
+    </style>
   </head>
   <body>
     {
-      context === 'card' ? (
+      context === "card" ? (
         <div class="p-4 md:p-6">
           <component.default />
         </div>
@@ -29,14 +41,20 @@ const component = matchKey ? await modules[matchKey]() : undefined;
     <script is:inline>
       (function () {
         const params = new URLSearchParams(window.location.search);
-        const iframeId = params.get('iframeId') || '';
+        const iframeId = params.get("iframeId") || "";
         function postHeight() {
           try {
-            const h = document.documentElement.scrollHeight || document.body.scrollHeight || 0;
-            parent.postMessage({ type: 'oxbow-iframe-height', id: iframeId, height: h }, '*');
+            const h =
+              document.documentElement.scrollHeight ||
+              document.body.scrollHeight ||
+              0;
+            parent.postMessage(
+              { type: "oxbow-iframe-height", id: iframeId, height: h },
+              "*",
+            );
           } catch (_) {}
         }
-        window.addEventListener('load', postHeight);
+        window.addEventListener("load", postHeight);
         const ro = new ResizeObserver(() => postHeight());
         ro.observe(document.documentElement);
         ro.observe(document.body);
