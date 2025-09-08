@@ -61,13 +61,19 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 const formattedSubsection = subsection.replace("-", " ");
 const user = Astro.locals.user;
 const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
-
-// Per-subsection grid overrides (edit as you like)
 const gridOverrides: Record<string, { md: number; lg: number }> = {
   // Marketing
   "marketing-heros": { md: 1, lg: 1 },
   "bento-grids": { md: 1, lg: 1 },
   "blog-entries": { md: 1, lg: 1 },
+  "blog-content": { md: 1, lg: 1 },
+  cta: { md: 1, lg: 1 },
+  "cta-newsletter": { md: 1, lg: 1 },
+  faq: { md: 1, lg: 1 },
+  contact: { md: 1, lg: 1 },
+  features: { md: 1, lg: 1 },
+  footers: { md: 1, lg: 1 },
+  gallery: { md: 1, lg: 1 },
   // Application
   banners: { md: 1, lg: 1 },
   navbars: { md: 1, lg: 1 },
@@ -86,10 +92,8 @@ const gridOverrides: Record<string, { md: number; lg: number }> = {
   "input-groups": { md: 2, lg: 3 }, 
   // default handled below
 };
-
 // Normalize subsection for lookup (keeps things case/char safe)
 const subsectionKey = (subsection || "").toLowerCase();
-
 // Resolve the current subsection's grid counts (fallback to 2/2)
 const mdCols = gridOverrides[subsectionKey]?.md ?? 2;
 const lgCols = gridOverrides[subsectionKey]?.lg ?? 2;
@@ -126,6 +130,14 @@ const smallBlockCategories = [
   "creative-heros",
   "bento-grids",
   "blog-entries",
+  "blog-content",
+  "contact",
+  "cta",
+  "cta-newsletter",
+  "faq",
+  "features",
+  "footers",
+  "gallery",
 ];
 
 // turn it into a regex matcher
@@ -313,48 +325,62 @@ const isSmallBlock = (pathNoAstro: string) =>
     </Wrapper>
   </section>
 <!--- PlaygroundCard  -->
-  <section class="border-t border-zinc-200">
-    <Wrapper variant="standard" class="lg:border-x lg:border-zinc-200">
-     <div :class={`layout === 'grid' ? '${gridClass}' : '${columnClass}'`}>
-        {
-  sectionComponents.map(({ key, filePath, imagePath, description, free, component: C }, index) => {
-    const pathNoAstro = filePath.replace(".astro", "");
-    const isSmall = isSmallBlock(pathNoAstro);
+<!-- Replace this section in your component -->
+<section class="border-t border-zinc-200">
+  <Wrapper variant="standard" class="lg:border-x lg:border-zinc-200">
+    <div 
+      x-data={`{ 
+        layout: 'grid', 
+        gridClass: '${gridClass}', 
+        columnClass: '${columnClass}' 
+      }`}
+      :class="layout === 'grid' ? gridClass : columnClass"
+    >
+      {
+        sectionComponents.map(({ key, filePath, imagePath, description, free, component: C }, index) => {
+          const pathNoAstro = filePath.replace(".astro", "");
+          const isSmall = isSmallBlock(pathNoAstro);
 
-    if (isSmall && C) {
-      return (
-        <div class="group">
-          <PlaygroundCard componentIndex={index + 1} componentPath={`${pathNoAstro}.astro`} freeComponent={free}>
-            <C />
-          </PlaygroundCard>
-          {description && (
-            <Text tag="p" variant="textSM" class="sr-only">{description}</Text>
-          )}
-        </div>
-      );
-    }
-
-            if (!images[imagePath]) return null;
-            const updatedAt = new Date(updates[filePath] * 1000);
-            const isUpdatedLastWeek = updatedAt > SEVEN_DAYS_AGO;
+          if (isSmall && C) {
             return (
-              <a href={`/playground/${pathNoAstro}`} class="relative  flex flex-col group" :class="layout === 'grid' ? 'masonry-item' : ''">
-                <div class="flex flex-col sr-only gap-1">
-                  {isUpdatedLastWeek && (
-                    <Text tag="p" variant="textXS" class="relative flex items-center gap-1 text-zinc-400">
-                      Updated {formatDistanceToNowStrict(updatedAt, { unit: 'day', roundingMethod: 'ceil' })} ago
-                    </Text>
-                  )}
-                </div>
-                <div class="mt-2 overflow-hidden bg-white rounded-lg ">
-                  <Image width={1000} height={1000} src={images[imagePath]() || "/placeholder.png"} alt={`${subsection} preview ${index + 1}`} class="object-cover object-top " />
-                </div>
-              </a>
+              <div class="group">
+                <PlaygroundCard componentIndex={index + 1} componentPath={`${pathNoAstro}.astro`} freeComponent={free}>
+                  <C />
+                </PlaygroundCard>
+                {description && (
+                  <Text tag="p" variant="textSM" class="sr-only">{description}</Text>
+                )}
+              </div>
             );
-          })
-        }
-      </div>
-    </Wrapper>
-  </section>
+          }
+
+          if (!images[imagePath]) return null;
+          const updatedAt = new Date(updates[filePath] * 1000);
+          const isUpdatedLastWeek = updatedAt > SEVEN_DAYS_AGO;
+          return (
+            <a href={`/playground/${pathNoAstro}`} class="relative flex flex-col group" :class="layout === 'grid' ? 'masonry-item' : ''">
+              <div class="flex flex-col sr-only gap-1">
+                {isUpdatedLastWeek && (
+                  <Text tag="p" variant="textXS" class="relative flex items-center gap-1 text-zinc-400">
+                    Updated {formatDistanceToNowStrict(updatedAt, { unit: 'day', roundingMethod: 'ceil' })} ago
+                  </Text>
+                )}
+              </div>
+              <div class="mt-2 overflow-hidden bg-white rounded-lg">
+                <Image 
+                  width={1000} 
+                  height={1000} 
+                  src={images[imagePath]?.() ?? "/placeholder.png"} 
+                  alt={`${subsection} preview ${index + 1}`} 
+                  class="object-cover object-top" 
+                />
+              </div>
+            </a>
+          );
+        })
+      }
+    </div>
+  </Wrapper>
+</section>
   </div>
 </BaseLayout>

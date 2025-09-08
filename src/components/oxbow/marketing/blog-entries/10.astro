@@ -39,62 +39,63 @@ const articles = [
 
 <div class="p-8">
   <!-- copy:start -->
-  <div class="relative flex flex-col gap-12">
-    {
-      articles.map((article) => (
-        <>
-          <article class="relative flex flex-col justify-end px-8 pb-8 overflow-hidden shadow isolate rounded-2xl  pt-80 sm:pt-48 lg:pt-80">
-            <img
-              src={article.image}
-              alt="#_"
-              class="absolute inset-0 object-cover -z-10 size-full "
-            />
-            <div class="absolute inset-0 -z-10 bg-gradient-to-t from-zinc-100 via-zinc-200/70" />
-            <div class="flex flex-col overflow-hidden  gap-y-12">
-              <div>
-                <Text tag="a" href="#_" variant="link">
-                  <Text
-                    tag="h3"
-                    variant="displayXL"
-                    class="font-semibold text-zinc-900 text-balance"
-                  >
-                    <span class="absolute inset-0" />
-                    {article.title}
-                  </Text>
-                </Text>
-                <div class="relative flex items-center mt-12 gap-x-4">
-                  <img
-                    src={article.authorImage}
-                    alt="#_"
-                    class="object-cover rounded-full size-16 bg-zinc-50"
-                  />
-                  <div>
+  <div class="max-w-7xl mx-auto">
+    <div class="relative flex flex-col gap-12">
+      {
+        articles.map((article) => (
+          <>
+            <article class="relative flex flex-col justify-end px-8 pb-8 overflow-hidden shadow isolate rounded-2xl  pt-80 sm:pt-48 lg:pt-80">
+              <img
+                src={article.image}
+                alt="#_"
+                class="absolute inset-0 object-cover -z-10 size-full "
+              />
+              <div class="absolute inset-0 -z-10 bg-gradient-to-t from-zinc-100 via-zinc-200/70" />
+              <div class="flex flex-col overflow-hidden  gap-y-12">
+                <div>
+                  <Text tag="a" href="#_" variant="link">
                     <Text
                       tag="h3"
-                      variant="textLG"
-                      class="font-medium  text-zinc-900"
+                      variant="displayXL"
+                      class="font-semibold text-zinc-900 text-balance"
                     >
-                      {article.author}
+                      <span class="absolute inset-0" />
+                      {article.title}
                     </Text>
+                  </Text>
+                  <div class="relative flex items-center mt-12 gap-x-4">
+                    <img
+                      src={article.authorImage}
+                      alt="#_"
+                      class="object-cover rounded-full size-16 bg-zinc-50"
+                    />
                     <div>
-                      <span class="sr-only">{article.date}</span>
                       <Text
-                        tag="p"
-                        variant="textBase"
-                        class="font-medium uppercase text-zinc-500"
+                        tag="h3"
+                        variant="textLG"
+                        class="font-medium  text-zinc-900"
                       >
-                        <time datetime={article.date}>{article.date}</time>
+                        {article.author}
                       </Text>
+                      <div>
+                        <span class="sr-only">{article.date}</span>
+                        <Text
+                          tag="p"
+                          variant="textBase"
+                          class="font-medium uppercase text-zinc-500"
+                        >
+                          <time datetime={article.date}>{article.date}</time>
+                        </Text>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </article>
-        </>
-      ))
-    }
+            </article>
+          </>
+        ))
+      }
+    </div>
   </div>
   <!-- copy:end -->
 </div>
-

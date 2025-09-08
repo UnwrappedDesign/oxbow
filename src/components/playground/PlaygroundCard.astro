@@ -42,20 +42,40 @@ if (canSee) {
 }
 let ppcode = '';
 if (canSee) {
-  ppcode = await prettier.format(code, { parser: 'html' });
-  const accentRegex = /(class=["'].*?)bg-accent-(\d+)(.*?["'])/g;
-  const textAccentRegex = /(class=["'].*?)text-accent-(\d+)(.*?["'])/g;
-  const borderAccentRegex = /(class=["'].*?)border-accent-(\d+)(.*?["'])/g;
-  const hoverRegex = /(class=["'].*?)hover:([^-]+)-accent-(\d+)(.*?["'])/g;
-  const fromAccentRegex = /(class=["'].*?)from-accent-(\d+)(.*?["'])/g;
-  const toAccentRegex = /(class=["'].*?)to-accent-(\d+)(.*?["'])/g;
-  ppcode = ppcode
-    .replace(accentRegex, `$1bg-${userThemeColor}-$2$3`)
-    .replace(textAccentRegex, `$1text-${userThemeColor}-$2$3`)
-    .replace(borderAccentRegex, `$1border-${userThemeColor}-$2$3`)
-    .replace(hoverRegex, `$1hover:$2-${userThemeColor}-$3$4`)
-    .replace(fromAccentRegex, `$1from-${userThemeColor}-$2$3`)
-    .replace(toAccentRegex, `$1to-${userThemeColor}-$2$3`);
+  try {
+    ppcode = await prettier.format(code, { parser: 'html' });
+    const accentRegex = /(class=["'].*?)bg-accent-(\d+)(.*?["'])/g;
+    const textAccentRegex = /(class=["'].*?)text-accent-(\d+)(.*?["'])/g;
+    const borderAccentRegex = /(class=["'].*?)border-accent-(\d+)(.*?["'])/g;
+    const hoverRegex = /(class=["'].*?)hover:([^-]+)-accent-(\d+)(.*?["'])/g;
+    const fromAccentRegex = /(class=["'].*?)from-accent-(\d+)(.*?["'])/g;
+    const toAccentRegex = /(class=["'].*?)to-accent-(\d+)(.*?["'])/g;
+    ppcode = ppcode
+      .replace(accentRegex, `$1bg-${userThemeColor}-$2$3`)
+      .replace(textAccentRegex, `$1text-${userThemeColor}-$2$3`)
+      .replace(borderAccentRegex, `$1border-${userThemeColor}-$2$3`)
+      .replace(hoverRegex, `$1hover:$2-${userThemeColor}-$3$4`)
+      .replace(fromAccentRegex, `$1from-${userThemeColor}-$2$3`)
+      .replace(toAccentRegex, `$1to-${userThemeColor}-$2$3`);
+  } catch (error) {
+    console.error(`Prettier formatting failed for ${componentPath}:`, error);
+    // Fall back to unformatted code
+    ppcode = code;
+    // Apply theme color replacements even if formatting failed
+    const accentRegex = /(class=["'].*?)bg-accent-(\d+)(.*?["'])/g;
+    const textAccentRegex = /(class=["'].*?)text-accent-(\d+)(.*?["'])/g;
+    const borderAccentRegex = /(class=["'].*?)border-accent-(\d+)(.*?["'])/g;
+    const hoverRegex = /(class=["'].*?)hover:([^-]+)-accent-(\d+)(.*?["'])/g;
+    const fromAccentRegex = /(class=["'].*?)from-accent-(\d+)(.*?["'])/g;
+    const toAccentRegex = /(class=["'].*?)to-accent-(\d+)(.*?["'])/g;
+    ppcode = ppcode
+      .replace(accentRegex, `$1bg-${userThemeColor}-$2$3`)
+      .replace(textAccentRegex, `$1text-${userThemeColor}-$2$3`)
+      .replace(borderAccentRegex, `$1border-${userThemeColor}-$2$3`)
+      .replace(hoverRegex, `$1hover:$2-${userThemeColor}-$3$4`)
+      .replace(fromAccentRegex, `$1from-${userThemeColor}-$2$3`)
+      .replace(toAccentRegex, `$1to-${userThemeColor}-$2$3`);
+  }
 }
 ---
 <section x-data="{ tab: 'preview', copied: false }" class=" isolate flex flex-col relative  h-full bg-base-50 p-1 rounded-2xl   ">
