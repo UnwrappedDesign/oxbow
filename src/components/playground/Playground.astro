@@ -156,7 +156,7 @@ const theme = ``;
                 <>
                   <Button
               onlyIconSize="xxs"
-              variant="alternative"
+              variant="muted"
               class="text-base-500"
                     type="button"
                     data-download-index={componentIndex}
@@ -185,31 +185,18 @@ const theme = ``;
         }
       </div>
     </div>
-  <div
-    class="relative  w-full flex  rounded-xl shadow-oxbow bg-white z-1 overflow-hidden isolate"
+ <div
+    class="relative min-h-[400px] w-full flex  rounded-xl shadow-oxbow bg-white z-1 overflow-hidden isolate"
   >
     <div
       x-show="tab === 'preview'"
-      class="flex justify-center flex-grow w-full bg-white"
+     class="flex justify-center flex-grow w-full bg-white"
     >
-      <iframe
-        x-bind:style="{
-          width: viewportSize === 'mobile' ? '375px' : viewportSize === 'tablet' ? '768px' : '100%',
-          height: '600px',
-          border: '1px solid #e5e7eb',
-          borderRadius: '0.75rem',
-          background: 'white',
-          boxShadow: '0 2px 8px 0 rgba(16,30,54,0.04)',
-          overflow: 'auto',
-          transition: 'width 0.3s cubic-bezier(.4,0,.2,1)',
-        }"
-        class="block mx-auto"
-        frameborder="0"
-        allowfullscreen
-        loading="lazy"
-        src={`/iframe/${componentPath.startsWith('/') ? componentPath : '/' + componentPath}?iframeId=iframe-${componentIndex}`}
-        id={`iframe-${componentIndex}`}
-      />
+        <div
+        class="w-full overflow-auto transition-all duration-500 easy-in-out border-x border-base-100"
+        :class="{ 'max-w-sm  border-x border-base-100': viewportSize === 'mobile', 'max-w-screen-md  border-x border-base-100': viewportSize === 'tablet','max-w-full': viewportSize === 'desktop' }">
+        <iframe  x-intersect.once="$el.src = $el.dataset.src" id={playgroundRef} width="100%" data-src={`/iframe/${componentPath}?iframeId=iframe-${componentIndex}&freeComponent=${freeComponent}`}/>
+      </div>
     </div>
     {canSeeCodeValue && (
       <div
@@ -260,27 +247,3 @@ const theme = ``;
   });
 </script>
 
-<script define:vars={{ userThemeColor }}>
-  // Set initial theme based on user preference from claims/cookies
-  document.addEventListener('DOMContentLoaded', () => {
-    // Store the original server-rendered theme color for comparison
-    window.originalRenderedTheme = userThemeColor;
-    
-    // Wait for Alpine to initialize components
-    setTimeout(() => {
-      const playgrounds = document.querySelectorAll('section[x-data="playground"]');
-      
-      if (playgrounds.length > 0) {
-        
-        // Dispatch theme event to set the initial theme in the playground
-        playgrounds.forEach(playground => {
-          playground.dispatchEvent(new CustomEvent('theme', {
-            detail: {
-              color: userThemeColor
-            }
-          }));
-        });
-      }
-    }, 500); // Delay to ensure Alpine components are initialized
-  });
-</script>
