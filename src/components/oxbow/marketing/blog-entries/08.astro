@@ -40,113 +40,115 @@ const articles = [
 
 <div class="p-8">
   <!-- copy:start -->
-  <div class="items-center grid grid-cols-1 gap-6 lg:grid-cols-3">
-    <div class="block w-full lg:col-span-2">
-      <img
-        alt="#_"
-        class="shadow rounded-2xl aspect-[4/3] object-cover object-center w-full"
-        src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-      />
+  <div class="max-w-7xl mx-auto">
+    <div class="items-center grid grid-cols-1 gap-6 lg:grid-cols-3">
+      <div class="block w-full lg:col-span-2">
+        <img
+          alt="#_"
+          class="shadow rounded-2xl aspect-[4/3] object-cover object-center w-full"
+          src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        />
+      </div>
+      <div
+        class="flex flex-col justify-between h-full p-6 bg-zinc-50 rounded-2xl"
+      >
+        <div>
+          <Text
+            tag="p"
+            variant="textSM"
+            class="font-bold uppercase text-blue-600"
+          >
+            Tagline
+          </Text>
+          <Text
+            tag="h2"
+            variant="displayMD"
+            class="mt-4 font-semibold text-zinc-900 lg:text-balance"
+          >
+            Insights and perspectives
+          </Text>
+          <Text tag="p" variant="textLG" class="mt-4 font-medium text-zinc-500">
+            Exploring topics, tips, and trends in the world of communication and
+            privacy
+          </Text>
+        </div>
+        <div class="flex mt-12">
+          <Text
+            tag="a"
+            href="#_"
+            variant="textBase"
+            class="flex items-center font-medium text-blue-500 gap-2 hover:text-zinc-900"
+          >
+            Read further
+            <ChevronRight size="sm" />
+          </Text>
+        </div>
+      </div>
     </div>
     <div
-      class="flex flex-col justify-between h-full p-6 bg-zinc-50 rounded-2xl"
+      class="relative mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
     >
-      <div>
-        <Text
-          tag="p"
-          variant="textSM"
-          class="font-bold uppercase text-blue-600"
-        >
-          Tagline
-        </Text>
-        <Text
-          tag="h2"
-          variant="displayMD"
-          class="mt-4 font-semibold text-zinc-900 lg:text-balance"
-        >
-          Insights and perspectives
-        </Text>
-        <Text tag="p" variant="textLG" class="mt-4 font-medium text-zinc-500">
-          Exploring topics, tips, and trends in the world of communication and
-          privacy
-        </Text>
-      </div>
-      <div class="flex mt-12">
-        <Text
-          tag="a"
-          href="#_"
-          variant="textBase"
-          class="flex items-center font-medium text-blue-500 gap-2 hover:text-zinc-900"
-        >
-          Read further
-          <ChevronRight size="sm" />
-        </Text>
-      </div>
-    </div>
-  </div>
-  <div
-    class="relative mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
-  >
-    {
-      articles.map((article) => (
-        <article class="relative flex flex-col overflow-hidden isolate ring-1 ring-zinc-200  rounded-2xl group">
-          <div class="relative aspect-[4/3] ">
-            <img
-              src={article.image}
-              alt="#_"
-              class="absolute inset-0 object-cover size-full  bg-zinc-50"
-            />
-          </div>
-          <div class="flex flex-col justify-between p-6">
-            <div>
-              <Text tag="a" href="#_" variant="link">
-                <Text
-                  tag="h3"
-                  variant="textLG"
-                  class="font-medium  text-zinc-900 group-hover:text-blue-600 duration-200"
-                >
-                  <span class="absolute inset-0" />
-                  {article.title}
-                </Text>
-              </Text>
-              <Text
-                tag="p"
-                variant="textBase"
-                class="mt-4 font-medium text-zinc-500 line-clamp-3"
-              >
-                {article.description}
-              </Text>
-            </div>
-            <div class="relative flex items-center mt-4 gap-x-4">
+      {
+        articles.map((article) => (
+          <article class="relative flex flex-col overflow-hidden isolate ring-1 ring-zinc-200  rounded-2xl group">
+            <div class="relative aspect-[4/3] ">
               <img
-                src={article.authorImage}
+                src={article.image}
                 alt="#_"
-                class="object-cover rounded-full size-12 bg-zinc-50"
+                class="absolute inset-0 object-cover size-full  bg-zinc-50"
               />
+            </div>
+            <div class="flex flex-col justify-between p-6">
               <div>
-                <Text
-                  tag="h3"
-                  variant="textBase"
-                  class="font-medium  text-zinc-900"
-                >
-                  {article.author}
-                </Text>
-                <div>
-                  <span class="sr-only">{article.date}</span>
+                <Text tag="a" href="#_" variant="link">
                   <Text
-                    tag="p"
-                    variant="textSM"
-                    class="font-medium uppercase text-zinc-500"
+                    tag="h3"
+                    variant="textLG"
+                    class="font-medium  text-zinc-900 group-hover:text-blue-600 duration-200"
                   >
-                    <time datetime={article.date}>{article.date}</time>
+                    <span class="absolute inset-0" />
+                    {article.title}
                   </Text>
+                </Text>
+                <Text
+                  tag="p"
+                  variant="textBase"
+                  class="mt-4 font-medium text-zinc-500 line-clamp-3"
+                >
+                  {article.description}
+                </Text>
+              </div>
+              <div class="relative flex items-center mt-4 gap-x-4">
+                <img
+                  src={article.authorImage}
+                  alt="#_"
+                  class="object-cover rounded-full size-12 bg-zinc-50"
+                />
+                <div>
+                  <Text
+                    tag="h3"
+                    variant="textBase"
+                    class="font-medium  text-zinc-900"
+                  >
+                    {article.author}
+                  </Text>
+                  <div>
+                    <span class="sr-only">{article.date}</span>
+                    <Text
+                      tag="p"
+                      variant="textSM"
+                      class="font-medium uppercase text-zinc-500"
+                    >
+                      <time datetime={article.date}>{article.date}</time>
+                    </Text>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </article>
-      ))
-    }
+          </article>
+        ))
+      }
+    </div>
   </div>
   <!-- copy:end -->
 </div>

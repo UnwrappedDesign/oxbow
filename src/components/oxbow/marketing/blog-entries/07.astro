@@ -37,68 +37,70 @@ const articles = [
 ];
 ---
 
-<div class="p-8">
+<div class="p-8 ">
   <!-- copy:start -->
-  <div class="relative grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-    {
-      articles.map((article) => (
-        <article class="relative flex flex-col h-full group">
-          <div>
-            <img
-              class="drop-shadow  aspect-[4/3] object-cover object-center w-full rounded-2xl"
-              src={article.image}
-              alt="#_"
-            />
-          </div>
-          <div class="mt-4">
-            <Text tag="a" href="#_" variant="link">
-              <Text
-                tag="h3"
-                variant="textLG"
-                class="font-medium  text-zinc-900 group-hover:text-blue-600 duration-200"
-              >
-                <span class="absolute inset-0" />
-                {article.title}
-              </Text>
-            </Text>
-            <Text
-              tag="p"
-              variant="textBase"
-              class="mt-4 font-medium text-zinc-500 line-clamp-3"
-            >
-              {article.description}
-            </Text>
-          </div>
-          <div class="relative flex items-center mt-4 gap-x-4">
-            <img
-              src={article.authorImage}
-              alt="#_"
-              class="object-cover rounded-full size-12 bg-zinc-50"
-            />
+  <div class="max-w-7xl mx-auto">
+    <div class="relative grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        articles.map((article) => (
+          <article class="relative flex flex-col h-full group">
             <div>
-              <Text
-                tag="h3"
-                variant="textBase"
-                class="font-medium  text-zinc-900"
-              >
-                {article.author}
-              </Text>
-              <div>
-                <span class="sr-only">{article.date}</span>
+              <img
+                class="drop-shadow  aspect-[4/3] object-cover object-center w-full rounded-2xl"
+                src={article.image}
+                alt="#_"
+              />
+            </div>
+            <div class="mt-4">
+              <Text tag="a" href="#_" variant="link">
                 <Text
-                  tag="p"
-                  variant="textSM"
-                  class="font-medium uppercase text-zinc-500"
+                  tag="h3"
+                  variant="textLG"
+                  class="font-medium  text-zinc-900 group-hover:text-blue-600 duration-200"
                 >
-                  <time datetime={article.date}>{article.date}</time>
+                  <span class="absolute inset-0" />
+                  {article.title}
                 </Text>
+              </Text>
+              <Text
+                tag="p"
+                variant="textBase"
+                class="mt-4 font-medium text-zinc-500 line-clamp-3"
+              >
+                {article.description}
+              </Text>
+            </div>
+            <div class="relative flex items-center mt-4 gap-x-4">
+              <img
+                src={article.authorImage}
+                alt="#_"
+                class="object-cover rounded-full size-12 bg-zinc-50"
+              />
+              <div>
+                <Text
+                  tag="h3"
+                  variant="textBase"
+                  class="font-medium  text-zinc-900"
+                >
+                  {article.author}
+                </Text>
+                <div>
+                  <span class="sr-only">{article.date}</span>
+                  <Text
+                    tag="p"
+                    variant="textSM"
+                    class="font-medium uppercase text-zinc-500"
+                  >
+                    <time datetime={article.date}>{article.date}</time>
+                  </Text>
+                </div>
               </div>
             </div>
-          </div>
-        </article>
-      ))
-    }
-  </div>
+          </article>
+        ))
+      }
+    </div>
+ </div>
   <!-- copy:end -->
 </div>
 
