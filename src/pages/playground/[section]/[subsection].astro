@@ -24,10 +24,10 @@ const triples = keys.map((k) => k.split("/").slice(-3)); // [section, subsection
 const subsByCat = Object.fromEntries(
   Array.from(new Set(triples.map(([sec]) => sec))).map((sec) => {
     const subs = Array.from(
-      new Set(triples.filter(([s]) => s === sec).map(([, sub]) => sub))
+      new Set(triples.filter(([s]) => s === sec).map(([, sub]) => sub)),
     ).sort();
     return [sec, subs];
-  })
+  }),
 );
 
 const sectionComponents = keys
@@ -52,39 +52,18 @@ const sectionComponents = keys
   });
 const allSmall = sectionComponents.every(({ filePath }) => {
   const pathNoAstro = filePath.replace(".astro", "");
-  return /\/(buttons|button-groups|button-icon|badges|breadcrumbs|checkboxes|inputs|input-groups|radiogroups|select|toggles|typography|flyouts|alerts|avatars|banners)\//i.test(pathNoAstro);
+  return /\/(buttons|button-groups|button-icon|badges|breadcrumbs|checkboxes|inputs|input-groups|radiogroups|select|toggles|typography|flyouts|alerts|avatars|banners)\//i.test(
+    pathNoAstro,
+  );
 });
 const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/screenshots/*.png"
+  "/src/screenshots/*.png",
 );
 
 const formattedSubsection = subsection.replace("-", " ");
 const user = Astro.locals.user;
 const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
 const gridOverrides: Record<string, { md: number; lg: number }> = {
-  //
-  //
-  // Marketing
-  //
-  // 
-  "marketing-heros": { md: 1, lg: 1 },
-  "bento-grids": { md: 1, lg: 1 },
-  "blog-entries": { md: 1, lg: 1 },
-  "blog-content": { md: 1, lg: 1 },
-  cta: { md: 1, lg: 1 },
-  "cta-newsletter": { md: 1, lg: 1 },
-  "landing-pages": { md: 1, lg: 1 },
-  "logo-clouds": { md: 1, lg: 1 },
-  pricing: { md: 1, lg: 1 },
-  "pricing-pages": { md: 1, lg: 1 },
-  faq: { md: 1, lg: 1 },
-  contact: { md: 1, lg: 1 },
-  features: { md: 1, lg: 1 },
-  footers: { md: 1, lg: 1 },
-  gallery: { md: 1, lg: 1 },
-  stats: { md: 1, lg: 1 },
-  //
-  //
   // Application
   //
   //
@@ -102,7 +81,7 @@ const gridOverrides: Record<string, { md: number; lg: number }> = {
   select: { md: 2, lg: 3 },
   toggles: { md: 2, lg: 3 },
   radiogroups: { md: 2, lg: 2 },
-  "input-groups": { md: 2, lg: 3 }, 
+  "input-groups": { md: 2, lg: 3 },
   // default handled below
 };
 // Normalize subsection for lookup (keeps things case/char safe)
@@ -139,30 +118,11 @@ const smallBlockCategories = [
   "tables",
   "tabs",
   "textarea",
-  // Marketing
-  "creative-heros",
-  "bento-grids",
-  "blog-entries",
-  "blog-content",
-  "contact",
-  "cta",
-  "cta-newsletter",
-  "faq",
-  "features",
-  "footers",
-  "gallery",
-  "landing-pages",
-  "logo-clouds",
-  "marketing-heros",
-  "pricing",
-  "pricing-pages",
-  "stats",
 ];
 
 // turn it into a regex matcher
 const isSmallBlock = (pathNoAstro: string) =>
   smallBlockCategories.some((cat) => pathNoAstro.includes(`/${cat}/`));
-
 ---
 
 <style>
@@ -207,199 +167,236 @@ const isSmallBlock = (pathNoAstro: string) =>
     x-init="subs = JSON.parse($el.dataset.subs || '{}')"
     data-subs={JSON.stringify(subsByCat)}
   >
-  <section class="border-t border-zinc-200">
-    <Wrapper variant="standard" class="lg:border-x lg:border-zinc-200">
-      <div class="flex items-center justify-between gap-2">
-       <div class="flex items-center justify-between gap-2">
-          <button
-            class="flex items-center text-sm cursor-pointer gap- text-zinc-500 hover:text-zinc-900 group"
-            onclick="history.back();"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="size-4 group-hover:-translate-x-2 duration-300"
+    <section class="border-t border-zinc-200">
+      <Wrapper variant="standard" class="lg:border-x lg:border-zinc-200">
+        <div class="flex items-center justify-between gap-2">
+          <div class="flex items-center justify-between gap-2">
+            <button
+              class="flex items-center text-sm cursor-pointer gap- text-zinc-500 hover:text-zinc-900 group"
+              onclick="history.back();"
             >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-              <path d="M15 6l-6 6l6 6"></path>
-            </svg>
-            Go Back
-          </button>
-          <div class="flex items-center gap-2">
-            <span aria-hidden="true" class="text-zinc-500">/</span>
-            <Text
-              tag="h1"
-              variant="textSM"
-              class="font-medium tracking-tight capitalize text-zinc-900"
-            >
-              {subsection.replace(/-/g, " ")}
-            </Text>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="size-4 group-hover:-translate-x-2 duration-300"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M15 6l-6 6l6 6"></path>
+              </svg>
+              Go Back
+            </button>
+            <div class="flex items-center gap-2">
+              <span aria-hidden="true" class="text-zinc-500">/</span>
+              <Text
+                tag="h1"
+                variant="textSM"
+                class="font-medium tracking-tight capitalize text-zinc-900"
+              >
+                {subsection.replace(/-/g, " ")}
+              </Text>
+            </div>
           </div>
-       </div>
-        <div class="items-center justify-end hidden p-1 bg-white rounded-lg gap-1 md:flex gap-1" x-data="{ openCat:false, openSub:false }">
-          <div class="relative">
-  <span class="sr-only">Category</span>
-  <Button
-    size="xxs"
-    variant="muted"
-    class="pointer-events-auto !shadow-none inline-flex items-center gap-2 h-[28px] px-2 py-1"
-    x-on:click.stop="openCat=!openCat"
-  >
-    <span class="capitalize" x-text="fmt(cat)"></span>
-    <ChevronDown class="size-4" />
-  </Button>
+          <div
+            class="items-center justify-end hidden p-1 bg-white rounded-lg gap-1 md:flex gap-1"
+            x-data="{ openCat:false, openSub:false }"
+          >
+            <div class="relative">
+              <span class="sr-only">Category</span>
+              <Button
+                size="xxs"
+                variant="muted"
+                class="pointer-events-auto !shadow-none inline-flex items-center gap-2 h-[28px] px-2 py-1"
+                x-on:click.stop="openCat=!openCat"
+              >
+                <span class="capitalize" x-text="fmt(cat)"></span>
+                <ChevronDown class="size-4" />
+              </Button>
 
-  <div
-    x-show="openCat"
-    x-transition
-    @click.outside="openCat=false"
-    class="absolute right-0 top-full z-50 mt-2 w-52 origin-top-right rounded-xl outline outline-zinc-100 shadow bg-white text-[13px] text-zinc-600 divide-y divide-zinc-100"
-    x-cloak
-  >
-    <div class="py-2 max-h-64 overflow-auto">
-      <template x-for="(list, key) in subs" :key="key">
-        <a
-          class="w-full flex items-center justify-between px-3 py-1.5 hover:bg-zinc-100"
-          :href="`/playground/${key}/${(subs[key]||[])[0]||''}`"
-          @click="openCat=false"
-        >
-          <span class="capitalize" x-text="fmt(key)"></span>
-          <template x-if="cat===key">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-4 text-blue-600">
-              <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4-4a.75.75 0 011.06-1.06l3.353 3.353 7.528-9.884a.75.75 0 011.043-.136z" clip-rule="evenodd" />
-            </svg>
-          </template>
-        </a>
-      </template>
-    </div>
-  </div>
-</div>
+              <div
+                x-show="openCat"
+                x-transition
+                @click.outside="openCat=false"
+                class="absolute right-0 top-full z-50 mt-2 w-52 origin-top-right rounded-xl outline outline-zinc-100 shadow bg-white text-[13px] text-zinc-600 divide-y divide-zinc-100"
+                x-cloak
+              >
+                <div class="py-2 max-h-64 overflow-auto">
+                  <template x-for="(list, key) in subs" :key="key">
+                    <a
+                      class="w-full flex items-center justify-between px-3 py-1.5 hover:bg-zinc-100"
+                      :href="`/playground/${key}/${(subs[key]||[])[0]||''}`"
+                      @click="openCat=false"
+                    >
+                      <span class="capitalize" x-text="fmt(key)"></span>
+                      <template x-if="cat===key">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                          class="size-4 text-blue-600"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4-4a.75.75 0 011.06-1.06l3.353 3.353 7.528-9.884a.75.75 0 011.043-.136z"
+                            clip-rule="evenodd"></path>
+                        </svg>
+                      </template>
+                    </a>
+                  </template>
+                </div>
+              </div>
+            </div>
 
-<div class="relative">
-  <span class="sr-only">Block</span>
-  <Button
-    size="xxs"
-    variant="muted"
-    class="pointer-events-auto !shadow-none inline-flex items-center gap-2 h-[28px] px-2 py-1"
-    x-on:click.stop="openSub=!openSub"
-  >
-    <span class="capitalize" x-text="fmt(sub)"></span>
-    <ChevronDown class="size-4" />
-  </Button>
+            <div class="relative">
+              <span class="sr-only">Block</span>
+              <Button
+                size="xxs"
+                variant="muted"
+                class="pointer-events-auto !shadow-none inline-flex items-center gap-2 h-[28px] px-2 py-1"
+                x-on:click.stop="openSub=!openSub"
+              >
+                <span class="capitalize" x-text="fmt(sub)"></span>
+                <ChevronDown class="size-4" />
+              </Button>
 
-  <div
-    x-show="openSub"
-    x-transition
-    @click.outside="openSub=false"
-    class="absolute right-0 top-full z-50 mt-2 w-64 origin-top-right rounded-xl outline outline-zinc-100 shadow bg-white text-[13px] text-zinc-600 divide-y divide-zinc-100"
-    x-cloak
-  >
-    <div class="py-2 max-h-64 overflow-auto">
-      <template x-for="name in (subs[cat]||[])" :key="name">
-        <a
-          class="w-full flex items-center justify-between px-3 py-1.5 hover:bg-zinc-100"
-          :href="`/playground/${cat}/${name}`"
-          @click="openSub=false"
-        >
-          <span class="capitalize" x-text="fmt(name)"></span>
-          <template x-if="sub===name">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-4 text-blue-600">
-              <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4-4a.75.75 0 011.06-1.06l3.353 3.353 7.528-9.884a.75.75 0 011.043-.136z" clip-rule="evenodd" />
-            </svg>
-          </template>
-        </a>
-      </template>
-    </div>
-  </div>
-</div>
-
-          <!-- {!allSmall && (
-  <Button
-    size="xxs"
-    variant="muted"
-    class="pointer-events-auto !shadow-none"
-    x-on:click="layout = (layout === 'grid' ? 'column' : 'grid')"
-    aria-label="Toggle layout"
-    title="Toggle layout"
-  >
-    <span class="sr-only" x-text="layout === 'grid' ? 'Column View' : 'Grid View'"></span>
-    <span x-show="layout === 'grid'" class="inline-flex items-center" aria-hidden="true">
-      <GridIcon class="size-4" />
-    </span>
-    <span x-show="layout !== 'grid'" class="inline-flex items-center" aria-hidden="true">
-      <ListIcon class="size-4" />
-    </span>
-  </Button>
-)} -->
-
+              <div
+                x-show="openSub"
+                x-transition
+                @click.outside="openSub=false"
+                class="absolute right-0 top-full z-50 mt-2 w-64 origin-top-right rounded-xl outline outline-zinc-100 shadow bg-white text-[13px] text-zinc-600 divide-y divide-zinc-100"
+                x-cloak
+              >
+                <div class="py-2 max-h-64 overflow-auto">
+                  <template x-for="name in (subs[cat]||[])" :key="name">
+                    <a
+                      class="w-full flex items-center justify-between px-3 py-1.5 hover:bg-zinc-100"
+                      :href="`/playground/${cat}/${name}`"
+                      @click="openSub=false"
+                    >
+                      <span class="capitalize" x-text="fmt(name)"></span>
+                      <template x-if="sub===name">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                          class="size-4 text-blue-600"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4-4a.75.75 0 011.06-1.06l3.353 3.353 7.528-9.884a.75.75 0 011.043-.136z"
+                            clip-rule="evenodd"></path>
+                        </svg>
+                      </template>
+                    </a>
+                  </template>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </Wrapper>
-  </section>
-<!--- PlaygroundCard  -->
-<!-- Replace this section in your component -->
-<section class="border-t border-zinc-200">
-  <Wrapper variant="standard" class="lg:border-x lg:border-zinc-200">
-    <div 
-      x-data={`{ 
-        layout: 'grid', 
-        gridClass: '${gridClass}', 
-        columnClass: '${columnClass}' 
-      }`}
-      :class="layout === 'grid' ? gridClass : columnClass"
-    >
-      {
-        sectionComponents.map(({ key, filePath, imagePath, description, free, component: C }, index) => {
-          const pathNoAstro = filePath.replace(".astro", "");
-          const isSmall = isSmallBlock(pathNoAstro);
+      </Wrapper>
+    </section>
+    <!--- PlaygroundCard  -->
 
-          if (isSmall && C) {
-            return (
-              <div class="group">
-                <PlaygroundCard componentIndex={index + 1} componentPath={`${pathNoAstro}.astro`} freeComponent={free}>
-                  <C />
-                </PlaygroundCard>
-                {description && (
-                  <Text tag="p" variant="textSM" class="sr-only">{description}</Text>
-                )}
-              </div>
-            );
+    <section class="border-t border-zinc-200">
+      <Wrapper variant="standard" class="lg:border-x lg:border-zinc-200">
+        <div
+          x-data={`{ 
+            layout: 'grid', 
+            gridClass: '${gridClass}', 
+            columnClass: '${columnClass}' 
+          }`}
+          :class="layout === 'grid' ? gridClass : columnClass"
+        >
+          {
+            sectionComponents.map(
+              (
+                { key, filePath, imagePath, description, free, component: C },
+                index,
+              ) => {
+                const pathNoAstro = filePath.replace(".astro", "");
+                const isSmall = isSmallBlock(pathNoAstro);
+
+                if (isSmall && C) {
+                  return (
+                    <div class="group">
+                      <PlaygroundCard
+                        componentIndex={index + 1}
+                        componentPath={`${pathNoAstro}.astro`}
+                        freeComponent={free}
+                      >
+                        <C />
+                      </PlaygroundCard>
+                      {description && (
+                        <Text tag="p" variant="textSM" class="sr-only">
+                          {description}
+                        </Text>
+                      )}
+                    </div>
+                  );
+                }
+                return null;
+              },
+            )
           }
-
-          if (!images[imagePath]) return null;
-          const updatedAt = new Date(updates[filePath] * 1000);
-          const isUpdatedLastWeek = updatedAt > SEVEN_DAYS_AGO;
-          return (
-            <a href={`/playground/${pathNoAstro}`} class="relative flex flex-col group" :class="layout === 'grid' ? 'masonry-item' : ''">
-              <div class="flex flex-col sr-only gap-1">
-                {isUpdatedLastWeek && (
-                  <Text tag="p" variant="textXS" class="relative flex items-center gap-1 text-zinc-400">
-                    Updated {formatDistanceToNowStrict(updatedAt, { unit: 'day', roundingMethod: 'ceil' })} ago
-                  </Text>
-                )}
-              </div>
-              <div class="mt-2 overflow-hidden bg-white rounded-lg">
-                <Image 
-                  width={1000} 
-                  height={1000} 
-                  src={images[imagePath]?.() ?? "/placeholder.png"} 
-                  alt={`${subsection} preview ${index + 1}`} 
-                  class="object-cover object-top" 
-                />
-              </div>
-            </a>
-          );
-        })
-      }
-    </div>
-  </Wrapper>
-</section>
+        </div>
+        <div class="masonry-grid">
+          {
+            sectionComponents.map(
+              (
+                { key, filePath, imagePath, description, free, component: C },
+                index,
+              ) => {
+                const pathNoAstro = filePath.replace(".astro", "");
+                const isSmall = isSmallBlock(pathNoAstro);
+                if (isSmall && C) return null;
+                if (!images[imagePath]) return null;
+                const updatedAt = new Date(updates[filePath] * 1000);
+                const isUpdatedLastWeek = updatedAt > SEVEN_DAYS_AGO;
+                return (
+                  <a
+                    href={`/playground/${pathNoAstro}`}
+                    class="relative flex flex-col group masonry-item"
+                    style="display: block;"
+                  >
+                    <div class="flex flex-col sr-only gap-1">
+                      {isUpdatedLastWeek && (
+                        <Text
+                          tag="p"
+                          variant="textXS"
+                          class="relative flex items-center gap-1 text-zinc-400"
+                        >
+                          Updated{" "}
+                          {formatDistanceToNowStrict(updatedAt, {
+                            unit: "day",
+                            roundingMethod: "ceil",
+                          })}{" "}
+                          ago
+                        </Text>
+                      )}
+                    </div>
+                    <div class="mt-2 overflow-hidden bg-white rounded-lg">
+                      <Image
+                        width={1000}
+                        height={1000}
+                        src={images[imagePath]?.() ?? "/placeholder.png"}
+                        alt={`${subsection} preview ${index + 1}`}
+                        class="object-cover object-top"
+                      />
+                    </div>
+                  </a>
+                );
+              },
+            )
+          }
+        </div>
+      </Wrapper>
+    </section>
   </div>
 </BaseLayout>
