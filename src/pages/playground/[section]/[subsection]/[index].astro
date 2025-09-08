@@ -42,6 +42,22 @@ const NextElementProps =
     scrollbar-gutter: stable;
   }
 </style> -->
+<style is:global>
+  :where(html, body) {
+    margin: 0;
+    padding: 0;
+    min-height: 0 !important;
+    height: auto !important;
+  }
+  #oxbow-root {
+    display: block;
+  }
+  #oxbow-root img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+
 <BaseLayout>
   <section class="border-t border-zinc-200">
     <Wrapper variant="standard" class="lg:border-x lg:border-zinc-200">
@@ -118,11 +134,53 @@ const NextElementProps =
   </section>
 </BaseLayout>
 <script is:inline>
-  // Adjust iframe height when the preview posts its size
-  window.addEventListener("message", (e) => {
-    const d = e.data;
-    if (!d || d.type !== "oxbow-iframe-height") return;
-    const iframe = document.getElementById(d.id);
-    if (iframe) iframe.style.height = (d.height || 0) + "px";
-  });
+  (function () {
+    const params = new URLSearchParams(location.search);
+    const iframeId = params.get("iframeId") || "iframe-unknown";
+
+    const send = () => {
+      // Use a robust doc height calculation
+      const b = document.body;
+      const d = document.documentElement;
+      const height = Math.max(
+        b.scrollHeight,
+        d.scrollHeight,
+        b.offsetHeight,
+        d.offsetHeight,
+        b.clientHeight,
+        d.clientHeight,
+      );
+      parent.postMessage(
+        { type: "oxbow-iframe-height", id: iframeId, height },
+        "*",
+      );
+    };
+
+    // 1) On full load
+    window.addEventListener("load", send);
+
+    // 2) When parent asks
+    window.addEventListener("message", (e) => {
+      if (e.data && e.data.type === "oxbow-iframe-resize-request") send();
+    });
+
+    // 3) Watch DOM & layout changes
+    const ro = new ResizeObserver(() => send());
+    ro.observe(document.documentElement);
+    ro.observe(document.body);
+
+    // 4) Late-loading media
+    document.querySelectorAll("img, video, iframe").forEach((el) => {
+      if ("complete" in el && el.complete) return;
+      el.addEventListener("load", send, { once: true });
+      el.addEventListener("error", send, { once: true });
+    });
+
+    // 5) Short bootstrap polling for very dynamic UIs
+    let n = 0;
+    const iv = setInterval(() => {
+      send();
+      if (++n > 20) clearInterval(iv); // ~1s if 50ms
+    }, 50);
+  })();
 </script>

@@ -59,6 +59,12 @@ const component = matchKey ? await modules[matchKey]() : undefined;
         ro.observe(document.documentElement);
         ro.observe(document.body);
         setTimeout(postHeight, 0);
+        // Listen for parent requests to post height
+        window.addEventListener("message", function (e) {
+          if (e.data && e.data.type === "oxbow-request-height") {
+            postHeight();
+          }
+        });
       })();
     </script>
   </body>
