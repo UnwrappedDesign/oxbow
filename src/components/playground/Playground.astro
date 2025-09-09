@@ -225,25 +225,23 @@ const theme = ``;
 
 </style>
 <script is:inline>
-  document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.download-btn').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var idx = btn.getAttribute('data-download-index');
-        var path = btn.getAttribute('data-download-path');
-        var codeEl = document.querySelector('.download-code[data-download-index="' + idx + '"]');
-        if (!codeEl) return;
-        var content = codeEl.textContent;
-        if (!content) return;
-        var blob = new Blob([content], {type: 'text/html'});
-        var url = URL.createObjectURL(blob);
-        var a = document.createElement('a');
-        a.href = url;
-        a.download = (path.split('/').pop().replace('.astro', '') || 'component') + '.html';
-        document.body.appendChild(a);
-        a.click();
-        setTimeout(function() { URL.revokeObjectURL(url); a.remove(); }, 100);
-      });
-    });
+  document.addEventListener('click', function(e) {
+    const btn = e.target.closest('.download-btn');
+    if (!btn) return;
+    var idx = btn.getAttribute('data-download-index');
+    var path = btn.getAttribute('data-download-path');
+    var codeEl = document.querySelector('.download-code[data-download-index="' + idx + '"]');
+    if (!codeEl) return;
+    var content = codeEl.textContent;
+    if (!content) return;
+    var blob = new Blob([content], {type: 'text/html'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = (path.split('/').pop().replace('.astro', '') || 'component') + '.html';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function() { URL.revokeObjectURL(url); a.remove(); }, 100);
   });
 </script>
 
