@@ -78,7 +78,7 @@ if (canSee) {
       <span class="text-xs">{componentIndex}</span>
     </Button>
     <div class="flex items-center gap-1">
-      <span class="hidden md:inline-flex gap-1">
+     <!--  <span class="hidden md:inline-flex gap-1">
         <Button
           onlyIconSize="xxs"
           variant="alternative"
@@ -108,7 +108,7 @@ if (canSee) {
         aria-hidden="true"
         class="mx-1 h-4 w-[1px] bg-zinc-200 hidden md:inline-block"
       >
-      </div>
+      </div> -->
       <Button
         onlyIconSize="xxs"
         variant="alternative"
@@ -120,17 +120,19 @@ if (canSee) {
       >
         <Eye slot="left-icon" size="sm" />
       </Button>
-      <Button
-        onlyIconSize="xxs"
-        variant="alternative"
-        class="text-base-500"
-        x-on:click="tab='code'"
-        :class="tab==='code' && 'outline-base-100'"
-        title="Code"
-        aria-label="Code"
-      >
-        <CodeIcon slot="left-icon" size="sm" />
-      </Button>
+      {(user || freeComponent) && (
+        <Button
+          onlyIconSize="xxs"
+          variant="alternative"
+          class="text-base-500"
+          x-on:click="tab='code'"
+          :class="tab==='code' && 'outline-base-100'"
+          title="Code"
+          aria-label="Code"
+        >
+          <CodeIcon slot="left-icon" size="sm" />
+        </Button>
+      )}
       <Button
         onlyIconSize="xxs"
         variant="alternative"
@@ -162,45 +164,34 @@ if (canSee) {
     >
       <div
         class="w-full flex flex-col h-fit min-h-0 leading-none overflow-visible transition-all duration-500 ease-in-out p-0 scrollbar-hide"
-        :class="{ 'max-w-sm': viewportSize === 'mobile', 'max-w-screen-md': viewportSize === 'tablet','max-w-full': viewportSize === 'desktop' }"
+        :class="{ 'max-w-sm': viewportSize === 'mobile', 'max-w-screen-md': viewportSize === 'tablet', 'max-w-full': viewportSize === 'desktop' }"
       >
-        <iframe
-          x-intersect.once="$el.src = $el.dataset.src"
-          id={`card-iframe-${componentIndex}`}
+        <div
+          class="@container bg-white rounded-xl shadow-oxbow transition-all border border-base-100 overflow-auto"
           x-bind:style="{
             width: viewportSize === 'mobile' ? '375px' : viewportSize === 'tablet' ? '768px' : '100%',
+            minWidth: '320px',
+            maxWidth: '100%'
           }"
-          width="100%"
-          class="min-h-0 leading-none"
-          data-src={`/iframe/${componentPath.startsWith("/") ? componentPath : "/" + componentPath}?iframeId=card-iframe-${componentIndex}`}
-          allowfullscreen
-          loading="lazy"></iframe>
-      </div>
-      <script is:inline>
-        window.addEventListener("message", (e) => {
-          const d = e.data;
-          if (!d || d.type !== "oxbow-iframe-height") return;
-          const iframe = document.getElementById(d.id);
-          if (iframe) iframe.style.height = (d.height || 80) + "px";
-        });
-      </script>
-    </div>
-    {
-      canSee && (
-        <div
-          x-show="tab==='code'"
-          class="code-pane size-full overflow-auto p-3 text-xs bg-white rounded-xl outline outline-base-200 shadow-oxbow"
-          x-ref="code"
         >
-          <Code
-            code={ppcode}
-            lang="html"
-            theme="css-variables"
-            class="scrollbar-hide"
-          />
+          <slot />
         </div>
-      )
-    }
+      </div>
+    </div>
+    {(user || freeComponent) && (
+      <div
+        x-show="tab==='code'"
+        class="code-pane size-full overflow-auto p-3 text-xs bg-white rounded-xl outline outline-base-200 shadow-oxbow"
+        x-ref="code"
+      >
+        <Code
+          code={ppcode}
+          lang="html"
+          theme="css-variables"
+          class="scrollbar-hide"
+        />
+      </div>
+    )}
   </div>
 </section>
 <style>
