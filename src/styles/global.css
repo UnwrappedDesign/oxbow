@@ -6,8 +6,8 @@
 
 @theme {
   /* Typography */
-  --font-sans: "Geist", sans-serif;
-  --font-mono: "Geist Mono", monospace;
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "Menlo", monospace;
   /* blues */
   --color-blue-light: #60beff;
   --color-blue: #1da8ff;
@@ -50,7 +50,8 @@
  
 }
 :root {
-  font-family: "Geist", sans-serif;
+  font-family: "Inter", sans-serif;
+  font-feature-settings: 'liga' 1, 'calt' 1;
   font-variant-numeric: tabular-nums;
   --astro-code-foreground: var(--color-zinc-500);
   --astro-code-color-text: var(--color-zinc-300);
@@ -69,7 +70,9 @@
   --astro-code-token-underline: underline;
 
 }
-
+@supports (font-variation-settings: normal) {
+  :root { font-family: InterVariable, sans-serif; }
+}
 /* Hide Firebase emulator warning banners */
 .firebase-emulator-warning,
 .firegray-emulator-warning {
