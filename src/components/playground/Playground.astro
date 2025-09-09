@@ -11,7 +11,6 @@ import * as prettier from "prettier";
 // Utils
 import { getUserThemeColor } from "@/utils/getUserTheme";
 import { canSeeCode } from "@/utils/canSeeCode";
-
 interface Props {
   componentIndex: number;
   componentPath: string;
@@ -22,12 +21,9 @@ interface Props {
 const { componentIndex, componentPath, playgroundRef, freeComponent = false, initialTabIsCode = false } = Astro.props;
 const user = Astro.locals.user;
 const canSeeCodeValue = canSeeCode(user, freeComponent);
-
 // Get user's theme preference from custom claims
 const userThemeColor = getUserThemeColor(user, 'blue', Astro);
-
 const rawSlotCode = canSeeCodeValue ? await Astro.slots.render("default") : '';
-
 // Allow authors to mark the actual snippet to show/copy using HTML comments
 // <!-- copy:start --> ... <!-- copy:end -->
 let code = '';
@@ -68,137 +64,126 @@ if (canSeeCodeValue) {
     code = s || rawSlotCode;
   }
 }
-
 let ppcode = '';
 if (canSeeCodeValue) {
   // Always format so the Code tab shows pretty output by default
   ppcode = await prettier.format(code, { parser: 'html' });
 }
-
 const theme = ``;
 ---
-<section x-data="playground" data-iframe-id={`iframe-${componentIndex}`}>
+<section x-data="playground" x-init="
+  $nextTick(() => {
+    const container = $refs.previewContainer;
+    const content = $refs.previewContent;
+    if (container && content) {
+      const resize = () => {
+        container.style.height = content.offsetHeight + 'px';
+      };
+      resize();
+      if (window.ResizeObserver) {
+        const ro = new ResizeObserver(resize);
+        ro.observe(content);
+      } else {
+        window.addEventListener('resize', resize);
+      }
+    }
+  })
+" data-iframe-id={`iframe-${componentIndex}`}>
   <div class="relative" @theme="setTheme($event.detail.color)">
     <div class="flex items-center justify-between pb-2 gap-1 ">
-     
       <Button onlyIconSize="xxs" variant="muted"
         href={`#${componentIndex}`}
       >
         <span class="text-xs">{componentIndex}</span>
       </Button>
       <div class="items-center justify-end hidden p-1 bg-white rounded-lg  md:flex gap-1">
-      
-        <span class="items-center hidden isolate md:inline-flex  gap-1" >
+       <!--  <span class="items-center hidden isolate md:inline-flex  gap-1">
           <Button onlyIconSize="xxs" variant="muted"
-          @click="viewportSize = 'mobile'" :class="viewportSize === 'mobile' ? '' : ''">
-          <Mobile slot="left-icon" size="sm" />
-            
+            @click="viewportSize = 'mobile'; $refs.previewContainer.style.width = '375px'"
+            :class="viewportSize === 'mobile' ? 'ring-2 ring-primary-500' : ''">
+            <Mobile slot="left-icon" size="sm" />
           </Button>
-          
-          <Button
-             onlyIconSize="xxs" variant="muted"
-             @click="viewportSize = 'tablet'" :class="viewportSize === 'tablet' ? '' : '"
-             >
-             <Tablet slot="left-icon" size="sm" />
-             
+          <Button onlyIconSize="xxs" variant="muted"
+            @click="viewportSize = 'tablet'; $refs.previewContainer.style.width = '768px'"
+            :class="viewportSize === 'tablet' ? 'ring-2 ring-primary-500' : ''">
+            <Tablet slot="left-icon" size="sm" />
           </Button>
-          <Button
-             onlyIconSize="xxs" variant="muted"
-             @click="viewportSize = 'desktop'" :class="viewportSize === 'desktop' ? '' : ''"
-             >
-             <Desktop slot="left-icon" size="sm" />
-            
+          <Button onlyIconSize="xxs" variant="muted"
+            @click="viewportSize = 'desktop'; $refs.previewContainer.style.width = '100%'"
+            :class="viewportSize === 'desktop' ? 'ring-2 ring-primary-500' : ''">
+            <Desktop slot="left-icon" size="sm" />
           </Button>
-       </span> 
-       <div aria-hidden="true" class="mx-1 h-4 w-[1px]  bg-zinc-200   hidden md:inline-block"></div>
-      
-        {
-          canSeeCodeValue ? (
-            <div class="flex items-center gap-1 ">
-              <Button
-               size="xxs"
-                variant="muted"
-                x-on:click="setTab('preview');" 
-                :class="tab === 'preview' ? ' outline-zinc-100  ' : ''"
-                data-umami-event="click-view-preview"
-                data-umami-data-id={user?.uid}
-                data-umami-event-componentref={componentPath}
-                class="pointer-events-auto !shadow-none">
-                Preview
-              </Button>
-              <Button
-               size="xxs"
-                variant="muted"
-                x-on:click="setTab('code')" 
-                :class="tab === 'code' ? 'outline-zinc-100  ' : ''"
-                data-umami-event="click-view-code"
-                data-umami-data-id={user?.uid}
-                data-umami-event-componentref={componentPath}
-                class="pointer-events-auto !shadow-none">
-                Code
-              </Button>
-              <div aria-hidden="true" class="mx-1 h-4 w-[1px]  bg-zinc-200   hidden md:inline-block"></div>
-              <Button
-                size="xxs"
-                variant="muted"
-                data-umami-event="click-copy-component"
-                data-umami-data-id={user?.uid}
-                data-umami-event-componentref={componentPath}
-                class="w-20 pointer-events-auto !shadow-none"
-                x-on:click="copyCode"
-              >
-                <span
-                  x-text="copied ? 'Copied!' : 'Copy'"
-                  class="transition"
-                />
-              </Button>
-              {(user || freeComponent) && (
-                <>
-                  <Button
+        </span>
+        <div aria-hidden="true" class="mx-1 h-4 w-[1px]  bg-zinc-200   hidden md:inline-block"></div> -->
+        {(user || freeComponent) ? (
+          <div class="flex items-center gap-1 ">
+            <Button
+              size="xxs"
+              variant="muted"
+              x-on:click="setTab('preview');" 
+              :class="tab === 'preview' ? ' outline-zinc-100  ' : ''"
+              class="pointer-events-auto !shadow-none">
+              Preview
+            </Button>
+            <Button
+              size="xxs"
+              variant="muted"
+              x-on:click="setTab('code')" 
+              :class="tab === 'code' ? 'outline-zinc-100  ' : ''"
+              class="pointer-events-auto !shadow-none">
+              Code
+            </Button>
+            <div aria-hidden="true" class="mx-1 h-4 w-[1px]  bg-zinc-200   hidden md:inline-block"></div>
+            <Button
+              size="xxs"
+              variant="muted"
+              class="w-20 pointer-events-auto !shadow-none"
+              x-on:click="copyCode"
+            >
+              <span
+                x-text="copied ? 'Copied!' : 'Copy'"
+                class="transition"
+              />
+            </Button>
+            <Button
               onlyIconSize="xxs"
               variant="muted"
               class="text-base-500"
-                    type="button"
-                    data-download-index={componentIndex}
-                    data-download-path={componentPath}
-                    title="Download code"
-                    aria-label="Download code">
-                      <Download slot="left-icon" size="sm" />
-                  </Button>
-                  <pre class="download-code" data-download-index={componentIndex} style="display:none">{ppcode}</pre>
-                </>
-              )}
-            </div>
-          ) : (
-            <Button
+              type="button"
+              title="Download code"
+              aria-label="Download code">
+                <Download slot="left-icon" size="sm" />
+            </Button>
+            <pre class="download-code" data-download-index={componentIndex} style="display:none">{ppcode}</pre>
+          </div>
+        ) : (
+          <Button
             size="xxs"
             variant="default"
             href="/pricing"
-            data-umami-event="click-get-access"
-            data-umami-data-id={user?.uid}
-            data-umami-event-componentref={componentPath}
             class="pointer-events-auto !shadow-none"
-            >
-              Get Access
-            </Button>
-          )
-        }
+          >
+            Get Access
+          </Button>
+        )}
       </div>
     </div>
- <div
-    class="relative min-h-[400px] w-full flex  rounded-xl shadow-oxbow bg-white z-1 overflow-hidden isolate"
+  <div
+  class="relative min-h-[400px] w-full flex justify-center items-start rounded-xl shadow-oxbow bg-white z-1 overflow-visible isolate"
   >
-    <div
-      x-show="tab === 'preview'"
-     class="flex justify-center flex-grow w-full bg-white"
-    >
-        <div
-        class="w-full overflow-auto transition-all duration-500 easy-in-out border-x border-base-100"
-        :class="{ 'max-w-sm  border-x border-base-100': viewportSize === 'mobile', 'max-w-screen-md  border-x border-base-100': viewportSize === 'tablet','max-w-full': viewportSize === 'desktop' }">
-        <iframe  x-intersect.once="$el.src = $el.dataset.src" id={playgroundRef} width="100%" data-src={`/iframe/${componentPath}?iframeId=iframe-${componentIndex}&freeComponent=${freeComponent}`}/>
+  <div x-show="tab === 'preview'" class="flex flex-col items-center bg-white">
+      <div
+        x-ref="previewContainer"
+        id="playground-preview-container"
+        class="@container bg-white rounded-xl shadow-oxbow transition-all border border-base-100 overflow-auto mx-auto"
+        style="min-width:320px; height:auto; margin-left:auto; margin-right:auto;"
+      >
+        <div x-ref="previewContent">
+          <slot />
+        </div>
       </div>
     </div>
-    {canSeeCodeValue && (
+    {(user || freeComponent) && (
       <div
         x-show="tab === 'code'"
         x-ref="code"
@@ -210,7 +195,6 @@ const theme = ``;
   </div>
   </div>
 </section>
-
 <style>
   :global(.code-pane pre) {
     white-space: pre;
@@ -222,26 +206,26 @@ const theme = ``;
   :global(.code-pane code) {
     white-space: inherit;
   }
-
 </style>
 <script is:inline>
-  document.addEventListener('click', function(e) {
-    const btn = e.target.closest('.download-btn');
-    if (!btn) return;
-    var idx = btn.getAttribute('data-download-index');
-    var path = btn.getAttribute('data-download-path');
-    var codeEl = document.querySelector('.download-code[data-download-index="' + idx + '"]');
-    if (!codeEl) return;
-    var content = codeEl.textContent;
-    if (!content) return;
-    var blob = new Blob([content], {type: 'text/html'});
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement('a');
-    a.href = url;
-    a.download = (path.split('/').pop().replace('.astro', '') || 'component') + '.html';
-    document.body.appendChild(a);
-    a.click();
-    setTimeout(function() { URL.revokeObjectURL(url); a.remove(); }, 100);
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.download-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var idx = btn.getAttribute('data-download-index');
+        var path = btn.getAttribute('data-download-path');
+        var codeEl = document.querySelector('.download-code[data-download-index="' + idx + '"]');
+        if (!codeEl) return;
+        var content = codeEl.textContent;
+        if (!content) return;
+        var blob = new Blob([content], {type: 'text/html'});
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = (path.split('/').pop().replace('.astro', '') || 'component') + '.html';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function() { URL.revokeObjectURL(url); a.remove(); }, 100);
+      });
+    });
   });
 </script>
-
