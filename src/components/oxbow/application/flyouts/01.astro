@@ -16,134 +16,133 @@ import Edit from "@/components/fundations/icons/Edit.astro";
 import Brain from "@/components/fundations/icons/Brain.astro";
 ---
 
-<div>
-  <div class="flex items-center justify-center w-full p-8 mx-auto">
-    <!-- copy:start -->
-    <div
-      class="relative"
-      x-data="{
-        uid: Math.random().toString(36).slice(2),
-        open: false,
-        style: '',
-        gap: 8,
-        align() {
-          const btn = this.$refs.btn;
-          if (!btn) return;
-          const r = btn.getBoundingClientRect();
-          // Center under button, clamp within viewport a bit
-          const cx  = r.left + r.width / 2;
-          const top = r.bottom + this.gap;
-          this.style = `position:fixed; left:${cx}px; top:${top}px; transform:translateX(-50%);`;
-        },
-        toggle() {
-          if (this.open) { this.open = false; return; }
-          window.dispatchEvent(new CustomEvent('close-all-flyouts', { detail: this.uid }));
-          this.align();                       // compute coords first
-          requestAnimationFrame(() => this.open = true); // then show (no jitter)
-        },
-        close() { this.open = false; }
-      }"
-      x-init="
-        // Close when another flyout opens
-        window.addEventListener('close-all-flyouts', (e) => { if (e.detail !== uid) open = false });
-        // Keep position synced while open
-        const realign = () => { if (open) align() };
-        window.addEventListener('resize', realign);
-        window.addEventListener('scroll', realign, { passive: true });
-      "
-    >
-      <Button
-        x-ref="btn"
-        @click.stop="toggle"
-        aria-expanded="false"
-        variant="text"
-        size="sm"
-        gap="sm"
-      >
-        <span>Help Center</span>
-        <ChevronDown size="sm" slot="right-icon" />
-      </Button>
 
-      <!-- Backdrop -->
+<div class="flex items-center justify-center w-full p-8 mx-auto">
+  <!-- copy:start -->
+  <div
+    class="relative"
+    x-data="{
+      uid: Math.random().toString(36).slice(2),
+      open: false,
+      style: '',
+      gap: 8,
+      align() {
+        const btn = this.$refs.btn;
+        if (!btn) return;
+        const r = btn.getBoundingClientRect();
+        // Center under button, clamp within viewport a bit
+        const cx  = r.left + r.width / 2;
+        const top = r.bottom + this.gap;
+        this.style = `position:fixed; left:${cx}px; top:${top}px; transform:translateX(-50%);`;
+      },
+      toggle() {
+        if (this.open) { this.open = false; return; }
+        window.dispatchEvent(new CustomEvent('close-all-flyouts', { detail: this.uid }));
+        this.align();                       // compute coords first
+        requestAnimationFrame(() => this.open = true); // then show (no jitter)
+      },
+      close() { this.open = false; }
+    }"
+    x-init="
+      // Close when another flyout opens
+      window.addEventListener('close-all-flyouts', (e) => { if (e.detail !== uid) open = false });
+      // Keep position synced while open
+      const realign = () => { if (open) align() };
+      window.addEventListener('resize', realign);
+      window.addEventListener('scroll', realign, { passive: true });
+    "
+  >
+    <Button
+      x-ref="btn"
+      @click.stop="toggle"
+      aria-expanded="false"
+      variant="text"
+      size="sm"
+      gap="sm"
+    >
+      <span>Button</span>
+      <ChevronDown size="sm" slot="right-icon" />
+    </Button>
+
+    <!-- Backdrop -->
+    <div
+      x-show="open"
+      x-transition.opacity
+      class="fixed inset-0 z-[999]"
+      @click="close"
+      style="display:none"
+    ></div>
+
+    <!-- Teleported dropdown (no clipping) -->
+    <template x-teleport="body">
       <div
         x-show="open"
-        x-transition.opacity
-        class="fixed inset-0 z-[999]"
-        @click="close"
+        :style="style"
+        class="z-[1000]"
         style="display:none"
-      ></div>
-
-      <!-- Teleported dropdown (no clipping) -->
-      <template x-teleport="body">
-        <div
-          x-show="open"
-          :style="style"
-          class="z-[1000]"
-          style="display:none"
-          @keydown.escape.window="close"
-          x-transition:enter="transition ease-out duration-200"
-          x-transition:enter-start="opacity-0 translate-y-1"
-          x-transition:enter-end="opacity-100 translate-y-0"
-          x-transition:leave="transition ease-in duration-150"
-          x-transition:leave-start="opacity-100 translate-y-0"
-          x-transition:leave-end="opacity-0 translate-y-1"
-        >
-          <div class="max-w-max">
-            <div class="w-screen max-w-xs p-4 bg-white shadow-lg rounded-3xl ring-1 ring-zinc-900/5">
-              <div>
-                <Text
-                  href="#_"
-                  tag="a"
-                  variant="textSM"
-                  class="relative flex items-center w-full p-4 gap-2 group rounded-xl hover:bg-zinc-50"
-                >
-                  <Refresh size="base" slot="left-icon" class="group-hover:text-blue-500" />
-                  <Text tag="h3" variant="textBase" class="font-medium text-zinc-900 group-hover:text-blue-500">
-                    Sync across devices
-                  </Text>
+        @keydown.escape.window="close"
+        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="opacity-0 translate-y-1"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-150"
+        x-transition:leave-start="opacity-100 translate-y-0"
+        x-transition:leave-end="opacity-0 translate-y-1"
+      >
+        <div class="max-w-max">
+          <div class="w-screen max-w-xs p-4 bg-white shadow-lg rounded-3xl ring-1 ring-zinc-900/5">
+            <div>
+              <Text
+                href="#_"
+                tag="a"
+                variant="textSM"
+                class="relative flex items-center w-full p-4 gap-2 group rounded-xl hover:bg-zinc-50"
+              >
+                <Refresh size="base" slot="left-icon" class="group-hover:text-blue-500" />
+                <Text tag="h3" variant="textBase" class="font-medium text-zinc-900 group-hover:text-blue-500">
+                  Sync across devices
                 </Text>
+              </Text>
 
-                <Text
-                  href="#_"
-                  tag="a"
-                  variant="textSM"
-                  class="relative flex items-center w-full p-4 gap-2 group rounded-xl hover:bg-zinc-50"
-                >
-                  <FileDots size="base" slot="left-icon" class="group-hover:text-blue-500" />
-                  <Text tag="h3" variant="textBase" class="font-medium text-zinc-900 group-hover:text-blue-500">
-                    Create custom documents
-                  </Text>
+              <Text
+                href="#_"
+                tag="a"
+                variant="textSM"
+                class="relative flex items-center w-full p-4 gap-2 group rounded-xl hover:bg-zinc-50"
+              >
+                <FileDots size="base" slot="left-icon" class="group-hover:text-blue-500" />
+                <Text tag="h3" variant="textBase" class="font-medium text-zinc-900 group-hover:text-blue-500">
+                  Create custom documents
                 </Text>
+              </Text>
 
-                <Text
-                  href="#_"
-                  tag="a"
-                  variant="textSM"
-                  class="relative flex items-center w-full p-4 gap-2 group rounded-xl hover:bg-zinc-50"
-                >
-                  <Edit size="base" slot="left-icon" class="group-hover:text-blue-500" />
-                  <Text tag="h3" variant="textBase" class="font-medium text-zinc-900 group-hover:text-blue-500">
-                    Edit your files
-                  </Text>
+              <Text
+                href="#_"
+                tag="a"
+                variant="textSM"
+                class="relative flex items-center w-full p-4 gap-2 group rounded-xl hover:bg-zinc-50"
+              >
+                <Edit size="base" slot="left-icon" class="group-hover:text-blue-500" />
+                <Text tag="h3" variant="textBase" class="font-medium text-zinc-900 group-hover:text-blue-500">
+                  Edit your files
                 </Text>
+              </Text>
 
-                <Text
-                  href="#_"
-                  tag="a"
-                  variant="textSM"
-                  class="relative flex items-center w-full p-4 gap-2 group rounded-xl hover:bg-zinc-50"
-                >
-                  <Brain size="base" slot="left-icon" class="group-hover:text-blue-500" />
-                  <Text tag="h3" variant="textBase" class="font-medium text-zinc-900 group-hover:text-blue-500">
-                    Edit your files
-                  </Text>
+              <Text
+                href="#_"
+                tag="a"
+                variant="textSM"
+                class="relative flex items-center w-full p-4 gap-2 group rounded-xl hover:bg-zinc-50"
+              >
+                <Brain size="base" slot="left-icon" class="group-hover:text-blue-500" />
+                <Text tag="h3" variant="textBase" class="font-medium text-zinc-900 group-hover:text-blue-500">
+                  Edit your files
                 </Text>
-              </div>
+              </Text>
             </div>
           </div>
         </div>
-      </template>
-    </div>
-    <!-- copy:end -->
+      </div>
+    </template>
   </div>
+  <!-- copy:end -->
 </div>

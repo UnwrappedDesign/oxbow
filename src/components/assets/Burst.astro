@@ -1,0 +1,20 @@
+---
+// How to use:
+//
+// This <Burst /> component should be placed inside a container
+// that has `relative` positioning and `overflow-hidden`, such as a <div>
+// Best used as a decorative background burst
+//
+//<Example:
+//
+// <div class="relative overflow-hidden">
+//   <Burst />                  // Left side by default
+//   <Burst side="right" />     // Right side burst
+//   <div class="relative">...</div>
+// </div>
+
+const { side = 'left' } = Astro.props;
+const burstClass = side === 'right' ? 'bg-burst-right mask-b-from-0% mask-l-from-0%' : 'bg-burst-left mask-b-from-0% mask-r-from-0%';
+---
+
+<div class={`${burstClass} absolute inset-0 pointer-events-none `}></div>
