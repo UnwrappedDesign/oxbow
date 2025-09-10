@@ -114,41 +114,6 @@ const jsonLdCombined = Array.isArray(additionalStructured)
     : jsonLd;
 ---
 
-<script is:inline>
-  (function () {
-    const root = document.documentElement;
-    const ninja = document.getElementById("ninja");
-    const toggle = document.getElementById("theme-toggle");
-    const savedTheme = localStorage.getItem("theme");
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-
-    const applyTheme = (theme) => {
-      const isDark = theme === "dark";
-      root.classList.toggle("dark", isDark);
-      ninja?.classList.remove("light", "dark");
-      ninja?.classList.add(isDark ? "dark" : "light");
-
-      if (toggle)
-        toggle.setAttribute("aria-checked", isDark ? "true" : "false");
-    };
-
-    const getSystemTheme = () => (mediaQuery.matches ? "dark" : "light");
-
-    if (savedTheme === "light" || savedTheme === "dark") {
-      applyTheme(savedTheme);
-    } else {
-      applyTheme(getSystemTheme());
-
-      // Keep in sync with system theme if using "System"
-      mediaQuery.addEventListener("change", (e) => {
-        if (!localStorage.getItem("theme")) {
-          applyTheme(e.matches ? "dark" : "light");
-        }
-      });
-    }
-  })();
-</script>
-
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
