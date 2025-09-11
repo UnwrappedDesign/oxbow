@@ -4,13 +4,13 @@ page: Getting started
 
 # Getting Started
 
-Let’s be clear: this isn’t a “framework,” it’s not “the future of UI,” and it definitely won’t change your life. It’s just clean Tailwind blocks, sometimes with a sprinkle of Alpine. And that’s exactly why it works.  
+This isn’t a framework. It’s not ShadCN, it won’t change your life. It’s just simple Tailwind CSS blocks with a bit of Alpine. That’s the whole point.  
 
-1. Install [Tailwind CSS v4](https://tailwindcss.com/). If you’re still writing vanilla CSS by hand, that’s adorable.  
-2. Add [Alpine JS](https://alpinejs.dev/). The no-nonsense way to make stuff move without dragging in React and half of npm.  
-3. Use [Tabler Icons](https://tabler-icons.io/). Almost 7,000 of them. You’ll use four. Congratulations, you’re unique.  
-4. Done. No bloated configs, no “before you begin” novel, no begging for GitHub stars. Just blocks that actually work.  
+1. Install [Tailwind CSS v4](https://tailwindcss.com/). Still hand-writing CSS? Adorable.  
+2. Add [Alpine JS](https://alpinejs.dev/). Interactivity without dragging in React and half of npm.  
+3. Use [Tabler Icons](https://tabler-icons.io/). There are 6000 of them, and they're free, what's not to love?
+4. Done. No bloated configs. No docs. No GitHub-star begging. Just blocks.  
 
 ## Need Help?
 
-If you can’t figure this out, close your laptop and pick a new hobby. But if you insist, email [oxbowui@gmail.com](mailto:oxbowui@gmail.com) or yell into the void on [Twitter](https://x.com/oxbowui). We may or may not care.  
+If this confused you, web dev might not be your thing. But sure, email [oxbowui@gmail.com](mailto:oxbowui@gmail.com) or yell at us on [Twitter](https://x.com/oxbowui). We might respond. Or not.  
