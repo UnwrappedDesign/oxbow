@@ -14,24 +14,24 @@ const { btnLabel = "Get your link", email = false } = Astro.props;
 const randomizedReviews = [...reviews].sort(() => Math.random() - 0.5);
 ---
 
-<div class="flex h-screen">
+<div class="flex h-screen bg-white">
   <!-- Left Column - Login Form -->
-  <div class="flex items-center justify-center w-full p-8 bg-white lg:w-2/3">
+  <div class="flex items-center justify-center w-full p-8 bg-sand-100 lg:w-2/3">
     <div class="w-full max-w-md">
       <a href="/">
         <span class="sr-only">Back to home</span>
-        <Logo class="h-24 mx-auto text-blue-500 md:mx-0" /></a
+        <Logo class="h-24 mx-auto text-accent-600 md:mx-0" /></a
       >
 
       <div class="mt-12 text-center md:text-left">
         <Text
           tag="h1"
           variant="displayMD"
-          class="font-medium tracking-tight text-zinc-900 lg:text-balance"
+          class="font-medium tracking-tight text-base-900 lg:text-balance"
         >
           Welcome back.
         </Text>
-        <Text tag="p" variant="textBase" class="mt-4 text-zinc-500">
+        <Text tag="p" variant="textBase" class="mt-4 text-base-500">
           Enter your email and we’ll send you a one-time login link. No
           passwords, no hassle.
         </Text>
@@ -46,7 +46,7 @@ const randomizedReviews = [...reviews].sort(() => Math.random() - 0.5);
           <div class="flex flex-col gap-1">
             <div>
               <div>
-                <label for="email" class="text-sm text-zinc-500"> Email </label>
+                <label for="email" class="text-sm text-base-500"> Email </label>
                 <input
                   id="email"
                   name="email"
@@ -57,16 +57,16 @@ const randomizedReviews = [...reviews].sort(() => Math.random() - 0.5);
                   placeholder="email@example.com"
                   required
                   aria-required="true"
-                  class="w-full h-10 px-3 py-2 mt-1 text-sm bg-white border rounded-lg appearance-none focus:outline-none focus:ring-0 focus:border-zinc-200 text-zinc-600 border-zinc-100 leading-6 transition-colors duration-200 ease-in-out"
+                  class="w-full h-10 px-3 py-2 mt-1 text-sm bg-white border rounded-lg appearance-none focus:outline-none focus:ring-0 focus:border-accent-600 text-base-600 border-base-200 leading-6 transition-colors duration-200 ease-in-out"
                 />
               </div>
               <div x-cloak x-show="!!errorMessage">
-                <p x-text="errorMessage" class="pt-4 text-xs text-zinc-500"></p>
+                <p x-text="errorMessage" class="pt-4 text-xs text-base-500"></p>
               </div>
               {
                 email && (
                   <div>
-                    <label for="password" class="text-sm text-zinc-500">
+                    <label for="password" class="text-sm text-base-500">
                       Password
                     </label>
                     <input
@@ -76,14 +76,14 @@ const randomizedReviews = [...reviews].sort(() => Math.random() - 0.5);
                       placeholder="Enter your password"
                       required
                       aria-required="true"
-                      class="w-full h-10 px-3 py-2 mt-1 text-sm bg-white border rounded-lg appearance-none focus:outline-none focus:ring-0 focus:border-zinc-200 text-zinc-600 border-zinc-100 leading-6 transition-colors duration-200 ease-in-out"
+                      class="w-full h-10 px-3 py-2 mt-1 text-sm bg-white border rounded-lg appearance-none focus:outline-none focus:ring-0 focus:border-accent-600 text-base-600 border-base-200 leading-6 transition-colors duration-200 ease-in-out"
                     />
                   </div>
                 )
               }
               <Button
                 size="md"
-                variant="default"
+                variant="oxbowAccent"
                 type="submit"
                 :disabled="emailSent"
                 x-text={`emailSent ? 'Check Your Inbox' : '${btnLabel}'`}
@@ -97,22 +97,22 @@ const randomizedReviews = [...reviews].sort(() => Math.random() - 0.5);
         <Text
           tag="p"
           variant="textXS"
-          class="mt-4 font-medium text-center text-zinc-500 md:text-left"
+          class="mt-4 font-medium text-center text-base-500 md:text-left"
         >
           Dont' have an account?
           <a
             href="/pricing"
-            class="font-medium text-blue-600 hover:text-zinc-500"
+            class="font-medium text-accent-600 hover:text-base-500"
           >
             Get full access
           </a>
         </Text>
         <div x-cloak x-show="emailSent" class="flex flex-col mt-12 gap-4">
           <div>
-            <Text tag="p" variant="textBase" class="font-medium text-zinc-900"
+            <Text tag="p" variant="textBase" class="font-medium text-base-900"
               >Didn't receive the email?</Text
             >
-            <Text tag="p" variant="textSM" class="mt-2 text-zinc-500"
+            <Text tag="p" variant="textSM" class="mt-2 text-base-500"
               >Add the email
               <span class="font-medium">noreply@oxbowui.firebaseapp.com</span> to
               your contacts to ensure you receive our emails and try again.</Text
@@ -121,7 +121,7 @@ const randomizedReviews = [...reviews].sort(() => Math.random() - 0.5);
           <div class="flex mt-2">
             <Button
               size="md"
-              variant="default"
+              variant="oxbowAccent"
               class="w-full"
               @click="clearForm()"
             >
@@ -143,12 +143,12 @@ const randomizedReviews = [...reviews].sort(() => Math.random() - 0.5);
     />
 
     <div
-      class="absolute p-6 bg-white bottom-10 left-10 right-10 bg-opacity-80 backdrop-blur-sm sm:p-4 sm:pb-5 lg:p-6 rounded-xl shadow-oxbow"
+      class="absolute p-6  bottom-10 left-10 right-10 bg-sand-100/80 backdrop-blur-sm sm:p-4 sm:pb-5 lg:p-6 rounded-xl shadow-normal shadow-sand-500/10"
     >
       {
         randomizedReviews.slice(0, 1).map((template) => (
           <div class="relative flex flex-col gap-2">
-            <Text tag="h3" variant="textBase" class="font-medium ">
+            <Text tag="h3" variant="textBase" class="font-medium text-base-900">
               "{template.text}"
             </Text>
             <div class="flex items-center mt-2  gap-4">
@@ -163,11 +163,11 @@ const randomizedReviews = [...reviews].sort(() => Math.random() - 0.5);
                 <Text
                   tag="p"
                   variant="textBase"
-                  class="font-semibold text-zinc-900"
+                  class="font-semibold text-base-900"
                 >
                   {template.name}
                 </Text>
-                <Text tag="p" variant="textXS" class=" text-zinc-500">
+                <Text tag="p" variant="textXS" class=" text-base-500">
                   {template.work}
                 </Text>
               </div>

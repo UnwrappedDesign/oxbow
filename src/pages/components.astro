@@ -60,13 +60,13 @@ const groupedEntries = [
 >
 
   <section
-    class="divide-y divide-zinc-200 border-t border-zinc-200"
+    class="divide-y divide-base-200 border-t border-sand-200 border-dashed"
     x-data="{ tab: 'marketing', setTab(id){ this.tab = id; history.replaceState({}, '', `#${id}`) } }"
     x-init="(() => { const id = location.hash?.slice(1); if (id) tab = id })()"
   >
-  <Wrapper variant="standard" class="lg:border-x lg:border-zinc-200">
+  <Wrapper variant="standard" class="lg:border-x lg:border-sand-200 border-dashed">
       
-      <nav class="relative flex  space-x-2 bg-zinc-200/70 w-fit p-1 rounded-lg" role="tablist" aria-label="Components sections">
+      <nav class="relative flex  space-x-2 bg-white  w-fit p-1 rounded-lg" role="tablist" aria-label="Components sections">
         {groupedEntries.map(({ id, title }) => (
           <a
             role="tab"
@@ -75,7 +75,7 @@ const groupedEntries = [
             @click.prevent="setTab($el.dataset.id)"
             :aria-selected={`tab === '${id}'`}
             class="px-2 py-1.5 rounded-md  nav-link text-xs transition-colors "
-            :class={`tab === '${id}' ? 'text-black  bg-white  ' : 'text-zinc-700  hover:text-black hover:border-blue-300'`}
+            :class={`tab === '${id}' ? 'text-accent-600  bg-sand-100 shadow-subtle shadow-sand-500/20 ' : 'text-base-700  hover:text-black hover:border-stone-300'`}
           >{title}</a>
         ))}
       </nav>
@@ -91,13 +91,13 @@ const groupedEntries = [
           style={id === 'marketing' ? '' : 'display:none'}
           x-data={`{ inner: '${firstGroup}', setInner(id){ this.inner = id } }`}
         >
-          <Wrapper variant="standard" class="border-x lg:border-x lg:border-zinc-200">
+          <Wrapper variant="standard" class="border-x lg:border-x lg:border-sand-200 border-dashed">
             <section class="flex flex-col scroll-mt-24">
               <div>
-                  <Text tag="p" variant="textBase" class=" text-zinc-500 lg:col-span-3">{description}</Text>
+                  <Text tag="p" variant="textSM" class=" text-base-600 max-w-md md:text-balance">{description}</Text>
                
                 {/* Nested tabs for groups */}
-                <nav class="flex items-center gap-2 mt-12 bg-zinc-200/70 w-fit p-1 rounded-lg" role="tablist" aria-label={`${title} groups`}>
+                <nav class="flex items-center gap-2 mt-12 bg-white  w-fit p-1 rounded-lg" role="tablist" aria-label={`${title} groups`}>
                   {groups.map(({ id: groupId, label }) => (
                     <a
                       role="tab"
@@ -105,7 +105,7 @@ const groupedEntries = [
                       data-id={groupId}
                       @click.prevent="setInner($el.dataset.id)"
                       class="px-2 py-1.5 rounded-md  text-xs transition-colors"
-                      :class={`inner === '${groupId}' ? 'text-black  bg-white  ' : 'text-zinc-700  hover:text-black hover:border-blue-300'`}
+                      :class={`inner === '${groupId}' ? 'text-accent-600  bg-sand-100  shadow-subtle shadow-sand-500/20' : 'text-base-700  hover:text-black hover:border-stone-300'`}
                     >{label}</a>
                   ))}
                 </nav>

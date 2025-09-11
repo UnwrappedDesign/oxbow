@@ -14,7 +14,7 @@ type Format = 'class' | 'hex' | 'rgb' | 'hsl' | 'oklch' | 'var';
 
 export default function ColorPalette() {
   const [query, setQuery] = useState('');
-  const [copied, setCopied] = useState<string>('');
+  const [ setCopied] = useState<string>('');
   const [copiedKey, setCopiedKey] = useState<string>('');
   const [format, setFormat] = useState<Format>('class');
   const [open, setOpen] = useState(false);
@@ -250,7 +250,7 @@ export default function ColorPalette() {
                   >
                     <span className="font-mono">{opt}</span>
                     {format === opt && (
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-4 text-blue-600">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-4 text-stone-600">
                         <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4-4a.75.75 0 011.06-1.06l3.353 3.353 7.528-9.884a.75.75 0 011.043-.136z" clipRule="evenodd" />
                       </svg>
                     )}
@@ -275,7 +275,7 @@ export default function ColorPalette() {
         {list.map((family) => (
           <section key={family}>
             <div className="mb-2 text-sm font-medium capitalize text-zinc-700">{family}</div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-11 gap-2">
+            <div className="color-grid">
               {shades.map((shade) => {
                 const cls = className(family, shade);
                 const label = `${family}-${shade}`;
@@ -302,6 +302,29 @@ export default function ColorPalette() {
           </section>
         ))}
       </div>
+
+      <style jsx>{`
+        .color-grid {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 0.5rem;
+        }
+        @media (min-width: 640px) {
+          .color-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+          }
+        }
+        @media (min-width: 768px) {
+          .color-grid {
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+          }
+        }
+        @media (min-width: 1024px) {
+          .color-grid {
+            grid-template-columns: repeat(11, minmax(0, 1fr));
+          }
+        }
+      `}</style>
     </div>
   );
 }

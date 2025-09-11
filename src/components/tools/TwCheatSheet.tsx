@@ -1606,7 +1606,7 @@ export default function TwCheatSheet() {
           const paddingCount = paddingKeys.reduce((n,k)=> n + ((byName[k]?.classes.length)||0), 0);
           const card = (
             <section key={cat.name} className="inline-block w-full align-top mb-8 break-inside-avoid">
-              <header className=" py-1.5 text-sm font-semibold text-blue-500">
+              <header className=" py-1.5 text-sm font-semibold text-stone-500">
                 {cat.name}
               </header>
               <div className="divide-y divide-zinc-100 border-y border-zinc-100 mt-4 w-full">

@@ -6,9 +6,8 @@ import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
 import PlaygroundCard from "@/components/playground/PlaygroundCard.astro";
-import GridIcon from "@/components/fundations/icons/Grid.astro";
-import ListIcon from "@/components/fundations/icons/List.astro";
 import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
+import ChevrontLeft from "@/components/fundations/icons/ChevronLeft.astro";
 import { formatDistanceToNowStrict } from "date-fns";
 import updates from "@/data/updates.json";
 
@@ -105,7 +104,7 @@ const gridOverrides: Record<string, { md: number; lg: number }> = {
   //
   tabs: { md: 2, lg: 2 },
   tables: { md: 1, lg: 1 },
-  alerts: { md: 1, lg: 2 },
+  alerts: { md: 1, lg: 1 },
   inputs: { md: 2, lg: 3 },
   select: { md: 2, lg: 3 },
   banners: { md: 1, lg: 1 },
@@ -233,42 +232,19 @@ const isSmallBlock = (pathNoAstro: string) =>
     x-init="subs = JSON.parse($el.dataset.subs || '{}')"
     data-subs={JSON.stringify(subsByCat)}
   >
-    <section class="border-t border-zinc-200">
-      <Wrapper variant="standard" class="lg:border-x lg:border-zinc-200">
+    <section class="border-t border-base-200 border-dashed">
+      <Wrapper
+        variant="standard"
+        class="lg:border-x lg:border-base-200 border-dashed"
+      >
         <div class="flex items-center justify-between gap-2">
-          <div class="flex items-center justify-between gap-2">
-            <button
-              class="flex items-center text-sm cursor-pointer gap- text-zinc-500 hover:text-zinc-900 group"
-              onclick="history.back();"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="size-4 group-hover:-translate-x-2 duration-300"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <path d="M15 6l-6 6l6 6"></path>
-              </svg>
-              Go Back
-            </button>
-            <div class="flex items-center gap-2">
-              <span aria-hidden="true" class="text-zinc-500">/</span>
-              <Text
-                tag="h1"
-                variant="textSM"
-                class="font-medium tracking-tight capitalize text-zinc-900"
-              >
-                {subsection.replace(/-/g, " ")}
-              </Text>
-            </div>
-          </div>
+          <Text
+            tag="h1"
+            variant="textSM"
+            class="font-medium tracking-tight capitalize text-zinc-900"
+          >
+            {subsection.replace(/-/g, " ")}
+          </Text>
           <div
             class="items-center justify-end hidden p-1 bg-white rounded-lg gap-1 md:flex gap-1"
             x-data="{ openCat:false, openSub:false }"
@@ -277,7 +253,7 @@ const isSmallBlock = (pathNoAstro: string) =>
               <span class="sr-only">Category</span>
               <Button
                 size="xxs"
-                variant="muted"
+                variant="oxbowMuted"
                 class="pointer-events-auto !shadow-none inline-flex items-center gap-2 h-[28px] px-2 py-1"
                 x-on:click.stop="openCat=!openCat"
               >
@@ -295,7 +271,7 @@ const isSmallBlock = (pathNoAstro: string) =>
                 <div class="py-2 max-h-64 overflow-auto">
                   <template x-for="(list, key) in subs" :key="key">
                     <a
-                      class="w-full flex items-center justify-between px-3 py-1.5 hover:bg-zinc-100"
+                      class="w-full flex items-center justify-between px-3 py-1.5 hover:bg-sand-100"
                       :href="`/playground/${key}/${(subs[key]||[])[0]||''}`"
                       @click="openCat=false"
                     >
@@ -305,7 +281,7 @@ const isSmallBlock = (pathNoAstro: string) =>
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 20 20"
                           fill="currentColor"
-                          class="size-4 text-blue-600"
+                          class="size-4 text-stone-600"
                         >
                           <path
                             fill-rule="evenodd"
@@ -323,7 +299,7 @@ const isSmallBlock = (pathNoAstro: string) =>
               <span class="sr-only">Block</span>
               <Button
                 size="xxs"
-                variant="muted"
+                variant="oxbowMuted"
                 class="pointer-events-auto !shadow-none inline-flex items-center gap-2 h-[28px] px-2 py-1"
                 x-on:click.stop="openSub=!openSub"
               >
@@ -341,7 +317,7 @@ const isSmallBlock = (pathNoAstro: string) =>
                 <div class="py-2 max-h-64 overflow-auto">
                   <template x-for="name in (subs[cat]||[])" :key="name">
                     <a
-                      class="w-full flex items-center justify-between px-3 py-1.5 hover:bg-zinc-100"
+                      class="w-full flex items-center justify-between px-3 py-1.5 hover:bg-sand-100"
                       :href="`/playground/${cat}/${name}`"
                       @click="openSub=false"
                     >
@@ -351,7 +327,7 @@ const isSmallBlock = (pathNoAstro: string) =>
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 20 20"
                           fill="currentColor"
-                          class="size-4 text-blue-600"
+                          class="size-4 text-stone-600"
                         >
                           <path
                             fill-rule="evenodd"
@@ -370,8 +346,11 @@ const isSmallBlock = (pathNoAstro: string) =>
     </section>
     <!--- PlaygroundCard  -->
 
-    <section class="border-t border-zinc-200">
-      <Wrapper variant="standard" class="lg:border-x lg:border-zinc-200">
+    <section class="border-y border-base-200 border-dashed">
+      <Wrapper
+        variant="wide"
+        class="2xl:border-x lg:border-base-200 border-dashed"
+      >
         <div
           x-data={`{ 
             layout: 'grid', 

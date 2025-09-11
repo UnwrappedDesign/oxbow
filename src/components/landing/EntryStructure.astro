@@ -12,7 +12,7 @@ interface Props {
 
 const { entries } = Astro.props; // Make sure entries is correctly passed and used
 const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/images/**/*.{jpeg,jpg,png,gif}"
+  "/src/images/**/*.{jpeg,jpg,png,gif}",
 );
 const modules = import.meta.glob("@/components/oxbow/**/*.astro", {
   eager: true,
@@ -33,7 +33,7 @@ const entriesWithQuantity = entries
     const imagePath = `/src/images/${entry.image}`;
     if (!images[imagePath])
       throw new Error(
-        `"${imagePath}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`
+        `"${imagePath}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`,
       );
     return {
       ...entry,
@@ -58,7 +58,7 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
 ---
 
 <ul
-  class="col-span-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 2xl:col-span-full gap-x-4 gap-y-12"
+  class="col-span-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 2xl:col-span-full gap-2"
 >
   {
     entriesWithQuantity.map((template) => {
@@ -70,32 +70,30 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
       const isUpdatedLastWeek = updatedAt > SEVEN_DAYS_AGO;
 
       return (
-        <li class="relative ">
+        <li class="relative group">
           <a
             title={template.name}
             href={template.link}
             class="absolute inset-0 z-1"
           />
-          <div class="relative rounded-lg group ">
-            <div>
-              <Image
-                class="object-cover object-top rounded-lg  transition-all duration-300 ease-in-out outline outline-zinc-200 aspect-16/12"
-                alt={template.name}
-                src={template.image()}
-              />
-            </div>
-            <div class="flex flex-col mt-2 ">
+          <div class="relative  group ">
+          {/*   <Image
+              class="object-cover object-top rounded-lg  transition-all duration-300 ease-in-out shadow-subtle shadow-base-500/10  aspect-16/9"
+              alt={template.name}
+              src={template.image()}
+            /> */}
+            <div class="flex flex-col p-4 bg-white rounded-lg  group-hover:text-accent-600">
               <Text
                 tag="p"
                 variant="textSM"
-                class="relative font-medium text-black  group-hover:text-blue-500"
+                class="relative font-medium text-base-600"
               >
                 {template.name}
               </Text>
               <Text
-                tag="p"
+                tag="span"
                 variant="textXS"
-                class="relative flex items-center gap-1  2xl:text-sm text-zinc-500"
+                class="relative font-medium text-base-500"
               >
                 {template.quantity} Components
               </Text>
