@@ -250,7 +250,7 @@ export default function ColorPalette() {
                   >
                     <span className="font-mono">{opt}</span>
                     {format === opt && (
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-4 text-stone-600">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-4 text-blue-600">
                         <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4-4a.75.75 0 011.06-1.06l3.353 3.353 7.528-9.884a.75.75 0 011.043-.136z" clipRule="evenodd" />
                       </svg>
                     )}
