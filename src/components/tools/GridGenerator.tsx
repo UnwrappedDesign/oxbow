@@ -227,7 +227,7 @@ export default function GridGenerator() {
               onResizeStop(item.id, delta)
             }
             onDragStop={(e, data) => onDragStop(item.id, data)}
-            className="relative flex items-center justify-center p-4 bg-white cursor-pointer  outline-2 rounded-xl outline-stone-600"
+            className="relative flex items-center justify-center p-4 bg-white cursor-pointer  outline-2 rounded-xl outline-blue-600"
           >
             <button
               onClick={() => handleRemoveItem(item.id)}
