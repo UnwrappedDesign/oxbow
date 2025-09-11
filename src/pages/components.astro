@@ -60,11 +60,11 @@ const groupedEntries = [
 >
 
   <section
-    class="divide-y divide-base-200 border-t border-sand-200 border-dashed"
+    class="divide-y divide-base-200 border-t border-sand-200  "
     x-data="{ tab: 'marketing', setTab(id){ this.tab = id; history.replaceState({}, '', `#${id}`) } }"
     x-init="(() => { const id = location.hash?.slice(1); if (id) tab = id })()"
   >
-  <Wrapper variant="standard" class="lg:border-x lg:border-sand-200 border-dashed">
+  <Wrapper variant="standard" class="lg:border-x lg:border-sand-200  ">
       
       <nav class="relative flex  space-x-2 bg-white  w-fit p-1 rounded-lg" role="tablist" aria-label="Components sections">
         {groupedEntries.map(({ id, title }) => (
@@ -91,7 +91,7 @@ const groupedEntries = [
           style={id === 'marketing' ? '' : 'display:none'}
           x-data={`{ inner: '${firstGroup}', setInner(id){ this.inner = id } }`}
         >
-          <Wrapper variant="standard" class="border-x lg:border-x lg:border-sand-200 border-dashed">
+          <Wrapper variant="standard" class="border-x lg:border-x lg:border-sand-200  ">
             <section class="flex flex-col scroll-mt-24">
               <div>
                   <Text tag="p" variant="textSM" class=" text-base-600 max-w-md md:text-balance">{description}</Text>
