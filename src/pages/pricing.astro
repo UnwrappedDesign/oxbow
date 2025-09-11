@@ -27,9 +27,9 @@ const tiers = [
     ],
     href: import.meta.env.PRODUCT_TEAM_LICENSE_URL,
     btnText: "Buy for $499",
-    btnVariant: "alternative",
-    accentText: "text-zinc-900",
-    cardClass: "bg-white",
+    btnVariant: "oxbowMuted",
+    accentText: "text-base-900",
+    cardClass: "bg-base-50 ",
   },
   {
     id: "personal",
@@ -48,9 +48,10 @@ const tiers = [
     ],
     href: import.meta.env.PRODUCT_INDIVIDUAL_LICENSE_URL,
     btnText: "Buy for $99",
-    btnVariant: "accent",
-    accentText: "text-blue-500",
-    cardClass: "bg-white shadow-oxbow order-first md:order-none",
+    btnVariant: "oxbowAccent",
+    accentText: "text-accent-600",
+    cardClass:
+      "bg-white shadow-normal shadow-base-500/10 order-first md:order-none",
   },
   {
     id: "guest",
@@ -62,9 +63,9 @@ const tiers = [
     features: ["30+ components", "Marketing, app & eCom"],
     href: "/components",
     btnText: "Get started",
-    btnVariant: "alternative",
-    accentText: "text-zinc-900",
-    cardClass: "bg-white",
+    btnVariant: "oxbowMuted",
+    accentText: "text-base-900",
+    cardClass: "bg-base-50",
   },
 ];
 
@@ -83,7 +84,7 @@ const offerList = tiers.map((t) => {
   const price = toPriceNumber(t.price);
   const isFree = /^free$/i.test(t.price);
   const usersFeature = (t.features || []).find((f: string) =>
-    /users?/i.test(f)
+    /users?/i.test(f),
   );
   const qty = usersFeature
     ? parseInt(usersFeature.replace(/[^0-9]/g, "")) || 1
@@ -161,11 +162,14 @@ const pricingStructuredData = {
     showAlpineTailwind={false}
     title="Pay once. Own it forever."
     additionalText="No subscriptions, no nonsense."
-    additionalTextClasses="mt-2 text-zinc-500 font-medium italic text-sm"
+    additionalTextClasses="mt-2 text-base-500 font-medium italic text-sm"
   />
 
-  <section class="border-t border-zinc-200">
-    <Wrapper variant="standard" class="lg:border-x lg:border-zinc-200">
+  <section class="border-t border-base-200 border-dashed">
+    <Wrapper
+      variant="standard"
+      class="lg:border-x lg:border-base-200 border-dashed"
+    >
       <div class="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
         {
           tiers.map((tier) => (
@@ -182,7 +186,7 @@ const pricingStructuredData = {
                     >
                       {tier.title}
                     </Text>
-                    <Text tag="p" variant="textSM" class="mt-1  text-zinc-500">
+                    <Text tag="p" variant="textSM" class="mt-1  text-base-500">
                       {tier.description}
                     </Text>
                   </div>
@@ -197,20 +201,20 @@ const pricingStructuredData = {
                         </p>
                       )}
                       {tier.subtitleNote && (
-                        <p class="text-xs  text-zinc-500">
+                        <p class="text-xs  text-base-500">
                           {tier.subtitleNote}
                         </p>
                       )}
                     </div>
                   </div>
                 </div>
-                <div class="pt-8 mt-8 border-t border-zinc-100">
+                <div class="pt-8 mt-8 border-t border-base-100 border-dashed">
                   <Text tag="p" variant="textSM" class="font-medium text-black">
                     Everything included:
                   </Text>
                   <ul
                     role="list"
-                    class="flex flex-col mt-2 text-sm gap-y-2  text-zinc-500"
+                    class="flex flex-col mt-2 text-sm gap-y-2  text-base-500"
                   >
                     {tier.features.map((f) => (
                       <li class="flex items-center gap-1">
@@ -244,9 +248,9 @@ const pricingStructuredData = {
                   variant={
                     tier.btnVariant as
                       | "default"
-                      | "accent"
-                      | "alternative"
-                      | "alternative"
+                      | "oxbowAccent"
+                      | "oxbowMuted"
+                      | "oxbowMuted"
                       | "link"
                       | "outline"
                       | "ghost"

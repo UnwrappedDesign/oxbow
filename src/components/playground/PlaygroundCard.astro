@@ -73,6 +73,7 @@ if (canSee) {
     <Button
       onlyIconSize="xxs"
       variant="alternative"
+      class="shadow-base-500/50"
       href={`#${componentIndex}`}
     >
       <span class="text-xs">{componentIndex}</span>
@@ -112,9 +113,9 @@ if (canSee) {
       <Button
         onlyIconSize="xxs"
         variant="alternative"
-        class="text-base-500"
+        class="shadow-base-500/50"
         x-on:click="tab='preview'"
-        :class="tab==='preview' && 'outline-base-100'"
+        :class="tab==='preview' && ''"
         title="Preview"
         aria-label="Preview"
       >
@@ -124,9 +125,9 @@ if (canSee) {
         <Button
           onlyIconSize="xxs"
           variant="alternative"
-          class="text-base-500"
+          class="shadow-base-500/50"
           x-on:click="tab='code'"
-          :class="tab==='code' && 'outline-base-100'"
+          :class="tab==='code' && ''"
           title="Code"
           aria-label="Code"
         >
@@ -135,8 +136,8 @@ if (canSee) {
       )}
       <Button
         onlyIconSize="xxs"
-        variant="alternative"
-        class="text-base-500"
+        variant="alternative"         
+        class="shadow-base-500/50"
         x-on:click="$clipboard($refs.code?.innerText||''); copied = true; setTimeout(() => copied = false, 2000)"
         title="Copy"
         aria-label="Copy"
@@ -156,7 +157,7 @@ if (canSee) {
     </div>
   </div>
   <div
-    class="flex flex-col items-start justify-start scrollbar-hide h-full min-h-0 rounded-xl shadow-oxbow bg-white overflow-hidden"
+    class="flex flex-col items-start justify-start scrollbar-hide h-full min-h-0 rounded-xl bg-white shadow-normal shadow-base-500/10 overflow-hidden"
   >
     <div
       x-show="tab==='preview'"
@@ -167,7 +168,7 @@ if (canSee) {
         :class="{ 'max-w-sm': viewportSize === 'mobile', 'max-w-screen-md': viewportSize === 'tablet', 'max-w-full': viewportSize === 'desktop' }"
       >
         <div
-          class="@container bg-white rounded-xl shadow-oxbow transition-all border border-base-100 overflow-auto"
+          class="@container bg-white  transition-all h-full overflow-auto"
           x-bind:style="{
             width: viewportSize === 'mobile' ? '375px' : viewportSize === 'tablet' ? '768px' : '100%',
             minWidth: '320px',
@@ -181,7 +182,7 @@ if (canSee) {
     {(user || freeComponent) && (
       <div
         x-show="tab==='code'"
-        class="code-pane size-full overflow-auto p-3 text-xs bg-white rounded-xl outline outline-base-200 shadow-oxbow"
+        class="code-pane size-full overflow-auto p-3 text-xs bg-white rounded-xl"
         x-ref="code"
       >
         <Code

@@ -14,7 +14,7 @@ const customToken = uid ? await auth.createCustomToken(uid) : null;
 const siteUrl = (Astro.site && Astro.site.toString()) || "https://oxbowui.com";
 const canonicalUrl = new URL(
   Astro.url.pathname,
-  Astro.site ?? siteUrl
+  Astro.site ?? siteUrl,
 ).toString();
 const privatePaths = [
   /^\/404$/,
@@ -53,13 +53,12 @@ const { title, description, image, noindex, structuredData }: HeadOverrides =
       structuredData={structuredData}
     />
   </head>
-  <body class="bg-zinc-100">
-
+  <body class="bg-sand-100">
     <Navigation />
     <main class="grow z-1">
       <slot />
     </main>
-  <Footer isSignedIn={!!uid} />
+    <Footer isSignedIn={!!uid} />
 
     <ninja-keys
       id="ninja"
@@ -211,8 +210,7 @@ const { title, description, image, noindex, structuredData }: HeadOverrides =
           const list = document.createElement("div");
           list.className =
             "relative w-full mx-auto mt-6 divide-y divide-zinc-200";
-          const MONTHS = [
-            "January",
+          const MONTHS = [sand10          "January",
             "February",
             "March",
             "April",
@@ -231,9 +229,8 @@ const { title, description, image, noindex, structuredData }: HeadOverrides =
             const summary = document.createElement("summary");
             summary.className =
               "flex items-center justify-between w-full pb-1 text-left select-none text-zinc-600 hover:text-blue-500";
-            const monthIndex = Math.max(
-              0,
-              Math.min(11, parseInt(g.month, 10) - 1)
+            const monthIndex = Math.max(sand10            0,
+              Math.min(11, parseInt(g.month, 10) - 1),
             );
             const label = document.createElement("span");
             label.textContent = `${MONTHS[monthIndex]} ${g.year}`;
@@ -241,7 +238,7 @@ const { title, description, image, noindex, structuredData }: HeadOverrides =
             const icon = document.createElementNS(svgNS, "svg");
             icon.setAttribute(
               "class",
-              "w-5 h-5 duration-300 ease-out text-blue-500 transform group-open:-rotate-45"
+              "w-5 h-5 duration-300 ease-out text-blue-500 transform group-open:-rotate-45",
             );
             icon.setAttribute("fill", "none");
             icon.setAttribute("viewBox", "0 0 24 24");
@@ -256,8 +253,7 @@ const { title, description, image, noindex, structuredData }: HeadOverrides =
             summary.appendChild(icon);
             const panel = document.createElement("div");
             panel.className = "py-4 pt-2 text-zinc-500";
-            g.items.forEach((s: any) => {
-              panel.appendChild(s.h2);
+            g.items.forEach((s: any) => {sand10            panel.appendChild(s.h2);
               s.nodes.forEach((n: ChildNode) => panel.appendChild(n));
             });
             details.appendChild(summary);
