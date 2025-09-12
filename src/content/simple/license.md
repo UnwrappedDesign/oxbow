@@ -44,7 +44,7 @@ You bought a license. Congrats. That means **you** (not your buddy, not your tea
 
 ## Team license
 
-One license covers up to 5 people in your company (employees or contractors). Same freedoms as the Personal License, but now your whole team can use it.
+One license covers up to 25 people in your company (employees or contractors). Same freedoms as the Personal License, but now your whole team can use it.
 
 **You can:**
 

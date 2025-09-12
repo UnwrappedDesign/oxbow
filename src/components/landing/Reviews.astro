@@ -8,38 +8,36 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 const randomizedReviews = [...reviews].sort(() => Math.random() - 0.5);
 ---
 
-<section class="border-t border-zinc-200">
-  <Wrapper variant="standard" class="lg:border-x lg:border-zinc-200">
-    <div
-      class="flex justify-center p-12 lg:py-16 rounded-xl shadow-oxbow bg-white"
-    >
+<section class="border-t border-base-200">
+  <Wrapper variant="standard" class="lg:border-x lg:border-base-200">
+    <div class="flex justify-center grid grid-cols-1 md:grid-cols-3 gap-2">
       {
-        randomizedReviews.slice(0, 1).map((template) => (
-          <div class="relative flex flex-col gap-2 ">
-            <Text
-              tag="h3"
-              variant="displaySM"
-              class=" font-medium text-balance text-black text-center md:[word-spacing:0.025em]"
-            >
-              "{template.text}"
-            </Text>
-            <div class="flex items-center justify-center mt-8  gap-4">
+        randomizedReviews.slice(0, 3).map((template) => (
+          <div class="flex flex-col gap-2 p-4 rounded-xl bg-white">
+            <div class="flex items-center gap-2">
               <Image
                 src={template.image}
                 alt={template.name}
                 width={1000}
                 height={1000}
-                class="object-cover object-top rounded-full size-14"
+                class="object-cover object-top rounded-lg size-12"
               />
-              <div class=" text-zinc-500">
-                <Text tag="p" variant="textSM">
+              <div class="">
+                <Text tag="p" variant="textSM" class="text-base-900">
                   {template.name}
                 </Text>
-                <Text tag="p" variant="textSM">
+                <Text tag="p" variant="textXS" class="text-base-500">
                   {template.work}
                 </Text>
               </div>
             </div>
+            <Text
+              tag="h3"
+              variant="textSM"
+              class=" text-balance text-base-600 mt-8 md:[word-spacing:0.025em]"
+            >
+              "{template.text}"
+            </Text>
           </div>
         ))
       }
