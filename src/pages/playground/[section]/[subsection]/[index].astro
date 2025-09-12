@@ -80,13 +80,9 @@ const NextElementProps =
           </div>
           <span aria-hidden="true" class="hidden text-zinc-500 md:block">/</span
           >
-          {
-            componentDescription && (
-              <Text tag="p" variant="textSM" class=" text-zinc-500">
-                {componentDescription}
-              </Text>
-            )
-          }
+          <Text tag="p" variant="textSM" class="text-zinc-500">
+            {componentDescription}
+          </Text>
         </div>
         <div>
           <nav class="relative z-0 inline-flex gap-1.5" aria-label="Pagination">
@@ -211,7 +207,7 @@ const NextElementProps =
             const doc = ifr.contentDocument || ifr.contentWindow?.document;
             if (!doc) return;
             const h = Math.max(200, computeHeight(doc));
-            const target = h + 'px';
+            const target = h + "px";
             if (ifr.style.height !== target) {
               ifr.style.height = target;
             }
@@ -224,8 +220,12 @@ const NextElementProps =
       requestAnimationFrame(tick);
     }
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => requestAnimationFrame(tick), { once: true });
+    if (document.readyState === "loading") {
+      document.addEventListener(
+        "DOMContentLoaded",
+        () => requestAnimationFrame(tick),
+        { once: true },
+      );
     } else {
       requestAnimationFrame(tick);
     }
