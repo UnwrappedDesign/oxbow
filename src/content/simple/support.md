@@ -3,13 +3,18 @@ page: Support
 ---
 
 # Support
-Oxbow UI is designed for self-service use. Although we provide assistance for account management and licensing issues, users should already be familiar with HTML & Tailwind CSS to effectively utilize the product.
 
-Given the unique nature of each project and the complexities involved in understanding how different pieces of code work together, we do not provide technical support or consulting services.
+Let’s set expectations: OxbowUI is a pile of Tailwind blocks. It’s not your personal dev team, and it’s definitely not coming with 24/7 hand-holding.
 
-However, Oxbow UI users can send us and email to ask questions and offer help to others. Please note, we do not provide direct technical support or consulting within this community.
+Here’s the deal:
+
+- We’ll help with account stuff and licensing.
+- We will **not** debug your code, fix your layout, or explain how CSS works. If you need that, Google exists.
+- If your problem is “I don’t know HTML or Tailwind,” that’s not a problem,... that’s a career choice.
+
+What we _do_ have is a small community of users who occasionally ask questions, share answers, or just complain about things. Feel free to email us if you want in. Just don’t expect “consulting services.”
 
 ### Contact
-- [Email](mailto:michael@andreuzza.com)
-- [Twitter](https://twitter.com/mike_andreuzza)
 
+- [Email](mailto:michael@andreuzza.com) — complaints, questions, memes.
+- [Twitter](https://twitter.com/mike_andreuzza) — where you can scream into the void publicly.

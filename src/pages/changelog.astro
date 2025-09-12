@@ -4,8 +4,8 @@ import * as Changelog from "../../CHANGELOG.md";
 ---
 
 <SimpleLayout>
-  <h1 class="text-2xl font-semibold text-zinc-900">Changelog</h1>
-  <p class="mt-1 mb-4 text-zinc-500">
+  <h1 class="text-2xl font-semibold text-base-900">Changelog</h1>
+  <p class="mt-1 mb-4 text-base-500">
     Release notes, updates, and fixes — organized by month.
   </p>
   <section id="changelog" class="prose max-w-3xl">
@@ -78,7 +78,7 @@ import * as Changelog from "../../CHANGELOG.md";
         // Wrapper that applies divide-y between accordions
         const list = document.createElement("div");
         list.className =
-          "relative w-full mx-auto mt-6 divide-y divide-zinc-200";
+          "relative w-full mx-auto mt-6 divide-y divide-base-200";
 
         const MONTHS = [
           "January",
@@ -101,7 +101,7 @@ import * as Changelog from "../../CHANGELOG.md";
 
           const summary = document.createElement("summary");
           summary.className =
-            "flex items-center justify-between w-full pb-1 text-left select-none text-zinc-600 hover:text-blue-500";
+            "flex items-center justify-between w-full pb-1 text-left select-none text-base-600 hover:text-accent-600";
 
           const monthIndex = Math.max(
             0,
@@ -114,7 +114,7 @@ import * as Changelog from "../../CHANGELOG.md";
           const icon = document.createElementNS(svgNS, "svg");
           icon.setAttribute(
             "class",
-            "w-5 h-5 duration-300 ease-out text-blue-500 transform group-open:-rotate-45",
+            "w-5 h-5 duration-300 ease-out text-accent-600 transform group-open:-rotate-45",
           );
           icon.setAttribute("xmlns", svgNS);
           icon.setAttribute("fill", "none");
@@ -131,7 +131,7 @@ import * as Changelog from "../../CHANGELOG.md";
           summary.appendChild(icon);
 
           const panel = document.createElement("div");
-          panel.className = "py-4 pt-2 text-zinc-500";
+          panel.className = "py-4 pt-2 text-base-500";
 
           // Append each section back into the panel
           g.items.forEach((s) => {
