@@ -92,8 +92,8 @@ const theme = ``;
         const hh = Math.max(200, parseInt(h, 10) || 0);
         lastH = hh;
         if (ifr) (ifr as HTMLIFrameElement).style.height = hh + 'px';
-        // Let wrapper size naturally from child; avoid forcing explicit height
-        if (container) (container as HTMLElement).style.removeProperty('height');
+        // Mirror height into wrapper so parent adjusts immediately
+        if (container) (container as HTMLElement).style.height = hh + 'px';
       } catch {}
     };
     // Same-origin direct measure fallback
@@ -207,19 +207,19 @@ const theme = ``;
       </div>
     </div>
   <div
-  class="relative min-h-0 w-full flex rounded-xl shadow-oxbow bg-white z-1 overflow-visible isolate"
+  class="relative min-h-0 w-full flex rounded-xl shadow-oxbow bg-white z-1 overflow-visible isolate scrollbar-hide"
   >
-  <div x-show="tab === 'preview'" class="flex flex-col items-center bg-white w-full">
+  <div x-show="tab === 'preview'" class="flex flex-col items-center bg-white w-full scrollbar-hide">
       <div
         x-ref="previewContainer"
         id="playground-preview-container"
-        class="bg-white text-base rounded-xl shadow-oxbow border border-base-100 overflow-visible mx-auto w-full flex flex-col"
+        class="bg-white text-base rounded-xl shadow-oxbow border border-base-100 overflow-visible mx-auto w-full flex flex-col scrollbar-hide"
         style="transition: width 250ms ease-in-out;"
      >
         <iframe
           id={iframeId}
           data-src={iframeSrc}
-          class="block w-full border-0"
+          class="block w-full border-0 scrollbar-hide"
           title={`Preview ${componentPath}`}
           loading="eager"
           fetchpriority="high"
