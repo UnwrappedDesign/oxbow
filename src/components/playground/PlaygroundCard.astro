@@ -168,11 +168,11 @@ const iframeCardSrc = `/iframe/${componentPath}?iframeId=card-${componentIndex}&
       class="w-full flex flex-col justify-center items-center h-full min-h-0 leading-none overflow-visible transition-all duration-500 ease-in-out p-0 scrollbar-hide"
     >
       <div
-        class="w-full flex flex-col h-fit min-h-0 leading-none overflow-visible transition-all duration-500 ease-in-out p-0 scrollbar-hide"
+        class="w-full flex flex-col  h-fit min-h-0 leading-none overflow-hidden transition-all duration-500 ease-in-out p-0 scrollbar-hide"
       >
         <div class="relative">
           <div
-            class="bg-white text-base transition-all h-full overflow-hidden"
+            class="bg-white text-base transition-all h-full overflow-visible"
             x-bind:style="{
               width: containerWidth,
               minWidth: '0px',
@@ -182,9 +182,18 @@ const iframeCardSrc = `/iframe/${componentPath}?iframeId=card-${componentIndex}&
           >
             <iframe
               :id="iframeId"
-              src={iframeCardSrc}
+              data-src={iframeCardSrc}
               class="block w-full border-0"
-              :style="`height: ${iframeHeight}px;`"
+              title={`Preview ${componentPath}`}
+              loading="lazy"
+              fetchpriority="low"
+              :style="`height: ${Math.max(iframeHeight||0, 240)}px; transition: height 250ms ease-in-out;`"
+              x-intersect.margin.200px.once="$el.src = $el.dataset.src; $el.removeAttribute('data-src')"
+              x-on:load="
+                try { $event.target.contentWindow?.postMessage({ type: 'oxbow-request-height' }, '*'); } catch(e) {}
+                setTimeout(() => { try { $event.target.contentWindow?.postMessage({ type: 'oxbow-request-height' }, '*'); } catch(e) {} }, 50);
+                setTimeout(() => { try { $event.target.contentWindow?.postMessage({ type: 'oxbow-request-height' }, '*'); } catch(e) {} }, 200);
+              "
               x-init="
                 window.addEventListener('message', (e) => {
                   if(e.data && e.data.type==='oxbow-iframe-height' && e.data.id === iframeId){ iframeHeight = e.data.height; }

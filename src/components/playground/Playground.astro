@@ -72,23 +72,59 @@ if (canSeeCodeValue) {
 }
 // Build preview HTML that swaps viewport breakpoints (sm:, md:, ...) to container queries (@sm:, @md:, ...)
 // This lets the demo respond to the resizable container instead of the viewport.
-// Iframe source for same-origin preview page
-const iframeId = `play-${componentIndex}`;
+// Iframe source for same-origin preview page (align id with param)
+const iframeId = `iframe-${componentIndex}`;
 const iframeSrc = `/iframe/${componentPath}?iframeId=${iframeId}`;
 const theme = ``;
 ---
 <section x-data="playground" x-init="
   $nextTick(() => {
-    // Listen for iframe height messages and adjust this iframe only
+    // Listen for iframe height messages and mirror height into iframe and wrapper
     const ifr = $el.querySelector('iframe');
+    const container = $refs.previewContainer;
     const id = ifr ? ifr.id : '';
+    const requestHeight = () => {
+      try { (ifr as HTMLIFrameElement)?.contentWindow?.postMessage({ type: 'oxbow-request-height' }, '*'); } catch {}
+    };
+    let lastH = 0;
+    const setHeights = (h) => {
+      try {
+        const hh = Math.max(200, parseInt(h, 10) || 0);
+        lastH = hh;
+        if (ifr) (ifr as HTMLIFrameElement).style.height = hh + 'px';
+        // Let wrapper size naturally from child; avoid forcing explicit height
+        if (container) (container as HTMLElement).style.removeProperty('height');
+      } catch {}
+    };
+    // Same-origin direct measure fallback
+    const measureDirect = () => {
+      try {
+        const d = (ifr as HTMLIFrameElement)?.contentDocument;
+        if (!d) return;
+        const b = d.body, e = d.documentElement;
+        const h = Math.max(
+          b?.scrollHeight || 0,
+          e?.scrollHeight || 0,
+          b?.offsetHeight || 0,
+          e?.offsetHeight || 0,
+          b?.clientHeight || 0,
+          e?.clientHeight || 0,
+        );
+        if (h) setHeights(h);
+      } catch {}
+    };
     window.addEventListener('message', (e) => {
       try {
         if (e.data && e.data.type === 'oxbow-iframe-height' && e.data.id === id) {
-          if (ifr) (ifr as HTMLIFrameElement).style.height = Math.max(200, e.data.height) + 'px';
+          setHeights(e.data.height);
         }
       } catch {}
     });
+    // Fallback: if we haven't received a height shortly after load, request it
+    setTimeout(requestHeight, 250);
+    setTimeout(() => { if (!lastH || lastH < 150) { measureDirect(); } }, 400);
+    // Re-sync on window resize (fonts/layout may change)
+    window.addEventListener('resize', () => setTimeout(requestHeight, 50));
   })
 " data-iframe-id={`iframe-${componentIndex}`}>
   <div class="relative">
@@ -101,17 +137,17 @@ const theme = ``;
       <div class="items-center justify-end hidden p-1 bg-white rounded-lg md:flex gap-2">
         <span class="items-center hidden isolate md:inline-flex gap-1">
           <Button onlyIconSize="xxs" variant="muted"
-            @click="viewportSize = 'mobile'; $refs.previewContainer.style.width = '375px'"
+            @click="viewportSize = 'mobile'; $refs.previewContainer.style.width = '375px'; setTimeout(() => { try { $refs.previewContainer.querySelector('iframe')?.contentWindow?.postMessage({ type: 'oxbow-request-height' }, '*'); } catch(e){} }, 260);"
             :class="viewportSize === 'mobile' ? 'ring-2 ring-primary-500' : ''">
             <Mobile slot="left-icon" size="sm" />
           </Button>
           <Button onlyIconSize="xxs" variant="muted"
-            @click="viewportSize = 'tablet'; $refs.previewContainer.style.width = '768px'"
+            @click="viewportSize = 'tablet'; $refs.previewContainer.style.width = '768px'; setTimeout(() => { try { $refs.previewContainer.querySelector('iframe')?.contentWindow?.postMessage({ type: 'oxbow-request-height' }, '*'); } catch(e){} }, 260);"
             :class="viewportSize === 'tablet' ? 'ring-2 ring-primary-500' : ''">
             <Tablet slot="left-icon" size="sm" />
           </Button>
           <Button onlyIconSize="xxs" variant="muted"
-            @click="viewportSize = 'desktop'; $refs.previewContainer.style.width = '100%'"
+            @click="viewportSize = 'desktop'; $refs.previewContainer.style.width = '100%'; setTimeout(() => { try { $refs.previewContainer.querySelector('iframe')?.contentWindow?.postMessage({ type: 'oxbow-request-height' }, '*'); } catch(e){} }, 260);"
             :class="viewportSize === 'desktop' ? 'ring-2 ring-primary-500' : ''">
             <Desktop slot="left-icon" size="sm" />
           </Button>
@@ -171,24 +207,30 @@ const theme = ``;
       </div>
     </div>
   <div
-  class="relative min-h-[400px] w-full flex justify-center items-start rounded-xl shadow-oxbow bg-white z-1 overflow-visible isolate"
+  class="relative min-h-0 w-full flex rounded-xl shadow-oxbow bg-white z-1 overflow-visible isolate"
   >
   <div x-show="tab === 'preview'" class="flex flex-col items-center bg-white w-full">
-      <div class="relative w-full max-w-full">
-        <div
-          x-ref="previewContainer"
-          id="playground-preview-container"
-          class="bg-white text-base rounded-xl shadow-oxbow transition-all border border-base-100 overflow-hidden mx-auto w-full"
-          style="min-width:0px; max-width:100%; height:auto; margin-left:auto; margin-right:auto;"
-        >
-          <iframe
-            id={iframeId}
-            src={iframeSrc}
-            class="block w-full border-0"
-            style="height: 600px;"
-          ></iframe>
-        </div>
-        <!-- Resizer via buttons only; no drag handle -->
+      <div
+        x-ref="previewContainer"
+        id="playground-preview-container"
+        class="bg-white text-base rounded-xl shadow-oxbow border border-base-100 overflow-visible mx-auto w-full flex flex-col"
+        style="transition: width 250ms ease-in-out;"
+     >
+        <iframe
+          id={iframeId}
+          data-src={iframeSrc}
+          class="block w-full border-0"
+          title={`Preview ${componentPath}`}
+          loading="eager"
+          fetchpriority="high"
+          style="height: auto; min-height: 200px;"
+          x-intersect.margin.200px.once="$el.src = $el.dataset.src; $el.removeAttribute('data-src')"
+          x-on:load="
+            try { $event.target.contentWindow?.postMessage({ type: 'oxbow-request-height' }, '*'); } catch(e) {}
+            setTimeout(() => { try { $event.target.contentWindow?.postMessage({ type: 'oxbow-request-height' }, '*'); } catch(e) {} }, 50);
+            setTimeout(() => { try { $event.target.contentWindow?.postMessage({ type: 'oxbow-request-height' }, '*'); } catch(e) {} }, 200);
+          "
+        ></iframe>
       </div>
     </div>
     {(user || freeComponent) && (

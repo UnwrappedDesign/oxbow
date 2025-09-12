@@ -42,28 +42,70 @@ const component = matchKey ? await modules[matchKey]() : undefined;
       (function () {
         const params = new URLSearchParams(window.location.search);
         const iframeId = params.get("iframeId") || "";
-        function postHeight() {
+
+        const computeHeight = () => {
           try {
-            const h =
-              document.documentElement.scrollHeight ||
-              document.body.scrollHeight ||
-              0;
+            const d = document;
+            const b = d.body;
+            const e = d.documentElement;
+            return Math.max(
+              b?.scrollHeight || 0,
+              e?.scrollHeight || 0,
+              b?.offsetHeight || 0,
+              e?.offsetHeight || 0,
+              b?.clientHeight || 0,
+              e?.clientHeight || 0,
+            );
+          } catch (_) {
+            return 0;
+          }
+        };
+
+        const postHeight = () => {
+          const h = computeHeight();
+          try {
             parent.postMessage(
               { type: "oxbow-iframe-height", id: iframeId, height: h },
               "*",
             );
           } catch (_) {}
+        };
+
+        const postSoon = () => requestAnimationFrame(postHeight);
+
+        // Initial syncs
+        window.addEventListener("DOMContentLoaded", postSoon);
+        window.addEventListener("load", () => {
+          postHeight();
+          setTimeout(postHeight, 50);
+          setTimeout(postHeight, 200);
+        });
+
+        // Observe size and DOM changes
+        try {
+          const ro = new ResizeObserver(postSoon);
+          ro.observe(document.documentElement);
+          ro.observe(document.body);
+        } catch (_) {}
+
+        try {
+          const mo = new MutationObserver(postSoon);
+          mo.observe(document.documentElement, { childList: true, subtree: true, attributes: true });
+        } catch (_) {}
+
+        // Late-loading assets (images, fonts)
+        document.querySelectorAll("img, video, iframe").forEach((el) => {
+          if ("complete" in el && el.complete) return;
+          el.addEventListener("load", postSoon, { once: true });
+          el.addEventListener("error", postSoon, { once: true });
+        });
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(postSoon).catch(() => {});
         }
-        window.addEventListener("load", postHeight);
-        const ro = new ResizeObserver(() => postHeight());
-        ro.observe(document.documentElement);
-        ro.observe(document.body);
-        setTimeout(postHeight, 0);
-        // Listen for parent requests to post height
+
+        // Respond to parent explicit requests
         window.addEventListener("message", function (e) {
-          if (e.data && e.data.type === "oxbow-request-height") {
-            postHeight();
-          }
+          if (e.data && e.data.type === "oxbow-request-height") postHeight();
         });
       })();
     </script>
