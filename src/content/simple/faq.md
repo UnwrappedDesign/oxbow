@@ -2,59 +2,59 @@
 page: Faq
 ---
 
+# FAQ
 
-# Faq
-Can't find your answer? Send and [email](mailto:michael@andreuzza.com) and I'll will get back to you as soon as possible.
+Couldn’t find your answer? Fine. Send an [email](mailto:michael@andreuzza.com). I’ll get back to you… eventually.
 
 ---
+
 **General**
 
-### What does life time access mean?
-- Purchasing an all-access license is a single payment, with no ongoing subscription fees. With this license, you gain permanent access to all content on Oxbow UI.
+### What does lifetime access mean?
+
+It means exactly what it says. Pay once, get it forever. No subscriptions, no “premium tiers,” no surprise invoices. We’re not Netflix.
 
 ### What does free updates mean?
-When you buy an all-access license, you unlock every component currently offered, as well as any future additions, without extra charges.
 
-### Do you create the design for the components?
-Unfortunately, design assets for tools such as Figma or other design tools are not included in the components.
+Buy it once, and every future component magically shows up in your account. Free. No upsells. No “Pro plan.” Just updates.
 
-Since the primary focus is on developing high-quality components in code, we don't allocate resources to creating additional design assets.
+### Do you create Figma or design files for the components?
+
+Hell nah... this is code or markup depends on the fight side you are, not Dribbble. If you need fancy mockups to feel productive, open Figma and draw some rectangles yourself.
 
 ### What frameworks are supported?
-When the components are developed in code, we use plain Tailwind CSS, no need to configure nothing.
+
+Tailwind CSS and AlpineJS. That’s it. No bloated React wrappers, no “integration guides,” no 40, step configs. Copy. Paste. Done.
 
 ---
-**License**
-- Read more on the license page [here](/license)
-### Do I need to purchase a license everytime I want to work on a new project?
-Unlike the majority of othere themes or components, there's no need to purchase a new  license for each new project. As long as your usage complies with the license terms, you can create unlimited websites without
+
+**License**  
+Want the fine print? Read the boring version [here](/license).
+
+### Do I need to buy a new license for every project?
+
+No. Unlike most component sellers, we don’t nickel-and-dime you. Buy once, build unlimited projects. Wild concept, right?
+
 ### Can I use it for my clients?
-Sure thing, If you're building a custom website specifically for one client, you're welcome to use the components.
-The only restriction is that you cannot use Oxbow UI to craft a website or template intended for resale to multiple clients.
 
-### Can I use it for my projects?
-Sure! Your license grants you the freedom to develop as many of your own projects as you wish, whether they are straightforward public websites or SaaS applications requiring user payment.
+Yes. Build whatever you want for your clients. The only rule: don’t use Oxbow UI to crank out resale templates. We sell components, not pyramid schemes.
 
-As long as your project isn't a website builder or similar tool enabling customers to create their own sites using Oxbow UI, you're good to go.
-### Can I use it for Open Source projects?
-Sure thing! As long as your project is a genuine website and not a derivative component library, theme builder, or any product primarily focused on repackaging and redistributing the components, it's perfectly fine for it to be open source.
+### Can I use it for my personal projects?
 
+Yes. All of them. As many as you want. Side projects, SaaS, or your “next big thing” that nobody uses. Go nuts.
 
-### Can I create themes or templates with Oxbow UI and then sell them?
-No, we don't allow you to create themes or templates with Oxbow UI and then sell them. Derivative products encompass themes, UI kits, page builders, or any other tool involving repackaging and distributing our components or templates for others to utilize in constructing their own websites.
+### Can I use it in open source projects?
 
+Yep. As long as you’re making a website and not repackaging Oxbow UI into yet another “open source UI kit,” we’re cool.
 
+### Can I make and sell themes or templates with Oxbow UI?
+
+No. Nice try. If your business plan is “resell someone else’s components,” that’s not entrepreneurship, that’s theft smarty pants.
 
 ---
+
 **Support**
 
 ### What about support?
-Read more on the support page [here](/support)
 
-
-
-
-
-
-
----
+Read the [support page](/support). Spoiler: don’t expect us to debug your code.
