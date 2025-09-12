@@ -6,7 +6,6 @@ import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
 import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
-import ChevrontLeft from "@/components/fundations/icons/ChevronLeft.astro";
 import { formatDistanceToNowStrict } from "date-fns";
 import updates from "@/data/updates.json";
 
@@ -61,132 +60,9 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 const formattedSubsection = subsection.replace("-", " ");
 const user = Astro.locals.user;
 const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
-const gridOverrides: Record<string, { md: number; lg: number }> = {
-  //
-  //
-  // Marketing
-  //
-  //
-  "product-lists": { md: 1, lg: 1 },
-  "product-details": { md: 1, lg: 1 },
-  "category-previews": { md: 1, lg: 1 },
-  //
-  //
-  // Marketing
-  //
-  //
-  cta: { md: 1, lg: 1 },
-  faq: { md: 1, lg: 1 },
-  team: { md: 1, lg: 1 },
-  stats: { md: 1, lg: 1 },
-  steps: { md: 1, lg: 1 },
-  pricing: { md: 1, lg: 1 },
-  contact: { md: 1, lg: 1 },
-  footers: { md: 1, lg: 1 },
-  gallery: { md: 1, lg: 1 },
-  features: { md: 1, lg: 1 },
-  timeline: { md: 1, lg: 1 },
-  testimonials: { md: 1, lg: 1 },
-  "bento-grids": { md: 1, lg: 1 },
-  "logo-clouds": { md: 1, lg: 1 },
-  "blog-entries": { md: 1, lg: 1 },
-  "blog-content": { md: 1, lg: 1 },
-  "landing-pages": { md: 1, lg: 1 },
-  "pricing-pages": { md: 1, lg: 1 },
-  "creative-heros": { md: 1, lg: 1 },
-  "cta-newsletter": { md: 1, lg: 1 },
-  //error"marketing-heros": { md: 1, lg: 1 },
-  //
-  //
-  // Application
-  //
-  //
-  tabs: { md: 2, lg: 2 },
-  tables: { md: 1, lg: 1 },
-  alerts: { md: 1, lg: 1 },
-  inputs: { md: 2, lg: 3 },
-  select: { md: 2, lg: 3 },
-  banners: { md: 1, lg: 1 },
-  navbars: { md: 1, lg: 1 },
-  flyouts: { md: 1, lg: 1 },
-  toggles: { md: 2, lg: 3 },
-  textarea: { md: 1, lg: 2 },
-  "sign-up": { md: 1, lg: 1 },
-  "sign-in": { md: 1, lg: 1 },
-  typography: { md: 1, lg: 1 },
-  pagination: { md: 1, lg: 2 },
-  radiogroups: { md: 2, lg: 2 },
-  notifications: { md: 1, lg: 2 },
-  "input-groups": { md: 2, lg: 3 },
-  // default handled below
-};
+
 // Normalize subsection for lookup (keeps things case/char safe)
 const subsectionKey = (subsection || "").toLowerCase();
-// Resolve the current subsection's grid counts (fallback to 2/2)
-const mdCols = gridOverrides[subsectionKey]?.md ?? 2;
-const lgCols = gridOverrides[subsectionKey]?.lg ?? 2;
-// Pre-build the class strings we’ll inject into Alpine’s :class
-const gridClass = `grid grid-cols-1 md:grid-cols-${mdCols} lg:grid-cols-${lgCols} gap-2`;
-const columnClass = `flex flex-col gap-px`;
-const smallBlockCategories = [
-  // Application
-  "tabs",
-  "badges",
-  "inputs",
-  "select",
-  "alerts",
-  "tables",
-  "buttons",
-  "toggles",
-  "flyouts",
-  "avatars",
-  "banners",
-  "navbars",
-  "sign-up",
-  "sign-in",
-  "textarea",
-  "checkboxes",
-  "typography",
-  "commandbar",
-  "pagination",
-  "button-icon",
-  "breadcrumbs",
-  "radiogroups",
-  "emptyStates",
-  "input-groups",
-  "button-groups",
-  "notifications",
-  // Marketing
-  "cta",
-  "faq",
-  "team",
-  "stats",
-  "steps",
-  "contact",
-  "footers",
-  "gallery",
-  "pricing",
-  "features",
-  "timeline",
-  "bento-grids",
-  "logo-clouds",
-  "blog-entries",
-  "blog-content",
-  "testimonials",
-  "landing-pages",
-  "pricing-pages",
-  "creative-heros",
-  "cta-newsletter",
-  // "marketing-heros",
-  // Ecommerce
-  "product-lists",
-  "product-details",
-  "category-previews",
-];
-
-// turn it into a regex matcher
-const isSmallBlock = (pathNoAstro: string) =>
-  smallBlockCategories.some((cat) => pathNoAstro.includes(`/${cat}/`));
 ---
 
 <style>
@@ -341,7 +217,10 @@ const isSmallBlock = (pathNoAstro: string) =>
       </Wrapper>
     </section>
     <section class="border-y border-base-200">
-      <Wrapper variant="wide" class="2xl:border-x lg:border-base-200">
+      <Wrapper
+        variant="standard"
+        class="2xl:border-x lg:border-base-200 border-x"
+      >
         <div class="masonry-grid">
           {
             sectionComponents.map(
