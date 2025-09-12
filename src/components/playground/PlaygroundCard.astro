@@ -87,7 +87,7 @@ const iframeCardSrc = `/iframe/${componentPath}?iframeId=card-${componentIndex}&
         <Button
           onlyIconSize="xxs"
           variant="alternative"
-          x-on:click="viewportSize = 'mobile'; containerWidth = '375px'"
+          x-on:click="viewportSize = 'mobile'; containerWidth = '375px'; setTimeout(() => { try { $refs.frame?.contentWindow?.postMessage({ type: 'oxbow-request-height' }, '*'); } catch(e){} }, 260);"
           :class="viewportSize === 'mobile' ? 'outline-base-100' : ''"
         >
           <Mobile slot="left-icon" size="sm" />
@@ -95,7 +95,7 @@ const iframeCardSrc = `/iframe/${componentPath}?iframeId=card-${componentIndex}&
         <Button
           onlyIconSize="xxs"
           variant="alternative"
-          x-on:click="viewportSize = 'tablet'; containerWidth = '768px'"
+          x-on:click="viewportSize = 'tablet'; containerWidth = '768px'; setTimeout(() => { try { $refs.frame?.contentWindow?.postMessage({ type: 'oxbow-request-height' }, '*'); } catch(e){} }, 260);"
           :class="viewportSize === 'tablet' ? 'outline-base-100' : ''"
         >
           <Tablet slot="left-icon" size="sm" />
@@ -103,7 +103,7 @@ const iframeCardSrc = `/iframe/${componentPath}?iframeId=card-${componentIndex}&
         <Button
           onlyIconSize="xxs"
           variant="alternative"
-          x-on:click="viewportSize = 'desktop'; containerWidth = '100%'"
+          x-on:click="viewportSize = 'desktop'; containerWidth = '100%'; setTimeout(() => { try { $refs.frame?.contentWindow?.postMessage({ type: 'oxbow-request-height' }, '*'); } catch(e){} }, 260);"
           :class="viewportSize === 'desktop' ? 'outline-base-100' : ''"
         >
           <Desktop slot="left-icon" size="sm" />
@@ -161,7 +161,7 @@ const iframeCardSrc = `/iframe/${componentPath}?iframeId=card-${componentIndex}&
     </div>
   </div>
   <div
-    class="flex flex-col items-start justify-start scrollbar-hide h-full min-h-0 rounded-xl bg-white shadow-normal shadow-base-500/10 overflow-hidden"
+    class="flex flex-col items-start justify-start scrollbar-hide h-full min-h-0 rounded-xl bg-white shadow-normal shadow-base-500/10 overflow-visible"
   >
     <div
       x-show="tab==='preview'"
@@ -170,14 +170,16 @@ const iframeCardSrc = `/iframe/${componentPath}?iframeId=card-${componentIndex}&
       <div
         class="w-full flex flex-col  h-fit min-h-0 leading-none overflow-hidden transition-all duration-500 ease-in-out p-0 scrollbar-hide"
       >
-        <div class="relative">
+        <div class="relative w-full flex justify-center">
           <div
-            class="bg-white text-base transition-all h-full overflow-visible"
+            class="bg-white text-base h-full overflow-visible mx-auto"
             x-bind:style="{
               width: containerWidth,
               minWidth: '0px',
-              maxWidth: '100%'
+              maxWidth: '100%',
+              height: (iframeHeight || 160) + 'px'
             }"
+            style="transition: width 250ms ease-in-out;"
             x-ref="resizable"
           >
             <iframe
@@ -185,9 +187,10 @@ const iframeCardSrc = `/iframe/${componentPath}?iframeId=card-${componentIndex}&
               data-src={iframeCardSrc}
               class="block w-full border-0"
               title={`Preview ${componentPath}`}
+              x-ref="frame"
               loading="lazy"
               fetchpriority="low"
-              :style="`height: ${Math.max(iframeHeight||0, 240)}px; transition: height 250ms ease-in-out;`"
+              :style="`height: ${Math.max(iframeHeight||0, 160)}px;`"
               x-intersect.margin.200px.once="$el.src = $el.dataset.src; $el.removeAttribute('data-src')"
               x-on:load="
                 try { $event.target.contentWindow?.postMessage({ type: 'oxbow-request-height' }, '*'); } catch(e) {}
@@ -195,9 +198,33 @@ const iframeCardSrc = `/iframe/${componentPath}?iframeId=card-${componentIndex}&
                 setTimeout(() => { try { $event.target.contentWindow?.postMessage({ type: 'oxbow-request-height' }, '*'); } catch(e) {} }, 200);
               "
               x-init="
+                const ifr = $el;
+                // Listen for postMessage height updates
                 window.addEventListener('message', (e) => {
-                  if(e.data && e.data.type==='oxbow-iframe-height' && e.data.id === iframeId){ iframeHeight = e.data.height; }
+                  if (e.data && e.data.type==='oxbow-iframe-height' && e.data.id === iframeId) {
+                    iframeHeight = e.data.height;
+                  }
                 });
+                // Same-origin direct measurement fallback (continuous rAF)
+                const measure = () => {
+                  try {
+                    const d = ifr.contentDocument || ifr.contentWindow?.document;
+                    if (d) {
+                      const b = d.body, e = d.documentElement;
+                      const h = Math.max(
+                        b?.scrollHeight||0, e?.scrollHeight||0,
+                        b?.offsetHeight||0, e?.offsetHeight||0,
+                        b?.clientHeight||0, e?.clientHeight||0
+                      );
+                      if (h) {
+                        iframeHeight = h;
+                        try { $refs.resizable && ($refs.resizable.style.height = h + 'px'); } catch(_) {}
+                      }
+                    }
+                  } catch(_) {}
+                  requestAnimationFrame(measure);
+                };
+                requestAnimationFrame(measure);
               "
             ></iframe>
           </div>
