@@ -1,10 +1,15 @@
 ---
 // Fundations
 import Button from "@/components/fundations/buttons/Button.astro";
-import Download from "@/components/fundations/icons/Download.astro";
+import Eye from "@/components/fundations/icons/Eye.astro";
+import Check from "@/components/fundations/icons/Check.astro";
+import CodeIcon from "@/components/fundations/icons/Code.astro";
 import Mobile from "@/components/fundations/icons/Mobile.astro";
 import Tablet from "@/components/fundations/icons/Tablet.astro";
 import Desktop from "@/components/fundations/icons/Desktop.astro";
+import Clipboard from "@/components/fundations/icons/Clipboard.astro";
+import Download from "../fundations/icons/Download.astro";
+
 // Components
 import { Code } from "astro:components";
 import * as prettier from "prettier";
@@ -113,18 +118,80 @@ const theme = ``;
         if (h) setHeights(h);
       } catch {}
     };
-    window.addEventListener('message', (e) => {
-      try {
-        if (e.data && e.data.type === 'oxbow-iframe-height' && e.data.id === id) {
-          setHeights(e.data.height);
-        }
-      } catch {}
-    });
+    (function(){
+      let _t = null; let _pending = 0;
+      window.addEventListener('message', (e) => {
+        try {
+          if (e.data && e.data.type === 'oxbow-iframe-height' && e.data.id === id) {
+            const h = parseInt(e.data.height||0,10) || 0; _pending = h;
+            if (_t) return; _t = setTimeout(() => { setHeights(_pending); _t = null; }, 33);
+          }
+        } catch {}
+      });
+    })();
     // Fallback: if we haven't received a height shortly after load, request it
     setTimeout(requestHeight, 250);
     setTimeout(() => { if (!lastH || lastH < 150) { measureDirect(); } }, 400);
     // Re-sync on window resize (fonts/layout may change)
     window.addEventListener('resize', () => setTimeout(requestHeight, 50));
+
+    // Helper methods to avoid long inline handlers
+    this.openPreview = () => {
+      try {
+        const ifr = this.$refs.frame || this.$el.closest('section')?.querySelector('iframe');
+        if (!ifr) return;
+        const rect = this.$refs.previewContainer.getBoundingClientRect();
+        const h = parseInt((ifr.style.height||'0').replace('px','')) || Math.ceil(rect.height);
+        const w = Math.ceil(rect.width);
+        const url = ifr.src || ifr.dataset.src;
+        window.open(url, '_blank', 'width=' + w + ',height=' + (h+120) + ',noopener,noreferrer');
+      } catch (e) { console.error(e); }
+    };
+    this.copyImage = async () => {
+      try {
+        const ifr = this.$refs.frame || this.$el.closest('section')?.querySelector('iframe');
+        if (!ifr) return;
+        const win = ifr.contentWindow; const doc = ifr.contentDocument; if (!win || !doc) return;
+        const ensureLib = () => new Promise((res, rej) => {
+          if (win.html2canvas) return res(win.html2canvas);
+          const s = doc.createElement('script');
+          s.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
+          s.onload = () => res(win.html2canvas); s.onerror = rej; doc.head.appendChild(s);
+        });
+        const html2canvas = await ensureLib();
+        const node = doc.documentElement;
+        const canvas = await html2canvas(node, {useCORS:true, backgroundColor:'#ffffff', scale:2, logging:false});
+        const blob = await new Promise((r)=> canvas.toBlob(r, 'image/png'));
+        if (!blob) return;
+        if (navigator.clipboard && window.ClipboardItem) {
+          try { await navigator.clipboard.write([new window.ClipboardItem({ 'image/png': blob })]); return; } catch (_) {}
+        }
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        try { const base = ('${componentPath}'.split('/').pop() || 'preview').replace('.astro',''); a.download = base + '.png'; } catch(_) { a.download = 'preview.png'; }
+        document.body.appendChild(a); a.click();
+        setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 100);
+      } catch (e) { console.error('Image copy/download failed', e); }
+    };
+
+    // Copy a shareable link with current state (tab + width)
+    this.copyShareLink = async () => {
+      try {
+        const url = new URL(window.location.href);
+        // reflect state
+        url.searchParams.set('tab', this.tab);
+        const rect = this.$refs.previewContainer.getBoundingClientRect();
+        url.searchParams.set('w', String(Math.ceil(rect.width)));
+        const text = url.toString();
+        if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(text);
+        else {
+          const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
+        }
+        this.copied = true; setTimeout(()=> this.copied = false, 1200);
+      } catch (e) { console.error('Copy link failed', e); }
+    };
+
+    // (Removed RTL/A11y methods)
   })
 " data-iframe-id={`iframe-${componentIndex}`}>
   <div class="relative">
@@ -136,17 +203,17 @@ const theme = ``;
       </Button>
       <div class="items-center justify-end hidden p-1 bg-white rounded-lg md:flex gap-2">
         <span class="items-center hidden isolate md:inline-flex gap-1">
-          <Button onlyIconSize="xxs" variant="muted"
+          <Button onlyIconSize="xxs" variant="alternative"
             @click="viewportSize = 'mobile'; $refs.previewContainer.style.width = '375px'; setTimeout(() => { try { $refs.previewContainer.querySelector('iframe')?.contentWindow?.postMessage({ type: 'oxbow-request-height' }, '*'); } catch(e){} }, 260);"
             :class="viewportSize === 'mobile' ? 'ring-2 ring-primary-500' : ''">
             <Mobile slot="left-icon" size="sm" />
           </Button>
-          <Button onlyIconSize="xxs" variant="muted"
+          <Button onlyIconSize="xxs" variant="alternative"
             @click="viewportSize = 'tablet'; $refs.previewContainer.style.width = '768px'; setTimeout(() => { try { $refs.previewContainer.querySelector('iframe')?.contentWindow?.postMessage({ type: 'oxbow-request-height' }, '*'); } catch(e){} }, 260);"
             :class="viewportSize === 'tablet' ? 'ring-2 ring-primary-500' : ''">
             <Tablet slot="left-icon" size="sm" />
           </Button>
-          <Button onlyIconSize="xxs" variant="muted"
+          <Button onlyIconSize="xxs" variant="alternative"
             @click="viewportSize = 'desktop'; $refs.previewContainer.style.width = '100%'; setTimeout(() => { try { $refs.previewContainer.querySelector('iframe')?.contentWindow?.postMessage({ type: 'oxbow-request-height' }, '*'); } catch(e){} }, 260);"
             :class="viewportSize === 'desktop' ? 'ring-2 ring-primary-500' : ''">
             <Desktop slot="left-icon" size="sm" />
@@ -155,34 +222,17 @@ const theme = ``;
         <div aria-hidden="true" class="mx-1 h-4 w-[1px] bg-zinc-200 hidden md:inline-block"></div>
         {(user || freeComponent) ? (
           <div class="flex items-center gap-1 ">
-            <Button
-              size="xxs"
-              variant="muted"
-              x-on:click="setTab('preview');" 
-              :class="tab === 'preview' ? ' outline-zinc-100  ' : ''"
-              class="pointer-events-auto !shadow-none">
-              Preview
+            <Button onlyIconSize="xxs" variant="alternative" x-on:click="setTab('preview');" :class="tab === 'preview' ? 'outline-base-100' : ''" class="pointer-events-auto !shadow-none">
+              <Eye slot="left-icon" size="sm" />
             </Button>
-            <Button
-              size="xxs"
-              variant="muted"
-              x-on:click="setTab('code')" 
-              :class="tab === 'code' ? 'outline-zinc-100  ' : ''"
-              class="pointer-events-auto !shadow-none">
-              Code
+            <Button onlyIconSize="xxs" variant="alternative" x-on:click="setTab('code')" :class="tab === 'code' ? 'outline-base-100' : ''" class="pointer-events-auto !shadow-none">
+              <CodeIcon slot="left-icon" size="sm" />
+            </Button>
+            <Button onlyIconSize="xxs" variant="alternative" class="shadow-base-500/50" x-on:click="copyCode" title="Copy" aria-label="Copy">
+              <Clipboard x-show="!copied" slot="left-icon" size="sm" />
+              <Check x-show="copied" slot="right-icon" size="sm" />
             </Button>
             <div aria-hidden="true" class="mx-1 h-4 w-[1px]  bg-zinc-200   hidden md:inline-block"></div>
-            <Button
-              size="xxs"
-              variant="muted"
-              class="w-20 pointer-events-auto !shadow-none"
-              x-on:click="copyCode"
-            >
-              <span
-                x-text="copied ? 'Copied!' : 'Copy'"
-                class="transition"
-              />
-            </Button>
             <Button
               onlyIconSize="xxs"
               variant="muted"
@@ -193,6 +243,8 @@ const theme = ``;
                 <Download slot="left-icon" size="sm" />
             </Button>
             <pre class="download-code" data-download-index={componentIndex} style="display:none">{ppcode}</pre>
+           
+            
           </div>
         ) : (
           <Button
