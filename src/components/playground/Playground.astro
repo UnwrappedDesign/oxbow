@@ -1,10 +1,10 @@
 ---
 // Fundations
 import Button from "@/components/fundations/buttons/Button.astro";
+import Download from "@/components/fundations/icons/Download.astro";
 import Mobile from "@/components/fundations/icons/Mobile.astro";
 import Tablet from "@/components/fundations/icons/Tablet.astro";
 import Desktop from "@/components/fundations/icons/Desktop.astro";
-import Download from "@/components/fundations/icons/Download.astro";
 // Components
 import { Code } from "astro:components";
 import * as prettier from "prettier";
@@ -23,7 +23,8 @@ const user = Astro.locals.user;
 const canSeeCodeValue = canSeeCode(user, freeComponent);
 // Get user's theme preference from custom claims
 const userThemeColor = getUserThemeColor(user, 'blue', Astro);
-const rawSlotCode = canSeeCodeValue ? await Astro.slots.render("default") : '';
+// Always render the slot so we can transform it for container queries in preview
+const rawSlotCode = await Astro.slots.render("default");
 // Allow authors to mark the actual snippet to show/copy using HTML comments
 // <!-- copy:start --> ... <!-- copy:end -->
 let code = '';
@@ -69,24 +70,25 @@ if (canSeeCodeValue) {
   // Always format so the Code tab shows pretty output by default
   ppcode = await prettier.format(code, { parser: 'html' });
 }
+// Build preview HTML that swaps viewport breakpoints (sm:, md:, ...) to container queries (@sm:, @md:, ...)
+// This lets the demo respond to the resizable container instead of the viewport.
+// Iframe source for same-origin preview page
+const iframeId = `play-${componentIndex}`;
+const iframeSrc = `/iframe/${componentPath}?iframeId=${iframeId}`;
 const theme = ``;
 ---
 <section x-data="playground" x-init="
   $nextTick(() => {
-    const container = $refs.previewContainer;
-    const content = $refs.previewContent;
-    if (container && content) {
-      const resize = () => {
-        container.style.height = content.offsetHeight + 'px';
-      };
-      resize();
-      if (window.ResizeObserver) {
-        const ro = new ResizeObserver(resize);
-        ro.observe(content);
-      } else {
-        window.addEventListener('resize', resize);
-      }
-    }
+    // Listen for iframe height messages and adjust this iframe only
+    const ifr = $el.querySelector('iframe');
+    const id = ifr ? ifr.id : '';
+    window.addEventListener('message', (e) => {
+      try {
+        if (e.data && e.data.type === 'oxbow-iframe-height' && e.data.id === id) {
+          if (ifr) (ifr as HTMLIFrameElement).style.height = Math.max(200, e.data.height) + 'px';
+        }
+      } catch {}
+    });
   })
 " data-iframe-id={`iframe-${componentIndex}`}>
   <div class="relative">
@@ -96,8 +98,8 @@ const theme = ``;
       >
         <span class="text-xs">{componentIndex}</span>
       </Button>
-      <div class="items-center justify-end hidden p-1 bg-white rounded-lg  md:flex gap-1">
-       <!--  <span class="items-center hidden isolate md:inline-flex  gap-1">
+      <div class="items-center justify-end hidden p-1 bg-white rounded-lg md:flex gap-2">
+        <span class="items-center hidden isolate md:inline-flex gap-1">
           <Button onlyIconSize="xxs" variant="muted"
             @click="viewportSize = 'mobile'; $refs.previewContainer.style.width = '375px'"
             :class="viewportSize === 'mobile' ? 'ring-2 ring-primary-500' : ''">
@@ -114,7 +116,7 @@ const theme = ``;
             <Desktop slot="left-icon" size="sm" />
           </Button>
         </span>
-        <div aria-hidden="true" class="mx-1 h-4 w-[1px]  bg-zinc-200   hidden md:inline-block"></div> -->
+        <div aria-hidden="true" class="mx-1 h-4 w-[1px] bg-zinc-200 hidden md:inline-block"></div>
         {(user || freeComponent) ? (
           <div class="flex items-center gap-1 ">
             <Button
@@ -171,16 +173,22 @@ const theme = ``;
   <div
   class="relative min-h-[400px] w-full flex justify-center items-start rounded-xl shadow-oxbow bg-white z-1 overflow-visible isolate"
   >
-  <div x-show="tab === 'preview'" class="flex flex-col items-center bg-white">
-      <div
-        x-ref="previewContainer"
-        id="playground-preview-container"
-        class="@container bg-white rounded-xl shadow-oxbow transition-all border border-base-100 overflow-auto mx-auto"
-        style="min-width:320px; height:auto; margin-left:auto; margin-right:auto;"
-      >
-        <div x-ref="previewContent">
-          <slot />
+  <div x-show="tab === 'preview'" class="flex flex-col items-center bg-white w-full">
+      <div class="relative w-full max-w-full">
+        <div
+          x-ref="previewContainer"
+          id="playground-preview-container"
+          class="bg-white text-base rounded-xl shadow-oxbow transition-all border border-base-100 overflow-hidden mx-auto w-full"
+          style="min-width:0px; max-width:100%; height:auto; margin-left:auto; margin-right:auto;"
+        >
+          <iframe
+            id={iframeId}
+            src={iframeSrc}
+            class="block w-full border-0"
+            style="height: 600px;"
+          ></iframe>
         </div>
+        <!-- Resizer via buttons only; no drag handle -->
       </div>
     </div>
     {(user || freeComponent) && (
