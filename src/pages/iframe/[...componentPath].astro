@@ -25,6 +25,11 @@ const component = matchKey ? await modules[matchKey]() : undefined;
         min-height: 0 !important;
         height: auto !important;
         box-sizing: border-box;
+        transform: none !important;
+        zoom: 1 !important;
+        backface-visibility: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
     </style>
   </head>
@@ -61,14 +66,14 @@ const component = matchKey ? await modules[matchKey]() : undefined;
           }
         };
 
-        const postHeight = () => {
+        let lastH = 0; let thTimer = null;
+        const postHeightNow = () => {
           const h = computeHeight();
-          try {
-            parent.postMessage(
-              { type: "oxbow-iframe-height", id: iframeId, height: h },
-              "*",
-            );
-          } catch (_) {}
+          if (Math.abs(h - lastH) < 1) return; lastH = h;
+          try { parent.postMessage({ type: "oxbow-iframe-height", id: iframeId, height: h }, "*"); } catch (_) {}
+        };
+        const postHeight = () => {
+          if (thTimer) return; thTimer = setTimeout(() => { thTimer = null; postHeightNow(); }, 33);
         };
 
         const postSoon = () => requestAnimationFrame(postHeight);
