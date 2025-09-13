@@ -4,7 +4,9 @@ export const description = "Basic Checkbox with State Tracking";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
 
-<div class="flex items-center justify-center p-8">
+<section
+  class="flex items-center flex-wrap gap-2 justify-center p-8 bg-white dark:bg-black h-full"
+>
   <!-- copy:start -->
   <div class="flex items-center gap-2" x-data="{ checked: false }">
     <input
@@ -12,11 +14,15 @@ import Text from "@/components/fundations/typography/Text.astro";
       name="basic-checkbox"
       type="checkbox"
       x-model="checked"
-      class="rounded shadow size-4 border-zinc-300 text-blue-600 focus:ring-blue-600"
+      class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-blue-600 focus:ring-blue-600 dark:bg-zinc-900 dark:checked:bg-blue-600"
     />
-    <Text for="basic-checkbox" tag="label" class="block text-sm text-zinc-500">
+    <Text
+      for="basic-checkbox"
+      tag="label"
+      class="block text-sm text-zinc-500 dark:text-zinc-300"
+    >
       Basic checkbox (<span x-text="checked ? 'Checked' : 'Unchecked'"></span>)
     </Text>
   </div>
   <!-- copy:end -->
-</div>
+</section>
