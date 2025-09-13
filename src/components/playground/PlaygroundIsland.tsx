@@ -38,7 +38,21 @@ export default function PlaygroundIsland({
 }: Props) {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [mode, setMode] = useState<Mode>('system');
+  // Persist mode in localStorage
+  const [mode, setModeState] = useState<Mode>('system');
+  // Always sync mode from localStorage on mount (and when remounting after navigation)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const saved = window.localStorage.getItem('oxbow-playground-mode');
+      if (saved === 'light' || saved === 'dark' || saved === 'system') setModeState(saved);
+    }
+  }, []);
+  const setMode = (m: Mode) => {
+    setModeState(m);
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem('oxbow-playground-mode', m);
+    }
+  };
   const [tab, setTab] = useState<Tab>(initialTab || 'preview');
   const [copied, setCopied] = useState(false);
   const [viewport, setViewport] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
@@ -177,7 +191,7 @@ export default function PlaygroundIsland({
   const count = (c:string, s:string)=> (arguments[0]?.counts||{})[`${c}/${s}`] || 1;
   const clamp = (n:number,min:number,max:number)=> Math.max(min, Math.min(max, n));
   const openNavMenu = (which:'cat'|'sub'|'idx', ev: React.MouseEvent<HTMLButtonElement>)=>{
-    ev.stopPropagation();
+    ev.stopPropagation(); // Only stop propagation for nav menu buttons
     if (navOpen===which){ setNavOpen(null); return; }
     const r = ev.currentTarget.getBoundingClientRect();
     setNavPos({ top: Math.min(r.bottom+8, window.innerHeight-10), left: Math.max(8, r.right-220) });
@@ -285,11 +299,11 @@ export default function PlaygroundIsland({
         </div>
       </div>
 
-      <div className="relative min-h-0 w-full flex rounded-xl shadow-oxbow bg-white z-1 overflow-hidden isolate scrollbar-hide">
+      <div className="relative min-h-0 w-full flex rounded-xl shadow-oxbow bg-white z-1 overflow-scroll isolate scrollbar-hide max-h-[800px]" >
         {tab === 'preview' && (
           <div className="flex flex-col items-center bg-white w-full scrollbar-hide">
-            <div ref={containerRef} id="playground-preview-container" className="bg-white text-base rounded-xl shadow-oxbow border border-base-100 overflow-visible mx-auto w-full flex flex-col scrollbar-hide" style={{ transition: 'width 250ms ease-in-out' }}>
-              <iframe ref={iframeRef} id={iframeId} className="block w-full border-0 scrollbar-hide" title={`Preview ${iframeSrc}`} style={{ height: 0, minHeight: 0, visibility: 'hidden' }} src={iframeSrc} onLoad={() => {
+            <div ref={containerRef} id="playground-preview-container" className="bg-white text-base shadow-normal  overflow-hidden mx-auto w-full flex flex-col scrollbar-hide" style={{ transition: 'width 250ms ease-in-out' }}>
+              <iframe ref={iframeRef} id={iframeId} className="block w-full border-0 scrollbar-hide " title={`Preview ${iframeSrc}`} style={{ height: 0, minHeight: 0, visibility: 'hidden' }} src={iframeSrc} onLoad={() => {
                 requestHeight();
                 // apply current mode as soon as possible
                 applyModeToIframe(mode);

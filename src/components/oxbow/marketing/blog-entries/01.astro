@@ -34,22 +34,28 @@ const articles = [
   },
 ];
 ---
-
-<div>
-  <!-- copy:start -->
-  <div class="max-w-7xl mx-auto px-8 lg:px-12 py-24">
+<section class="bg-white dark:bg-black">
+  <div class="max-w-7xl mx-auto px-8 lg:px-12 py-24 ">
     <div class="max-w-xl mx-auto text-center lg:text-balance">
-      <Text tag="p" variant="textSM" class="font-bold uppercase text-blue-600">
+      <Text
+        tag="p"
+        variant="textSM"
+        class="font-bold uppercase text-blue-600 dark:text-blue-400"
+      >
         Tagline
       </Text>
       <Text
         tag="h2"
         variant="displayMD"
-        class="mt-4 font-semibold text-zinc-900 lg:text-balance"
+        class="mt-4 font-semibold text-zinc-900 dark:text-white lg:text-balance"
       >
         Insights and perspectives
       </Text>
-      <Text tag="p" variant="textBase" class="mt-4 font-medium text-zinc-500">
+      <Text
+        tag="p"
+        variant="textBase"
+        class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+      >
         Exploring topics, tips, and trends in the world of communication and
         privacy
       </Text>
@@ -65,7 +71,7 @@ const articles = [
           placeholder="Enter your email"
           aria-placeholder="Enter your email"
           required=""
-          class="block w-full h-10 px-4 py-2 text-sm bg-white border border-transparent rounded-lg appearance-none text-blue-700 duration-300 ring-1 ring-zinc-200 placeholder-zinc-400 focus:border-zinc-300 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+          class="block w-full h-10 px-4 py-2 text-sm bg-white dark:bg-black border border-transparent rounded-lg appearance-none text-blue-700 dark:text-blue-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-800 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
         />
         <Button
           class="w-full sm:w-auto"
@@ -76,13 +82,17 @@ const articles = [
           Subscribe
         </Button>
       </form>
-      <Text tag="p" variant="textSM" class="mt-4 font-medium text-zinc-500">
+      <Text
+        tag="p"
+        variant="textSM"
+        class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+      >
         When you sign up, you accept our
         <Text
           tag="a"
           href="#_"
           variant="textSM"
-          class="font-medium text-blue-500 gap-2 hover:text-zinc-900"
+          class="font-medium text-blue-500 dark:text-blue-400 gap-2 hover:text-zinc-900 dark:hover:text-white"
         >
           Terms of service
         </Text>
@@ -91,7 +101,7 @@ const articles = [
           tag="a"
           href="#_"
           variant="textSM"
-          class="font-medium text-blue-500 gap-2 hover:text-zinc-900"
+          class="font-medium text-blue-500 dark:text-blue-400 gap-2 hover:text-zinc-900 dark:hover:text-white"
         >
           Privacy Policy
         </Text>
@@ -101,14 +111,14 @@ const articles = [
       class="relative sm:pb-12 sm:ml-[calc(2rem+1px)] md:ml-[calc(3.5rem+1px)] lg:ml-[max(calc(14.5rem+1px),calc(100%-80rem))]"
     >
       <div
-        class="hidden absolute top-3 bottom-0 right-full mr-7 md:mr-[3.25rem] w-px bg-slate-200 sm:block"
+        class="hidden absolute top-3 bottom-0 right-full mr-7 md:mr-[3.25rem] w-px bg-slate-200 dark:bg-zinc-800 sm:block"
       >
       </div>
       <div class="mt-32 space-y-16">
         {
           articles.map((article) => (
             <article class="relative group">
-              <div class="absolute -inset-y-2.5 -inset-x-4 md:-inset-y-4 md:-inset-x-6 sm:rounded-2xl group-hover:bg-zinc-50 duration-300" />
+              <div class="absolute -inset-y-2.5 -inset-x-4 md:-inset-y-4 md:-inset-x-6 sm:rounded-2xl group-hover:bg-zinc-50 dark:group-hover:bg-zinc-900 duration-300" />
               <svg
                 viewBox="0 0 9 9"
                 class="hidden absolute right-full mr-6 top-2 text-blue-500 md:mr-12 w-[calc(0.5rem+1px)] h-[calc(0.5rem+1px)] overflow-visible sm:block"
@@ -119,21 +129,21 @@ const articles = [
                   r="4.5"
                   stroke-width="2"
                   stroke="currentColor"
-                  class="fill-white"
+                  class="fill-white dark:fill-black"
                 />
               </svg>
               <div class="relative pt-8  lg:pt-0">
                 <Text
                   tag="h3"
                   variant="textLG"
-                  class="font-medium text-zinc-900 group-hover:text-blue-600 duration-200"
+                  class="font-medium text-zinc-900 dark:text-white group-hover:text-blue-600 duration-200"
                 >
                   {article.title}
                 </Text>
                 <Text
                   tag="p"
                   variant="textBase"
-                  class="mt-4 font-medium text-zinc-500"
+                  class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
                 >
                   {article.description}
                 </Text>
@@ -142,7 +152,7 @@ const articles = [
                   <Text
                     tag="p"
                     variant="textSM"
-                    class="font-medium uppercase text-zinc-500 whitespace-nowrap"
+                    class="font-medium uppercase text-zinc-500 dark:text-zinc-400 whitespace-nowrap"
                   >
                     <time datetime={article.date}>{article.date}</time>
                   </Text>
@@ -153,7 +163,7 @@ const articles = [
                   tag="a"
                   href="#_"
                   variant="textBase"
-                  class="flex items-center font-medium text-blue-500 gap-2 hover:text-zinc-900"
+                  class="flex items-center font-medium text-blue-500 dark:text-blue-400 gap-2 hover:text-zinc-900 dark:hover:text-white"
                 >
                   <span class="absolute -inset-y-2.5 -inset-x-4 md:-inset-y-4 md:-inset-x-6 sm:rounded-2xl" />
                   <span class="relative ">
@@ -168,5 +178,4 @@ const articles = [
       </div>
     </div>
   </div>
-  <!-- copy:end -->
-</div>
+</section>

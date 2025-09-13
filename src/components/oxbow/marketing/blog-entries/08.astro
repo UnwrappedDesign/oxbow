@@ -38,36 +38,39 @@ const articles = [
 ];
 ---
 
-<div>
-  <!-- copy:start -->
+<section class="bg-white dark:bg-black">
   <div class="max-w-7xl mx-auto px-8 lg:px-12 py-24">
     <div class="items-center grid grid-cols-1 gap-6 lg:grid-cols-3">
       <div class="block w-full lg:col-span-2">
         <img
           alt="#_"
-          class="shadow rounded-2xl aspect-[4/3] object-cover object-center w-full"
+          class="shadow rounded-2xl aspect-[4/3] object-cover object-center w-full bg-zinc-50 dark:bg-zinc-900"
           src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         />
       </div>
       <div
-        class="flex flex-col justify-between h-full p-6 bg-zinc-50 rounded-2xl"
+        class="flex flex-col justify-between h-full p-6 bg-zinc-50 dark:bg-zinc-800 rounded-2xl"
       >
         <div>
           <Text
             tag="p"
             variant="textSM"
-            class="font-bold uppercase text-blue-600"
+            class="font-bold uppercase text-blue-600 dark:text-blue-400"
           >
             Tagline
           </Text>
           <Text
             tag="h2"
             variant="displayMD"
-            class="mt-4 font-semibold text-zinc-900 lg:text-balance"
+            class="mt-4 font-semibold text-zinc-900 dark:text-white lg:text-balance"
           >
             Insights and perspectives
           </Text>
-          <Text tag="p" variant="textLG" class="mt-4 font-medium text-zinc-500">
+          <Text
+            tag="p"
+            variant="textLG"
+            class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+          >
             Exploring topics, tips, and trends in the world of communication and
             privacy
           </Text>
@@ -77,7 +80,7 @@ const articles = [
             tag="a"
             href="#_"
             variant="textBase"
-            class="flex items-center font-medium text-blue-500 gap-2 hover:text-zinc-900"
+            class="flex items-center font-medium text-blue-500 gap-2 hover:text-zinc-900 dark:hover:text-zinc-100"
           >
             Read further
             <ChevronRight size="sm" />
@@ -90,12 +93,12 @@ const articles = [
     >
       {
         articles.map((article) => (
-          <article class="relative flex flex-col overflow-hidden isolate ring-1 ring-zinc-200  rounded-2xl group">
+          <article class="relative flex flex-col overflow-hidden isolate ring-1 ring-zinc-200 dark:ring-zinc-700  rounded-2xl group">
             <div class="relative aspect-[4/3] ">
               <img
                 src={article.image}
                 alt="#_"
-                class="absolute inset-0 object-cover size-full  bg-zinc-50"
+                class="absolute inset-0 object-cover size-full  bg-zinc-50 dark:bg-zinc-800"
               />
             </div>
             <div class="flex flex-col justify-between p-6">
@@ -104,7 +107,7 @@ const articles = [
                   <Text
                     tag="h3"
                     variant="textLG"
-                    class="font-medium  text-zinc-900 group-hover:text-blue-600 duration-200"
+                    class="font-medium  text-zinc-900 dark:text-zinc-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 duration-200"
                   >
                     <span class="absolute inset-0" />
                     {article.title}
@@ -113,7 +116,7 @@ const articles = [
                 <Text
                   tag="p"
                   variant="textBase"
-                  class="mt-4 font-medium text-zinc-500 line-clamp-3"
+                  class="mt-4 font-medium text-zinc-500 dark:text-zinc-400 line-clamp-3"
                 >
                   {article.description}
                 </Text>
@@ -122,13 +125,13 @@ const articles = [
                 <img
                   src={article.authorImage}
                   alt="#_"
-                  class="object-cover rounded-full size-12 bg-zinc-50"
+                  class="object-cover rounded-full size-12 bg-zinc-50 dark:bg-zinc-800"
                 />
                 <div>
                   <Text
                     tag="h3"
                     variant="textBase"
-                    class="font-medium  text-zinc-900"
+                    class="font-medium  text-zinc-900 dark:text-zinc-100"
                   >
                     {article.author}
                   </Text>
@@ -137,7 +140,7 @@ const articles = [
                     <Text
                       tag="p"
                       variant="textSM"
-                      class="font-medium uppercase text-zinc-500"
+                      class="font-medium uppercase text-zinc-500 dark:text-zinc-400"
                     >
                       <time datetime={article.date}>{article.date}</time>
                     </Text>
@@ -150,5 +153,4 @@ const articles = [
       }
     </div>
   </div>
-  <!-- copy:end -->
-</div>
+</section>
