@@ -98,25 +98,7 @@ export default function PlaygroundIsland({
     try { ifr?.contentWindow?.postMessage({ type: 'oxbow-request-height' }, '*'); } catch {}
   };
 
-  useEffect(() => {
-    // Listen for height messages
-    const onMsg = (e: MessageEvent) => {
-      if (!e?.data || e.data.id !== iframeId) return;
-      if (e.data.type === 'oxbow-height') {
-        const h = Math.max(200, parseInt(e.data.height || 0, 10) || 0);
-        const ifr = iframeRef.current;
-        if (ifr) { ifr.style.height = h + 'px'; ifr.style.visibility = 'visible'; }
-        const cont = containerRef.current;
-        if (cont) cont.style.height = h + 'px';
-        if (arguments[0]?.hostId) {
-          const host = document.getElementById(arguments[0]!.hostId!);
-          if (host) host.style.minHeight = '0px';
-        }
-      }
-    };
-    window.addEventListener('message', onMsg);
-    return () => window.removeEventListener('message', onMsg);
-  }, [iframeId]);
+
 
   useEffect(() => {
     // Apply mode on change
@@ -203,12 +185,13 @@ export default function PlaygroundIsland({
     <div className="relative">
       <div className="flex items-center justify-between pb-2 gap-1">
         {/* Left: index + tools */}
-        <div className="flex items-center gap-2">
-          <a href={`#${iframeId.replace('iframe-','')}`} className="inline-flex items-center justify-center h-7 px-2 text-xs rounded-md bg-zinc-50 outline outline-1 outline-zinc-200">{iframeId.replace('iframe-','')}</a>
+        <div className="flex items-center gap-1">
+          <a href={`#${iframeId.replace('iframe-','')}`} className="inline-flex items-center justify-center size-7 px-2 text-xs rounded-md bg-zinc-50 outline outline-1 outline-zinc-200">{iframeId.replace('iframe-','')}</a>
+           <div aria-hidden className="mx-1 h-4 w-[1px] bg-zinc-200 hidden md:inline-block" />
           <span className="items-center hidden isolate md:inline-flex gap-1">
-            <button onClick={() => setViewportWidth('mobile')} className={`size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${viewport==='mobile'?'text-accent-600':''}`}><Smartphone size={16}/></button>
-            <button onClick={() => setViewportWidth('tablet')} className={`size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${viewport==='tablet'?'text-accent-600':''}`}><Tablet size={16}/></button>
-            <button onClick={() => setViewportWidth('desktop')} className={`size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${viewport==='desktop'?'text-accent-600':''}`}><Monitor size={16}/></button>
+            <button onClick={() => setViewportWidth('mobile')} className={`size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${viewport==='mobile'?'text-accent-600':''}`}><Smartphone size={14}/></button>
+            <button onClick={() => setViewportWidth('tablet')} className={`size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${viewport==='tablet'?'text-accent-600':''}`}><Tablet size={14}/></button>
+            <button onClick={() => setViewportWidth('desktop')} className={`size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${viewport==='desktop'?'text-accent-600':''}`}><Monitor size={14}/></button>
           </span>
           <div aria-hidden className="mx-1 h-4 w-[1px] bg-zinc-200 hidden md:inline-block" />
           <span className="items-center hidden isolate md:inline-flex gap-1">
@@ -220,13 +203,13 @@ export default function PlaygroundIsland({
           <div aria-hidden className="mx-1 h-4 w-[1px] bg-zinc-200 hidden md:inline-block" />
           {canSeeCode ? (
             <div className="items-center hidden md:inline-flex gap-1">
-              <button onClick={() => setTab('preview')} className={`size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${tab==='preview'?'text-accent-600':''}`}><Eye size={16}/></button>
-              <button onClick={() => setTab('code')} className={`size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${tab==='code'?'text-accent-600':''}`}><Code size={16}/></button>
-              <button onClick={copy} className="size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200" title="Copy" aria-label="Copy">{copied? <Check size={16}/> : <Copy size={16}/>}</button>
-              <button onClick={downloadCode} className="size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200" title="Download code" aria-label="Download code"><Download size={16}/></button>
+              <button onClick={() => setTab('preview')} className={`size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${tab==='preview'?'text-accent-600':''}`}><Eye size={14}/></button>
+              <button onClick={() => setTab('code')} className={`size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${tab==='code'?'text-accent-600':''}`}><Code size={14}/></button>
+              <button onClick={copy} className="size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200" title="Copy" aria-label="Copy">{copied? <Check size={14}/> : <Copy size={14}/>}</button>
+              <button onClick={downloadCode} className="size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200" title="Download code" aria-label="Download code"><Download size={14}/></button>
             </div>
           ) : (
-            <a href="/pricing" className="h-7 px-2 hidden md:inline-flex items-center rounded-md bg-zinc-900 text-white text-xs">Get Access</a>
+            <a href="/pricing" className="h-7 px-2 hidden md:inline-flex items-center rounded-md bg-zinc-900 text-white text-[11px]">Get Access</a>
           )}
         </div>
         {/* Right: code controls + nav (if provided) */}
@@ -235,17 +218,17 @@ export default function PlaygroundIsland({
             <>
             
               {/* Category */}
-              <button onClick={(e)=>openNavMenu('cat', e)} className="inline-flex items-center gap-2 h-[28px] px-2 py-1 rounded-lg bg-white outline outline-1 outline-zinc-200 text-zinc-700 text-xs">
+              <button onClick={(e)=>openNavMenu('cat', e)} className="inline-flex items-center gap-2 h-[28px] px-2 py-1 rounded-lg outline outline-1 outline-zinc-200 text-zinc-700 text-[11px]">
                 <span className="capitalize">{fmt(arguments[0]!.navCat||'')}</span>
                 <ChevronDown className="size-4"/>
               </button>
               {/* Block */}
-              <button onClick={(e)=>openNavMenu('sub', e)} className="hidden md:inline-flex items-center gap-2 h-[28px] px-2 py-1 rounded-lg bg-white outline outline-1 outline-zinc-200 text-zinc-700 text-xs">
+              <button onClick={(e)=>openNavMenu('sub', e)} className="hidden md:inline-flex items-center gap-2 h-[28px] px-2 py-1 rounded-lg  outline outline-1 outline-zinc-200 text-zinc-700 text-[11px]">
                 <span className="capitalize">{fmt(arguments[0]!.navSub||'')}</span>
                 <ChevronDown className="size-4"/>
               </button>
               {/* Number */}
-              <button onClick={(e)=>openNavMenu('idx', e)} className="hidden md:inline-flex items-center gap-2 h-[28px] px-2 py-1 rounded-lg bg-white outline outline-1 outline-zinc-200 text-zinc-700 text-xs">
+              <button onClick={(e)=>openNavMenu('idx', e)} className="hidden md:inline-flex items-center gap-2 h-[28px] px-2 py-1 rounded-lg  outline outline-1 outline-zinc-200 text-zinc-700 text-[11px]">
                 <span>#</span>
                 <span>{clamp(arguments[0]!.navIdx||1,1,count(arguments[0]!.navCat||'', arguments[0]!.navSub||''))}</span>
                 <ChevronDown className="size-4"/>
@@ -286,12 +269,12 @@ export default function PlaygroundIsland({
               {/* Pagination */}
               <div aria-hidden className="mx-1 h-4 w-[1px] bg-zinc-200 hidden md:inline-block" />
               {arguments[0]!.prevHref ? (
-                <a href={arguments[0]!.prevHref} aria-label="Previous" className="size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200"><ChevronLeft className="size-4"/></a>
+                <a href={arguments[0]!.prevHref} aria-label="Previous" className="size-7 inline-flex  items-center justify-center rounded-md outline outline-1 outline-zinc-200"><ChevronLeft className="size-4"/></a>
               ) : (
                 <div className="size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-100 opacity-50"><ChevronLeft className="size-4"/></div>
               )}
               {arguments[0]!.nextHref ? (
-                <a href={arguments[0]!.nextHref} aria-label="Next" className="size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200"><ChevronRight className="size-4"/></a>
+                <a href={arguments[0]!.nextHref} aria-label="Next" className="size-7  inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200"><ChevronRight className="size-4"/></a>
               ) : (
                 <div className="size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-100 opacity-50"><ChevronRight className="size-4"/></div>
               )}
@@ -304,13 +287,21 @@ export default function PlaygroundIsland({
         {tab === 'preview' && (
           <div className="flex flex-col items-center bg-white w-full scrollbar-hide">
             <div ref={containerRef} id="playground-preview-container" className="bg-white text-base shadow-normal  overflow-hidden mx-auto w-full flex flex-col scrollbar-hide" style={{ transition: 'width 250ms ease-in-out' }}>
-              <iframe ref={iframeRef} id={iframeId} className="block w-full border-0 scrollbar-hide " title={`Preview ${iframeSrc}`} style={{ height: 0, minHeight: 0, visibility: 'hidden' }} src={iframeSrc} onLoad={() => {
-                requestHeight();
-                // apply current mode as soon as possible
-                applyModeToIframe(mode);
-                setTimeout(requestHeight, 50);
-                setTimeout(requestHeight, 200);
-              }} />
+              <iframe
+                ref={iframeRef}
+                id={iframeId}
+                className="block w-full border-0 scrollbar-hide "
+                title={`Preview ${iframeSrc}`}
+                style={{ height: 400, minHeight: 200, visibility: 'visible' }}
+                src={iframeSrc}
+                onLoad={() => {
+                  requestHeight();
+                  // apply current mode as soon as possible
+                  applyModeToIframe(mode);
+                  setTimeout(requestHeight, 50);
+                  setTimeout(requestHeight, 200);
+                }}
+              />
             </div>
           </div>
         )}
