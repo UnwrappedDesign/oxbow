@@ -124,11 +124,12 @@ export default function PlaygroundIsland({
   }, [mode]);
 
   useEffect(() => {
-    // On mount, request height a couple of times
+    // On mount or when iframeSrc changes, request height and apply mode
     const t1 = setTimeout(requestHeight, 50);
     const t2 = setTimeout(requestHeight, 200);
+    applyModeToIframe(mode);
     return () => { clearTimeout(t1); clearTimeout(t2); };
-  }, []);
+  }, [iframeSrc, mode]);
 
   // Close nav menus on Escape / outside
   useEffect(() => {
@@ -170,7 +171,7 @@ export default function PlaygroundIsland({
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      const name = (iframeSrc.split('/').pop() || 'component').replace(/\?.*$/, '').replace(/[^a-z0-9-_\.]/gi, '_');
+  const name = (iframeSrc.split('/').pop() || 'component').replace(/\?.*$/, '').replace(/[^a-z0-9-_.]/gi, '_');
       a.download = name || 'component.html';
       document.body.appendChild(a); a.click();
       setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 100);
@@ -205,9 +206,9 @@ export default function PlaygroundIsland({
         <div className="flex items-center gap-2">
           <a href={`#${iframeId.replace('iframe-','')}`} className="inline-flex items-center justify-center h-7 px-2 text-xs rounded-md bg-zinc-50 outline outline-1 outline-zinc-200">{iframeId.replace('iframe-','')}</a>
           <span className="items-center hidden isolate md:inline-flex gap-1">
-            <button onClick={() => setViewportWidth('mobile')} className={`h-7 w-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${viewport==='mobile'?'text-accent-600':''}`}><Smartphone size={16}/></button>
-            <button onClick={() => setViewportWidth('tablet')} className={`h-7 w-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${viewport==='tablet'?'text-accent-600':''}`}><Tablet size={16}/></button>
-            <button onClick={() => setViewportWidth('desktop')} className={`h-7 w-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${viewport==='desktop'?'text-accent-600':''}`}><Monitor size={16}/></button>
+            <button onClick={() => setViewportWidth('mobile')} className={`size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${viewport==='mobile'?'text-accent-600':''}`}><Smartphone size={16}/></button>
+            <button onClick={() => setViewportWidth('tablet')} className={`size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${viewport==='tablet'?'text-accent-600':''}`}><Tablet size={16}/></button>
+            <button onClick={() => setViewportWidth('desktop')} className={`size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${viewport==='desktop'?'text-accent-600':''}`}><Monitor size={16}/></button>
           </span>
           <div aria-hidden className="mx-1 h-4 w-[1px] bg-zinc-200 hidden md:inline-block" />
           <span className="items-center hidden isolate md:inline-flex gap-1">
@@ -219,10 +220,10 @@ export default function PlaygroundIsland({
           <div aria-hidden className="mx-1 h-4 w-[1px] bg-zinc-200 hidden md:inline-block" />
           {canSeeCode ? (
             <div className="items-center hidden md:inline-flex gap-1">
-              <button onClick={() => setTab('preview')} className={`h-7 w-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${tab==='preview'?'text-accent-600':''}`}><Eye size={16}/></button>
-              <button onClick={() => setTab('code')} className={`h-7 w-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${tab==='code'?'text-accent-600':''}`}><Code size={16}/></button>
-              <button onClick={copy} className="h-7 w-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200" title="Copy" aria-label="Copy">{copied? <Check size={16}/> : <Copy size={16}/>}</button>
-              <button onClick={downloadCode} className="h-7 w-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200" title="Download code" aria-label="Download code"><Download size={16}/></button>
+              <button onClick={() => setTab('preview')} className={`size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${tab==='preview'?'text-accent-600':''}`}><Eye size={16}/></button>
+              <button onClick={() => setTab('code')} className={`size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${tab==='code'?'text-accent-600':''}`}><Code size={16}/></button>
+              <button onClick={copy} className="size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200" title="Copy" aria-label="Copy">{copied? <Check size={16}/> : <Copy size={16}/>}</button>
+              <button onClick={downloadCode} className="size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200" title="Download code" aria-label="Download code"><Download size={16}/></button>
             </div>
           ) : (
             <a href="/pricing" className="h-7 px-2 hidden md:inline-flex items-center rounded-md bg-zinc-900 text-white text-xs">Get Access</a>
@@ -285,14 +286,14 @@ export default function PlaygroundIsland({
               {/* Pagination */}
               <div aria-hidden className="mx-1 h-4 w-[1px] bg-zinc-200 hidden md:inline-block" />
               {arguments[0]!.prevHref ? (
-                <a href={arguments[0]!.prevHref} aria-label="Previous" className="h-7 w-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200"><ChevronLeft className="size-4"/></a>
+                <a href={arguments[0]!.prevHref} aria-label="Previous" className="size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200"><ChevronLeft className="size-4"/></a>
               ) : (
-                <div className="h-7 w-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-100 opacity-50"><ChevronLeft className="size-4"/></div>
+                <div className="size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-100 opacity-50"><ChevronLeft className="size-4"/></div>
               )}
               {arguments[0]!.nextHref ? (
-                <a href={arguments[0]!.nextHref} aria-label="Next" className="h-7 w-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200"><ChevronRight className="size-4"/></a>
+                <a href={arguments[0]!.nextHref} aria-label="Next" className="size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200"><ChevronRight className="size-4"/></a>
               ) : (
-                <div className="h-7 w-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-100 opacity-50"><ChevronRight className="size-4"/></div>
+                <div className="size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-100 opacity-50"><ChevronRight className="size-4"/></div>
               )}
             </>
           )}
