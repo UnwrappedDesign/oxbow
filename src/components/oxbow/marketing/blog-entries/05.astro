@@ -38,26 +38,30 @@ const articles = [
 ];
 ---
 
-<div>
+<div class="dark:bg-black">
   <!-- copy:start -->
-  <div class="max-w-7xl mx-auto px-8 lg:px-12 py-24">
+  <div class="max-w-7xl mx-auto px-8 lg:px-12 py-24 dark:bg-black">
     <div class="items-end grid grid-cols-1 lg:grid-cols-3 gap-12">
       <div class="max-w-2xl lg:col-span-2">
         <Text
           tag="p"
           variant="textSM"
-          class="font-bold uppercase text-blue-600"
+          class="font-bold uppercase text-blue-600 dark:text-blue-400"
         >
           Tagline
         </Text>
         <Text
           tag="h2"
           variant="displayMD"
-          class="mt-4 font-semibold text-zinc-900 lg:text-balance"
+          class="mt-4 font-semibold text-zinc-900 dark:text-zinc-100 lg:text-balance"
         >
           Insights and perspectives
         </Text>
-        <Text tag="p" variant="textBase" class="mt-4 font-medium text-zinc-500">
+        <Text
+          tag="p"
+          variant="textBase"
+          class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+        >
           Exploring topics, tips, and trends in the world of communication and
           privacy
         </Text>
@@ -84,13 +88,17 @@ const articles = [
             Subscribe
           </Button>
         </form>
-        <Text tag="p" variant="textSM" class="mt-4 font-medium text-zinc-500">
+        <Text
+          tag="p"
+          variant="textSM"
+          class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+        >
           When you sign up, you accept our
           <Text
             tag="a"
             href="#_"
             variant="textSM"
-            class="font-medium text-blue-500 gap-2 hover:text-zinc-900"
+            class="font-medium text-blue-500 dark:text-blue-400 gap-2 hover:text-zinc-900 dark:hover:text-zinc-100"
           >
             Terms of service
           </Text>
@@ -99,7 +107,7 @@ const articles = [
             tag="a"
             href="#_"
             variant="textSM"
-            class="font-medium text-blue-500 gap-2 hover:text-zinc-900"
+            class="font-medium text-blue-500 dark:text-blue-400 gap-2 hover:text-zinc-900 dark:hover:text-zinc-100"
           >
             Privacy Policy
           </Text>
@@ -107,7 +115,7 @@ const articles = [
       </div>
     </div>
     <div
-      class="relative pt-12 mt-12 border-t grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 border-zinc-200"
+      class="relative pt-12 mt-12 border-t grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 border-zinc-200 dark:border-zinc-700"
     >
       {
         articles.map((article) => (
@@ -118,7 +126,7 @@ const articles = [
                   <Text
                     tag="h3"
                     variant="textLG"
-                    class="font-medium  text-zinc-900 group-hover:text-blue-600 duration-200"
+                    class="font-medium text-zinc-900 dark:text-zinc-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 duration-200"
                   >
                     <span class="absolute inset-0" />
                     {article.title}
@@ -127,7 +135,7 @@ const articles = [
                 <Text
                   tag="p"
                   variant="textBase"
-                  class="mt-4 font-medium text-zinc-500 line-clamp-3"
+                  class="mt-4 font-medium text-zinc-500 dark:text-zinc-400 line-clamp-3"
                 >
                   {article.description}
                 </Text>
@@ -136,13 +144,13 @@ const articles = [
                 <img
                   src={article.authorImage}
                   alt="#_"
-                  class="object-cover rounded-full size-12 bg-zinc-50"
+                  class="object-cover rounded-full size-12 bg-zinc-50 dark:bg-zinc-800"
                 />
                 <div>
                   <Text
                     tag="h3"
                     variant="textBase"
-                    class="font-medium  text-zinc-900"
+                    class="font-medium text-zinc-900 dark:text-zinc-100"
                   >
                     {article.author}
                   </Text>
@@ -151,7 +159,7 @@ const articles = [
                     <Text
                       tag="p"
                       variant="textSM"
-                      class="font-medium uppercase text-zinc-500"
+                      class="font-medium uppercase text-zinc-500 dark:text-zinc-400"
                     >
                       <time datetime={article.date}>{article.date}</time>
                     </Text>
@@ -163,7 +171,7 @@ const articles = [
               <img
                 src={article.image}
                 alt="#_"
-                class="absolute inset-0 object-cover shadow size-full  rounded-2xl bg-zinc-50"
+                class="absolute inset-0 object-cover shadow size-full rounded-2xl bg-zinc-50 dark:bg-zinc-800"
               />
             </div>
           </article>

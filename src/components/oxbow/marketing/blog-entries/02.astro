@@ -57,26 +57,29 @@ const articles = [
 ];
 ---
 
-<div class="p-8">
-  <!-- copy:start -->
-  <div class="max-w-7xl mx-auto">
+<section class="bg-white dark:bg-black">
+  <div class="max-w-7xl mx-auto px-8 lg:px-12 py-24 ">
     <div class="items-end grid grid-cols-1 lg:grid-cols-3 gap-12">
       <div class="max-w-2xl lg:col-span-2">
         <Text
           tag="p"
           variant="textSM"
-          class="font-bold uppercase text-blue-600"
+          class="font-bold uppercase text-blue-600 dark:text-blue-400"
         >
           Tagline
         </Text>
         <Text
           tag="h2"
           variant="displayMD"
-          class="mt-4 font-semibold text-zinc-900 lg:text-balance"
+          class="mt-4 font-semibold text-zinc-900 dark:text-white lg:text-balance"
         >
           Insights and perspectives
         </Text>
-        <Text tag="p" variant="textBase" class="mt-4 font-medium text-zinc-500">
+        <Text
+          tag="p"
+          variant="textBase"
+          class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+        >
           Exploring topics, tips, and trends in the world of communication and
           privacy
         </Text>
@@ -92,7 +95,7 @@ const articles = [
             placeholder="Enter your email"
             aria-placeholder="Enter your email"
             required=""
-            class="block w-full h-10 px-4 py-2 text-sm bg-white border border-transparent rounded-lg appearance-none text-blue-700 duration-300 ring-1 ring-zinc-200 placeholder-zinc-400 focus:border-zinc-300 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+            class="block w-full h-10 px-4 py-2 text-sm bg-white dark:bg-black border border-transparent rounded-lg appearance-none text-blue-700 dark:text-blue-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-800 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
           />
           <Button
             class="w-full sm:w-auto"
@@ -103,13 +106,17 @@ const articles = [
             Subscribe
           </Button>
         </form>
-        <Text tag="p" variant="textSM" class="mt-4 font-medium text-zinc-500">
+        <Text
+          tag="p"
+          variant="textSM"
+          class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+        >
           When you sign up, you accept our
           <Text
             tag="a"
             href="#_"
             variant="textSM"
-            class="font-medium text-blue-500 gap-2 hover:text-zinc-900"
+            class="font-medium text-blue-500 dark:text-blue-400 gap-2 hover:text-zinc-900 dark:hover:text-white"
           >
             Terms of service
           </Text>
@@ -118,7 +125,7 @@ const articles = [
             tag="a"
             href="#_"
             variant="textSM"
-            class="font-medium text-blue-500 gap-2 hover:text-zinc-900"
+            class="font-medium text-blue-500 dark:text-blue-400 gap-2 hover:text-zinc-900 dark:hover:text-white"
           >
             Privacy Policy
           </Text>
@@ -126,7 +133,7 @@ const articles = [
       </div>
     </div>
     <div
-      class="relative pt-12 mt-12 border-t border-zinc-200 grid grid-cols-1 lg:grid-cols-3 gap-12"
+      class="relative pt-12 mt-12 border-t border-zinc-200 dark:border-zinc-800 grid grid-cols-1 lg:grid-cols-3 gap-12"
     >
       <div class="flex flex-col gap-12 lg:col-span-2">
         {
@@ -138,7 +145,7 @@ const articles = [
                   <Text
                     tag="p"
                     variant="textSM"
-                    class="font-medium uppercase text-zinc-500 whitespace-nowrap"
+                    class="font-medium uppercase text-zinc-500 dark:text-zinc-400 whitespace-nowrap"
                   >
                     <time datetime={article.date}>{article.date}</time>
                   </Text>
@@ -146,14 +153,14 @@ const articles = [
                 <Text
                   tag="h3"
                   variant="textLG"
-                  class="mt-4 font-medium text-zinc-900 group-hover:text-blue-600 duration-200"
+                  class="mt-4 font-medium text-zinc-900 dark:text-white group-hover:text-blue-600 duration-200"
                 >
                   {article.title}
                 </Text>
                 <Text
                   tag="p"
                   variant="textBase"
-                  class="mt-4 font-medium text-zinc-500"
+                  class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
                 >
                   {article.description}
                 </Text>
@@ -163,7 +170,7 @@ const articles = [
                   tag="a"
                   href="#_"
                   variant="textBase"
-                  class="flex items-center font-medium text-blue-500 gap-2 hover:text-zinc-900"
+                  class="flex items-center font-medium text-blue-500 dark:text-blue-400 gap-2 hover:text-zinc-900 dark:hover:text-white"
                 >
                   <span class="absolute -inset-y-2.5 -inset-x-4 md:-inset-y-4 md:-inset-x-6 sm:rounded-2xl" />
                   <span class="relative ">
@@ -177,7 +184,9 @@ const articles = [
         }
       </div>
       <div class="lg:ml-auto">
-        <Text tag="h4" variant="textLG"> Quick Links </Text>
+        <Text tag="h4" variant="textLG" class="dark:text-white">
+          Quick Links
+        </Text>
         <ul class="mt-4 space-y-2">
           {
             menuItems.map((item) => (
@@ -186,7 +195,7 @@ const articles = [
                   tag="a"
                   href="#_"
                   variant="textSM"
-                  class="flex items-center font-medium text-blue-500 gap-2 hover:text-zinc-900"
+                  class="flex items-center font-medium text-blue-500 dark:text-blue-400 gap-2 hover:text-zinc-900 dark:hover:text-white"
                 >
                   {item.label}
                 </Text>
@@ -197,5 +206,5 @@ const articles = [
       </div>
     </div>
   </div>
-  <!-- copy:end -->
+
 </div>
