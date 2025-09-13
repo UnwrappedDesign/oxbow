@@ -283,23 +283,23 @@ export default function PlaygroundIsland({
         </div>
       </div>
 
-      <div className="relative min-h-0 w-full flex rounded-xl shadow-oxbow bg-white z-1 overflow-scroll isolate scrollbar-hide max-h-[800px]" >
+      <div className="relative min-h-0 w-full flex rounded-xl shadow-oxbow bg-white z-1 overflow-scroll isolate scrollbar-hide max-h-[500px] lg:max-h-[650px]" >
         {tab === 'preview' && (
-          <div className="flex flex-col items-center bg-white w-full scrollbar-hide">
-            <div ref={containerRef} id="playground-preview-container" className="bg-white text-base shadow-normal  overflow-hidden mx-auto w-full flex flex-col scrollbar-hide" style={{ transition: 'width 250ms ease-in-out' }}>
+          <div className="flex flex-col items-center bg-white w-full scrollbar-hide min-h-[600px]">
+            <div ref={containerRef} id="playground-preview-container" className="bg-white text-base shadow-normal  overflow-hidden mx-auto w-full flex flex-col scrollbar-hide " style={{ transition: 'width 250ms ease-in-out' }}>
               <iframe
                 ref={iframeRef}
                 id={iframeId}
                 className="block w-full border-0 scrollbar-hide "
                 title={`Preview ${iframeSrc}`}
-                style={{ height: 400, minHeight: 200, visibility: 'visible' }}
+                style={{ height: 'auto', minHeight: 650, visibility: 'visible' }}
                 src={iframeSrc}
                 onLoad={() => {
                   requestHeight();
                   // apply current mode as soon as possible
                   applyModeToIframe(mode);
                   setTimeout(requestHeight, 50);
-                  setTimeout(requestHeight, 200);
+                  setTimeout(requestHeight, 650);
                 }}
               />
             </div>
