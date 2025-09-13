@@ -7,10 +7,12 @@ import ArrowRight from "@/components/fundations/icons/ArrowRight.astro";
 import Clipboard from "@/components/fundations/icons/Clipboard.astro";
 ---
 
-<div class="flex items-center justify-center p-8">
+<div
+  class="flex items-center justify-center p-8 py-38.5 bg-white dark:bg-black"
+>
   <!-- copy:start -->
   <div
-    class="max-w-xl mx-auto w-full overflow-hidden bg-white shadow-lg transition-all transform divide-y divide-zinc-200 rounded-xl"
+    class="max-w-xl mx-auto w-full overflow-hidden bg-white dark:bg-zinc-900 shadow-lg transition-all transform divide-y divide-zinc-200 dark:divide-zinc-700 rounded-xl"
   >
     <div class="relative">
       <label for="search-bar" class="sr-only">Search</label>
@@ -22,7 +24,7 @@ import Clipboard from "@/components/fundations/icons/Clipboard.astro";
       <input
         id="search-bar"
         type="text"
-        class="w-full h-12 pr-4 bg-transparent border-0 text-zinc-800 placeholder-zinc-400 pl-11 focus:ring-0 sm:text-sm"
+        class="w-full h-12 pr-4 bg-transparent border-0 text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 pl-11 focus:ring-0 sm:text-sm"
         placeholder="Search for anything"
         role="combobox"
         aria-expanded="false"
@@ -36,17 +38,29 @@ import Clipboard from "@/components/fundations/icons/Clipboard.astro";
       tabindex="0"
     >
       <li class="px-2">
-        <Text tag="p" variant="textSM" class="font-medium text-zinc-500">
+        <Text
+          tag="p"
+          variant="textSM"
+          class="font-medium text-zinc-500 dark:text-zinc-300"
+        >
           Create another project
         </Text>
       </li>
       <li id="option-1" role="option" tabindex="-1">
-        <CommandbarButton text="Copy current URL" iconSlot={true}>
+        <CommandbarButton
+          text="Copy current URL"
+          iconSlot={true}
+          class="hover:bg-zinc-50 dark:hover:bg-zinc-700"
+        >
           <Clipboard size="sm" slot="icon" />
         </CommandbarButton>
       </li>
       <li class="px-2">
-        <Text tag="p" variant="textSM" class="font-medium text-zinc-500">
+        <Text
+          tag="p"
+          variant="textSM"
+          class="font-medium text-zinc-500 dark:text-zinc-300"
+        >
           Scope
         </Text>
       </li>
@@ -54,6 +68,7 @@ import Clipboard from "@/components/fundations/icons/Clipboard.astro";
         <CommandbarButton
           text="Go to personal account overview"
           iconSlot={true}
+          class="hover:bg-zinc-50 dark:hover:bg-zinc-700"
         >
           <ArrowRight size="sm" slot="icon" />
         </CommandbarButton>
@@ -62,6 +77,7 @@ import Clipboard from "@/components/fundations/icons/Clipboard.astro";
         <CommandbarButton
           text="Go to personal account integrations"
           iconSlot={true}
+          class="hover:bg-zinc-50 dark:hover:bg-zinc-700"
         >
           <ArrowRight size="sm" slot="icon" />
         </CommandbarButton>
@@ -70,6 +86,7 @@ import Clipboard from "@/components/fundations/icons/Clipboard.astro";
         <CommandbarButton
           text="Go to personal account activities"
           iconSlot={true}
+          class="hover:bg-zinc-50 dark:hover:bg-zinc-700"
         >
           <ArrowRight size="sm" slot="icon" />
         </CommandbarButton>
@@ -87,6 +104,7 @@ import Clipboard from "@/components/fundations/icons/Clipboard.astro";
           hasKbd={true}
           kbdKey="C"
           iconSlot={true}
+          class="hover:bg-zinc-50 dark:hover:bg-zinc-700"
         >
           <Plus size="sm" slot="icon" />
         </CommandbarButton>
@@ -95,4 +113,3 @@ import Clipboard from "@/components/fundations/icons/Clipboard.astro";
   </div>
   <!-- copy:end -->
 </div>
-

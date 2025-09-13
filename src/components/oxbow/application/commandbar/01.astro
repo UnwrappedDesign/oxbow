@@ -6,13 +6,17 @@ import Plus from "@/components/fundations/icons/Plus.astro";
 import Search from "@/components/fundations/icons/Search.astro";
 ---
 
-<div class="flex items-center justify-center p-8">
+<div
+  class="flex items-center justify-center p-8 py-48 lg:py-62 bg-white dark:bg-black"
+>
   <!-- copy:start -->
   <div
-    class="max-w-xl p-3 mx-auto w-full overflow-hidden bg-white shadow-lg transition-all transform rounded-xl"
+    class="max-w-xl p-2.5 mx-auto w-full overflow-hidden bg-white dark:bg-zinc-900 shadow-lg transition-all transform rounded-xl"
   >
     <!-- Input section with label and accessible search -->
-    <div class="relative bg-zinc-50 focus-within:bg-white rounded-md">
+    <div
+      class="relative bg-zinc-50 dark:bg-zinc-800 focus-within:bg-white dark:focus-within:bg-zinc-900 rounded-md"
+    >
       <label for="search" class="sr-only">Search</label>
       <Search
         class="pointer-events-none absolute top-3.5 left-4 text-zinc-400"
@@ -22,7 +26,7 @@ import Search from "@/components/fundations/icons/Search.astro";
       <input
         id="search"
         type="text"
-        class="w-full h-12 pr-4 bg-transparent border-0 text-zinc-800 placeholder-zinc-400 pl-11 focus:ring-0 sm:text-sm"
+        class="w-full h-12 pr-4 bg-transparent border-0 text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 pl-11 focus:ring-0 sm:text-sm"
         placeholder="Search for anything"
         role="combobox"
         aria-expanded="false"
@@ -43,6 +47,7 @@ import Search from "@/components/fundations/icons/Search.astro";
           hasKbd={true}
           kbdKey="S"
           iconSlot={true}
+          class="hover:bg-zinc-50 dark:hover:bg-zinc-700"
         >
           <Component size="sm" slot="icon" />
         </CommandbarButton>
@@ -53,6 +58,7 @@ import Search from "@/components/fundations/icons/Search.astro";
           hasKbd={true}
           kbdKey="C"
           iconSlot={true}
+          class="hover:bg-zinc-50 dark:hover:bg-zinc-700"
         >
           <Plus size="sm" slot="icon" />
         </CommandbarButton>
@@ -62,4 +68,3 @@ import Search from "@/components/fundations/icons/Search.astro";
   </div>
   <!-- copy:end -->
 </div>
-
