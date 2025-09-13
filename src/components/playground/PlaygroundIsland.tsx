@@ -191,22 +191,22 @@ export default function PlaygroundIsland({
         <div className="flex items-center gap-2">
           <a href={`#${iframeId.replace('iframe-','')}`} className="inline-flex items-center justify-center h-7 px-2 text-xs rounded-md bg-zinc-50 outline outline-1 outline-zinc-200">{iframeId.replace('iframe-','')}</a>
           <span className="items-center hidden isolate md:inline-flex gap-1">
-            <button onClick={() => setViewportWidth('mobile')} className={`h-7 w-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${viewport==='mobile'?'text-blue-600':''}`}><Smartphone size={16}/></button>
-            <button onClick={() => setViewportWidth('tablet')} className={`h-7 w-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${viewport==='tablet'?'text-blue-600':''}`}><Tablet size={16}/></button>
-            <button onClick={() => setViewportWidth('desktop')} className={`h-7 w-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${viewport==='desktop'?'text-blue-600':''}`}><Monitor size={16}/></button>
+            <button onClick={() => setViewportWidth('mobile')} className={`h-7 w-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${viewport==='mobile'?'text-accent-600':''}`}><Smartphone size={16}/></button>
+            <button onClick={() => setViewportWidth('tablet')} className={`h-7 w-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${viewport==='tablet'?'text-accent-600':''}`}><Tablet size={16}/></button>
+            <button onClick={() => setViewportWidth('desktop')} className={`h-7 w-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${viewport==='desktop'?'text-accent-600':''}`}><Monitor size={16}/></button>
           </span>
           <div aria-hidden className="mx-1 h-4 w-[1px] bg-zinc-200 hidden md:inline-block" />
           <span className="items-center hidden isolate md:inline-flex gap-1">
-            <button onClick={() => setMode('light')} className={`h-7 px-2 inline-flex items-center gap-1 rounded-md outline outline-1 outline-zinc-200 ${mode==='light'?'text-blue-600':''}`}><Sun size={14}/> <span className="text-[11px]">Light</span></button>
-            <button onClick={() => setMode('system')} className={`h-7 px-2 inline-flex items-center gap-1 rounded-md outline outline-1 outline-zinc-200 ${mode==='system'?'text-blue-600':''}`}><Laptop size={14}/> <span className="text-[11px]">System</span></button>
-            <button onClick={() => setMode('dark')} className={`h-7 px-2 inline-flex items-center gap-1 rounded-md outline outline-1 outline-zinc-200 ${mode==='dark'?'text-blue-600':''}`}><Moon size={14}/> <span className="text-[11px]">Dark</span></button>
+            <button onClick={() => setMode('light')} className={`h-7 px-2 inline-flex items-center gap-1 rounded-md outline outline-1 outline-zinc-200 ${mode==='light'?'text-accent-600':''}`}><Sun size={14}/> <span className="text-[11px]">Light</span></button>
+            <button onClick={() => setMode('system')} className={`h-7 px-2 inline-flex items-center gap-1 rounded-md outline outline-1 outline-zinc-200 ${mode==='system'?'text-accent-600':''}`}><Laptop size={14}/> <span className="text-[11px]">System</span></button>
+            <button onClick={() => setMode('dark')} className={`h-7 px-2 inline-flex items-center gap-1 rounded-md outline outline-1 outline-zinc-200 ${mode==='dark'?'text-accent-600':''}`}><Moon size={14}/> <span className="text-[11px]">Dark</span></button>
           </span>
           {/* Code controls next to theme toggles */}
           <div aria-hidden className="mx-1 h-4 w-[1px] bg-zinc-200 hidden md:inline-block" />
           {canSeeCode ? (
             <div className="items-center hidden md:inline-flex gap-1">
-              <button onClick={() => setTab('preview')} className={`h-7 w-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${tab==='preview'?'text-blue-600':''}`}><Eye size={16}/></button>
-              <button onClick={() => setTab('code')} className={`h-7 w-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${tab==='code'?'text-blue-600':''}`}><Code size={16}/></button>
+              <button onClick={() => setTab('preview')} className={`h-7 w-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${tab==='preview'?'text-accent-600':''}`}><Eye size={16}/></button>
+              <button onClick={() => setTab('code')} className={`h-7 w-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${tab==='code'?'text-accent-600':''}`}><Code size={16}/></button>
               <button onClick={copy} className="h-7 w-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200" title="Copy" aria-label="Copy">{copied? <Check size={16}/> : <Copy size={16}/>}</button>
               <button onClick={downloadCode} className="h-7 w-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200" title="Download code" aria-label="Download code"><Download size={16}/></button>
             </div>
@@ -241,7 +241,7 @@ export default function PlaygroundIsland({
                     {Object.keys(arguments[0]!.subsByCat!).sort().map(key => (
                       <button key={key} onClick={()=>{ const first=(arguments[0]!.subsByCat![key]||[])[0]||''; window.location.assign(`/playground/${key}/${first}/${clamp(arguments[0]!.navIdx||1,1,count(key, first))}`); }} className="w-full flex items-center justify-between px-3 py-1.5 hover:bg-sand-100 text-left text-xs">
                         <span className="capitalize">{fmt(key)}</span>
-                        {(arguments[0]!.navCat===key) && <Check className="size-4 text-blue-600"/>}
+                        {(arguments[0]!.navCat===key) && <Check className="size-4 text-accent-600"/>}
                       </button>
                     ))}
                   </div>
@@ -253,7 +253,7 @@ export default function PlaygroundIsland({
                     {(arguments[0]!.subsByCat![arguments[0]!.navCat||'']||[]).map(name => (
                       <a key={name} href={`/playground/${arguments[0]!.navCat}/${name}/${clamp(arguments[0]!.navIdx||1,1,count(arguments[0]!.navCat||'',name))}`} className="w-full flex items-center justify-between px-3 py-1.5 hover:bg-sand-100">
                         <span className="capitalize">{fmt(name)}</span>
-                        {(arguments[0]!.navSub===name) && <Check className="size-4 text-blue-600"/>}
+                        {(arguments[0]!.navSub===name) && <Check className="size-4 text-accent-600"/>}
                       </a>
                     ))}
                   </div>
@@ -263,7 +263,7 @@ export default function PlaygroundIsland({
                 <div ref={navMenuRef} className="fixed z-50 mt-2 w-40 rounded-xl outline outline-zinc-100 shadow bg-white text-xs text-zinc-600" style={{top:navPos.top,left:navPos.left}}>
                   <div className="py-2 max-h-64 overflow-auto grid grid-cols-4 gap-1 px-2">
                     {Array.from({length: count(arguments[0]!.navCat||'', arguments[0]!.navSub||'')}, (_,i)=> i+1).map(n => (
-                      <a key={n} href={`/playground/${arguments[0]!.navCat}/${arguments[0]!.navSub}/${n}`} className={`flex items-center justify-center px-2 py-1.5 rounded hover:bg-sand-100 ${n===clamp(arguments[0]!.navIdx||1,1,count(arguments[0]!.navCat||'', arguments[0]!.navSub||''))?'text-blue-600 font-medium':''}`}>{n}</a>
+                      <a key={n} href={`/playground/${arguments[0]!.navCat}/${arguments[0]!.navSub}/${n}`} className={`flex items-center justify-center px-2 py-1.5 rounded hover:bg-sand-100 ${n===clamp(arguments[0]!.navIdx||1,1,count(arguments[0]!.navCat||'', arguments[0]!.navSub||''))?'text-accent-600 font-medium':''}`}>{n}</a>
                     ))}
                   </div>
                 </div>
