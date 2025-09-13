@@ -77,7 +77,7 @@ const countsByCatSub = triples.reduce(
 </style>
 
 <BaseLayout hideFooter={true}>
-  <section class="border-t border-zinc-200 relative z-10">
+  <section class="border-t border-zinc-200 relative">
     <Wrapper variant="standard" class="lg:border-x lg:border-zinc-200">
       <div class="flex items-end justify-between w-full">
         <div class="flex flex-wrap items-center gap-2">
@@ -108,35 +108,35 @@ const countsByCatSub = triples.reduce(
       </div>
     </Wrapper>
   </section>
-</BaseLayout>
-<section class="border-t border-zinc-200 relative z-10">
-  <Wrapper
-    variant="wide"
-    class="py-8 2xl:border-x 2xl:border-zinc-200 relative z-10"
-  >
-    <Playground
-      componentIndex={parseInt(index)}
-      componentPath={currentKey ? currentKey.replace(/^\//, "") : ""}
-      playgroundRef={`${section}-${subsection}-${index}`}
-      freeComponent={freeComponent}
-      initialTabIsCode={Astro.url.searchParams.get("tab") === "code"}
-      navCat={section}
-      navSub={subsection}
-      navIdx={parseInt(index)}
-      subsByCat={subsByCat}
-      counts={countsByCatSub}
-      prevHref={parseInt(index) === 1
-        ? undefined
-        : `/playground/${section}/${subsection}/${parseInt(index) - 1}`}
-      nextHref={parseInt(index) === sectionLength
-        ? undefined
-        : `/playground/${section}/${subsection}/${parseInt(index) + 1}`}
-      sectionLength={sectionLength}
+  <section class="border-t border-zinc-200 relative">
+    <Wrapper
+      variant="wide"
+      class="py-8 2xl:border-x 2xl:border-zinc-200 relative"
     >
-      <componentModule.default />
-    </Playground>
-  </Wrapper>
-</section>
+      <Playground
+        componentIndex={parseInt(index)}
+        componentPath={currentKey ? currentKey.replace(/^\//, "") : ""}
+        playgroundRef={`${section}-${subsection}-${index}`}
+        freeComponent={freeComponent}
+        initialTabIsCode={Astro.url.searchParams.get("tab") === "code"}
+        navCat={section}
+        navSub={subsection}
+        navIdx={parseInt(index)}
+        subsByCat={subsByCat}
+        counts={countsByCatSub}
+        prevHref={parseInt(index) === 1
+          ? undefined
+          : `/playground/${section}/${subsection}/${parseInt(index) - 1}`}
+        nextHref={parseInt(index) === sectionLength
+          ? undefined
+          : `/playground/${section}/${subsection}/${parseInt(index) + 1}`}
+        sectionLength={sectionLength}
+      >
+        <componentModule.default />
+      </Playground>
+    </Wrapper>
+  </section>
+</BaseLayout>
 
 <script is:inline>
   (function () {
