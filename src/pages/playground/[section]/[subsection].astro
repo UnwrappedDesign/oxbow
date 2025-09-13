@@ -119,9 +119,14 @@ const subsectionKey = (subsection || "").toLowerCase();
             {subsection.replace(/-/g, " ")}
           </Text>
           <div>
-            <SubsectionToolbarIsland client:load cat={section} sub={subsection} subsByCat={subsByCat} />
+            <SubsectionToolbarIsland
+              client:load
+              cat={section}
+              sub={subsection}
+              subsByCat={subsByCat}
+            />
           </div>
-            <!--
+          <!--
             <div class="relative">
               <span class="sr-only">Category</span>
               <Button
@@ -234,64 +239,63 @@ const subsectionKey = (subsection || "").toLowerCase();
               </div>
             </div>
             -->
-          </div>
-        </div>
-      </Wrapper>
-    </section>
-    <section class="border-y border-base-200">
-      <Wrapper
-        variant="standard"
-        class="2xl:border-x lg:border-base-200 border-x"
-      >
-        <div class="masonry-grid">
-          {
-            sectionComponents.map(
-              (
-                { key, filePath, imagePath, description, free, component: C },
-                index,
-              ) => {
-                const pathNoAstro = filePath.replace(".astro", "");
-                if (!images[imagePath]) return null;
-                const updatedAt = new Date(updates[filePath] * 1000);
-                const isUpdatedLastWeek = updatedAt > SEVEN_DAYS_AGO;
-                return (
-                  <a
-                    href={`/playground/${pathNoAstro}`}
-                    class="relative flex flex-col group masonry-item"
-                    style="display: block;"
-                  >
-                    <div class="flex flex-col sr-only gap-1">
-                      {isUpdatedLastWeek && (
-                        <Text
-                          tag="p"
-                          variant="textXS"
-                          class="relative flex items-center gap-1 text-zinc-400"
-                        >
-                          Updated{" "}
-                          {formatDistanceToNowStrict(updatedAt, {
-                            unit: "day",
-                            roundingMethod: "ceil",
-                          })}{" "}
-                          ago
-                        </Text>
-                      )}
-                    </div>
-                    <div class="mt-2 overflow-hidden bg-white rounded-lg">
-                      <Image
-                        width={1000}
-                        height={1000}
-                        src={images[imagePath]?.() ?? "/placeholder.png"}
-                        alt={`${subsection} preview ${index + 1}`}
-                        class="object-cover object-top"
-                      />
-                    </div>
-                  </a>
-                );
-              },
-            )
-          }
         </div>
       </Wrapper>
     </section>
   </div>
+  <section class="border-y border-base-200">
+    <Wrapper
+      variant="standard"
+      class="2xl:border-x lg:border-base-200 border-x"
+    >
+      <div class="masonry-grid">
+        {
+          sectionComponents.map(
+            (
+              { key, filePath, imagePath, description, free, component: C },
+              index,
+            ) => {
+              const pathNoAstro = filePath.replace(".astro", "");
+              if (!images[imagePath]) return null;
+              const updatedAt = new Date(updates[filePath] * 1000);
+              const isUpdatedLastWeek = updatedAt > SEVEN_DAYS_AGO;
+              return (
+                <a
+                  href={`/playground/${pathNoAstro}`}
+                  class="relative flex flex-col group masonry-item"
+                  style="display: block;"
+                >
+                  <div class="flex flex-col sr-only gap-1">
+                    {isUpdatedLastWeek && (
+                      <Text
+                        tag="p"
+                        variant="textXS"
+                        class="relative flex items-center gap-1 text-zinc-400"
+                      >
+                        Updated{" "}
+                        {formatDistanceToNowStrict(updatedAt, {
+                          unit: "day",
+                          roundingMethod: "ceil",
+                        })}{" "}
+                        ago
+                      </Text>
+                    )}
+                  </div>
+                  <div class="mt-2 overflow-hidden bg-white rounded-lg">
+                    <Image
+                      width={1000}
+                      height={1000}
+                      src={images[imagePath]?.() ?? "/placeholder.png"}
+                      alt={`${subsection} preview ${index + 1}`}
+                      class="object-cover object-top"
+                    />
+                  </div>
+                </a>
+              );
+            },
+          )
+        }
+      </div>
+    </Wrapper>
+  </section>
 </BaseLayout>
