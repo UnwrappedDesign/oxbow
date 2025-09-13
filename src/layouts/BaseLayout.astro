@@ -36,8 +36,8 @@ interface HeadOverrides {
   noindex?: boolean;
   structuredData?: any | any[];
 }
-const { title, description, image, noindex, structuredData }: HeadOverrides =
-  (Astro.props ?? {}) as HeadOverrides;
+const { title, description, image, noindex, structuredData, hideNav = false, hideFooter = false }: HeadOverrides & { hideNav?: boolean; hideFooter?: boolean } =
+  (Astro.props ?? {}) as any;
 ---
 
 <html lang="en" class="scroll-smooth">
@@ -54,11 +54,11 @@ const { title, description, image, noindex, structuredData }: HeadOverrides =
     />
   </head>
   <body class="bg-sand-100">
-    <Navigation />
+    { !hideNav && <Navigation /> }
     <main class="grow z-1">
       <slot />
     </main>
-    <Footer isSignedIn={!!uid} />
+    { !hideFooter && <Footer isSignedIn={!!uid} /> }
 
     <ninja-keys
       id="ninja"

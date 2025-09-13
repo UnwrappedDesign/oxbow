@@ -70,7 +70,7 @@ const component = matchKey ? await modules[matchKey]() : undefined;
         const postHeightNow = () => {
           const h = computeHeight();
           if (Math.abs(h - lastH) < 1) return; lastH = h;
-          try { parent.postMessage({ type: "oxbow-iframe-height", id: iframeId, height: h }, "*"); } catch (_) {}
+          try { parent.postMessage({ type: "oxbow-height", id: iframeId, height: h }, "*"); } catch (_) {}
         };
         const postHeight = () => {
           if (thTimer) return; thTimer = setTimeout(() => { thTimer = null; postHeightNow(); }, 33);
@@ -84,6 +84,7 @@ const component = matchKey ? await modules[matchKey]() : undefined;
           postHeight();
           setTimeout(postHeight, 50);
           setTimeout(postHeight, 200);
+          try { if (document.fonts && document.fonts.ready) document.fonts.ready.then(postSoon); } catch(_) {}
         });
 
         // Observe size and DOM changes
@@ -110,7 +111,27 @@ const component = matchKey ? await modules[matchKey]() : undefined;
 
         // Respond to parent explicit requests
         window.addEventListener("message", function (e) {
-          if (e.data && e.data.type === "oxbow-request-height") postHeight();
+          try {
+            if (!e || !e.data) return;
+            if (e.data.type === "oxbow-request-height") {
+              postHeight();
+              return;
+            }
+            if (e.data.type === "oxbow-set-dark") {
+              const enable = !!e.data.enable;
+              try {
+                const html = document.documentElement; const body = document.body;
+                html.classList.toggle('dark', enable);
+                body?.classList.toggle('dark', enable);
+                if (enable) { html.setAttribute('data-theme','dark'); body?.setAttribute('data-theme','dark'); }
+                else { html.removeAttribute('data-theme'); body?.removeAttribute('data-theme'); }
+              } catch (_) {}
+              // After theme change, recompute height soon
+              setTimeout(postHeight, 20);
+              setTimeout(postHeight, 120);
+              return;
+            }
+          } catch (_) {}
         });
       })();
     </script>

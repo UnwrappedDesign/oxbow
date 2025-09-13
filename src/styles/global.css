@@ -4,6 +4,9 @@
 @plugin "tailwind-scrollbar-hide";
 @source "../../safelist.txt";
 
+/* Enable manual dark mode via `.dark` class or `[data-theme=dark]` attribute */
+@custom-variant dark (&:where(.dark, .dark *, [data-theme=dark], [data-theme=dark] *));
+
 @theme {
   /* Typography */
   --font-sans: "Inter", sans-serif;
@@ -70,29 +73,39 @@
     --shadow-button:0 8px 12px -4px #1a19250f, 0 4px 8px -4px #1a19251f, 0 2px 4px -1px #1a19251f, 0 1px 1.5px -.5px #1a19251f, 0 .75px .75px #1a19251f, 0 .25px .25px #1a19253d, inset 0 -8px 20px #1a192514, inset 0 1px 3px #ffffff14, inset 0 .75px .75px #ffffff14, inset 0 .25px .25px #ffffff1f;
  
 }
+
 :root {
   font-family: "Inter", sans-serif;
   font-feature-settings: 'liga' 1, 'calt' 1;
   font-variant-numeric: tabular-nums;
-   --astro-code-color-text: var(--color-base-500);
-  --astro-code-foreground: var(--color-base-500);
+
+  /* Astro <Code> component variables (kept for compatibility) */
+  --astro-code-color-text: var(--color-base-600);
+  --astro-code-foreground: var(--color-base-600);
   --astro-code-token-link: var(--color-accent-600);
   --astro-code-token-comment: var(--color-base-400);
-  --astro-code-token-string: var(--color-cyan-600);
+  --astro-code-token-string: var(--color-accent-600);
   --astro-code-token-constant: var(--color-accent-600);
-  --astro-code-background: white;
-  --astro-code-token-keyword: var(--color-yellow-600);
-  --astro-code-token-function: var(--color-cyan-600);
-  --astro-code-token-parameter: var(--color-accent-600);
-  --astro-code-token-punctuation: var(--color-accent-600);
+  --astro-code-background: transparent;
+  --astro-code-token-keyword: var(--color-accent-600);
+  --astro-code-token-function: var(--color-accent-600);
+  --astro-code-token-parameter: var(--color-base-700);
+  --astro-code-token-punctuation: var(--color-base-600);
   --astro-code-token-string-expression: var(--color-accent-600);
   --astro-code-token-bold: inherit;
   --astro-code-token-italic: italic;
   --astro-code-token-underline: underline;
-  --astro-code-token-bold: inherit;
-  --astro-code-token-italic: italic;
-  --astro-code-token-underline: underline;
 
+  /* Shiki css-variables theme support */
+  --shiki-color-text: var(--color-base-700);
+  --shiki-color-background: transparent;
+  --shiki-token-comment: var(--color-base-400);
+  --shiki-token-string: var(--color-accent-600);
+  --shiki-token-constant: var(--color-accent-600);
+  --shiki-token-keyword: var(--color-accent-600);
+  --shiki-token-function: var(--color-accent-600);
+  --shiki-token-parameter: var(--color-base-700);
+  --shiki-token-punctuation: var(--color-base-600);
 }
 @supports (font-variation-settings: normal) {
   :root { font-family: InterVariable, sans-serif; }
@@ -159,5 +172,3 @@ select {
   -moz-appearance: none;    /* Firefox */
   appearance: none;         /* estandar */
 }
-
-
