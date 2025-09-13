@@ -6,6 +6,7 @@ import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
 import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
+import SubsectionToolbarIsland from "@/components/playground/SubsectionToolbarIsland";
 import { formatDistanceToNowStrict } from "date-fns";
 import updates from "@/data/updates.json";
 
@@ -117,17 +118,21 @@ const subsectionKey = (subsection || "").toLowerCase();
           >
             {subsection.replace(/-/g, " ")}
           </Text>
-          <div
-            class="items-center justify-end hidden p-1 bg-white rounded-lg gap-1 md:flex gap-1"
-            x-data="{ openCat:false, openSub:false }"
-          >
+          <div>
+            <SubsectionToolbarIsland client:load cat={section} sub={subsection} subsByCat={subsByCat} />
+          </div>
+            <!--
             <div class="relative">
               <span class="sr-only">Category</span>
               <Button
                 size="xxs"
                 variant="oxbowMuted"
                 class="pointer-events-auto !shadow-none inline-flex items-center gap-2 h-[28px] px-2 py-1"
-                x-on:click.stop="openCat=!openCat"
+                x-on:click.stop="openSub=false; openCat=!openCat; if(openCat) $nextTick(()=>$refs.catMenu?.focus())"
+                x-on:keydown.arrow-down.prevent="openSub=false; openCat=true; $nextTick(()=>$refs.catMenu?.focus())"
+                :aria-expanded="openCat"
+                aria-haspopup="menu"
+                aria-controls="cat-menu"
               >
                 <span class="capitalize" x-text="fmt(cat)"></span>
                 <ChevronDown class="size-4" />
@@ -137,6 +142,11 @@ const subsectionKey = (subsection || "").toLowerCase();
                 x-show="openCat"
                 x-transition
                 @click.outside="openCat=false"
+                x-trap="openCat"
+                x-ref="catMenu"
+                id="cat-menu"
+                tabindex="-1"
+                role="menu"
                 class="absolute right-0 top-full z-50 mt-2 w-52 origin-top-right rounded-xl outline outline-zinc-100 shadow bg-white text-[13px] text-zinc-600 divide-y divide-zinc-100"
                 x-cloak
               >
@@ -144,6 +154,7 @@ const subsectionKey = (subsection || "").toLowerCase();
                   <template x-for="(list, key) in subs" :key="key">
                     <a
                       class="w-full flex items-center justify-between px-3 py-1.5 hover:bg-sand-100"
+                      role="menuitem"
                       :href="`/playground/${key}/${(subs[key]||[])[0]||''}`"
                       @click="openCat=false"
                     >
@@ -166,14 +177,18 @@ const subsectionKey = (subsection || "").toLowerCase();
                 </div>
               </div>
             </div>
-
+            
             <div class="relative">
               <span class="sr-only">Block</span>
               <Button
                 size="xxs"
                 variant="oxbowMuted"
                 class="pointer-events-auto !shadow-none inline-flex items-center gap-2 h-[28px] px-2 py-1"
-                x-on:click.stop="openSub=!openSub"
+                x-on:click.stop="openCat=false; openSub=!openSub; if(openSub) $nextTick(()=>$refs.subMenu?.focus())"
+                x-on:keydown.arrow-down.prevent="openCat=false; openSub=true; $nextTick(()=>$refs.subMenu?.focus())"
+                :aria-expanded="openSub"
+                aria-haspopup="menu"
+                aria-controls="sub-menu"
               >
                 <span class="capitalize" x-text="fmt(sub)"></span>
                 <ChevronDown class="size-4" />
@@ -183,6 +198,11 @@ const subsectionKey = (subsection || "").toLowerCase();
                 x-show="openSub"
                 x-transition
                 @click.outside="openSub=false"
+                x-trap="openSub"
+                x-ref="subMenu"
+                id="sub-menu"
+                tabindex="-1"
+                role="menu"
                 class="absolute right-0 top-full z-50 mt-2 w-64 origin-top-right rounded-xl outline outline-zinc-100 shadow bg-white text-[13px] text-zinc-600 divide-y divide-zinc-100"
                 x-cloak
               >
@@ -190,6 +210,7 @@ const subsectionKey = (subsection || "").toLowerCase();
                   <template x-for="name in (subs[cat]||[])" :key="name">
                     <a
                       class="w-full flex items-center justify-between px-3 py-1.5 hover:bg-sand-100"
+                      role="menuitem"
                       :href="`/playground/${cat}/${name}`"
                       @click="openSub=false"
                     >
@@ -212,6 +233,7 @@ const subsectionKey = (subsection || "").toLowerCase();
                 </div>
               </div>
             </div>
+            -->
           </div>
         </div>
       </Wrapper>

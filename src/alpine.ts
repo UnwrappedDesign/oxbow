@@ -409,11 +409,14 @@ export default (Alpine: Alpine) => {
     code: string;
     copied: boolean;
     theme: string;
+    mode: 'light' | 'system' | 'dark';
     copyCode(): void;
     setTab(tab: Playground["tab"]): void;
     setViewportSize(size: Playground["viewportSize"]): void;
     setCode(code: string): void;
     setTheme(theme: string): void;
+    setColorMode(mode: 'light' | 'system' | 'dark'): void;
+    stripDarkClasses(s: string): string;
   };
 
   Alpine.data(
@@ -458,6 +461,13 @@ export default (Alpine: Alpine) => {
           console.error("Error setting initial tab:", error);
         }
 
+        // Ensure the iframe gets an initial color mode application
+        try {
+          setTimeout(() => {
+            this.setColorMode(this.mode);
+          }, 0);
+        } catch {}
+
         // Theme will be set by the script in Playground.astro
         // using the user's saved preference from custom claims
       },
@@ -466,16 +476,30 @@ export default (Alpine: Alpine) => {
       viewportSize: "desktop",
       code: "",
       theme: "",
+      mode: 'system',
       copyCode() {
         this.copied = true;
-
-        switch (this.tab) {
-          case "theme":
-            this.$clipboard(this.$refs.theme.innerText);
-            break;
-          default:
-            this.$clipboard(this.$refs.code.innerText);
-            break;
+        let text = '';
+        if (this.tab === 'theme') {
+          text = this.$refs.theme?.innerText || '';
+        } else {
+          const el = this.mode === 'light' ? this.$refs.codeLight : (this.mode === 'dark' ? this.$refs.codeDarkOnly : this.$refs.codeSystem);
+          text = el?.innerText || '';
+        }
+        try {
+          if (navigator?.clipboard?.writeText) {
+            navigator.clipboard.writeText(text);
+          } else if (typeof this.$clipboard === 'function') {
+            this.$clipboard(text);
+          } else {
+            const ta = document.createElement('textarea');
+            ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
+          }
+        } catch (e) {
+          try {
+            const ta = document.createElement('textarea');
+            ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
+          } catch {}
         }
 
         setTimeout(() => {
@@ -506,6 +530,11 @@ export default (Alpine: Alpine) => {
 
           setTimeout(() => {
             this.setTheme(originalTheme);
+            try {
+              const iframe = (this as any).$el.querySelector('iframe');
+              iframe?.contentWindow?.postMessage({ type: 'oxbow-request-height' }, '*');
+              setTimeout(() => iframe?.contentWindow?.postMessage({ type: 'oxbow-request-height' }, '*'), 200);
+            } catch {}
           }, 400);
         }
 
@@ -557,6 +586,59 @@ export default (Alpine: Alpine) => {
           lang: "css",
           theme: "css-variables",
         });
+      },
+      setColorMode(mode: 'light' | 'system' | 'dark') {
+        this.mode = mode;
+        const apply = (prefersDark?: boolean) => {
+          try {
+            const iframe = (this as any).$el.querySelector('iframe') as HTMLIFrameElement | null;
+            const doc = iframe?.contentDocument || iframe?.contentWindow?.document;
+            const html = doc?.documentElement; const body = doc?.body;
+            if (!html) return;
+            const enableDark = mode === 'dark' || (mode === 'system' && !!prefersDark);
+            html.classList.toggle('dark', enableDark);
+            body?.classList.toggle('dark', enableDark);
+            try { if (enableDark) { html.setAttribute('data-theme','dark'); body?.setAttribute('data-theme','dark'); } else { html.removeAttribute('data-theme'); body?.removeAttribute('data-theme'); } } catch {}
+            // Also notify the iframe so it can self-apply even if DOM not yet reachable
+            try { iframe?.contentWindow?.postMessage({ type: 'oxbow-set-dark', enable: enableDark }, '*'); } catch {}
+            // Nudge height in case layout changes
+            setTimeout(() => { try { iframe?.contentWindow?.postMessage({ type: 'oxbow-request-height' }, '*'); } catch {} }, 50);
+            setTimeout(() => { try { iframe?.contentWindow?.postMessage({ type: 'oxbow-request-height' }, '*'); } catch {} }, 250);
+          } catch {}
+        };
+        try {
+          if (mode === 'system') {
+            const mq = window.matchMedia('(prefers-color-scheme: dark)');
+            // Save ref so we can remove when leaving system
+            (this as any)._mq && mq.removeEventListener('change', (this as any)._mq);
+            const listener = (e: MediaQueryListEvent) => apply(e.matches);
+            (this as any)._mq = listener;
+            mq.addEventListener('change', listener);
+            apply(mq.matches);
+          } else {
+            // Leaving system mode: detach previous listener if any
+            const mq = window.matchMedia('(prefers-color-scheme: dark)');
+            if ((this as any)._mq) {
+              mq.removeEventListener('change', (this as any)._mq);
+              (this as any)._mq = null;
+            }
+            apply(mode === 'dark');
+          }
+        } catch {
+          apply(mode === 'dark');
+        }
+      },
+      stripDarkClasses(s: string): string {
+        try {
+          // Remove Tailwind dark: prefixed classes across the code text
+          let out = s.replace(/(^|\s)dark:[^\s"'>]+/g, ' ');
+          // Tidy up excessive spaces on lines
+          out = out.replace(/\t+/g, '  ');
+          out = out.replace(/ +/g, ' ');
+          return out;
+        } catch {
+          return s;
+        }
       },
       setBaseTheme(baseColor: string) {
         const shades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
