@@ -3,7 +3,9 @@ export const description = "Checkbox with Expansion";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
 
-<div class="flex items-center justify-center p-8">
+<section
+  class="flex items-center flex-wrap gap-2 justify-center p-8 bg-white dark:bg-black h-full"
+>
   <!-- copy:start -->
   <div class="flex flex-col w-full gap-1" x-data="{ expanded: false }">
     <div class="flex items-start gap-3">
@@ -12,25 +14,28 @@ import Text from "@/components/fundations/typography/Text.astro";
         name="terms-acceptance-checkbox"
         type="checkbox"
         @change="expanded = !expanded"
-        class="rounded shadow size-4 border-zinc-300 text-blue-600 focus:ring-blue-600"
+        class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-blue-600 focus:ring-blue-600 dark:bg-zinc-900 dark:checked:bg-blue-600"
       />
       <div>
         <Text
           for="terms-acceptance-checkbox"
           tag="label"
-          class="block text-sm font-medium text-zinc-500"
+          class="block text-sm font-medium text-zinc-500 dark:text-zinc-300"
         >
           Accept terms and conditions
         </Text>
-        <Text tag="p" variant="textSM" class="text-zinc-400">
+        <Text tag="p" variant="textSM" class="text-zinc-400 dark:text-zinc-500">
           Please review and accept the terms and conditions to proceed.
         </Text>
       </div>
     </div>
-    <div x-show="expanded" class="mt-2 text-sm ml-7 text-zinc-400">
+    <div
+      x-show="expanded"
+      class="mt-2 text-sm ml-7 text-zinc-400 dark:text-zinc-500"
+    >
       By checking this box, you confirm that you have read and agreed to the
       terms and conditions of our service.
     </div>
   </div>
   <!-- copy:end -->
-</div>
+</section>

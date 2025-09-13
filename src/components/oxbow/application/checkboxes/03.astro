@@ -3,7 +3,9 @@ export const description = "Checkbox with Hover Tooltip";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
 
-<div class="flex items-center justify-center p-8">
+<section
+  class="flex items-center flex-wrap gap-2 justify-center p-8 bg-white dark:bg-black h-full"
+>
   <!-- copy:start -->
   <div class="flex items-center gap-2" x-data="{ tooltip: false }">
     <input
@@ -12,21 +14,21 @@ import Text from "@/components/fundations/typography/Text.astro";
       type="checkbox"
       @mouseover="tooltip = true"
       @mouseleave="tooltip = false"
-      class="rounded shadow size-4 border-zinc-300 text-blue-600 focus:ring-blue-600"
+      class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-blue-600 focus:ring-blue-600 dark:bg-zinc-900 dark:checked:bg-blue-600"
     />
     <Text
       for="hover-tooltip"
       tag="label"
-      class="relative block text-sm text-zinc-500"
+      class="relative block text-sm text-zinc-500 dark:text-zinc-300"
     >
       Hover over me
       <span
         x-show="tooltip"
-        class="absolute left-0 px-2 py-1 text-xs text-white bg-black rounded top-6"
+        class="absolute left-0 px-2 py-1 text-xs text-white bg-black dark:bg-zinc-800 dark:text-zinc-100 rounded top-6"
       >
         Tooltip text
       </span>
     </Text>
   </div>
   <!-- copy:end -->
-</div>
+</section>

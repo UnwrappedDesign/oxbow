@@ -3,7 +3,9 @@ export const description = "Checkbox with Counter";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
 
-<div class="flex items-center justify-center p-8">
+<section
+  class="flex items-center flex-wrap gap-2 justify-center p-8 bg-white dark:bg-black h-full"
+>
   <!-- copy:start -->
   <div class="flex items-center gap-2" x-data="{ count: 0 }">
     <input
@@ -11,15 +13,15 @@ import Text from "@/components/fundations/typography/Text.astro";
       name="counter-checkbox"
       type="checkbox"
       @change="count += $event.target.checked ? 1 : -1"
-      class="rounded shadow size-4 border-zinc-300 text-blue-600 focus:ring-blue-600"
+      class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-blue-600 focus:ring-blue-600 dark:bg-zinc-900 dark:checked:bg-blue-600"
     />
     <Text
       for="counter-checkbox"
       tag="label"
-      class="block text-sm text-zinc-500"
+      class="block text-sm text-zinc-500 dark:text-zinc-300"
     >
       Checkbox clicked <span x-text="count"></span> times
     </Text>
   </div>
   <!-- copy:end -->
-</div>
+</section>
