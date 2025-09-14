@@ -7,16 +7,18 @@ export const excludeFromObfuscation = [
 ];
 ---
 
-<div class="flex flex-col justify-center p-8 mx-auto">
+<div class="flex flex-col justify-center p-8 mx-auto bg-white dark:bg-zinc-900">
   <!-- copy:start -->
   <div x-data="{ tab: 'tab1' }">
-    <ul class="flex text-sm border-b gap-4 text-zinc-500 border-zinc-200">
+    <ul
+      class="flex text-sm border-b gap-4 text-zinc-500 dark:text-zinc-400 border-zinc-200 dark:border-zinc-700"
+    >
       <li class="-mb-px">
         <a
           @click.prevent="tab = 'tab1'"
           href="#_"
-          class="flex items-center py-2 font-medium bg-white border-b-2 gap-2 text-blue-500 border-blue-500"
-          :class="{ ' bg-white text-blue-500 border-b-2 border-blue-500' : tab === 'tab1' }"
+          class="flex items-center py-2 font-medium border-b-2 gap-2 text-blue-500 dark:text-blue-400 border-blue-500 dark:border-blue-400"
+          :class="{ ' text-blue-500 dark:text-blue-400 border-b-2 border-blue-500 dark:border-blue-400' : tab === 'tab1' }"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -39,8 +41,8 @@ export const excludeFromObfuscation = [
         <a
           @click.prevent="tab = 'tab2'"
           href="#_"
-          class="flex items-center py-2 font-medium gap-2"
-          :class="{ ' bg-white text-blue-500 border-b-2 border-blue-500' : tab === 'tab2' }"
+          class="flex items-center py-2 font-medium gap-2 text-zinc-500 dark:text-zinc-400"
+          :class="{ ' text-blue-500 dark:text-blue-400 border-b-2 border-blue-500 dark:border-blue-400' : tab === 'tab2' }"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -66,8 +68,8 @@ export const excludeFromObfuscation = [
         <a
           @click.prevent="tab = 'tab3'"
           href="#_"
-          class="flex items-center py-2 font-medium gap-2"
-          :class="{ ' bg-white text-blue-500 border-b-2 border-blue-500' : tab === 'tab3' }"
+          class="flex items-center py-2 font-medium gap-2 text-zinc-500 dark:text-zinc-400"
+          :class="{ ' text-blue-500 dark:text-blue-400 border-b-2 border-blue-500 dark:border-blue-400' : tab === 'tab3' }"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -86,18 +88,26 @@ export const excludeFromObfuscation = [
         >
       </li>
     </ul>
-    <div class="py-4 pt-4 text-left bg-white content">
-      <div x-show="tab==='tab1'" class="text-zinc-500">
+    <div class="py-4 pt-4 text-left content">
+      <div x-show="tab==='tab1'" class="text-zinc-500 dark:text-zinc-400">
         <main class="py-4">
           <p class="text-sm text-zinc-500">Marketing content</p>
         </main>
       </div>
-      <div x-show="tab==='tab2'" class="text-zinc-500" style="display: none;">
+      <div
+        x-show="tab==='tab2'"
+        class="text-zinc-500 dark:text-zinc-400"
+        style="display: none;"
+      >
         <main class="py-4">
           <p class="text-sm text-zinc-500">Application content</p>
         </main>
       </div>
-      <div x-show="tab==='tab3'" class="text-zinc-500" style="display: none;">
+      <div
+        x-show="tab==='tab3'"
+        class="text-zinc-500 dark:text-zinc-400"
+        style="display: none;"
+      >
         <main class="py-4">
           <p class="text-sm text-zinc-500">ECommerce content</p>
         </main>

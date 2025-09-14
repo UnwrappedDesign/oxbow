@@ -10,7 +10,9 @@ export const excludeFromObfuscation = [
 ];
 ---
 
-<div class="flex flex-col justify-center p-8 mx-auto">
+<div
+  class="flex flex-col justify-center p-14 mx-auto bg-white dark:bg-zinc-900"
+>
   <!-- copy:start -->
 
   <div
@@ -19,31 +21,32 @@ export const excludeFromObfuscation = [
   >
     <div
       aria-labelledby="pricing-toggle"
-      class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-white shadow ring-1 ring-zinc-200 ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52"
+      class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-white dark:bg-zinc-800 shadow ring-1 ring-zinc-200 dark:ring-zinc-700 ring-offset-2 dark:ring-offset-black gap-4 lg:mx-0 rounded-md max-w-52"
     >
-      <!-- Monthly Pricing Button: Sets 'duration' to 'monthly' when clicked -->
       <!-- Sliding background -->
       <div
-        class="absolute inset-0 bg-zinc-50 rounded-md transition-transform duration-200 ease-in-out"
+        class="absolute inset-0 bg-zinc-50 dark:bg-zinc-700 rounded-md transition-transform duration-200 ease-in-out"
         :class="duration === 'monthly' ? 'w-1/2 translate-x-0' : 'w-1/2 translate-x-full'"
       >
       </div>
+
       <!-- Monthly Pricing Button -->
       <button
         id="monthly-pricing-button"
         class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-        :class="duration === 'monthly' ? 'text-blue-600' : 'text-zinc-500 hover:text-blue-500'"
+        :class="duration === 'monthly' ? 'text-blue-600 dark:text-blue-400' : 'text-zinc-500 dark:text-zinc-400 hover:text-blue-500'"
         @click="duration = 'monthly'"
         type="button"
         :aria-pressed="duration === 'monthly'"
       >
         Monthly
       </button>
+
       <!-- Annual Pricing Button -->
       <button
         id="annual-pricing-button"
         class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-        :class="duration === 'annual' ? 'text-blue-600' : 'text-zinc-500 hover:text-blue-500'"
+        :class="duration === 'annual' ? 'text-blue-600 dark:text-blue-400' : 'text-zinc-500 dark:text-zinc-400 hover:text-blue-500'"
         @click="duration = 'annual'"
         type="button"
         :aria-pressed="duration === 'annual'"
