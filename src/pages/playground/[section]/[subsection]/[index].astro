@@ -76,7 +76,7 @@ const countsByCatSub = triples.reduce(
   }
 </style>
 
-<BaseLayout hideFooter={true}>
+<BaseLayout>
   <section class="border-t border-zinc-200 dark:border-zinc-800 relative">
     <Wrapper variant="standard" class="lg:border-x lg:border-zinc-200">
       <div class="flex items-end justify-between w-full">
@@ -139,106 +139,26 @@ const countsByCatSub = triples.reduce(
 </BaseLayout>
 
 <script is:inline>
+  // Parent-side listener: update iframe and container height based on messages from /iframe/* pages
   (function () {
-    const params = new URLSearchParams(location.search);
-    const iframeId = params.get("iframeId") || "iframe-unknown";
+    function setHeightById(id, height) {
+      const ifr = document.getElementById(id);
+      if (!ifr || !(ifr instanceof HTMLIFrameElement)) return;
+      const n = Number(height) || 0;
+      if (n <= 0) return; // ignore bogus early heights
+      const target = n + "px";
+      if (ifr.style.height !== target) ifr.style.height = target;
+      const container = ifr.parentElement;
+      if (container && container.style.height !== target) container.style.height = target;
+    }
 
-    const send = () => {
-      // Use a robust doc height calculation
-      const b = document.body;
-      const d = document.documentElement;
-      const height = Math.max(
-        b.scrollHeight,
-        d.scrollHeight,
-        b.offsetHeight,
-        d.offsetHeight,
-        b.clientHeight,
-        d.clientHeight,
-      );
-      parent.postMessage(
-        { type: "oxbow-iframe-height", id: iframeId, height },
-        "*",
-      );
-    };
-
-    // 1) On full load
-    window.addEventListener("load", send);
-
-    // 2) When parent asks
     window.addEventListener("message", (e) => {
-      if (e.data && e.data.type === "oxbow-iframe-resize-request") send();
-    });
-
-    // 3) Watch DOM & layout changes
-    const ro = new ResizeObserver(() => send());
-    ro.observe(document.documentElement);
-    ro.observe(document.body);
-
-    // 4) Late-loading media
-    document.querySelectorAll("img, video, iframe").forEach((el) => {
-      if ("complete" in el && el.complete) return;
-      el.addEventListener("load", send, { once: true });
-      el.addEventListener("error", send, { once: true });
-    });
-
-    // 5) Short bootstrap polling for very dynamic UIs
-    let n = 0;
-    const iv = setInterval(() => {
-      send();
-      if (++n > 20) clearInterval(iv); // ~1s if 50ms
-    }, 50);
-  })();
-</script>
-
-<script is:inline>
-  // Same-origin direct resize loop: mirrors iframe document height into iframe and wrapper
-  (function () {
-    function computeHeight(doc) {
       try {
-        const b = doc.body;
-        const e = doc.documentElement;
-        return Math.max(
-          b?.scrollHeight || 0,
-          e?.scrollHeight || 0,
-          b?.offsetHeight || 0,
-          e?.offsetHeight || 0,
-          b?.clientHeight || 0,
-          e?.clientHeight || 0,
-        );
-      } catch (_) {
-        return 0;
-      }
-    }
-
-    function tick() {
-      document
-        .querySelectorAll('section[x-data="playground"] iframe')
-        .forEach((ifr) => {
-          try {
-            const doc = ifr.contentDocument || ifr.contentWindow?.document;
-            if (!doc) return;
-            const h = Math.max(200, computeHeight(doc));
-            const target = h + "px";
-            if (ifr.style.height !== target) {
-              ifr.style.height = target;
-            }
-            const container = ifr.parentElement;
-            if (container && container.style.height !== target) {
-              container.style.height = target;
-            }
-          } catch (_) {}
-        });
-      requestAnimationFrame(tick);
-    }
-
-    if (document.readyState === "loading") {
-      document.addEventListener(
-        "DOMContentLoaded",
-        () => requestAnimationFrame(tick),
-        { once: true },
-      );
-    } else {
-      requestAnimationFrame(tick);
-    }
+        const data = e?.data || {};
+        if (data.type === "oxbow-height" && data.id) {
+          setHeightById(data.id, data.height);
+        }
+      } catch (_) {}
+    });
   })();
-</script>
+  </script>

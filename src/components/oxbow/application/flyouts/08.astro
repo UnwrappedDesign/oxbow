@@ -50,13 +50,16 @@ const blogPosts = [
 ];
 ---
 
-<div class="flex items-center justify-center w-full p-8 mx-auto">
+<div
+  class="flex items-center justify-center w-full p-8 mx-auto bg-white dark:bg-black"
+>
   <!-- copy:start -->
   <div
     class="relative z-50 isolate"
     x-data="{
       uid: Math.random().toString(36).slice(2),
-      open: false,
+  // Set to true to show the flyout open by default. Change to false to have it closed by default.
+  open: true,
       style: '',
       gap: 8,
       align() {
@@ -77,16 +80,18 @@ const blogPosts = [
       const realign = () => { if (open) align() };
       window.addEventListener('resize', realign);
       window.addEventListener('scroll', realign, { passive: true });
+      // If open by default, align immediately
+      if (open) align();
     "
   >
     <div
-      class="flex items-center justify-center px-8 mx-auto max-w-7xl md:px-12 lg:px-24"
+      class="flex items-center justify-center px-8 pb-145.5 mx-auto max-w-7xl md:px-12 lg:px-24"
     >
       <Button
         x-ref="btn"
         aria-expanded="false"
         @click.stop="toggle"
-        variant="text"
+        variant="muted"
         size="sm"
         gap="sm"
       >
@@ -120,45 +125,38 @@ const blogPosts = [
         x-transition:leave-start="opacity-100 translate-y-0"
         x-transition:leave-end="opacity-0 -translate-y-1"
       >
-        <div class="px-8 py-12 md:px-12 lg:px-24">
+        <div class="px-8 md:px-12 lg:px-24">
           <div
-            class="p-8 mx-auto mt-12 bg-white shadow-lg max-w-7xl ring-1 ring-zinc-900/5 rounded-3xl lg:p-12"
+            class="p-8 mx-auto bg-white dark:bg-zinc-900 shadow-lg max-w-7xl ring-1 ring-zinc-900/5 dark:ring-zinc-700 rounded-3xl"
           >
             <div
               class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12"
             >
               <div>
-                <Text
-                  tag="h3"
-                  variant="textBase"
-                  class="font-medium text-zinc-900">Benefits</Text
-                >
-                <div class="mt-2">
-                  <FlyoutLinkBox
-                    href="#_"
-                    icon={Refresh}
-                    title="Sync across devices"
-                    description="Enable syncing across devices"
-                  />
-                  <FlyoutLinkBox
-                    href="#_"
-                    icon={FileDots}
-                    title="Create custom documents"
-                    description="Stlye your documents with ease"
-                  />
-                  <FlyoutLinkBox
-                    href="#_"
-                    icon={Edit}
-                    title=" Edit your files"
-                    description="Endless possibilities"
-                  />
-                  <FlyoutLinkBox
-                    href="#_"
-                    icon={Brain}
-                    title="Organize files"
-                    description="Keep them all in one place"
-                  />
-                </div>
+                <FlyoutLinkBox
+                  href="#_"
+                  icon={Refresh}
+                  title="Sync across devices"
+                  description="Enable syncing across devices"
+                />
+                <FlyoutLinkBox
+                  href="#_"
+                  icon={FileDots}
+                  title="Create custom documents"
+                  description="Stlye your documents with ease"
+                />
+                <FlyoutLinkBox
+                  href="#_"
+                  icon={Edit}
+                  title=" Edit your files"
+                  description="Endless possibilities"
+                />
+                <FlyoutLinkBox
+                  href="#_"
+                  icon={Brain}
+                  title="Organize files"
+                  description="Keep them all in one place"
+                />
               </div>
 
               <div class="flex flex-col justify-between h-full">
@@ -169,12 +167,12 @@ const blogPosts = [
                         <Text
                           tag="h3"
                           variant="textBase"
-                          class="font-medium text-zinc-900"
+                          class="font-medium text-zinc-900 dark:text-zinc-100"
                         >
                           {categoryItem.category}
                         </Text>
                         <div
-                          class="pt-4 mt-4 border-t border-zinc-200 space-y-2"
+                          class="pt-4 mt-4 border-t border-zinc-200 dark:border-zinc-700 space-y-2"
                           role="none"
                         >
                           {categoryItem.features.map((feature) => (
@@ -182,7 +180,7 @@ const blogPosts = [
                               tag="a"
                               href={feature.link}
                               variant="textBase"
-                              class="block font-medium hover:text-blue-500 text-zinc-500 "
+                              class="block font-medium hover:text-blue-500 dark:hover:text-blue-400 text-zinc-500 dark:text-zinc-400 "
                             >
                               {feature.name}
                             </Text>
@@ -209,14 +207,14 @@ const blogPosts = [
                           <Text
                             tag="h3"
                             variant="textBase"
-                            class="font-medium text-zinc-900 group-hover:text-blue-500"
+                            class="font-medium text-zinc-900 dark:text-zinc-100 group-hover:text-blue-500 dark:group-hover:text-blue-400"
                           >
                             {post.title}
                           </Text>
                           <Text
                             tag="h3"
                             variant="textSM"
-                            class="font-medium text-zinc-500"
+                            class="font-medium text-zinc-500 dark:text-zinc-400"
                           >
                             {post.subtitle}
                           </Text>

@@ -23,13 +23,16 @@ const links = [
 ];
 ---
 
-<div class="flex items-center justify-center w-full p-8 mx-auto">
+<div
+  class="flex items-center justify-center w-full p-8 pb-145.5 mx-auto bg-white dark:bg-black"
+>
   <!-- copy:start -->
   <div
     class="relative z-50 isolate"
     x-data="{
       uid: Math.random().toString(36).slice(2),
-      open: false,
+  // Set to true to show the flyout open by default. Change to false to have it closed by default.
+  open: true,
       style: '',
       gap: 8,
       align() {
@@ -53,6 +56,8 @@ const links = [
       const realign = () => { if (open) align() };
       window.addEventListener('resize', realign);
       window.addEventListener('scroll', realign, { passive: true });
+      // If open by default, align immediately
+      if (open) align();
     "
   >
     <div
@@ -62,7 +67,7 @@ const links = [
         x-ref="btn"
         aria-expanded="false"
         @click.stop="toggle"
-        variant="text"
+        variant="muted"
         size="sm"
         gap="sm"
       >
@@ -97,9 +102,9 @@ const links = [
         x-transition:leave-end="opacity-0 -translate-y-1"
       >
         <!-- Keep your original inner wrapper/layout -->
-        <div class="px-8 py-12 md:px-12 lg:px-24">
+        <div class="px-8 md:px-12 lg:px-24">
           <div
-            class="p-8 mx-auto mt-12 bg-white shadow-lg max-w-7xl ring-1 ring-zinc-900/5 rounded-3xl lg:p-12"
+            class="p-8 mx-auto bg-white dark:bg-zinc-900 shadow-lg max-w-7xl ring-1 ring-zinc-900/5 dark:ring-zinc-700 rounded-3xl"
           >
             <div
               class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12"
@@ -108,7 +113,8 @@ const links = [
                 <Text
                   tag="h3"
                   variant="textBase"
-                  class="font-medium text-zinc-900">Benefits</Text
+                  class="font-medium text-zinc-900 dark:text-zinc-100"
+                  >Benefits</Text
                 >
                 <div class="mt-2">
                   <FlyoutLinkBox
@@ -142,7 +148,8 @@ const links = [
                 <Text
                   tag="h3"
                   variant="textBase"
-                  class="font-medium text-zinc-900">Enhance Productivity</Text
+                  class="font-medium text-zinc-900 dark:text-zinc-100"
+                  >Enhance Productivity</Text
                 >
                 <div class="mt-2">
                   <FlyoutLinkBox
@@ -194,13 +201,13 @@ const links = [
                   </span>
                   <input
                     type="text"
-                    class="block w-full h-8 px-4 py-2 pl-10 pr-4 text-sm bg-white border border-transparent rounded-lg shadow appearance-none text-blue-700 duration-300 ring-1 ring-zinc-200 placeholder-zinc-400 focus:border-zinc-300 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+                    class="block w-full h-8 px-4 py-2 pl-10 pr-4 text-sm bg-white dark:bg-zinc-800 border border-transparent rounded-lg shadow appearance-none text-blue-700 dark:text-zinc-200 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-600 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
                     placeholder="Search"
                     aria-label="Search"
                   />
                 </div>
                 <div
-                  class="pt-4 mt-4 border-t border-zinc-200 space-y-2"
+                  class="pt-4 mt-4 border-t border-zinc-200 dark:border-zinc-700 space-y-2"
                   role="none"
                 >
                   {
@@ -209,7 +216,7 @@ const links = [
                         tag="a"
                         href={feature.link}
                         variant="textBase"
-                        class="block font-medium hover:text-blue-500 text-zinc-500 "
+                        class="block font-medium hover:text-blue-500 dark:hover:text-blue-400 text-zinc-500 dark:text-zinc-400 "
                       >
                         {feature.name}
                       </Text>

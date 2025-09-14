@@ -67,15 +67,20 @@ const _noBottomLeft =
 const _noBottomRight =
   noRounded || noRoundedBottom || noRoundedRight || noRoundedBottomRight;
 let roundedClass = "rounded-md";
-if (_noTopLeft && _noTopRight && _noBottomLeft && _noBottomRight) {
-  roundedClass = "rounded-none";
-} else {
-  const parts = [];
-  if (!_noTopLeft) parts.push("rounded-tl-md");
-  if (!_noTopRight) parts.push("rounded-tr-md");
-  if (!_noBottomLeft) parts.push("rounded-bl-md");
-  if (!_noBottomRight) parts.push("rounded-br-md");
-  if (parts.length) roundedClass = parts.join(" ");
+// Use per-corner rounding only when any corner override is provided
+const anyCornerOverride =
+  _noTopLeft || _noTopRight || _noBottomLeft || _noBottomRight;
+if (anyCornerOverride) {
+  if (_noTopLeft && _noTopRight && _noBottomLeft && _noBottomRight) {
+    roundedClass = "rounded-none";
+  } else {
+    const parts = [];
+    if (!_noTopLeft) parts.push("rounded-tl-md");
+    if (!_noTopRight) parts.push("rounded-tr-md");
+    if (!_noBottomLeft) parts.push("rounded-bl-md");
+    if (!_noBottomRight) parts.push("rounded-br-md");
+    roundedClass = parts.join(" ");
+  }
 }
 const isLink = typeof href === "string";
 const finalHref = isLink ? href : undefined;

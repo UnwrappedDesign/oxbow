@@ -11,18 +11,22 @@ const { href, icon: Icon, title, description, badge } = Astro.props;
   href={href}
   tag="a"
   variant="textSM"
-  class="relative flex items-center w-full p-4 gap-2 group rounded-xl hover:bg-zinc-50"
+  class="relative flex items-center w-full p-4 gap-2 group rounded-xl hover:bg-zinc-50 dark:hover:bg-zinc-800 bg-transparent dark:bg-transparent"
 >
   <div
-    class="flex items-center justify-center flex-none mt-1 rounded-full duration-300 size-11 bg-zinc-50 group-hover:bg-white"
+    class="flex items-center justify-center flex-none mt-1 rounded-full duration-300 size-11 bg-zinc-50 dark:bg-zinc-800 group-hover:bg-white dark:group-hover:bg-zinc-700"
   >
-    <Icon size="base" slot="left-icon" class="group-hover:text-blue-500" />
+    <Icon
+      size="base"
+      slot="left-icon"
+      class="group-hover:text-blue-500 dark:group-hover:text-blue-400 text-zinc-500 dark:text-zinc-400"
+    />
   </div>
   <div>
     <Text
       tag="h3"
       variant="textBase"
-      class="flex items-center w-full font-medium text-zinc-900 group-hover:text-blue-500 gap-2"
+      class="flex items-center w-full font-medium text-zinc-900 dark:text-zinc-100 group-hover:text-blue-500 dark:group-hover:text-blue-400 gap-2"
     >
       {title}
       {
@@ -33,7 +37,11 @@ const { href, icon: Icon, title, description, badge } = Astro.props;
         )
       }
     </Text>
-    <Text tag="h3" variant="textSM" class="font-medium text-zinc-500">
+    <Text
+      tag="h3"
+      variant="textSM"
+      class="font-medium text-zinc-500 dark:text-zinc-400"
+    >
       {description}
     </Text>
   </div>

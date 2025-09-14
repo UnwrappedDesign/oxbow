@@ -16,13 +16,18 @@ import Edit from "@/components/fundations/icons/Edit.astro";
 import Brain from "@/components/fundations/icons/Brain.astro";
 ---
 
-<div class="flex items-center justify-center w-full p-8 mx-auto">
+<div
+  class="flex items-center justify-center w-full p-8 pb-145.5 mx-auto bg-white dark:bg-black"
+>
   <!-- copy:start -->
+  <!-- 
+  // Set to true to show the flyout open by default. Change to false to have it closed by default.
+  // open: true 
+-->
   <div
     class="relative"
     x-data="{
       uid: Math.random().toString(36).slice(2),
-      open: false,
       style: '',
       gap: 8,
       align() {
@@ -49,13 +54,15 @@ import Brain from "@/components/fundations/icons/Brain.astro";
       const realign = () => { if (open) align() };
       window.addEventListener('resize', realign);
       window.addEventListener('scroll', realign, { passive: true });
+      // If open by default, align immediately
+      if (open) align();
     "
   >
     <Button
       x-ref="btn"
       @click.stop="toggle"
       aria-expanded="false"
-      variant="default"
+      variant="muted"
       size="sm"
       gap="sm"
     >
@@ -90,24 +97,24 @@ import Brain from "@/components/fundations/icons/Brain.astro";
       >
         <div class="max-w-max">
           <div
-            class="w-screen max-w-xs p-4 bg-white shadow-lg rounded-3xl ring-1 ring-zinc-900/5"
+            class="w-screen max-w-xs p-4 bg-white dark:bg-zinc-900 shadow-lg rounded-3xl ring-1 ring-zinc-900/5 dark:ring-zinc-700"
           >
             <div>
               <Text
                 href="#_"
                 tag="a"
                 variant="textSM"
-                class="relative flex items-center w-full p-4 gap-2 group rounded-xl hover:bg-zinc-50"
+                class="relative flex items-center w-full p-4 gap-2 group rounded-xl hover:bg-zinc-50 dark:hover:bg-zinc-800"
               >
                 <Refresh
                   size="base"
                   slot="left-icon"
-                  class="group-hover:text-blue-500"
+                  class="group-hover:text-blue-500 dark:group-hover:text-blue-400 text-zinc-500 dark:text-zinc-400"
                 />
                 <Text
                   tag="h3"
                   variant="textBase"
-                  class="font-medium text-zinc-900 group-hover:text-blue-500"
+                  class="font-medium text-zinc-900 dark:text-zinc-100 group-hover:text-blue-500 dark:group-hover:text-blue-400"
                 >
                   Sync across devices
                 </Text>
@@ -117,17 +124,17 @@ import Brain from "@/components/fundations/icons/Brain.astro";
                 href="#_"
                 tag="a"
                 variant="textSM"
-                class="relative flex items-center w-full p-4 gap-2 group rounded-xl hover:bg-zinc-50"
+                class="relative flex items-center w-full p-4 gap-2 group rounded-xl hover:bg-zinc-50 dark:hover:bg-zinc-800"
               >
                 <FileDots
                   size="base"
                   slot="left-icon"
-                  class="group-hover:text-blue-500"
+                  class="group-hover:text-blue-500 dark:group-hover:text-blue-400 text-zinc-500 dark:text-zinc-400"
                 />
                 <Text
                   tag="h3"
                   variant="textBase"
-                  class="font-medium text-zinc-900 group-hover:text-blue-500"
+                  class="font-medium text-zinc-900 dark:text-zinc-100 group-hover:text-blue-500 dark:group-hover:text-blue-400"
                 >
                   Create custom documents
                 </Text>
@@ -137,17 +144,17 @@ import Brain from "@/components/fundations/icons/Brain.astro";
                 href="#_"
                 tag="a"
                 variant="textSM"
-                class="relative flex items-center w-full p-4 gap-2 group rounded-xl hover:bg-zinc-50"
+                class="relative flex items-center w-full p-4 gap-2 group rounded-xl hover:bg-zinc-50 dark:hover:bg-zinc-800"
               >
                 <Edit
                   size="base"
                   slot="left-icon"
-                  class="group-hover:text-blue-500"
+                  class="group-hover:text-blue-500 dark:group-hover:text-blue-400 text-zinc-500 dark:text-zinc-400"
                 />
                 <Text
                   tag="h3"
                   variant="textBase"
-                  class="font-medium text-zinc-900 group-hover:text-blue-500"
+                  class="font-medium text-zinc-900 dark:text-zinc-100 group-hover:text-blue-500 dark:group-hover:text-blue-400"
                 >
                   Edit your files
                 </Text>
@@ -157,17 +164,17 @@ import Brain from "@/components/fundations/icons/Brain.astro";
                 href="#_"
                 tag="a"
                 variant="textSM"
-                class="relative flex items-center w-full p-4 gap-2 group rounded-xl hover:bg-zinc-50"
+                class="relative flex items-center w-full p-4 gap-2 group rounded-xl hover:bg-zinc-50 dark:hover:bg-zinc-800"
               >
                 <Brain
                   size="base"
                   slot="left-icon"
-                  class="group-hover:text-blue-500"
+                  class="group-hover:text-blue-500 dark:group-hover:text-blue-400 text-zinc-500 dark:text-zinc-400"
                 />
                 <Text
                   tag="h3"
                   variant="textBase"
-                  class="font-medium text-zinc-900 group-hover:text-blue-500"
+                  class="font-medium text-zinc-900 dark:text-zinc-100 group-hover:text-blue-500 dark:group-hover:text-blue-400"
                 >
                   Edit your files
                 </Text>

@@ -15,13 +15,16 @@ import Brain from "@/components/fundations/icons/Brain.astro";
 import Subtask from "@/components/fundations/icons/Subtask.astro";
 ---
 
-<div class="flex items-center justify-center w-full p-8 mx-auto">
+<div
+  class="flex items-center justify-center w-full p-8 pb-145.5 mx-auto bg-white dark:bg-black"
+>
   <!-- copy:start -->
   <div
     class="relative"
     x-data="{
       uid: Math.random().toString(36).slice(2),
-      open: false,
+  // Set to true to show the flyout open by default. Change to false to have it closed by default.
+  open: true,
       style: '',
       gap: 8,
       align() {
@@ -46,13 +49,15 @@ import Subtask from "@/components/fundations/icons/Subtask.astro";
       const realign = () => { if (open) align() };
       window.addEventListener('resize', realign);
       window.addEventListener('scroll', realign, { passive: true });
+      // If open by default, align immediately
+      if (open) align();
     "
   >
     <Button
       x-ref="btn"
       aria-expanded="false"
       @click.stop="toggle"
-      variant="text"
+      variant="muted"
       size="sm"
       gap="sm"
     >
@@ -84,7 +89,7 @@ import Subtask from "@/components/fundations/icons/Subtask.astro";
         x-transition:leave-end="opacity-0 translate-y-1"
       >
         <div
-          class="flex-auto w-screen max-w-sm p-4 text-sm bg-white shadow-lg leading-6 rounded-3xl ring-1 ring-zinc-900/5"
+          class="flex-auto w-screen max-w-sm p-4 text-sm bg-white dark:bg-zinc-900 shadow-lg leading-6 rounded-3xl ring-1 ring-zinc-900/5 dark:ring-zinc-700"
         >
           <div>
             <FlyoutLinkBox

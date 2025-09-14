@@ -283,16 +283,16 @@ export default function PlaygroundIsland({
         </div>
       </div>
 
-      <div className="relative min-h-0 w-full flex rounded-xl shadow-oxbow bg-white z-1 overflow-scroll isolate scrollbar-hide max-h-[500px] lg:max-h-[650px]" >
+      <div className="relative min-h-0 w-full flex rounded-xl shadow-oxbow bg-white z-1 isolate scrollbar-hide overflow-hidden" >
         {tab === 'preview' && (
-          <div className="flex flex-col items-center bg-white w-full scrollbar-hide min-h-[600px]">
-            <div ref={containerRef} id="playground-preview-container" className="bg-white text-base shadow-normal  overflow-hidden mx-auto w-full flex flex-col scrollbar-hide " style={{ transition: 'width 250ms ease-in-out' }}>
+          <div className="flex flex-col items-center bg-white w-full scrollbar-hide">
+            <div ref={containerRef} id="playground-preview-container" className="bg-white text-base shadow-normal  mx-auto w-full flex flex-col scrollbar-hide " style={{ transition: 'width 250ms ease-in-out, height 200ms ease' }}>
               <iframe
                 ref={iframeRef}
                 id={iframeId}
                 className="block w-full border-0 scrollbar-hide "
                 title={`Preview ${iframeSrc}`}
-                style={{ height: 'auto', minHeight: 650, visibility: 'visible' }}
+                style={{ height: 'auto', visibility: 'visible' }}
                 src={iframeSrc}
                 onLoad={() => {
                   requestHeight();
