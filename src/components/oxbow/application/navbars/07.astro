@@ -1,0 +1,118 @@
+---
+export const freeComponent = true;
+export const excludeFromObfuscation = ["flex", "hidden"];
+
+import Button from "@/components/fundations/buttons/Button.astro";
+import IconButton from "@/components/fundations/buttons/IconButton.astro";
+import Burger from "@/components/fundations/icons/Burger.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import Logo from "@/components/assets/Logo.astro";
+---
+
+<!-- copy:start -->
+<header
+  class="w-full mx-auto bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800"
+>
+  <div
+    x-data="{ open:false }"
+    class="max-w-screen-xl mx-auto px-6 md:px-10 lg:px-16 pt-2"
+  >
+    <!-- Top row with breadcrumbs and actions -->
+    <div class="flex items-center justify-between">
+      <nav
+        aria-label="Breadcrumb"
+        class="text-xs text-zinc-500 dark:text-zinc-400"
+      >
+        <ol class="flex items-center gap-2">
+          <li>
+            <a href="#_" class="hover:text-zinc-700 dark:hover:text-zinc-200"
+              >Personal</a
+            >
+          </li>
+          <li aria-hidden class="text-zinc-300">/</li>
+          <li>
+            <a href="#_" class="hover:text-zinc-700 dark:hover:text-zinc-200"
+              >Projects</a
+            >
+          </li>
+          <li aria-hidden class="text-zinc-300">/</li>
+          <li class="text-zinc-900 dark:text-zinc-100 font-medium">
+            Main project
+          </li>
+        </ol>
+      </nav>
+      <div class="flex items-center gap-2">
+        <Button variant="muted" size="xs">Invite</Button>
+        <Button variant="accent" size="xs">New</Button>
+      </div>
+    </div>
+
+    <!-- Second row: brand + primary nav -->
+    <div class="mt-2 flex items-center gap-4">
+      <Text tag="a" href="#_" variant="textBase" class="flex items-center gap-2 font-semibold text-zinc-900 dark:text-zinc-100">
+        <Logo class="h-7 text-black dark:text-white" />
+        Oxbow UI
+      </Text>
+      <div class="ml-auto hidden md:flex items-center gap-4">
+        <a
+          href="#_"
+          class="py-2 text-sm text-blue-600 dark:text-blue-400 relative after:absolute after:left-0 after:right-0 after:-bottom-px after:h-[2px] after:bg-current"
+          >Overview</a
+        >
+        <a
+          href="#_"
+          class="py-2 text-sm text-zinc-600 dark:text-zinc-300 hover:text-blue-600"
+          >Analytics</a
+        >
+        <a
+          href="#_"
+          class="py-2 text-sm text-zinc-600 dark:text-zinc-300 hover:text-blue-600"
+          >Billing</a
+        >
+        <a
+          href="#_"
+          class="py-2 text-sm text-zinc-600 dark:text-zinc-300 hover:text-blue-600"
+          >Settings</a
+        >
+      </div>
+      <IconButton
+        class="md:hidden"
+        @click="open=!open"
+        :aria-expanded="open"
+        aria-controls="nav-7"
+        variant="alternative"
+        size="xs"><Burger size="xs" slot="icon" /></IconButton
+      >
+    </div>
+
+    <!-- Mobile menu -->
+    <nav
+      id="nav-7"
+      :class="{ 'block': open, 'hidden': !open }"
+      class="md:hidden hidden mt-2 space-y-2"
+      aria-label="Mobile"
+    >
+      <a
+        href="#_"
+        class="block px-2 py-1 rounded-md text-zinc-600 dark:text-zinc-300 hover:bg-sand-100 dark:hover:bg-zinc-800"
+        >Overview</a
+      >
+      <a
+        href="#_"
+        class="block px-2 py-1 rounded-md text-zinc-600 dark:text-zinc-300 hover:bg-sand-100 dark:hover:bg-zinc-800"
+        >Analytics</a
+      >
+      <a
+        href="#_"
+        class="block px-2 py-1 rounded-md text-zinc-600 dark:text-zinc-300 hover:bg-sand-100 dark:hover:bg-zinc-800"
+        >Billing</a
+      >
+      <a
+        href="#_"
+        class="block px-2 py-1 rounded-md text-zinc-600 dark:text-zinc-300 hover:bg-sand-100 dark:hover:bg-zinc-800"
+        >Settings</a
+      >
+    </nav>
+  </div>
+</header>
+<!-- copy:end -->

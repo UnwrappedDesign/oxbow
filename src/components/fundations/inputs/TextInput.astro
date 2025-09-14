@@ -124,15 +124,32 @@ const _noTopRight = noRounded || noRoundedTop || noRoundedRight || noRoundedTopR
 const _noBottomLeft = noRounded || noRoundedBottom || noRoundedLeft || noRoundedBottomLeft;
 const _noBottomRight = noRounded || noRoundedBottom || noRoundedRight || noRoundedBottomRight;
 let roundedClass = "rounded-md";
-if (_noTopLeft && _noTopRight && _noBottomLeft && _noBottomRight) {
-  roundedClass = "rounded-none";
-} else {
-  const parts = [];
-  if (!_noTopLeft) parts.push("rounded-tl-md");
-  if (!_noTopRight) parts.push("rounded-tr-md");
-  if (!_noBottomLeft) parts.push("rounded-bl-md");
-  if (!_noBottomRight) parts.push("rounded-br-md");
-  if (parts.length) roundedClass = parts.join(" ");
+const anyCornerOverride = _noTopLeft || _noTopRight || _noBottomLeft || _noBottomRight;
+if (anyCornerOverride) {
+  if (_noTopLeft && _noTopRight && _noBottomLeft && _noBottomRight) {
+    roundedClass = "rounded-none";
+  } else {
+    const removes: string[] = [];
+    const noLeftBoth = _noTopLeft && _noBottomLeft;
+    const noRightBoth = _noTopRight && _noBottomRight;
+    const noTopBoth = _noTopLeft && _noTopRight;
+    const noBottomBoth = _noBottomLeft && _noBottomRight;
+    if (noLeftBoth) removes.push("rounded-l-none");
+    if (noRightBoth) removes.push("rounded-r-none");
+    if (noTopBoth) removes.push("rounded-t-none");
+    if (noBottomBoth) removes.push("rounded-b-none");
+    const handled = {
+      tl: noTopBoth || noLeftBoth,
+      tr: noTopBoth || noRightBoth,
+      bl: noBottomBoth || noLeftBoth,
+      br: noBottomBoth || noRightBoth,
+    };
+    if (_noTopLeft && !handled.tl) removes.push("rounded-tl-none");
+    if (_noTopRight && !handled.tr) removes.push("rounded-tr-none");
+    if (_noBottomLeft && !handled.bl) removes.push("rounded-bl-none");
+    if (_noBottomRight && !handled.br) removes.push("rounded-br-none");
+    roundedClass = ["rounded-md", ...removes].join(" ");
+  }
 }
 let inputClasses = [
   ...(isSquareSize ? [] : ["w-full"]),
@@ -156,13 +173,15 @@ const xDataAttr = isRange
 // Modified range input classes with custom rounded corners
 const rangeFromClasses = [
   ...inputClasses,
-  "rounded-r-none"
-].filter(c => !c.startsWith("rounded-md"));
+  // Keep base rounding and remove only the inner side
+  "rounded-r-none",
+];
 const rangeToClasses = [
   ...inputClasses,
+  // Keep base rounding and remove only the inner side
   "rounded-l-none",
-  "border-l-0"
-].filter(c => !c.startsWith("rounded-md"));
+  "border-l-0",
+];
 ---
 {isRange && (
   <div class="w-full">
@@ -172,7 +191,7 @@ const rangeToClasses = [
         class={isGrouped
           ? "sr-only"
           : label
-            ? `font-medium text-zinc-500 ${
+            ? `font-medium text-zinc-500 dark:text-zinc-200 ${
                 size === "xs" || size === "sm"
                   ? "text-xs"
                   : size === "base"
@@ -186,7 +205,7 @@ const rangeToClasses = [
         {label || name || id || "Range"}
       </label>
       {hint && (
-        <span class={`text-zinc-400 ${
+        <span class={`text-zinc-400 dark:text-zinc-400 ${
           size === "xs" || size === "sm"
             ? "text-xs"
             : size === "base"
@@ -220,10 +239,10 @@ const rangeToClasses = [
             x-show="fromValue"
             type="button"
             @click="fromValue = ''"
-            class="text-zinc-400 hover:text-zinc-600 focus:outline-none"
+            class="text-zinc-400 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 focus:outline-none"
             aria-label="Clear input"
           >
-            <X size="sm" class="text-zinc-500" />
+            <X size="sm" class="text-zinc-500 dark:text-zinc-300" />
           </button>
         </div>
       </div>
@@ -246,10 +265,10 @@ const rangeToClasses = [
             x-show="toValue"
             type="button"
             @click="toValue = ''"
-            class="text-zinc-400 hover:text-zinc-600 focus:outline-none"
+            class="text-zinc-400 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 focus:outline-none"
             aria-label="Clear input"
           >
-            <X size="sm" class="text-zinc-500" />
+            <X size="sm" class="text-zinc-500 dark:text-zinc-300" />
           </button>
         </div>
       </div>
@@ -275,7 +294,7 @@ const rangeToClasses = [
     <div class={`flex justify-between items-baseline ${isGrouped ? '' : 'mb-1'}`}>
       <label for={id} class={
         isGrouped ? "sr-only" : label
-          ? `font-medium text-zinc-500 ${
+          ? `font-medium text-zinc-500 dark:text-zinc-200 ${
               size === "xs" || size === "sm"
                 ? "text-xs"
                 : size === "base"
@@ -288,7 +307,7 @@ const rangeToClasses = [
         {label || name || id || "Input"}
       </label>
       {hint && (
-        <span class={`text-zinc-400 ${
+        <span class={`text-zinc-400 dark:text-zinc-400 ${
           size === "xs" || size === "sm"
             ? "text-xs"
             : size === "base"
@@ -302,11 +321,11 @@ const rangeToClasses = [
       )}
     </div>
     <div class="relative flex items-center gap-2">
-      <template x-for="(digit, i) in digits" :key="i">
-        <div :class="[
+      <template x-for="(digit, i) in digits" x-bind:key="i">
+        <div x-bind:class="[
           'size-10 rounded-md text-center font-medium text-lg flex items-center justify-center transition-all',
-          'border bg-white text-zinc-500',
-          isFocused && value.length === i ? 'border-blue-500 ring-2 ring-blue-500' : 'border-zinc-300'
+          'border bg-white text-zinc-500 dark:bg-zinc-800 dark:text-zinc-100',
+          isFocused && value.length === i ? 'border-blue-500 ring-2 ring-blue-500' : 'border-zinc-300 dark:border-zinc-700'
         ]">
           <span x-text="digit"></span>
         </div>
@@ -320,10 +339,10 @@ const rangeToClasses = [
         maxlength="6"
         x-model="value"
         x-on:input="onInput"
-        @focus="isFocused = true"
-        @blur="isFocused = false"
+        x-on:focus="isFocused = true"
+        x-on:blur="isFocused = false"
         class="absolute inset-0 z-10 w-full h-full opacity-0 cursor-text"
-        aria-label={label || name || id || "OTP input"}
+        aria-label={label || name || id || 'OTP input'}
       />
     </div>
     {error && (
@@ -371,19 +390,19 @@ const rangeToClasses = [
     
 <div
   class="relative z-0 focus-within:z-10"
-  {...(isPassword ? { 'x-data': '{ value: "", showPassword: false }' } : {})}
+  x-data={isPassword ? '{ value: "", showPassword: false }' : undefined}
 >
   {prefix && (
-    <span class="absolute inset-y-0 left-0 flex items-center pl-3 select-none text-zinc-400">
+    <span class="absolute inset-y-0 left-0 flex items-center pl-3 select-none text-zinc-400 dark:text-zinc-400">
       {prefix}
     </span>
   )}
   {hasLeftIcon && (
     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-      {isSearch && iconPosition === "left" && <Search size="sm" class="text-zinc-500" />}
-      {isEmail && <Mail size="sm" class="text-zinc-500" />}
-      {isCreditCard && <CreditCard size="sm" class="text-zinc-500" />}
-      {isExpiry && <Calendar size="sm" class="text-zinc-500" />}
+      {isSearch && iconPosition === "left" && <Search size="sm" class="text-zinc-500 dark:text-zinc-300" />}
+      {isEmail && <Mail size="sm" class="text-zinc-500 dark:text-zinc-300" />}
+      {isCreditCard && <CreditCard size="sm" class="text-zinc-500 dark:text-zinc-300" />}
+      {isExpiry && <Calendar size="sm" class="text-zinc-500 dark:text-zinc-300" />}
     </div>
   )}
 
@@ -407,7 +426,7 @@ const rangeToClasses = [
   {/* Render right search icon if type is search and iconPosition is right */}
   {isSearch && iconPosition === "right" && (
     <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-      <Search size="sm" class="text-zinc-500" />
+      <Search size="sm" class="text-zinc-500 dark:text-zinc-300" />
     </div>
   )}
 
@@ -416,7 +435,7 @@ const rangeToClasses = [
       <button
         type="button"
         @click="showPassword = !showPassword"
-        class="text-zinc-500 focus:outline-none"
+        class="text-zinc-500 dark:text-zinc-300 focus:outline-none"
         tabindex="-1"
         aria-label="Toggle password visibility"
       >
@@ -429,10 +448,10 @@ const rangeToClasses = [
           x-show="value"
           type="button"
           @click="value = ''"
-          class="text-zinc-400 hover:text-zinc-600 focus:outline-none"
+          class="text-zinc-400 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 focus:outline-none"
           aria-label="Clear input"
         >
-          <X size="sm" class="text-zinc-500" />
+          <X size="sm" class="text-zinc-500 dark:text-zinc-300" />
         </button>
       )}
     </div>
@@ -440,7 +459,7 @@ const rangeToClasses = [
 
   {isCVV && (
     <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-      <Lock size="sm" class="pointer-events-none text-zinc-500" />
+      <Lock size="sm" class="pointer-events-none text-zinc-500 dark:text-zinc-300" />
     </div>
   )}
 </div>

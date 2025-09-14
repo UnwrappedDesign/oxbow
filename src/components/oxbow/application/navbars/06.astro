@@ -1,84 +1,136 @@
 ---
+export const freeComponent = true;
+export const excludeFromObfuscation = ["flex", "hidden"];
+import { Image } from "astro:assets";
+import Avatar from "@/images/assets/avatar.png";
 import Button from "@/components/fundations/buttons/Button.astro";
 import IconButton from "@/components/fundations/buttons/IconButton.astro";
 import Burger from "@/components/fundations/icons/Burger.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-
-export const excludeFromObfuscation = ["flex", "hidden"];
+import Logo from "@/components/assets/Logo.astro";
+import TextInput from "@/components/fundations/inputs/TextInput.astro";
+import Sun from "@/components/fundations/icons/Sun.astro";
+import User from "@/components/fundations/icons/User.astro";
+import Moon from "@/components/fundations/icons/Moon.astro";
 ---
 
 <!-- copy:start -->
-<header class="w-full mx-auto bg-zinc-50">
+<header
+  class="w-full mx-auto bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800"
+>
   <div
-    x-data="{ open: false }"
-    class="relative flex flex-col w-full px-8 py-2 mx-auto md:px-12 md:items-center md:justify-between md:flex-row lg:px-24 max-w-screen-xl"
+    x-data="{ open:false, theme: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light', userMenu:false }"
+    class="max-w-screen-xl mx-auto px-6 md:px-10 lg:px-16 py-2"
   >
-    <!-- Brand + mobile toggle -->
-    <div class="flex flex-row items-center justify-between text-black">
+    <div class="flex items-center gap-3">
+      <!-- Brand -->
       <Text
         tag="a"
         href="#_"
         variant="textBase"
-        class="flex items-center font-medium hover:text-blue-500 gap-2 text-zinc-900"
+        class="flex items-center gap-2 font-semibold text-zinc-900 dark:text-zinc-100"
       >
-        <img
-          class="h-7 2xl:h-12"
-          src="/images/oxbow/blueLineLogo.png"
-          alt="Oxbow UI"
-        />
+        <Logo class="h-7 text-black dark:text-white" />
         Oxbow UI
       </Text>
 
-      <IconButton
-        class="md:hidden"
-        @click="open = !open"
-        :aria-expanded="open"
-        aria-controls="site-nav"
-        aria-label="Toggle navigation"
-        variant="alternative"
-        size="sm"
-      >
-        <Burger size="xs" slot="icon" />
-      </IconButton>
-    </div>
-
-    <!-- Primary navigation -->
-    <nav
-      id="site-nav"
-      :class="{ 'flex': open, 'hidden': !open }"
-      class="flex-col items-center flex-grow hidden p-4 px-5 gap-3 md:px-0 md:pb-0 md:flex md:justify-start md:flex-row lg:p-0"
-    >
-      <!-- Search (desktop only) -->
-      <div class="hidden md:block lg:ml-auto">
-        <form role="search" aria-label="Site">
-          <div class="relative">
-            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-              <svg
-                class="text-zinc-400 size-5"
-                viewBox="0 0 24 24"
-                fill="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-              </svg>
-            </span>
-            <label for="site-search" class="sr-only">Search</label>
-            <input
-              id="site-search"
-              type="search"
-              class="block w-full h-8 px-4 py-2 pl-10 pr-4 text-sm bg-white border border-transparent rounded-lg shadow appearance-none text-blue-700 duration-300 ring-1 ring-zinc-200 placeholder-zinc-400 focus:border-zinc-300 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
-              placeholder="Search"
-            />
-          </div>
-        </form>
+      <!-- Search (desktop) -->
+      <div class="hidden md:block ml-4 flex-1 max-w-xs">
+        <TextInput
+          id="site-search-04"
+          name="site-search-04"
+          type="search"
+          size="sm"
+          placeholder="Search…"
+          class="w-full"
+        />
       </div>
 
-      <Button variant="accent" size="sm">Button</Button>
+      <div class="ml-auto flex items-center gap-2">
+        <!-- Theme toggle (visual only) -->
+        <Button
+          onlyIconSize="xs"
+          type="button"
+          variant="muted"
+          size="xs"
+          @click="theme = (theme==='dark') ? 'light' : 'dark'"
+          aria-label="Toggle theme"
+        >
+          <Sun x-show="theme==='light'" x-cloak size="sm" />
+          <Moon x-show="theme==='dark'" x-cloak size="sm" />
+        </Button>
+
+        <!-- User menu -->
+        <div class="relative">
+          <Button
+            onlyIconSize="xs"
+            type="button"
+            variant="muted"
+            size="xs"
+            @click="userMenu = !userMenu"
+            :aria-expanded="userMenu"
+            aria-haspopup="menu"
+          >
+            <User size="sm" x-cloak />
+          </Button>
+          <div
+            x-show="userMenu"
+            @click.outside="userMenu=false"
+            class="absolute right-0 mt-2 w-44 rounded-xl bg-white dark:bg-zinc-900 shadow-oxbow outline outline-1 outline-zinc-100 dark:outline-zinc-800 p-1"
+          >
+            <a
+              href="#_"
+              class="block px-3 py-1.5 rounded-md text-sm text-zinc-700 dark:text-zinc-200 hover:bg-sand-100 dark:hover:bg-zinc-800"
+              >Profile</a
+            >
+            <a
+              href="#_"
+              class="block px-3 py-1.5 rounded-md text-sm text-zinc-700 dark:text-zinc-200 hover:bg-sand-100 dark:hover:bg-zinc-800"
+              >Settings</a
+            >
+            <div class="my-1 h-px bg-zinc-200 dark:bg-zinc-800"></div>
+            <a
+              href="#_"
+              class="block px-3 py-1.5 rounded-md text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-950/40"
+              >Sign out</a
+            >
+          </div>
+        </div>
+
+        <IconButton
+          class="md:hidden"
+          @click="open=!open"
+          :aria-expanded="open"
+          aria-controls="nav-6"
+          variant="alternative"
+          size="xs"><Burger size="xs" slot="icon" /></IconButton
+        >
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <nav
+      id="nav-6"
+      :class="{ 'block': open, 'hidden': !open }"
+      class="md:hidden hidden mt-2 space-y-2"
+      aria-label="Mobile"
+    >
+      <a
+        href="#_"
+        class="block px-2 py-1 rounded-md text-zinc-600 dark:text-zinc-300 hover:bg-sand-100 dark:hover:bg-zinc-800"
+        >Dashboard</a
+      >
+      <a
+        href="#_"
+        class="block px-2 py-1 rounded-md text-zinc-600 dark:text-zinc-300 hover:bg-sand-100 dark:hover:bg-zinc-800"
+        >Projects</a
+      >
+      <a
+        href="#_"
+        class="block px-2 py-1 rounded-md text-zinc-600 dark:text-zinc-300 hover:bg-sand-100 dark:hover:bg-zinc-800"
+        >Team</a
+      >
+      <Button variant="accent" size="xs">New</Button>
     </nav>
   </div>
 </header>

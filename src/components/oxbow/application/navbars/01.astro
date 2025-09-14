@@ -7,10 +7,11 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
 import Burger from "@/components/fundations/icons/Burger.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
+import Logo from "@/components/assets/Logo.astro";
 ---
 
 <!-- copy:start -->
-<header class="justify-center w-full mx-auto bg-zinc-50">
+<header class="justify-center w-full mx-auto bg-zinc-50 dark:bg-zinc-900">
   <!-- Banner Section -->
   <div
     class="flex items-center justify-center px-8 py-2 text-white lg:h-12 bg-gradient-to-b from-blue-500 to-blue-600"
@@ -40,19 +41,17 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
     x-data="{ open: false }"
     class="relative flex flex-col w-full px-8 py-2 mx-auto md:px-12 md:items-center md:justify-between md:flex-row lg:px-24 max-w-screen-xl"
   >
-    <div class="flex flex-row items-center justify-between text-black">
+    <div
+      class="flex flex-row items-center justify-between text-zinc-900 dark:text-zinc-100"
+    >
       <!-- Logo Section -->
       <Text
         tag="a"
         href="#_"
         variant="textBase"
-        class="flex items-center font-medium hover:text-blue-500 gap-2 text-zinc-900"
+        class="flex items-center font-medium hover:text-blue-500 gap-2 text-zinc-900 dark:text-zinc-100"
       >
-        <img
-          class="h-7 2xl:h-12"
-          src="/images/oxbow/blueLineLogo.png"
-          alt="#_"
-        /> Oxbow UI
+        <Logo class="h-7 text-black dark:text-white" />
       </Text>
       <IconButton
         class="md:hidden"
@@ -60,7 +59,7 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
         :aria-expanded="open"
         aria-controls="main-nav"
         variant="alternative"
-        size="sm"
+        size="xs"
       >
         <Burger size="xs" slot="icon" />
       </IconButton>
@@ -71,7 +70,7 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
       :class="{ 'flex': open, 'hidden': !open }"
       class="flex-col items-center flex-grow hidden p-4 px-5 gap-3 md:px-0 md:pb-0 md:flex md:justify-start md:flex-row lg:p-0"
     >
-      <Button class="md:ml-auto" variant="accent" size="sm">Button</Button>
+      <Button class="md:ml-auto" variant="accent" size="xs">Button</Button>
     </nav>
   </div>
 </header>

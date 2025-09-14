@@ -1,78 +1,78 @@
 ---
+export const freeComponent = true;
+export const excludeFromObfuscation = ["flex", "hidden"];
 import Button from "@/components/fundations/buttons/Button.astro";
 import IconButton from "@/components/fundations/buttons/IconButton.astro";
 import Burger from "@/components/fundations/icons/Burger.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-
-export const excludeFromObfuscation = ["flex", "hidden"];
+import Logo from "@/components/assets/Logo.astro";
+import TextInput from "@/components/fundations/inputs/TextInput.astro";
 ---
 
 <!-- copy:start -->
-<header class="w-full mx-auto bg-zinc-50">
+<header
+  class="w-full mx-auto bg-zinc-50 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800"
+>
   <div
-    x-data="{ open: false }"
-    class="relative flex flex-col w-full px-8 py-2 mx-auto md:px-12 md:items-center md:justify-between md:flex-row lg:px-24 max-w-screen-xl"
+    x-data="{ open:false }"
+    class="max-w-screen-xl mx-auto px-6 md:px-10 lg:px-16 py-2"
   >
-    <!-- Logo + mobile toggle -->
-    <div class="flex flex-row items-center justify-between text-black">
-      <Text
-        tag="a"
-        href="#_"
-        variant="textBase"
-        class="flex items-center font-medium hover:text-blue-500 gap-2 text-zinc-900"
-      >
-        <img
-          class="h-7 2xl:h-12"
-          src="/images/oxbow/blueLineLogo.png"
-          alt="Oxbow UI"
+    <div class="flex items-center gap-3">
+      <!-- Brand -->
+      <Logo class="h-7 text-black dark:text-white" />
+      <!-- Center search (desktop) -->
+      <div class="hidden md:flex items-center mx-auto max-w-xs w-full">
+        <TextInput
+          id="site-search-04"
+          name="site-search-04"
+          type="search"
+          size="sm"
+          placeholder="Search…"
+          class="w-full"
         />
-        Oxbow UI
-      </Text>
-
-      <IconButton
-        class="md:hidden"
-        @click="open = !open"
-        :aria-expanded="open"
-        aria-controls="site-nav"
-        aria-label="Toggle navigation"
-        variant="alternative"
-        size="sm"
-      >
-        <Burger size="xs" slot="icon" />
-      </IconButton>
+      </div>
+      <!-- Right actions -->
+      <div class="ml-auto flex items-center gap-2">
+        <Text
+          tag="a"
+          href="#_"
+          variant="textSM"
+          class="hidden md:inline text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-blue-600"
+          >Docs</Text
+        >
+        <Button variant="accent" size="xs">Sign in</Button>
+        <IconButton
+          class="md:hidden"
+          @click="open=!open"
+          :aria-expanded="open"
+          aria-controls="nav-4"
+          variant="alternative"
+          size="xs"><Burger size="xs" slot="icon" /></IconButton
+        >
+      </div>
     </div>
-
-    <!-- Navigation -->
+    <!-- Mobile links -->
     <nav
-      id="site-nav"
-      :class="{ 'flex': open, 'hidden': !open }"
-      class="flex-col items-center flex-grow hidden p-4 px-5 gap-3 md:px-0 md:pb-0 md:flex md:justify-start md:flex-row lg:p-0"
+      id="nav-4"
+      :class="{ 'block': open, 'hidden': !open }"
+      class="md:hidden hidden mt-2 space-y-2"
+      aria-label="Mobile"
     >
-      <Text
+      <a
         href="#_"
-        tag="a"
-        variant="textBase"
-        class="font-medium hover:text-blue-500 text-zinc-500 md:ml-auto"
+        class="block px-2 py-1 rounded-md text-zinc-600 dark:text-zinc-300 hover:bg-sand-100 dark:hover:bg-zinc-800"
+        >Features</a
       >
-        Features
-      </Text>
-      <Text
+      <a
         href="#_"
-        tag="a"
-        variant="textBase"
-        class="font-medium hover:text-blue-500 text-zinc-500 md:mr-auto"
+        class="block px-2 py-1 rounded-md text-zinc-600 dark:text-zinc-300 hover:bg-sand-100 dark:hover:bg-zinc-800"
+        >Pricing</a
       >
-        About
-      </Text>
-      <Text
+      <a
         href="#_"
-        tag="a"
-        variant="textBase"
-        class="font-medium hover:text-blue-500 text-zinc-500"
+        class="block px-2 py-1 rounded-md text-zinc-600 dark:text-zinc-300 hover:bg-sand-100 dark:hover:bg-zinc-800"
+        >Docs</a
       >
-        Sign in
-      </Text>
-      <Button variant="accent" size="sm">Get Started</Button>
     </nav>
   </div>
 </header>

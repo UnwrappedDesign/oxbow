@@ -2,54 +2,58 @@
 export const description = "Copy to clipboard input";
 ---
 
-<div class="flex items-center justify-center p-8">
-  <!-- copy:start -->
-  <div class="w-full space-y-1" x-data="{ copied: false }">
-    <label class="text-sm font-medium text-zinc-500"> Copy to Clipboard </label>
-    <div class="relative">
-      <input
-        type="text"
-        id="copy-input"
-        name="copy-input"
-        value="Copy this text"
-        class="block w-full h-10 px-4 py-2 text-sm leading-tight align-middle bg-white border border-transparent transition duration-300 ease-in-out focus:z-10 rounded-tl-md rounded-tr-md rounded-bl-md rounded-br-md text-zinc-500 ring-1 ring-zinc-200 placeholder-zinc-400 focus:border-zinc-300 focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 shadow-sm"
-        readonly
-      />
-      <button
-        @click="navigator.clipboard.writeText('Copy this text'); copied = true; setTimeout(() => copied = false, 2000)"
-        class="absolute inset-y-0 right-0 flex items-center px-3"
-      >
-        <svg
-          x-show="!copied"
-          class="size-5 text-zinc-400"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
+<div class="gap-2 justify-center p-15 bg-white dark:bg-black h-full">
+  <div class="w-full max-w-sm mx-auto">
+    <!-- copy:start -->
+    <div class="w-full space-y-1" x-data="{ copied: false }">
+      <label class="text-sm font-medium text-zinc-500 dark:text-zinc-200">
+        Copy to Clipboard
+      </label>
+      <div class="relative">
+        <input
+          type="text"
+          id="copy-input"
+          name="copy-input"
+          value="Copy this text"
+          class="block w-full h-10 px-4 py-2 text-sm leading-tight align-middle bg-white border border-transparent transition duration-300 ease-in-out focus:z-10 rounded-md text-zinc-500 ring-1 ring-zinc-200 placeholder-zinc-400 focus:border-zinc-300 focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 shadow-sm dark:bg-zinc-800 dark:text-zinc-100 dark:ring-zinc-700 dark:placeholder-zinc-400 dark:focus:border-zinc-600 dark:focus:ring-zinc-500"
+          readonly
+        />
+        <button
+          @click="navigator.clipboard.writeText('Copy this text'); copied = true; setTimeout(() => copied = false, 2000)"
+          class="absolute inset-y-0 right-0 flex items-center px-3"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
-          ></path>
-        </svg>
-        <svg
-          x-show="copied"
-          class="text-green-500 size-5"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M5 13l4 4L19 7"></path>
-        </svg>
-      </button>
+          <svg
+            x-show="!copied"
+            class="size-5 text-zinc-400 dark:text-zinc-300"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+            ></path>
+          </svg>
+          <svg
+            x-show="copied"
+            class="text-green-500 size-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 13l4 4L19 7"></path>
+          </svg>
+        </button>
+      </div>
     </div>
+    <!-- copy:end -->
   </div>
-  <!-- copy:end -->
 </div>

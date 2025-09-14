@@ -11,34 +11,36 @@ const currencyOptions = [
 ];
 ---
 
-<div class="flex justify-center p-8 mx-auto">
-  <!-- copy:start -->
-  <div
-    class="w-full"
-    x-data="{ 
-       currency: '', 
-       errorMessage: '',
-       validateCurrency() {
-         if (!this.currency) {
-           this.errorMessage = 'Please select a currency';
-           return false;
+<div class="flex justify-center p-16 mx-auto bg-white dark:bg-black">
+  <div class="max-w-sm mx-auto w-full">
+    <!-- copy:start -->
+    <div
+      class="w-full"
+      x-data="{ 
+         currency: '', 
+         errorMessage: '',
+         validateCurrency() {
+           if (!this.currency) {
+             this.errorMessage = 'Please select a currency';
+             return false;
+           }
+           this.errorMessage = '';
+           return true;
          }
-         this.errorMessage = '';
-         return true;
-       }
-     }"
-  >
-    <div class="flex w-full items-center">
-      <Select
-        id="currency-validation"
-        name="currency"
-        options={currencyOptions}
-        xModel="currency"
-        size="base"
-        xOn={{ change: "validateCurrency()" }}
-        class="w-full"
-      />
+       }"
+    >
+      <div class="flex w-full items-center">
+        <Select
+          id="currency-validation"
+          name="currency"
+          options={currencyOptions}
+          xModel="currency"
+          size="base"
+          xOn={{ change: "validateCurrency()" }}
+          class="w-full"
+        />
+      </div>
     </div>
-  </div>
-  <!-- copy:end -->
+    <!-- copy:end -->
+ </div>
 </div>

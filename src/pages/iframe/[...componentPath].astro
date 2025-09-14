@@ -47,6 +47,7 @@ const component = matchKey ? await modules[matchKey]() : undefined;
       (function () {
         const params = new URLSearchParams(window.location.search);
         const iframeId = params.get("iframeId") || "";
+        const mode = (params.get('mode') || 'system').toLowerCase();
 
         const computeHeight = () => {
           try {
@@ -77,6 +78,32 @@ const component = matchKey ? await modules[matchKey]() : undefined;
         };
 
         const postSoon = () => requestAnimationFrame(postHeight);
+
+        function applyMode(m) {
+          try {
+            const html = document.documentElement;
+            const body = document.body;
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const enableDark = m === 'dark' || (m === 'system' && prefersDark);
+            html.classList.toggle('dark', enableDark);
+            body?.classList.toggle('dark', enableDark);
+            if (enableDark) { html.setAttribute('data-theme','dark'); body?.setAttribute('data-theme','dark'); }
+            else { html.removeAttribute('data-theme'); body?.removeAttribute('data-theme'); }
+          } catch (_) {}
+        }
+
+        // Apply mode from URL at startup
+        applyMode(mode);
+
+        // Track system changes if mode=system
+        let mq; try {
+          if (mode === 'system' && window.matchMedia) {
+            mq = window.matchMedia('(prefers-color-scheme: dark)');
+            const onChange = () => { applyMode('system'); postSoon(); };
+            if (mq && 'addEventListener' in mq) mq.addEventListener('change', onChange);
+            else if (mq && 'addListener' in mq) mq.addListener(onChange);
+          }
+        } catch(_) {}
 
         // Initial syncs
         window.addEventListener("DOMContentLoaded", postSoon);

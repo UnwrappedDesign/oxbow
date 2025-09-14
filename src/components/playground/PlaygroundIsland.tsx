@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Eye, Code, Smartphone, Tablet, Monitor, Copy, Check, Sun, Moon, Laptop, Download, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Eye, Code, Smartphone, Tablet, Monitor, Copy, Check, Sun, Moon, Laptop, Download, ChevronDown, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 
 type Mode = 'light' | 'system' | 'dark';
 type Tab = 'preview' | 'code';
@@ -173,6 +173,13 @@ export default function PlaygroundIsland({
   const fmt = (s:string)=> (s||'').replace(/-/g,' ').replace(/\b\w/g, c=>c.toUpperCase());
   const count = (c:string, s:string)=> (arguments[0]?.counts||{})[`${c}/${s}`] || 1;
   const clamp = (n:number,min:number,max:number)=> Math.max(min, Math.min(max, n));
+  const openInNewWindow = () => {
+    try {
+      const url = new URL(iframeSrc, window.location.origin);
+      url.searchParams.set('mode', mode);
+      window.open(url.toString(), '_blank', 'noopener,noreferrer');
+    } catch {}
+  };
   const openNavMenu = (which:'cat'|'sub'|'idx', ev: React.MouseEvent<HTMLButtonElement>)=>{
     ev.stopPropagation(); // Only stop propagation for nav menu buttons
     if (navOpen===which){ setNavOpen(null); return; }
@@ -205,13 +212,17 @@ export default function PlaygroundIsland({
             <div className="items-center hidden md:inline-flex gap-1">
               <button onClick={() => setTab('preview')} className={`size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${tab==='preview'?'text-accent-600':''}`}><Eye size={14}/></button>
               <button onClick={() => setTab('code')} className={`size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 ${tab==='code'?'text-accent-600':''}`}><Code size={14}/></button>
+              
               <button onClick={copy} className="size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200" title="Copy" aria-label="Copy">{copied? <Check size={14}/> : <Copy size={14}/>}</button>
+               <div aria-hidden className="mx-1 h-4 w-[1px] bg-zinc-200 hidden md:inline-block" />
               <button onClick={downloadCode} className="size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200" title="Download code" aria-label="Download code"><Download size={14}/></button>
+              <button onClick={openInNewWindow} className="size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200" title="Open in new window" aria-label="Open in new window"><ExternalLink size={14}/></button>
             </div>
           ) : (
             <a href="/pricing" className="h-7 px-2 hidden md:inline-flex items-center rounded-md bg-zinc-900 text-white text-[11px]">Get Access</a>
           )}
         </div>
+        
         {/* Right: code controls + nav (if provided) */}
         <div className="items-center justify-end hidden  md:flex gap-2">
           {arguments[0]?.subsByCat && (
@@ -235,7 +246,7 @@ export default function PlaygroundIsland({
               </button>
               {navOpen==='cat' && (
                 <div ref={navMenuRef} className="fixed z-50 mt-2 w-56 rounded-xl outline outline-zinc-100 shadow bg-white text-xs text-zinc-600 divide-y divide-zinc-100" style={{top:navPos.top,left:navPos.left}}>
-                  <div className="py-2 max-h-64 overflow-auto">
+                  <div className="py-2 max-h-64 overflow-hidden">
                     {Object.keys(arguments[0]!.subsByCat!).sort().map(key => (
                       <button key={key} onClick={()=>{ const first=(arguments[0]!.subsByCat![key]||[])[0]||''; window.location.assign(`/playground/${key}/${first}/${clamp(arguments[0]!.navIdx||1,1,count(key, first))}`); }} className="w-full flex items-center justify-between px-3 py-1.5 hover:bg-sand-100 text-left text-xs">
                         <span className="capitalize">{fmt(key)}</span>
