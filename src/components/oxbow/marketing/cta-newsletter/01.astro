@@ -31,19 +31,22 @@ const features = [
 ];
 ---
 
-<div>
-  <!-- copy:start -->
+<section class="bg-white dark:bg-black">
   <div class="max-w-7xl mx-auto px-8 lg:px-12 py-24">
     <div class="max-w-xl mx-auto lg:text-balance lg:text-center">
       <Kicker class=""> The only newsletter we’d read too </Kicker>
       <Text
         tag="h2"
         variant="displayMD"
-        class="mt-12 font-semibold tracking-tight text-zinc-900 lg:text-balance"
+        class="mt-12 font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 lg:text-balance"
       >
         Want smarter ideas without the LinkedIn fluff?
       </Text>
-      <Text tag="p" variant="textBase" class="mt-4 text-zinc-500">
+      <Text
+        tag="p"
+        variant="textBase"
+        class="mt-4 text-zinc-500 dark:text-zinc-400"
+      >
         Join the folks who like their updates useful, witty, and with just the
         right amount of snark.
       </Text>
@@ -55,16 +58,27 @@ const features = [
       {
         features.map((feature) => (
           <div>
-            <dt class="flex flex-col text-orange-600 lg:items-center gap-2">
+            <dt class="flex flex-col text-orange-600 dark:text-orange-400 lg:items-center gap-2">
               {feature.icon && (
-                <feature.icon class="text-blue-600" size="base" />
+                <feature.icon
+                  class="text-blue-600 dark:text-blue-400"
+                  size="base"
+                />
               )}
-              <Text tag="h3" variant="" class="font-semibold text-zinc-900">
+              <Text
+                tag="h3"
+                variant=""
+                class="font-semibold text-zinc-900 dark:text-zinc-100"
+              >
                 {feature.title}
               </Text>
             </dt>
             <dd>
-              <Text tag="p" variant="textSM" class="mt-2 text-zinc-500">
+              <Text
+                tag="p"
+                variant="textSM"
+                class="mt-2 text-zinc-500 dark:text-zinc-400"
+              >
                 {feature.text}
               </Text>
             </dd>
@@ -90,5 +104,4 @@ const features = [
       </Button>
     </div>
   </div>
-  <!-- copy:end -->
-</div>
+</section>

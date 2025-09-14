@@ -1,6 +1,5 @@
 ---
 import Text from "@/components/fundations/typography/Text.astro";
-
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 const faqs = [
   {
@@ -48,44 +47,51 @@ const faqs = [
 ];
 ---
 
-<div>
-  <!-- copy:start -->
+<section class="bg-white dark:bg-black">
   <div class="max-w-7xl mx-auto px-8 lg:px-12 py-24">
     <div class="text-center">
-      <Text tag="p" variant="textSM" class="font-bold uppercase text-blue-600">
+      <Text
+        tag="p"
+        variant="textSM"
+        class="font-bold uppercase text-blue-600 dark:text-blue-400"
+      >
         Tagline
       </Text>
       <Text
         tag="h2"
         variant="displayMD"
-        class="mt-4 font-semibold text-zinc-900 lg:text-balance"
+        class="mt-4 font-semibold text-zinc-900 dark:text-zinc-100 lg:text-balance"
       >
         Frequently Asked Questions
       </Text>
-      <Text tag="p" variant="textBase" class="mt-4 font-medium text-zinc-500">
+      <Text
+        tag="p"
+        variant="textBase"
+        class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+      >
         Everything you need to know about our platform.
       </Text>
     </div>
-    <div class="flex flex-col mx-auto mt-24 gap-4">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+    <div class="flex flex-col mx-auto mt-24 gap-4 dark:gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 dark:gap-14">
         {
           faqs.map((faq, index) => (
-            <div class="flex items-start gap-4">
-              <span class="flex items-center justify-center text-xs text-white rounded-full size-6 shrink-0  bg-blue-700">
+            <div class="flex items-start gap-4 dark:gap-6">
+              <span class="flex items-center justify-center text-xs text-white dark:text-blue-100 rounded-full size-6 shrink-0 bg-blue-700 dark:bg-blue-900">
                 {index + 1}
               </span>
               <div>
                 <Text
                   tag="h3"
                   variant="textLG"
-                  class="font-medium  text-zinc-900"
+                  class="font-medium text-zinc-900 dark:text-zinc-100"
                 >
                   {faq.question}
                 </Text>
                 <Text
                   tag="p"
                   variant="textBase"
-                  class="mt-4 font-medium text-zinc-500"
+                  class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
                 >
                   {faq.answer}
                 </Text>
@@ -125,5 +131,4 @@ const faqs = [
       </div>
     </div>
   </div>
-  <!-- copy:end -->
-</div>
+</section>

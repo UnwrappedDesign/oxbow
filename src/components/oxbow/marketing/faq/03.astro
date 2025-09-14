@@ -1,6 +1,5 @@
 ---
 import Text from "@/components/fundations/typography/Text.astro";
-
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 const faqs = [
   {
@@ -21,26 +20,29 @@ const faqs = [
 ];
 ---
 
-<div>
-  <!-- copy:start -->
+<section class="bg-white dark:bg-black">
   <div class="max-w-7xl mx-auto px-8 lg:px-12 py-24">
     <div class="max-w-md mx-auto">
       <div>
         <Text
           tag="p"
           variant="textSM"
-          class="font-bold uppercase text-blue-600"
+          class="font-bold uppercase text-blue-600 dark:text-blue-400"
         >
           Tagline
         </Text>
         <Text
           tag="h2"
           variant="displaySM"
-          class="mt-4 font-semibold text-zinc-900 lg:text-balance"
+          class="mt-4 font-semibold text-zinc-900 dark:text-zinc-100 lg:text-balance"
         >
           Frequently Asked Questions
         </Text>
-        <Text tag="p" variant="textBase" class="mt-4 font-medium text-zinc-500">
+        <Text
+          tag="p"
+          variant="textBase"
+          class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+        >
           Everything you need to know about our platform.
         </Text>
       </div>
@@ -48,13 +50,17 @@ const faqs = [
         {
           faqs.map((faq) => (
             <div>
-              <Text variant="textLG" tag="h3" class="font-medium text-zinc-900">
+              <Text
+                variant="textLG"
+                tag="h3"
+                class="font-medium text-zinc-900 dark:text-zinc-100"
+              >
                 {faq.question}
               </Text>
               <Text
                 tag="p"
                 variant="textBase"
-                class="mt-4 font-medium text-zinc-500"
+                class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
               >
                 {faq.answer}
               </Text>
@@ -75,5 +81,4 @@ const faqs = [
       </div>
     </div>
   </div>
-  <!-- copy:end -->
-</div>
+</section>

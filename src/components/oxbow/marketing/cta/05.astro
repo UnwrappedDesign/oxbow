@@ -1,17 +1,14 @@
 ---
 export const description = "Splited CTA with text-and image";
-
 // Assets
 import Logo from "@/components/assets/Logo.astro";
 import { Image } from "astro:assets";
 import Activity from "@/images/assets/activity.svg";
 import Avatar1 from "@/images/avatars/1.jpg";
-
 // Foundations
 import Text from "@/components/fundations/typography/Text.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-
 const data = [
   {
     name: "Tina Byte",
@@ -23,24 +20,27 @@ const data = [
 ];
 ---
 
-<div class="p-8 pt-24">
-  <!-- copy:start -->
-  <div class="max-w-7xl mx-auto">
+<section class="bg-white dark:bg-black">
+  <div class="max-w-7xl mx-auto px-8 lg:px-12 py-24">
     <div
-      class="items-start max-w-md mx-auto grid grid-cols-1 lg:max-w-none md:grid-cols-2 lg:bg-zinc-50 lg:p-20 lg:rounded-xl lg:shadow lg:outline lg:outline-zinc-200"
+      class="items-start max-w-md mx-auto grid grid-cols-1 lg:max-w-none md:grid-cols-2 lg:bg-zinc-50 dark:lg:bg-zinc-900 lg:p-20 lg:rounded-xl lg:shadow lg:outline lg:outline-zinc-200 dark:lg:outline-zinc-700"
     >
       <div class="lg:pr-24 md:pr-12">
-        <div class="inline-block p-3 rounded-full bg-blue-600">
+        <div class="inline-block p-3 rounded-full bg-blue-600 dark:bg-blue-400">
           <Logo class="h-8 mx-auto text-white" />
         </div>
         <Text
           tag="h2"
           variant="displaySM"
-          class="mt-8 font-semibold text-zinc-900 lg:text-balance"
+          class="mt-8 font-semibold text-zinc-900 dark:text-zinc-100 lg:text-balance"
         >
           Finally, a tool that won’t make you question your career choices
         </Text>
-        <Text tag="p" variant="textBase" class="mt-4 font-medium text-zinc-500">
+        <Text
+          tag="p"
+          variant="textBase"
+          class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+        >
           Say goodbye to clunky workflows, endless tabs, and the vague
           existential dread of “collaboration.”
         </Text>
@@ -48,8 +48,10 @@ const data = [
           <Button variant="accent" size="sm">Push the button</Button>
           <Button variant="alternative" size="sm">Still skeptical?</Button>
         </div>
-
-        <article role="list" class="pt-6 mt-6 border-t border-zinc-200">
+        <article
+          role="list"
+          class="pt-6 mt-6 border-t border-zinc-200 dark:border-zinc-700"
+        >
           {
             data.map((member) => (
               <div>
@@ -57,7 +59,7 @@ const data = [
                   <Text
                     tag="blockquote"
                     variant="textSM"
-                    class="italic font-medium text-zinc-500"
+                    class="italic font-medium text-zinc-500 dark:text-zinc-400"
                   >
                     "{member.testimonial}"
                   </Text>
@@ -71,19 +73,18 @@ const data = [
                         class="inline-block rounded-full size-12"
                         loading="lazy"
                       />
-
                       <div>
                         <Text
                           tag="p"
                           variant="textBase"
-                          class="font-medium text-zinc-900"
+                          class="font-medium text-zinc-900 dark:text-zinc-100"
                         >
                           {member.name}
                         </Text>
                         <Text
                           tag="p"
                           variant="textSM"
-                          class="font-medium text-zinc-500"
+                          class="font-medium text-zinc-500 dark:text-zinc-400"
                         >
                           {member.title}
                         </Text>
@@ -104,10 +105,9 @@ const data = [
           alt="Product showcase"
           loading="eager"
           decoding="async"
-          class="w-full rounded-lg shadow outline outline-zinc-200"
+          class="w-full rounded-lg shadow outline outline-zinc-200 dark:outline-zinc-700"
         />
       </div>
     </div>
   </div>
-  <!-- copy:end -->
-</div>
+</section>
