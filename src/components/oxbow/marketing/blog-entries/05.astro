@@ -1,6 +1,7 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
 import Text from "@/components/fundations/typography/Text.astro";
+import TextInput from "@/components/fundations/inputs/TextInput.astro";
 const articles = [
   {
     image:
@@ -67,22 +68,23 @@ const articles = [
         </Text>
       </div>
       <div class="lg:ml-auto">
-        <form class="flex flex-col w-full mt-8 sm:flex-row sm:max-w-md gap-2">
-          <label for="email-address" class="sr-only">Email address</label>
-          <input
+        <form
+          class="flex flex-col w-full mt-8 sm:flex-row sm:max-w-md items-end gap-2"
+        >
+          <TextInput
             id="email-address"
             type="email"
             name="email-address"
-            autocomplete="email"
-            placeholder="Enter your email"
-            aria-placeholder="Enter your email"
-            required=""
-            class="block w-full h-10 px-4 py-2 text-sm bg-white border border-transparent rounded-lg appearance-none text-blue-700 duration-300 ring-1 ring-zinc-200 placeholder-zinc-400 focus:border-zinc-300 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+            label="Email address"
+            type="text"
+            variant="default"
+            size="base"
+            placeholder="Email address"
           />
           <Button
             class="w-full sm:w-auto"
             type="submit"
-            variant="accent"
+            variant="default"
             size="base"
           >
             Subscribe

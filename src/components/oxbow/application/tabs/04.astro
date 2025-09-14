@@ -8,19 +8,19 @@ export const excludeFromObfuscation = [
 ];
 ---
 
-<div class="flex flex-col justify-center p-8 mx-auto">
+<div class="flex flex-col justify-center p-8 mx-auto bg-white dark:bg-zinc-900">
   <!-- copy:start -->
   <div x-data="{ tab: 'tab1' }">
     <div class="flex justify-center">
       <ul
-        class="inline-flex w-auto p-2 text-sm border gap-4 text-zinc-500 border-zinc-200 rounded-xl"
+        class="inline-flex w-auto p-2 text-sm border gap-4 text-zinc-500 dark:text-zinc-400 border-zinc-200 dark:border-zinc-700 rounded-xl"
       >
         <li>
           <a
             @click.prevent="tab = 'tab1'"
             href="#_"
             class="flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg h-9 transition-all duration-200"
-            :class="tab === 'tab1' ? 'bg-blue-700 text-white shadow-md' : 'bg-zinc-50 hover:text-blue-500'"
+            :class="tab === 'tab1' ? 'bg-blue-700 text-white dark:bg-blue-500 dark:text-zinc-900 shadow-md' : 'bg-zinc-50 dark:bg-zinc-800 hover:text-blue-500 dark:hover:text-blue-400'"
           >
             Marketing
           </a>
@@ -30,7 +30,7 @@ export const excludeFromObfuscation = [
             @click.prevent="tab = 'tab2'"
             href="#_"
             class="flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg h-9 transition-all duration-200"
-            :class="tab === 'tab2' ? 'bg-blue-700 text-white shadow-md' : 'bg-zinc-50 hover:text-blue-500'"
+            :class="tab === 'tab2' ? 'bg-blue-700 text-white dark:bg-blue-500 dark:text-zinc-900 shadow-md' : 'bg-zinc-50 dark:bg-zinc-800 hover:text-blue-500 dark:hover:text-blue-400'"
           >
             Application
           </a>
@@ -40,25 +40,33 @@ export const excludeFromObfuscation = [
             @click.prevent="tab = 'tab3'"
             href="#_"
             class="flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg h-9 transition-all duration-200"
-            :class="tab === 'tab3' ? 'bg-blue-700 text-white shadow-md' : 'bg-zinc-50 hover:text-blue-500'"
+            :class="tab === 'tab3' ? 'bg-blue-700 text-white dark:bg-blue-500 dark:text-zinc-900 shadow-md' : 'bg-zinc-50 dark:bg-zinc-800 hover:text-blue-500 dark:hover:text-blue-400'"
           >
             ECommerce
           </a>
         </li>
       </ul>
     </div>
-    <div class="py-4 mt-4 text-left bg-white content">
-      <div x-show="tab==='tab1'" class="text-zinc-500">
+    <div class="py-4 mt-4 text-left mx-auto max-w-xl">
+      <div x-show="tab==='tab1'" class="text-zinc-500 dark:text-zinc-400">
         <main class="py-4">
           <p class="text-sm text-zinc-500">Marketing content</p>
         </main>
       </div>
-      <div x-show="tab==='tab2'" class="text-zinc-500" style="display: none;">
+      <div
+        x-show="tab==='tab2'"
+        class="text-zinc-500 dark:text-zinc-400"
+        style="display: none;"
+      >
         <main class="py-4">
           <p class="text-sm text-zinc-500">Application content</p>
         </main>
       </div>
-      <div x-show="tab==='tab3'" class="text-zinc-500" style="display: none;">
+      <div
+        x-show="tab==='tab3'"
+        class="text-zinc-500 dark:text-zinc-400"
+        style="display: none;"
+      >
         <main class="py-4">
           <p class="text-sm text-zinc-500">ECommerce content</p>
         </main>

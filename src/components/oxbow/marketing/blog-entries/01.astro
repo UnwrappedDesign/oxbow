@@ -3,6 +3,8 @@ export const freeComponent = true;
 import Button from "@/components/fundations/buttons/Button.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
+import TextInput from "@/components/fundations/inputs/TextInput.astro";
+
 const articles = [
   {
     title: "Responsive web design best practices",
@@ -61,23 +63,22 @@ const articles = [
         privacy
       </Text>
       <form
-        class="flex flex-col w-full mx-auto mt-12 sm:flex-row sm:max-w-md gap-2"
+        class="flex flex-col w-full mx-auto mt-12 sm:flex-row sm:max-w-md gap-2 items-end"
       >
-        <label for="email-address" class="sr-only">Email address</label>
-        <input
+        <TextInput
           id="email-address"
           type="email"
           name="email-address"
-          autocomplete="email"
-          placeholder="Enter your email"
-          aria-placeholder="Enter your email"
-          required=""
-          class="block w-full h-10 px-4 py-2 text-sm bg-white dark:bg-black border border-transparent rounded-lg appearance-none text-blue-700 dark:text-blue-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-800 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+          label="Email address"
+          type="text"
+          variant="default"
+          size="base"
+          placeholder="Email address"
         />
         <Button
           class="w-full sm:w-auto"
           type="submit"
-          variant="accent"
+          variant="default"
           size="base"
         >
           Subscribe

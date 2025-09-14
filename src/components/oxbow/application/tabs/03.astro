@@ -7,18 +7,18 @@ export const excludeFromObfuscation = [
 ];
 ---
 
-<div class="flex flex-col justify-center p-8 mx-auto items-center">
+<div class="flex flex-col justify-center p-8 mx-auto items-center bg-white dark:bg-zinc-900">
   <!-- copy:start -->
   <div x-data="{ tab: 'tab1' }">
     <ul
-      class="flex justify-center text-sm border-b gap-4 text-zinc-500 border-zinc-200"
+      class="flex justify-center text-sm border-b gap-4 text-zinc-500 dark:text-zinc-400 border-zinc-200 dark:border-zinc-700"
     >
       <li class="-mb-px">
         <a
           @click.prevent="tab = 'tab1'"
           href="#_"
-          class="inline-block px-12 py-2 font-medium bg-white border-b-2 text-blue-500 border-blue-500"
-          :class="{ ' bg-white text-blue-500 border-b-2 border-blue-500' : tab === 'tab1' }"
+          class="inline-block px-12 py-2 font-medium bg-white dark:bg-zinc-900 border-b-2 text-blue-500 dark:text-blue-400 border-blue-500 dark:border-blue-400"
+          :class="{ ' bg-white dark:bg-zinc-900 text-blue-500 dark:text-blue-400 border-b-2 border-blue-500 dark:border-blue-400' : tab === 'tab1' }"
         >
           Marketing</a
         >
@@ -27,8 +27,8 @@ export const excludeFromObfuscation = [
         <a
           @click.prevent="tab = 'tab2'"
           href="#_"
-          class="inline-block px-12 py-2 font-medium"
-          :class="{ ' bg-white text-blue-500 border-b-2 border-blue-500' : tab === 'tab2' }"
+          class="inline-block px-12 py-2 font-medium text-zinc-500 dark:text-zinc-400"
+          :class="{ ' bg-white dark:bg-zinc-900 text-blue-500 dark:text-blue-400 border-b-2 border-blue-500 dark:border-blue-400' : tab === 'tab2' }"
         >
           Application</a
         >
@@ -37,25 +37,33 @@ export const excludeFromObfuscation = [
         <a
           @click.prevent="tab = 'tab3'"
           href="#_"
-          class="inline-block px-12 py-2 font-medium"
-          :class="{ ' bg-white text-blue-500 border-b-2 border-blue-500' : tab === 'tab3' }"
+          class="inline-block px-12 py-2 font-medium text-zinc-500 dark:text-zinc-400"
+          :class="{ ' bg-white dark:bg-zinc-900 text-blue-500 dark:text-blue-400 border-b-2 border-blue-500 dark:border-blue-400' : tab === 'tab3' }"
         >
           ECommerce</a
         >
       </li>
     </ul>
-    <div class="py-4 pt-4 text-left bg-white content">
-      <div x-show="tab==='tab1'" class="text-zinc-500">
+    <div class="py-4 pt-4 text-left content">
+      <div x-show="tab==='tab1'" class="text-zinc-500 dark:text-zinc-400">
         <main class="py-4">
           <p class="text-sm text-zinc-500">Marketing content</p>
         </main>
       </div>
-      <div x-show="tab==='tab2'" class="text-zinc-500" style="display: none;">
+      <div
+        x-show="tab==='tab2'"
+        class="text-zinc-500 dark:text-zinc-400"
+        style="display: none;"
+      >
         <main class="py-4">
           <p class="text-sm text-zinc-500">Application content</p>
         </main>
       </div>
-      <div x-show="tab==='tab3'" class="text-zinc-500" style="display: none;">
+      <div
+        x-show="tab==='tab3'"
+        class="text-zinc-500 dark:text-zinc-400"
+        style="display: none;"
+      >
         <main class="py-4">
           <p class="text-sm text-zinc-500">ECommerce content</p>
         </main>
