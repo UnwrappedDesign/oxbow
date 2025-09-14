@@ -59,15 +59,14 @@ const footerLinks = [
 ];
 ---
 
-<div>
-  <!-- copy:start -->
+<section class="bg-white dark:bg-black">
   <div class="max-w-7xl mx-auto px-8 lg:px-12 py-24">
     <div class="flex flex-col justify-between md:flex-row md:items-center">
       <Text
         tag="a"
         href="#_"
         variant="textBase"
-        class="flex items-center font-medium hover:text-blue-500 gap-2 text-zinc-900"
+        class="flex items-center font-medium hover:text-blue-500 hover:dark:text-blue-400 gap-2 text-zinc-900 dark:text-zinc-100"
       >
         <img
           class="h-7 2xl:h-12"
@@ -75,10 +74,12 @@ const footerLinks = [
           alt="#_"
         /> Oxbow UI
       </Text>
-      <p class="text-sm text-zinc-500">Designed in europe.</p>
+      <p class="text-sm text-zinc-500 dark:text-zinc-400">
+        Designed in europe.
+      </p>
     </div>
     <div
-      class="pt-6 mt-6 border-t grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-x-8 gap-y-24 border-zinc-200"
+      class="pt-6 mt-6 border-t grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-x-8 gap-y-24 border-zinc-200 dark:border-zinc-800"
     >
       {
         footerLinks.map((section, index) => (
@@ -88,7 +89,7 @@ const footerLinks = [
                 tag="h2"
                 variant="textBase"
                 id={`footer-heading-${index}`}
-                class="font-semibold text-zinc-900"
+                class="font-semibold text-zinc-900 dark:text-zinc-100"
               >
                 {section.heading}
               </Text>
@@ -99,7 +100,7 @@ const footerLinks = [
                       tag="a"
                       href="#_"
                       variant="textBase"
-                      class="font-medium hover:text-blue-500 text-zinc-500"
+                      class="font-medium hover:text-blue-500 hover:dark:text-blue-400 text-zinc-500 dark:text-zinc-400"
                     >
                       {link.text}
                     </Text>
@@ -112,15 +113,19 @@ const footerLinks = [
       }
     </div>
     <div
-      class="flex flex-col justify-between pt-12 mt-12 border-t gap-8 sm:flex-row sm:items-center border-zinc-200"
+      class="flex flex-col justify-between pt-12 mt-12 border-t gap-8 sm:flex-row sm:items-center border-zinc-200 dark:border-zinc-800"
     >
-      <Text tag="h2" variant="textSM" class="font-medium text-zinc-400">
+      <Text
+        tag="h2"
+        variant="textSM"
+        class="font-medium text-zinc-400 dark:text-zinc-500"
+      >
         Copyright © 2024 Oxbow UI. All rights reserved.
       </Text>
       <nav
         aria-labelledby="legal-links"
         role="navigation"
-        class="flex items-center text-sm gap-4 text-zinc-500"
+        class="flex items-center text-sm gap-4 text-zinc-500 dark:text-zinc-400"
       >
         <Text id="legal-links" class="sr-only" tag="h3" variant="footerHeading">
           Legal and terms
@@ -129,7 +134,7 @@ const footerLinks = [
           href="#_"
           tag="a"
           variant="textBase"
-          class="font-medium hover:text-blue-500 text-zinc-500"
+          class="font-medium hover:text-blue-500 hover:dark:text-blue-400 text-zinc-500 dark:text-zinc-400"
         >
           Terms of Service
         </Text>
@@ -137,12 +142,11 @@ const footerLinks = [
           href="#_"
           tag="a"
           variant="textBase"
-          class="font-medium hover:text-blue-500 text-zinc-500"
+          class="font-medium hover:text-blue-500 hover:dark:text-blue-400 text-zinc-500 dark:text-zinc-400"
         >
           Privacy Policy
         </Text>
       </nav>
     </div>
   </div>
-  <!-- copy:end -->
-</div>
+</section>
