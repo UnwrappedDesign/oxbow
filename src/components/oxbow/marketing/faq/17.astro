@@ -19,38 +19,50 @@ const faqs = [
 ];
 ---
 
-<div>
-  <!-- copy:start -->
+<section class="bg-white dark:bg-black">
   <div class="max-w-7xl mx-auto px-8 lg:px-12 py-24">
     <div>
-      <Text tag="p" variant="textSM" class="font-bold uppercase text-blue-600">
+      <Text
+        tag="p"
+        variant="textSM"
+        class="font-bold uppercase text-blue-600 dark:text-blue-400"
+      >
         Tagline
       </Text>
       <Text
         tag="h2"
         variant="displayMD"
-        class="mt-4 font-semibold text-zinc-900 lg:text-balance"
+        class="mt-4 font-semibold text-zinc-900 dark:text-zinc-100 lg:text-balance"
       >
         Frequently Asked Questions
       </Text>
-      <Text tag="p" variant="textBase" class="mt-4 font-medium text-zinc-500">
+      <Text
+        tag="p"
+        variant="textBase"
+        class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+      >
         Everything you need to know about our platform.
       </Text>
     </div>
     <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
       {
         faqs.map((faq, index) => (
-          <div>
-            <span class="flex items-center justify-center text-xs text-white rounded-full size-6 shrink-0  bg-blue-700">
+          <div class="bg-zinc-50 dark:bg-zinc-900/40 rounded-xl p-4">
+            <span class="flex items-center justify-center text-xs text-white dark:text-zinc-900 rounded-full size-6 shrink-0  bg-blue-700 dark:bg-blue-400">
               {index + 1}
             </span>
-            <Text class="mt-4" tag="h3" variant="textLG">
+            <Text
+              class="mt-4"
+              tag="h3"
+              variant="textLG"
+              class="text-zinc-900 dark:text-zinc-100"
+            >
               {faq.question}
             </Text>
             <Text
               tag="p"
               variant="textBase"
-              class="mt-4 font-medium text-zinc-500"
+              class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
             >
               {faq.answer}
             </Text>
@@ -59,5 +71,4 @@ const faqs = [
       }
     </div>
   </div>
-  <!-- copy:end -->
-</div>
+</section>

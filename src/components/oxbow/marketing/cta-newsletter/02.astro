@@ -20,49 +20,48 @@ import Button from "@/components/fundations/buttons/Button.astro";
 import TextInput from "@/components/fundations/inputs/TextInput.astro";
 ---
 
-<div>
-  <!-- copy:start -->
+<section class="bg-white dark:bg-black">
   <div class="max-w-7xl mx-auto px-8 lg:px-12 py-24">
     <div class="max-w-xl mx-auto">
-      <div>
-        <div class="text-center">
-          <div class="inline-block p-4 shadow rounded-2xl bg-blue-600">
-            <Logo class="h-12 text-white" />
-          </div>
-          <Text
-            tag="h3"
-            variant="displaySM"
-            class="font-medium tracking-tight text-zinc-900 text-balance mt-12"
-          >
-            Focused people are joining. You’re still doomscrolling.
-            <span class="text-blue-600">Fix that in 7 days.</span>
-          </Text>
-          <Text
-            tag="p"
-            variant="textBase"
-            class="text-zinc-500 text-balance mt-2"
-          >
-            For the chronically online, the burnout-curious, and anyone who's
-            ever rage-closed a tab.
-          </Text>
+      <div class="text-center">
+        <div class="inline-block p-4 shadow rounded-2xl bg-blue-600 dark:bg-blue-600">
+          <Logo class="h-12 text-white" />
         </div>
-        <div class="flex flex-col gap-2 w-full mt-8 max-w-sm mx-auto">
-          <TextInput
-            id="email"
-            name="email"
-            type="email"
-            placeholder="Enter email to overachieve"
-            variant="default"
-            label="Email address"
-            size="sm"
-            isGrouped
-          />
-          <Button type="submit" variant="accent" size="xs">Extra Small </Button>
-        </div>
+
+        <Text
+          tag="h3"
+          variant="displaySM"
+          class="font-medium tracking-tight text-zinc-900 dark:text-white text-balance mt-12"
+        >
+          Focused people are joining. You’re still doomscrolling.
+          <span class="text-blue-600 dark:text-blue-400">Fix that in 7 days.</span>
+        </Text>
+
+        <Text
+          tag="p"
+          variant="textBase"
+          class="text-zinc-500 dark:text-zinc-400 text-balance mt-2"
+        >
+          For the chronically online, the burnout-curious, and anyone who's
+          ever rage-closed a tab.
+        </Text>
       </div>
-      <div
-        class="flex flex-col mt-8 md:flex-row lg:items-center gap-2 justify-center"
-      >
+
+      <div class="flex flex-col gap-2 w-full mt-8 max-w-sm mx-auto">
+        <TextInput
+          id="email"
+          name="email"
+          type="email"
+          placeholder="Enter email to overachieve"
+          variant="default"
+          label="Email address"
+          size="sm"
+          isGrouped
+        />
+        <Button type="submit" variant="accent" size="xs">Extra Small</Button>
+      </div>
+
+      <div class="flex flex-col mt-8 md:flex-row lg:items-center gap-2 justify-center">
         <div class="flex -space-x-2">
           {
             avatars.map((avatar) => (
@@ -71,17 +70,16 @@ import TextInput from "@/components/fundations/inputs/TextInput.astro";
                 height={200}
                 src={avatar.src}
                 alt={avatar.alt}
-                class="inline-block object-cover object-center rounded-full size-8 outline-2 outline-white"
+                class="inline-block object-cover object-center rounded-full size-8 ring-2 ring-white dark:ring-zinc-900"
               />
             ))
           }
         </div>
-        <div class="text-xs text-zinc-500 lg:items-center">
+        <div class="text-xs text-zinc-500 dark:text-zinc-400 lg:items-center">
           <span class="block">Trusted by overthinkers, calendar abusers,</span>
-          <span class="block"> and people on their 3rd “break.”</span>
+          <span class="block">and people on their 3rd “break.”</span>
         </div>
       </div>
     </div>
   </div>
-  <!-- copy:end -->
-</div>
+</section>
