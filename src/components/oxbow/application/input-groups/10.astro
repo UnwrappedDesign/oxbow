@@ -7,39 +7,41 @@ import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
 import ChevronUp from "@/components/fundations/icons/ChevronUp.astro";
 ---
 
-<div class="flex items-center justify-center p-8">
-  <!-- copy:start -->
-  <div class="w-full space-y-1" x-data="{ value: 50, min: 0, max: 100 }">
-    <label class="text-sm font-medium text-zinc-500"> Value </label>
-    <div class="flex items-center">
-      <Button
-        @click="value = Math.max(min, value - 1)"
-        variant="alternative"
-        onlyIconSize="sm"
-        noRoundedRight
-      >
-        <ChevronDown slot="left-icon" size="sm" />
-      </Button>
-      <TextInput
-        size="sm"
-        isGrouped={true}
-        noRounded={true}
-        type="number"
-        id="input-chevrons"
-        name="input-chevrons"
-        x-model="value"
-        readonly
-      />
-      <Button
-        @click="value = Math.min(max, value + 1)"
-        variant="alternative"
-        onlyIconSize="sm"
-        no
-        noRoundedLeft
-      >
-        <ChevronUp slot="right-icon" size="sm" />
-      </Button>
+<section class="gap-2 justify-center p-15 bg-white dark:bg-black h-full">
+  <div class="w-full max-w-sm mx-auto">
+    <!-- copy:start -->
+    <div class="w-full space-y-1" x-data="{ value: 50, min: 0, max: 100 }">
+      <label class="text-sm font-medium text-zinc-500"> Value </label>
+      <div class="flex items-center">
+        <Button
+          @click="value = Math.max(min, value - 1)"
+          variant="alternative"
+          onlyIconSize="sm"
+          noRoundedRight
+        >
+          <ChevronDown slot="left-icon" size="sm" />
+        </Button>
+        <TextInput
+          size="sm"
+          isGrouped={true}
+          noRounded={true}
+          type="number"
+          id="input-chevrons"
+          name="input-chevrons"
+          x-model="value"
+          readonly
+        />
+        <Button
+          @click="value = Math.min(max, value + 1)"
+          variant="alternative"
+          onlyIconSize="sm"
+          no
+          noRoundedLeft
+        >
+          <ChevronUp slot="right-icon" size="sm" />
+        </Button>
+      </div>
     </div>
+    <!-- copy:end -->
   </div>
-  <!-- copy:end -->
 </div>

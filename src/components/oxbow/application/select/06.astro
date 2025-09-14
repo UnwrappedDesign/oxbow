@@ -1,7 +1,6 @@
 ---
 export const description = "Conditional styling";
-import Select from "@/components/fundations/inputs/Select.astro";
-import Button from "@/components/fundations/buttons/Button.astro";
+
 const countryOptions = [
   { label: "United States", value: "us" },
   { label: "Canada", value: "ca" },
@@ -13,91 +12,94 @@ const countryOptions = [
 ];
 ---
 
-<div class="flex justify-center p-8 mx-auto">
-  <!-- copy:start -->
-  <div
-    class="flex flex-col w-full max-w-sm"
-    x-data="{ 
-               searchTerm: '',
-               allOptions: [
-                 { label: 'United States', value: 'us' },
-                 { label: 'Canada', value: 'ca' },
-                 { label: 'United Kingdom', value: 'uk' },
-                 { label: 'Australia', value: 'au' },
-                 { label: 'Germany', value: 'de' },
-                 { label: 'France', value: 'fr' },
-                 { label: 'Japan', value: 'jp' }
-               ],
-               filteredOptions: [],
-               selectedValue: '',
-               filterOptions() {
-                 if (!this.searchTerm) {
-                   this.filteredOptions = [...this.allOptions];
-                 } else {
-                   const term = this.searchTerm.toLowerCase();
-                   this.filteredOptions = this.allOptions.filter(
-                     option => option.label.toLowerCase().includes(term)
-                   );
+<div class="flex justify-center p-18 mx-auto bg-white dark:bg-black mx-auto">
+  <div>
+    <!-- copy:start -->
+    <div
+      class="flex flex-col w-full max-w-sm"
+      x-data="{ 
+                 searchTerm: '',
+                 allOptions: [
+                   { label: 'United States', value: 'us' },
+                   { label: 'Canada', value: 'ca' },
+                   { label: 'United Kingdom', value: 'uk' },
+                   { label: 'Australia', value: 'au' },
+                   { label: 'Germany', value: 'de' },
+                   { label: 'France', value: 'fr' },
+                   { label: 'Japan', value: 'jp' }
+                 ],
+                 filteredOptions: [],
+                 selectedValue: '',
+                 filterOptions() {
+                   if (!this.searchTerm) {
+                     this.filteredOptions = [...this.allOptions];
+                   } else {
+                     const term = this.searchTerm.toLowerCase();
+                     this.filteredOptions = this.allOptions.filter(
+                       option => option.label.toLowerCase().includes(term)
+                     );
+                   }
+                   console.log('Filtered options:', this.filteredOptions);
                  }
-                 console.log('Filtered options:', this.filteredOptions);
-               }
-             }"
-    x-init="filteredOptions = [...allOptions]; console.log('Initial options:', filteredOptions)"
-  >
-    <div class="mb-4">
-      <label for="search" class="block mb-1 text-sm font-medium text-zinc-500"
-        >Search Countries</label
-      >
-      <input
-        type="text"
-        id="search"
-        x-model="searchTerm"
-        @input="filterOptions()"
-        class="block w-full h-10 px-4 py-2 text-sm bg-white border border-transparent text-zinc-500 ring-1 ring-zinc-200 placeholder-zinc-400 focus:border-zinc-300 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 rounded-md"
-        placeholder="Type to search..."
-      />
-    </div>
-
-    <div>
-      <label
-        for="filtered-select"
-        class="block mb-1 text-sm font-medium text-zinc-500"
-        >Filtered Countries</label
-      >
-      <select
-        id="filtered-select"
-        name="filtered-select"
-        x-model="selectedValue"
-        class="block w-full h-10 px-4 py-2 text-sm bg-white border border-transparent text-zinc-500 ring-1 ring-zinc-200 placeholder-zinc-400 focus:border-zinc-300 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 rounded-md"
-      >
-        <option value="">Select a country</option>
-        <template x-for="option in filteredOptions">
-          <option :value="option.value" x-text="option.label"></option>
-        </template>
-      </select>
-    </div>
-
-    <div class="mt-2">
-      <p class="text-xs font-medium text-zinc-500">
-        Selected country: <span
-          class="uppercase"
-          x-text="selectedValue || 'None'"></span>
-      </p>
-      <p class="text-xs font-medium text-zinc-500" mt-1>
-        Showing <span x-text="filteredOptions.length"></span> of <span
-          x-text="allOptions.length"></span> countries
-      </p>
-      <!-- Debug output -->
-      <div class="mt-2 text-xs font-medium text-zinc-900">
-        <p>Search term: <span x-text="searchTerm"></span></p>
-        <div
-          x-show="filteredOptions.length === 0"
-          class="font-medium text-red-500"
+               }"
+      x-init="filteredOptions = [...allOptions]; console.log('Initial options:', filteredOptions)"
+    >
+      <div class="mb-4">
+        <label for="search" class="block mb-1 text-sm font-medium text-zinc-500"
+          >Search Countries</label
         >
-          No matching options found
+        <input
+          type="text"
+          id="search"
+          x-model="searchTerm"
+          @input="filterOptions()"
+          class="block w-full h-10 px-4 py-2 text-sm bg-white dark:bg-zinc-900 border border-transparent text-zinc-500 dark:text-zinc-100 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-400 focus:border-zinc-300 dark:focus:border-zinc-600 focus:bg-transparent focus:outline-none focus:ring-blue-500 dark:focus:ring-zinc-500 focus:ring-offset-2 focus:ring-2 rounded-md"
+          placeholder="Type to search..."
+        />
+      </div>
+
+      <div>
+        <label
+          for="filtered-select"
+          class="block mb-1 text-sm font-medium text-zinc-500"
+          >Filtered Countries</label
+        >
+        <select
+          id="filtered-select"
+          name="filtered-select"
+          x-model="selectedValue"
+          class="block w-full h-10 px-4 py-2 text-sm bg-white dark:bg-zinc-900 border border-transparent text-zinc-500 dark:text-zinc-100 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-400 focus:border-zinc-300 dark:focus:border-zinc-600 focus:bg-transparent focus:outline-none focus:ring-blue-500 dark:focus:ring-zinc-500 focus:ring-offset-2 focus:ring-2 rounded-md"
+        >
+          <option value="">Select a country</option>
+          <template x-for="option in filteredOptions">
+            <option :value="option.value" x-text="option.label"></option>
+          </template>
+        </select>
+      </div>
+
+      <div class="mt-2">
+        <p class="text-xs font-medium text-zinc-500">
+          Selected country: <span
+            class="uppercase"
+            x-text="selectedValue || 'None'"></span>
+        </p>
+        <p class="text-xs font-medium text-zinc-500" mt-1>
+          Showing <span x-text="filteredOptions.length"></span> of <span
+            x-text="allOptions.length"></span> countries
+        </p>
+        <!-- Debug output -->
+        <div class="mt-2 text-xs font-medium text-zinc-900">
+          <p>Search term: <span x-text="searchTerm"></span></p>
+          <div
+            x-show="filteredOptions.length === 0"
+            class="font-medium text-red-500 hidden"
+            :class="{ 'hidden': filteredOptions.length !== 0 }"
+          >
+            No matching options found
+          </div>
         </div>
       </div>
     </div>
+    <!-- copy:end -->
   </div>
-  <!-- copy:end -->
 </div>

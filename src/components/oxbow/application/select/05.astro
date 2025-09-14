@@ -10,7 +10,6 @@ export const excludeFromObfuscation = [
   "bg-zinc-50",
 ];
 import Select from "@/components/fundations/inputs/Select.astro";
-import Button from "@/components/fundations/buttons/Button.astro";
 const countryOptions = [
   { label: "United States", value: "us" },
   { label: "Canada", value: "ca" },
@@ -22,64 +21,72 @@ const countryOptions = [
 ];
 ---
 
-<div class="flex justify-center p-8 mx-auto">
-  <!-- copy:start -->
-  <div
-    class="flex flex-col w-full max-w-sm"
-    x-data="{ 
-       selectedOption: '',
-       getSelectClass() {
-         return {
-           'ring-green-500': this.selectedOption === 'us',
-           'ring-blue-500': this.selectedOption === 'ca',
-           'ring-red-500': this.selectedOption === 'uk'
-         };
-       }
-     }"
-  >
-    <Select
-      id="styled-select"
-      name="styled-select"
-      label="Select with Dynamic Styling"
-      options={countryOptions}
-      xModel="selectedOption"
-      xData="{ selectClass: getSelectClass() }"
-      xEffect="selectClass = getSelectClass()"
-      class="w-full"
-      xOn={{ change: "selectClass = getSelectClass()" }}
-    />
-
+<div class="flex justify-center p-16 mx-auto bg-white dark:bg-black">
+  <div class="max-w-sm mx-auto w-full">
+    <!-- copy:start -->
     <div
-      class="flex items-center p-4 mt-2 rounded-md gap-2"
-      :class="{
-      'bg-green-50': selectedOption === 'us',
-      'bg-blue-50': selectedOption === 'ca',
-      'bg-red-50': selectedOption === 'uk',
-      'bg-zinc-50': !['us', 'ca', 'uk'].includes(selectedOption)
-    }"
+      class="flex flex-col w-full max-w-sm"
+      x-data="{ 
+         selectedOption: '',
+         getSelectClass() {
+           return {
+             'ring-green-500': this.selectedOption === 'us',
+             'ring-blue-500': this.selectedOption === 'ca',
+             'ring-red-500': this.selectedOption === 'uk'
+           };
+         }
+       }"
     >
-      <p class="text-xs font-medium text-zinc-500">
-        Selected option: <span x-text="selectedOption || 'None'"></span>
-      </p>
-      <p
-        x-show="selectedOption === 'us'"
-        class="text-xs font-medium text-green-700"
+      <Select
+        id="styled-select"
+        name="styled-select"
+        label="Select with Dynamic Styling"
+        options={countryOptions}
+        xModel="selectedOption"
+        xData="{ selectClass: getSelectClass() }"
+        xEffect="selectClass = getSelectClass()"
+        class="w-full"
+        xOn={{ change: "selectClass = getSelectClass()" }}
+      />
+
+      <div
+        class="flex items-center p-4 mt-2 rounded-md gap-2"
+        :class="{
+        'bg-green-50 dark:bg-green-500/10': selectedOption === 'us',
+        'bg-blue-50 dark:bg-blue-500/10': selectedOption === 'ca',
+        'bg-red-50 dark:bg-red-500/10': selectedOption === 'uk',
+        'bg-zinc-50 dark:bg-zinc-500/10': !['us', 'ca', 'uk'].includes(selectedOption)
+       }"
       >
-        You selected the United States!
-      </p>
-      <p
-        x-show="selectedOption === 'ca'"
-        class="text-xs font-medium text-blue-700"
-      >
-        You selected Canada!
-      </p>
-      <p
-        x-show="selectedOption === 'uk'"
-        class="text-xs font-medium text-red-700"
-      >
-        You selected the United Kingdom!
-      </p>
+        <p class="text-xs font-medium text-zinc-500 dark:text-zinc-300">
+          Selected option: <span x-text="selectedOption || 'None'"></span>
+        </p>
+        <p
+          x-show="selectedOption === 'us'"
+          x-transition
+          class="text-xs font-medium text-green-700 dark:text-green-300 hidden"
+          :class="{ 'hidden': selectedOption !== 'us' }"
+        >
+          You selected the United States!
+        </p>
+        <p
+          x-show="selectedOption === 'ca'"
+          x-transition
+          class="text-xs font-medium text-blue-700 dark:text-blue-300 hidden"
+          :class="{ 'hidden': selectedOption !== 'ca' }"
+        >
+          You selected Canada!
+        </p>
+        <p
+          x-show="selectedOption === 'uk'"
+          x-transition
+          class="text-xs font-medium text-red-700 dark:text-red-300 hidden"
+          :class="{ 'hidden': selectedOption !== 'uk' }"
+        >
+          You selected the United Kingdom!
+        </p>
+      </div>
     </div>
+    <!-- copy:end -->
   </div>
-  <!-- copy:end -->
 </div>

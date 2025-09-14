@@ -3,47 +3,49 @@ export const description = "Block input group";
 import TextInput from "@/components/fundations/inputs/TextInput.astro";
 ---
 
-<div class="flex items-center justify-center p-8">
-  <!-- copy:start -->
-  <div class="grid grid-cols-2">
-    <div class="col-span-full">
+<section class="gap-2 justify-center p-12 bg-white dark:bg-black h-full">
+  <div class="w-full max-w-sm mx-auto">
+    <!-- copy:start -->
+    <div class="grid grid-cols-2">
+      <div class="col-span-full">
+        <TextInput
+          id="creditCard"
+          name="creditCard"
+          label="Credit Card Number"
+          type="text"
+          formatCreditCard={true}
+          variant="default"
+          size="base"
+          noRoundedBottom
+          placeholder="XXXX XXXX XXXX XXXX"
+          isGrouped={true}
+        />
+      </div>
       <TextInput
-        id="creditCard"
-        name="creditCard"
-        label="Credit Card Number"
+        id="expiry"
+        name="expiry"
+        label="Expiry Date"
         type="text"
-        formatCreditCard={true}
         variant="default"
         size="base"
-        noRoundedBottom
-        placeholder="XXXX XXXX XXXX XXXX"
+        noRoundedTop={true}
+        noRoundedBottomRight={true}
+        placeholder="MM/YY"
+        isGrouped={true}
+      />
+      <TextInput
+        id="cvv"
+        name="cvv"
+        label="CVV"
+        type="text"
+        variant="default"
+        size="base"
+        noRoundedTop={true}
+        noRoundedBottomLeft={true}
+        placeholder="123"
         isGrouped={true}
       />
     </div>
-    <TextInput
-      id="expiry"
-      name="expiry"
-      label="Expiry Date"
-      type="text"
-      variant="default"
-      size="base"
-      noRoundedTop={true}
-      noRoundedBottomRight={true}
-      placeholder="MM/YY"
-      isGrouped={true}
-    />
-    <TextInput
-      id="cvv"
-      name="cvv"
-      label="CVV"
-      type="text"
-      variant="default"
-      size="base"
-      noRoundedTop={true}
-      noRoundedBottomLeft={true}
-      placeholder="123"
-      isGrouped={true}
-    />
+    <!-- copy:end -->
   </div>
-  <!-- copy:end -->
-</div>
+</section>

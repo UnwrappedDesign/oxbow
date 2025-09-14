@@ -1,72 +1,84 @@
 ---
+export const freeComponent = true;
+export const excludeFromObfuscation = ["flex", "hidden"]; // allow responsive classes when obfuscating
+
 import Button from "@/components/fundations/buttons/Button.astro";
 import IconButton from "@/components/fundations/buttons/IconButton.astro";
 import Burger from "@/components/fundations/icons/Burger.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-
-export const excludeFromObfuscation = ["flex", "hidden"];
+import Logo from "@/components/assets/Logo.astro";
 ---
 
 <!-- copy:start -->
-<header class="w-full mx-auto bg-zinc-50">
+<a
+  href="#content"
+  class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 bg-zinc-900 text-white px-3 py-1 rounded-md"
+  >Skip to content</a
+>
+<header
+  role="banner"
+  class="w-full mx-auto bg-zinc-50 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800"
+>
   <div
     x-data="{ open: false }"
-    class="relative flex flex-col w-full px-8 py-2 mx-auto md:px-12 md:items-center md:justify-between md:flex-row lg:px-24 max-w-screen-xl"
+    class="relative flex flex-col w-full px-6 py-2 mx-auto md:px-10 lg:px-16 max-w-screen-xl"
   >
-    <!-- Brand / Trigger -->
-    <div class="flex flex-row items-center justify-between text-black">
-      <Text
-        tag="a"
-        href="#_"
-        variant="textBase"
-        class="flex items-center font-medium hover:text-blue-500 gap-2 text-zinc-900"
-      >
-        <img
-          class="h-7 2xl:h-12"
-          src="/images/oxbow/blueLineLogo.png"
-          alt="Oxbow UI"
-        />
-        Oxbow UI
-      </Text>
+    <div class="flex items-center justify-between">
+      <!-- Brand -->
 
-      <!-- Mobile menu button -->
+      <Logo class="h-7 text-black dark:text-white" />
+
+      <!-- Mobile trigger -->
       <IconButton
         class="md:hidden"
         @click="open = !open"
         :aria-expanded="open"
-        aria-controls="main-nav"
-        aria-label="Toggle navigation"
+        aria-controls="primary-nav"
         variant="alternative"
-        size="sm"
+        size="xs"
       >
         <Burger size="xs" slot="icon" />
       </IconButton>
-    </div>
 
-    <!-- Primary navigation -->
-    <nav
-      id="main-nav"
-      :class="{ 'flex': open, 'hidden': !open }"
-      class="flex-col items-center flex-grow hidden p-4 px-5 gap-3 md:px-0 md:pb-0 md:flex md:justify-center md:flex-row lg:p-0"
-    >
-      <Text
-        href="#_"
-        tag="a"
-        variant="textBase"
-        class="font-medium hover:text-blue-500 text-zinc-500 md:ml-auto"
+      <!-- Desktop links -->
+      <nav
+        id="primary-nav"
+        aria-label="Primary"
+        :class="{ 'flex': open, 'hidden': !open }"
+        class="flex-col items-center hidden gap-3 md:flex md:flex-row"
       >
-        Features
-      </Text>
-      <Text
-        href="#_"
-        tag="a"
-        variant="textBase"
-        class="font-medium hover:text-blue-500 text-zinc-500"
-      >
-        About
-      </Text>
-      <Button variant="accent" size="sm">Button</Button>
-    </nav>
+        <Text
+          tag="a"
+          href="#_"
+          variant="textBase"
+          class="navbar-link text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-blue-600"
+          >Features</Text
+        >
+        <Text
+          tag="a"
+          href="#_"
+          variant="textBase"
+          class="navbar-link text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-blue-600"
+          >Pricing</Text
+        >
+        <Text
+          tag="a"
+          href="#_"
+          variant="textBase"
+          class="navbar-link text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-blue-600"
+          >About</Text
+        >
+        <Button class="md:ml-4" variant="accent" size="xs">Get Started</Button>
+      </nav>
+    </div>
   </div>
 </header>
 <!-- copy:end -->
+
+<style>
+  :global(.navbar-link:focus-visible) {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.6);
+    border-radius: 0.25rem;
+  }
+</style>

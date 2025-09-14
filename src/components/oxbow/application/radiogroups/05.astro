@@ -3,50 +3,66 @@ export const description = "Radio Group with Toggle Details";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
 
-<div class="flex justify-center p-8 mx-auto">
-  <div class="flex flex-col gap-2" x-data="{ selected: null }">
-    <div class="flex items-start gap-3">
-      <input
-        id="radio-monthly"
-        name="radio-toggle-group"
-        type="radio"
-        value="monthly"
-        x-model="selected"
-        class="rounded-full shadow size-4 border-zinc-300 text-blue-600 focus:ring-blue-600"
-      />
-      <div>
-        <Text
-          for="radio-monthly"
-          tag="label"
-          class="block text-sm font-medium text-zinc-500"
-        >
-          Monthly Plan
-        </Text>
-        <p class="text-sm text-zinc-400">Pay $10 per month.</p>
+<div class="flex justify-center p-15 bg-white dark:bg-black mx-auto">
+  <!-- copy:start -->
+  <div
+    class="flex flex-col lg:flex-row gap-12 w-full max-w-2xl mx-auto"
+    x-data="{ selected: 'monthly' }"
+  >
+    <div class="space-y-4">
+      <div class="flex items-start gap-3">
+        <input
+          id="radio-monthly"
+          name="radio-toggle-group"
+          type="radio"
+          value="monthly"
+          x-model="selected"
+          class="rounded-full shadow size-4 border-zinc-300 dark:border-zinc-600 text-blue-600 dark:text-blue-400 focus:ring-blue-600 dark:focus:ring-blue-400 bg-white dark:bg-zinc-900"
+        />
+        <div>
+          <Text
+            for="radio-monthly"
+            tag="label"
+            class="block text-sm font-medium text-zinc-500 dark:text-zinc-400"
+          >
+            Monthly Plan
+          </Text>
+          <p class="text-sm text-zinc-400 dark:text-zinc-500">
+            Pay $10 per month.
+          </p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3">
+        <input
+          id="radio-yearly"
+          name="radio-toggle-group"
+          type="radio"
+          value="yearly"
+          x-model="selected"
+          class="rounded-full shadow size-4 border-zinc-300 dark:border-zinc-600 text-blue-600 dark:text-blue-400 focus:ring-blue-600 dark:focus:ring-blue-400 bg-white dark:bg-zinc-900"
+        />
+        <div>
+          <Text
+            for="radio-yearly"
+            tag="label"
+            class="block text-sm font-medium text-zinc-500 dark:text-zinc-400"
+          >
+            Yearly Plan
+          </Text>
+          <p class="text-sm text-zinc-400 dark:text-zinc-500">
+            Pay $100 per year and save 20%.
+          </p>
+        </div>
       </div>
     </div>
-    <div class="flex items-start gap-3">
-      <input
-        id="radio-yearly"
-        name="radio-toggle-group"
-        type="radio"
-        value="yearly"
-        x-model="selected"
-        class="rounded-full shadow size-4 border-zinc-300 text-blue-600 focus:ring-blue-600"
-      />
-      <div>
-        <Text
-          for="radio-yearly"
-          tag="label"
-          class="block text-sm font-medium text-zinc-500"
-        >
-          Yearly Plan
-        </Text>
-        <p class="text-sm text-zinc-400">Pay $100 per year and save 20%.</p>
+    <div class="text-sm text-zinc-500 dark:text-zinc-300">
+      <div x-show="selected === 'monthly'">
+        Monthly plan is flexible and easy to cancel anytime!
       </div>
-    </div>
-    <div x-show="selected === 'yearly'" class="mt-2 text-sm text-blue-500">
-      Yearly plan offers a better deal for long-term use!
+      <div x-show="selected === 'yearly'">
+        Yearly plan offers a better deal for long-term use!
+      </div>
     </div>
   </div>
+  <!-- copy:end -->
 </div>

@@ -2,55 +2,65 @@
 import Text from "@/components/fundations/typography/Text.astro";
 ---
 
-<div class="p-8" x-show="showAlert" x-data="{ showAlert: true }" role="alert">
+<div class="p-8 bg-white dark:bg-black">
   <!-- copy:start -->
-  <div
-    class="w-full max-w-xl mx-auto overflow-hidden bg-white shadow-lg rounded-xl ring-1 ring-zinc-200"
-  >
-    <div class="p-4">
-      <div class="flex items-start">
-        <div class="flex-shrink-0">
-          <svg
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="icon icon-tabler icons-tabler-outline icon-tabler-circle-check size-6 text-emerald-500"
-            ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-              d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path><path
-              d="M9 12l2 2l4 -4"></path></svg
-          >
-        </div>
-        <div class="ml-3 w-0 flex-1 pt-0.5">
-          <Text tag="p" variant="textBase" class="font-medium text-zinc-900">
-            We've added you to our wait list!
-          </Text>
-          <Text tag="p" variant="textSM" class="mt-2 font-medium text-zinc-500">
-            We'll update you soon with your invite.
-          </Text>
-        </div>
-        <div class="flex flex-shrink-0 ml-4">
-          <button
-            @click="showAlert = false"
-            type="button"
-            class="inline-flex bg-white rounded-md text-zinc-400 hover:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-          >
-            <span class="sr-only">Close</span>
+  <div x-show="showAlert" x-data="{ showAlert: true }" role="alert">
+    <div
+      class="w-full max-w-sm mx-auto overflow-hidden bg-white dark:bg-zinc-900 shadow-lg rounded-xl ring-1 ring-zinc-200 dark:ring-zinc-700"
+    >
+      <div class="p-4">
+        <div class="flex items-start">
+          <div class="flex-shrink-0">
             <svg
-              class="size-5"
-              viewBox="0 0 20 20"
-              fill="currentColor"
               aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-circle-check size-6 text-emerald-500"
+              ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path><path
+                d="M9 12l2 2l4 -4"></path></svg
             >
-              <path
-                d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"
-              ></path>
-            </svg>
-          </button>
+          </div>
+          <div class="ml-3 w-0 flex-1 pt-0.5">
+            <Text
+              tag="p"
+              variant="textBase"
+              class="font-medium text-zinc-900 dark:text-zinc-100"
+            >
+              We've added you to our wait list!
+            </Text>
+            <Text
+              tag="p"
+              variant="textSM"
+              class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
+            >
+              We'll update you soon with your invite.
+            </Text>
+          </div>
+          <div class="flex flex-shrink-0 ml-4">
+            <button
+              @click="showAlert = false"
+              type="button"
+              class="inline-flex bg-white dark:bg-zinc-900 rounded-md text-zinc-400 dark:text-zinc-500 hover:text-zinc-500 dark:hover:text-zinc-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:ring-offset-2"
+            >
+              <span class="sr-only">Close</span>
+              <svg
+                class="size-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"
+                ></path>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>

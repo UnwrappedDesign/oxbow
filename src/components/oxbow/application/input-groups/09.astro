@@ -6,41 +6,41 @@ import Button from "@/components/fundations/buttons/Button.astro";
 import Plus from "@/components/fundations/icons/Plus.astro";
 import Minus from "@/components/fundations/icons/Minus.astro";
 ---
-
-<div class="flex items-center justify-center p-8">
-
-  <!-- copy:start -->
-  <div class="w-full space-y-1" x-data="{ count: 0 }">
-    <label class="text-sm font-medium text-zinc-500"> Quantity </label>
-    <div class="flex items-center">
-      <Button
-        @click="count--"
-        variant="alternative"
-        onlyIconSize="sm"
-        noRoundedRight
-      >
-        <Minus slot="left-icon" size="sm" />
-      </Button>
-      <TextInput
-        size="sm"
-        isGrouped={true}
-        noRounded={true}
-        type="number"
-        id="input-plus-minus"
-        name="input-plus-minus"
-        x-model="count"
-        readonly
-      />
-      <Button
-        @click="count++"
-        variant="alternative"
-        onlyIconSize="sm"
-        no
-        noRoundedLeft
-      >
-        <Plus slot="right-icon" size="sm" />
-      </Button>
+<section class="gap-2 justify-center p-15 bg-white dark:bg-black h-full">
+  <div class="w-full max-w-sm mx-auto">
+    <!-- copy:start -->
+    <div class="w-full space-y-1" x-data="{ count: 0 }">
+      <label class="text-sm font-medium text-zinc-500"> Quantity </label>
+      <div class="flex items-center">
+        <Button
+          @click="count--"
+          variant="alternative"
+          onlyIconSize="sm"
+          noRoundedRight
+        >
+          <Minus slot="left-icon" size="sm" />
+        </Button>
+        <TextInput
+          size="sm"
+          isGrouped={true}
+          noRounded={true}
+          type="number"
+          id="input-plus-minus"
+          name="input-plus-minus"
+          x-model="count"
+          readonly
+        />
+        <Button
+          @click="count++"
+          variant="alternative"
+          onlyIconSize="sm"
+          no
+          noRoundedLeft
+        >
+          <Plus slot="right-icon" size="sm" />
+        </Button>
+      </div>
     </div>
+    <!-- copy:end -->
   </div>
-  <!-- copy:end -->
-</div>
+</section>

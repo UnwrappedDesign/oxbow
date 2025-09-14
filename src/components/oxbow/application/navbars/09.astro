@@ -1,0 +1,130 @@
+---
+export const freeComponent = true;
+export const excludeFromObfuscation = ["flex", "hidden"];
+
+import Button from "@/components/fundations/buttons/Button.astro";
+import IconButton from "@/components/fundations/buttons/IconButton.astro";
+import Burger from "@/components/fundations/icons/Burger.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import Download from "@/components/fundations/icons/Download.astro";
+import Start from "@/components/fundations/icons/Start.astro";
+import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
+---
+
+<!-- copy:start -->
+<header
+  class="w-full mx-auto bg-zinc-50 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800"
+>
+  <div
+    x-data="{ open:false, org:false, view:'wireframe' }"
+    class="max-w-screen-xl mx-auto px-6 md:px-10 lg:px-16 py-2"
+  >
+    <div class="flex items-center gap-3">
+      <!-- Left: Org selector -->
+      <div class="relative flex items-center gap-2">
+        <span
+          class="inline-flex items-center justify-center size-7 rounded-full bg-zinc-900 text-white text-xs"
+          >A</span
+        >
+        <button
+          @click="org=!org"
+          :aria-expanded="org"
+          aria-haspopup="listbox"
+          class="inline-flex items-center gap-1 text-sm text-zinc-700 dark:text-zinc-200"
+        >
+          Oxbow
+          <ChevronDown size="sm" class="text-zinc-400" />
+        </button>
+        <div
+          x-show="org"
+          @click.outside="org=false"
+          class="absolute left-0 top-full mt-2 w-44 rounded-xl bg-white dark:bg-zinc-900 shadow-oxbow outline outline-1 outline-zinc-100 dark:outline-zinc-800 p-1"
+        >
+          {
+            ["Lexington", "CAF", "Pricing Patterns"].map((n) => (
+              <a
+                href="#_"
+                class="block px-3 py-1.5 rounded-md text-sm text-zinc-700 dark:text-zinc-200 hover:bg-sand-100 dark:hover:bg-zinc-800"
+              >
+                {n}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Center: segmented control -->
+      <div class="hidden md:flex mx-auto">
+        <div
+          class="inline-flex items-center rounded-lg bg-zinc-100 dark:bg-zinc-800 outline outline-1 outline-zinc-200 dark:outline-zinc-700 p-0.5"
+        >
+          <button
+            @click="view='sitemap'"
+            :aria-pressed="view==='sitemap'"
+            class="px-3 py-1 rounded-md text-sm"
+            :class="view==='sitemap' ? 'bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 shadow-sm' : 'text-zinc-600 dark:text-zinc-300'"
+            >Sitemap</button
+          >
+          <button
+            @click="view='wireframe'"
+            :aria-pressed="view==='wireframe'"
+            class="px-3 py-1 rounded-md text-sm"
+            :class="view==='wireframe' ? 'bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 shadow-sm' : 'text-zinc-600 dark:text-zinc-300'"
+            >Wireframe</button
+          >
+        </div>
+      </div>
+
+      <!-- Right: actions -->
+      <div class="ml-auto hidden md:flex items-center gap-3">
+        <Text
+          tag="a"
+          href="#_"
+          variant="textBase"
+          class="inline-flex items-center gap-1 text-sm text-zinc-600 dark:text-zinc-300 hover:text-blue-600"
+          ><Download size="sm" /> Export</Text
+        >
+        <Button
+          variant="default"
+          size="xs"
+          class="inline-flex items-center gap-1"
+          ><Start size="sm" /> Upgrade</Button
+        >
+      </div>
+
+      <IconButton
+        class="md:hidden ml-auto"
+        @click="open=!open"
+        :aria-expanded="open"
+        aria-controls="nav-9"
+        variant="alternative"
+        size="xs"><Burger size="xs" slot="icon" /></IconButton
+      >
+    </div>
+
+    <!-- Mobile fallback -->
+    <nav
+      id="nav-9"
+      :class="{ 'block': open, 'hidden': !open }"
+      class="md:hidden hidden mt-2 space-y-2"
+      aria-label="Mobile"
+    >
+      <a
+        href="#_"
+        class="block px-2 py-1 rounded-md text-zinc-600 dark:text-zinc-300 hover:bg-sand-100 dark:hover:bg-zinc-800"
+        >Sitemap</a
+      >
+      <a
+        href="#_"
+        class="block px-2 py-1 rounded-md text-zinc-600 dark:text-zinc-300 hover:bg-sand-100 dark:hover:bg-zinc-800"
+        >Wireframe</a
+      >
+      <a
+        href="#_"
+        class="block px-2 py-1 rounded-md text-zinc-600 dark:text-zinc-300 hover:bg-sand-100 dark:hover:bg-zinc-800"
+        >Export</a
+      >
+    </nav>
+  </div>
+</header>
+<!-- copy:end -->
