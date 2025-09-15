@@ -42,10 +42,11 @@ import AdjustmentsHorizontal from "@/components/fundations/icons/AdjustmentsHori
 const pricingOptions = [
   {
     id: "core",
-    cardClass: "bg-white outline-zinc-200",
-    primaryTextColor: "text-zinc-900",
-    secondaryTextColor: "text-zinc-500",
-    featuresBorderColor: "border-zinc-200",
+    cardClass:
+      "bg-white outline-zinc-200 dark:bg-zinc-950 dark:outline-zinc-900",
+    primaryTextColor: "text-zinc-900 dark:text-zinc-100",
+    secondaryTextColor: "text-zinc-500 dark:text-zinc-400",
+    featuresBorderColor: "border-zinc-200 dark:border-zinc-600",
     title: "Core",
     monthly: "$29.00",
     annual: "$19.00",
@@ -94,10 +95,11 @@ const pricingOptions = [
   },
   {
     id: "velocity",
-    cardClass: "bg-white  outline-zinc-200",
-    primaryTextColor: "text-zinc-900",
-    secondaryTextColor: "text-zinc-500",
-    featuresBorderColor: "border-zinc-200",
+    cardClass:
+      "bg-white outline-zinc-200 dark:bg-zinc-950 dark:outline-zinc-900",
+    primaryTextColor: "text-zinc-900 dark:text-zinc-100",
+    secondaryTextColor: "text-zinc-500 dark:text-zinc-400",
+    featuresBorderColor: "border-zinc-200 dark:border-zinc-600",
 
     title: "Velocity",
     monthly: "$99.00",
@@ -120,20 +122,20 @@ const pricingOptions = [
 ];
 ---
 
-<section x-data="{duration: 'monthly'}" class="bg-zinc-50">
-  <div class="p-8">
+<section x-data="{ duration: 'monthly' }" class="bg-white dark:bg-black">
+  <div class="max-w-7xl mx-auto px-8 lg:px-12 py-24">
     <div class="max-w-xl mx-auto text-center">
       <Text
         tag="h1"
         variant="displayMD"
-        class="font-medium tracking-tight text-zinc-900 text-balance"
+        class="font-medium tracking-tight text-zinc-900 dark:text-zinc-100 text-balance"
       >
         Tools your team will actually use
       </Text>
       <Text
         tag="p"
         variant="textBase"
-        class="mt-2 font-medium text-zinc-600 text-balance"
+        class="mt-2 font-medium text-zinc-600 dark:text-zinc-300 text-balance"
       >
         Skip the bloat, skip the learning curve. When the docs are shorter than
         your to-do list, you know it's good.
@@ -142,27 +144,25 @@ const pricingOptions = [
       <!-- Pricing Toggle -->
       <div
         aria-labelledby="pricing-toggle"
-        class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-white shadow ring-1 ring-zinc-200 ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52"
+        class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-white dark:bg-zinc-900 shadow ring-1 ring-zinc-200 dark:ring-zinc-700 ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52 dark:ring-offset-black"
       >
         <div
-          class="absolute inset-0 bg-zinc-50 rounded-md transition-transform duration-200 ease-in-out"
+          class="absolute inset-0 bg-zinc-50 dark:bg-zinc-800 rounded-md transition-transform duration-200 ease-in-out"
           :class="duration === 'monthly' ? 'w-1/2 translate-x-0' : 'w-1/2 translate-x-full'"
         >
         </div>
-
         <button
           class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-          :class="duration === 'monthly' ? 'text-zinc-600' : 'focus:text-zinc-900 hover:text-zinc-900'"
+          :class="duration === 'monthly' ? 'text-zinc-600 dark:text-zinc-300' : 'focus:text-zinc-900 hover:text-zinc-900 dark:focus:text-zinc-100 dark:hover:text-zinc-100 dark:text-zinc-300'"
           @click="duration = 'monthly'"
           type="button"
           :aria-pressed="duration === 'monthly'"
         >
           Monthly
         </button>
-
         <button
           class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-          :class="duration === 'annual' ? 'text-zinc-600' : 'focus:text-zinc-900 hover:text-zinc-900'"
+          :class="duration === 'annual' ? 'text-zinc-600 dark:text-zinc-300' : 'focus:text-zinc-900 hover:text-zinc-900 dark:focus:text-zinc-100 dark:hover:text-zinc-100 dark:text-zinc-300'"
           @click="duration = 'annual'"
           type="button"
           :aria-pressed="duration === 'annual'"
@@ -183,7 +183,7 @@ const pricingOptions = [
               <Text
                 tag="h3"
                 variant="textBase"
-                class={` font-medium text-zinc-900 ${tier.primaryTextColor}`}
+                class={` font-medium ${tier.primaryTextColor}`}
               >
                 {tier.title}
               </Text>
@@ -246,8 +246,12 @@ const pricingOptions = [
       }
     </div>
     <div class="hidden mt-12 lg:block">
-      <div class="pb-4 mt-20 border-b border-zinc-200">
-        <Text tag="p" variant="textXL" class="font-medium text-zinc-900">
+      <div class="pb-4 mt-20 border-b border-zinc-200 dark:border-zinc-800">
+        <Text
+          tag="p"
+          variant="textXL"
+          class="font-medium text-zinc-900 dark:text-white"
+        >
           Price comparison
         </Text>
         <p class="text-2xl font-semibold tracking-tight text-zinc-900"></p>
@@ -256,23 +260,23 @@ const pricingOptions = [
       <div>
         <table class="w-full mx-auto text-center bg-transparent">
           <thead>
-            <tr class="align-top border-b border-zinc-200">
+            <tr class="align-top border-b border-zinc-200 dark:border-zinc-800">
               <th
-                class="w-1/4 py-4 text-sm font-medium text-left leading-6 text-zinc-900"
+                class="w-1/4 py-4 text-sm font-medium text-left leading-6 text-zinc-900 dark:text-white"
                 >Usage
               </th>
               <th
-                class="w-1/4 py-4 text-sm font-medium leading-6 text-zinc-900"
+                class="w-1/4 py-4 text-sm font-medium leading-6 text-zinc-900 dark:text-white"
               >
                 Core
               </th>
               <th
-                class="w-1/4 py-4 text-sm font-medium leading-6 text-zinc-900"
+                class="w-1/4 py-4 text-sm font-medium leading-6 text-zinc-900 dark:text-white"
               >
                 Momentum
               </th>
               <th
-                class="w-1/4 py-4 text-sm font-medium leading-6 text-zinc-900"
+                class="w-1/4 py-4 text-sm font-medium leading-6 text-zinc-900 dark:text-white"
               >
                 Velocity
               </th>
@@ -280,33 +284,37 @@ const pricingOptions = [
           </thead>
           <tbody>
             <tr>
-              <th class="py-3 text-sm font-medium text-left text-zinc-900">
+              <th
+                class="py-3 text-sm font-medium text-left text-zinc-900 dark:text-white"
+              >
                 <div class="flex items-center gap-2">
                   <Check size="sm" />
                   Analytics
                 </div>
               </th>
-              <td class="px-2 text-xs font-medium text-zinc-900 bg-zinc-50"
+              <td
+                class="px-2 text-xs font-medium text-zinc-900 bg-white border-zinc-200 dark:border-zinc-900 dark:bg-zinc-950 dark:text-white"
                 >3</td
               >
               <td
                 class="px-2 text-xs font-medium text-white border-t bg-blue-600 border-blue-700"
                 >10</td
               >
-              <td class="px-2 text-xs font-medium text-zinc-900 bg-white"
+              <td
+                class="px-2 text-xs font-medium text-zinc-900 bg-white border-zinc-200 dark:border-zinc-900 dark:bg-zinc-950 dark:text-white"
                 >Unlimited</td
               >
             </tr>
             <tr>
               <th
-                class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200"
+                class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:text-white dark:border-zinc-900"
               >
                 <div class="flex items-center gap-2">
                   <Check size="sm" />Accounts
                 </div>
               </th>
               <td
-                class="px-2 text-xs font-medium border-t text-zinc-900 bg-zinc-50 border-zinc-200"
+                class="px-2 text-xs font-medium border-t text-zinc-900 bg-white border-zinc-200 dark:border-zinc-900 dark:bg-zinc-950 dark:text-white"
                 >5</td
               >
               <td
@@ -314,20 +322,20 @@ const pricingOptions = [
                 >10</td
               >
               <td
-                class="px-2 text-xs font-medium text-zinc-900 border-t bg-white border-white/10"
+                class="px-2 text-xs font-medium text-zinc-900 border-t bg-white border-zinc-200 dark:border-zinc-900 dark:bg-zinc-950 dark:text-white"
                 >Unlimited</td
               >
             </tr>
             <tr>
               <th
-                class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200"
+                class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:text-white dark:border-zinc-900"
               >
                 <div class="flex items-center gap-2">
                   <Check size="sm" />Integrations
                 </div>
               </th>
               <td
-                class="px-2 text-xs font-medium border-t text-zinc-900 bg-zinc-50 border-zinc-200"
+                class="px-2 text-xs font-medium border-t text-zinc-900 bg-white border-zinc-200 dark:border-zinc-900 dark:bg-zinc-950 dark:text-white"
                 >2</td
               >
               <td
@@ -336,20 +344,20 @@ const pricingOptions = [
                 YES
               </td>
               <td
-                class="px-2 text-xs font-medium text-zinc-900 border-t bg-white border-white/10"
+                class="px-2 text-xs font-medium text-zinc-900 border-t bg-white border-zinc-200 dark:border-zinc-900 dark:bg-zinc-950 dark:text-white"
                 >Unlimited</td
               >
             </tr>
             <tr>
               <th
-                class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200"
+                class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:text-white dark:border-zinc-900"
               >
                 <div class="flex items-center gap-2">
                   <Check size="sm" />Programs
                 </div>
               </th>
               <td
-                class="px-2 text-xs font-medium border-t text-zinc-900 bg-zinc-50 border-zinc-200"
+                class="px-2 text-xs font-medium border-t text-zinc-900 bg-white border-zinc-200 dark:border-zinc-900 dark:bg-zinc-950 dark:text-white"
               >
                 NO
               </td>
@@ -358,20 +366,20 @@ const pricingOptions = [
                 >1</td
               >
               <td
-                class="px-2 text-xs font-medium text-zinc-900 border-t bg-white border-white/10"
+                class="px-2 text-xs font-medium text-zinc-900 border-t bg-white border-zinc-200 dark:border-zinc-900 dark:bg-zinc-950 dark:text-white"
                 >Unlimited</td
               >
             </tr>
             <tr>
               <th
-                class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200"
+                class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:text-white dark:border-zinc-900"
               >
                 <div class="flex items-center gap-2">
                   <Check size="sm" />Deployments
                 </div>
               </th>
               <td
-                class="px-2 text-xs font-medium border-t text-zinc-900 bg-zinc-50 border-zinc-200"
+                class="px-2 text-xs font-medium border-t text-zinc-900 bg-white border-zinc-200 dark:border-zinc-900 dark:bg-zinc-950 dark:text-white"
               >
                 NO
               </td>
@@ -381,20 +389,20 @@ const pricingOptions = [
                 YES
               </td>
               <td
-                class="px-2 text-xs font-medium text-zinc-900 border-t bg-white border-white/10"
+                class="px-2 text-xs font-medium text-zinc-900 border-t bg-white border-zinc-200 dark:border-zinc-900 dark:bg-zinc-950 dark:text-white"
                 >Unlimited</td
               >
             </tr>
             <tr>
               <th
-                class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200"
+                class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:text-white dark:border-zinc-900"
               >
                 <div class="flex items-center gap-2">
                   <Check size="sm" />Advanced Checkpoints
                 </div>
               </th>
               <td
-                class="px-2 text-xs font-medium border-t text-zinc-900 bg-zinc-50 border-zinc-200"
+                class="px-2 text-xs font-medium border-t text-zinc-900 bg-white border-zinc-200 dark:border-zinc-900 dark:bg-zinc-950 dark:text-white"
               >
                 NO
               </td>
@@ -404,20 +412,20 @@ const pricingOptions = [
                 YES
               </td>
               <td
-                class="px-2 text-xs font-medium text-zinc-900 border-t bg-white border-white/10"
+                class="px-2 text-xs font-medium text-zinc-900 border-t bg-white border-zinc-200 dark:border-zinc-900 dark:bg-zinc-950 dark:text-white"
                 >Unlimited</td
               >
             </tr>
             <tr>
               <th
-                class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200"
+                class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:text-white dark:border-zinc-900"
               >
                 <div class="flex items-center gap-2">
                   <Check size="sm" />Reporting tools
                 </div>
               </th>
               <td
-                class="px-2 text-xs font-medium border-t text-zinc-900 bg-zinc-50 border-zinc-200"
+                class="px-2 text-xs font-medium border-t text-zinc-900 bg-white border-zinc-200 dark:border-zinc-900 dark:bg-zinc-950 dark:text-white"
               >
                 NO
               </td>
@@ -427,19 +435,19 @@ const pricingOptions = [
                 YES
               </td>
               <td
-                class="px-2 text-xs font-medium text-zinc-900 border-t bg-white border-white/10"
+                class="px-2 text-xs font-medium text-zinc-900 border-t bg-white border-zinc-200 dark:border-zinc-900 dark:bg-zinc-950 dark:text-white"
                 >Unlimited</td
               >
             </tr>
             <tr>
               <th
-                class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200"
+                class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:text-white dark:border-zinc-900"
                 ><div class="flex items-center gap-2">
                   <Check size="sm" />Support
                 </div></th
               >
               <td
-                class="px-2 text-xs font-medium border-t text-zinc-900 bg-zinc-50 border-zinc-200"
+                class="px-2 text-xs font-medium border-t text-zinc-900 bg-white border-zinc-200 dark:border-zinc-900 dark:bg-zinc-950 dark:text-white"
                 >Discord community</td
               >
               <td
@@ -447,7 +455,7 @@ const pricingOptions = [
                 >Live chat</td
               >
               <td
-                class="px-2 text-xs font-medium text-zinc-900 border-t bg-white border-white/10"
+                class="px-2 text-xs font-medium text-zinc-900 border-t bg-white border-zinc-200 dark:border-zinc-900 dark:bg-zinc-950 dark:text-white"
                 >Unlimited</td
               >
             </tr>
@@ -456,40 +464,44 @@ const pricingOptions = [
               <th
                 scope="colgroup"
                 colspan="4"
-                class="py-4 text-sm font-medium text-left leading-6 text-zinc-900 border-y border-zinc-200"
+                class="py-4 text-sm font-medium text-left leading-6 text-zinc-900 border-y border-zinc-200 dark:text-white dark:border-zinc-900"
               >
                 Features
               </th>
             </tr>
 
             <tr>
-              <th class="py-3 text-sm font-medium text-left text-zinc-900">
+              <th
+                class="py-3 text-sm font-medium text-left text-zinc-900 dark:text-white"
+              >
                 <div class="flex items-center gap-2">
                   <Check size="sm" />
                   Service agreement
                 </div>
               </th>
-              <td class="px-2 text-xs font-medium text-zinc-900 bg-zinc-50"
+              <td
+                class="px-2 text-xs font-medium text-zinc-900 bg-white border-zinc-200 dark:border-zinc-900 dark:bg-zinc-950 dark:text-white"
                 >No</td
               >
               <td
                 class="px-2 text-xs font-medium text-white border-t bg-blue-600 border-blue-700"
                 >No</td
               >
-              <td class="px-2 text-xs font-medium text-zinc-900 bg-white"
+              <td
+                class="px-2 text-xs font-medium text-zinc-900 bg-white border-zinc-200 dark:border-zinc-900 dark:bg-zinc-950 dark:text-white"
                 >YES</td
               >
             </tr>
             <tr>
               <th
-                class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200"
+                class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:text-white dark:border-zinc-900"
               >
                 <div class="flex items-center gap-2">
                   <Check size="sm" />Dedicted Manager
                 </div>
               </th>
               <td
-                class="px-2 text-xs font-medium border-t text-zinc-900 bg-zinc-50 border-zinc-200"
+                class="px-2 text-xs font-medium border-t text-zinc-900 bg-white border-zinc-200 dark:border-zinc-900 dark:bg-zinc-950 dark:text-white"
                 >No</td
               >
               <td
@@ -497,20 +509,20 @@ const pricingOptions = [
                 >Yes</td
               >
               <td
-                class="px-2 text-xs font-medium text-zinc-900 border-t bg-white border-white/10"
+                class="px-2 text-xs font-medium text-zinc-900 border-t bg-white border-zinc-200 dark:border-zinc-900 dark:bg-zinc-950 dark:text-white"
                 >Yes</td
               >
             </tr>
             <tr>
               <th
-                class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200"
+                class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:text-white dark:border-zinc-900"
               >
                 <div class="flex items-center gap-2">
                   <Check size="sm" />Onboarding sessions
                 </div>
               </th>
               <td
-                class="px-2 text-xs font-medium border-t text-zinc-900 bg-zinc-50 border-zinc-200"
+                class="px-2 text-xs font-medium border-t text-zinc-900 bg-white border-zinc-200 dark:border-zinc-900 dark:bg-zinc-950 dark:text-white"
                 >No</td
               >
               <td
@@ -519,20 +531,20 @@ const pricingOptions = [
                 No
               </td>
               <td
-                class="px-2 text-xs font-medium text-zinc-900 border-t bg-white border-white/10"
+                class="px-2 text-xs font-medium text-zinc-900 border-t bg-white border-zinc-200 dark:border-zinc-900 dark:bg-zinc-950 dark:text-white"
                 >Yes</td
               >
             </tr>
             <tr>
               <th
-                class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200"
+                class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:text-white dark:border-zinc-900"
               >
                 <div class="flex items-center gap-2">
                   <Check size="sm" />Dedicated support channel
                 </div>
               </th>
               <td
-                class="px-2 text-xs font-medium border-t text-zinc-900 bg-zinc-50 border-zinc-200 rounded-bl-3xl"
+                class="px-2 text-xs font-medium border-t text-zinc-900 bg-white border-zinc-200 dark:border-zinc-900 dark:bg-zinc-950 dark:text-white rounded-bl-3xl"
               >
                 No
               </td>
@@ -541,7 +553,7 @@ const pricingOptions = [
                 >No</td
               >
               <td
-                class="px-2 text-xs font-medium text-zinc-900 border-t bg-white border-white/10 rounded-br-3xl"
+                class="px-2 text-xs font-medium text-zinc-900 border-t bg-white border-zinc-200 dark:border-zinc-900 dark:bg-zinc-950 dark:text-white rounded-br-3xl"
                 >Yes</td
               >
             </tr>

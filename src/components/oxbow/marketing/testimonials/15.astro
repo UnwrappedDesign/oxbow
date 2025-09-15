@@ -46,16 +46,20 @@ const data = [
 ];
 ---
 
-<section class="relative overflow-hidden">
+<section class="bg-white dark:bg-black relative overflow-hidden">
   <div class="relative px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl">
     <div class="max-w-xl mx-auto text-center">
-      <Text tag="p" variant="textSM" class="font-bold uppercase text-blue-600">
+      <Text
+        tag="p"
+        variant="textSM"
+        class="font-bold uppercase text-blue-600 dark:text-blue-400"
+      >
         Tagline
       </Text>
       <Text
         tag="h2"
         variant="displayMD"
-        class="mt-4 font-semibold text-zinc-900 lg:text-balance"
+        class="mt-4 font-semibold text-zinc-900 dark:text-zinc-100 lg:text-balance"
       >
         Hear from our customers about their experiences
       </Text>
@@ -64,18 +68,16 @@ const data = [
         page for their business.
       </Text>
     </div>
-  </div>
-  <div class="flex justify-center py-4 overflow-hidden gap-5 sm:gap-4">
-    {
-      data.map((member) => (
-        <>
+    <div class="flex justify-center py-4 overflow-hidden gap-5 sm:gap-4">
+      {
+        data.map((member) => (
           <div class="flex flex-none w-full  sm:w-96">
-            <figure class="flex flex-col justify-between h-full p-6 shadow  bg-zinc-50 rounded-2xl">
+            <figure class="flex flex-col justify-between h-full p-6 shadow  bg-zinc-50 dark:bg-zinc-900 rounded-2xl">
               <div>
                 <Text
                   tag="blockquote"
                   variant="textBase"
-                  class="italic font-medium text-zinc-900"
+                  class="italic font-medium text-zinc-900 dark:text-zinc-100"
                 >
                   "{member.testimonial}"
                 </Text>
@@ -91,7 +93,7 @@ const data = [
                     <Text
                       tag="h3"
                       variant="textBase"
-                      class="font-medium text-zinc-900"
+                      class="font-medium text-zinc-900 dark:text-zinc-100"
                     >
                       {member.name}
                     </Text>
@@ -99,7 +101,7 @@ const data = [
                     <Text
                       tag="p"
                       variant="textXS"
-                      class="font-medium text-zinc-400"
+                      class="font-medium text-zinc-400 dark:text-zinc-300"
                     >
                       {member.title}
                     </Text>
@@ -108,8 +110,8 @@ const data = [
               </figcaption>
             </figure>
           </div>
-        </>
-      ))
-    }
+        ))
+      }
+    </div>
   </div>
 </section>

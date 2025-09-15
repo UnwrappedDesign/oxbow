@@ -90,43 +90,44 @@ const pricingOptions = [
 ];
 ---
 
-<section x-data="{ duration: 'monthly' }" class="bg-zinc-50">
-  <div class="p-8">
+<section x-data="{ duration: 'monthly' }" class="bg-white dark:bg-black">
+  <div class="max-w-7xl mx-auto px-8 lg:px-12 py-24">
     <div class="items-end grid grid-cols-1 lg:grid-cols-2">
       <div>
         <Text
           tag="h1"
           variant="displaySM"
-          class="font-medium tracking-tight text-zinc-900 lg:text-balance"
+          class="font-medium tracking-tight text-zinc-900 dark:text-zinc-100 lg:text-balance"
         >
           Equip your business with world class software
         </Text>
         <Text
           tag="p"
           variant="textBase"
-          class="mt-2 font-medium text-zinc-600 lg:text-balance"
+          class="mt-2 font-medium text-zinc-600 dark:text-zinc-300 lg:text-balance"
         >
           Choose a plan that works the best for you and your team. Start small,
           upgrade when you need to.
         </Text>
-        <Kicker class="mt-4 text-blue-500">
-          All plans come with a <span class="font-medium text-zinc-900"
+        <Kicker class="mt-4 text-blue-500 dark:text-blue-400">
+          All plans come with a <span
+            class="font-medium text-zinc-900 dark:text-zinc-100"
             >14-day free</span
           > trial period.
         </Kicker>
       </div>
       <div
         aria-labelledby="pricing-toggle"
-        class="relative z-0 inline-flex w-full p-1 mt-8 overflow-hidden bg-white shadow ring-1 ring-zinc-200 ring-offset-2 gap-4 rounded-md max-w-52 lg:ml-auto"
+        class="relative z-0 inline-flex justify-center w-full p-1 overflow-hidden bg-white dark:bg-zinc-900 shadow ring-1 ring-zinc-200 dark:ring-zinc-700 ring-offset-2 gap-4 lg:mx-auto rounded-md max-w-52 dark:ring-offset-black lg:ml-auto"
       >
         <div
-          class="absolute inset-0 bg-zinc-50 rounded-md transition-transform duration-200 ease-in-out"
+          class="absolute inset-0 bg-zinc-50 dark:bg-zinc-800 rounded-md transition-transform duration-200 ease-in-out"
           :class="duration === 'monthly' ? 'w-1/2 translate-x-0' : 'w-1/2 translate-x-full'"
         >
         </div>
         <button
           class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-          :class="duration === 'monthly' ? 'text-zinc-600' : 'focus:text-zinc-900 hover:text-zinc-900'"
+          :class="duration === 'monthly' ? 'text-zinc-600 dark:text-zinc-300' : 'focus:text-zinc-900 hover:text-zinc-900 dark:focus:text-zinc-100 dark:hover:text-zinc-100 dark:text-zinc-300'"
           @click="duration = 'monthly'"
           type="button"
           :aria-pressed="duration === 'monthly'"
@@ -135,7 +136,7 @@ const pricingOptions = [
         </button>
         <button
           class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-          :class="duration === 'annual' ? 'text-zinc-600' : 'focus:text-zinc-900 hover:text-zinc-900'"
+          :class="duration === 'annual' ? 'text-zinc-600 dark:text-zinc-300' : 'focus:text-zinc-900 hover:text-zinc-900 dark:focus:text-zinc-100 dark:hover:text-zinc-100 dark:text-zinc-300'"
           @click="duration = 'annual'"
           type="button"
           :aria-pressed="duration === 'annual'"
@@ -148,56 +149,65 @@ const pricingOptions = [
     <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-3">
       {
         pricingOptions.map((tier) => (
-          <div class="flex flex-col justify-between h-full">
+          <div class="flex flex-col justify-between h-full rounded-xl">
             <div class="flex flex-col">
               <div class="flex items-center gap-2">
-                <div class="p-3 bg-white rounded-lg outline outline-zinc-100 text-blue-500">
-                  {tier.logo && <tier.logo class="text-blue-600" size="sm" />}
+                <div class="p-3 bg-white dark:bg-zinc-800 rounded-lg text-blue-500">
+                  {tier.logo && (
+                    <tier.logo
+                      class="text-blue-600 dark:text-blue-400"
+                      size="sm"
+                    />
+                  )}
                 </div>
                 <Text
                   tag="h3"
                   variant="textBase"
-                  class="font-medium  text-zinc-500"
+                  class="font-medium text-zinc-500 dark:text-zinc-400"
                 >
                   {tier.title}
                 </Text>
               </div>
               <Text
                 variant="displaySM"
-                class="flex items-baseline mt-4 font-medium tracking-tighter text-zinc-900"
+                class="flex items-baseline mt-4 font-medium tracking-tighter text-zinc-900 dark:text-zinc-100"
               >
                 <span
                   data-monthly={tier.monthly}
                   data-annual={tier.annual}
                   x-text="$el.dataset[duration]"
                 />
-                <span class="text-sm font-normal tracking-normal  text-zinc-500">
+                <span class="text-sm font-normal tracking-normal text-zinc-500 dark:text-zinc-400">
                   <span x-show="duration === 'monthly'">/month</span>
                   <span x-show="duration === 'annual'" style="display: none;">
                     /annually
                   </span>
                 </span>
               </Text>
-              <Text tag="p" variant="textSM" class="mt-2 text-zinc-500">
+              <Text
+                tag="p"
+                variant="textSM"
+                class="mt-2 text-zinc-500 dark:text-zinc-400"
+              >
                 {tier.description}
               </Text>
-              <div class="pt-8 mt-8 border-t border-zinc-200">
+              <div class="pt-8 mt-8 border-t border-zinc-200 dark:border-zinc-700">
                 <Text
                   tag="p"
                   variant="textXS"
-                  class="font-medium uppercase  text-zinc-500"
+                  class="font-medium uppercase text-zinc-500 dark:text-zinc-400"
                 >
                   {tier.title === "Momentum"
                     ? "Everything in Core plus:"
                     : "Core plan includes:"}
                 </Text>
                 <ul
-                  class="flex flex-col mt-4 text-sm text-zinc-600 gap-y-3 "
+                  class="flex flex-col mt-4 text-sm text-zinc-600 dark:text-zinc-300 gap-y-3"
                   role="list"
                 >
                   {tier.features.map((feature, index) => (
                     <li class="flex items-center gap-2">
-                      <feature.icon size="sm" />
+                      <feature.icon size="sm" class="dark:text-zinc-400" />
                       <span>{feature.text}</span>
                     </li>
                   ))}
@@ -205,15 +215,22 @@ const pricingOptions = [
               </div>
             </div>
             <div class="w-full mt-12">
-              <Button class="w-full" variant={tier.button.variant} size="sm">
+              <Button
+                class="w-full dark:bg-zinc-800 dark:text-zinc-100"
+                variant={tier.button.variant}
+                size="sm"
+              >
                 {tier.button.text}
               </Button>
               <div class="flex items-center mt-4 gap-2 ">
-                <CircleCheck size="sm" class="text-blue-500" />
+                <CircleCheck
+                  size="sm"
+                  class="text-blue-500 dark:text-blue-400"
+                />
                 <Text
                   tag="p"
                   variant="textSM"
-                  class="font-medium  text-zinc-500"
+                  class="font-medium text-zinc-500 dark:text-zinc-400"
                 >
                   No credit card required
                 </Text>

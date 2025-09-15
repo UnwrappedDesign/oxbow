@@ -38,25 +38,29 @@ const teamMembers = [
 ];
 ---
 
-<section>
+<section class="bg-white dark:bg-black">
   <div class="relative px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl">
     <div class="grid grid-cols-1 gap-12 md:grid-cols-3 lg:items-end">
       <div class="lg:col-span-2">
         <Text
           tag="p"
           variant="textSM"
-          class="font-bold uppercase text-blue-600"
+          class="font-bold uppercase text-blue-600 dark:text-blue-400"
         >
           Tagline
         </Text>
         <Text
           tag="h2"
           variant="displayMD"
-          class="mt-4 font-semibold text-zinc-900 lg:text-balance"
+          class="mt-4 font-semibold text-zinc-900 dark:text-white lg:text-balance"
         >
           Introducing our team
         </Text>
-        <Text tag="p" variant="textBase" class="mt-4 font-medium text-zinc-500">
+        <Text
+          tag="p"
+          variant="textBase"
+          class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+        >
           Uniting talent with vision. Get to know the dedicated professionals
           who blend their skills and passion to lead us to new heights.
         </Text>
@@ -66,7 +70,7 @@ const teamMembers = [
           tag="a"
           href="#_"
           variant="textBase"
-          class="flex items-center font-medium text-blue-500 gap-2 hover:text-zinc-900"
+          class="flex items-center font-medium text-blue-500 dark:text-blue-400 gap-2 hover:text-zinc-900 dark:hover:text-white"
         >
           Meet all our team
           <ChevronRight size="sm" />
@@ -74,14 +78,14 @@ const teamMembers = [
       </div>
     </div>
     <div
-      class="mt-12 border-y divide-y border-zinc-200 divide-zinc-200 lg:mt-24"
+      class="mt-12 border-y divide-y border-zinc-200 dark:border-zinc-800 dark:divide-zinc-800 divide-zinc-200 lg:mt-24"
     >
       {
         teamMembers.map((member) => (
           <div class="flex flex-col justify-between py-6 md:flex-row lg:items-center gap-4">
             <div class="flex items-center gap-4">
               <img
-                class="object-cover rounded-full size-12  transition-all duration-300"
+                class="object-cover rounded-full size-12 transition-all duration-300"
                 src={member.imgSrc}
                 alt={`${member.name}'s profile picture`}
               />
@@ -89,20 +93,20 @@ const teamMembers = [
                 <Text
                   tag="h3"
                   variant="textLG"
-                  class="font-medium  text-zinc-900"
+                  class="font-medium text-zinc-900 dark:text-white"
                 >
                   {member.name}
                 </Text>
                 <Text
                   tag="p"
                   variant="textBase"
-                  class="font-medium text-zinc-500"
+                  class="font-medium text-zinc-500 dark:text-zinc-400"
                 >
                   {member.title}
                 </Text>
               </div>
             </div>
-            <div class="flex items-center  gap-2">
+            <div class="flex items-center gap-2">
               <Text tag="a" href="#_" variant="link">
                 <XBrand size="sm" />
               </Text>
