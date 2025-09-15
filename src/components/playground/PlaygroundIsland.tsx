@@ -302,12 +302,21 @@ export default function PlaygroundIsland({
       <div className="flex items-center justify-between pb-2 gap-1 ">
         {/* Left: index + tools */}
         <div className="flex items-center gap-1">
-          <a
-            href={`#${iframeId.replace("iframe-", "")}`}
-            className="inline-flex items-center justify-center size-7 px-2 text-xs rounded-md bg-zinc-50 outline outline-1 outline-zinc-200 text-zinc-600"
+          <button
+            type="button"
+            onClick={async () => {
+              try {
+                await navigator.clipboard.writeText(window.location.origin + window.location.pathname + `#${iframeId.replace('iframe-', '')}`);
+                setCopied(true);
+                setTimeout(() => setCopied(false), 1200);
+              } catch {}
+            }}
+            className={`inline-flex items-center justify-center size-7 px-2 text-xs rounded-md bg-zinc-50 outline outline-1 outline-zinc-200 ${copied ? 'text-green-600 bg-green-50' : 'text-zinc-600'}`}
+            title="Copy block URL"
+            aria-label="Copy block URL"
           >
-            {iframeId.replace("iframe-", "")}
-          </a>
+            {copied ? <Check size={14} /> : iframeId.replace('iframe-', '')}
+          </button>
           <div
             aria-hidden
             className="mx-1 h-4 w-[1px] bg-zinc-200 hidden md:inline-block"

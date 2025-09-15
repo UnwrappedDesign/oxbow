@@ -5,7 +5,9 @@ import CircleCheck from "@/components/fundations/icons/CircleCheck.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
 
-<div class="flex items-center justify-center p-8 py-24 relative">
+<div
+  class="flex items-center justify-center p-8 py-24 relative bg-white dark:bg-black"
+>
   <!-- copy:start -->
   <div
     x-data="{ isVisible: true }"
@@ -17,17 +19,29 @@ import Text from "@/components/fundations/typography/Text.astro";
       role="alert"
       aria-live="polite"
       aria-atomic="true"
-      class="p-4 shadow-lg rounded-xl bg-zinc-950 ring-1 ring-zinc-200"
+      class="p-4 shadow-lg rounded-xl bg-zinc-950 dark:bg-zinc-900 ring-1 ring-zinc-200 dark:ring-zinc-800"
     >
       <div class="flex flex-row">
         <div class="px-2">
-          <CircleCheck class="text-emerald-400" size="base" slot="icon" />
+          <CircleCheck
+            class="text-emerald-400 dark:text-emerald-400"
+            size="base"
+            slot="icon"
+          />
         </div>
         <div class="ml-2 mr-6">
-          <Text tag="p" variant="textBase" class="font-medium text-white">
+          <Text
+            tag="p"
+            variant="textBase"
+            class="font-medium text-white dark:text-white"
+          >
             Successfully Saved!
           </Text>
-          <Text tag="p" variant="textSM" class="mt-2 font-medium text-zinc-300">
+          <Text
+            tag="p"
+            variant="textSM"
+            class="mt-2 font-medium text-zinc-300 dark:text-zinc-300"
+          >
             Anyone with a link has access.
           </Text>
         </div>
@@ -38,7 +52,7 @@ import Text from "@/components/fundations/typography/Text.astro";
           variant="transparentDark"
           size="sm"
         >
-          <CircleX size="base" slot="icon" />
+          <CircleX size="base" slot="icon" class="dark:text-zinc-400" />
           <span class="sr-only">Close</span>
         </IconButton>
       </div>
