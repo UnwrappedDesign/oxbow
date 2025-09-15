@@ -4,17 +4,25 @@ page: Support
 
 # Support
 
-Let’s set expectations: OxbowUI is a pile of Tailwind blocks. It’s not your personal dev team, and it’s definitely not coming with 24/7 hand-holding.
+OxbowUI is a collection of Tailwind blocks. It’s not a custom dev shop, and it doesn’t come with round-the-clock support.
 
-Here’s the deal:
+Here’s what you can expect from us:
 
-- We’ll help with account stuff and licensing.
-- We will **not** debug your code, fix your layout, or explain how CSS works. If you need that, Google exists.
-- If your problem is “I don’t know HTML or Tailwind,” that’s not a problem,... that’s a career choice.
+- Help with account and licensing issues.
+- Guidance on using what’s included.
+- A friendly nudge in the right direction if you’re stuck.
 
-What we _do_ have is a small community of users who occasionally ask questions, share answers, or just complain about things. Feel free to email us if you want in. Just don’t expect “consulting services.”
+Here’s what’s **not** included:
+
+- Debugging your code or fixing layouts.
+- Step-by-step lessons on HTML, CSS, or Tailwind.
+- Ongoing “consulting” services.
+
+If you’re just starting out with HTML or Tailwind, there are plenty of great tutorials and resources online to help you learn the fundamentals.
+
+What we _do_ have is a small, helpful community where users sometimes ask questions, share tips, or vent about tricky problems. If that sounds good, feel free to email us and we’ll point you in the right direction.
 
 ### Contact
 
-- [Email](mailto:michael@andreuzza.com) — complaints, questions, memes.
-- [Twitter](https://twitter.com/mike_andreuzza) — where you can scream into the void publicly.
+- [Email](mailto:michael@andreuzza.com) — questions, feedback, or even the occasional meme.
+- [Twitter](https://twitter.com/mike_andreuzza) — where you can connect (or shout into the void).
