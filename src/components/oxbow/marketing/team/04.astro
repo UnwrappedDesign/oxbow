@@ -44,29 +44,32 @@ const teamMembers = [
 ];
 ---
 
-<div>
-  <!-- copy:start -->
+<section class="bg-white dark:bg-black">
   <div class="max-w-7xl mx-auto px-8 lg:px-12 py-24">
     <ul
       role="list"
-      class="overflow-hidden border grid grid-cols-1 sm:grid-cols-3 gap-px lg:grid-cols-4 rounded-3xl bg-zinc-200 border-zinc-200"
+      class="overflow-hidden border grid grid-cols-1 sm:grid-cols-3 gap-px lg:grid-cols-4 rounded-3xl bg-zinc-200 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800"
     >
       {
         teamMembers.map((member) => (
-          <li class="flex flex-col p-8 text-center bg-white lg:p-12 gap-4 hover:bg-transparent duration-300">
+          <li class="flex flex-col p-8 text-center bg-white dark:bg-black lg:p-12 gap-4 hover:bg-transparent duration-300">
             <img
               class="object-cover mx-auto rounded-full size-12 lg:size-16 "
               src={member.imgSrc}
               alt="#_"
             />
             <div>
-              <Text variant="textLG" tag="h3" class="font-medium text-zinc-900">
+              <Text
+                variant="textLG"
+                tag="h3"
+                class="font-medium text-zinc-900 dark:text-white"
+              >
                 {member.name}
               </Text>
               <Text
                 tag="p"
                 variant="textBase"
-                class="font-medium text-zinc-500"
+                class="font-medium text-zinc-500 dark:text-zinc-400"
               >
                 {member.title}
               </Text>
@@ -76,5 +79,4 @@ const teamMembers = [
       }
     </ul>
   </div>
-  <!-- copy:end -->
-</div>
+</section>

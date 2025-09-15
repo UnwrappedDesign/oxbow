@@ -40,10 +40,11 @@ import AdjustmentsHorizontal from "@/components/fundations/icons/AdjustmentsHori
 const pricingOptions = [
   {
     id: "core",
-    cardClass: "bg-white outline-zinc-200",
-    primaryTextColor: "text-zinc-900",
-    secondaryTextColor: "text-zinc-500",
-    featuresBorderColor: "border-zinc-200",
+    cardClass:
+      "bg-white outline-zinc-200 dark:bg-zinc-950 dark:outline-zinc-900",
+    primaryTextColor: "text-zinc-900 dark:text-zinc-100",
+    secondaryTextColor: "text-zinc-500 dark:text-zinc-400",
+    featuresBorderColor: "border-zinc-200 dark:border-zinc-600",
     title: "Core",
     monthly: "$29.00",
     annual: "$19.00",
@@ -64,10 +65,11 @@ const pricingOptions = [
   },
   {
     id: "momentum",
-    cardClass: "bg-blue-600  outline-blue-700",
+    cardClass:
+      "bg-blue-600 outline-blue-700 dark:bg-blue-800 dark:outline-blue-600",
     primaryTextColor: "text-white",
-    secondaryTextColor: "text-zinc-200",
-    featuresBorderColor: "border-blue-500",
+    secondaryTextColor: "text-zinc-200 dark:text-zinc-300",
+    featuresBorderColor: "border-blue-500 dark:border-blue-400",
 
     title: "Momentum",
     monthly: "$49.00",
@@ -96,7 +98,6 @@ const pricingOptions = [
     primaryTextColor: "text-zinc-900",
     secondaryTextColor: "text-zinc-500",
     featuresBorderColor: "border-zinc-200",
-
     title: "Velocity",
     monthly: "$99.00",
     annual: "$79.00",
@@ -118,20 +119,20 @@ const pricingOptions = [
 ];
 ---
 
-<section x-data="{ duration: 'monthly' }" class="bg-zinc-50">
-  <div class="p-8">
+<section x-data="{ duration: 'monthly' }" class="bg-white dark:bg-black">
+  <div class="max-w-7xl mx-auto px-8 lg:px-12 py-24">
     <div class="max-w-xl mx-auto text-center">
       <Text
         tag="h1"
         variant="displayMD"
-        class="font-medium tracking-tight text-zinc-900 text-balance"
+        class="font-medium tracking-tight text-zinc-900 dark:text-white text-balance"
       >
         Tools your team will actually use
       </Text>
       <Text
         tag="p"
         variant="textBase"
-        class="mt-2 font-medium text-zinc-600 text-balance"
+        class="mt-2 font-medium text-zinc-600 dark:text-zinc-400 text-balance"
       >
         Skip the bloat, skip the learning curve. When the docs are shorter than
         your to-do list, you know it's good.
@@ -140,27 +141,25 @@ const pricingOptions = [
       <!-- Pricing Toggle -->
       <div
         aria-labelledby="pricing-toggle"
-        class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-white shadow ring-1 ring-zinc-200 ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52"
+        class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-white dark:bg-zinc-900 shadow ring-1 ring-zinc-200 dark:ring-zinc-700 ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52 dark:ring-offset-black"
       >
         <div
-          class="absolute inset-0 bg-zinc-50 rounded-md transition-transform duration-200 ease-in-out"
+          class="absolute inset-0 bg-zinc-50 dark:bg-zinc-800 rounded-md transition-transform duration-200 ease-in-out"
           :class="duration === 'monthly' ? 'w-1/2 translate-x-0' : 'w-1/2 translate-x-full'"
         >
         </div>
-
         <button
           class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-          :class="duration === 'monthly' ? 'text-zinc-600' : 'focus:text-zinc-900 hover:text-zinc-900'"
+          :class="duration === 'monthly' ? 'text-zinc-600 dark:text-zinc-300' : 'focus:text-zinc-900 hover:text-zinc-900 dark:focus:text-zinc-100 dark:hover:text-zinc-100 dark:text-zinc-300'"
           @click="duration = 'monthly'"
           type="button"
           :aria-pressed="duration === 'monthly'"
         >
           Monthly
         </button>
-
         <button
           class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-          :class="duration === 'annual' ? 'text-zinc-600' : 'focus:text-zinc-900 hover:text-zinc-900'"
+          :class="duration === 'annual' ? 'text-zinc-600 dark:text-zinc-300' : 'focus:text-zinc-900 hover:text-zinc-900 dark:focus:text-zinc-100 dark:hover:text-zinc-100 dark:text-zinc-300'"
           @click="duration = 'annual'"
           type="button"
           :aria-pressed="duration === 'annual'"
@@ -181,7 +180,7 @@ const pricingOptions = [
               <Text
                 tag="h3"
                 variant="textBase"
-                class={` font-medium text-zinc-900 ${tier.primaryTextColor}`}
+                class={` font-medium  ${tier.primaryTextColor}`}
               >
                 {tier.title}
               </Text>

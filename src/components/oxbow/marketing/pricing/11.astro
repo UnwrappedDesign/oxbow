@@ -3,8 +3,8 @@ export const excludeFromObfuscation = [
   "w-1/2",
   "translate-x-0",
   "translate-x-full",
-  "text-zinc-600",
-  "focus:text-zinc-900",
+  "text-zinc-900",
+  "focus:text dark:border-zinc-900 dark:text-white-zinc-900",
   "hover:text-zinc-900",
 ];
 
@@ -21,8 +21,8 @@ import Check from "@/components/fundations/icons/Check.astro";
 import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.astro";
 ---
 
-<section x-data="{duration: 'monthly'}" class="bg-zinc-50">
-  <div class="p-8">
+<section x-data="{ duration: 'monthly' }" class="bg-white dark:bg-black">
+  <div class="max-w-7xl mx-auto px-8 lg:px-12 py-24">
     <p class="text-center text-zinc-500 lg:hidden">
       Pricing table for desktop use
     </p>
@@ -34,18 +34,37 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
         <Text
           tag="h1"
           variant="displayMD"
-          class="font-medium tracking-tight text-zinc-900 text-balance"
+          class="font-medium tracking-tight text-zinc-900 text-balance dark:text-white"
         >
           Equip your business with world class software
         </Text>
-        <div class="md:ml-auto">
+        <div
+          aria-labelledby="pricing-toggle"
+          class="relative z-0 inline-flex justify-center w-full p-1 overflow-hidden bg-white dark:bg-zinc-900 shadow ring-1 ring-zinc-200 dark:ring-zinc-700 ring-offset-2 gap-4 rounded-md max-w-52 dark:ring-offset-black lg:ml-auto"
+        >
           <div
-            aria-labelledby="pricing-toggle"
-            class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-white shadow ring-1 ring-zinc-200 ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52"
+            class="absolute inset-0 bg-zinc-50 dark:bg-zinc-800 rounded-md transition-transform duration-200 ease-in-out"
+            :class="duration === 'monthly' ? 'w-1/2 translate-x-0' : 'w-1/2 translate-x-full'"
           >
-            <!-- Monthly Pricing Button: Sets 'duration' to 'monthly' when clicked -->
-            <PricingToggle />
           </div>
+          <button
+            class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
+            :class="duration === 'monthly' ? 'text-zinc-600 dark:text-zinc-300' : 'focus:text-zinc-900 hover:text-zinc-900 dark:focus:text-zinc-100 dark:hover:text-zinc-100 dark:text-zinc-300'"
+            @click="duration = 'monthly'"
+            type="button"
+            :aria-pressed="duration === 'monthly'"
+          >
+            Monthly
+          </button>
+          <button
+            class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
+            :class="duration === 'annual' ? 'text-zinc-600 dark:text-zinc-300' : 'focus:text-zinc-900 hover:text-zinc-900 dark:focus:text-zinc-100 dark:hover:text-zinc-100 dark:text-zinc-300'"
+            @click="duration = 'annual'"
+            type="button"
+            :aria-pressed="duration === 'annual'"
+          >
+            Annual
+          </button>
         </div>
       </div>
       <table class="w-full mx-auto mt-8 text-center bg-transparent">
@@ -64,30 +83,36 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
                     <Text
                       tag="h3"
                       variant="textBase"
-                      class="font-medium text-zinc-900"
+                      class="font-medium text-zinc-900 dark:text-zinc-100"
                     >
                       Core
                     </Text>
-                    <Text tag="p" variant="textSM" class="mt-1 text-zinc-500">
+                    <Text
+                      tag="p"
+                      variant="textSM"
+                      class="mt-1 text-zinc-500 dark:text-zinc-400"
+                    >
                       For individuals
                     </Text>
                   </div>
                 </div>
                 <div class="mt-8">
                   <p
-                    class="text-4xl font-medium sm:text-xl md:text-4xl text-zinc-900"
+                    class="text-4xl font-medium sm:text-xl md:text-4xl text-zinc-900 dark:text-zinc-100"
                   >
                   </p>
                   <div class="flex items-center gap-x-4">
                     <p
-                      class="text-4xl font-medium sm:text-xl md:text-4xl text-zinc-900"
+                      class="text-4xl font-medium sm:text-xl md:text-4xl text-zinc-900 dark:text-zinc-100"
                     >
                       <span
                         data-monthly="$29"
                         data-annual="$19"
                         x-text="$el.dataset[duration]"></span>
                     </p>
-                    <div class="text-xs font-medium capitalize text-zinc-900">
+                    <div
+                      class="text-xs font-medium capitalize text-zinc-900 dark:text-zinc-100"
+                    >
                       <span x-show="duration === 'monthly'">
                         <span x-show="duration === 'monthly'">
                           month</span
@@ -99,7 +124,10 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
                       >
                         annually</span
                       >
-                      <Text tag="p" variant="textSM" class="text-zinc-500"
+                      <Text
+                        tag="p"
+                        variant="textSM"
+                        class="text-zinc-500 dark:text-zinc-400"
                         >USD + Local taxes</Text
                       >
                     </div>
@@ -123,25 +151,31 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
                   <Text
                     tag="h3"
                     variant="textBase"
-                    class="font-medium text-zinc-900"
+                    class="font-medium text-zinc-900 dark:text-zinc-100"
                   >
                     Momentum
                   </Text>
-                  <Text tag="p" variant="textSM" class="mt-1 text-zinc-500">
+                  <Text
+                    tag="p"
+                    variant="textSM"
+                    class="mt-1 text-zinc-500 dark:text-zinc-400"
+                  >
                     For small businesses
                   </Text>
                 </div>
                 <div class="mt-8">
                   <div class="flex items-center gap-x-4">
                     <p
-                      class="text-4xl font-medium text-zinc-900 sm:text-xl md:text-4xl"
+                      class="text-4xl font-medium text-zinc-900 dark:text-zinc-100 sm:text-xl md:text-4xl"
                     >
                       <span
                         data-monthly="$49"
                         data-annual="$39"
                         x-text="$el.dataset[duration]"></span>
                     </p>
-                    <div class="text-xs font-medium capitalize text-zinc-900">
+                    <div
+                      class="text-xs font-medium capitalize text-zinc-900 dark:text-zinc-100"
+                    >
                       <span x-show="duration === 'monthly'">
                         <span x-show="duration === 'monthly'">
                           month</span
@@ -153,7 +187,10 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
                       >
                         annually</span
                       >
-                      <Text tag="p" variant="textSM" class="text-zinc-500"
+                      <Text
+                        tag="p"
+                        variant="textSM"
+                        class="text-zinc-500 dark:text-zinc-400"
                         >USD + Local taxes</Text
                       >
                     </div>
@@ -178,30 +215,36 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
                     <Text
                       tag="h3"
                       variant="textBase"
-                      class="font-medium text-zinc-900"
+                      class="font-medium text-zinc-900 dark:text-zinc-100"
                     >
                       Growth
                     </Text>
-                    <Text tag="p" variant="textSM" class="mt-1 text-zinc-500">
+                    <Text
+                      tag="p"
+                      variant="textSM"
+                      class="mt-1 text-zinc-500 dark:text-zinc-400"
+                    >
                       For big companies
                     </Text>
                   </div>
                 </div>
                 <div class="mt-8">
                   <p
-                    class="text-4xl font-medium sm:text-xl md:text-4xl text-zinc-900"
+                    class="text-4xl font-medium sm:text-xl md:text-4xl text-zinc-900 dark:text-zinc-100"
                   >
                   </p>
                   <div class="flex items-center gap-x-4">
                     <p
-                      class="text-4xl font-medium sm:text-xl md:text-4xl text-zinc-900"
+                      class="text-4xl font-medium sm:text-xl md:text-4xl text-zinc-900 dark:text-zinc-100"
                     >
                       <span
                         data-monthly="$99"
                         data-annual="$129"
                         x-text="$el.dataset[duration]"></span>
                     </p>
-                    <div class="text-xs font-medium capitalize text-zinc-900">
+                    <div
+                      class="text-xs font-medium capitalize text-zinc-900 dark:text-zinc-100"
+                    >
                       <span x-show="duration === 'monthly'">
                         <span x-show="duration === 'monthly'">
                           month</span
@@ -213,7 +256,10 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
                       >
                         annually</span
                       >
-                      <Text tag="p" variant="textSM" class="text-zinc-500"
+                      <Text
+                        tag="p"
+                        variant="textSM"
+                        class="text-zinc-500 dark:text-zinc-400"
                         >USD + Local taxes</Text
                       >
                     </div>
@@ -233,36 +279,42 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
             <th
               scope="colgroup"
               colspan="4"
-              class="py-4 text-base font-medium text-left leading-6 text-zinc-900 border-y border-zinc-200"
+              class="py-4 text-base font-medium text-left leading-6 text-zinc-900 border-y border-zinc-200 dark:border-zinc-900 dark:text-white"
             >
               Usage
             </th>
           </tr>
 
           <tr>
-            <th class="py-3 text-sm font-medium text-left text-zinc-600">
+            <th
+              class="py-3 text-sm font-medium text-left text-zinc-500 dark:text-zinc-300"
+            >
               <div class="flex items-center gap-2">
                 <Check size="sm" />
                 Analytics
               </div>
             </th>
-            <td class="px-2 text-xs font-medium text-zinc-900">3</td>
+            <td class="px-2 text-xs font-medium text-zinc-900 dark:text-white"
+              >3</td
+            >
             <td
               class="px-2 text-xs font-medium text-white border-t bg-blue-600 border-blue-700"
               >10</td
             >
-            <td class="px-2 text-xs font-medium text-zinc-900">Unlimited</td>
+            <td class="px-2 text-xs font-medium text-zinc-900 dark:text-white"
+              >Unlimited</td
+            >
           </tr>
           <tr>
             <th
-              class="py-3 text-sm font-medium text-left border-t text-zinc-600 border-zinc-200"
+              class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:border-zinc-900 dark:text-white"
             >
               <div class="flex items-center gap-2">
                 <Check size="sm" />Accounts
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium border-t text-zinc-600 border-zinc-200"
+              class="px-2 text-xs font-medium border-t text-zinc-900 border-zinc-200 dark:border-zinc-900 dark:text-white"
               >5</td
             >
             <td
@@ -270,20 +322,20 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
               >10</td
             >
             <td
-              class="px-2 text-xs font-medium border-t text-zinc-600 border-zinc-200"
+              class="px-2 text-xs font-medium border-t text-zinc-900 border-zinc-200 dark:border-zinc-900 dark:text-white"
               >Unlimited</td
             >
           </tr>
           <tr>
             <th
-              class="py-3 text-sm font-medium text-left border-t text-zinc-600 border-zinc-200"
+              class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:border-zinc-900 dark:text-white"
             >
               <div class="flex items-center gap-2">
                 <Check size="sm" />Integrations
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium border-t text-zinc-600 border-zinc-200"
+              class="px-2 text-xs font-medium border-t text-zinc-900 border-zinc-200 dark:border-zinc-900 dark:text-white"
               >2</td
             >
             <td
@@ -292,20 +344,20 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
               YES
             </td>
             <td
-              class="px-2 text-xs font-medium border-t text-zinc-600 border-zinc-200"
+              class="px-2 text-xs font-medium border-t text-zinc-900 border-zinc-200 dark:border-zinc-900 dark:text-white"
               >Unlimited</td
             >
           </tr>
           <tr>
             <th
-              class="py-3 text-sm font-medium text-left border-t text-zinc-600 border-zinc-200"
+              class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:border-zinc-900 dark:text-white"
             >
               <div class="flex items-center gap-2">
                 <Check size="sm" />Programs
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium border-t text-zinc-600 border-zinc-200"
+              class="px-2 text-xs font-medium border-t text-zinc-900 border-zinc-200 dark:border-zinc-900 dark:text-white"
             >
               NO
             </td>
@@ -314,20 +366,20 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
               >1</td
             >
             <td
-              class="px-2 text-xs font-medium border-t text-zinc-600 border-zinc-200"
+              class="px-2 text-xs font-medium border-t text-zinc-900 border-zinc-200 dark:border-zinc-900 dark:text-white"
               >Unlimited</td
             >
           </tr>
           <tr>
             <th
-              class="py-3 text-sm font-medium text-left border-t text-zinc-600 border-zinc-200"
+              class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:border-zinc-900 dark:text-white"
             >
               <div class="flex items-center gap-2">
                 <Check size="sm" />Deployments
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium border-t text-zinc-600 border-zinc-200"
+              class="px-2 text-xs font-medium border-t text-zinc-900 border-zinc-200 dark:border-zinc-900 dark:text-white"
             >
               NO
             </td>
@@ -337,20 +389,20 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
               YES
             </td>
             <td
-              class="px-2 text-xs font-medium border-t text-zinc-600 border-zinc-200"
+              class="px-2 text-xs font-medium border-t text-zinc-900 border-zinc-200 dark:border-zinc-900 dark:text-white"
               >Unlimited</td
             >
           </tr>
           <tr>
             <th
-              class="py-3 text-sm font-medium text-left border-t text-zinc-600 border-zinc-200"
+              class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:border-zinc-900 dark:text-white"
             >
               <div class="flex items-center gap-2">
                 <Check size="sm" />Advanced Checkpoints
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium border-t text-zinc-600 border-zinc-200"
+              class="px-2 text-xs font-medium border-t text-zinc-900 border-zinc-200 dark:border-zinc-900 dark:text-white"
             >
               NO
             </td>
@@ -360,20 +412,20 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
               YES
             </td>
             <td
-              class="px-2 text-xs font-medium border-t text-zinc-600 border-zinc-200"
+              class="px-2 text-xs font-medium border-t text-zinc-900 border-zinc-200 dark:border-zinc-900 dark:text-white"
               >Unlimited</td
             >
           </tr>
           <tr>
             <th
-              class="py-3 text-sm font-medium text-left border-t text-zinc-600 border-zinc-200"
+              class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:border-zinc-900 dark:text-white"
             >
               <div class="flex items-center gap-2">
                 <Check size="sm" />Reporting tools
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium border-t text-zinc-600 border-zinc-200"
+              class="px-2 text-xs font-medium border-t text-zinc-900 border-zinc-200 dark:border-zinc-900 dark:text-white"
             >
               NO
             </td>
@@ -383,19 +435,19 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
               YES
             </td>
             <td
-              class="px-2 text-xs font-medium border-t text-zinc-600 border-zinc-200"
+              class="px-2 text-xs font-medium border-t text-zinc-900 border-zinc-200 dark:border-zinc-900 dark:text-white"
               >Unlimited</td
             >
           </tr>
           <tr>
             <th
-              class="py-3 text-sm font-medium text-left border-t text-zinc-600 border-zinc-200"
+              class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:border-zinc-900 dark:text-white"
               ><div class="flex items-center gap-2">
                 <Check size="sm" />Support
               </div></th
             >
             <td
-              class="px-2 text-xs font-medium border-t text-zinc-600 border-zinc-200"
+              class="px-2 text-xs font-medium border-t text-zinc-900 border-zinc-200 dark:border-zinc-900 dark:text-white"
               >Discord community</td
             >
             <td
@@ -403,7 +455,7 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
               >Live chat</td
             >
             <td
-              class="px-2 text-xs font-medium border-t text-zinc-600 border-zinc-200"
+              class="px-2 text-xs font-medium border-t text-zinc-900 border-zinc-200 dark:border-zinc-900 dark:text-white"
               >Unlimited</td
             >
           </tr>
@@ -412,36 +464,42 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
             <th
               scope="colgroup"
               colspan="4"
-              class="py-4 text-base font-medium text-left leading-6 text-zinc-900 border-y border-zinc-200"
+              class="py-4 text-base font-medium text-left leading-6 text-zinc-900 border-y border-zinc-200 dark:border-zinc-900 dark:text-white"
             >
               Features
             </th>
           </tr>
 
           <tr>
-            <th class="py-3 text-sm font-medium text-left text-zinc-600">
+            <th
+              class="py-3 text-sm font-medium text-left text-zinc-500 dark:text-zinc-300"
+            >
               <div class="flex items-center gap-2">
                 <Check size="sm" />
                 Service agreement
               </div>
             </th>
-            <td class="px-2 text-xs font-medium text-zinc-900">No</td>
+            <td class="px-2 text-xs font-medium text-zinc-900 dark:text-white"
+              >No</td
+            >
             <td
               class="px-2 text-xs font-medium text-white bg-blue-600 border-y border-blue-700"
               >No</td
             >
-            <td class="px-2 text-xs font-medium text-zinc-900">YES</td>
+            <td class="px-2 text-xs font-medium text-zinc-900 dark:text-white"
+              >YES</td
+            >
           </tr>
           <tr>
             <th
-              class="py-3 text-sm font-medium text-left border-t text-zinc-600 border-zinc-200"
+              class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:border-zinc-900 dark:text-white"
             >
               <div class="flex items-center gap-2">
                 <Check size="sm" />Dedicted Manager
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium border-t text-zinc-600 border-zinc-200"
+              class="px-2 text-xs font-medium border-t text-zinc-900 border-zinc-200 dark:border-zinc-900 dark:text-white"
               >No</td
             >
             <td
@@ -449,20 +507,20 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
               >Yes</td
             >
             <td
-              class="px-2 text-xs font-medium border-t text-zinc-600 border-zinc-200"
+              class="px-2 text-xs font-medium border-t text-zinc-900 border-zinc-200 dark:border-zinc-900 dark:text-white"
               >Yes</td
             >
           </tr>
           <tr>
             <th
-              class="py-3 text-sm font-medium text-left border-t text-zinc-600 border-zinc-200"
+              class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:border-zinc-900 dark:text-white"
             >
               <div class="flex items-center gap-2">
                 <Check size="sm" />Onboarding sessions
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium border-t text-zinc-600 border-zinc-200"
+              class="px-2 text-xs font-medium border-t text-zinc-900 border-zinc-200 dark:border-zinc-900 dark:text-white"
               >No</td
             >
             <td
@@ -471,20 +529,20 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
               No
             </td>
             <td
-              class="px-2 text-xs font-medium border-t text-zinc-600 border-zinc-200"
+              class="px-2 text-xs font-medium border-t text-zinc-900 border-zinc-200 dark:border-zinc-900 dark:text-white"
               >Yes</td
             >
           </tr>
           <tr>
             <th
-              class="py-3 text-sm font-medium text-left border-t text-zinc-600 border-zinc-200"
+              class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:border-zinc-900 dark:text-white"
             >
               <div class="flex items-center gap-2">
                 <Check size="sm" />Dedicated support channel
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium border-t text-zinc-600 border-zinc-200 rounded-bl-xl"
+              class="px-2 text-xs font-medium border-t text-zinc-900 border-zinc-200 dark:border-zinc-900 dark:text-white rounded-bl-xl"
             >
               No
             </td>
@@ -493,7 +551,7 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
               >No</td
             >
             <td
-              class="px-2 text-xs font-medium border-t text-zinc-600 border-zinc-200 rounded-br-xl"
+              class="px-2 text-xs font-medium border-t text-zinc-900 border-zinc-200 dark:border-zinc-900 dark:text-white rounded-br-xl"
               >Yes</td
             >
           </tr>

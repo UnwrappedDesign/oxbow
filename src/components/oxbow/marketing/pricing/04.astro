@@ -29,21 +29,21 @@ const pricingTiers = [
 ];
 ---
 
-<section x-data="{duration: 'monthly'}" class="bg-zinc-50">
-  <div class="p-8">
+<section x-data="{ duration: 'monthly' }" class="bg-white dark:bg-black">
+  <div class="max-w-7xl mx-auto px-8 lg:px-12 py-24">
     <div class="items-end grid grid-cols-1 lg:grid-cols-2">
       <div>
         <Text
           tag="h1"
           variant="displaySM"
-          class="font-medium tracking-tight text-zinc-900 lg:text-balance"
+          class="font-medium tracking-tight text-zinc-900 dark:text-zinc-100 lg:text-balance"
         >
           Equip your business with world class software
         </Text>
         <Text
           tag="p"
           variant="textBase"
-          class="mt-2 font-medium text-zinc-600 lg:text-balance"
+          class="mt-2 font-medium text-zinc-600 dark:text-zinc-400 lg:text-balance"
         >
           Choose a plan that works the best for you and your team. Start small,
           upgrade when you need to.
@@ -51,16 +51,16 @@ const pricingTiers = [
       </div>
       <div
         aria-labelledby="pricing-toggle"
-        class="relative z-0 inline-flex w-full p-1 mt-8 overflow-hidden bg-white shadow ring-1 ring-zinc-200 ring-offset-2 gap-4 rounded-md max-w-52 lg:ml-auto"
+        class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-white dark:bg-zinc-900 shadow ring-1 ring-zinc-200 dark:ring-zinc-700 ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52 dark:ring-offset-black lg:ml-auto"
       >
         <div
-          class="absolute inset-0 bg-zinc-50 rounded-md transition-transform duration-200 ease-in-out"
+          class="absolute inset-0 bg-zinc-50 dark:bg-zinc-800 rounded-md transition-transform duration-200 ease-in-out"
           :class="duration === 'monthly' ? 'w-1/2 translate-x-0' : 'w-1/2 translate-x-full'"
         >
         </div>
         <button
           class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-          :class="duration === 'monthly' ? 'text-zinc-600' : 'focus:text-zinc-900 hover:text-zinc-900'"
+          :class="duration === 'monthly' ? 'text-zinc-600 dark:text-zinc-300' : 'focus:text-zinc-900 hover:text-zinc-900 dark:focus:text-zinc-100 dark:hover:text-zinc-100 dark:text-zinc-300'"
           @click="duration = 'monthly'"
           type="button"
           :aria-pressed="duration === 'monthly'"
@@ -69,7 +69,7 @@ const pricingTiers = [
         </button>
         <button
           class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-          :class="duration === 'annual' ? 'text-zinc-600' : 'focus:text-zinc-900 hover:text-zinc-900'"
+          :class="duration === 'annual' ? 'text-zinc-600 dark:text-zinc-300' : 'focus:text-zinc-900 hover:text-zinc-900 dark:focus:text-zinc-100 dark:hover:text-zinc-100 dark:text-zinc-300'"
           @click="duration = 'annual'"
           type="button"
           :aria-pressed="duration === 'annual'"
@@ -80,14 +80,18 @@ const pricingTiers = [
     </div>
     <div class="flex flex-col mt-8 gap-2">
       <div
-        class="p-2 overflow-hidden bg-white shadow rounded-xl outline outline-zinc-200"
+        class="p-2 overflow-hidden bg-white dark:bg-zinc-950 shadow rounded-xl outline outline-zinc-200 dark:outline-zinc-900"
       >
         <div class="grid md:grid-cols-12">
           <div class="p-4 md:col-span-7 sm:p-8">
             <div class="flex items-center gap-2">
-              <Text tag="h2" variant="textLG" class="font-medium text-zinc-900">
+              <Text
+                tag="h2"
+                variant="textLG"
+                class="font-medium text-zinc-900 dark:text-zinc-100"
+              >
                 AI Add-Ons —
-                <span class="font-normal text-zinc-500">
+                <span class="font-normal text-zinc-500 dark:text-zinc-400">
                   Oxbow UI gives your AI tools the upgrade they didn't know they
                   needed.
                 </span>
@@ -95,76 +99,108 @@ const pricingTiers = [
             </div>
             <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-4">
               <div class="flex items-center text-sm gap-2">
-                <div class="text-zinc-500">
+                <div class="text-zinc-500 dark:text-zinc-400">
                   <Clock size="sm" />
                 </div>
-                <span class="text-zinc-600">
-                  <span class="font-medium text-zinc-900">30 day</span> model retention
+                <span class="text-zinc-600 dark:text-zinc-300">
+                  <span class="font-medium text-zinc-900 dark:text-zinc-100"
+                    >30 day</span
+                  > model retention
                 </span>
               </div>
 
               <div class="flex items-center text-sm gap-2">
-                <div class="text-zinc-500">
+                <div class="text-zinc-500 dark:text-zinc-400">
                   <Refresh size="base" />
                 </div>
-                <span class="text-zinc-600">
-                  <span class="font-medium text-zinc-900">5,000</span> AI calls/month
+                <span class="text-zinc-600 dark:text-zinc-300">
+                  <span class="font-medium text-zinc-900 dark:text-zinc-100"
+                    >5,000</span
+                  > AI calls/month
                 </span>
               </div>
 
               <div class="flex items-center text-sm gap-2">
-                <div class="text-zinc-500">
+                <div class="text-zinc-500 dark:text-zinc-400">
                   <Database size="base" />
                 </div>
-                <span class="text-zinc-600">Custom model rebuilding</span>
+                <span class="text-zinc-600 dark:text-zinc-300"
+                  >Custom model rebuilding</span
+                >
               </div>
 
               <div class="flex items-center text-sm gap-2">
-                <div class="text-zinc-500">
+                <div class="text-zinc-500 dark:text-zinc-400">
                   <Lifebuoy size="base" />
                 </div>
-                <span class="text-zinc-600">Training validation included</span>
+                <span class="text-zinc-600 dark:text-zinc-300"
+                  >Training validation included</span
+                >
               </div>
 
               <div class="flex items-center text-sm gap-2">
-                <div class="text-zinc-500">
+                <div class="text-zinc-500 dark:text-zinc-400">
                   <Brain size="base" />
                 </div>
-                <span class="text-zinc-600">Real-time inference feedback</span>
+                <span class="text-zinc-600 dark:text-zinc-300"
+                  >Real-time inference feedback</span
+                >
               </div>
 
               <div class="flex items-center text-sm gap-2">
-                <div class="text-zinc-500">
+                <div class="text-zinc-500 dark:text-zinc-400">
                   <Lock size="base" />
                 </div>
-                <span class="text-zinc-600">One-click prompt tuning</span>
+                <span class="text-zinc-600 dark:text-zinc-300"
+                  >One-click prompt tuning</span
+                >
               </div>
             </div>
 
             <div class="flex mt-12 gap-2">
-              <Button variant="default" size="sm"> Start Using AI </Button>
-              <Button variant="alternative" size="sm"> Get a Demo </Button>
+              <Button
+                variant="default"
+                size="sm"
+                class="dark:bg-zinc-800 dark:text-zinc-100"
+              >
+                Start Using AI
+              </Button>
+              <Button
+                variant="muted"
+                size="sm"
+                class="dark:bg-zinc-700 dark:text-zinc-100"
+              >
+                Get a Demo
+              </Button>
             </div>
           </div>
-          <div class="md:col-span-5 bg-zinc-50 rounded-xl">
+          <div class="md:col-span-5 bg-zinc-50 dark:bg-zinc-800 rounded-xl">
             <div class="p-4 grid grid-cols-2">
-              <Text tag="h3" variant="textSM" class="font-medium text-zinc-900"
+              <Text
+                tag="h3"
+                variant="textSM"
+                class="font-medium text-zinc-900 dark:text-zinc-100"
                 >Monthly requests</Text
               >
-              <Text tag="p" variant="textSM" class="text-right text-zinc-500"
+              <Text
+                tag="p"
+                variant="textSM"
+                class="text-right text-zinc-500 dark:text-zinc-400"
                 >Pricing</Text
               >
             </div>
-            <div class="divide-y divide-zinc-200">
+            <div class="divide-y divide-zinc-200 dark:divide-zinc-700">
               {
                 pricingTiers.map((tier) => (
                   <div class="p-4 grid grid-cols-2">
-                    <div class="font-medium text-zinc-600">{tier.amount}</div>
-                    <div class="font-medium text-right text-zinc-900">
+                    <div class="font-medium text-zinc-600 dark:text-zinc-300">
+                      {tier.amount}
+                    </div>
+                    <div class="font-medium text-right text-zinc-900 dark:text-zinc-100">
                       <Text
                         tag="p"
                         variant="textBase"
-                        class="font-medium text-zinc-900"
+                        class="font-medium text-zinc-900 dark:text-zinc-100"
                       >
                         <span
                           data-monthly={tier.monthly}
@@ -187,28 +223,37 @@ const pricingTiers = [
           </div>
         </div>
       </div>
-      <div class="p-4 bg-white shadow rounded-xl outline outline-zinc-200">
+      <div
+        class="p-4 bg-white dark:bg-zinc-950 shadow rounded-xl outline outline-zinc-200 dark:outline-zinc-900"
+      >
         <div
           class="flex flex-col lg:flex-row gap-4 lg:justify-between lg:items-center"
         >
           <div class="flex flex-col items-start sm:flex-row gap-2">
             <div
-              class="p-3 rounded-lg bg-zinc-50 outline outline-zinc-100 text-blue-500"
+              class="p-3 rounded-lg bg-zinc-50 dark:bg-zinc-800 outline outline-zinc-100 dark:outline-zinc-700 text-blue-500"
             >
               <Plus size="base" />
             </div>
             <div>
-              <Text tag="h2" variant="textLG" class="font-medium text-zinc-900"
+              <Text
+                tag="h2"
+                variant="textLG"
+                class="font-medium text-zinc-900 dark:text-zinc-100"
                 >Enterprise</Text
               >
-              <Text tag="p" variant="textSM" class="text-zinc-500">
+              <Text
+                tag="p"
+                variant="textSM"
+                class="text-zinc-500 dark:text-zinc-400"
+              >
                 Built for teams that move fast, break stuff, and need more
                 firepower than your average startup plan allows.
               </Text>
             </div>
           </div>
 
-          <Button variant="accent" size="sm"> Contact Us </Button>
+          <Button variant="muted" size="sm"> Contact Us </Button>
         </div>
       </div>
     </div>
