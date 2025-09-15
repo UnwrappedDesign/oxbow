@@ -24,7 +24,7 @@ import OfferBanner60Accent from "@/components/banners/OfferBanner.astro";
   x-data={`{...navigation(), username: "${user?.email ?? ""}"}`}
 >
   {!user && <OfferBanner60Accent />}
-  <Wrapper variant="standard" class="w-full lg:border-x lg:border-base-200">
+  <Wrapper variant="standard" class="w-full">
     <div
       class="flex flex-col w-full lg:bg-none md:flex-row md:items-center md:justify-between"
       x-data="{ open: false }"
@@ -110,16 +110,17 @@ import OfferBanner60Accent from "@/components/banners/OfferBanner.astro";
           >
 
           <Button
+            data-fast-goal="access-navigation-cta"
+            id="access-navigation-cta"
             href="/pricing"
             gap="xs"
             size="xxs"
             variant="oxbowAccent"
             x-cloak
-            id="access-navigation-cta"
+            oxbox
             x-show="!username"
-           oxbox
           >
-            Full Access for $99
+            Full Access
           </Button>
         </div>
         <div x-popover x-cloak x-show="!!username" class="relative">

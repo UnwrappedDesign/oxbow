@@ -13,12 +13,10 @@ import { pageExamples } from "@/data/entries.json";
 //
 // Application
 import { forms, elements, overlay, navigation } from "@/data/entries.json";
-
 //
 //
 // Ecommerce
 import { storeSections } from "@/data/entries.json";
-
 // Data
 const groupedEntries = [
   {
@@ -51,23 +49,19 @@ const groupedEntries = [
     groups: [{ id: "storeSections", label: "Pages", data: storeSections }],
   },
 ];
-
 ---
-
 <BaseLayout
   title="Components - Oxbow UI"
   description="Browse all Oxbow UI components, elements, and layouts for marketing, application, and ecommerce UIs."
   image="/images/OpenGraph/twitter.png"
 >
-
   <section
-    class="divide-y divide-base-200 border-t border-sand-200  "
+    data-fast-goal="navigated-to-components"
     x-data="{ tab: 'marketing', setTab(id){ this.tab = id; history.replaceState({}, '', `#${id}`) } }"
     x-init="(() => { const id = location.hash?.slice(1); if (id) tab = id })()"
   >
-  <Wrapper variant="standard" class="lg:border-x lg:border-sand-200  ">
-      
-      <nav class="relative flex space-x-2 bg-white w-fit p-1 rounded-lg" role="tablist" aria-label="Components sections">
+  <Wrapper variant="standard" >
+      <nav class="relative flex space-x-2  w-fit" role="tablist" aria-label="Components sections">
         {groupedEntries.map(({ id, title }) => (
           <a
             role="tab"
@@ -81,7 +75,6 @@ const groupedEntries = [
         ))}
       </nav>
     </Wrapper>
-
     {groupedEntries.map(({ id, title, description, groups }) => {
       const firstGroup = groups[0]?.id || '';
       return (
@@ -92,13 +85,12 @@ const groupedEntries = [
           style={id === 'marketing' ? '' : 'display:none'}
           x-data={`{ inner: '${firstGroup}', setInner(id){ this.inner = id } }`}
         >
-          <Wrapper variant="standard" class="border-x lg:border-x lg:border-sand-200  ">
+          <Wrapper variant="standard">
             <section class="flex flex-col scroll-mt-24">
               <div>
                   <Text tag="p" variant="textSM" class=" text-base-600 max-w-md md:text-balance">{description}</Text>
-               
                 {/* Nested tabs for groups */}
-                <nav class="flex items-center gap-2 mt-12 bg-white w-fit p-1 rounded-lg" role="tablist" aria-label={`${title} groups`}>
+                <nav class="flex items-center gap-2 mt-12 w-fit" role="tablist" aria-label={`${title} groups`}>
                   {groups.map(({ id: groupId, label }) => (
                     <a
                       role="tab"
@@ -110,7 +102,6 @@ const groupedEntries = [
                     >{label}</a>
                   ))}
                 </nav>
-
                 <div class="mt-8">
                   {groups.map(({ id: groupId, label, data }, idx) => (
                     <div

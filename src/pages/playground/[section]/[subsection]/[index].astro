@@ -77,8 +77,8 @@ const countsByCatSub = triples.reduce(
 </style>
 
 <BaseLayout>
-  <section class="border-t border-zinc-200 dark:border-zinc-800 relative">
-    <Wrapper variant="standard" class="lg:border-x lg:border-zinc-200">
+  <section class="relative">
+    <Wrapper variant="standard">
       <div class="flex items-end justify-between w-full">
         <div class="flex flex-wrap items-center gap-2">
           <div class="flex items-center gap-2">
@@ -108,11 +108,8 @@ const countsByCatSub = triples.reduce(
       </div>
     </Wrapper>
   </section>
-  <section class="border-t border-zinc-200 relative">
-    <Wrapper
-      variant="wide"
-      class="py-8 2xl:border-x 2xl:border-zinc-200 dark:2xl:border-zinc-800 relative"
-    >
+  <section>
+    <Wrapper variant="wide" class="py-8 relative">
       <Playground
         componentIndex={parseInt(index)}
         componentPath={currentKey ? currentKey.replace(/^\//, "") : ""}
@@ -149,7 +146,8 @@ const countsByCatSub = triples.reduce(
       const target = n + "px";
       if (ifr.style.height !== target) ifr.style.height = target;
       const container = ifr.parentElement;
-      if (container && container.style.height !== target) container.style.height = target;
+      if (container && container.style.height !== target)
+        container.style.height = target;
     }
 
     window.addEventListener("message", (e) => {
@@ -161,4 +159,4 @@ const countsByCatSub = triples.reduce(
       } catch (_) {}
     });
   })();
-  </script>
+</script>

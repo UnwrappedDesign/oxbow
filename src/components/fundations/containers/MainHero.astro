@@ -1,12 +1,10 @@
 ---
-
 // Fundations
 import Text from "@/components/fundations/typography/Text.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 // Components
 import AlpineTailwind from "@/components/global/AlpineTailwind.astro";
-
 interface Props {
   title: string;
   subtitle?: string; // Make subtitle optional
@@ -20,7 +18,6 @@ interface Props {
   showButton?: boolean; // New optional prop
   is404?: boolean;
 }
-
 const {
   title,
   subtitle,
@@ -33,15 +30,13 @@ const {
   is404 = false,
 } = Astro.props;
 ---
-
 <section
   x-data="{ currentPath: window.location.pathname }"
   :class="currentPath === '/' ? ' ' : ''"
-  class="relative border-t border-sand-200"
 >
   <Wrapper
     variant="standard"
-    class="relative pt-12 pb-8 overflow-hidden lg:pt-24 lg:border-x lg:border-sand-200"
+    class="relative pt-12 pb-8 overflow-hidden lg:pt-24"
   >
     <div class="relative flex flex-col h-full itmes-end">
       <div class="relative mt-auto">
@@ -58,7 +53,7 @@ const {
           <Text
             tag="h1"
             variant="displayMD"
-            class={`text-black font-medium  lg:text-balance   max-w-2xl ${textCentered ? "text-center text-balance max-w-3xl  mx-auto" : ""}`}
+            class={`text-black font-medium font-serif italic  lg:text-balance   max-w-2xl ${textCentered ? "text-center text-balance max-w-3xl  mx-auto" : ""}`}
           >
             {title}
           </Text>
@@ -100,11 +95,11 @@ const {
                   class={`flex gap-2 flex-wrap mt-8  ${textCentered ? "justify-center" : ""}`}
                 >
                   <Button
+                    data-fast-goal="clicked-on-browse-components"
                     href="/components"
                     size="xxs"
-                    variant="oxbowOutline"
+                    variant="oxbowMuted"
                     id="access-navigation-cta"
-                    data-umami-event="access-navigation-cta"
                     class="w-full sm:w-auto"
                   >
                     Browse components
@@ -122,16 +117,14 @@ const {
                     variant="oxbowAccent"
                     href="/components"
                     id="404-components"
-                    data-umami-event="404-components"
                   >
                     Browse components
                   </Button>
                   <Button
                     size="xs"
-                    variant="oxbowOutline"
+                    variant="oxbowMuted"
                     href="/"
                     id="404-home"
-                    data-umami-event="404 home"
                   >
                     Go back home
                   </Button>

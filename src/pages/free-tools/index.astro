@@ -8,24 +8,24 @@ import MainHero from "@/components/fundations/containers/MainHero.astro";
 const site = (Astro.site && Astro.site.toString()) || "https://oxbowui.com";
 const list = [
   {
-    name: "Tailwind CSS Grid Generator",
+    name: "Tailwind CSS grid generator",
     path: "/free-tools/tailwind-css-grid-generator",
     description:
       "Generate responsive Tailwind CSS grid layouts and copy classes.",
   },
   {
-    name: "Tailwind CSS Gradient Generator",
+    name: "Tailwind CSS gradient generator",
     path: "/free-tools/tailwind-css-gradient-generator",
     description:
       "Build smooth gradients and get the Tailwind classes instantly.",
   },
   {
-    name: "Tailwind CSS Color Palette",
+    name: "Tailwind CSS color palette",
     path: "/free-tools/tailwind-css-color-palette",
     description: "Browse all Tailwind colors and copy utility classes quickly.",
   },
   {
-    name: "Tailwind CSS Cheat Sheet",
+    name: "Tailwind CSS cheat sheet",
     path: "/free-tools/tailwind-css-cheat-sheet",
     description:
       "Search and copy Tailwind classes across colors, spacing, layout, and more.",
@@ -57,89 +57,28 @@ const description =
     title="Practical tools built with Tailwind CSS"
     subtitle="Just two for now—carefully made to be useful, not just fill space."
   />
-  <section class="border-t border-zinc-200">
-    <Wrapper variant="standard" class="lg:border-x lg:border-zinc-200">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div
-          class="relative flex flex-col justify-start h-full p-6 overflow-hidden bg-white gap-4 rounded-xl shadow-oxbow sm:p-4 sm:pb-5 lg:p-6 group"
-        >
-          <a
-            class="absolute inset-0 z-10"
-            href="/free-tools/tailwind-css-grid-generator"></a>
-          <div>
-            <Text tag="h3" variant="textBase" class="font-medium text-zinc-900">
-              Tailwind CSS Grid Generator
-            </Text>
-            <Text
-              tag="p"
-              variant="textSM"
-              class="mt-2 text-zinc-500 text-balance"
-            >
-              Quickly create responsive grid layouts. Choose your columns,
-              adjust spacing, and copy the classes—no trial and error.
-            </Text>
-          </div>
-        </div>
-        <div
-          class="relative flex flex-col justify-start h-full p-6 overflow-hidden bg-white gap-4 rounded-xl shadow-oxbow sm:p-4 sm:pb-5 lg:p-6 group"
-        >
-          <a
-            class="absolute inset-0 z-10"
-            href="/free-tools/tailwind-css-gradient-generator"></a>
-          <div>
-            <Text tag="h3" variant="textBase" class="font-medium text-zinc-900">
-              Tailwind CSS Gradient Generator
-            </Text>
-            <Text
-              tag="p"
-              variant="textSM"
-              class="mt-2 text-zinc-500 text-balance"
-            >
-              Create smooth, custom gradients in seconds. Choose your colors,
-              set the direction, and get the utility classes instantly.
-            </Text>
-          </div>
-        </div>
-        <div
-          class="relative flex flex-col justify-start h-full p-6 overflow-hidden bg-white gap-4 rounded-xl shadow-oxbow sm:p-4 sm:pb-5 lg:p-6 group"
-        >
-          <a
-            class="absolute inset-0 z-10"
-            href="/free-tools/tailwind-css-color-palette"></a>
-          <div>
-            <Text tag="h3" variant="textBase" class="font-medium text-zinc-900"
-              >Tailwind CSS Color Palette</Text
-            >
-            <Text
-              tag="p"
-              variant="textSM"
-              class="mt-2 text-zinc-500 text-balance"
-            >
-              Explore every Tailwind color and click to copy the utility class
-              for quick use.
-            </Text>
-          </div>
-        </div>
-        <div
-          class="relative flex flex-col justify-start h-full p-6 overflow-hidden bg-white gap-4 rounded-xl shadow-oxbow sm:p-4 sm:pb-5 lg:p-6 group"
-        >
-          <a
-            class="absolute inset-0 z-10"
-            href="/free-tools/tailwind-css-cheat-sheet"></a>
-          <div>
-            <Text tag="h3" variant="textBase" class="font-medium text-zinc-900">
-              Tailwind CSS Cheat Sheet
-            </Text>
-            <Text
-              tag="p"
-              variant="textSM"
-              class="mt-2 text-zinc-500 text-balance"
-            >
-              Search and copy Tailwind classes across colors, spacing, layout,
-              and more.
-            </Text>
-          </div>
-        </div>
+ <section>
+    <Wrapper variant="standard" class=" py-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
+        {
+          list.map((item) => (
+            <div class="flex flex-col h-full p-4 bg-white rounded-xl  outline-transparent ">
+              <a class="absolute inset-0 z-10" href={item.path} />
+              <div>
+                <Text
+                  tag="h3"
+                  variant="textSM"
+                  class=" font-medium text-base-900"
+                >
+                  {item.name}
+                </Text>
+                <Text tag="p" variant="textSM" class="mt-2 text-base-500">
+                  {item.description}
+                </Text>
+              </div>
+            </div>
+          ))
+        }
       </div>
     </Wrapper>
   </section>

@@ -164,8 +164,8 @@ const pricingStructuredData = {
     subtitle="No subscriptions. No monthly shakedowns. Just buy it and move on."
   />
 
-  <section class="border-t border-base-200">
-    <Wrapper variant="standard" class="lg:border-x lg:border-base-200">
+  <section>
+    <Wrapper variant="standard">
       <div class="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
         {
           tiers.map((tier) => (
@@ -237,8 +237,10 @@ const pricingStructuredData = {
               </div>
               <div class="w-full mt-8">
                 <Button
+                  data-fast-goal="pricing_plan_selected"
+                  data-fast-goal-price={tier.price}
+                  data-fast-goal-plan-type={tier.title}
                   id={`purchase-${tier.id}-license`}
-                  data-umami-event={`purchase-${tier.id}-license`}
                   href={tier.href}
                   size="sm"
                   variant={

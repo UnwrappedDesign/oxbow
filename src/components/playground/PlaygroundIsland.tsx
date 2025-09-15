@@ -71,7 +71,8 @@ export default function PlaygroundIsland({
     }
   };
   const [tab, setTab] = useState<Tab>(initialTab || "preview");
-  const [copied, setCopied] = useState(false);
+  const [copiedUrl, setCopiedUrl] = useState(false);
+  const [copiedCode, setCopiedCode] = useState(false);
   const [viewport, setViewport] = useState<"mobile" | "tablet" | "desktop">(
     "desktop",
   );
@@ -202,7 +203,7 @@ export default function PlaygroundIsland({
     };
   }, [mode]);
 
-  const copy = async () => {
+  const copyCode = async () => {
     const text = codeText || "";
     try {
       await navigator.clipboard.writeText(text);
@@ -214,8 +215,16 @@ export default function PlaygroundIsland({
       document.execCommand("copy");
       ta.remove();
     }
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1200);
+    setCopiedCode(true);
+    setTimeout(() => setCopiedCode(false), 1200);
+  };
+
+  const copyUrl = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.origin + window.location.pathname + `#${iframeId.replace('iframe-', '')}`);
+      setCopiedUrl(true);
+      setTimeout(() => setCopiedUrl(false), 1200);
+    } catch {}
   };
 
   const downloadCode = () => {
@@ -271,14 +280,19 @@ export default function PlaygroundIsland({
     }
   }
 
-  // Generate v0.app/chat/api/open URL
-  const v0Url = useMemo(() => {
+  // Generate v0.app/chat/api/open URL for the current mode/code
+  const openV0 = () => {
     const title = encodeURIComponent(iframeId.replace('iframe-', ''));
     const prompt = encodeURIComponent('Customize this component');
-    const content = encodeURIComponent(base64Encode(codeText));
+    const content = encodeURIComponent(base64Encode(
+      mode === "light" ? (ppcodeLight || ppcode)
+      : mode === "dark" ? (ppcodeDarkOnly || ppcode)
+      : ppcode
+    ));
     const target = encodeURIComponent(`components/${iframeId.replace('iframe-', '')}.tsx`);
-    return `https://v0.app/chat/api/open?title=${title}&prompt=${prompt}&content=${content}&target=${target}`;
-  }, [iframeId, codeText]);
+    const url = `https://v0.app/chat/api/open?title=${title}&prompt=${prompt}&content=${content}&target=${target}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
   const openNavMenu = (
     which: "cat" | "sub" | "idx",
     ev: React.MouseEvent<HTMLButtonElement>,
@@ -304,18 +318,12 @@ export default function PlaygroundIsland({
         <div className="flex items-center gap-1">
           <button
             type="button"
-            onClick={async () => {
-              try {
-                await navigator.clipboard.writeText(window.location.origin + window.location.pathname + `#${iframeId.replace('iframe-', '')}`);
-                setCopied(true);
-                setTimeout(() => setCopied(false), 1200);
-              } catch {}
-            }}
-            className={`inline-flex items-center justify-center size-7 px-2 text-xs rounded-md bg-zinc-50 outline outline-1 outline-zinc-200 ${copied ? 'text-green-600 bg-green-50' : 'text-zinc-600'}`}
+            onClick={copyUrl}
+            className={`inline-flex items-center justify-center size-7 px-2 text-xs rounded-md bg-zinc-50 outline outline-1 outline-zinc-200 ${copiedUrl ? 'text-accent-500' : 'text-zinc-600'}`}
             title="Copy block URL"
             aria-label="Copy block URL"
           >
-            {copied ? <Check size={14} /> : iframeId.replace('iframe-', '')}
+            {copiedUrl ? <Check size={14} /> : iframeId.replace('iframe-', '')}
           </button>
           <div
             aria-hidden
@@ -385,12 +393,12 @@ export default function PlaygroundIsland({
                 <Code size={14} />
               </button>
               <button
-                onClick={copy}
+                onClick={copyCode}
                 className="size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 text-zinc-600"
                 title="Copy"
                 aria-label="Copy"
               >
-                {copied ? <Check size={14} /> : <Copy size={14} />}
+                {copiedCode ? <Check size={14} /> : <Copy size={14} />}
               </button>
               <div
                 aria-hidden
@@ -413,10 +421,9 @@ export default function PlaygroundIsland({
                 <ExternalLink size={14} />
               </button>
               {/* Open in v0 button */}
-              <a
-                href={v0Url}
-                target="_blank"
-                rel="noopener noreferrer"
+              {/* <button
+                type="button"
+                onClick={openV0}
                 className="size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 text-zinc-600 hover:bg-zinc-100 transition-colors"
                 title="Open in v0"
                 aria-label="Open in v0"
@@ -426,7 +433,7 @@ export default function PlaygroundIsland({
                   <path d="M56 50.2031V14H70V60.1562C70 65.5928 65.5928 70 60.1562 70C57.5605 70 54.9982 68.9992 53.1562 67.1573L0 14H19.7969L56 50.2031Z"></path>
                   <path d="M147 56H133V23.9531L100.953 56H133V70H96.6875C85.8144 70 77 61.1856 77 50.3125V14H91V46.1562L123.156 14H91V0H127.312C138.186 0 147 8.81439 147 19.6875V56Z"></path>
                 </svg>
-              </a>
+              </button> */}
             </div>
           ) : (
             <a

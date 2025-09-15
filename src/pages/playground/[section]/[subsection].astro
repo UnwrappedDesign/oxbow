@@ -9,14 +9,12 @@ import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
 import SubsectionToolbarIsland from "@/components/playground/SubsectionToolbarIsland";
 import { formatDistanceToNowStrict } from "date-fns";
 import updates from "@/data/updates.json";
-
 const { section, subsection } = Astro.params;
 const modules = import.meta.glob("@/components/oxbow/**/*.astro", {
   eager: true,
 });
 const keys = Object.keys(modules);
 const sectionRegex = new RegExp(`${section}/${subsection}/.+\\.astro$`, "i");
-
 // Build category → blocks map from available components
 const triples = keys.map((k) => k.split("/").slice(-3)); // [section, subsection, file]
 const subsByCat = Object.fromEntries(
@@ -27,7 +25,6 @@ const subsByCat = Object.fromEntries(
     return [sec, subs];
   }),
 );
-
 const sectionComponents = keys
   .filter((k) => k.match(sectionRegex))
   .sort()
@@ -57,59 +54,71 @@ const allSmall = sectionComponents.every(({ filePath }) => {
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/screenshots/*.png",
 );
-
 const formattedSubsection = subsection.replace("-", " ");
 const user = Astro.locals.user;
 const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
-
 // Normalize subsection for lookup (keeps things case/char safe)
 const subsectionKey = (subsection || "").toLowerCase();
 ---
 
 <style>
   .masonry-grid {
-    column-gap: 1.5rem;
+    column-gap: 1rem;
   }
-
   .masonry-item {
     break-inside: avoid;
     margin-bottom: 1rem;
   }
-
-  /* Responsive column count */
-  @media (min-width: 1200px) {
-    .masonry-grid {
-      column-count: 3;
-    }
-  }
-
-  @media (min-width: 992px) and (max-width: 1199px) {
-    .masonry-grid {
-      column-count: 3;
-    }
-  }
-
-  @media (min-width: 768px) and (max-width: 991px) {
+  /* Responsive column count */ /* sm ≥ 640px */
+  @media (min-width: 640px) {
     .masonry-grid {
       column-count: 2;
     }
   }
-
+  /* md ≥ 768px */
+  @media (min-width: 768px) {
+    .masonry-grid {
+      column-count: 2;
+    }
+  }
+  /* lg ≥ 1024px */
+  @media (min-width: 1024px) {
+    .masonry-grid {
+      column-count: 3;
+    }
+  }
+  /* xl ≥ 1280px */
+  @media (min-width: 1280px) {
+    .masonry-grid {
+      column-count: 3;
+    }
+  }
+  /* 2xl ≥ 1536px */
+  @media (min-width: 1536px) {
+    .masonry-grid {
+      column-count: 4;
+    }
+  }
+  /* 3xl ≥ 1920px (custom bigger breakpoint) */
+  @media (min-width: 1920px) {
+    .masonry-grid {
+      column-count: 5;
+    }
+  }
   @media (max-width: 767px) {
     .masonry-grid {
       column-count: 1;
     }
   }
 </style>
-
 <BaseLayout>
   <div
     x-data={`{ layout: 'grid', cat: '${section}', sub: '${subsection}', subs: {}, fmt(s){ return (s||'').replace(/-/g,' ').replace(/\b\w/g, c => c.toUpperCase()); } }`}
     x-init="subs = JSON.parse($el.dataset.subs || '{}')"
     data-subs={JSON.stringify(subsByCat)}
   >
-    <section class="border-t border-base-200">
-      <Wrapper variant="standard" class="lg:border-x lg:border-base-200">
+    <section>
+      <Wrapper variant="standard">
         <div class="flex items-center justify-between gap-2">
           <Text
             tag="h1"
@@ -130,11 +139,8 @@ const subsectionKey = (subsection || "").toLowerCase();
       </Wrapper>
     </section>
   </div>
-  <section class="border-y border-base-200">
-    <Wrapper
-      variant="standard"
-      class="2xl:border-x lg:border-base-200 border-x"
-    >
+  <section>
+    <Wrapper variant="wide">
       <div class="masonry-grid">
         {
           sectionComponents.map(
