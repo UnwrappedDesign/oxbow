@@ -1,118 +1,191 @@
 ---
 export const freeComponent = true;
 export const excludeFromObfuscation = ["flex", "hidden"];
-
-import Button from "@/components/fundations/buttons/Button.astro";
 import IconButton from "@/components/fundations/buttons/IconButton.astro";
 import Burger from "@/components/fundations/icons/Burger.astro";
-import Text from "@/components/fundations/typography/Text.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
 import Logo from "@/components/assets/Logo.astro";
 ---
 
 <!-- copy:start -->
 <header
-  class="w-full mx-auto bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800"
+  class="w-full border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900"
 >
   <div
-    x-data="{ open:false }"
-    class="max-w-screen-xl mx-auto px-6 md:px-10 lg:px-16 pt-2"
+    x-data="{ open:false, cats:false }"
+    class="mx-auto max-w-screen-xl px-6 md:px-10 lg:px-16"
   >
-    <!-- Top row with breadcrumbs and actions -->
-    <div class="flex items-center justify-between">
-      <nav
-        aria-label="Breadcrumb"
-        class="text-xs text-zinc-500 dark:text-zinc-400"
+    <div class="flex h-16 items-center justify-between gap-3">
+      <a href="#_" class="inline-flex items-center gap-2"
+        ><Logo class="h-7 text-black dark:text-white" /><span class="sr-only"
+          >Home</span
+        ></a
       >
-        <ol class="flex items-center gap-2">
-          <li>
-            <a href="#_" class="hover:text-zinc-700 dark:hover:text-zinc-200"
-              >Personal</a
+      <div class="hidden md:flex items-center gap-2">
+        <div x-data="{open:false}" class="relative">
+          <button
+            @click="open=!open"
+            @keydown.escape.window="open=false"
+            :aria-expanded="open"
+            class="px-2 py-2 text-sm font-medium text-zinc-600 hover:text-blue-600 dark:text-zinc-300"
+            >Categories</button
+          >
+          <div
+            x-show="open"
+            x-transition
+            @click.outside="open=false"
+            class="absolute left-0 top-full z-30 mt-2 w-[680px] rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-subtle p-4 grid grid-cols-3 gap-3"
+          >
+            <a
+              href="#_"
+              class="rounded-md p-3 hover:bg-zinc-100 dark:hover:bg-zinc-800"
             >
-          </li>
-          <li aria-hidden class="text-zinc-300">/</li>
-          <li>
-            <a href="#_" class="hover:text-zinc-700 dark:hover:text-zinc-200"
-              >Projects</a
+              <div class="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                Men
+              </div>
+              <div class="text-xs text-zinc-500">Clothing & accessories</div>
+            </a>
+            <a
+              href="#_"
+              class="rounded-md p-3 hover:bg-zinc-100 dark:hover:bg-zinc-800"
             >
-          </li>
-          <li aria-hidden class="text-zinc-300">/</li>
-          <li class="text-zinc-900 dark:text-zinc-100 font-medium">
-            Main project
-          </li>
-        </ol>
-      </nav>
-      <div class="flex items-center gap-2">
-        <Button variant="muted" size="xs">Invite</Button>
-        <Button variant="accent" size="xs">New</Button>
+              <div class="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                Women
+              </div>
+              <div class="text-xs text-zinc-500">Latest arrivals</div>
+            </a>
+            <a
+              href="#_"
+              class="rounded-md p-3 hover:bg-zinc-100 dark:hover:bg-zinc-800"
+            >
+              <div class="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                Kids
+              </div>
+              <div class="text-xs text-zinc-500">New season</div>
+            </a>
+            <a
+              href="#_"
+              class="rounded-md p-3 hover:bg-zinc-100 dark:hover:bg-zinc-800"
+            >
+              <div class="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                Home
+              </div>
+              <div class="text-xs text-zinc-500">Decor & furniture</div>
+            </a>
+            <a
+              href="#_"
+              class="rounded-md p-3 hover:bg-zinc-100 dark:hover:bg-zinc-800"
+            >
+              <div class="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                Electronics
+              </div>
+              <div class="text-xs text-zinc-500">Gadgets & audio</div>
+            </a>
+            <a
+              href="#_"
+              class="rounded-md p-3 hover:bg-zinc-100 dark:hover:bg-zinc-800"
+            >
+              <div class="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                Sports
+              </div>
+              <div class="text-xs text-zinc-500">Outdoor & fitness</div>
+            </a>
+          </div>
+        </div>
+        <a
+          href="#_"
+          class="text-sm font-medium text-zinc-600 hover:text-blue-600 dark:text-zinc-300"
+          >Deals</a
+        >
+        <a
+          href="#_"
+          class="text-sm font-medium text-zinc-600 hover:text-blue-600 dark:text-zinc-300"
+          >New</a
+        >
       </div>
-    </div>
-
-    <!-- Second row: brand + primary nav -->
-    <div class="mt-2 flex items-center gap-4">
-      <Text tag="a" href="#_" variant="textBase" class="flex items-center gap-2 font-semibold text-zinc-900 dark:text-zinc-100">
-        <Logo class="h-7 text-black dark:text-white" />
-        Oxbow UI
-      </Text>
-      <div class="ml-auto hidden md:flex items-center gap-4">
+      <div class="hidden md:flex items-center gap-2">
         <a
           href="#_"
-          class="py-2 text-sm text-blue-600 dark:text-blue-400 relative after:absolute after:left-0 after:right-0 after:-bottom-px after:h-[2px] after:bg-current"
-          >Overview</a
+          class="text-sm font-medium text-zinc-600 hover:text-blue-600 dark:text-zinc-300"
+          >Cart (2)</a
         >
-        <a
-          href="#_"
-          class="py-2 text-sm text-zinc-600 dark:text-zinc-300 hover:text-blue-600"
-          >Analytics</a
-        >
-        <a
-          href="#_"
-          class="py-2 text-sm text-zinc-600 dark:text-zinc-300 hover:text-blue-600"
-          >Billing</a
-        >
-        <a
-          href="#_"
-          class="py-2 text-sm text-zinc-600 dark:text-zinc-300 hover:text-blue-600"
-          >Settings</a
-        >
+        <Button variant="accent" size="xs">Checkout</Button>
       </div>
       <IconButton
         class="md:hidden"
         @click="open=!open"
         :aria-expanded="open"
-        aria-controls="nav-7"
+        aria-controls="nav-07"
         variant="alternative"
-        size="xs"><Burger size="xs" slot="icon" /></IconButton
+        size="xs"
       >
+        <Burger size="xs" slot="icon" />
+      </IconButton>
     </div>
-
-    <!-- Mobile menu -->
-    <nav
-      id="nav-7"
-      :class="{ 'block': open, 'hidden': !open }"
-      class="md:hidden hidden mt-2 space-y-2"
-      aria-label="Mobile"
+    <div
+      id="nav-07"
+      :class="{ 'grid': open, 'hidden': !open }"
+      class="hidden grid-cols-1 gap-2 pb-4 md:hidden"
     >
+      <details
+        class="rounded-lg border border-zinc-200 dark:border-zinc-800 p-2"
+      >
+        <summary
+          class="cursor-pointer px-2 py-1.5 text-sm font-medium text-zinc-700 dark:text-zinc-200"
+          >Categories</summary
+        >
+        <div class="mt-1 grid grid-cols-2 gap-1">
+          <a
+            href="#_"
+            class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
+            >Men</a
+          >
+          <a
+            href="#_"
+            class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
+            >Women</a
+          >
+          <a
+            href="#_"
+            class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
+            >Kids</a
+          >
+          <a
+            href="#_"
+            class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
+            >Home</a
+          >
+          <a
+            href="#_"
+            class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
+            >Electronics</a
+          >
+          <a
+            href="#_"
+            class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
+            >Sports</a
+          >
+        </div>
+      </details>
       <a
         href="#_"
-        class="block px-2 py-1 rounded-md text-zinc-600 dark:text-zinc-300 hover:bg-sand-100 dark:hover:bg-zinc-800"
-        >Overview</a
+        class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
+        >Deals</a
       >
       <a
         href="#_"
-        class="block px-2 py-1 rounded-md text-zinc-600 dark:text-zinc-300 hover:bg-sand-100 dark:hover:bg-zinc-800"
-        >Analytics</a
+        class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
+        >New</a
       >
-      <a
-        href="#_"
-        class="block px-2 py-1 rounded-md text-zinc-600 dark:text-zinc-300 hover:bg-sand-100 dark:hover:bg-zinc-800"
-        >Billing</a
-      >
-      <a
-        href="#_"
-        class="block px-2 py-1 rounded-md text-zinc-600 dark:text-zinc-300 hover:bg-sand-100 dark:hover:bg-zinc-800"
-        >Settings</a
-      >
-    </nav>
+      <div class="flex items-center gap-2">
+        <a
+          href="#_"
+          class="flex-1 rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
+          >Cart (2)</a
+        >
+        <Button variant="accent" size="xs">Checkout</Button>
+      </div>
+    </div>
   </div>
 </header>
 <!-- copy:end -->

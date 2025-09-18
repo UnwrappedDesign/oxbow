@@ -20,10 +20,10 @@ const triples = keys.map((k) => k.split("/").slice(-3)); // [section, subsection
 const subsByCat = Object.fromEntries(
   Array.from(new Set(triples.map(([sec]) => sec))).map((sec) => {
     const subs = Array.from(
-      new Set(triples.filter(([s]) => s === sec).map(([, sub]) => sub)),
+      new Set(triples.filter(([s]) => s === sec).map(([, sub]) => sub))
     ).sort();
     return [sec, subs];
-  }),
+  })
 );
 const sectionComponents = keys
   .filter((k) => k.match(sectionRegex))
@@ -48,11 +48,11 @@ const sectionComponents = keys
 const allSmall = sectionComponents.every(({ filePath }) => {
   const pathNoAstro = filePath.replace(".astro", "");
   return /\/(buttons|button-groups|button-icon|badges|breadcrumbs|checkboxes|inputs|input-groups|radiogroups|select|toggles|typography|flyouts|alerts|avatars|banners)\//i.test(
-    pathNoAstro,
+    pathNoAstro
   );
 });
 const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/screenshots/*.png",
+  "/src/screenshots/*.png"
 );
 const formattedSubsection = subsection.replace("-", " ");
 const user = Astro.locals.user;
@@ -140,13 +140,13 @@ const subsectionKey = (subsection || "").toLowerCase();
     </section>
   </div>
   <section>
-    <Wrapper variant="wide">
+    <Wrapper variant="standard">
       <div class="masonry-grid">
         {
           sectionComponents.map(
             (
               { key, filePath, imagePath, description, free, component: C },
-              index,
+              index
             ) => {
               const pathNoAstro = filePath.replace(".astro", "");
               if (!images[imagePath]) return null;
@@ -174,18 +174,18 @@ const subsectionKey = (subsection || "").toLowerCase();
                       </Text>
                     )}
                   </div>
-                  <div class="mt-2 overflow-hidden bg-white rounded-lg">
+                  <div class="mt-2 overflow-hidden bg-white rounded-lg shadow-normal">
                     <Image
                       width={1000}
                       height={1000}
                       src={images[imagePath]?.() ?? "/placeholder.png"}
                       alt={`${subsection} preview ${index + 1}`}
-                      class="object-cover object-top"
+                      class="object-cover object-top shadow-normal"
                     />
                   </div>
                 </a>
               );
-            },
+            }
           )
         }
       </div>

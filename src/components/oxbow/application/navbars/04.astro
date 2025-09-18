@@ -1,79 +1,41 @@
 ---
 export const freeComponent = true;
 export const excludeFromObfuscation = ["flex", "hidden"];
+import Text from "@/components/fundations/typography/Text.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
 import IconButton from "@/components/fundations/buttons/IconButton.astro";
 import Burger from "@/components/fundations/icons/Burger.astro";
-import Text from "@/components/fundations/typography/Text.astro";
 import Logo from "@/components/assets/Logo.astro";
-import TextInput from "@/components/fundations/inputs/TextInput.astro";
 ---
-
 <!-- copy:start -->
-<header
-  class="w-full mx-auto bg-zinc-50 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800"
->
-  <div
-    x-data="{ open:false }"
-    class="max-w-screen-xl mx-auto px-6 md:px-10 lg:px-16 py-2"
-  >
-    <div class="flex items-center gap-3">
-      <!-- Brand -->
-      <Logo class="h-7 text-black dark:text-white" />
-      <!-- Center search (desktop) -->
-      <div class="hidden md:flex items-center mx-auto max-w-xs w-full">
-        <TextInput
-          id="site-search-04"
-          name="site-search-04"
-          type="search"
-          size="sm"
-          placeholder="Search…"
-          class="w-full"
-        />
+<header class="w-full border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
+  <div x-data="{ open:false }" class="mx-auto max-w-screen-xl px-6 md:px-10 lg:px-16">
+    <div class="flex items-center justify-between h-16 md:grid md:grid-cols-3">
+      <div class="hidden md:flex items-center gap-4">
+        <a href="#_" class="text-sm font-medium text-zinc-600 hover:text-blue-600 dark:text-zinc-300">Products</a>
+        <a href="#_" class="text-sm font-medium text-zinc-600 hover:text-blue-600 dark:text-zinc-300">Solutions</a>
       </div>
-      <!-- Right actions -->
-      <div class="ml-auto flex items-center gap-2">
-        <Text
-          tag="a"
-          href="#_"
-          variant="textSM"
-          class="hidden md:inline text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-blue-600"
-          >Docs</Text
-        >
-        <Button variant="accent" size="xs">Sign in</Button>
-        <IconButton
-          class="md:hidden"
-          @click="open=!open"
-          :aria-expanded="open"
-          aria-controls="nav-4"
-          variant="alternative"
-          size="xs"><Burger size="xs" slot="icon" /></IconButton
-        >
+      <div class="flex items-center justify-center">
+        <a href="#_" class="inline-flex items-center gap-2"><Logo class="h-7 text-black dark:text-white" /><span class="sr-only">Home</span></a>
+      </div>
+      <div class="flex items-center justify-end gap-3">
+        <div class="hidden md:flex items-center gap-3">
+          <a href="#_" class="text-sm font-medium text-zinc-600 hover:text-blue-600 dark:text-zinc-300">Pricing</a>
+          <a href="#_" class="text-sm font-medium text-zinc-600 hover:text-blue-600 dark:text-zinc-300">Docs</a>
+          <Button variant="accent" size="xs">Get started</Button>
+        </div>
+        <IconButton class="md:hidden" @click="open=!open" :aria-expanded="open" aria-controls="nav-04m" variant="alternative" size="xs">
+          <Burger size="xs" slot="icon" />
+        </IconButton>
       </div>
     </div>
-    <!-- Mobile links -->
-    <nav
-      id="nav-4"
-      :class="{ 'block': open, 'hidden': !open }"
-      class="md:hidden hidden mt-2 space-y-2"
-      aria-label="Mobile"
-    >
-      <a
-        href="#_"
-        class="block px-2 py-1 rounded-md text-zinc-600 dark:text-zinc-300 hover:bg-sand-100 dark:hover:bg-zinc-800"
-        >Features</a
-      >
-      <a
-        href="#_"
-        class="block px-2 py-1 rounded-md text-zinc-600 dark:text-zinc-300 hover:bg-sand-100 dark:hover:bg-zinc-800"
-        >Pricing</a
-      >
-      <a
-        href="#_"
-        class="block px-2 py-1 rounded-md text-zinc-600 dark:text-zinc-300 hover:bg-sand-100 dark:hover:bg-zinc-800"
-        >Docs</a
-      >
-    </nav>
+    <div id="nav-04m" x-cloak x-show="open" class="md:hidden grid grid-cols-1 gap-2 pb-4">
+      <a href="#_" class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800">Products</a>
+      <a href="#_" class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800">Solutions</a>
+      <a href="#_" class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800">Pricing</a>
+      <a href="#_" class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800">Docs</a>
+      <Button variant="accent" size="xs">Get started</Button>
+    </div>
   </div>
 </header>
 <!-- copy:end -->
