@@ -8,12 +8,13 @@ import Devices from "@/components/fundations/icons/Devices.astro";
 import Brain from "@/components/fundations/icons/Brain.astro";
 import Apps from "@/components/fundations/icons/Apps.astro";
 import Cart from "@/components/fundations/icons/Cart.astro";
+import { getComponentCount } from "@/utils/getComponentCount.js";
+const componentCount = getComponentCount();
 const features = [
   {
     icon: Component,
     title: "Components",
-    description:
-      "400+ ready-to-use components, clean, flexible, and built for people who would rather ship than waste time reinventing buttons.",
+    description: `${componentCount} and growing ready-to-use components light and dark mode, clean, flexible, and built for people who would rather ship than waste time reinventing buttons.`,
   },
   {
     icon: Code,
@@ -53,29 +54,31 @@ const features = [
 
 <section>
   <Wrapper variant="standard">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-      {
-        features.map((feature) => {
-          const Icon = feature.icon;
-          return (
-            <div class="flex flex-col h-full p-4 bg-white rounded-xl">
-              <div class="inline-flex p-4 bg-sand-100 rounded-lg w-fit">
-                <Icon size="base" class=" text-accent-500" />
+    <Wrapper variant="narrow">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
+        {
+          features.map((feature) => {
+            const Icon = feature.icon;
+            return (
+              <div class="flex flex-col">
+                <div class="flex items-center gap-2">
+                  <Icon size="sm" class=" text-accent-500" />
+                  <Text
+                    tag="h3"
+                    variant="textSM"
+                    class=" font-medium text-zinc-900"
+                  >
+                    {feature.title}
+                  </Text>
+                </div>
+                <Text tag="p" variant="textSM" class="mt-2 text-zinc-500">
+                  {feature.description}
+                </Text>
               </div>
-              <Text
-                tag="h3"
-                variant="textSM"
-                class="mt-12 font-medium text-zinc-900"
-              >
-                {feature.title}
-              </Text>
-              <Text tag="p" variant="textSM" class="mt-2 text-zinc-500">
-                {feature.description}
-              </Text>
-            </div>
-          );
-        })
-      }
-    </div>
+            );
+          })
+        }
+      </div>
+    </Wrapper>
   </Wrapper>
 </section>

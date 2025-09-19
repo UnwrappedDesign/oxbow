@@ -216,7 +216,13 @@ const LIMIT_MONTHS =
             items.sort((a, b) => a.section.localeCompare(b.section));
             const wrapper = document.createElement("div");
             const h = document.createElement("h4");
-            h.textContent = title;
+            // Show unique section/component count for Added and Modified
+            let uniqueSections = new Set(items.map((r) => r.section)).size;
+            if (title === "Added" || title === "Modified") {
+              h.textContent = `${title} (${uniqueSections})`;
+            } else {
+              h.textContent = title;
+            }
             h.className =
               "font-medium text-zinc-700 font-mono  border-b border-zinc-200 -mb-0";
             wrapper.appendChild(h);
