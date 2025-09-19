@@ -1,5 +1,5 @@
 ---
-export const description = "Checkbox Group";
+export const description = "Checkbox Group with Max Selection";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
 
@@ -8,29 +8,30 @@ import Text from "@/components/fundations/typography/Text.astro";
 >
   <!-- copy:start -->
   <div
-    class="flex flex-col gap-2"
-    x-data="{ options: ['Option 1', 'Option 2', 'Option 3'], selected: [] }"
+    class="flex flex-col gap-2 w-full max-w-md"
+    x-data="{
+      options: ['UI', 'API', 'Docs', 'Analytics', 'Billing'],
+      selected: [],
+      limit: 2,
+      isDisabled(opt){ return !this.selected.includes(opt) && this.selected.length >= this.limit }
+    }"
   >
+    <div class="text-xs text-zinc-500 dark:text-zinc-400">Select up to 2</div>
     <template x-for="option in options" :key="option">
       <div class="flex items-center gap-3">
         <input
           type="checkbox"
-          :id="option"
+          :id="`limit-` + option"
           :value="option"
           x-model="selected"
-          class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-blue-600 focus:ring-blue-600 dark:bg-zinc-900 dark:checked:bg-blue-600"
+          :disabled="isDisabled(option)"
+          class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-indigo-600 focus:ring-indigo-600 disabled:opacity-50 disabled:cursor-not-allowed dark:bg-zinc-900 dark:checked:bg-indigo-600"
         />
-        <Text
-          :for="option"
-          tag="label"
-          class="block text-sm text-zinc-500 dark:text-zinc-300"
-          x-text="option"
-        />
+        <Text :for="`limit-` + option" tag="label" class="block text-sm text-zinc-600 dark:text-zinc-300" x-text="option" />
       </div>
     </template>
-    <div class="flex flex-col mt-2 text-sm text-zinc-500 dark:text-zinc-300">
-      Selected:
-      <span x-text="selected.join(', ')" class="flex flex-col"></span>
+    <div class="mt-2 text-sm text-zinc-600 dark:text-zinc-300">
+      Selected: <span class="text-zinc-500 dark:text-zinc-400" x-text="selected.join(', ')"></span>
     </div>
   </div>
   <!-- copy:end -->

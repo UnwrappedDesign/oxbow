@@ -1,0 +1,182 @@
+---
+export const description = "Cascading Tree Selection";
+import Text from "@/components/fundations/typography/Text.astro";
+---
+
+<section
+  class="flex items-center flex-wrap gap-2 justify-center p-8 bg-white dark:bg-zinc-900 h-full"
+>
+  <!-- copy:start -->
+  <div
+    class="flex flex-col gap-2 w-full max-w-lg"
+    x-data="{
+      groups: [
+        { key: 'security', label: 'Security', items: [
+          { key: 'login', label: 'Login alerts' },
+          { key: 'password', label: 'Password changes' },
+        ]},
+        { key: 'marketing', label: 'Marketing', items: [
+          { key: 'promos', label: 'Promotions' },
+          { key: 'product', label: 'Product updates' },
+        ]},
+        { key: 'community', label: 'Community', items: [
+          { key: 'comments', label: 'Comments' },
+          { key: 'mentions', label: 'Mentions' },
+        ]},
+      ],
+      selected: [],
+      allItems(){ return this.groups.flatMap(g => g.items.map(i => i.key)) },
+      isGroupAll(key){ const g = this.groups.find(x => x.key===key); return g.items.every(i => this.selected.includes(i.key)) },
+      isGroupNone(key){ const g = this.groups.find(x => x.key===key); return g.items.every(i => !this.selected.includes(i.key)) },
+      toggleAll($refs){
+        if (this.selected.length === this.allItems().length) this.selected = []
+        else this.selected = [...this.allItems()]
+        this.update($refs)
+      },
+      toggleGroup(key,$refs){
+        const g = this.groups.find(x => x.key===key)
+        const keys = g.items.map(i => i.key)
+        if (this.isGroupAll(key)) this.selected = this.selected.filter(k => !keys.includes(k))
+        else this.selected = Array.from(new Set([...this.selected, ...keys]))
+        this.update($refs)
+      },
+      update($refs){
+        const setRef = (ref, all, none) => { if (!ref) return; ref.checked = all; ref.indeterminate = !all && !none }
+        setRef($refs.topRef, this.selected.length === this.allItems().length, this.selected.length === 0)
+        setRef($refs.secRef, this.isGroupAll('security'), this.isGroupNone('security'))
+        setRef($refs.mktRef, this.isGroupAll('marketing'), this.isGroupNone('marketing'))
+        setRef($refs.comRef, this.isGroupAll('community'), this.isGroupNone('community'))
+      },
+      init(){ this.update(this.$refs) }
+    }"
+  >
+    <div class="flex items-start gap-3">
+      <input
+        id="tree-all"
+        name="tree-all"
+        type="checkbox"
+        x-ref="topRef"
+        @change="toggleAll($refs)"
+        class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-indigo-600 focus:ring-indigo-600 dark:bg-zinc-900 dark:checked:bg-indigo-600"
+      />
+      <div class="w-full">
+        <Text
+          for="tree-all"
+          tag="label"
+          class="block text-sm text-zinc-700 dark:text-zinc-200"
+          >All notifications</Text
+        >
+        <div class="pl-6 mt-2 flex flex-col gap-2">
+          <!-- Security group -->
+          <div class="flex flex-col gap-1">
+            <div class="flex items-center gap-2">
+              <input
+                id="tree-sec"
+                type="checkbox"
+                x-ref="secRef"
+                @change="toggleGroup('security', $refs)"
+                class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-indigo-600 focus:ring-indigo-600 dark:bg-zinc-900 dark:checked:bg-indigo-600"
+              />
+              <label
+                for="tree-sec"
+                class="text-sm text-zinc-700 dark:text-zinc-200">Security</label
+              >
+            </div>
+            <template
+              x-for="item in groups.find(g => g.key==='security').items"
+              :key="item.key"
+            >
+              <div class="flex items-center gap-2 pl-6">
+                <input
+                  type="checkbox"
+                  :id="`tree-sec-`+item.key"
+                  :value="item.key"
+                  x-model="selected"
+                  @change="update($refs)"
+                  class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-indigo-600 focus:ring-indigo-600 dark:bg-zinc-900 dark:checked:bg-indigo-600"
+                />
+                <label
+                  :for="`tree-sec-`+item.key"
+                  class="text-sm text-zinc-600 dark:text-zinc-300"
+                  x-text="item.label"></label>
+              </div>
+            </template>
+          </div>
+          <!-- Marketing group -->
+          <div class="flex flex-col gap-1">
+            <div class="flex items-center gap-2">
+              <input
+                id="tree-mkt"
+                type="checkbox"
+                x-ref="mktRef"
+                @change="toggleGroup('marketing', $refs)"
+                class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-indigo-600 focus:ring-indigo-600 dark:bg-zinc-900 dark:checked:bg-indigo-600"
+              />
+              <label
+                for="tree-mkt"
+                class="text-sm text-zinc-700 dark:text-zinc-200"
+                >Marketing</label
+              >
+            </div>
+            <template
+              x-for="item in groups.find(g => g.key==='marketing').items"
+              :key="item.key"
+            >
+              <div class="flex items-center gap-2 pl-6">
+                <input
+                  type="checkbox"
+                  :id="`tree-mkt-`+item.key"
+                  :value="item.key"
+                  x-model="selected"
+                  @change="update($refs)"
+                  class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-indigo-600 focus:ring-indigo-600 dark:bg-zinc-900 dark:checked:bg-indigo-600"
+                />
+                <label
+                  :for="`tree-mkt-`+item.key"
+                  class="text-sm text-zinc-600 dark:text-zinc-300"
+                  x-text="item.label"></label>
+              </div>
+            </template>
+          </div>
+          <!-- Community group -->
+          <div class="flex flex-col gap-1">
+            <div class="flex items-center gap-2">
+              <input
+                id="tree-com"
+                type="checkbox"
+                x-ref="comRef"
+                @change="toggleGroup('community', $refs)"
+                class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-indigo-600 focus:ring-indigo-600 dark:bg-zinc-900 dark:checked:bg-indigo-600"
+              />
+              <label
+                for="tree-com"
+                class="text-sm text-zinc-700 dark:text-zinc-200"
+                >Community</label
+              >
+            </div>
+            <template
+              x-for="item in groups.find(g => g.key==='community').items"
+              :key="item.key"
+            >
+              <div class="flex items-center gap-2 pl-6">
+                <input
+                  type="checkbox"
+                  :id="`tree-com-`+item.key"
+                  :value="item.key"
+                  x-model="selected"
+                  @change="update($refs)"
+                  class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-indigo-600 focus:ring-indigo-600 dark:bg-zinc-900 dark:checked:bg-indigo-600"
+                />
+                <label
+                  :for="`tree-com-`+item.key"
+                  class="text-sm text-zinc-600 dark:text-zinc-300"
+                  x-text="item.label"></label>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- copy:end -->
+</section>

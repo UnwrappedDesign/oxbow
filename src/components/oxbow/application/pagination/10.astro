@@ -1,0 +1,73 @@
+---
+export const description = "Go to Page + Size Select";
+import Button from "@/components/fundations/buttons/Button.astro";
+import Select from "@/components/fundations/inputs/Select.astro";
+---
+
+<section class="flex justify-center p-16 bg-white dark:bg-zinc-900">
+  <!-- copy:start -->
+  <nav
+    aria-label="Pagination"
+    x-data="{ page: 1, total: 12, size: 10, input: '' }"
+    class="flex w-full flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+  >
+    <!-- Group A: Prev / Page X of Y / Next -->
+    <div
+      class="flex items-center justify-between sm:justify-start gap-2 w-full"
+    >
+      <Button
+        size="xs"
+        variant="alternative"
+        :disabled="page===1"
+        @click="page=Math.max(1,page-1)">Previous</Button
+      >
+      <span class="text-sm text-zinc-600 dark:text-zinc-300"
+        >Page <span x-text="page"></span> of <span x-text="total"></span></span
+      >
+      <Button
+        size="xs"
+        variant="alternative"
+        :disabled="page===total"
+        @click="page=Math.min(total,page+1)">Next</Button
+      >
+    </div>
+
+    <!-- Group B: Go to input and Per-page select -->
+    <div
+      class="hidden md:flex flex-col gap-2 w-full sm:w-fit sm:flex-row sm:items-center"
+    >
+      <div
+        class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"
+      >
+        Go to
+        <input
+          x-model="input"
+          type="number"
+          min="1"
+          :max="total"
+          class="w-20 h-8 px-2 rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-sm"
+          :placeholder="page"
+        />
+        <Button
+          size="xs"
+          variant="default"
+          @click="const n=Number(input)||page; page=Math.min(total,Math.max(1,n))"
+          >Go</Button
+        >
+      </div>
+      <div
+        class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"
+      >
+        Per page
+        <div class="w-24">
+          <Select id="per-page" name="per-page" size="xs" xModel="size">
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+          </Select>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- copy:end -->
+</section>

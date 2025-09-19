@@ -1,0 +1,27 @@
+---
+export const description = "Segmented Number Pills";
+import Button from "@/components/fundations/buttons/Button.astro";
+---
+
+<section class="flex justify-center p-16 bg-white dark:bg-zinc-900">
+  <!-- copy:start -->
+  <nav
+    aria-label="Pagination"
+    x-data="{ page: 2, total: 6 }"
+    class="inline-flex rounded-md overflow-hidden ring-1 ring-zinc-200 dark:ring-zinc-800"
+  >
+    <template x-for="n in total" :key="n">
+      <Button
+        size="xs"
+        variant="alternative"
+        noRounded
+        class="border-r last:border-r-0 border-zinc-200 dark:border-zinc-800"
+        @click="page=n"
+        x-text="n"
+        :aria-current="page===n ? 'page' : null"
+        :class="page===n ? 'bg-indigo-600 text-white' : ''"
+      />
+    </template>
+  </nav>
+  <!-- copy:end -->
+</section>

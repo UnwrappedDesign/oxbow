@@ -1,0 +1,56 @@
+---
+export const description = "Dynamic Numbered with Ellipsis";
+import Button from "@/components/fundations/buttons/Button.astro";
+import IconButton from "@/components/fundations/buttons/IconButton.astro";
+---
+
+<section class="flex justify-center p-16 bg-white dark:bg-zinc-900">
+  <!-- copy:start -->
+  <nav
+    aria-label="Pagination"
+    x-data="{
+      page: 1,
+      total: 20,
+      window: 1,
+      pages(){
+        const p = this.page, t = this.total, w = this.window
+        const nums = new Set([1, t])
+        for (let i = p - w; i <= p + w; i++) if (i > 1 && i < t) nums.add(i)
+        return Array.from(nums).sort((a,b)=>a-b)
+      }
+    }"
+    class="flex items-center gap-1"
+  >
+    <Button
+      size="xs"
+      variant="alternative"
+      :disabled="page===1"
+      @click="page=Math.max(1,page-1)"
+      aria-label="Previous">Previous</Button
+    >
+    <template x-for="(n,i) in pages()" :key="n">
+      <>
+        <IconButton
+          size="xs"
+          variant="alternative"
+          @click="page=n"
+          x-text="n"
+          :aria-current="page===n ? 'page' : null"
+          :class="page===n ? 'outline-indigo-600 text-indigo-600 dark:text-indigo-300' : ''"
+        />
+        <span
+          x-show="i < pages().length-1 && pages()[i+1] - n > 1"
+          class="px-1 text-zinc-500">…</span
+        >
+      </>
+    </template>
+    <Button
+      size="xs"
+      variant="alternative"
+      :disabled="page===total"
+      @click="page=Math.min(total,page+1)"
+      aria-label="Next">Next</Button
+    >
+  </nav>
+  <!-- copy:end -->
+</section>

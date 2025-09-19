@@ -1,0 +1,73 @@
+---
+export const description = "Table Footer: Rows per page + Range";
+import IconButton from "@/components/fundations/buttons/IconButton.astro";
+import Select from "@/components/fundations/inputs/Select.astro";
+import ChevronLeft from "@/components/fundations/icons/ChevronLeft.astro";
+import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
+---
+
+<section class="flex justify-center p-16 bg-white dark:bg-zinc-900">
+  <!-- copy:start -->
+  <nav
+    aria-label="Pagination"
+    x-data="{page:1,totalItems:100,pageSize:25,get lastPage(){return Math.ceil(this.totalItems/this.pageSize)},get rangeStart(){return ((this.page-1)*this.pageSize)+1},get rangeEnd(){return Math.min(this.totalItems,this.page*this.pageSize)} }"
+    class="flex w-full max-w-2xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+  >
+    <div
+      class="hidden md:flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300 w-full sm:w-auto justify-between sm:justify-start"
+    >
+      Rows per page
+      <div class="w-24">
+        <Select
+          id="rows-per-page"
+          name="rows-per-page"
+          size="xs"
+          xModel="pageSize"
+        >
+          <option value="10">10</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+        </Select>
+      </div>
+    </div>
+    <div
+      class="text-sm text-zinc-600 dark:text-zinc-300 text-center sm:text-left"
+    >
+      <span x-text="rangeStart"></span>-<span x-text="rangeEnd"></span> of <span
+        x-text="totalItems"></span>
+    </div>
+    <div
+      class="flex items-center gap-2 self-end sm:self-auto w-full md:w-auto justify-center md:justify-end"
+    >
+      <IconButton
+        size="xs"
+        variant="alternative"
+        :disabled="page===1"
+        @click="page=1"
+        aria-label="First">«</IconButton
+      >
+      <IconButton
+        size="xs"
+        variant="alternative"
+        :disabled="page===1"
+        @click="page=Math.max(1,page-1)"
+        aria-label="Previous"><ChevronLeft size="xs" slot="icon" /></IconButton
+      >
+      <IconButton
+        size="xs"
+        variant="alternative"
+        :disabled="page===lastPage"
+        @click="page=Math.min(lastPage,page+1)"
+        aria-label="Next"><ChevronRight size="xs" slot="icon" /></IconButton
+      >
+      <IconButton
+        size="xs"
+        variant="alternative"
+        :disabled="page===lastPage"
+        @click="page=lastPage"
+        aria-label="Last">»</IconButton
+      >
+    </div>
+  </nav>
+  <!-- copy:end -->
+</section>

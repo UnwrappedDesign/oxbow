@@ -1,0 +1,48 @@
+---
+export const description = "Checklist with Progress Indicator";
+import Text from "@/components/fundations/typography/Text.astro";
+---
+
+<section class="flex items-center flex-wrap gap-2 justify-center p-8 bg-white dark:bg-zinc-900 h-full">
+  <!-- copy:start -->
+  <div
+    class="flex flex-col gap-3 w-full max-w-md"
+    x-data="{
+      tasks: [
+        { label: 'Write title', done: true },
+        { label: 'Add description', done: false },
+        { label: 'Attach screenshots', done: false },
+        { label: 'Request review', done: false },
+      ],
+      get completed(){ return this.tasks.filter(t => t.done).length },
+      get percent(){ return Math.round((this.completed / this.tasks.length) * 100) },
+      completeAll(){ this.tasks = this.tasks.map(t => ({...t, done: true})) },
+      resetAll(){ this.tasks = this.tasks.map(t => ({...t, done: false})) }
+    }"
+  >
+    <div class="flex items-center justify-between">
+      <div class="text-sm text-zinc-700 dark:text-zinc-200">
+        Progress: <span x-text="completed"></span>/<span x-text="tasks.length"></span> (<span x-text="percent"></span>%)
+      </div>
+      <div class="flex gap-2">
+        <button type="button" class="px-2 py-1 text-xs rounded bg-indigo-600 text-white" @click="completeAll()">Complete All</button>
+        <button type="button" class="px-2 py-1 text-xs rounded border border-zinc-300 text-zinc-700 dark:border-zinc-700 dark:text-zinc-200" @click="resetAll()">Reset</button>
+      </div>
+    </div>
+    <div class="w-full h-2 rounded bg-zinc-200 dark:bg-zinc-800 overflow-hidden">
+      <div class="h-full bg-indigo-600" :style="`width: ${percent}%`"></div>
+    </div>
+    <template x-for="(task, idx) in tasks" :key="task.label">
+      <div class="flex items-center gap-3">
+        <input
+          type="checkbox"
+          :id="`task-` + idx"
+          x-model="task.done"
+          class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-indigo-600 focus:ring-indigo-600 dark:bg-zinc-900 dark:checked:bg-indigo-600"
+        />
+        <Text :for="`task-` + idx" tag="label" class="block text-sm text-zinc-700 dark:text-zinc-200" :class="task.done ? 'line-through text-zinc-400 dark:text-zinc-500' : ''" x-text="task.label" />
+      </div>
+    </template>
+  </div>
+  <!-- copy:end -->
+</section>

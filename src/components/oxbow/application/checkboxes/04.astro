@@ -1,5 +1,5 @@
 ---
-export const description = "Indeterminate Checkbox";
+export const description = "Parent Checkbox with Tri‑State";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
 
@@ -8,24 +8,55 @@ import Text from "@/components/fundations/typography/Text.astro";
 >
   <!-- copy:start -->
   <div
-    class="flex items-center gap-2"
-    x-data="{ indeterminate: true }"
-    x-init="$refs.indeterminateCheckbox.indeterminate = indeterminate"
+    class="flex flex-col gap-2 w-full max-w-md"
+    x-data="{
+      items: ['Apples','Bananas','Cherries'],
+      selected: [],
+      toggleAll($refs) {
+        if (this.selected.length === this.items.length) {
+          this.selected = []
+        } else {
+          this.selected = [...this.items]
+        }
+        this.updateParentState($refs)
+      },
+      updateParentState($refs){
+        const all = this.selected.length === this.items.length
+        const none = this.selected.length === 0
+        $refs.parent.checked = all
+        $refs.parent.indeterminate = !all && !none
+      }
+    }"
+    x-init="$watch('selected', () => updateParentState($refs)); updateParentState($refs)"
   >
-    <input
-      id="indeterminate-checkbox"
-      name="indeterminate-checkbox"
-      type="checkbox"
-      x-ref="indeterminateCheckbox"
-      class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-blue-600 focus:ring-blue-600 dark:bg-zinc-900 dark:checked:bg-blue-600"
-    />
-    <Text
-      for="indeterminate-checkbox"
-      tag="label"
-      class="block text-sm text-zinc-500 dark:text-zinc-300"
-    >
-      Indeterminate checkbox
-    </Text>
+    <div class="flex items-center gap-3">
+      <input
+        id="fruits-all"
+        name="fruits-all"
+        type="checkbox"
+        x-ref="parent"
+        @change="toggleAll($refs)"
+        class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-indigo-600 focus:ring-indigo-600 dark:bg-zinc-900 dark:checked:bg-indigo-600"
+      />
+      <Text for="fruits-all" tag="label" class="block text-sm text-zinc-600 dark:text-zinc-300">
+        Select all fruits
+        <span class="ml-2 text-xs text-zinc-400 dark:text-zinc-500"
+          x-text="`${selected.length}/${items.length} selected`"
+        />
+      </Text>
+    </div>
+    <template x-for="item in items" :key="item">
+      <div class="flex items-center gap-3 pl-6">
+        <input
+          type="checkbox"
+          :id="`fruit-${item}`"
+          :value="item"
+          x-model="selected"
+          class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-indigo-600 focus:ring-indigo-600 dark:bg-zinc-900 dark:checked:bg-indigo-600"
+        />
+        <Text :for="`fruit-${item}`" tag="label" class="block text-sm text-zinc-600 dark:text-zinc-300" x-text="item" />
+      </div>
+    </template>
   </div>
   <!-- copy:end -->
 </section>

@@ -1,0 +1,39 @@
+---
+export const description = "Page Dropdown with Arrows";
+import IconButton from "@/components/fundations/buttons/IconButton.astro";
+import Select from "@/components/fundations/inputs/Select.astro";
+import ChevronLeft from "@/components/fundations/icons/ChevronLeft.astro";
+import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
+---
+
+<section class="flex justify-center p-16 bg-white dark:bg-zinc-900">
+  <!-- copy:start -->
+  <nav
+    aria-label="Pagination"
+    x-data="{ page: 1, total: 15 }"
+    class="flex items-center gap-2"
+  >
+    <IconButton
+      size="xs"
+      variant="alternative"
+      :disabled="page===1"
+      @click="page=Math.max(1,page-1)"
+      aria-label="Previous"><ChevronLeft size="xs" slot="icon" /></IconButton
+    >
+    <div class="w-fit">
+      <Select id="page-select" name="page-select" size="xs" xModel="page">
+        <template x-for="n in total" :key="n">
+          <option :value="n" x-text="`Page ${n}`"></option>
+        </template>
+      </Select>
+    </div>
+    <IconButton
+      size="xs"
+      variant="alternative"
+      :disabled="page===total"
+      @click="page=Math.min(total,page+1)"
+      aria-label="Next"><ChevronRight size="xs" slot="icon" /></IconButton
+    >
+  </nav>
+  <!-- copy:end -->
+</section>

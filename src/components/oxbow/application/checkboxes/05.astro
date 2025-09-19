@@ -1,5 +1,5 @@
 ---
-export const description = "Checkbox with Counter";
+export const description = "Destructive Action Confirmation";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
 
@@ -7,21 +7,35 @@ import Text from "@/components/fundations/typography/Text.astro";
   class="flex items-center flex-wrap gap-2 justify-center p-8 bg-white dark:bg-zinc-900 h-full"
 >
   <!-- copy:start -->
-  <div class="flex items-center gap-2" x-data="{ count: 0 }">
-    <input
-      id="counter-checkbox"
-      name="counter-checkbox"
-      type="checkbox"
-      @change="count += $event.target.checked ? 1 : -1"
-      class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-blue-600 focus:ring-blue-600 dark:bg-zinc-900 dark:checked:bg-blue-600"
-    />
-    <Text
-      for="counter-checkbox"
-      tag="label"
-      class="block text-sm text-zinc-500 dark:text-zinc-300"
-    >
-      Checkbox clicked <span x-text="count"></span> times
-    </Text>
+  <div class="flex flex-col gap-2 w-full max-w-md" x-data="{ confirm: false }">
+    <div class="flex items-start gap-3">
+      <input
+        id="confirm-delete"
+        name="confirm-delete"
+        type="checkbox"
+        x-model="confirm"
+        class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-indigo-600 focus:ring-indigo-600 dark:bg-zinc-900 dark:checked:bg-indigo-600"
+      />
+      <div>
+        <Text for="confirm-delete" tag="label" class="block text-sm text-zinc-700 dark:text-zinc-200">
+          I understand this action cannot be undone
+        </Text>
+        <p class="text-xs text-zinc-500 dark:text-zinc-400">This will permanently delete the item.</p>
+      </div>
+    </div>
+    <div class="flex gap-2">
+      <button
+        type="button"
+        :disabled="!confirm"
+        class="px-3 py-1.5 text-sm rounded bg-red-600 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+        @click="alert('Deleted')"
+      >
+        Delete
+      </button>
+      <span class="self-center text-xs text-zinc-500 dark:text-zinc-400">
+        <span x-text="confirm ? 'Ready to delete' : 'Please confirm'" />
+      </span>
+    </div>
   </div>
   <!-- copy:end -->
 </section>

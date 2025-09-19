@@ -1,5 +1,5 @@
 ---
-export const description = "Checkbox with Toggle Al";
+export const description = "Permissions Matrix (Read/Write/Admin)";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
 
@@ -8,44 +8,56 @@ import Text from "@/components/fundations/typography/Text.astro";
 >
   <!-- copy:start -->
   <div
-    class="flex flex-col gap-2"
-    x-data="{ options: ['Option 1', 'Option 2', 'Option 3'], selected: [], selectAll: false }"
-    x-init="$watch('selectAll', value => selected = value ? [...options] : [])"
+    class="flex flex-col gap-3 w-full max-w-2xl"
+    x-data="{
+      rows: [
+        { name: 'Projects', read: true, write: false, admin: false },
+        { name: 'Billing', read: false, write: false, admin: false },
+        { name: 'Analytics', read: true, write: true, admin: false },
+      ],
+      toggle(row, key, event){
+        const checked = event.target.checked
+        row[key] = checked
+        if (key === 'admin') {
+          row.read = checked
+          row.write = checked
+        }
+        if (!row.read && row.admin) row.admin = false
+        if (!row.write && row.admin) row.admin = false
+      },
+      summary(row){
+        const parts = []
+        if (row.read) parts.push('Read')
+        if (row.write) parts.push('Write')
+        if (row.admin) parts.push('Admin')
+        return parts.join(', ') || 'None'
+      }
+    }"
   >
-    <div class="flex items-center gap-3">
-      <input
-        id="toggle-all-checkbox"
-        name="toggle-all-checkbox"
-        type="checkbox"
-        x-model="selectAll"
-        class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-blue-600 focus:ring-blue-600 dark:bg-zinc-900 dark:checked:bg-blue-600"
-      />
-      <Text
-        for="toggle-all-checkbox"
-        tag="label"
-        class="block text-sm text-zinc-500 dark:text-zinc-300">Select All</Text
-      >
+    <div class="text-sm text-zinc-700 dark:text-zinc-200">Admin implies Read and Write. Unchecking Read/Write removes Admin.</div>
+    <div class="grid grid-cols-4 text-xs font-medium text-zinc-500 dark:text-zinc-400 px-2">
+      <div>Resource</div>
+      <div class="text-center">Read</div>
+      <div class="text-center">Write</div>
+      <div class="text-center">Admin</div>
     </div>
-    <template x-for="option in options" :key="option">
-      <div class="flex items-center gap-3">
-        <input
-          type="checkbox"
-          :id="option"
-          :value="option"
-          x-model="selected"
-          class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-blue-600 focus:ring-blue-600 dark:bg-zinc-900 dark:checked:bg-blue-600"
-        />
-        <Text
-          :for="option"
-          tag="label"
-          class="block text-sm text-zinc-500 dark:text-zinc-300"
-          x-text="option"
-        />
+    <template x-for="(row, i) in rows" :key="row.name">
+      <div class="grid grid-cols-4 items-center px-2 py-2 rounded border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
+        <div class="flex flex-col">
+          <span class="text-sm text-zinc-700 dark:text-zinc-200" x-text="row.name"></span>
+          <span class="text-xs text-zinc-500 dark:text-zinc-400" x-text="summary(row)"></span>
+        </div>
+        <div class="flex justify-center">
+          <input type="checkbox" :id="`r-`+i" :checked="row.read" @change="toggle(row,'read',$event)" class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-indigo-600 focus:ring-indigo-600 dark:bg-zinc-900 dark:checked:bg-indigo-600" />
+        </div>
+        <div class="flex justify-center">
+          <input type="checkbox" :id="`w-`+i" :checked="row.write" @change="toggle(row,'write',$event)" class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-indigo-600 focus:ring-indigo-600 dark:bg-zinc-900 dark:checked:bg-indigo-600" />
+        </div>
+        <div class="flex justify-center">
+          <input type="checkbox" :id="`a-`+i" :checked="row.admin" @change="toggle(row,'admin',$event)" class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-indigo-600 focus:ring-indigo-600 dark:bg-zinc-900 dark:checked:bg-indigo-600" />
+        </div>
       </div>
     </template>
-    <div class="mt-2 text-sm text-zinc-500 dark:text-zinc-300">
-      Selected: <span x-text="selected.join(', ')"></span>
-    </div>
   </div>
   <!-- copy:end -->
 </section>
