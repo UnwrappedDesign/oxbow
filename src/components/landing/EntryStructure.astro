@@ -57,9 +57,7 @@ const updatedSubsections = Object.keys(updates).reduce((acc, path) => {
 const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
 ---
 
-<ul
-  class="col-span-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 2xl:col-span-full gap-2"
->
+<ul class="flex flex-col divide-y divide-zinc-200">
   {
     entriesWithQuantity.map((template) => {
       const subsection = template.link.split("/").pop();
@@ -70,46 +68,46 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
       const isUpdatedLastWeek = updatedAt > SEVEN_DAYS_AGO;
 
       return (
-        <li class="relative group">
+        <li class="relative group py-2">
           <a
             title={template.name}
             href={template.link}
             class="absolute inset-0 z-1"
           />
-          <div class="relative  group ">
+          <div>
             {/*   <Image
               class="object-cover object-top rounded-lg  transition-all duration-300 ease-in-out shadow-subtle shadow-zinc-500/10  aspect-16/9"
               alt={template.name}
               src={template.image()}
             /> */}
-            <div class="flex flex-col p-4 bg-white rounded-lg  group-hover:text-accent-600">
+            <div class="grid grid-cols-2 lg:grid-cols-4  group-hover:text-accent-600">
               <Text
                 tag="p"
                 variant="textSM"
-                class="relative font-medium text-zinc-600"
+                class="relative font-medium text-zinc-600 group-hover:text-accent-600"
               >
                 {template.name}
               </Text>
               <Text
                 tag="span"
                 variant="textXS"
-                class="relative font-medium text-zinc-500"
+                class="relative font-medium text-zinc-500 group-hover:text-accent-600 lg:col-span-2 ml-auto lg:ml-0"
               >
-                {template.quantity} Components
+                {template.quantity}
+              </Text>
+              <Text
+                tag="p"
+                variant="textXXS"
+                class="relative flex items-center gap-1 text-zinc-500 group-hover:text-accent-600 lg:ml-auto"
+              >
+                Updated
+                {formatDistanceToNowStrict(updatedAt, {
+                  unit: "day",
+                  roundingMethod: "ceil",
+                })}
+                {" ago"}
               </Text>
               {/* {isUpdatedLastWeek && (
-                <Text
-                  tag="p"
-                  variant="textXXS"
-                  class="relative flex items-center mt-2 gap-1  text-zinc-500"
-                >
-                  Updated
-                  {formatDistanceToNowStrict(updatedAt, {
-                    unit: "day",
-                    roundingMethod: "ceil",
-                  })}
-                  {" ago"}
-                </Text>
               )} */}
             </div>
           </div>

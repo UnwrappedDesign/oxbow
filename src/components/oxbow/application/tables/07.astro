@@ -12,7 +12,20 @@ export const excludeFromObfuscation = [
   <!-- Monochrome Table • Selectable rows + Bulk actions -->
   <div
     x-data="{
-      rows: Array.from({length:12}).map((_,i)=>({ id: i+1, name: 'Document '+(i+1), owner: 'user'+(i%5)+'@example.com', size: (i+3)*12+' KB' })),
+      rows: [
+        { id: 1, name: 'Invoice Q3.pdf', owner: 'alice@example.com', size: '144 KB' },
+        { id: 2, name: 'Brand Guidelines.pptx', owner: 'bob@example.com', size: '180 KB' },
+        { id: 3, name: 'UX Research.xlsx', owner: 'carol@example.com', size: '192 KB' },
+        { id: 4, name: 'Wireframes.sketch', owner: 'dave@example.com', size: '204 KB' },
+        { id: 5, name: 'Logo.svg', owner: 'eve@example.com', size: '156 KB' },
+        { id: 6, name: 'Roadmap.pdf', owner: 'alice@example.com', size: '168 KB' },
+        { id: 7, name: 'Sprint Plan.docx', owner: 'bob@example.com', size: '216 KB' },
+        { id: 8, name: 'Meeting Notes.txt', owner: 'carol@example.com', size: '132 KB' },
+        { id: 9, name: 'Budget.xlsx', owner: 'dave@example.com', size: '228 KB' },
+        { id: 10, name: 'Release Checklist.md', owner: 'eve@example.com', size: '156 KB' },
+        { id: 11, name: 'Design Tokens.json', owner: 'alice@example.com', size: '168 KB' },
+        { id: 12, name: 'User Feedback.csv', owner: 'bob@example.com', size: '180 KB' },
+      ],
       selected: new Set(),
       toggleAll(e){ this.selected = new Set(e.target.checked ? this.rows.map(r=>r.id) : []); },
       toggle(id){ this.selected.has(id) ? this.selected.delete(id) : this.selected.add(id); },
@@ -38,7 +51,7 @@ export const excludeFromObfuscation = [
                     type="checkbox"
                     :checked="allSelected()"
                     @change="toggleAll($event)"
-                    class="size-4 rounded border-zinc-300 dark:border-zinc-600 text-zinc-700 dark:text-zinc-100 focus:ring-zinc-300 dark:focus:ring-zinc-600 bg-white dark:bg-zinc-900"
+                    class="size-4 rounded border-zinc-300 dark:border-zinc-600 text-zinc-700 dark:text-zinc-100 focus:ring-zinc-300 dark:focus:ring-zinc-600 bg-white dark:bg-zinc-900 checked:bg-white checked:border-zinc-200 checked:text-zinc-900 dark:checked:bg-zinc-900 dark:checked:border-zinc-700 dark:checked:text-zinc-100"
                   />
                 </th>
                 <th
@@ -66,7 +79,7 @@ export const excludeFromObfuscation = [
                       type="checkbox"
                       :checked="selected.has(r.id)"
                       @change="toggle(r.id)"
-                      class="size-4 rounded border-zinc-300 dark:border-zinc-600 text-zinc-700 dark:text-zinc-100 focus:ring-zinc-300 dark:focus:ring-zinc-600 bg-white dark:bg-zinc-900"
+                      class="size-4 rounded border-zinc-300 dark:border-zinc-600 text-zinc-700 dark:text-zinc-100 focus:ring-zinc-300 dark:focus:ring-zinc-600 bg-white dark:bg-zinc-900 checked:bg-white checked:border-zinc-200 checked:text-zinc-900 dark:checked:bg-zinc-900 dark:checked:border-zinc-700 dark:checked:text-zinc-100"
                     />
                   </td>
                   <td
