@@ -1,222 +1,159 @@
 ---
+export const excludeFromObfuscation = [
+  "bg-zinc-50",
+  "border-zinc-200",
+  "text-zinc-700",
+  "tabular-nums",
+  "ring-1",
+  "ring-zinc-200",
+];
+
+import ChevronUp from "@/components/fundations/icons/ChevronUp.astro";
+import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
-import Badge from "@/components/fundations/badges/Badge.astro";
-import HorizontalButtonGroup from "@/components/fundations/buttonGroups/HorizontalButtonGroup.astro";
 ---
 
 <div class="flex flex-col justify-center p-8 mx-auto bg-white dark:bg-zinc-900">
-  <!-- copy:start -->
-  <div class="max-w-7xl mx-auto w-full">
-    <div class="flex items-center gap-2">
-      <h1
-        class="text-base font-medium tracking-tighter text-zinc-900 dark:text-zinc-100"
-      >
-        Purchases
-      </h1>
-      <Badge variant="muted" size="xs"> Ready </Badge>
-    </div>
-    <div class="mt-8 flow-root">
-      <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-          <!-- copy:start -->
-          <table
-            class="min-w-full border-y border-zinc-200 dark:border-zinc-700"
+  <!-- Usable data table: filters + sorting + pagination -->
+  <div
+    x-data="{ sortKey:'name', sortDir:'asc', page:1, size:5,
+    rows:[
+      { name:'Alex Thompson', email:'a.tompson@company.com', location:'San Francisco, US', status:'Inactive', balance:1750 },
+      { name:'James Wilson', email:'j.wilson@company.com', location:'London, UK', status:'Inactive', balance:650 },
+      { name:'Lars Nielsen', email:'l.nielsen@company.com', location:'Stockholm, SE', status:'Active', balance:1000 },
+      { name:'Maria Garcia', email:'m.garcia@company.com', location:'Madrid, Spain', status:'Active', balance:0 },
+      { name:'Sarah Chen', email:'sarah.c@company.com', location:'Singapore', status:'Active', balance:600 },
+      { name:'David Kim', email:'d.kim@company.com', location:'Seoul, KR', status:'Active', balance:1000 },
+      { name:'Emma Laurent', email:'e.laurent@company.com', location:'Berlin, DE', status:'Active', balance:1200 },
+    ],
+    setSort(k){ if(this.sortKey===k) this.sortDir=this.sortDir==='asc'?'desc':'asc'; else { this.sortKey=k; this.sortDir='asc'; } this.page=1; },
+    sorted(){ const a=[...this.rows]; const k=this.sortKey; const dir=this.sortDir==='asc'?1:-1; return a.sort((x,y)=>(x[k]>y[k]?1:-1)*dir); },
+    total(){ return this.sorted().length; },
+    pages(){ return Math.max(1, Math.ceil(this.total()/this.size)); },
+    pageRows(){ const s=(this.page-1)*this.size; return this.sorted().slice(s,s+this.size); }
+  }"
+    class="flow-root max-w-7xl mx-auto"
+  >
+    <!-- Filter/search removed -->
+    <div class="overflow-x-auto">
+      <div class="flex flex-col justify-center">
+        <table class="min-w-[900px] text-sm bg-white dark:bg-zinc-900">
+          <thead
+            class="bg-zinc-100 dark:bg-zinc-800 border-b border-zinc-200 dark:border-zinc-700"
           >
-            <thead class="border-b border-zinc-200 dark:border-zinc-700">
-              <tr>
-                <th scope="col" class="pl-3 text-left sm:pl-0">
-                  <input
-                    type="checkbox"
-                    class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-blue-600 dark:text-blue-400 focus:ring-blue-600 dark:focus:ring-blue-400 bg-white dark:bg-zinc-800"
-                  />
-                </th>
-                <th
-                  scope="col"
-                  class="py-3.5 px-3 text-base font-medium tracking-tighter text-zinc-900 dark:text-zinc-100 text-left"
+            <tr>
+              <th
+                class="px-3 py-2 text-left font-medium text-zinc-700 dark:text-zinc-100"
+              >
+                <button
+                  @click="setSort('name')"
+                  class="hover:underline flex items-center gap-1"
                 >
-                  Product
-                </th>
-                <th
-                  scope="col"
-                  class="px-3 py-3.5 text-base font-medium tracking-tighter text-zinc-900 dark:text-zinc-100 text-left"
-                >
-                  Email
-                </th>
-                <th
-                  scope="col"
-                  class="px-3 py-3.5 text-base font-medium tracking-tighter text-zinc-900 dark:text-zinc-100 text-left"
-                >
-                  Cart
-                </th>
-                <th
-                  scope="col"
-                  class="px-3 py-3.5 text-base font-medium tracking-tighter text-zinc-900 dark:text-zinc-100 text-left"
-                >
-                  Status
-                </th>
-                <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
-                  <span class="sr-only">Edit</span>
-                </th>
+                  Name
+                  <template x-if="sortKey==='name'">
+                    <span>
+                      <template x-if="sortDir==='asc'"
+                        ><ChevronUp size="sm" /></template
+                      >
+                      <template x-if="sortDir==='desc'"
+                        ><ChevronDown size="sm" /></template
+                      >
+                    </span>
+                  </template>
+                </button>
+              </th>
+              <th
+                class="px-3 py-2 text-left font-medium text-zinc-700 dark:text-zinc-100"
+                ><button @click="setSort('email')" class="hover:underline"
+                  >Email <span
+                    x-text="sortKey==='email'?(sortDir==='asc'?'▲':'▼'):''"
+                  ></span></button
+                ></th
+              >
+              <th
+                class="px-3 py-2 text-left font-medium text-zinc-700 dark:text-zinc-100"
+                >Location</th
+              >
+              <th
+                class="px-3 py-2 text-left font-medium text-zinc-700 dark:text-zinc-100"
+                >Status</th
+              >
+              <th
+                class="px-3 py-2 text-right font-medium text-zinc-700 dark:text-zinc-100"
+                ><button @click="setSort('balance')" class="hover:underline"
+                  >Balance <span
+                    x-text="sortKey==='balance'?(sortDir==='asc'?'▲':'▼'):''"
+                  ></span></button
+                ></th
+              >
+            </tr>
+          </thead>
+          <tbody>
+            <template x-for="r in pageRows()" :key="r.email">
+              <tr class="even:bg-zinc-50 dark:even:bg-zinc-800">
+                <td
+                  class="px-3 py-2 text-zinc-700 dark:text-zinc-100 font-medium"
+                  x-text="r.name"></td>
+                <td
+                  class="px-3 py-2 text-zinc-500 dark:text-zinc-300"
+                  x-text="r.email"></td>
+                <td
+                  class="px-3 py-2 text-zinc-500 dark:text-zinc-300"
+                  x-text="r.location"></td>
+                <td
+                  class="px-3 py-2"
+                  :class="r.status==='Active' ? 'text-emerald-600 dark:text-emerald-400' : r.status==='Inactive' ? 'text-red-600 dark:text-red-400' : 'text-yellow-600 dark:text-yellow-400'"
+                  x-text="r.status"></td>
+                <td
+                  class="px-3 py-2 text-right tabular-nums text-zinc-700 dark:text-zinc-100 font-mono font-medium"
+                  x-text="Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(r.balance)"
+                ></td>
               </tr>
-            </thead>
-            <tbody class="divide-y divide-zinc-200 dark:divide-zinc-700">
-              <tbody class="divide-y divide-zinc-200 dark:divide-zinc-700">
-                <td class="pl-3 sm:pl-0">
-                  <input
-                    type="checkbox"
-                    class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-blue-600 dark:text-blue-400 text-zinc-900 dark:text-zinc-100 focus:ring-blue-600 dark:focus:ring-blue-400 bg-white dark:bg-zinc-800"
-                  />
-                </td>
-                <td
-                  class="px-3 py-4 text-sm font-medium tracking-tighter whitespace-nowrap text-zinc-900 dark:text-zinc-100"
-                >
-                  98137459
-                </td>
-                <td
-                  class="px-3 py-4 text-xs font-medium whitespace-nowrap text-zinc-500 dark:text-zinc-400"
-                >
-                  email@example.com
-                </td>
-                <td
-                  class="px-3 py-4 text-xs font-medium whitespace-nowrap text-zinc-500"
-                >
-                  Iphone X, 11 inch
-                </td>
-                <td class="max-w-xs px-3 py-4 overflow-hidden truncate">
-                  <Badge variant="success" size="xs"> In transit </Badge>
-                </td>
-                <td
-                  class="relative py-4 pl-3 pr-3 text-right whitespace-nowrap sm:px-0"
-                >
-                  <Button size="sm" variant="text" class="ml-auto">
-                    See details<span class="sr-only">details</span>
-                  </Button>
-                </td>
-              </tbody>
-              <tr>
-                <td class="pl-3 sm:pl-0">
-                  <input
-                    type="checkbox"
-                    class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-blue-600 dark:text-blue-400 focus:ring-blue-600 dark:focus:ring-blue-400 bg-white dark:bg-zinc-800"
-                  />
-                </td>
-                <td
-                  class="px-3 py-4 text-sm font-medium tracking-tighter whitespace-nowrap text-zinc-900 dark:text-zinc-100"
-                >
-                  89347592
-                </td>
-                <td
-                  class="px-3 py-4 text-xs font-medium whitespace-nowrap text-zinc-500 dark:text-zinc-400"
-                >
-                  alice@example.com
-                </td>
-                <td
-                  class="px-3 py-4 text-xs font-medium whitespace-nowrap text-zinc-500"
-                >
-                  Macbook Pro, 13 inch
-                </td>
-                <td class="max-w-xs px-3 py-4 overflow-hidden truncate">
-                  <Badge variant="danger" size="xs"> Canceled </Badge>
-                </td>
-                <td
-                  class="relative py-4 pl-3 pr-3 text-right whitespace-nowrap sm:px-0"
-                >
-                  <Button size="sm" variant="text" class="ml-auto">
-                    See details<span class="sr-only">details</span>
-                  </Button>
-                </td>
-              </tr>
-              <tr>
-                <td class="pl-3 sm:pl-0">
-                  <input
-                    type="checkbox"
-                    class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-blue-600 dark:text-blue-400 focus:ring-blue-600 dark:focus:ring-blue-400 bg-white dark:bg-zinc-800"
-                  />
-                </td>
-                <td
-                  class="px-3 py-4 text-sm font-medium tracking-tighter whitespace-nowrap text-zinc-900 dark:text-zinc-100"
-                >
-                  02398547
-                </td>
-                <td
-                  class="px-3 py-4 text-xs font-medium whitespace-nowrap text-zinc-500 dark:text-zinc-400"
-                >
-                  bob@example.com
-                </td>
-                <td
-                  class="px-3 py-4 text-xs font-medium whitespace-nowrap text-zinc-500"
-                >
-                  Benq, 12 inch
-                </td>
-                <td class="max-w-xs px-3 py-4 overflow-hidden truncate">
-                  <Badge variant="success" size="xs"> In transit </Badge>
-                </td>
-                <td
-                  class="relative py-4 pl-3 pr-3 text-right whitespace-nowrap sm:px-0"
-                >
-                  <Button size="sm" variant="text" class="ml-auto">
-                    See details<span class="sr-only">details</span>
-                  </Button>
-                </td>
-              </tr>
-              <tr>
-                <td class="pl-3 sm:pl-0">
-                  <input
-                    type="checkbox"
-                    class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-blue-600 dark:text-blue-400 focus:ring-blue-600 dark:focus:ring-blue-400 bg-white dark:bg-zinc-800"
-                  />
-                </td>
-                <td
-                  class="px-3 py-4 text-sm font-medium tracking-tighter whitespace-nowrap text-zinc-900 dark:text-zinc-100"
-                >
-                  02387654
-                </td>
-                <td
-                  class="px-3 py-4 text-xs font-medium whitespace-nowrap text-zinc-500 dark:text-zinc-400"
-                >
-                  clara@example.com
-                </td>
-                <td
-                  class="px-3 py-4 text-xs font-medium whitespace-nowrap text-zinc-500"
-                >
-                  Apple iWatch
-                </td>
-                <td class="max-w-xs px-3 py-4 overflow-hidden truncate">
-                  <Badge variant="warning" size="xs"> Pending </Badge>
-                </td>
-                <td
-                  class="relative py-4 pl-3 pr-3 text-right whitespace-nowrap sm:px-0"
-                >
-                  <Button size="sm" variant="text" class="ml-auto">
-                    See details<span class="sr-only">details</span>
-                  </Button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <!-- copy:end -->
+            </template>
+            <tr x-show="pageRows().length===0"
+              ><td
+                class="px-3 py-6 text-center text-zinc-500 dark:text-zinc-300"
+                colspan="5">No results</td
+              ></tr
+            >
+          </tbody>
+        </table>
+        <div
+          class="flex items-center justify-between p-3 border-t border-zinc-200 dark:border-zinc-700"
+        >
+          <div class="text-zinc-900 dark:text-zinc-100 text-sm font-mono">
+            <span x-text="(page-1)*size + 1"></span> – <span
+              x-text="Math.min(page*size,total())"></span> of <span
+              x-text="total()"></span>
+          </div>
+          <div class="flex items-center gap-1">
+            <Button
+              size="xs"
+              variant="muted"
+              :disabled="page<=1"
+              @click="page=1">First</Button
+            >
+            <Button
+              size="xs"
+              variant="muted"
+              :disabled="page<=1"
+              @click="page=page-1">Prev</Button
+            >
+            <Button
+              size="xs"
+              variant="muted"
+              :disabled="page>=pages()"
+              @click="page=page+1">Next</Button
+            >
+            <Button
+              size="xs"
+              variant="muted"
+              :disabled="page>=pages()"
+              @click="page=pages()">Last</Button
+            >
+          </div>
         </div>
       </div>
     </div>
-    <div class="flex justify-end mx-auto mt-2">
-      <span class="inline-flex isolate">
-        <HorizontalButtonGroup variant="default" position="right" size="sm">
-          Previous
-        </HorizontalButtonGroup>
-        <HorizontalButtonGroup variant="default" position="middle" size="sm">
-          1
-        </HorizontalButtonGroup>
-        <HorizontalButtonGroup variant="default" position="middle" size="sm">
-          ...
-        </HorizontalButtonGroup>
-        <HorizontalButtonGroup variant="default" position="middle" size="sm">
-          10
-        </HorizontalButtonGroup>
-        <HorizontalButtonGroup position="left" variant="default" size="sm">
-          Next
-        </HorizontalButtonGroup>
-      </span>
-    </div>
   </div>
-  <!-- copy:end -->
 </div>

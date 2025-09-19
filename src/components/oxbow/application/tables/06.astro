@@ -1,0 +1,56 @@
+---
+export const excludeFromObfuscation = [
+  "bg-zinc-50",
+  "border-zinc-200",
+  "text-zinc-700",
+  "sticky",
+  "top-0",
+];
+---
+
+<div class="flex flex-col justify-center p-8 mx-auto bg-white dark:bg-zinc-900">
+  <!-- copy:start -->
+  <div
+    class="w-full max-w-5xl mx-auto overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900"
+  >
+    <div class="max-h-80 overflow-auto">
+      <table class="min-w-full text-xs bg-white dark:bg-zinc-900">
+        <thead
+          class="sticky top-0 bg-zinc-50 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-200 z-10"
+        >
+          <tr>
+            <th class="px-3 py-2 text-left font-medium">ID</th>
+            <th class="px-3 py-2 text-left font-medium">Title</th>
+            <th class="px-3 py-2 text-left font-medium">Owner</th>
+            <th class="px-3 py-2 text-left font-medium">Updated</th>
+            <th class="px-3 py-2 text-right font-medium">Items</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            Array.from({ length: 40 }).map((_, i) => (
+              <tr class="even:bg-zinc-50 dark:even:bg-zinc-800">
+                <td class="px-3 py-2 text-zinc-500 dark:text-zinc-300">
+                  #{i + 1001}
+                </td>
+                <td class="px-3 py-2 text-zinc-700 dark:text-zinc-100">
+                  Collection {i + 1}
+                </td>
+                <td class="px-3 py-2 text-zinc-500 dark:text-zinc-300">
+                  owner{i % 7}@example.com
+                </td>
+                <td class="px-3 py-2 text-zinc-500 dark:text-zinc-300">
+                  2025-09-{String((i % 28) + 1).padStart(2, "0")}
+                </td>
+                <td class="px-3 py-2 text-right text-zinc-700 dark:text-zinc-100 tabular-nums font-mono">
+                  {(i * 3) % 50}
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- copy:end -->
+</div>

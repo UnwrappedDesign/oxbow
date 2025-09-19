@@ -1,77 +1,91 @@
 ---
 export const excludeFromObfuscation = [
-  "bg-blue-700",
-  "text-white",
-  "shadow-md",
+  "border-l-2",
+  "border-blue-600",
+  "text-blue-600",
   "bg-zinc-50",
-  "hover:text-blue-500",
 ];
 ---
 
 <div class="flex flex-col justify-center p-8 mx-auto bg-white dark:bg-zinc-900">
-  <!-- copy:start -->
-  <div x-data="{ tab: 'tab1' }">
-    <div class="flex justify-center">
-      <ul
-        class="inline-flex w-auto p-2 text-sm border gap-4 text-zinc-500 dark:text-zinc-400 border-zinc-200 dark:border-zinc-700 rounded-xl"
+  <!-- Accessible Tabs • Vertical sidebar style -->
+  <div
+    x-data="{
+      keys: ['overview','projects','packages'],
+      selected: 'overview',
+      focus: 0,
+      init(){ this.focus = 0; },
+      select(id){ this.selected = id; this.focus = this.keys.indexOf(id); },
+      onKeydown(e){
+        const last = this.keys.length - 1;
+        let i = this.focus;
+        if (e.key==='ArrowDown'){ i = i === last ? 0 : i+1; }
+        else if (e.key==='ArrowUp'){ i = i === 0 ? last : i-1; }
+        else if (e.key==='Home'){ i = 0; }
+        else if (e.key==='End'){ i = last; }
+        else { return; }
+        e.preventDefault();
+        const id = this.keys[i];
+        this.focus = i;
+        this.$nextTick(() => this.$refs['tab-'+id]?.focus());
+      }
+    }"
+    class="w-full max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12"
+  >
+    <div>
+      <div
+        role="tablist"
+        aria-orientation="vertical"
+        class="flex md:flex-col gap-1"
       >
-        <li>
-          <a
-            @click.prevent="tab = 'tab1'"
-            href="#_"
-            class="flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg h-9 transition-all duration-200"
-            :class="tab === 'tab1' ? 'bg-blue-700 text-white dark:bg-blue-500 dark:text-zinc-900 shadow-md' : 'bg-zinc-50 dark:bg-zinc-800 hover:text-blue-500 dark:hover:text-blue-400'"
+        <template x-for="(id, idx) in keys" :key="id">
+          <button
+            class="w-full text-left px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50"
+            :id="'tab-'+id"
+            role="tab"
+            :aria-selected="selected===id"
+            :tabindex="focus===idx ? 0 : -1"
+            :aria-controls="'panel-'+id"
+            x-ref="tab-[[id]]"
+            @click="select(id)"
+            @keydown="onKeydown($event)"
+            :class="selected===id ? 'bg-zinc-50 dark:bg-zinc-800 text-blue-600 md:pl-2' : 'text-zinc-600 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-zinc-100'"
           >
-            Marketing
-          </a>
-        </li>
-        <li>
-          <a
-            @click.prevent="tab = 'tab2'"
-            href="#_"
-            class="flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg h-9 transition-all duration-200"
-            :class="tab === 'tab2' ? 'bg-blue-700 text-white dark:bg-blue-500 dark:text-zinc-900 shadow-md' : 'bg-zinc-50 dark:bg-zinc-800 hover:text-blue-500 dark:hover:text-blue-400'"
-          >
-            Application
-          </a>
-        </li>
-        <li>
-          <a
-            @click.prevent="tab = 'tab3'"
-            href="#_"
-            class="flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg h-9 transition-all duration-200"
-            :class="tab === 'tab3' ? 'bg-blue-700 text-white dark:bg-blue-500 dark:text-zinc-900 shadow-md' : 'bg-zinc-50 dark:bg-zinc-800 hover:text-blue-500 dark:hover:text-blue-400'"
-          >
-            ECommerce
-          </a>
-        </li>
-      </ul>
+            <span
+              x-text="id==='overview' ? 'Overview' : id==='projects' ? 'Projects' : 'Packages'"
+            ></span>
+          </button>
+        </template>
+      </div>
     </div>
-    <div class="py-4 mt-4 text-left mx-auto max-w-xl">
-      <div x-show="tab==='tab1'" class="text-zinc-500 dark:text-zinc-400">
-        <main class="py-4">
-          <p class="text-sm text-zinc-500">Marketing content</p>
-        </main>
-      </div>
-      <div
-        x-show="tab==='tab2'"
-        class="text-zinc-500 dark:text-zinc-400"
-        style="display: none;"
+    <div class="text-sm text-zinc-500 dark:text-zinc-300 md:col-span-2">
+      <section
+        x-show="selected==='overview'"
+        x-cloak
+        role="tabpanel"
+        :id="'panel-overview'"
+        aria-labelledby="tab-overview"
       >
-        <main class="py-4">
-          <p class="text-sm text-zinc-500">Application content</p>
-        </main>
-      </div>
-      <div
-        x-show="tab==='tab3'"
-        class="text-zinc-500 dark:text-zinc-400"
-        style="display: none;"
+        <p>Overview content — KPIs and health checks.</p>
+      </section>
+      <section
+        x-show="selected==='projects'"
+        x-cloak
+        role="tabpanel"
+        :id="'panel-projects'"
+        aria-labelledby="tab-projects"
       >
-        <main class="py-4">
-          <p class="text-sm text-zinc-500">ECommerce content</p>
-        </main>
-      </div>
+        <p>Projects content — roadmaps and planning.</p>
+      </section>
+      <section
+        x-show="selected==='packages'"
+        x-cloak
+        role="tabpanel"
+        :id="'panel-packages'"
+        aria-labelledby="tab-packages"
+      >
+        <p>Packages content — deployment channels and permissions.</p>
+      </section>
     </div>
   </div>
-  <!-- copy:end -->
 </div>

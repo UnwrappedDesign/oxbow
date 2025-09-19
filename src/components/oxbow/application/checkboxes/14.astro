@@ -3,14 +3,18 @@ export const description = "At Least One Required (Group)";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
 
-<section class="flex items-center flex-wrap gap-2 justify-center p-8 bg-white dark:bg-zinc-900 h-full">
+<section
+  class="flex items-center flex-wrap gap-2 justify-center p-24 bg-white dark:bg-zinc-900 h-full"
+>
   <!-- copy:start -->
   <form
     class="flex flex-col gap-2 w-full max-w-md"
     x-data="{ options: ['Email', 'SMS', 'Push'], selected: [], submitted: false }"
     @submit.prevent="submitted = true; if (selected.length === 0) return; alert('Saved')"
   >
-    <div class="text-sm text-zinc-700 dark:text-zinc-200">Notify me via (choose at least one)</div>
+    <div class="text-sm text-zinc-700 dark:text-zinc-200">
+      Notify me via (choose at least one)
+    </div>
     <template x-for="opt in options" :key="opt">
       <div class="flex items-center gap-3">
         <input
@@ -22,17 +26,32 @@ import Text from "@/components/fundations/typography/Text.astro";
           aria-describedby="notify-error"
           class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-indigo-600 focus:ring-indigo-600 dark:bg-zinc-900 dark:checked:bg-indigo-600"
         />
-        <Text :for="`notify-` + opt" tag="label" class="block text-sm text-zinc-600 dark:text-zinc-300" x-text="opt" />
+        <Text
+          :for="`notify-` + opt"
+          tag="label"
+          class="block text-sm text-zinc-600 dark:text-zinc-300"
+          x-text="opt"
+        />
       </div>
     </template>
-    <p id="notify-error" x-show="submitted && selected.length === 0" class="text-xs text-red-600 dark:text-red-400" role="alert">
+    <p
+      id="notify-error"
+      x-show="submitted && selected.length === 0"
+      class="text-xs text-red-600 dark:text-red-400"
+      role="alert"
+    >
       Select at least one notification method.
     </p>
     <div class="flex gap-2">
-      <button type="submit" class="px-3 py-1.5 text-sm rounded bg-indigo-600 text-white">Save Preferences</button>
-      <span class="self-center text-xs text-zinc-500 dark:text-zinc-400" x-text="selected.join(', ') || 'None selected'"></span>
+      <button
+        type="submit"
+        class="px-3 py-1.5 text-sm rounded bg-indigo-600 text-white"
+        >Save Preferences</button
+      >
+      <span
+        class="self-center text-xs text-zinc-500 dark:text-zinc-400"
+        x-text="selected.join(', ') || 'None selected'"></span>
     </div>
   </form>
   <!-- copy:end -->
 </section>
-

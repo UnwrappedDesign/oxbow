@@ -1,0 +1,95 @@
+---
+export const excludeFromObfuscation = [
+  "bg-blue-600",
+  "text-blue-600",
+  "border-b",
+  "ring-1",
+  "ring-zinc-200",
+];
+---
+
+<div class="flex flex-col justify-center p-12 mx-auto bg-white dark:bg-zinc-900">
+  <!-- Accessible Tabs • Scrollable (overflow-x) with action on right -->
+  <div
+    x-data="{
+      keys: ['overview','projects','packages','team','billing','settings'],
+      selected: 'overview',
+      focus: 0,
+      init(){ this.focus = 0 },
+      select(id){ this.selected = id; this.focus = this.keys.indexOf(id) },
+      onKeydown(e){
+        const last = this.keys.length - 1
+        let i = this.focus
+        if (e.key==='ArrowRight' || e.key==='ArrowDown') i = i===last?0:i+1
+        else if (e.key==='ArrowLeft' || e.key==='ArrowUp') i = i===0?last:i-1
+        else if (e.key==='Home') i = 0
+        else if (e.key==='End') i = last
+        else return
+        e.preventDefault(); const id = this.keys[i]; this.focus=i; this.$nextTick(()=>this.$refs['tab-'+id]?.focus())
+      }
+    }"
+    class="w-full max-w-5xl mx-auto"
+  >
+    <div class="flex items-center justify-between gap-4">
+      <div class="relative flex-1 overflow-x-auto overflow-y-hidden">
+        <div
+          class="min-w-max border-b border-zinc-200 dark:border-zinc-700"
+          role="tablist"
+          aria-orientation="horizontal"
+        >
+          <div class="flex gap-6 text-sm text-zinc-600 dark:text-zinc-200">
+            <template x-for="(id, idx) in keys" :key="id">
+              <button
+                class="relative pb-2 font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50"
+                :id="'tab-'+id"
+                role="tab"
+                :aria-selected="selected===id"
+                :tabindex="focus===idx?0:-1"
+                :aria-controls="'panel-'+id"
+                x-ref="tab-[[id]]"
+                @click="select(id)"
+                @keydown="onKeydown($event)"
+                :class="selected===id ? 'text-blue-600 dark:text-blue-400' : 'hover:text-zinc-900 dark:hover:text-zinc-100'"
+              >
+                <span x-text="id.charAt(0).toUpperCase()+id.slice(1)"></span>
+                <span
+                  class="absolute left-0 bottom-0 h-[2px] w-full transition-all"
+                  :class="selected===id ? 'bg-blue-600 dark:bg-blue-400' : 'bg-transparent'"
+                  aria-hidden="true"></span>
+              </button>
+            </template>
+          </div>
+        </div>
+      </div>
+      <div class="shrink-0 hidden sm:flex gap-2">
+        <button
+          type="button"
+          class="h-9 px-3 rounded-md text-sm font-medium bg-zinc-50 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-100 hover:text-zinc-900 dark:hover:text-zinc-100 border border-zinc-200 dark:border-zinc-700"
+          >Export</button
+        >
+        <button
+          type="button"
+          class="h-9 px-3 rounded-md text-sm font-medium bg-blue-600 dark:bg-blue-500 text-white dark:text-zinc-900"
+          >New</button
+        >
+      </div>
+    </div>
+
+    <div class="pt-4 text-sm text-zinc-500 dark:text-zinc-300">
+      <template x-for="id in keys" :key="'panel-'+id">
+        <section
+          x-show="selected===id"
+          x-cloak
+          role="tabpanel"
+          :id="'panel-'+id"
+          :aria-labelledby="'tab-'+id"
+        >
+          <p>
+            <span x-text="id.charAt(0).toUpperCase()+id.slice(1)"></span> content
+            — replace with your blocks.
+          </p>
+        </section>
+      </template>
+    </div>
+  </div>
+</div>

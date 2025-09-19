@@ -1,4 +1,5 @@
 const fs = require("fs");
+const path = require("path");
 const { promisify } = require("util");
 const { exec } = require("child_process");
 
@@ -9,6 +10,7 @@ class ChangelogGenerator {
   constructor(options = {}) {
     this.targetDir = options.targetDir || "src/components/oxbow/";
     this.changelogFile = options.changelogFile || "CHANGELOG.md";
+    this.configPath = options.configPath || path.join(process.cwd(), "src", "config", "changelog.json");
 
     // Default blacklist of folders to exclude
     this.folderBlacklist = new Set(["__test__"]);
@@ -19,6 +21,17 @@ class ChangelogGenerator {
         this.folderBlacklist.add(folder)
       );
     }
+  }
+
+  getMonthsLimit(defaultValue = 3) {
+    const env = process.env.CHANGELOG_MONTHS;
+    if (env && !isNaN(parseInt(env, 10))) return parseInt(env, 10);
+    try {
+      const raw = fs.readFileSync(this.configPath, "utf8");
+      const cfg = JSON.parse(raw);
+      if (cfg && typeof cfg.monthsLimit === "number") return cfg.monthsLimit;
+    } catch {}
+    return defaultValue;
   }
 
   /**
@@ -142,7 +155,10 @@ class ChangelogGenerator {
   }
 
   extractExistingDates(content) {
-    const dateRegex = /## (\d{4}-\d{2}-\d{2})/g;
+    // Matches headings like:
+    // ## 2025-08-14
+    // ## **2025-08-14**
+    const dateRegex = /##\s+\**(\d{4}-\d{2}-\d{2})\**/g;
     const dates = new Set();
     let match;
     while ((match = dateRegex.exec(content)) !== null) {
@@ -220,6 +236,70 @@ class ChangelogGenerator {
     return markdown;
   }
 
+  /**
+   * Keep only entries from the latest N months.
+   * @param {string} content
+   * @param {number} limitMonths
+   * @returns {string}
+   */
+  trimToRecentMonths(content, limitMonths = 3) {
+    const lines = content.split("\n");
+    const header = [];
+    let i = 0;
+    // Capture header until first H2
+    while (i < lines.length && !lines[i].startsWith("## ")) {
+      header.push(lines[i]);
+      i++;
+    }
+
+    const headingRe = /^##\s+\**(\d{4})-(\d{2})-(\d{2})\**\s*$/;
+    const entries = [];
+    while (i < lines.length) {
+      const line = lines[i];
+      const m = line.match(headingRe);
+      if (!m) {
+        i++;
+        continue;
+      }
+      const y = m[1], mo = m[2], d = m[3];
+      const dateStr = `${y}-${mo}-${d}`;
+      const monthKey = `${y}-${mo}`;
+      const yyyymmdd = parseInt(`${y}${mo}${d}`, 10);
+      const section = [line];
+      i++;
+      while (i < lines.length && !lines[i].startsWith("## ")) {
+        section.push(lines[i]);
+        i++;
+      }
+      entries.push({ dateStr, monthKey, yyyymmdd, section });
+    }
+
+    // Build unique months sorted by newest (descending)
+    const uniqueMonths = Array.from(
+      new Set(entries.map((e) => e.monthKey))
+    );
+    uniqueMonths.sort((a, b) => parseInt(b.replace("-", ""), 10) - parseInt(a.replace("-", ""), 10));
+    const allowedMonths = new Set(uniqueMonths.slice(0, Math.max(1, limitMonths)));
+
+    // Group entries by month and sort entries within each month by date desc
+    const byMonth = new Map();
+    for (const e of entries) {
+      if (!allowedMonths.has(e.monthKey)) continue;
+      if (!byMonth.has(e.monthKey)) byMonth.set(e.monthKey, []);
+      byMonth.get(e.monthKey).push(e);
+    }
+    for (const arr of byMonth.values()) arr.sort((a, b) => b.yyyymmdd - a.yyyymmdd);
+
+    // Emit months in newest-first order
+    const out = [...header];
+    for (const m of uniqueMonths) {
+      if (!allowedMonths.has(m)) continue;
+      const list = byMonth.get(m) || [];
+      for (const e of list) out.push(...e.section);
+    }
+    return out.join("\n");
+  }
+
   async generate() {
     const isGitRepo = await this.isGitRepository();
     if (!isGitRepo) {
@@ -228,10 +308,11 @@ class ChangelogGenerator {
 
     const changes = await this.getGitChanges();
     const markdown = this.generateChangelogMarkdown(changes);
+    const trimmed = this.trimToRecentMonths(markdown, this.getMonthsLimit(3));
 
-    if (markdown.trim()) {
+    if (trimmed.trim()) {
       try {
-        fs.writeFileSync(this.changelogFile, markdown);
+        fs.writeFileSync(this.changelogFile, trimmed);
         console.log(`Changelog updated: ${this.changelogFile}`);
       } catch (error) {
         console.error("Error writing changelog:", error);

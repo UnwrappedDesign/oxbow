@@ -1,112 +1,130 @@
 ---
 export const freeComponent = true;
-import Button from "@/components/fundations/buttons/Button.astro";
-const peopleData = [
+export const excludeFromObfuscation = [
+  "bg-zinc-50",
+  "border-zinc-200",
+  "text-zinc-700",
+  "tabular-nums",
+];
+const rows = [
   {
-    name: "Jhonny Begood",
-    position: "Design Engineer",
-    email: "email@example.com",
-    role: "Member",
+    name: "Alex Thompson",
+    email: "alex.t@company.com",
+    location: "San Francisco, US",
+    status: "Active",
+    balance: 1250,
   },
   {
-    name: "Alice Smith",
-    position: "Product Manager",
-    email: "alice@example.com",
-    role: "Admin",
+    name: "Sarah Chen",
+    email: "sarah.c@company.com",
+    location: "Singapore",
+    status: "Active",
+    balance: 600,
   },
   {
-    name: "Bob Johnson",
-    position: "Frontend Developer",
-    email: "bob@example.com",
-    role: "Member",
+    name: "James Wilson",
+    email: "j.wilson@company.com",
+    location: "London, UK",
+    status: "Inactive",
+    balance: 650,
   },
   {
-    name: "Clara Oswald",
-    position: "Backend Developer",
-    email: "clara@example.com",
-    role: "Member",
+    name: "Maria Garcia",
+    email: "m.garcia@company.com",
+    location: "Madrid, Spain",
+    status: "Active",
+    balance: 0,
+  },
+  {
+    name: "David Kim",
+    email: "d.kim@company.com",
+    location: "Seoul, KR",
+    status: "Active",
+    balance: -1000,
   },
 ];
 ---
 
 <div class="flex flex-col justify-center p-8 mx-auto bg-white dark:bg-zinc-900">
   <!-- copy:start -->
-  <div class="flow-root max-w-7xl mx-auto w-full">
+  <div class="flow-root max-w-7xl mx-auto">
     <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-        <!-- copy:start -->
-        <table class="min-w-full bg-white dark:bg-zinc-900">
-          <thead
-            class="border-b border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800"
-          >
-            <tr>
-              <th
-                scope="col"
-                class="py-3.5 pl-4 pr-3 text-base font-medium tracking-tighter text-zinc-900 dark:text-zinc-100 text-left"
-                >Name</th
-              >
-              <th
-                scope="col"
-                class="px-3 py-3.5 text-base font-medium tracking-tighter text-zinc-900 dark:text-zinc-100 text-left"
-                >Title</th
-              >
-              <th
-                scope="col"
-                class="px-3 py-3.5 text-base font-medium tracking-tighter text-zinc-900 dark:text-zinc-100 text-left"
-                >Email</th
-              >
-              <th
-                scope="col"
-                class="px-3 py-3.5 text-base font-medium tracking-tighter text-zinc-900 dark:text-zinc-100 text-left"
-                >Role</th
-              >
-              <th scope="col" class="relative py-3.5 pl-3 pr-3">
-                <span class="sr-only">Edit</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              peopleData.map((person, index) => (
-                <tr
-                  class={`even:bg-zinc-50 even:dark:bg-zinc-800 ${index % 2 === 1 ? "rounded-lg" : ""}`}
+        <div class="flex justify-center">
+          <table class="min-w-[900px] text-sm">
+            <thead class="bg-zinc-100 dark:bg-zinc-950">
+              <tr>
+                <th
+                  class="px-3 py-2 text-left font-medium text-zinc-900 dark:text-zinc-100"
+                  >Name</th
                 >
-                  <td
-                    class={`whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium tracking-tighter text-zinc-900 dark:text-zinc-100 ${
-                      index % 2 === 1 ? "rounded-l-lg" : ""
-                    }`}
-                  >
-                    {person.name}
-                  </td>
-                  <td class="px-3 py-4 text-xs font-medium whitespace-nowrap text-zinc-500 dark:text-zinc-400">
-                    {person.position}
-                  </td>
-                  <td class="px-3 py-4 text-xs font-medium whitespace-nowrap text-zinc-500 dark:text-zinc-400">
-                    {person.email}
-                  </td>
-                  <td class="px-3 py-4 text-xs font-medium whitespace-nowrap text-zinc-500 dark:text-zinc-400">
-                    {person.role}
-                  </td>
-                  <td
-                    class={`relative whitespace-nowrap py-4 pr-3 text-right ${
-                      index % 2 === 1 ? "rounded-r-lg" : ""
-                    }`}
-                  >
-                    <Button
-                      size="sm"
-                      type="submit"
-                      variant="link"
-                      class="ml-auto"
-                    >
-                      Edit<span class="sr-only">Edit</span>
-                    </Button>
-                  </td>
-                </tr>
-              ))
-            }
-          </tbody>
-        </table>
-        <!-- copy:end -->
+                <th
+                  class="px-3 py-2 text-left font-medium text-zinc-900 dark:text-zinc-100"
+                  >Email</th
+                >
+                <th
+                  class="px-3 py-2 text-left font-medium text-zinc-900 dark:text-zinc-100"
+                  >Location</th
+                >
+                <th
+                  class="px-3 py-2 text-left font-medium text-zinc-900 dark:text-zinc-100"
+                  >Status</th
+                >
+                <th
+                  class="px-3 py-2 text-right font-medium text-zinc-900 dark:text-zinc-100"
+                  >Balance</th
+                >
+              </tr>
+            </thead>
+            <tbody>
+              {
+                rows.map((r) => (
+                  <tr class="even:bg-zinc-50 even:dark:bg-zinc-800 text-sm">
+                    <td class="px-3 py-2 text-zinc-700 dark:text-zinc-100 font-medium">
+                      {r.name}
+                    </td>
+                    <td class="px-3 py-2 text-zinc-500 dark:text-zinc-300">
+                      {r.email}
+                    </td>
+                    <td class="px-3 py-2 text-zinc-500 dark:text-zinc-300">
+                      {r.location}
+                    </td>
+                    <td class="px-3 py-2 text-zinc-600 dark:text-zinc-200">
+                      <span
+                        class={
+                          r.status === "Active"
+                            ? "text-emerald-600 dark:text-emerald-400"
+                            : r.status === "Inactive"
+                              ? "text-red-600 dark:text-red-400"
+                              : ""
+                        }
+                      >
+                        {r.status}
+                      </span>
+                    </td>
+                    <td class="px-3 py-2 text-right tabular-nums text-zinc-700 font-mono dark:text-zinc-100">
+                      {Intl.NumberFormat("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                      }).format(r.balance)}
+                    </td>
+                  </tr>
+                ))
+              }
+              <tr class="font-medium">
+                <td class="px-3 py-2 dark:text-zinc-200" colspan="4">Total</td>
+                <td class="px-3 py-2 text-right tabular-nums dark:text-zinc-100"
+                  >{
+                    Intl.NumberFormat("en-US", {
+                      style: "currency",
+                      currency: "USD",
+                    }).format(rows.reduce((s, r) => s + r.balance, 0))
+                  }</td
+                >
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

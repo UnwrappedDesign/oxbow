@@ -4,7 +4,7 @@ import Text from "@/components/fundations/typography/Text.astro";
 ---
 
 <section
-  class="flex items-center flex-wrap gap-2 justify-center p-8 bg-white dark:bg-zinc-900 h-full"
+  class="flex items-center flex-wrap gap-2 justify-center p-24 bg-white dark:bg-zinc-900 h-full"
 >
   <!-- copy:start -->
   <div
@@ -38,11 +38,15 @@ import Text from "@/components/fundations/typography/Text.astro";
         @change="toggleAll($refs)"
         class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-indigo-600 focus:ring-indigo-600 dark:bg-zinc-900 dark:checked:bg-indigo-600"
       />
-      <Text for="fruits-all" tag="label" class="block text-sm text-zinc-600 dark:text-zinc-300">
+      <Text
+        for="fruits-all"
+        tag="label"
+        class="block text-sm text-zinc-600 dark:text-zinc-300"
+      >
         Select all fruits
-        <span class="ml-2 text-xs text-zinc-400 dark:text-zinc-500"
-          x-text="`${selected.length}/${items.length} selected`"
-        />
+        <span
+          class="ml-2 text-xs text-zinc-400 dark:text-zinc-500"
+          x-text="`${selected.length}/${items.length} selected`"></span>
       </Text>
     </div>
     <template x-for="item in items" :key="item">
@@ -54,7 +58,12 @@ import Text from "@/components/fundations/typography/Text.astro";
           x-model="selected"
           class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-indigo-600 focus:ring-indigo-600 dark:bg-zinc-900 dark:checked:bg-indigo-600"
         />
-        <Text :for="`fruit-${item}`" tag="label" class="block text-sm text-zinc-600 dark:text-zinc-300" x-text="item" />
+        <Text
+          :for="`fruit-${item}`"
+          tag="label"
+          class="block text-sm text-zinc-600 dark:text-zinc-300"
+          x-text="item"
+        />
       </div>
     </template>
   </div>

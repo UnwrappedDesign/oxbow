@@ -28,7 +28,7 @@ const tiers = [
     href: import.meta.env.PRODUCT_TEAM_LICENSE_URL,
     btnText: "Buy for $499",
     btnVariant: "oxbowMuted",
-    accentText: "text-base-900",
+    accentText: "text-zinc-900",
     cardClass: "bg-white ",
   },
   {
@@ -51,7 +51,7 @@ const tiers = [
     btnVariant: "oxbowAccent",
     accentText: "text-accent-600",
     cardClass:
-      "bg-white shadow-normal shadow-base-500/10 order-first md:order-none",
+      "bg-white shadow-normal shadow-zinc-500/10 order-first md:order-none",
   },
   {
     id: "guest",
@@ -64,7 +64,7 @@ const tiers = [
     href: "/components",
     btnText: "Get started",
     btnVariant: "oxbowMuted",
-    accentText: "text-base-900",
+    accentText: "text-zinc-900",
     cardClass: "bg-white",
   },
 ];
@@ -84,7 +84,7 @@ const offerList = tiers.map((t) => {
   const price = toPriceNumber(t.price);
   const isFree = /^free$/i.test(t.price);
   const usersFeature = (t.features || []).find((f: string) =>
-    /users?/i.test(f),
+    /users?/i.test(f)
   );
   const qty = usersFeature
     ? parseInt(usersFeature.replace(/[^0-9]/g, "")) || 1
@@ -182,7 +182,7 @@ const pricingStructuredData = {
                     >
                       {tier.title}
                     </Text>
-                    <Text tag="p" variant="textSM" class="mt-1  text-base-500">
+                    <Text tag="p" variant="textSM" class="mt-1  text-zinc-500">
                       {tier.description}
                     </Text>
                   </div>
@@ -197,20 +197,20 @@ const pricingStructuredData = {
                         </p>
                       )}
                       {tier.subtitleNote && (
-                        <p class="text-xs  text-base-500">
+                        <p class="text-xs  text-zinc-500">
                           {tier.subtitleNote}
                         </p>
                       )}
                     </div>
                   </div>
                 </div>
-                <div class="pt-4 mt-4 border-t border-base-100  ">
+                <div class="pt-4 mt-4 border-t border-zinc-100  ">
                   <Text tag="p" variant="textSM" class="font-medium text-black">
                     Everything included:
                   </Text>
                   <ul
                     role="list"
-                    class="flex flex-col mt-2 text-sm gap-y-2  text-base-500"
+                    class="flex flex-col mt-2 text-sm gap-y-2  text-zinc-500"
                   >
                     {tier.features.map((f) => (
                       <li class="flex items-center gap-1">

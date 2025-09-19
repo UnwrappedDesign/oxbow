@@ -12,7 +12,7 @@ interface Props {
 
 const { entries } = Astro.props; // Make sure entries is correctly passed and used
 const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/images/**/*.{jpeg,jpg,png,gif}",
+  "/src/images/**/*.{jpeg,jpg,png,gif}"
 );
 const modules = import.meta.glob("@/components/oxbow/**/*.astro", {
   eager: true,
@@ -33,7 +33,7 @@ const entriesWithQuantity = entries
     const imagePath = `/src/images/${entry.image}`;
     if (!images[imagePath])
       throw new Error(
-        `"${imagePath}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`,
+        `"${imagePath}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`
       );
     return {
       ...entry,
@@ -77,8 +77,8 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
             class="absolute inset-0 z-1"
           />
           <div class="relative  group ">
-          {/*   <Image
-              class="object-cover object-top rounded-lg  transition-all duration-300 ease-in-out shadow-subtle shadow-base-500/10  aspect-16/9"
+            {/*   <Image
+              class="object-cover object-top rounded-lg  transition-all duration-300 ease-in-out shadow-subtle shadow-zinc-500/10  aspect-16/9"
               alt={template.name}
               src={template.image()}
             /> */}
@@ -86,14 +86,14 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
               <Text
                 tag="p"
                 variant="textSM"
-                class="relative font-medium text-base-600"
+                class="relative font-medium text-zinc-600"
               >
                 {template.name}
               </Text>
               <Text
                 tag="span"
                 variant="textXS"
-                class="relative font-medium text-base-500"
+                class="relative font-medium text-zinc-500"
               >
                 {template.quantity} Components
               </Text>

@@ -1,0 +1,89 @@
+---
+export const excludeFromObfuscation = [
+  "bg-zinc-50",
+  "border-zinc-200",
+  "text-zinc-700",
+  "ring-1",
+  "ring-zinc-200",
+];
+---
+
+<div class="flex flex-col justify-center p-8 mx-auto bg-white dark:bg-zinc-900">
+  <!-- Monochrome Table • Selectable rows + Bulk actions -->
+  <div
+    x-data="{
+      rows: Array.from({length:12}).map((_,i)=>({ id: i+1, name: 'Document '+(i+1), owner: 'user'+(i%5)+'@example.com', size: (i+3)*12+' KB' })),
+      selected: new Set(),
+      toggleAll(e){ this.selected = new Set(e.target.checked ? this.rows.map(r=>r.id) : []); },
+      toggle(id){ this.selected.has(id) ? this.selected.delete(id) : this.selected.add(id); },
+      allSelected(){ return this.selected.size === this.rows.length; },
+    }"
+    class="flow-root max-w-7xl mx-auto"
+  >
+    <div class="flex items-center justify-between mb-3">
+      <div
+        class="text-sm text-zinc-600"
+        x-text="selected.size ? selected.size + ' selected' : '0 selected'"
+      >
+      </div>
+    </div>
+    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+        <div class="flex justify-center">
+          <table class="min-w-[900px] text-sm">
+            <thead class="bg-zinc-100 dark:bg-zinc-950">
+              <tr>
+                <th class="px-3 py-2 text-left w-10">
+                  <input
+                    type="checkbox"
+                    :checked="allSelected()"
+                    @change="toggleAll($event)"
+                    class="size-4 rounded border-zinc-300 dark:border-zinc-600 text-zinc-700 dark:text-zinc-100 focus:ring-zinc-300 dark:focus:ring-zinc-600 bg-white dark:bg-zinc-900"
+                  />
+                </th>
+                <th
+                  class="px-3 py-2 text-left font-medium text-zinc-700 dark:text-zinc-100"
+                  >Name</th
+                >
+                <th
+                  class="px-3 py-2 text-left font-medium text-zinc-700 dark:text-zinc-100"
+                  >Owner</th
+                >
+                <th
+                  class="px-3 py-2 text-right font-medium text-zinc-700 dark:text-zinc-100"
+                  >Size</th
+                >
+              </tr>
+            </thead>
+            <tbody>
+              <template x-for="r in rows" :key="r.id">
+                <tr
+                  class="even:bg-zinc-50 dark:even:bg-zinc-800"
+                  :class="selected.has(r.id) ? 'bg-zinc-50 dark:bg-zinc-800' : ''"
+                >
+                  <td class="px-3 py-2">
+                    <input
+                      type="checkbox"
+                      :checked="selected.has(r.id)"
+                      @change="toggle(r.id)"
+                      class="size-4 rounded border-zinc-300 dark:border-zinc-600 text-zinc-700 dark:text-zinc-100 focus:ring-zinc-300 dark:focus:ring-zinc-600 bg-white dark:bg-zinc-900"
+                    />
+                  </td>
+                  <td
+                    class="px-3 py-2 text-zinc-700 dark:text-zinc-100"
+                    x-text="r.name"></td>
+                  <td
+                    class="px-3 py-2 text-zinc-500 dark:text-zinc-300"
+                    x-text="r.owner"></td>
+                  <td
+                    class="px-3 py-2 text-right tabular-nums text-zinc-700 dark:text-zinc-100"
+                    x-text="r.size"></td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -162,6 +162,30 @@ const templates: { [key: string]: Template[] } = {
       ],
     },
     {
+      name: "Sign Up",
+      link: "/playground/application/sign-up",
+      image: "signUp.png",
+      tags: [
+        "sign up",
+        "sign up section",
+        "sign up content",
+        "sign up image",
+        "sign up link",
+      ],
+    },
+    {
+      name: "Sign In",
+      link: "/playground/application/sign-in",
+      image: "signIn.png",
+      tags: [
+        "sign in",
+        "sign in section",
+        "sign in content",
+        "sign in image",
+        "sign in link",
+      ],
+    },
+    {
       name: "Blog Entries",
       link: "/playground/marketing/blog-entries",
       image: "blogEntries.png",
@@ -275,40 +299,40 @@ const templates: { [key: string]: Template[] } = {
         "contact link",
       ],
     },
-   {
-  name: "Newsletter Call to Action",
-  link: "/playground/marketing/cta-newsletter",
-  image: "newsletter.png",
-  tags: [
-    "newsletter signup",
-    "email capture",
-    "email form UI",
-    "subscribe section",
-    "email marketing",
-    "lead generation",
-    "conversion block",
-    "form design",
-    "newsletter UX",
-    "email CTA"
-  ],
-},
-{
-  name: "Call to Actions",
-  link: "/playground/marketing/cta",
-  image: "cta.png",
-  tags: [
-    "cta section",
-    "marketing block",
-    "conversion section",
-    "landing CTA",
-    "button callout",
-    "hero CTA",
-    "action prompt",
-    "engagement block",
-    "highlighted offer",
-    "UX conversion"
-  ],
-},
+    {
+      name: "Newsletter Call to Action",
+      link: "/playground/marketing/cta-newsletter",
+      image: "newsletter.png",
+      tags: [
+        "newsletter signup",
+        "email capture",
+        "email form UI",
+        "subscribe section",
+        "email marketing",
+        "lead generation",
+        "conversion block",
+        "form design",
+        "newsletter UX",
+        "email CTA",
+      ],
+    },
+    {
+      name: "Call to Actions",
+      link: "/playground/marketing/cta",
+      image: "cta.png",
+      tags: [
+        "cta section",
+        "marketing block",
+        "conversion section",
+        "landing CTA",
+        "button callout",
+        "hero CTA",
+        "action prompt",
+        "engagement block",
+        "highlighted offer",
+        "UX conversion",
+      ],
+    },
 
     {
       name: "Gallery",
@@ -352,7 +376,7 @@ const templates: { [key: string]: Template[] } = {
       ],
     },
   ],
-  
+
   //  Applicaton
   //
   //
@@ -524,30 +548,6 @@ const templates: { [key: string]: Template[] } = {
   ],
   // Forms
   forms: [
-    {
-      name: "Sign Up",
-      link: "/playground/application/sign-up",
-      image: "signUp.png",
-      tags: [
-        "sign up",
-        "sign up section",
-        "sign up content",
-        "sign up image",
-        "sign up link",
-      ],
-    },
-    {
-      name: "Sign In",
-      link: "/playground/application/sign-in",
-      image: "signIn.png",
-      tags: [
-        "sign in",
-        "sign in section",
-        "sign in content",
-        "sign in image",
-        "sign in link",
-      ],
-    },
     /* {
       name: "Form Layouts",
       link: "/playground/application/formlayouts",

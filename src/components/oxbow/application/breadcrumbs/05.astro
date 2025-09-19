@@ -6,24 +6,57 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 import ThreeDots from "@/components/fundations/icons/ThreeDots.astro";
 ---
 
-<section class="flex items-center justify-center p-18 bg-white dark:bg-zinc-900">
+<section
+  class="flex items-center justify-center p-18 bg-white dark:bg-zinc-900"
+>
   <!-- copy:start -->
-  <nav aria-label="Breadcrumb" x-data="{ crumbs:['Home','Library','Docs','Guides','Installation'], open:false, focusFirst(){ this.$nextTick(()=> this.$refs.first?.focus()) } }" class="w-full max-w-2xl">
-    <ol role="list" class="flex items-center gap-1 text-sm text-zinc-600 dark:text-zinc-300">
+  <nav
+    aria-label="Breadcrumb"
+    x-data="{ crumbs:['Home','Library','Docs','Guides','Installation'], open:false, focusFirst(){ this.$nextTick(()=> this.$refs.first?.focus()) } }"
+    class="mc-auto max-w-xl"
+  >
+    <ol
+      role="list"
+      class="flex items-center gap-1 t text-zinc-600 dark:text-zinc-300"
+    >
       <li>
-        <Text tag="a" href="#_" class="inline-flex items-center gap-1 hover:text-indigo-600"><Home size="sm" /><span class="sr-only">Home</span></Text>
+        <Text
+          tag="a"
+          href="#_"
+          class="flex items-center gap-1 hover:text-blue-400"
+          ><Home size="sm" /><span class="sr-only">Home</span></Text
+        >
       </li>
-      <ChevronRight size="base" class="text-zinc-400" />
+      <ChevronRight size="sm" class="text-zinc-400" />
 
       <!-- Collapsed middle on small screens -->
       <li class="sm:hidden">
-        <button type="button" class="inline-flex items-center gap-1 px-2 h-7 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200" @click="open=!open; if(open) focusFirst()" :aria-expanded="open" aria-controls="crumbs-collapsed">
-          <ThreeDots size="base" />
+        <button
+          type="button"
+          class="inline-flex items-center gap-1 px-2 h-7 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200"
+          @click="open=!open; if(open) focusFirst()"
+          :aria-expanded="open"
+          aria-controls="crumbs-collapsed"
+        >
+          <ThreeDots size="sm" />
           <span class="sr-only">Show path</span>
         </button>
-        <div id="crumbs-collapsed" x-show="open" x-transition class="mt-2 rounded-lg ring-1 ring-zinc-200 dark:ring-zinc-700 bg-white dark:bg-zinc-900 p-2 shadow-sm" style="display:none">
+        <div
+          id="crumbs-collapsed"
+          x-show="open"
+          x-transition
+          class="mt-2 rounded-lg ring-1 ring-zinc-200 dark:ring-zinc-700 bg-white dark:bg-zinc-900 p-2 shadow-sm"
+          style="display:none"
+        >
           <template x-for="(c,i) in crumbs.slice(1, -1)" :key="c">
-            <Text tag="a" href="#_" class="block px-2 py-1 rounded hover:bg-zinc-50 dark:hover:bg-zinc-800 hover:text-indigo-600" x-text="c" tabindex="-1" x-ref="first" />
+            <Text
+              tag="a"
+              href="#_"
+              class="block px-2 py-1 rounded hover:bg-zinc-50 dark:hover:bg-zinc-800 hover:text-blue-400"
+              x-text="c"
+              tabindex="-1"
+              x-ref="first"
+            />
           </template>
         </div>
       </li>
@@ -32,16 +65,30 @@ import ThreeDots from "@/components/fundations/icons/ThreeDots.astro";
       <template x-for="(c,i) in crumbs.slice(1, -1)" :key="c">
         <span class="contents">
           <li class="hidden sm:block">
-            <Text tag="a" href="#_" class="inline-flex items-center gap-1 hover:text-indigo-600" x-text="c" />
+            <Text
+              tag="a"
+              variant="textSM"
+              href="#_"
+              class="inline-flex items-center gap-1 hover:text-blue-400"
+              x-text="c"
+            />
           </li>
-          <ChevronRight size="base" class="hidden sm:block text-zinc-400" aria-hidden="true" />
+          <ChevronRight
+            size="sm"
+            class="hidden sm:block text-zinc-400"
+            aria-hidden="true"
+          />
         </span>
       </template>
 
       <!-- Current -->
-      <li class="font-medium text-zinc-900 dark:text-zinc-100" x-text="crumbs[crumbs.length-1]" aria-current="page"></li>
+      <li
+        class="font-medium text-blue-500 dark:text-blue-400 text-sm"
+        x-text="crumbs[crumbs.length-1]"
+        aria-current="page"
+      >
+      </li>
     </ol>
   </nav>
   <!-- copy:end -->
-  
 </section>

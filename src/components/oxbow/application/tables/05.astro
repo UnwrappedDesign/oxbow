@@ -1,0 +1,161 @@
+---
+export const excludeFromObfuscation = [
+  "ring-1",
+  "ring-zinc-200",
+  "bg-zinc-50",
+  "border-zinc-200",
+  "text-zinc-700",
+  "tabular-nums",
+];
+
+import ChevronUp from "@/components/fundations/icons/ChevronUp.astro";
+import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
+---
+
+<div class="flex flex-col justify-center p-8 mx-auto bg-white dark:bg-zinc-900">
+  <!-- copy:start -->
+  <div
+    x-data="{
+  // filters removed
+  sortKey: 'name',
+  sortDir: 'asc',
+      rows: [
+        { name: 'Alex Allan', avatar: '/avatars/1.jpg', email: 'alex.allan@company.com', location: { country: 'Brazil', city: 'São Paulo', flag: '🇧🇷' }, status: 'Active', performance: 'Excellent' },
+        { name: 'Alex Thompson', avatar: '/avatars/2.jpg', email: 'a.tompson@company.com', location: { country: 'US', city: 'San Francisco', flag: '🇺🇸' }, status: 'Inactive', performance: 'Excellent' },
+        { name: 'Anna Visconti', avatar: '/avatars/3.jpg', email: 'anna.visconti@company.com', location: { country: 'Italy', city: 'Rome', flag: '🇮🇹' }, status: 'Active', performance: 'Good' },
+        { name: 'Astrid Andersen', avatar: '/avatars/4.jpg', email: 'a.andersen@company.com', location: { country: 'Norway', city: 'Oslo', flag: '🇳🇴' }, status: 'Inactive', performance: 'Good' },
+        { name: 'Cheng Wei', avatar: '/avatars/5.jpg', email: 'c.wei@company.com', location: { country: 'China', city: 'Shanghai', flag: '🇨🇳' }, status: 'Active', performance: 'Excellent' },
+        { name: 'David Kim', avatar: '/avatars/6.jpg', email: 'd.kim@company.com', location: { country: 'France', city: 'Paris', flag: '🇫🇷' }, status: 'Active', performance: 'Very Good' },
+        { name: 'Diego Mendoza', avatar: '/avatars/7.jpg', email: 'd.mendoza@company.com', location: { country: 'Mexico', city: 'Mexico City', flag: '🇲🇽' }, status: 'Active', performance: 'Good' },
+        { name: 'Emma Laurent', avatar: '/avatars/8.jpg', email: 'e.laurent@company.com', location: { country: 'Germany', city: 'Berlin', flag: '🇩🇪' }, status: 'Active', performance: 'Very Good' },
+        { name: 'Eva Kowalski', avatar: '/avatars/9.jpg', email: 'e.kowalski@company.com', location: { country: 'South Korea', city: 'Seoul', flag: '🇰🇷' }, status: 'Active', performance: 'Good' },
+        { name: 'Fatima Al-Sayed', avatar: '/avatars/10.jpg', email: 'f.alsayed@company.com', location: { country: 'Egypt', city: 'Cairo', flag: '🇪🇬' }, status: 'Active', performance: 'Excellent' },
+      ],
+      setSort(key){ if(this.sortKey===key) this.sortDir = this.sortDir==='asc'?'desc':'asc'; else { this.sortKey=key; this.sortDir='asc'; } },
+      filtered(){
+        return this.rows;
+      },
+      sorted(){
+        const arr = [...this.filtered()];
+        const k = this.sortKey;
+        const dir = this.sortDir==='asc'?1:-1;
+        return arr.sort((a,b)=> {
+          const va = typeof a[k]==='object'?a[k].city:a[k];
+          const vb = typeof b[k]==='object'?b[k].city:b[k];
+          return (va>vb?1:-1)*dir;
+        });
+      },
+      pageRows(){
+        return this.sorted();
+      },
+    }"
+    class="flow-root max-w-7xl mx-auto"
+  >
+    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+        <div class="flex justify-center">
+          <table class="min-w-[900px] text-sm bg-white dark:bg-zinc-900">
+            <thead
+              class="bg-zinc-100 dark:bg-zinc-800 border-b border-zinc-200 dark:border-zinc-700"
+            >
+              <tr>
+                <th class="px-3 py-2 text-left font-medium">
+                  <button
+                    class="inline-flex items-center gap-1 hover:underline"
+                    @click="setSort('name')"
+                  >
+                    Name
+                    <template x-if="sortKey==='name'">
+                      <span>
+                        <template x-if="sortDir==='asc'"
+                          ><ChevronUp size="sm" /></template
+                        >
+                        <template x-if="sortDir==='desc'"
+                          ><ChevronDown size="sm" /></template
+                        >
+                      </span>
+                    </template>
+                  </button>
+                </th>
+                <th class="px-3 py-2 text-left font-medium">
+                  <button
+                    class="inline-flex items-center gap-1 hover:underline"
+                    @click="setSort('email')"
+                  >
+                    Email <span
+                      x-text="sortKey==='email' ? (sortDir==='asc'?'▲':'▼') : ''"
+                    ></span>
+                  </button>
+                </th>
+                <th class="px-3 py-2 text-left font-medium">
+                  <button
+                    class="inline-flex items-center gap-1 hover:underline"
+                    @click="setSort('location')"
+                  >
+                    Location <span
+                      x-text="sortKey==='location' ? (sortDir==='asc'?'▲':'▼') : ''"
+                    ></span>
+                  </button>
+                </th>
+                <th class="px-3 py-2 text-left font-medium">
+                  <button
+                    class="inline-flex items-center gap-1 hover:underline"
+                    @click="setSort('status')"
+                  >
+                    Status <span
+                      x-text="sortKey==='status' ? (sortDir==='asc'?'▲':'▼') : ''"
+                    ></span>
+                  </button>
+                </th>
+                <th class="px-3 py-2 text-left font-medium">
+                  <button
+                    class="inline-flex items-center gap-1 hover:underline"
+                    @click="setSort('performance')"
+                  >
+                    Performance <span
+                      x-text="sortKey==='performance' ? (sortDir==='asc'?'▲':'▼') : ''"
+                    ></span>
+                  </button>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <template x-for="row in pageRows()" :key="row.email">
+                <tr class="even:bg-zinc-50 dark:even:bg-zinc-800">
+                  <td class="px-3 py-2 text-zinc-700 dark:text-zinc-100">
+                    <div class="flex items-center gap-2">
+                      <img
+                        class="w-8 h-8 rounded-full object-cover"
+                        :src="row.avatar"
+                        :alt="row.name"
+                      />
+                      <span class="font-medium" x-text="row.name"></span>
+                    </div>
+                  </td>
+                  <td
+                    class="px-3 py-2 text-zinc-500 dark:text-zinc-300"
+                    x-text="row.email"></td>
+                  <td class="px-3 py-2 text-zinc-500 dark:text-zinc-300">
+                    <span class="inline-flex items-center gap-1">
+                      <span x-text="row.location.flag"></span>
+                      <span
+                        x-text="row.location.city + ', ' + row.location.country"
+                      ></span>
+                    </span>
+                  </td>
+                  <td
+                    class="px-3 py-2"
+                    :class="row.status==='Active' ? 'text-emerald-600 dark:text-emerald-400' : row.status==='Inactive' ? 'text-red-600 dark:text-red-400' : 'text-yellow-600 dark:text-yellow-400'"
+                    x-text="row.status"></td>
+                  <td
+                    class="px-3 py-2 text-zinc-500 dark:text-zinc-300"
+                    x-text="row.performance"></td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
