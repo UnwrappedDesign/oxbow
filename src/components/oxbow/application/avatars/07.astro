@@ -1,12 +1,13 @@
 ---
 import IconButton from "@/components/fundations/buttons/IconButton.astro";
 import Plus from "@/components/fundations/icons/Plus.astro";
+import Check from "@/components/fundations/icons/Check.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
 
 <div class="flex items-center justify-center p-12 bg-white dark:bg-zinc-900">
   <!-- copy:start -->
-  <div class="flex-shrink-0 block group">
+  <div class="flex-shrink-0 block group" x-data="{ invited:false, flash:false, invite(){ if(this.invited) return; this.invited=true; this.flash=true; setTimeout(()=>this.flash=false,1500)} }">
     <div class="flex flex-col gap-4 max-w-52">
       <div class="flex items-center justify-between">
         <img
@@ -14,8 +15,13 @@ import Text from "@/components/fundations/typography/Text.astro";
           src="/avatars/1.jpg"
           alt=""
         />
-        <IconButton variant="alternative" size="sm">
-          <Plus size="sm" slot="icon" />
+        <IconButton variant="alternative" size="sm" @click="invite()" :aria-label="invited ? 'Invited' : 'Invite'" :disabled="invited">
+          <template x-if="!invited">
+            <Plus size="sm" slot="icon" />
+          </template>
+          <template x-if="invited">
+            <Check size="sm" slot="icon" />
+          </template>
         </IconButton>
       </div>
       <div>
@@ -23,8 +29,8 @@ import Text from "@/components/fundations/typography/Text.astro";
           tag="a"
           href="#_"
           variant="textBase"
-          class="font-medium hover:text-blue-500 text-zinc-500"
-        >
+        class="font-medium hover:text-indigo-600 text-zinc-500"
+      >
           <Text
             tag="h3"
             variant="textBase"
@@ -44,6 +50,7 @@ import Text from "@/components/fundations/typography/Text.astro";
           Freelance design engineer with a passion for clean and minimalistic
           interfaces.
         </Text>
+        <div x-show="flash" class="mt-2 text-xs text-emerald-600 dark:text-emerald-400" role="status">Invite sent</div>
       </div>
     </div>
   </div>

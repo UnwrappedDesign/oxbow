@@ -1,0 +1,70 @@
+---
+export const description = "Sign in Split Button (QR Modal)";
+import HorizontalButtonGroup from "@/components/fundations/buttonGroups/HorizontalButtonGroup.astro";
+import Qr from "@/components/fundations/icons/Apps.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+import { Image } from "astro:assets";
+import qrCode from "@/images/assets/qrcode.png";
+---
+
+<section
+  class="flex items-center justify-center p-18 py-42 bg-white dark:bg-zinc-900"
+>
+  <!-- copy:start -->
+  <div
+    class="inline-flex isolate"
+    role="group"
+    aria-label="Sign in"
+    x-data="{ open:false }"
+  >
+    <HorizontalButtonGroup
+      variant="default"
+      position="right"
+      size="sm"
+      aria-label="Open QR sign-in"
+      @click="open=true"
+    >
+      <Qr size="sm" slot="centered-icon" />
+    </HorizontalButtonGroup>
+    <HorizontalButtonGroup variant="default" position="left" size="sm">
+      Sign in
+    </HorizontalButtonGroup>
+
+    <!-- Modal -->
+    <div
+      x-show="open"
+      class="fixed inset-0 z-50 flex items-center justify-center p-42"
+      style="display:none"
+    >
+      <div
+        class="absolute inset-0 bg-black/40"
+        @click="open=false"
+        aria-hidden="true"
+      >
+      </div>
+      <div
+        role="dialog"
+        aria-modal="true"
+        class="relative w-80 w-fit rounded-xl bg-white dark:bg-zinc-900 ring-1 ring-zinc-200 dark:ring-zinc-700 p-4 shadow-xl"
+      >
+        <h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-2">
+          Scan to sign in
+        </h3>
+
+        <Image
+          width={500}
+          height={500}
+          src={qrCode}
+          alt="QR code for lexingtonthemes.com"
+          class="size-42 object-contain p-2"
+        />
+        <div class="mt-3 flex justify-end">
+          <Button size="xs" variant="alternative" @click="open=false"
+            >Close</Button
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- copy:end -->
+</section>

@@ -28,6 +28,9 @@ const {
   xShow = "",
   xEffect = "",
   xTransition = "",
+  // layout tweaks
+  compact = false,
+  noMarginTop = false,
   ...rest
 } = Astro.props;
 const variantClasses = {
@@ -121,6 +124,10 @@ let selectClasses = [
   roundedClass,
   ...className.split(" "),
 ];
+// Compact mode removes vertical padding to align with grouped buttons
+if (compact) {
+  selectClasses.push("py-0");
+}
 const errorTextColor = "text-red-600";
 // Process Alpine.js event handlers
 const alpineEvents = Object.entries(xOn)
@@ -159,7 +166,7 @@ const hasAlpine =
           {label}
         </label>
       )}
-      <div class={`relative${!hideLabel && label ? " mt-1" : ""}`}>
+      <div class={`relative${!hideLabel && label && !noMarginTop ? " mt-1" : ""}`}>
         <select
           {...rest}
           id={id}
@@ -213,7 +220,7 @@ const hasAlpine =
           {label}
         </label>
       )}
-      <div class={`relative${!hideLabel && label ? " mt-1" : ""}`}>
+      <div class={`relative${!hideLabel && label && !noMarginTop ? " mt-1" : ""}`}>
         <select
           {...rest}
           id={id}

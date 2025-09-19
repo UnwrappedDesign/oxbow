@@ -9,20 +9,44 @@ const avatars = [
 
 <div class="flex items-center justify-center p-12 bg-white dark:bg-zinc-900">
   <!-- copy:start -->
-  <div class="flex -space-x-4">
-    {
-      avatars.map((avatar, index) => (
-        <img
-          class="inline-block object-cover object-center size-12 rounded-xl -rotate-12 ring-2 ring-white hover:-translate-y-2 duration-300 dark:ring-zinc-800"
-          src={avatar.src}
-          alt={avatar.alt}
-        />
-      ))
-    }
-    <a
-      class="z-10 flex items-center justify-center text-xs font-medium bg-white dark:bg-zinc-900 dark:text-white dark:ring-zinc-800 size-12 text-zinc-500 rounded-xl -rotate-12 ring-2 ring-zinc-200"
-      href="#">+99</a
-    >
+  <div
+    class="flex items-center gap-3"
+    x-data="{
+      members: ['/avatars/1.jpg','/avatars/2.jpg','/avatars/3.jpg','/avatars/4.jpg','/avatars/5.jpg'],
+      expanded: false,
+      max: 3,
+      promote(i){ if(i===0) return; const m=this.members; [m[0], m[i]] = [m[i], m[0]] },
+      get visibleRest(){ return this.expanded ? this.members.slice(1) : this.members.slice(1, 1+this.max) },
+      get extra(){ return Math.max(0, this.members.length - 1 - this.visibleRest.length) }
+    }"
+  >
+    <img
+      :src="members[0]"
+      alt="Primary member"
+      class="size-14 rounded-full object-cover ring-2 ring-white dark:ring-zinc-800"
+    />
+    <div class="flex -space-x-2 items-center">
+      <template x-for="(src, idx) in visibleRest" :key="src">
+        <button
+          type="button"
+          class="focus:outline-none"
+          @click="promote(idx+1)"
+          :aria-label="`Make member ${idx+2} primary`"
+          title="Make primary"
+        >
+          <img :src="src" alt="" class="inline-block object-cover object-center size-10 rounded-full ring-2 ring-white dark:ring-zinc-800" />
+        </button>
+      </template>
+      <button
+        type="button"
+        x-show="extra > 0"
+        @click="expanded = !expanded"
+        class="inline-flex items-center justify-center size-10 rounded-full bg-zinc-100 text-zinc-600 ring-2 ring-white dark:bg-zinc-800 dark:text-zinc-300 dark:ring-zinc-900"
+        :aria-expanded="expanded"
+      >
+        <span x-text="expanded ? '–' : ('+' + extra)"></span>
+      </button>
+    </div>
   </div>
   <!-- copy:end -->
 </div>

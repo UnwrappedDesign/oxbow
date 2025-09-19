@@ -29,7 +29,7 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
       aria-label="Previous">Previous</Button
     >
     <template x-for="(n,i) in pages()" :key="n">
-      <>
+      <span class="contents">
         <IconButton
           size="xs"
           variant="alternative"
@@ -42,7 +42,7 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
           x-show="i < pages().length-1 && pages()[i+1] - n > 1"
           class="px-1 text-zinc-500">…</span
         >
-      </>
+      </span>
     </template>
     <Button
       size="xs"

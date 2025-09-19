@@ -1,10 +1,10 @@
 import { defineMiddleware } from "astro/middleware";
 // @ts-ignore
-import postcss from 'posthtml-postcss'
-import postcssRename from 'postcss-rename'
-import posthtml from "posthtml";
-import { getAuth } from "firebase-admin/auth";
-import { app } from "@/firebase/server";
+// Lazy-load heavy middleware deps to avoid crashes when not installed
+let posthtml: any;
+let postcss: any;
+let postcssRename: any;
+// Auth libs are optional in local dev; lazy import inside handler
 import { shouldSkipCSSObfuscation } from "@/utils/canSeeCode";
 
 const postcssOptions = {
@@ -16,27 +16,11 @@ const filterType = /^text\/css$/
 const mode = import.meta.env.MODE;
 
 // Function to extract excludeFromObfuscation from component files
+// Note: Using import.meta.glob({ eager: true }) inside middleware can cause
+// module resolution during server start and crash dev if some deps are missing.
+// To keep middleware robust, we disable auto-collection and return [] by default.
 async function getExcludeClassesFromComponents(): Promise<string[]> {
-  const excludeClasses: string[] = [];
-  
-  try {
-    // Import all component files that might have excludeFromObfuscation
-    const componentModules = import.meta.glob('/src/components/**/*.astro', { eager: true });
-    
-    for (const [path, module] of Object.entries(componentModules)) {
-      if (module && typeof module === 'object' && 'excludeFromObfuscation' in module) {
-        const componentExcludes = (module as any).excludeFromObfuscation;
-        if (Array.isArray(componentExcludes)) {
-          excludeClasses.push(...componentExcludes);
-        }
-      }
-    }
-  } catch (error) {
-    console.warn('Failed to load component excludeFromObfuscation:', error);
-  }
-  
-  // Remove duplicates
-  return [...new Set(excludeClasses)];
+  return [];
 }
 
 export const onRequest = defineMiddleware(async (context, next) => {
@@ -46,18 +30,26 @@ export const onRequest = defineMiddleware(async (context, next) => {
 
   try {
     if (context.cookies.has("__session")) {
-      const auth = getAuth(app);
-      const sessionCookie = context.cookies.get("__session").value;
-      const decodedCookie = await auth.verifySessionCookie(sessionCookie);
-      if (decodedCookie) {
-        context.locals.user = await auth.getUser(decodedCookie.uid);
-        return next();
+      const [{ getAuth }, { app }] = await Promise.all([
+        import("firebase-admin/auth"),
+        import("@/firebase/server"),
+      ]);
+      const auth = getAuth(app as any);
+      const sessionCookie = context.cookies.get("__session")?.value;
+      if (sessionCookie) {
+        const decodedCookie = await auth.verifySessionCookie(sessionCookie);
+        if (decodedCookie) {
+          context.locals.user = await auth.getUser(decodedCookie.uid);
+          return next();
+        }
       }
     } else {
       context.locals.user = null;
     }
-    // forward request
-  } catch (error) {}
+  } catch (error) {
+    // If auth cannot be loaded (missing env or deps), continue without user
+    context.locals.user = null;
+  }
 
   // Check if we should skip CSS obfuscation
   const url = new URL(context.request.url);
@@ -74,6 +66,21 @@ export const onRequest = defineMiddleware(async (context, next) => {
   const excludeClasses = await getExcludeClassesFromComponents();
 
   let cssMap = {}
+  // Dynamically import transformation deps; if missing, skip obfuscation gracefully
+  try {
+    const [ph, phtop, ren] = await Promise.all([
+      import('posthtml'),
+      import('posthtml-postcss'),
+      import('postcss-rename')
+    ]);
+    posthtml = (ph as any).default || ph;
+    postcss = (phtop as any).default || phtop;
+    postcssRename = (ren as any).default || ren;
+  } catch (e) {
+    console.warn('CSS obfuscation middleware disabled: missing deps', e);
+    return new Response(html, response);
+  }
+
   const postcssPLugins = [postcssRename({
     strategy: "minimal",
     except: excludeClasses,

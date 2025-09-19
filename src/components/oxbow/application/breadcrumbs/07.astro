@@ -1,0 +1,55 @@
+---
+export const description = "Scrollable Breadcrumb (Overflow)";
+import Text from "@/components/fundations/typography/Text.astro";
+import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
+---
+
+<section
+  class="flex items-center justify-center p-18 bg-white dark:bg-zinc-900"
+>
+  <!-- copy:start -->
+  <nav aria-label="Breadcrumb" class="w-full max-w-3xl">
+    <div class="flex items-center gap-2">
+      <Text
+        tag="a"
+        href="#_"
+        class="text-sm text-zinc-600 dark:text-zinc-300 hover:text-indigo-600 hidden md:block"
+        >Home</Text
+      >
+      <ChevronRight
+        size="base"
+        class="text-zinc-400 hidden md:block"
+        aria-hidden="true"
+      />
+      <div class="relative flex-1">
+        <div
+          class="flex overflow-x-auto snap-x snap-mandatory gap-1 scrollbar-thin scrollbar-thumb-zinc-300 dark:scrollbar-thumb-zinc-700"
+        >
+          {
+            Array.from({ length: 2 }).map((_, i) => (
+              <div class="flex items-center gap-1 snap-start shrink-0">
+                <Text
+                  tag="a"
+                  href="#_"
+                  class="text-sm text-zinc-600 dark:text-zinc-300 hover:text-indigo-600"
+                >
+                  Section {i + 1}
+                </Text>
+                <ChevronRight
+                  size="base"
+                  class="text-zinc-400"
+                  aria-hidden="true"
+                />
+              </div>
+            ))
+          }
+          <span
+            class="text-sm font-medium text-zinc-900 dark:text-zinc-100"
+            aria-current="page">Current</span
+          >
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- copy:end -->
+</section>

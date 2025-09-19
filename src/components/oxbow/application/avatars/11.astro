@@ -1,0 +1,17 @@
+---
+export const description = "Uploadable Avatar (Preview)";
+import Camera from "@/components/fundations/icons/Camera.astro";
+---
+
+<section class="flex items-center justify-center p-12 bg-white dark:bg-zinc-900">
+  <!-- copy:start -->
+  <div x-data="{ src: '/avatars/1.jpg', pick(){ this.$refs.file.click() }, onFile(e){ const f=e.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=ev=>this.src=ev.target.result; r.readAsDataURL(f) } }" class="relative">
+    <img :src="src" alt="" class="size-20 rounded-full object-cover ring-2 ring-white dark:ring-zinc-800" />
+    <button type="button" @click="pick()" class="absolute right-0 bottom-0 size-8 rounded-full bg-white dark:bg-zinc-900 text-zinc-700 dark:text-zinc-200 ring-2 ring-white dark:ring-zinc-800 flex items-center justify-center" aria-label="Upload">
+      <Camera size="sm" />
+    </button>
+    <input x-ref="file" type="file" accept="image/*" class="hidden" @change="onFile" />
+  </div>
+  <!-- copy:end -->
+</section>
+
