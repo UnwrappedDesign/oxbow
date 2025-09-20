@@ -96,34 +96,33 @@ const navLinks = [
         </div>
       )
     } -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div>
       <div class="text-black">
-        <a href="/" class="flex items-center text-lg gap-2 text-accent-900">
+        <a href="/">
           <span class="sr-only">Go to homepage</span>
-          <Logo class="h-8 text-zinc-900" />
-          Oxbow
+          <Logo class="h-8  text-zinc-900" />
         </a>
         <p class="mt-1 text-sm font-normal text-zinc-500 text-balance">
           It's just Tailwind & Alpine blocks.
         </p>
       </div>
-      <div class="grid grid-cols-2 xl:grid-cols-4 gap-8 xl:col-span-2">
+      <div class="flex flex-col lg:col-span-3 divide-y divide-zinc-200 mt-12">
         {
           navLinks.map((section, i) => (
             <nav aria-label={section.title}>
               <Text
                 tag="h3"
                 variant="textBase"
-                class="font-semibold text-zinc-900"
+                class="font-semibold text-zinc-900 sr-only"
               >
                 {section.title}
               </Text>
               <ul
                 role="list"
-                class="flex flex-col mt-2 space-y-1 text-xs text-zinc-600"
+                class="flex flex-col  space-y-1 text-xs text-zinc-600 divide-y divide-zinc-200"
               >
                 {section.links.map((link, j) => (
-                  <li>
+                  <li class="py-1.5">
                     <a
                       class="hover:text-accent-600"
                       href={link.href}

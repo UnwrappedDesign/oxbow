@@ -28,9 +28,9 @@ export default function SubsectionToolbarIsland({ cat, sub, subsByCat }: Props){
     setOpen(which);
   };
   return (
-    <div className="items-center justify-end hidden md:flex gap-1">
+    <div className="">
       {/* Category */}
-      <button onClick={(e)=>openMenu('cat', e)} className="inline-flex items-center gap-2 h-[28px] px-2 py-1 rounded-lg bg-white outline outline-1 outline-zinc-200 text-zinc-700 text-xs">
+      <button onClick={(e)=>openMenu('cat', e)} className="inline-flex items-center gap-2 h-[28px] px-2 py-1 rounded-lg outline outline-1 outline-zinc-200 text-zinc-700 text-xs">
         <span className="capitalize">{fmt(cat)}</span>
         <ChevronDown className="size-4"/>
       </button>
@@ -47,7 +47,7 @@ export default function SubsectionToolbarIsland({ cat, sub, subsByCat }: Props){
         </div>
       )}
       {/* Subsection */}
-      <button onClick={(e)=>openMenu('sub', e)} className="inline-flex items-center gap-2 h-[28px] px-2 py-1 rounded-lg bg-white outline outline-1 outline-zinc-200 text-zinc-700 text-xs">
+      <button onClick={(e)=>openMenu('sub', e)} className="inline-flex items-center gap-2 h-[28px] px-2 py-1 rounded-lg  outline outline-1 outline-zinc-200 text-zinc-700 text-xs">
         <span className="capitalize">{fmt(sub)}</span>
         <ChevronDown className="size-4"/>
       </button>
