@@ -28,7 +28,7 @@ export default function SubsectionToolbarIsland({ cat, sub, subsByCat }: Props){
     setOpen(which);
   };
   return (
-    <div className="">
+    <div className=" flex items-center gap-2">
       {/* Category */}
       <button onClick={(e)=>openMenu('cat', e)} className="inline-flex items-center gap-2 h-[28px] px-2 py-1 rounded-lg outline outline-1 outline-zinc-200 text-zinc-700 text-xs">
         <span className="capitalize">{fmt(cat)}</span>
