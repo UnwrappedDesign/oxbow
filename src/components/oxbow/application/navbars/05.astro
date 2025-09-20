@@ -1,4 +1,4 @@
-  ---
+---
 export const freeComponent = true;
 export const excludeFromObfuscation = ["flex", "hidden"];
 import Text from "@/components/fundations/typography/Text.astro";
@@ -7,11 +7,18 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
 import Burger from "@/components/fundations/icons/Burger.astro";
 import Logo from "@/components/assets/Logo.astro";
 ---
+
 <!-- copy:start -->
-<header class="w-full bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800">
+<header
+  class="w-full bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800"
+>
   <!-- Utility bar -->
-  <div class="hidden md:block border-b border-zinc-200 dark:border-zinc-800 bg-sand-50/60 dark:bg-zinc-800/60">
-    <div class="mx-auto max-w-screen-xl px-6 md:px-10 lg:px-16 h-9 flex items-center justify-between text-xs text-zinc-600 dark:text-zinc-300">
+  <div
+    class="hidden md:block border-b border-zinc-200 dark:border-zinc-800 bg-sand-50/60 dark:bg-zinc-800/60"
+  >
+    <div
+      class="mx-auto max-w-screen-xl px-6 md:px-10 lg:px-16 h-9 flex items-center justify-between text-xs text-zinc-600 dark:text-zinc-300"
+    >
       <div class="flex items-center gap-4">
         <span>Contact: hello@acme.com</span>
         <span aria-hidden class="h-3 w-px bg-zinc-300 dark:bg-zinc-700"></span>
@@ -24,28 +31,82 @@ import Logo from "@/components/assets/Logo.astro";
     </div>
   </div>
   <!-- Main bar -->
-  <div x-data="{ open:false }" class="mx-auto max-w-screen-xl px-6 md:px-10 lg:px-16">
+  <div
+    x-data="{ open:false }"
+    class="mx-auto max-w-screen-xl px-6 md:px-10 lg:px-16"
+  >
     <div class="flex h-14 items-center justify-between gap-3">
-      <a href="#_" class="inline-flex items-center gap-2"><Logo class="h-7 text-black dark:text-white" /><span class="sr-only">Home</span></a>
-      <nav id="nav-05" aria-label="Primary" class="hidden md:flex items-center gap-4">
-        <a href="#_" class="text-sm font-medium text-zinc-600 hover:text-blue-600 dark:text-zinc-300">Overview</a>
-        <a href="#_" class="text-sm font-medium text-zinc-600 hover:text-blue-600 dark:text-zinc-300">Products</a>
-        <a href="#_" class="text-sm font-medium text-zinc-600 hover:text-blue-600 dark:text-zinc-300">Pricing</a>
+      <a href="#_" class="inline-flex items-center gap-2"
+        ><Logo class="h-7 text-black dark:text-white" /><span class="sr-only"
+          >Home</span
+        ></a
+      >
+      <nav
+        id="nav-05"
+        aria-label="Primary"
+        class="hidden md:flex items-center gap-4"
+      >
+        <a
+          href="#_"
+          class="text-sm font-medium text-zinc-600 hover:text-blue-600 dark:text-zinc-300"
+          >Overview</a
+        >
+        <a
+          href="#_"
+          class="text-sm font-medium text-zinc-600 hover:text-blue-600 dark:text-zinc-300"
+          >Products</a
+        >
+        <a
+          href="#_"
+          class="text-sm font-medium text-zinc-600 hover:text-blue-600 dark:text-zinc-300"
+          >Pricing</a
+        >
       </nav>
       <div class="hidden md:flex items-center gap-3">
-        <a href="#_" class="text-sm font-medium text-zinc-600 hover:text-blue-600 dark:text-zinc-300">Sign in</a>
+        <a
+          href="#_"
+          class="text-sm font-medium text-zinc-600 hover:text-blue-600 dark:text-zinc-300"
+          >Sign in</a
+        >
         <Button variant="accent" size="xs">Create account</Button>
       </div>
-      <IconButton class="md:hidden" @click="open=!open" :aria-expanded="open" aria-controls="nav-05m" variant="alternative" size="xs">
+      <IconButton
+        class="md:hidden"
+        @click="open=!open"
+        :aria-expanded="open"
+        aria-controls="nav-05m"
+        variant="outline"
+        size="xs"
+      >
         <Burger size="xs" slot="icon" />
       </IconButton>
     </div>
-    <div id="nav-05m" :class="{ 'grid': open, 'hidden': !open }" class="hidden grid-cols-1 gap-2 pb-4 md:hidden">
-      <a href="#_" class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800">Overview</a>
-      <a href="#_" class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800">Products</a>
-      <a href="#_" class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800">Pricing</a>
+    <div
+      id="nav-05m"
+      :class="{ 'grid': open, 'hidden': !open }"
+      class="hidden grid-cols-1 gap-2 pb-4 md:hidden"
+    >
+      <a
+        href="#_"
+        class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
+        >Overview</a
+      >
+      <a
+        href="#_"
+        class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
+        >Products</a
+      >
+      <a
+        href="#_"
+        class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
+        >Pricing</a
+      >
       <div class="flex items-center gap-2">
-        <a href="#_" class="flex-1 rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800">Sign in</a>
+        <a
+          href="#_"
+          class="flex-1 rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
+          >Sign in</a
+        >
         <Button variant="accent" size="xs">Create</Button>
       </div>
     </div>

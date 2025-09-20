@@ -10,8 +10,13 @@ import Logo from "@/components/assets/Logo.astro";
 ---
 
 <!-- copy:start -->
-<header class="w-full bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800">
-  <div x-data="{ open:false, q:'' }" class="mx-auto max-w-screen-xl px-6 md:px-10 lg:px-16">
+<header
+  class="w-full bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800"
+>
+  <div
+    x-data="{ open:false, q:'' }"
+    class="mx-auto max-w-screen-xl px-6 md:px-10 lg:px-16"
+  >
     <div class="flex h-16 items-center justify-between gap-4">
       <a href="#_" class="inline-flex items-center gap-2">
         <Logo class="h-7 text-black dark:text-white" />
@@ -20,26 +25,73 @@ import Logo from "@/components/assets/Logo.astro";
       <!-- Search (desktop) -->
       <div class="hidden md:flex flex-1 items-center justify-center">
         <label class="relative w-full max-w-md">
-          <input x-model="q" type="search" placeholder="Search…" class="w-full rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-2 pl-9 text-sm text-zinc-700 dark:text-zinc-100 placeholder-zinc-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none" />
-          <svg class="absolute left-2.5 top-2.5 h-4 w-4 text-zinc-400" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.9 14.32a8 8 0 111.414-1.414l4.387 4.387a1 1 0 01-1.414 1.414l-4.387-4.387zM14 8a6 6 0 11-12 0 6 6 0 0112 0z" clip-rule="evenodd"/></svg>
+          <input
+            x-model="q"
+            type="search"
+            placeholder="Search…"
+            class="w-full rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-2 pl-9 text-sm text-zinc-700 dark:text-zinc-100 placeholder-zinc-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none"
+          />
+          <svg
+            class="absolute left-2.5 top-2.5 h-4 w-4 text-zinc-400"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            ><path
+              fill-rule="evenodd"
+              d="M12.9 14.32a8 8 0 111.414-1.414l4.387 4.387a1 1 0 01-1.414 1.414l-4.387-4.387zM14 8a6 6 0 11-12 0 6 6 0 0112 0z"
+              clip-rule="evenodd"></path></svg
+          >
         </label>
       </div>
       <div class="hidden md:flex items-center gap-3">
-        <Text tag="a" href="#_" variant="textBase" class="text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-blue-600">Docs</Text>
+        <Text
+          tag="a"
+          href="#_"
+          variant="textBase"
+          class="text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-blue-600"
+          >Docs</Text
+        >
         <Button variant="accent" size="xs">Sign up</Button>
       </div>
-      <IconButton class="md:hidden" @click="open=!open" :aria-expanded="open" aria-controls="nav-02" variant="alternative" size="xs">
+      <IconButton
+        class="md:hidden"
+        @click="open=!open"
+        :aria-expanded="open"
+        aria-controls="nav-02"
+        variant="outline"
+        size="xs"
+      >
         <Burger size="xs" slot="icon" />
       </IconButton>
     </div>
     <!-- Mobile -->
-    <div id="nav-02" :class="{ 'grid': open, 'hidden': !open }" class="hidden grid-cols-1 gap-2 pb-4">
+    <div
+      id="nav-02"
+      :class="{ 'grid': open, 'hidden': !open }"
+      class="hidden grid-cols-1 gap-2 pb-4"
+    >
       <label class="relative w-full">
-        <input x-model="q" type="search" placeholder="Search…" class="w-full rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-2 pl-9 text-sm text-zinc-700 dark:text-zinc-100 placeholder-zinc-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none" />
-        <svg class="absolute left-2.5 top-2.5 h-4 w-4 text-zinc-400" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.9 14.32a8 8 0 111.414-1.414l4.387 4.387a1 1 0 01-1.414 1.414l-4.387-4.387zM14 8a6 6 0 11-12 0 6 6 0 0112 0z" clip-rule="evenodd"/></svg>
+        <input
+          x-model="q"
+          type="search"
+          placeholder="Search…"
+          class="w-full rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-2 pl-9 text-sm text-zinc-700 dark:text-zinc-100 placeholder-zinc-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none"
+        />
+        <svg
+          class="absolute left-2.5 top-2.5 h-4 w-4 text-zinc-400"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          ><path
+            fill-rule="evenodd"
+            d="M12.9 14.32a8 8 0 111.414-1.414l4.387 4.387a1 1 0 01-1.414 1.414l-4.387-4.387zM14 8a6 6 0 11-12 0 6 6 0 0112 0z"
+            clip-rule="evenodd"></path></svg
+        >
       </label>
       <div class="flex items-center gap-2">
-        <a href="#_" class="flex-1 rounded-md px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800">Docs</a>
+        <a
+          href="#_"
+          class="flex-1 rounded-md px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800"
+          >Docs</a
+        >
         <Button variant="accent" size="xs">Sign up</Button>
       </div>
     </div>

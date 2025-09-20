@@ -16,10 +16,8 @@ import {
   ChevronRight,
   ExternalLink,
 } from "lucide-react";
-
 type Mode = "light" | "system" | "dark";
 type Tab = "preview" | "code";
-
 interface Props {
   iframeId: string;
   iframeSrc: string;
@@ -42,7 +40,6 @@ interface Props {
   nextHref?: string;
   sectionLength?: number;
 }
-
 export default function PlaygroundIsland({
   iframeId,
   iframeSrc,
@@ -82,14 +79,12 @@ export default function PlaygroundIsland({
     top: 0,
     left: 0,
   });
-
   // Choose the text version of the code to display (escaped in <pre><code>)
   const codeText = useMemo(() => {
     if (mode === "light") return ppcodeLight || ppcode;
     if (mode === "dark") return ppcodeDarkOnly || ppcode;
     return ppcode;
   }, [mode, ppcode, ppcodeLight, ppcodeDarkOnly]);
-
   const applyModeToIframe = (m: Mode) => {
     const ifr = iframeRef.current;
     const doc = ifr?.contentDocument || ifr?.contentWindow?.document;
@@ -134,19 +129,16 @@ export default function PlaygroundIsland({
       );
     } catch {}
   };
-
   const requestHeight = () => {
     const ifr = iframeRef.current;
     try {
       ifr?.contentWindow?.postMessage({ type: "oxbow-request-height" }, "*");
     } catch {}
   };
-
   useEffect(() => {
     // Apply mode on change
     applyModeToIframe(mode);
   }, [mode]);
-
   useEffect(() => {
     // On mount or when iframeSrc changes, request height and apply mode
     const t1 = setTimeout(requestHeight, 50);
@@ -157,7 +149,6 @@ export default function PlaygroundIsland({
       clearTimeout(t2);
     };
   }, [iframeSrc, mode]);
-
   // Close nav menus on Escape / outside
   useEffect(() => {
     const onEsc = (e: KeyboardEvent) => {
@@ -175,7 +166,6 @@ export default function PlaygroundIsland({
       window.removeEventListener("click", onClick);
     };
   }, []);
-
   useEffect(() => {
     // Re-request height when returning to preview tab
     if (tab === "preview") {
@@ -183,7 +173,6 @@ export default function PlaygroundIsland({
       return () => clearTimeout(t);
     }
   }, [tab]);
-
   useEffect(() => {
     // In system mode, keep in sync with OS
     if (mode !== "system") return;
@@ -202,7 +191,6 @@ export default function PlaygroundIsland({
       }
     };
   }, [mode]);
-
   const copyCode = async () => {
     const text = codeText || "";
     try {
@@ -218,7 +206,6 @@ export default function PlaygroundIsland({
     setCopiedCode(true);
     setTimeout(() => setCopiedCode(false), 1200);
   };
-
   const copyUrl = async () => {
     try {
       await navigator.clipboard.writeText(window.location.origin + window.location.pathname + `#${iframeId.replace('iframe-', '')}`);
@@ -226,7 +213,6 @@ export default function PlaygroundIsland({
       setTimeout(() => setCopiedUrl(false), 1200);
     } catch {}
   };
-
   const downloadCode = () => {
     try {
       const text = codeText || "";
@@ -246,7 +232,6 @@ export default function PlaygroundIsland({
       }, 100);
     } catch {}
   };
-
   const setViewportWidth = (v: "mobile" | "tablet" | "desktop") => {
     setViewport(v);
     const el = containerRef.current;
@@ -256,7 +241,6 @@ export default function PlaygroundIsland({
     else el.style.width = "100%";
     setTimeout(requestHeight, 260);
   };
-
   const fmt = (s: string) =>
     (s || "").replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
   const count = (c: string, s: string) =>
@@ -270,7 +254,6 @@ export default function PlaygroundIsland({
       window.open(url.toString(), "_blank", "noopener,noreferrer");
     } catch {}
   };
-
   // Helper to base64 encode code for v0
   function base64Encode(str: string) {
     if (typeof window !== 'undefined') {
@@ -279,20 +262,6 @@ export default function PlaygroundIsland({
       return Buffer.from(str, 'utf-8').toString('base64');
     }
   }
-
-  // Generate v0.app/chat/api/open URL for the current mode/code
-  const openV0 = () => {
-    const title = encodeURIComponent(iframeId.replace('iframe-', ''));
-    const prompt = encodeURIComponent('Customize this component');
-    const content = encodeURIComponent(base64Encode(
-      mode === "light" ? (ppcodeLight || ppcode)
-      : mode === "dark" ? (ppcodeDarkOnly || ppcode)
-      : ppcode
-    ));
-    const target = encodeURIComponent(`components/${iframeId.replace('iframe-', '')}.tsx`);
-    const url = `https://v0.app/chat/api/open?title=${title}&prompt=${prompt}&content=${content}&target=${target}`;
-    window.open(url, '_blank', 'noopener,noreferrer');
-  };
   const openNavMenu = (
     which: "cat" | "sub" | "idx",
     ev: React.MouseEvent<HTMLButtonElement>,
@@ -309,10 +278,8 @@ export default function PlaygroundIsland({
     });
     setNavOpen(which);
   };
-
   return (
     <div className="relative">
-      {/* Toolbar */}
       <div className="flex items-center justify-between pb-2 gap-1 ">
         {/* Left: index + tools */}
         <div className="flex items-center gap-1">
@@ -420,20 +387,6 @@ export default function PlaygroundIsland({
               >
                 <ExternalLink size={14} />
               </button>
-              {/* Open in v0 button */}
-              {/* <button
-                type="button"
-                onClick={openV0}
-                className="size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 text-zinc-600 hover:bg-zinc-100 transition-colors"
-                title="Open in v0"
-                aria-label="Open in v0"
-                style={{ padding: 0 }}
-              >
-                <svg height={15} width={15} fill="currentColor" viewBox="0 0 147 70" xmlns="http://www.w3.org/2000/svg" aria-label="v0 logo" >
-                  <path d="M56 50.2031V14H70V60.1562C70 65.5928 65.5928 70 60.1562 70C57.5605 70 54.9982 68.9992 53.1562 67.1573L0 14H19.7969L56 50.2031Z"></path>
-                  <path d="M147 56H133V23.9531L100.953 56H133V70H96.6875C85.8144 70 77 61.1856 77 50.3125V14H91V46.1562L123.156 14H91V0H127.312C138.186 0 147 8.81439 147 19.6875V56Z"></path>
-                </svg>
-              </button> */}
             </div>
           ) : (
             <a
@@ -444,7 +397,6 @@ export default function PlaygroundIsland({
             </a>
           )}
         </div>
-
         {/* Right: code controls + nav (if provided) */}
         <div className="items-center justify-end hidden  md:flex gap-2">
           {arguments[0]?.subsByCat && (
@@ -472,9 +424,9 @@ export default function PlaygroundIsland({
               {/* Number */}
               <button
                 onClick={(e) => openNavMenu("idx", e)}
-                className="hidden md:inline-flex items-center gap-2 h-[28px] px-2 py-1 rounded-lg  outline outline-1 outline-zinc-200 text-zinc-700 text-[11px]"
+                className="hidden md:inline-flex items-center  h-[28px] px-2 py-1 rounded-lg  outline outline-1 outline-zinc-200 text-zinc-700 text-[11px]"
               >
-                <span>#</span>
+                <span>#0</span>
                 <span>
                   {clamp(
                     arguments[0]!.navIdx || 1,
@@ -603,8 +555,7 @@ export default function PlaygroundIsland({
           )}
         </div>
       </div>
-
-      <div className="relative min-h-0 w-full flex rounded-xl shadow-oxbow bg-white z-1 isolate scrollbar-hide overflow-hidden">
+      <div className="relative min-h-0 w-full flex rounded-xl shadow-oxbow bg-white z-1 isolate scrollbar-hide overflow-hidden ">
         {tab === "preview" && (
           <div className="flex flex-col items-center bg-white w-full scrollbar-hide">
             <div

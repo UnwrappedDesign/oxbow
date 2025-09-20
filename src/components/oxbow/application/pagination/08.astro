@@ -8,21 +8,62 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 
 <section class="flex justify-center p-16 bg-white dark:bg-zinc-900">
   <!-- copy:start -->
-  <nav aria-label="Pagination"
+  <nav
+    aria-label="Pagination"
     x-data="{ page: 2, total: 12, go(n){ this.page = Math.min(this.total, Math.max(1, n)) }, onKey(e){ if(e.key==='ArrowLeft') this.go(this.page-1); else if(e.key==='ArrowRight') this.go(this.page+1); else if(e.key==='Home') this.go(1); else if(e.key==='End') this.go(this.total); } }"
     class="inline-flex items-center gap-0 rounded-md overflow-hidden ring-1 ring-zinc-200 dark:ring-zinc-800"
     role="navigation"
   >
-    <IconButton size="xs" variant="alternative" :disabled="page===1" @click="go(1)" aria-label="First">«</IconButton>
-    <IconButton size="xs" variant="alternative" :disabled="page===1" @click="go(page-1)" aria-label="Previous"><ChevronLeft size="xs" slot="icon" /></IconButton>
-    <div class="flex overflow-x-auto overflow-y-visible max-w-[60vw] sm:max-w-md divide-x divide-zinc-200 dark:divide-zinc-800" tabindex="0" @keydown.prevent="onKey($event)" aria-label="Pages">
+    <IconButton
+      size="xs"
+      variant="outline"
+      :disabled="page===1"
+      @click="go(1)"
+      aria-label="First">«</IconButton
+    >
+    <IconButton
+      size="xs"
+      variant="outline"
+      :disabled="page===1"
+      @click="go(page-1)"
+      aria-label="Previous"><ChevronLeft size="xs" slot="icon" /></IconButton
+    >
+    <div
+      class="flex overflow-x-auto overflow-y-visible max-w-[60vw] sm:max-w-md divide-x divide-zinc-200 dark:divide-zinc-800"
+      tabindex="0"
+      @keydown.prevent="onKey($event)"
+      aria-label="Pages"
+    >
       <template x-for="n in total" :key="n">
-        <Button size="xs" variant="alternative" noRounded class="shrink-0" @click="go(n)" x-text="n" :aria-current="page===n ? 'page' : null" :class="page===n ? 'bg-indigo-600 text-white' : ''" />
+        <Button
+          size="xs"
+          variant="outline"
+          noRounded
+          class="shrink-0"
+          @click="go(n)"
+          x-text="n"
+          :aria-current="page===n ? 'page' : null"
+          :class="page===n ? 'bg-indigo-600 text-white' : ''"
+        />
       </template>
     </div>
-    <IconButton size="xs" variant="alternative" :disabled="page===total" @click="go(page+1)" aria-label="Next"><ChevronRight size="xs" slot="icon" /></IconButton>
-    <IconButton size="xs" variant="alternative" :disabled="page===total" @click="go(total)" aria-label="Last">»</IconButton>
-    <span class="sr-only" aria-live="polite">Page <span x-text="page"></span> of <span x-text="total"></span></span>
+    <IconButton
+      size="xs"
+      variant="outline"
+      :disabled="page===total"
+      @click="go(page+1)"
+      aria-label="Next"><ChevronRight size="xs" slot="icon" /></IconButton
+    >
+    <IconButton
+      size="xs"
+      variant="outline"
+      :disabled="page===total"
+      @click="go(total)"
+      aria-label="Last">»</IconButton
+    >
+    <span class="sr-only" aria-live="polite"
+      >Page <span x-text="page"></span> of <span x-text="total"></span></span
+    >
   </nav>
   <!-- copy:end -->
 </section>

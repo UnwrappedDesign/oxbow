@@ -7,12 +7,43 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 
 <section class="flex justify-center p-16 bg-white dark:bg-zinc-900">
   <!-- copy:start -->
-  <nav aria-label="Pagination" x-data="{ page: 1, total: 10 }" class="flex items-center gap-2">
-    <IconButton size="xs" variant="alternative" :disabled="page===1" @click="page=1" aria-label="First page">«</IconButton>
-    <IconButton size="xs" variant="alternative" :disabled="page===1" @click="page=Math.max(1,page-1)" aria-label="Previous page"><ChevronLeft size="xs" slot="icon" /></IconButton>
-    <span class="w-10 text-center text-sm text-zinc-600 dark:text-zinc-300" x-text="page"></span>
-    <IconButton size="xs" variant="alternative" :disabled="page===total" @click="page=Math.min(total,page+1)" aria-label="Next page"><ChevronRight size="xs" slot="icon" /></IconButton>
-    <IconButton size="xs" variant="alternative" :disabled="page===total" @click="page=total" aria-label="Last page">»</IconButton>
+  <nav
+    aria-label="Pagination"
+    x-data="{ page: 1, total: 10 }"
+    class="flex items-center gap-2"
+  >
+    <IconButton
+      size="xs"
+      variant="outline"
+      :disabled="page===1"
+      @click="page=1"
+      aria-label="First page">«</IconButton
+    >
+    <IconButton
+      size="xs"
+      variant="outline"
+      :disabled="page===1"
+      @click="page=Math.max(1,page-1)"
+      aria-label="Previous page"
+      ><ChevronLeft size="xs" slot="icon" /></IconButton
+    >
+    <span
+      class="w-10 text-center text-sm text-zinc-600 dark:text-zinc-300"
+      x-text="page"></span>
+    <IconButton
+      size="xs"
+      variant="outline"
+      :disabled="page===total"
+      @click="page=Math.min(total,page+1)"
+      aria-label="Next page"><ChevronRight size="xs" slot="icon" /></IconButton
+    >
+    <IconButton
+      size="xs"
+      variant="outline"
+      :disabled="page===total"
+      @click="page=total"
+      aria-label="Last page">»</IconButton
+    >
   </nav>
   <!-- copy:end -->
 </section>

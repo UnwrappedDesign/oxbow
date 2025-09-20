@@ -1,6 +1,6 @@
 ---
 export const freeComponent = true;
-export const excludeFromObfuscation = ["flex", "hidden"]; 
+export const excludeFromObfuscation = ["flex", "hidden"];
 
 import Button from "@/components/fundations/buttons/Button.astro";
 import IconButton from "@/components/fundations/buttons/IconButton.astro";
@@ -10,46 +10,116 @@ import Logo from "@/components/assets/Logo.astro";
 ---
 
 <!-- copy:start -->
-<header x-data="{ open:false, scrolled:false }" x-init="scrolled=window.scrollY>4; window.addEventListener('scroll',()=>{ scrolled=window.scrollY>4 })" :class="scrolled ? 'shadow-oxbow' : ''" class="sticky top-0 z-40 w-full bg-white/70 dark:bg-zinc-900/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 supports-[backdrop-filter]:dark:bg-zinc-900/60 border-b border-transparent">
+<header
+  x-data="{ open:false, scrolled:false }"
+  x-init="scrolled=window.scrollY>4; window.addEventListener('scroll',()=>{ scrolled=window.scrollY>4 })"
+  :class="scrolled ? 'shadow-oxbow' : ''"
+  class="sticky top-0 z-40 w-full bg-white/70 dark:bg-zinc-900/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 supports-[backdrop-filter]:dark:bg-zinc-900/60 border-b border-transparent"
+>
   <div class="max-w-screen-xl mx-auto px-6 md:px-10 lg:px-16 py-2">
     <div class="flex items-center justify-between">
-      <Text tag="a" href="#_" variant="textBase" class="flex items-center gap-2 font-semibold text-zinc-900 dark:text-zinc-100">
+      <Text
+        tag="a"
+        href="#_"
+        variant="textBase"
+        class="flex items-center gap-2 font-semibold text-zinc-900 dark:text-zinc-100"
+      >
         <Logo class="h-7 text-black dark:text-white" />
         Oxbow UI
       </Text>
       <nav class="hidden md:flex items-center gap-4" aria-label="Primary">
         <details class="relative group">
-          <summary class="list-none cursor-pointer px-2 py-1 rounded-md text-sm text-zinc-600 dark:text-zinc-300 hover:text-blue-600">Solutions</summary>
+          <summary
+            class="list-none cursor-pointer px-2 py-1 rounded-md text-sm text-zinc-600 dark:text-zinc-300 hover:text-blue-600"
+            >Solutions</summary
+          >
           <!-- Mega panel -->
-          <div class="absolute left-0 mt-2 w-[680px] max-w-[90vw] rounded-2xl bg-white dark:bg-zinc-900 shadow-oxbow outline outline-1 outline-zinc-100 dark:outline-zinc-800 p-4 grid grid-cols-3 gap-3">
-            {Array.from({length:6}).map((_,i)=> (
-              <a href="#_" class="flex items-start gap-3 p-3 rounded-xl hover:bg-sand-100 dark:hover:bg-zinc-800">
-                <div class="size-8 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 flex items-center justify-center">{i+1}</div>
-                <div>
-                  <p class="text-sm font-medium text-zinc-800 dark:text-zinc-100">Category {i+1}</p>
-                  <p class="text-xs text-zinc-500 dark:text-zinc-400">Short description of this solution.</p>
-                </div>
-              </a>
-            ))}
-            <div class="col-span-3 border-t border-zinc-200 dark:border-zinc-800 pt-3">
+          <div
+            class="absolute left-0 mt-2 w-[680px] max-w-[90vw] rounded-2xl bg-white dark:bg-zinc-900 shadow-oxbow outline outline-1 outline-zinc-100 dark:outline-zinc-800 p-4 grid grid-cols-3 gap-3"
+          >
+            {
+              Array.from({ length: 6 }).map((_, i) => (
+                <a
+                  href="#_"
+                  class="flex items-start gap-3 p-3 rounded-xl hover:bg-sand-100 dark:hover:bg-zinc-800"
+                >
+                  <div class="size-8 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 flex items-center justify-center">
+                    {i + 1}
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-zinc-800 dark:text-zinc-100">
+                      Category {i + 1}
+                    </p>
+                    <p class="text-xs text-zinc-500 dark:text-zinc-400">
+                      Short description of this solution.
+                    </p>
+                  </div>
+                </a>
+              ))
+            }
+            <div
+              class="col-span-3 border-t border-zinc-200 dark:border-zinc-800 pt-3"
+            >
               <Button variant="accent" size="xs">Explore all solutions</Button>
             </div>
           </div>
         </details>
-        <Text tag="a" href="#_" variant="textBase" class="px-2 py-1 rounded-md text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-blue-600">Pricing</Text>
-        <Text tag="a" href="#_" variant="textBase" class="px-2 py-1 rounded-md text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-blue-600">Company</Text>
+        <Text
+          tag="a"
+          href="#_"
+          variant="textBase"
+          class="px-2 py-1 rounded-md text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-blue-600"
+          >Pricing</Text
+        >
+        <Text
+          tag="a"
+          href="#_"
+          variant="textBase"
+          class="px-2 py-1 rounded-md text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-blue-600"
+          >Company</Text
+        >
       </nav>
       <div class="hidden md:flex items-center gap-2">
-        <Text tag="a" href="#_" variant="textBase" class="text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-blue-600">Sign in</Text>
+        <Text
+          tag="a"
+          href="#_"
+          variant="textBase"
+          class="text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-blue-600"
+          >Sign in</Text
+        >
         <Button variant="accent" size="xs">Get started</Button>
       </div>
-      <IconButton class="md:hidden" @click="open=!open" :aria-expanded="open" aria-controls="nav-8" variant="alternative" size="xs"><Burger size="xs" slot="icon"/></IconButton>
+      <IconButton
+        class="md:hidden"
+        @click="open=!open"
+        :aria-expanded="open"
+        aria-controls="nav-8"
+        variant="outline"
+        size="xs"><Burger size="xs" slot="icon" /></IconButton
+      >
     </div>
 
-    <nav id="nav-8" :class="{ 'block': open, 'hidden': !open }" class="md:hidden hidden mt-2 space-y-2" aria-label="Mobile">
-      <a href="#_" class="block px-2 py-1 rounded-md text-zinc-600 dark:text-zinc-300 hover:bg-sand-100 dark:hover:bg-zinc-800">Solutions</a>
-      <a href="#_" class="block px-2 py-1 rounded-md text-zinc-600 dark:text-zinc-300 hover:bg-sand-100 dark:hover:bg-zinc-800">Pricing</a>
-      <a href="#_" class="block px-2 py-1 rounded-md text-zinc-600 dark:text-zinc-300 hover:bg-sand-100 dark:hover:bg-zinc-800">Company</a>
+    <nav
+      id="nav-8"
+      :class="{ 'block': open, 'hidden': !open }"
+      class="md:hidden hidden mt-2 space-y-2"
+      aria-label="Mobile"
+    >
+      <a
+        href="#_"
+        class="block px-2 py-1 rounded-md text-zinc-600 dark:text-zinc-300 hover:bg-sand-100 dark:hover:bg-zinc-800"
+        >Solutions</a
+      >
+      <a
+        href="#_"
+        class="block px-2 py-1 rounded-md text-zinc-600 dark:text-zinc-300 hover:bg-sand-100 dark:hover:bg-zinc-800"
+        >Pricing</a
+      >
+      <a
+        href="#_"
+        class="block px-2 py-1 rounded-md text-zinc-600 dark:text-zinc-300 hover:bg-sand-100 dark:hover:bg-zinc-800"
+        >Company</a
+      >
     </nav>
   </div>
 </header>
