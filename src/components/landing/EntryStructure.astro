@@ -68,7 +68,7 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
       const isUpdatedLastWeek = updatedAt > SEVEN_DAYS_AGO;
 
       return (
-        <li class="relative group py-2">
+        <li class="relative group py-2 ">
           <a
             title={template.name}
             href={template.link}
@@ -80,18 +80,18 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
               alt={template.name}
               src={template.image()}
             /> */}
-            <div class="grid grid-cols-2 lg:grid-cols-4  group-hover:text-accent-600">
-              <Text
-                tag="p"
-                variant="textSM"
-                class="relative font-medium text-zinc-600 group-hover:text-accent-600"
-              >
-                {template.name}
-              </Text>
-              <div class=" lg:col-span-2 ml-auto lg:ml-0 ">
-                <div class="rounded-full p-2 text-xs bg-white size-8 group-hover:bg-accent-600 group-hover:text-white transition-all duration-300 flex items-center justify-center">
+            <div class="grid grid-cols-2 lg:grid-cols-3  group-hover:text-accent-600 items-center">
+              <div class="lg:col-span-2 ml-auto lg:ml-0 flex items-center gap-4">
+                <div class="rounded-full text-zinc-900 p-1 text-xs bg-white size-6 transition-colors duration-500 flex items-center justify-center">
                   {template.quantity}
                 </div>
+                <Text
+                  tag="p"
+                  variant="textSM"
+                  class="relative font-medium text-zinc-600 group-hover:text-accent-600"
+                >
+                  {template.name}
+                </Text>
               </div>
 
               <Text

@@ -40,10 +40,10 @@ const triples = keys.map((k) => k.split("/").slice(-3)); // [section, subsection
 const subsByCat = Object.fromEntries(
   Array.from(new Set(triples.map(([sec]) => sec))).map((sec) => {
     const subs = Array.from(
-      new Set(triples.filter(([s]) => s === sec).map(([, sub]) => sub)),
+      new Set(triples.filter(([s]) => s === sec).map(([, sub]) => sub))
     ).sort();
     return [sec, subs];
-  }),
+  })
 );
 const countsByCatSub = triples.reduce(
   (acc, [sec, sub]) => {
@@ -51,7 +51,7 @@ const countsByCatSub = triples.reduce(
     acc[key] = (acc[key] || 0) + 1;
     return acc;
   },
-  {} as Record<string, number>,
+  {} as Record<string, number>
 );
 ---
 
