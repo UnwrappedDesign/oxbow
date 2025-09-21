@@ -37,64 +37,104 @@ export default function PlaygroundShortcutsButton() {
             aria-label="Keyboard Shortcuts"
           >
             <div className="flex items-center justify-between gap-2 px-8 py-4">
-              <h2 className="text-2xl font-semibold italic font-serif  text-zinc-900 dark:text-white">
+              <h2 className="text-2xl font-semibold italic font-serif  text-zinc-900 ">
                 Keyboard Shortcuts
               </h2>
               <button
                 type="button"
-                className="text-zinc-400 hover:text-zinc-700 dark:hover:text-white"
+                className="text-zinc-400 hover:text-zinc-700 "
                 onClick={() => setShowShortcuts(false)}
                 aria-label="Close shortcuts modal"
               >
                 <X size={20} />
               </button>
             </div>
-            <ul className="space-y-2 text-sm text-zinc-700 dark:text-zinc-200 p-8">
-              <li className="flex items-center gap-2 justify-between">
-                <span className="text-zinc-600">Dark mode</span>
-                <div className="flex items-center gap-0.5 ml-1">
-                  <kbd className="text-xs text-zinc-900 font-mono uppercase font-semibold p-1 bg-white rounded border border-zinc-200 h-5 flex items-center justify-center">Cmd</kbd>
+            <ul className="space-y-1 text-xs text-zinc-600  p-8">
+              <li className="flex items-end gap-1 justify-between ">
+                <span >Dark mode</span>
+                <span className="flex-1 mx-2 block h-px border-b border-zinc-300" aria-hidden="true"></span>
+                <div className="flex items-center gap-1 ">
+                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 h-5 flex items-center justify-center">Cmd</kbd>
                   
-                  <kbd className="text-xs text-zinc-900 font-mono uppercase font-semibold p-1 bg-white rounded border border-zinc-200 size-5 flex items-center justify-center">D</kbd>
+                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 size-5 flex items-center justify-center">D</kbd>
                 </div>
               </li>
-              <li className="flex items-center gap-2 justify-between">
-               <span className="text-zinc-600"> Light mode</span>
-                <div className="flex items-center gap-0.5 ml-1">
-                  <kbd className="text-xs text-zinc-900 font-mono uppercase font-semibold p-1 bg-white rounded border border-zinc-200 h-5 flex items-center justify-center">Cmd</kbd>
+              <li className="flex items-end gap-1 justify-between ">
+               <span > Light mode</span>
+               <span className="flex-1 mx-2 block h-px border-b border-zinc-300" aria-hidden="true"></span>
+                <div className="flex items-center gap-1 ">
+                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 h-5 flex items-center justify-center">Cmd</kbd>
                   
-                  <kbd className="text-xs text-zinc-900 font-mono uppercase font-semibold p-1 bg-white rounded border border-zinc-200 size-5 flex items-center justify-center">L</kbd>
+                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 size-5 flex items-center justify-center">L</kbd>
                 </div>
               </li>
-              <li className="flex items-center gap-2 justify-between">
-                <span className="text-zinc-600">System mode</span>
-                <div className="flex items-center gap-0.5 ml-1">
-                  <kbd className="text-xs text-zinc-900 font-mono uppercase font-semibold p-1 bg-white rounded border border-zinc-200 h-5 flex items-center justify-center">Cmd</kbd>
+              <li className="flex items-end gap-1 justify-between ">
+                <span >System mode</span>
+                <span className="flex-1 mx-2 block h-px border-b border-zinc-300" aria-hidden="true"></span>
+                <div className="flex items-center gap-1 ">
+                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 h-5 flex items-center justify-center">Cmd</kbd>
                   
-                  <kbd className="text-xs text-zinc-900 font-mono uppercase font-semibold p-1 bg-white rounded border border-zinc-200 size-5 flex items-center justify-center">S</kbd>
+                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 size-5 flex items-center justify-center">S</kbd>
                 </div>
               </li>
-              <li className="flex items-center gap-2 justify-between">
-                <span className="text-zinc-600">Copy code</span>
-                <div className="flex items-center gap-0.5 ml-1">
-                  <kbd className="text-xs text-zinc-900 font-mono uppercase font-semibold p-1 bg-white rounded border border-zinc-200 h-5 flex items-center justify-center">Cmd</kbd>
+              <li className="flex items-end gap-1 justify-between ">
+                <span >Copy code</span>
+                <span className="flex-1 mx-2 block h-px border-b border-zinc-300" aria-hidden="true"></span>
+                <div className="flex items-center gap-1 ">
+                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 h-5 flex items-center justify-center">Cmd</kbd>
                   
-                  <kbd className="text-xs text-zinc-900 font-mono uppercase font-semibold p-1 bg-white rounded border border-zinc-200 size-5 flex items-center justify-center">C</kbd>
+                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 size-5 flex items-center justify-center">C</kbd>
                 </div>
               </li>
-              <li className="flex items-center gap-2 justify-between">
-               <span className="text-zinc-600"> Previous/Next page</span>
-                <div className="flex items-center gap-0.5 ml-1">
-                  <kbd className="text-xs text-zinc-900 font-mono uppercase font-semibold p-1 bg-white rounded border border-zinc-200 size-5 flex items-center justify-center">←</kbd>
-                  
-                  <kbd className="text-xs text-zinc-900 font-mono uppercase font-semibold p-1 bg-white rounded border border-zinc-200 size-5 flex items-center justify-center">→</kbd>
+              <li className="flex items-end gap-1 justify-between ">
+                <span >Open code tab</span>
+                <span className="flex-1 mx-2 block h-px border-b border-zinc-300" aria-hidden="true"></span>
+                <div className="flex items-center gap-1 ">
+                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 h-5 flex items-center justify-center">Cmd</kbd>
+                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 h-5 flex items-center justify-center">Shift</kbd>
+                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 size-5 flex items-center justify-center">1</kbd>
                 </div>
               </li>
-              <li className="flex items-center gap-2 justify-between">
-                <span className="text-zinc-600">Close navigation menus</span>
-                <div className="flex items-center gap-0.5 ml-1">
-                  <kbd className="text-xs text-zinc-900 font-mono uppercase font-semibold p-1 bg-white rounded border border-zinc-200 h-5 flex items-center justify-center">Esc</kbd>
+              <li className="flex items-end gap-1 justify-between ">
+                <span >Open preview tab</span>
+                <span className="flex-1 mx-2 block h-px border-b border-zinc-300" aria-hidden="true"></span>
+                <div className="flex items-center gap-1 ">
+                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 h-5 flex items-center justify-center">Cmd</kbd>
+                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 h-5 flex items-center justify-center">Shift</kbd>
+                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 size-5 flex items-center justify-center">2</kbd>
                 </div>
+              </li>
+              <li className="flex items-end gap-1 justify-between ">
+                <span >Download code </span>
+                <span className="flex-1 mx-2 block h-px border-b border-zinc-300" aria-hidden="true"></span>
+                <div className="flex items-center gap-1 ">
+                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 h-5 flex items-center justify-center">Cmd</kbd>
+                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 h-5 flex items-center justify-center">Shift</kbd>
+                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 size-5 flex items-center justify-center">D</kbd>
+                </div>
+              </li>
+              <li className="flex items-end gap-1 justify-between ">
+                <span >Open in big screen </span>
+                <span className="flex-1 mx-2 block h-px border-b border-zinc-300" aria-hidden="true"></span>
+                <div className="flex items-center gap-1 ">
+                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 h-5 flex items-center justify-center">Cmd</kbd>
+                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 size-5 flex items-center justify-center">O</kbd>
+                </div>
+              </li>
+              <li className="flex items-end gap-1 justify-between ">
+               <span > Previous/Next page</span>
+               <span className="flex-1 mx-2 block h-px border-b border-zinc-300" aria-hidden="true"></span>
+                <div className="flex items-center gap-1 ">
+                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 size-5 flex items-center justify-center">←</kbd>
+                  
+                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 size-5 flex items-center justify-center">→</kbd>
+                </div>
+              </li>
+              <li className="flex items-end gap-1 justify-between ">
+                <span >Close navigation menus</span>
+                <span className="flex-1 mx-2 block h-px border-b border-zinc-300" aria-hidden="true"></span>
+               
+                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 h-5 flex items-center justify-center">Esc</kbd>
               </li>
             </ul>
           </div>

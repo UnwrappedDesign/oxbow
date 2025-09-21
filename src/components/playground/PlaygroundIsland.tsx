@@ -169,15 +169,37 @@ export default function PlaygroundIsland({
       }
     };
     const onThemeShortcuts = (e: KeyboardEvent) => {
-      if (e.metaKey && !e.shiftKey && !e.altKey) {
-        if (e.key.toLowerCase() === 'd') {
-          setMode('dark');
+      if (e.metaKey && e.shiftKey && !e.altKey) {
+        const key = e.key.toLowerCase();
+        if (key === '1') {
+          setTab('code');
           e.preventDefault();
-        } else if (e.key.toLowerCase() === 'l') {
-          setMode('light');
+        } else if (key === '2') {
+          setTab('preview');
           e.preventDefault();
-        } else if (e.key.toLowerCase() === 's') {
-          setMode('system');
+        }
+      }
+      if (e.metaKey && !e.altKey) {
+        const key = e.key.toLowerCase();
+        // Theme switching
+        if (!e.shiftKey) {
+          if (key === 'd') {
+            setMode('dark');
+            e.preventDefault();
+          } else if (key === 'l') {
+            setMode('light');
+            e.preventDefault();
+          } else if (key === 's') {
+            setMode('system');
+            e.preventDefault();
+          } else if (canSeeCode && key === 'o') {
+            openInNewWindow();
+            e.preventDefault();
+          }
+        }
+        // Download code: Cmd+Shift+D
+        if (canSeeCode && e.shiftKey && key === 'd') {
+          downloadCode();
           e.preventDefault();
         }
       }
