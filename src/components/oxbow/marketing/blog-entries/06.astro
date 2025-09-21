@@ -1,6 +1,6 @@
 ---
-import Button from "@/components/fundations/buttons/Button.astro";
 import Text from "@/components/fundations/typography/Text.astro";
+import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 const articles = [
   {
     image:
@@ -40,49 +40,68 @@ const articles = [
 
 <section class="bg-white dark:bg-zinc-900">
   <div class="max-w-7xl mx-auto px-8 lg:px-12 py-24">
-    <div class="items-center grid grid-cols-1 lg:grid-cols-3 gap-12">
-      <div class="lg:order-last bg-white dark:bg-zinc-900">
-        <Text
-          tag="p"
-          variant="textSM"
-          class="font-bold uppercase text-blue-600 dark:text-blue-400"
-        >
-          Tagline
-        </Text>
-        <Text
-          tag="h2"
-          variant="displayMD"
-          class="mt-4 font-semibold text-zinc-900 dark:text-zinc-100 lg:text-balance"
-        >
-          Insights and perspectives
-        </Text>
-        <Text
-          tag="p"
-          variant="textBase"
-          class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
-        >
-          Exploring topics, tips, and trends in the world of communication and
-          privacy
-        </Text>
-        <div class="flex mt-8">
-          <Button variant="outline" size="sm"> Read article </Button>
-        </div>
+    <div class="items-center grid grid-cols-1 gap-6 lg:grid-cols-3">
+      <div class="block w-full lg:col-span-2">
+        <img
+          alt="#_"
+          class="shadow rounded-2xl aspect-[4/3] object-cover object-center w-full bg-zinc-50 dark:bg-zinc-900"
+          src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        />
       </div>
-      <div class="lg:col-span-2">
-        <div class="relative h-full">
-          <img
-            class="shadow rounded-2xl aspect-[4/3] object-cover object-center w-full bg-zinc-50 dark:bg-zinc-800"
-            src="https://images.unsplash.com/photo-1575318634028-6a0cfcb60c59?q=80&w=2786&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="#_"
-          />
+      <div
+        class="flex flex-col justify-between h-full p-6 bg-zinc-50 dark:bg-zinc-800 rounded-2xl"
+      >
+        <div>
+          <Text
+            tag="p"
+            variant="textSM"
+            class="font-bold uppercase text-blue-600 dark:text-blue-400"
+          >
+            Tagline
+          </Text>
+          <Text
+            tag="h2"
+            variant="displayMD"
+            class="mt-4 font-semibold text-zinc-900 dark:text-white lg:text-balance"
+          >
+            Insights and perspectives
+          </Text>
+          <Text
+            tag="p"
+            variant="textLG"
+            class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+          >
+            Exploring topics, tips, and trends in the world of communication and
+            privacy
+          </Text>
+        </div>
+        <div class="flex mt-12">
+          <Text
+            tag="a"
+            href="#_"
+            variant="textBase"
+            class="flex items-center font-medium text-blue-500 gap-2 hover:text-zinc-900 dark:hover:text-zinc-100"
+          >
+            Read further
+            <ChevronRight size="sm" />
+          </Text>
         </div>
       </div>
     </div>
-    <div class="mt-24 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div
+      class="relative mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+    >
       {
         articles.map((article) => (
-          <article class="relative group">
-            <div class="flex flex-col justify-between h-full">
+          <article class="relative flex flex-col overflow-hidden isolate outline outline-zinc-200 dark:outline-zinc-800  rounded-2xl group">
+            <div class="relative aspect-[4/3] ">
+              <img
+                src={article.image}
+                alt="#_"
+                class="absolute inset-0 object-cover size-full  bg-zinc-50 dark:bg-zinc-800"
+              />
+            </div>
+            <div class="flex flex-col justify-between p-6">
               <div>
                 <Text tag="a" href="#_" variant="link">
                   <Text
@@ -94,11 +113,6 @@ const articles = [
                     {article.title}
                   </Text>
                 </Text>
-                <img
-                  class="shadow rounded-2xl aspect-[4/3] object-cover object-center w-full bg-zinc-50 dark:bg-zinc-800"
-                  src={article.image}
-                  alt="#_"
-                />
                 <Text
                   tag="p"
                   variant="textBase"

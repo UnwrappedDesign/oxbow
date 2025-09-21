@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import PlaygroundShortcutsButton from "./PlaygroundShortcutsButton";
 import {
   Eye,
   Code,
@@ -159,13 +160,44 @@ export default function PlaygroundIsland({
       if (navMenuRef.current?.contains(t)) return;
       setNavOpen(null);
     };
+    const onArrow = (e: KeyboardEvent) => {
+      if (e.target && (e.target as HTMLElement).tagName === 'INPUT') return;
+      if (e.key === "ArrowLeft" && arguments[0]?.prevHref) {
+        window.location.assign(arguments[0].prevHref);
+      } else if (e.key === "ArrowRight" && arguments[0]?.nextHref) {
+        window.location.assign(arguments[0].nextHref);
+      }
+    };
+    const onThemeShortcuts = (e: KeyboardEvent) => {
+      if (e.metaKey && !e.shiftKey && !e.altKey) {
+        if (e.key.toLowerCase() === 'd') {
+          setMode('dark');
+          e.preventDefault();
+        } else if (e.key.toLowerCase() === 'l') {
+          setMode('light');
+          e.preventDefault();
+        } else if (e.key.toLowerCase() === 's') {
+          setMode('system');
+          e.preventDefault();
+        }
+      }
+      // Copy code: Cmd+C (only if canSeeCode)
+      if (canSeeCode && e.metaKey && !e.shiftKey && !e.altKey && e.key.toLowerCase() === 'c') {
+        copyCode();
+        e.preventDefault();
+      }
+    };
     window.addEventListener("keydown", onEsc);
     window.addEventListener("click", onClick);
+    window.addEventListener("keydown", onArrow);
+    window.addEventListener("keydown", onThemeShortcuts);
     return () => {
       window.removeEventListener("keydown", onEsc);
       window.removeEventListener("click", onClick);
+      window.removeEventListener("keydown", onArrow);
+      window.removeEventListener("keydown", onThemeShortcuts);
     };
-  }, []);
+  }, [canSeeCode, tab]);
   useEffect(() => {
     // Re-request height when returning to preview tab
     if (tab === "preview") {
@@ -555,7 +587,8 @@ export default function PlaygroundIsland({
           )}
         </div>
       </div>
-      <div className="relative min-h-0 w-full flex rounded-xl shadow-oxbow bg-white z-1 isolate scrollbar-hide overflow-hidden ">
+  <div className="relative min-h-0 w-full flex rounded-xl shadow-oxbow bg-white z-1 isolate scrollbar-hide overflow-hidden ">
+      <PlaygroundShortcutsButton />
         {tab === "preview" && (
           <div className="flex flex-col items-center bg-white w-full scrollbar-hide">
             <div

@@ -1,7 +1,5 @@
 ---
-import Button from "@/components/fundations/buttons/Button.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-import TextInput from "@/components/fundations/inputs/TextInput.astro";
 const articles = [
   {
     image:
@@ -28,7 +26,7 @@ const articles = [
   {
     image:
       "https://images.unsplash.com/photo-1587301669187-732ea66e7617?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    title: "The future of CSS: new features",
+    title: "The future of CSS: new features to watch",
     description:
       "Explore the latest features and updates in CSS that are shaping the future of web design and development.",
     author: "Johannes Svensson",
@@ -39,147 +37,67 @@ const articles = [
 ];
 ---
 
-<div class="dark:bg-black">
-  <!-- copy:start -->
-  <div class="max-w-7xl mx-auto px-8 lg:px-12 py-24 dark:bg-black">
-    <div class="items-end grid grid-cols-1 lg:grid-cols-3 gap-12">
-      <div class="max-w-2xl lg:col-span-2">
-        <Text
-          tag="p"
-          variant="textSM"
-          class="font-bold uppercase text-blue-600 dark:text-blue-400"
-        >
-          Tagline
-        </Text>
-        <Text
-          tag="h2"
-          variant="displayMD"
-          class="mt-4 font-semibold text-zinc-900 dark:text-zinc-100 lg:text-balance"
-        >
-          Insights and perspectives
-        </Text>
-        <Text
-          tag="p"
-          variant="textBase"
-          class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
-        >
-          Exploring topics, tips, and trends in the world of communication and
-          privacy
-        </Text>
-      </div>
-      <div class="lg:ml-auto">
-        <form
-          class="flex flex-col w-full mt-8 sm:flex-row sm:max-w-md items-end gap-2"
-        >
-          <TextInput
-            id="email-address"
-            type="email"
-            name="email-address"
-            label="Email address"
-            type="text"
-            variant="default"
-            size="base"
-            placeholder="Email address"
-          />
-          <Button
-            class="w-full sm:w-auto"
-            type="submit"
-            variant="default"
-            size="base"
-          >
-            Subscribe
-          </Button>
-        </form>
-        <Text
-          tag="p"
-          variant="textSM"
-          class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
-        >
-          When you sign up, you accept our
-          <Text
-            tag="a"
-            href="#_"
-            variant="textSM"
-            class="font-medium text-blue-500 dark:text-blue-400 gap-2 hover:text-zinc-900 dark:hover:text-zinc-100"
-          >
-            Terms of service
-          </Text>
-          and
-          <Text
-            tag="a"
-            href="#_"
-            variant="textSM"
-            class="font-medium text-blue-500 dark:text-blue-400 gap-2 hover:text-zinc-900 dark:hover:text-zinc-100"
-          >
-            Privacy Policy
-          </Text>
-        </Text>
-      </div>
-    </div>
-    <div
-      class="relative pt-12 mt-12 border-t grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 border-zinc-200 dark:border-zinc-700"
-    >
+<section class="bg-white dark:bg-zinc-900">
+  <div class="max-w-7xl mx-auto px-8 lg:px-12 py-24">
+    <div class="relative grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {
         articles.map((article) => (
-          <article class="relative flex flex-col justify-between h-full isolate gap-8 group">
-            <div class="flex flex-col justify-between h-full">
-              <div>
-                <Text tag="a" href="#_" variant="link">
-                  <Text
-                    tag="h3"
-                    variant="textLG"
-                    class="font-medium text-zinc-900 dark:text-zinc-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 duration-200"
-                  >
-                    <span class="absolute inset-0" />
-                    {article.title}
-                  </Text>
-                </Text>
-                <Text
-                  tag="p"
-                  variant="textBase"
-                  class="mt-4 font-medium text-zinc-500 dark:text-zinc-400 line-clamp-3"
-                >
-                  {article.description}
-                </Text>
-              </div>
-              <div class="relative flex items-center mt-4 gap-x-4">
-                <img
-                  src={article.authorImage}
-                  alt="#_"
-                  class="object-cover rounded-full size-12 bg-zinc-50 dark:bg-zinc-800"
-                />
-                <div>
-                  <Text
-                    tag="h3"
-                    variant="textBase"
-                    class="font-medium text-zinc-900 dark:text-zinc-100"
-                  >
-                    {article.author}
-                  </Text>
-                  <div>
-                    <span class="sr-only">{article.date}</span>
-                    <Text
-                      tag="p"
-                      variant="textSM"
-                      class="font-medium uppercase text-zinc-500 dark:text-zinc-400"
-                    >
-                      <time datetime={article.date}>{article.date}</time>
-                    </Text>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="relative aspect-square shrink-0 ">
+          <article class="relative flex flex-col h-full group">
+            <div>
               <img
+                class="drop-shadow  aspect-[4/3] object-cover object-center w-full rounded-2xl bg-zinc-50 dark:bg-zinc-800"
                 src={article.image}
                 alt="#_"
-                class="absolute inset-0 object-cover shadow size-full rounded-2xl bg-zinc-50 dark:bg-zinc-800"
               />
+            </div>
+            <div class="mt-4">
+              <Text tag="a" href="#_" variant="link">
+                <Text
+                  tag="h3"
+                  variant="textLG"
+                  class="font-medium  text-zinc-900 dark:text-zinc-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 duration-200"
+                >
+                  <span class="absolute inset-0" />
+                  {article.title}
+                </Text>
+              </Text>
+              <Text
+                tag="p"
+                variant="textBase"
+                class="mt-4 font-medium text-zinc-500 dark:text-zinc-400 line-clamp-3"
+              >
+                {article.description}
+              </Text>
+            </div>
+            <div class="relative flex items-center mt-4 gap-x-4">
+              <img
+                src={article.authorImage}
+                alt="#_"
+                class="object-cover rounded-full size-12 bg-zinc-50 dark:bg-zinc-800"
+              />
+              <div>
+                <Text
+                  tag="h3"
+                  variant="textBase"
+                  class="font-medium  text-zinc-900 dark:text-zinc-100"
+                >
+                  {article.author}
+                </Text>
+                <div>
+                  <span class="sr-only">{article.date}</span>
+                  <Text
+                    tag="p"
+                    variant="textSM"
+                    class="font-medium uppercase text-zinc-500 dark:text-zinc-400"
+                  >
+                    <time datetime={article.date}>{article.date}</time>
+                  </Text>
+                </div>
+              </div>
             </div>
           </article>
         ))
       }
     </div>
   </div>
-  <!-- copy:end -->
-</div>
+</section>
