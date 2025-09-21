@@ -53,32 +53,31 @@ const features = [
 ---
 
 <section>
-  <Wrapper variant="standard">
-    <Wrapper variant="narrow">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
-        {
-          features.map((feature) => {
-            const Icon = feature.icon;
-            return (
-              <div class="flex flex-col">
-                <div class="flex items-center gap-2">
-                  <Icon size="sm" class=" text-accent-500" />
-                  <Text
-                    tag="h3"
-                    variant="textSM"
-                    class=" font-medium text-zinc-900"
-                  >
-                    {feature.title}
-                  </Text>
-                </div>
-                <Text tag="p" variant="textSM" class="mt-2 text-zinc-500">
-                  {feature.description}
+
+  <Wrapper variant="narrow">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
+      {
+        features.map((feature) => {
+          const Icon = feature.icon;
+          return (
+            <div class="flex flex-col">
+              <div class="flex items-center gap-2">
+                <Icon size="sm" class=" text-accent-500" />
+                <Text
+                  tag="h3"
+                  variant="textSM"
+                  class=" font-medium text-zinc-900"
+                >
+                  {feature.title}
                 </Text>
               </div>
-            );
-          })
-        }
-      </div>
-    </Wrapper>
+              <Text tag="p" variant="textSM" class="mt-2 text-zinc-500">
+                {feature.description}
+              </Text>
+            </div>
+          );
+        })
+      }
+    </div>
   </Wrapper>
 </section>

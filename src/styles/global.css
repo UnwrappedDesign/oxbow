@@ -3,14 +3,12 @@
 @plugin "@tailwindcss/typography";
 @plugin "tailwind-scrollbar-hide";
 @source "../../safelist.txt";
-
 /* Enable manual dark mode via `.dark` class or `[data-theme=dark]` attribute */
 @custom-variant dark (&:where(.dark, .dark *, [data-theme=dark], [data-theme=dark] *));
-
 @theme {
   /* Typography */
   --font-sans: Geist, sans-serif;
-  --font-mono: Geist  Mono, monospace;
+  --font-mono: Geist Mono, monospace;
   --font-serif: Instrument Serif, serif;
   /* blues */
   --color-blue-light: #60beff;
@@ -22,24 +20,31 @@
   --color-yellow-light: #ffcd6c;
   --color-yellow: #ffb112;
   --color-yellow-dark: #ffa100;
-  --color-orange-light: #FF713D;
+  --color-orange-light: #ff713d;
   --color-orange: #fa5925;
   --color-orange-dark: #fd4202;
- 
---color-accent-50: #f5f7ee;
---color-accent-100: #e9eed9;
---color-accent-200: #d4deb8;
---color-accent-300: #b8c98d;
---color-accent-400: #9cb269;
---color-accent-500: #869f4f;
---color-accent-600: #627739;
---color-accent-700: #4d5c2f;
---color-accent-800: #3f4b29;
---color-accent-900: #374126;
---color-accent-950: #1b2211;
-
-
-  
+  --color-accent-50: #f4f7fa;
+  --color-accent-100: #e6edf3;
+  --color-accent-200: #d2deeb;
+  --color-accent-300: #b3c9dd;
+  --color-accent-400: #8fadcb;
+  --color-accent-500: #7494bd;
+  --color-accent-600: #617eaf;
+  --color-accent-700: #566d9f;
+  --color-accent-800: #4a5a83;
+  --color-accent-900: #3f4c69;
+  --color-accent-950: #2a3041;
+  --color-secondary-50: #f5f7ee;
+  --color-secondary-100: #e9eed9;
+  --color-secondary-200: #d4deb8;
+  --color-secondary-300: #b8c98d;
+  --color-secondary-400: #9cb269;
+  --color-secondary-500: #869f4f;
+  --color-secondary-600: #627739;
+  --color-secondary-700: #4d5c2f;
+  --color-secondary-800: #3f4b29;
+  --color-secondary-900: #374126;
+  --color-secondary-950: #1b2211;
   --color-sand-50: oklch(98.73% 0.004 106.47);
   --color-sand-100: oklch(97.03% 0.007 88.64);
   --color-sand-200: oklch(90.07% 0.024 90.76);
@@ -51,8 +56,6 @@
   --color-sand-800: oklch(36.27% 0.04 89.72);
   --color-sand-900: oklch(24.54% 0.023 87.95);
   --color-sand-950: oklch(16.56% 0.011 80.55);
-
-
   --shadow-normal: rgba(14, 63, 126, 0.04) 0px 0px 0px 1px,
     rgba(42, 51, 69, 0.04) 0px 1px 1px -0.5px,
     rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px,
@@ -65,15 +68,18 @@
   --shadow-subtle: 0px 0px 0px 1px rgba(30, 31, 37, 0.09),
     0px 1px 2px 0px rgba(30, 31, 37, 0.02),
     0px 1px 0px 0px rgba(30, 31, 37, 0.08);
-    --shadow-button:0 8px 12px -4px #1a19250f, 0 4px 8px -4px #1a19251f, 0 2px 4px -1px #1a19251f, 0 1px 1.5px -.5px #1a19251f, 0 .75px .75px #1a19251f, 0 .25px .25px #1a19253d, inset 0 -8px 20px #1a192514, inset 0 1px 3px #ffffff14, inset 0 .75px .75px #ffffff14, inset 0 .25px .25px #ffffff1f;
- 
+  --shadow-button: 0 8px 12px -4px #1a19250f, 0 4px 8px -4px #1a19251f,
+    0 2px 4px -1px #1a19251f, 0 1px 1.5px -0.5px #1a19251f,
+    0 0.75px 0.75px #1a19251f, 0 0.25px 0.25px #1a19253d,
+    inset 0 -8px 20px #1a192514, inset 0 1px 3px #ffffff14,
+    inset 0 0.75px 0.75px #ffffff14, inset 0 0.25px 0.25px #ffffff1f;
 }
-
 :root {
   font-family: "Geist", sans-serif;
-  font-feature-settings: 'liga' 1, 'calt' 1;
+  font-feature-settings:
+    "liga" 1,
+    "calt" 1;
   font-variant-numeric: tabular-nums;
-
   /* Astro <Code> component variables (kept for compatibility) */
   --astro-code-color-text: var(--color-zinc-400);
   --astro-code-foreground: var(--color-zinc-400);
@@ -90,7 +96,6 @@
   --astro-code-token-bold: inherit;
   --astro-code-token-italic: italic;
   --astro-code-token-underline: underline;
-
   /* test*/
   --shiki-token-string-expression: var(--color-accent-600);
   --shiki-token-function: var(--color-zinc-500);
@@ -105,7 +110,6 @@
   --shiki-token-parameter: var(--color-zinc-400);
   --shiki-token-punctuation: var(--color-zinc-400);
 }
-
 /* Hide Firebase emulator warning banners */
 .firebase-emulator-warning,
 .firegray-emulator-warning {
@@ -137,7 +141,6 @@ ninja-keys::part(ninja-selected) {
   border-left: 4px solid var(--color-accent-600);
   background-color: var(--color-sand-100);
 }
-
 code {
   counter-reset: step;
   counter-increment: step 0;
@@ -166,6 +169,6 @@ input[type="number"] {
 input,
 select {
   -webkit-appearance: none; /* Chrome, Safari, Opera */
-  -moz-appearance: none;    /* Firefox */
-  appearance: none;         /* estandar */
+  -moz-appearance: none; /* Firefox */
+  appearance: none; /* estandar */
 }
