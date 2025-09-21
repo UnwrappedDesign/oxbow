@@ -16,6 +16,7 @@ import {
   ChevronLeft,
   ChevronRight,
   ExternalLink,
+  Bug,
 } from "lucide-react";
 type Mode = "light" | "system" | "dark";
 type Tab = "preview" | "code";
@@ -40,6 +41,7 @@ interface Props {
   prevHref?: string;
   nextHref?: string;
   sectionLength?: number;
+  blockPath?: string;
 }
 export default function PlaygroundIsland({
   iframeId,
@@ -49,6 +51,7 @@ export default function PlaygroundIsland({
   ppcode,
   ppcodeLight,
   ppcodeDarkOnly,
+  blockPath,
 }: Props) {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -161,7 +164,7 @@ export default function PlaygroundIsland({
       setNavOpen(null);
     };
     const onArrow = (e: KeyboardEvent) => {
-      if (e.target && (e.target as HTMLElement).tagName === 'INPUT') return;
+      if (e.target && (e.target as HTMLElement).tagName === "INPUT") return;
       if (e.key === "ArrowLeft" && arguments[0]?.prevHref) {
         window.location.assign(arguments[0].prevHref);
       } else if (e.key === "ArrowRight" && arguments[0]?.nextHref) {
@@ -171,11 +174,11 @@ export default function PlaygroundIsland({
     const onThemeShortcuts = (e: KeyboardEvent) => {
       if (e.metaKey && e.shiftKey && !e.altKey) {
         const key = e.key.toLowerCase();
-        if (key === '1') {
-          setTab('code');
+        if (key === "1") {
+          setTab("code");
           e.preventDefault();
-        } else if (key === '2') {
-          setTab('preview');
+        } else if (key === "2") {
+          setTab("preview");
           e.preventDefault();
         }
       }
@@ -183,28 +186,34 @@ export default function PlaygroundIsland({
         const key = e.key.toLowerCase();
         // Theme switching
         if (!e.shiftKey) {
-          if (key === 'd') {
-            setMode('dark');
+          if (key === "d") {
+            setMode("dark");
             e.preventDefault();
-          } else if (key === 'l') {
-            setMode('light');
+          } else if (key === "l") {
+            setMode("light");
             e.preventDefault();
-          } else if (key === 's') {
-            setMode('system');
+          } else if (key === "s") {
+            setMode("system");
             e.preventDefault();
-          } else if (canSeeCode && key === 'o') {
+          } else if (canSeeCode && key === "o") {
             openInNewWindow();
             e.preventDefault();
           }
         }
         // Download code: Cmd+Shift+D
-        if (canSeeCode && e.shiftKey && key === 'd') {
+        if (canSeeCode && e.shiftKey && key === "d") {
           downloadCode();
           e.preventDefault();
         }
       }
       // Copy code: Cmd+C (only if canSeeCode)
-      if (canSeeCode && e.metaKey && !e.shiftKey && !e.altKey && e.key.toLowerCase() === 'c') {
+      if (
+        canSeeCode &&
+        e.metaKey &&
+        !e.shiftKey &&
+        !e.altKey &&
+        e.key.toLowerCase() === "c"
+      ) {
         copyCode();
         e.preventDefault();
       }
@@ -262,7 +271,11 @@ export default function PlaygroundIsland({
   };
   const copyUrl = async () => {
     try {
-      await navigator.clipboard.writeText(window.location.origin + window.location.pathname + `#${iframeId.replace('iframe-', '')}`);
+      await navigator.clipboard.writeText(
+        window.location.origin +
+          window.location.pathname +
+          `#${iframeId.replace("iframe-", "")}`,
+      );
       setCopiedUrl(true);
       setTimeout(() => setCopiedUrl(false), 1200);
     } catch {}
@@ -310,10 +323,10 @@ export default function PlaygroundIsland({
   };
   // Helper to base64 encode code for v0
   function base64Encode(str: string) {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       return window.btoa(unescape(encodeURIComponent(str)));
     } else {
-      return Buffer.from(str, 'utf-8').toString('base64');
+      return Buffer.from(str, "utf-8").toString("base64");
     }
   }
   const openNavMenu = (
@@ -340,11 +353,11 @@ export default function PlaygroundIsland({
           <button
             type="button"
             onClick={copyUrl}
-            className={`inline-flex items-center justify-center size-7 px-2 text-xs rounded-md bg-zinc-50 outline outline-1 outline-zinc-200 ${copiedUrl ? 'text-accent-500' : 'text-zinc-600'}`}
+            className={`inline-flex items-center justify-center size-7 px-2 text-xs rounded-md bg-zinc-50 outline outline-1 outline-zinc-200 ${copiedUrl ? "text-accent-500" : "text-zinc-600"}`}
             title="Copy block URL"
             aria-label="Copy block URL"
           >
-            {copiedUrl ? <Check size={14} /> : iframeId.replace('iframe-', '')}
+            {copiedUrl ? <Check size={14} /> : iframeId.replace("iframe-", "")}
           </button>
           <div
             aria-hidden
@@ -478,9 +491,10 @@ export default function PlaygroundIsland({
               {/* Number */}
               <button
                 onClick={(e) => openNavMenu("idx", e)}
-                className="hidden md:inline-flex items-center  h-[28px] px-2 py-1 rounded-lg  outline outline-1 outline-zinc-200 text-zinc-700 text-[11px]"
+                className="hidden md:inline-flex items-center   h-[28px] px-2 py-1 rounded-lg outline outline-1 outline-zinc-200 text-zinc-700 text-[11px]"
               >
-                <span>#0</span>
+                <span>NO</span>
+                
                 <span>
                   {clamp(
                     arguments[0]!.navIdx || 1,
@@ -609,8 +623,8 @@ export default function PlaygroundIsland({
           )}
         </div>
       </div>
-  <div className="relative min-h-0 w-full flex rounded-xl shadow-oxbow bg-white z-1 isolate scrollbar-hide overflow-hidden ">
-      <PlaygroundShortcutsButton />
+      <div className="relative min-h-0 w-full flex rounded-xl shadow-oxbow bg-white z-1 isolate scrollbar-hide overflow-hidden ">
+        <PlaygroundShortcutsButton />
         {tab === "preview" && (
           <div className="flex flex-col items-center bg-white w-full scrollbar-hide">
             <div

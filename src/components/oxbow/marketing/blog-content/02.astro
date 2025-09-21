@@ -1,5 +1,6 @@
 ---
 import Text from "@/components/fundations/typography/Text.astro";
+import Kicker from "@/components/fundations/typography/Kicker.astro";
 const menuItems = [
   { label: "Latest Articles", href: "#_" },
   { label: "Popular Posts", href: "#_" },
@@ -11,29 +12,26 @@ const menuItems = [
 ---
 
 <section class="bg-white dark:bg-zinc-900">
-  <div class="max-w-7xl mx-auto px-8 lg:px-12 py-24">
-    <div>
+  <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
+    <div class="max-w-2xl md:text-balance">
+      <Kicker>
+        <time datetime="2025-01-09">2025-01-09</time>
+      </Kicker>
       <Text
-        tag="p"
-        variant="textSM"
-        class="font-bold uppercase text-blue-600 dark:text-blue-400"
+        tag="h1"
+        variant="displayLG"
+        class="text-zinc-900 mt-4 dark:text-white font-semibold tracking-tight"
       >
-        <time datetime="01.01.24">01.01.24</time>
-      </Text>
-      <Text
-        tag="h2"
-        variant="display2XL"
-        class="mt-4 font-semibold text-zinc-900 dark:text-white lg:text-balance"
-      >
-        Responsive web design best practices
+        The art and science of responsive web design
       </Text>
       <Text
         tag="p"
         variant="textLG"
         class="mt-4 font-medium text-zinc-500 dark:text-zinc-400 lg:text-balance"
       >
-        Learn the best practices for creating responsive web designs that
-        provide a seamless user experience across all devices.
+        Explore advanced strategies and practical insights for crafting
+        responsive websites that adapt beautifully to every device and deliver
+        exceptional user experiences.
       </Text>
       <div class="flex flex-shrink-0 mt-6 group">
         <div class="flex items-center gap-2">
@@ -45,13 +43,7 @@ const menuItems = [
             />
           </div>
           <div>
-            <Text
-              tag="h3"
-              variant="textBase"
-              class="font-medium text-zinc-900 dark:text-white"
-            >
-              Michael Andreuzza
-            </Text>
+            <Kicker> Michael Andreuzza </Kicker>
             <Text
               tag="p"
               variant="textXS"
@@ -64,67 +56,79 @@ const menuItems = [
       </div>
     </div>
     <div
-      class="flex pt-12 mt-12 border-t lg:mt-24 border-zinc-200 dark:border-zinc-800"
+      class="relative pt-12 mt-12 border-t border-zinc-200 dark:border-zinc-800 grid grid-cols-1 lg:grid-cols-3 gap-12"
     >
       <aside class="hidden lg:block">
-        <Text tag="h4" variant="textLG"> Table of contents </Text>
-        <ul class="mt-4 space-y-2">
+        <Kicker> Table of contents </Kicker>
+        <ul class="mt-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">
           {
             menuItems.map((item) => (
               <li>
-                <Text
-                  tag="a"
+                <a
                   href="#_"
-                  variant="textBase"
-                  class="flex items-center font-medium text-blue-500 dark:text-blue-400 gap-2 hover:text-zinc-900 dark:hover:text-white"
+                  class="font-medium text-zinc-900 dark:text-zinc-100  hover:text-blue-600 dark:hover:text-blue-300 text-sm"
                 >
                   {item.label}
-                </Text>
+                </a>
               </li>
             ))
           }
         </ul>
       </aside>
       <div
-        class="mx-auto prose text-zinc-500 dark:text-zinc-400 prose-a:font-semibold prose-a:text-blue-300 dark:prose-a:text-blue-400 hover:prose-a:text-zinc-900 dark:hover:prose-a:text-white prose-headings:text-zinc-900 dark:prose-headings:text-white prose-blockquote:text-blue-400 dark:prose-blockquote:text-blue-300 prose-code:text-blue-400 dark:prose-code:text-blue-300 prose-strong:text-blue-500 dark:prose-strong:text-blue-400 prose-img:rounded-3xl prose-pre:rounded-2xl"
+        class="mx-auto prose text-zinc-500 dark:text-zinc-400 prose-a:font-semibold prose-a:text-blue-300 dark:prose-a:text-blue-400 hover:prose-a:text-zinc-900 dark:hover:prose-a:text-white prose-headings:text-zinc-900 dark:prose-headings:text-white prose-blockquote:text-blue-400 dark:prose-blockquote:text-blue-300 prose-code:text-blue-400 dark:prose-code:text-blue-300 prose-strong:text-blue-500 dark:prose-strong:text-blue-400 prose-img:rounded-3xl prose-pre:rounded-2xl lg:col-span-2"
       >
         <p>
-          Responsive web design is critical in today's digital landscape, where
-          users access websites from a variety of devices with different screen
-          sizes and resolutions.
+          In a world where users expect instant access and flawless experiences,
+          responsive web design is the backbone of modern digital products. Your
+          site must do more than just fit the screen—it should feel natural and
+          intuitive, no matter the device. Responsive design is about
+          flexibility, but also about anticipating user needs and delivering
+          content in the most effective way possible.
         </p>
-        <h2>Mobile-First Approach</h2>
+        <h2>Start Small, Grow Smart: Mobile-First</h2>
         <p>
-          The mobile-first approach involves designing your website starting
-          with the smallest screen sizes first and then gradually enhancing the
-          design for larger screens. This method ensures that your site is
-          accessible and functional on mobile devices, which are often the
-          primary way users access the web. By prioritizing mobile design, you
-          focus on the Core content and functionality, providing a solid
-          foundation that can be built upon for larger screens.
+          Building with a mobile-first mindset means you begin with the
+          essentials: clear content, fast performance, and easy navigation. As
+          you scale up to tablets and desktops, you layer on enhancements that
+          take advantage of larger screens. This approach not only guarantees
+          accessibility for mobile users, but also creates a strong foundation
+          for every device.
         </p>
-        <h3>Advantages of Mobile-First Approach</h3>
+        <h3>Benefits of Prioritizing Mobile</h3>
         <p>
-          Designing for mobile first helps streamline content, improve
-          performance, and ensure accessibility. This approach forces designers
-          to focus on what's truly important, removing unnecessary elements that
-          could clutter the user experience on smaller screens. Additionally, it
-          typically results in faster load times and better overall performance,
-          which are critical for retaining mobile users.
+          By focusing on mobile first, you’re forced to distill your message and
+          features to what matters most. This leads to cleaner layouts, faster
+          load times, and a more focused user experience. It also means your
+          site is ready for the next wave of devices—whatever shape or size they
+          may be.
         </p>
         <blockquote>
-          <p>Responsive web design is not a feature, it's a must.</p>
+          <p>“Responsive web design is not a feature, it’s a must.”</p>
           <small>- Jeffrey Zeldman</small>
         </blockquote>
-        <h2>Inclusion</h2>
+        <h2>Design for Everyone: Accessibility & Inclusion</h2>
         <p>
-          Responsive web design is vital for providing a seamless user
-          experience across all devices. By following these best practices, you
-          can create a website that is both functional and visually appealing,
-          regardless of the screen size. Embracing responsive design not only
-          improves user satisfaction but also enhances your site's accessibility
-          and performance, making it a valuable approach in today's multi-device
-          world.
+          True responsive design goes beyond breakpoints and grids. It’s about
+          making your site usable for everyone, including people with
+          disabilities. Use semantic HTML, provide alt text for images, and
+          ensure your color choices meet accessibility standards. The more
+          inclusive your design, the more people you’ll reach—and the more
+          impact your work will have.
+        </p>
+        <h2>Performance: The Unsung Hero</h2>
+        <p>
+          Don’t let beautiful design slow you down. Optimize images, minimize
+          code, and test your site on real devices. Fast, responsive sites keep
+          users engaged and boost your SEO, making performance a key part of
+          your responsive strategy.
+        </p>
+        <h2>Final Thoughts</h2>
+        <p>
+          Responsive web design is a journey, not a destination. By embracing
+          mobile-first principles, prioritizing accessibility, and never losing
+          sight of performance, you’ll create digital experiences that stand the
+          test of time—and delight users everywhere.
         </p>
       </div>
     </div>

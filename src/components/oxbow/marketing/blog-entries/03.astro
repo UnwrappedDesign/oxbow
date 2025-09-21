@@ -2,65 +2,85 @@
 import Button from "@/components/fundations/buttons/Button.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 import TextInput from "@/components/fundations/inputs/TextInput.astro";
-
+import Kicker from "@/components/fundations/typography/Kicker.astro";
+import { Image } from "astro:assets";
+import b1 from "@/images/placeholders/b1.png";
+import b2 from "@/images/placeholders/b2.png";
+import b3 from "@/images/placeholders/b3.png";
+import b4 from "@/images/placeholders/b4.png";
+import b5 from "@/images/placeholders/b5.png";
 const articles = [
   {
-    image:
-      "https://images.unsplash.com/photo-1575318634028-6a0cfcb60c59?q=80&w=2786&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    title: "Responsive web design best practices",
+    image: b1,
+    title: "How we handle feedback loops",
     description:
-      "Learn the best practices for creating responsive web designs that provide a seamless user experience across all devices.",
-    author: "John Doe",
-    authorImage: "/avatars/1.jpg",
-    date: "Mon Mar 25",
+      "A look at our process for collecting, prioritizing, and acting on user feedback—without losing our minds.",
+    author: "Sofia Lee",
+    authorImage: "/avatars/7.jpg",
+    date: "Thu Jan 18",
     link: "#_",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1623177579213-7efd042e73c0?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    title: "Javascript frameworks: a comparison",
+    image: b2,
+    title: "From prototype to production: our workflow",
     description:
-      "An in-depth comparison of the most popular JavaScript frameworks, including React, Vue, and Angular, to help you choose the right one for your project.",
-    author: "Michael Johnson",
-    authorImage: "/avatars/2.jpg",
-    date: "Wed Apr 10",
+      "How we take ideas from whiteboard sketches to shipped features, and what we’ve learned along the way.",
+    author: "Carlos Mendes",
+    authorImage: "/avatars/8.jpg",
+    date: "Mon Feb 26",
     link: "#_",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1587301669187-732ea66e7617?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    title: "The future of CSS: new features to watch",
+    image: b3,
+    title: "What we automate (and what we don’t)",
     description:
-      "Explore the latest features and updates in CSS that are shaping the future of web design and development.",
-    author: "Johannes Svensson",
-    authorImage: "/avatars/3.jpg",
-    date: "Fri May 05",
+      "Automation is great—until it isn’t. Here’s how we decide what to automate, and what we always do by hand.",
+    author: "Emily Zhang",
+    authorImage: "/avatars/9.jpg",
+    date: "Sat Mar 16",
+    link: "#_",
+  },
+  {
+    image: b4,
+    title: "Scaling design systems: our approach",
+    description:
+      "Lessons learned from growing a design system to support multiple products and teams.",
+    author: "Noah Kim",
+    authorImage: "/avatars/10.jpg",
+    date: "Tue Apr 09",
+    link: "#_",
+  },
+  {
+    image: b5,
+    title: "Why we invest in documentation",
+    description:
+      "How great docs save us time, reduce bugs, and help new teammates ramp up faster.",
+    author: "Isabella Rossi",
+    authorImage: "/avatars/11.jpg",
+    date: "Fri May 03",
     link: "#_",
   },
 ];
 ---
 
 <section class="bg-white dark:bg-zinc-900">
-  <div class="max-w-7xl mx-auto px-8 lg:px-12 py-24">
+  <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
       <div class="max-w-xl lg:text-balance">
         <Text
-          tag="p"
-          variant="textSM"
-          class="font-bold uppercase text-blue-600"
+          tag="h1"
+          variant="displayMD"
+          class="font-semibold tracking-tight text-zinc-900 dark:text-white"
         >
-          Tagline
+          How we build, break, and learn
         </Text>
         <Text
-          tag="h2"
-          variant="displayMD"
-          class="mt-4 font-semibold text-zinc-900 lg:text-balance"
+          tag="p"
+          variant="textSM"
+          class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
         >
-          Insights and perspectives
-        </Text>
-        <Text tag="p" variant="textBase" class="mt-4 font-medium text-zinc-500">
-          Exploring topics, tips, and trends in the world of communication and
-          privacy
+          Stories from the trenches: what’s working, what’s not, and what we’re
+          still figuring out as a product team.
         </Text>
         <form class="flex flex-col w-full mt-8 sm:max-w-md gap-2">
           <TextInput
@@ -70,94 +90,87 @@ const articles = [
             label="Email address"
             type="text"
             variant="default"
-            size="base"
+            size="sm"
             placeholder="Email address"
           />
           <Button
             class="w-full sm:w-auto"
             type="submit"
             variant="default"
-            size="base"
+            size="sm"
           >
             Subscribe
           </Button>
         </form>
-        <Text tag="p" variant="textSM" class="mt-4 font-medium text-zinc-500">
-          When you sign up, you accept our
-          <Text
-            tag="a"
+        <Text
+          tag="p"
+          variant="textXS"
+          class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
+        >
+          By subscribing, you agree to our
+          <a
             href="#_"
-            variant="textSM"
-            class="font-medium text-blue-500 gap-2 hover:text-zinc-900"
+            href="#_"
+            class="font-medium text-zinc-900 dark:text-zinc-100 hover:text-blue-600 dark:hover:text-blue-300"
           >
-            Terms of service
-          </Text>
+            community guidelines
+          </a>
           and
-          <Text
-            tag="a"
+          <a
             href="#_"
-            variant="textSM"
-            class="font-medium text-blue-500 gap-2 hover:text-zinc-900"
+            class="font-medium text-zinc-900 dark:text-zinc-100 hover:text-blue-600 dark:hover:text-blue-300"
           >
-            Privacy Policy
-          </Text>
+            privacy promise
+          </a>
         </Text>
       </div>
       <div class="relative flex flex-col gap-12 lg:col-span-2">
         {
           articles.map((article) => (
-            <article class="relative flex flex-col isolate gap-8 lg:flex-row group">
-              <div class="relative aspect-[16/9] sm:aspect-[2/1] lg:aspect-square lg:w-64 lg:shrink-0">
-                <img
-                  src={article.image}
-                  alt="#_"
-                  class="absolute inset-0 object-cover size-full  rounded-2xl bg-zinc-50"
-                />
-              </div>
-              <div class="flex flex-col justify-between">
-                <div>
-                  <Text class="mt-4" tag="a" href="" variant="link">
-                    <Text
-                      tag="h3"
-                      variant="textLG"
-                      class="font-medium text-zinc-900 group-hover:text-blue-600 duration-200"
-                    >
-                      <span class="absolute inset-0" />
-                      {article.title}
-                    </Text>
-                  </Text>
-                  <Text
-                    tag="p"
-                    variant="textBase"
-                    class="mt-4 font-medium text-zinc-500 line-clamp-3"
-                  >
-                    {article.description}
-                  </Text>
-                </div>
+            <article class="relative  isolate gap-2 md:gap-4  group grid grid-cols-1 md:grid-cols-3">
+              <a href="#_" class="absolute inset-0 z-10">
+                <span class="sr-only">, {article.title}</span>
+              </a>
+
+              <Image
+                width={570}
+                height={480}
+                src={article.image}
+                alt="#_"
+                class=" object-cover rounded-xl bg-zinc-50 w-full aspect-4/3"
+              />
+              <div class=" md:col-span-2">
+                <Text
+                  tag="h3"
+                  variant="textLG"
+                  class=" group-hover:underline font-semibold text-zinc-900 dark:text-white  duration-200"
+                >
+                  {article.title}
+                </Text>
+                <Text
+                  tag="p"
+                  variant="textSM"
+                  class=" font-medium text-zinc-500 dark:text-zinc-400"
+                >
+                  {article.description}
+                </Text>
                 <div class="relative flex items-center mt-4 gap-x-4">
                   <img
                     src={article.authorImage}
                     alt="#_"
-                    class="object-cover rounded-full size-12 bg-zinc-50"
+                    class="object-cover rounded-full size-8 bg-zinc-50"
                   />
                   <div>
                     <Text
                       tag="h3"
-                      variant="textBase"
-                      class="font-medium  text-zinc-900"
+                      variant="textSM"
+                      class="text-zinc-900 dark:text-zinc-100 font-medium"
                     >
                       {article.author}
                     </Text>
-                    <div>
-                      <span class="sr-only">{article.date}</span>
-                      <Text
-                        tag="p"
-                        variant="textSM"
-                        class="font-medium uppercase text-zinc-500"
-                      >
-                        <time datetime={article.date}>{article.date}</time>
-                      </Text>
-                    </div>
+                    <Kicker>
+                      <time datetime={article.date}>{article.date}</time>
+                    </Kicker>
                   </div>
                 </div>
               </div>

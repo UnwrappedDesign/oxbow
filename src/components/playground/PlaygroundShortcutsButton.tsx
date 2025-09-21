@@ -19,7 +19,7 @@ export default function PlaygroundShortcutsButton() {
         type="button"
         aria-label="Show keyboard shortcuts"
         onClick={() => setShowShortcuts(true)}
-        className="fixed bottom-2 right-2 z-50 bg-zinc-500 text-white rounded-full shadow-normal p-2.5 hover:bg-zinc-600 focus:outline-none"
+        className="fixed bottom-2 right-2 z-50 bg-zinc-900 text-white rounded-lg shadow-normal p-2.5 hover:bg-zinc-600 focus:outline-none"
       >
         <span className="sr-only">Show keyboard shortcuts</span>
         <Command size={16} />

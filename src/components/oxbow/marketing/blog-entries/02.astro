@@ -1,75 +1,85 @@
 ---
+export const freeComponent = true;
 import Button from "@/components/fundations/buttons/Button.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 import TextInput from "@/components/fundations/inputs/TextInput.astro";
+import Kicker from "@/components/fundations/typography/Kicker.astro";
+const menuItems = [
+  { label: "All blog entries", href: "#_" },
+  { label: "Tech deep dives", href: "#_" },
+  { label: "Team stories", href: "#_" },
+  { label: "Product updates", href: "#_" },
+  { label: "Events & talks", href: "#_" },
+  { label: "Contact editors", href: "#_" },
+];
 const articles = [
   {
-    image:
-      "https://images.unsplash.com/photo-1575318634028-6a0cfcb60c59?q=80&w=2786&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    title: "Responsive web design best practices",
+    title: "How we built a design system in 30 days",
     description:
-      "Learn the best practices for creating responsive web designs that provide a seamless user experience across all devices.",
-    author: "John Doe",
-    authorImage: "/avatars/1.jpg",
-    date: "Mon Mar 25",
+      "A behind-the-scenes look at the process, pitfalls, and lessons learned from building a scalable design system from scratch.",
+    date: "Mon Jan 08",
     link: "#_",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1623177579213-7efd042e73c0?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    title: "Javascript frameworks: a comparison",
+    title: "Why remote teams win (and struggle)",
     description:
-      "An in-depth comparison of the most popular JavaScript frameworks, including React, Vue, and Angular, to help you choose the right one for your project.",
-    author: "Michael Johnson",
-    authorImage: "/avatars/2.jpg",
-    date: "Wed Apr 10",
+      "Insights from our distributed team: what works, what doesn't, and how we keep collaboration human.",
+    date: "Thu Feb 15",
     link: "#_",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1587301669187-732ea66e7617?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    title: "The future of CSS: new features",
+    title: "Shipping fast without breaking things",
     description:
-      "Explore the latest features and updates in CSS that are shaping the future of web design and development.",
-    author: "Johannes Svensson",
-    authorImage: "/avatars/3.jpg",
-    date: "Fri May 05",
+      "How we balance speed and stability in a world that demands both. Real stories from our engineering squad.",
+    date: "Wed Mar 20",
+    link: "#_",
+  },
+  {
+    title: "Designing for accessibility: our journey",
+    description:
+      "From color contrast to keyboard nav, here’s how we made our platform more inclusive for everyone.",
+    date: "Fri Apr 12",
+    link: "#_",
+  },
+  {
+    title: "The art of saying no to features",
+    description:
+      "Why we sometimes turn down feature requests—and how it helps us build a better product for all.",
+    date: "Tue May 28",
+    link: "#_",
+  },
+  {
+    title: "What we learned from our first hackathon",
+    description:
+      "A candid recap of our team’s first hackathon: the wins, the fails, and the pizza-fueled breakthroughs.",
+    date: "Mon Jun 17",
     link: "#_",
   },
 ];
 ---
-
-<div class="dark:bg-black">
-  <!-- copy:start -->
-  <div class="max-w-7xl mx-auto px-8 lg:px-12 py-24 dark:bg-black">
+<section class="bg-white dark:bg-zinc-900">
+  <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
     <div class="items-end grid grid-cols-1 lg:grid-cols-3 gap-12">
-      <div class="max-w-2xl lg:col-span-2">
+      <div class="max-w-2xl lg:col-span-2 lg:text-balance">
         <Text
-          tag="p"
-          variant="textSM"
-          class="font-bold uppercase text-blue-600 dark:text-blue-400"
+          tag="h1"
+          variant="displayLG"
+          class="font-semibold tracking-tight text-zinc-900 dark:text-white"
         >
-          Tagline
-        </Text>
-        <Text
-          tag="h2"
-          variant="displayMD"
-          class="mt-4 font-semibold text-zinc-900 dark:text-zinc-100 lg:text-balance"
-        >
-          Insights and perspectives
+          Stories, lessons, and experiments
         </Text>
         <Text
           tag="p"
           variant="textBase"
-          class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+          class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
         >
-          Exploring topics, tips, and trends in the world of communication and
-          privacy
+          Fresh takes from our team on building, designing, and growing in tech.
+          No fluff—just honest stories and practical insights.
         </Text>
       </div>
       <div class="lg:ml-auto">
         <form
-          class="flex flex-col w-full mt-8 sm:flex-row sm:max-w-md items-end gap-2"
+          class="flex flex-col w-full mt-8 sm:flex-row sm:max-w-md gap-2 items-end"
         >
           <TextInput
             id="email-address"
@@ -78,108 +88,91 @@ const articles = [
             label="Email address"
             type="text"
             variant="default"
-            size="base"
+            size="sm"
             placeholder="Email address"
           />
           <Button
             class="w-full sm:w-auto"
             type="submit"
             variant="default"
-            size="base"
+            size="sm"
           >
             Subscribe
           </Button>
         </form>
         <Text
           tag="p"
-          variant="textSM"
-          class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+          variant="textXS"
+          class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
         >
-          When you sign up, you accept our
-          <Text
-            tag="a"
+          By subscribing, you agree to our
+          <a
             href="#_"
-            variant="textSM"
-            class="font-medium text-blue-500 dark:text-blue-400 gap-2 hover:text-zinc-900 dark:hover:text-zinc-100"
+            href="#_"
+            class="font-medium text-zinc-900 dark:text-zinc-100 hover:text-blue-600 dark:hover:text-blue-300"
           >
-            Terms of service
-          </Text>
+            community guidelines
+          </a>
           and
-          <Text
-            tag="a"
+          <a
             href="#_"
-            variant="textSM"
-            class="font-medium text-blue-500 dark:text-blue-400 gap-2 hover:text-zinc-900 dark:hover:text-zinc-100"
+            class="font-medium text-zinc-900 dark:text-zinc-100 hover:text-blue-600 dark:hover:text-blue-300"
           >
-            Privacy Policy
-          </Text>
+            privacy promise
+          </a>
         </Text>
       </div>
     </div>
     <div
-      class="relative pt-12 mt-12 border-t grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 border-zinc-200 dark:border-zinc-700"
+      class="relative pt-12 mt-12 border-t border-zinc-200 dark:border-zinc-800 grid grid-cols-1 lg:grid-cols-3 gap-12"
     >
-      {
-        articles.map((article) => (
-          <article class="relative flex flex-col justify-between h-full isolate gap-8 group">
-            <div class="flex flex-col justify-between h-full">
-              <div>
-                <Text tag="a" href="#_" variant="link">
-                  <Text
-                    tag="h3"
-                    variant="textLG"
-                    class="font-medium text-zinc-900 dark:text-zinc-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 duration-200"
-                  >
-                    <span class="absolute inset-0" />
-                    {article.title}
-                  </Text>
+      <div class="flex flex-col gap-12 lg:col-span-2">
+        {
+          articles.map((article) => (
+            <article class="relative group lg:max-w-md">
+              <a href="#_" class="absolute inset-0 z-10">
+                <span class="sr-only">, {article.title}</span>
+              </a>
+              <div class="relative">
+                <Kicker>
+                  <time datetime={article.date}>{article.date}</time>
+                </Kicker>
+                <Text
+                  tag="h3"
+                  variant="textLG"
+                  class="mt-4 group-hover:underline font-semibold text-zinc-900 dark:text-white  duration-200"
+                >
+                  {article.title}
                 </Text>
                 <Text
                   tag="p"
-                  variant="textBase"
-                  class="mt-4 font-medium text-zinc-500 dark:text-zinc-400 line-clamp-3"
+                  variant="textSM"
+                  class=" font-medium text-zinc-500 dark:text-zinc-400"
                 >
                   {article.description}
                 </Text>
               </div>
-              <div class="relative flex items-center mt-4 gap-x-4">
-                <img
-                  src={article.authorImage}
-                  alt="#_"
-                  class="object-cover rounded-full size-12 bg-zinc-50 dark:bg-zinc-800"
-                />
-                <div>
-                  <Text
-                    tag="h3"
-                    variant="textBase"
-                    class="font-medium text-zinc-900 dark:text-zinc-100"
-                  >
-                    {article.author}
-                  </Text>
-                  <div>
-                    <span class="sr-only">{article.date}</span>
-                    <Text
-                      tag="p"
-                      variant="textSM"
-                      class="font-medium uppercase text-zinc-500 dark:text-zinc-400"
-                    >
-                      <time datetime={article.date}>{article.date}</time>
-                    </Text>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="relative aspect-square shrink-0 ">
-              <img
-                src={article.image}
-                alt="#_"
-                class="absolute inset-0 object-cover shadow size-full rounded-2xl bg-zinc-50 dark:bg-zinc-800"
-              />
-            </div>
-          </article>
-        ))
-      }
+            </article>
+          ))
+        }
+      </div>
+      <div>
+        <Kicker> Explore more </Kicker>
+        <ul class="mt-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">
+          {
+            menuItems.map((item) => (
+              <li>
+                <a
+                  href="#_"
+                  class="font-medium text-zinc-900 dark:text-zinc-100  hover:text-blue-600 dark:hover:text-blue-300 text-sm"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
     </div>
   </div>
-  <!-- copy:end -->
-</div>
+</section>

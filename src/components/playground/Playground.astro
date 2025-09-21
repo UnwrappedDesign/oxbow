@@ -59,7 +59,7 @@ if (canSeeCodeValue) {
       const between = afterStart.split("__COPY_START__")[1] || "";
       code =
         between.split(
-          rawSlotCode.match(endMarker)?.[0] || "<!-- copy:end -->",
+          rawSlotCode.match(endMarker)?.[0] || "<!-- copy:end -->"
         )[0] || "";
     }
   }
@@ -111,7 +111,7 @@ if (canSeeCodeValue) {
       const tokens = cls.split(/\s+/).filter(Boolean);
       const darkTokens = tokens.filter((t) => t.includes("dark:"));
       const darkCategories = new Set(
-        darkTokens.map((t) => categoryOf(t.replace(/^.*dark:/, ""))),
+        darkTokens.map((t) => categoryOf(t.replace(/^.*dark:/, "")))
       );
       const kept = tokens.filter((t) => {
         if (t.includes("dark:")) return true; // keep all dark: tokens
@@ -182,6 +182,7 @@ if (canSeeCodeValue) {
     prevHref={prevHref}
     nextHref={nextHref}
     sectionLength={sectionLength}
+    blockPath={`${Astro.cwd}/${componentPath}`}
   />
 </div>
 <style>

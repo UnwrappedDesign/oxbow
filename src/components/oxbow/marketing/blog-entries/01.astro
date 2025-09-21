@@ -1,207 +1,108 @@
 ---
-export const freeComponent = true;
-
-import Button from "@/components/fundations/buttons/Button.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-import TextInput from "@/components/fundations/inputs/TextInput.astro";
-import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 import Kicker from "@/components/fundations/typography/Kicker.astro";
-const menuItems = [
-  { label: "Latest Articles", href: "#_" },
-  { label: "Popular Posts", href: "#_" },
-  { label: "Categories", href: "#_" },
-  { label: "Archives", href: "#_" },
-  { label: "About the Author", href: "#_" },
-  { label: "Subscribe to Newsletter", href: "#_" },
-];
 const articles = [
   {
-    title: "Responsive web design best practices",
+    title: "Building a remote culture that lasts",
     description:
-      "Learn the best practices for creating responsive web designs that provide a seamless user experience across all devices.",
-    date: "Mon Mar 25",
+      "How our team created a strong, connected culture while working from different continents—and what we’d do differently next time.",
+    author: "Ava Martinez",
+    authorImage: "/avatars/4.jpg",
+    date: "Tue Feb 13",
     link: "#_",
   },
   {
-    title: "Javascript frameworks: a comparison",
+    title: "Why we sunsetted our first product",
     description:
-      "An in-depth comparison of the most popular JavaScript frameworks, including React, Vue, and Angular, to help you choose the right one for your project.",
-    date: "Wed Apr 10",
+      "A candid look at the lessons learned from shutting down a product, and how it shaped our approach to building new things.",
+    author: "Liam Chen",
+    authorImage: "/avatars/5.jpg",
+    date: "Fri Mar 22",
     link: "#_",
   },
   {
-    title: "The future of CSS: new features to watch",
+    title: "Design sprints: what actually works?",
     description:
-      "Explore the latest features and updates in CSS that are shaping the future of web design and development.",
-    date: "Fri May 05",
-    link: "#_",
-  },
-  {
-    title: "User experience design principles",
-    description:
-      "Understand the key principles of user experience design and how to apply them to create intuitive and user-friendly websites.",
-    date: "Tue Jun 15",
-    link: "#_",
-  },
-  {
-    title: "Web performance optimization tips",
-    description:
-      "Discover effective tips and techniques for optimizing the performance of your websites to ensure fast loading times and a smooth user experience.",
-    date: "Thu Jul 01",
-    link: "#_",
-  },
-  {
-    title: "Accessibility in web design",
-    description:
-      "Learn how to make your websites more accessible to users with disabilities by following web accessibility guidelines and best practices.",
-    date: "Mon Aug 23",
+      "We tried every design sprint method we could find. Here’s what stuck, what flopped, and what we’ll keep using.",
+    author: "Priya Singh",
+    authorImage: "/avatars/6.jpg",
+    date: "Mon Apr 08",
     link: "#_",
   },
 ];
 ---
 
-<section class="bg-white dark:bg-zinc-900">
-  <div class="max-w-7xl mx-auto px-8 lg:px-12 py-24">
-    <div class="items-end grid grid-cols-1 lg:grid-cols-3 gap-12">
-      <div class="max-w-2xl lg:col-span-2">
-        <Kicker> Insights </Kicker>
-        <Text
-          tag="h2"
-          variant="displayMD"
-          class="mt-4 font-semibold text-zinc-900 dark:text-white lg:text-balance"
-        >
-          Insights and perspectives
-        </Text>
-        <Text
-          tag="p"
-          variant="textBase"
-          class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
-        >
-          Exploring topics, tips, and trends in the world of communication and
-          privacy
-        </Text>
-      </div>
-      <div class="lg:ml-auto">
-        <form
-          class="flex flex-col w-full mt-8 sm:flex-row sm:max-w-md gap-2 items-end"
-        >
-          <TextInput
-            id="email-address"
-            type="email"
-            name="email-address"
-            label="Email address"
-            type="text"
-            variant="default"
-            size="base"
-            placeholder="Email address"
-          />
-          <Button
-            class="w-full sm:w-auto"
-            type="submit"
-            variant="default"
-            size="base"
-          >
-            Subscribe
-          </Button>
-        </form>
-        <Text
-          tag="p"
-          variant="textSM"
-          class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
-        >
-          When you sign up, you accept our
-          <Text
-            tag="a"
-            href="#_"
-            variant="textSM"
-            class="font-medium text-blue-500 dark:text-blue-400 gap-2 hover:text-zinc-900 dark:hover:text-white"
-          >
-            Terms of service
-          </Text>
-          and
-          <Text
-            tag="a"
-            href="#_"
-            variant="textSM"
-            class="font-medium text-blue-500 dark:text-blue-400 gap-2 hover:text-zinc-900 dark:hover:text-white"
-          >
-            Privacy Policy
-          </Text>
-        </Text>
-      </div>
+<section>
+  <div
+    class="max-w-7xl md:px-12 lg:px-32 dark:bg-black px-8 py-24 mx-auto bg-white"
+  >
+    <div class=" lg:text-balance max-w-2xl">
+      <Text
+        tag="h1"
+        variant="displayLG"
+        class="text-zinc-900 dark:text-white font-semibold tracking-tight"
+      >
+        Real stories from the team
+      </Text>
+      <Text
+        tag="p"
+        variant="textBase"
+        class="text-zinc-500 dark:text-zinc-400 mt-2 font-medium"
+      >
+        Honest lessons, experiments, and behind-the-scenes moments from our
+        journey building Oxbow.
+      </Text>
     </div>
     <div
-      class="relative pt-12 mt-12 border-t border-zinc-200 dark:border-zinc-800 grid grid-cols-1 lg:grid-cols-3 gap-12"
+      class="sm:grid-cols-2 lg:grid-cols-3 border-t border-zinc-200 dark:border-zinc-700 relative grid grid-cols-1 gap-6 pt-8 mt-8"
     >
-      <div class="flex flex-col gap-12 lg:col-span-2">
-        {
-          articles.map((article) => (
-            <article class="relative group">
-              <div class="relative">
-                <div>
-                  <span class="sr-only">{article.date}</span>
-                  <Text
-                    tag="p"
-                    variant="textSM"
-                    class="font-medium uppercase text-zinc-500 dark:text-zinc-400 whitespace-nowrap"
-                  >
-                    <time datetime={article.date}>{article.date}</time>
-                  </Text>
-                </div>
+      {
+        articles.map((article) => (
+          <article class="isolate group relative flex flex-col justify-between h-full gap-8">
+            <a href="#_" class="absolute inset-0 z-10">
+              <span class="sr-only">, {article.title}</span>
+            </a>
+            <div class="flex flex-col justify-between">
+              <div>
                 <Text
                   tag="h3"
-                  variant="textLG"
-                  class="mt-4 font-medium text-zinc-900 dark:text-white group-hover:text-blue-600 duration-200"
+                  variant="textBase"
+                  class="group-hover:underline text-zinc-900 dark:text-white  font-semibold duration-200"
                 >
+                  <span class="absolute inset-0" />
                   {article.title}
                 </Text>
                 <Text
                   tag="p"
-                  variant="textBase"
-                  class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+                  variant="textSM"
+                  class="text-zinc-500 dark:text-zinc-400 line-clamp-3 mt-4 font-medium"
                 >
                   {article.description}
                 </Text>
               </div>
-              <div class="mt-8">
-                <Text
-                  tag="a"
-                  href="#_"
-                  variant="textBase"
-                  class="flex items-center font-medium text-blue-500 dark:text-blue-400 gap-2 hover:text-zinc-900 dark:hover:text-white"
-                >
-                  <span class="absolute -inset-y-2.5 -inset-x-4 md:-inset-y-4 md:-inset-x-6 sm:rounded-2xl" />
-                  <span class="relative ">
-                    Read more <span class="sr-only">, {article.title}</span>
-                  </span>
-                  <ChevronRight class="relative" size="sm" />
-                </Text>
+              <div class="gap-x-4 relative flex items-center mt-4">
+                <img
+                  src={article.authorImage}
+                  alt="#_"
+                  class="size-8 bg-zinc-50 dark:bg-zinc-800 object-cover rounded-full"
+                />
+                <div>
+                  <Text
+                    tag="h3"
+                    variant="textSM"
+                    class="text-zinc-900 dark:text-zinc-100 font-medium"
+                  >
+                    {article.author}
+                  </Text>
+                  <Kicker>
+                    <time datetime={article.date}>{article.date}</time>
+                  </Kicker>
+                </div>
               </div>
-            </article>
-          ))
-        }
-      </div>
-      <div class="lg:ml-auto">
-        <Text tag="h4" variant="textLG" class="dark:text-white">
-          Quick Links
-        </Text>
-        <ul class="mt-4 space-y-2">
-          {
-            menuItems.map((item) => (
-              <li>
-                <Text
-                  tag="a"
-                  href="#_"
-                  variant="textSM"
-                  class="flex items-center font-medium text-blue-500 dark:text-blue-400 gap-2 hover:text-zinc-900 dark:hover:text-white"
-                >
-                  {item.label}
-                </Text>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
+            </div>
+          </article>
+        ))
+      }
     </div>
   </div>
 </section>

@@ -1,17 +1,19 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-import CircleCheck from "@/components/fundations/icons/CircleCheck.astro";
-
-export const excludeFromObfuscation = ["ring-blue-500", "ring-zinc-300"];
+export const excludeFromObfuscation = ["ring-zinc-500", "ring-zinc-300"];
+import { Image } from "astro:assets";
+import contact from "@/images/placeholders/contact.png";
 ---
 
 <div class="p-8 bg-white dark:bg-zinc-900 relative">
   <div class="lg:absolute lg:inset-0 lg:left-1/2">
-    <img
-      class="object-cover w-full h-64 bg-zinc-50 dark:bg-zinc-900 sm:h-80 lg:absolute lg:h-full lg:border-l dark:lg:border-zinc-800"
-      src="/pose/1.jpg"
+    <Image
+      width={1200}
+      height={1200}
+      src={contact}
       alt=""
+      class="object-cover w-full h-64 bg-zinc-50 dark:bg-zinc-900 sm:h-80 lg:absolute lg:h-full"
     />
   </div>
   <div
@@ -21,40 +23,31 @@ export const excludeFromObfuscation = ["ring-blue-500", "ring-zinc-300"];
       <div class="max-w-xl mx-auto lg:mx-0 lg:max-w-lg">
         <div class="max-w-xl lg:text-balance">
           <Text
-            tag="p"
-            variant="textSM"
-            class="font-bold uppercase text-blue-600 dark:text-blue-400"
-          >
-            Tagline
-          </Text>
-          <Text
-            tag="h2"
+            tag="h1"
             variant="displayMD"
-            class="mt-4 font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 lg:text-balance"
+            class="font-semibold tracking-tight text-zinc-900 dark:text-white lg:text-balance"
           >
-            We would love to hear from you!
+            Let’s start a conversation
           </Text>
           <Text
             tag="p"
             variant="textBase"
-            class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+            class="mt-4 lg:text-balance text-zinc-500 dark:text-zinc-400"
           >
-            Uniting talent with vision. Get to know the dedicated professionals
-            who blend their skills and passion to lead us to new heights.
+            Have a question, idea, or feedback? Our team is here to listen and
+            help you move forward. Reach out and let’s connect.
           </Text>
         </div>
         <form action="#" method="POST" class="max-w-lg mx-auto mt-12">
           <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
             <div>
-              <Text
+              <label
                 for="first-name"
-                tag="label"
-                variant="textBase"
-                class="font-medium text-zinc-500 dark:text-zinc-400"
+                class="font-medium text-zinc-500 dark:text-zinc-400 text-sm"
               >
                 First name
-              </Text>
-              <div class="mt-2.5">
+              </label>
+              <div class="mt-1">
                 <input
                   type="text"
                   name="first-name"
@@ -64,7 +57,7 @@ export const excludeFromObfuscation = ["ring-blue-500", "ring-zinc-300"];
                   aria-required="true"
                   aria-describedby="first-name-error"
                   placeholder="Your first name"
-                  class="block w-full h-10 px-4 py-2 text-sm bg-white dark:bg-zinc-900 border border-transparent rounded-lg appearance-none text-blue-700 dark:text-blue-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+                  class="block w-full h-10 px-4 py-2 text-sm bg-white dark:bg-zinc-900 border border-transparent rounded-lg appearance-none text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-700 focus:bg-transparent focus:outline-none focus:ring-zinc-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
                 />
                 <span id="first-name-error" class="hidden text-sm text-red-600">
                   Please enter your first name.
@@ -72,15 +65,13 @@ export const excludeFromObfuscation = ["ring-blue-500", "ring-zinc-300"];
               </div>
             </div>
             <div>
-              <Text
+              <label
                 for="last-name"
-                tag="label"
-                variant="textBase"
-                class="font-medium text-zinc-500 dark:text-zinc-400"
+                class="font-medium text-zinc-500 dark:text-zinc-400 text-sm"
               >
                 Last name
-              </Text>
-              <div class="mt-2.5">
+              </label>
+              <div class="mt-1">
                 <input
                   type="text"
                   name="last-name"
@@ -90,7 +81,7 @@ export const excludeFromObfuscation = ["ring-blue-500", "ring-zinc-300"];
                   aria-required="true"
                   aria-describedby="last-name-error"
                   placeholder="Your last name"
-                  class="block w-full h-10 px-4 py-2 text-sm bg-white dark:bg-zinc-900 border border-transparent rounded-lg appearance-none text-blue-700 dark:text-blue-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+                  class="block w-full h-10 px-4 py-2 text-sm bg-white dark:bg-zinc-900 border border-transparent rounded-lg appearance-none text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-700 focus:bg-transparent focus:outline-none focus:ring-zinc-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
                 />
                 <span id="last-name-error" class="hidden text-sm text-red-600">
                   Please enter your last name.
@@ -98,15 +89,13 @@ export const excludeFromObfuscation = ["ring-blue-500", "ring-zinc-300"];
               </div>
             </div>
             <div class="sm:col-span-2">
-              <Text
+              <label
                 for="compant"
-                tag="label"
-                variant="textBase"
-                class="font-medium text-zinc-500 dark:text-zinc-400"
+                class="font-medium text-zinc-500 dark:text-zinc-400 text-sm"
               >
                 Company name
-              </Text>
-              <div class="mt-2.5">
+              </label>
+              <div class="mt-1">
                 <input
                   type="text"
                   name="company"
@@ -114,7 +103,7 @@ export const excludeFromObfuscation = ["ring-blue-500", "ring-zinc-300"];
                   autocomplete="organization"
                   aria-describedby="company-error"
                   placeholder="Your company"
-                  class="block w-full h-10 px-4 py-2 text-sm bg-white dark:bg-zinc-900 border border-transparent rounded-lg appearance-none text-blue-700 dark:text-blue-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+                  class="block w-full h-10 px-4 py-2 text-sm bg-white dark:bg-zinc-900 border border-transparent rounded-lg appearance-none text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-700 focus:bg-transparent focus:outline-none focus:ring-zinc-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
                 />
                 <span id="company-error" class="hidden text-sm text-red-600">
                   Please enter your company name.
@@ -122,22 +111,20 @@ export const excludeFromObfuscation = ["ring-blue-500", "ring-zinc-300"];
               </div>
             </div>
             <div class="sm:col-span-2">
-              <Text
+              <label
                 for="phone-number"
-                tag="label"
-                variant="textBase"
-                class="font-medium text-zinc-500 dark:text-zinc-400"
+                class="font-medium text-zinc-500 dark:text-zinc-400 text-sm"
               >
                 Phone number
-              </Text>
-              <div class="relative mt-2.5">
+              </label>
+              <div class="relative mt-1">
                 <div class="absolute inset-y-0 left-0 flex items-center">
                   <label for="country" class="sr-only">Country</label>
                   <select
                     id="country"
                     name="country"
                     aria-label="Country code"
-                    class="h-full py-0 pl-4 bg-transparent border-0 rounded-md pr-9 text-zinc-400 dark:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm"
+                    class="h-full py-0 pl-4 bg-transparent border-0 rounded-md pr-9 text-zinc-400 dark:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-zinc-600 sm:text-sm"
                   >
                     <option value="IT">Italy</option>
                     <option value="ES">Spain</option>
@@ -151,7 +138,7 @@ export const excludeFromObfuscation = ["ring-blue-500", "ring-zinc-300"];
                   autocomplete="tel"
                   aria-describedby="phone-number-description"
                   placeholder="123-456-7890"
-                  class="block w-full h-10 px-4 py-2 pl-24 text-sm bg-white dark:bg-zinc-900 border border-transparent rounded-lg shadow appearance-none text-blue-700 dark:text-blue-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+                  class="block w-full h-10 px-4 py-2 pl-24 text-sm bg-white dark:bg-zinc-900 border border-transparent rounded-lg shadow appearance-none text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-700 focus:bg-transparent focus:outline-none focus:ring-zinc-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
                 />
                 <p id="phone-number-description" class="sr-only">
                   Enter your phone number including the country code.
@@ -195,8 +182,8 @@ export const excludeFromObfuscation = ["ring-blue-500", "ring-zinc-300"];
                 />
                 <label
                   :for="'radio-' + option.value"
-                  class="block bg-white dark:bg-zinc-900 rounded-lg cursor-pointer ring-2 ring-zinc-200 dark:ring-zinc-700 transition-all duration-300 ease-in-out focus-within:ring-blue-500"
-                  :class="{ 'ring-blue-500': radioGroupSelectedValue === option.value }"
+                  class="block cursor-pointer bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 shadow from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl transition-all duration-300 ease-in-out focus-within:ring-zinc-500"
+                  :class="{ 'ring-zinc-500': radioGroupSelectedValue === option.value }"
                 >
                   <div
                     class="flex flex-col justify-between h-full text-left rounded-lg"
@@ -205,12 +192,12 @@ export const excludeFromObfuscation = ["ring-blue-500", "ring-zinc-300"];
                     <div class="flex items-center p-4 gap-3">
                       <div
                         class="flex items-center justify-center rounded-full size-4 ring-1 bg-white dark:bg-zinc-900"
-                        :class="{ 'ring-blue-500': radioGroupSelectedValue === option.value, 'ring-zinc-300 dark:ring-zinc-700': radioGroupSelectedValue !== option.value }"
+                        :class="{ 'ring-zinc-500': radioGroupSelectedValue === option.value, 'ring-zinc-300 dark:ring-zinc-700': radioGroupSelectedValue !== option.value }"
                         aria-hidden="true"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          class="icon icon-tabler icon-tabler-circle-check-filled text-blue-600 dark:text-blue-400"
+                          class="icon icon-tabler icon-tabler-circle-check-filled text-zinc-600 dark:text-zinc-400"
                           width="20"
                           height="20"
                           viewBox="0 0 24 24"
@@ -244,7 +231,7 @@ export const excludeFromObfuscation = ["ring-blue-500", "ring-zinc-300"];
                         variant="textBase"
                         x-text="option.description"
                         :id="'description-' + option.value"
-                        class="font-medium text-zinc-500 dark:text-zinc-400"
+                        class="font-medium text-zinc-500 dark:text-zinc-400 text-sm"
                       />
                     </div>
                   </div>
@@ -252,41 +239,35 @@ export const excludeFromObfuscation = ["ring-blue-500", "ring-zinc-300"];
               </div>
             </template>
           </div>
-          <div class="mt-10">
-            <Button class="w-full" variant="accent" size="base">
-              Submit
-            </Button>
-          </div>
+          <Button class="w-full mt-8" variant="default" size="base">
+            Submit
+          </Button>
           <div class="flex items-center mt-4">
             <input
               id="agreement"
               name="agreement"
               type="checkbox"
-              class="rounded shadow size-4 border-zinc-300 text-blue-600 focus:ring-blue-600"
+              class="rounded shadow size-4 border-zinc-300 text-zinc-600 focus:ring-zinc-600"
             />
-            <Text
+            <label
               for="agreement"
-              tag="label"
               class="block ml-3 text-sm text-zinc-500 dark:text-zinc-400"
-              >You agree to our
-              <Text
-                tag="a"
+            >
+              You agree to our
+              <a
                 href="#_"
-                variant="textBase"
-                class="font-medium text-blue-500 dark:text-blue-400 hover:text-zinc-500 dark:hover:text-zinc-300"
+                class="ont-medium text-zinc-900 dark:text-zinc-100 hover:text-blue-600 dark:hover:text-blue-300"
               >
                 Terms of service
-              </Text>
+              </a>
               and
-              <Text
-                tag="a"
+              <a
                 href="#_"
-                variant="textBase"
-                class="font-medium text-blue-500 dark:text-blue-400 hover:text-zinc-500 dark:hover:text-zinc-300"
+                class="ont-medium text-zinc-900 dark:text-zinc-100 hover:text-blue-600 dark:hover:text-blue-300"
               >
                 Privacy Policy
-              </Text>
-            </Text>
+              </a>
+            </label>
           </div>
         </form>
       </div>

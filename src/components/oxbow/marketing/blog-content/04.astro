@@ -1,110 +1,115 @@
 ---
 import Text from "@/components/fundations/typography/Text.astro";
+import Kicker from "@/components/fundations/typography/Kicker.astro";
+import b4 from "@/images/placeholders/b4.png";
+import { Image } from "astro:assets";
 ---
 
 <section class="bg-white dark:bg-zinc-900">
-  <div class="max-w-7xl mx-auto px-8 lg:px-12 py-24">
-    <div class="items-center grid grid-cols-1 gap-6 lg:grid-cols-3">
-      <div class="flex flex-col justify-between h-full">
-        <div>
-          <Text
-            tag="p"
-            variant="textSM"
-            class="font-bold uppercase text-blue-600 dark:text-blue-400"
-          >
-            <time datetime="01.01.24">01.01.24</time>
-          </Text>
-          <Text
-            tag="h2"
-            variant="displayMD"
-            class="mt-4 font-semibold text-zinc-900 dark:text-white lg:text-balance"
-          >
-            Responsive web design best practices
-          </Text>
-          <Text
-            tag="p"
-            variant="textBase"
-            class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
-          >
-            Learn the best practices for creating responsive web designs that
-            provide a seamless user experience across all devices.
-          </Text>
-        </div>
-        <div class="flex flex-shrink-0 mt-6 group">
-          <div class="flex items-center gap-2">
-            <div>
-              <img
-                class="inline-block rounded-full size-9"
-                src="/avatars/1.jpg"
-                alt=""
-              />
-            </div>
-            <div>
-              <Text
-                tag="h3"
-                variant="textBase"
-                class="font-medium text-zinc-900 dark:text-white"
-              >
-                Michael Andreuzza
-              </Text>
-              <Text tag="p" variant="textXS" class="font-medium text-zinc-400">
-                @Mike_Andreuzza dark:text-zinc-500
-              </Text>
-            </div>
-          </div>
-        </div>
+  <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
+    <div class="max-w-xl mx-auto">
+      <div class="text-center md:text-balance">
+        <Kicker>
+          <time datetime="2025-01-09">2025-01-09</time>
+        </Kicker>
+        <Text
+          tag="h1"
+          variant="displayLG"
+          class="text-zinc-900 mt-4 dark:text-white font-semibold tracking-tight"
+        >
+          Designing for Everyone: The Oxbow approach to responsive Web
+        </Text>
+        <Text
+          tag="p"
+          variant="textBase"
+          class="text-zinc-500 dark:text-zinc-400 mt-2 font-medium"
+        >
+          How empathy, collaboration, and a relentless focus on inclusion and
+          performance shape digital experiences that welcome every user,
+          everywhere.
+        </Text>
       </div>
-      <div class="block w-full lg:col-span-2">
-        <img
-          alt="#_"
-          class="shadow rounded-2xl aspect-[4/3] object-cover object-center w-full"
-          src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        />
+
+      <div class="flex items-center justify-center gap-2 mt-6">
+        <div>
+          <img
+            class="inline-block rounded-full size-9"
+            src="/avatars/1.jpg"
+            alt=""
+          />
+        </div>
+        <div>
+          <Kicker> Michael Andreuzza </Kicker>
+          <Text
+            tag="p"
+            variant="textXS"
+            class="font-medium text-zinc-400 dark:text-zinc-500"
+          >
+            @Mike_Andreuzza
+          </Text>
+        </div>
       </div>
     </div>
-    <div class="mt-12">
-      <div
-        class="mx-auto prose text-zinc-500 dark:text-zinc-400 prose-a:font-semibold prose-a:text-blue-300 dark:prose-a:text-blue-400 hover:prose-a:text-zinc-900 dark:hover:prose-a:text-white prose-headings:text-zinc-900 dark:prose-headings:text-white prose-blockquote:text-blue-400 dark:prose-blockquote:text-blue-300 prose-code:text-blue-400 dark:prose-code:text-blue-300 prose-strong:text-blue-500 dark:prose-strong:text-blue-400 prose-img:rounded-2xl prose-pre:rounded-2xl border-t border-zinc-200 dark:border-zinc-800 pt-8"
-      >
-        <p>
-          Responsive web design is critical in today's digital landscape, where
-          users access websites from a variety of devices with different screen
-          sizes and resolutions.
-        </p>
-        <h2>Mobile-First Approach</h2>
-        <p>
-          The mobile-first approach involves designing your website starting
-          with the smallest screen sizes first and then gradually enhancing the
-          design for larger screens. This method ensures that your site is
-          accessible and functional on mobile devices, which are often the
-          primary way users access the web. By prioritizing mobile design, you
-          focus on the Core content and functionality, providing a solid
-          foundation that can be built upon for larger screens.
-        </p>
-        <h3>Advantages of Mobile-First Approach</h3>
-        <p>
-          Designing for mobile first helps streamline content, improve
-          performance, and ensure accessibility. This approach forces designers
-          to focus on what's truly important, removing unnecessary elements that
-          could clutter the user experience on smaller screens. Additionally, it
-          typically results in faster load times and better overall performance,
-          which are critical for retaining mobile users.
-        </p>
-        <blockquote>
-          <p>Responsive web design is not a feature, it's a must.</p>
-          <small>- Jeffrey Zeldman</small>
-        </blockquote>
-        <h2>Inclusion</h2>
-        <p>
-          Responsive web design is vital for providing a seamless user
-          experience across all devices. By following these best practices, you
-          can create a website that is both functional and visually appealing,
-          regardless of the screen size. Embracing responsive design not only
-          improves user satisfaction but also enhances your site's accessibility
-          and performance, making it a valuable approach in today's multi-device
-          world.
-        </p>
-      </div>
+    <Image
+      width={570}
+      height={480}
+      src={b4}
+      alt="#_"
+      class="rounded-xl aspect-5/3 object-cover object-center w-full lg:col-span-2 max-w-2xl mx-auto mt-8"
+    />
+
+    <div
+      class="mx-auto prose text-zinc-500 dark:text-zinc-400 prose-a:font-semibold prose-a:text-blue-300 dark:prose-a:text-blue-400 hover:prose-a:text-zinc-900 dark:hover:prose-a:text-white prose-headings:text-zinc-900 dark:prose-headings:text-white prose-blockquote:text-blue-700 dark:prose-blockquote:text-blue-300 prose-code:text-blue-400 dark:prose-code:text-blue-300 prose-strong:text-blue-500 dark:prose-strong:text-blue-400 prose-img:rounded-3xl prose-pre:rounded-2xl border-t border-zinc-200 dark:border-zinc-700 pt-12 mt-12"
+    >
+      <p>
+        Every website tells a story, but the best ones invite everyone in—no
+        matter what device they’re using. At Oxbow, we believe responsive design
+        is about more than just breakpoints and flexible grids. It’s about
+        creating digital spaces that feel welcoming, intuitive, and alive to
+        every visitor.
+      </p>
+      <h2>People-First, Not Just Mobile-First</h2>
+      <p>
+        Our approach starts with empathy. We imagine the student on a bus, the
+        entrepreneur at a café, the parent juggling tasks at home. We ask: how
+        can we make their experience seamless, no matter their context? This
+        mindset leads us to design interfaces that are clear, forgiving, and
+        joyful to use—on any screen, in any situation.
+      </p>
+      <h3>Collaboration Fuels Innovation</h3>
+      <p>
+        We don’t design in a vacuum. Our process is collaborative and iterative,
+        involving designers, developers, and—most importantly—real users. We
+        test early and often, gathering feedback that shapes every detail. The
+        result? Products that feel natural and solve real problems, not just
+        theoretical ones.
+      </p>
+      <blockquote>
+        <p>“Design is the silent ambassador of your brand.”</p>
+        <small>- Paul Rand</small>
+      </blockquote>
+      <h2>Beyond Accessibility: True Inclusion</h2>
+      <p>
+        We strive to make our sites not just accessible, but truly inclusive.
+        That means considering color vision, motor skills, cognitive load, and
+        more. We use clear language, strong contrast, and logical navigation so
+        everyone can participate fully. Inclusion isn’t a checklist—it’s a
+        commitment.
+      </p>
+      <h2>Performance as a Core Value</h2>
+      <p>
+        Speed is kindness. We obsess over load times, optimize every asset, and
+        keep our code lean. A fast site respects the user’s time and makes every
+        interaction feel effortless. Performance isn’t an afterthought—it’s
+        baked into our process from day one.
+      </p>
+      <h2>Looking Forward</h2>
+      <p>
+        The web is always changing, and so are we. By staying curious, listening
+        to our users, and embracing new ideas, we keep building experiences that
+        connect, inspire, and empower. That’s what responsive design means to
+        us—and it’s a journey we’re excited to share with you.
+      </p>
     </div>
   </div>
 </section>

@@ -1,205 +1,167 @@
 ---
-import Button from "@/components/fundations/buttons/Button.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 import MapPin from "@/components/fundations/icons/MapPin.astro";
-const options = [
-  { id: 1, name: "Use our chat widget", href: "#" },
-  { id: 2, name: "Explore our knowledge base", href: "#" },
-  { id: 3, name: "Submit a support ticket", href: "#" },
+import Kicker from "@/components/fundations/typography/Kicker.astro";
+import Phone from "@/components/fundations/icons/Phone.astro";
+import Mail from "@/components/fundations/icons/Mail.astro";
+const contactInfo = [
+  {
+    title: "Collaborate",
+    email: {
+      address: "example@oxbowui.com",
+      mailto: "mailto:example@oxbowui.com",
+    },
+    phone: "+44 20 7946 1234",
+  },
+  {
+    title: "Press",
+    email: {
+      address: "example@oxbowui.com",
+      mailto: "mailto:example@oxbowui.com",
+    },
+    phone: "+33 1 42 68 90 12",
+  },
+  {
+    title: "Join our team",
+    email: {
+      address: "example@oxbowui.com",
+      mailto: "mailto:example@oxbowui.com",
+    },
+    phone: "+49 30 98765432",
+  },
+  {
+    title: "Say hello",
+    email: {
+      address: "example@oxbowui.com",
+      mailto: "mailto:example@oxbowui.com",
+    },
+    phone: "+34 91 654 3210",
+  },
 ];
 const locations = [
+  {
+    title: "Amsterdam",
+    addressLines: ["78 Canal Street", "1012 AB Amsterdam", "Netherlands"],
+  },
+  {
+    title: "Vienna",
+    addressLines: ["56 Schönbrunner Straße", "1120 Vienna", "Austria"],
+  },
   {
     title: "Stockholm",
     addressLines: ["23 Gamla Stan", "111 29 Stockholm", "Sweden"],
   },
-];
-const teamMembers = [
   {
-    name: "Fernando Monte",
-    title: "Head of Customer Success",
-    imgSrc: "/avatars/1.jpg",
-  },
-  {
-    name: "Juan Echanove",
-    title: "Customer Support Manager",
-    imgSrc: "/avatars/2.jpg",
+    title: "Zurich",
+    addressLines: ["12 Bahnhofstrasse", "8001 Zurich", "Switzerland"],
   },
 ];
 ---
-
 <section class="bg-white dark:bg-zinc-900">
-  <div class="max-w-7xl mx-auto px-8 lg:px-12 py-24">
-    <div class="max-w-xl mx-auto text-center lg:text-balance">
-      <Text
-        tag="p"
-        variant="textSM"
-        class="font-bold uppercase text-blue-600 dark:text-blue-400"
-      >
-        Tagline
-      </Text>
-      <Text
-        tag="h2"
-        variant="displayMD"
-        class="mt-4 font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 lg:text-balance"
-      >
-        We would love to hear from you!
-      </Text>
-      <Text
-        tag="p"
-        variant="textBase"
-        class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
-      >
-        Uniting talent with vision. Get to know the dedicated professionals who
-        blend their skills and passion to lead us to new heights.
-      </Text>
-    </div>
-    <ul
-      role="list"
-      class="max-w-3xl mx-auto mt-12 text-left grid grid-cols-1 sm:grid-cols-2 gap-12 lg:gap-0 lg:mt-24"
-    >
-      {
-        teamMembers.map((member) => (
-          <li>
-            <div class="flex items-center gap-4">
-              <img
-                class="object-cover rounded-full size-10"
-                src={member.imgSrc}
-                alt="#_"
-              />
-              <div>
-                <Text
-                  tag="h3"
-                  variant="textBase"
-                  class="font-medium text-zinc-900 dark:text-zinc-100"
-                >
-                  {member.name}
-                </Text>
-                <Text
-                  tag="p"
-                  variant="textXS"
-                  class="font-medium text-zinc-400 dark:text-zinc-500"
-                >
-                  {member.title}
-                </Text>
-              </div>
-            </div>
-          </li>
-        ))
-      }
-    </ul>
-    <div class="mt-24 grid grid-cols-1 gap-x-32 gap-y-6 md:grid-cols-2">
-      <div class="flex flex-col divide-y divide-zinc-200 dark:divide-zinc-700">
-        <div class="py-4">
+  <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <div>
+        <Text
+          tag="h1"
+          variant="displayMD"
+          class="font-semibold tracking-tight text-zinc-900 dark:text-white lg:text-balance"
+        >
+          Let’s connect and collaborate
+        </Text>
+        <Text
+          tag="p"
+          variant="textBase"
+          class="mt-4 lg:text-balance text-zinc-500 dark:text-zinc-400"
+        >
+          Have a question, want to partner, or just want to say hi?
+          <br />
+          <br />
+          Our team is here to support your ideas and help you move forward. Reach
+          out and let’s make something amazing happen.
+        </Text>
+      </div>
+      <div class="space-y-12 lg:col-span-2">
+        <div>
           <Text
             tag="h3"
-            variant="textLG"
-            class="font-medium text-zinc-900 dark:text-zinc-100"
-          >
-            Talk to us
-          </Text>
-          <Text
-            tag="p"
             variant="textBase"
-            class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
+            class="font-semibold text-zinc-900 dark:text-zinc-100"
           >
-            Speak to our team about your project and we will get back to you as
-            soon as possible. We are here to help you every step of the way.
+            Contact us
           </Text>
-          <ul
-            class="mt-6 text-base font-medium list-none space-y-2 text-blue-500 dark:text-blue-400"
+          <div
+            class="flex flex-col mt-4 divide-y divide-zinc-200 dark:divide-zinc-700 border-y border-zinc-200 dark:border-zinc-700"
           >
             {
-              options.map((option) => (
-                <li>
+              contactInfo.map((contact) => (
+                <div class="py-4 grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 gap-2">
                   <Text
-                    tag="a"
-                    href="#_"
-                    variant="textBase"
-                    class="flex items-center font-medium text-blue-500 dark:text-blue-400 gap-2 hover:text-zinc-900 dark:hover:text-zinc-100"
+                    tag="h2"
+                    variant="textSM"
+                    class="font-medium text-zinc-900 dark:text-zinc-100 lg:text-balance"
                   >
-                    {option.name}
+                    {contact.title}
                   </Text>
-                </li>
+                  <dl class="text-sm  gap-2 text-zinc-500 dark:text-zinc-400 lg:col-span-2 grid grid-cols-1 lg:grid-cols-2">
+                    <div>
+                      <dt class="sr-only">Email</dt>
+                      <dd>
+                        <a
+                          href="#_"
+                          class="flex items-center font-medium text-zinc-900 dark:text-zinc-100  hover:text-blue-600 dark:hover:text-blue-300 text-sm"
+                        >
+                          <Mail size="sm" />
+                          {contact.email.address}
+                        </a>
+                      </dd>
+                    </div>
+                    <div>
+                      <dt class="sr-only">Phone number</dt>
+                      <dd>
+                        <a
+                          href="#_"
+                          class="flex items-center font-medium text-zinc-900 dark:text-zinc-100  hover:text-blue-600 dark:hover:text-blue-300 text-sm"
+                        >
+                          <Phone size="sm" />
+                          {contact.phone}
+                        </a>
+                      </dd>
+                    </div>
+                  </dl>
+                </div>
               ))
             }
-          </ul>
+          </div>
         </div>
-        <div class="py-4">
+        <div>
           <Text
             tag="h3"
-            variant="textLG"
-            class="font-medium text-zinc-900 dark:text-zinc-100"
-          >
-            Call us
-          </Text>
-          <Text
-            tag="p"
             variant="textBase"
-            class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
-          >
-            Our phones lines are open 24/7. You can call us anytime to get in
-            touch with us. We waiting for your call.
-          </Text>
-          <ul
-            class="mt-6 text-base font-medium list-none space-y-2 text-blue-500 dark:text-blue-400"
-          >
-            <div>
-              <span class="sr-only">Phone number</span>
-              <div>
-                <Text
-                  tag="a"
-                  href="#_"
-                  variant="textBase"
-                  class="flex items-center font-medium text-blue-500 dark:text-blue-400 gap-2 hover:text-zinc-900 dark:hover:text-zinc-100"
-                >
-                  +44 20 7946 1234
-                </Text>
-              </div>
-            </div>
-          </ul>
-        </div>
-        <div class="py-4">
-          <Text
-            tag="h3"
-            variant="textLG"
-            class="font-medium text-zinc-900 dark:text-zinc-100"
+            class="font-semibold text-zinc-900 dark:text-zinc-100"
           >
             Our offices
           </Text>
-          <Text
-            tag="p"
-            variant="textBase"
-            class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
-          >
-            We are global, might aswell that you can come and visit us in your
-            country. We have offices in the Amsterdam, Vienna, Stockholm and
-            Zurich.
-          </Text>
-          <ul
-            class="mt-6 text-base font-medium list-none divide-y text-blue-500 dark:text-blue-400 divide-zinc-200 dark:divide-zinc-700"
+          <div
+            class="mt-4 border-y divide-y border-zinc-200 dark:border-zinc-700 divide-zinc-200 dark:divide-zinc-700"
           >
             {
               locations.map((location) => (
-                <div class="py-4 grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3">
+                <div class="py-4 grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 gap-2">
                   <Text
-                    tag="h3"
-                    variant="textBase"
-                    class="font-medium text-zinc-900 dark:text-zinc-100"
+                    tag="h2"
+                    variant="textSM"
+                    class="font-medium text-zinc-900 dark:text-zinc-100 lg:text-balance"
                   >
                     {location.title}
                   </Text>
-                  <address class="flex mt-2 not-italic lg:mt-0 gap-2 lg:col-span-2  sm:text-balance">
+                  <address class="flex mt-2 text-sm not-italic gap-2 lg:col-span-2 text-zinc-500 dark:text-zinc-400  sm:text-balance">
                     <MapPin
                       class="text-blue-600 dark:text-blue-400"
                       size="sm"
                     />
-                    <div class="flex flex-col  gap-2">
+                    <div class="flex flex-col lg:flex-row gap-2">
                       {location.addressLines.map((line, idx) => (
-                        <Text
-                          tag="p"
-                          variant="textSM"
-                          class="font-medium text-zinc-500 dark:text-zinc-400"
-                        >
+                        <Text tag="p" variant="small">
                           {line}
                           {idx < location.addressLines.length - 1 ? ", " : ""}
                         </Text>
@@ -209,209 +171,9 @@ const teamMembers = [
                 </div>
               ))
             }
-          </ul>
+          </div>
         </div>
       </div>
-      <form action="#" method="POST">
-        <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-          <div>
-            <Text
-              for="first-name"
-              tag="label"
-              variant="textBase"
-              class="font-medium text-zinc-500 dark:text-zinc-400"
-            >
-              First name
-            </Text>
-            <div class="mt-2.5">
-              <input
-                type="text"
-                name="first-name"
-                id="first-name"
-                autocomplete="given-name"
-                required
-                aria-required="true"
-                aria-describedby="first-name-error"
-                placeholder="Your first name"
-                class="block w-full h-10 px-4 py-2 text-sm bg-white dark:bg-zinc-900 border border-transparent rounded-lg appearance-none text-blue-700 dark:text-blue-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
-              />
-              <span id="first-name-error" class="hidden text-sm text-red-600">
-                Please enter your first name.
-              </span>
-            </div>
-          </div>
-          <div>
-            <Text
-              for="last-name"
-              tag="label"
-              variant="textBase"
-              class="font-medium text-zinc-500 dark:text-zinc-400"
-            >
-              Last name
-            </Text>
-            <div class="mt-2.5">
-              <input
-                type="text"
-                name="last-name"
-                id="last-name"
-                autocomplete="family-name"
-                required
-                aria-required="true"
-                aria-describedby="last-name-error"
-                placeholder="Your last name"
-                class="block w-full h-10 px-4 py-2 text-sm bg-white dark:bg-zinc-900 border border-transparent rounded-lg appearance-none text-blue-700 dark:text-blue-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
-              />
-              <span id="last-name-error" class="hidden text-sm text-red-600">
-                Please enter your last name.
-              </span>
-            </div>
-          </div>
-          <div class="sm:col-span-2">
-            <Text
-              for="compant"
-              tag="label"
-              variant="textBase"
-              class="font-medium text-zinc-500 dark:text-zinc-400"
-            >
-              Company name
-            </Text>
-            <div class="mt-2.5">
-              <input
-                type="text"
-                name="company"
-                id="company"
-                autocomplete="organization"
-                aria-describedby="company-error"
-                placeholder="Your company"
-                class="block w-full h-10 px-4 py-2 text-sm bg-white dark:bg-zinc-900 border border-transparent rounded-lg appearance-none text-blue-700 dark:text-blue-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
-              />
-              <span id="company-error" class="hidden text-sm text-red-600">
-                Please enter your company name.
-              </span>
-            </div>
-          </div>
-          <div class="sm:col-span-2">
-            <Text
-              for="phone-number"
-              tag="label"
-              variant="textBase"
-              class="font-medium text-zinc-500 dark:text-zinc-400"
-            >
-              Phone number
-            </Text>
-            <div class="relative mt-2.5">
-              <div class="absolute inset-y-0 left-0 flex items-center">
-                <label for="country" class="sr-only">Country</label>
-                <select
-                  id="country"
-                  name="country"
-                  aria-label="Country code"
-                  class="h-full py-0 pl-4 bg-transparent border-0 rounded-md pr-9 text-zinc-400 dark:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm"
-                >
-                  <option value="IT">Italy</option>
-                  <option value="ES">Spain</option>
-                  <option value="JP">Japan</option>
-                </select>
-              </div>
-              <input
-                type="tel"
-                name="phone-number"
-                id="phone-number"
-                autocomplete="tel"
-                aria-describedby="phone-number-description"
-                placeholder="123-456-7890"
-                class="block w-full h-10 px-4 py-2 pl-24 text-sm bg-white dark:bg-zinc-900 border border-transparent rounded-lg shadow appearance-none text-blue-700 dark:text-blue-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
-              />
-              <p id="phone-number-description" class="sr-only">
-                Enter your phone number including the country code.
-              </p>
-            </div>
-          </div>
-          <div class="sm:col-span-2">
-            <Text
-              for="email"
-              tag="label"
-              variant="textBase"
-              class="font-medium text-zinc-500 dark:text-zinc-400"
-            >
-              Email
-            </Text>
-            <div class="mt-2.5">
-              <input
-                type="email"
-                name="email"
-                id="email"
-                autocomplete="email"
-                required
-                aria-required="true"
-                aria-describedby="email-error"
-                placeholder="Your email"
-                class="block w-full h-10 px-4 py-2 text-sm bg-white dark:bg-zinc-900 border border-transparent rounded-lg appearance-none text-blue-700 dark:text-blue-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
-              />
-              <span id="email-error" class="hidden text-sm text-red-600">
-                Please enter a valid email address.
-              </span>
-            </div>
-          </div>
-          <div class="sm:col-span-2">
-            <Text
-              for="message"
-              tag="label"
-              variant="textBase"
-              class="font-medium text-zinc-500 dark:text-zinc-400"
-            >
-              Message
-            </Text>
-            <div class="mt-2.5">
-              <textarea
-                name="message"
-                id="message"
-                rows="5"
-                aria-describedby="message-error"
-                placeholder="Your message"
-                class="block w-full px-4 py-2 text-sm bg-white dark:bg-zinc-900 border border-transparent rounded-lg appearance-none text-blue-700 dark:text-blue-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
-              ></textarea>
-              <span id="message-error" class="hidden text-sm text-red-600">
-                Please enter your message.
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="flex items-center mt-4">
-          <input
-            id="agreement"
-            name="agreement"
-            type="checkbox"
-            class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-blue-600 dark:text-blue-400 focus:ring-blue-600 dark:focus:ring-blue-400"
-          />
-          <Text
-            for="agreement"
-            tag="label"
-            class="block ml-3 text-sm text-zinc-500 dark:text-zinc-400"
-            >You agree to our
-            <Text
-              tag="a"
-              href="#_"
-              variant="textSM"
-              class="font-medium text-blue-500 dark:text-blue-400 hover:text-zinc-500 dark:hover:text-zinc-300"
-            >
-              Terms of service
-            </Text>
-            and
-            <Text
-              tag="a"
-              href="#_"
-              variant="textSM"
-              class="font-medium text-blue-500 dark:text-blue-400 hover:text-zinc-500 dark:hover:text-zinc-300"
-            >
-              Privacy Policy
-            </Text>
-          </Text>
-        </div>
-        <div class="mt-10">
-          <Button class="w-full" variant="accent" size="base"> Submit </Button>
-        </div>
-      </form>
     </div>
   </div>
 </section>

@@ -2,6 +2,7 @@
 import Button from "@/components/fundations/buttons/Button.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 import MapPin from "@/components/fundations/icons/MapPin.astro";
+import Kicker from "@/components/fundations/typography/Kicker.astro";
 const services = [
   { id: 1, name: "UX Design" },
   { id: 2, name: "Web Development" },
@@ -38,44 +39,36 @@ const locations = [
 ---
 
 <section class="bg-white dark:bg-zinc-900">
-  <div class="max-w-7xl mx-auto px-8 lg:px-12 py-24">
+  <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
     <div class="max-w-xl lg:text-balance">
+      <Kicker>Let’s Talk</Kicker>
       <Text
-        tag="p"
-        variant="textSM"
-        class="font-bold uppercase text-blue-600 dark:text-blue-400"
-      >
-        Tagline
-      </Text>
-      <Text
-        tag="h2"
+        tag="h1"
         variant="displayMD"
-        class="mt-4 font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 lg:text-balance"
+        class="mt-12 font-semibold tracking-tight text-zinc-900 dark:text-white lg:text-balance"
       >
-        We would love to hear from you!
+        How can we help you today?
       </Text>
       <Text
         tag="p"
         variant="textBase"
-        class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+        class="mt-4 lg:text-balance text-zinc-500 dark:text-zinc-400"
       >
-        Uniting talent with vision. Get to know the dedicated professionals who
-        blend their skills and passion to lead us to new heights.
+        Reach out to our team for questions, project ideas, or support. We’re
+        here to collaborate and help you achieve your goals.
       </Text>
     </div>
     <div class="mt-12 grid grid-cols-1 gap-x-32 gap-y-6 md:grid-cols-2">
       <form action="#" method="POST">
         <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
           <div>
-            <Text
+            <label
               for="first-name"
-              tag="label"
-              variant="textBase"
-              class="font-medium text-zinc-500 dark:text-zinc-400"
+              class="font-medium text-zinc-500 dark:text-zinc-400 text-sm"
             >
               First name
-            </Text>
-            <div class="mt-2.5">
+            </label>
+            <div class="1">
               <input
                 type="text"
                 name="first-name"
@@ -85,7 +78,7 @@ const locations = [
                 aria-required="true"
                 aria-describedby="first-name-error"
                 placeholder="Your first name"
-                class="block w-full h-10 px-4 py-2 text-sm bg-white dark:bg-zinc-900 border border-transparent rounded-lg appearance-none text-blue-700 dark:text-blue-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+                class="block w-full h-10 px-4 py-2 text-sm bg-white dark:bg-zinc-900 border border-transparent rounded-lg appearance-none text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-700 focus:bg-transparent focus:outline-none focus:ring-zinc-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
               />
               <span id="first-name-error" class="hidden text-sm text-red-600">
                 Please enter your first name.
@@ -93,15 +86,13 @@ const locations = [
             </div>
           </div>
           <div>
-            <Text
+            <label
               for="last-name"
-              tag="label"
-              variant="textBase"
-              class="font-medium text-zinc-500 dark:text-zinc-400"
+              class="font-medium text-zinc-500 dark:text-zinc-400 text-sm"
             >
               Last name
-            </Text>
-            <div class="mt-2.5">
+            </label>
+            <div class="1">
               <input
                 type="text"
                 name="last-name"
@@ -111,7 +102,7 @@ const locations = [
                 aria-required="true"
                 aria-describedby="last-name-error"
                 placeholder="Your last name"
-                class="block w-full h-10 px-4 py-2 text-sm bg-white dark:bg-zinc-900 border border-transparent rounded-lg appearance-none text-blue-700 dark:text-blue-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+                class="block w-full h-10 px-4 py-2 text-sm bg-white dark:bg-zinc-900 border border-transparent rounded-lg appearance-none text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-700 focus:bg-transparent focus:outline-none focus:ring-zinc-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
               />
               <span id="last-name-error" class="hidden text-sm text-red-600">
                 Please enter your last name.
@@ -119,15 +110,13 @@ const locations = [
             </div>
           </div>
           <div class="sm:col-span-2">
-            <Text
+            <label
               for="compant"
-              tag="label"
-              variant="textBase"
-              class="font-medium text-zinc-500 dark:text-zinc-400"
+              class="font-medium text-zinc-500 dark:text-zinc-400 text-sm"
             >
               Company name
-            </Text>
-            <div class="mt-2.5">
+            </label>
+            <div class="1">
               <input
                 type="text"
                 name="company"
@@ -135,7 +124,7 @@ const locations = [
                 autocomplete="organization"
                 aria-describedby="company-error"
                 placeholder="Your company"
-                class="block w-full h-10 px-4 py-2 text-sm bg-white dark:bg-zinc-900 border border-transparent rounded-lg appearance-none text-blue-700 dark:text-blue-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+                class="block w-full h-10 px-4 py-2 text-sm bg-white dark:bg-zinc-900 border border-transparent rounded-lg appearance-none text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-700 focus:bg-transparent focus:outline-none focus:ring-zinc-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
               />
               <span id="company-error" class="hidden text-sm text-red-600">
                 Please enter your company name.
@@ -143,22 +132,20 @@ const locations = [
             </div>
           </div>
           <div class="sm:col-span-2">
-            <Text
+            <label
               for="phone-number"
-              tag="label"
-              variant="textBase"
-              class="font-medium text-zinc-500 dark:text-zinc-400"
+              class="font-medium text-zinc-500 dark:text-zinc-400 text-sm"
             >
               Phone number
-            </Text>
-            <div class="relative mt-2.5">
+            </label>
+            <div class="relative 1">
               <div class="absolute inset-y-0 left-0 flex items-center">
                 <label for="country" class="sr-only">Country</label>
                 <select
                   id="country"
                   name="country"
                   aria-label="Country code"
-                  class="h-full py-0 pl-4 bg-transparent border-0 rounded-md pr-9 text-zinc-400 dark:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm"
+                  class="h-full py-0 pl-4 bg-transparent border-0 rounded-md pr-9 text-zinc-400 dark:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-zinc-600 sm:text-sm"
                 >
                   <option value="IT">Italy</option>
                   <option value="ES">Spain</option>
@@ -172,7 +159,7 @@ const locations = [
                 autocomplete="tel"
                 aria-describedby="phone-number-description"
                 placeholder="123-456-7890"
-                class="block w-full h-10 px-4 py-2 pl-24 text-sm bg-white dark:bg-zinc-900 border border-transparent rounded-lg shadow appearance-none text-blue-700 dark:text-blue-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+                class="block w-full h-10 px-4 py-2 pl-24 text-sm bg-white dark:bg-zinc-900 border border-transparent rounded-lg shadow appearance-none text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-700 focus:bg-transparent focus:outline-none focus:ring-zinc-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
               />
               <p id="phone-number-description" class="sr-only">
                 Enter your phone number including the country code.
@@ -180,15 +167,13 @@ const locations = [
             </div>
           </div>
           <div class="sm:col-span-2">
-            <Text
+            <label
               for="email"
-              tag="label"
-              variant="textBase"
-              class="font-medium text-zinc-500 dark:text-zinc-400"
+              class="font-medium text-zinc-500 dark:text-zinc-400 text-sm"
             >
               Email
-            </Text>
-            <div class="mt-2.5">
+            </label>
+            <div class="1">
               <input
                 type="email"
                 name="email"
@@ -198,7 +183,7 @@ const locations = [
                 aria-required="true"
                 aria-describedby="email-error"
                 placeholder="Your email"
-                class="block w-full h-10 px-4 py-2 text-sm bg-white dark:bg-zinc-900 border border-transparent rounded-lg appearance-none text-blue-700 dark:text-blue-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+                class="block w-full h-10 px-4 py-2 text-sm bg-white dark:bg-zinc-900 border border-transparent rounded-lg appearance-none text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-700 focus:bg-transparent focus:outline-none focus:ring-zinc-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
               />
               <span id="email-error" class="hidden text-sm text-red-600">
                 Please enter a valid email address.
@@ -206,22 +191,20 @@ const locations = [
             </div>
           </div>
           <div class="sm:col-span-2">
-            <Text
+            <label
               for="message"
-              tag="label"
-              variant="textBase"
-              class="font-medium text-zinc-500 dark:text-zinc-400"
+              class="font-medium text-zinc-500 dark:text-zinc-400 text-sm"
             >
               Message
-            </Text>
-            <div class="mt-2.5">
+            </label>
+            <div class="1">
               <textarea
                 name="message"
                 id="message"
                 rows="5"
                 aria-describedby="message-error"
                 placeholder="Your message"
-                class="block w-full px-4 py-2 text-sm bg-white dark:bg-zinc-900 border border-transparent rounded-lg appearance-none text-blue-700 dark:text-blue-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+                class="block w-full px-4 py-2 text-sm bg-white dark:bg-zinc-900 border border-transparent rounded-lg appearance-none text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-700 focus:bg-transparent focus:outline-none focus:ring-zinc-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
               ></textarea>
               <span id="message-error" class="hidden text-sm text-red-600">
                 Please enter your message.
@@ -234,35 +217,31 @@ const locations = [
             id="agreement"
             name="agreement"
             type="checkbox"
-            class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-blue-600 dark:text-blue-400 focus:ring-blue-600 dark:focus:ring-blue-400"
+            class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 focus:ring-zinc-600 dark:focus:ring-zinc-400"
           />
-          <Text
+          <label
             for="agreement"
-            tag="label"
             class="block ml-3 text-sm text-zinc-500 dark:text-zinc-400"
-            >You agree to our
-            <Text
-              tag="a"
+          >
+            You agree to our
+            <a
               href="#_"
-              variant="textSM"
-              class="font-medium text-blue-500 dark:text-blue-400 hover:text-zinc-500 dark:hover:text-zinc-300"
+              class="ont-medium text-zinc-900 dark:text-zinc-100 hover:text-zinc-600 dark:hover:text-zinc-300"
             >
               Terms of service
-            </Text>
+            </a>
             and
-            <Text
-              tag="a"
+            <a
               href="#_"
-              variant="textSM"
-              class="font-medium text-blue-500 dark:text-blue-400 hover:text-zinc-500 dark:hover:text-zinc-300"
+              class="ont-medium text-zinc-900 dark:text-zinc-100 hover:text-zinc-600 dark:hover:text-zinc-300"
             >
               Privacy Policy
-            </Text>
-          </Text>
+            </a>
+          </label>
         </div>
-        <div class="mt-10">
-          <Button class="w-full" variant="accent" size="base"> Submit </Button>
-        </div>
+        <Button class="w-full mt-8" variant="default" size="base">
+          Submit
+        </Button>
         <div class="mt-8">
           <Text
             tag="h3"
@@ -280,7 +259,7 @@ const locations = [
                     id={"service-" + service.id}
                     name={"service-" + service.id}
                     type="checkbox"
-                    class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-blue-600 dark:text-blue-400 focus:ring-blue-600 dark:focus:ring-blue-400 bg-white dark:bg-zinc-800"
+                    class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 focus:ring-zinc-600 dark:focus:ring-zinc-400 bg-white dark:bg-zinc-800"
                   />
                   <label
                     for={"service-" + service.id}
@@ -298,33 +277,29 @@ const locations = [
         <div class="py-4">
           <Text
             tag="h3"
-            variant="textLG"
-            class="font-medium text-zinc-900 dark:text-zinc-100"
+            variant="textBase"
+            class="font-semibold text-zinc-900 dark:text-zinc-100"
           >
-            Talk to us
+            Get in touch
           </Text>
           <Text
             tag="p"
-            variant="textBase"
+            variant="textSM"
             class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
           >
-            Speak to our team about your project and we will get back to you as
-            soon as possible. We are here to help you every step of the way.
+            Reach out to our experts for advice, collaboration, or support.
+            We’ll respond promptly and guide you every step of the way.
           </Text>
-          <ul
-            class="mt-6 text-base font-medium list-none space-y-2 text-blue-500 dark:text-blue-400"
-          >
+          <ul class="mt-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">
             {
               options.map((option) => (
                 <li>
-                  <Text
-                    tag="a"
+                  <a
                     href="#_"
-                    variant="textBase"
-                    class="flex items-center font-medium text-blue-500 dark:text-blue-400 gap-2 hover:text-zinc-900 dark:hover:text-zinc-100"
+                    class="font-medium text-zinc-900 dark:text-zinc-100  hover:text-zinc-600 dark:hover:text-zinc-300 text-sm"
                   >
                     {option.name}
-                  </Text>
+                  </a>
                 </li>
               ))
             }
@@ -333,56 +308,47 @@ const locations = [
         <div class="py-4">
           <Text
             tag="h3"
-            variant="textLG"
+            variant="textBase"
             class="font-medium text-zinc-900 dark:text-zinc-100"
           >
             Call us
           </Text>
           <Text
             tag="p"
-            variant="textBase"
+            variant="textSM"
             class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
           >
-            Our phones lines are open 24/7. You can call us anytime to get in
-            touch with us. We waiting for your call.
+            Our phone lines are open around the clock. Call anytime and our team
+            will be happy to assist you.
           </Text>
-          <ul
-            class="mt-6 text-base font-medium list-none space-y-2 text-blue-500 dark:text-blue-400"
-          >
-            <div>
+          <div class="mt-6">
+            <a
+              href="#_"
+              class="font-medium text-zinc-900 dark:text-zinc-100 hover:text-zinc-600 dark:hover:text-zinc-300 text-sm"
+            >
               <span class="sr-only">Phone number</span>
-              <div>
-                <Text
-                  tag="a"
-                  href="#_"
-                  variant="textBase"
-                  class="flex items-center font-medium text-blue-500 dark:text-blue-400 gap-2 hover:text-zinc-900 dark:hover:text-zinc-100"
-                >
-                  +44 20 7946 1234
-                </Text>
-              </div>
-            </div>
-          </ul>
+              +44 20 7946 1234
+            </a>
+          </div>
         </div>
         <div class="py-4">
           <Text
             tag="h3"
-            variant="textLG"
+            variant="textBase"
             class="font-medium text-zinc-900 dark:text-zinc-100"
           >
             Our offices
           </Text>
           <Text
             tag="p"
-            variant="textBase"
+            variant="textSM"
             class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
           >
-            We are global, might aswell that you can come and visit us in your
-            country. We have offices in the Amsterdam, Vienna, Stockholm and
-            Zurich.
+            Visit us at one of our international locations. We’re present in
+            Amsterdam, Vienna, Stockholm, and Zurich—stop by and say hello!
           </Text>
           <ul
-            class="mt-6 text-base font-medium list-none divide-y text-blue-500 dark:text-blue-400 divide-zinc-200 dark:divide-zinc-700"
+            class="mt-6 text-base font-medium list-none divide-y text-zinc-500 dark:text-zinc-400 divide-zinc-200 dark:divide-zinc-700"
           >
             {
               locations.map((location) => (
@@ -396,7 +362,7 @@ const locations = [
                   </Text>
                   <address class="flex mt-2 not-italic lg:mt-0 gap-2 lg:col-span-2  sm:text-balance">
                     <MapPin
-                      class="text-blue-600 dark:text-blue-400"
+                      class="text-zinc-600 dark:text-zinc-400"
                       size="sm"
                     />
                     <div class="flex flex-col  gap-2">
@@ -404,7 +370,7 @@ const locations = [
                         <Text
                           tag="p"
                           variant="textSM"
-                          class="font-medium text-zinc-500 dark:text-zinc-400"
+                          class="font-medium text-zinc-500 dark:text-zinc-400 text-sm"
                         >
                           {line}
                           {idx < location.addressLines.length - 1 ? ", " : ""}
