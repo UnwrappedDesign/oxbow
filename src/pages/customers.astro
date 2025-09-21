@@ -14,60 +14,63 @@ import { reviews } from "@/data/reviews.json";
 
 <BaseLayout>
   <MainHero
+    textCentered
     showAlpineTailwind={false}
     title="Meet Oxbow's customers and supporters"
   />
   <section>
     <Wrapper variant="standard">
-      <ul
-        class="relative w-full md:grid-cols-2 lg:grid-cols-2 grid gap-2"
-        role="list"
-      >
-        {
-          reviews.map((template) => (
-            <>
-              <li class="flex flex-col h-full p-4 bg-white rounded-xl ">
-                <div class="flex flex-col justify-between h-full gap-6 ">
-                  <Text
-                    tag="p"
-                    variant="textSM"
-                    class="mt-2 text-sm text-zinc-500 "
-                  >
-                    "{template.text}"
-                  </Text>
-                  <div class="inline-flex items-center gap-3">
-                    <div class="flex-shrink-0">
-                      <Image
-                        alt={template.name}
-                        src={template.image}
-                        width={200}
-                        height={200}
-                        class="rounded-full size-10  grayscale"
-                      />
-                    </div>
-                    <div class="flex-1 min-w-0 ">
-                      <Text
-                        tag="p"
-                        variant="textSM"
-                        class="text-black capitalize "
-                      >
-                        {template.name}
-                      </Text>
-                      <Text
-                        tag="p"
-                        variant="textXS"
-                        class="capitalize text-zinc-400 "
-                      >
-                        {template.work}
-                      </Text>
+      <Wrapper variant="narrow">
+        <ul
+          class="relative w-full flex flex-col divide-y divide-zinc-200 border-y border-zinc-200 "
+          role="list"
+        >
+          {
+            reviews.map((template) => (
+              <>
+                <li class="flex flex-col py-4 ">
+                  <div class="flex flex-col justify-between h-full gap-6 ">
+                    <Text
+                      tag="p"
+                      variant="textSM"
+                      class="mt-2 text-sm text-zinc-500 "
+                    >
+                      "{template.text}"
+                    </Text>
+                    <div class="inline-flex items-center gap-3">
+                      <div class="flex-shrink-0">
+                        <Image
+                          alt={template.name}
+                          src={template.image}
+                          width={200}
+                          height={200}
+                          class="rounded-full size-10  grayscale"
+                        />
+                      </div>
+                      <div class="flex-1 min-w-0 ">
+                        <Text
+                          tag="p"
+                          variant="textSM"
+                          class="text-black capitalize "
+                        >
+                          {template.name}
+                        </Text>
+                        <Text
+                          tag="p"
+                          variant="textXS"
+                          class="capitalize text-zinc-400 "
+                        >
+                          {template.work}
+                        </Text>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </li>
-            </>
-          ))
-        }
-      </ul>
+                </li>
+              </>
+            ))
+          }
+        </ul>
+      </Wrapper>
     </Wrapper>
   </section>
 </BaseLayout>

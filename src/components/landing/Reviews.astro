@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import { reviews } from "@/data/reviews.json";
 // Fundations
 import Text from "@/components/fundations/typography/Text.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 // Randomize the reviews array
 const randomizedReviews = [...reviews].sort(() => Math.random() - 0.5);
@@ -10,37 +11,63 @@ const randomizedReviews = [...reviews].sort(() => Math.random() - 0.5);
 
 <section>
   <Wrapper variant="standard">
-    <div class="flex justify-center grid grid-cols-1 md:grid-cols-3 gap-2">
-      {
-        randomizedReviews.slice(0, 3).map((template) => (
-          <div class="flex flex-col gap-2 p-4 rounded-xl bg-white">
-            <div class="flex items-center gap-2">
-              <Image
-                src={template.image}
-                alt={template.name}
-                width={1000}
-                height={1000}
-                class="object-cover object-top rounded-lg size-12"
-              />
-              <div class="">
-                <Text tag="p" variant="textSM" class="text-zinc-900">
-                  {template.name}
+    <Wrapper variant="narrow">
+      <ul
+        class="relative w-full flex flex-col divide-y divide-zinc-200 border-y border-zinc-200"
+        role="list"
+      >
+        {
+          randomizedReviews.slice(0, 3).map((template) => (
+            <li class="flex flex-col py-4 ">
+              <div class="flex flex-col justify-between h-full gap-6 ">
+                <Text
+                  tag="p"
+                  variant="textSM"
+                  class="mt-2 text-sm text-zinc-500 "
+                >
+                  "{template.text}"
                 </Text>
-                <Text tag="p" variant="textXS" class="text-zinc-500">
-                  {template.work}
-                </Text>
+                <div class="inline-flex items-center gap-3">
+                  <div class="flex-shrink-0">
+                    <Image
+                      alt={template.name}
+                      src={template.image}
+                      width={200}
+                      height={200}
+                      class="rounded-full size-10  grayscale"
+                    />
+                  </div>
+                  <div class="flex-1 min-w-0 ">
+                    <Text
+                      tag="p"
+                      variant="textSM"
+                      class="text-black capitalize "
+                    >
+                      {template.name}
+                    </Text>
+                    <Text
+                      tag="p"
+                      variant="textXS"
+                      class="capitalize text-zinc-400 "
+                    >
+                      {template.work}
+                    </Text>
+                  </div>
+                </div>
               </div>
-            </div>
-            <Text
-              tag="h3"
-              variant="textSM"
-              class=" text-balance text-zinc-600 mt-8 md:[word-spacing:0.025em]"
-            >
-              "{template.text}"
-            </Text>
-          </div>
-        ))
-      }
-    </div>
+            </li>
+          ))
+        }
+      </ul>
+      <Button
+        size="xs"
+        variant="oxbowMuted"
+        isLink
+        href="/customers"
+        class="w-fit mt-2"
+      >
+        Read then all
+      </Button>
+    </Wrapper>
   </Wrapper>
 </section>
