@@ -1,120 +1,239 @@
 ---
-import Button from "@/components/fundations/buttons/Button.astro";
+export const excludeFromObfuscation = ["bg-white", "shadow"];
 
 import Text from "@/components/fundations/typography/Text.astro";
 import Filters from "@/components/fundations/icons/Filters.astro";
 import WaveSquare from "@/components/fundations/icons/WaveSquare.astro";
 import ArrowIteration from "@/components/fundations/icons/ArrowIteration.astro";
-const data = [
-  {
-    image: "/widgets/progressCircles.svg",
-    icon: "Filters",
-    category: "Live editing",
-    text: "Instantly see the result of every change you make.",
-  },
-  {
-    image: "/widgets/figmaComp2.svg",
-    icon: "WaveSquare",
-    category: "Autocompletion",
-    text: "Spotless will suggest the right classes for you as you type.",
-  },
-  {
-    image: "/widgets/figmaComp.svg",
-    icon: "ArrowIteration",
-    category: "Hide/show classes",
-    text: "Hide or show classes to see how your design changes.",
-  },
-];
+import Cursor from "@/components/fundations/icons/Cursor.astro";
 ---
 
 <section class="bg-white dark:bg-zinc-900">
   <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
-    <div class="grid grid-cols-1 gap-12 md:grid-cols-3 lg:items-end">
-      <div class="lg:col-span-2">
-        <Text
-          tag="p"
-          variant="textSM"
-          class="font-bold uppercase text-blue-600 dark:text-blue-400"
-        >
-          Tagline
-        </Text>
-        <Text
-          tag="h2"
-          variant="displayMD"
-          class="mt-4 font-semibold text-zinc-900 dark:text-zinc-100 lg:text-balance"
-        >
-          Transforming the banking experience for a digital future
-        </Text>
-        <Text
-          tag="p"
-          variant="textBase"
-          class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
-        >
-          The fastest method for working together on staging and temporary
-          environments.
-        </Text>
-      </div>
-      <div class="flex flex-wrap items-center gap-2 lg:ml-auto">
-        <Button variant="default" size="sm"> Get started </Button>
-      </div>
-    </div>
-    <dl
-      class="mt-24 grid grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-3 lg:gap-y-16"
+    <!-- Show Tab 1 as default  -->
+    <div
+      x-data="{ tab: 'tab1' }"
+      class="items-center grid grid-cols-1 gap-6 lg:grid-cols-2"
     >
-      {
-        data.map((section) => (
-          <div class="flex flex-col justify-between h-full p-8 gap-4 bg-zinc-50 dark:bg-zinc-900/40 rounded-3xl">
+      <ul class="list-none grid sm:grid-cols-2 lg:grid-cols-1 gap-4">
+        <!-- Tab 1 -->
+        <li class="p-1 bg-zinc-50 dark:bg-zinc-800 rounded-xl">
+          <button
+            @click.prevent="tab = 'tab1'"
+            class="items-start p-4 lg:p-8 rounded-lg transition text-left h-full bg-white dark:bg-zinc-800 shadow dark:shadow-zinc-950/80"
+            :class="{ 'bg-white shadow dark:bg-zinc-900' : tab === 'tab1' }"
+          >
             <div>
-              <img
-                class="-mt-16 shadow rounded-2xl"
-                src={section.image}
-                alt="#_"
-              />
-            </div>
-            <div>
-              <div class="flex items-center text-blue-500 gap-3">
-                {section.icon === "Filters" && (
-                  <Filters
-                    class="text-blue-600 dark:text-blue-400"
-                    size="base"
-                  />
-                )}
-                {section.icon === "WaveSquare" && (
-                  <WaveSquare
-                    class="text-blue-600 dark:text-blue-400"
-                    size="base"
-                  />
-                )}
-                {section.icon === "ArrowIteration" && (
-                  <ArrowIteration
-                    class="text-blue-600 dark:text-blue-400"
-                    size="base"
-                  />
-                )}
-
+              <div class="flex items-center gap-4">
+                <Filters class="text-zinc-600 dark:text-zinc-400" size="base" />
                 <dt>
                   <Text
                     tag="h3"
-                    variant="textLG"
-                    class="font-medium  text-zinc-900 dark:text-zinc-100"
+                    variant="textBase"
+                    class="font-semibold text-zinc-900 dark:text-zinc-100"
                   >
-                    {section.category}
+                    Innovative Design
                   </Text>
                 </dt>
               </div>
               <dd>
                 <Text
                   tag="p"
-                  variant="textBase"
-                  class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+                  variant="textSM"
+                  class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
                 >
-                  {section.text}
+                  Our cutting-edge design offers a fresh, modern look that
+                  transforms your project into a standout experience.
                 </Text>
               </dd>
             </div>
+          </button>
+        </li>
+        <!-- Tab 2 -->
+        <li class="p-1 bg-zinc-50 dark:bg-zinc-800 rounded-xl">
+          <button
+            @click.prevent="tab = 'tab2'"
+            class="items-start p-4 lg:p-8 rounded-lg transition text-left h-full bg-white dark:bg-zinc-800 shadow dark:shadow-zinc-950/80"
+            :class="{ 'bg-white shadow dark:bg-zinc-900 ' : tab === 'tab2' }"
+          >
+            <div>
+              <div class="flex items-center gap-4">
+                <WaveSquare class="text-zinc-600 dark:text-zinc-400" size="base" />
+                <dt>
+                  <Text
+                    tag="h3"
+                    variant="textBase"
+                    class="font-semibold text-zinc-900 dark:text-zinc-100"
+                  >
+                    Powerful Functionality
+                  </Text>
+                </dt>
+              </div>
+              <dd>
+                <Text
+                  tag="p"
+                  variant="textSM"
+                  class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
+                >
+                  Equipped with advanced features and tools, our solution
+                  effortlessly manages complex tasks and workflows.
+                </Text>
+              </dd>
+            </div>
+          </button>
+        </li>
+        <!-- Tab 3 -->
+        <li class="p-1 bg-zinc-50 dark:bg-zinc-800 rounded-xl">
+          <button
+            @click.prevent="tab = 'tab3'"
+            class="items-start p-4 lg:p-8 rounded-lg transition text-left h-full bg-white dark:bg-zinc-800 shadow dark:shadow-zinc-950/80"
+            :class="{ 'bg-white shadow dark:bg-zinc-900 ' : tab === 'tab3' }"
+          >
+            <div>
+              <div class="flex items-center gap-4">
+                <ArrowIteration class="text-zinc-600 dark:text-zinc-400" size="base" />
+                <dt>
+                  <Text
+                    tag="h3"
+                    variant="textBase"
+                    class="font-semibold text-zinc-900 dark:text-zinc-100"
+                  >
+                    Revolutionizing communication
+                  </Text>
+                </dt>
+              </div>
+              <dd>
+                <Text
+                  tag="p"
+                  variant="textSM"
+                  class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
+                >
+                  Unlocking innovative solutions that enhance connectivity and
+                  streamline interactions.
+                </Text>
+              </dd>
+            </div>
+          </button>
+        </li>
+        <!-- Tab 4 -->
+        <li class="p-1 bg-zinc-50 dark:bg-zinc-800 rounded-xl">
+          <button
+            @click.prevent="tab = 'tab4'"
+            class="items-start p-4 lg:p-8 rounded-lg transition text-left h-full bg-white dark:bg-zinc-800 shadow dark:shadow-zinc-950/80"
+            :class="{ 'bg-white shadow dark:bg-zinc-900 ' : tab === 'tab4' }"
+          >
+            <div>
+              <div class="flex items-center gap-4">
+                <WaveSquare class="text-zinc-600 dark:text-zinc-400" size="base" />
+                <dt>
+                  <Text
+                    tag="h3"
+                    variant="textBase"
+                    class="font-semibold text-zinc-900 dark:text-zinc-100"
+                  >
+                    Easy Integration
+                  </Text>
+                </dt>
+              </div>
+              <dd>
+                <Text
+                  tag="p"
+                  variant="textSM"
+                  class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
+                >
+                  Integrating with existing systems is smooth and hassle-free,
+                  thanks to our incredible flexible approach.
+                </Text>
+              </dd>
+            </div>
+          </button>
+        </li>
+        <!-- Tab 5 -->
+        <li class="p-1 bg-zinc-50 dark:bg-zinc-800 rounded-xl">
+          <button
+            @click.prevent="tab = 'tab5'"
+            class="items-start p-4 lg:p-8 rounded-lg transition text-left h-full bg-white dark:bg-zinc-800 shadow dark:shadow-zinc-950/80"
+            :class="{ 'bg-white shadow dark:bg-zinc-900' : tab === 'tab5' }"
+          >
+            <div>
+              <div class="flex items-center gap-4">
+                <Cursor class="text-zinc-600 dark:text-zinc-400" size="base" />
+                <dt>
+                  <Text
+                    tag="h3"
+                    variant="textBase"
+                    class="font-semibold text-zinc-900 dark:text-zinc-100"
+                  >
+                    Advanced Analytics
+                  </Text>
+                </dt>
+              </div>
+              <dd>
+                <Text
+                  tag="p"
+                  variant="textSM"
+                  class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
+                >
+                  Gain deep insights into your data with our comprehensive
+                  analytics tools, helping you make informed decisions.
+                </Text>
+              </dd>
+            </div>
+          </button>
+        </li>
+      </ul>
+      <div class="p-8 text-left content">
+        <!-- Tab 1 content -->
+        <div x-show="tab==='tab1'">
+          <div class="block w-full mt-12">
+            <img
+              alt="#_"
+              class="relative object-cover w-full h-full rounded-2xl drop-shadow-2xl"
+              src="/images/phone1.png"
+            />
           </div>
-        ))
-      }
-    </dl>
+        </div>
+        <!-- Tab 2 content. You can add a transition on this div to make it smoother -->
+        <div x-show="tab==='tab2'" style="display: none;">
+          <div class="block w-full mt-12">
+            <img
+              alt="#_"
+              class="relative object-cover w-full h-full rounded-2xl drop-shadow-2xl"
+              src="/images/phone2.png"
+            />
+          </div>
+        </div>
+        <!-- Tab 3 content. You can add a transition on this div to make it smoother -->
+        <div x-show="tab==='tab3'" style="display: none;">
+          <div class="block w-full mt-12">
+            <img
+              alt="#_"
+              class="relative object-cover w-full h-full rounded-2xl drop-shadow-2xl"
+              src="/images/phone3.png"
+            />
+          </div>
+        </div>
+        <!-- Tab 4 content. You can add a transition on this div to make it smoother -->
+        <div x-show="tab==='tab4'" style="display: none;">
+          <div class="block w-full mt-12">
+            <img
+              alt="#_"
+              class="relative object-cover w-full h-full rounded-2xl drop-shadow-2xl"
+              src="/images/phone4.png"
+            />
+          </div>
+        </div>
+        <!-- Tab 5 content. You can add a transition on this div to make it smoother -->
+        <div x-show="tab==='tab5'" style="display: none;">
+          <div class="block w-full mt-12">
+            <img
+              alt="#_"
+              class="relative object-cover w-full h-full rounded-2xl drop-shadow-2xl"
+              src="/images/phone5.png"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>

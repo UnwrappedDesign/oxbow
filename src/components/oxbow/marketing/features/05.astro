@@ -1,61 +1,90 @@
 ---
 import Text from "@/components/fundations/typography/Text.astro";
-const featureTop = [
+// Enhanced feature highlights
+const features = [
   {
-    title: "Easy navigation",
+    title: "Cutting-Edge Interface",
     description:
-      "Hover over any element to see its Tailwind classes. Press Space to easily pin and edit your settings.",
-    imgSrc: "/widgets/hits.svg",
-    altText: "Navigation Image",
+      "Experience a sleek, modern design that captivates users and boosts engagement.",
+    imageSrc: "/widgets/sliders.svg",
+    imageAlt: "Cutting-edge interface preview",
   },
   {
-    title: "Persistence",
+    title: "Advanced Capabilities",
     description:
-      "Spotless will remember all your changes to every element so you can copy all changes at once!",
-    imgSrc: "/widgets/traffic.svg",
-    altText: "Persistence Image",
+      "Utilize powerful tools to tackle complex workflows with ease and precision.",
+    imageSrc: "/widgets/progressCircles.svg",
+    imageAlt: "Advanced capabilities illustration",
   },
   {
-    title: "Easy Integration",
+    title: "Seamless Connectivity",
     description:
-      "Integrating with existing systems is smooth and hassle-free, thanks to our incredible flexible approach.",
-    imgSrc: "/widgets/activity.svg",
-    altText: "Persistence Image",
+      "Integrate effortlessly with your existing platforms for uninterrupted operations.",
+    imageSrc: "/widgets/figmaComp.svg",
+    imageAlt: "Seamless connectivity graphic",
+  },
+  {
+    title: "Dynamic Insights",
+    description:
+      "Access real-time analytics and comprehensive reports to make informed decisions instantly.",
+    imageSrc: "/widgets/figmaComp2.svg",
+    imageAlt: "Dynamic insights dashboard",
   },
 ];
 ---
 
 <section class="bg-white dark:bg-zinc-900">
   <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
-    <dl class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="max-w-xl">
+      <Text
+        tag="h2"
+        variant="displayMD"
+        class="font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 text-balance"
+      >
+        Elevating finance through innovative features
+      </Text>
+      <Text
+        tag="p"
+        variant="textBase"
+        class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+      >
+        Discover tools designed to streamline collaboration and drive
+        efficiency.
+      </Text>
+    </div>
+    <dl
+      class="mt-12 grid sm:grid-cols-2 gap-x-6 gap-y-12 lg:gap-x-8 lg:gap-y-16 lg:Text-balance"
+    >
       {
-        featureTop.map((feature) => (
+        features.map((feature) => (
           <div class="flex flex-col justify-between h-full gap-8">
-            <div class="lg:text-balance bg-white dark:bg-zinc-900/40 rounded-2xl">
+            <div>
               <dt>
                 <Text
                   tag="h3"
-                  variant="textLG"
-                  class="font-medium text-zinc-900 dark:text-zinc-100"
+                  variant="textBase"
+                  class="font-semibold  text-zinc-900 dark:text-zinc-100"
                 >
                   {feature.title}
                 </Text>
               </dt>
-              <dd class="mt-2">
+              <dd class="mt-2 ">
                 <Text
                   tag="p"
-                  variant="textBase"
-                  class="font-medium text-zinc-500 dark:text-zinc-400"
+                  variant="textSM"
+                  class="font-medium  text-zinc-500 dark:text-zinc-400"
                 >
                   {feature.description}
                 </Text>
               </dd>
             </div>
-            <img
-              class="shadow rounded-2xl"
-              src={feature.imgSrc}
-              alt={feature.altText}
-            />
+            <div class="h-full p-8 pb-0 overflow-hidden bg-zinc-50 dark:bg-zinc-800 rounded-2xl">
+              <img
+                class="object-center w-full -mb-12 shadow  rounded-t-xl"
+                src={feature.imageSrc}
+                alt={feature.imageAlt}
+              />
+            </div>
           </div>
         ))
       }

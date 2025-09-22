@@ -8,23 +8,23 @@ import Plus from "@/components/fundations/icons/Plus.astro";
 const data = [
   {
     icon: "Filters",
-    category: "Live editing",
-    text: "Instantly see the result of every change you make.",
+    category: "Instant Preview",
+    text: "See your changes update live as you code for immediate feedback.",
   },
   {
     icon: "WaveSquare",
-    category: "Autocompletion",
-    text: "Spotless will suggest the right classes for you as you type.",
+    category: "Contextual Autocomplete",
+    text: "Get smart class suggestions tailored to your project as you type.",
   },
   {
     icon: "ArrowIteration",
-    category: "Hide/show classes",
-    text: "Hide or show classes to see how your design changes.",
+    category: "Toggle Visibility",
+    text: "Show or hide UI components instantly to test different states.",
   },
   {
     icon: "Plus",
-    category: "Color preview",
-    text: "See the color of every class in the autocompletion view.",
+    category: "Color Swatches",
+    text: "View and pick color values directly within your autocomplete menu.",
   },
 ];
 ---
@@ -34,38 +34,29 @@ const data = [
     <div class="items-start grid grid-cols-1 lg:grid-cols-2 gap-12">
       <div>
         <Text
-          tag="p"
-          variant="textSM"
-          class="font-bold uppercase text-blue-600 dark:text-blue-400"
-        >
-          Tagline
-        </Text>
-        <Text
           tag="h2"
           variant="displayMD"
-          class="mt-4 font-semibold text-zinc-900 dark:text-zinc-100 lg:text-balance"
+          class="font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 lg:text-balance"
         >
-          Transforming the banking experience for a digital future
+          Don't supercharge your development with live tools
         </Text>
         <Text
           tag="p"
           variant="textBase"
           class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
         >
-          The fastest method for working together on staging and temporary
-          environments.
+          Collaborate seamlessly across all environments with real-time
+          previews.
         </Text>
-        <div class="flex flex-row items-center mt-8 gap-4">
-          <Button variant="accent" size="sm"> Get started </Button>
+        <div class="flex flex-wrap items-center mt-8 gap-4">
+          <Button variant="default" size="sm">Start Building</Button>
           <div
             class="text-sm font-medium text-zinc-500 dark:text-zinc-400 lg:items-center"
           >
-            <Text tag="span" class="block" variant="textBase">
-              This is some support text
-            </Text>
-            <Text tag="span" class="block" variant="textBase">
-              and this is also.
-            </Text>
+            <span class="block"> Trusted by developers worldwide. </span>
+            <span class="block">
+              Fits seamlessly into your existing stack.
+            </span>
           </div>
         </div>
       </div>
@@ -73,33 +64,30 @@ const data = [
         {
           data.map((section) => (
             <div>
-              <div class="flex items-center text-blue-500 gap-3">
+              <div class="flex items-center text-zinc-500 gap-2">
                 {section.icon === "Filters" && (
-                  <Filters
-                    class="text-blue-600 dark:text-blue-400"
-                    size="base"
-                  />
+                  <Filters class="text-zinc-600 dark:text-zinc-400" size="sm" />
                 )}
                 {section.icon === "WaveSquare" && (
                   <WaveSquare
-                    class="text-blue-600 dark:text-blue-400"
-                    size="base"
+                    class="text-zinc-600 dark:text-zinc-400"
+                    size="sm"
                   />
                 )}
                 {section.icon === "ArrowIteration" && (
                   <ArrowIteration
-                    class="text-blue-600 dark:text-blue-400"
-                    size="base"
+                    class="text-zinc-600 dark:text-zinc-400"
+                    size="sm"
                   />
                 )}
                 {section.icon === "Plus" && (
-                  <Plus class="text-blue-600 dark:text-blue-400" size="base" />
+                  <Plus class="text-zinc-600 dark:text-zinc-400" size="sm" />
                 )}
                 <dt>
                   <Text
                     tag="h3"
-                    variant="textLG"
-                    class="font-medium  text-zinc-900 dark:text-zinc-100"
+                    variant="textBase"
+                    class="font-semibold  text-zinc-900 dark:text-zinc-100"
                   >
                     {section.category}
                   </Text>
@@ -108,8 +96,8 @@ const data = [
               <dd>
                 <Text
                   tag="p"
-                  variant="textBase"
-                  class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+                  variant="textSM"
+                  class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
                 >
                   {section.text}
                 </Text>

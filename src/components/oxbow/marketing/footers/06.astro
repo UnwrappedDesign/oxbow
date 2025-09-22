@@ -1,8 +1,6 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
-
 import Text from "@/components/fundations/typography/Text.astro";
-
 import XBrand from "@/components/fundations/icons/XBrand.astro";
 import LinkedinBrand from "@/components/fundations/icons/LinkedinBrand.astro";
 import YoutubeBrand from "@/components/fundations/icons/YoutubeBrand.astro";
@@ -82,20 +80,23 @@ const footerLinks = [
   },
 ];
 ---
-
 <section class="bg-white dark:bg-zinc-900">
   <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
     <div
-      class="items-end p-8 grid grid-cols-1 sm:grid-cols-2 gap-4 bg-zinc-50 rounded-2xl"
+      class="items-end p-8 grid grid-cols-1 sm:grid-cols-2 gap-4 bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 shadow from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl"
     >
       <div>
-        <Text tag="h2" variant="textLG" class="font-semibold text-zinc-900">
+        <Text
+          tag="h2"
+          variant="textLG"
+          class="font-semibold text-zinc-900 dark:text-white"
+        >
           Get started with our app today
         </Text>
         <Text
           tag="p"
           variant="textBase"
-          class="mt-4 font-medium text-zinc-500 lg:text-balance"
+          class="mt-4 font-medium text-zinc-500 lg:text-balance dark:text-zinc-300"
         >
           Streamline your workflow and collaborate seamlessly on staging and
           temporary environments
@@ -103,12 +104,11 @@ const footerLinks = [
       </div>
       <div class="flex flex-col items-center lg:flex-row gap-2 sm:ml-auto">
         <Button variant="accent" size="sm"> Get started </Button>
-        <Button variant="outline" size="sm"> Learn more </Button>
+        <Button variant="muted" size="sm"> Learn more </Button>
       </div>
     </div>
-
     <div
-      class="pt-6 mt-6 border-t grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-8 gap-y-24 border-zinc-200"
+      class="pt-6 mt-6 border-t dark:border-zinc-800 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-8 gap-y-24 border-zinc-200"
     >
       {
         footerLinks.map((section, index) => (
@@ -117,21 +117,19 @@ const footerLinks = [
               tag="h2"
               variant="textBase"
               id={`footer-heading-${index}`}
-              class="font-semibold text-zinc-900"
+              class="font-semibold text-zinc-900 dark:text-white"
             >
               {section.heading}
             </Text>
-            <ul class="mt-4 space-y-4">
-              {section.links.map((link, linkIndex) => (
+            <ul class="mt-4">
+              {section.links.map((link) => (
                 <li>
-                  <Text
-                    tag="a"
+                  <a
                     href="#_"
-                    variant="textBase"
-                    class="font-medium hover:text-blue-500 text-zinc-500"
+                    class="font-medium text-zinc-600 dark:text-zinc-400  hover:text-blue-600 dark:hover:text-blue-300 text-sm"
                   >
                     {link.text}
-                  </Text>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -139,14 +137,12 @@ const footerLinks = [
         ))
       }
     </div>
-
     <div
-      class="flex flex-col items-center justify-between w-full pt-12 mt-12 text-center border-t border-zinc-200 gap-8 md:text-left md:flex-row"
+      class="flex flex-col items-center justify-between w-full pt-12 mt-12 text-center border-t dark:border-zinc-800 border-zinc-200 gap-8 md:text-left md:flex-row"
     >
       <Text tag="h2" variant="textSM" class="w-full font-medium text-zinc-400">
         Copyright © 2024 Oxbow UI. All rights reserved.
       </Text>
-
       <nav
         aria-labelledby="legal-links"
         role="navigation"
@@ -159,7 +155,7 @@ const footerLinks = [
           href="#_"
           tag="a"
           variant="textBase"
-          class="font-medium hover:text-blue-500 text-zinc-500"
+          class="font-medium hover:text-blue-500 text-zinc-500 dark:Text-zinc-400 dark:hover:text-blue-400"
         >
           Terms of Service
         </Text>
@@ -167,7 +163,7 @@ const footerLinks = [
           href="#_"
           tag="a"
           variant="textBase"
-          class="font-medium hover:text-blue-500 text-zinc-500"
+          class="font-medium hover:text-blue-500 text-zinc-500 dark:Text-zinc-400 dark:hover:text-blue-400"
         >
           Privacy Policy
         </Text>
@@ -184,7 +180,7 @@ const footerLinks = [
           tag="a"
           href="#_"
           variant="textBase"
-          class="font-medium hover:text-blue-500 text-zinc-500"
+          class="font-medium hover:text-blue-500 text-zinc-500 dark:Text-zinc-400 dark:hover:text-blue-400"
         >
           <XBrand size="sm" />
         </Text>
@@ -192,7 +188,7 @@ const footerLinks = [
           tag="a"
           href="#_"
           variant="textBase"
-          class="font-medium hover:text-blue-500 text-zinc-500"
+          class="font-medium hover:text-blue-500 text-zinc-500 dark:Text-zinc-400 dark:hover:text-blue-400"
         >
           <LinkedinBrand size="sm" />
         </Text>
@@ -200,7 +196,7 @@ const footerLinks = [
           tag="a"
           href="#_"
           variant="textBase"
-          class="font-medium hover:text-blue-500 text-zinc-500"
+          class="font-medium hover:text-blue-500 text-zinc-500 dark:Text-zinc-400 dark:hover:text-blue-400"
         >
           <GithubBrand size="sm" />
         </Text>
@@ -208,7 +204,7 @@ const footerLinks = [
           tag="a"
           href="#_"
           variant="textBase"
-          class="font-medium hover:text-blue-500 text-zinc-500"
+          class="font-medium hover:text-blue-500 text-zinc-500 dark:Text-zinc-400 dark:hover:text-blue-400"
         >
           <YoutubeBrand size="sm" />
         </Text>

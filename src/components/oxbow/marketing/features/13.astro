@@ -1,139 +1,200 @@
 ---
-import Button from "@/components/fundations/buttons/Button.astro";
-
 import Text from "@/components/fundations/typography/Text.astro";
-import Filters from "@/components/fundations/icons/Filters.astro";
-import WaveSquare from "@/components/fundations/icons/WaveSquare.astro";
-import ArrowIteration from "@/components/fundations/icons/ArrowIteration.astro";
-import Plus from "@/components/fundations/icons/Plus.astro";
-const data = [
-  {
-    icon: "Filters",
-    category: "Live editing",
-    text: "Instantly see the result of every change you make.",
-  },
-  {
-    icon: "WaveSquare",
-    category: "Autocompletion",
-    text: "Spotless will suggest the right classes for you as you type.",
-  },
-  {
-    icon: "ArrowIteration",
-    category: "Hide/show classes",
-    text: "Hide or show classes to see how your design changes.",
-  },
-  {
-    icon: "Plus",
-    category: "Color preview",
-    text: "See the color of every class in the autocompletion view.",
-  },
-];
+import CircleCheck from "@/components/fundations/icons/CircleCheck.astro";
+
+export const excludeFromObfuscation = ["bg-white", "shadow"];
 ---
 
 <section class="bg-white dark:bg-zinc-900">
   <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
-    <div class="max-w-xl">
-      <Text
-        tag="p"
-        variant="textSM"
-        class="font-bold uppercase text-blue-600 dark:text-blue-400"
-      >
-        Tagline
-      </Text>
-      <Text
-        tag="h2"
-        variant="displayMD"
-        class="mt-4 font-semibold text-zinc-900 dark:text-zinc-100 text-balance"
-      >
-        Transforming the banking experience for a digital future
-      </Text>
-      <Text
-        tag="p"
-        variant="textBase"
-        class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
-      >
-        The fastest method for working together on staging and temporary
-        environments.
-      </Text>
-    </div>
-    <dl
-      class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-4 lg:gap-y-16"
+    <div
+      x-data="{ tab: 'tab1' }"
+      class="relative items-center grid grid-cols-1 gap-4 lg:grid-cols-3"
     >
-      {
-        data.map((section) => (
-          <div>
-            <div class="flex items-center text-blue-500 gap-3">
-              {section.icon === "Filters" && (
-                <Filters class="text-blue-600 dark:text-blue-400" size="base" />
-              )}
-              {section.icon === "WaveSquare" && (
-                <WaveSquare
-                  class="text-blue-600 dark:text-blue-400"
-                  size="base"
+      <ul class="list-none grid md:grid-cols-2 gap-4 lg:col-span-2">
+        <!-- Tab 1 -->
+        <li class="p-1 bg-zinc-50 dark:bg-zinc-800 rounded-xl">
+          <button
+            @click.prevent="tab = 'tab1'"
+            class="items-start p-4 lg:p-8 rounded-lg transition text-left h-full bg-white dark:bg-zinc-800 shadow dark:shadow-zinc-900/80"
+            :class="{ 'bg-white dark:bg-zinc-900 shadow ' : tab === 'tab1' }"
+          >
+            <div>
+              <div class="flex items-center gap-2">
+                <CircleCheck
+                  class="text-zinc-600 dark:text-zinc-400"
+                  size="sm"
+                  slot="icon"
                 />
-              )}
-              {section.icon === "ArrowIteration" && (
-                <ArrowIteration
-                  class="text-blue-600 dark:text-blue-400"
-                  size="base"
-                />
-              )}
-              {section.icon === "Plus" && (
-                <Plus class="text-blue-600 dark:text-blue-400" size="base" />
-              )}
-
-              <dt>
                 <Text
                   tag="h3"
-                  variant="textLG"
-                  class="font-medium  text-zinc-900 dark:text-zinc-100"
+                  variant="textBase"
+                  class="font-semibold text-zinc-900 dark:text-zinc-100"
                 >
-                  {section.category}
+                  Innovative Design
                 </Text>
-              </dt>
-            </div>
-            <dd>
+              </div>
               <Text
                 tag="p"
-                variant="textBase"
-                class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+                variant="textSM"
+                class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
               >
-                {section.text}
+                Our cutting-edge design offers a fresh, modern look that
+                transforms your project into a standout experience.
               </Text>
-            </dd>
-          </div>
-        ))
-      }
-    </dl>
-    <dl
-      class="mt-12 grid md:grid-cols-2 gap-x-6 gap-y-12 lg:gap-x-8 lg:gap-y-16 lg:mt-24"
-    >
-      <div
-        class="relative flex flex-col items-center justify-center h-full p-8 overflow-hidden text-center bg-zinc-50 dark:bg-zinc-900/40 rounded-2xl lg:p-12"
-      >
-        <div class="relative items-center text-balance">
-          <Text
-            tag="p"
-            variant="textBase"
-            class="font-medium text-zinc-600 dark:text-zinc-400"
+            </div>
+          </button>
+        </li>
+        <!-- Tab 2 -->
+        <li class="p-1 bg-zinc-50 dark:bg-zinc-800 rounded-xl">
+          <button
+            @click.prevent="tab = 'tab2'"
+            class="items-start p-4 lg:p-8 rounded-lg transition text-left h-full bg-white dark:bg-zinc-800 shadow dark:shadow-zinc-900/80"
+            :class="{ 'bg-white dark:bg-zinc-900 shadow ' : tab === 'tab2' }"
           >
-            The fastest method for working together on staging and temporary
-            environments.
-          </Text>
+            <div>
+              <div class="flex items-center gap-2">
+                <CircleCheck
+                  class="text-zinc-600 dark:text-zinc-400"
+                  size="sm"
+                  slot="icon"
+                />
+                <Text
+                  tag="h3"
+                  variant="textBase"
+                  class="font-semibold text-zinc-900 dark:text-zinc-100"
+                >
+                  Powerful Functionality
+                </Text>
+              </div>
+              <Text
+                tag="p"
+                variant="textSM"
+                class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
+              >
+                Equipped with advanced features and tools, our solution
+                effortlessly manages complex tasks and workflows.
+              </Text>
+            </div>
+          </button>
+        </li>
+        <!-- Tab 3 -->
+        <li class="p-1 bg-zinc-50 dark:bg-zinc-800 rounded-xl">
+          <button
+            @click.prevent="tab = 'tab3'"
+            class="items-start p-4 lg:p-8 rounded-lg transition text-left h-full bg-white dark:bg-zinc-800 shadow dark:shadow-zinc-900/80"
+            :class="{ 'bg-white dark:bg-zinc-900 shadow ' : tab === 'tab3' }"
+          >
+            <div>
+              <div class="flex items-center gap-2">
+                <CircleCheck
+                  class="text-zinc-600 dark:text-zinc-400"
+                  size="sm"
+                  slot="icon"
+                />
+                <Text
+                  tag="h3"
+                  variant="textBase"
+                  class="font-semibold text-zinc-900 dark:text-zinc-100"
+                >
+                  Po Easy Integration
+                </Text>
+              </div>
+              <Text
+                tag="p"
+                variant="textSM"
+                class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
+              >
+                Integrating with existing systems is smooth and hassle-free,
+                thanks to our incredible flexible approach.
+              </Text>
+            </div>
+          </button>
+        </li>
+        <!-- Tab 4 -->
+        <li class="p-1 bg-zinc-50 dark:bg-zinc-800 rounded-xl">
+          <button
+            @click.prevent="tab = 'tab4'"
+            class="items-start p-4 lg:p-8 rounded-lg transition text-left h-full bg-white dark:bg-zinc-800 shadow dark:shadow-zinc-900/80"
+            :class="{ 'bg-white dark:bg-zinc-900 shadow' : tab === 'tab4' }"
+          >
+            <div>
+              <div class="flex items-center gap-2">
+                <CircleCheck
+                  class="text-zinc-600 dark:text-zinc-400"
+                  size="sm"
+                  slot="icon"
+                />
+                <Text
+                  tag="h3"
+                  variant="textBase"
+                  class="font-semibold text-zinc-900 dark:text-zinc-100"
+                >
+                  Great Communication
+                </Text>
+              </div>
+              <Text
+                tag="p"
+                variant="textSM"
+                class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
+              >
+                Integrating with existing systems is smooth and hassle-free,
+                thanks to our incredible flexible approach.
+              </Text>
+            </div>
+          </button>
+        </li>
+      </ul>
+      <div class="text-left content size-full">
+        <!-- Tab 1 content -->
+        <div class="size-full" x-show="tab==='tab1'">
           <div
-            class="flex flex-wrap items-center justify-center mx-auto mt-8 gap-2"
+            class="block w-full h-full p-8 pb-0 aspect-square lg:mt-0 bg-zinc-50 dark:bg-zinc-900 rounded-3xl"
           >
-            <Button variant="accent" size="sm"> Get started </Button>
-            <Button variant="outline" size="sm"> Learn more </Button>
+            <img
+              alt="#_"
+              class="object-cover object-top size-full"
+              src="/images/phone4.png"
+            />
+          </div>
+        </div>
+        <!-- Tab 2 content -->
+        <div class="size-full" x-show="tab==='tab2'" style="display: none;">
+          <div
+            class="block w-full h-full p-8 pb-0 aspect-square lg:mt-0 bg-zinc-50 dark:bg-zinc-900 rounded-3xl"
+          >
+            <img
+              alt="#_"
+              class="object-cover object-top size-full"
+              src="/images/phone2.png"
+            />
+          </div>
+        </div>
+        <!-- Tab 3 content -->
+        <div class="size-full" x-show="tab==='tab3'" style="display: none;">
+          <div
+            class="block w-full h-full p-8 pb-0 aspect-square lg:mt-0 bg-zinc-50 dark:bg-zinc-900 rounded-3xl"
+          >
+            <img
+              alt="#_"
+              class="object-cover object-top size-full"
+              src="/images/phone3.png"
+            />
+          </div>
+        </div>
+        <!-- Tab 4 content -->
+        <div class="size-full" x-show="tab==='tab4'" style="display: none;">
+          <div
+            class="block w-full h-full p-8 pb-0 aspect-square lg:mt-0 bg-zinc-50 dark:bg-zinc-900 rounded-3xl"
+          >
+            <img
+              alt="#_"
+              class="object-cover object-top size-full"
+              src="/images/phone5.png"
+            />
           </div>
         </div>
       </div>
-
-      <img
-        alt="#_"
-        class="relative object-cover w-full h-full shadow rounded-2xl bg-white dark:bg-zinc-900/40"
-        src="/widgets/progressCircles.svg"
-      />
-    </dl>
+    </div>
   </div>
 </section>

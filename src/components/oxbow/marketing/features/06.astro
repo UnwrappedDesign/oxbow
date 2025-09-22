@@ -1,99 +1,179 @@
 ---
+import Button from "@/components/fundations/buttons/Button.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-const features = [
+import CircleCheck from "@/components/fundations/icons/CircleCheck.astro";
+
+export const excludeFromObfuscation = ["bg-zinc-800", "bg-zinc-400"];
+
+const data = [
   {
-    title: "Innovative Design",
-    description:
-      "Our cutting-edge design offers a fresh, modern look that transforms your project into a standout experience.",
-    imageSrc: "/widgets/sliders.svg",
-    imageAlt: "Innovative design image",
+    category: "Innovative Design",
+    text: "Our cutting-edge design offers a fresh, modern look that transforms your project into a standout experience.",
+    items: ["Great communication", "Enhancing productivity"],
   },
   {
-    title: "Powerful Functionality",
-    description:
-      "Equipped with advanced features and tools, our solution effortlessly manages complex tasks and workflows.",
-    imageSrc: "/widgets/progressCircles.svg",
-    imageAlt: "Powerful functionality image",
+    category: "Powerful Functionality",
+    text: "Equipped with advanced features and tools, our solution effortlessly manages complex tasks and workflows.",
+    items: ["Unlocking  solutions", "Enabling interoperability"],
   },
   {
-    title: "Easy Integration",
-    description:
-      "Integrating with existing systems is smooth and hassle-free, thanks to our incredible flexible approach.",
-    imageSrc: "/widgets/figmaComp.svg",
-    imageAlt: "Easy integration image",
+    category: "Seamless Collaboration",
+    text: "Our platform fosters teamwork and collaboration by providing the tools and features needed to work effectively.",
+    items: ["Real-time editing", "Shared workspaces"],
   },
   {
-    title: "Revolutionizing communication",
-    description:
-      "Unlocking innovative solutions that enhance connectivity and streamline interactions.",
-    imageSrc: "/widgets/figmaComp2.svg",
-    imageAlt: "Revolutionizing communication image",
+    category: "Advanced Analytics",
+    text: "Gain deep insights into your data with our comprehensive analytics tools, helping you make informed decisions.",
+    items: ["Customizable dashboards", "Predictive analytics"],
   },
 ];
 ---
 
 <section class="bg-white dark:bg-zinc-900">
   <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
-    <div class="max-w-xl">
-      <Text
-        tag="p"
-        variant="textSM"
-        class="font-bold uppercase text-blue-600 dark:text-blue-400"
-      >
-        Tagline
-      </Text>
-      <Text
-        tag="h2"
-        variant="displayMD"
-        class="mt-4 font-semibold text-zinc-900 dark:text-zinc-100 text-balance"
-      >
-        Transforming the banking experience for a digital future
-      </Text>
-      <Text
-        tag="p"
-        variant="textBase"
-        class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
-      >
-        The fastest method for working together on staging and temporary
-        environments.
-      </Text>
-    </div>
-    <dl
-      class="mt-12 grid sm:grid-cols-2 gap-x-6 gap-y-12 lg:gap-x-8 lg:gap-y-16"
+    <div
+      class="relative items-center p-8 list-none grid grid-cols-1 bg-zinc-50 dark:bg-zinc-900/40 lg:grid-cols-2 gap-4 lg:gap-24 rounded-3xl lg:p-10 overflow-clip"
     >
-      {
-        features.map((feature) => (
-          <div class="flex flex-col justify-between h-full gap-8">
+      <div class="pt-8 text-center lg:text-left">
+        <Text
+          tag="p"
+          variant="textSM"
+          class="font-bold uppercase text-blue-600 dark:text-blue-400"
+        >
+          Tagline
+        </Text>
+        <Text
+          tag="h2"
+          variant="displayMD"
+          class="mt-4 font-semibold text-zinc-900 dark:text-zinc-100 lg:text-balance"
+        >
+          Transforming the banking experience for a digital future
+        </Text>
+        <Text
+          tag="p"
+          variant="textBase"
+          class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+        >
+          The fastest method for working together on staging and temporary
+          environments.
+        </Text>
+        <div class="flex flex-wrap items-center mx-auto mt-8 gap-2">
+          <Button variant="accent" size="sm"> Get started </Button>
+          <Button variant="outline" size="sm"> Learn more </Button>
+        </div>
+      </div>
+      <div class="items-center h-full mt-12 lg:mt-0">
+        <img
+          alt="#"
+          class="absolute w-full border shadow rounded-2xl border-zinc-200 dark:border-zinc-700"
+          src="/images/dashboardLight.svg"
+        />
+      </div>
+    </div>
+    <div class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="gap-6 grid grid-cols-1 sm:grid-cols-2 gap-y-12 lg:col-span-2">
+        {
+          data.map((section) => (
             <div>
-              <dt>
+              <div>
                 <Text
+                  variant="textLG"
                   tag="h3"
-                  variant="textXL"
-                  class="font-medium  text-zinc-900 dark:text-zinc-100"
+                  class="font-medium text-zinc-900 dark:text-zinc-100"
                 >
-                  {feature.title}
+                  {section.category}
                 </Text>
-              </dt>
-              <dd class="mt-2 ">
                 <Text
                   tag="p"
-                  variant="textLG"
-                  class="font-medium  text-zinc-500 dark:text-zinc-400"
+                  variant="textBase"
+                  class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
                 >
-                  {feature.description}
+                  {section.text}
                 </Text>
-              </dd>
+              </div>
+              <ul
+                role="list"
+                class="mt-6 text-base font-medium list-none space-y-1 text-zinc-900 dark:text-zinc-100"
+              >
+                {section.items.map((item) => (
+                  <li>
+                    <div class="flex items-center  gap-4">
+                      <CircleCheck
+                        class="text-blue-600 dark:text-blue-400"
+                        size="base"
+                        slot="icon"
+                      />
+                      <Text tag="span" variant="textBase">
+                        {item}
+                      </Text>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div class="h-full p-8 pb-0 overflow-hidden bg-zinc-50 dark:bg-zinc-900/40 rounded-2xl">
+          ))
+        }
+      </div>
+      <div class="block w-full lg:row-span-2">
+        <div
+          x-data="{ activeSlide: 0, slides: ['/widgets/activity.svg', '/widgets/hits.svg', '/widgets/traffic.svg'] }"
+          class="relative h-full"
+          role="region"
+          aria-label="Image Slider"
+        >
+          <!-- Template for each slide image -->
+          <template x-for="(slide, index) in slides" :key="index">
+            <div
+              x-show="activeSlide === index"
+              x-transition:enter="transition ease-out duration-500"
+              x-transition:enter-start="opacity-0 transform scale-95"
+              x-transition:enter-end="opacity-100 transform scale-100"
+              x-transition:leave="transition ease-in duration-500"
+              x-transition:leave-start="opacity-100 transform scale-100"
+              x-transition:leave-end="opacity-0 transform scale-95"
+              class="absolute inset-0 size-full"
+              :aria-hidden="activeSlide !== index"
+            >
+              <!-- Slide image -->
               <img
-                class="object-center w-full -mb-12 shadow  rounded-t-2xl"
-                src={feature.imageSrc}
-                alt={feature.imageAlt}
+                :src="slide"
+                alt="#"
+                class="object-contain shadow size-full rounded-2xl"
               />
             </div>
+          </template>
+          <!-- Previous slide button -->
+          <button
+            @click="activeSlide = activeSlide === 0 ? slides.length - 1 : activeSlide - 1"
+            class="absolute flex items-center justify-center bg-white border rounded-full left-4 top-1/2 transform -translate-y-1/2 text-zinc-900 size-10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            aria-label="Previous Slide"
+          >
+            &larr;
+          </button>
+          <!-- Next slide button -->
+          <button
+            @click="activeSlide = activeSlide === slides.length - 1 ? 0 : activeSlide + 1"
+            class="absolute flex items-center justify-center bg-white border rounded-full right-4 top-1/2 transform -translate-y-1/2 text-zinc-900 size-10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            aria-label="Next Slide"
+          >
+            &rarr;
+          </button>
+          <!-- Pagination indicators -->
+          <div
+            class="absolute flex bottom-4 left-1/2 transform -translate-x-1/2 space-x-2"
+          >
+            <template x-for="(slide, index) in slides" :key="index">
+              <button
+                @click="activeSlide = index"
+                :class="{'bg-zinc-800': activeSlide === index, 'bg-zinc-400': activeSlide !== index}"
+                class="w-3 h-3 rounded-full focus:outline-none"
+                :aria-label="'Slide ' + (index + 1)"
+                :aria-current="activeSlide === index ? 'true' : 'false'"
+              ></button>
+            </template>
           </div>
-        ))
-      }
-    </dl>
+        </div>
+      </div>
+    </div>
   </div>
 </section>

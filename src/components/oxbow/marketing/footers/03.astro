@@ -1,11 +1,12 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-
+import TextInput from "@/components/fundations/inputs/TextInput.astro";
 import XBrand from "@/components/fundations/icons/XBrand.astro";
 import LinkedinBrand from "@/components/fundations/icons/LinkedinBrand.astro";
 import YoutubeBrand from "@/components/fundations/icons/YoutubeBrand.astro";
 import GithubBrand from "@/components/fundations/icons/GithubBrand.astro";
+import Logo from "@/components/assets/Logo.astro";
 const footerLinks = [
   {
     heading: "Company ",
@@ -45,7 +46,6 @@ const footerLinks = [
   },
 ];
 ---
-
 <section class="bg-white dark:bg-zinc-900">
   <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
     <div
@@ -53,56 +53,36 @@ const footerLinks = [
     >
       <div class="col-span-full md:col-span-2 lg:order-last">
         <Text
-          tag="a"
-          href="#_"
+          tag="h2"
           variant="textBase"
-          class="flex items-center font-medium hover:text-blue-500 hover:dark:text-blue-400 gap-2 text-zinc-900 dark:text-zinc-100"
+          class="font-semibold text-zinc-900 dark:text-zinc-100"
         >
-          <img
-            class="h-7 2xl:h-12"
-            src="/images/oxbow/blueLineLogo.png"
-            alt="#_"
-          /> Oxbow UI
+          Join our newsletter
         </Text>
-        <div class="mt-8">
-          <Text
-            tag="h2"
-            variant="textBase"
-            class="font-semibold text-zinc-900 dark:text-zinc-100"
-          >
-            Join our newsletter
-          </Text>
-          <Text
-            tag="p"
-            variant="textBase"
-            class="mt-2 font-medium text-zinc-500 dark:text-zinc-400 lg:text-balance"
-          >
-            Stay up to date with our latest news and updates.
-          </Text>
-          <form class="w-full mt-8 sm:flex sm:max-w-md">
-            <label for="email-address" class="sr-only">Email address</label>
-            <input
-              id="email-address"
-              type="email"
-              name="email-address"
-              autocomplete="email"
-              placeholder="Enter your email"
-              aria-placeholder="Enter your email"
-              required=""
-              class="block w-full h-10 px-4 py-2 text-sm bg-white dark:bg-zinc-900 border border-transparent rounded-lg shadow appearance-none ring-1 ring-zinc-200 dark:ring-zinc-700 text-blue-700 dark:text-blue-300 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-600 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 duration-300 sm:text-sm"
-            />
-            <div class="mt-2 sm:ml-2 sm:mt-0 sm:flex-shrink-0">
-              <Button
-                class="w-full sm:w-auto"
-                type="submit"
-                variant="accent"
-                size="base"
-              >
-                Subscribe
-              </Button>
-            </div>
-          </form>
-        </div>
+        <Text
+          tag="p"
+          variant="textBase"
+          class="mt-2 font-medium text-zinc-500 dark:text-zinc-400 lg:text-balance"
+        >
+          Stay up to date with our latest news and updates.
+        </Text>
+        <form
+          class="flex flex-col md:flex-row w-full max-w-xs mx-auto lg:items-center mt-8 gap-2"
+        >
+          <TextInput
+            id="email"
+            name="email"
+            type="email"
+            placeholder="you@probablyimportant.com"
+            variant="default"
+            label="Email address"
+            size="sm"
+            isGrouped
+          />
+          <Button type="submit" size="sm" variant="accent" class="shrink-0">
+            Join us!
+          </Button>
+        </form>
       </div>
       {
         footerLinks.map((div, index) => (
@@ -116,17 +96,15 @@ const footerLinks = [
               >
                 {div.heading}
               </Text>
-              <ul class="mt-4 space-y-4">
-                {div.links.map((link, linkIndex) => (
+              <ul class="mt-4">
+                {div.links.map((link) => (
                   <li>
-                    <Text
-                      tag="a"
+                    <a
                       href="#_"
-                      variant="textBase"
-                      class="font-medium hover:text-blue-500 hover:dark:text-blue-400 text-zinc-500 dark:text-zinc-400"
+                      class="font-medium text-zinc-600 dark:text-zinc-400  hover:text-blue-600 dark:hover:text-blue-300 text-sm"
                     >
                       {link.text}
-                    </Text>
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -143,7 +121,7 @@ const footerLinks = [
         variant="textSM"
         class="font-medium text-zinc-400 dark:text-zinc-500"
       >
-        Copyright 9 2024 Oxbow UI. All rights reserved.
+        © 2024 Oxbow UI. All rights reserved.
       </Text>
       <nav
         aria-labelledby="social-icons-heading"
@@ -157,7 +135,7 @@ const footerLinks = [
           tag="a"
           href="#_"
           variant="textBase"
-          class="font-medium hover:text-blue-500 hover:dark:text-blue-400 text-zinc-500 dark:text-zinc-400"
+          class="font-medium text-zinc-900 dark:text-zinc-100 hover:text-blue-600 dark:hover:text-blue-300 text-sm"
         >
           <XBrand size="sm" />
         </Text>
@@ -165,7 +143,7 @@ const footerLinks = [
           tag="a"
           href="#_"
           variant="textBase"
-          class="font-medium hover:text-blue-500 hover:dark:text-blue-400 text-zinc-500 dark:text-zinc-400"
+          class="font-medium text-zinc-900 dark:text-zinc-100 hover:text-blue-600 dark:hover:text-blue-300 text-sm"
         >
           <LinkedinBrand size="sm" />
         </Text>
@@ -173,7 +151,7 @@ const footerLinks = [
           tag="a"
           href="#_"
           variant="textBase"
-          class="font-medium hover:text-blue-500 hover:dark:text-blue-400 text-zinc-500 dark:text-zinc-400"
+          class="font-medium text-zinc-900 dark:text-zinc-100 hover:text-blue-600 dark:hover:text-blue-300 text-sm"
         >
           <GithubBrand size="sm" />
         </Text>
@@ -181,16 +159,7 @@ const footerLinks = [
           tag="a"
           href="#_"
           variant="textBase"
-          class="font-medium hover:text-blue-500 hover:dark:text-blue-400 text-zinc-500 dark:text-zinc-400"
-        >
-          <YoutubeBrand size="sm" />
-        </Text>
-      </nav>
-    </div>
-          tag="a"
-          href="#_"
-          variant="textBase"
-          class="font-medium hover:text-blue-500 text-zinc-500"
+          class="font-medium text-zinc-900 dark:text-zinc-100 hover:text-blue-600 dark:hover:text-blue-300 text-sm"
         >
           <YoutubeBrand size="sm" />
         </Text>

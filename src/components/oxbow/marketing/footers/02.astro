@@ -1,6 +1,7 @@
 ---
 import Text from "@/components/fundations/typography/Text.astro";
 import XBrand from "@/components/fundations/icons/XBrand.astro";
+import Logo from "@/components/assets/Logo.astro";
 import LinkedinBrand from "@/components/fundations/icons/LinkedinBrand.astro";
 import YoutubeBrand from "@/components/fundations/icons/YoutubeBrand.astro";
 import GithubBrand from "@/components/fundations/icons/GithubBrand.astro";
@@ -49,27 +50,10 @@ const footerLinks = [
     <div
       class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-x-8 gap-y-24"
     >
-      <div class="col-span-full md:col-span-1">
-        <Text
-          tag="a"
-          href="#_"
-          variant="textBase"
-          class="flex items-center font-medium hover:text-blue-500 hover:dark:text-blue-400 gap-2 text-zinc-900 dark:text-zinc-100"
-        >
-          <img
-            class="h-7 2xl:h-12"
-            src="/images/oxbow/blueLineLogo.png"
-            alt="#_"
-          /> Oxbow UI
-        </Text>
-        <Text
-          tag="p"
-          variant="textSM"
-          class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
-        >
-          Designed in europe.
-        </Text>
-      </div>
+      <Logo
+        class="h-12 text-zinc-900 dark:text-white col-span-full md:col-span-1"
+      />
+
       {
         footerLinks.map((section, index) => (
           <div class="space-y-4">
@@ -82,17 +66,15 @@ const footerLinks = [
               >
                 {section.heading}
               </Text>
-              <ul class="mt-4 space-y-4">
-                {section.links.map((link, linkIndex) => (
+              <ul class="mt-4">
+                {section.links.map((link) => (
                   <li>
-                    <Text
-                      tag="a"
+                    <a
                       href="#_"
-                      variant="textBase"
-                      class="font-medium hover:text-blue-500 hover:dark:text-blue-400 text-zinc-500 dark:text-zinc-400"
+                      class="font-medium text-zinc-600 dark:text-zinc-400  hover:text-blue-600 dark:hover:text-blue-300 text-sm"
                     >
                       {link.text}
-                    </Text>
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -123,7 +105,7 @@ const footerLinks = [
           tag="a"
           href="#_"
           variant="textBase"
-          class="font-medium hover:text-blue-500 hover:dark:text-blue-400 text-zinc-500 dark:text-zinc-400"
+          class="font-medium text-zinc-900 dark:text-zinc-100 hover:text-blue-600 dark:hover:text-blue-300 text-sm"
         >
           <XBrand size="sm" />
         </Text>
@@ -131,7 +113,7 @@ const footerLinks = [
           tag="a"
           href="#_"
           variant="textBase"
-          class="font-medium hover:text-blue-500 text-zinc-500"
+          class="font-medium hover:text-blue-500 text-zinc-500 dark:Text-zinc-400 dark:hover:text-blue-400"
         >
           <LinkedinBrand size="sm" />
         </Text>
@@ -139,7 +121,7 @@ const footerLinks = [
           tag="a"
           href="#_"
           variant="textBase"
-          class="font-medium hover:text-blue-500 text-zinc-500"
+          class="font-medium hover:text-blue-500 text-zinc-500 dark:Text-zinc-400 dark:hover:text-blue-400"
         >
           <GithubBrand size="sm" />
         </Text>
@@ -147,7 +129,7 @@ const footerLinks = [
           tag="a"
           href="#_"
           variant="textBase"
-          class="font-medium hover:text-blue-500 text-zinc-500"
+          class="font-medium hover:text-blue-500 text-zinc-500 dark:Text-zinc-400 dark:hover:text-blue-400"
         >
           <YoutubeBrand size="sm" />
         </Text>

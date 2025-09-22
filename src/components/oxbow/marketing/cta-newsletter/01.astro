@@ -15,18 +15,18 @@ import Analytics from "@/components/fundations/icons/Analytics.astro";
 const features = [
   {
     icon: Brain,
-    title: "Stuff You’ll Actually Read",
-    text: "Snappy insights, not recycled productivity tweets from 2016.",
+    title: "Content That Counts",
+    text: "Insights you’ll actually use—no clickbait, ever.",
   },
   {
     icon: Tools,
-    title: "No Hacks, Just Help",
-    text: "Real tips for building, designing, and maybe surviving Mondays.",
+    title: "Practical Guidance",
+    text: "Field-tested tips and resources to boost your productivity.",
   },
   {
     icon: Analytics,
-    title: "Sent With Restraint",
-    text: "One email a week. Two if we’re feeling needy. Never more.",
+    title: "Balanced Cadence",
+    text: "Weekly dispatches—packed with insights, never spam.",
   },
 ];
 ---
@@ -34,22 +34,38 @@ const features = [
 <section class="bg-white dark:bg-zinc-900">
   <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
     <div class="max-w-xl mx-auto lg:text-balance lg:text-center">
-      <Kicker class=""> The only newsletter we’d read too </Kicker>
       <Text
-        tag="h2"
+        tag="h1"
         variant="displayMD"
-        class="mt-12 font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 lg:text-balance"
+        class="font-semibold tracking-tight text-zinc-900 dark:text-white lg:text-balance"
       >
-        Want smarter ideas without the LinkedIn fluff?
+        Elevate your inbox with Oxbow insights.
       </Text>
       <Text
         tag="p"
         variant="textBase"
         class="mt-4 text-zinc-500 dark:text-zinc-400"
       >
-        Join the folks who like their updates useful, witty, and with just the
-        right amount of snark.
+        Sign up for concise, actionable updates—no fillers, just value in every
+        message.
       </Text>
+      <form
+        class="flex flex-col md:flex-row w-full max-w-xs mx-auto lg:items-center mt-8 gap-2"
+      >
+        <TextInput
+          id="email"
+          name="email"
+          type="email"
+          placeholder="you@probablyimportant.com"
+          variant="default"
+          label="Email address"
+          size="sm"
+          isGrouped
+        />
+        <Button type="submit" size="sm" variant="accent" class="shrink-0">
+          Join us!
+        </Button>
+      </form>
     </div>
 
     <dl
@@ -86,22 +102,5 @@ const features = [
         ))
       }
     </dl>
-
-    <div class="flex w-full max-w-xs mx-auto items-center mt-12">
-      <TextInput
-        id="email"
-        name="email"
-        type="email"
-        placeholder="Your inbox deserves better"
-        variant="default"
-        label="Email address"
-        size="sm"
-        noRoundedRight
-        isGrouped
-      />
-      <Button type="submit" size="sm" variant="accent" noRoundedLeft={true}>
-        Subscribe
-      </Button>
-    </div>
   </div>
 </section>

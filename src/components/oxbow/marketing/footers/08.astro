@@ -1,6 +1,10 @@
 ---
 import Text from "@/components/fundations/typography/Text.astro";
-
+import Logo from "@/components/assets/Logo.astro";
+import XBrand from "@/components/fundations/icons/XBrand.astro";
+import LinkedinBrand from "@/components/fundations/icons/LinkedinBrand.astro";
+import YoutubeBrand from "@/components/fundations/icons/YoutubeBrand.astro";
+import GithubBrand from "@/components/fundations/icons/GithubBrand.astro";
 const footerLinks = [
   {
     heading: "Company ",
@@ -38,49 +42,17 @@ const footerLinks = [
       { href: "#", text: "Email Support" },
     ],
   },
-  {
-    heading: "Social Media",
-    links: [
-      { href: "#", text: "Twitter" },
-      { href: "#", text: "Facebook" },
-      { href: "#", text: "LinkedIn" },
-      { href: "#", text: "Instagram" },
-    ],
-  },
-  {
-    heading: "Company Info",
-    links: [
-      { href: "#", text: "Careers" },
-      { href: "#", text: "Press" },
-      { href: "#", text: "Partners" },
-      { href: "#", text: "Blog" },
-    ],
-  },
 ];
 ---
 
-<section class="bg-white dark:bg-zinc-900">
+<section class="bg-blue-900 dark:bg-blue-950">
   <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
-    <div class="flex flex-col justify-between md:flex-row md:items-center">
-      <Text
-        tag="a"
-        href="#_"
-        variant="textBase"
-        class="flex items-center font-medium hover:text-blue-500 hover:dark:text-blue-400 gap-2 text-zinc-900 dark:text-zinc-100"
-      >
-        <img
-          class="h-7 2xl:h-12"
-          src="/images/oxbow/blueLineLogo.png"
-          alt="#_"
-        /> Oxbow UI
-      </Text>
-      <p class="text-sm text-zinc-500 dark:text-zinc-400">
-        Designed in europe.
-      </p>
-    </div>
     <div
-      class="pt-6 mt-6 border-t grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-x-8 gap-y-24 border-zinc-200 dark:border-zinc-800"
+      class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-x-8 gap-y-24"
     >
+      <div class="col-span-full md:col-span-1">
+        <Logo class="h-12 text-white" />
+      </div>
       {
         footerLinks.map((section, index) => (
           <div class="space-y-4">
@@ -89,18 +61,18 @@ const footerLinks = [
                 tag="h2"
                 variant="textBase"
                 id={`footer-heading-${index}`}
-                class="font-semibold text-zinc-900 dark:text-zinc-100"
+                class="font-semibold text-white"
               >
                 {section.heading}
               </Text>
-              <ul class="mt-4 space-y-4">
-                {section.links.map((link) => (
+              <ul class="mt-4">
+                {section.links.map((link, linkIndex) => (
                   <li>
                     <Text
                       tag="a"
                       href="#_"
                       variant="textBase"
-                      class="font-medium hover:text-blue-500 hover:dark:text-blue-400 text-zinc-500 dark:text-zinc-400"
+                      class="font-medium text-zinc-100  hover:text-blue-600 text-sm"
                     >
                       {link.text}
                     </Text>
@@ -113,38 +85,50 @@ const footerLinks = [
       }
     </div>
     <div
-      class="flex flex-col justify-between pt-12 mt-12 border-t gap-8 sm:flex-row sm:items-center border-zinc-200 dark:border-zinc-800"
+      class="flex flex-col justify-between pt-12 mt-12 border-t border-white/20 gap-8 sm:flex-row sm:items-center"
     >
-      <Text
-        tag="h2"
-        variant="textSM"
-        class="font-medium text-zinc-400 dark:text-zinc-500"
-      >
+      <Text tag="h2" variant="textSM" class="font-medium text-zinc-300">
         Copyright © 2024 Oxbow UI. All rights reserved.
       </Text>
       <nav
-        aria-labelledby="legal-links"
+        aria-labelledby="social-icons-heading"
         role="navigation"
-        class="flex items-center text-sm gap-4 text-zinc-500 dark:text-zinc-400"
+        class="flex items-center gap-4 text-zinc-200"
       >
-        <Text id="legal-links" class="sr-only" tag="h3" variant="footerHeading">
-          Legal and terms
+        <Text id="social-icons-heading" class="sr-only">
+          Follow us on social media
         </Text>
         <Text
-          href="#_"
           tag="a"
+          href="#_"
           variant="textBase"
-          class="font-medium hover:text-blue-500 hover:dark:text-blue-400 text-zinc-500 dark:text-zinc-400"
+          class="font-medium text-white hover:text-blue-500"
         >
-          Terms of Service
+          <XBrand size="sm" />
         </Text>
         <Text
-          href="#_"
           tag="a"
+          href="#_"
           variant="textBase"
-          class="font-medium hover:text-blue-500 hover:dark:text-blue-400 text-zinc-500 dark:text-zinc-400"
+          class="font-medium text-white hover:text-blue-500"
         >
-          Privacy Policy
+          <LinkedinBrand size="sm" />
+        </Text>
+        <Text
+          tag="a"
+          href="#_"
+          variant="textBase"
+          class="font-medium text-white hover:text-blue-500"
+        >
+          <GithubBrand size="sm" />
+        </Text>
+        <Text
+          tag="a"
+          href="#_"
+          variant="textBase"
+          class="font-medium text-white hover:text-blue-500"
+        >
+          <YoutubeBrand size="sm" />
         </Text>
       </nav>
     </div>

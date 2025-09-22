@@ -1,6 +1,6 @@
 ---
 import Text from "@/components/fundations/typography/Text.astro";
-
+import Logo from "@/components/assets/Logo.astro";
 import XBrand from "@/components/fundations/icons/XBrand.astro";
 import LinkedinBrand from "@/components/fundations/icons/LinkedinBrand.astro";
 import YoutubeBrand from "@/components/fundations/icons/YoutubeBrand.astro";
@@ -10,27 +10,9 @@ const footerLinks = [
     heading: "Company ",
     links: [
       { href: "#", text: "About" },
-      { href: "#", text: "Mission" },
-      { href: "#", text: "Leadership Team" },
-      { href: "#", text: "History" },
-    ],
-  },
-  {
-    heading: " Services",
-    links: [
-      { href: "#", text: "Marketing" },
-      { href: "#", text: "Analytics" },
-      { href: "#", text: "Commerce" },
-      { href: "#", text: "Insights" },
-    ],
-  },
-  {
-    heading: "Resources",
-    links: [
-      { href: "#", text: "Documentation" },
-      { href: "#", text: "Guides" },
-      { href: "#", text: "Webinars" },
-      { href: "#", text: "White Papers" },
+      { href: "#", text: "Overview" },
+      { href: "#", text: "Pricing" },
+      { href: "#", text: "Blog" },
     ],
   },
 ];
@@ -39,93 +21,35 @@ const footerLinks = [
 <section class="bg-white dark:bg-zinc-900">
   <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
     <div
-      class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-x-8 gap-y-24"
+      class="flex flex-col items-center justify-between w-full text-center gap-8 lg:text-left lg:flex-row bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 shadow from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl p-8"
     >
-      <div class="col-span-full md:col-span-2 lg:col-start-5 lg:order-last">
-        <Text
-          tag="a"
-          href="#_"
-          variant="textBase"
-          class="flex items-center font-medium hover:text-blue-500 hover:dark:text-blue-400 gap-2 text-zinc-900 dark:text-zinc-100"
-        >
-          <img
-            class="h-7 2xl:h-12"
-            src="/images/oxbow/blueLineLogo.png"
-            alt="#_"
-          /> Oxbow UI
-        </Text>
-        <div class="relative flex items-center mt-8 group divide-x">
-          <img
-            alt="#_"
-            class="pr-2 size-20"
-            src="/assets/qr-lexingtonthemes.svg"
-          />
-          <div class="h-full pl-2 lg:w-64">
-            <Text
-              tag="a"
-              href=""
-              variant="textBase"
-              class="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-blue-500 group-hover:dark:text-blue-400"
-            >
-              <span class="absolute inset-0 sm:rounded-2xl"></span>Download the
-              app
-            </Text>
-
-            <Text
-              tag="p"
-              variant="textBase"
-              class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
-            >
-              Scan the QR code to download the app from your app store.
-            </Text>
-          </div>
-        </div>
+      <div class="justify-center lg:justify-start w-full">
+        <Logo class="h-12 text-zinc-900 dark:text-white mx-auto lg:mx-0" />
       </div>
       {
         footerLinks.map((section, index) => (
-          <div class="space-y-4">
-            <nav aria-labelledby={`footer-heading-${index}`}>
-              <Text
-                tag="h2"
-                variant="textBase"
-                id={`footer-heading-${index}`}
-                class="font-semibold text-zinc-900 dark:text-zinc-100"
-              >
-                {section.heading}
-              </Text>
-              <ul class="mt-4 space-y-4">
-                {section.links.map((link, linkIndex) => (
-                  <li>
-                    <Text
-                      tag="a"
-                      href="#_"
-                      variant="textBase"
-                      class="font-medium hover:text-blue-500 hover:dark:text-blue-400 text-zinc-500 dark:text-zinc-400"
-                    >
-                      {link.text}
-                    </Text>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
+          <nav aria-labelledby={`footer-heading-${index}`}>
+            <ul class="flex flex-col lg:flex-row justify-center  gap-x-4 gap-y-2">
+              {section.links.map((link) => (
+                <li>
+                  <Text
+                    tag="a"
+                    href="#_"
+                    variant="textBase"
+                    class="font-medium text-zinc-900 dark:text-zinc-100  hover:text-blue-600 dark:hover:text-blue-300 text-sm"
+                  >
+                    {link.text}
+                  </Text>
+                </li>
+              ))}
+            </ul>
+          </nav>
         ))
       }
-    </div>
-    <div
-      class="flex flex-col justify-between pt-12 mt-12 border-t gap-8 sm:flex-row sm:items-center border-zinc-200 dark:border-zinc-800"
-    >
-      <Text
-        tag="h2"
-        variant="textSM"
-        class="font-medium text-zinc-400 dark:text-zinc-500"
-      >
-        Copyright © 2024 Oxbow UI. All rights reserved.
-      </Text>
       <nav
         aria-labelledby="social-icons-heading"
         role="navigation"
-        class="flex items-center gap-4 text-zinc-500"
+        class="flex items-center justify-center w-full gap-4 text-zinc-500 dark:text-zinc-400 lg:justify-end"
       >
         <Text id="social-icons-heading" class="sr-only">
           Follow us on social media
@@ -134,7 +58,7 @@ const footerLinks = [
           tag="a"
           href="#_"
           variant="textBase"
-          class="font-medium hover:text-blue-500 hover:dark:text-blue-400 text-zinc-500 dark:text-zinc-400"
+          class="font-medium text-zinc-900 dark:text-zinc-100 hover:text-blue-600 dark:hover:text-blue-300 text-sm"
         >
           <XBrand size="sm" />
         </Text>
@@ -142,7 +66,7 @@ const footerLinks = [
           tag="a"
           href="#_"
           variant="textBase"
-          class="font-medium hover:text-blue-500 text-zinc-500"
+          class="font-medium hover:text-blue-500 text-zinc-500 dark:Text-zinc-400 dark:hover:text-blue-400"
         >
           <LinkedinBrand size="sm" />
         </Text>
@@ -150,7 +74,7 @@ const footerLinks = [
           tag="a"
           href="#_"
           variant="textBase"
-          class="font-medium hover:text-blue-500 text-zinc-500"
+          class="font-medium hover:text-blue-500 text-zinc-500 dark:Text-zinc-400 dark:hover:text-blue-400"
         >
           <GithubBrand size="sm" />
         </Text>
@@ -158,7 +82,7 @@ const footerLinks = [
           tag="a"
           href="#_"
           variant="textBase"
-          class="font-medium hover:text-blue-500 text-zinc-500"
+          class="font-medium hover:text-blue-500 text-zinc-500 dark:Text-zinc-400 dark:hover:text-blue-400"
         >
           <YoutubeBrand size="sm" />
         </Text>

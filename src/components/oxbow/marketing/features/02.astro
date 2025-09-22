@@ -1,5 +1,4 @@
 ---
-import Button from "@/components/fundations/buttons/Button.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 import Filters from "@/components/fundations/icons/Filters.astro";
 import WaveSquare from "@/components/fundations/icons/WaveSquare.astro";
@@ -9,35 +8,35 @@ import CircleCheck from "@/components/fundations/icons/CircleCheck.astro";
 const data = [
   {
     icon: "Filters",
-    category: "Live editing",
-    text: "Instantly see the result of every change you make.",
+    category: "Real-time Preview",
+    text: "Track your edits live—watch updates happen instantly as you code.",
   },
   {
     icon: "WaveSquare",
-    category: "Autocompletion",
-    text: "Spotless will suggest the right classes for you as you type.",
+    category: "Smart Suggestions",
+    text: "Receive context-aware class recommendations while you type.",
   },
   {
     icon: "ArrowIteration",
-    category: "Hide/show classes",
-    text: "Hide or show classes to see how your design changes.",
+    category: "Toggle Visibility",
+    text: "Show or hide styling options to test different layouts seamlessly.",
   },
   {
     icon: "Plus",
-    category: "Color preview",
-    text: "See the color of every class in the autocompletion view.",
+    category: "Color Swatches",
+    text: "Preview color values directly within the autocomplete dropdown.",
   },
 ];
 const dataROW = [
   {
-    category: "Innovative Design",
-    text: "Our cutting-edge design offers a fresh, modern look that transforms your project into a standout experience.",
-    items: ["Revolutionizing communication", "Enhancing productivity"],
+    category: "Intuitive Interface",
+    text: "Navigate a clean, user-focused layout designed for maximum efficiency.",
+    items: ["Streamlined workflows", "Enhanced accessibility"],
   },
   {
-    category: "Powerful Functionality",
-    text: "Equipped with advanced features and tools, our solution effortlessly manages complex tasks and workflows. ",
-    items: ["Unlocking innovative solutions", "Enabling interoperability"],
+    category: "Robust Performance",
+    text: "Power through large projects with lightning-fast compilation and minimal overhead.",
+    items: ["Optimized rendering", "Scalable architecture"],
   },
 ];
 ---
@@ -46,26 +45,18 @@ const dataROW = [
   <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
     <div class="max-w-3xl">
       <Text
-        tag="p"
-        variant="textSM"
-        class="font-bold uppercase text-blue-600 dark:text-blue-400"
-      >
-        Tagline
-      </Text>
-      <Text
         tag="h2"
         variant="displayMD"
-        class="mt-4 font-semibold text-zinc-900 dark:text-zinc-100 text-balance"
+        class="font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 text-balance"
       >
-        Transforming the banking experience for a digital future
+        Powering finance for the digital age
       </Text>
       <Text
         tag="p"
         variant="textBase"
         class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
       >
-        The fastest method for working together on staging and temporary
-        environments.
+        Collaborate seamlessly across staging and testing environments.
       </Text>
     </div>
     <dl
@@ -74,31 +65,31 @@ const dataROW = [
       {
         data.map((section) => (
           <div>
-            <div class="flex items-center text-blue-500 dark:text-blue-400 gap-3">
+            <div class="flex items-center text-zinc-500 dark:text-zinc-400 gap-2">
               {section.icon === "Filters" && (
-                <Filters class="text-blue-600 dark:text-blue-400" size="base" />
+                <Filters class="text-zinc-600 dark:text-zinc-400" size="base" />
               )}
               {section.icon === "WaveSquare" && (
                 <WaveSquare
-                  class="text-blue-600 dark:text-blue-400"
+                  class="text-zinc-600 dark:text-zinc-400"
                   size="base"
                 />
               )}
               {section.icon === "ArrowIteration" && (
                 <ArrowIteration
-                  class="text-blue-600 dark:text-blue-400"
+                  class="text-zinc-600 dark:text-zinc-400"
                   size="base"
                 />
               )}
               {section.icon === "Plus" && (
-                <Plus class="text-blue-600 dark:text-blue-400" size="base" />
+                <Plus class="text-zinc-600 dark:text-zinc-400" size="base" />
               )}
 
               <dt>
                 <Text
-                  variant="textLG"
+                  variant="textBase"
                   tag="h3"
-                  class="font-medium text-zinc-900 dark:text-zinc-100"
+                  class="font-semibold text-zinc-900 dark:text-zinc-100"
                 >
                   {section.category}
                 </Text>
@@ -107,7 +98,7 @@ const dataROW = [
             <dd>
               <Text
                 tag="p"
-                variant="textBase"
+                variant="textSM"
                 class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
               >
                 {section.text}
@@ -117,60 +108,58 @@ const dataROW = [
         ))
       }
     </dl>
-    <div class="items-start mt-12 grid grid-cols-1 md:grid-cols-2 lg:mt-24">
-      <div class="lg:pr-24 md:pr-12">
-        <ul
-          class="text-base font-medium list-none gap-1 grid sm:grid-cols-2 lg:grid-cols-1 text-zinc-900 dark:text-zinc-100"
-          role="list"
-        >
-          {
-            dataROW.map((section) => (
-              <div class="mt-12">
-                <div>
-                  <Text
-                    variant="textLG"
-                    tag="h3"
-                    class="font-medium text-zinc-900 dark:text-zinc-100"
-                  >
-                    {section.category}
-                  </Text>
-                  <Text
-                    tag="p"
-                    variant="textBase"
-                    class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
-                  >
-                    {section.text}
-                  </Text>
-                </div>
-                <ul
-                  role="list"
-                  class="mt-6 text-base font-medium list-none space-y-1 text-zinc-900 dark:text-zinc-100"
+    <div class="items-start mt-12 grid grid-cols-1 md:grid-cols-2">
+      <ul
+        class="text-base font-medium gap-y-12 list-none gap-1 grid sm:grid-cols-2 lg:grid-cols-1 text-zinc-900 dark:text-zinc-100 lg:pr-24 md:pr-12"
+        role="list"
+      >
+        {
+          dataROW.map((section) => (
+            <div>
+              <div>
+                <Text
+                  variant="textBase"
+                  tag="h3"
+                  class="font-semibold text-zinc-900 dark:text-zinc-100"
                 >
-                  {section.items.map((item) => (
-                    <li>
-                      <div class="flex items-center  gap-4">
-                        <CircleCheck
-                          class="text-blue-600 dark:text-blue-400"
-                          size="base"
-                          slot="icon"
-                        />
-                        <Text tag="span" variant="textBase">
-                          {item}
-                        </Text>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+                  {section.category}
+                </Text>
+                <Text
+                  tag="p"
+                  variant="textSM"
+                  class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
+                >
+                  {section.text}
+                </Text>
               </div>
-            ))
-          }
-        </ul>
-      </div>
+              <ul
+                role="list"
+                class="mt-6 text-base font-medium list-none space-y-1 text-zinc-900 dark:text-zinc-100"
+              >
+                {section.items.map((item) => (
+                  <li>
+                    <div class="flex items-center  gap-2">
+                      <CircleCheck
+                        class="text-zinc-600 dark:text-zinc-400"
+                        size="sm"
+                        slot="icon"
+                      />
+                      <Text tag="span" variant="textBase">
+                        {item}
+                      </Text>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </ul>
       <div class="h-full mt-12 lg:mt-0">
         <img
           src="/widgets/calendar.svg"
           alt="#_"
-          class="w-full shadow rounded-2xl"
+          class="w-full shadow rounded-2xl outline outline-zinc-100 dark:outline-zinc-800"
         />
       </div>
     </div>

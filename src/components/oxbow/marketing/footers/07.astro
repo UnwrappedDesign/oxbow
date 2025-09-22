@@ -3,10 +3,6 @@ import Button from "@/components/fundations/buttons/Button.astro";
 
 import Text from "@/components/fundations/typography/Text.astro";
 
-import XBrand from "@/components/fundations/icons/XBrand.astro";
-import LinkedinBrand from "@/components/fundations/icons/LinkedinBrand.astro";
-import YoutubeBrand from "@/components/fundations/icons/YoutubeBrand.astro";
-import GithubBrand from "@/components/fundations/icons/GithubBrand.astro";
 const footerLinks = [
   {
     heading: "Company ",
@@ -35,154 +31,76 @@ const footerLinks = [
       { href: "#", text: "White Papers" },
     ],
   },
+  {
+    heading: "Support & Legal",
+    links: [
+      { href: "#", text: "Pricing" },
+      { href: "#", text: "API Status" },
+      { href: "#", text: "Live Chat" },
+      { href: "#", text: "Email Support" },
+    ],
+  },
 ];
 ---
 
 <section class="bg-white dark:bg-zinc-900">
   <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8">
-      <div class="col-span-full md:col-span-1">
-        <Text
-          tag="a"
-          href="#_"
-          variant="textBase"
-          class="flex items-center font-medium hover:text-blue-500 hover:dark:text-blue-400 gap-2 text-zinc-900 dark:text-zinc-100"
-        >
-          <img
-            class="h-7 2xl:h-12"
-            src="/images/oxbow/blueLineLogo.png"
-            alt="#_"
-          /> Oxbow UI
-        </Text>
-        <Text
-          tag="p"
-          variant="textSM"
-          class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
-        >
-          Designed in europe.
-        </Text>
-      </div>
-      {
-        footerLinks.map((section, index) => (
-          <nav aria-labelledby={`footer-heading-${index}`}>
-            <Text
-              tag="h2"
-              variant="textBase"
-              id={`footer-heading-${index}`}
-              class="font-semibold text-zinc-900 dark:text-zinc-100"
-            >
-              {section.heading}
-            </Text>
-            <ul class="mt-4 space-y-4">
-              {section.links.map((link, linkIndex) => (
-                <li>
-                  <Text
-                    tag="a"
-                    href="#_"
-                    variant="textBase"
-                    class="font-medium hover:text-blue-500 hover:dark:text-blue-400 text-zinc-500 dark:text-zinc-400"
-                  >
-                    {link.text}
-                  </Text>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        ))
-      }
-      <div class="col-span-full md:col-span-2">
+    <div
+      class="overflow-hidden bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 shadow from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl divide-y divide-zinc-200 dark:divide-zinc-800"
+    >
+      <div class="items-end p-8 grid grid-cols-1 sm:grid-cols-2 gap-4 lg:p-12">
         <div>
           <Text
             tag="h2"
-            variant="textBase"
+            variant="textLG"
             class="font-semibold text-zinc-900 dark:text-zinc-100"
           >
-            Join our newsletter
+            Get started with our app today
           </Text>
           <Text
             tag="p"
             variant="textBase"
             class="mt-2 font-medium text-zinc-500 dark:text-zinc-400 lg:text-balance"
           >
-            Stay up to date with our latest news and updates.
+            Streamline your workflow and collaborate seamlessly on staging and
+            temporary environments
           </Text>
-          <form class="w-full mt-8 sm:flex sm:max-w-md">
-            <label for="email-address" class="sr-only">Email address</label>
-            <input
-              id="email-address"
-              type="email"
-              name="email-address"
-              autocomplete="email"
-              placeholder="Enter your email"
-              aria-placeholder="Enter your email"
-              required=""
-              class="block w-full h-10 px-4 py-2 text-sm bg-white dark:bg-zinc-900 border border-transparent rounded-lg shadow appearance-none ring-1 ring-zinc-200 dark:ring-zinc-700 text-blue-700 dark:text-blue-300 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-600 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 duration-300 sm:text-sm"
-            />
-            <div class="mt-2 sm:ml-2 sm:mt-0 sm:flex-shrink-0">
-              <Button
-                class="w-full sm:w-auto"
-                type="submit"
-                variant="accent"
-                size="base"
-              >
-                Subscribe
-              </Button>
-            </div>
-          </form>
+        </div>
+        <div class="flex flex-col items-center lg:flex-row gap-2 sm:ml-auto">
+          <Button variant="default" size="sm"> Get started </Button>
+          <Button variant="outline" size="sm"> Learn more </Button>
         </div>
       </div>
-    </div>
-    <div
-      class="flex flex-col justify-between pt-12 mt-12 border-t gap-8 sm:flex-row sm:items-center border-zinc-200 dark:border-zinc-800"
-    >
-      <Text
-        tag="h2"
-        variant="textSM"
-        class="font-medium text-zinc-400 dark:text-zinc-500"
-      >
-        Copyright © 2024 Oxbow UI. All rights reserved.
-      </Text>
-      <nav
-        aria-labelledby="social-icons-heading"
-        role="navigation"
-        class="flex items-center gap-4 text-zinc-500 dark:text-zinc-400"
-      >
-        <Text id="social-icons-heading" class="sr-only">
-          Follow us on social media
-        </Text>
-        <Text
-          tag="a"
-          href="#_"
-          variant="textBase"
-          class="font-medium hover:text-blue-500 hover:dark:text-blue-400 text-zinc-500 dark:text-zinc-400"
-        >
-          <XBrand size="sm" />
-        </Text>
-        <Text
-          tag="a"
-          href="#_"
-          variant="textBase"
-          class="font-medium hover:text-blue-500 hover:dark:text-blue-400 text-zinc-500 dark:text-zinc-400"
-        >
-          <LinkedinBrand size="sm" />
-        </Text>
-        <Text
-          tag="a"
-          href="#_"
-          variant="textBase"
-          class="font-medium hover:text-blue-500 hover:dark:text-blue-400 text-zinc-500 dark:text-zinc-400"
-        >
-          <GithubBrand size="sm" />
-        </Text>
-        <Text
-          tag="a"
-          href="#_"
-          variant="textBase"
-          class="font-medium hover:text-blue-500 hover:dark:text-blue-400 text-zinc-500 dark:text-zinc-400"
-        >
-          <YoutubeBrand size="sm" />
-        </Text>
-      </nav>
+      <div class="p-8 grid lg:p-12 grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-24">
+        {
+          footerLinks.map((section, index) => (
+            <div class="space-y-4">
+              <nav aria-labelledby={`footer-heading-${index}`}>
+                <Text
+                  tag="h2"
+                  variant="textBase"
+                  id={`footer-heading-${index}`}
+                  class="font-semibold text-zinc-900 dark:text-zinc-100"
+                >
+                  {section.heading}
+                </Text>
+                <ul class="mt-4">
+                  {section.links.map((link) => (
+                    <li>
+                      <a
+                        href="#_"
+                        class="font-medium text-zinc-600 dark:text-zinc-400  hover:text-blue-600 dark:hover:text-blue-300 text-sm"
+                      >
+                        {link.text}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
+          ))
+        }
+      </div>
     </div>
   </div>
 </section>
