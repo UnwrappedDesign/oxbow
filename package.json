@@ -3,8 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "concurrently 'npm:serve:*(!dist)'",
-    "build": "astro build",
+    "dev": "npm run updates && npm run changelog && concurrently 'npm:serve:*(!dist)'",
+    "prebuild": "npm run updates && npm run changelog",
+    "build": "npm run prebuild && astro build",
     "start": "npm run build && npm run serve:dist",
     "preview": "astro preview",
     "astro": "astro",
