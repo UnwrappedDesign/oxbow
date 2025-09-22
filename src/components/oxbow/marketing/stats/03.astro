@@ -1,50 +1,105 @@
 ---
+import Button from "@/components/fundations/buttons/Button.astro";
+import Kicker from "@/components/fundations/typography/Kicker.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 const stats = [
   {
     label: "Working Individuals",
+    description: "We reached over 30 million users and are growing fast.",
     value: "30%",
   },
   {
     label: "Super low fee",
+    description:
+      "Enjoy significant savings with our extremely low fee structure.",
     value: "40%",
   },
   {
     label: "Great Commitment",
+    description: " We’re dedicated to delivering outstanding service and valu.",
     value: "50%",
   },
   {
     label: "Massive Earnings",
-    value: "60M",
+    description: "Reap the benefits with substantial returns ",
+    value: "100%",
+  },
+  {
+    label: "Customer Satisfaction",
+    description:
+      "Our customers consistently rate us with a 98% satisfaction rate.",
+    value: "98%",
+  },
+  {
+    label: "Global Reach",
+    description: "We’ve expanded our services to over 120 countries worldwide.",
+    value: "120+",
+  },
+  {
+    label: " Transactions",
+    description: "Over 500,000 transactions processed with zero failures.",
+    value: "500K",
+  },
+  {
+    label: "Team Growth",
+    description: "Our team has grown by 150% in the past year.",
+    value: "150%",
   },
 ];
 ---
 
-<section class="bg-white dark:bg-zinc-900">
-  <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
-    <div
-      class="overflow-hidden text-center border grid grid-cols-1 gap-px bg-zinc-200 dark:bg-zinc-900 rounded-2xl border-zinc-200 dark:border-zinc-700 sm:grid-cols-2 md:grid-cols-4"
-    >
-      {
-        stats.map((stat) => (
-          <div class="flex flex-col p-8 bg-zinc-50 dark:bg-zinc-950">
-            <Text
-              tag="h3"
-              variant="displayXL"
-              class="text-blue-700 dark:text-blue-400"
-            >
-              {stat.value}
-            </Text>
-            <Text
-              tag="h3"
-              variant="textLG"
-              class="font-medium text-zinc-900 dark:text-zinc-100"
-            >
-              {stat.label}
-            </Text>
-          </div>
-        ))
-      }
+<div class="relative bg-white dark:bg-zinc-900">
+  <img
+    class="object-cover w-full h-56 border-8 border-white bg-white dark:border-black rounded-xl lg:absolute lg:inset-y-0 lg:right-0 lg:h-full lg:w-1/2"
+    src="/pose/3.png"
+    alt="#_"
+  />
+  <div class="mx-auto grid max-w-7xl lg:grid-cols-2">
+    <div class="px-6 pt-16 pb-24 sm:pb-32 sm:pt-20 lg:px-8 lg:pt-32">
+      <div class="max-w-2xl mx-auto lg:ml-0 lg:max-w-lg">
+        <Kicker> Tagline </Kicker>
+        <Text
+          tag="h2"
+          variant="displayMD"
+          class="mt-4 font-semibold text-zinc-900 dark:text-zinc-100 lg:text-balance"
+        >
+          Empower your finances with our unmatched value
+        </Text>
+        <Text
+          tag="p"
+          variant="textBase"
+          class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+        >
+          Experience low fees, unwavering commitment, and massive earnings with
+          a service trusted by over 60 million users.
+        </Text>
+
+        <div class="mt-12 grid gap-x-6 gap-y-12 sm:grid-cols-2">
+          {
+            stats.slice(0, 6).map((stat) => (
+              <div>
+                <Text
+                  tag="h3"
+                  variant="textBase"
+                  class="font-semibold text-zinc-900 dark:text-zinc-100 flex gap-2 items-center"
+                >
+                  <span class="font-semibold text-blue-700 dark:text-blue-400">
+                    {stat.value}
+                  </span>
+                  {stat.label}
+                </Text>
+                <Text
+                  tag="p"
+                  variant="textBase"
+                  class="mt-2 font-medium text-zinc-600 dark:text-zinc-300"
+                >
+                  {stat.description}
+                </Text>
+              </div>
+            ))
+          }
+        </div>
+      </div>
     </div>
   </div>
-</section>
+</div>

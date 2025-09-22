@@ -1,121 +1,70 @@
 ---
-import Button from "@/components/fundations/buttons/Button.astro";
 import Text from "@/components/fundations/typography/Text.astro";
+const stats = [
+  {
+    label: "Working Individuals",
+    description: "We reached over 30 million users and are growing fast.",
+    value: "30%",
+  },
+  {
+    label: "Super low fee",
+    description:
+      "Enjoy significant savings with our extremely low fee structure.",
+    value: "40%",
+  },
+  {
+    label: "Great Commitment",
+    description: " We’re dedicated to delivering outstanding service and valu.",
+    value: "50%",
+  },
+  {
+    label: "Massive Earnings",
+    description: "Reap the benefits with substantial returns ",
+    value: "100%",
+  },
+];
 ---
 
 <section class="bg-white dark:bg-zinc-900">
   <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
-    <div class="items-end grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div
-        class="flex flex-col justify-between rounded-3xl bg-zinc-50 dark:bg-zinc-950 lg:gap-12"
-      >
-        <div
-          class="order-last w-full p-8 border-t border-zinc-200 dark:border-zinc-900"
-        >
-          <Text
-            tag="p"
-            variant="display2XL"
-            class="font-medium text-blue-700 dark:text-blue-400"
-          >
-            30%
-          </Text>
-        </div>
-        <div class="p-8 sm:shrink lg:flex-none">
-          <Text
-            tag="h3"
-            variant="textLG"
-            class="font-medium text-zinc-900 dark:text-zinc-100"
-          >
-            Working Individuals
-          </Text>
-          <Text
-            tag="p"
-            variant="textBase"
-            class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
-          >
-            We’re dedicated to delivering outstanding service and value.
-          </Text>
-        </div>
+    <div class="items-center grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-24">
+      <div class="order-last grid gap-x-6 gap-y-12 sm:grid-cols-2">
+        {
+          stats.map((stat) => (
+            <div>
+              <div class="flex flex-col items-baseline gap-4">
+                <Text
+                  tag="h3"
+                  variant="displayXL"
+                  class="text-blue-600 dark:text-blue-400 font-mono"
+                >
+                  {stat.value}
+                </Text>
+                <Text
+                  tag="h3"
+                  variant="textBase"
+                  class="font-semibold  text-zinc-900 dark:text-zinc-100"
+                >
+                  {stat.label}
+                </Text>
+              </div>
+              <Text
+                tag="p"
+                variant="textSM"
+                class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
+              >
+                {stat.description}
+              </Text>
+            </div>
+          ))
+        }
       </div>
-      <div
-        class="flex flex-col justify-between rounded-3xl bg-blue-600 dark:bg-blue-700 lg:gap-28"
-      >
-        <div class="order-last w-full p-8 border-t border-white/20">
-          <Text
-            tag="p"
-            variant="display2XL"
-            class="font-medium text-white dark:text-blue-100"
-          >
-            90%
-          </Text>
-        </div>
-        <div class="p-8 sm:shrink lg:flex-none">
-          <Text
-            tag="h3"
-            variant="textLG"
-            class="font-medium text-white dark:text-zinc-100"
-          >
-            Massive Earnings
-          </Text>
-          <Text
-            tag="p"
-            variant="textBase"
-            class="mt-2 font-medium text-white dark:text-zinc-200"
-          >
-            Reap the benefits with substantial returns.
-          </Text>
-        </div>
-      </div>
-      <div
-        class="flex flex-col justify-between rounded-3xl bg-blue-950 dark:bg-zinc-900 lg:gap-44"
-      >
-        <div class="order-last w-full p-8 border-t border-white/20">
-          <Text
-            tag="p"
-            variant="display2XL"
-            class="font-medium text-white dark:text-blue-200"
-          >
-            8%
-          </Text>
-        </div>
-        <div class="p-8 sm:shrink lg:flex-none">
-          <Text
-            tag="h3"
-            variant="textLG"
-            class="font-medium text-white dark:text-zinc-100"
-          >
-            Super low fee
-          </Text>
-          <Text
-            tag="p"
-            variant="textBase"
-            class="mt-2 font-medium text-white dark:text-zinc-200"
-          >
-            Enjoy significant savings with our extremely low fee structure.
-          </Text>
-        </div>
-      </div>
-    </div>
-    <div class="mt-12 grid grid-cols-1 gap-y-12 lg:grid-cols-3 lg:items-end">
-      <div class="lg:col-span-2">
-        <Text
-          tag="p"
-          variant="textSM"
-          class="font-bold uppercase text-blue-600 dark:text-blue-400"
-        >
-          Tagline
-        </Text>
-        <Text
-          tag="h2"
-          variant="displayMD"
-          class="mt-4 font-semibold text-zinc-900 dark:text-zinc-100 lg:text-balance"
-        >
-          Empower your finances with our unmatched value
-        </Text>
-      </div>
-      <div class="flex flex-wrap items-center gap-2 lg:ml-auto">
-        <Button variant="accent" size="sm"> Get started </Button>
-        <Button variant="outline" size="sm"> Learn more </Button>
+      <div class="order-first block w-full">
+        <img
+          alt="#_"
+          class="drop-shadow size-full aspect-square rounded-2xl"
+          src="/pose/3.png"
+        />
       </div>
     </div>
   </div>

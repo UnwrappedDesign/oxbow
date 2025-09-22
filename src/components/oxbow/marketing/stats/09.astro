@@ -1,124 +1,116 @@
 ---
+import Button from "@/components/fundations/buttons/Button.astro";
+import Kicker from "@/components/fundations/typography/Kicker.astro";
 import Text from "@/components/fundations/typography/Text.astro";
+const stats = [
+  {
+    label: "Working Individuals",
+    description: "We reached over 30 million users and are growing fast.",
+    value: "30%",
+  },
+  {
+    label: "Super low fee",
+    description:
+      "Enjoy significant savings with our extremely low fee structure.",
+    value: "40%",
+  },
+  {
+    label: "Great Commitment",
+    description: " We’re dedicated to delivering outstanding service and valu.",
+    value: "50%",
+  },
+  {
+    label: "Massive Earnings",
+    description: "Reap the benefits with substantial returns ",
+    value: "100%",
+  },
+  {
+    label: "Customer Satisfaction",
+    description:
+      "Our customers consistently rate us with a 98% satisfaction rate.",
+    value: "98%",
+  },
+  {
+    label: "Global Reach",
+    description: "We’ve expanded our services to over 120 countries worldwide.",
+    value: "120+",
+  },
+  {
+    label: " Transactions",
+    description: "Over 500,000 transactions processed with zero failures.",
+    value: "500K",
+  },
+  {
+    label: "Team Growth",
+    description: "Our team has grown by 150% in the past year.",
+    value: "150%",
+  },
+];
 ---
 
 <section class="bg-white dark:bg-zinc-900">
   <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
-    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+    <div
+      class="relative px-6 pt-16 overflow-hidden isolate bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 shadow from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0"
+    >
       <div
-        class="flex flex-col justify-between rounded-3xl lg:col-span-2 bg-blue-950 dark:bg-zinc-900 lg:gap-44"
+        class="max-w-md mx-auto text-center lg:mx-0 lg:flex-auto lg:py-24 lg:text-left"
       >
-        <div class="order-last w-full p-8 border-t border-white/20">
-          <Text
-            tag="p"
-            variant="display2XL"
-            class="font-medium text-white dark:text-blue-200"
-          >
-            8%
-          </Text>
+        <Kicker> Tagline </Kicker>
+        <Text
+          tag="h2"
+          variant="displayMD"
+          class="mt-4 font-semibold lg:text-balance tracking-tight texrt-zinc-900 dark:text-white"
+        >
+          Empower your finances with our unmatched value
+        </Text>
+        <Text
+          tag="p"
+          variant="textBase"
+          class="mt-4 font-medium text-zinc-600 dark:text-zinc-400"
+        >
+          Experience low fees, unwavering commitment, and massive earnings with
+          a service trusted by over 60 million users.
+        </Text>
+        <div
+          class="flex flex-wrap items-center justify-center mt-12 lg:justify-start gap-2 col-span-full"
+        >
+          <Button variant="accent" size="sm"> Get started </Button>
+          <Button variant="muted" size="sm"> Learn more </Button>
         </div>
-        <div class="p-8 sm:shrink lg:flex-none">
-          <Text
-            tag="h3"
-            variant="textLG"
-            class="font-medium text-white dark:text-zinc-100"
-          >
-            Super low fee
-          </Text>
-          <Text
-            tag="p"
-            variant="textBase"
-            class="mt-2 font-medium text-white dark:text-zinc-200"
-          >
-            Enjoy significant savings with our extremely low fee structure.
-          </Text>
-        </div>
-      </div>
 
-      <div
-        class="flex flex-col lg:col-span-1 bg-zinc-50 dark:bg-zinc-950 rounded-3xl"
-      >
-        <div class="p-8 border-t border-zinc-200 dark:border-zinc-900">
-          <Text
-            tag="h3"
-            variant="textLG"
-            class="font-medium text-zinc-900 dark:text-zinc-100"
-          >
-            Working Individuals
-          </Text>
-          <Text
-            tag="p"
-            variant="textBase"
-            class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
-          >
-            We’re dedicated to delivering outstanding service and value.
-          </Text>
-        </div>
-        <div class="order-first w-full p-8">
-          <Text
-            tag="p"
-            variant="textLG"
-            class="font-medium text-blue-700 dark:text-blue-400"
-          >
-            30%
-          </Text>
+        <div class="mt-12 grid gap-x-6 gap-y-12 sm:grid-cols-2">
+          {
+            stats.slice(0, 4).map((stat) => (
+              <div>
+                <Text
+                  tag="h3"
+                  variant="textBase"
+                  class="font-semibold text-zinc-900 dark:text-zinc-100 flex gap-2 items-center"
+                >
+                  <span class="font-semibold text-blue-700 dark:text-blue-400">
+                    {stat.value}
+                  </span>
+                  {stat.label}
+                </Text>
+                <Text
+                  tag="p"
+                  variant="textBase"
+                  class="mt-2 font-medium text-zinc-600 dark:text-zinc-300"
+                >
+                  {stat.description}
+                </Text>
+              </div>
+            ))
+          }
         </div>
       </div>
-      <div class="flex flex-col bg-zinc-50 dark:bg-zinc-950 rounded-3xl">
-        <div class="p-8 border-t">
-          <Text
-            tag="h3"
-            variant="textLG"
-            class="font-medium text-zinc-900 dark:text-zinc-100"
-          >
-            Massive Earnings
-          </Text>
-          <Text
-            tag="p"
-            variant="textBase"
-            class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
-          >
-            Reap the benefits with substantial returns.
-          </Text>
-        </div>
-        <div class="order-first w-full p-8">
-          <Text
-            tag="p"
-            variant="textLG"
-            class="font-medium text-blue-700 dark:text-blue-400"
-          >
-            90%
-          </Text>
-        </div>
-      </div>
-      <div
-        class="flex flex-col justify-between lg:col-span-2 rounded-3xl bg-blue-600 dark:bg-blue-700 lg:gap-28"
-      >
-        <div class="order-last w-full p-8 border-t border-white/20">
-          <Text
-            tag="p"
-            variant="display2XL"
-            class="font-medium text-white dark:text-blue-100"
-          >
-            90%
-          </Text>
-        </div>
-        <div class="p-8 sm:shrink lg:flex-none">
-          <Text
-            tag="h3"
-            variant="textLG"
-            class="font-medium text-white dark:text-zinc-100"
-          >
-            Massive Earnings
-          </Text>
-          <Text
-            tag="p"
-            variant="textBase"
-            class="mt-2 font-medium text-white dark:text-zinc-200"
-          >
-            Reap the benefits with substantial returns.
-          </Text>
-        </div>
+      <div class="relative mt-16 h-80 lg:mt-8">
+        <img
+          class="absolute top-0 w-[70rem] max-w-none rounded-xl shadow"
+          src="/images/dashboardLight.svg"
+          alt="img"
+        />
       </div>
     </div>
   </div>

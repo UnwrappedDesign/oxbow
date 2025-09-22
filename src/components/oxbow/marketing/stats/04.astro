@@ -1,6 +1,6 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
-
+import Kicker from "@/components/fundations/typography/Kicker.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 const stats = [
   {
@@ -32,59 +32,47 @@ const stats = [
     <div class="grid grid-cols-1 gap-12 lg:grid-cols-3 lg:items-center">
       <div class="flex flex-col justify-between h-full gap-8">
         <div class="text-center lg:text-left">
-          <Text
-            tag="p"
-            variant="textSM"
-            class="font-bold uppercase text-blue-600 dark:text-blue-400"
-          >
-            Tagline
-          </Text>
+          <Kicker> By the Numbers </Kicker>
           <Text
             tag="h2"
-            variant="displayMD"
-            class="mt-4 font-semibold text-zinc-900 dark:text-zinc-100 lg:text-balance"
+            variant="displaySM"
+            class="mt-4 font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 lg:text-balance"
           >
-            Empower your finances with our unmatched value
+            Transform your finances with proven results
           </Text>
           <Text
             variant="textBase"
             class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
           >
-            Experience low fees, unwavering commitment, and massive earnings
-            with a service trusted by over 60 million users.
+            Our track record speaks volumes—millions of users, minimal fees, and
+            impressive returns.
           </Text>
         </div>
         <div
           class="flex flex-wrap items-center justify-center lg:justify-start gap-2"
         >
           <Button variant="accent" size="sm"> Get started </Button>
-          <Button variant="outline" size="sm"> Learn more </Button>
+          <Button variant="muted" size="sm"> Learn more </Button>
         </div>
       </div>
       <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:col-span-2">
         {
           stats.map((stat) => (
-            <div class="flex flex-col p-8 bg-zinc-50 dark:bg-zinc-950 rounded-3xl">
-              <div class="flex items-baseline gap-4 ">
-                <Text
-                  tag="h3"
-                  variant="textLG"
-                  class="font-medium text-blue-700 dark:text-blue-400"
-                >
+            <div class="flex flex-col p-8 bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 shadow from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl">
+              <Text
+                tag="h3"
+                variant="textBase"
+                class="font-semibold text-zinc-900 dark:text-zinc-100 flex gap-2 items-center"
+              >
+                <span class="font-semibold text-blue-700 dark:text-blue-400">
                   {stat.value}
-                </Text>
-                <Text
-                  tag="h3"
-                  variant="textLG"
-                  class="font-medium text-zinc-900 dark:text-zinc-100"
-                >
-                  {stat.label}
-                </Text>
-              </div>
+                </span>
+                {stat.label}
+              </Text>
               <Text
                 tag="p"
                 variant="textBase"
-                class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
+                class="mt-2 font-medium text-zinc-600 dark:text-zinc-300"
               >
                 {stat.description}
               </Text>
