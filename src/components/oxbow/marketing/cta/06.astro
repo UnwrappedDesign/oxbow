@@ -1,53 +1,63 @@
 ---
 export const description = "Centered card CTA ";
-import Logo from "@/components/assets/Logo.astro";
 // Fundations
 import Text from "@/components/fundations/typography/Text.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 // Icons
-import Check from "@/components/fundations/icons/Check.astro";
+import CircleCheck from "@/components/fundations/icons/CircleCheck.astro";
+const listItems = [
+  "Actionable tips, not just opinions",
+  "Zero spam, ever",
+  "Leave anytime, no hard feelings",
+  "Fresh content every week",
+  "Curated by real designers",
+  "Mobile-friendly format",
+  "Exclusive resources inside",
+  "Quick reads, big impact",
+];
 ---
 
 <section class="bg-white dark:bg-zinc-900">
   <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
     <div
-      class="max-w-sm p-8 mx-auto rounded-lg bg-linear-45 from-blue-700 to-blue-500 dark:from-blue-900 dark:to-blue-700"
+      class="flex flex-col justify-between h-full bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 shadow from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl max-w-md mx-auto"
     >
-      <div class="lg:text-balance">
+      <div class="p-8 flex flex-col">
         <Text
           tag="h2"
           variant="displaySM"
-          class="font-semibold tracking-tight text-white dark:text-zinc-100 lg:text-balance"
+          class="font-semibold tracking-tight dark:text-white text-zinc-900 lg:text-balance"
         >
-          Join 29,000 designers who *actually* read our emails
+          Join thousands who actually enjoy our updates
         </Text>
         <Text
           tag="p"
           variant="textSM"
-          class="mt-4 text-zinc-200 dark:text-zinc-300 lg:text-balance"
+          class="mt-4 dark:text-zinc-200 text-zinc-600 lg:text-balance"
         >
-          No cringe tactics. No endless threads. Just good design stuff,
-          straight to your inbox. Occasionally funny.
+          No fluff. No spam. Just the best design insights and resources,
+          delivered straight to you. Sometimes even a laugh.
         </Text>
-        <div class="flex flex-col mt-8 gap-2">
-          <div class="flex items-center gap-2 text-zinc-300 dark:text-zinc-400">
-            <Check class="text-white dark:text-zinc-100" size="base" />
-            <Text tag="p" variant="textSM">Useful news, not “thoughts”</Text>
-          </div>
-          <div class="flex items-center gap-2 text-zinc-300 dark:text-zinc-400">
-            <Check class="text-white dark:text-zinc-100" size="base" />
-            <Text tag="p" variant="textSM">No spam, pinky swear</Text>
-          </div>
-          <div class="flex items-center gap-2 text-zinc-300 dark:text-zinc-400">
-            <Check class="text-white dark:text-zinc-100" size="base" />
-            <Text tag="p" variant="textSM">Unsubscribe without guilt</Text>
-          </div>
-        </div>
-        <div class="flex flex-col mt-12 gap-2">
-          <Button variant="default" size="base" gap="xs"> Fine, I’m In </Button>
-          <Button variant="muted" size="base"> Ugh, Maybe Later </Button>
-        </div>
+        <ul class="flex flex-col mt-8 gap-2">
+          {
+            listItems.map((item) => (
+              <li>
+                <div class="flex items-start gap-2">
+                  <CircleCheck class="text-zinc-600" size="sm" />
+                  <Text tag="span" variant="textSM">
+                    {item}
+                  </Text>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div
+        class="p-8 border-t border-zinc-200 dark:border-white/10 flex flex-col gap-2"
+      >
+        <Button variant="default" size="base" gap="xs"> Count me in </Button>
+        <Button variant="muted" size="base"> Maybe next time </Button>
       </div>
     </div>
   </div>

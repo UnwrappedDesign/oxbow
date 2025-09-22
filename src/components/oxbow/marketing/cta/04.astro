@@ -4,27 +4,38 @@ export const description = "Centered CTA with grid banner";
 import Text from "@/components/fundations/typography/Text.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
 import Kicker from "@/components/fundations/typography/Kicker.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import CircleCheck from "@/components/fundations/icons/CircleCheck.astro";
 // Icons
 import Brain from "@/components/fundations/icons/Brain.astro";
 import Tools from "@/components/fundations/icons/Tools.astro";
 import Analytics from "@/components/fundations/icons/Analytics.astro";
-import Check from "@/components/fundations/icons/Check.astro";
+const listItems = [
+  "No setup, no hassle",
+  "No credit card required",
+  "Cancel anytime, no worries",
+  "Works on any device",
+  "Instant access, no waiting",
+  "Friendly support, real humans",
+  "Secure and private by default",
+  "Regular updates",
+  "Built for teams of any size",
+];
+
 const features = [
   {
     icon: Brain,
-    title: "AI-Powered Guesswork",
-    text: "Our system figures it out for you, even when you have no clue what you're doing.",
+    title: "Smarter Decisions, Less Effort",
+    text: "Let our AI handle the hard parts, even when you’re not sure what’s next.",
   },
   {
     icon: Tools,
-    title: "Math You Don’t Have to Do",
-    text: "Let us crunch the numbers while you pretend you’re in charge.",
+    title: "Math? Handled.",
+    text: "We do the calculations so you can focus on what matters most.",
   },
   {
     icon: Analytics,
-    title: "Built-in Chaos Control",
-    text: "Wrangle your tasks before they spiral into a beautiful disaster.",
+    title: "Order in the Chaos",
+    text: "Keep your projects on track before things get out of hand.",
   },
 ];
 ---
@@ -32,13 +43,13 @@ const features = [
 <section class="bg-white dark:bg-zinc-900">
   <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
     <div class="max-w-xl mx-auto lg:text-balance lg:text-center">
-      <Kicker class=""> Probably Useful Software </Kicker>
+      <Kicker class=""> Surprisingly Helpful Tools </Kicker>
       <Text
         tag="h2"
-        variant="displayMD"
-        class="mt-12 font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 lg:text-balance"
+        variant="displaySM"
+        class="mt-12 font-semibold tracking-tight text-zinc-900 dark:text-white lg:text-balance"
       >
-        Finally tame your to-do list, before it eats you alive
+        Take control of your tasks—before they take control of you
       </Text>
     </div>
     <dl
@@ -74,40 +85,42 @@ const features = [
     </dl>
 
     <div
-      class="p-4 mt-8 bg-white dark:bg-zinc-900 rounded-lg shadow lg:p-12 outline outline-zinc-200 dark:outline-zinc-700 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:items-end gap-8"
+      class="p-8 bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800  from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl mt-8 grid grid-cols-1 md:grid-cols-2 items-start gap-8"
     >
-      <div class="lg:col-span-2">
+      <div>
         <Text
           tag="h3"
-          variant="displaySM"
-          class="font-medium tracking-tight text-zinc-900 dark:text-zinc-100 text-balance"
+          variant="textXL"
+          class="font-semibold tracking-tighter text-zinc-900 dark:text-zinc-100 text-balance"
         >
-          Start your <span class="text-blue-600">7-day free trial</span> and fake
-          productivity like a pro.
+          Try a <span class="text-blue-600">7-day free trial</span> and see how much
+          you can get done.
         </Text>
         <div class="flex flex-wrap mt-4 sm:items-center gap-4">
-          <Button variant="accent" size="sm"> Get started </Button>
+          <Button variant="default" size="sm"> Start free trial </Button>
           <div class="text-xs text-zinc-500 dark:text-zinc-400 lg:items-center">
-            <span class="block"> 4.80/5 According to our moms</span>
+            <span class="block"> 4.8/5 from real users</span>
             <span class="block"> (and 300+ reviews) </span>
           </div>
         </div>
       </div>
-
-      <div class="flex flex-col gap-2 text-zinc-600 dark:text-zinc-400">
-        <div class="flex items-center gap-2 text-zinc-600 dark:text-zinc-400">
-          <Check class="text-blue-500 dark:text-blue-400" size="base" />
-          <Text tag="p" variant="textSM">No setup, no patience required</Text>
-        </div>
-        <div class="flex items-center gap-2 text-zinc-600 dark:text-zinc-400">
-          <Check class="text-blue-500 dark:text-blue-400" size="base" />
-          <Text tag="p" variant="textSM">No credit card, pinky swear</Text>
-        </div>
-        <div class="flex items-center gap-2 text-zinc-600 dark:text-zinc-400">
-          <Check class="text-blue-500 dark:text-blue-400" size="base" />
-          <Text tag="p" variant="textSM">Quit anytime (we won’t cry)</Text>
-        </div>
-      </div>
+      <ul
+        class="text-base font-medium list-none text-zinc-900 dark:text-white grid grid-cols-1 md:grid-cols-2 gap-y-2 gap-x-4"
+        role="list"
+      >
+        {
+          listItems.map((item) => (
+            <li>
+              <div class="flex items-start gap-2">
+                <CircleCheck class="text-zinc-600" size="sm" />
+                <Text tag="span" variant="textSM">
+                  {item}
+                </Text>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </div>
 </section>

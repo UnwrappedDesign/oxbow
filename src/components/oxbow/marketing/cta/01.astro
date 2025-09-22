@@ -5,36 +5,36 @@ export const description = "Centered CTA with logo, image and text";
 import Logo from "@/components/assets/Logo.astro";
 import { Image } from "astro:assets";
 import DashboardLight from "@/images/assets/dashboardLight.svg";
-
 // Fundations
 import Text from "@/components/fundations/typography/Text.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
 ---
 
 <section class="bg-white dark:bg-zinc-900">
-  <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
+  <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 pt-24">
     <div class="max-w-xl mx-auto text-center lg:text-balance">
-      <div class="inline-block p-3 rounded-full bg-blue-600 dark:bg-blue-400">
-        <Logo class="h-12 mx-auto text-white" />
+      <div class="inline-block p-4 rounded-full bg-zinc-100 dark:bg-zinc-800">
+        <Logo class="h-12 mx-auto text-base-900 dark:text-white" />
       </div>
       <Text
-        tag="h2"
+        tag="h1"
         variant="displayMD"
-        class="mt-12 font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 lg:text-balance"
+        class="mt-12 font-semibold tracking-tight text-zinc-900 dark:text-white lg:text-balance"
       >
-        Collaboration without the therapy bills
+        Bring your vision to life
       </Text>
       <Text
         tag="p"
-        variant="textSM"
+        variant="textBase"
         class="mt-4 text-zinc-500 dark:text-zinc-400 lg:text-balance"
       >
-        Ditch the chaos, skip the spreadsheet gymnastics, and finally work like
-        it's the 2020s.
+        Simplify teamwork, organize your process, and launch projects with
+        confidence. Collaboration made effortless.
       </Text>
     </div>
-
-    <div class="relative mt-12 overflow-hidden rounded-lg max-h-120">
+    <div
+      class="relative mt-12 overflow-hidden rounded-t-xl max-h-120 border border-zinc-200 dark:border-zinc-800 border-b-0"
+    >
       <Image
         width={1200}
         height={1200}
@@ -44,17 +44,13 @@ import Button from "@/components/fundations/buttons/Button.astro";
         src={DashboardLight}
         class="relative object-cover h-full"
       />
-
-      <!-- Optional overlay fade if needed -->
       <div
         aria-hidden="true"
         class="absolute inset-0 z-0 pointer-events-none bg-gradient-to-t from-zinc-50 dark:from-zinc-900 via-white/70 dark:via-black/70 to-transparent"
       >
       </div>
-
-      <!-- Button position -->
       <div class="absolute z-10 bottom-12 left-1/2 transform -translate-x-1/2">
-        <Button variant="accent" size="sm">Get started</Button>
+        <Button variant="default" size="sm">Get started</Button>
       </div>
     </div>
   </div>
