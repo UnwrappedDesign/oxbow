@@ -1,57 +1,79 @@
 ---
 import Text from "@/components/fundations/typography/Text.astro";
-const steps = [
+const history = [
   {
-    title: "Choose your account type",
-    description:
-      "Decide whether you need a checking account, savings account, or both. Each type has its own benefits and features.",
+    title: "Create your account",
+    copy: `Sign up in seconds with your email and password to get started.`,
   },
   {
-    title: "Gather required documents",
-    description:
-      "Collect necessary documents such as ID, proof of address, and Social Security number. This ensures a smooth application process.",
+    title: "Verify your identity",
+    copy: `Secure your account by confirming your details with a quick ID upload.`,
   },
   {
-    title: "Complete the application",
-    description:
-      "Fill out the application form online or at your local branch. Provide accurate information to avoid delays.",
+    title: "Connect your bank",
+    copy: `Link your bank in a few clicks to manage all your finances seamlessly.`,
+  },
+  {
+    title: "Explore features",
+    copy: `Dive into our tools and insights to optimize your financial journey.`,
   },
 ];
 ---
 
 <section class="bg-white dark:bg-zinc-900">
   <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
-    <dl
-      class="grid grid-cols-1 gap-x-4 gap-y-12 lg:grid-cols-3 lg:divide-x lg:border-x border-zinc-200 divide-zinc-200 dark:border-zinc-900 dark:divide-zinc-900"
-    >
-      <!-- Loop through each step in the array -->
-      {
-        steps.map((step, index) => (
-          <div class="lg:px-8">
-            <div class="flex items-center text-blue-500 gap-3">
-              <span>{index + 1}.</span>
-              <dt class="text-lg font-medium tracking-tight text-zinc-900 dark:text-zinc-100">
+    <div class="max-w-xl mx-auto">
+      <Text
+        tag="h2"
+        variant="displayMD"
+        class="font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 text-balance"
+      >
+        Get set up in four simple steps
+      </Text>
+      <Text
+        tag="p"
+        variant="textBase"
+        class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
+      >
+        Complete these quick steps to launch your account and start managing
+        your finances in no time.
+      </Text>
+    </div>
+    <div class="relative mx-auto max-w-xl mt-12">
+      <div
+        data-orientation="vertical"
+        class="shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px bg-zinc-200 dark:bg-zinc-800 absolute left-2 top-0"
+      >
+      </div>
+      <div class="relative mx-auto max-w-xl space-y-4">
+        {
+          history.map((item, index) => (
+            <div class="relative  pl-8">
+              <div class="bg-zinc-100 dark:bg-zinc-800 size-8 absolute -left-2 top-0 flex size-4 items-center justify-center rounded-full">
+                <span class="text-zinc-900 dark:text-white text-sm font-medium">
+                  {index + 1}
+                </span>
+              </div>
+              <div class="ml-8 bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 shadow from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl p-4">
                 <Text
                   tag="h3"
-                  variant="textLG"
-                  class="font-medium  text-zinc-900 dark:text-zinc-100"
+                  variant="textBase"
+                  class=" font-semibold tracking-tight text-zinc-900 dark:text-white"
                 >
-                  {step.title}
+                  {item.title}
                 </Text>
-              </dt>
+                <Text
+                  tag="p"
+                  variant="textSM"
+                  class="text-zinc-500 dark:text-zinc-400 lg:text-balance"
+                >
+                  {item.copy}
+                </Text>
+              </div>
             </div>
-            <dd class="mt-2">
-              <Text
-                tag="p"
-                variant="textBase"
-                class="font-medium text-zinc-500 dark:text-zinc-400"
-              >
-                {step.description}
-              </Text>
-            </dd>
-          </div>
-        ))
-      }
-    </dl>
+          ))
+        }
+      </div>
+    </div>
   </div>
 </section>

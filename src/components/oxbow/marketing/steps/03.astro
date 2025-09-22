@@ -1,88 +1,87 @@
 ---
 import Text from "@/components/fundations/typography/Text.astro";
+// Define onboarding steps; numbering is auto-generated
 const steps = [
   {
-    title: "Choose your account type",
-    description:
-      "Decide whether you need a checking account, savings account, or both. Each type has its own benefits and features.",
+    title: "Data Collection",
+    description: "Gather and preprocess raw data for your models.",
   },
   {
-    title: "Gather required documents",
-    description:
-      "Collect necessary documents such as ID, proof of address, and Social Security number. This ensures a smooth application process.",
+    title: "Model Training",
+    description: "Train algorithms to detect patterns and make predictions.",
   },
   {
-    title: "Complete the application",
-    description:
-      "Fill out the application form online or at your local branch. Provide accurate information to avoid delays.",
+    title: "Performance Tuning",
+    description: "Optimize models for accuracy and efficiency.",
   },
   {
-    title: "Deposit initial funds",
-    description:
-      "        Make your initial deposit to activate your account. This can usually be done through a transfer, check, or cash deposit.",
+    title: "Deployment",
+    description: "Launch your AI solution and monitor performance.",
   },
 ];
 ---
 
 <section class="bg-white dark:bg-zinc-900">
   <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
-    <div class="lg:text-balance">
-      <Text
-        tag="p"
-        variant="textSM"
-        class="font-bold uppercase text-blue-600 dark:text-blue-400"
-      >
-        Tagline
-      </Text>
+    <div class="max-w-3xl">
       <Text
         tag="h2"
-        variant="displayXL"
-        class="mt-4 font-semibold text-zinc-900 dark:text-zinc-100 lg:text-balance"
+        variant="displayMD"
+        class="font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 text-balance"
       >
-        Simple steps to apply for a bank account
+        Onboard in four simple steps
       </Text>
       <Text
         tag="p"
         variant="textBase"
-        class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+        class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
       >
-        The fastest method for working together on staging and temporary
-        environments.
+        Follow the steps below to set up your account and start managing your
+        finances in minutes.
       </Text>
     </div>
-    <dl
-      class="flex flex-col mt-12 divide-y divide-zinc-200 dark:divide-zinc-700/50"
-    >
-      <!-- Loop through each step in the array -->
-      {
-        steps.map((step, index) => (
-          <div class="py-4 grid grid-cols-1 lg:grid-cols-2">
-            <div class="flex items-center text-blue-500 gap-3">
-              <span class="flex items-center justify-center text-white rounded-full size-8 bg-blue-700 ">
-                {index + 1}
-              </span>
-              <dt>
+    <div class="relative flex flex-col items-center mt-24">
+      <div
+        data-orientation="horizontal"
+        class="bg-zinc-200 dark:bg-zinc-800 shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px absolute -top-8 left-0 hidden md:block"
+      >
+      </div>
+
+      <div class="grid gap-4 md:grid-cols-4">
+        {
+          steps.map((step, index) => (
+            <div class="relative space-y-2 p-4 bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 shadow from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl">
+              <div
+                data-orientation="vertical"
+                role="none"
+                data-slot="separator-root"
+                class=" shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px absolute top-6 left-0 block md:hidden"
+              />
+              <div class="absolute top-0 -left-[9px] z-10  flex size-8 items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800 p-1 md:-top-12 md:left-0">
+                <span class="text-zinc-900 dark:text-white text-sm font-medium">
+                  {index + 1}
+                </span>
+              </div>
+              <div class="pl-7 md:pl-0 ">
                 <Text
                   tag="h3"
-                  variant="textLG"
-                  class="font-medium  text-zinc-900 dark:text-zinc-100"
+                  variant="textBase"
+                  class=" font-semibold tracking-tight text-zinc-900 dark:text-white"
                 >
                   {step.title}
                 </Text>
-              </dt>
+                <Text
+                  tag="p"
+                  variant="textSM"
+                  class="text-zinc-500 dark:text-zinc-400 lg:text-balance"
+                >
+                  {step.description}
+                </Text>
+              </div>
             </div>
-            <dd>
-              <Text
-                tag="p"
-                variant="textBase"
-                class="font-medium text-zinc-500 dark:text-zinc-400"
-              >
-                {step.description}
-              </Text>
-            </dd>
-          </div>
-        ))
-      }
-    </dl>
+          ))
+        }
+      </div>
+    </div>
   </div>
 </section>
