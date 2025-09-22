@@ -1,7 +1,7 @@
 ---
 import Text from "@/components/fundations/typography/Text.astro";
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
-import Plus from "@/components/fundations/icons/Plus.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
 const faqs = [
   {
     question: "How does end-to-end encryption work?",
@@ -30,95 +30,62 @@ const faqs = [
 
 <section class="bg-white dark:bg-zinc-900">
   <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
-    <div class="text-center">
-      <Text
-        tag="p"
-        variant="textSM"
-        class="font-bold uppercase text-blue-600 dark:text-blue-400"
+    <div
+      class="grid grid-cols-1 gap-8 md:grid-cols-2  dark:gap-10"
+    >
+      <div
+        class="bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl overflow-hidden p-8 lg:text-balance"
       >
-        Tagline
-      </Text>
-      <Text
-        tag="h2"
-        variant="displayMD"
-        class="mt-4 font-semibold text-zinc-900 dark:text-zinc-100 lg:text-balance"
+        <div>
+          <Text
+            tag="h1"
+            variant="displayLG"
+            class="font-semibold tracking-tight text-zinc-900 dark:text-white"
+          >
+            Your Questions Answered
+          </Text>
+          <Text
+            tag="p"
+            variant="textBase"
+            class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
+          >
+            Quick answers to the most common queries about Oxbow.
+          </Text>
+        </div>
+        <Button variant="default" size="xs" class="mt-8 w-fit">
+          Contact us
+        </Button>
+      </div>
+      <dl
+        class="divide-y divide-zinc-200 dark:divide-zinc-800 border-t border-zinc-200 dark:border-zinc-80 lg:text-balance"
       >
-        Frequently Asked Questions
-      </Text>
-      <Text
-        tag="p"
-        variant="textBase"
-        class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
-      >
-        Everything you need to know about our platform.
-      </Text>
-      <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-12">
-        <div class="mx-auto divide-y divide-zinc-200 dark:divide-zinc-100/10">
-          {
-            faqs.map((faq) => (
-              <details class="cursor-pointer group">
-                <Text
-                  tag="summary"
-                  variant="textBase"
-                  class="flex items-center justify-between w-full py-4 font-medium text-left select-none text-zinc-500 dark:text-zinc-400 hover:text-blue-500 dark:hover:text-blue-400 focus:text-blue-500 dark:focus:text-blue-400"
-                >
-                  {faq.question}
-                  <Plus
-                    class="duration-300 ease-out  transform group-open:-rotate-45 dark:text-blue-400"
-                    size="sm"
-                  />
-                </Text>
-                <div class="py-4 pt-2 text-sm text-zinc-500 dark:text-zinc-400">
+        {
+          faqs.map((faq) => (
+            <>
+              <div class="py-8">
+                <dt>
                   <Text
-                    tag="p"
+                    tag="dt"
+                    variant="textLG"
+                    class="font-medium text-zinc-900 dark:text-zinc-100"
+                  >
+                    {faq.question}
+                  </Text>
+                </dt>
+                <dd>
+                  <Text
+                    tag="dd"
                     variant="textBase"
-                    class="font-medium text-zinc-500 dark:text-zinc-400"
+                    class=" font-medium text-zinc-500 dark:text-zinc-400 mt-2"
                   >
                     {faq.answer}
                   </Text>
-                </div>
-              </details>
-            ))
-          }
-        </div>
-        <div
-          class="flex flex-col justify-center h-full p-8 text-center bg-zinc-50 dark:bg-zinc-900 rounded-3xl"
-        >
-          <div>
-            <img
-              class="h-12 mx-auto"
-              src="/images/oxbow/blueLineLogo.png"
-              alt="#_"
-            />
-            <Text
-              tag="h2"
-              variant="textLG"
-              class="mt-4 font-semibold text-zinc-900 dark:text-zinc-100 lg:text-balance"
-            >
-              Got questions?
-            </Text>
-            <Text
-              tag="p"
-              variant="textBase"
-              class="mt-4 font-medium text-zinc-500 dark:text-zinc-400 lg:text-balance"
-            >
-              Everything you need to know about our platform. We're here to help
-              you with any questions you might have.
-            </Text>
-            <div class="flex justify-center mt-8">
-              <Text
-                tag="a"
-                href="#_"
-                variant="textBase"
-                class="flex items-center font-medium text-blue-500 gap-2 hover:text-zinc-900 dark:hover:text-zinc-100"
-              >
-                Contact support
-                <ChevronRight size="sm" />
-              </Text>
-            </div>
-          </div>
-        </div>
-      </div>
+                </dd>
+              </div>
+            </>
+          ))
+        }
+      </dl>
     </div>
   </div>
 </section>

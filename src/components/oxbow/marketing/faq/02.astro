@@ -1,68 +1,83 @@
 ---
 import Text from "@/components/fundations/typography/Text.astro";
 import Plus from "@/components/fundations/icons/Plus.astro";
-const faqsSet1 = [
+import Kicker from "@/components/fundations/typography/Kicker.astro";
+// Organized FAQ sections for DRY rendering
+const faqSections = [
   {
-    question: "How does encryption work?",
-    answer:
-      "End-to-end encryption ensures that only the sender and recipient can access the content of a message.    ",
+    title: "General inquiries",
+    faqs: [
+      {
+        question: "What is Oxbow?",
+        answer:
+          "Oxbow is an all-in-one collaboration platform designed to streamline your team's tasks, files, and conversations in one intuitive workspace.",
+      },
+      {
+        question: "Do you offer a free trial or plan?",
+        answer:
+          "Yes! Start with a 7-day free trial to explore all features, and enjoy our forever-free plan for small teams once the trial ends.",
+      },
+      {
+        question: "How is my data protected?",
+        answer:
+          "We use robust encryption and continuous security monitoring to keep your information safe at rest and in transit.",
+      },
+      {
+        question: "Can I use Oxbow offline?",
+        answer:
+          "Oxbow requires an internet connection to sync data, but recent changes are cached locally for basic offline viewing.",
+      },
+    ],
   },
   {
-    question: "What if I forget my encryption key?",
-    answer:
-      "No, forgetting or losing your encryption key means that your encrypted data cannot be accessed.       ",
+    title: "Getting help",
+    faqs: [
+      {
+        question: "How can I contact support?",
+        answer:
+          "Reach out via our in-app chat or email support@oxbow.app—we strive to respond within one business day.",
+      },
+      {
+        question: "Where can I find the documentation?",
+        answer:
+          "Visit our Help Center for detailed guides, tutorials, and API references to get the most out of Oxbow.",
+      },
+      {
+        question: "Can I suggest new features?",
+        answer:
+          "Absolutely! Head to our feedback portal to submit ideas and vote on upcoming improvements.",
+      },
+      {
+        question: "What's the typical support response time?",
+        answer:
+          "Our average response time is under 24 hours, with priority handling for paid plan customers.",
+      },
+    ],
   },
   {
-    question: "Any limits to messages?",
-    answer:
-      "Self-destructing messages are designed to automatically delete themselves after a specific period or upon being read by the recipient.          ",
-  },
-  {
-    question: "What if I lose my device with 2FA?",
-    answer:
-      "Losing your device doesn't automatically compromise your account's security.              ",
-  },
-];
-const faqsSet2 = [
-  {
-    question: "How do I reset my password?",
-    answer:
-      "You can reset your password by clicking 'Forgot Password' on the login page and following the instructions sent to your email.",
-  },
-  {
-    question: "Can I change my username?",
-    answer:
-      "Yes, you can change your username in the account settings under 'Profile'.",
-  },
-  {
-    question: "What if I experience a login issue?",
-    answer:
-      "If you face login issues, try resetting your password or contact support for help.",
-  },
-  {
-    question: "How do I update my profile picture?",
-    answer:
-      "To update your profile picture, go to 'Profile' in settings and upload a new image.",
-  },
-];
-const faqsSet3 = [
-  {
-    question: "How do I delete my account?",
-    answer:
-      "To delete your account, navigate to 'Account Settings' and select 'Delete Account'.",
-  },
-  {
-    question: "Can I recover deleted messages?",
-    answer: "No, once messages are deleted, they cannot be recovered.",
-  },
-  {
-    question: "How do I manage notifications?",
-    answer:
-      "You can manage notifications in 'Settings' under the 'Notifications' section.",
-  },
-  {
-    question: "Is there a dark mode option?",
-    answer: "Yes, you can enable dark mode in the 'Appearance' settings.",
+    title: "Subscription & Licensing",
+    faqs: [
+      {
+        question: "What payment methods are accepted?",
+        answer:
+          "We accept major credit cards, PayPal, and bank transfers for enterprise plans.",
+      },
+      {
+        question: "How do I upgrade or downgrade my plan?",
+        answer:
+          "Change your subscription tier anytime from the Billing section in your account settings.",
+      },
+      {
+        question: "Can I get a discount for annual billing?",
+        answer:
+          "Yes, annual plans come with a 15% discount off the monthly rate.",
+      },
+      {
+        question: "Is cancellation refundable?",
+        answer:
+          "If you cancel within the first 30 days, we offer a full refund, minus any transaction fees.",
+      },
+    ],
   },
 ];
 ---
@@ -71,145 +86,60 @@ const faqsSet3 = [
   <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
     <div>
       <Text
-        tag="p"
-        variant="textSM"
-        class="font-bold uppercase text-blue-600 dark:text-blue-400"
-      >
-        Tagline
-      </Text>
-      <Text
-        tag="h2"
+        tag="h1"
         variant="displayMD"
-        class="mt-4 font-semibold text-zinc-900 dark:text-zinc-100 lg:text-balance"
+        class="font-semibold tracking-tight text-zinc-900 dark:text-white"
       >
-        Frequently Asked Questions
+        FAQs
       </Text>
       <Text
         tag="p"
         variant="textBase"
         class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
       >
-        Everything you need to know about our platform.
+        Everything you need to know about Oxbow in one place.
       </Text>
     </div>
-    <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-      <div>
-        <Text
-          tag="h2"
-          variant="textLG"
-          class="font-semibold text-zinc-900 dark:text-zinc-100 lg:text-balance"
-        >
-          General questions
-        </Text>
-        <div
-          class="mt-8 divide-y border-y border-zinc-200 dark:divide-zinc-100/10 dark:border-zinc-100/10 divide-zinc-200"
-        >
-          {
-            faqsSet1.map((faq) => (
-              <details class="cursor-pointer group">
-                <Text
-                  tag="summary"
-                  variant="textBase"
-                  class="flex items-center justify-between w-full py-4 font-medium text-left select-none text-zinc-500 dark:text-zinc-400 hover:text-blue-500 dark:hover:text-blue-400 focus:text-blue-500 dark:focus:text-blue-400"
-                >
-                  {faq.question}
-                  <Plus
-                    class="duration-300 ease-out  transform group-open:-rotate-45 dark:text-blue-400"
-                    size="sm"
-                  />
-                </Text>
-                <div class="py-4 pt-2 text-sm text-zinc-500 dark:text-zinc-400">
-                  <Text
-                    tag="p"
-                    variant="textBase"
-                    class="font-medium text-zinc-500 dark:text-zinc-400"
-                  >
-                    {faq.answer}
-                  </Text>
-                </div>
-              </details>
-            ))
-          }
-        </div>
-      </div>
-      <div>
-        <Text
-          tag="h2"
-          variant="textLG"
-          class="font-semibold text-zinc-900 dark:text-zinc-100 lg:text-balance"
-        >
-          Support team
-        </Text>
-        <div
-          class="mt-8 divide-y border-y border-zinc-200 dark:divide-zinc-100/10 dark:border-zinc-100/10 divide-zinc-200"
-        >
-          {
-            faqsSet2.map((faq) => (
-              <details class="cursor-pointer group">
-                <Text
-                  tag="summary"
-                  variant="textBase"
-                  class="flex items-center justify-between w-full py-4 font-medium text-left select-none text-zinc-500 dark:text-zinc-400 hover:text-blue-500 dark:hover:text-blue-400 focus:text-blue-500 dark:focus:text-blue-400"
-                >
-                  {faq.question}
-                  <Plus
-                    class="duration-300 ease-out  transform group-open:-rotate-45 dark:text-blue-400"
-                    size="sm"
-                  />
-                </Text>
-                <div class="py-4 pt-2 text-sm text-zinc-500 dark:text-zinc-400">
-                  <Text
-                    tag="p"
-                    variant="textBase"
-                    class="font-medium text-zinc-500 dark:text-zinc-400"
-                  >
-                    {faq.answer}
-                  </Text>
-                </div>
-              </details>
-            ))
-          }
-        </div>
-      </div>
-      <div>
-        <Text
-          tag="h2"
-          variant="textLG"
-          class="font-semibold text-zinc-900 dark:text-zinc-100 lg:text-balance"
-        >
-          License
-        </Text>
-        <div
-          class="mt-8 divide-y border-y border-zinc-200 dark:divide-zinc-100/10 dark:border-zinc-100/10 divide-zinc-200"
-        >
-          {
-            faqsSet3.map((faq) => (
-              <details class="cursor-pointer group">
-                <Text
-                  tag="summary"
-                  variant="textBase"
-                  class="flex items-center justify-between w-full py-4 font-medium text-left select-none text-zinc-500 dark:text-zinc-400 hover:text-blue-500 dark:hover:text-blue-400 focus:text-blue-500 dark:focus:text-blue-400"
-                >
-                  {faq.question}
-                  <Plus
-                    class="duration-300 ease-out  transform group-open:-rotate-45 dark:text-blue-400"
-                    size="sm"
-                  />
-                </Text>
-                <div class="py-4 pt-2 text-sm text-zinc-500 dark:text-zinc-400">
-                  <Text
-                    tag="p"
-                    variant="textBase"
-                    class="font-medium text-zinc-500 dark:text-zinc-400"
-                  >
-                    {faq.answer}
-                  </Text>
-                </div>
-              </details>
-            ))
-          }
-        </div>
-      </div>
+    <div
+      class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-start"
+    >
+      {
+        faqSections.map((section) => (
+          <div class="bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800  from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl overflow-hidden">
+            <div class="p-4">
+              <Text
+                tag="h2"
+                variant="textBase"
+                class="font-medium text-zinc-900 dark:text-zinc-100 lg:text-balance"
+              >
+                {section.title}
+              </Text>
+            </div>
+            <div class=" divide-y border-t border-zinc-200 dark:divide-zinc-100/10 dark:border-zinc-100/10 divide-zinc-200">
+              {section.faqs.map((faq) => (
+                <details class="cursor-pointer group p-4 ">
+                  <summary class="grid grid-cols-4 text-sm items-start justify-between w-full font-medium text-left select-none text-zinc-900 dark:text-white hover:text-zinc-500 dark:hover:text-zinc-400 focus:text-zinc-500  gap-4dark:focus:text-zinc-400">
+                    <span class="col-span-3">{faq.question}</span>
+                    <Plus
+                      class="duration-300 ease-out transform group-open:-rotate-45 group-open:text-blue-600 dark:text-zinc-400 ml-auto"
+                      size="sm"
+                    />
+                  </summary>
+                  <div class="py-2 pt-2 text-sm text-zinc-500 dark:text-zinc-400">
+                    <Text
+                      tag="p"
+                      variant="textSM"
+                      class="font-medium text-zinc-500 dark:text-zinc-400"
+                    >
+                      {faq.answer}
+                    </Text>
+                  </div>
+                </details>
+              ))}
+            </div>
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>

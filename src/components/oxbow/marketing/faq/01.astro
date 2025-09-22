@@ -3,94 +3,80 @@ export const freeComponent = true;
 import Text from "@/components/fundations/typography/Text.astro";
 const faqs = [
   {
-    question: "How does end-to-end encryption work?",
+    question: "What is Oxbow and how can it help my team?",
     answer:
-      "End-to-end encryption ensures that only the sender and recipient can access the content of a message.    ",
+      "Oxbow is a collaborative workflow platform that centralizes tasks, files, and communication in one intuitive interface, so your team stays aligned and productive.",
   },
   {
-    question: "Can I access my encrypted data if I forget my encryption key?",
+    question: "Is there a free trial or plan available?",
     answer:
-      "No, forgetting or losing your encryption key means that your encrypted data cannot be accessed.       ",
+      "Yes, we offer a 7-day free trial with full access to all features, plus a free plan for small teams to get started at no cost.",
   },
   {
-    question:
-      "Are there any limitations to the self-destructing messages feature?",
+    question: "How secure is my data on Oxbow?",
     answer:
-      "Self-destructing messages are designed to automatically delete themselves after a specific period or upon being read by the recipient.          ",
+      "We use industry-standard encryption for data at rest and in transit, with regular security audits to ensure your information is always protected.",
   },
   {
-    question:
-      "What happens if I enable two-factor authentication and lose my device?",
+    question: "Can I integrate Oxbow with other tools I already use?",
     answer:
-      "Losing your device doesn't automatically compromise your account's security.              ",
+      "Absolutely! Oxbow supports integrations with Slack, Google Drive, Zapier, and more—so you can keep your existing workflows connected.",
   },
   {
-    question: "Is my personal information shared or sold to third parties?",
+    question: "How do I upgrade to a paid plan?",
     answer:
-      "No, we strictly adhere to a privacy-centric approach. Your personal information is never shared, sold, or monetized. We prioritize your privacy and ensure that your data remains confidential and only accessible to you.",
+      "Upgrading is simple: just visit the Billing section in your account settings, choose a plan that fits your needs, and you’ll be all set.",
   },
 ];
 ---
 
 <section class="bg-white dark:bg-zinc-900">
-  <section
-    class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24 dark:bg-black/80"
-  >
-    <div
-      class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24 dark:bg-black/80"
-    >
-      <div>
-        <Text
-          tag="p"
-          variant="textSM"
-          class="font-bold uppercase text-blue-600 dark:text-blue-400"
-        >
-          Tagline
-        </Text>
-        <Text
-          tag="h2"
-          variant="displayMD"
-          class="mt-4 font-semibold text-zinc-900 dark:text-zinc-100 lg:text-balance"
-        >
-          Frequently Asked Questions
-        </Text>
-        <Text
-          tag="p"
-          variant="textBase"
-          class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
-        >
-          Everything you need to know about our platform.
-        </Text>
-      </div>
-      <ul
-        role="list"
-        class="mt-12 space-y-8 dark:space-y-10 divide-y divide-zinc-900/10 dark:divide-zinc-100/10"
+  <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
+    <div class="max-w-2xl mx-auto lg:text-balance">
+      <Text
+        tag="h1"
+        variant="displayMD"
+        class="font-semibold tracking-tight text-zinc-900 dark:text-white"
+      >
+        Got questions? <br> We’ve got answers.
+      </Text>
+      <Text
+        tag="p"
+        variant="textBase"
+        class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
+      >
+        Here’s everything you need to know to get the most out of Oxbow.
+      </Text>
+      <dl
+        class="flex flex-col gap-12 pt-12 mt-12 border-t border-zinc-200 dark:border-zinc-800"
       >
         {
           faqs.map((faq) => (
-            <div class="pt-8 lg:grid lg:grid-cols-12 lg:gap-12 dark:gap-14">
-              <div class="lg:col-span-5">
-                <Text
-                  variant="textLG"
-                  tag="h3"
-                  class="font-medium text-zinc-900 dark:text-zinc-100"
-                >
-                  {faq.question}
-                </Text>
+            <>
+              <div>
+                <dt>
+                  <Text
+                    tag="h3"
+                    variant="textLG"
+                    class="font-semibold text-zinc-900 dark:text-white"
+                  >
+                    {faq.question}
+                  </Text>
+                </dt>
+                <dd>
+                  <Text
+                    tag="p"
+                    variant="textSM"
+                    class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
+                  >
+                    {faq.answer}
+                  </Text>
+                </dd>
               </div>
-              <div class="mt-4 lg:col-span-7 lg:mt-0">
-                <Text
-                  tag="p"
-                  variant="textBase"
-                  class="font-medium text-zinc-500 dark:text-zinc-400"
-                >
-                  {faq.answer}
-                </Text>
-              </div>
-            </div>
+            </>
           ))
         }
-      </ul>
+      </dl>
     </div>
-  </section>
+  </div>
 </section>
