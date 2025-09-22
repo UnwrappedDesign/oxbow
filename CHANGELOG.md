@@ -1,5 +1,64 @@
 # Changelog for Oxbow UI Components
 
+## **2025-09-22**
+
+### Modified
+- bento-grids: [7 components](https://oxbowui.com/playground/marketing/bento-grids)
+- blog-content: [4 components](https://oxbowui.com/playground/marketing/blog-content)
+- blog-entries: [6 components](https://oxbowui.com/playground/marketing/blog-entries)
+- contact: [6 components](https://oxbowui.com/playground/marketing/contact)
+- creative-heros: [9 components](https://oxbowui.com/playground/marketing/creative-heros)
+- cta: [16 components](https://oxbowui.com/playground/marketing/cta)
+- cta-newsletter: [4 components](https://oxbowui.com/playground/marketing/cta-newsletter)
+- faq: [17 components](https://oxbowui.com/playground/marketing/faq)
+- features: [25 components](https://oxbowui.com/playground/marketing/features)
+- footers: [19 components](https://oxbowui.com/playground/marketing/footers)
+- gallery: [13 components](https://oxbowui.com/playground/marketing/gallery)
+- logo-clouds: [10 components](https://oxbowui.com/playground/marketing/logo-clouds)
+- marketing-heros: [11 components](https://oxbowui.com/playground/marketing/marketing-heros)
+- pricing: [11 components](https://oxbowui.com/playground/marketing/pricing)
+- stats: [16 components](https://oxbowui.com/playground/marketing/stats)
+- steps: [8 components](https://oxbowui.com/playground/marketing/steps)
+- team: [5 components](https://oxbowui.com/playground/marketing/team)
+
+## **2025-09-21**
+
+### Modified
+- bento-grids: [7 components](https://oxbowui.com/playground/marketing/bento-grids)
+- blog-entries: [7 components](https://oxbowui.com/playground/marketing/blog-entries)
+- marketing-heros: [8 components](https://oxbowui.com/playground/marketing/marketing-heros)
+
+## **2025-09-20**
+
+### Modified
+- alerts: [1 component](https://oxbowui.com/playground/application/alerts)
+- badges: [5 components](https://oxbowui.com/playground/application/badges)
+- banners: [3 components](https://oxbowui.com/playground/application/banners)
+- breadcrumbs: [2 components](https://oxbowui.com/playground/application/breadcrumbs)
+- button-groups: [1 component](https://oxbowui.com/playground/application/button-groups)
+- button-icon: [1 component](https://oxbowui.com/playground/application/button-icon)
+- buttons: [8 components](https://oxbowui.com/playground/application/buttons)
+- emptyStates: [1 component](https://oxbowui.com/playground/application/emptyStates)
+- flyouts: [1 component](https://oxbowui.com/playground/application/flyouts)
+- input-groups: [5 components](https://oxbowui.com/playground/application/input-groups)
+- navbars: [10 components](https://oxbowui.com/playground/application/navbars)
+- notifications: [2 components](https://oxbowui.com/playground/application/notifications)
+- pagination: [10 components](https://oxbowui.com/playground/application/pagination)
+- sign-in: [4 components](https://oxbowui.com/playground/application/sign-in)
+- sign-up: [2 components](https://oxbowui.com/playground/application/sign-up)
+- textarea: [1 component](https://oxbowui.com/playground/application/textarea)
+- bento-grids: [5 components](https://oxbowui.com/playground/marketing/bento-grids)
+- blog-entries: [1 component](https://oxbowui.com/playground/marketing/blog-entries)
+- cta: [2 components](https://oxbowui.com/playground/marketing/cta)
+- features: [11 components](https://oxbowui.com/playground/marketing/features)
+- footers: [5 components](https://oxbowui.com/playground/marketing/footers)
+- gallery: [7 components](https://oxbowui.com/playground/marketing/gallery)
+- marketing-heros: [6 components](https://oxbowui.com/playground/marketing/marketing-heros)
+- pricing: [4 components](https://oxbowui.com/playground/marketing/pricing)
+- stats: [7 components](https://oxbowui.com/playground/marketing/stats)
+- testimonials: [4 components](https://oxbowui.com/playground/marketing/testimonials)
+- timeline: [1 component](https://oxbowui.com/playground/marketing/timeline)
+
 ## **2025-09-19**
 
 ### Added
