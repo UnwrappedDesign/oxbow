@@ -1,298 +1,68 @@
 ---
-import SimpleLayout from "@/layouts/SimpleLayout.astro";
-import * as Changelog from "../../CHANGELOG.md";
-import cfg from "@/config/changelog.json";
-
-const LIMIT_MONTHS =
-  Number(import.meta.env.PUBLIC_CHANGELOG_MONTHS ?? cfg.monthsLimit ?? 3) || 3;
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import Kicker from "@/components/fundations/typography/Kicker.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Load all changelog entries from content collection
+const raw = await getCollection("changelog");
+// Render MDX body for each entry
+const entries = await Promise.all(
+  raw.map(async (entry) => {
+    const rendered = await entry.render();
+    return { data: entry.data, Content: rendered.Content };
+  })
+);
+// Sort latest first
+entries.sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+// Assign IDs for anchor linking
+const entriesWithIds = entries.map((entry) => ({
+  ...entry,
+  id: `entry-${entry.data.date}`,
+}));
 ---
 
-<SimpleLayout>
-  <h1 class="text-2xl font-semibold text-zinc-900">Changelog</h1>
-  <p class="mt-1 mb-4 text-zinc-500">
-    Release notes, updates, and fixes — organized by month. ( Last 3 months )
-  </p>
-  <section id="changelog" class="prose max-w-3xl" data-limit={LIMIT_MONTHS}>
-    <Changelog.Content />
-  </section>
-
-  <style>
-    /* Hide native disclosure markers; rely on custom SVG icon */
-    #changelog summary::-webkit-details-marker {
-      display: none;
-    }
-    #changelog summary::marker {
-      content: "";
-    }
-  </style>
-
-  <script is:inline>
-    // Build accordion on initial render and after Astro view transitions
-    (function () {
-      function buildAccordion() {
-        const container = document.getElementById("changelog");
-        if (!container) return;
-        // Always rebuild to ensure newest limiting is applied
-        const LIMIT = parseInt(container.dataset.limit || "3", 10);
-
-        const headings = Array.from(container.querySelectorAll("h2"));
-        if (!headings.length) return;
-
-        // Build sections with content under each h2 (date)
-        const sections = headings.map((h2) => {
-          const title = (h2.textContent || "").trim();
-          const match = title.match(/(\d{4})-(\d{2})-(\d{2})/);
-          let year = "0000",
-            month = "01";
-          if (match) {
-            year = match[1];
-            month = match[2];
+<BaseLayout>
+  <Wrapper variant="standard" class="relative pt-12 pb-8 lg:pt-14">
+    <h1 class="text-2xl font-semibold text-zinc-900">Changelog</h1>
+    <div class="md:flex md:space-x-4 mt-12">
+      <aside class="hidden md:block  lg:w-2/5 sticky top-20">
+        <Text tag="h4" variant="textSM" class="font-semibold mb-2"
+          >Contents</Text
+        >
+        <ul class="space-y-1">
+          {
+            entriesWithIds.map((entry) => (
+              <li>
+                <a
+                  href={`#${entry.id}`}
+                  class="text-zinc-700 hover:underline text-xs"
+                >
+                 
+                  {entry.data.title}
+                </a>
+              </li>
+            ))
           }
-          const key = `${year}-${month}`;
-
-          const nodes = [];
-          let el = h2.nextSibling;
-          while (el && !(el.nodeType === 1 && el.tagName === "H2")) {
-            const next = el.nextSibling;
-            nodes.push(el);
-            el = next;
-          }
-          return { h2, title, key, year, month, nodes };
-        });
-
-        // Group by month key, preserve initial order
-        const groups = [];
-        const map = new Map();
-        for (const s of sections) {
-          if (!map.has(s.key)) {
-            map.set(s.key, {
-              key: s.key,
-              year: s.year,
-              month: s.month,
-              items: [],
-            });
-            groups.push(map.get(s.key));
-          }
-          map.get(s.key).items.push(s);
+        </ul>
+      </aside>
+      <Wrapper variant="prose" class="max-w-xl mx-auto md:flex-1 lg:w-3/5">
+        {
+          entriesWithIds.map((entry) => (
+            <section id={entry.id} class="mb-12">
+              <Kicker>{entry.data.date}</Kicker>
+              <Text tag="h3" variant="textBase" class="font-semibold mt-2">
+                {entry.data.title}
+              </Text>
+              <div class="prose mt-2">
+                <entry.Content />
+              </div>
+            </section>
+          ))
         }
-
-        // Sort groups by year-month desc and keep only latest N months
-        groups.sort((a, b) => {
-          const av = parseInt(`${a.year}${a.month}`);
-          const bv = parseInt(`${b.year}${b.month}`);
-          return bv - av;
-        });
-        const displayGroups = groups.slice(0, LIMIT);
-
-        // Clear current content
-        while (container.firstChild)
-          container.removeChild(container.firstChild);
-
-        // Wrapper that applies divide-y between accordions
-        const list = document.createElement("div");
-        list.className =
-          "relative w-full mx-auto mt-6 divide-y divide-zinc-200";
-
-        const MONTHS = [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-          "August",
-          "September",
-          "October",
-          "November",
-          "December",
-        ];
-
-        displayGroups.forEach((g, idx) => {
-          const details = document.createElement("details");
-          details.className = "text-left cursor-pointer group py-2 ";
-          // Keep all accordions closed by default
-
-          const summary = document.createElement("summary");
-          summary.className =
-            "flex items-center justify-between w-full pb-1 text-left select-none text-zinc-600 hover:text-accent-600";
-
-          const monthIndex = Math.max(
-            0,
-            Math.min(11, parseInt(g.month, 10) - 1)
-          );
-          const label = document.createElement("span");
-          label.textContent = `${MONTHS[monthIndex]} ${g.year}`;
-
-          const svgNS = "http://www.w3.org/2000/svg";
-          const icon = document.createElementNS(svgNS, "svg");
-          icon.setAttribute(
-            "class",
-            "size-5 duration-300 ease-out text-accent-600 transform group-open:-rotate-45"
-          );
-          icon.setAttribute("xmlns", svgNS);
-          icon.setAttribute("fill", "none");
-          icon.setAttribute("viewBox", "0 0 24 24");
-          icon.setAttribute("stroke-width", "1.5");
-          icon.setAttribute("stroke", "currentColor");
-          const path = document.createElementNS(svgNS, "path");
-          path.setAttribute("stroke-linecap", "round");
-          path.setAttribute("stroke-linejoin", "round");
-          path.setAttribute("d", "M12 6v12m6-6H6");
-          icon.appendChild(path);
-
-          summary.appendChild(label);
-          summary.appendChild(icon);
-
-          const panel = document.createElement("div");
-          panel.className = "py-2 text-zinc-500";
-
-          // Parse original nodes under each date into rows (Change, Section, Count, Link)
-          const rows = [];
-          const TYPE_ORDER = { Added: 0, Modified: 1, Renamed: 2 };
-
-          g.items.forEach((s) => {
-            let currentType = "";
-            s.nodes.forEach((node) => {
-              if (node.nodeType === 1) {
-                const el = node;
-                if (el.tagName === "H3") {
-                  const t = (el.textContent || "").trim();
-                  if (t.includes("Added")) currentType = "Added";
-                  else if (t.includes("Modified")) currentType = "Modified";
-                  else if (t.includes("Renamed")) currentType = "Renamed";
-                  else currentType = "";
-                }
-                if (el.tagName === "UL" || el.tagName === "OL") {
-                  const lis = Array.from(el.querySelectorAll("li"));
-                  lis.forEach((li) => {
-                    const text = (li.textContent || "").trim();
-                    // Expect patterns like: "avatars: 8 components" (link may wrap the count)
-                    const sectionMatch = text.match(/^[-–•\s]*([^:]+):/);
-                    const countMatch = text.match(/(\d+)\s+component/);
-                    const a = li.querySelector("a");
-                    if (!sectionMatch) return;
-                    const section = sectionMatch[1].trim();
-                    const count = countMatch
-                      ? parseInt(countMatch[1], 10)
-                      : a && /\d+/.test(a.textContent || "")
-                        ? parseInt((a.textContent || "").match(/\d+/)[0], 10)
-                        : 1;
-                    const href = a ? a.getAttribute("href") || "" : "";
-                    const type = currentType || "Modified";
-                    rows.push({ type, section, count, href });
-                  });
-                }
-              }
-            });
-          });
-
-          // Clean up section labels
-          function formatSectionLabel(s) {
-            let t = s.trim();
-            t = t.replace(/([a-z])([A-Z])/g, "$1 $2");
-            t = t.replace(/[-_]+/g, " ");
-            t = t.replace(
-              /\b\w+/g,
-              (w) => w.charAt(0).toUpperCase() + w.slice(1)
-            );
-            t = t
-              .replace(/\bUi\b/g, "UI")
-              .replace(/\bFaq\b/g, "FAQ")
-              .replace(/\bCta\b/g, "CTA");
-            return t;
-          }
-          rows.forEach((r) => {
-            r.section = formatSectionLabel(r.section);
-          });
-
-          // Split by type
-          const added = rows.filter((r) => r.type === "Added");
-          const modified = rows.filter((r) => r.type === "Modified");
-          const renamed = rows.filter((r) => r.type === "Renamed");
-
-          function buildTable(title, items) {
-            if (!items.length) return null;
-            items.sort((a, b) => a.section.localeCompare(b.section));
-            const wrapper = document.createElement("div");
-            const h = document.createElement("h4");
-            // Show unique section/component count for Added and Modified
-            let uniqueSections = new Set(items.map((r) => r.section)).size;
-            if (title === "Added" || title === "Modified") {
-              h.textContent = `${title} (${uniqueSections})`;
-            } else {
-              h.textContent = title;
-            }
-            h.className =
-              "font-medium text-zinc-700 font-mono  border-b border-zinc-200 -mb-0";
-            wrapper.appendChild(h);
-
-            const table = document.createElement("table");
-            table.className =
-              "w-full text-sm not-prose border-separate border-spacing-0 mb-12 bg-white !mt-0";
-            const thead = document.createElement("thead");
-            const trh = document.createElement("tr");
-            ["Section", "Component", "Link"].forEach((hdr, idx) => {
-              const th = document.createElement("th");
-              th.textContent = hdr;
-              const align = idx === 2 ? "text-right" : "text-left";
-              th.className = `${align} bg-sand-50  text-zinc-600 font-medium px-3 py-2 font-semibold`;
-              trh.appendChild(th);
-            });
-            thead.appendChild(trh);
-            table.appendChild(thead);
-            const tbody = document.createElement("tbody");
-            items.forEach((r, i) => {
-              const tr = document.createElement("tr");
-              tr.className = i % 2 === 1 ? "bg-sand-100" : "";
-              const tdSection = document.createElement("td");
-              tdSection.textContent = r.section;
-              tdSection.className = "px-3 py-2 font-semibold !text-zinc-900";
-              const tdCount = document.createElement("td");
-              tdCount.textContent = String(r.count);
-              tdCount.className =
-                "px-3 py-2 font-mono font-semibold tabular-nums ";
-              const tdLink = document.createElement("td");
-              tdLink.className = "px-3 py-2  text-right";
-              if (r.href) {
-                const a = document.createElement("a");
-                a.href = r.href;
-                a.target = "_self";
-                a.textContent = "View";
-                a.className = "text-accent-600 hover:underline";
-                tdLink.appendChild(a);
-              } else {
-                tdLink.textContent = "—";
-              }
-              tr.appendChild(tdSection);
-              tr.appendChild(tdCount);
-              tr.appendChild(tdLink);
-              tbody.appendChild(tr);
-            });
-            table.appendChild(tbody);
-            wrapper.appendChild(table);
-            return wrapper;
-          }
-
-          [
-            buildTable("Added", added),
-            buildTable("Modified", modified),
-            buildTable("Renamed", renamed),
-          ].forEach((el) => el && panel.appendChild(el));
-
-          details.appendChild(summary);
-          details.appendChild(panel);
-          list.appendChild(details);
-        });
-
-        container.appendChild(list);
-      }
-
-      // Initial build
-      buildAccordion();
-      // Re-build after client-side navigations
-      window.addEventListener("astro:page-load", buildAccordion);
-      window.addEventListener("astro:after-swap", buildAccordion);
-    })();
-  </script>
-</SimpleLayout>
+      </Wrapper>
+    </div>
+  </Wrapper>
+</BaseLayout>

@@ -1,0 +1,40 @@
+---
+import { getCollection } from "astro:content";
+import Text from "@/components/fundations/typography/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
+// Load and render changelog MD files, capturing their Content components
+const rawEntries = await getCollection("changelog");
+const entries = await Promise.all(
+  rawEntries.map(async (entry) => {
+    const rendered = await entry.render();
+    return { ...entry, Content: rendered.Content };
+  })
+);
+// Sort entries by date descending
+entries.sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+---
+
+<section>
+  <Wrapper variant="standard">
+    <Wrapper variant="prose" class="max-w-xl py-12 mx-auto">
+     
+      <ul class="space-y-6">
+        {
+          entries.map((entry) => (
+            <li>
+              <Text tag="h3" variant="textBase" class="font-semibold">
+                {entry.data.title} ({entry.data.date})
+              </Text>
+              <div class="prose mt-2">
+                <entry.Content />
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </Wrapper>
+  </Wrapper>
+</section>

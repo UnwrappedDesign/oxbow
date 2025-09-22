@@ -10,7 +10,9 @@ class ChangelogGenerator {
   constructor(options = {}) {
     this.targetDir = options.targetDir || "src/components/oxbow/";
     this.changelogFile = options.changelogFile || "CHANGELOG.md";
-    this.configPath = options.configPath || path.join(process.cwd(), "src", "config", "changelog.json");
+    this.configPath =
+      options.configPath ||
+      path.join(process.cwd(), "src", "config", "changelog.json");
 
     // Default blacklist of folders to exclude
     this.folderBlacklist = new Set(["__test__"]);
@@ -18,7 +20,7 @@ class ChangelogGenerator {
     // Allow custom blacklist to be passed in
     if (options.folderBlacklist) {
       options.folderBlacklist.forEach((folder) =>
-        this.folderBlacklist.add(folder)
+        this.folderBlacklist.add(folder),
       );
     }
   }
@@ -80,26 +82,10 @@ class ChangelogGenerator {
 
   /**
    * Get git changes for components
-   * @returns {Promise<Object>}
-   */
-  async getGitChanges() {
-    const changes = {};
-
-    try {
-      const { stdout } = await execAsync(
-        `git log --date=short --pretty=format:"%ad" --name-status --diff-filter=ADM -- "${this.targetDir}"`
-      );
-
-      const lines = stdout.split("\n");
-      let currentDate = null;
-
-      for (const line of lines) {
-        if (/^\d{4}-\d{2}-\d{2}$/.test(line)) {
-          currentDate = line;
-          if (!changes[currentDate]) {
-            changes[currentDate] = {
-              added: {},
-              modified: {},
+      // Always rebuild complete changelog from scratch
+      let markdown = `# Changelog for Oxbow UI Components\n\n`;
+      // Sort dates descending
+      const sortedDates = Object.keys(changes).sort((a, b) => new Date(b) - new Date(a));
               renamed: {},
             };
           }
@@ -115,7 +101,9 @@ class ChangelogGenerator {
               // Skip test files
               if (this.isTestFile(filePath)) continue;
 
-              const [section, subSection] = this.extractPathParts(filePath).slice(-3, -1);
+              const [section, subSection] = this.extractPathParts(
+                filePath,
+              ).slice(-3, -1);
               const pathKey = `${section}/${subSection}`;
 
               if (this.isFolderBlacklisted(pathKey)) continue;
@@ -144,13 +132,7 @@ class ChangelogGenerator {
       console.error("Error retrieving git changes:", error);
       return {};
     }
-  }
-
-  readExistingChangelog() {
-    try {
-      return fs.readFileSync(this.changelogFile, "utf8");
-    } catch (error) {
-      return error.code === "ENOENT" ? "" : (() => { throw error })();
+          })();
     }
   }
 
@@ -168,8 +150,10 @@ class ChangelogGenerator {
   }
 
   generateChangelogMarkdown(changes) {
-    const existingContent = this.readExistingChangelog();
-    const existingDates = this.extractExistingDates(existingContent);
+  const existingContent = this.readExistingChangelog();
+  const existingDates = this.extractExistingDates(existingContent);
+  // Always include today's changes so counts update
+  const today = new Date().toISOString().split("T")[0];
 
     let markdown = "";
 
@@ -178,7 +162,7 @@ class ChangelogGenerator {
     }
 
     const sortedDates = Object.keys(changes)
-      .filter((date) => !existingDates.has(date))
+      .filter((date) => date === today || !existingDates.has(date))
       .sort((a, b) => new Date(b) - new Date(a));
 
     for (const date of sortedDates) {
@@ -205,7 +189,9 @@ class ChangelogGenerator {
 
       if (Object.keys(dateChanges.modified).length > 0) {
         markdown += "### Modified\n";
-        for (const [path, count] of Object.entries(dateChanges.modified).sort()) {
+        for (const [path, count] of Object.entries(
+          dateChanges.modified,
+        ).sort()) {
           const [section, subSection] = path.split("/");
           markdown += `- ${subSection}: [${count} component${count > 1 ? "s" : ""}](https://oxbowui.com/playground/${section}/${subSection})\n`;
         }
@@ -214,7 +200,9 @@ class ChangelogGenerator {
 
       if (Object.keys(dateChanges.renamed).length > 0) {
         markdown += "### Renamed\n";
-        for (const [path, count] of Object.entries(dateChanges.renamed).sort()) {
+        for (const [path, count] of Object.entries(
+          dateChanges.renamed,
+        ).sort()) {
           const [section, subSection] = path.split("/");
           markdown += `- ${subSection}: [${count} component${count > 1 ? "s" : ""}](https://oxbowui.com/playground/${section}/${subSection})\n`;
         }
@@ -261,7 +249,9 @@ class ChangelogGenerator {
         i++;
         continue;
       }
-      const y = m[1], mo = m[2], d = m[3];
+      const y = m[1],
+        mo = m[2],
+        d = m[3];
       const dateStr = `${y}-${mo}-${d}`;
       const monthKey = `${y}-${mo}`;
       const yyyymmdd = parseInt(`${y}${mo}${d}`, 10);
@@ -275,11 +265,14 @@ class ChangelogGenerator {
     }
 
     // Build unique months sorted by newest (descending)
-    const uniqueMonths = Array.from(
-      new Set(entries.map((e) => e.monthKey))
+    const uniqueMonths = Array.from(new Set(entries.map((e) => e.monthKey)));
+    uniqueMonths.sort(
+      (a, b) =>
+        parseInt(b.replace("-", ""), 10) - parseInt(a.replace("-", ""), 10),
     );
-    uniqueMonths.sort((a, b) => parseInt(b.replace("-", ""), 10) - parseInt(a.replace("-", ""), 10));
-    const allowedMonths = new Set(uniqueMonths.slice(0, Math.max(1, limitMonths)));
+    const allowedMonths = new Set(
+      uniqueMonths.slice(0, Math.max(1, limitMonths)),
+    );
 
     // Group entries by month and sort entries within each month by date desc
     const byMonth = new Map();
@@ -288,7 +281,8 @@ class ChangelogGenerator {
       if (!byMonth.has(e.monthKey)) byMonth.set(e.monthKey, []);
       byMonth.get(e.monthKey).push(e);
     }
-    for (const arr of byMonth.values()) arr.sort((a, b) => b.yyyymmdd - a.yyyymmdd);
+    for (const arr of byMonth.values())
+      arr.sort((a, b) => b.yyyymmdd - a.yyyymmdd);
 
     // Emit months in newest-first order
     const out = [...header];
