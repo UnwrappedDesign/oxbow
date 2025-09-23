@@ -8,8 +8,8 @@ const context = params.get("context");
 // Lazy module map, only load needed component
 const modules = import.meta.glob("@/components/oxbow/**/*.astro");
 const keys = Object.keys(modules);
-// Fix: strip any leading /src/components/oxbow/ from componentPath
-let relComponentPath = componentPath.replace(/^\/src\/components\/oxbow\//, "");
+// Fix: strip the leading 'src/components/oxbow/' prefix from componentPath
+let relComponentPath = componentPath.replace(/^src\/components\/oxbow\//, "");
 const matchKey = keys.find((k) => k.endsWith(relComponentPath));
 const component = matchKey ? await modules[matchKey]() : undefined;
 ---
