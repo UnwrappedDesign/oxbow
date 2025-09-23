@@ -18,94 +18,129 @@ const path = require("path");
 
   const browser = await puppeteer.launch();
   const concurrency = 4; // Number of parallel pages
+  // small sleep helper — some puppeteer versions don't expose page.waitForTimeout
+  const sleep = (ms) => new Promise((res) => setTimeout(res, ms));
 
-  // Helper to process a single file
+  // Helper to process a single file with minimal steps
   async function processFile(file) {
     const page = await browser.newPage();
-    // Ensure a light theme from the very first script
-    await page.evaluateOnNewDocument(() => {
-      try {
-        // Persist any app-specific preference the previews might read
-        localStorage.setItem("oxbow-playground-mode", "light");
-      } catch {}
-      try {
-        // Force matchMedia to resolve light for color scheme
-        const mq = window.matchMedia;
-        window.matchMedia = (query) => {
-          if (typeof query === "string" && /prefers-color-scheme\s*:\s*dark/i.test(query)) {
-            return { matches: false, media: query, addListener() {}, removeListener() {}, addEventListener() {}, removeEventListener() {}, onchange: null, dispatchEvent() { return false; } };
-          }
-          if (typeof query === "string" && /prefers-color-scheme\s*:\s*light/i.test(query)) {
-            return { matches: true, media: query, addListener() {}, removeListener() {}, addEventListener() {}, removeEventListener() {}, onchange: null, dispatchEvent() { return false; } };
-          }
-          return mq.call(window, query);
-        };
-      } catch {}
-    });
-    await page.emulateMediaFeatures([
-      { name: "prefers-color-scheme", value: "light" },
-      { name: "color-gamut", value: "srgb" },
-    ]);
-    await page.setViewport({ width: 1280, height: 720 });
-
     const filePath = `iframe/${dir}/${file}`;
     const url = `http://localhost:4321/${filePath}?mode=light`;
-
-    await page.goto("about:blank");
-    await page.evaluate(() => {
+    // Initial viewport width; height will be adjusted to content
+    await page.setViewport({ width: 1280, height: 800 });
+    // Navigate and wait for the page to fully load
+    // Use multiple wait conditions (some pages trigger client-side navigation)
+    try {
+      await page.goto(url, { waitUntil: ["domcontentloaded", "networkidle0"] });
+    } catch (gotoErr) {
+      // fallback to single wait if the above fails for some pages
+      console.warn(
+        `Primary navigation to ${url} failed, retrying with fallback wait:`,
+        gotoErr.message || gotoErr,
+      );
       try {
-        localStorage.setItem("oxbow-playground-mode", "light");
-      } catch {}
-    });
+        await page.goto(url, { waitUntil: "networkidle0" });
+      } catch (e) {
+        console.warn(`Initial navigation to ${url} failed:`, e.message || e);
+      }
+    }
 
-    await page.goto(url, {
-      waitUntil: "networkidle2",
-    });
+    // Small pause to let any client-side routing or lazy loading hooks settle
+    await sleep(300);
 
-    // After navigation, aggressively force light mode in the document itself.
-    // Some previews include a nested `.dark` scope for demonstration; strip it.
-    await page.addStyleTag({
-      content: `:root{color-scheme: light !important}
-        html,body{background:#fff !important}
-        /* Neutralize hard-coded dark tokens often used in demos */
-        .bg-black, .bg-zinc-950, .bg-zinc-900, .bg-neutral-950, .bg-neutral-900, .bg-slate-950, .bg-slate-900 { background-color: #fff !important; }
-        .text-white { color: #0a0a0a !important; }
-        .ring-zinc-900, .ring-zinc-800 { --tw-ring-color: rgba(0,0,0,0.10) !important; }
-      `,
-    });
-    await page.evaluate(() => {
+    // Helper: scroll the page gradually to trigger lazy-loaded images and intersections
+    async function autoScroll(page) {
+      await page.evaluate(async () => {
+        await new Promise((resolve) => {
+          const distance = Math.floor(window.innerHeight * 0.9);
+          const delay = 120;
+          let totalHeight = 0;
+          const timer = setInterval(() => {
+            window.scrollBy(0, distance);
+            totalHeight += distance;
+            // stop when we've hit the bottom
+            if (
+              totalHeight >=
+              document.body.scrollHeight - window.innerHeight
+            ) {
+              clearInterval(timer);
+              // give any lazy-loaders a moment
+              setTimeout(resolve, 250);
+            }
+          }, delay);
+        });
+      });
+    }
+
+    // Run the autoscroll to ensure images loading via IntersectionObserver kick in
+    try {
+      await autoScroll(page);
+    } catch (err) {
+      console.warn("Auto-scroll failed:", err.message || err);
+    }
+
+    // After scrolling, wait briefly and wait for visible images to load (with a timeout)
+    await sleep(250);
+    try {
+      await page
+        .evaluate(() => {
+          const imgs = Array.from(document.images || []);
+          return Promise.all(
+            imgs.map((img) => {
+              if (img.complete) return Promise.resolve();
+              return new Promise((res) =>
+                img.addEventListener("load", res, { once: true }),
+              );
+            }),
+          );
+        })
+        .catch(() => {});
+    } catch {
+      // ignore image wait failures
+    }
+
+    // Measure full page height for complete screenshot with retries (some pages navigate)
+    let contentHeight = 800;
+    const maxRetries = 3;
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
       try {
-        const d = document;
-        const html = d.documentElement;
-        const body = d.body;
-        html?.classList?.remove("dark");
-        body?.classList?.remove("dark");
-        if (html?.getAttribute) html.removeAttribute("data-theme");
-        if (body?.getAttribute) body.removeAttribute("data-theme");
-        // Remove any nested `.dark` scope elements used to demo dark variants
-        d.querySelectorAll(".dark").forEach((el) => {
-          try { el.classList.remove("dark"); } catch {}
-        });
-        // Normalize any explicit dark data-theme attributes
-        d.querySelectorAll('[data-theme="dark"]').forEach((el) => {
-          try { el.removeAttribute('data-theme'); } catch {}
-        });
-      } catch {}
-    });
-    // Give the page a brief moment to reflow after class/attr changes
-    await new Promise((r) => setTimeout(r, 50));
+        contentHeight = await page.evaluate(() =>
+          Math.max(
+            document.body.scrollHeight,
+            document.documentElement.scrollHeight || 0,
+          ),
+        );
+        break;
+      } catch (err) {
+        // If the execution context was destroyed, the page likely navigated — wait and retry
+        console.warn(
+          `Unable to measure content height (attempt ${attempt}):`,
+          err.message || err,
+        );
+        await sleep(200 * attempt);
+      }
+    }
 
-    const contentHeight = await page.evaluate(() => {
-      return document.body.scrollHeight;
-    });
+    // Cap extremely tall pages to avoid huge screenshots (and optionally tile later)
+    const MAX_HEIGHT = 16000; // adjust as needed
+    const capped = contentHeight > MAX_HEIGHT;
+    if (capped) {
+      console.warn(
+        `Content height ${contentHeight} exceeds cap ${MAX_HEIGHT}, capping for screenshot.`,
+      );
+      contentHeight = Math.min(contentHeight, MAX_HEIGHT);
+    }
+
     await page.setViewport({ width: 1280, height: contentHeight });
-
     const filename = file.replace(/\//g, "_").replace(".astro", "");
     console.log(`Taking screenshot of: ${filename}`);
-    await page.screenshot({
+    // If we capped the height, take a screenshot of the viewport (which we set to the capped height).
+    // Otherwise use fullPage to capture the full document.
+    const screenshotOptions = {
       path: `${outputDir}/${filename}.png`,
-      fullPage: true,
-    });
+      fullPage: !capped,
+    };
+    await page.screenshot(screenshotOptions);
     await page.close();
   }
 
@@ -113,7 +148,13 @@ const path = require("path");
   async function processInBatches(files, batchSize) {
     for (let i = 0; i < files.length; i += batchSize) {
       const batch = files.slice(i, i + batchSize);
-      await Promise.all(batch.map(processFile));
+      await Promise.all(
+        batch.map((file) =>
+          processFile(file).catch((err) =>
+            console.error(`Error processing ${file}:`, err),
+          ),
+        ),
+      );
     }
   }
 

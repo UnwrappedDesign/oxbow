@@ -42,7 +42,9 @@ const entriesWithQuantity = entries
     };
   })
   // Filter out entries with quantity 0
-  .filter((entry) => entry.quantity > 0);
+  .filter((entry) => entry.quantity > 0)
+  // Sort alphabetically by component name
+  .sort((a, b) => a.name.localeCompare(b.name));
 
 const updatedSubsections = Object.keys(updates).reduce((acc, path) => {
   const [section, subsection] = path.split("/");
@@ -106,7 +108,6 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
                 })}
                 {" ago"}
               </Text>
-             
             </div>
           </div>
         </li>

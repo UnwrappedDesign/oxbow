@@ -5,59 +5,71 @@ import ChevronLeft from "@/components/fundations/icons/ChevronLeft.astro";
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 
 export const excludeFromObfuscation = ["opacity-50"];
+
+const slides = [
+  {
+    quote:
+      "Oxbow's components let us move from concept to production in days, not months.",
+    name: "Ana Betancourt",
+    title: "Creator of Something",
+    imgSrc: "/avatars/5.jpg",
+  },
+  {
+    quote:
+      "Adopting the toolkit reduced our UI debt and improved consistency across products.",
+    name: "Juanjo Garcia",
+    title: "Founder of his kids",
+    imgSrc: "/avatars/2.jpg",
+  },
+  {
+    quote:
+      "The docs and defaults are excellent — our team onboarded in a single sprint.",
+    name: "Maya Lin",
+    title: "Product Lead",
+    imgSrc: "/avatars/3.jpg",
+  },
+];
 ---
 
 <section class="bg-white dark:bg-zinc-900">
   <div class="relative px-8 mx-auto md:px-12 lg:px-32 max-w-7xl py-24">
     <div
       class="flex flex-col w-full"
-      x-data="{
-                      skip: 1,
-                      atBeginning: false,
-                      atEnd: false,
-                      next() {
-                          this.to((current, offset) => current + (offset * this.skip))
-                      },
-                      prev() {
-                          this.to((current, offset) => current - (offset * this.skip))
-                      },
-                      to(strategy) {
-                          let slider = this.$refs.slider
-                          let current = slider.scrollLeft
-                          let offset = slider.firstElementChild.getBoundingClientRect().width
-                          slider.scrollTo({ left: strategy(current, offset), behavior: 'smooth' })
-                      },
-                      focusableWhenVisible: {
-                          'x-intersect:enter'() {
-                              this.$el.removeAttribute('tabindex')
-                          },
-                          'x-intersect:leave'() {
-                              this.$el.setAttribute('tabindex', '-1')
-                          },
-                      },
-                      disableNextAndPreviousButtons: {
-                          'x-intersect:enter.threshold.05'() {
-                              let slideEls = this.$el.parentElement.children
-                              // If this is the first slide.
-                              if (slideEls[0] === this.$el) {
-                                  this.atBeginning = true
-                              // If this is the last slide.
-                              } else if (slideEls[slideEls.length-1] === this.$el) {
-                                  this.atEnd = true
-                              }
-                          },
-                          'x-intersect:leave.threshold.05'() {
-                              let slideEls = this.$el.parentElement.children
-                              // If this is the first slide.
-                              if (slideEls[0] === this.$el) {
-                                  this.atBeginning = false
-                              // If this is the last slide.
-                              } else if (slideEls[slideEls.length-1] === this.$el) {
-                                  this.atEnd = false
-                              }
-                          },
-                      },
-                  }"
+    x-data="{
+            skip: 1,
+            next() {
+              this.to((current, offset, slider) => {
+                const target = current + (offset * this.skip)
+                const max = slider.scrollWidth - slider.clientWidth
+                if (target >= max - 1) return 0
+                return target
+              })
+            },
+            prev() {
+              this.to((current, offset, slider) => {
+                const target = current - (offset * this.skip)
+                if (target <= 1) return slider.scrollWidth - slider.clientWidth
+                return target
+              })
+            },
+            to(strategy) {
+              const slider = this.$refs.slider
+              const current = slider.scrollLeft
+              const first = slider.firstElementChild
+              const gap = parseFloat(getComputedStyle(slider).columnGap) || 0
+              const offset = first.getBoundingClientRect().width + gap
+              const target = strategy(current, offset, slider)
+              slider.scrollTo({ left: target, behavior: 'smooth' })
+            },
+            focusableWhenVisible: {
+              'x-intersect:enter'() {
+                this.$el.removeAttribute('tabindex')
+              },
+              'x-intersect:leave'() {
+                this.$el.setAttribute('tabindex', '-1')
+              },
+            },
+          }"
     >
       <div
         class="relative flex flex-col w-full"
@@ -71,26 +83,20 @@ export const excludeFromObfuscation = ["opacity-50"];
         <span class="sr-only" hidden="" id="carousel-content-label"
           >Carousel</span
         >
-        <div class="inline-flex items-center order-last w-full mt-4 space-x-2">
+          <div class="inline-flex items-center order-last w-full mt-4 space-x-2">
           <IconButton
-            :class="{ 'opacity-50 ': atBeginning }"
-            :aria-disabled="atBeginning"
-            :tabindex="atEnd ? -1 : 0"
             x-on:click="prev"
             tabindex="0"
-            variant="outline"
+            variant="muted"
             size="sm"
           >
             <ChevronLeft size="base" slot="icon" />
             <span class="sr-only">Skip to previous slide page</span>
           </IconButton>
           <IconButton
-            :class="{ 'opacity-50 ': atEnd }"
-            :aria-disabled="atEnd"
-            :tabindex="atEnd ? -1 : 0"
             x-on:click="next"
             tabindex="0"
-            variant="outline"
+            variant="muted"
             size="sm"
           >
             <ChevronRight size="base" slot="icon" />
@@ -104,96 +110,51 @@ export const excludeFromObfuscation = ["opacity-50"];
           tabindex="0"
           x-ref="slider"
         >
-          <li
-            class="w-full shrink-0 snap-start"
-            role="option"
-            x-bind="disableNextAndPreviousButtons"
-          >
-            <figure
-              class="relative flex flex-col items-center lg:flex-row gap-12"
-            >
-              <div>
-                <div>
-                  <Text
-                    tag="blockquote"
-                    variant="displayLG"
-                    class="italic font-medium text-zinc-900 dark:text-zinc-100"
-                  >
-                    "Being in the financial industry, we were always looking for
-                    ways to enhance our transactions' security and efficiency"
-                  </Text>
-                </div>
-                <div class="mt-6">
-                  <Text
-                    tag="h3"
-                    variant="textLG"
-                    class="font-medium text-zinc-900 dark:text-zinc-100"
-                  >
-                    Ana Betancourt
-                  </Text>
-                  <Text
-                    tag="p"
-                    variant="textXS"
-                    class="font-medium text-zinc-400 dark:text-zinc-300"
-                  >
-                    Creator of Something
-                  </Text>
-                </div>
-              </div>
-              <figcaption class="justify-between w-full">
-                <img
-                  alt="#_"
-                  src="/avatars/5.jpg"
-                  class="object-cover size-full rounded-2xl aspect-[4/3]"
-                />
-              </figcaption>
-            </figure>
-          </li>
-          <li
-            class="w-full shrink-0 snap-start"
-            role="option"
-            x-bind="disableNextAndPreviousButtons"
-          >
-            <figure
-              class="relative flex flex-col items-center lg:flex-row gap-12"
-            >
-              <div>
-                <div>
-                  <Text
-                    tag="div"
-                    variant="displayLG"
-                    class="italic font-medium text-zinc-900"
-                  >
-                    "Implementing Semplice's blockchain technology has been a
-                    game-changer for our supply chain management."
-                  </Text>
-                </div>
-                <div class="mt-6">
-                  <Text
-                    tag="h3"
-                    variant="textLG"
-                    class="font-medium text-zinc-900"
-                  >
-                    Juanjo Garcia
-                  </Text>
-                  <Text
-                    tag="p"
-                    variant="textXS"
-                    class="font-medium text-zinc-400"
-                  >
-                    Founder of his kids
-                  </Text>
-                </div>
-              </div>
-              <figcaption class="justify-between w-full">
-                <img
-                  alt="#_"
-                  src="/avatars/2.jpg"
-                  class="object-cover size-full rounded-2xl aspect-[4/3]"
-                />
-              </figcaption>
-            </figure>
-          </li>
+          {
+            slides.map((s) => (
+              <li
+                class="w-full shrink-0 snap-start"
+                role="option"
+              >
+                <figure class="relative flex flex-col items-center lg:flex-row gap-12">
+                  <div>
+                    <div>
+                      <Text
+                        tag="blockquote"
+                        variant="displaySM"
+                        class="italic font-medium text-zinc-900 dark:text-white"
+                      >
+                        {s.quote}
+                      </Text>
+                    </div>
+                    <div class="mt-6">
+                      <Text
+                        tag="h3"
+                        variant="textBase"
+                        class="font-semibold text-zinc-900 dark:text-white"
+                      >
+                        {s.name}
+                      </Text>
+                      <Text
+                        tag="p"
+                        variant="textSM"
+                        class="font-medium text-zinc-600 dark:text-zinc-400"
+                      >
+                        {s.title}
+                      </Text>
+                    </div>
+                  </div>
+                  <figcaption class="justify-between w-full">
+                    <img
+                      alt="#_"
+                      src={s.imgSrc}
+                      class="object-cover size-full rounded-2xl aspect-[4/3]"
+                    />
+                  </figcaption>
+                </figure>
+              </li>
+            ))
+          }
         </ul>
       </div>
     </div>

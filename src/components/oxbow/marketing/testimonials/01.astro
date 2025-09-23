@@ -1,53 +1,62 @@
 ---
 export const freeComponent = true;
 import Text from "@/components/fundations/typography/Text.astro";
-import Start from "@/components/fundations/icons/Start.astro";
 const data = [
   {
     name: "Fernando Monte",
     title: "Creator of Oxbow UI.com",
     testimonial:
-      "Being in the financial industry, we were always looking for ways to enhance our transactions.",
+      "Oxbow helped us ship a secure, polished payments UI in weeks — their components saved us months of work.",
     imgSrc: "/avatars/1.jpg",
   },
   {
     name: "Juan Echanove",
     title: "Founder of Pay Oneeer",
     testimonial:
-      "Oxbow UI is a platform that allows you to create a customized landing page. ",
-    imgSrc: "/avatars/1.jpg",
-  },
-  {
-    name: "Elona Muska",
-    title: "Founder of Fesla",
-    testimonial:
-      "With Oxbow UI, we can create a customized landing page for our business that showcases our products.",
-    imgSrc: "/avatars/3.jpg",
+      "The library is thoughtfully designed and easy to integrate. We saw immediate improvements in reliability and conversion.",
+    imgSrc: "/avatars/2.jpg",
   },
 ];
 ---
 
 <section class="bg-white dark:bg-zinc-900">
   <div class="relative px-8 mx-auto md:px-12 lg:px-32 max-w-7xl py-24">
-    <ul
-      role="list"
-      class="text-center grid sm:grid-cols-2 md:grid-cols-3 gap-12"
-    >
+    
+    <ul role="list" class=" grid md:grid-cols-2 gap-8">
       {
         data.map((member) => (
           <>
             <li>
               <figure class="flex flex-col ">
-                <span class="flex items-center justify-center rounded-full  gap-2 text-amber-500">
-                  <Start size="sm" />
-                  <Start size="sm" />
-                  <Start size="sm" />
-                  <Start size="sm" />
-                </span>
+                <figcaption>
+                  <div class="flex items-center gap-4">
+                    <img
+                      class="object-cover rounded-full size-10"
+                      src={member.imgSrc}
+                      alt="#_"
+                    />
+                    <div>
+                      <Text
+                        tag="h3"
+                        variant="textBase"
+                        class="font-semibold text-zinc-900 dark:text-white"
+                      >
+                        {member.name}
+                      </Text>
+                      <Text
+                        tag="p"
+                        variant="textSM"
+                        class="font-medium text-zinc-600 dark:text-zinc-400"
+                      >
+                        {member.title}
+                      </Text>
+                    </div>
+                  </div>
+                </figcaption>
                 <Text
                   tag="blockquote"
-                  variant="textXL"
-                  class="italic font-medium text-zinc-500 dark:text-zinc-400 mt-14"
+                  variant="textLG"
+                  class="mt-4 font-medium text-zinc-900 dark:text-white lg:text-balance"
                 >
                   {member.testimonial}
                 </Text>

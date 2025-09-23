@@ -5,80 +5,106 @@ const data = [
     name: "Fernando Monte",
     title: "Creator of Oxbow UI.com",
     testimonial:
-      "Being in the financial industry, we were always looking for ways to enhance our transactions' security and efficiency.",
+      "Oxbow accelerated our design-to-production cycle — the components are reliable and easy to theme.",
     imgSrc: "/avatars/1.jpg",
   },
   {
     name: "Juan Echanove",
     title: "Founder of Pay Oneeer",
     testimonial:
-      "Oxbow UI is a platform that allows you to create a customized landing page for your business. It's a great way to showcase your products and services to potential customers.",
+      "Integration was seamless and we saw performance and conversion gains immediately.",
     imgSrc: "/avatars/2.jpg",
+  },
+  {
+    name: "Hanako Yamada",
+    title: "Founder of Fesla",
+    testimonial:
+      "The toolkit allowed our small team to deliver a polished product in half the time.",
+    imgSrc: "/avatars/3.jpg",
+  },
+  {
+    name: "Sarah Jenkins",
+    title: "Marketing Manager at BrightTech",
+    testimonial:
+      "Refreshing our landing pages with Oxbow helped increase engagement across campaigns.",
+    imgSrc: "/avatars/4.jpg",
+  },
+  {
+    name: "Sandra Kimmel",
+    title: "CEO of Tech Innovators",
+    testimonial:
+      "Clear docs and thoughtful defaults made onboarding the team effortless.",
+    imgSrc: "/avatars/6.jpg",
+  },
+  {
+    name: "Emily Taylor",
+    title: "Creative Director at Artify",
+    testimonial:
+      "Beautiful defaults and flexible customization let us keep our visual identity intact.",
+    imgSrc: "/avatars/5.jpg",
   },
 ];
 ---
 
-<section class="bg-white dark:bg-zinc-900">
+<section class="bg-white dark:bg-zinc-900 relative overflow-hidden">
   <div class="relative px-8 mx-auto md:px-12 lg:px-32 max-w-7xl py-24">
-    <div>
-      <Text
-        tag="p"
-        variant="textSM"
-        class="font-bold uppercase text-blue-600 dark:text-blue-400"
-      >
-        Tagline
-      </Text>
+    <div class="max-w-xl mx-auto text-center lg:text-balance">
       <Text
         tag="h2"
-        variant="display2XL"
-        class="mt-4 font-semibold text-zinc-900 dark:text-zinc-100 lg:text-balance"
+        variant="displaySM"
+        class="font-semibold tracking-tight text-zinc-900 dark:text-white text-balance"
       >
-        Hear from our customers about their experiences
+        Stories from teams using Oxbow
+      </Text>
+      <Text tag="p" variant="textBase" class="mt-4 font-medium text-zinc-500">
+        Real-world examples of how product teams accelerate delivery with our UI
+        toolkit.
       </Text>
     </div>
-    <ul role="list" class="mt-12 grid md:grid-cols-2 gap-12 lg:mt-24">
+    <div class="flex flex-col lg:flex-row justify-center  gap-4 mt-8">
       {
         data.map((member) => (
-          <>
-            <li>
-              <figure class="flex flex-col ">
-                <figcaption>
-                  <div class="flex items-center gap-4">
-                    <img
-                      class="object-cover rounded-full size-10"
-                      src={member.imgSrc}
-                      alt="#_"
-                    />
-                    <div>
-                      <Text
-                        tag="h3"
-                        variant="textBase"
-                        class="font-medium text-zinc-900 dark:text-zinc-100"
-                      >
-                        {member.name}
-                      </Text>
-                      <Text
-                        tag="p"
-                        variant="textXS"
-                        class="font-medium text-zinc-400 dark:text-zinc-300"
-                      >
-                        {member.title}
-                      </Text>
-                    </div>
-                  </div>
-                </figcaption>
+          <div class="flex flex-none w-full  lg:w-96">
+            <figure class="flex flex-col justify-between h-full bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 shadow from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl p-8">
+              <div>
                 <Text
                   tag="blockquote"
-                  variant="textXL"
-                  class="mt-4 italic font-medium text-zinc-500 dark:text-zinc-400"
+                  variant="textBase"
+                  class="italic font-medium text-zinc-900 dark:text-white"
                 >
-                  {member.testimonial}
+                  "{member.testimonial}"
                 </Text>
-              </figure>
-            </li>
-          </>
+              </div>
+              <figcaption class="flex items-center justify-between mt-12 ">
+                <div class="flex items-center gap-4">
+                  <img
+                    class="object-cover rounded-full size-10"
+                    src={member.imgSrc}
+                    alt="#_"
+                  />
+                  <div>
+                    <Text
+                      tag="h3"
+                      variant="textBase"
+                      class="font-medium text-zinc-900 dark:text-white"
+                    >
+                      {member.name}
+                    </Text>
+
+                    <Text
+                      tag="p"
+                      variant="textXS"
+                      class="font-medium text-zinc-400 dark:text-zinc-300"
+                    >
+                      {member.title}
+                    </Text>
+                  </div>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
         ))
       }
-    </ul>
+    </div>
   </div>
 </section>

@@ -1,10 +1,9 @@
 ---
 import Text from "@/components/fundations/typography/Text.astro";
-import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 const teamMembers = [
   {
     name: "Fernando Monte",
-    title: "Creator of Oxbow UI.com",
+    title: "Founder of Oxbow UI",
     imgSrc: "/avatars/1.jpg",
   },
   {
@@ -32,78 +31,48 @@ const teamMembers = [
     title: "Marketing Director",
     imgSrc: "/avatars/6.jpg",
   },
+  {
+    name: "Emma Watson",
+    title: "Chief Design Officer",
+    imgSrc: "/avatars/7.jpg",
+  },
+  {
+    name: "James Anderson",
+    title: "Senior Product Manager",
+    imgSrc: "/avatars/8.jpg",
+  },
 ];
 ---
 
 <section class="bg-white dark:bg-zinc-900">
   <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
-    <div class="max-w-xl text-center lg:text-balance sm:text-left">
-      <Text
-        tag="p"
-        variant="textSM"
-        class="font-bold uppercase text-blue-600 dark:text-blue-400"
-      >
-        Tagline
-      </Text>
-      <Text
-        tag="h2"
-        variant="displayMD"
-        class="mt-4 font-semibold text-zinc-900 dark:text-white lg:text-balance"
-      >
-        Introducing our team
-      </Text>
-      <Text
-        tag="p"
-        variant="textBase"
-        class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
-      >
-        Uniting talent with vision. Get to know the dedicated professionals who
-        blend their skills and passion to lead us to new heights.
-      </Text>
-      <div
-        class="flex items-center justify-center mt-8 text-sm text-center gap-2 text-zinc-500 dark:text-zinc-400 lg:justify-start"
-      >
-        <Text tag="span" variant="textBase"> We are hiring </Text>
-        <Text
-          tag="a"
-          href="#_"
-          variant="link"
-          class="flex items-center gap-2 dark:text-blue-400 dark:hover:text-white"
-        >
-          See all our open roles
-          <ChevronRight size="sm" />
-        </Text>
-      </div>
-    </div>
     <ul
       role="list"
-      class="mt-12 text-center grid grid-cols-1 md:text-left sm:grid-cols-2 md:grid-cols-3 gap-12 lg:mt-24"
+      class="overflow-hidden border grid grid-cols-1 sm:grid-cols-3 gap-px lg:grid-cols-4 rounded-3xl bg-zinc-200 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800"
     >
       {
         teamMembers.map((member) => (
-          <li>
-            <div class="flex flex-col items-center md:flex-row gap-4 ">
-              <img
-                class="object-cover rounded-full size-16 "
-                src={member.imgSrc}
-                alt="#_"
-              />
-              <div>
-                <Text
-                  tag="h3"
-                  variant="textLG"
-                  class="font-medium text-zinc-900 dark:text-white"
-                >
-                  {member.name}
-                </Text>
-                <Text
-                  tag="p"
-                  variant="textBase"
-                  class="font-medium text-zinc-500 dark:text-zinc-400"
-                >
-                  {member.title}
-                </Text>
-              </div>
+          <li class="flex flex-col p-8 text-center bg-white dark:bg-zinc-900 lg:p-12 gap-4 hover:bg-transparent duration-300">
+            <img
+              class="object-cover mx-auto rounded-full size-12 lg:size-16 "
+              src={member.imgSrc}
+              alt="#_"
+            />
+            <div>
+              <Text
+                variant="textBase"
+                tag="h3"
+                class="font-semibold text-zinc-900 dark:text-white"
+              >
+                {member.name}
+              </Text>
+              <Text
+                tag="p"
+                variant="textSM"
+                class="font-medium text-zinc-500 dark:text-zinc-400"
+              >
+                {member.title}
+              </Text>
             </div>
           </li>
         ))

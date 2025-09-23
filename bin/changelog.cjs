@@ -79,60 +79,51 @@ class ChangelogGenerator {
       .replace(/^\//, "");
     return relativePath.split("/");
   }
-
   /**
    * Get git changes for components
-      // Always rebuild complete changelog from scratch
-      let markdown = `# Changelog for Oxbow UI Components\n\n`;
-      // Sort dates descending
-      const sortedDates = Object.keys(changes).sort((a, b) => new Date(b) - new Date(a));
-              renamed: {},
-            };
+   * @returns {Promise<Record<string, {added: Record<string, number>, modified: Record<string, number>, renamed: Record<string, number>}>>}
+   */
+  async getGitChanges() {
+    try {
+      // Fetch changes since configured months ago
+      const sinceArg = `${this.getMonthsLimit()} months ago`;
+      const { stdout } = await execAsync(
+        `git log --since="${sinceArg}" --name-status --pretty=format:"%cd" --date=short`,
+      );
+      const lines = stdout.split("\n");
+      const changes = {};
+      let currentDate = null;
+      for (const line of lines) {
+        const dateMatch = line.trim().match(/^\d{4}-\d{2}-\d{2}$/);
+        if (dateMatch) {
+          currentDate = dateMatch[0];
+          if (!changes[currentDate]) {
+            changes[currentDate] = { added: {}, modified: {}, renamed: {} };
           }
           continue;
         }
-
-        if (currentDate) {
-          const match = line.match(/^([AMDR])\s+(.+)/);
-          if (match) {
-            const [, changeType, filePath] = match;
-
-            if (filePath.startsWith(this.targetDir.replace(/^\.\//, ""))) {
-              // Skip test files
-              if (this.isTestFile(filePath)) continue;
-
-              const [section, subSection] = this.extractPathParts(
-                filePath,
-              ).slice(-3, -1);
-              const pathKey = `${section}/${subSection}`;
-
-              if (this.isFolderBlacklisted(pathKey)) continue;
-
-              switch (changeType) {
-                case "A":
-                  changes[currentDate].added[pathKey] =
-                    (changes[currentDate].added[pathKey] || 0) + 1;
-                  break;
-                case "M":
-                  changes[currentDate].modified[pathKey] =
-                    (changes[currentDate].modified[pathKey] || 0) + 1;
-                  break;
-                case "R":
-                  changes[currentDate].renamed[pathKey] =
-                    (changes[currentDate].renamed[pathKey] || 0) + 1;
-                  break;
-              }
-            }
-          }
+        const match = line.match(/^([AMDR])\s+(.+)/);
+        if (match && currentDate) {
+          const [, type, filePath] = match;
+          if (!filePath.startsWith(this.targetDir.replace(/^\.\//, "")))
+            continue;
+          if (this.isTestFile(filePath)) continue;
+          const parts = this.extractPathParts(filePath);
+          const slice = parts.slice(-3, -1);
+          if (slice.length < 2) continue;
+          const [section, subSection] = slice;
+          const pathKey = `${section}/${subSection}`;
+          if (this.isFolderBlacklisted(pathKey)) continue;
+          const actionMap = { A: "added", M: "modified", R: "renamed" };
+          const key = actionMap[type];
+          changes[currentDate][key][pathKey] =
+            (changes[currentDate][key][pathKey] || 0) + 1;
         }
       }
-
       return changes;
     } catch (error) {
       console.error("Error retrieving git changes:", error);
       return {};
-    }
-          })();
     }
   }
 
@@ -148,12 +139,28 @@ class ChangelogGenerator {
     }
     return dates;
   }
+  /**
+   * Read existing changelog file if present
+   * @returns {string}
+   */
+  readExistingChangelog() {
+    try {
+      if (fs.existsSync(this.changelogFile)) {
+        return fs.readFileSync(this.changelogFile, "utf8");
+      }
+    } catch {}
+    return "";
+  }
 
   generateChangelogMarkdown(changes) {
-  const existingContent = this.readExistingChangelog();
-  const existingDates = this.extractExistingDates(existingContent);
-  // Always include today's changes so counts update
-  const today = new Date().toISOString().split("T")[0];
+    // Safely read existing changelog
+    const existingContent =
+      typeof this.readExistingChangelog === "function"
+        ? this.readExistingChangelog()
+        : "";
+    const existingDates = this.extractExistingDates(existingContent);
+    // Always include today's changes so counts update
+    const today = new Date().toISOString().split("T")[0];
 
     let markdown = "";
 

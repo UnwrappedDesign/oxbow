@@ -1,12 +1,10 @@
 ---
 import Text from "@/components/fundations/typography/Text.astro";
-
-import XBrand from "@/components/fundations/icons/XBrand.astro";
-import LinkedinBrand from "@/components/fundations/icons/LinkedinBrand.astro";
+import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 const teamMembers = [
   {
     name: "Fernando Monte",
-    title: "Creator of Oxbow UI.com",
+    title: "Founder of Oxbow UI",
     imgSrc: "/avatars/1.jpg",
   },
   {
@@ -24,71 +22,92 @@ const teamMembers = [
     title: "COO at Pff Inc",
     imgSrc: "/avatars/4.jpg",
   },
+  {
+    name: "Sara Johnson",
+    title: "Lead Developer",
+    imgSrc: "/avatars/5.jpg",
+  },
+  {
+    name: "Sandra Kimmel",
+    title: "Marketing Director",
+    imgSrc: "/avatars/6.jpg",
+  },
+  {
+    name: "Emma Watson",
+    title: "Chief Design Officer",
+    imgSrc: "/avatars/7.jpg",
+  },
+  {
+    name: "James Anderson",
+    title: "Senior Product Manager",
+    imgSrc: "/avatars/8.jpg",
+  },
 ];
 ---
 
 <section class="bg-white dark:bg-zinc-900">
   <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
-    <div class="max-w-xl mx-auto text-center lg:text-balance">
-      <Text
-        tag="p"
-        variant="textSM"
-        class="font-bold uppercase text-blue-600 dark:text-blue-400"
-      >
-        Tagline
-      </Text>
+    <div class="max-w-xl lg:text-balance">
       <Text
         tag="h2"
         variant="displayMD"
-        class="mt-4 font-semibold text-zinc-900 dark:text-white lg:text-balance"
+        class="font-semibold tracking-tight text-zinc-900 dark:text-white text-balance"
       >
-        Introducing our team
+        Meet our dedicated team
       </Text>
       <Text
         tag="p"
         variant="textBase"
         class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
       >
-        Uniting talent with vision. Get to know the dedicated professionals who
-        blend their skills and passion to lead us to new heights.
+        A collaborative group of experts bringing diverse skills together to
+        craft outstanding experiences and impactful solutions.
+      </Text>
+      <Text
+        tag="p"
+        variant="textSM"
+        class="font-medium text-zinc-500 dark:text-zinc-400 flex items-center gap-2 mt-12"
+      >
+        We’re hiring!&nbsp;
+        <a
+          href="#_"
+          class="font-medium text-zinc-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-300 flex items-center gap-1"
+        >
+          View open positions
+          <ChevronRight size="sm" />
+        </a>
       </Text>
     </div>
     <ul
       role="list"
-      class="mt-24 text-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-24 gap-x-4"
+      class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 gap-y-16 lg:mt-24"
     >
       {
         teamMembers.map((member) => (
-          <li class="bg-zinc-50 dark:bg-zinc-900 rounded-3xl">
-            <img
-              class="object-cover mx-auto -mt-12 rounded-full size-24"
-              src={member.imgSrc}
-              alt="#_"
-            />
-            <div class="flex flex-col ">
-              <div class="p-8">
-                <Text
-                  tag="h3"
-                  variant="textLG"
-                  class="font-medium text-zinc-900 dark:text-white"
-                >
-                  {member.name}
-                </Text>
-                <Text
-                  tag="p"
-                  variant="textBase"
-                  class="font-medium text-zinc-500 dark:text-zinc-400"
-                >
-                  {member.title}
-                </Text>
-              </div>
-              <div class="flex items-center justify-center px-8 py-4 border-t gap-2 border-zinc-200 dark:border-zinc-800 text-black dark:text-white">
-                <Text tag="a" href="#_" variant="link">
-                  <XBrand size="sm" />
-                </Text>
-                <Text tag="a" href="#_" variant="link">
-                  <LinkedinBrand size="sm" />
-                </Text>
+          <li>
+            <div class="flex items-center justify-between ">
+              <div class="flex items-center gap-4">
+                <img
+                  class="object-cover rounded-full size-12"
+                  src={member.imgSrc}
+                  alt="#_"
+                />
+                <div>
+                  <Text
+                    variant="textBase"
+                    tag="h3"
+                    class="font-semibold text-zinc-900 dark:text-white"
+                  >
+                    {member.name}
+                  </Text>
+                  <Text
+                    tag="p"
+                    variant="textSM"
+                    class="font-medium text-zinc-500 dark:text-zinc-400"
+                  >
+                    {member.title}
+                  </Text>
+                </div>
               </div>
             </div>
           </li>

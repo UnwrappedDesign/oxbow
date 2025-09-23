@@ -1,7 +1,9 @@
 ---
 export const freeComponent = true;
 import Text from "@/components/fundations/typography/Text.astro";
-import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
+import Kicker from "@/components/fundations/typography/Kicker.astro";
+import XBrand from "@/components/fundations/icons/XBrand.astro";
+import LinkedinBrand from "@/components/fundations/icons/LinkedinBrand.astro";
 const teamMembers = [
   {
     name: "Fernando Monte",
@@ -30,79 +32,60 @@ const teamMembers = [
   <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
     <div class="max-w-xl mx-auto text-center lg:text-balance">
       <Text
-        tag="p"
-        variant="textSM"
-        class="font-bold uppercase text-blue-600 dark:text-blue-400"
-      >
-        Tagline
-      </Text>
-      <Text
         tag="h2"
         variant="displayMD"
-        class="mt-4 font-semibold text-zinc-900 dark:text-white lg:text-balance"
+        class="font-semibold tracking-tight text-zinc-900 dark:text-white text-balance"
       >
-        Introducing our team
+        Meet our dedicated team
       </Text>
       <Text
         tag="p"
         variant="textBase"
         class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
       >
-        Uniting talent with vision. Get to know the dedicated professionals who
-        blend their skills and passion to lead us to new heights.
+        Our team of innovative professionals works tirelessly to deliver
+        exceptional experiences and drive successful outcomes for every project.
       </Text>
     </div>
     <ul
       role="list"
-      class="mt-12 text-center grid sm:grid-cols-2 md:grid-cols-3 lg:divide-x divide-zinc-200 dark:divide-zinc-900 lg:grid-cols-4 lg:border-x border-zinc-200 dark:border-zinc-900 lg:mt-24"
+      class="mt-24 text-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-24 gap-x-4"
     >
       {
         teamMembers.map((member) => (
-          <li class="p-8">
-            <div class="flex flex-col gap-4">
-              <img
-                class="object-cover mx-auto rounded-full size-16 lg:size-20"
-                src={member.imgSrc}
-                alt="#_"
-              />
-              <div>
-                <Text
-                  tag="h3"
-                  variant="textLG"
-                  class="font-medium text-zinc-900 dark:text-white"
-                >
-                  {member.name}
-                </Text>
-                <Text
-                  tag="p"
-                  variant="textBase"
-                  class="font-medium text-zinc-500 dark:text-zinc-400"
-                >
-                  {member.title}
-                </Text>
-              </div>
+          <li>
+            <img
+              class="object-cover mx-auto rounded-full size-24"
+              src={member.imgSrc}
+              alt="#_"
+            />
+            <div class="flex flex-col mt-4">
+              <Text
+                tag="h3"
+                variant="textBase"
+                class="font-semibold text-zinc-900 dark:text-white"
+              >
+                {member.name}
+              </Text>
+              <Text
+                tag="p"
+                variant="textSM"
+                class="font-medium text-zinc-500 dark:text-zinc-400"
+              >
+                {member.title}
+              </Text>
+            </div>
+            <div class="flex items-center justify-center px-8  mt-4 gap-2  text-black dark:text-white">
+              <Text tag="a" href="#_" variant="link">
+                <XBrand size="sm" />
+              </Text>
+              <Text tag="a" href="#_" variant="link">
+                <LinkedinBrand size="sm" />
+              </Text>
             </div>
           </li>
         ))
       }
     </ul>
-    <div class="flex items-center justify-center mt-8 text-center gap-2">
-      <Text
-        tag="p"
-        variant="textBase"
-        class="font-medium text-zinc-500 dark:text-zinc-400"
-      >
-        We are hiring
-      </Text>
-      <Text
-        tag="a"
-        href="#_"
-        variant="textBase"
-        class="flex items-center font-medium text-blue-500 dark:text-blue-400 gap-2 hover:text-zinc-900 dark:hover:text-white"
-      >
-        See all our open roles
-        <ChevronRight size="sm" />
-      </Text>
-    </div>
   </div>
 </section>

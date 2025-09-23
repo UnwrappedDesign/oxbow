@@ -1,5 +1,7 @@
 ---
 import Text from "@/components/fundations/typography/Text.astro";
+import Kicker from "@/components/fundations/typography/Kicker.astro";
+import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 const teamMembers = [
   {
     name: "Fernando Monte",
@@ -41,42 +43,99 @@ const teamMembers = [
     title: "Senior Product Manager",
     imgSrc: "/avatars/8.jpg",
   },
+  {
+    name: "Olivia Brown",
+    title: "Head of Customer Success",
+    imgSrc: "/avatars/9.jpg",
+  },
+  {
+    name: "Liam Martinez",
+    title: "UX Researcher",
+    imgSrc: "/avatars/10.jpg",
+  },
+  {
+    name: "Hector Lee",
+    title: "Data Scientist",
+    imgSrc: "/avatars/11.jpg",
+  },
+  {
+    name: "Noah Wilson",
+    title: "Sales Manager",
+    imgSrc: "/avatars/12.jpg",
+  },
 ];
 ---
 
 <section class="bg-white dark:bg-zinc-900">
-  <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
-    <ul
-      role="list"
-      class="overflow-hidden border grid grid-cols-1 sm:grid-cols-3 gap-px lg:grid-cols-4 rounded-3xl bg-zinc-200 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800"
-    >
-      {
-        teamMembers.map((member) => (
-          <li class="flex flex-col p-8 text-center bg-white dark:bg-zinc-900 lg:p-12 gap-4 hover:bg-transparent duration-300">
-            <img
-              class="object-cover mx-auto rounded-full size-12 lg:size-16 "
-              src={member.imgSrc}
-              alt="#_"
-            />
-            <div>
-              <Text
-                variant="textLG"
-                tag="h3"
-                class="font-medium text-zinc-900 dark:text-white"
-              >
-                {member.name}
-              </Text>
-              <Text
-                tag="p"
-                variant="textBase"
-                class="font-medium text-zinc-500 dark:text-zinc-400"
-              >
-                {member.title}
-              </Text>
-            </div>
-          </li>
-        ))
-      }
-    </ul>
+  <div class="relative px-8 mx-auto md:px-12 lg:px-32 max-w-7xl py-24">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+      <div>
+        <Text
+          tag="h2"
+          variant="displaySM"
+          class="font-semibold tracking-tight text-zinc-900 dark:text-white text-balance"
+        >
+          Our oxbow UI team
+        </Text>
+        <Text
+          tag="p"
+          variant="textBase"
+          class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+        >
+          Passionate innovators designing experiences that elevate brands and
+          delight users across every interaction.
+        </Text>
+        <div class="flex items-center mt-6 text-center gap-2">
+          <Text
+            tag="p"
+            variant="textSM"
+            class="font-medium text-zinc-500 dark:text-zinc-400 flex items-center gap-2 mt-8"
+          >
+            We’re hiring!
+            <a
+              href="#_"
+              class="font-medium text-zinc-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-300 flex items-center gap-1"
+            >
+              Explore Careers
+              <ChevronRight size="sm" />
+            </a>
+          </Text>
+        </div>
+      </div>
+      <ul
+        role="list"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 lg:col-span-2"
+      >
+        {
+          teamMembers.map((member) => (
+            <li>
+              <div class="flex items-center gap-4">
+                <img
+                  class="object-cover rounded-full size-12 "
+                  src={member.imgSrc}
+                  alt="#_"
+                />
+                <div>
+                  <Text
+                    variant="textBase"
+                    tag="h3"
+                    class="font-semibold text-zinc-900 dark:text-white"
+                  >
+                    {member.name}
+                  </Text>
+                  <Text
+                    tag="p"
+                    variant="textSM"
+                    class="font-medium text-zinc-500 dark:text-zinc-400"
+                  >
+                    {member.title}
+                  </Text>
+                </div>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </div>
 </section>
