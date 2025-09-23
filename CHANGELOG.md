@@ -1,5 +1,44 @@
 # Changelog for Oxbow UI Components
 
+## **2025-09-23**
+
+### Modified
+- breadcrumbs: [3 components](https://oxbowui.com/playground/application/breadcrumbs)
+- button-groups: [1 component](https://oxbowui.com/playground/application/button-groups)
+- emptyStates: [6 components](https://oxbowui.com/playground/application/emptyStates)
+- flyouts: [17 components](https://oxbowui.com/playground/application/flyouts)
+- navbars: [3 components](https://oxbowui.com/playground/application/navbars)
+- notifications: [5 components](https://oxbowui.com/playground/application/notifications)
+- sign-in: [5 components](https://oxbowui.com/playground/application/sign-in)
+- sign-up: [5 components](https://oxbowui.com/playground/application/sign-up)
+- tables: [4 components](https://oxbowui.com/playground/application/tables)
+- category-previews: [4 components](https://oxbowui.com/playground/ecommerce/category-previews)
+- product-details: [7 components](https://oxbowui.com/playground/ecommerce/product-details)
+- blog-content: [1 component](https://oxbowui.com/playground/marketing/blog-content)
+- blog-entries: [6 components](https://oxbowui.com/playground/marketing/blog-entries)
+- contact: [6 components](https://oxbowui.com/playground/marketing/contact)
+- creative-heros: [2 components](https://oxbowui.com/playground/marketing/creative-heros)
+- cta: [7 components](https://oxbowui.com/playground/marketing/cta)
+- cta-newsletter: [3 components](https://oxbowui.com/playground/marketing/cta-newsletter)
+- faq: [4 components](https://oxbowui.com/playground/marketing/faq)
+- features: [18 components](https://oxbowui.com/playground/marketing/features)
+- footers: [6 components](https://oxbowui.com/playground/marketing/footers)
+- gallery: [13 components](https://oxbowui.com/playground/marketing/gallery)
+- landing-pages: [1 component](https://oxbowui.com/playground/marketing/landing-pages)
+- logo-clouds: [4 components](https://oxbowui.com/playground/marketing/logo-clouds)
+- marketing-heros: [3 components](https://oxbowui.com/playground/marketing/marketing-heros)
+- pricing: [21 components](https://oxbowui.com/playground/marketing/pricing)
+- pricing-pages: [2 components](https://oxbowui.com/playground/marketing/pricing-pages)
+- stats: [11 components](https://oxbowui.com/playground/marketing/stats)
+- steps: [3 components](https://oxbowui.com/playground/marketing/steps)
+- team: [5 components](https://oxbowui.com/playground/marketing/team)
+- testimonials: [7 components](https://oxbowui.com/playground/marketing/testimonials)
+- timeline: [3 components](https://oxbowui.com/playground/marketing/timeline)
+
+### Deleted
+- team: [11 components](https://oxbowui.com/playground/marketing/team)
+- testimonials: [10 components](https://oxbowui.com/playground/marketing/testimonials)
+
 ## **2025-09-22**
 
 ### Modified

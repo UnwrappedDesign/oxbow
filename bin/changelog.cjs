@@ -81,7 +81,7 @@ class ChangelogGenerator {
   }
   /**
    * Get git changes for components
-   * @returns {Promise<Record<string, {added: Record<string, number>, modified: Record<string, number>, renamed: Record<string, number>}>>}
+   * @returns {Promise<Record<string, {added: Record<string, number>, modified: Record<string, number>, deleted: Record<string, number>, renamed: Record<string, number>}>>}
    */
   async getGitChanges() {
     try {
@@ -98,7 +98,12 @@ class ChangelogGenerator {
         if (dateMatch) {
           currentDate = dateMatch[0];
           if (!changes[currentDate]) {
-            changes[currentDate] = { added: {}, modified: {}, renamed: {} };
+            changes[currentDate] = {
+              added: {},
+              modified: {},
+              deleted: {},
+              renamed: {},
+            };
           }
           continue;
         }
@@ -114,7 +119,12 @@ class ChangelogGenerator {
           const [section, subSection] = slice;
           const pathKey = `${section}/${subSection}`;
           if (this.isFolderBlacklisted(pathKey)) continue;
-          const actionMap = { A: "added", M: "modified", R: "renamed" };
+          const actionMap = {
+            A: "added",
+            M: "modified",
+            D: "deleted",
+            R: "renamed",
+          };
           const key = actionMap[type];
           changes[currentDate][key][pathKey] =
             (changes[currentDate][key][pathKey] || 0) + 1;
@@ -178,6 +188,7 @@ class ChangelogGenerator {
       if (
         Object.values(dateChanges.added).length === 0 &&
         Object.values(dateChanges.modified).length === 0 &&
+        Object.values(dateChanges.deleted).length === 0 &&
         Object.values(dateChanges.renamed).length === 0
       ) {
         continue;
@@ -198,6 +209,17 @@ class ChangelogGenerator {
         markdown += "### Modified\n";
         for (const [path, count] of Object.entries(
           dateChanges.modified,
+        ).sort()) {
+          const [section, subSection] = path.split("/");
+          markdown += `- ${subSection}: [${count} component${count > 1 ? "s" : ""}](https://oxbowui.com/playground/${section}/${subSection})\n`;
+        }
+        markdown += "\n";
+      }
+
+      if (Object.keys(dateChanges.deleted).length > 0) {
+        markdown += "### Deleted\n";
+        for (const [path, count] of Object.entries(
+          dateChanges.deleted,
         ).sort()) {
           const [section, subSection] = path.split("/");
           markdown += `- ${subSection}: [${count} component${count > 1 ? "s" : ""}](https://oxbowui.com/playground/${section}/${subSection})\n`;
