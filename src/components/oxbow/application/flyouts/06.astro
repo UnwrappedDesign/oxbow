@@ -11,6 +11,8 @@ import LoaderTwo from "@/components/fundations/icons/LoaderTwo.astro";
 import Automation from "@/components/fundations/icons/Automation.astro";
 import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
 import Clock from "@/components/fundations/icons/Clock.astro";
+import TextInput from "@/components/fundations/inputs/TextInput.astro";
+
 
 const links = [
   { name: "Formatted text and markdown", link: "#" },
@@ -104,7 +106,7 @@ const links = [
         <!-- Keep your original inner wrapper/layout -->
         <div class="px-8 md:px-12 lg:px-24">
           <div
-            class="p-8 mx-auto bg-white dark:bg-zinc-900 shadow-lg max-w-7xl ring-1 ring-zinc-900/5 dark:ring-zinc-700 rounded-3xl"
+            class="p-8 mx-auto bg-white dark:bg-zinc-900 shadow-lg max-w-7xl ring-1 ring-zinc-900/5 dark:ring-zinc-700 rounded-xl"
           >
             <div
               class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12"
@@ -116,7 +118,7 @@ const links = [
                   class="font-medium text-zinc-900 dark:text-white"
                   >Benefits</Text
                 >
-                <div class="mt-2">
+                <div class="mt-2 flex flex-col gap-4">
                   <FlyoutLinkBox
                     href="#_"
                     icon={Refresh}
@@ -151,7 +153,7 @@ const links = [
                   class="font-medium text-zinc-900 dark:text-white"
                   >Enhance Productivity</Text
                 >
-                <div class="mt-2">
+                <div class="mt-2 flex flex-col gap-4">
                   <FlyoutLinkBox
                     href="#_"
                     icon={LoaderTwo}
@@ -181,31 +183,16 @@ const links = [
               </div>
 
               <div>
-                <div class="relative">
-                  <span
-                    class="absolute inset-y-0 left-0 flex items-center pl-3"
-                  >
-                    <svg
-                      class="text-zinc-400 size-5"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"></path>
-                    </svg>
-                  </span>
-                  <input
-                    type="text"
-                    class="block w-full h-8 px-4 py-2 pl-10 pr-4 text-sm bg-white dark:bg-zinc-800 border border-transparent rounded-lg shadow appearance-none text-blue-700 dark:text-zinc-200 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-600 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
-                    placeholder="Search"
-                    aria-label="Search"
-                  />
-                </div>
+                <TextInput
+      id="search-left"
+      name="search-left"
+      label="Search (Left Icon)"
+      type="search"
+      iconPosition="left"
+      variant="default"
+      size="base"
+      placeholder="Search"
+    />
                 <div
                   class="pt-4 mt-4 border-t border-zinc-200 dark:border-zinc-700 space-y-2"
                   role="none"

@@ -7,14 +7,11 @@ export const excludeFromObfuscation = [
   "focus:text-zinc-900",
   "hover:text-zinc-900",
 ];
-
 export const description = "Pricing section with three tiers";
-
 // Components
 import Text from "@/components/fundations/typography/Text.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-
 // Icons (import all used ones)
 import Eye from "@/components/fundations/icons/Eye.astro";
 import Plus from "@/components/fundations/icons/Plus.astro";
@@ -41,7 +38,7 @@ const pricingOptions = [
   {
     id: "core",
     cardClass:
-      "bg-white outline-zinc-200 dark:bg-zinc-950 dark:outline-zinc-900",
+      "bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 shadow from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl p-8",
     primaryTextColor: "text-zinc-900 dark:text-white",
     secondaryTextColor: "text-zinc-500 dark:text-zinc-400",
     featuresBorderColor: "border-zinc-200 dark:border-zinc-600",
@@ -51,7 +48,7 @@ const pricingOptions = [
     description: "For solo builders and side project warriors",
     button: {
       text: "Get Started",
-      variant: "alternative",
+      variant: "muted",
     },
     features: [
       { icon: UserPlus, text: "Unlimited members" },
@@ -66,18 +63,17 @@ const pricingOptions = [
   {
     id: "momentum",
     cardClass:
-      "bg-blue-600 outline-blue-700 dark:bg-blue-800 dark:outline-blue-600",
-    primaryTextColor: "text-white",
-    secondaryTextColor: "text-zinc-200 dark:text-zinc-300",
-    featuresBorderColor: "border-blue-500 dark:border-blue-400",
-
+      "bg-linear-180 outline outline-blue-100 dark:outline-blue-800 shadow from-blue-50 to-blue-100 dark:from-blue-800 dark:to-blue-900 rounded-xl",
+    primaryTextColor: "text-zinc-900 dark:text-white",
+    secondaryTextColor: "text-zinc-500 dark:text-zinc-300",
+    featuresBorderColor: "border-blue-200 dark:border-white/20",
     title: "Momentum",
     monthly: "$49.00",
     annual: "$39.00",
     description: "Perfect for growing teams that need more power.",
     button: {
       text: "Get Started",
-      variant: "muted",
+      variant: "default",
     },
     features: [
       { icon: Plus, text: "All Core plan features" },
@@ -94,17 +90,17 @@ const pricingOptions = [
   },
   {
     id: "velocity",
-    cardClass: "bg-white  outline-zinc-200",
-    primaryTextColor: "text-zinc-900",
-    secondaryTextColor: "text-zinc-500",
-    featuresBorderColor: "border-zinc-200",
+    cardClass: "bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 shadow from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl p-8",
+     primaryTextColor: "text-zinc-900 dark:text-white",
+    secondaryTextColor: "text-zinc-500 dark:text-zinc-400",
+    featuresBorderColor: "border-zinc-200 dark:border-zinc-600",
     title: "Velocity",
     monthly: "$99.00",
     annual: "$79.00",
     description: "Designed for fast-moving teams and startups.",
     button: {
       text: "Upgrade Now",
-      variant: "alternative",
+      variant: "muted",
     },
     features: [
       { icon: Plus, text: "All Momentum plan features" },
@@ -118,26 +114,24 @@ const pricingOptions = [
   },
 ];
 ---
-
 <section x-data="{ duration: 'monthly' }" class="bg-white dark:bg-zinc-900">
   <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
-    <div class="max-w-xl mx-auto text-center">
+    <div class="max-w-md mx-auto text-center">
       <Text
         tag="h1"
         variant="displayMD"
-        class="font-medium tracking-tight text-zinc-900 dark:text-white text-balance"
+        class="font-semibold tracking-tight text-zinc-900 text-balance dark:text-zinc-100"
       >
-        Tools your team will actually use
+        Give your team tools that don't suck
       </Text>
       <Text
         tag="p"
         variant="textBase"
-        class="mt-2 font-medium text-zinc-600 dark:text-zinc-400 text-balance"
+        class="mt-2 font-medium text-zinc-600 text-balance dark:text-zinc-400"
       >
-        Skip the bloat, skip the learning curve. When the docs are shorter than
-        your to-do list, you know it's good.
+        Start with what you need, skip what you don't. Scale up when
+        spreadsheets stop cutting it.
       </Text>
-
       <!-- Pricing Toggle -->
       <div
         aria-labelledby="pricing-toggle"
@@ -168,7 +162,6 @@ const pricingOptions = [
         </button>
       </div>
     </div>
-
     <!-- Pricing Cards -->
     <div class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {
@@ -215,7 +208,6 @@ const pricingOptions = [
                 </Button>
               </div>
             </div>
-
             <div class={`mt-8 pt-8 border-t ${tier.featuresBorderColor}  `}>
               <Text
                 tag="p"

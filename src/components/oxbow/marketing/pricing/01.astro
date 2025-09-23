@@ -64,11 +64,11 @@ const pricingOptions = [
 
 <section x-data="{ duration: 'monthly' }" class="bg-white dark:bg-zinc-900">
   <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
-    <div class="max-w-xl mx-auto text-center">
+    <div class="max-w-md mx-auto text-center">
       <Text
         tag="h1"
         variant="displayMD"
-        class="font-medium tracking-tight text-zinc-900 text-balance dark:text-zinc-100"
+        class="font-semibold tracking-tight text-zinc-900 text-balance dark:text-zinc-100"
       >
         Give your team tools that don't suck
       </Text>
@@ -114,7 +114,7 @@ const pricingOptions = [
     <div class="max-w-2xl mx-auto mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2">
       {
         pricingOptions.map((tier) => (
-          <div class="flex flex-col justify-between h-full p-8 bg-white shadow outline outline-zinc-200 rounded-xl dark:bg-zinc-950 dark:outline-zinc-900">
+          <div class="flex flex-col justify-between h-full bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 shadow from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl p-8">
             <div>
               <div class="flex flex-col">
                 <Text
@@ -140,7 +140,7 @@ const pricingOptions = [
                     </span>
                   </span>
                 </Text>
-                <Text tag="p" variant="textSM" class="mt-2 text-zinc-500">
+                <Text tag="p" variant="textSM" class="mt-2 text-zinc-500 dark:text-zinc-400">
                   {tier.description}
                 </Text>
                 <div class="w-full mt-4">
@@ -173,14 +173,14 @@ const pricingOptions = [
                 <Text
                   tag="p"
                   variant="textXS"
-                  class="font-medium uppercase  text-zinc-500"
+                  class="font-medium uppercase  text-zinc-500 dark:text-zinc-300"
                 >
                   {tier.title === "Momentum"
                     ? "Everything in Core plus:"
                     : "Core plan includes:"}
                 </Text>
                 <ul
-                  class="flex flex-col mt-4 text-sm text-zinc-600 gap-y-3 "
+                  class="flex flex-col mt-4 text-sm text-zinc-600 dark:text-zinc-400 gap-y-3 "
                   role="list"
                 >
                   {tier.features.map((feature, index) => (
@@ -193,7 +193,7 @@ const pricingOptions = [
               </div>
             </div>
             <div class="flex items-center pt-4 mt-4 border-t gap-2 border-zinc-200 dark:border-zinc-800">
-              <CircleCheck size="sm" class="text-blue-500" />
+              <CircleCheck size="sm" class="text-zinc-500 dark:text-zinc-300" />
               <Text tag="p" variant="textSM" class="font-medium  text-zinc-500">
                 No credit card required
               </Text>
