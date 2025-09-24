@@ -18,15 +18,20 @@ import Logo from "@/components/assets/Logo.astro";
   >
     <div class="flex items-center justify-between h-16 md:grid md:grid-cols-3">
       <div class="hidden md:flex items-center gap-4">
-        <a
+        <Text
+          tag="a"
           href="#_"
-          class="text-sm font-medium text-zinc-600 hover:text-blue-600 dark:text-zinc-300"
-          >Products</a
+          variant="textSM"
+          class="font-medium text-zinc-600 dark:text-zinc-300 dark:hover:text-white hover:text-zinc-900"
+          >Products</Text
         >
-        <a
+
+        <Text
+          tag="a"
           href="#_"
-          class="text-sm font-medium text-zinc-600 hover:text-blue-600 dark:text-zinc-300"
-          >Solutions</a
+          variant="textSM"
+          class="font-medium text-zinc-600 dark:text-zinc-300 dark:hover:text-white hover:text-zinc-900"
+          >Solutions</Text
         >
       </div>
       <div class="flex items-center justify-center">
@@ -38,24 +43,29 @@ import Logo from "@/components/assets/Logo.astro";
       </div>
       <div class="flex items-center justify-end gap-3">
         <div class="hidden md:flex items-center gap-3">
-          <a
+          <Text
+            tag="a"
             href="#_"
-            class="text-sm font-medium text-zinc-600 hover:text-blue-600 dark:text-zinc-300"
-            >Pricing</a
+            variant="textSM"
+            class="font-medium text-zinc-600 dark:text-zinc-300 dark:hover:text-white hover:text-zinc-900"
+            >Pricing</Text
           >
-          <a
+
+          <Text
+            tag="a"
             href="#_"
-            class="text-sm font-medium text-zinc-600 hover:text-blue-600 dark:text-zinc-300"
-            >Docs</a
+            variant="textSM"
+            class="font-medium text-zinc-600 dark:text-zinc-300 dark:hover:text-white hover:text-zinc-900"
+            >Docs</Text
           >
-          <Button variant="accent" size="xs">Get started</Button>
+          <Button variant="default" size="xs">Get started</Button>
         </div>
         <IconButton
           class="md:hidden"
           @click="open=!open"
           :aria-expanded="open"
           aria-controls="nav-04m"
-          variant="outline"
+          variant="muted"
           size="xs"
         >
           <Burger size="xs" slot="icon" />
@@ -68,27 +78,11 @@ import Logo from "@/components/assets/Logo.astro";
       x-show="open"
       class="md:hidden grid grid-cols-1 gap-2 pb-4"
     >
-      <a
-        href="#_"
-        class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
-        >Products</a
-      >
-      <a
-        href="#_"
-        class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
-        >Solutions</a
-      >
-      <a
-        href="#_"
-        class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
-        >Pricing</a
-      >
-      <a
-        href="#_"
-        class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
-        >Docs</a
-      >
-      <Button variant="accent" size="xs">Get started</Button>
+      <Button variant="muted" size="xs">Products</Button>
+      <Button variant="muted" size="xs">Solutions</Button>
+      <Button variant="muted" size="xs">Pricing</Button>
+      <Button variant="muted" size="xs">Docs</Button>
+      <Button variant="default" size="xs">Get started</Button>
     </div>
   </div>
 </header>

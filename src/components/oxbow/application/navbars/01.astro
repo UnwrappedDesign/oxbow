@@ -1,14 +1,12 @@
 ---
 export const freeComponent = true;
 export const excludeFromObfuscation = ["flex", "hidden"];
-
 import Button from "@/components/fundations/buttons/Button.astro";
 import IconButton from "@/components/fundations/buttons/IconButton.astro";
 import Burger from "@/components/fundations/icons/Burger.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 import Logo from "@/components/assets/Logo.astro";
 ---
-
 <!-- copy:start -->
 <a
   href="#content"
@@ -32,7 +30,7 @@ import Logo from "@/components/assets/Logo.astro";
         @click="open=!open"
         :aria-expanded="open"
         aria-controls="nav-01m"
-        variant="outline"
+        variant="muted"
         size="xs"
       >
         <Burger size="xs" slot="icon" />
@@ -46,36 +44,36 @@ import Logo from "@/components/assets/Logo.astro";
         <Text
           tag="a"
           href="#_"
-          variant="textBase"
-          class="text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-blue-600"
+          variant="textSM"
+          class="font-medium text-zinc-600 dark:text-zinc-300 dark:hover:text-white hover:text-zinc-900"
           >Features</Text
         >
         <Text
           tag="a"
           href="#_"
-          variant="textBase"
-          class="text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-blue-600"
+          variant="textSM"
+          class="font-medium text-zinc-600 dark:text-zinc-300 dark:hover:text-white hover:text-zinc-900"
           >Pricing</Text
         >
         <Text
           tag="a"
           href="#_"
-          variant="textBase"
-          class="text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-blue-600"
+          variant="textSM"
+          class="font-medium text-zinc-600 dark:text-zinc-300 dark:hover:text-white hover:text-zinc-900"
           >Docs</Text
         >
         <span
           aria-hidden
-          class="mx-1 hidden h-4 w-px bg-zinc-200 dark:bg-zinc-700 md:block"
+          class="mx-1 hidden h-4 w-px bg-zinc-200 dark:bg-zinc-300 md:block"
         ></span>
         <Text
           tag="a"
           href="#_"
-          variant="textBase"
-          class="text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-blue-600"
+          variant="textSM"
+          class="font-medium text-zinc-600 dark:text-zinc-300 dark:hover:text-white hover:text-zinc-900"
           >Sign in</Text
         >
-        <Button variant="accent" size="xs">Get started</Button>
+        <Button variant="default" size="xs">Get started</Button>
       </nav>
     </div>
     <!-- Mobile menu -->
@@ -86,29 +84,11 @@ import Logo from "@/components/assets/Logo.astro";
       aria-label="Mobile"
       class="md:hidden grid grid-cols-1 gap-2 pb-3"
     >
-      <a
-        href="#_"
-        class="block rounded-md px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800"
-        >Features</a
-      >
-      <a
-        href="#_"
-        class="block rounded-md px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800"
-        >Pricing</a
-      >
-      <a
-        href="#_"
-        class="block rounded-md px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800"
-        >Docs</a
-      >
-      <div class="mt-1 flex items-center gap-2">
-        <a
-          href="#_"
-          class="flex-1 rounded-md px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800"
-          >Sign in</a
-        >
-        <Button variant="accent" size="xs">Get started</Button>
-      </div>
+      <Button variant="muted" size="xs">Features</Button>
+      <Button variant="muted" size="xs">Pricing</Button>
+      <Button variant="muted" size="xs">Docs</Button>
+      <Button variant="muted" size="xs">Sign in</Button>
+      <Button variant="default" size="xs">Get started</Button>
     </nav>
   </div>
   <div id="content" class="sr-only"></div>

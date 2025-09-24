@@ -2,64 +2,104 @@
 const { variant, size, class: className, ...rest } = Astro.props;
 // Variant classes
 const defaultClass = [
+  // Link
   "text-white",
   "bg-zinc-900",
+  "outline",
+  "outline-zinc-900",
   "hover:bg-zinc-950",
   "focus:outline-zinc-950",
-  "dark:text-zinc-200",
-  "dark:bg-zinc-800",
-  "dark:hover:bg-zinc-700",
-  "dark:focus:outline-zinc-700",
+  "shadow-sm",
+  // Dark
+  "dark:bg-zinc-100",
+  "dark:text-zinc-900",
+  "dark:outline-zinc-100",
+  "dark:hover:bg-zinc-200",
+  "dark:focus:outline-zinc-200",
 ];
 const accentClass = [
+  // Light
   "text-white",
-  "bg-blue-500",
+  "bg-blue-700",
+  "outline",
+  "outline-blue-700",
   "hover:bg-blue-600",
   "focus:outline-blue-600",
-  "dark:text-white",
+  "shadow-sm",
+  // Dark
   "dark:bg-blue-600",
+  "dark:text-zinc-100",
+  "dark:outline-blue-600",
   "dark:hover:bg-blue-700",
-  "dark:focus:outline-blue-700",
+  "dark:focus:outline-blue-500",
 ];
 const mutedClass = [
-  "text-black",
+  // Light
+  "text-zinc-600",
   "bg-zinc-50",
+  "outline",
+  "outline-zinc-50",
   "hover:bg-zinc-200",
   "focus:outline-zinc-600",
-  "dark:text-zinc-200",
+  // Dark
+  "dark:text-zinc-100",
   "dark:bg-zinc-800",
+  "dark:outline-zinc-800",
   "dark:hover:bg-zinc-700",
   "dark:focus:outline-zinc-700",
 ];
-const alternativeClass = [
-  "text-black",
+
+const outlineClass = [
+  // Light
+  "text-zinc-700",
   "bg-white",
-  "hover:bg-zinc-100",
+  "outline",
+  "outline-zinc-200",
+  "hover:shadow-sm",
   "focus:outline-zinc-900",
-  "dark:text-zinc-200",
+  "shadow-sm",
+  // Dark
+  "dark:text-zinc-100",
   "dark:bg-zinc-900",
+  "dark:outline-zinc-700",
   "dark:hover:bg-zinc-800",
+  "dark:focus:outline-zinc-500",
+];
+const ghostClass = [
+  "text-zinc-600",
+  "bg-transparent",
+  "hover:bg-zinc-100",
+  "focus:outline-zinc-300",
+  "dark:text-zinc-100",
+  "dark:hover:bg-zinc-900",
   "dark:focus:outline-zinc-700",
+  "dark:bg-transparent",
 ];
 const textClass = [
   "text-zinc-500",
   "bg-white",
+  "outline",
+  "outline-zinc-200",
   "hover:text-blue-600",
   "hover:bg-zinc-50",
   "focus:outline-blue-500",
-  "dark:text-zinc-300",
-  "dark:bg-zinc-900",
-  "dark:hover:text-blue-400",
-  "dark:hover:bg-zinc-800",
-  "dark:focus:outline-blue-400",
+  "shadow-sm",
+  "dark:text-zinc-200",
+  "dark:bg-zinc-700",
+  "dark:outline-zinc-600",
+  "dark:hover:bg-zinc-600",
+  "dark:focus:outline-zinc-500",
 ];
 const linkClass = [
   "text-blue-500",
-  "hover:text-blue-700",
-  "focus:outline-blue-500",
+  "bg-transparent",
+  "hover:underline",
+  "focus:underline",
+  "focus:outline-none",
+  "p-0",
+  "rounded-none",
   "dark:text-blue-400",
-  "dark:hover:text-blue-300",
-  "dark:focus:outline-blue-300",
+  "dark:bg-transparent",
 ];
 // Size classes
 const xxs = ["size-7", "p-0.5", "text-xs", "rounded-md"];
@@ -86,7 +126,7 @@ const xl = ["size-14", "p-3.5", "text-lg", "rounded-lg"];
     "focus:outline-offset-2",
     variant === "accent" && accentClass,
     variant === "default" && defaultClass,
-    variant === "alternative" && alternativeClass,
+
     variant === "muted" && mutedClass,
     variant === "text" && textClass,
     variant === "link" && linkClass,

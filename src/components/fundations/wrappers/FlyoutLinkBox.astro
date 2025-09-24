@@ -11,27 +11,29 @@ const { href, icon: Icon, title, description, badge } = Astro.props;
   href={href}
   tag="a"
   variant="textSM"
-  class="relative flex items-center w-full gap-2 group"
+  class={` flex items-center w-full group ${Icon ? "gap-2" : ""}`}
 >
-  <div
-    class="flex items-center justify-center flex-none  rounded-lg duration-300 size-11 bg-zinc-50 dark:bg-zinc-800 group-hover:bg-white dark:group-hover:bg-zinc-700"
-  >
-    <Icon
-      size="base"
-      slot="left-icon"
-      class="group-hover:text-blue-500 dark:group-hover:text-blue-400 text-zinc-500 dark:text-zinc-400"
-    />
-  </div>
+  {
+    Icon && (
+      <div class="flex items-center justify-center flex-none rounded-lg duration-300 size-11 bg-zinc-50 dark:bg-white/5 group-hover:bg-white dark:group-hover:bg-white/10">
+        <Icon
+          size="base"
+          slot="left-icon"
+          class="group-hover:text-zinc-500 dark:group-hover:text-zinc-400 text-zinc-500 dark:text-zinc-400"
+        />
+      </div>
+    )
+  }
   <div>
     <Text
       tag="h3"
       variant="textBase"
-      class="flex items-center w-full font-medium text-zinc-900 dark:text-white group-hover:text-blue-500 dark:group-hover:text-blue-400 gap-2"
+      class="flex items-center w-full font-medium text-zinc-900 dark:text-white group-hover:text-zinc-500 dark:group-hover:text-zinc-400 gap-2"
     >
       {title}
       {
         badge && (
-          <Badge variant="info" size="xs">
+          <Badge variant="default" size="xs">
             {badge}
           </Badge>
         )

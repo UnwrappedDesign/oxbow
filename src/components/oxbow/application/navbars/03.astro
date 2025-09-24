@@ -6,182 +6,214 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
 import Burger from "@/components/fundations/icons/Burger.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 import Logo from "@/components/assets/Logo.astro";
+import Plus from "@/components/fundations/icons/Plus.astro";
+import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
+import FlyoutLinkBox from "@/components/fundations/wrappers/FlyoutLinkBox.astro";
+import Refresh from "@/components/fundations/icons/Refresh.astro";
+import FileDots from "@/components/fundations/icons/FileDots.astro";
+import Edit from "@/components/fundations/icons/Edit.astro";
+import Brain from "@/components/fundations/icons/Brain.astro";
+import Subtask from "@/components/fundations/icons/Subtask.astro";
 ---
 
 <!-- copy:start -->
-<header
-  class="w-full border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900"
->
-  <div
-    x-data="{ open:false, prod:false, res:false }"
-    class="mx-auto max-w-screen-xl px-6 md:px-10 lg:px-16"
+<div class="bg-white dark:bg-zinc-900 pb-100">
+  <header
+    class="w-full border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900"
   >
-    <div class="flex h-16 items-center justify-between gap-3">
-      <a href="#_" class="inline-flex items-center gap-2"
-        ><Logo class="h-7 text-black dark:text-white" /><span class="sr-only"
-          >Home</span
-        ></a
-      >
-      <IconButton
-        class="md:hidden"
-        @click="open=!open"
-        :aria-expanded="open"
-        aria-controls="nav-03m"
-        variant="outline"
-        size="xs"
-      >
-        <Burger size="xs" slot="icon" />
-      </IconButton>
-      <!-- Desktop navigation (always hidden on mobile) -->
-      <nav
-        id="nav-03"
-        aria-label="Primary"
-        class="hidden md:flex items-center gap-1"
-      >
-        <div x-data="{open:false}" class="relative">
-          <button
-            @click="open=!open"
-            @keydown.escape.window="open=false"
-            :aria-expanded="open"
-            class="px-2 py-2 text-sm font-medium text-zinc-600 hover:text-blue-600 dark:text-zinc-300"
-            >Products</button
-          >
-          <div
-            x-show="open"
-            x-transition
-            @click.outside="open=false"
-            class="absolute left-0 top-full z-30 mt-2 w-64 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-subtle p-2"
-          >
-            <a
-              class="block rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
-              href="#_">UI Library</a
-            >
-            <a
-              class="block rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
-              href="#_">Templates</a
-            >
-            <a
-              class="block rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
-              href="#_">Icons</a
-            >
-          </div>
-        </div>
-        <div x-data="{open:false}" class="relative">
-          <button
-            @click="open=!open"
-            @keydown.escape.window="open=false"
-            :aria-expanded="open"
-            class="px-2 py-2 text-sm font-medium text-zinc-600 hover:text-blue-600 dark:text-zinc-300"
-            >Resources</button
-          >
-          <div
-            x-show="open"
-            x-transition
-            @click.outside="open=false"
-            class="absolute left-0 top-full z-30 mt-2 w-56 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-subtle p-2"
-          >
-            <a
-              class="block rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
-              href="#_">Docs</a
-            >
-            <a
-              class="block rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
-              href="#_">Blog</a
-            >
-            <a
-              class="block rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
-              href="#_">Changelog</a
-            >
-          </div>
-        </div>
-        <a
-          href="#_"
-          class="px-2 py-2 text-sm font-medium text-zinc-600 hover:text-blue-600 dark:text-zinc-300"
-          >Pricing</a
+    <div
+      x-data="{ open:false, prod:false, res:false }"
+      class="mx-auto max-w-screen-xl px-6 md:px-10 lg:px-16"
+    >
+      <div class="flex h-16 items-center justify-between gap-3">
+        <a href="#_" class="inline-flex items-center gap-2"
+          ><Logo class="h-7 text-black dark:text-white" /><span class="sr-only"
+            >Home</span
+          ></a
         >
-        <span aria-hidden class="mx-2 h-4 w-px bg-zinc-200 dark:bg-zinc-700"
-        ></span>
+        <IconButton
+          class="md:hidden"
+          @click="open=!open"
+          :aria-expanded="open"
+          aria-controls="nav-03m"
+          variant="outline"
+          size="xs"
+        >
+          <Burger size="xs" slot="icon" />
+        </IconButton>
+        <!-- Desktop navigation (always hidden on mobile) -->
+        <nav
+          id="nav-03"
+          aria-label="Primary"
+          class="hidden md:flex items-center gap-1"
+        >
+          <div x-data="{open:false}" class="relative">
+            <Button
+              size="xs"
+              variant="ghost"
+              @click="open=!open"
+              @keydown.escape.window="open=false"
+              :aria-expanded="open"
+              class="flex items-center justify-between gap-2"
+              >Products
+              <ChevronDown
+                size="sm"
+                slot="right-icon"
+                :class="open ? '-rotate-180' : ''"
+                class="duration-300 ease-out transform"
+              />
+            </Button>
+            <div
+              x-show="open"
+              x-transition
+              @click.outside="open=false"
+              class="absolute left-0 top-full z-30 mt-2 w-80 p-4 bg-white dark:bg-zinc-800 shadow-lg rounded-xl outline outline-zinc-900/5 dark:outline-white/10 flex flex-col gap-4"
+            >
+              <FlyoutLinkBox
+                href="#_"
+                icon={Refresh}
+                title="Sync across devices"
+                description="Enable syncing across devices"
+              />
+              <FlyoutLinkBox
+                href="#_"
+                icon={FileDots}
+                title="Create custom documents"
+                description="Stlye your documents with ease"
+              />
+            </div>
+          </div>
+          <div x-data="{open:false}" class="relative">
+            <Button
+              size="xs"
+              variant="ghost"
+              @click="open=!open"
+              @keydown.escape.window="open=false"
+              :aria-expanded="open"
+              class="flex items-center justify-between gap-2"
+              >Resources
+              <ChevronDown
+                size="sm"
+                slot="right-icon"
+                :class="open ? '-rotate-180' : ''"
+                class="duration-300 ease-out transform"
+              />
+            </Button>
+            <div
+              x-show="open"
+              x-transition
+              @click.outside="open=false"
+              class="absolute left-0 top-full z-30 mt-2 w-80 p-4 bg-white dark:bg-zinc-800 shadow-lg rounded-xl outline outline-zinc-900/5 dark:outline-white/10 flex flex-col gap-4"
+            >
+              <FlyoutLinkBox
+                href="#_"
+                icon={Edit}
+                title=" Edit your files"
+                description="Endless possibilities"
+              />
+              <FlyoutLinkBox
+                href="#_"
+                icon={Brain}
+                title="Organize files"
+                description="Keep them all in one place"
+              />
+              <FlyoutLinkBox
+                href="#_"
+                icon={Subtask}
+                title=" Manage tasks and projects"
+                description="  Make simple tasks a breeze"
+              />
+            </div>
+          </div>
+          <a
+            href="#_"
+            class="px-2 py-2 text-sm font-medium text-zinc-600 hover:text-blue-600 dark:text-zinc-300"
+            >Pricing</a
+          >
+          <span aria-hidden class="mx-2 h-4 w-px bg-zinc-200 dark:bg-zinc-700"
+          ></span>
+          <Button variant="muted" size="xs">Sign in</Button>
+          <Button variant="default" size="xs">Sign up</Button>
+        </nav>
+      </div>
+      <!-- Mobile menu -->
+      <div
+        id="nav-03m"
+        x-cloak
+        x-show="open"
+        class="grid grid-cols-1 gap-2 pb-4 md:hidden"
+      >
+        <details>
+          <summary
+            class="grid grid-cols-4 text-sm items-start justify-between w-full font-medium text-left select-none text-zinc-900 dark:text-white hover:text-zinc-500 dark:hover:text-zinc-400 focus:text-zinc-500 gap-4dark:focus:text-zinc-400"
+            ><span class="col-span-3">Products</span>
+            <Plus
+              class="duration-300 ease-out transform group-open:-rotate-45 group-open:text-blue-600 dark:text-zinc-400 ml-auto"
+              size="sm"
+            />
+          </summary>
+          <div
+            class="py-2 pt-2 text-sm text-zinc-500 dark:text-zinc-400 space-y-2"
+          >
+            <Text
+              tag="p"
+              variant="textSM"
+              class="font-medium text-zinc-500 dark:text-zinc-400"
+              >Sync Across devices</Text
+            >
+            <Text
+              tag="p"
+              variant="textSM"
+              class="font-medium text-zinc-500 dark:text-zinc-400"
+              >Create custom documents</Text
+            >
+          </div>
+        </details>
+        <details>
+          <summary
+            class="grid grid-cols-4 text-sm items-start justify-between w-full font-medium text-left select-none text-zinc-900 dark:text-white hover:text-zinc-500 dark:hover:text-zinc-400 focus:text-zinc-500 gap-4dark:focus:text-zinc-400"
+            ><span class="col-span-3">Resources</span>
+            <Plus
+              class="duration-300 ease-out transform group-open:-rotate-45 group-open:text-blue-600 dark:text-zinc-400 ml-auto"
+              size="sm"
+            /></summary
+          >
+          <div
+            class="py-2 pt-2 text-sm text-zinc-500 dark:text-zinc-400 space-y-2"
+          >
+            <Text
+              tag="p"
+              variant="textSM"
+              class="font-medium text-zinc-500 dark:text-zinc-400"
+              >Edit your files</Text
+            >
+            <Text
+              tag="p"
+              variant="textSM"
+              class="font-medium text-zinc-500 dark:text-zinc-400"
+              >Organize files</Text
+            >
+            <Text
+              tag="p"
+              variant="textSM"
+              class="font-medium text-zinc-500 dark:text-zinc-400"
+              >Manage tasks and projects</Text
+            >
+          </div>
+        </details>
         <Text
           tag="a"
           href="#_"
-          variant="textBase"
-          class="px-2 py-1 rounded text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-blue-600"
-          >Sign in</Text
+          variant="textSM"
+          class="font-medium text-zinc-600 dark:text-zinc-300 dark:hover:text-white hover:text-zinc-900"
+          >Pricing</Text
         >
-        <Button variant="accent" size="xs">Sign up</Button>
-      </nav>
-    </div>
-    <!-- Mobile menu -->
-    <div
-      id="nav-03m"
-      x-cloak
-      x-show="open"
-      class="grid grid-cols-1 gap-2 pb-4 md:hidden"
-    >
-      <details
-        class="rounded-lg border border-zinc-200 dark:border-zinc-800 p-2"
-      >
-        <summary
-          class="cursor-pointer px-2 py-1.5 text-sm font-medium text-zinc-700 dark:text-zinc-200"
-          >Products</summary
-        >
-        <div class="mt-1 grid gap-1">
-          <a
-            href="#_"
-            class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
-            >UI Library</a
-          >
-          <a
-            href="#_"
-            class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
-            >Templates</a
-          >
-          <a
-            href="#_"
-            class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
-            >Icons</a
-          >
+        <div class="flex items-center gap-2 mt-8">
+          <Button variant="muted" size="xs">Sign in</Button>
+          <Button variant="default" size="xs">Sign up</Button>
         </div>
-      </details>
-      <details
-        class="rounded-lg border border-zinc-200 dark:border-zinc-800 p-2"
-      >
-        <summary
-          class="cursor-pointer px-2 py-1.5 text-sm font-medium text-zinc-700 dark:text-zinc-200"
-          >Resources</summary
-        >
-        <div class="mt-1 grid gap-1">
-          <a
-            href="#_"
-            class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
-            >Docs</a
-          >
-          <a
-            href="#_"
-            class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
-            >Blog</a
-          >
-          <a
-            href="#_"
-            class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
-            >Changelog</a
-          >
-        </div>
-      </details>
-      <a
-        href="#_"
-        class="rounded-md px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800"
-        >Pricing</a
-      >
-      <div class="flex items-center gap-2">
-        <a
-          href="#_"
-          class="flex-1 rounded-md px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800"
-          >Sign in</a
-        >
-        <Button variant="accent" size="xs">Sign up</Button>
       </div>
     </div>
-  </div>
-</header>
+  </header>
+</div>
 <!-- copy:end -->

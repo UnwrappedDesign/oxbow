@@ -1,126 +1,127 @@
 ---
 export const freeComponent = true;
 export const excludeFromObfuscation = ["flex", "hidden"];
-
 import Button from "@/components/fundations/buttons/Button.astro";
 import IconButton from "@/components/fundations/buttons/IconButton.astro";
 import Burger from "@/components/fundations/icons/Burger.astro";
 import Text from "@/components/fundations/typography/Text.astro";
-import Logo from "@/components/assets/Logo.astro";
+import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
+import FlyoutLinkBox from "@/components/fundations/wrappers/FlyoutLinkBox.astro";
 ---
 
-<!-- copy:start -->
-<header
-  x-data="{ open:false, scrolled:false }"
-  x-init="scrolled=window.scrollY>4; window.addEventListener('scroll',()=>{ scrolled=window.scrollY>4 })"
-  :class="scrolled ? 'shadow-oxbow' : ''"
-  class="sticky top-0 z-40 w-full bg-white/70 dark:bg-zinc-900/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 supports-[backdrop-filter]:dark:bg-zinc-900/60 border-b border-transparent"
->
-  <div class="max-w-screen-xl mx-auto px-6 md:px-10 lg:px-16 py-2">
-    <div class="flex items-center justify-between">
-      <Text
-        tag="a"
-        href="#_"
-        variant="textBase"
-        class="flex items-center gap-2 font-semibold text-zinc-900 dark:text-white"
-      >
-        <Logo class="h-7 text-black dark:text-white" />
-        Oxbow UI
-      </Text>
-      <nav class="hidden md:flex items-center gap-4" aria-label="Primary">
-        <details class="relative group">
-          <summary
-            class="list-none cursor-pointer px-2 py-1 rounded-md text-sm text-zinc-600 dark:text-zinc-300 hover:text-blue-600"
-            >Solutions</summary
-          >
-          <!-- Mega panel -->
-          <div
-            class="absolute left-0 mt-2 w-[680px] max-w-[90vw] rounded-2xl bg-white dark:bg-zinc-900 shadow-oxbow outline outline-1 outline-zinc-100 dark:outline-zinc-800 p-4 grid grid-cols-3 gap-3"
-          >
-            {
-              Array.from({ length: 6 }).map((_, i) => (
-                <a
-                  href="#_"
-                  class="flex items-start gap-3 p-3 rounded-xl hover:bg-sand-100 dark:hover:bg-zinc-800"
-                >
-                  <div class="size-8 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 flex items-center justify-center">
-                    {i + 1}
-                  </div>
-                  <div>
-                    <p class="text-sm font-medium text-zinc-800 dark:text-zinc-100">
-                      Category {i + 1}
-                    </p>
-                    <p class="text-xs text-zinc-500 dark:text-zinc-400">
-                      Short description of this solution.
-                    </p>
-                  </div>
-                </a>
-              ))
-            }
-            <div
-              class="col-span-3 border-t border-zinc-200 dark:border-zinc-800 pt-3"
-            >
-              <Button variant="accent" size="xs">Explore all solutions</Button>
-            </div>
-          </div>
-        </details>
-        <Text
-          tag="a"
-          href="#_"
-          variant="textBase"
-          class="px-2 py-1 rounded-md text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-blue-600"
-          >Pricing</Text
-        >
-        <Text
-          tag="a"
-          href="#_"
-          variant="textBase"
-          class="px-2 py-1 rounded-md text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-blue-600"
-          >Company</Text
-        >
-      </nav>
-      <div class="hidden md:flex items-center gap-2">
-        <Text
-          tag="a"
-          href="#_"
-          variant="textBase"
-          class="text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-blue-600"
-          >Sign in</Text
-        >
-        <Button variant="accent" size="xs">Get started</Button>
-      </div>
-      <IconButton
-        class="md:hidden"
-        @click="open=!open"
-        :aria-expanded="open"
-        aria-controls="nav-8"
-        variant="outline"
-        size="xs"><Burger size="xs" slot="icon" /></IconButton
-      >
-    </div>
-
-    <nav
-      id="nav-8"
-      :class="{ 'block': open, 'hidden': !open }"
-      class="md:hidden hidden mt-2 space-y-2"
-      aria-label="Mobile"
+<div class="bg-white dark:bg-zinc-900 pb-100">
+  <!-- copy:start -->
+  <header
+    class="w-full mx-auto bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800"
+  >
+    <div
+      x-data="{ open:false, proj:false }"
+      class="max-w-screen-xl mx-auto px-6 md:px-10 lg:px-16 py-2"
     >
-      <a
-        href="#_"
-        class="block px-2 py-1 rounded-md text-zinc-600 dark:text-zinc-300 hover:bg-sand-100 dark:hover:bg-zinc-800"
-        >Solutions</a
+      <div class="flex items-center gap-3">
+        <!-- Project switcher -->
+        <div x-data="{open:false}" class="relative">
+          <Button
+            size="xs"
+            variant="ghost"
+            @click="open=!open"
+            @keydown.escape.window="open=false"
+            :aria-expanded="open"
+            class="flex items-center justify-between gap-2"
+          >
+            <span class="size-2 rounded-full bg-emerald-500"></span>
+            Tailwind CSS v4
+            <ChevronDown
+              size="sm"
+              slot="right-icon"
+              :class="open ? '-rotate-180' : ''"
+              class="duration-300 ease-out transform"
+            />
+          </Button>
+          <div
+            x-show="open"
+            x-transition
+            @click.outside="open=false"
+            class="absolute left-0 top-full z-30 mt-2 w-80 p-4 bg-white dark:bg-zinc-800 shadow-lg rounded-xl outline outline-zinc-900/5 dark:outline-white/10 flex flex-col gap-4"
+          >
+            <FlyoutLinkBox
+              href="#_"
+              title="Tailwind CSS v4"
+              description="Latest version"
+            />
+            <FlyoutLinkBox
+              href="#_"
+              title="Tailwind CSS v3.5"
+              description="Latest version"
+            />
+            <FlyoutLinkBox
+              href="#_"
+              title="Tailwind CSS v3"
+              description="Latest version"
+            />
+          </div>
+        </div>
+        <!-- Center tabs -->
+        <nav
+          aria-label="Primary"
+          class="mx-auto hidden md:flex items-center gap-5 text-xs"
+        >
+          <Text
+            tag="a"
+            href="#_"
+            variant="textSM"
+            class="font-medium text-zinc-600 dark:text-zinc-300 dark:hover:text-white hover:text-zinc-900"
+            >Overview</Text
+          >
+          <Text
+            tag="a"
+            href="#_"
+            variant="textSM"
+            class="font-medium text-zinc-600 dark:text-zinc-300 dark:hover:text-white hover:text-zinc-900"
+            >Graphs</Text
+          >
+          <Text
+            tag="a"
+            href="#_"
+            variant="textSM"
+            class="font-medium text-zinc-600 dark:text-zinc-300 dark:hover:text-white hover:text-zinc-900"
+            >Backups</Text
+          >
+        </nav>
+        <!-- Actions -->
+        <div class="ml-auto flex items-center gap-2">
+          <div
+            class="hidden md:flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400"
+          >
+            <span class="inline-flex items-center gap-1"
+              ><span class="size-1.5 rounded-full bg-emerald-500"></span> Online</span
+            >
+            <span>99.9%</span>
+            <span>45ms</span>
+          </div>
+          <Button variant="default" size="xs">New</Button>
+          <IconButton
+            class="md:hidden"
+            @click="open=!open"
+            :aria-expanded="open"
+            aria-controls="nav-10"
+            variant="muted"
+            size="xs"><Burger size="xs" slot="icon" /></IconButton
+          >
+        </div>
+      </div>
+      <!-- Mobile menu -->
+      <nav
+        id="nav-10"
+        :class="{ 'block': open, 'hidden': !open }"
+        class="md:hidden hidden mt-2 space-y-2"
+        aria-label="Mobile"
       >
-      <a
-        href="#_"
-        class="block px-2 py-1 rounded-md text-zinc-600 dark:text-zinc-300 hover:bg-sand-100 dark:hover:bg-zinc-800"
-        >Pricing</a
-      >
-      <a
-        href="#_"
-        class="block px-2 py-1 rounded-md text-zinc-600 dark:text-zinc-300 hover:bg-sand-100 dark:hover:bg-zinc-800"
-        >Company</a
-      >
-    </nav>
-  </div>
-</header>
-<!-- copy:end -->
+        <Button variant="muted" size="xs" class="w-full">Overview</Button>
+        <Button variant="muted" size="xs" class="w-full">Graphs</Button>
+        <Button variant="accent" size="xs" class="w-full">Backups</Button>
+      </nav>
+    </div>
+  </header>
+  <!-- copy:end -->
+</div>

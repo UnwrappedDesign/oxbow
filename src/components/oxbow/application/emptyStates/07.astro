@@ -2,6 +2,7 @@
 export const description = "Empty playlist";
 import Text from "@/components/fundations/typography/Text.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
+import TextInput from "@/components/fundations/inputs/TextInput.astro";
 ---
 
 <div
@@ -19,7 +20,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
-      class="mx-auto icon icon-tabler icons-tabler-outline icon-tabler-music-x size-6 text-blue-600"
+      class="mx-auto icon icon-tabler icons-tabler-outline icon-tabler-music-x size-6 text-zinc-600"
       ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
         d="M3 17a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path><path d="M9 17v-13h10v9"
       ></path><path d="M9 8h10"></path><path d="M22 22l-5 -5"></path><path
@@ -41,40 +42,16 @@ import Button from "@/components/fundations/buttons/Button.astro";
     </Text>
 
     <div class="flex flex-col max-w-sm mx-auto mt-8 gap-2">
-      <div class="space-y-1">
-        <Text
-          for="input-right-icon"
-          tag="label"
-          variant="textSM"
-          class="sr-only"
-        >
-          Search
-        </Text>
-        <div class="relative">
-          <input
-            type="text"
-            id="input-right-icon"
-            name="input-right-icon"
-            placeholder="Search for songs..."
-            class="block w-full h-10 py-2 pl-4 pr-10 text-sm bg-white dark:bg-zinc-900 border border-transparent rounded-lg appearance-none text-blue-700 dark:text-blue-400 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-zinc-600 focus:bg-transparent focus:outline-none focus:ring-blue-500 dark:focus:ring-blue-400 focus:ring-offset-2 focus:ring-2 sm:text-sm"
-          />
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="absolute icon icon-tabler icons-tabler-outline icon-tabler-search right-3 top-1/2 transform -translate-y-1/2 size-5 text-zinc-400"
-            ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-              d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path><path
-              d="M21 21l-6 -6"></path></svg
-          >
-        </div>
-      </div>
+      <TextInput
+        id="search-left"
+        name="search-left"
+       
+        type="search"
+        iconPosition="left"
+        variant="default"
+        size="base"
+        placeholder="Search with left icon"
+      />
       <Button class="w-auto" size="base" variant="default">
         Browse popular tracks
       </Button>

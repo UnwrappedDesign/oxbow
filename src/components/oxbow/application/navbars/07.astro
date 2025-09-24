@@ -5,187 +5,165 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
 import Burger from "@/components/fundations/icons/Burger.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
 import Logo from "@/components/assets/Logo.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
+import FlyoutLinkBox from "@/components/fundations/wrappers/FlyoutLinkBox.astro";
+import Plus from "@/components/fundations/icons/Plus.astro";
 ---
 
-<!-- copy:start -->
-<header
-  class="w-full border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900"
->
-  <div
-    x-data="{ open:false, cats:false }"
-    class="mx-auto max-w-screen-xl px-6 md:px-10 lg:px-16"
+<div class="bg-white dark:bg-zinc-900 pb-100">
+  <!-- copy:start -->
+  <header
+    class="w-full border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900"
   >
-    <div class="flex h-16 items-center justify-between gap-3">
-      <a href="#_" class="inline-flex items-center gap-2"
-        ><Logo class="h-7 text-black dark:text-white" /><span class="sr-only"
-          >Home</span
-        ></a
-      >
-      <div class="hidden md:flex items-center gap-2">
-        <div x-data="{open:false}" class="relative">
-          <button
-            @click="open=!open"
-            @keydown.escape.window="open=false"
-            :aria-expanded="open"
-            class="px-2 py-2 text-sm font-medium text-zinc-600 hover:text-blue-600 dark:text-zinc-300"
-            >Categories</button
-          >
-          <div
-            x-show="open"
-            x-transition
-            @click.outside="open=false"
-            class="absolute left-0 top-full z-30 mt-2 w-[680px] rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-subtle p-4 grid grid-cols-3 gap-3"
-          >
-            <a
-              href="#_"
-              class="rounded-md p-3 hover:bg-zinc-100 dark:hover:bg-zinc-800"
-            >
-              <div class="text-sm font-medium text-zinc-900 dark:text-white">
-                Men
-              </div>
-              <div class="text-xs text-zinc-500">Clothing & accessories</div>
-            </a>
-            <a
-              href="#_"
-              class="rounded-md p-3 hover:bg-zinc-100 dark:hover:bg-zinc-800"
-            >
-              <div class="text-sm font-medium text-zinc-900 dark:text-white">
-                Women
-              </div>
-              <div class="text-xs text-zinc-500">Latest arrivals</div>
-            </a>
-            <a
-              href="#_"
-              class="rounded-md p-3 hover:bg-zinc-100 dark:hover:bg-zinc-800"
-            >
-              <div class="text-sm font-medium text-zinc-900 dark:text-white">
-                Kids
-              </div>
-              <div class="text-xs text-zinc-500">New season</div>
-            </a>
-            <a
-              href="#_"
-              class="rounded-md p-3 hover:bg-zinc-100 dark:hover:bg-zinc-800"
-            >
-              <div class="text-sm font-medium text-zinc-900 dark:text-white">
-                Home
-              </div>
-              <div class="text-xs text-zinc-500">Decor & furniture</div>
-            </a>
-            <a
-              href="#_"
-              class="rounded-md p-3 hover:bg-zinc-100 dark:hover:bg-zinc-800"
-            >
-              <div class="text-sm font-medium text-zinc-900 dark:text-white">
-                Electronics
-              </div>
-              <div class="text-xs text-zinc-500">Gadgets & audio</div>
-            </a>
-            <a
-              href="#_"
-              class="rounded-md p-3 hover:bg-zinc-100 dark:hover:bg-zinc-800"
-            >
-              <div class="text-sm font-medium text-zinc-900 dark:text-white">
-                Sports
-              </div>
-              <div class="text-xs text-zinc-500">Outdoor & fitness</div>
-            </a>
-          </div>
-        </div>
-        <a
-          href="#_"
-          class="text-sm font-medium text-zinc-600 hover:text-blue-600 dark:text-zinc-300"
-          >Deals</a
-        >
-        <a
-          href="#_"
-          class="text-sm font-medium text-zinc-600 hover:text-blue-600 dark:text-zinc-300"
-          >New</a
-        >
-      </div>
-      <div class="hidden md:flex items-center gap-2">
-        <a
-          href="#_"
-          class="text-sm font-medium text-zinc-600 hover:text-blue-600 dark:text-zinc-300"
-          >Cart (2)</a
-        >
-        <Button variant="accent" size="xs">Checkout</Button>
-      </div>
-      <IconButton
-        class="md:hidden"
-        @click="open=!open"
-        :aria-expanded="open"
-        aria-controls="nav-07"
-        variant="outline"
-        size="xs"
-      >
-        <Burger size="xs" slot="icon" />
-      </IconButton>
-    </div>
     <div
-      id="nav-07"
-      :class="{ 'grid': open, 'hidden': !open }"
-      class="hidden grid-cols-1 gap-2 pb-4 md:hidden"
+      x-data="{ open:false, cats:false }"
+      class="mx-auto max-w-screen-xl px-6 md:px-10 lg:px-16"
     >
-      <details
-        class="rounded-lg border border-zinc-200 dark:border-zinc-800 p-2"
-      >
-        <summary
-          class="cursor-pointer px-2 py-1.5 text-sm font-medium text-zinc-700 dark:text-zinc-200"
-          >Categories</summary
+      <div class="flex h-16 items-center justify-between gap-3">
+        <a href="#_" class="inline-flex items-center gap-2"
+          ><Logo class="h-7 text-black dark:text-white" /><span class="sr-only"
+            >Home</span
+          ></a
         >
-        <div class="mt-1 grid grid-cols-2 gap-1">
-          <a
+        <div class="hidden md:flex items-center gap-2">
+          <div x-data="{open:false}" class="relative">
+            <Button
+              size="xs"
+              variant="ghost"
+              @click="open=!open"
+              @keydown.escape.window="open=false"
+              :aria-expanded="open"
+              class="flex items-center justify-between gap-2"
+              >Categories
+              <ChevronDown
+                size="sm"
+                slot="right-icon"
+                :class="open ? '-rotate-180' : ''"
+                class="duration-300 ease-out transform"
+              />
+            </Button>
+            <div
+              x-show="open"
+              x-transition
+              @click.outside="open=false"
+              class="absolute left-0 top-full z-30 mt-2 w-[680px] rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-subtle p-4 grid grid-cols-3 gap-3"
+            >
+              <FlyoutLinkBox
+                href="#_"
+                title="Men"
+                description="Clothing & accessories"
+              />
+              <FlyoutLinkBox
+                href="#_"
+                title="Women"
+                description="Latest arrivals"
+              />
+              <FlyoutLinkBox href="#_" title="Kids" description="New season" />
+              <FlyoutLinkBox
+                href="#_"
+                title="Home"
+                description="Decor & furniture"
+              />
+              <FlyoutLinkBox
+                href="#_"
+                title="Electronics"
+                description="Gadgets & audio"
+              />
+              <FlyoutLinkBox
+                href="#_"
+                title="Sports"
+                description="Outdoor & fitness"
+              />
+            </div>
+          </div>
+          <Text
+            tag="a"
             href="#_"
-            class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
-            >Men</a
+            variant="textSM"
+            class="font-medium text-zinc-600 dark:text-zinc-300 dark:hover:text-white hover:text-zinc-900"
+            >Deals</Text
           >
-          <a
+          <Text
+            tag="a"
             href="#_"
-            class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
-            >Women</a
-          >
-          <a
-            href="#_"
-            class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
-            >Kids</a
-          >
-          <a
-            href="#_"
-            class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
-            >Home</a
-          >
-          <a
-            href="#_"
-            class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
-            >Electronics</a
-          >
-          <a
-            href="#_"
-            class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
-            >Sports</a
+            variant="textSM"
+            class="font-medium text-zinc-600 dark:text-zinc-300 dark:hover:text-white hover:text-zinc-900"
+            >New</Text
           >
         </div>
-      </details>
-      <a
-        href="#_"
-        class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
-        >Deals</a
-      >
-      <a
-        href="#_"
-        class="rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
-        >New</a
-      >
-      <div class="flex items-center gap-2">
-        <a
-          href="#_"
-          class="flex-1 rounded-md px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
-          >Cart (2)</a
+        <div class="hidden md:flex items-center gap-2">
+          <Button variant="muted" size="xs">Cart (2)</Button>
+          <Button variant="accent" size="xs">Checkout</Button>
+        </div>
+        <IconButton
+          class="md:hidden"
+          @click="open=!open"
+          :aria-expanded="open"
+          aria-controls="nav-07"
+          variant="muted"
+          size="xs"
         >
+          <Burger size="xs" slot="icon" />
+        </IconButton>
+      </div>
+      <div
+        id="nav-07"
+        :class="{ 'grid': open, 'hidden': !open }"
+        class="hidden grid-cols-1 gap-2 pb-4 md:hidden"
+      >
+        <details>
+          <summary
+            class="grid grid-cols-4 text-sm items-start justify-between w-full font-medium text-left select-none text-zinc-900 dark:text-white hover:text-zinc-500 dark:hover:text-zinc-400 focus:text-zinc-500 gap-4dark:focus:text-zinc-400"
+            ><span class="col-span-3">Categories</span>
+            <Plus
+              class="duration-300 ease-out transform group-open:-rotate-45 group-open:text-blue-600 dark:text-zinc-400 ml-auto"
+              size="sm"
+            />
+          </summary>
+          <div
+            class="py-2 pt-2 text-sm text-zinc-500 dark:text-zinc-400 space-y-2"
+          >
+            <Text
+              tag="p"
+              variant="textSM"
+              class="font-medium text-zinc-500 dark:text-zinc-400">Men</Text
+            >
+            <Text
+              tag="p"
+              variant="textSM"
+              class="font-medium text-zinc-500 dark:text-zinc-400">Women</Text
+            >
+            <Text
+              tag="p"
+              variant="textSM"
+              class="font-medium text-zinc-500 dark:text-zinc-400">Kids</Text
+            >
+            <Text
+              tag="p"
+              variant="textSM"
+              class="font-medium text-zinc-500 dark:text-zinc-400">Home</Text
+            >
+            <Text
+              tag="p"
+              variant="textSM"
+              class="font-medium text-zinc-500 dark:text-zinc-400"
+              >Electronics</Text
+            >
+            <Text
+              tag="p"
+              variant="textSM"
+              class="font-medium text-zinc-500 dark:text-zinc-400">Sports</Text
+            >
+          </div>
+        </details>
+
+        <Button variant="muted" size="xs">Deals</Button>
+        <Button variant="muted" size="xs">NEw</Button>
+        <Button variant="muted" size="xs">Cart (2)</Button>
         <Button variant="accent" size="xs">Checkout</Button>
       </div>
     </div>
-  </div>
-</header>
-<!-- copy:end -->
+  </header>
+  <!-- copy:end -->
+</div>
