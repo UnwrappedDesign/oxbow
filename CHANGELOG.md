@@ -1,5 +1,21 @@
 # Changelog for Oxbow UI Components
 
+## **2025-09-24**
+
+### Modified
+- avatars: [3 components](https://oxbowui.com/playground/application/avatars)
+- badges: [5 components](https://oxbowui.com/playground/application/badges)
+- breadcrumbs: [6 components](https://oxbowui.com/playground/application/breadcrumbs)
+- checkboxes: [16 components](https://oxbowui.com/playground/application/checkboxes)
+- commandbar: [4 components](https://oxbowui.com/playground/application/commandbar)
+- emptyStates: [8 components](https://oxbowui.com/playground/application/emptyStates)
+- flyouts: [10 components](https://oxbowui.com/playground/application/flyouts)
+- navbars: [8 components](https://oxbowui.com/playground/application/navbars)
+- pagination: [5 components](https://oxbowui.com/playground/application/pagination)
+
+### Deleted
+- navbars: [2 components](https://oxbowui.com/playground/application/navbars)
+
 ## **2025-09-23**
 
 ### Modified

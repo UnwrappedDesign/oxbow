@@ -1,14 +1,17 @@
 ---
+import Button from "@/components/fundations/buttons/Button.astro";
 export const excludeFromObfuscation = [
-  "bg-blue-600",
-  "text-blue-600",
+  "bg-zinc-600",
+  "text-zinc-600",
   "border-b",
   "ring-1",
   "ring-zinc-200",
 ];
 ---
 
-<div class="flex flex-col justify-center p-12 mx-auto bg-white dark:bg-zinc-900">
+<div
+  class="flex flex-col justify-center p-12 mx-auto bg-white dark:bg-zinc-900"
+>
   <!-- Accessible Tabs • Scrollable (overflow-x) with action on right -->
   <div
     x-data="{
@@ -40,7 +43,7 @@ export const excludeFromObfuscation = [
           <div class="flex gap-6 text-sm text-zinc-600 dark:text-zinc-200">
             <template x-for="(id, idx) in keys" :key="id">
               <button
-                class="relative pb-2 font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50"
+                class="relative pb-2 font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500/50"
                 :id="'tab-'+id"
                 role="tab"
                 :aria-selected="selected===id"
@@ -49,12 +52,12 @@ export const excludeFromObfuscation = [
                 x-ref="tab-[[id]]"
                 @click="select(id)"
                 @keydown="onKeydown($event)"
-                :class="selected===id ? 'text-blue-600 dark:text-blue-400' : 'hover:text-zinc-900 dark:hover:text-zinc-100'"
+                :class="selected===id ? 'text-zinc-600 dark:text-zinc-400' : 'hover:text-zinc-900 dark:hover:text-zinc-100'"
               >
                 <span x-text="id.charAt(0).toUpperCase()+id.slice(1)"></span>
                 <span
                   class="absolute left-0 bottom-0 h-[2px] w-full transition-all"
-                  :class="selected===id ? 'bg-blue-600 dark:bg-blue-400' : 'bg-transparent'"
+                  :class="selected===id ? 'bg-zinc-600 dark:bg-zinc-400' : 'bg-transparent'"
                   aria-hidden="true"></span>
               </button>
             </template>
@@ -62,15 +65,19 @@ export const excludeFromObfuscation = [
         </div>
       </div>
       <div class="shrink-0 hidden sm:flex gap-2">
-        <button
+        <Button
+          variant="muted"
+          size="xs"
           type="button"
-          class="h-9 px-3 rounded-md text-sm font-medium bg-zinc-50 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-100 hover:text-zinc-900 dark:hover:text-zinc-100 border border-zinc-200 dark:border-zinc-700"
-          >Export</button
+         
+          >Export</Button
         >
-        <button
+        <Button
+          variant="default"
+          size="xs"
           type="button"
-          class="h-9 px-3 rounded-md text-sm font-medium bg-blue-600 dark:bg-blue-500 text-white dark:text-zinc-900"
-          >New</button
+   
+          >New</Button
         >
       </div>
     </div>

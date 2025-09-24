@@ -88,16 +88,19 @@ const productData = {
     </div>
     <div class="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-2">
       <!-- Tab section -->
-      <div x-data="{ tab: 'tab1' }" class="order-last lg:order-none">
+      <div
+        x-data="{ tab: 'tab1' }"
+        class="mt-8 divide-y divide-zinc-200 dark:divide-zinc-700 border-b border-zinc-200 dark:border-zinc-700"
+      >
         <ul
-          class="flex text-sm border-b gap-4 text-zinc-500 border-zinc-200 dark:border-zinc-700"
+          class="flex text-sm border-b gap-4 text-zinc-500 dark:text-zinc-300 border-zinc-200 dark:border-zinc-700"
         >
           <li class="-mb-px">
             <a
               @click.prevent="tab = 'tab1'"
               href="#_"
-              class="inline-block py-2 font-medium border-b-2 text-blue-500 border-blue-500"
-              :class="{ '  text-blue-500 border-b-2 border-blue-500' : tab === 'tab1' }"
+              class="inline-block py-2 font-medium border-b-2 text-zinc-500 border-zinc-500"
+              :class="{ ' text-zinc-500 border-b-2 border-zinc-500' : tab === 'tab1' }"
             >
               Details</a
             >
@@ -107,7 +110,7 @@ const productData = {
               @click.prevent="tab = 'tab2'"
               href="#_"
               class="inline-block py-2 font-medium"
-              :class="{ '  text-blue-500 border-b-2 border-blue-500' : tab === 'tab2' }"
+              :class="{ ' text-zinc-500 border-b-2 border-zinc-500' : tab === 'tab2' }"
             >
               Shipping</a
             >
@@ -117,7 +120,7 @@ const productData = {
               @click.prevent="tab = 'tab3'"
               href="#_"
               class="inline-block py-2 font-medium"
-              :class="{ '  text-blue-500 border-b-2 border-blue-500' : tab === 'tab3' }"
+              :class="{ ' text-zinc-500 border-b-2 border-zinc-500' : tab === 'tab3' }"
             >
               Returns</a
             >
@@ -127,13 +130,13 @@ const productData = {
               @click.prevent="tab = 'tab4'"
               href="#_"
               class="inline-block py-2 font-medium"
-              :class="{ '  text-blue-500 border-b-2 border-blue-500' : tab === 'tab4' }"
+              :class="{ ' text-zinc-500 border-b-2 border-zinc-500' : tab === 'tab4' }"
             >
               Reviews</a
             >
           </li>
         </ul>
-        <div class="py-4 pt-4 text-left text-zinc-500 content">
+        <div class="py-4 pt-4 text-left text-zinc-500 dark:text-white content">
           <div x-show="tab==='tab1'">
             <section class="py-4">
               <Text tag="p" variant="sm">
@@ -143,7 +146,7 @@ const productData = {
               </Text>
               <ul
                 role="list"
-                class="pl-5 mt-4 text-sm list-disc space-y-1 text-zinc-600 marker:text-blue-500"
+                class="pl-5 mt-4 text-sm list-disc space-y-1 text-zinc-600 dark:text-zinc-300 marker:text-blue-500"
               >
                 <li>Versatile lace configurations</li>
                 <li>Breathable and spacious interior fit</li>
@@ -154,114 +157,10 @@ const productData = {
                 <li>Water-resistant materials</li>
               </ul>
 
-              <div x-data="{ open: false }" class="flex mt-8">
-                <!-- Button to trigger the modal -->
-                <Button @click="open = true" size="sm" variant="muted">
-                  Read more
-                </Button>
-
-                <!-- Modal -->
-                <div
-                  x-show="open"
-                  x-transition
-                  class="fixed inset-0 z-10 flex items-center justify-center bg-zinc-900/80"
-                >
-                  <div
-                    class="relative w-full max-w-3xl p-4 bg-white shadow-lg rounded-3xl lg:p-12"
-                    @click.outside="open = false"
-                  >
-                    <!-- Close button -->
-                    <IconButton
-                      variant="muted"
-                      size="xs"
-                      @click="open = false"
-                      class="absolute top-4 right-4 lg:top-12 lg:right-12 text-zinc-600 hover:text-zinc-900 focus:outline-none"
-                    >
-                      <X size="xs" slot="icon" />
-                    </IconButton>
-
-                    <!-- Modal content -->
-                    <div>
-                      <div class="flex flex-row gap-4">
-                        <div class="relative aspect-[4/3] w-32 h-auto">
-                          <img
-                            src="/store/shoes/airforceblack/3.jpg"
-                            alt="Nike Air Force 1´07 Fresh"
-                            class="absolute inset-0 object-cover size-full rounded-2xl bg-zinc-50"
-                          />
-                        </div>
-                        <div class="flex flex-col justify-between h-full gap-2">
-                          <div>
-                            <Text
-                              tag="h3"
-                              variant="textLG"
-                              class="text-zinc-900 dark:text-white"
-                            >
-                              Nike Air Force 1´07 Fresh
-                            </Text>
-                            <Text
-                              class="mt-1 text-sm leading-normal text-zinc-500"
-                            >
-                              23 Different Colors
-                            </Text>
-                          </div>
-                          <Text tag="h3" variant="textSM" class="text-zinc-500">
-                            $140.00
-                          </Text>
-                        </div>
-                      </div>
-                      <Text
-                        tag="p"
-                        variant="textBase"
-                        class="mt-4 text-zinc-500"
-                      >
-                        Hitting the field in the late '60s, adidas airmaxS
-                        quickly became soccer's "it" shoe.
-                      </Text>
-                      <div class="flex flex-col mt-8 gap-4">
-                        <div>
-                          <Text
-                            tag="p"
-                            variant="textBase"
-                            class="font-medium text-zinc-900"
-                          >
-                            Benefits
-                          </Text>
-                          <ul
-                            role="list"
-                            class="pl-5 mt-4 text-sm list-disc space-y-1 text-zinc-600 marker:text-blue-500"
-                          >
-                            {
-                              productData.benefits.map((benefit) => (
-                                <li>{benefit}</li>
-                              ))
-                            }
-                          </ul>
-                        </div>
-                        <div>
-                          <Text
-                            tag="p"
-                            variant="textBase"
-                            class="font-medium text-zinc-900"
-                          >
-                            Product details
-                          </Text>
-                          <ul
-                            role="list"
-                            class="pl-5 mt-4 text-sm list-disc space-y-1 text-zinc-600 marker:text-blue-500"
-                          >
-                            {
-                              productData.details.map((detail) => (
-                                <li>{detail}</li>
-                              ))
-                            }
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <Text tag="p" variant="textSM" class="mt-8">
+                <strong class="text-black dark:text-white">True to size</strong
+                >.We recommend ordering your usual size.
+              </Text>
             </section>
           </div>
           <div x-show="tab==='tab2'" style="display: none;">
@@ -287,23 +186,23 @@ const productData = {
               <div
                 class="flex flex-col"
                 x-data="{ 
-                  testimonials: [
-                    {
-                      name: 'Fernando Monte',
-                      date: '2025-12-01',
-                      datetime: '2025-12-01',
-                      img: '/avatars/1.jpg',
-                      text: 'The Nike Air Max 90 Black exceeded my expectations! Super comfortable and perfect for both running and casual wear.',
-                    },
-                    {
-                      name: 'Juan  Echanove',
-                      date: '2025-11-15',
-                      datetime: '2025-11-15',
-                      img: '/avatars/2.jpg',
-                      text: 'Stylish and lightweight. I wear them everywhere, but the fit was slightly snug at first. Broke in nicely after a few days.',
-                    },
-                  ] 
-                }"
+                    testimonials: [
+                      {
+                        name: 'Fernando Monte',
+                        date: '2025-12-01',
+                        datetime: '2025-12-01',
+                        img: '/avatars/1.jpg',
+                        text: 'The Nike Air Max 90 Black exceeded my expectations! Super comfortable and perfect for both running and casual wear.',
+                      },
+                      {
+                        name: 'Juan  Echanove',
+                        date: '2025-11-15',
+                        datetime: '2025-11-15',
+                        img: '/avatars/2.jpg',
+                        text: 'Stylish and lightweight. I wear them everywhere, but the fit was slightly snug at first. Broke in nicely after a few days.',
+                      },
+                    ] 
+                  }"
               >
                 <template
                   x-for="testimonial in testimonials"
@@ -324,7 +223,10 @@ const productData = {
                         class="font-medium text-zinc-900"
                         x-text="testimonial.name"
                       />
-                      <Text variant="textXS" class="text-zinc-500">
+                      <Text
+                        variant="textXS"
+                        class="text-zinc-500 dark:text-zinc-300"
+                      >
                         <time
                           :datetime="testimonial.datetime"
                           x-text="testimonial.date"></time>
@@ -332,12 +234,15 @@ const productData = {
                       <Text
                         tag="p"
                         variant="textSM"
-                        class="mt-1 text-zinc-500"
+                        class="mt-1 text-zinc-500 dark:text-zinc-300"
                         x-text="testimonial.text"
                       />
                     </div>
                   </div>
                 </template>
+              </div>
+              <div class="flex mt-8">
+                <Button size="sm" variant="muted"> Write a review </Button>
               </div>
             </section>
           </div>
@@ -352,17 +257,29 @@ const productData = {
           >$152 <del class="opacity-70">$190</del>
           <span class="text-green-400">20% Off</span></Text
         >
-        <Text tag="p" variant="textSM" class="mt-2 text-zinc-500">
+        <Text
+          tag="p"
+          variant="textSM"
+          class="mt-2 text-zinc-500 dark:text-zinc-300"
+        >
           Men's shoes
         </Text>
-        <Text tag="p" variant="textSM" class="mt-8 text-zinc-500">
+        <Text
+          tag="p"
+          variant="textSM"
+          class="mt-8 text-zinc-500 dark:text-zinc-300"
+        >
           Hitting the field in the late '60s, adidas airmaxS quickly became
           soccer's "it" shoe.
         </Text>
         <div class="mt-4 grid cols-1 md:grid-cols-2 gap-4">
           <!-- Color Selector -->
           <div x-data="{ activeColor: null }">
-            <Text tag="p" variant="textXS" class="uppercase text-zinc-500">
+            <Text
+              tag="p"
+              variant="textXS"
+              class="uppercase text-zinc-500 dark:text-zinc-300"
+            >
               Color
             </Text>
             <fieldset
@@ -420,7 +337,11 @@ const productData = {
                 }"
           >
             <div class="flex items-center justify-between">
-              <Text tag="p" variant="textXS" class="uppercase text-zinc-500">
+              <Text
+                tag="p"
+                variant="textXS"
+                class="uppercase text-zinc-500 dark:text-zinc-300"
+              >
                 Shoe size
               </Text>
               <div>
@@ -466,7 +387,10 @@ const productData = {
           <Button size="sm" variant="muted" class="w-full">Buy Now</Button>
         </div>
         <!-- Free shipping notice -->
-        <Text tag="p" variant="textSM" class="mt-1 text-zinc-500"
+        <Text
+          tag="p"
+          variant="textSM"
+          class="mt-1 text-zinc-500 dark:text-zinc-300"
           >Shop now. Pay in 30 days with Klarna. <a
             href="#_"
             class="text-black underline">Learn more</a

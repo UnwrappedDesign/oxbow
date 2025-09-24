@@ -5,16 +5,30 @@ import Text from "@/components/fundations/typography/Text.astro";
 
 <section
   class="flex items-center flex-wrap gap-2 justify-center p-24 bg-white dark:bg-zinc-900 h-full"
+  x-data="{ checked: false }"
 >
   <!-- copy:start -->
   <div class="flex flex-col gap-1">
     <div class="flex items-start gap-3">
-      <input
-        id="checkbox-with-description"
-        name="checkbox-with-description"
-        type="checkbox"
-        class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-blue-600 focus:ring-blue-600 dark:bg-zinc-900 dark:checked:bg-blue-600"
-      />
+      <div class="relative">
+        <input
+          id="checkbox-with-description"
+          name="checkbox-with-description"
+          type="checkbox"
+          x-model="checked"
+          class="appearance-none size-4 border-2 rounded bg-white border-zinc-300 checked:bg-blue-600 checked:border-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white"
+        />
+        <svg
+          class="absolute inset-0 w-4 h-4 pointer-events-none transition-opacity"
+          :class="{ 'opacity-100 text-white': checked, 'opacity-0': !checked }"
+          viewBox="0 0 16 16"
+          fill="currentColor"
+        >
+          <path
+            d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 0 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"
+          ></path>
+        </svg>
+      </div>
       <div>
         <Text
           for="checkbox-with-description"

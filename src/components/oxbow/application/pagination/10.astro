@@ -9,7 +9,7 @@ import Select from "@/components/fundations/inputs/Select.astro";
   <nav
     aria-label="Pagination"
     x-data="{ page: 1, total: 12, size: 10, input: '' }"
-    class="flex w-full flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+    class="grid grid-cols-1 lg:grid-cols-2 w-full gap-3 sm:items-center sm:justify-between"
   >
     <!-- Group A: Prev / Page X of Y / Next -->
     <div
@@ -17,7 +17,7 @@ import Select from "@/components/fundations/inputs/Select.astro";
     >
       <Button
         size="xs"
-        variant="outline"
+        variant="muted"
         :disabled="page===1"
         @click="page=Math.max(1,page-1)">Previous</Button
       >
@@ -26,7 +26,7 @@ import Select from "@/components/fundations/inputs/Select.astro";
       >
       <Button
         size="xs"
-        variant="outline"
+        variant="muted"
         :disabled="page===total"
         @click="page=Math.min(total,page+1)">Next</Button
       >
@@ -34,7 +34,7 @@ import Select from "@/components/fundations/inputs/Select.astro";
 
     <!-- Group B: Go to input and Per-page select -->
     <div
-      class="hidden md:flex flex-col gap-2 w-full sm:w-fit sm:flex-row sm:items-center"
+      class="hidden md:flex flex-col gap-2 w-full sm:w-fit sm:flex-row sm:items-center lg:ml-auto"
     >
       <div
         class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"

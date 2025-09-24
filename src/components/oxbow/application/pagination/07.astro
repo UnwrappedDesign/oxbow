@@ -23,7 +23,7 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
   >
     <Button
       size="xs"
-      variant="outline"
+      variant="muted"
       :disabled="page===1"
       @click="page=Math.max(1,page-1)"
       aria-label="Previous">Previous</Button
@@ -32,21 +32,21 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
       <span class="contents">
         <IconButton
           size="xs"
-          variant="outline"
+          variant="muted"
           @click="page=n"
           x-text="n"
           :aria-current="page===n ? 'page' : null"
-          :class="page===n ? 'outline-blue-600 text-blue-600 dark:text-blue-300' : ''"
+          :class="page===n ? ' text-blue-600 dark:text-blue-300' : ''"
         />
         <span
           x-show="i < pages().length-1 && pages()[i+1] - n > 1"
-          class="px-1 text-zinc-500">…</span
+          class="px-4 text-zinc-500">…</span
         >
       </span>
     </template>
     <Button
       size="xs"
-      variant="outline"
+      variant="muted"
       :disabled="page===total"
       @click="page=Math.min(total,page+1)"
       aria-label="Next">Next</Button

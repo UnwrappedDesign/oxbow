@@ -1,9 +1,9 @@
 ---
 export const excludeFromObfuscation = [
   "bg-white",
-  "text-blue-500",
+  "text-zinc-500",
   "border-b-2",
-  "border-blue-500",
+  "border-zinc-500",
   "ring-2",
   "ring-zinc-900",
   "ring-offset-2",
@@ -67,8 +67,8 @@ import Button from "@/components/fundations/buttons/Button.astro";
               <a
                 @click.prevent="tab = 'tab1'"
                 href="#_"
-                class="inline-block py-2 font-medium border-b-2 text-blue-500 border-blue-500 dark:border-blue-400"
-                :class="{ ' text-blue-500 border-b-2 border-blue-500 dark:border-blue-400' : tab === 'tab1' }"
+                class="inline-block py-2 font-medium border-b-2 text-zinc-500 dark:text-zinc-300 border-zinc-500 dark:border-zinc-400"
+                :class="{ ' text-zinc-500 border-b-2 border-zinc-500 dark:border-zinc-400' : tab === 'tab1' }"
               >
                 Details</a
               >
@@ -78,7 +78,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
                 @click.prevent="tab = 'tab2'"
                 href="#_"
                 class="inline-block py-2 font-medium"
-                :class="{ ' text-blue-500 border-b-2 border-blue-500 dark:border-blue-400' : tab === 'tab2' }"
+                :class="{ ' text-zinc-500 border-b-2 border-zinc-500 dark:border-zinc-400' : tab === 'tab2' }"
               >
                 Shipping</a
               >
@@ -88,7 +88,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
                 @click.prevent="tab = 'tab3'"
                 href="#_"
                 class="inline-block py-2 font-medium"
-                :class="{ ' text-blue-500 border-b-2 border-blue-500 dark:border-blue-400' : tab === 'tab3' }"
+                :class="{ ' text-zinc-500 border-b-2 border-zinc-500 dark:border-zinc-400' : tab === 'tab3' }"
               >
                 Returns</a
               >
@@ -98,13 +98,15 @@ import Button from "@/components/fundations/buttons/Button.astro";
                 @click.prevent="tab = 'tab4'"
                 href="#_"
                 class="inline-block py-2 font-medium"
-                :class="{ ' text-blue-500 border-b-2 border-blue-500 dark:border-blue-400' : tab === 'tab4' }"
+                :class="{ ' text-zinc-500 border-b-2 border-zinc-500 dark:border-zinc-400' : tab === 'tab4' }"
               >
                 Reviews</a
               >
             </li>
           </ul>
-          <div class="py-4 pt-4 text-left text-zinc-500 content">
+          <div
+            class="py-4 pt-4 text-left text-zinc-500 dark:text-zinc-300 content"
+          >
             <div x-show="tab==='tab1'">
               <section class="py-4">
                 <Text tag="p" variant="sm">
@@ -114,7 +116,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
                 </Text>
                 <ul
                   role="list"
-                  class="pl-5 mt-4 text-sm list-disc space-y-1 text-zinc-600 marker:text-blue-500"
+                  class="pl-5 mt-4 text-sm list-disc space-y-1 text-zinc-600 marker:text-zinc-500 dark:text-white"
                 >
                   <li>Versatile lace configurations</li>
                   <li>Breathable and spacious interior fit</li>
@@ -189,10 +191,13 @@ import Button from "@/components/fundations/buttons/Button.astro";
                         <Text
                           tag="h3"
                           variant="textBase"
-                          class="font-medium text-zinc-900"
+                          class="font-medium text-zinc-900 dark:text-white"
                           x-text="testimonial.name"
                         />
-                        <Text variant="textXS" class="text-zinc-500">
+                        <Text
+                          variant="textXS"
+                          class="text-zinc-500 dark:text-zinc-300"
+                        >
                           <time
                             :datetime="testimonial.datetime"
                             x-text="testimonial.date"></time>
@@ -200,7 +205,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
                         <Text
                           tag="p"
                           variant="textSM"
-                          class="mt-1 text-zinc-500"
+                          class="mt-1 text-zinc-500 dark:text-zinc-300"
                           x-text="testimonial.text"
                         />
                       </div>
@@ -261,7 +266,11 @@ import Button from "@/components/fundations/buttons/Button.astro";
         <div class="flex flex-col mt-4 gap-4">
           <!-- Color Selector -->
           <div x-data="{ activeColor: null }">
-            <Text tag="p" variant="textXS" class="uppercase text-zinc-500">
+            <Text
+              tag="p"
+              variant="textXS"
+              class="uppercase text-zinc-500 dark:text-zinc-300"
+            >
               Color
             </Text>
             <fieldset
@@ -319,7 +328,11 @@ import Button from "@/components/fundations/buttons/Button.astro";
           }"
           >
             <div class="flex items-center justify-between">
-              <Text tag="p" variant="textXS" class="uppercase text-zinc-500">
+              <Text
+                tag="p"
+                variant="textXS"
+                class="uppercase text-zinc-500 dark:text-zinc-300"
+              >
                 Shoe size
               </Text>
               <div>
@@ -351,7 +364,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
                   <label
                     :for="'size-' + size"
                     x-text="size"
-                    class="flex items-center justify-center px-3 py-2 text-sm font-medium bg-white dark:bg-zinc-900 cursor-pointer ring-1 ring-zinc-200 dark:ring-zinc-700 rounded-md duration-300 peer-checked:ring-2 peer-checked:ring-zinc-900 peer-checked:text-blue-500 text-zinc-500 dark:text-zinc-200 peer-checked:ring-offset-2"
+                    class="flex items-center justify-center px-3 py-2 text-sm font-medium bg-white dark:bg-zinc-900 cursor-pointer ring-1 ring-zinc-200 dark:ring-zinc-700 rounded-md duration-300 peer-checked:ring-2 peer-checked:ring-zinc-900 peer-checked:text-zinc-500 text-zinc-500 dark:text-zinc-200 peer-checked:ring-offset-2"
                   ></label>
                 </div>
               </template>

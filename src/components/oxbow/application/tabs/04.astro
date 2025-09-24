@@ -1,8 +1,8 @@
 ---
 export const excludeFromObfuscation = [
   "border-l-2",
-  "border-blue-600",
-  "text-blue-600",
+  "border-zinc-600",
+  "text-zinc-600",
   "bg-zinc-50",
 ];
 ---
@@ -40,7 +40,7 @@ export const excludeFromObfuscation = [
       >
         <template x-for="(id, idx) in keys" :key="id">
           <button
-            class="w-full text-left px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50"
+            class="w-full text-left px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500/50"
             :id="'tab-'+id"
             role="tab"
             :aria-selected="selected===id"
@@ -49,7 +49,7 @@ export const excludeFromObfuscation = [
             x-ref="tab-[[id]]"
             @click="select(id)"
             @keydown="onKeydown($event)"
-            :class="selected===id ? 'bg-zinc-50 dark:bg-zinc-800 text-blue-600 md:pl-2' : 'text-zinc-600 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-zinc-100'"
+            :class="selected===id ? 'bg-zinc-50 dark:bg-zinc-800 text-zinc-600 md:pl-2' : 'text-zinc-600 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-zinc-100'"
           >
             <span
               x-text="id==='overview' ? 'Overview' : id==='projects' ? 'Projects' : 'Packages'"
