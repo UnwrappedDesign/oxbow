@@ -1,14 +1,25 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import { Image } from "astro:assets";
+import g1 from "@/images/gallery/1.png";
+import g2 from "@/images/gallery/2.png";
+import g3 from "@/images/gallery/3.png";
+import g4 from "@/images/gallery/4.png";
+import g5 from "@/images/gallery/5.png";
+import g6 from "@/images/gallery/6.png";
+import g7 from "@/images/gallery/7.png";
+import g8 from "@/images/gallery/8.png";
+
 const gallery = [
-  { src: "/images/p1.svg", alt: "Oxbow UI" },
-  { src: "/images/p1.svg", alt: "Oxbow UI" },
-  { src: "/images/p1.svg", alt: "Oxbow UI" },
-  { src: "/images/p1.svg", alt: "Oxbow UI" },
-  { src: "/images/p1.svg", alt: "Oxbow UI" },
-  { src: "/images/p1.svg", alt: "Oxbow UI" },
-  { src: "/images/p1.svg", alt: "Oxbow UI" },
-  { src: "/images/p1.svg", alt: "Oxbow UI" },
+  { src: g1, alt: "Oxbow UI" },
+  { src: g2, alt: "Oxbow UI" },
+  { src: g3, alt: "Oxbow UI" },
+  { src: g4, alt: "Oxbow UI" },
+  { src: g5, alt: "Oxbow UI" },
+  { src: g6, alt: "Oxbow UI" },
+  { src: g7, alt: "Oxbow UI" },
+  { src: g8, alt: "Oxbow UI" },
 ];
 ---
 
@@ -19,32 +30,35 @@ const gallery = [
     >
       <div class="lg:col-span-2 lg:row-span-3">
         <div>
-         
-          <h1
-            class=" text-4xl font-semibold tracking-tight text-zinc-900 dark:text-white sm:text-balance"
+          <Text
+            variant="displayMD"
+            tag="h2"
+            class="font-semibold tracking-tight text-zinc-900 dark:text-white sm:text-balance"
           >
             Explore our visual showcase
-          </h1>
-          <p
-            class="mt-2 text-base font-medium text-zinc-500 dark:text-zinc-400 sm:text-balance"
+          </Text>
+          <Text
+            variant="textSM"
+            tag="p"
+            class="mt-2 font-medium text-zinc-500 dark:text-zinc-400 sm:text-balance"
           >
             A curated collection of images capturing the essence of our brand
             and the stories we tell.
-          </p>
+          </Text>
         </div>
-        <div class="flex mt-8">
-          <Button variant="outline" size="sm"> See gallery </Button>
-        </div>
+        <Button variant="default" size="sm" class="mt-8"> See gallery </Button>
       </div>
       <div
         class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:grid-cols-4 lg:col-span-4"
       >
         {
           gallery.map(({ src, alt }) => (
-            <img
+            <Image
+              width={500}
+              height={500}
               src={src}
               alt={alt}
-              class="object-cover size-full aspect-square"
+              class="object-cover size-full aspect-square object-top"
             />
           ))
         }
@@ -52,19 +66,25 @@ const gallery = [
       <div
         class="lg:col-span-5 lg:col-start-3 grid grid-cols-1 gap-4 lg:grid-cols-2"
       >
-        <p
-          class="text-base font-medium text-zinc-500 dark:text-zinc-400 sm:text-balance"
+        <Text
+          variant="textSM"
+          tag="p"
+          class="font-medium text-zinc-500 dark:text-zinc-400 sm:text-balance"
         >
           Our smart contract automation feature simplifies complex business
           processes by encoding contract terms and conditions into
           self-executing code.
-        </p>
+        </Text>
 
-        <p class="text-base font-medium text-zinc-500 sm:text-balance">
+        <Text
+          variant="textSM"
+          tag="p"
+          class="font-medium text-zinc-500 sm:text-balance"
+        >
           Enjoy the benefits of our smart contract automation feature. Simplify
           complex business processes by encoding contract terms and conditions
           into self-executing code.
-        </p>
+        </Text>
       </div>
     </div>
   </div>

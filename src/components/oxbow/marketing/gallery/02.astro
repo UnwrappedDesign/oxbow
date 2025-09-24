@@ -1,14 +1,25 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
+import { Image } from "astro:assets";
+import g1 from "@/images/gallery/1.png";
+import g2 from "@/images/gallery/2.png";
+import g3 from "@/images/gallery/3.png";
+import g4 from "@/images/gallery/4.png";
+import g5 from "@/images/gallery/5.png";
+import g6 from "@/images/gallery/6.png";
+import g7 from "@/images/gallery/7.png";
+import g8 from "@/images/gallery/8.png";
+
+
 const gallery = [
-  { src: "/images/p1.svg", alt: "Oxbow UI" },
-  { src: "/images/p1.svg", alt: "Oxbow UI" },
-  { src: "/images/p1.svg", alt: "Oxbow UI" },
-  { src: "/images/p1.svg", alt: "Oxbow UI" },
-  { src: "/images/p1.svg", alt: "Oxbow UI" },
-  { src: "/images/p1.svg", alt: "Oxbow UI" },
-  { src: "/images/p1.svg", alt: "Oxbow UI" },
-  { src: "/images/p1.svg", alt: "Oxbow UI" },
+  { src: g1, alt: "Oxbow UI" },
+  { src: g2, alt: "Oxbow UI" },
+  { src: g3, alt: "Oxbow UI" },
+  { src: g4, alt: "Oxbow UI" },
+  { src: g5, alt: "Oxbow UI" },
+  { src: g6, alt: "Oxbow UI" },
+  { src: g7, alt: "Oxbow UI" },
+  { src: g8, alt: "Oxbow UI" },
 ];
 ---
 
@@ -17,7 +28,7 @@ const gallery = [
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:grid-cols-4">
       {
         gallery.map(({ src, alt }) => (
-          <img
+          <Image
             src={src}
             alt={alt}
             class="object-cover size-full aspect-square"
@@ -25,8 +36,8 @@ const gallery = [
         ))
       }
     </div>
-    <div class="flex justify-center mt-8">
-      <Button variant="outline" size="sm"> See gallery </Button>
-    </div>
+    <Button variant="default" size="sm" class="mt-8 mx-auto">
+      See gallery
+    </Button>
   </div>
 </section>

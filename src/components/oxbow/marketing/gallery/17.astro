@@ -1,0 +1,144 @@
+---
+import Text from "@/components/fundations/typography/Text.astro";
+import IconButton from "@/components/fundations/buttons/IconButton.astro";
+import X from "@/components/fundations/icons/X.astro";
+import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
+import ChevronLeft from "@/components/fundations/icons/ChevronLeft.astro";
+// Removed unused Image import
+import g1 from "@/images/gallery/1.png";
+import g2 from "@/images/gallery/2.png";
+import g3 from "@/images/gallery/3.png";
+import g4 from "@/images/gallery/4.png";
+import g5 from "@/images/gallery/5.png";
+import g6 from "@/images/gallery/6.png";
+import g7 from "@/images/gallery/7.png";
+import g8 from "@/images/gallery/8.png";
+const gallery = [
+  { src: g1.src, alt: "Oxbow UI" },
+  { src: g2.src, alt: "Oxbow UI" },
+  { src: g3.src, alt: "Oxbow UI" },
+  { src: g4.src, alt: "Oxbow UI" },
+  { src: g5.src, alt: "Oxbow UI" },
+  { src: g6.src, alt: "Oxbow UI" },
+  { src: g7.src, alt: "Oxbow UI" },
+  { src: g8.src, alt: "Oxbow UI" },
+];
+---
+
+<!---
+// Set  `isOpen` to `false` to hide the lightbox. 
+// isOpen: true,
+-->
+<section
+  class="bg-white dark:bg-zinc-900"
+  x-data={`{
+    gallery: ${JSON.stringify(gallery)},
+    currentIndex: 0,
+    isOpen: true,
+    openLightbox(index) { this.currentIndex = index; this.isOpen = true; },
+    closeLightbox() { this.isOpen = false; },
+    next() { this.currentIndex = (this.currentIndex + 1) % this.gallery.length; },
+    prev() { this.currentIndex = (this.currentIndex - 1 + this.gallery.length) % this.gallery.length; }
+  }`}
+>
+  <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
+    <Text
+      variant="textSM"
+      tag="p"
+      class="mt-4 italic text-zinc-500 dark:text-zinc-400 pb-12 text-center"
+    >
+      Click on the image to open it in a lightbox.
+    </Text>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {
+        gallery.map(({ src, alt }, index) => (
+          <img
+            src={src}
+            alt={alt}
+            class="object-cover size-full aspect-square cursor-pointer hover:opacity-80 transition-opacity object-top"
+            @click={`openLightbox(${index})`}
+          />
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div
+    x-show="isOpen"
+    x-init="$el.focus()"
+    tabindex="0"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Image Gallery"
+    @keydown.escape="closeLightbox"
+    @keydown.arrow-left="prev"
+    @keydown.arrow-right="next"
+    class="fixed inset-0 bg-white/80 dark:bg-zinc-900/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 supports-[backdrop-filter]:dark:bg-zinc-900/60 flex items-start justify-center z-50 overflow-auto p-8 md:p-12 lg:p-32 outline-none"
+    @click="closeLightbox"
+    x-transition
+  >
+    <div
+      class="relative w-full max-h-full grid grid-cols-1 lg:grid-cols-3 gap-12"
+      @click.stop
+    >
+      <!-- Hidden heading for screen readers -->
+      <h2 class="sr-only">Image Gallery</h2>
+      <!-- Main Image -->
+      <div class="flex flex-col lg:col-span-2">
+        <img
+          :src="gallery[currentIndex].src"
+          :alt="gallery[currentIndex].alt"
+          class="max-w-full max-h-126 object-cover object-top"
+        />
+        <div class="flex items-center mt-4 gap-4 lg:-mt-14 lg:ml-4">
+          <IconButton
+            variant="default"
+            size="sm"
+            class="z-50"
+            aria-label="Previous image"
+            @click.stop="prev"
+          >
+            <ChevronLeft slot="icon" size="xl" />
+          </IconButton>
+          <IconButton
+            variant="default"
+            size="sm"
+            class="z-50"
+            aria-label="Next image"
+            @click.stop="next"
+          >
+            <ChevronRight slot="icon" size="xl" />
+          </IconButton>
+        </div>
+      </div>
+
+      <!-- Thumbnail Sidebar -->
+      <div
+        class="w-full hidden lg:flex lg:flex-col gap-2 overflow-x-auto md:overflow-y-auto max-h-126 scrollbar-hide"
+      >
+        <template x-for="(item, index) in gallery" :key="index">
+          <img
+            :src="item.src"
+            :alt="item.alt"
+            class="size-full object-cover cursor-pointer outline rounded aspect-square object-top"
+            :class="index === currentIndex ? 'outline-zinc-500' : 'outline-zinc-300 hover:outline-zinc-500'"
+            @click="currentIndex = index"
+          />
+        </template>
+      </div>
+
+      <button
+        class="absolute top-2 right-2 z-50"
+        aria-label="Close gallery"
+        @click.stop="closeLightbox"
+      >
+        <X
+          slot="icon"
+          size="sm"
+          class="text-black dark:text-white hover:text-zinc-300"
+        />
+      </button>
+    </div>
+  </div>
+</section>

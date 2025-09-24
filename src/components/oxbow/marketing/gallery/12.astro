@@ -1,53 +1,70 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import { Image } from "astro:assets";
+import g1 from "@/images/gallery/1.png";
+import g2 from "@/images/gallery/2.png";
+import g3 from "@/images/gallery/3.png";
+import g4 from "@/images/gallery/4.png";
 ---
 
 <section class="bg-white dark:bg-zinc-900">
   <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <div class="flex flex-col gap-4">
-        <img
-          src="/images/p1.svg"
+        <Image
+          width={800}
+          height={800}
+          src={g1}
           alt="#_"
-          class="object-cover size-full max-h-64"
+          class="object-cover size-full max-h-64 object-top"
         />
-        <img
-          src="/images/p1.svg"
+        <Image
+          width={800}
+          height={800}
+          src={g2}
           alt="#_"
-          class="object-cover size-full aspect-square"
+          class="object-cover size-full aspect-square object-top"
         />
       </div>
       <div class="flex flex-col gap-4">
-        <img
-          src="/images/p1.svg"
+        <Image
+          width={800}
+          height={800}
+          src={g3}
           alt="#_"
-          class="object-cover size-full aspect-square"
+          class="object-cover size-full aspect-square object-top"
         />
-        <img
-          src="/images/p1.svg"
+        <Image
+          width={800}
+          height={800}
+          src={g4}
           alt="#_"
-          class="object-cover size-full max-h-64"
+          class="object-cover size-full max-h-64 object-top"
         />
       </div>
     </div>
     <div class="items-end mt-12 grid grid-cols-1 gap-12 lg:grid-cols-3">
       <div class="lg:col-span-2">
-       
-        <h1
-          class=" text-4xl font-semibold tracking-tight text-zinc-900 dark:text-white sm:text-balance"
+        <Text
+          variant="displayMD"
+          tag="h2"
+          class="font-semibold tracking-tight text-zinc-900 dark:text-white sm:text-balance"
         >
           Explore our visual showcase
-        </h1>
-        <p
-          class="mt-2 text-base font-medium text-zinc-500 dark:text-zinc-400 sm:text-balance"
+        </Text>
+        <Text
+          variant="textSM"
+          tag="p"
+          class="mt-2 font-medium text-zinc-500 dark:text-zinc-400 sm:text-balance"
         >
           A curated collection of images capturing the essence of our brand and
           the stories we tell.
-        </p>
+        </Text>
       </div>
-      <div class="flex justify-center">
-        <Button variant="outline" size="sm"> See gallery </Button>
-      </div>
+      <Button variant="default" size="sm" class="mt-8 w-fit lg:ml-auto">
+        See gallery
+      </Button>
     </div>
   </div>
 </section>

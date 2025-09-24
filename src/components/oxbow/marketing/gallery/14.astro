@@ -1,48 +1,61 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import { Image } from "astro:assets";
+import g1 from "@/images/gallery/1.png";
+import g2 from "@/images/gallery/2.png";
+import g3 from "@/images/gallery/3.png";
+import g4 from "@/images/gallery/4.png";
 ---
 
 <section class="bg-white dark:bg-zinc-900">
   <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
-    <div
-      class="pb-5 border-b border-zinc-200 sm:flex sm:items-center sm:justify-between dark:border-zinc-800"
-    >
-      <div class="sm:w-0 sm:flex-1">
-        <h1
-          class="text-lg font-medium tracking-tight text-zinc-900 dark:text-white"
+    <div class="sm:flex sm:items-center sm:justify-between">
+      <div>
+        <Text
+          variant="textBase"
+          class="font-semibold tracking-tight text-zinc-900 dark:text-white"
         >
           Oxbow UI
-        </h1>
-        <p
-          class="mt-1 text-sm font-medium text-zinc-500 dark:text-zinc-400 sm:text-pretty"
+        </Text>
+        <Text
+          variant="textSM"
+          tag="p"
+          class="font-medium text-zinc-500 dark:text-zinc-400"
         >
           30 images
-        </p>
+        </Text>
       </div>
-      <div class="mt-3 sm:ml-4 sm:mt-0">
-        <Button variant="outline" size="sm"> See gallery </Button>
-      </div>
+      <Button variant="default" size="sm"> See gallery </Button>
     </div>
 
-    <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4">
-      <img
-        src="/images/p1.svg"
+    <div class="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <Image
+        width={600}
+        height={600}
+        src={g1}
         alt="#_"
         class="object-cover size-full aspect-square"
       />
       <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
-        <img
-          src="/images/p1.svg"
+        <Image
+          width={600}
+          height={600}
+          src={g2}
           alt="#_"
           class="object-cover size-full aspect-square"
         />
-        <img
-          src="/images/p1.svg"
+        <Image
+          width={600}
+          height={600}
+          src={g3}
           alt="#_"
           class="object-cover size-full aspect-square"
         />
-        <img
-          src="/images/p1.svg"
+        <Image
+          width={600}
+          height={600}
+          src={g4}
           alt="#_"
           class="object-cover size-full lg:col-span-2"
         />

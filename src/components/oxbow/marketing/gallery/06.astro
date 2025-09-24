@@ -1,11 +1,20 @@
 ---
+import Text from "@/components/fundations/typography/Text.astro";
+import { Image } from "astro:assets";
+import g1 from "@/images/gallery/1.png";
+import g2 from "@/images/gallery/2.png";
+import g3 from "@/images/gallery/3.png";
+import g4 from "@/images/gallery/4.png";
+import g5 from "@/images/gallery/5.png";
+import g6 from "@/images/gallery/6.png";
+
 const gallery = [
-  { src: "/images/p1.svg", alt: "Oxbow UI" },
-  { src: "/images/p1.svg", alt: "Oxbow UI" },
-  { src: "/images/p1.svg", alt: "Oxbow UI" },
-  { src: "/images/p1.svg", alt: "Oxbow UI" },
-  { src: "/images/p1.svg", alt: "Oxbow UI" },
-  { src: "/images/p1.svg", alt: "Oxbow UI" },
+  { src: g1, alt: "Oxbow UI" },
+  { src: g2, alt: "Oxbow UI" },
+  { src: g3, alt: "Oxbow UI" },
+  { src: g4, alt: "Oxbow UI" },
+  { src: g5, alt: "Oxbow UI" },
+  { src: g6, alt: "Oxbow UI" },
 ];
 ---
 
@@ -13,25 +22,45 @@ const gallery = [
   <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
     <div class="items-center grid grid-cols-1 gap-12 lg:grid-cols-6">
       <div class="lg:col-span-2 lg:order-last">
-   
-        <h1
-          class=" text-4xl font-semibold tracking-tight text-zinc-900 dark:text-white sm:text-balance"
+        <Text
+          variant="displayMD"
+          tag="h2"
+          class="font-semibold tracking-tight text-zinc-900 dark:text-white sm:text-balance"
         >
           Explore our visual showcase
-        </h1>
-        <p
-          class="mt-2 text-base font-medium text-zinc-500 dark:text-zinc-400 sm:text-balance"
+        </Text>
+        <Text
+          variant="textSM"
+          tag="p"
+          class="mt-2 font-medium text-zinc-500 dark:text-zinc-400 sm:text-balance"
         >
           A curated collection of images capturing the essence of our brand and
           the stories we tell.
-        </p>
+        </Text>
+        <Text
+          variant="textSM"
+          tag="p"
+          class="mt-4 text-zinc-600 dark:text-zinc-400"
+        >
+          What you’ll find:
+        </Text>
+
+        <ul
+          class="mt-2 ml-4 list-disc font-medium text-sm text-zinc-600 dark:text-zinc-400 space-y-1"
+        >
+          <li>Responsive layout examples across breakpoints</li>
+          <li>Color and typography pairings in real screens</li>
+          <li>Component states and interaction previews</li>
+        </ul>
       </div>
       <div
         class="lg:col-span-4 grid grid-cols-1 sm:grid-cols-2 gap-4 lg:grid-cols-3"
       >
         {
           gallery.map(({ src, alt }) => (
-            <img
+            <Image
+              width={500}
+              height={500}
               src={src}
               alt={alt}
               class="object-cover size-full aspect-square"
