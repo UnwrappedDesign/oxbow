@@ -164,7 +164,8 @@ export default function PlaygroundIsland({
       setNavOpen(null);
     };
     const onArrow = (e: KeyboardEvent) => {
-      if (e.target && (e.target as HTMLElement).tagName === "INPUT") return;
+      const tgt = e.target as HTMLElement | null;
+      if (tgt && (tgt.tagName === "INPUT" || tgt.isContentEditable)) return;
       if (e.key === "ArrowLeft" && arguments[0]?.prevHref) {
         window.location.assign(arguments[0].prevHref);
       } else if (e.key === "ArrowRight" && arguments[0]?.nextHref) {
@@ -172,48 +173,43 @@ export default function PlaygroundIsland({
       }
     };
     const onThemeShortcuts = (e: KeyboardEvent) => {
-      if (e.metaKey && e.shiftKey && !e.altKey) {
-        const key = e.key.toLowerCase();
-        if (key === "1") {
+      // Theme switching with Ctrl + number (use code for reliability)
+      if (e.ctrlKey && !e.metaKey && !e.altKey) {
+        const code = e.code;
+        if (code === "Digit1") {
+          setMode("dark");
+          e.preventDefault();
+        } else if (code === "Digit2") {
+          setMode("light");
+          e.preventDefault();
+        } else if (code === "Digit3") {
+          setMode("system");
+          e.preventDefault();
+        }
+      }
+      // Tab switching: Cmd + Shift + 1/2 (use code, since Shift+1 => "!")
+      if (e.metaKey && e.shiftKey && !e.altKey && !e.ctrlKey) {
+        const code = e.code;
+        if (code === "Digit1") {
           setTab("code");
           e.preventDefault();
-        } else if (key === "2") {
+        } else if (code === "Digit2") {
           setTab("preview");
           e.preventDefault();
         }
       }
-      if (e.metaKey && !e.altKey) {
-        const key = e.key.toLowerCase();
-        // Theme switching
-        if (!e.shiftKey) {
-          if (key === "d") {
-            setMode("dark");
-            e.preventDefault();
-          } else if (key === "l") {
-            setMode("light");
-            e.preventDefault();
-          } else if (key === "s") {
-            setMode("system");
-            e.preventDefault();
-          } else if (canSeeCode && key === "o") {
-            openInNewWindow();
-            e.preventDefault();
-          }
-        }
-        // Download code: Cmd+Shift+D
-        if (canSeeCode && e.shiftKey && key === "d") {
-          downloadCode();
-          e.preventDefault();
-        }
+      // Download code: Cmd + Shift + D
+      if (canSeeCode && tab === "code" && e.metaKey && e.shiftKey && !e.altKey && !e.ctrlKey && e.key.toLowerCase() === "d") {
+        downloadCode();
+        e.preventDefault();
       }
-      // Copy code: Cmd+C (only if canSeeCode)
-      if (
-        canSeeCode &&
-        e.metaKey &&
-        !e.shiftKey &&
-        !e.altKey &&
-        e.key.toLowerCase() === "c"
-      ) {
+      // Open in new window: Cmd + O
+      if (canSeeCode && e.metaKey && !e.shiftKey && !e.altKey && !e.ctrlKey && e.key.toLowerCase() === "o") {
+        openInNewWindow();
+        e.preventDefault();
+      }
+      // Copy code: Cmd + C
+      if (canSeeCode && tab === "code" && e.metaKey && !e.shiftKey && !e.altKey && !e.ctrlKey && e.key.toLowerCase() === "c") {
         copyCode();
         e.preventDefault();
       }
@@ -321,14 +317,6 @@ export default function PlaygroundIsland({
       window.open(url.toString(), "_blank", "noopener,noreferrer");
     } catch {}
   };
-  // Helper to base64 encode code for v0
-  function base64Encode(str: string) {
-    if (typeof window !== "undefined") {
-      return window.btoa(unescape(encodeURIComponent(str)));
-    } else {
-      return Buffer.from(str, "utf-8").toString("base64");
-    }
-  }
   const openNavMenu = (
     which: "cat" | "sub" | "idx",
     ev: React.MouseEvent<HTMLButtonElement>,

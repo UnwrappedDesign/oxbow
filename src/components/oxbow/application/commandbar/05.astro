@@ -1,0 +1,375 @@
+---
+import Button from "@/components/fundations/buttons/Button.astro";
+import IconButton from "@/components/fundations/buttons/IconButton.astro";
+// Dynamic classes used in :class and conditionals
+export const excludeFromObfuscation = [
+  "bg-zinc-50",
+  "bg-white/5",
+  "dark:bg-white/5",
+  "text-accent-600",
+  "text-zinc-600",
+];
+import Search from "@/components/fundations/icons/Search.astro";
+import XIcon from "@/components/fundations/icons/X.astro";
+import FileDots from "@/components/fundations/icons/FileDots.astro";
+import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
+import Report from "@/components/fundations/icons/Report.astro";
+import ExternalLink from "@/components/fundations/icons/ExternalLink.astro";
+import Clipboard from "@/components/fundations/icons/Clipboard.astro";
+import Check from "@/components/fundations/icons/Check.astro";
+import Pin from "@/components/fundations/icons/Pin.astro";
+---
+
+<div
+  class="p-8 py-24 bg-white dark:bg-zinc-900 flex items-center justify-center"
+>
+  <!-- Copy:start -->
+  <!--
+  
+  - [x-cloak] hides uninitialized Alpine content until hydration to avoid flicker.
+ 
+<style>
+  :global([x-cloak]) {
+    display: none !important;
+  }
+  
+</style> 
+
+-->
+  <div
+    class="w-full max-w-4xl bg-white dark:bg-zinc-800 rounded-xl shadow-lg outline outline-zinc-200 dark:outline-zinc-800 overflow-hidden"
+    x-data="{
+      open: true,
+      query: '',
+      active: 'all', // all | files | people | updates
+      selected: 0,
+      copied: false,
+      onlyPinned: false,
+      // Data
+      items: [
+        { id: 'f-1', kind: 'files', title: 'Product Roadmap Q4', subtitle: 'Docs / Strategy', badges:['Doc','Internal'], href:'#file-1' },
+        { id: 'f-2', kind: 'files', title: 'Release Checklist', subtitle: 'Docs / Delivery', badges:['Checklist'], href:'#file-2' },
+        { id: 'p-1', kind: 'people', title: 'Akira Watanabe', subtitle: 'Design Systems', badges:['Manager'], href:'#user-1' },
+        { id: 'p-2', kind: 'people', title: 'Maya Singh', subtitle: 'Developer Experience', badges:['Reviewer'], href:'#user-2' },
+        { id: 'u-1', kind: 'updates', title: 'Incident 482 resolved', subtitle: 'Database latency back to normal', badges:['Postmortem'], href:'#upd-1' },
+        { id: 'u-2', kind: 'updates', title: 'Sprint 21 planning notes', subtitle: 'Next steps and owners', badges:['Planning'], href:'#upd-2' },
+      ],
+      recents: ['f-1','p-2','u-1'],
+      pinned: new Set(),
+      // Helpers
+      init(){ try{ const raw=localStorage.getItem('oxbow-cmd5-pins'); if(raw) this.pinned=new Set(JSON.parse(raw)); }catch{} },
+      savePins(){ try{ localStorage.setItem('oxbow-cmd5-pins', JSON.stringify(Array.from(this.pinned))); }catch{} },
+      togglePin(id){ this.pinned.has(id) ? this.pinned.delete(id) : this.pinned.add(id); this.savePins(); },
+      score(text,q){ q=(q||'').trim().toLowerCase(); if(!q) return 1; text=(text||'').toLowerCase(); if(text===q) return 1000; if(text.startsWith(q)) return 500; let i=0,j=0; while(i<text.length&&j<q.length){ if(text[i]===q[j]) j++; i++; } return j===q.length?200:(text.includes(q)?100:-1); },
+      filtered(){
+        const q=this.query, tab=this.active;
+        return this.items
+          .filter(it=> tab==='all' ? true : it.kind===tab)
+          .map(it=>({it, s: Math.max(this.score(it.title,q), this.score(it.subtitle,q))}))
+          .filter(x=> x.s>=0)
+          .filter(x=> this.onlyPinned ? this.pinned.has(x.it.id) : true)
+          .sort((a,b)=>{
+            // Prefer pinned, then recents, then score
+            const ap = this.pinned.has(a.it.id) ? 1 : 0;
+            const bp = this.pinned.has(b.it.id) ? 1 : 0;
+            if(ap!==bp) return bp-ap;
+            const ar = this.recents.includes(a.it.id) ? 1 : 0;
+            const br = this.recents.includes(b.it.id) ? 1 : 0;
+            if(ar!==br) return br-ar;
+            return b.s - a.s;
+          })
+          .map(x=>x.it);
+      },
+      rows(){ return this.filtered().map(r=>`row:${r.id}`); },
+      next(){ const n=this.rows().length; if(!n) return; this.selected=(this.selected+1)%n; },
+      prev(){ const n=this.rows().length; if(!n) return; this.selected=(this.selected-1+n)%n; },
+      isSel(id){ return this.rows()[this.selected]===`row:${id}`; },
+      current(){ const ids=this.rows(); const key=ids[this.selected]; const id=(key||'').replace('row:',''); return this.items.find(i=>i.id===id) || null; },
+      choose(){ const c=this.current(); if(!c) return; window.location.hash=c.href; this.open=false; },
+      copy(){ const c=this.current(); if(!c) return; const txt=window.location.origin+window.location.pathname+c.href; navigator.clipboard.writeText(txt).catch(()=>{}); this.copied=true; setTimeout(()=> this.copied=false, 900); },
+      onKey(e){
+        if((e.metaKey||e.ctrlKey)&&!e.shiftKey&&!e.altKey&&e.key.toLowerCase()==='k'){ e.preventDefault(); this.open=true; this.$nextTick(()=> this.$refs.input?.focus()); }
+        if(e.key==='/'){ e.preventDefault(); this.open=true; this.$nextTick(()=> this.$refs.input?.focus()); }
+        if(!this.open) return;
+        if(e.key==='Escape'){ this.open=false; return; }
+        if(e.metaKey && !e.shiftKey && !e.altKey && e.key.toLowerCase()==='c'){ e.preventDefault(); this.copy(); }
+        if(e.metaKey && !e.shiftKey && !e.altKey && e.key.toLowerCase()==='p'){ e.preventDefault(); const cur=this.current(); if(cur) this.togglePin(cur.id); }
+        if(e.key==='ArrowDown'){ e.preventDefault(); this.next(); }
+        if(e.key==='ArrowUp'){ e.preventDefault(); this.prev(); }
+        if(e.key==='Enter'){ e.preventDefault(); this.choose(); }
+      }
+    }"
+    @keydown.window="onKey($event)"
+  >
+    <!-- Header: search + tabs + filters -->
+    <div class="p-2">
+      <div class="relative">
+        <Search
+          class="pointer-events-none absolute top-3.5 left-4 text-zinc-400"
+          size="base"
+          slot="icon"
+        />
+        <input
+          x-ref="input"
+          x-model="query"
+          class="w-full h-12 pr-36 bg-transparent border-0 text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 pl-11 sm:text-sm rounded-lg ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Search files, people and updates…"
+          autocomplete="off"
+        />
+        <div
+          class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 hidden sm:flex gap-1 text-[11px] text-zinc-500 dark:text-zinc-300"
+        >
+          <kbd
+            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700"
+            >⌘</kbd
+          >
+          <kbd
+            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700"
+            >K</kbd
+          >
+        </div>
+        <button
+          type="button"
+          x-show="query.length>0"
+          @click="query=''; $nextTick(()=> $refs.input?.focus())"
+          class="absolute right-[4.5rem] top-1/2 -translate-y-1/2 size-7 inline-flex items-center justify-center rounded-md text-zinc-500 dark:text-zinc-300 hover:text-zinc-700 hover:bg-zinc-100 dark:hover:bg-white/10"
+          aria-label="Clear search"
+        >
+          <XIcon size="sm" />
+        </button>
+      </div>
+      <div class="mt-2 px-2 flex items-center justify-between text-[12px]">
+        <div class="flex items-center gap-2">
+          <button
+            @click="active='all'; selected=0"
+            :class="active==='all' ? 'text-blue-600 dark:text-blue-400' : 'text-zinc-600 dark:text-zinc-400'"
+            class="px-2 py-1 rounded-md hover:bg-zinc-50 dark:hover:bg-white/5 inline-flex items-center gap-2"
+          >
+            <Report size="sm" />
+            <span class="hidden sm:inline">All</span>
+          </button>
+          <button
+            @click="active='files'; selected=0"
+            :class="active==='files' ? 'text-blue-600 dark:text-blue-400' : 'text-zinc-600 dark:text-zinc-400'"
+            class="px-2 py-1 rounded-md hover:bg-zinc-50 dark:hover:bg-white/5 inline-flex items-center gap-2"
+          >
+            <FileDots size="sm" />
+            <span class="hidden sm:inline">Files</span>
+          </button>
+          <button
+            @click="active='people'; selected=0"
+            :class="active==='people' ? 'text-blue-600 dark:text-blue-400' : 'text-zinc-600 dark:text-zinc-400'"
+            class="px-2 py-1 rounded-md hover:bg-zinc-50 dark:hover:bg-white/5 inline-flex items-center gap-2"
+          >
+            <UsersGroup size="sm" />
+            <span class="hidden sm:inline">People</span>
+          </button>
+          <button
+            @click="active='updates'; selected=0"
+            :class="active==='updates' ? 'text-blue-600 dark:text-blue-400' : 'text-zinc-600 dark:text-zinc-400'"
+            class="px-2 py-1 rounded-md hover:bg-zinc-50 dark:hover:bg-white/5 inline-flex items-center gap-2"
+          >
+            <Report size="sm" />
+            <span class="hidden sm:inline">Updates</span>
+          </button>
+        </div>
+        <div class="flex items-center gap-2">
+          <label class="inline-flex items-center gap-2 cursor-pointer">
+            <input
+              type="checkbox"
+              class="accent-zinc-900 rounded-md border border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900"
+              x-model="onlyPinned"
+            />
+            <span class="text-zinc-600 dark:text-zinc-300">Pinned only</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Two-column body: results + preview -->
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 gap-0 border-t border-zinc-100 dark:border-white/5"
+    >
+      <!-- Results list -->
+      <div class="py-2">
+        <div
+          class="px-4 py-1 text-[11px] font-medium text-zinc-500 dark:text-zinc-300"
+        >
+          Results
+        </div>
+        <ul class="divide-y divide-zinc-100 dark:divide-zinc-900">
+          <template x-for="(r, idx) in filtered()" :key="r.id">
+            <li
+              :class="isSel(r.id) ? 'bg-zinc-50 dark:bg-white/5' : ''"
+              class="px-4 py-3 flex items-center justify-between cursor-pointer"
+              @mouseenter="selected = idx"
+              @click="selected = idx; choose()"
+            >
+              <div
+                class="flex items-center gap-3 text-zinc-900 dark:text-zinc-50"
+              >
+                <div
+                  class="size-8 rounded-lg bg-white dark:bg-zinc-800 grid place-items-center ring-1 ring-zinc-200 dark:ring-zinc-700"
+                >
+                  <template x-if="r.kind==='files'"
+                    ><FileDots size="sm" /></template
+                  >
+                  <template x-if="r.kind==='people'"
+                    ><UsersGroup size="sm" /></template
+                  >
+                  <template x-if="r.kind==='updates'"
+                    ><Report size="sm" /></template
+                  >
+                </div>
+                <div>
+                  <div class="text-sm font-medium" x-text="r.title"></div>
+                  <div
+                    class="text-xs text-zinc-500 dark:text-zinc-300 dark:text-zinc-400"
+                    x-text="r.subtitle"
+                  >
+                  </div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <template x-for="b in r.badges" :key="b">
+                  <span
+                    class="hidden md:inline text-[11px] px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-white/5 text-zinc-700 dark:text-zinc-300"
+                    x-text="b"></span>
+                </template>
+                <IconButton
+                  variant="muted"
+                  size="xxs"
+                  @click.stop="togglePin(r.id)"
+                  :aria-pressed="pinned.has(r.id)"
+                  :class="pinned.has(r.id)?'text-blue-6 dark:text-blue-40000':'text-zinc-600 dark:text-zinc-400'"
+                >
+                  <Pin slot="icon" size="xs" />
+                </IconButton>
+              </div>
+            </li>
+          </template>
+          <li
+            x-show="filtered().length===0"
+            class="px-4 py-6 text-center text-sm text-zinc-500 dark:text-zinc-300 italic"
+          >
+            No results
+          </li>
+        </ul>
+      </div>
+
+      <!-- Preview pane -->
+      <div
+        class="border-t md:border-t-0 md:border-l border-zinc-100 dark:border-zinc-800 p-4 lg:p-8 min-h-[260px] bg-white/60 dark:bg-white/2"
+      >
+        <template x-if="current()">
+          <div>
+            <div class="flex items-start justify-between">
+              <div>
+                <div
+                  class="text-sm font-semibold text-zinc-900 dark:text-zinc-100"
+                  x-text="current().title"
+                >
+                </div>
+                <div
+                  class="text-xs text-zinc-500 dark:text-zinc-300"
+                  x-text="current().subtitle"
+                >
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <Button
+                  variant="default"
+                  size="xxs"
+                  @click="copy()"
+                  title="Copy link (⌘/Ctrl+C)"
+                  class="gap-2"
+                >
+                  <span x-show="!copied">Copy</span>
+                  <Clipboard size="sm" x-show="!copied" />
+                  <span
+                    x-show="copied"
+                    class="flex items-center gap-1 text-green-700"
+                  >
+                    Copied
+                  </span>
+                  <Check size="sm" x-show="copied" />
+                </Button>
+                <Button
+                  class="gap-2"
+                  variant="muted"
+                  size="xxs"
+                  :href="current().href"
+                  title="Open"
+                >
+                  Open
+                  <ExternalLink size="xs" />
+                </Button>
+              </div>
+            </div>
+            <div
+              class="mt-8 text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed"
+            >
+              <p>
+                Preview excerpt is shown here to give quick context. Use arrow
+                keys to move, Enter to open, or pin frequently used results.
+              </p>
+              <ul class="mt-2 list-disc ml-4 space-y-1">
+                <li>Type to filter — subsequence search.</li>
+                <li>Press P to pin/unpin the selection (⌘/Ctrl+P).</li>
+                <li>Switch tabs to scope to files, people or updates.</li>
+              </ul>
+            </div>
+          </div>
+        </template>
+        <div
+          x-show="!current()"
+          class="h-full grid place-items-center text-sm text-zinc-500 dark:text-zinc-300"
+        >
+          Select a result to preview
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div
+      class="px-4 py-2 text-[11px] text-zinc-500 dark:text-zinc-300 flex items-center justify-between bg-zinc-50 dark:bg-white/10"
+    >
+      <div>
+        Tips: <kbd
+          class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+          >/</kbd
+        > to search • <kbd
+          class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+          >⌘</kbd
+        >+<kbd
+          class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+          >P</kbd
+        > to pin • <kbd
+          class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+          >⌘</kbd
+        >+<kbd
+          class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+          >C</kbd
+        > to copy
+      </div>
+      <div class="hidden sm:flex items-center gap-2">
+        <span class="flex items-center gap-1"
+          ><kbd
+            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            >↑</kbd
+          ><kbd
+            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            >↓</kbd
+          > to navigate</span
+        >
+        <span class="flex items-center gap-1"
+          ><kbd
+            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            >↵</kbd
+          > to open</span
+        >
+      </div>
+    </div>
+  </div>
+  <!-- Copy:end -->
+</div>

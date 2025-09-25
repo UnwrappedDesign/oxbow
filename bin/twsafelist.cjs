@@ -55,7 +55,19 @@ const rows = Array.from({ length: 12 }, (_, i) => i);
 const gap = Array.from({ length: 16 }, (_, i) => i);
 
 const others = [
-
+  // Command bars: classes toggled at runtime
+  'bg-accent-600',
+  'text-accent-600',
+  'bg-white/5',
+  'dark:bg-white/5',
+  'bg-white/10',
+  'dark:hover:bg-white/10',
+  'bg-zinc-50',
+  'bg-zinc-100',
+  'dark:bg-zinc-800',
+  'text-zinc-600',
+  'text-zinc-900',
+  'dark:text-zinc-100',
 ];
 
 const safelist = [

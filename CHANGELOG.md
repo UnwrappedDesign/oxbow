@@ -1,5 +1,13 @@
 # Changelog for Oxbow UI Components
 
+## **2025-09-25**
+
+### Added
+- gallery: [5 components](https://oxbowui.com/playground/marketing/gallery)
+
+### Modified
+- gallery: [15 components](https://oxbowui.com/playground/marketing/gallery)
+
 ## **2025-09-24**
 
 ### Modified

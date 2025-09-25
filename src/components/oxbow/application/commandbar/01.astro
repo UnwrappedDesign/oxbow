@@ -1,70 +1,172 @@
 ---
 export const freeComponent = true;
-import CommandbarButton from "@/components/fundations/buttons/CommandBarButton.astro";
-import Component from "@/components/fundations/icons/Component.astro";
-import Plus from "@/components/fundations/icons/Plus.astro";
+// Classes applied dynamically via Alpine :class must not be obfuscated
+export const excludeFromObfuscation = [
+  "bg-zinc-50",
+  "bg-white/5",
+  "dark:bg-white/5",
+  "text-accent-600",
+  "text-zinc-600",
+];
 import Search from "@/components/fundations/icons/Search.astro";
+import XIcon from "@/components/fundations/icons/X.astro";
+import Plus from "@/components/fundations/icons/Plus.astro";
+import Component from "@/components/fundations/icons/Component.astro";
+import Report from "@/components/fundations/icons/Report.astro";
+import Lifebuoy from "@/components/fundations/icons/Lifebuoy.astro";
 ---
 
 <div
-  class="flex items-center justify-center p-8 py-48 lg:py-62 bg-white dark:bg-zinc-900"
+  class="p-8 py-24 bg-white dark:bg-zinc-900 flex items-center justify-center"
 >
-  <!-- copy:start -->
+  <!-- Copy:start -->
+  <!--
+  
+  - [x-cloak] hides uninitialized Alpine content until hydration to avoid flicker.
+ 
+<style>
+  :global([x-cloak]) {
+    display: none !important;
+  }
+  
+</style> 
+
+-->
+
   <div
-    class="max-w-xl p-2.5 mx-auto w-full overflow-hidden bg-white dark:bg-zinc-800 shadow-lg transition-all transform rounded-xl outline-1 outline-zinc-200 dark:outline-white/10"
+    class="w-full max-w-md bg-white dark:bg-zinc-800 rounded-xl shadow-lg outline outline-zinc-200 dark:outline-zinc-800"
+    x-data="{
+      open: true,
+      query: '',
+      selected: 0,
+      options: [
+        { id:'new', text:'New Project', desc:'Start something from scratch', icon:'plus', key:'N', href:'#new' },
+        { id:'tmpl', text:'Open Templates', desc:'Pick a starter pattern', icon:'component', key:'T', href:'#templates' },
+        { id:'docs', text:'View Docs', desc:'Guides and API reference', icon:'report', key:'D', href:'#docs' },
+        { id:'help', text:'Help & Support', desc:'Contact and FAQ', icon:'lifebuoy', key:'H', href:'#help' },
+      ],
+      score(text, q){ q=(q||'').trim().toLowerCase(); if(!q) return 1; text=(text||'').toLowerCase(); if(text===q) return 1000; if(text.startsWith(q)) return 500; let i=0,j=0; while(i<text.length&&j<q.length){ if(text[i]===q[j]) j++; i++; } return j===q.length?200:(text.includes(q)?100:-1); },
+      get filtered(){
+        const q=this.query; return this.options
+          .map(o=>({o, s: Math.max(this.score(o.text,q), this.score(o.desc,q))}))
+          .filter(x=>x.s>=0)
+          .sort((a,b)=> b.s - a.s)
+          .map(x=>x.o);
+      },
+      openList(){ this.open = true; this.selected = 0; },
+      closeList(){ this.open = false; },
+      next(){ const n=this.filtered.length; if(!n) return; this.selected=(this.selected+1)%n; },
+      prev(){ const n=this.filtered.length; if(!n) return; this.selected=(this.selected-1+n)%n; },
+      choose(idx=this.selected){ const item=this.filtered[idx]; if(!item) return; window.dispatchEvent(new CustomEvent('cmd:choose', { detail:item })); this.closeList(); },
+      onKey(e){
+        // Open
+        if((e.metaKey||e.ctrlKey) && !e.shiftKey && !e.altKey && e.key.toLowerCase()==='k'){ e.preventDefault(); this.openList(); this.$nextTick(()=> this.$refs.input?.focus()); return; }
+        if(e.key==='/'){ e.preventDefault(); this.openList(); this.$nextTick(()=> this.$refs.input?.focus()); return; }
+        if(!this.open) return;
+        if(e.key==='Escape'){ this.closeList(); return; }
+        // Single-letter shortcuts
+        const k = e.key.length===1 ? e.key.toUpperCase() : '';
+        if(k){ const idx=this.filtered.findIndex(o=>o.key===k); if(idx>-1){ e.preventDefault(); this.choose(idx); } }
+      }
+    }"
+    @keydown.window="onKey($event)"
   >
-    <!-- Input section with label and accessible search -->
-    <div
-      class="relative bg-zinc-50 dark:bg-zinc-900 focus-within:bg-white dark:focus-within:bg-zinc-900 rounded-md"
-    >
-      <label for="search" class="sr-only">Search</label>
-      <Search
-        class="pointer-events-none absolute top-3.5 left-4 text-zinc-400"
-        size="base"
-        slot="icon"
-      />
-      <input
-        id="search"
-        type="text"
-        class="w-full h-12 pr-4 bg-transparent border-0 text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 pl-11 focus:ring-0 sm:text-sm"
-        placeholder="Search for anything"
-        role="combobox"
-        aria-expanded="false"
-        aria-controls="options"
-        aria-autocomplete="list"
-      />
+    <div class="p-2" @click.outside="closeList()">
+      <div class="relative">
+        <Search
+          class="pointer-events-none absolute top-3.5 left-4 text-zinc-400"
+          size="base"
+          slot="icon"
+        />
+        <input
+          x-ref="input"
+          x-model="query"
+          @focus="openList()"
+          @keydown.arrow-down.prevent="next()"
+          @keydown.arrow-up.prevent="prev()"
+          @keydown.enter.prevent="choose()"
+          @keydown.escape.prevent="closeList()"
+          class="w-full h-11 pr-16 bg-transparent border border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 pl-11 sm:text-sm rounded-lg focus:outline-none focus:border-blue-500 dark:focus:border-blue-400"
+          placeholder="Quick actions…"
+          autocomplete="off"
+        />
+        <div
+          class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 hidden sm:flex gap-1 text-[11px] text-zinc-500"
+        >
+          <kbd
+            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700"
+            >⌘</kbd
+          >
+          <kbd
+            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700"
+            >K</kbd
+          >
+        </div>
+        <button
+          type="button"
+          x-show="query.length>0"
+          @click="query=''; $nextTick(()=> $refs.input?.focus())"
+          class="absolute right-[3.1rem] top-1/2 -translate-y-1/2 size-7 inline-flex items-center justify-center rounded-md text-zinc-500 hover:text-zinc-700 hover:bg-zinc-100 dark:hover:bg-white/10"
+          aria-label="Clear search"
+        >
+          <XIcon size="sm" />
+        </button>
+      </div>
+
+      <ul
+        x-show="open"
+        class="mt-2 max-h-64 overflow-auto rounded-lg ring-1 ring-zinc-200 dark:ring-zinc-800 divide-y divide-zinc-100 dark:divide-zinc-800 bg-white dark:bg-white/5"
+      >
+        <template x-for="(opt, idx) in filtered" :key="opt.id">
+          <li
+            :class="selected===idx ? 'bg-zinc-50 dark:bg-white/5' : ''"
+            class="px-3 py-2 flex items-center justify-between cursor-pointer text-zinc-900 dark:text-zinc-50"
+            @mouseenter="selected = idx"
+            @click="choose(idx)"
+          >
+            <div class="flex items-center gap-2">
+              <div
+                class="size-7 rounded bg-white dark:bg-zinc-800 grid place-items-center ring-1 ring-zinc-200 dark:ring-zinc-700"
+              >
+                <template x-if="opt.icon==='plus'"><Plus size="sm" /></template>
+                <template x-if="opt.icon==='component'"
+                  ><Component size="sm" /></template
+                >
+                <template x-if="opt.icon==='report'"
+                  ><Report size="sm" /></template
+                >
+                <template x-if="opt.icon==='lifebuoy'"
+                  ><Lifebuoy size="sm" /></template
+                >
+              </div>
+              <div>
+                <div class="text-sm font-medium" x-text="opt.text"></div>
+                <div
+                  class="text-xs text-zinc-500 dark:text-zinc-400"
+                  x-text="opt.desc"
+                >
+                </div>
+              </div>
+            </div>
+            <kbd
+              class="text-[11px] px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400"
+              x-text="opt.key"></kbd>
+          </li>
+        </template>
+        <li
+          x-show="filtered.length===0"
+          class="px-3 py-4 text-center text-sm text-zinc-500 italic"
+        >
+          No results
+        </li>
+      </ul>
+      <div
+        class="px-1 py-2 text-[11px] text-zinc-500 flex items-center justify-between"
+      >
+        <span>Tip: type / or press ⌘K</span>
+        <span class="hidden sm:inline">Use ↑ ↓ to navigate, ↵ to run</span>
+      </div>
     </div>
-    <!-- Options list with roles and keyboard focusability -->
-    <ul
-      class="pt-3 overflow-y-auto space-y-3 max-h-96 scroll-py-3"
-      id="options"
-      role="listbox"
-      tabindex="0"
-    >
-      <li id="option-1" role="option" tabindex="0" aria-selected="false">
-        <CommandbarButton
-          text="Search projects..."
-          hasKbd={true}
-          kbdKey="S"
-          iconSlot={true}
-          class="hover:bg-zinc-50 dark:hover:bg-zinc-700"
-        >
-          <Component size="sm" slot="icon" />
-        </CommandbarButton>
-      </li>
-      <li id="option-2" role="option" tabindex="0" aria-selected="false">
-        <CommandbarButton
-          text="Create another project"
-          hasKbd={true}
-          kbdKey="C"
-          iconSlot={true}
-          class="hover:bg-zinc-50 dark:hover:bg-zinc-700"
-        >
-          <Plus size="sm" slot="icon" />
-        </CommandbarButton>
-      </li>
-      <!-- Add more items similarly with roles and attributes... -->
-    </ul>
   </div>
-  <!-- copy:end -->
+  <!-- Copy:end -->
 </div>

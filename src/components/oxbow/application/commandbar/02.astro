@@ -1,147 +1,305 @@
 ---
-import CommandbarButton from "@/components/fundations/buttons/CommandBarButton.astro";
-import Text from "@/components/fundations/typography/Text.astro";
+// Dynamic classes toggled at runtime; keep original names in prod
+export const excludeFromObfuscation = [
+  "bg-zinc-50",
+  "bg-white/5",
+  "dark:bg-white/5",
+  "text-accent-600",
+  "text-zinc-600",
+];
 import Search from "@/components/fundations/icons/Search.astro";
-import Component from "@/components/fundations/icons/Component.astro";
+import XIcon from "@/components/fundations/icons/X.astro";
+import Mail from "@/components/fundations/icons/Mail.astro";
+import Grid from "@/components/fundations/icons/Grid.astro";
+import Tools from "@/components/fundations/icons/Tools.astro";
+import Calendar from "@/components/fundations/icons/Calendar.astro";
 import Plus from "@/components/fundations/icons/Plus.astro";
-import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
-import ArrowBackwards from "@/components/fundations/icons/ArrowBackwards.astro";
-import ArrowDown from "@/components/fundations/icons/ArrowDown.astro";
-import ArrowUp from "@/components/fundations/icons/ArrowUp.astro";
+import Report from "@/components/fundations/icons/Report.astro";
 ---
 
 <div
-  class="flex items-center justify-center p-8 py-37 bg-white dark:bg-zinc-900"
+  class="p-8 py-24 bg-white dark:bg-zinc-900 flex items-center justify-center"
 >
-  <!-- copy:start -->
+  <!-- Copy:start -->
+  <!--
+  
+  - [x-cloak] hides uninitialized Alpine content until hydration to avoid flicker.
+ 
+<style>
+  :global([x-cloak]) {
+    display: none !important;
+  }
+  
+</style> 
+
+-->
   <div
-    class="max-w-xl w-full mx-auto overflow-hidden bg-white dark:bg-zinc-800 shadow-lg transition-all transform divide-y divide-zinc-200 dark:divide-zinc-700 rounded-xl outline-1 outline-zinc-200 dark:outline-white/10"
+    class="w-full max-w-2xl bg-white dark:bg-zinc-800 rounded-xl shadow-lg outline outline-zinc-200 dark:outline-zinc-800 overflow-hidden"
+    x-data="{
+      open: true,
+      query: '',
+      selected: 0,
+      // chord handling
+      pendingChord: '',
+      chordTimer: null,
+      // demo actions
+      go(href){ console.log('navigate ->', href) },
+      // options/shortcuts (new copy)
+      options: [
+        { id: 'open-inbox', text: 'Open Inbox', desc: 'Latest updates and mentions', icon: 'mail', href: '#inbox', shortcuts: ['W','I'] },
+        { id: 'browse-collections', text: 'Browse Collections', desc: 'Explore saved components and patterns', icon: 'grid', href: '#collections', shortcuts: ['W','C'] },
+        { id: 'integrations-directory', text: 'Open Integrations', desc: 'Connect tools and automate workflows', icon: 'tools', href: '#integrations', shortcuts: ['W','T'] },
+        { id: 'new-document', text: 'Start New Document', desc: 'Blank canvas for ideas', icon: 'plus', href: '#new', shortcuts: ['N'] },
+        { id: 'activity-log', text: 'View Activity Log', desc: 'All changes across the workspace', icon: 'report', href: '#activity', shortcuts: ['L'] },
+        { id: 'schedule-standup', text: 'Plan Standup', desc: 'Book a daily team catch‑up', icon: 'calendar', href: '#standup', shortcuts: ['S'] },
+      ],
+      // example cards data (new copy)
+      requests: [
+        { id:'r1', name:'Avery Gray', badge:'Overtime', from:'Aug 12', to:'Aug 12' },
+        { id:'r2', name:'Noah Patel', badge:'WFH', from:'Aug 13', to:'Aug 13' },
+        { id:'r3', name:'Isla Chen', badge:'Training', from:'Aug 14', to:'Aug 15' },
+        { id:'r4', name:'Marco Santos', badge:'Leave', from:'Aug 16', to:'Aug 18' },
+      ],
+      score(text, q){
+        q = (q||'').trim().toLowerCase();
+        if(!q) return 1;
+        text = (text||'').toLowerCase();
+        if(text === q) return 1000;
+        if(text.startsWith(q)) return 500;
+        // subsequence match
+        let i=0,j=0; while(i<text.length && j<q.length){ if(text[i]===q[j]) j++; i++; }
+        return j===q.length ? 200 : (text.includes(q) ? 100 : -1);
+      },
+      get filtered(){
+        const q = this.query; const arr = this.options.map(o=>({o, s: Math.max(this.score(o.text,q), this.score(o.desc,q))}))
+          .filter(x=>x.s>=0)
+          .sort((a,b)=> b.s - a.s)
+          .map(x=>x.o);
+        return arr;
+      },
+      openList(){ this.open = true; this.selected = 0; },
+      closeList(){ this.open = false; this.pendingChord=''; if(this.chordTimer) { clearTimeout(this.chordTimer); this.chordTimer=null; } },
+      prev(){ if(!this.filtered.length) return; this.selected = (this.selected - 1 + this.filtered.length) % this.filtered.length; },
+      next(){ if(!this.filtered.length) return; this.selected = (this.selected + 1) % this.filtered.length; },
+      choose(idx=this.selected){ const item = this.filtered[idx]; if(!item) return; this.go(item.href); this.closeList(); },
+      // Handle chord shortcuts like G then T
+      onKey(e){
+        if(e.key==='Escape'){ this.closeList(); return; }
+        if((e.metaKey||e.ctrlKey) && !e.shiftKey && !e.altKey && e.key.toLowerCase()==='k'){ e.preventDefault(); this.openList(); this.$nextTick(()=> this.$refs.input?.focus()); return; }
+        if(e.key==='/'){ e.preventDefault(); this.openList(); this.$nextTick(()=> this.$refs.input?.focus()); return; }
+        const k = e.key.length===1 ? e.key.toUpperCase() : e.key;
+        // If a chord is pending, try resolve
+        if(this.pendingChord){
+          const seq = [this.pendingChord, k];
+          const foundIdx = this.options.findIndex(o=> JSON.stringify(o.shortcuts)===JSON.stringify(seq));
+          if(foundIdx>-1){ this.selected = foundIdx; this.choose(); e.preventDefault(); }
+          this.pendingChord=''; if(this.chordTimer){ clearTimeout(this.chordTimer); this.chordTimer=null; }
+          return;
+        }
+        // Start a chord or single-key command
+        // If any command has first key === k, start chord
+        const hasChordStart = this.options.some(o=>o.shortcuts.length===2 && o.shortcuts[0]===k);
+        if(hasChordStart){
+          this.pendingChord = k;
+          if(this.chordTimer) clearTimeout(this.chordTimer);
+          this.chordTimer = setTimeout(()=>{ this.pendingChord=''; this.chordTimer=null; }, 1200);
+          e.preventDefault();
+          return;
+        }
+        // Single key command
+        const oneIdx = this.options.findIndex(o=>o.shortcuts.length===1 && o.shortcuts[0]===k);
+        if(oneIdx>-1){ this.selected = oneIdx; this.choose(); e.preventDefault(); }
+      }
+    }"
+    @keydown.window="onKey($event)"
   >
-    <div class="relative">
-      <label for="search" class="sr-only">Search for anything</label>
-      <Search
-        class="pointer-events-none absolute top-3.5 left-4 text-zinc-400 dark:text-zinc-400"
-        size="base"
-        slot="icon"
-      />
-      <input
-        id="search"
-        type="text"
-        class="w-full h-12 pr-4 bg-transparent border-0 text-accent-500 dark:text-blue-400 placeholder-zinc-400 dark:placeholder-zinc-500 pl-11 focus:ring-0 sm:text-sm"
-        placeholder="Search for anything"
-        role="combobox"
-        aria-expanded="false"
-        aria-controls="options"
-        aria-activedescendant=""
-        aria-autocomplete="list"
-      />
+    <!-- Input -->
+    <div class="relative p-2">
+      <div class="relative">
+        <Search
+          class="pointer-events-none absolute top-3.5 left-4 text-zinc-400"
+          size="base"
+          slot="icon"
+        />
+        <input
+          x-ref="input"
+          x-model="query"
+          @focus="openList()"
+          @keydown.arrow-down.prevent="next()"
+          @keydown.arrow-up.prevent="prev()"
+          @keydown.enter.prevent="choose()"
+          @keydown.escape.prevent="closeList()"
+          class="w-full h-12 pr-14 bg-transparent border border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 pl-11 sm:text-sm rounded-lg focus:outline-none focus:border-blue-500 dark:focus:border-blue-400"
+          placeholder="Search anything or type a command..."
+          autocomplete="off"
+          role="combobox"
+          :aria-expanded="open"
+          aria-controls="options"
+          aria-autocomplete="list"
+        />
+        <!-- kbd hint -->
+        <div
+          class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 hidden sm:flex gap-1 text-[11px] text-zinc-500"
+        >
+          <kbd
+            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700"
+            >⌘</kbd
+          >
+          <kbd
+            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700"
+            >K</kbd
+          >
+        </div>
+        <!-- Clear -->
+        <button
+          type="button"
+          x-show="query.length>0"
+          @click="query=''; $nextTick(()=> $refs.input?.focus())"
+          class="absolute right-[3.25rem] top-1/2 -translate-y-1/2 size-7 inline-flex items-center justify-center rounded-md text-zinc-500 hover:text-zinc-700 hover:bg-zinc-100 dark:hover:bg-white/10"
+          aria-label="Clear search"
+        >
+          <XIcon size="sm" />
+        </button>
+      </div>
     </div>
-    <ul
-      class="p-2 overflow-y-auto space-y-3 max-h-96"
-      id="options"
-      role="listbox"
-      tabindex="0"
-    >
-      <li class="px-2">
-        <Text
-          tag="p"
-          variant="textSM"
-          class="font-medium text-zinc-500 dark:text-zinc-300"
+
+    <!-- Pending requests row -->
+    <template x-if="open">
+      <div class="px-3 py-2">
+        <div
+          class="px-2 pt-2 text-[11px] font-medium text-zinc-500 dark:text-zinc-300"
         >
-          Work
-        </Text>
-      </li>
-      <li id="option-1" role="option" tabindex="0" aria-selected="false">
-        <CommandbarButton
-          text="Search projects..."
-          hasKbd={true}
-          kbdKey="S"
-          iconSlot={true}
+          Recent Items <span x-text="requests.length"></span>
+        </div>
+        <div class="flex gap-2 mt-2 pb-2 overflow-x-auto overflow-y-auto">
+          <template x-for="r in requests" :key="r.id">
+            <div
+              class="shrink-0 w-56 rounded-lg bg-zinc-50 dark:bg-white/5 px-3 py-2"
+            >
+              <div class="inline-flex items-center gap-2">
+                <span
+                  class="inline-flex items-center justify-center size-7 rounded-full bg-white dark:bg-white/5 dark:text-zinc-300 text-[11px] font-semibold text-zinc-700"
+                >
+                  <span
+                    x-text="r.name.split(' ').map(n=>n[0]).join('').slice(0,2)"
+                  ></span>
+                </span>
+                <span
+                  class="text-[11px] px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 outline outline-blue-100 dark:bg-blue-500/15 dark:text-blue-200 dark:outline-blue-500/10"
+                  x-text="r.badge"></span>
+              </div>
+              <div
+                class="mt-1 text-[12px] font-medium text-zinc-800 dark:text-zinc-100"
+                x-text="r.name"
+              >
+              </div>
+              <div
+                class="text-[11px] text-zinc-500 dark:text-zinc-400"
+                x-text="r.from + ' → ' + r.to"
+              >
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+    </template>
+
+    <!-- Shortcuts list -->
+    <div class="py-1">
+      <div class="px-6 py-1 text-[11px] font-medium text-zinc-500">
+        Commands
+      </div>
+      <ul
+        id="options"
+        role="listbox"
+        class="divide-y divide-zinc-100 dark:divide-zinc-800"
+      >
+        <template x-for="(opt, idx) in filtered" :key="opt.id">
+          <li
+            role="option"
+            :aria-selected="selected === idx"
+            @mouseenter="selected = idx"
+            @click="choose(idx)"
+            :class="selected === idx ? 'bg-zinc-50 dark:bg-white/5' : ''"
+            class="cursor-pointer px-6 py-3 flex items-center justify-between text-zinc-900 dark:text-zinc-50"
+          >
+            <div class="flex items-center gap-3">
+              <div
+                class="size-8 rounded-lg bg-white dark:bg-white/5 grid place-items-center ring-1 ring-zinc-200 dark:ring-zinc-700"
+              >
+                <template x-if="opt.icon==='mail'"><Mail size="sm" /></template>
+                <template x-if="opt.icon==='grid'"><Grid size="sm" /></template>
+                <template x-if="opt.icon==='tools'"
+                  ><Tools size="sm" /></template
+                >
+                <template x-if="opt.icon==='plus'"><Plus size="sm" /></template>
+                <template x-if="opt.icon==='report'"
+                  ><Report size="sm" /></template
+                >
+                <template x-if="opt.icon==='calendar'"
+                  ><Calendar size="sm" /></template
+                >
+              </div>
+              <div>
+                <div class="text-sm font-medium" x-text="opt.text"></div>
+                <div
+                  class="text-xs text-zinc-500 dark:text-zinc-400"
+                  x-text="opt.desc"
+                >
+                </div>
+              </div>
+            </div>
+            <!-- Shortcut hint -->
+            <div
+              class="hidden sm:flex items-center gap-1 text-[11px] text-zinc-600"
+            >
+              <template x-for="(k, i) in opt.shortcuts" :key="k">
+                <span class="inline-flex items-center gap-1">
+                  <kbd
+                    class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+                    x-text="k"></kbd>
+                </span>
+              </template>
+            </div>
+          </li>
+        </template>
+        <li
+          x-show="filtered.length===0"
+          class="px-6 py-6 text-center text-sm text-zinc-500 italic"
         >
-          <Component size="sm" slot="icon" />
-        </CommandbarButton>
-      </li>
-      <li id="option-2" role="option" tabindex="0" aria-selected="false">
-        <CommandbarButton
-          text="Create another project"
-          hasKbd={true}
-          kbdKey="C"
-          iconSlot={true}
-        >
-          <Plus size="sm" slot="icon" />
-        </CommandbarButton>
-      </li>
-    </ul>
-    <ul
-      class="p-3 overflow-y-auto space-y-3 max-h-96"
-      id="options"
-      role="listbox"
-      tabindex="0"
-    >
-      <li class="px-2">
-        <Text
-          tag="p"
-          variant="textSM"
-          class="font-medium text-zinc-500 dark:text-zinc-300"
-        >
-          Recent Projects
-        </Text>
-      </li>
-      <li id="option-1" role="option" tabindex="0" aria-selected="false">
-        <CommandbarButton
-          text="Search for team"
-          hasKbd={true}
-          kbdKey="R"
-          iconSlot={true}
-        >
-          <UsersGroup size="sm" slot="icon" />
-        </CommandbarButton>
-      </li>
-      <li id="option-2" role="option" tabindex="0" aria-selected="false">
-        <CommandbarButton
-          text="Create a new team"
-          hasKbd={true}
-          kbdKey="C"
-          iconSlot={true}
-        >
-          <Plus size="sm" slot="icon" />
-        </CommandbarButton>
-      </li>
-    </ul>
+          No results
+        </li>
+      </ul>
+    </div>
+
+    <!-- Footer help -->
     <div
-      class="flex flex-wrap items-center bg-zinc-50 dark:bg-zinc-800 py-2.5 px-4 text-xs text-zinc-500 dark:text-zinc-300"
+      class="px-4 py-2 text-[11px] text-zinc-500 dark:text-zinc-400 flex items-center justify-between bg-zinc-50 dark:bg-white/10"
     >
-      <kbd
-        class="flex items-center justify-center mx-1 font-semibold bg-white dark:bg-zinc-900 border rounded size-5 text-zinc-900 dark:text-zinc-200 border-zinc-200 dark:border-zinc-700 sm:mx-2"
-      >
-        <ArrowBackwards size="xs" slot="icon" />
-      </kbd>
-      <span class="sm:hidden"> to select </span>
-      <span class="hidden sm:inline"> to select </span>
-      <kbd
-        class="flex items-center justify-center mx-1 font-semibold bg-white dark:bg-zinc-900 border rounded size-5 text-zinc-900 dark:text-zinc-200 border-zinc-200 dark:border-zinc-700 sm:mx-2"
-      >
-        <ArrowDown size="xs" slot="icon" />
-      </kbd>
-      <kbd
-        class="flex items-center justify-center mx-1 font-semibold bg-white dark:bg-zinc-900 border rounded size-5 text-zinc-900 dark:text-zinc-200 border-zinc-200 dark:border-zinc-700 sm:mx-2"
-      >
-        <ArrowUp size="xs" slot="icon" />
-      </kbd>
-      <span class="hidden sm:inline"> to navigate </span>
-      <kbd
-        class="flex items-center justify-center h-5 px-2 mx-1 font-medium bg-white dark:bg-zinc-900 border rounded text-zinc-500 dark:text-zinc-300 border-zinc-200 dark:border-zinc-700 w-7 sm:mx-2"
-      >
-        esc
-      </kbd>
-      to close
-      <kbd
-        class="flex items-center justify-center px-2 mx-1 font-medium bg-white dark:bg-zinc-900 border rounded size-5 text-zinc-500 dark:text-zinc-300 border-zinc-200 dark:border-zinc-700 sm:mx-2"
-      >
-        BS
-      </kbd>
+      <div>
+        Tip: press <kbd
+          class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+          >/</kbd
+        > to explore commands
+      </div>
+      <div class="hidden sm:flex items-center gap-2">
+        <span class="flex items-center gap-1"
+          ><kbd
+            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            >↑</kbd
+          ><kbd
+            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            >↓</kbd
+          > to navigate</span
+        >
+        <span class="flex items-center gap-1"
+          ><kbd
+            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            >↵</kbd
+          > to select</span
+        >
+      </div>
     </div>
   </div>
-
-  <!-- copy:end -->
+  <!-- Copy:end -->
 </div>

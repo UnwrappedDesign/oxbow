@@ -1,85 +1,455 @@
 ---
+import Button from "@/components/fundations/buttons/Button.astro";
+import IconButton from "@/components/fundations/buttons/IconButton.astro";
+// Prevent obfuscation for classes we toggle via :class
+export const excludeFromObfuscation = [
+  "bg-zinc-50",
+  "bg-white/5",
+  "dark:bg-white/5",
+  "text-accent-600",
+  "text-zinc-600",
+  // filter button states
+  "bg-zinc-100",
+  "dark:bg-zinc-800",
+  "text-zinc-900",
+  "dark:text-zinc-100",
+];
 import Search from "@/components/fundations/icons/Search.astro";
-import Text from "@/components/fundations/typography/Text.astro";
-import CommandBarUserCard from "@/components/fundations/wrappers/CommandBarUserCard.astro";
+import XIcon from "@/components/fundations/icons/X.astro";
+import Tools from "@/components/fundations/icons/Tools.astro";
+import Download from "@/components/fundations/icons/Download.astro";
+import Report from "@/components/fundations/icons/Report.astro";
+import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
+import Calendar from "@/components/fundations/icons/Calendar.astro";
+import Check from "@/components/fundations/icons/Check.astro";
+import Settings from "@/components/fundations/icons/Settings.astro";
 ---
 
 <div
-  class="flex items-center justify-center p-8 py-48 lg:py-62 bg-white dark:bg-zinc-900"
+  class="p-8 py-24 bg-white dark:bg-zinc-900 flex items-center justify-center"
 >
-  <!-- copy:start -->
+  <!-- Copy:start -->
+  <!--
+  
+  - [x-cloak] hides uninitialized Alpine content until hydration to avoid flicker.
+ 
+<style>
+  :global([x-cloak]) {
+    display: none !important;
+  }
+  
+</style> 
+
+-->
   <div
-    class="max-w-xl p-3 mx-auto w-full overflow-hidden bg-white dark:bg-zinc-800 shadow-lg transition-all transform rounded-xl outline-1 outline-zinc-200 dark:outline-white/10"
+    class="w-full max-w-3xl bg-white dark:bg-zinc-800 rounded-xl shadow-lg outline outline-zinc-200 dark:outline-zinc-800 overflow-hidden"
+    x-data="{
+      // UI state
+      open: true,
+      step: 1, // 1: list, 2: configure, 3: done
+      query: '',
+      selected: 0,
+      filter: 'all', // all | favorites | scheduled
+      toast: '',
+      // data
+      automations: [
+        {
+          id: 'sync-users',
+          name: 'Sync Directory Users',
+          desc: 'Pull accounts from your identity provider',
+          icon: 'users',
+          tags: ['People','Read'],
+          params: [
+            { key:'scope', label:'Scope', type:'select', options:['All', 'Active only', 'Suspended only'], required:true, value:'All' },
+            { key:'notify', label:'Email summary to', type:'text', placeholder:'ops@company.com' },
+          ],
+        },
+        {
+          id: 'export-audit',
+          name: 'Export Audit Log',
+          desc: 'Download CSV with recent activity',
+          icon: 'download',
+          tags: ['Compliance','CSV'],
+          params: [
+            { key:'range', label:'Date range', type:'select', options:['Last 24h','Last 7 days','Last 30 days'], required:true, value:'Last 7 days' },
+            { key:'mask', label:'Mask sensitive fields', type:'toggle', value:true },
+          ],
+        },
+        {
+          id: 'generate-report',
+          name: 'Generate KPI Report',
+          desc: 'Produce a PDF summary for stakeholders',
+          icon: 'report',
+          tags: ['Executive','PDF'],
+          params: [
+            { key:'project', label:'Project', type:'text', placeholder:'e.g. Phoenix' },
+            { key:'includeCharts', label:'Include charts', type:'toggle', value:true },
+          ],
+        },
+        {
+          id: 'maintenance-window',
+          name: 'Schedule Maintenance Window',
+          desc: 'Notify users and set read‑only mode',
+          icon: 'calendar',
+          tags: ['Ops','Status'],
+          params: [
+            { key:'start', label:'Start', type:'datetime' },
+            { key:'end', label:'End', type:'datetime' },
+            { key:'message', label:'Banner message', type:'text', placeholder:'We’ll be back shortly' },
+          ],
+        },
+        {
+          id: 'reset-feature-flags',
+          name: 'Reset Feature Flags',
+          desc: 'Restore defaults for selected environment',
+          icon: 'tools',
+          tags: ['Config','Danger'],
+          params: [
+            { key:'environment', label:'Environment', type:'select', options:['Development','Staging','Production'], required:true, value:'Staging' },
+            { key:'confirm', label:'Type RESET to confirm', type:'text', placeholder:'RESET', required:true },
+          ],
+        },
+      ],
+      favorites: new Set(),
+      scheduled: [], // {id, name, at}
+      current: null, // selected automation object
+      form: {},
+      init(){
+        // Restore favorites
+        try { const raw = localStorage.getItem('oxbow-automation-favs'); if(raw) this.favorites = new Set(JSON.parse(raw)); } catch {}
+      },
+      saveFavs(){ try { localStorage.setItem('oxbow-automation-favs', JSON.stringify(Array.from(this.favorites))); } catch {} },
+      toggleFav(id){ this.favorites.has(id) ? this.favorites.delete(id) : this.favorites.add(id); this.saveFavs(); },
+      score(text, q){ q=(q||'').trim().toLowerCase(); if(!q) return 1; text=(text||'').toLowerCase(); if(text===q) return 1000; if(text.startsWith(q)) return 500; let i=0,j=0; while(i<text.length&&j<q.length){ if(text[i]===q[j]) j++; i++; } return j===q.length?200:(text.includes(q)?100:-1); },
+      list(){
+        const q=this.query;
+        const rank=a=> Math.max(this.score(a.name,q), this.score(a.desc,q), ...(a.tags||[]).map(t=>this.score(t,q)));
+        return this.automations
+          .map(a=>({a, s: rank(a)}))
+          .filter(x=>x.s>=0)
+          .filter(x=> this.filter==='favorites' ? this.favorites.has(x.a.id) : true)
+          .filter(x=> this.filter==='scheduled' ? this.scheduled.some(s=>s.id===x.a.id) : true)
+          .sort((x,y)=> y.s - x.s)
+          .map(x=>x.a);
+      },
+      openWizard(a){ this.current = a; this.form = {}; (a.params||[]).forEach(p=>{ if(p.value!==undefined) this.form[p.key]=p.value; }); this.step=2; },
+      back(){ if(this.step>1){ this.step--; return; } this.open=false; },
+      quickRun(a){ this.toast='Running '+a.name+'…'; setTimeout(()=>{ this.toast='Completed '+a.name; this.step=3; }, 600); },
+      runNow(){ if(!this.current) return; this.toast='Executing…'; setTimeout(()=>{ this.toast='Success: '+this.current.name; this.step=3; }, 700); },
+      scheduleAt(){ if(!this.current) return; const at = this.form.start || new Date().toISOString(); this.scheduled.push({ id:this.current.id, name:this.current.name, at }); this.toast='Scheduled'; this.step=3; },
+      icon(name){ return name; },
+      isSelectedRow(kind,id){ return this.selectedKey()===`${kind}:${id}`; },
+      selectedKey(){ const rows=[...this.list().map(a=>`item:${a.id}`)]; return rows[this.selected]||''; },
+      nextSel(){ const n=this.list().length; if(!n) return; this.selected=(this.selected+1)%n; },
+      prevSel(){ const n=this.list().length; if(!n) return; this.selected=(this.selected-1+n)%n; },
+      chooseSel(){ const rows=this.list(); const idx=this.selected; const a=rows[idx]; if(!a) return; this.openWizard(a); },
+      onKey(e){
+        // global open
+        if((e.metaKey||e.ctrlKey)&&!e.shiftKey&&!e.altKey&&e.key.toLowerCase()==='k'){ e.preventDefault(); this.open=true; this.$nextTick(()=> this.$refs.input?.focus()); }
+        if(e.key==='/'){ e.preventDefault(); this.open=true; this.$nextTick(()=> this.$refs.input?.focus()); }
+        if(!this.open) return;
+        if(e.key==='Escape'){ if(this.step>1){ this.back(); } else { this.open=false; } }
+        if(this.step===1){
+          if(e.key==='ArrowDown'){ e.preventDefault(); this.nextSel(); }
+          if(e.key==='ArrowUp'){ e.preventDefault(); this.prevSel(); }
+          if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); this.chooseSel(); }
+          if(e.key==='Enter' && e.shiftKey){ e.preventDefault(); const a=this.list()[this.selected]; if(a) this.quickRun(a); }
+        } else if(this.step===2){
+          if(e.key==='Enter' && (e.metaKey||e.ctrlKey)){ e.preventDefault(); this.scheduleAt(); }
+          else if(e.key==='Enter'){ e.preventDefault(); this.runNow(); }
+        }
+      }
+    }"
+    @keydown.window="onKey($event)"
   >
-    <!-- Input section with label and accessible search -->
-    <div
-      class="relative rounded-lg bg-zinc-50 dark:bg-zinc-900 focus-within:bg-white dark:focus-within:bg-white/5"
-    >
-      <label for="search" class="sr-only">Search</label>
-      <Search
-        class="pointer-events-none absolute top-3.5 left-4 text-zinc-400"
-        size="base"
-        slot="icon"
-      />
-      <input
-        id="search"
-        type="text"
-        class="w-full h-12 pr-4 bg-transparent border-0 text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 pl-11 focus:ring-0 sm:text-sm"
-        placeholder="Search for anything"
-        role="combobox"
-        aria-expanded="false"
-        aria-controls="options"
-        aria-autocomplete="list"
-      />
-    </div>
-    <!-- Options list with roles and keyboard focusability -->
-    <ul
-      class="pt-3 overflow-y-auto space-y-6 max-h-96 scroll-py-3"
-      id="options"
-      role="listbox"
-      tabindex="0"
-    >
-      <li>
-        <Text
-          tag="p"
-          variant="textSM"
-          class="font-medium text-zinc-500 dark:text-zinc-300"
+    <!-- Header: search + filters -->
+    <div class="p-2">
+      <div class="relative">
+        <Search
+          class="pointer-events-none absolute top-3.5 left-4 text-zinc-400"
+          size="base"
+          slot="icon"
+        />
+        <input
+          x-ref="input"
+          x-model="query"
+          @focus="open=true"
+          class="w-full h-12 pr-28 bg-transparent border-0 text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 pl-11 sm:text-sm rounded-lg ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Run or schedule an automation…"
+          autocomplete="off"
+        />
+        <div
+          class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 hidden sm:flex gap-1 text-[11px] text-zinc-500"
         >
-          Search results (2)
-        </Text>
-      </li>
-      <li id="option-1" role="option" tabindex="0" aria-selected="false">
-        <CommandBarUserCard
-          name="Michael Andreuzza"
-          username="@Mike_Andreuzza"
-          location="Alicante, Spain"
-          avatarSrc="/avatars/1.jpg"
-          avatarAlt="Profile picture"
-          class="hover:bg-zinc-50 dark:hover:bg-zinc-700"
-        />
-      </li>
-      <li id="option-1" role="option" tabindex="0" aria-selected="false">
-        <CommandBarUserCard
-          name="Jordan McKenna"
-          username="@jordan_mckenna"
-          location="Milano, Italy"
-          avatarSrc="/avatars/4.jpg"
-          avatarAlt="Profile picture"
-          class="hover:bg-zinc-50 dark:hover:bg-zinc-700"
-        />
-      </li>
-      <li id="option-1" role="option" tabindex="0" aria-selected="false">
-        <CommandBarUserCard
-          name="Peter Lee"
-          username="@peter_lee"
-          location="London, UK"
-          avatarSrc="/avatars/6.jpg"
-          avatarAlt="Profile picture"
-          class="hover:bg-zinc-50 dark:hover:bg-zinc-700"
-        />
-      </li>
-      <!-- Add more items similarly with roles and attributes... -->
-    </ul>
+          <kbd
+            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700"
+            >⌘</kbd
+          >
+          <kbd
+            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700"
+            >K</kbd
+          >
+        </div>
+        <button
+          type="button"
+          x-show="query.length>0"
+          @click="query=''; $nextTick(()=> $refs.input?.focus())"
+          class="absolute right-[3.75rem] top-1/2 -translate-y-1/2 size-7 inline-flex items-center justify-center rounded-md text-zinc-500 hover:text-zinc-700 hover:bg-zinc-100 dark:hover:bg-white/10"
+          aria-label="Clear search"
+        >
+          <XIcon size="sm" />
+        </button>
+      </div>
+      <!-- Filters -->
+      <div class="mt-2 px-2 flex items-center gap-2 text-[12px]">
+        <button
+          @click="filter='all'"
+          :class="filter==='all' ? 'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100' : 'text-zinc-600 dark:text-zinc-400'"
+          class="px-2 py-1 rounded-md">All</button
+        >
+        <button
+          @click="filter='favorites'"
+          :class="filter==='favorites' ? 'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100' : 'text-zinc-600 dark:text-zinc-400'"
+          class="px-2 py-1 rounded-md">Favorites</button
+        >
+        <button
+          @click="filter='scheduled'"
+          :class="filter==='scheduled' ? 'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100' : 'text-zinc-600 dark:text-zinc-400'"
+          class="px-2 py-1 rounded-md">Scheduled</button
+        >
+      </div>
+    </div>
+
+    <!-- STEP 1: Automation list -->
+    <template x-if="step===1">
+      <div class="py-1">
+        <div
+          class="px-6 py-1 text-[11px] font-medium text-zinc-500 dark:text-zinc-400"
+        >
+          Automations
+        </div>
+        <ul class="divide-y divide-zinc-100 dark:divide-zinc-900">
+          <template x-for="(a, idx) in list()" :key="a.id">
+            <li
+              :class="selected===idx ? 'bg-white/10 dark:bg-white/5' : ''"
+              class="px-6 py-3 flex items-center gap-3 justify-between text-zinc-900 dark:text-zinc-50 cursor-pointer"
+              @mouseenter="selected = idx"
+            >
+              <div class="flex items-center gap-3">
+                <div
+                  class="size-8 rounded-lg bg-white dark:bg-zinc-800 grid place-items-center"
+                >
+                  <template x-if="a.icon==='tools'"
+                    ><Tools size="sm" /></template
+                  >
+                  <template x-if="a.icon==='download'"
+                    ><Download size="sm" /></template
+                  >
+                  <template x-if="a.icon==='report'"
+                    ><Report size="sm" /></template
+                  >
+                  <template x-if="a.icon==='users'"
+                    ><UsersGroup size="sm" /></template
+                  >
+                  <template x-if="a.icon==='calendar'"
+                    ><Calendar size="sm" /></template
+                  >
+                </div>
+                <div>
+                  <div class="text-sm font-medium" x-text="a.name"></div>
+                  <div
+                    class="text-xs text-zinc-500 dark:text-zinc-400"
+                    x-text="a.desc"
+                  >
+                  </div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <template x-for="t in a.tags" :key="t">
+                  <span
+                    class="hidden md:inline text-[11px] px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-white/5 text-zinc-700 dark:text-zinc-300"
+                    x-text="t"></span>
+                </template>
+                <IconButton
+                  @click.stop="toggleFav(a.id)"
+                  :aria-pressed="favorites.has(a.id)"
+                  size="xxs"
+                  variant="muted"
+                  :class="favorites.has(a.id)?'text-accent-600':'text-zinc-600'"
+                >
+                  <Settings size="sm" class="opacity-70" />
+                  <span class="sr-only">Toggle favorite</span>
+                </IconButton>
+                <Button size="xxs" variant="muted" @click.stop="quickRun(a)">
+                  Run
+                </Button>
+                <Button size="xxs" variant="muted" @click.stop="openWizard(a)">
+                  Configure
+                </Button>
+              </div>
+            </li>
+          </template>
+          <li
+            x-show="list().length===0"
+            class="px-6 py-6 text-center text-sm text-zinc-500 italic"
+          >
+            Nothing to show
+          </li>
+        </ul>
+        <!-- Scheduled overview -->
+        <div class="px-6 py-3" x-show="scheduled.length">
+          <div class="text-[11px] font-medium text-zinc-500 mb-2">Upcoming</div>
+          <ul class="space-y-1 text-xs text-zinc-600">
+            <template x-for="s in scheduled" :key="s.id + s.at">
+              <li>
+                <span class="font-medium" x-text="s.name"></span> — <span
+                  x-text="s.at"></span>
+              </li>
+            </template>
+          </ul>
+        </div>
+      </div>
+    </template>
+
+    <!-- STEP 2: Configure form (dynamic) -->
+    <template x-if="step===2">
+      <div class="px-4 py-3">
+        <div class="px-2 text-[11px] text-zinc-500 dark:text-zinc-400">
+          Configure
+        </div>
+        <div
+          class="px-2 text-sm font-medium dark:text-zinc-400 mt-2"
+          x-text="current?.name"
+        >
+        </div>
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2 px-2 items-center"
+        >
+          <template x-for="p in current?.params || []" :key="p.key">
+            <div>
+              <label
+                class="text-[11px] text-zinc-600 block dark:text-zinc-400"
+                x-text="p.label"></label>
+              <template x-if="p.type==='text'">
+                <input
+                  type="text"
+                  class="w-full h-9 px-2 rounded-md ring-1 ring-zinc-200 dark:ring-zinc-700 bg-transparent text-sm mt-0.5"
+                  :placeholder="p.placeholder || ''"
+                  x-model="form[p.key]"
+                />
+              </template>
+              <template x-if="p.type==='toggle'">
+                <label class="flex items-center gap-2 text-sm">
+                  <input
+                    type="checkbox"
+                    class="accent-zinc-900 rounded-md border border-zinc-200 dark:border-zinc-900"
+                    x-model="form[p.key]"
+                  />
+                  <span
+                    class="text-zinc-500 dark:text-zinc-400"
+                    x-text="form[p.key] ? 'Enabled' : 'Disabled'"></span>
+                </label>
+              </template>
+              <template x-if="p.type==='select'">
+                <select
+                  class="w-full h-9 px-2 rounded-md ring-1 ring-zinc-200 dark:ring-zinc-700 bg-transparent text-sm rounded border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 mt-0.5"
+                  x-model="form[p.key]"
+                >
+                  <template x-for="opt in p.options || []" :key="opt">
+                    <option x-text="opt"></option>
+                  </template>
+                </select>
+              </template>
+              <template x-if="p.type==='datetime'">
+                <input
+                  type="datetime-local"
+                  class="w-full h-9 px-2 rounded-md ring-1 ring-zinc-200 dark:ring-zinc-700 bg-transparent text-sm dark:text-zinc-400"
+                  x-model="form[p.key]"
+                />
+              </template>
+            </div>
+          </template>
+        </div>
+        <div class="mt-4 flex items-center justify-between px-2">
+          <Button variant="muted" size="xxs" @click="back()">Back</Button>
+          <div class="flex items-center gap-2">
+            <Button
+              variant="muted"
+              size="xxs"
+              title="Cmd/Ctrl + Enter"
+              @click="scheduleAt()">Schedule</Button
+            >
+            <Button variant="default" size="xxs" @click="runNow()">
+              Run now</Button
+            >
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <!-- STEP 3: Done / feedback -->
+    <template x-if="step===3">
+      <div class="px-6 py-10 text-center">
+        <div
+          class="inline-flex items-center justify-center size-12 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-200"
+        >
+          <Check size="base" />
+        </div>
+        <div
+          class="mt-3 text-sm font-medium text-zinc-900 dark:text-zinc-100"
+          x-text="toast || 'Completed'"
+        >
+        </div>
+        <div class="mt-2 text-xs text-zinc-600 dark:text-zinc-400">
+          You can close this panel or run another automation.
+        </div>
+        <div class="mt-4 flex items-center justify-center gap-2">
+          <Button
+            variant="default"
+            size="xxs"
+            @click="step=1; open=true; $nextTick(()=> $refs.input?.focus())"
+            >Run another</Button
+          >
+          <Button variant="muted" size="xxs" @click="open=false">Close</Button>
+        </div>
+      </div>
+    </template>
+
+    <!-- Footer help -->
+    <div
+      class="px-4 py-2 text-[11px] text-zinc-500 dark:text-zinc-400 flex items-center justify-between bg-zinc-50 dark:bg-white/10"
+    >
+      <div>
+        Press <kbd
+          class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+          >/</kbd
+        > to search • <kbd
+          class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+          >Shift</kbd
+        > + <kbd
+          class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+          >↵</kbd
+        >
+        quick run
+      </div>
+      <div class="hidden sm:flex items-center gap-2">
+        <span class="flex items-center gap-1"
+          ><kbd
+            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            >↑</kbd
+          ><kbd
+            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            >↓</kbd
+          > to navigate</span
+        >
+        <span class="flex items-center gap-1"
+          ><kbd
+            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            >↵</kbd
+          > to configure</span
+        >
+      </div>
+    </div>
   </div>
-  <!-- copy:end -->
+  <!-- Copy: -->
 </div>

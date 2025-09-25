@@ -1,115 +1,333 @@
 ---
-import CommandbarButton from "@/components/fundations/buttons/CommandBarButton.astro";
-import Text from "@/components/fundations/typography/Text.astro";
+// Keep dynamic classes readable after CSS obfuscation
+export const excludeFromObfuscation = [
+  "bg-zinc-50",
+  "bg-white/5",
+  "dark:bg-white/5",
+  "text-accent-600",
+  "text-zinc-600",
+];
 import Search from "@/components/fundations/icons/Search.astro";
+import XIcon from "@/components/fundations/icons/X.astro";
+import Grid from "@/components/fundations/icons/Grid.astro";
+import FileDots from "@/components/fundations/icons/FileDots.astro";
+import Subtask from "@/components/fundations/icons/Subtask.astro";
+import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
 import Plus from "@/components/fundations/icons/Plus.astro";
-import ArrowRight from "@/components/fundations/icons/ArrowRight.astro";
-import Clipboard from "@/components/fundations/icons/Clipboard.astro";
+import Settings from "@/components/fundations/icons/Settings.astro";
 ---
 
 <div
-  class="flex items-center justify-center p-8 py-38.5 bg-white dark:bg-zinc-900"
+  class="p-8 py-24 bg-white dark:bg-zinc-900 flex items-center justify-center"
 >
-  <!-- copy:start -->
+  <!-- Copy:start -->
+  <!--
+  
+  - [x-cloak] hides uninitialized Alpine content until hydration to avoid flicker.
+ 
+<style>
+  :global([x-cloak]) {
+    display: none !important;
+  }
+  
+</style> 
+
+-->
   <div
-    class="max-w-xl mx-auto w-full overflow-hidden bg-white dark:bg-zinc-800 shadow-lg transition-all transform divide-y divide-zinc-200 dark:divide-zinc-700 rounded-xl outline-1 outline-zinc-200 dark:outline-white/10"
+    class="w-full max-w-2xl bg-white dark:bg-zinc-800 rounded-xl shadow-lg outline outline-zinc-200 dark:outline-zinc-800 overflow-hidden"
+    x-data="{
+      open: true,
+      query: '',
+      activeTab: 'all',
+      selected: 0,
+      tabs: [
+        { id:'all', label:'Everything', icon:'grid' },
+        { id:'docs', label:'Docs', icon:'file' },
+        { id:'tickets', label:'Tickets', icon:'task' },
+        { id:'members', label:'Members', icon:'users' },
+      ],
+      items: [
+        { id:'i1', type:'docs', title:'Quarterly Revenue Brief', subtitle:'in Company Hub', badges:['Report','Low'], href:'#doc-1' },
+        { id:'i2', type:'docs', title:'Design System Guidelines', subtitle:'in UI Library', badges:['Guide','Medium'], href:'#doc-2' },
+        { id:'i3', type:'tickets', title:'OAuth callback failing on staging', subtitle:'in Authentication', badges:['Bug','High'], href:'#t-1' },
+        { id:'i4', type:'tickets', title:'Mobile layout polish', subtitle:'in App Shell', badges:['Enhancement','Normal'], href:'#t-2' },
+        { id:'i5', type:'members', title:'Priya Narayanan', subtitle:'Platform Team', badges:['Admin'], href:'#u-1' },
+      ],
+      actions: [
+        { id:'a1', text:'Create New Ticket', desc:'Open tracker and prefill fields', icon:'plus', shortcuts:['N'], href:'#new-ticket' },
+        { id:'a2', text:'Invite Teammate', desc:'Send a workspace invite', icon:'users', shortcuts:['I'], href:'#invite' },
+        { id:'a3', text:'Template Library', desc:'Start from a proven pattern', icon:'file', shortcuts:['T'], href:'#templates' },
+        { id:'a4', text:'Preferences', desc:'Theme, account and keyboard', icon:'settings', shortcuts:['S'], href:'#settings' },
+      ],
+      score(text, q){
+        q = (q||'').trim().toLowerCase();
+        if(!q) return 1;
+        text = (text||'').toLowerCase();
+        if(text === q) return 1000;
+        if(text.startsWith(q)) return 500;
+        // subsequence
+        let i=0,j=0; while(i<text.length && j<q.length){ if(text[i]===q[j]) j++; i++; }
+        return j===q.length ? 200 : (text.includes(q) ? 100 : -1);
+      },
+      filteredResults(){
+        const q = this.query;
+        const tab = this.activeTab;
+        return this.items
+          .filter(it => tab==='all' ? true : it.type===tab)
+          .map(o=>({o, s: Math.max(this.score(o.title,q), this.score(o.subtitle,q))}))
+          .filter(x=>x.s>=0)
+          .sort((a,b)=> b.s - a.s)
+          .map(x=>x.o);
+      },
+      filteredActions(){
+        const q = this.query;
+        return this.actions
+          .map(o=>({o, s: Math.max(this.score(o.text,q), this.score(o.desc,q))}))
+          .filter(x=>x.s>=0)
+          .sort((a,b)=> b.s - a.s)
+          .map(x=>x.o);
+      },
+      get selectable(){
+        const res = this.filteredResults();
+        const acts = this.filteredActions();
+        return [
+          ...res.map(r=>({key:`item:${r.id}`, kind:'item', data:r})),
+          ...acts.map(a=>({key:`action:${a.id}`, kind:'action', data:a})),
+        ];
+      },
+      isSelected(entry){
+        const sel = this.selectable[this.selected];
+        return sel && sel.key === entry.key;
+      },
+      openList(){ this.open = true; this.selected = 0; },
+      closeList(){ this.open = false; },
+      next(){ const n = this.selectable.length; if(!n) return; this.selected = (this.selected + 1) % n; },
+      prev(){ const n = this.selectable.length; if(!n) return; this.selected = (this.selected - 1 + n) % n; },
+      choose(){ const sel = this.selectable[this.selected]; if(!sel) return; const href = sel.data.href; if(href){ window.location.hash = href; } this.closeList(); },
+      onKey(e){
+        if((e.metaKey||e.ctrlKey) && !e.shiftKey && !e.altKey && e.key.toLowerCase()==='k'){ e.preventDefault(); this.openList(); this.$nextTick(()=> this.$refs.input?.focus()); return; }
+        if(e.key==='/'){ e.preventDefault(); this.openList(); this.$nextTick(()=> this.$refs.input?.focus()); return; }
+        if(e.key==='Escape'){ this.closeList(); return; }
+      }
+    }"
+    @keydown.window="onKey($event)"
   >
-    <div class="relative">
-      <label for="search-bar" class="sr-only">Search</label>
-      <Search
-        class="pointer-events-none absolute top-3.5 left-4 text-zinc-400"
-        size="base"
-        slot="icon"
-      />
-      <input
-        id="search-bar"
-        type="text"
-        class="w-full h-12 pr-4 bg-transparent border-0 text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 pl-11 focus:ring-0 sm:text-sm"
-        placeholder="Search for anything"
-        role="combobox"
-        aria-expanded="false"
-        aria-controls="options"
-      />
+    <!-- Search + Tabs -->
+    <div class="p-2">
+      <div class="relative">
+        <Search
+          class="pointer-events-none absolute top-3.5 left-4 text-zinc-400"
+          size="base"
+          slot="icon"
+        />
+        <input
+          x-ref="input"
+          x-model="query"
+          @focus="openList()"
+          @keydown.arrow-down.prevent="next()"
+          @keydown.arrow-up.prevent="prev()"
+          @keydown.enter.prevent="choose()"
+          @keydown.escape.prevent="closeList()"
+          class="w-full h-12 pr-24 bg-transparent border-0 text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 pl-11 sm:text-sm rounded-lg ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          placeholder="Find anything — docs, tickets, teammates"
+          autocomplete="off"
+          role="combobox"
+          :aria-expanded="open"
+          aria-controls="options"
+          aria-autocomplete="list"
+        />
+        <div
+          class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 hidden sm:flex gap-1 text-[11px] text-zinc-500 dark:text-zinc-400"
+        >
+          <kbd
+            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            >⌘</kbd
+          >
+          <kbd
+            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            >K</kbd
+          >
+        </div>
+        <button
+          type="button"
+          x-show="query.length>0"
+          @click="query=''; $nextTick(()=> $refs.input?.focus())"
+          class="absolute right-[3.25rem] top-1/2 -translate-y-1/2 size-7 inline-flex items-center justify-center rounded-md text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 hover:bg-zinc-100 dark:hover:bg-white/10"
+          aria-label="Clear search"
+        >
+          <XIcon size="sm" />
+        </button>
+      </div>
+      <!-- Tabs -->
+      <div class="mt-2 px-2">
+        <div class="flex items-center gap-2 text-[12px]">
+          <template x-for="t in tabs" :key="t.id">
+            <button
+              type="button"
+              @click="activeTab=t.id; selected=0"
+              :class="activeTab===t.id ? 'text-blue-400' : 'text-zinc-500 dark:text-zinc-400'"
+              class="relative inline-flex items-center gap-2 px-2 py-1 rounded-md hover:bg-zinc-50 dark:hover:bg-white/5"
+            >
+              <template x-if="t.icon==='grid'"><Grid size="sm" /></template>
+              <template x-if="t.icon==='file'"><FileDots size="sm" /></template>
+              <template x-if="t.icon==='task'"><Subtask size="sm" /></template>
+              <template x-if="t.icon==='users'"
+                ><UsersGroup size="sm" /></template
+              >
+              <span x-text="t.label"></span>
+              <span
+                x-show="activeTab===t.id"
+                class="absolute -bottom-1 left-2 right-2 h-[2px] rounded bg-blue-400"
+              ></span>
+            </button>
+          </template>
+        </div>
+      </div>
     </div>
-    <ul
-      class="p-2 overflow-y-auto space-y-3 max-h-96"
-      id="options"
-      role="listbox"
-      tabindex="0"
+
+    <!-- Results -->
+    <div class="py-1">
+      <div
+        class="px-6 py-1 text-[11px] font-medium text-zinc-500 dark:text-zinc-400"
+      >
+        Recent
+      </div>
+      <ul class="divide-y divide-zinc-100 dark:divide-zinc-900">
+        <template x-for="r in filteredResults()" :key="r.id">
+          <li
+            :class="isSelected({key:'item:'+r.id}) ? 'bg-zinc-50 dark:bg-white/5' : ''"
+            class="cursor-pointer px-6 py-3 flex items-center justify-between text-zinc-900 dark:text-zinc-50"
+            @mouseenter="selected = selectable.findIndex(e=>e.key==='item:'+r.id)"
+            @click="selected = selectable.findIndex(e=>e.key==='item:'+r.id); choose()"
+          >
+            <div class="flex items-center gap-3">
+              <div
+                class="size-8 rounded-lg bg-white dark:bg-zinc-800 grid place-items-center ring-1 ring-zinc-200 dark:ring-zinc-700"
+              >
+                <template x-if="r.type==='docs'"
+                  ><FileDots size="sm" /></template
+                >
+                <template x-if="r.type==='tickets'"
+                  ><Subtask size="sm" /></template
+                >
+                <template x-if="r.type==='members'"
+                  ><UsersGroup size="sm" /></template
+                >
+              </div>
+              <div>
+                <div class="text-sm font-medium" x-text="r.title"></div>
+                <div
+                  class="text-xs text-zinc-500 dark:text-zinc-400 dark:text-zinc-400"
+                  x-text="r.subtitle"
+                >
+                </div>
+              </div>
+            </div>
+            <div class="hidden md:flex items-center gap-1">
+              <template x-for="b in r.badges" :key="b">
+                <span
+                  class="text-[11px] px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-white/5 text-zinc-700 dark:text-zinc-300"
+                  x-text="b"></span>
+              </template>
+            </div>
+          </li>
+        </template>
+        <li
+          x-show="filteredResults().length===0"
+          class="px-6 py-6 text-center text-sm text-zinc-500 dark:text-zinc-400 italic"
+        >
+          No matches in this tab
+        </li>
+      </ul>
+    </div>
+
+    <!-- Actions -->
+    <div class="py-1">
+      <div
+        class="px-6 py-1 text-[11px] font-medium text-zinc-500 dark:text-zinc-400"
+      >
+        Quick actions
+      </div>
+      <ul class="divide-y divide-zinc-100 dark:divide-zinc-900">
+        <template x-for="a in filteredActions()" :key="a.id">
+          <li
+            :class="isSelected({key:'action:'+a.id}) ? 'bg-zinc-50 dark:bg-white/5' : ''"
+            class="cursor-pointer px-6 py-3 flex items-center justify-between text-zinc-900 dark:text-zinc-50"
+            @mouseenter="selected = selectable.findIndex(e=>e.key==='action:'+a.id)"
+            @click="selected = selectable.findIndex(e=>e.key==='action:'+a.id); choose()"
+          >
+            <div class="flex items-center gap-3">
+              <div
+                class="size-8 rounded-lg bg-white dark:bg-zinc-800 grid place-items-center ring-1 ring-zinc-200 dark:ring-zinc-700"
+              >
+                <template x-if="a.icon==='plus'"><Plus size="sm" /></template>
+                <template x-if="a.icon==='users'"
+                  ><UsersGroup size="sm" /></template
+                >
+                <template x-if="a.icon==='file'"
+                  ><FileDots size="sm" /></template
+                >
+                <template x-if="a.icon==='settings'"
+                  ><Settings size="sm" /></template
+                >
+              </div>
+              <div>
+                <div class="text-sm font-medium" x-text="a.text"></div>
+                <div
+                  class="text-xs text-zinc-500 dark:text-zinc-400 dark:text-zinc-400"
+                  x-text="a.desc"
+                >
+                </div>
+              </div>
+            </div>
+            <div
+              class="hidden sm:flex items-center gap-1 text-[11px] text-zinc-600"
+            >
+              <template x-for="k in a.shortcuts" :key="k">
+                <kbd
+                  class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+                  x-text="k"></kbd>
+              </template>
+            </div>
+          </li>
+        </template>
+        <li
+          x-show="filteredActions().length===0"
+          class="px-6 py-6 text-center text-sm text-zinc-500 dark:text-zinc-400 italic"
+        >
+          No actions found
+        </li>
+      </ul>
+    </div>
+
+    <!-- Footer help -->
+    <div
+      class="px-4 py-2 text-[11px] text-zinc-500 dark:text-zinc-400 flex items-center justify-between bg-zinc-50 dark:bg-white/10"
     >
-      <li class="px-2">
-        <Text
-          tag="p"
-          variant="textSM"
-          class="font-medium text-zinc-500 dark:text-zinc-300"
+      <div>
+        Hint: press <kbd
+          class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+          >/</kbd
+        > to search
+      </div>
+      <div class="hidden sm:flex items-center gap-2">
+        <span class="flex items-center gap-1"
+          ><kbd
+            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            >↑</kbd
+          ><kbd
+            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            >↓</kbd
+          > to navigate</span
         >
-          Create another project
-        </Text>
-      </li>
-      <li id="option-1" role="option" tabindex="-1">
-        <CommandbarButton
-          text="Copy current URL"
-          iconSlot={true}
-          class="hover:bg-zinc-50 dark:hover:bg-zinc-700"
+        <span class="flex items-center gap-1"
+          ><kbd
+            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            >↵</kbd
+          > to open</span
         >
-          <Clipboard size="sm" slot="icon" />
-        </CommandbarButton>
-      </li>
-      <li class="px-2">
-        <Text
-          tag="p"
-          variant="textSM"
-          class="font-medium text-zinc-500 dark:text-zinc-300"
-        >
-          Scope
-        </Text>
-      </li>
-      <li id="option-2" role="option" tabindex="-1">
-        <CommandbarButton
-          text="Go to personal account overview"
-          iconSlot={true}
-          class="hover:bg-zinc-50 dark:hover:bg-zinc-700"
-        >
-          <ArrowRight size="sm" slot="icon" />
-        </CommandbarButton>
-      </li>
-      <li id="option-3" role="option" tabindex="-1">
-        <CommandbarButton
-          text="Go to personal account integrations"
-          iconSlot={true}
-          class="hover:bg-zinc-50 dark:hover:bg-zinc-700"
-        >
-          <ArrowRight size="sm" slot="icon" />
-        </CommandbarButton>
-      </li>
-      <li id="option-4" role="option" tabindex="-1">
-        <CommandbarButton
-          text="Go to personal account activities"
-          iconSlot={true}
-          class="hover:bg-zinc-50 dark:hover:bg-zinc-700"
-        >
-          <ArrowRight size="sm" slot="icon" />
-        </CommandbarButton>
-      </li>
-    </ul>
-    <ul
-      class="p-2 overflow-y-auto space-y-3 max-h-96"
-      id="options"
-      role="listbox"
-      tabindex="0"
-    >
-      <li id="option-5" role="option" tabindex="0" aria-selected="false">
-        <CommandbarButton
-          text="Create another project"
-          hasKbd={true}
-          kbdKey="C"
-          iconSlot={true}
-          class="hover:bg-zinc-50 dark:hover:bg-zinc-700"
-        >
-          <Plus size="sm" slot="icon" />
-        </CommandbarButton>
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
-  <!-- copy:end -->
+  <!-- Copy:end -->
 </div>

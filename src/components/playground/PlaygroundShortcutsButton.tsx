@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Command, X } from "lucide-react";
+import { Keyboard, X } from "lucide-react";
 
 export default function PlaygroundShortcutsButton() {
   const [showShortcuts, setShowShortcuts] = useState(false);
@@ -17,12 +17,12 @@ export default function PlaygroundShortcutsButton() {
     <>
       <button
         type="button"
-        aria-label="Show keyboard shortcuts"
+        title="Keyboard Shortcuts"
         onClick={() => setShowShortcuts(true)}
-        className="fixed bottom-2 right-2 z-50 bg-zinc-900 text-white rounded-lg shadow-normal p-2.5 hover:bg-zinc-600 focus:outline-none"
+        className="fixed bottom-2 right-2 z-50 bg-zinc-900 text-white rounded-lg shadow-normal px-3 py-2.5 hover:bg-zinc-600 focus:outline-none flex items-center gap-1"
       >
         <span className="sr-only">Show keyboard shortcuts</span>
-        <Command size={16} />
+        <Keyboard size={16} />
       </button>
       {showShortcuts && (
         <div
@@ -49,36 +49,33 @@ export default function PlaygroundShortcutsButton() {
                 <X size={20} />
               </button>
             </div>
-            <ul className="space-y-1 text-xs text-zinc-600  p-8">
+            <ul className="space-y-2 text-xs text-zinc-600  p-8">
               <li className="flex items-end gap-1 justify-between ">
                 <span >Dark mode</span>
                 <span className="flex-1 mx-2 block h-px border-b border-zinc-300" aria-hidden="true"></span>
                 <div className="flex items-center gap-1 ">
-                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 h-5 flex items-center justify-center">Cmd</kbd>
-                  
-                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 size-5 flex items-center justify-center">D</kbd>
+                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 h-5 flex items-center justify-center">Ctrl</kbd>
+                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 size-5 flex items-center justify-center">1</kbd>
                 </div>
               </li>
               <li className="flex items-end gap-1 justify-between ">
                <span > Light mode</span>
                <span className="flex-1 mx-2 block h-px border-b border-zinc-300" aria-hidden="true"></span>
                 <div className="flex items-center gap-1 ">
-                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 h-5 flex items-center justify-center">Cmd</kbd>
-                  
-                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 size-5 flex items-center justify-center">L</kbd>
+                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 h-5 flex items-center justify-center">Ctrl</kbd>
+                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 size-5 flex items-center justify-center">2</kbd>
                 </div>
               </li>
               <li className="flex items-end gap-1 justify-between ">
                 <span >System mode</span>
                 <span className="flex-1 mx-2 block h-px border-b border-zinc-300" aria-hidden="true"></span>
                 <div className="flex items-center gap-1 ">
-                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 h-5 flex items-center justify-center">Cmd</kbd>
-                  
-                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 size-5 flex items-center justify-center">S</kbd>
+                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 h-5 flex items-center justify-center">Ctrl</kbd>
+                  <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 size-5 flex items-center justify-center">3</kbd>
                 </div>
               </li>
               <li className="flex items-end gap-1 justify-between ">
-                <span >Copy code</span>
+                <span >Copy code ( if open )</span>
                 <span className="flex-1 mx-2 block h-px border-b border-zinc-300" aria-hidden="true"></span>
                 <div className="flex items-center gap-1 ">
                   <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 h-5 flex items-center justify-center">Cmd</kbd>
@@ -87,7 +84,7 @@ export default function PlaygroundShortcutsButton() {
                 </div>
               </li>
               <li className="flex items-end gap-1 justify-between ">
-                <span >Open code tab</span>
+                <span >Open code tab </span>
                 <span className="flex-1 mx-2 block h-px border-b border-zinc-300" aria-hidden="true"></span>
                 <div className="flex items-center gap-1 ">
                   <kbd className="text-[0.65rem] text-zinc-700 font-mono uppercase font-medium p-1 bg-sand-50 rounded outline outline-zinc-200 h-5 flex items-center justify-center">Cmd</kbd>
