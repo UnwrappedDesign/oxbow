@@ -406,7 +406,7 @@ const templates: { [key: string]: Template[] } = {
         "flyout menu link",
       ],
     },
-    /*  {
+     {
       name: "Sidebars",
       link: "/playground/application/sidebars",
       image: "sidebars.png",
@@ -417,7 +417,7 @@ const templates: { [key: string]: Template[] } = {
         "sidebar image",
         "sidebar link",
       ],
-    }, */
+    }, 
     /* {
       name: "Vertical navigation",
       link: "/playground/application/verticalnav",

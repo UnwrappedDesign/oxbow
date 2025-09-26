@@ -1,0 +1,554 @@
+---
+export const excludeFromObfuscation = [
+  "opacity-0",
+  "opacity-100",
+  "translate-x-0",
+  "-translate-x-full",
+  "sm:translate-x-0",
+];
+import Logo from "@/components/assets/Logo.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+import IconButton from "@/components/fundations/buttons/IconButton.astro";
+import X from "@/components/fundations/icons/X.astro";
+import Home from "@/components/fundations/icons/Home.astro";
+import Mail from "@/components/fundations/icons/Mail.astro";
+import Tool from "@/components/fundations/icons/Tool.astro";
+import Report from "@/components/fundations/icons/Report.astro";
+import Burger from "@/components/fundations/icons/Burger.astro";
+import Settings from "@/components/fundations/icons/Settings.astro";
+import SearchIcon from "@/components/fundations/icons/Search.astro";
+import Lifebuoy from "@/components/fundations/icons/Lifebuoy.astro";
+import Clipboard from "@/components/fundations/icons/Clipboard.astro";
+import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
+import CircleInfo from "@/components/fundations/icons/CircleInfo.astro";
+import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
+import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
+---
+
+<div class="relative bg-white dark:bg-zinc-900">
+  <!-- copy:start -->
+  <!-- Mobile top bar -->
+  <div
+    class="lg:hidden sticky top-0 z-40 bg-white dark:bg-zinc-800 border-b border-zinc-200 dark:border-zinc-800"
+  >
+    <div class="flex items-center justify-between px-4 h-12">
+      <div class="flex items-center gap-2">
+        <Logo class="text-zinc-900 dark:text-white h-6" />
+        <span
+          class="text-sm
+          font-semibold
+          text-zinc-800
+          dark:text-zinc-100"
+          >Oxbow UI</span
+        >
+      </div>
+      <IconButton
+        size="xxs"
+        variant="muted"
+        x-data
+        @click="$dispatch('sb02-toggle')"
+        aria-label="Open navigation"
+      >
+        <Burger size="sm" />
+      </IconButton>
+    </div>
+  </div>
+  <!-- Shell -->
+  <div
+    x-data="{
+      open:false,
+      active:'inbox',
+      sections: { queues:true, knowledge:false, tools:false },
+      search:'',
+      filters: { mine:true, unassigned:false, sla:false },
+      tags: { billing:true, bug:false, feature:false }
+    }"
+    @sb02-toggle.window="open=true"
+    @keydown.escape.window="open=false"
+    class="relative"
+  >
+    <!-- Overlay -->
+    <div
+      class="fixed inset-0 z-40 bg-black/40 dark:bg-white/10 transition-opacity duration-200 lg:hidden"
+      x-show="open"
+      x-transition.opacity
+      @click="open=false"
+      aria-hidden="true"
+    >
+    </div>
+    <!-- Sidebar panel (distinct from 01: narrower + support use case) -->
+    <aside
+      class="fixed inset-y-0 left-0 z-50 w-72 lg:w-80 h-dvh lg:h-dvh lg:relative lg:inset-auto lg:left-auto transform transition-transform duration-200 -translate-x-full lg:translate-x-0 bg-white dark:bg-zinc-900 outline outline-1 outline-zinc-200 dark:outline-zinc-800 flex flex-col overflow-hidden"
+      :class="open ? 'translate-x-0' : ''"
+    >
+      <!-- Header -->
+      <div
+        class="h-14 shrink-0 flex items-center justify-between px-4 border-b border-zinc-100 dark:border-zinc-800"
+      >
+        <div class="flex items-center gap-2">
+          <Logo class="text-zinc-900 dark:text-white h-8" />
+          <div>
+            <p
+              class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 leading-tight"
+            >
+              Oxbow UI
+            </p>
+            <p class="text-[0.70rem] text-zinc-500 dark:text-zinc-400">
+              Support Console
+            </p>
+          </div>
+        </div>
+        <IconButton
+          variant="muted"
+          size="xxs"
+          @click="open=false"
+          aria-label="Close navigation"
+          class="lg:hidden"
+        >
+          <X size="sm" />
+        </IconButton>
+      </div>
+      <!-- Search -->
+      <div class="p-3 lg:p-4">
+        <label class="relative block">
+          <span
+            class="absolute inset-y-0 left-0 pl-3 flex items-center text-zinc-500 dark:text-zinc-400"
+            ><SearchIcon class="size-4" /></span
+          >
+          <input
+            x-model="search"
+            placeholder="Search tickets"
+            class="w-full h-9 pl-9 pr-3 block w-full h-10 px-4 py-2 text-xs bg-white border border-transparent rounded-lg appearance-none dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-blue-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+          />
+        </label>
+      </div>
+      <!-- Navigation (scroll area; min-h-0 ensures inner overflow works in flex) -->
+      <nav class="flex-1 min-h-0 px-2 lg:px-3 pb-40 overflow-y-auto">
+        <p
+          class="px-3 lg:px-4 text-[0.70rem] font-semibold tracking-wide text-zinc-500 dark:text-zinc-400"
+        >
+          Support
+        </p>
+        <ul class="mt-1 space-y-1">
+          <li>
+            <button
+              class="w-full h-9 px-3 rounded-md flex items-center gap-2 text-sm outline outline-1 outline-transparent hover:bg-zinc-50 dark:hover:bg-white/5"
+              :class="active==='inbox' ? 'bg-white text-zinc-900 dark:bg-white/10 dark:text-white outline-white/10' : 'text-zinc-700 dark:text-zinc-300'"
+              @click="active='inbox'"
+            >
+              <Mail class="size-4" />
+              <span>Inbox</span>
+              <span
+                class="ml-auto text-[0.70rem] px-1.5 py-0.5 rounded bg-white text-zinc-900 outline outline-1 outline-zinc-200 dark:bg-white/10 dark:text-white dark:outline-white/10"
+                >10</span
+              >
+            </button>
+          </li>
+          <li>
+            <button
+              class="w-full h-9 px-3 rounded-md flex items-center gap-2 text-sm outline outline-1 outline-transparent hover:bg-zinc-50 dark:hover:bg-white/5"
+              :class="active==='dashboard' ? 'bg-white text-zinc-900 dark:bg-white/10 dark:text-white outline-white/10' : 'text-zinc-700 dark:text-zinc-300'"
+              @click="active='dashboard'"
+            >
+              <Home class="size-4" />
+              <span>Dashboard</span>
+            </button>
+          </li>
+        </ul>
+        <div class="pt-3 mt-3 border-t border-zinc-100 dark:border-zinc-800">
+          <p
+            class="px-3 lg:px-4 text-[0.70rem] font-semibold tracking-wide text-zinc-500 dark:text-zinc-400"
+          >
+            Queues
+          </p>
+          <ul class="mt-1 space-y-1">
+            <li>
+              <button
+                class="w-full h-9 px-3 rounded-md flex items-center justify-between text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                @click="sections.queues=!sections.queues"
+                :aria-expanded="sections.queues"
+              >
+                <span class="flex items-center gap-2"
+                  ><Clipboard class="size-4" /> Ticket queues</span
+                >
+                <span class="text-zinc-500 dark:text-zinc-400"
+                  ><ChevronDown
+                    x-show="sections.queues"
+                    class="size-4"
+                  /><ChevronRight
+                    x-show="!sections.queues"
+                    class="size-4"
+                  /></span
+                >
+              </button>
+              <div x-show="sections.queues" x-collapse x-cloak>
+                <ul class="mt-1 pl-2 space-y-1">
+                  <li>
+                    <a
+                      href="#_"
+                      class="flex items-center justify-between h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                      >Unassigned</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#_"
+                      class="flex items-center justify-between h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                      >My team</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#_"
+                      class="flex items-center justify-between h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                      >Escalations <span
+                        class="text-[0.70rem] px-1.5 py-0.5 rounded bg-white text-zinc-900 outline outline-1 outline-zinc-200 dark:bg-white/10 dark:text-white dark:outline-white/10"
+                        >3</span
+                      ></a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <button
+                class="w-full h-9 px-3 rounded-md flex items-center justify-between text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                @click="sections.knowledge=!sections.knowledge"
+                :aria-expanded="sections.knowledge"
+              >
+                <span class="flex items-center gap-2"
+                  ><CircleInfo class="size-4" /> Knowledge</span
+                >
+                <span class="text-zinc-500 dark:text-zinc-400"
+                  ><ChevronDown
+                    x-show="sections.knowledge"
+                    class="size-4"
+                  /><ChevronRight
+                    x-show="!sections.knowledge"
+                    class="size-4"
+                  /></span
+                >
+              </button>
+              <div x-show="sections.knowledge" x-collapse x-cloak>
+                <ul class="mt-1 pl-2 space-y-1">
+                  <li>
+                    <a
+                      href="#_"
+                      class="flex items-center h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                      >Articles</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#_"
+                      class="flex items-center h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                      >Guides</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#_"
+                      class="flex items-center h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                      >Playbooks</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <a
+                href="#_"
+                class="flex items-center gap-2 h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                ><Tool class="size-4" /> Macros</a
+              >
+            </li>
+            <li>
+              <a
+                href="#_"
+                class="flex items-center gap-2 h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                ><Report class="size-4" /> Reports</a
+              >
+            </li>
+          </ul>
+        </div>
+        <!-- Administration -->
+        <div class="pt-3 mt-3 border-t border-zinc-100 dark:border-zinc-800">
+          <p
+            class="px-3 lg:px-4 text-[0.70rem] font-semibold tracking-wide text-zinc-500 dark:text-zinc-400"
+          >
+            Administration
+          </p>
+          <ul class="mt-1 space-y-1">
+            <li>
+              <a
+                href="#_"
+                class="flex items-center gap-2 h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                ><UsersGroup class="size-4" /> Teams</a
+              >
+            </li>
+            <li>
+              <a
+                href="#_"
+                class="flex items-center gap-2 h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                ><Settings class="size-4" /> Preferences</a
+              >
+            </li>
+            <li>
+              <a
+                href="#_"
+                class="flex items-center gap-2 h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                ><Lifebuoy class="size-4" /> Help Center</a
+              >
+            </li>
+          </ul>
+        </div>
+        <!-- Quick filters -->
+        <div class="pt-3 mt-3 border-t border-zinc-100 dark:border-zinc-800">
+          <p
+            class="px-3 text-[0.70rem] font-semibold tracking-wide text-zinc-500 dark:text-zinc-400"
+          >
+            Quick filters
+          </p>
+          <div class="px-3 mt-2 flex flex-wrap gap-2">
+            <button
+              @click="filters.mine=!filters.mine"
+              class="h-7 px-2 rounded-md text-xs"
+              :class="filters.mine ? 'bg-white text-zinc-900 dark:bg-white/10 dark:text-white' : 'text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5'"
+              >My open</button
+            >
+            <button
+              @click="filters.unassigned=!filters.unassigned"
+              class="h-7 px-2 rounded-md text-xs"
+              :class="filters.unassigned ? 'bg-white text-zinc-900 dark:bg-white/10 dark:text-white' : 'text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5'"
+              >Unassigned</button
+            >
+            <button
+              @click="filters.sla=!filters.sla"
+              class="h-7 px-2 rounded-md text-xs"
+              :class="filters.sla ? 'bg-white text-zinc-900 dark:bg-white/10 dark:text-white' : 'text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5'"
+              >SLA</button
+            >
+          </div>
+        </div>
+        <!-- Tags -->
+        <div class="pt-3 mt-3 border-t border-zinc-100 dark:border-zinc-800">
+          <p
+            class="px-3 text-[0.70rem] font-semibold tracking-wide text-zinc-500 dark:text-zinc-400"
+          >
+            Tags
+          </p>
+          <ul class="mt-1 space-y-1">
+            <li>
+              <button
+                @click="tags.billing=!tags.billing"
+                class="w-full h-8 px-3 rounded-md flex items-center justify-between text-xs text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+              >
+                <span>billing</span>
+                <span
+                  class="text-[0.70rem] px-1.5 py-0.5 rounded bg-white text-zinc-900 outline outline-1 outline-zinc-200 dark:bg-white/10 dark:text-white dark:outline-white/10"
+                  >18</span
+                >
+              </button>
+            </li>
+            <li>
+              <button
+                @click="tags.bug=!tags.bug"
+                class="w-full h-8 px-3 rounded-md flex items-center justify-between text-xs text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+              >
+                <span>bug</span>
+                <span
+                  class="text-[0.70rem] px-1.5 py-0.5 rounded bg-white text-zinc-900 outline outline-1 outline-zinc-200 dark:bg-white/10 dark:text-white dark:outline-white/10"
+                  >12</span
+                >
+              </button>
+            </li>
+            <li>
+              <button
+                @click="tags.feature=!tags.feature"
+                class="w-full h-8 px-3 rounded-md flex items-center justify-between text-xs text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+              >
+                <span>feature</span>
+                <span
+                  class="text-[0.70rem] px-1.5 py-0.5 rounded bg-white text-zinc-900 outline outline-1 outline-zinc-200 dark:bg-white/10 dark:text-white dark:outline-white/10"
+                  >7</span
+                >
+              </button>
+            </li>
+          </ul>
+        </div>
+        <!-- Pinned -->
+        <div class="pt-3 mt-3 border-t border-zinc-100 dark:border-zinc-800">
+          <p
+            class="px-3 text-[0.70rem] font-semibold tracking-wide text-zinc-500 dark:text-zinc-400"
+          >
+            Pinned
+          </p>
+          <ul class="mt-1 space-y-1">
+            <li>
+              <a
+                href="#_"
+                class="flex items-center justify-between h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+              >
+                <span class="flex items-center gap-2">
+                  <Mail class="size-4" />
+                  <span>High priority escalation</span>
+                </span>
+                <span class="text-xs text-red-600 dark:text-red-400"
+                  >Urgent</span
+                >
+              </a>
+            </li>
+            <li>
+              <a
+                href="#_"
+                class="flex items-center justify-between h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+              >
+                <span class="flex items-center gap-2">
+                  <Mail class="size-4" />
+                  <span>Customer feedback review</span>
+                </span>
+                <span class="text-xs text-yellow-600 dark:text-yellow-400"
+                  >Review</span
+                >
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- Recent Tickets -->
+        <div class="pt-3 mt-3 border-t border-zinc-100 dark:border-zinc-800">
+          <p
+            class="px-3 text-[0.70rem] font-semibold tracking-wide text-zinc-500 dark:text-zinc-400"
+          >
+            Recent Tickets
+          </p>
+          <ul class="mt-1 space-y-1">
+            <li>
+              <a
+                href="#_"
+                class="flex items-center justify-between h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+              >
+                <span class="flex items-center gap-2">
+                  <Mail class="size-4" />
+                  <span>Ticket #1234</span>
+                </span>
+                <span class="text-xs text-zinc-500 dark:text-zinc-400"
+                  >2m ago</span
+                >
+              </a>
+            </li>
+            <li>
+              <a
+                href="#_"
+                class="flex items-center justify-between h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+              >
+                <span class="flex items-center gap-2">
+                  <Mail class="size-4" />
+                  <span>Ticket #1233</span>
+                </span>
+                <span class="text-xs text-zinc-500 dark:text-zinc-400"
+                  >5m ago</span
+                >
+              </a>
+            </li>
+            <li>
+              <a
+                href="#_"
+                class="flex items-center justify-between h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+              >
+                <span class="flex items-center gap-2">
+                  <Mail class="size-4" />
+                  <span>Ticket #1232</span>
+                </span>
+                <span class="text-xs text-zinc-500 dark:text-zinc-400"
+                  >10m ago</span
+                >
+              </a>
+            </li>
+            <li>
+              <a
+                href="#_"
+                class="flex items-center justify-between h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+              >
+                <span class="flex items-center gap-2">
+                  <Mail class="size-4" />
+                  <span>Ticket #1231</span>
+                </span>
+                <span class="text-xs text-zinc-500 dark:text-zinc-400"
+                  >15m ago</span
+                >
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- Shortcuts -->
+        <div class="pt-3 mt-3 border-t border-zinc-100 dark:border-zinc-800">
+          <p
+            class="px-3 text-[0.70rem] font-semibold tracking-wide text-zinc-500 dark:text-zinc-400"
+          >
+            Shortcuts
+          </p>
+          <div class="px-3 mt-2 flex flex-wrap gap-2">
+            <button
+              class="h-7 px-2 rounded-md text-xs text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+            >
+              New ticket
+            </button>
+            <button
+              class="h-7 px-2 rounded-md text-xs text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+            >
+              Bulk assign
+            </button>
+            <button
+              class="h-7 px-2 rounded-md text-xs text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+            >
+              Export
+            </button>
+            <button
+              class="h-7 px-2 rounded-md text-xs text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+            >
+              Archive
+            </button>
+          </div>
+        </div>
+      </nav>
+      <!-- Sticky footer: pinned at bottom; dropdown overlays upward -->
+      <div class="sticky bottom-0 z-10 bg-white dark:bg-zinc-900 border-t border-zinc-100 dark:border-zinc-800">
+        <div class="p-3 lg:p-4 space-y-3">
+          <div class="rounded-lg outline outline-1 outline-zinc-200 dark:outline-zinc-800 bg-white dark:bg-zinc-900 p-3">
+            <p class="text-xs font-medium text-zinc-700 dark:text-zinc-200">Status</p>
+            <p class="mt-1 text-xs text-zinc-500 dark:text-zinc-400">Queue health is stable. 2 open incidents.</p>
+            <div class="mt-2 flex items-center justify-between">
+              <Button type="button" variant="outline" size="xxs">View report</Button>
+              <Button type="button" variant="muted" size="xxs">Dismiss</Button>
+            </div>
+          </div>
+        </div>
+        <div class="px-3 pb-3 lg:px-4 lg:pb-4">
+          <div x-data="{ open:false }" class="relative">
+            <button class="w-full flex items-center justify-between gap-3 p-2 rounded-lg hover:bg-zinc-50 dark:hover:bg-white/5" @click="open=!open">
+              <span class="flex items-center gap-3">
+                <img src="/avatars/2.jpg" alt="Avatar" class="size-8 rounded-full" />
+                <span class="text-left">
+                  <span class="block text-sm font-medium text-zinc-900 dark:text-zinc-100">Ricardo S.</span>
+                  <span class="block text-xs text-zinc-500 dark:text-zinc-400">ricardo@oxbowui.com</span>
+                </span>
+              </span>
+              <ChevronDown class="size-4 text-zinc-600 dark:text-zinc-300" />
+            </button>
+            <div x-show="open" x-transition.opacity @click.outside="open=false" class="absolute left-0 right-0 bottom-14 z-50 rounded-lg bg-white dark:bg-zinc-900 shadow-xl overflow-hidden">
+              <div class="p-2 text-sm">
+                <a href="#_" class="flex items-center h-9 px-2 rounded-md text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5">View profile</a>
+                <a href="#_" class="flex items-center h-9 px-2 rounded-md text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5">Account</a>
+                <a href="#_" class="flex items-center h-9 px-2 rounded-md text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5">Docs</a>
+              </div>
+              <div class="border-t border-zinc-100 dark:border-zinc-800 p-2">
+                <Button type="button" variant="muted" class="w-full" size="xxs">Sign out</Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+  <!-- copy:end -->
+</div>

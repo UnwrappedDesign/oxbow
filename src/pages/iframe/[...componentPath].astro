@@ -8,9 +8,34 @@ const context = params.get("context");
 // Lazy module map, only load needed component
 const modules = import.meta.glob("@/components/oxbow/**/*.astro");
 const keys = Object.keys(modules);
-// Fix: strip the leading 'src/components/oxbow/' prefix from componentPath
-let relComponentPath = componentPath.replace(/^src\/components\/oxbow\//, "");
-const matchKey = keys.find((k) => k.endsWith(relComponentPath));
+
+// Normalize incoming param and try several matching strategies
+const rawPath = Array.isArray(componentPath) ? componentPath.join("/") : componentPath || "";
+const ensureExt = (p: string) => (p.endsWith(".astro") ? p : `${p}.astro`);
+const relFromSrc = rawPath.replace(/^\/?src\//, "");
+const relFromOxbow = rawPath.replace(/^\/?src\/components\/oxbow\//, "");
+const onlyOxbow = rawPath.replace(/^.*?oxbow\//, "oxbow/");
+
+const candidates = [
+  rawPath,
+  `/${rawPath}`,
+  ensureExt(rawPath),
+  relFromSrc,
+  ensureExt(relFromSrc),
+  relFromOxbow,
+  ensureExt(relFromOxbow),
+  `src/components/oxbow/${relFromOxbow}`,
+  `/src/components/oxbow/${relFromOxbow}`,
+  onlyOxbow,
+  ensureExt(onlyOxbow),
+];
+
+let matchKey = undefined as string | undefined;
+for (const c of candidates) {
+  matchKey = keys.find((k) => k === c) || keys.find((k) => k.endsWith(c));
+  if (matchKey) break;
+}
+
 const component = matchKey ? await modules[matchKey]() : undefined;
 ---
 
@@ -35,12 +60,18 @@ const component = matchKey ? await modules[matchKey]() : undefined;
   </head>
   <body>
     {
-      context === "card" ? (
-        <div class="p-4 md:p-6">
+      component ? (
+        context === "card" ? (
+          <div class="p-4 md:p-6">
+            <component.default />
+          </div>
+        ) : (
           <component.default />
-        </div>
+        )
       ) : (
-        <component.default />
+        <div class="p-6 text-sm text-red-600 dark:text-red-400">
+          Component not found for path: <code>{String(componentPath)}</code>
+        </div>
       )
     }
     <script is:inline>
