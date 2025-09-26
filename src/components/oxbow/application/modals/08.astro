@@ -109,7 +109,8 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
       size="sm"
       type="button"
       class="mx-auto"
-      @click="open=true">Choose dates</Button>
+      @click="open=true">Choose dates</Button
+    >
     <div
       x-show="open"
       x-transition.opacity
@@ -167,37 +168,58 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
               >
                 <button
                   class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
-                  @click="setPreset('today'); presetsOpen=false">Today</button>
+                  @click="setPreset('today'); presetsOpen=false">Today</button
+                >
                 <button
                   class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
-                  @click="setPreset('yesterday'); presetsOpen=false">Yesterday</button>
+                  @click="setPreset('yesterday'); presetsOpen=false"
+                  >Yesterday</button
+                >
                 <button
                   class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
-                  @click="setPreset('last7'); presetsOpen=false">Last 7 days</button>
+                  @click="setPreset('last7'); presetsOpen=false"
+                  >Last 7 days</button
+                >
                 <button
                   class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
-                  @click="setPreset('last30'); presetsOpen=false">Last 30 days</button>
+                  @click="setPreset('last30'); presetsOpen=false"
+                  >Last 30 days</button
+                >
                 <button
                   class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
-                  @click="setPreset('thisWeek'); presetsOpen=false">This week</button>
+                  @click="setPreset('thisWeek'); presetsOpen=false"
+                  >This week</button
+                >
                 <button
                   class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
-                  @click="setPreset('lastWeek'); presetsOpen=false">Last week</button>
+                  @click="setPreset('lastWeek'); presetsOpen=false"
+                  >Last week</button
+                >
                 <button
                   class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
-                  @click="setPreset('thisMonth'); presetsOpen=false">This month</button>
+                  @click="setPreset('thisMonth'); presetsOpen=false"
+                  >This month</button
+                >
                 <button
                   class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
-                  @click="setPreset('lastMonth'); presetsOpen=false">Last month</button>
+                  @click="setPreset('lastMonth'); presetsOpen=false"
+                  >Last month</button
+                >
                 <button
                   class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
-                  @click="setPreset('thisYear'); presetsOpen=false">This year</button>
+                  @click="setPreset('thisYear'); presetsOpen=false"
+                  >This year</button
+                >
                 <button
                   class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
-                  @click="setPreset('lastYear'); presetsOpen=false">Last year</button>
+                  @click="setPreset('lastYear'); presetsOpen=false"
+                  >Last year</button
+                >
                 <button
                   class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
-                  @click="setPreset('allTime'); presetsOpen=false">All time</button>
+                  @click="setPreset('allTime'); presetsOpen=false"
+                  >All time</button
+                >
               </div>
             </div>
             <div
@@ -228,12 +250,15 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
                   size="xxs"
                   variant="outline"
                   type="button"
-                  @click="const t=new Date(); minDate=new Date(t.getFullYear(),t.getMonth(),1); maxDate=new Date(t.getFullYear(),t.getMonth()+1,0)">Limit to this month</Button>
+                  @click="const t=new Date(); minDate=new Date(t.getFullYear(),t.getMonth(),1); maxDate=new Date(t.getFullYear(),t.getMonth()+1,0)"
+                  >Limit to this month</Button
+                >
                 <Button
                   size="xxs"
                   variant="outline"
                   type="button"
-                  @click="minDate=null; maxDate=null">Clear limits</Button>
+                  @click="minDate=null; maxDate=null">Clear limits</Button
+                >
               </div>
             </div>
           </aside>
@@ -264,12 +289,18 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
                   <div
                     class="grid grid-cols-8 text-center text-zinc-500 dark:text-zinc-300"
                   >
-                    <span class="text-left pl-1">Wk</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span>
+                    <span class="text-left pl-1">Wk</span><span>Mo</span><span
+                      >Tu</span
+                    ><span>We</span><span>Th</span><span>Fr</span><span>Sa</span
+                    ><span>Su</span>
                   </div>
                   <div class="mt-1 space-y-1">
                     <template x-for="row in buildWeeks(view)" :key="row.key">
                       <div class="grid grid-cols-8">
-                        <span class="text-[10px] leading-8 text-zinc-400 dark:text-zinc-300 pl-1">#<span x-text="row.week"></span></span>
+                        <span
+                          class="text-[10px] leading-8 text-zinc-400 dark:text-zinc-300 pl-1"
+                          >#<span x-text="row.week"></span></span
+                        >
                         <template
                           x-for="cell in row.cells"
                           :key="ymd(cell.date)"
@@ -321,7 +352,10 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
                   <div
                     class="grid grid-cols-8 text-center text-zinc-500 dark:text-zinc-300"
                   >
-                    <span class="text-left pl-1">Wk</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span>
+                    <span class="text-left pl-1">Wk</span><span>Mo</span><span
+                      >Tu</span
+                    ><span>We</span><span>Th</span><span>Fr</span><span>Sa</span
+                    ><span>Su</span>
                   </div>
                   <div class="mt-1 space-y-1">
                     <template
@@ -329,7 +363,10 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
                       :key="row.key"
                     >
                       <div class="grid grid-cols-8">
-                        <span class="text-[10px] leading-8 text-zinc-500 dark:text-zinc-300 pl-1">#<span x-text="row.week"></span></span>
+                        <span
+                          class="text-[10px] leading-8 text-zinc-500 dark:text-zinc-300 pl-1"
+                          >#<span x-text="row.week"></span></span
+                        >
                         <template
                           x-for="cell in row.cells"
                           :key="ymd(cell.date)"
@@ -391,25 +428,29 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
                     size="xxs"
                     variant="outline"
                     type="button"
-                    @click="clear()">Clear</Button>
+                    @click="clear()">Clear</Button
+                  >
                   <Button
                     size="xxs"
                     variant="outline"
                     type="button"
-                    @click="setPreset('today')">Today</Button>
+                    @click="setPreset('today')">Today</Button
+                  >
                 </div>
                 <div class="flex flex-wrap items-center gap-2">
                   <Button
                     size="xxs"
-                    variant="danger"
+                    variant="outline"
                     type="button"
-                    @click="open=false">Cancel</Button>
+                    @click="open=false">Cancel</Button
+                  >
                   <Button
                     size="xxs"
                     variant="accent"
                     type="button"
                     :disabled="!start||!end"
-                    @click="apply()">Apply</Button>
+                    @click="apply()">Apply</Button
+                  >
                 </div>
               </div>
             </div>
