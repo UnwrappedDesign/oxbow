@@ -1,5 +1,4 @@
 ---
-export const freeComponent = true;
 // Classes applied dynamically via Alpine :class must not be obfuscated
 export const excludeFromObfuscation = [
   "bg-zinc-50",
@@ -17,7 +16,7 @@ import Lifebuoy from "@/components/fundations/icons/Lifebuoy.astro";
 ---
 
 <div
-  class="p-8 py-24 bg-white dark:bg-zinc-900 flex items-center justify-center"
+  class="flex items-center justify-center p-8 py-24 bg-white dark:bg-zinc-900"
 >
   <!-- Copy:start -->
   <!--
@@ -34,7 +33,7 @@ import Lifebuoy from "@/components/fundations/icons/Lifebuoy.astro";
 -->
 
   <div
-    class="w-full max-w-md bg-white dark:bg-zinc-800 rounded-xl shadow-lg outline outline-zinc-200 dark:outline-zinc-800"
+    class="w-full max-w-md bg-white shadow-lg dark:bg-zinc-800 rounded-xl outline outline-zinc-200 dark:outline-zinc-800"
     x-data="{
       open: true,
       query: '',
@@ -86,19 +85,19 @@ import Lifebuoy from "@/components/fundations/icons/Lifebuoy.astro";
           @keydown.arrow-up.prevent="prev()"
           @keydown.enter.prevent="choose()"
           @keydown.escape.prevent="closeList()"
-          class="w-full h-11 pr-16 bg-transparent border border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 pl-11 sm:text-sm rounded-lg focus:outline-none focus:border-blue-500 dark:focus:border-blue-400"
+          class="w-full pr-16 bg-transparent border rounded-lg h-11 border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 pl-11 sm:text-sm focus:outline-none focus:border-blue-500 dark:focus:border-blue-400"
           placeholder="Quick actions…"
           autocomplete="off"
         />
         <div
-          class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 hidden sm:flex gap-1 text-[11px] text-zinc-500"
+          class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 hidden sm:flex gap-1 text-[0.70rem] text-zinc-500"
         >
           <kbd
-            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700"
+            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700"
             >⌘</kbd
           >
           <kbd
-            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700"
+            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700"
             >K</kbd
           >
         </div>
@@ -115,18 +114,18 @@ import Lifebuoy from "@/components/fundations/icons/Lifebuoy.astro";
 
       <ul
         x-show="open"
-        class="mt-2 max-h-64 overflow-auto rounded-lg ring-1 ring-zinc-200 dark:ring-zinc-800 divide-y divide-zinc-100 dark:divide-zinc-800 bg-white dark:bg-white/5"
+        class="mt-2 overflow-auto bg-white rounded-lg max-h-64 ring-1 ring-zinc-200 dark:ring-zinc-800 divide-y divide-zinc-100 dark:divide-zinc-800 dark:bg-white/5"
       >
         <template x-for="(opt, idx) in filtered" :key="opt.id">
           <li
             :class="selected===idx ? 'bg-zinc-50 dark:bg-white/5' : ''"
-            class="px-3 py-2 flex items-center justify-between cursor-pointer text-zinc-900 dark:text-zinc-50"
+            class="flex items-center justify-between px-3 py-2 cursor-pointer text-zinc-900 dark:text-zinc-50"
             @mouseenter="selected = idx"
             @click="choose(idx)"
           >
             <div class="flex items-center gap-2">
               <div
-                class="size-7 rounded bg-white dark:bg-zinc-800 grid place-items-center ring-1 ring-zinc-200 dark:ring-zinc-700"
+                class="bg-white rounded size-7 dark:bg-zinc-800 grid place-items-center ring-1 ring-zinc-200 dark:ring-zinc-700"
               >
                 <template x-if="opt.icon==='plus'"><Plus size="sm" /></template>
                 <template x-if="opt.icon==='component'"
@@ -149,19 +148,19 @@ import Lifebuoy from "@/components/fundations/icons/Lifebuoy.astro";
               </div>
             </div>
             <kbd
-              class="text-[11px] px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400"
+              class="text-[0.70rem] px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400"
               x-text="opt.key"></kbd>
           </li>
         </template>
         <li
           x-show="filtered.length===0"
-          class="px-3 py-4 text-center text-sm text-zinc-500 italic"
+          class="px-3 py-4 text-sm italic text-center text-zinc-500"
         >
           No results
         </li>
       </ul>
       <div
-        class="px-1 py-2 text-[11px] text-zinc-500 flex items-center justify-between"
+        class="px-1 py-2 text-[0.70rem] text-zinc-500 flex items-center justify-between"
       >
         <span>Tip: type / or press ⌘K</span>
         <span class="hidden sm:inline">Use ↑ ↓ to navigate, ↵ to run</span>

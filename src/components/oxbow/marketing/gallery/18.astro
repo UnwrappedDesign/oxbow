@@ -41,11 +41,11 @@ const gallery = [
     prev() { this.currentIndex = (this.currentIndex - 1 + this.gallery.length) % this.gallery.length; }
   }`}
 >
-  <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
+  <div class="px-8 py-24 mx-auto max-w-7xl md:px-12 lg:px-32">
     <Text
       variant="textSM"
       tag="p"
-      class="mt-4 italic text-zinc-500 dark:text-zinc-400 pb-12 text-center"
+      class="pb-12 mt-4 italic text-center text-zinc-500 dark:text-zinc-400"
     >
       Click on the image to open it in a lightbox.
     </Text>
@@ -55,7 +55,7 @@ const gallery = [
           <img
             src={src}
             alt={alt}
-            class="object-cover size-full aspect-square cursor-pointer hover:opacity-80 transition-opacity"
+            class="object-cover cursor-pointer size-full aspect-square hover:opacity-80 transition-opacity"
             @click={`openLightbox(${index})`}
           />
         ))
@@ -76,7 +76,7 @@ const gallery = [
     @keydown.arrow-right="next"
     class="fixed inset-0 bg-white/80 dark:bg-zinc-900/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 supports-[backdrop-filter]:dark:bg-zinc-900/60 flex items-start justify-center z-50 overflow-auto p-8 md:p-12 lg:p-32 outline-none"
   >
-    <div class="relative mx-auto w-full max-w-3xl" @click.stop>
+    <div class="relative w-full max-w-3xl mx-auto" @click.stop>
       <!-- Hidden heading for screen readers -->
       <h2 class="sr-only">Image Gallery Carousel</h2>
       <!-- Carousel Wrapper -->
@@ -98,7 +98,7 @@ const gallery = [
       <IconButton
         variant="default"
         size="sm"
-        class="absolute left-2 top-1/2 transform -translate-y-1/2 z-20"
+        class="absolute z-20 left-2 top-1/2 transform -translate-y-1/2"
         aria-label="Previous image"
         @click.stop="prev"
       >
@@ -107,7 +107,7 @@ const gallery = [
       <IconButton
         variant="default"
         size="sm"
-        class="absolute right-2 top-1/2 transform -translate-y-1/2 z-20"
+        class="absolute z-20 right-2 top-1/2 transform -translate-y-1/2"
         aria-label="Next image"
         @click.stop="next"
       >
@@ -115,7 +115,7 @@ const gallery = [
       </IconButton>
       <!-- Close Button -->
       <button
-        class="absolute top-2 right-2 z-50"
+        class="absolute z-50 top-2 right-2"
         aria-label="Close gallery"
         @click.stop="closeLightbox"
       >
@@ -126,7 +126,7 @@ const gallery = [
         />
       </button>
       <!-- Dot Indicators -->
-      <div class="flex justify-center space-x-2 mt-4">
+      <div class="flex justify-center mt-4 space-x-2">
         <template x-for="(_, idx) in gallery" :key="idx">
           <button
             @click="currentIndex = idx"

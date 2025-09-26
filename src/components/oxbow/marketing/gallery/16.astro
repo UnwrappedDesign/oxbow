@@ -43,11 +43,11 @@ const gallery = [
     }
   `}
 >
-  <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
+  <div class="px-8 py-24 mx-auto max-w-7xl md:px-12 lg:px-32">
     <Text
       variant="textSM"
       tag="p"
-      class="mt-4 italic text-zinc-500 dark:text-zinc-400 pb-12 text-center"
+      class="pb-12 mt-4 italic text-center text-zinc-500 dark:text-zinc-400"
     >
       Click on the image to open it in a lightbox.
     </Text>
@@ -59,7 +59,7 @@ const gallery = [
             height={500}
             src={src}
             alt={alt}
-            class="object-cover size-full aspect-square cursor-pointer hover:opacity-80 transition-opacity"
+            class="object-cover cursor-pointer size-full aspect-square hover:opacity-80 transition-opacity"
             @click={`openLightbox(${index})`}
           />
         ))
@@ -92,14 +92,14 @@ const gallery = [
               height={800}
               src={slide.src}
               alt={slide.alt}
-              class="max-w-120 max-h-120 object-contain"
+              class="object-contain max-w-120 max-h-120"
               x-show={`currentIndex === ${idx}`}
             />
           ))
         }
       </div>
       <button
-        class="absolute top-10 right-10 z-50"
+        class="absolute z-50 top-10 right-10"
         aria-label="Close gallery"
         @click.stop="closeLightbox"
       >
@@ -112,7 +112,7 @@ const gallery = [
       <IconButton
         variant="default"
         size="sm"
-        class="absolute left-20 top-1/2 transform -translate-y-1/2 z-50"
+        class="absolute z-50 left-20 top-1/2 transform -translate-y-1/2"
         aria-label="Previous image"
         @click.stop="prev"
       >
@@ -121,7 +121,7 @@ const gallery = [
       <IconButton
         variant="default"
         size="sm"
-        class="absolute right-20 top-1/2 transform -translate-y-1/2 z-50"
+        class="absolute z-50 right-20 top-1/2 transform -translate-y-1/2"
         aria-label="Next image"
         @click.stop="next"
       >

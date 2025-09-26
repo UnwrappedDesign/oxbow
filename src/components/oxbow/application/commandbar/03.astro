@@ -15,10 +15,11 @@ import Subtask from "@/components/fundations/icons/Subtask.astro";
 import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
 import Plus from "@/components/fundations/icons/Plus.astro";
 import Settings from "@/components/fundations/icons/Settings.astro";
+import CircleInfo from "@/components/fundations/icons/CircleInfo.astro";
 ---
 
 <div
-  class="p-8 py-24 bg-white dark:bg-zinc-900 flex items-center justify-center"
+  class="flex items-center justify-center p-8 py-24 bg-white dark:bg-zinc-900"
 >
   <!-- Copy:start -->
   <!--
@@ -34,30 +35,34 @@ import Settings from "@/components/fundations/icons/Settings.astro";
 
 -->
   <div
-    class="w-full max-w-2xl bg-white dark:bg-zinc-800 rounded-xl shadow-lg outline outline-zinc-200 dark:outline-zinc-800 overflow-hidden"
+    class="w-full max-w-2xl overflow-hidden bg-white shadow-lg dark:bg-zinc-800 rounded-xl outline outline-zinc-200 dark:outline-zinc-800"
     x-data="{
       open: true,
       query: '',
       activeTab: 'all',
       selected: 0,
+      // quick filter for priority
+      priority: 'all', // all | high | medium | low
       tabs: [
-        { id:'all', label:'Everything', icon:'grid' },
-        { id:'docs', label:'Docs', icon:'file' },
-        { id:'tickets', label:'Tickets', icon:'task' },
-        { id:'members', label:'Members', icon:'users' },
+        { id:'all', label:'All', icon:'grid' },
+        { id:'open', label:'Open', icon:'task' },
+        { id:'mine', label:'Mine', icon:'users' },
+        { id:'mentions', label:'Mentions', icon:'info' },
       ],
+      // Issue triage dataset
       items: [
-        { id:'i1', type:'docs', title:'Quarterly Revenue Brief', subtitle:'in Company Hub', badges:['Report','Low'], href:'#doc-1' },
-        { id:'i2', type:'docs', title:'Design System Guidelines', subtitle:'in UI Library', badges:['Guide','Medium'], href:'#doc-2' },
-        { id:'i3', type:'tickets', title:'OAuth callback failing on staging', subtitle:'in Authentication', badges:['Bug','High'], href:'#t-1' },
-        { id:'i4', type:'tickets', title:'Mobile layout polish', subtitle:'in App Shell', badges:['Enhancement','Normal'], href:'#t-2' },
-        { id:'i5', type:'members', title:'Priya Narayanan', subtitle:'Platform Team', badges:['Admin'], href:'#u-1' },
+        { id:'iss-101', type:'open', assignee:'me', mentions:false, priority:'high',  title:'Payment flow times out intermittently', subtitle:'#checkout · reported by support', badges:['Bug','High'], href:'#issue-101' },
+        { id:'iss-102', type:'open', assignee:'none', mentions:true,  priority:'medium',title:'Clarify empty state copy for Reports', subtitle:'#analytics', badges:['UX','Medium'], href:'#issue-102' },
+        { id:'iss-103', type:'open', assignee:'me', mentions:true,  priority:'low',   title:'Add filter: archived projects', subtitle:'#projects', badges:['Enhancement','Low'], href:'#issue-103' },
+        { id:'iss-104', type:'closed', assignee:'sara', mentions:false, priority:'high', title:'Fix double-submit on mobile', subtitle:'#auth', badges:['Bug','High'], href:'#issue-104' },
+        { id:'iss-105', type:'open', assignee:'dan', mentions:false, priority:'medium', title:'Refactor avatar uploader', subtitle:'#settings', badges:['Tech Debt','Medium'], href:'#issue-105' },
       ],
+      // Triage actions (fire events instead of navigation)
       actions: [
-        { id:'a1', text:'Create New Ticket', desc:'Open tracker and prefill fields', icon:'plus', shortcuts:['N'], href:'#new-ticket' },
-        { id:'a2', text:'Invite Teammate', desc:'Send a workspace invite', icon:'users', shortcuts:['I'], href:'#invite' },
-        { id:'a3', text:'Template Library', desc:'Start from a proven pattern', icon:'file', shortcuts:['T'], href:'#templates' },
-        { id:'a4', text:'Preferences', desc:'Theme, account and keyboard', icon:'settings', shortcuts:['S'], href:'#settings' },
+        { id:'assign-me', text:'Assign to me', desc:'Take ownership of the selected issue', icon:'users', shortcuts:['A'] },
+        { id:'mark-high', text:'Mark as High Priority', desc:'Upgrade priority to High', icon:'settings', shortcuts:['H'] },
+        { id:'close-issue', text:'Close Issue', desc:'Resolve and archive', icon:'task', shortcuts:['C'] },
+        { id:'new-issue', text:'New Issue', desc:'Create issue from scratch', icon:'plus', shortcuts:['N'] },
       ],
       score(text, q){
         q = (q||'').trim().toLowerCase();
@@ -73,7 +78,14 @@ import Settings from "@/components/fundations/icons/Settings.astro";
         const q = this.query;
         const tab = this.activeTab;
         return this.items
-          .filter(it => tab==='all' ? true : it.type===tab)
+          .filter(it => {
+            if (tab==='all') return true;
+            if (tab==='open') return it.type==='open';
+            if (tab==='mine') return it.assignee==='me';
+            if (tab==='mentions') return !!it.mentions;
+            return true;
+          })
+          .filter(it => this.priority==='all' ? true : it.priority===this.priority)
           .map(o=>({o, s: Math.max(this.score(o.title,q), this.score(o.subtitle,q))}))
           .filter(x=>x.s>=0)
           .sort((a,b)=> b.s - a.s)
@@ -103,7 +115,17 @@ import Settings from "@/components/fundations/icons/Settings.astro";
       closeList(){ this.open = false; },
       next(){ const n = this.selectable.length; if(!n) return; this.selected = (this.selected + 1) % n; },
       prev(){ const n = this.selectable.length; if(!n) return; this.selected = (this.selected - 1 + n) % n; },
-      choose(){ const sel = this.selectable[this.selected]; if(!sel) return; const href = sel.data.href; if(href){ window.location.hash = href; } this.closeList(); },
+      choose(){
+        const sel = this.selectable[this.selected];
+        if(!sel) return;
+        if(sel.kind==='action'){
+          window.dispatchEvent(new CustomEvent('triage:action', { detail:{ action: sel.data.id, query: this.query } }));
+          this.closeList();
+          return;
+        }
+        const href = sel.data.href; if(href){ window.location.hash = href; }
+        this.closeList();
+      },
       onKey(e){
         if((e.metaKey||e.ctrlKey) && !e.shiftKey && !e.altKey && e.key.toLowerCase()==='k'){ e.preventDefault(); this.openList(); this.$nextTick(()=> this.$refs.input?.focus()); return; }
         if(e.key==='/'){ e.preventDefault(); this.openList(); this.$nextTick(()=> this.$refs.input?.focus()); return; }
@@ -128,7 +150,7 @@ import Settings from "@/components/fundations/icons/Settings.astro";
           @keydown.arrow-up.prevent="prev()"
           @keydown.enter.prevent="choose()"
           @keydown.escape.prevent="closeList()"
-          class="w-full h-12 pr-24 bg-transparent border-0 text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 pl-11 sm:text-sm rounded-lg ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          class="w-full h-12 pr-24 bg-transparent border-0 rounded-lg text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 pl-11 sm:text-sm ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
           placeholder="Find anything — docs, tickets, teammates"
           autocomplete="off"
           role="combobox"
@@ -137,14 +159,14 @@ import Settings from "@/components/fundations/icons/Settings.astro";
           aria-autocomplete="list"
         />
         <div
-          class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 hidden sm:flex gap-1 text-[11px] text-zinc-500 dark:text-zinc-400"
+          class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 hidden sm:flex gap-1 text-[0.70rem] text-zinc-500 dark:text-zinc-400"
         >
           <kbd
-            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
             >⌘</kbd
           >
           <kbd
-            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
             >K</kbd
           >
         </div>
@@ -159,20 +181,23 @@ import Settings from "@/components/fundations/icons/Settings.astro";
         </button>
       </div>
       <!-- Tabs -->
-      <div class="mt-2 px-2">
+      <div class="px-2 mt-2">
         <div class="flex items-center gap-2 text-[12px]">
           <template x-for="t in tabs" :key="t.id">
             <button
               type="button"
               @click="activeTab=t.id; selected=0"
               :class="activeTab===t.id ? 'text-blue-400' : 'text-zinc-500 dark:text-zinc-400'"
-              class="relative inline-flex items-center gap-2 px-2 py-1 rounded-md hover:bg-zinc-50 dark:hover:bg-white/5"
+              class="relative inline-flex items-center px-2 py-1 gap-2 rounded-md hover:bg-zinc-50 dark:hover:bg-white/5"
             >
               <template x-if="t.icon==='grid'"><Grid size="sm" /></template>
               <template x-if="t.icon==='file'"><FileDots size="sm" /></template>
               <template x-if="t.icon==='task'"><Subtask size="sm" /></template>
               <template x-if="t.icon==='users'"
                 ><UsersGroup size="sm" /></template
+              >
+              <template x-if="t.icon==='info'"
+                ><CircleInfo size="sm" /></template
               >
               <span x-text="t.label"></span>
               <span
@@ -182,13 +207,39 @@ import Settings from "@/components/fundations/icons/Settings.astro";
             </button>
           </template>
         </div>
+        <!-- Quick priority filter -->
+        <div class="flex items-center gap-2 py-2 mt-4">
+          <span class="text-[0.70rem] text-zinc-500 dark:text-zinc-400"
+            >Priority:</span
+          >
+          <button
+            @click="priority='all'; selected=0"
+            :class="priority==='all' ? 'bg-zinc-100 dark:bg-white/10 text-zinc-900 dark:text-zinc-100' : 'text-zinc-600 dark:text-zinc-300'"
+            class="h-6 px-2 rounded-md text-xs">All</button
+          >
+          <button
+            @click="priority='high'; selected=0"
+            :class="priority==='high' ? 'bg-red-100 text-red-700 dark:bg-red-400/10 dark:text-red-300' : 'text-zinc-600 dark:text-zinc-300'"
+            class="h-6 px-2 rounded-md text-xs">High</button
+          >
+          <button
+            @click="priority='medium'; selected=0"
+            :class="priority==='medium' ? 'bg-amber-100 text-amber-700 dark:bg-amber-400/10 dark:text-amber-300' : 'text-zinc-600 dark:text-zinc-300'"
+            class="h-6 px-2 rounded-md text-xs">Medium</button
+          >
+          <button
+            @click="priority='low'; selected=0"
+            :class="priority==='low' ? 'bg-green-100 text-green-700 dark:bg-green-400/10 dark:text-green-300' : 'text-zinc-600 dark:text-zinc-300'"
+            class="h-6 px-2 rounded-md text-xs">Low</button
+          >
+        </div>
       </div>
     </div>
 
     <!-- Results -->
     <div class="py-1">
       <div
-        class="px-6 py-1 text-[11px] font-medium text-zinc-500 dark:text-zinc-400"
+        class="px-6 py-1 text-[0.70rem] font-medium text-zinc-500 dark:text-zinc-400"
       >
         Recent
       </div>
@@ -196,37 +247,29 @@ import Settings from "@/components/fundations/icons/Settings.astro";
         <template x-for="r in filteredResults()" :key="r.id">
           <li
             :class="isSelected({key:'item:'+r.id}) ? 'bg-zinc-50 dark:bg-white/5' : ''"
-            class="cursor-pointer px-6 py-3 flex items-center justify-between text-zinc-900 dark:text-zinc-50"
+            class="flex items-center justify-between px-6 py-3 cursor-pointer text-zinc-900 dark:text-zinc-50"
             @mouseenter="selected = selectable.findIndex(e=>e.key==='item:'+r.id)"
             @click="selected = selectable.findIndex(e=>e.key==='item:'+r.id); choose()"
           >
             <div class="flex items-center gap-3">
               <div
-                class="size-8 rounded-lg bg-white dark:bg-zinc-800 grid place-items-center ring-1 ring-zinc-200 dark:ring-zinc-700"
+                class="bg-white rounded-lg size-8 dark:bg-zinc-800 grid place-items-center ring-1 ring-zinc-200 dark:ring-zinc-700"
               >
-                <template x-if="r.type==='docs'"
-                  ><FileDots size="sm" /></template
-                >
-                <template x-if="r.type==='tickets'"
-                  ><Subtask size="sm" /></template
-                >
-                <template x-if="r.type==='members'"
-                  ><UsersGroup size="sm" /></template
-                >
+                <template x-if="true"><Subtask size="sm" /></template>
               </div>
               <div>
                 <div class="text-sm font-medium" x-text="r.title"></div>
                 <div
-                  class="text-xs text-zinc-500 dark:text-zinc-400 dark:text-zinc-400"
+                  class="text-xs text-zinc-500 dark:text-zinc-400"
                   x-text="r.subtitle"
                 >
                 </div>
               </div>
             </div>
-            <div class="hidden md:flex items-center gap-1">
+            <div class="items-center hidden md:flex gap-1">
               <template x-for="b in r.badges" :key="b">
                 <span
-                  class="text-[11px] px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-white/5 text-zinc-700 dark:text-zinc-300"
+                  class="text-[0.70rem] px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-white/5 text-zinc-700 dark:text-zinc-300"
                   x-text="b"></span>
               </template>
             </div>
@@ -234,7 +277,7 @@ import Settings from "@/components/fundations/icons/Settings.astro";
         </template>
         <li
           x-show="filteredResults().length===0"
-          class="px-6 py-6 text-center text-sm text-zinc-500 dark:text-zinc-400 italic"
+          class="px-6 py-6 text-sm italic text-center text-zinc-500 dark:text-zinc-400"
         >
           No matches in this tab
         </li>
@@ -244,7 +287,7 @@ import Settings from "@/components/fundations/icons/Settings.astro";
     <!-- Actions -->
     <div class="py-1">
       <div
-        class="px-6 py-1 text-[11px] font-medium text-zinc-500 dark:text-zinc-400"
+        class="px-6 py-1 text-[0.70rem] font-medium text-zinc-500 dark:text-zinc-400"
       >
         Quick actions
       </div>
@@ -252,13 +295,13 @@ import Settings from "@/components/fundations/icons/Settings.astro";
         <template x-for="a in filteredActions()" :key="a.id">
           <li
             :class="isSelected({key:'action:'+a.id}) ? 'bg-zinc-50 dark:bg-white/5' : ''"
-            class="cursor-pointer px-6 py-3 flex items-center justify-between text-zinc-900 dark:text-zinc-50"
+            class="flex items-center justify-between px-6 py-3 cursor-pointer text-zinc-900 dark:text-zinc-50"
             @mouseenter="selected = selectable.findIndex(e=>e.key==='action:'+a.id)"
             @click="selected = selectable.findIndex(e=>e.key==='action:'+a.id); choose()"
           >
             <div class="flex items-center gap-3">
               <div
-                class="size-8 rounded-lg bg-white dark:bg-zinc-800 grid place-items-center ring-1 ring-zinc-200 dark:ring-zinc-700"
+                class="bg-white rounded-lg size-8 dark:bg-zinc-800 grid place-items-center ring-1 ring-zinc-200 dark:ring-zinc-700"
               >
                 <template x-if="a.icon==='plus'"><Plus size="sm" /></template>
                 <template x-if="a.icon==='users'"
@@ -274,18 +317,18 @@ import Settings from "@/components/fundations/icons/Settings.astro";
               <div>
                 <div class="text-sm font-medium" x-text="a.text"></div>
                 <div
-                  class="text-xs text-zinc-500 dark:text-zinc-400 dark:text-zinc-400"
+                  class="text-xs text-zinc-500 dark:text-zinc-400"
                   x-text="a.desc"
                 >
                 </div>
               </div>
             </div>
             <div
-              class="hidden sm:flex items-center gap-1 text-[11px] text-zinc-600"
+              class="hidden sm:flex items-center gap-1 text-[0.70rem] text-zinc-600"
             >
               <template x-for="k in a.shortcuts" :key="k">
                 <kbd
-                  class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+                  class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
                   x-text="k"></kbd>
               </template>
             </div>
@@ -293,7 +336,7 @@ import Settings from "@/components/fundations/icons/Settings.astro";
         </template>
         <li
           x-show="filteredActions().length===0"
-          class="px-6 py-6 text-center text-sm text-zinc-500 dark:text-zinc-400 italic"
+          class="px-6 py-6 text-sm italic text-center text-zinc-500 dark:text-zinc-400"
         >
           No actions found
         </li>
@@ -302,27 +345,27 @@ import Settings from "@/components/fundations/icons/Settings.astro";
 
     <!-- Footer help -->
     <div
-      class="px-4 py-2 text-[11px] text-zinc-500 dark:text-zinc-400 flex items-center justify-between bg-zinc-50 dark:bg-white/10"
+      class="px-4 py-2 text-[0.70rem] text-zinc-500 dark:text-zinc-400 flex items-center justify-between bg-zinc-50 dark:bg-white/10"
     >
       <div>
         Hint: press <kbd
-          class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+          class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
           >/</kbd
         > to search
       </div>
-      <div class="hidden sm:flex items-center gap-2">
+      <div class="items-center hidden sm:flex gap-2">
         <span class="flex items-center gap-1"
           ><kbd
-            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
             >↑</kbd
           ><kbd
-            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
             >↓</kbd
           > to navigate</span
         >
         <span class="flex items-center gap-1"
           ><kbd
-            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
             >↵</kbd
           > to open</span
         >

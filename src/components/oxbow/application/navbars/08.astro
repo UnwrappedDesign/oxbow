@@ -12,11 +12,11 @@ import FlyoutLinkBox from "@/components/fundations/wrappers/FlyoutLinkBox.astro"
 <div class="bg-white dark:bg-zinc-900 pb-100">
   <!-- copy:start -->
   <header
-    class="w-full mx-auto bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800"
+    class="w-full mx-auto bg-white border-b dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800"
   >
     <div
       x-data="{ open:false, proj:false }"
-      class="max-w-screen-xl mx-auto px-6 md:px-10 lg:px-16 py-2"
+      class="px-6 py-2 mx-auto max-w-screen-xl md:px-10 lg:px-16"
     >
       <div class="flex items-center gap-3">
         <!-- Project switcher -->
@@ -29,7 +29,7 @@ import FlyoutLinkBox from "@/components/fundations/wrappers/FlyoutLinkBox.astro"
             :aria-expanded="open"
             class="flex items-center justify-between gap-2"
           >
-            <span class="size-2 rounded-full bg-emerald-500"></span>
+            <span class="rounded-full size-2 bg-emerald-500"></span>
             Tailwind CSS v4
             <ChevronDown
               size="sm"
@@ -42,7 +42,7 @@ import FlyoutLinkBox from "@/components/fundations/wrappers/FlyoutLinkBox.astro"
             x-show="open"
             x-transition
             @click.outside="open=false"
-            class="absolute left-0 top-full z-30 mt-2 w-80 p-4 bg-white dark:bg-zinc-800 shadow-lg rounded-xl outline outline-zinc-900/5 dark:outline-white/10 flex flex-col gap-4"
+            class="absolute left-0 z-30 flex flex-col p-4 mt-2 bg-white shadow-lg top-full w-80 dark:bg-zinc-800 rounded-xl outline outline-zinc-900/5 dark:outline-white/10 gap-4"
           >
             <FlyoutLinkBox
               href="#_"
@@ -64,7 +64,7 @@ import FlyoutLinkBox from "@/components/fundations/wrappers/FlyoutLinkBox.astro"
         <!-- Center tabs -->
         <nav
           aria-label="Primary"
-          class="mx-auto hidden md:flex items-center gap-5 text-xs"
+          class="items-center hidden mx-auto text-xs md:flex gap-5"
         >
           <Text
             tag="a"
@@ -89,9 +89,9 @@ import FlyoutLinkBox from "@/components/fundations/wrappers/FlyoutLinkBox.astro"
           >
         </nav>
         <!-- Actions -->
-        <div class="ml-auto flex items-center gap-2">
+        <div class="flex items-center ml-auto gap-2">
           <div
-            class="hidden md:flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400"
+            class="items-center hidden text-xs md:flex gap-2 text-zinc-500 dark:text-zinc-400"
           >
             <span class="inline-flex items-center gap-1"
               ><span class="size-1.5 rounded-full bg-emerald-500"></span> Online</span
@@ -114,7 +114,7 @@ import FlyoutLinkBox from "@/components/fundations/wrappers/FlyoutLinkBox.astro"
       <nav
         id="nav-10"
         :class="{ 'block': open, 'hidden': !open }"
-        class="md:hidden hidden mt-2 space-y-2"
+        class="hidden mt-2 md:hidden space-y-2"
         aria-label="Mobile"
       >
         <Button variant="muted" size="xs" class="w-full">Overview</Button>

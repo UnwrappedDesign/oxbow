@@ -28,7 +28,7 @@ export default function SubsectionToolbarIsland({ cat, sub, subsByCat }: Props){
     setOpen(which);
   };
   return (
-    <div className=" flex items-center gap-2">
+    <div className="flex items-center  gap-2">
       {/* Category */}
       <button onClick={(e)=>openMenu('cat', e)} className="inline-flex items-center gap-2 h-[28px] px-2 py-1 rounded-lg outline outline-1 outline-zinc-200 text-zinc-700 text-xs">
         <span className="capitalize">{fmt(cat)}</span>
@@ -36,11 +36,11 @@ export default function SubsectionToolbarIsland({ cat, sub, subsByCat }: Props){
       </button>
       {open==='cat' && (
         <div ref={menuRef} className="fixed z-50 mt-2 w-56 rounded-xl outline outline-zinc-100 shadow bg-white text-[12px] text-zinc-600 divide-y divide-zinc-100" style={{top:pos.top,left:pos.left}}>
-          <div className="py-2 max-h-64 overflow-auto">
+          <div className="py-2 overflow-auto max-h-64">
             {Object.keys(subsByCat).sort().map(key => (
               <a key={key} href={`/playground/${key}/${(subsByCat[key]||[])[0]||''}`} className="w-full flex items-center justify-between px-3 py-1.5 hover:bg-sand-100">
                 <span className="capitalize">{fmt(key)}</span>
-                {cat===key && <Check className="size-4 text-blue-600"/>}
+                {cat===key && <Check className="text-blue-600 size-4"/>}
               </a>
             ))}
           </div>
@@ -53,11 +53,11 @@ export default function SubsectionToolbarIsland({ cat, sub, subsByCat }: Props){
       </button>
       {open==='sub' && (
         <div ref={menuRef} className="fixed z-50 mt-2 w-64 rounded-xl outline outline-zinc-100 shadow bg-white text-[12px] text-zinc-600 divide-y divide-zinc-100" style={{top:pos.top,left:pos.left}}>
-          <div className="py-2 max-h-64 overflow-auto">
+          <div className="py-2 overflow-auto max-h-64">
             {(subsByCat[cat]||[]).map(name => (
               <a key={name} href={`/playground/${cat}/${name}`} className="w-full flex items-center justify-between px-3 py-1.5 hover:bg-sand-100">
                 <span className="capitalize">{fmt(name)}</span>
-                {sub===name && <Check className="size-4 text-blue-600"/>}
+                {sub===name && <Check className="text-blue-600 size-4"/>}
               </a>
             ))}
           </div>

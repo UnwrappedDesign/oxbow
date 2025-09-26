@@ -1,50 +1,144 @@
 ---
+export const freeComponent = true;
+// Keep transition utilities intact in production
+export const excludeFromObfuscation = [
+  "translate-y-2",
+  "translate-y-0",
+  "opacity-0",
+  "opacity-100",
+];
+import Refresh from "@/components/fundations/icons/Refresh.astro";
+import X from "@/components/fundations/icons/X.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+import IconButton from "@/components/fundations/buttons/IconButton.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
 
-<div class="p-8 bg-white dark:bg-zinc-900">
-  <!-- copy:start -->
+<div
+  class="flex items-center justify-center p-8 py-40 bg-white lg:py-56 dark:bg-zinc-900"
+>
+  <!-- Copy Start -->
+  <!-- 
+// Make sure to change  "open: false",  to  open: true. On the z-data="{}".
+//
+//Programmatic usage:
+//
+// window.dispatchEvent(new CustomEvent('notify', {
+//  detail: { type:'success', title:'Saved', message:'All good', timeout: 4000 }
+// }))
+-->
   <div
-    class="flex flex-col w-full max-w-sm mx-auto bg-white dark:bg-zinc-800 shadow-lg rounded-xl ring-1 ring-zinc-200 dark:ring-zinc-700 divide-y sm:divide-zinc-200 dark:divide-zinc-700"
+    class="w-full max-w-xl mx-auto"
+    x-data="{
+      toast: { open:true, version:'2.3.1', notes:'Performance improvements and small UI fixes.', expanded:false },
+      show(detail={}){
+        this.toast.version = detail.version || this.toast.version;
+        this.toast.notes = detail.notes || this.toast.notes;
+        this.toast.expanded = false;
+        this.toast.open = true;
+      },
+      reload(){ try{ location.reload(); }catch{ this.toast.open=false; } },
+      later(){ this.toast.open=false; }
+    }"
+    x-init="window.addEventListener('notify', (e)=> show(e.detail||{}))"
   >
-    <div class="flex items-center flex-1 w-full p-4">
-      <div class="w-full text-balance">
-        <Text
-          tag="p"
-          variant="textLG"
-          class="font-medium text-zinc-900 dark:text-white"
+    <!-- Demo trigger -->
+    <div class="flex items-center justify-center gap-2">
+      <Button
+        variant="muted"
+        size="sm"
+        @click="show({ version:'3.0.0', notes:'Fresh look and faster previews.' })"
+        >Click to simulate update</Button
+      >
+    </div>
+    <!-- Live region (bottom-center) -->
+    <div
+      aria-live="polite"
+      class="fixed inset-x-0 bottom-0 flex justify-center px-4 pb-6 pointer-events-none sm:px-6"
+    >
+      <div class="flex justify-center w-full max-w-lg">
+        <div
+          x-show="toast.open"
+          x-transition:enter="transform ease-out duration-300"
+          x-transition:enter-start="translate-y-2 opacity-0"
+          x-transition:enter-end="translate-y-0 opacity-100"
+          x-transition:leave="transition ease-in duration-150"
+          x-transition:leave-start="opacity-100"
+          x-transition:leave-end="opacity-0"
+          class="w-full bg-white shadow-lg pointer-events-auto rounded-xl outline outline-1 outline-black/5 transition dark:bg-zinc-800 dark:-outline-offset-1 dark:outline-white/10"
+          role="status"
         >
-          Join our loyalty program
-        </Text>
-        <Text
-          tag="p"
-          variant="textSM"
-          class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
-        >
-          Earn points, unlock exclusive rewards, and enjoy personalized offers
-          as a valued member.
-        </Text>
-
-        <div class="flex items-center justify-end mt-8 gap-4">
-          <Text
-            tag="a"
-            href="#_"
-            variant="textSM"
-            class="flex items-center font-medium hover:text-blue-500 dark:hover:text-blue-300 gap-2 text-zinc-500 dark:text-zinc-400"
-          >
-            Join now
-          </Text>
-          <Text
-            tag="a"
-            href="#_"
-            variant="textSM"
-            class="flex items-center font-medium hover:text-blue-500 dark:hover:text-blue-300 gap-2 text-zinc-500 dark:text-zinc-400"
-          >
-            Maybe Later
-          </Text>
+          <div class="p-4">
+            <div class="flex items-start gap-3">
+              <div class="text-blue-600 shrink-0 dark:text-blue-400">
+                <Refresh size="base" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2">
+                  <Text
+                    tag="p"
+                    variant="textSM"
+                    class="text-sm font-medium text-zinc-900 dark:text-white"
+                  >
+                    Update available
+                  </Text>
+                  <span
+                    class="text-[0.70rem] px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 dark:bg-blue-500/10 dark:text-blue-300"
+                    >v<span x-text="toast.version"></span></span
+                  >
+                </div>
+                <p
+                  class="mt-1 text-xs text-zinc-600 dark:text-zinc-300 line-clamp-2"
+                  x-text="toast.notes"
+                >
+                </p>
+                <div class="flex items-center mt-4 gap-2">
+                  <Button
+                    size="xxs"
+                    variant="default"
+                    type="button"
+                    @click="reload()">Reload now</Button
+                  >
+                  <Button
+                    size="xxs"
+                    variant="outline"
+                    type="button"
+                    @click="later()">Later</Button
+                  >
+                  <button
+                    type="button"
+                    class="ml-auto font-medium text-xs text-zinc-900 duration-300 hover:underline hover:text-zinc-700 dark:text-zinc-300 dark:hover:text-zinc-200"
+                    @click="toast.expanded=!toast.expanded"
+                    x-text="toast.expanded ? 'Hide notes' : 'View notes'"
+                  ></button>
+                </div>
+                <div
+                  x-show="toast.expanded"
+                  x-transition.opacity
+                  class="mt-2 text-[0.70rem] text-zinc-600 dark:text-zinc-300 bg-zinc-50 dark:bg-zinc-800/50 rounded-md p-2"
+                >
+                  <pre
+                    class="break-words whitespace-pre-wrap font-mono"
+                    x-text="toast.notes">
+                  </pre>
+                </div>
+              </div>
+              <div class="flex ml-2 shrink-0">
+                <IconButton
+                  variant="muted"
+                  size="xxs"
+                  type="button"
+                  @click="later()"
+                >
+                  <span class="sr-only">Close</span>
+                  <X size="base" />
+                </IconButton>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- copy:end -->
+  <!-- Copy:end -->
 </div>

@@ -59,7 +59,7 @@ const updatedSubsections = Object.keys(updates).reduce((acc, path) => {
 const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
 ---
 
-<ul class="flex flex-col divide-y divide-zinc-200">
+<ul class="columns-1 md:columns-3 sm:columns-2 lg:columns-4 lg:gap-x-4">
   {
     entriesWithQuantity.map((template) => {
       const subsection = template.link.split("/").pop();
@@ -70,7 +70,7 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
       const isUpdatedLastWeek = updatedAt > SEVEN_DAYS_AGO;
 
       return (
-        <li class="relative group py-2 ">
+        <li class="relative py-2 group border-b border-zinc-200">
           <a
             title={template.name}
             href={template.link}
@@ -78,13 +78,13 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
           />
           <div>
             {/*   <Image
-              class="object-cover object-top rounded-lg  transition-all duration-300 ease-in-out shadow-subtle shadow-zinc-500/10  aspect-16/9"
+              class="object-cover object-top rounded-lg  transition-all duration-300 ease-in-out shadow-subtle shadow-zinc-500/10 aspect-16/9"
               alt={template.name}
               src={template.image()}
             /> */}
-            <div class="grid grid-cols-2  group-hover:text-accent-600 lg:items-center">
-              <div class="   flex items-center gap-4">
-                <div class="rounded-full text-zinc-900 p-1 text-xs bg-white size-6 transition-colors duration-500 flex items-center justify-center">
+            <div class="  group-hover:text-accent-600 lg:items-center">
+              <div class="flex items-center  gap-4">
+                <div class="flex items-center justify-center p-1 text-xs bg-white rounded-full text-zinc-900 size-6 transition-colors duration-500">
                   {template.quantity}
                 </div>
                 <Text
@@ -96,10 +96,10 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
                 </Text>
               </div>
 
-              <Text
+              {/*   <Text
                 tag="p"
                 variant="textXXS"
-                class="relative flex items-center gap-1 text-zinc-500 group-hover:text-accent-600 ml-auto"
+                class="relative flex items-center ml-auto gap-1 text-zinc-500 group-hover:text-accent-600"
               >
                 Updated
                 {formatDistanceToNowStrict(updatedAt, {
@@ -107,7 +107,7 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
                   roundingMethod: "ceil",
                 })}
                 {" ago"}
-              </Text>
+              </Text> */}
             </div>
           </div>
         </li>

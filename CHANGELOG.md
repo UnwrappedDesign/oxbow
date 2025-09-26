@@ -3,6 +3,16 @@
 ## **2025-09-25**
 
 ### Added
+- commandbar: [1 component](https://oxbowui.com/playground/application/commandbar)
+- gallery: [5 components](https://oxbowui.com/playground/marketing/gallery)
+
+### Modified
+- commandbar: [4 components](https://oxbowui.com/playground/application/commandbar)
+- gallery: [15 components](https://oxbowui.com/playground/marketing/gallery)
+
+## **2025-09-25**
+
+### Added
 - gallery: [5 components](https://oxbowui.com/playground/marketing/gallery)
 
 ### Modified

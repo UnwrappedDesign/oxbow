@@ -36,7 +36,7 @@ import UsersIcon from "@/components/fundations/icons/UsersGroup.astro";
       >
         <template x-for="(id, idx) in keys" :key="id">
           <button
-            class="size-10 inline-flex items-center justify-center rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500/50"
+            class="inline-flex items-center justify-center size-10 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500/50"
             :id="'tab-'+id"
             role="tab"
             aria-label="Tab"
@@ -69,7 +69,7 @@ import UsersIcon from "@/components/fundations/icons/UsersGroup.astro";
         </template>
       </div>
     </aside>
-    <main class="col-span-2 text-sm text-zinc-500 dark:text-zinc-300 w-full">
+    <main class="w-full text-sm col-span-2 text-zinc-500 dark:text-zinc-300">
       <template x-for="id in keys" :key="'panel-'+id">
         <section
           x-show="selected===id"
@@ -77,7 +77,7 @@ import UsersIcon from "@/components/fundations/icons/UsersGroup.astro";
           role="tabpanel"
           :id="'panel-'+id"
           :aria-labelledby="'tab-'+id"
-          class="rounded-lg border border-zinc-200 dark:border-zinc-700 p-4"
+          class="p-4 border rounded-lg border-zinc-200 dark:border-zinc-700"
         >
           <p>
             <span x-text="id.charAt(0).toUpperCase()+id.slice(1)"></span> content

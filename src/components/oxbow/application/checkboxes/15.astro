@@ -3,14 +3,14 @@ export const description = "Weekday Pills Selector";
 ---
 
 <section
-  class="flex items-center flex-wrap gap-2 justify-center p-14 bg-white dark:bg-zinc-900 h-full"
+  class="flex flex-wrap items-center justify-center h-full bg-white gap-2 p-14 dark:bg-zinc-900"
 >
   <!-- copy:start -->
   <div
-    class="flex flex-col gap-3 w-full max-w-md"
+    class="flex flex-col w-full max-w-md gap-3"
     x-data="{ days: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'], selected: [] }"
   >
-    <div class="flex items-center gap-2 flex-wrap">
+    <div class="flex flex-wrap items-center gap-2">
       <template x-for="d in days" :key="d">
         <div>
           <input
@@ -23,9 +23,9 @@ export const description = "Weekday Pills Selector";
           <label
             :for="`day-`+d"
             :title="d"
-            class="inline-flex select-none items-center justify-center w-10 h-10 rounded-full border border-zinc-300 text-sm text-zinc-600 dark:text-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 transition-all cursor-pointer
-                   peer-checked:ring-2 peer-checked:ring-blue-600 peer-checked:ring-offset-2 ring-offset-white dark:ring-offset-zinc-900
-                   peer-focus-visible:ring-2 peer-focus-visible:ring-blue-600 peer-focus-visible:ring-offset-2"
+            class="inline-flex items-center justify-center w-10 h-10 text-sm bg-white border rounded-full select-none border-zinc-300 text-zinc-600 dark:text-zinc-300 dark:border-zinc-700 dark:bg-zinc-900 transition-all cursor-pointer
+  peer-checked:ring-2 peer-checked:ring-blue-600 peer-checked:ring-offset-2 ring-offset-white dark:ring-offset-zinc-900
+ peer-focus-visible:ring-2 peer-focus-visible:ring-blue-600 peer-focus-visible:ring-offset-2"
           >
             <span x-text="d[0]"></span>
           </label>

@@ -21,13 +21,12 @@ import Pin from "@/components/fundations/icons/Pin.astro";
 ---
 
 <div
-  class="p-8 py-24 bg-white dark:bg-zinc-900 flex items-center justify-center"
+  class="flex items-center justify-center p-8 py-24 bg-white dark:bg-zinc-900"
 >
   <!-- Copy:start -->
   <!--
-  
+
   - [x-cloak] hides uninitialized Alpine content until hydration to avoid flicker.
- 
 <style>
   :global([x-cloak]) {
     display: none !important;
@@ -37,7 +36,7 @@ import Pin from "@/components/fundations/icons/Pin.astro";
 
 -->
   <div
-    class="w-full max-w-4xl bg-white dark:bg-zinc-800 rounded-xl shadow-lg outline outline-zinc-200 dark:outline-zinc-800 overflow-hidden"
+    class="w-full max-w-4xl overflow-hidden bg-white shadow-lg dark:bg-zinc-800 rounded-xl outline outline-zinc-200 dark:outline-zinc-800"
     x-data="{
       open: true,
       query: '',
@@ -112,19 +111,19 @@ import Pin from "@/components/fundations/icons/Pin.astro";
         <input
           x-ref="input"
           x-model="query"
-          class="w-full h-12 pr-36 bg-transparent border-0 text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 pl-11 sm:text-sm rounded-lg ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="w-full h-12 bg-transparent border-0 rounded-lg pr-36 text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 pl-11 sm:text-sm ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="Search files, people and updates…"
           autocomplete="off"
         />
         <div
-          class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 hidden sm:flex gap-1 text-[11px] text-zinc-500 dark:text-zinc-300"
+          class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 hidden sm:flex gap-1 text-[0.70rem] text-zinc-500 dark:text-zinc-300"
         >
           <kbd
-            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700"
+            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700"
             >⌘</kbd
           >
           <kbd
-            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700"
+            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700"
             >K</kbd
           >
         </div>
@@ -143,7 +142,7 @@ import Pin from "@/components/fundations/icons/Pin.astro";
           <button
             @click="active='all'; selected=0"
             :class="active==='all' ? 'text-blue-600 dark:text-blue-400' : 'text-zinc-600 dark:text-zinc-400'"
-            class="px-2 py-1 rounded-md hover:bg-zinc-50 dark:hover:bg-white/5 inline-flex items-center gap-2"
+            class="inline-flex items-center px-2 py-1 rounded-md hover:bg-zinc-50 dark:hover:bg-white/5 gap-2"
           >
             <Report size="sm" />
             <span class="hidden sm:inline">All</span>
@@ -151,7 +150,7 @@ import Pin from "@/components/fundations/icons/Pin.astro";
           <button
             @click="active='files'; selected=0"
             :class="active==='files' ? 'text-blue-600 dark:text-blue-400' : 'text-zinc-600 dark:text-zinc-400'"
-            class="px-2 py-1 rounded-md hover:bg-zinc-50 dark:hover:bg-white/5 inline-flex items-center gap-2"
+            class="inline-flex items-center px-2 py-1 rounded-md hover:bg-zinc-50 dark:hover:bg-white/5 gap-2"
           >
             <FileDots size="sm" />
             <span class="hidden sm:inline">Files</span>
@@ -159,7 +158,7 @@ import Pin from "@/components/fundations/icons/Pin.astro";
           <button
             @click="active='people'; selected=0"
             :class="active==='people' ? 'text-blue-600 dark:text-blue-400' : 'text-zinc-600 dark:text-zinc-400'"
-            class="px-2 py-1 rounded-md hover:bg-zinc-50 dark:hover:bg-white/5 inline-flex items-center gap-2"
+            class="inline-flex items-center px-2 py-1 rounded-md hover:bg-zinc-50 dark:hover:bg-white/5 gap-2"
           >
             <UsersGroup size="sm" />
             <span class="hidden sm:inline">People</span>
@@ -167,17 +166,17 @@ import Pin from "@/components/fundations/icons/Pin.astro";
           <button
             @click="active='updates'; selected=0"
             :class="active==='updates' ? 'text-blue-600 dark:text-blue-400' : 'text-zinc-600 dark:text-zinc-400'"
-            class="px-2 py-1 rounded-md hover:bg-zinc-50 dark:hover:bg-white/5 inline-flex items-center gap-2"
+            class="inline-flex items-center px-2 py-1 rounded-md hover:bg-zinc-50 dark:hover:bg-white/5 gap-2"
           >
             <Report size="sm" />
             <span class="hidden sm:inline">Updates</span>
           </button>
         </div>
         <div class="flex items-center gap-2">
-          <label class="inline-flex items-center gap-2 cursor-pointer">
+          <label class="inline-flex items-center cursor-pointer gap-2">
             <input
               type="checkbox"
-              class="accent-zinc-900 rounded-md border border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900"
+              class="border accent-zinc-900 rounded-md border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900"
               x-model="onlyPinned"
             />
             <span class="text-zinc-600 dark:text-zinc-300">Pinned only</span>
@@ -188,12 +187,12 @@ import Pin from "@/components/fundations/icons/Pin.astro";
 
     <!-- Two-column body: results + preview -->
     <div
-      class="grid grid-cols-1 md:grid-cols-2 gap-0 border-t border-zinc-100 dark:border-white/5"
+      class="border-t grid grid-cols-1 md:grid-cols-2 gap-0 border-zinc-100 dark:border-white/5"
     >
       <!-- Results list -->
       <div class="py-2">
         <div
-          class="px-4 py-1 text-[11px] font-medium text-zinc-500 dark:text-zinc-300"
+          class="px-4 py-1 text-[0.70rem] font-medium text-zinc-500 dark:text-zinc-300"
         >
           Results
         </div>
@@ -201,7 +200,7 @@ import Pin from "@/components/fundations/icons/Pin.astro";
           <template x-for="(r, idx) in filtered()" :key="r.id">
             <li
               :class="isSel(r.id) ? 'bg-zinc-50 dark:bg-white/5' : ''"
-              class="px-4 py-3 flex items-center justify-between cursor-pointer"
+              class="flex items-center justify-between px-4 py-3 cursor-pointer"
               @mouseenter="selected = idx"
               @click="selected = idx; choose()"
             >
@@ -209,7 +208,7 @@ import Pin from "@/components/fundations/icons/Pin.astro";
                 class="flex items-center gap-3 text-zinc-900 dark:text-zinc-50"
               >
                 <div
-                  class="size-8 rounded-lg bg-white dark:bg-zinc-800 grid place-items-center ring-1 ring-zinc-200 dark:ring-zinc-700"
+                  class="bg-white rounded-lg size-8 dark:bg-zinc-800 grid place-items-center ring-1 ring-zinc-200 dark:ring-zinc-700"
                 >
                   <template x-if="r.kind==='files'"
                     ><FileDots size="sm" /></template
@@ -233,7 +232,7 @@ import Pin from "@/components/fundations/icons/Pin.astro";
               <div class="flex items-center gap-2">
                 <template x-for="b in r.badges" :key="b">
                   <span
-                    class="hidden md:inline text-[11px] px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-white/5 text-zinc-700 dark:text-zinc-300"
+                    class="hidden md:inline text-[0.70rem] px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-white/5 text-zinc-700 dark:text-zinc-300"
                     x-text="b"></span>
                 </template>
                 <IconButton
@@ -250,7 +249,7 @@ import Pin from "@/components/fundations/icons/Pin.astro";
           </template>
           <li
             x-show="filtered().length===0"
-            class="px-4 py-6 text-center text-sm text-zinc-500 dark:text-zinc-300 italic"
+            class="px-4 py-6 text-sm italic text-center text-zinc-500 dark:text-zinc-300"
           >
             No results
           </li>
@@ -288,7 +287,7 @@ import Pin from "@/components/fundations/icons/Pin.astro";
                   <Clipboard size="sm" x-show="!copied" />
                   <span
                     x-show="copied"
-                    class="flex items-center gap-1 text-green-700"
+                    class="flex items-center text-green-700 gap-1"
                   >
                     Copied
                   </span>
@@ -307,13 +306,13 @@ import Pin from "@/components/fundations/icons/Pin.astro";
               </div>
             </div>
             <div
-              class="mt-8 text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed"
+              class="mt-8 text-xs leading-relaxed text-zinc-700 dark:text-zinc-300"
             >
               <p>
                 Preview excerpt is shown here to give quick context. Use arrow
                 keys to move, Enter to open, or pin frequently used results.
               </p>
-              <ul class="mt-2 list-disc ml-4 space-y-1">
+              <ul class="mt-2 ml-4 list-disc space-y-1">
                 <li>Type to filter — subsequence search.</li>
                 <li>Press P to pin/unpin the selection (⌘/Ctrl+P).</li>
                 <li>Switch tabs to scope to files, people or updates.</li>
@@ -323,7 +322,7 @@ import Pin from "@/components/fundations/icons/Pin.astro";
         </template>
         <div
           x-show="!current()"
-          class="h-full grid place-items-center text-sm text-zinc-500 dark:text-zinc-300"
+          class="h-full text-sm grid place-items-center text-zinc-500 dark:text-zinc-300"
         >
           Select a result to preview
         </div>
@@ -332,39 +331,39 @@ import Pin from "@/components/fundations/icons/Pin.astro";
 
     <!-- Footer -->
     <div
-      class="px-4 py-2 text-[11px] text-zinc-500 dark:text-zinc-300 flex items-center justify-between bg-zinc-50 dark:bg-white/10"
+      class="px-4 py-2 text-[0.70rem] text-zinc-500 dark:text-zinc-300 flex items-center justify-between bg-zinc-50 dark:bg-white/10"
     >
       <div>
         Tips: <kbd
-          class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+          class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
           >/</kbd
         > to search • <kbd
-          class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+          class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
           >⌘</kbd
         >+<kbd
-          class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+          class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
           >P</kbd
         > to pin • <kbd
-          class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+          class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
           >⌘</kbd
         >+<kbd
-          class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+          class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
           >C</kbd
         > to copy
       </div>
-      <div class="hidden sm:flex items-center gap-2">
+      <div class="items-center hidden sm:flex gap-2">
         <span class="flex items-center gap-1"
           ><kbd
-            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
             >↑</kbd
           ><kbd
-            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
             >↓</kbd
           > to navigate</span
         >
         <span class="flex items-center gap-1"
           ><kbd
-            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
             >↵</kbd
           > to open</span
         >

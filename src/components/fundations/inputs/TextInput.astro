@@ -67,21 +67,21 @@ const variantClasses = {
     "dark:ring-zinc-700",
     "dark:placeholder-zinc-400",
     "dark:focus:border-zinc-600",
-    "dark:focus:ring-zinc-500",
+    "dark:focus:ring-blue-500 ",
   ],
   dark: [
-   "bg-zinc-800",
-  "text-zinc-100",
-  "border-zinc-700",
-  "ring-1",
-  "ring-zinc-700",
-  "placeholder-zinc-400",
-  "focus:border-zinc-500",
-  "focus:ring-zinc-50",
-  "focus:ring-2",
-  "focus:outline-none",
-  "shadow-sm"
-  ]
+    "bg-zinc-800",
+    "text-zinc-100",
+    "border-zinc-700",
+    "ring-1",
+    "ring-zinc-700",
+    "placeholder-zinc-400",
+    "focus:border-zinc-500",
+    "focus:ring-zinc-50",
+    "focus:ring-2",
+    "focus:outline-none",
+    "shadow-sm",
+  ],
 };
 const sizeClasses = {
   xxs: ["h-7", "px-3", "py-1.5", "text-xs", "rounded-md"],
@@ -90,7 +90,7 @@ const sizeClasses = {
   base: ["h-10", "px-4", "py-2", "text-sm", "rounded-md"],
   md: ["h-11", "px-4", "py-2", "text-sm", "rounded-md"],
   lg: ["h-12", "px-4", "py-2.5", "text-base", "rounded-md"],
-  xl: ["h-14", "px-5", "py-3", "text-lg", "rounded-md"]
+  xl: ["h-14", "px-5", "py-3", "text-lg", "rounded-md"],
 };
 const squareSizeClasses = {
   xxs: ["w-7", "h-7"],
@@ -99,7 +99,7 @@ const squareSizeClasses = {
   base: ["w-10", "h-10"],
   md: ["w-11", "h-11"],
   lg: ["w-12", "h-12"],
-  xl: ["w-14", "h-14"]
+  xl: ["w-14", "h-14"],
 };
 const disabledClass = disabled
   ? ["opacity-50", "cursor-not-allowed", "bg-zinc-100", "pointer-events-none"]
@@ -112,19 +112,27 @@ const isCVV = type === "text" && name?.toLowerCase().includes("cvv");
 const isExpiry = type === "text" && /exp(ir(y)?|date)/i.test(name || "");
 const hasLeftIcon =
   showLeftIcon &&
-  ((isSearch && iconPosition === "left") || isEmail || isCreditCard || isExpiry);
+  ((isSearch && iconPosition === "left") ||
+    isEmail ||
+    isCreditCard ||
+    isExpiry);
 const hasRightIcon =
   showRightIcon &&
   ((isSearch && iconPosition === "right") || isPassword || isCVV);
 const inputPaddingClasses = [];
 if (prefix) inputPaddingClasses.push("pl-20");
 else if (hasLeftIcon) inputPaddingClasses.push("pl-10");
-const _noTopLeft = noRounded || noRoundedTop || noRoundedLeft || noRoundedTopLeft;
-const _noTopRight = noRounded || noRoundedTop || noRoundedRight || noRoundedTopRight;
-const _noBottomLeft = noRounded || noRoundedBottom || noRoundedLeft || noRoundedBottomLeft;
-const _noBottomRight = noRounded || noRoundedBottom || noRoundedRight || noRoundedBottomRight;
+const _noTopLeft =
+  noRounded || noRoundedTop || noRoundedLeft || noRoundedTopLeft;
+const _noTopRight =
+  noRounded || noRoundedTop || noRoundedRight || noRoundedTopRight;
+const _noBottomLeft =
+  noRounded || noRoundedBottom || noRoundedLeft || noRoundedBottomLeft;
+const _noBottomRight =
+  noRounded || noRoundedBottom || noRoundedRight || noRoundedBottomRight;
 let roundedClass = "rounded-md";
-const anyCornerOverride = _noTopLeft || _noTopRight || _noBottomLeft || _noBottomRight;
+const anyCornerOverride =
+  _noTopLeft || _noTopRight || _noBottomLeft || _noBottomRight;
 if (anyCornerOverride) {
   if (_noTopLeft && _noTopRight && _noBottomLeft && _noBottomRight) {
     roundedClass = "rounded-none";
@@ -153,22 +161,29 @@ if (anyCornerOverride) {
 }
 let inputClasses = [
   ...(isSquareSize ? [] : ["w-full"]),
-  "block", "transition", "duration-300", "ease-in-out", "leading-tight", "align-middle",
+  "block",
+  "transition",
+  "duration-300",
+  "ease-in-out",
+  "leading-tight",
+  "align-middle",
   "focus:z-10",
   ...inputPaddingClasses,
-  ...(isSquareSize ? squareSizeClasses[size] : sizeClasses[size]).filter(c => !c.startsWith("rounded")),
+  ...(isSquareSize ? squareSizeClasses[size] : sizeClasses[size]).filter(
+    (c) => !c.startsWith("rounded")
+  ),
   ...disabledClass,
   roundedClass,
   ...variantClasses[variant],
-  ...className.split(" ")
+  ...className.split(" "),
 ];
 const errorTextColor = variant === "dark" ? "text-red-400" : "text-red-600";
 const creditCardScript = `...`;
 const cvvScript = `...`;
 const expiryScript = `...`;
 // For range input we need a separate data attribute
-const xDataAttr = isRange 
-  ? "{ fromValue: '', toValue: '' }" 
+const xDataAttr = isRange
+  ? "{ fromValue: '', toValue: '' }"
   : "{ value: '', showPassword: false }";
 // Modified range input classes with custom rounded corners
 const rangeFromClasses = [
@@ -183,105 +198,116 @@ const rangeToClasses = [
   "border-l-0",
 ];
 ---
-{isRange && (
-  <div class="w-full">
-    <div class={`flex justify-between items-baseline ${isGrouped ? "" : "mb-1"}`}>
-      <label
-        for={fromId || `${id}-from`}
-        class={isGrouped
-          ? "sr-only"
-          : label
-            ? `font-medium text-zinc-500 dark:text-zinc-200 ${
-                size === "xs" || size === "sm"
-                  ? "text-xs"
-                  : size === "base"
-                    ? "text-sm"
-                    : size === "lg"
-                      ? "text-base"
-                      : "text-lg"
-              }`
-            : "sr-only"}
+
+{
+  isRange && (
+    <div class="w-full">
+      <div
+        class={`flex justify-between items-baseline ${isGrouped ? "" : "mb-1"}`}
       >
-        {label || name || id || "Range"}
-      </label>
-      {hint && (
-        <span class={`text-zinc-400 dark:text-zinc-400 ${
-          size === "xs" || size === "sm"
-            ? "text-xs"
-            : size === "base"
-              ? "text-sm"
-              : size === "lg"
-                ? "text-base"
-                : "text-lg"
-        }`}>
-          {hint}
-        </span>
+        <label
+          for={fromId || `${id}-from`}
+          class={
+            isGrouped
+              ? "sr-only"
+              : label
+                ? `font-medium text-zinc-500 dark:text-zinc-200 ${
+                    size === "xs" || size === "sm"
+                      ? "text-xs"
+                      : size === "base"
+                        ? "text-sm"
+                        : size === "lg"
+                          ? "text-base"
+                          : "text-lg"
+                  }`
+                : "sr-only"
+          }
+        >
+          {label || name || id || "Range"}
+        </label>
+        {hint && (
+          <span
+            class={`text-zinc-400 dark:text-zinc-400 ${
+              size === "xs" || size === "sm"
+                ? "text-xs"
+                : size === "base"
+                  ? "text-sm"
+                  : size === "lg"
+                    ? "text-base"
+                    : "text-lg"
+            }`}
+          >
+            {hint}
+          </span>
+        )}
+      </div>
+      <div class="flex w-full gap-2" x-data={xDataAttr}>
+        <div class="relative z-0 flex-1 focus-within:z-10">
+          <input
+            id={fromId || `${id}-from`}
+            name={fromName || `${name}-from`}
+            type="text"
+            placeholder={fromPlaceholder}
+            disabled={disabled ? true : undefined}
+            x-model="fromValue"
+            class:list={rangeFromClasses}
+            aria-required={rest.required ? "true" : undefined}
+            aria-invalid={error ? "true" : undefined}
+            aria-describedby={error ? `${id}-error` : undefined}
+            {...rest}
+          />
+          <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+            <button
+              x-show="fromValue"
+              type="button"
+              @click="fromValue = ''"
+              class="text-zinc-400 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 focus:outline-none"
+              aria-label="Clear input"
+            >
+              <X size="sm" class="text-zinc-500 dark:text-zinc-300" />
+            </button>
+          </div>
+        </div>
+        <div class="relative z-0 flex-1 focus-within:z-10">
+          <input
+            id={toId || `${id}-to`}
+            name={toName || `${name}-to`}
+            type="text"
+            placeholder={toPlaceholder}
+            disabled={disabled ? true : undefined}
+            x-model="toValue"
+            class:list={rangeToClasses}
+            aria-required={rest.required ? "true" : undefined}
+            aria-invalid={error ? "true" : undefined}
+            aria-describedby={error ? `${id}-error` : undefined}
+            {...rest}
+          />
+          <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+            <button
+              x-show="toValue"
+              type="button"
+              @click="toValue = ''"
+              class="text-zinc-400 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 focus:outline-none"
+              aria-label="Clear input"
+            >
+              <X size="sm" class="text-zinc-500 dark:text-zinc-300" />
+            </button>
+          </div>
+        </div>
+      </div>
+      {error && (
+        <p id={`${id}-error`} class={`mt-1 text-sm ${errorTextColor}`}>
+          {error}
+        </p>
       )}
     </div>
-    <div class="flex w-full gap-2" x-data={xDataAttr}>
-      <div class="relative z-0 flex-1 focus-within:z-10">
-        <input
-          id={fromId || `${id}-from`}
-          name={fromName || `${name}-from`}
-          type="text"
-      
-          placeholder={fromPlaceholder}
-          disabled={disabled ? true : undefined}
-          x-model="fromValue"
-          class:list={rangeFromClasses}
-          aria-required={rest.required ? "true" : undefined}
-          aria-invalid={error ? "true" : undefined}
-          aria-describedby={error ? `${id}-error` : undefined}
-          {...rest}
-        />
-        <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-          <button
-            x-show="fromValue"
-            type="button"
-            @click="fromValue = ''"
-            class="text-zinc-400 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 focus:outline-none"
-            aria-label="Clear input"
-          >
-            <X size="sm" class="text-zinc-500 dark:text-zinc-300" />
-          </button>
-        </div>
-      </div>
-      <div class="relative z-0 flex-1 focus-within:z-10">
-        <input
-          id={toId || `${id}-to`}
-          name={toName || `${name}-to`}
-          type="text"
-          placeholder={toPlaceholder}
-          disabled={disabled ? true : undefined}
-          x-model="toValue"
-          class:list={rangeToClasses}
-          aria-required={rest.required ? "true" : undefined}
-          aria-invalid={error ? "true" : undefined}
-          aria-describedby={error ? `${id}-error` : undefined}
-          {...rest}
-        />
-        <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-          <button
-            x-show="toValue"
-            type="button"
-            @click="toValue = ''"
-            class="text-zinc-400 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 focus:outline-none"
-            aria-label="Clear input"
-          >
-            <X size="sm" class="text-zinc-500 dark:text-zinc-300" />
-          </button>
-        </div>
-      </div>
-    </div>
-    {error && (
-      <p id={`${id}-error`} class={`mt-1 text-sm ${errorTextColor}`}>
-        {error}
-      </p>
-    )}
-  </div>
-)}
-{type === "otp" && (
-  <div class="w-full" x-data="{
+  )
+}
+{
+  type === "otp" && (
+    <div
+      class="w-full"
+      x-data="{
     value: '',
     isFocused: false,
     get digits() {
@@ -290,11 +316,34 @@ const rangeToClasses = [
     onInput(e) {
       this.value = e.target.value.replace(/\\D/g, '').slice(0, 6);
     }
-  }">
-    <div class={`flex justify-between items-baseline ${isGrouped ? '' : 'mb-1'}`}>
-      <label for={id} class={
-        isGrouped ? "sr-only" : label
-          ? `font-medium text-zinc-500 dark:text-zinc-200 ${
+  }"
+    >
+      <div
+        class={`flex justify-between items-baseline ${isGrouped ? "" : "mb-1"}`}
+      >
+        <label
+          for={id}
+          class={
+            isGrouped
+              ? "sr-only"
+              : label
+                ? `font-medium text-zinc-500 dark:text-zinc-200 ${
+                    size === "xs" || size === "sm"
+                      ? "text-xs"
+                      : size === "base"
+                        ? "text-sm"
+                        : size === "lg"
+                          ? "text-base"
+                          : "text-lg"
+                  }`
+                : "sr-only"
+          }
+        >
+          {label || name || id || "Input"}
+        </label>
+        {hint && (
+          <span
+            class={`text-zinc-400 dark:text-zinc-400 ${
               size === "xs" || size === "sm"
                 ? "text-xs"
                 : size === "base"
@@ -302,176 +351,194 @@ const rangeToClasses = [
                   : size === "lg"
                     ? "text-base"
                     : "text-lg"
-            }` : "sr-only"
-      }>
-        {label || name || id || "Input"}
-      </label>
-      {hint && (
-        <span class={`text-zinc-400 dark:text-zinc-400 ${
-          size === "xs" || size === "sm"
-            ? "text-xs"
-            : size === "base"
-              ? "text-sm"
-              : size === "lg"
-                ? "text-base"
-                : "text-lg"
-        }`}>
-          {hint}
-        </span>
-      )}
-    </div>
-    <div class="relative flex items-center gap-2">
-      <template x-for="(digit, i) in digits" x-bind:key="i">
-        <div x-bind:class="[
+            }`}
+          >
+            {hint}
+          </span>
+        )}
+      </div>
+      <div class="relative flex items-center gap-2">
+        <template x-for="(digit, i) in digits" x-bind:key="i">
+          <div
+            x-bind:class="[
           'size-10 rounded-md text-center font-medium text-lg flex items-center justify-center transition-all',
           'border bg-white text-zinc-500 dark:bg-zinc-800 dark:text-zinc-100',
           isFocused && value.length === i ? 'border-blue-500 ring-2 ring-blue-500' : 'border-zinc-300 dark:border-zinc-700'
-        ]">
-          <span x-text="digit"></span>
-        </div>
-      </template>
-      <input
-        id={id}
-        name={name}
-        type="text"
-        inputmode="numeric"
-        autocomplete="one-time-code"
-        maxlength="6"
-        x-model="value"
-        x-on:input="onInput"
-        x-on:focus="isFocused = true"
-        x-on:blur="isFocused = false"
-        class="absolute inset-0 z-10 w-full h-full opacity-0 cursor-text"
-        aria-label={label || name || id || 'OTP input'}
-      />
-    </div>
-    {error && (
-      <p id={`${id}-error`} class={`mt-1 text-sm ${errorTextColor}`}>
-        {error}
-      </p>
-    )}
-  </div>
-)}
-{type !== "otp" && !isRange && (
-  <div class="w-full">
-    <div class={`flex justify-between items-baseline ${isGrouped ? "" : "mb-1"}`}>
-      <label
-        for={id}
-        class={isGrouped
-          ? "sr-only"
-          : label
-            ? `font-medium text-zinc-500 ${
-                size === "xs" || size === "sm"
-                  ? "text-xs"
-                  : size === "base"
-                    ? "text-sm"
-                    : size === "lg"
-                      ? "text-base"
-                      : "text-lg"
-              }`
-            : "sr-only"}
-      >
-        {label || name || id || "Input"}
-      </label>
-      {hint && (
-        <span class={`text-zinc-400 ${
-          size === "xs" || size === "sm"
-            ? "text-xs"
-            : size === "base"
-              ? "text-sm"
-              : size === "lg"
-                ? "text-base"
-                : "text-lg"
-        }`}>
-          {hint}
-        </span>
+        ]"
+          >
+            <span x-text="digit" />
+          </div>
+        </template>
+        <input
+          id={id}
+          name={name}
+          type="text"
+          inputmode="numeric"
+          autocomplete="one-time-code"
+          maxlength="6"
+          x-model="value"
+          x-on:input="onInput"
+          x-on:focus="isFocused = true"
+          x-on:blur="isFocused = false"
+          class="absolute inset-0 z-10 w-full h-full opacity-0 cursor-text"
+          aria-label={label || name || id || "OTP input"}
+        />
+      </div>
+      {error && (
+        <p id={`${id}-error`} class={`mt-1 text-sm ${errorTextColor}`}>
+          {error}
+        </p>
       )}
     </div>
-    
-<div
-  class="relative z-0 focus-within:z-10"
-  x-data={isPassword ? '{ value: "", showPassword: false }' : undefined}
->
-  {prefix && (
-    <span class="absolute inset-y-0 left-0 flex items-center pl-3 select-none text-zinc-400 dark:text-zinc-400">
-      {prefix}
-    </span>
-  )}
-  {hasLeftIcon && (
-    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-      {isSearch && iconPosition === "left" && <Search size="sm" class="text-zinc-500 dark:text-zinc-300" />}
-      {isEmail && <Mail size="sm" class="text-zinc-500 dark:text-zinc-300" />}
-      {isCreditCard && <CreditCard size="sm" class="text-zinc-500 dark:text-zinc-300" />}
-      {isExpiry && <Calendar size="sm" class="text-zinc-500 dark:text-zinc-300" />}
-    </div>
-  )}
-
-
-  <input
-    {...rest}
-    id={id}
-    name={name}
-    type={isPassword ? undefined : type}
-    x-model={isPassword ? "value" : undefined}
-    x-bind:type={isPassword ? "showPassword ? 'text' : 'password'" : undefined}
-    disabled={disabled ? true : undefined}
-    class:list={inputClasses}
-    aria-required={rest.required ? "true" : undefined}
-    aria-invalid={error ? "true" : undefined}
-    aria-describedby={error ? `${id}-error` : undefined}
-    maxlength={isCreditCard ? "19" : isCVV ? "4" : isExpiry ? "5" : undefined}
-    inputmode={isCreditCard || isCVV || isExpiry ? "numeric" : isEmail ? "email" : undefined}
-  />
-
-  {/* Render right search icon if type is search and iconPosition is right */}
-  {isSearch && iconPosition === "right" && (
-    <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-      <Search size="sm" class="text-zinc-500 dark:text-zinc-300" />
-    </div>
-  )}
-
-  {isPassword && (
-    <div class="absolute inset-y-0 right-0 flex items-center pr-3 gap-2">
-      <button
-        type="button"
-        @click="showPassword = !showPassword"
-        class="text-zinc-500 dark:text-zinc-300 focus:outline-none"
-        tabindex="-1"
-        aria-label="Toggle password visibility"
+  )
+}
+{
+  type !== "otp" && !isRange && (
+    <div class="w-full">
+      <div
+        class={`flex justify-between items-baseline ${isGrouped ? "" : "mb-1"}`}
       >
-        <Eye size="sm" x-show="!showPassword" />
-        <EyeOff size="sm" x-show="showPassword" />
-      </button>
-
-      {!isSquareSize && (
-        <button
-          x-show="value"
-          type="button"
-          @click="value = ''"
-          class="text-zinc-400 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 focus:outline-none"
-          aria-label="Clear input"
+        <label
+          for={id}
+          class={
+            isGrouped
+              ? "sr-only"
+              : label
+                ? `font-medium text-zinc-500 ${
+                    size === "xs" || size === "sm"
+                      ? "text-xs"
+                      : size === "base"
+                        ? "text-sm"
+                        : size === "lg"
+                          ? "text-base"
+                          : "text-lg"
+                  }`
+                : "sr-only"
+          }
         >
-          <X size="sm" class="text-zinc-500 dark:text-zinc-300" />
-        </button>
+          {label || name || id || "Input"}
+        </label>
+        {hint && (
+          <span
+            class={`text-zinc-400 ${
+              size === "xs" || size === "sm"
+                ? "text-xs"
+                : size === "base"
+                  ? "text-sm"
+                  : size === "lg"
+                    ? "text-base"
+                    : "text-lg"
+            }`}
+          >
+            {hint}
+          </span>
+        )}
+      </div>
+
+      <div
+        class="relative z-0 focus-within:z-10"
+        x-data={isPassword ? '{ value: "", showPassword: false }' : undefined}
+      >
+        {prefix && (
+          <span class="absolute inset-y-0 left-0 flex items-center pl-3 select-none text-zinc-400 dark:text-zinc-400">
+            {prefix}
+          </span>
+        )}
+        {hasLeftIcon && (
+          <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            {isSearch && iconPosition === "left" && (
+              <Search size="sm" class="text-zinc-500 dark:text-zinc-300" />
+            )}
+            {isEmail && (
+              <Mail size="sm" class="text-zinc-500 dark:text-zinc-300" />
+            )}
+            {isCreditCard && (
+              <CreditCard size="sm" class="text-zinc-500 dark:text-zinc-300" />
+            )}
+            {isExpiry && (
+              <Calendar size="sm" class="text-zinc-500 dark:text-zinc-300" />
+            )}
+          </div>
+        )}
+
+        <input
+          {...rest}
+          id={id}
+          name={name}
+          type={isPassword ? undefined : type}
+          x-model={isPassword ? "value" : undefined}
+          x-bind:type={
+            isPassword ? "showPassword ? 'text' : 'password'" : undefined
+          }
+          disabled={disabled ? true : undefined}
+          class:list={inputClasses}
+          aria-required={rest.required ? "true" : undefined}
+          aria-invalid={error ? "true" : undefined}
+          aria-describedby={error ? `${id}-error` : undefined}
+          maxlength={
+            isCreditCard ? "19" : isCVV ? "4" : isExpiry ? "5" : undefined
+          }
+          inputmode={
+            isCreditCard || isCVV || isExpiry
+              ? "numeric"
+              : isEmail
+                ? "email"
+                : undefined
+          }
+        />
+
+        {/* Render right search icon if type is search and iconPosition is right */}
+        {isSearch && iconPosition === "right" && (
+          <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+            <Search size="sm" class="text-zinc-500 dark:text-zinc-300" />
+          </div>
+        )}
+
+        {isPassword && (
+          <div class="absolute inset-y-0 right-0 flex items-center pr-3 gap-2">
+            <button
+              type="button"
+              @click="showPassword = !showPassword"
+              class="text-zinc-500 dark:text-zinc-300 focus:outline-none"
+              tabindex="-1"
+              aria-label="Toggle password visibility"
+            >
+              <Eye size="sm" x-show="!showPassword" />
+              <EyeOff size="sm" x-show="showPassword" />
+            </button>
+
+            {!isSquareSize && (
+              <button
+                x-show="value"
+                type="button"
+                @click="value = ''"
+                class="text-zinc-400 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 focus:outline-none"
+                aria-label="Clear input"
+              >
+                <X size="sm" class="text-zinc-500 dark:text-zinc-300" />
+              </button>
+            )}
+          </div>
+        )}
+
+        {isCVV && (
+          <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+            <Lock
+              size="sm"
+              class="pointer-events-none text-zinc-500 dark:text-zinc-300"
+            />
+          </div>
+        )}
+      </div>
+
+      {error && (
+        <p id={`${id}-error`} class={`mt-1 text-sm ${errorTextColor}`}>
+          {error}
+        </p>
       )}
     </div>
-  )}
-
-  {isCVV && (
-    <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-      <Lock size="sm" class="pointer-events-none text-zinc-500 dark:text-zinc-300" />
-    </div>
-  )}
-</div>
-
-
-    {error && (
-      <p id={`${id}-error`} class={`mt-1 text-sm ${errorTextColor}`}>
-        {error}
-      </p>
-    )}
-  </div>
-)}
+  )
+}
 {isCreditCard && <script set:html={creditCardScript} />}
 {isCVV && <script set:html={cvvScript} />}
 {isExpiry && <script set:html={expiryScript} />}

@@ -7,13 +7,13 @@ import ThreeDots from "@/components/fundations/icons/ThreeDots.astro";
 ---
 
 <section
-  class="flex items-center justify-center p-18 bg-white dark:bg-zinc-900"
+  class="flex items-center justify-center bg-white p-18 dark:bg-zinc-900"
 >
   <!-- copy:start -->
   <nav
     aria-label="Breadcrumb"
     x-data="{ crumbs:['Home','Library','Docs','Guides','Installation'], open:false, focusFirst(){ this.$nextTick(()=> this.$refs.first?.focus()) } }"
-    class="mc-auto max-w-xl"
+    class="max-w-xl mc-auto"
   >
     <ol
       role="list"
@@ -33,7 +33,7 @@ import ThreeDots from "@/components/fundations/icons/ThreeDots.astro";
       <li class="sm:hidden">
         <button
           type="button"
-          class="inline-flex items-center gap-1 px-2 h-7 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200"
+          class="inline-flex items-center px-2 rounded gap-1 h-7 bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200"
           @click="open=!open; if(open) focusFirst()"
           :aria-expanded="open"
           aria-controls="crumbs-collapsed"
@@ -45,7 +45,7 @@ import ThreeDots from "@/components/fundations/icons/ThreeDots.astro";
           id="crumbs-collapsed"
           x-show="open"
           x-transition
-          class="mt-2 rounded-lg ring-1 ring-zinc-200 dark:ring-zinc-700 bg-white dark:bg-zinc-900 p-2 shadow-sm"
+          class="p-2 mt-2 bg-white rounded-lg ring-1 ring-zinc-200 dark:ring-zinc-700 dark:bg-zinc-900 shadow-sm"
           style="display:none"
         >
           <template x-for="(c,i) in crumbs.slice(1, -1)" :key="c">
@@ -83,7 +83,7 @@ import ThreeDots from "@/components/fundations/icons/ThreeDots.astro";
 
       <!-- Current -->
       <li
-        class="font-medium text-blue-500 dark:text-blue-400 text-sm"
+        class="text-sm font-medium text-blue-500 dark:text-blue-400"
         x-text="crumbs[crumbs.length-1]"
         aria-current="page"
       >

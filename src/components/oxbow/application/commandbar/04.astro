@@ -26,7 +26,7 @@ import Settings from "@/components/fundations/icons/Settings.astro";
 ---
 
 <div
-  class="p-8 py-24 bg-white dark:bg-zinc-900 flex items-center justify-center"
+  class="flex items-center justify-center p-8 py-24 bg-white dark:bg-zinc-900"
 >
   <!-- Copy:start -->
   <!--
@@ -42,7 +42,7 @@ import Settings from "@/components/fundations/icons/Settings.astro";
 
 -->
   <div
-    class="w-full max-w-3xl bg-white dark:bg-zinc-800 rounded-xl shadow-lg outline outline-zinc-200 dark:outline-zinc-800 overflow-hidden"
+    class="w-full max-w-3xl overflow-hidden bg-white shadow-lg dark:bg-zinc-800 rounded-xl outline outline-zinc-200 dark:outline-zinc-800"
     x-data="{
       // UI state
       open: true,
@@ -174,19 +174,19 @@ import Settings from "@/components/fundations/icons/Settings.astro";
           x-ref="input"
           x-model="query"
           @focus="open=true"
-          class="w-full h-12 pr-28 bg-transparent border-0 text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 pl-11 sm:text-sm rounded-lg ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="w-full h-12 bg-transparent border-0 rounded-lg pr-28 text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 pl-11 sm:text-sm ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="Run or schedule an automation…"
           autocomplete="off"
         />
         <div
-          class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 hidden sm:flex gap-1 text-[11px] text-zinc-500"
+          class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 hidden sm:flex gap-1 text-[0.70rem] text-zinc-500"
         >
           <kbd
-            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700"
+            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700"
             >⌘</kbd
           >
           <kbd
-            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700"
+            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700"
             >K</kbd
           >
         </div>
@@ -224,7 +224,7 @@ import Settings from "@/components/fundations/icons/Settings.astro";
     <template x-if="step===1">
       <div class="py-1">
         <div
-          class="px-6 py-1 text-[11px] font-medium text-zinc-500 dark:text-zinc-400"
+          class="px-6 py-1 text-[0.70rem] font-medium text-zinc-500 dark:text-zinc-400"
         >
           Automations
         </div>
@@ -232,12 +232,12 @@ import Settings from "@/components/fundations/icons/Settings.astro";
           <template x-for="(a, idx) in list()" :key="a.id">
             <li
               :class="selected===idx ? 'bg-white/10 dark:bg-white/5' : ''"
-              class="px-6 py-3 flex items-center gap-3 justify-between text-zinc-900 dark:text-zinc-50 cursor-pointer"
+              class="flex items-center justify-between px-6 py-3 cursor-pointer gap-3 text-zinc-900 dark:text-zinc-50"
               @mouseenter="selected = idx"
             >
               <div class="flex items-center gap-3">
                 <div
-                  class="size-8 rounded-lg bg-white dark:bg-zinc-800 grid place-items-center"
+                  class="bg-white rounded-lg size-8 dark:bg-zinc-800 grid place-items-center"
                 >
                   <template x-if="a.icon==='tools'"
                     ><Tools size="sm" /></template
@@ -267,7 +267,7 @@ import Settings from "@/components/fundations/icons/Settings.astro";
               <div class="flex items-center gap-2">
                 <template x-for="t in a.tags" :key="t">
                   <span
-                    class="hidden md:inline text-[11px] px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-white/5 text-zinc-700 dark:text-zinc-300"
+                    class="hidden md:inline text-[0.70rem] px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-white/5 text-zinc-700 dark:text-zinc-300"
                     x-text="t"></span>
                 </template>
                 <IconButton
@@ -291,15 +291,17 @@ import Settings from "@/components/fundations/icons/Settings.astro";
           </template>
           <li
             x-show="list().length===0"
-            class="px-6 py-6 text-center text-sm text-zinc-500 italic"
+            class="px-6 py-6 text-sm italic text-center text-zinc-500"
           >
             Nothing to show
           </li>
         </ul>
         <!-- Scheduled overview -->
         <div class="px-6 py-3" x-show="scheduled.length">
-          <div class="text-[11px] font-medium text-zinc-500 mb-2">Upcoming</div>
-          <ul class="space-y-1 text-xs text-zinc-600">
+          <div class="text-[0.70rem] font-medium text-zinc-500 mb-2">
+            Upcoming
+          </div>
+          <ul class="text-xs space-y-1 text-zinc-600">
             <template x-for="s in scheduled" :key="s.id + s.at">
               <li>
                 <span class="font-medium" x-text="s.name"></span> — <span
@@ -314,35 +316,35 @@ import Settings from "@/components/fundations/icons/Settings.astro";
     <!-- STEP 2: Configure form (dynamic) -->
     <template x-if="step===2">
       <div class="px-4 py-3">
-        <div class="px-2 text-[11px] text-zinc-500 dark:text-zinc-400">
+        <div class="px-2 text-[0.70rem] text-zinc-500 dark:text-zinc-400">
           Configure
         </div>
         <div
-          class="px-2 text-sm font-medium dark:text-zinc-400 mt-2"
+          class="px-2 mt-2 text-sm font-medium dark:text-zinc-400"
           x-text="current?.name"
         >
         </div>
         <div
-          class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2 px-2 items-center"
+          class="items-center px-2 mt-2 grid grid-cols-1 md:grid-cols-2 gap-3"
         >
           <template x-for="p in current?.params || []" :key="p.key">
             <div>
               <label
-                class="text-[11px] text-zinc-600 block dark:text-zinc-400"
+                class="text-[0.70rem] text-zinc-600 block dark:text-zinc-400"
                 x-text="p.label"></label>
               <template x-if="p.type==='text'">
                 <input
                   type="text"
-                  class="w-full h-9 px-2 rounded-md ring-1 ring-zinc-200 dark:ring-zinc-700 bg-transparent text-sm mt-0.5"
+                  class="w-full h-9 px-2 rounded-md ring-1 ring-zinc-200 dark:ring-zinc-700 bg-transparent text-sm mt-0.5 border-zinc-200 dark:border-zinc-700"
                   :placeholder="p.placeholder || ''"
                   x-model="form[p.key]"
                 />
               </template>
               <template x-if="p.type==='toggle'">
-                <label class="flex items-center gap-2 text-sm">
+                <label class="flex items-center text-sm gap-2">
                   <input
                     type="checkbox"
-                    class="accent-zinc-900 rounded-md border border-zinc-200 dark:border-zinc-900"
+                    class="border accent-zinc-900 rounded-md border-zinc-200 dark:border-zinc-900"
                     x-model="form[p.key]"
                   />
                   <span
@@ -363,14 +365,14 @@ import Settings from "@/components/fundations/icons/Settings.astro";
               <template x-if="p.type==='datetime'">
                 <input
                   type="datetime-local"
-                  class="w-full h-9 px-2 rounded-md ring-1 ring-zinc-200 dark:ring-zinc-700 bg-transparent text-sm dark:text-zinc-400"
+                  class="w-full px-2 text-sm bg-transparent h-9 rounded-md ring-1 ring-zinc-200 dark:ring-zinc-700 dark:text-zinc-400 border-zinc-200 dark:border-zinc-700"
                   x-model="form[p.key]"
                 />
               </template>
             </div>
           </template>
         </div>
-        <div class="mt-4 flex items-center justify-between px-2">
+        <div class="flex items-center justify-between px-2 mt-4">
           <Button variant="muted" size="xxs" @click="back()">Back</Button>
           <div class="flex items-center gap-2">
             <Button
@@ -391,7 +393,7 @@ import Settings from "@/components/fundations/icons/Settings.astro";
     <template x-if="step===3">
       <div class="px-6 py-10 text-center">
         <div
-          class="inline-flex items-center justify-center size-12 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-200"
+          class="inline-flex items-center justify-center rounded-full size-12 bg-emerald-100 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-200"
         >
           <Check size="base" />
         </div>
@@ -403,7 +405,7 @@ import Settings from "@/components/fundations/icons/Settings.astro";
         <div class="mt-2 text-xs text-zinc-600 dark:text-zinc-400">
           You can close this panel or run another automation.
         </div>
-        <div class="mt-4 flex items-center justify-center gap-2">
+        <div class="flex items-center justify-center mt-4 gap-2">
           <Button
             variant="default"
             size="xxs"
@@ -417,34 +419,34 @@ import Settings from "@/components/fundations/icons/Settings.astro";
 
     <!-- Footer help -->
     <div
-      class="px-4 py-2 text-[11px] text-zinc-500 dark:text-zinc-400 flex items-center justify-between bg-zinc-50 dark:bg-white/10"
+      class="px-4 py-2 text-[0.70rem] text-zinc-500 dark:text-zinc-400 flex items-center justify-between bg-zinc-50 dark:bg-white/10"
     >
       <div>
         Press <kbd
-          class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+          class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
           >/</kbd
         > to search • <kbd
-          class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+          class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
           >Shift</kbd
         > + <kbd
-          class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+          class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
           >↵</kbd
         >
         quick run
       </div>
-      <div class="hidden sm:flex items-center gap-2">
+      <div class="items-center hidden sm:flex gap-2">
         <span class="flex items-center gap-1"
           ><kbd
-            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
             >↑</kbd
           ><kbd
-            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
             >↓</kbd
           > to navigate</span
         >
         <span class="flex items-center gap-1"
           ><kbd
-            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
             >↵</kbd
           > to configure</span
         >

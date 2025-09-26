@@ -2,14 +2,14 @@
 export const description = "Avatar Group (Dynamic +N)";
 ---
 
-<section class="flex items-center justify-center p-14 bg-white dark:bg-zinc-900">
+<section class="flex items-center justify-center bg-white p-14 dark:bg-zinc-900">
   <!-- copy:start -->
   <div x-data="{ people: ['/avatars/1.jpg','/avatars/2.jpg','/avatars/3.jpg','/avatars/4.jpg','/avatars/5.jpg','/avatars/6.jpg'], max: 5 }" class="flex items-center -space-x-2">
     <template x-for="(src, i) in people.slice(0, max)" :key="src">
-      <img :src="src" alt="" class="inline-block size-10 rounded-full ring-2 ring-white dark:ring-zinc-800 object-cover" />
+      <img :src="src" alt="" class="inline-block object-cover rounded-full size-10 ring-2 ring-white dark:ring-zinc-800" />
     </template>
     <template x-if="people.length > max">
-      <span class="inline-flex items-center justify-center size-10 rounded-full bg-zinc-100 text-zinc-600 ring-2 ring-white dark:bg-zinc-800 dark:text-zinc-300 dark:ring-zinc-900" x-text="'+' + (people.length - max)"></span>
+      <span class="inline-flex items-center justify-center rounded-full size-10 bg-zinc-100 text-zinc-600 ring-2 ring-white dark:bg-zinc-800 dark:text-zinc-300 dark:ring-zinc-900" x-text="'+' + (people.length - max)"></span>
     </template>
   </div>
   <!-- copy:end -->

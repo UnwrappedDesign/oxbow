@@ -4,11 +4,11 @@ import Text from "@/components/fundations/typography/Text.astro";
 ---
 
 <section
-  class="flex items-center flex-wrap gap-2 justify-center p-24 bg-white dark:bg-zinc-900 h-full"
+  class="flex flex-wrap items-center justify-center h-full p-24 bg-white gap-2 dark:bg-zinc-900"
 >
   <!-- copy:start -->
   <div
-    class="flex flex-col gap-2 w-full max-w-md"
+    class="flex flex-col w-full max-w-md gap-2"
     x-data="{
       items: ['Apples','Bananas','Cherries'],
       selected: [],
@@ -36,7 +36,7 @@ import Text from "@/components/fundations/typography/Text.astro";
         type="checkbox"
         x-ref="parent"
         @change="toggleAll($refs)"
-        class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-blue-600 focus:ring-blue-600 dark:bg-zinc-900 dark:checked:bg-blue-600"
+        class="text-blue-600 rounded shadow size-4 border-zinc-300 dark:border-zinc-700 focus:ring-blue-600 dark:bg-zinc-900 dark:checked:bg-blue-600"
       />
       <Text
         for="fruits-all"
@@ -50,13 +50,13 @@ import Text from "@/components/fundations/typography/Text.astro";
       </Text>
     </div>
     <template x-for="item in items" :key="item">
-      <div class="flex items-center gap-3 pl-6">
+      <div class="flex items-center pl-6 gap-3">
         <input
           type="checkbox"
           :id="`fruit-${item}`"
           :value="item"
           x-model="selected"
-          class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-blue-600 focus:ring-blue-600 dark:bg-zinc-900 dark:checked:bg-blue-600"
+          class="text-blue-600 rounded shadow size-4 border-zinc-300 dark:border-zinc-700 focus:ring-blue-600 dark:bg-zinc-900 dark:checked:bg-blue-600"
         />
         <Text
           :for="`fruit-${item}`"

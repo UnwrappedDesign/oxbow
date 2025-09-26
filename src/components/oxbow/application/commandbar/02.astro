@@ -18,7 +18,7 @@ import Report from "@/components/fundations/icons/Report.astro";
 ---
 
 <div
-  class="p-8 py-24 bg-white dark:bg-zinc-900 flex items-center justify-center"
+  class="flex items-center justify-center p-8 py-24 bg-white dark:bg-zinc-900"
 >
   <!-- Copy:start -->
   <!--
@@ -34,7 +34,7 @@ import Report from "@/components/fundations/icons/Report.astro";
 
 -->
   <div
-    class="w-full max-w-2xl bg-white dark:bg-zinc-800 rounded-xl shadow-lg outline outline-zinc-200 dark:outline-zinc-800 overflow-hidden"
+    class="w-full max-w-2xl overflow-hidden bg-white shadow-lg dark:bg-zinc-800 rounded-xl outline outline-zinc-200 dark:outline-zinc-800"
     x-data="{
       open: true,
       query: '',
@@ -129,7 +129,7 @@ import Report from "@/components/fundations/icons/Report.astro";
           @keydown.arrow-up.prevent="prev()"
           @keydown.enter.prevent="choose()"
           @keydown.escape.prevent="closeList()"
-          class="w-full h-12 pr-14 bg-transparent border border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 pl-11 sm:text-sm rounded-lg focus:outline-none focus:border-blue-500 dark:focus:border-blue-400"
+          class="w-full h-12 bg-transparent border rounded-lg pr-14 border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 pl-11 sm:text-sm focus:outline-none focus:border-blue-500 dark:focus:border-blue-400"
           placeholder="Search anything or type a command..."
           autocomplete="off"
           role="combobox"
@@ -139,14 +139,14 @@ import Report from "@/components/fundations/icons/Report.astro";
         />
         <!-- kbd hint -->
         <div
-          class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 hidden sm:flex gap-1 text-[11px] text-zinc-500"
+          class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 hidden sm:flex gap-1 text-[0.70rem] text-zinc-500"
         >
           <kbd
-            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700"
+            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700"
             >⌘</kbd
           >
           <kbd
-            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700"
+            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700"
             >K</kbd
           >
         </div>
@@ -167,25 +167,25 @@ import Report from "@/components/fundations/icons/Report.astro";
     <template x-if="open">
       <div class="px-3 py-2">
         <div
-          class="px-2 pt-2 text-[11px] font-medium text-zinc-500 dark:text-zinc-300"
+          class="px-2 pt-2 text-[0.70rem] font-medium text-zinc-500 dark:text-zinc-300"
         >
           Recent Items <span x-text="requests.length"></span>
         </div>
-        <div class="flex gap-2 mt-2 pb-2 overflow-x-auto overflow-y-auto">
+        <div class="flex pb-2 mt-2 overflow-x-auto overflow-y-auto gap-2">
           <template x-for="r in requests" :key="r.id">
             <div
-              class="shrink-0 w-56 rounded-lg bg-zinc-50 dark:bg-white/5 px-3 py-2"
+              class="w-56 px-3 py-2 rounded-lg shrink-0 bg-zinc-50 dark:bg-white/5"
             >
               <div class="inline-flex items-center gap-2">
                 <span
-                  class="inline-flex items-center justify-center size-7 rounded-full bg-white dark:bg-white/5 dark:text-zinc-300 text-[11px] font-semibold text-zinc-700"
+                  class="inline-flex items-center justify-center size-7 rounded-full bg-white dark:bg-white/5 dark:text-zinc-300 text-[0.70rem] font-semibold text-zinc-700"
                 >
                   <span
                     x-text="r.name.split(' ').map(n=>n[0]).join('').slice(0,2)"
                   ></span>
                 </span>
                 <span
-                  class="text-[11px] px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 outline outline-blue-100 dark:bg-blue-500/15 dark:text-blue-200 dark:outline-blue-500/10"
+                  class="text-[0.70rem] px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 outline outline-blue-100 dark:bg-blue-500/15 dark:text-blue-200 dark:outline-blue-500/10"
                   x-text="r.badge"></span>
               </div>
               <div
@@ -194,7 +194,7 @@ import Report from "@/components/fundations/icons/Report.astro";
               >
               </div>
               <div
-                class="text-[11px] text-zinc-500 dark:text-zinc-400"
+                class="text-[0.70rem] text-zinc-500 dark:text-zinc-400"
                 x-text="r.from + ' → ' + r.to"
               >
               </div>
@@ -206,7 +206,7 @@ import Report from "@/components/fundations/icons/Report.astro";
 
     <!-- Shortcuts list -->
     <div class="py-1">
-      <div class="px-6 py-1 text-[11px] font-medium text-zinc-500">
+      <div class="px-6 py-1 text-[0.70rem] font-medium text-zinc-500">
         Commands
       </div>
       <ul
@@ -221,11 +221,11 @@ import Report from "@/components/fundations/icons/Report.astro";
             @mouseenter="selected = idx"
             @click="choose(idx)"
             :class="selected === idx ? 'bg-zinc-50 dark:bg-white/5' : ''"
-            class="cursor-pointer px-6 py-3 flex items-center justify-between text-zinc-900 dark:text-zinc-50"
+            class="flex items-center justify-between px-6 py-3 cursor-pointer text-zinc-900 dark:text-zinc-50"
           >
             <div class="flex items-center gap-3">
               <div
-                class="size-8 rounded-lg bg-white dark:bg-white/5 grid place-items-center ring-1 ring-zinc-200 dark:ring-zinc-700"
+                class="bg-white rounded-lg size-8 dark:bg-white/5 grid place-items-center ring-1 ring-zinc-200 dark:ring-zinc-700"
               >
                 <template x-if="opt.icon==='mail'"><Mail size="sm" /></template>
                 <template x-if="opt.icon==='grid'"><Grid size="sm" /></template>
@@ -251,12 +251,12 @@ import Report from "@/components/fundations/icons/Report.astro";
             </div>
             <!-- Shortcut hint -->
             <div
-              class="hidden sm:flex items-center gap-1 text-[11px] text-zinc-600"
+              class="hidden sm:flex items-center gap-1 text-[0.70rem] text-zinc-600"
             >
               <template x-for="(k, i) in opt.shortcuts" :key="k">
                 <span class="inline-flex items-center gap-1">
                   <kbd
-                    class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+                    class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
                     x-text="k"></kbd>
                 </span>
               </template>
@@ -265,7 +265,7 @@ import Report from "@/components/fundations/icons/Report.astro";
         </template>
         <li
           x-show="filtered.length===0"
-          class="px-6 py-6 text-center text-sm text-zinc-500 italic"
+          class="px-6 py-6 text-sm italic text-center text-zinc-500"
         >
           No results
         </li>
@@ -274,27 +274,27 @@ import Report from "@/components/fundations/icons/Report.astro";
 
     <!-- Footer help -->
     <div
-      class="px-4 py-2 text-[11px] text-zinc-500 dark:text-zinc-400 flex items-center justify-between bg-zinc-50 dark:bg-white/10"
+      class="px-4 py-2 text-[0.70rem] text-zinc-500 dark:text-zinc-400 flex items-center justify-between bg-zinc-50 dark:bg-white/10"
     >
       <div>
         Tip: press <kbd
-          class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+          class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
           >/</kbd
         > to explore commands
       </div>
-      <div class="hidden sm:flex items-center gap-2">
+      <div class="items-center hidden sm:flex gap-2">
         <span class="flex items-center gap-1"
           ><kbd
-            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
             >↑</kbd
           ><kbd
-            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
             >↓</kbd
           > to navigate</span
         >
         <span class="flex items-center gap-1"
           ><kbd
-            class="px-1 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
             >↵</kbd
           > to select</span
         >

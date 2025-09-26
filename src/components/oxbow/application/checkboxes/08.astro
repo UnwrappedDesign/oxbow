@@ -4,11 +4,11 @@ import Text from "@/components/fundations/typography/Text.astro";
 ---
 
 <section
-  class="flex items-center flex-wrap gap-2 justify-center p-24 bg-white dark:bg-zinc-900 h-full"
+  class="flex flex-wrap items-center justify-center h-full p-24 bg-white gap-2 dark:bg-zinc-900"
 >
   <!-- copy:start -->
   <div
-    class="flex flex-col gap-3 w-full max-w-2xl"
+    class="flex flex-col w-full max-w-2xl gap-3"
     x-data="{
       rows: [
         { name: 'Projects', read: true, write: false, admin: false },
@@ -38,7 +38,7 @@ import Text from "@/components/fundations/typography/Text.astro";
       Admin implies Read and Write. Unchecking Read/Write removes Admin.
     </div>
     <div
-      class="grid grid-cols-4 text-xs font-medium text-zinc-500 dark:text-zinc-400 px-2"
+      class="px-2 text-xs font-medium grid grid-cols-4 text-zinc-500 dark:text-zinc-400"
     >
       <div>Resource</div>
       <div class="text-center">Read</div>
@@ -47,7 +47,7 @@ import Text from "@/components/fundations/typography/Text.astro";
     </div>
     <template x-for="(row, i) in rows" :key="row.name">
       <div
-        class="grid grid-cols-4 items-center px-2 py-2 rounded border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900"
+        class="items-center px-2 py-2 bg-white border rounded grid grid-cols-4 border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900"
       >
         <div class="flex flex-col">
           <span
@@ -63,7 +63,7 @@ import Text from "@/components/fundations/typography/Text.astro";
             :id="`r-`+i"
             :checked="row.read"
             @change="toggle(row,'read',$event)"
-            class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-blue-600 focus:ring-blue-600 dark:bg-zinc-900 dark:checked:bg-blue-600"
+            class="text-blue-600 rounded shadow size-4 border-zinc-300 dark:border-zinc-700 focus:ring-blue-600 dark:bg-zinc-900 dark:checked:bg-blue-600"
           />
         </div>
         <div class="flex justify-center">
@@ -72,7 +72,7 @@ import Text from "@/components/fundations/typography/Text.astro";
             :id="`w-`+i"
             :checked="row.write"
             @change="toggle(row,'write',$event)"
-            class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-blue-600 focus:ring-blue-600 dark:bg-zinc-900 dark:checked:bg-blue-600"
+            class="text-blue-600 rounded shadow size-4 border-zinc-300 dark:border-zinc-700 focus:ring-blue-600 dark:bg-zinc-900 dark:checked:bg-blue-600"
           />
         </div>
         <div class="flex justify-center">
@@ -81,7 +81,7 @@ import Text from "@/components/fundations/typography/Text.astro";
             :id="`a-`+i"
             :checked="row.admin"
             @change="toggle(row,'admin',$event)"
-            class="rounded shadow size-4 border-zinc-300 dark:border-zinc-700 text-blue-600 focus:ring-blue-600 dark:bg-zinc-900 dark:checked:bg-blue-600"
+            class="text-blue-600 rounded shadow size-4 border-zinc-300 dark:border-zinc-700 focus:ring-blue-600 dark:bg-zinc-900 dark:checked:bg-blue-600"
           />
         </div>
       </div>

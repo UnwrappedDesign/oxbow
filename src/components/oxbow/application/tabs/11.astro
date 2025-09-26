@@ -36,7 +36,7 @@ export const excludeFromObfuscation = [
       >
         <template x-for="(id, idx) in keys" :key="id">
           <button
-            class="w-full text-left px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500/50 flex items-center justify-between"
+            class="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-left rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500/50"
             :id="'tab-'+id"
             role="tab"
             :aria-selected="selected===id"
@@ -49,7 +49,7 @@ export const excludeFromObfuscation = [
           >
             <span x-text="id.charAt(0).toUpperCase()+id.slice(1)"></span>
             <span
-              class="ml-3 inline-flex items-center px-1.5 h-5 text-[11px] rounded-full border"
+              class="ml-3 inline-flex items-center px-1.5 h-5 text-[0.70rem] rounded-full border"
               :class="selected===id ? ' text-zinc-600' : ' text-zinc-600 dark:text-zinc-400'"
               x-text="id==='projects'? '12' : id==='packages' ? '7' : '3'"
             ></span>
@@ -65,7 +65,7 @@ export const excludeFromObfuscation = [
           role="tabpanel"
           :id="'panel-'+id"
           :aria-labelledby="'tab-'+id"
-          class="rounded-lg border border-zinc-200 dark:border-zinc-700 p-4"
+          class="p-4 border rounded-lg border-zinc-200 dark:border-zinc-700"
         >
           <p>
             <span x-text="id.charAt(0).toUpperCase()+id.slice(1)"></span> content

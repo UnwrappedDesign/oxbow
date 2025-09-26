@@ -1,0 +1,245 @@
+---
+export const excludeFromObfuscation = [
+  "opacity-0",
+  "opacity-100",
+  "translate-y-4",
+  "sm:translate-y-0",
+  "sm:scale-95",
+];
+import Check from "@/components/fundations/icons/Check.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+---
+
+<div
+  class="p-8 pb-200 pt-20 bg-white dark:bg-zinc-900 flex items-center justify-center"
+>
+  <!-- Copy:start -->
+  <!--
+// Make sure to change  "open: false",  to  open: true. On the z-data="{}".
+-->
+  <div
+    class="w-full max-w-xl"
+    x-data="{
+      open:true,
+      query:'',
+      people:[
+        { id:1, name:'Candice Wu', handle:'@candice', role:'Admin', avatar:'/avatars/1.jpg', selected:true },
+        { id:2, name:'Demi Wilkinson', handle:'@demi', role:'Admin', avatar:'/avatars/2.jpg', selected:true },
+        { id:3, name:'Drew Cano', handle:'@drew', role:'Editor', avatar:'/avatars/3.jpg', selected:true },
+        { id:4, name:'Natali Crag', handle:'@natali', role:'Editor', avatar:'/avatars/4.jpg', selected:true },
+        { id:5, name:'Jordan Lee', handle:'@jordan', role:'Viewer', avatar:'/avatars/5.jpg', selected:false },
+      ],
+      inviteEmail:'',
+      get filtered(){ const q=this.query.trim().toLowerCase(); if(!q) return this.people; return this.people.filter(p=> p.name.toLowerCase().includes(q) || p.handle.toLowerCase().includes(q)); },
+      allSelected(){ return this.filtered.length>0 && this.filtered.every(p=>p.selected); },
+      toggleAll(){ const on=!this.allSelected(); this.filtered.forEach(p=>p.selected=on); },
+      setRole(p, r){ p.role=r; },
+      invite(){ const v=this.inviteEmail.trim(); if(!v) return; window.dispatchEvent(new CustomEvent('team:invite',{detail:{ email:v }})); this.inviteEmail=''; },
+      confirm(){ const chosen=this.people.filter(p=>p.selected); window.dispatchEvent(new CustomEvent('team:add',{ detail:{ members:chosen }})); this.open=false; },
+    }"
+  >
+    <Button
+      variant="default"
+      size="sm"
+      type="button"
+      class="mx-auto"
+      @click="open=true">Add collaborators</Button
+    >
+    <!-- Backdrop -->
+    <div
+      x-show="open"
+      x-transition.opacity
+      class="fixed inset-0 z-40 bg-black/40 dark:bg-white/20"
+      aria-hidden="true"
+      @click="open=false"
+    >
+    </div>
+    <!-- Dialog -->
+    <div
+      x-show="open"
+      x-transition:enter="transition ease-out duration-200"
+      x-transition:enter-start="opacity-0"
+      x-transition:enter-end="opacity-100"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-start="opacity-100"
+      x-transition:leave-end="opacity-0"
+      class="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="team-title"
+      @keydown.escape.window.prevent="open=false"
+    >
+      <div
+        x-show="open"
+        @click.outside="open=false"
+        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="translate-y-4 sm:translate-y-0 sm:scale-95"
+        x-transition:enter-end="translate-y-0 sm:scale-100"
+        x-transition:leave="transition ease-in duration-150"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="w-full sm:max-w-xl rounded-2xl bg-white dark:bg-zinc-800 shadow-xl outline outline-1 outline-black/5 dark:-outline-offset-1 dark:outline-white/10"
+      >
+        <!-- Header -->
+        <div class="px-5 pt-5 pb-3">
+          <div class="flex -space-x-2 justify-center">
+            <img
+              src="/avatars/1.jpg"
+              alt=""
+              class="object-cover rounded-full size-8 ring-2 ring-white dark:ring-zinc-800"
+            />
+            <img
+              src="/avatars/2.jpg"
+              alt=""
+              class="object-cover rounded-full size-8 ring-2 ring-white dark:ring-zinc-800"
+            />
+            <img
+              src="/avatars/3.jpg"
+              alt=""
+              class="object-cover rounded-full size-8 ring-2 ring-white dark:ring-zinc-800"
+            />
+            <span
+              class="inline-flex items-center justify-center rounded-full size-8 bg-zinc-100 text-zinc-600 ring-2 ring-white dark:bg-zinc-800 dark:text-zinc-300 dark:ring-zinc-900"
+              >+1</span
+            >
+          </div>
+          <Text
+            tag="h2"
+            variant="textSM"
+            id="team-title"
+            class="mt-3 text-center font-semibold text-zinc-900 dark:text-white"
+          >
+            Invite teammates
+          </Text>
+          <p class="text-center text-xs text-zinc-600 dark:text-zinc-300">
+            Choose collaborators and set roles. You can add more later from
+            Project Settings.
+          </p>
+        </div>
+        <div class="px-5 pb-3">
+          <!-- Search + Select all -->
+          <div class="flex items-center gap-2 mb-2">
+            <input
+              x-model="query"
+              type="text"
+              placeholder="Search name or handle"
+              class="flex-1 block w-full h-10 px-4 py-2 text-xs bg-white border border-transparent rounded-lg appearance-none dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-blue-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+            />
+            <Button
+              variant="outline"
+              size="base"
+              @click="toggleAll()"
+              type="button"
+              x-text="allSelected() ? 'Unselect all' : 'Select all'"
+            />
+          </div>
+          <div
+            class="outline outline-zinc-200 dark:outline-zinc-700 rounded-lg"
+          >
+            <!-- List -->
+            <ul class="max-h-60 overflow-auto scrollbar-hide">
+              <template x-for="p in filtered" :key="p.id">
+                <li
+                  class="p-2 flex items-center gap-3 hover:bg-zinc-50 dark:hover:bg-white/5 border-b border-zinc-200 dark:border-zinc-700 last:border-0"
+                >
+                  <button
+                    @click="p.selected=!p.selected"
+                    :aria-pressed="p.selected"
+                    class="size-4 rounded grid place-items-center outline outline-1 outline-zinc-200 text-zinc-600 dark:text-white dark:outline-zinc-600"
+                    :class="p.selected ? 'bg-base-50 dark:bg-zinc-800' : 'bg-white dark:bg-zinc-800'"
+                  >
+                    <span x-show="p.selected">
+                      <Check size="xs" />
+                    </span>
+                  </button>
+                  <img
+                    :src="p.avatar"
+                    alt=""
+                    class="size-8 rounded-full object-cover ring-1 ring-zinc-200 dark:ring-zinc-700"
+                  />
+                  <div class="min-w-0 flex-1">
+                    <div
+                      class="text-sm text-zinc-900 dark:text-white font-medium"
+                      x-text="p.name"
+                    >
+                    </div>
+                    <div
+                      class="text-xs text-zinc-600 dark:text-zinc-300"
+                      x-text="p.handle"
+                    >
+                    </div>
+                  </div>
+                  <div class="relative">
+                    <Button
+                      size="xxs"
+                      variant="outline"
+                      @click="p._open=!p._open"
+                      class="w-full"
+                    >
+                      <span x-text="p.role"></span>
+                    </Button>
+                    <div
+                      x-show="p._open"
+                      @click.outside="p._open=false"
+                      class="absolute right-0 mt-1 w-28 rounded-md bg-white dark:bg-zinc-800 shadow ring-1 ring-zinc-200 dark:ring-zinc-700 text-xs z-10 mt-1 overflow-hidden"
+                    >
+                      <button
+                        class="w-full text-left px-2 py-1 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
+                        @click="setRole(p,'Admin'); p._open=false">Admin</button
+                      >
+                      <button
+                        class="w-full text-left px-2 py-1 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
+                        @click="setRole(p,'Editor'); p._open=false"
+                        >Editor</button
+                      >
+                      <button
+                        class="w-full text-left px-2 py-1 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
+                        @click="setRole(p,'Viewer'); p._open=false"
+                        >Viewer</button
+                      >
+                    </div>
+                  </div>
+                </li>
+              </template>
+              <li
+                x-if="query.trim() && filtered.length===0"
+                class="py-6 text-center text-sm text-zinc-500"
+              >
+                No matches
+              </li>
+            </ul>
+          </div>
+          <!-- Invite new by email -->
+          <div class="flex items-center gap-2 mt-2">
+            <input
+              x-model="inviteEmail"
+              type="email"
+              placeholder="Invite by email"
+              class="flex-1 block w-full h-10 px-4 py-2 text-xs bg-white border border-transparent rounded-lg appearance-none dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-blue-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+            />
+            <Button
+              variant="outline"
+              size="base"
+              type="button"
+              :disabled="!inviteEmail"
+              @click="invite()">Send invite</Button
+            >
+          </div>
+        </div>
+        <!-- Footer -->
+        <div
+          class="px-5 py-4 border-t border-zinc-100 dark:border-zinc-700 flex items-center gap-2 justify-end"
+        >
+          <Button variant="outline" size="xxs" type="button" @click="open=false"
+            >Cancel</Button
+          >
+          <Button variant="accent" size="xxs" type="button" @click="confirm()"
+            >Confirm</Button
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Copy:end -->
+</div>

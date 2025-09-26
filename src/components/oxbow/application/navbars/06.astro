@@ -13,19 +13,19 @@ import User from "@/components/fundations/icons/User.astro";
 <div class="bg-white dark:bg-zinc-900 pb-100">
   <!-- copy:start -->
   <header
-    class="w-full border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900"
+    class="w-full bg-white border-b border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900"
   >
     <div
       x-data="{ open:false, user:false, dark: document.documentElement.classList.contains('dark') }"
-      class="mx-auto max-w-screen-xl px-6 md:px-10 lg:px-16"
+      class="px-6 mx-auto max-w-screen-xl md:px-10 lg:px-16"
     >
-      <div class="flex h-16 items-center justify-between gap-3">
+      <div class="flex items-center justify-between h-16 gap-3">
         <a href="#_" class="inline-flex items-center gap-2"
-          ><Logo class="h-7 text-black dark:text-white" /><span class="sr-only"
+          ><Logo class="text-black h-7 dark:text-white" /><span class="sr-only"
             >Home</span
           ></a
         >
-        <nav aria-label="Primary" class="hidden md:flex items-center gap-4">
+        <nav aria-label="Primary" class="items-center hidden md:flex gap-4">
           <Text
             tag="a"
             href="#_"
@@ -48,7 +48,7 @@ import User from "@/components/fundations/icons/User.astro";
             >Teams</Text
           >
         </nav>
-        <div class="hidden md:flex items-center gap-2">
+        <div class="items-center hidden md:flex gap-2">
           <Button
             variant="muted"
             size="xs"
@@ -69,7 +69,7 @@ import User from "@/components/fundations/icons/User.astro";
               x-show="open"
               x-transition
               @click.outside="open=false"
-              class="absolute right-0 top-full z-30 mt-2 w-70 p-4 bg-white dark:bg-zinc-800 shadow-lg rounded-xl outline outline-zinc-900/5 dark:outline-white/10 flex flex-col gap-4"
+              class="absolute right-0 z-30 flex flex-col p-4 mt-2 bg-white shadow-lg top-full w-70 dark:bg-zinc-800 rounded-xl outline outline-zinc-900/5 dark:outline-white/10 gap-4"
             >
               <FlyoutLinkBox
                 href="#_"
@@ -106,7 +106,7 @@ import User from "@/components/fundations/icons/User.astro";
       <div
         id="nav-06"
         :class="{ 'grid': open, 'hidden': !open }"
-        class="hidden grid-cols-1 gap-2 pb-4 md:hidden"
+        class="hidden pb-4 grid-cols-1 gap-2 md:hidden"
       >
         <Button variant="muted" size="xs">Dashboard</Button>
         <Button variant="muted" size="xs">Projects</Button>

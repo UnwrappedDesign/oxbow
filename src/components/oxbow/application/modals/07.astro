@@ -1,0 +1,178 @@
+---
+export const excludeFromObfuscation = [
+  "opacity-0",
+  "opacity-100",
+  "translate-y-4",
+  "sm:translate-y-0",
+  "sm:scale-95",
+];
+import ApiApp from "@/components/fundations/icons/ApiApp.astro";
+import GoogleColor from "@/components/fundations/icons/GoogleColor.astro";
+import GithubBrand from "@/components/fundations/icons/GithubBrand.astro";
+import Apple from "@/components/fundations/icons/Apple.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+---
+
+<div
+  class="p-8 pb-120 pt-20 bg-white dark:bg-zinc-900 flex items-center justify-center"
+>
+  <!-- Copy:start -->
+  <!--
+// Make sure to change  "open: false",  to  open: true. On the z-data="{}".
+-->
+  <div
+    class="w-full max-w-sm"
+    x-data="{
+      open:true,
+      email:'',
+      get ok(){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email); },
+      show(){ this.email=''; this.open=true; this.$nextTick(()=> this.$refs.email?.focus()); },
+      close(){ this.open=false; },
+      start(){ if(!this.ok) return; window.dispatchEvent(new CustomEvent('auth:start', { detail:{ email:this.email } })); this.close(); },
+      sso(p){ window.dispatchEvent(new CustomEvent('auth:sso', { detail:{ provider:p } })); this.close(); }
+    }"
+  >
+    <Button
+      variant="default"
+      size="sm"
+      type="button"
+      class="mx-auto"
+      @click="show()">Start free trial</Button
+    >
+    <!-- Backdrop -->
+    <div
+      x-show="open"
+      x-transition.opacity
+      class="fixed inset-0 z-40 bg-black/40 dark:bg-white/20"
+      aria-hidden="true"
+      @click="close()"
+    >
+    </div>
+    <!-- Dialog -->
+    <div
+      x-show="open"
+      x-transition:enter="transition ease-out duration-200"
+      x-transition:enter-start="opacity-0"
+      x-transition:enter-end="opacity-100"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-start="opacity-100"
+      x-transition:leave-end="opacity-0"
+      class="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="signup-title"
+      @keydown.escape.window.prevent="close()"
+    >
+      <div
+        x-show="open"
+        @click.outside="close()"
+        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="translate-y-4 sm:translate-y-0 sm:scale-95"
+        x-transition:enter-end="translate-y-0 sm:scale-100"
+        x-transition:leave="transition ease-in duration-150"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="w-full sm:w-sm rounded-2xl bg-white dark:bg-zinc-800 shadow-xl outline outline-1 outline-black/5 dark:-outline-offset-1 dark:outline-white/10"
+      >
+        <!-- Header -->
+        <div class="px-5 pt-5 pb-3">
+          <div
+            class="size-9 rounded-full grid place-items-center bg-zinc-100 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-200 mx-auto"
+          >
+            <ApiApp size="sm" />
+          </div>
+        </div>
+        <div class="px-5">
+          <Text
+            tag="h2"
+            variant="textSM"
+            id="signup-title"
+            class="text-center font-semibold text-zinc-900 dark:text-white"
+          >
+            Create your account
+          </Text>
+          <Text
+            tag="p"
+            variant="textXS"
+            class="mt-1 text-cente text-zinc-600 dark:text-zinc-300"
+          >
+            Start a 30-day trial. No card required.
+          </Text>
+        </div>
+        <!-- Body -->
+        <div class="px-5 pt-4 pb-2">
+          <label class="sr-only" for="email">Email</label>
+          <input
+            id="email"
+            x-ref="email"
+            x-model="email"
+            type="email"
+            placeholder="name@company.com"
+            class="block w-full h-10 px-4 py-2 text-xs bg-white border border-transparent rounded-lg appearance-none dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-blue-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+          />
+          <Button
+            variant="default"
+            size="xs"
+            class="mt-2 w-full"
+            type="button"
+            :disabled="!ok"
+            @click="start()">Get started</Button
+          >
+          <div
+            class="my-3 flex items-center gap-2 text-[0.70rem] text-zinc-500"
+          >
+            <div class="flex-1 h-px bg-zinc-200 dark:bg-zinc-700"></div><span
+              >or</span
+            ><div class="flex-1 h-px bg-zinc-200 dark:bg-zinc-700"></div>
+          </div>
+          <div class="flex flex-col gap-2 w-full">
+            <Button
+              variant="outline"
+              size="xs"
+              class="gap-2"
+              type="button"
+              @click="sso('google')"
+              ><GoogleColor class="size-4" />
+              <span>Continue with Google</span></Button
+            >
+            <Button
+              variant="outline"
+              size="xs"
+              class="gap-2"
+              type="button"
+              @click="sso('github')"
+              ><GithubBrand size="sm" />
+              <span>Continue with GitHub</span></Button
+            >
+            <Button
+              variant="outline"
+              size="xs"
+              class="gap-2"
+              @click="sso('apple')"
+              ><Apple size="sm" /> <span>Continue with Apple</span></Button
+            >
+          </div>
+        </div>
+        <div class="px-5 pb-4 t">
+          <p
+            class="text-[0.70rem] text-zinc-500 text-center dark:text-zinc-300"
+          >
+            By continuing you agree to our <a href="#" class="underline"
+              >Terms</a
+            >
+            and <a href="#" class="underline">Privacy</a>.
+          </p>
+          <Button
+            variant="outline"
+            size="xs"
+            aria-label="Close"
+            class="mt-8 w-full"
+            @click="close()">Close</Button
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Copy:end -->
+</div>

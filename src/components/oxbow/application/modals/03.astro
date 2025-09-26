@@ -1,0 +1,273 @@
+---
+export const excludeFromObfuscation = [
+  "opacity-0",
+  "opacity-100",
+  "translate-y-4",
+  "sm:translate-y-0",
+  "sm:scale-95",
+];
+import LibraryPhoto from "@/components/fundations/icons/LibraryPhoto.astro";
+import X from "@/components/fundations/icons/X.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+import IconButton from "@/components/fundations/buttons/IconButton.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+---
+
+<div
+  class="p-8 pt-12 pb-170 bg-white dark:bg-zinc-900 flex items-center justify-center"
+>
+  <!-- Copy:start -->
+  <!--
+// Make sure to change  "open: false",  to  open: true. On the z-data="{}".
+-->
+  <div
+    class="w-full max-w-xl mx-auto"
+    x-data="{
+      open:true,
+      submitting:false,
+      form:{
+        avatar:'',
+        handle:'',
+        intro:'',
+        agree:false,
+        dontShow:false,
+      },
+      show(){ this.reset(); this.open=true; this.$nextTick(()=> this.$refs.handle?.focus()); },
+      reset(){ this.form={ avatar:'', handle:'@', intro:'', agree:false, dontShow:false }; this.submitting=false; this.drag=false; },
+      close(){ if(this.submitting) return; this.open=false; },
+      drop(e){ e.preventDefault(); const f=e.dataTransfer?.files?.[0]; if(!f) return; this.readAvatar(f); this.drag=false; },
+      pick(e){ const f=e.target?.files?.[0]; if(!f) return; this.readAvatar(f); },
+      readAvatar(file){ try { const url = URL.createObjectURL(file); this.form.avatar=url; } catch {} },
+      submit(){
+        if(!this.form.agree) return;
+        this.submitting=true;
+        setTimeout(()=>{
+          window.dispatchEvent(new CustomEvent('profile:completed', { detail:{ ...this.form } }));
+          this.submitting=false; this.open=false;
+        }, 900);
+      }
+    }"
+  >
+    <Button
+      variant="default"
+      size="sm"
+      type="button"
+      class="mx-auto"
+      @click="show()">Finish profile</Button
+    >
+    <!-- Backdrop -->
+    <div
+      x-show="open"
+      x-transition.opacity
+      class="fixed inset-0 z-40 bg-black/40 dark:bg-white/20"
+      aria-hidden="true"
+      @click="close()"
+    >
+    </div>
+    <!-- Dialog -->
+    <div
+      x-show="open"
+      x-transition:enter="transition ease-out duration-200"
+      x-transition:enter-start="opacity-0"
+      x-transition:enter-end="opacity-100"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-start="opacity-100"
+      x-transition:leave-end="opacity-0"
+      class="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="profile-title"
+      @keydown.escape.window.prevent="close()"
+    >
+      <div
+        x-show="open"
+        @click.outside="close()"
+        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="translate-y-4 sm:translate-y-0 sm:scale-95"
+        x-transition:enter-end="translate-y-0 sm:scale-100"
+        x-transition:leave="transition ease-in duration-150"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="w-full sm:max-w-xl rounded-2xl bg-white dark:bg-zinc-800 shadow-xl outline outline-1 outline-black/5 dark:-outline-offset-1 dark:outline-white/10"
+      >
+        <!-- Header -->
+        <div
+          class="flex items-center justify-between px-5 py-4 border-b border-zinc-100 dark:border-zinc-700"
+        >
+          <div>
+            <Text
+              tag="h2"
+              variant="sm"
+              id="profile-title"
+              class="text-sm font-semibold text-zinc-900 dark:text-white"
+            >
+              Finish setting up your profile
+            </Text>
+            <Text
+              tag="p"
+              variant="textXS"
+              class="text-zinc-600 dark:text-zinc-300"
+            >
+              Add an avatar, choose a handle, and a short bio.
+            </Text>
+          </div>
+          <IconButton
+            variant="text"
+            size="xxs"
+            aria-label="Close"
+            @click="close()"><X size="sm" /></IconButton
+          >
+        </div>
+        <!-- Content -->
+        <div class="p-5 space-y-4">
+          <div
+            class="grid grid-cols-1 sm:grid-cols-[96px_1fr] gap-4 items-center"
+          >
+            <!-- Avatar -->
+            <div class="flex flex-col items-center gap-2">
+              <div
+                class="size-24 rounded-xl overflow-hidden ring-1 ring-zinc-200 dark:ring-zinc-700 bg-zinc-100 dark:bg-zinc-700 grid place-items-center"
+              >
+                <template x-if="!form.avatar">
+                  <div class="text-zinc-400"><LibraryPhoto size="base" /></div>
+                </template>
+                <img
+                  x-show="form.avatar"
+                  :src="form.avatar"
+                  alt="Avatar"
+                  class="size-full object-cover"
+                />
+              </div>
+              <label
+                class="text-[0.70rem] text-zinc-600 dark:text-zinc-300 text-center"
+                >Square images look best</label
+              >
+            </div>
+            <!-- Dropzone -->
+            <div>
+              <label
+                class="block text-[0.70rem] font-medium text-zinc-700 dark:text-zinc-200"
+                >Profile image</label
+              >
+              <div
+                @dragover.prevent
+                @dragenter.prevent="drag=true"
+                @dragleave.prevent="drag=false"
+                @drop="drop($event)"
+                :class="drag ? 'outline-2 outline-blue-500 bg-blue-50/40 dark:bg-blue-400/10' : 'outline-1 outline-blue-500'"
+                class="mt-1 rounded-xl p-4 bg-white dark:bg-zinc-800 flex items-center justify-center text-center h-[120px] outline outline-1 outline-zinc-200 dark:outline-zinc-700"
+              >
+                <div>
+                  <LibraryPhoto
+                    size="sm"
+                    class="text-zinc-500 dark:text-zinc-30 mx-auto mb-1"
+                  />
+                  <label
+                    class="text-xs
+                    text-blue-600
+                    dark:text-blue-400
+                    cursor-pointer font-medium"
+                  >
+                    <input
+                      type="file"
+                      class="sr-only"
+                      accept="image/*"
+                      @change="pick($event)"
+                    />
+                    Click to upload
+                  </label>
+                  <span class="text-xs text-zinc-500 font-medium">
+                    or drag & drop</span
+                  >
+                  <div class="mt-1 text-[0.70rem] text-zinc-500 font-medium">
+                    PNG, JPG, GIF (max 800×400px)
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Handle -->
+          <div>
+            <label
+              class="block text-xs font-medium text-zinc-700 dark:text-zinc-200"
+              >Handle</label
+            >
+            <div class="mt-1 grid grid-cols-[minmax(120px,180px)_1fr]">
+              <div
+                class="block w-full h-10 px-4 py-2 text-xs bg-white border border-transparent rounded-lg rounded-r-none appearance-none bg-zinc-50 dark:bg-white/5 text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-blue-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+              >
+                example.com/
+              </div>
+              <input
+                x-ref="handle"
+                x-model="form.handle"
+                type="text"
+                placeholder="@username"
+                class="block w-full h-10 px-4 py-2 text-xs bg-white border border-transparent rounded-lg rounded-l-none appearance-none dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-blue-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+              />
+            </div>
+          </div>
+          <!-- Intro -->
+          <div>
+            <label
+              class="block text-xs font-medium text-zinc-700 dark:text-zinc-200"
+              >Short bio</label
+            >
+            <textarea
+              x-model="form.intro"
+              rows="4"
+              placeholder="Tell people what you work on…"
+              class="mt-1 block w-full px-4 py-2 text-xs bg-white border border-transparent rounded-lg appearance-none dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-blue-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+            ></textarea>
+          </div>
+          <!-- Agreement -->
+          <label
+            class="inline-flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400"
+          >
+            <input
+              type="checkbox"
+              class="rounded border-zinc-300 dark:border-zinc-600 dark:bg-zinc-800 text-blue-600 focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 shadow size-4"
+              x-model="form.agree"
+            />
+            I agree to the <a href="#" class="underline">terms</a> and <a
+              href="#"
+              class="underline">privacy policy</a
+            >.
+          </label>
+        </div>
+        <!-- Footer -->
+        <div
+          class="px-5 py-4 border-t border-zinc-100 dark:border-zinc-700 flex items-center gap-3"
+        >
+          <label
+            class="inline-flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400 text-xs"
+          >
+            <input
+              type="checkbox"
+              class="rounded border-zinc-300 dark:border-zinc-600 dark:bg-zinc-800 text-blue-600 focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 shadow size-4"
+              x-model="form.dontShow"
+            />
+            Don’t show again
+          </label>
+          <div class="ml-auto flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="xxs"
+              type="button"
+              @click="close()"
+              :disabled="submitting">Cancel</Button
+            >
+            <Button
+              variant="accent"
+              size="xxs"
+              type="button"
+              @click="submit()"
+              :disabled="!form.agree || submitting">Save profile</Button
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Copy:end -->
+</div>

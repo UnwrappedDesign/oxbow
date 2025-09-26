@@ -1,0 +1,422 @@
+---
+export const excludeFromObfuscation = [
+  "opacity-0",
+  "opacity-100",
+  "translate-y-4",
+  "sm:translate-y-0",
+  "sm:scale-95",
+];
+import Button from "@/components/fundations/buttons/Button.astro";
+import ChevronLeft from "@/components/fundations/icons/ChevronLeft.astro";
+import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
+import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
+import IconButton from "@/components/fundations/buttons/IconButton.astro";
+---
+
+<div
+  class="p-8 pb-200 lg:pb-200 pt-40 lg:pt-20 bg-white dark:bg-zinc-900 flex items-center justify-center"
+>
+  <!-- Copy:start -->
+  <!--
+// Make sure to change  "open: false",  to  open: true. On the z-data="{}".
+-->
+  <div
+    class="w-full max-w-4xl"
+    x-data="{
+    open:true,
+    // Selection
+    start:null, end:null,
+    hover:null,
+    range:true,
+    // Constraints / options
+    disableWeekends:false,
+    minDate:null,
+    maxDate:null,
+    // Calendar view (left month)
+    view: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
+    presetsOpen:false,
+    // Helpers
+    fmt(d){ return d ? d.toLocaleDateString(undefined,{ month:'short', day:'numeric', year:'numeric'}) : '' },
+    ymd(d){ return [d.getFullYear(), d.getMonth(), d.getDate()].join('-') },
+    addMonths(d,n){ return new Date(d.getFullYear(), d.getMonth()+n, 1) },
+    daysInMonth(d){ return new Date(d.getFullYear(), d.getMonth()+1, 0).getDate() },
+    weekStart(d){ // monday-based index
+      const day=(new Date(d.getFullYear(), d.getMonth(), 1).getDay()+6)%7; return day;
+    },
+    isoWeek(d){
+      const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+      const dayNum = (date.getUTCDay()+6)%7; // Mon=0
+      date.setUTCDate(date.getUTCDate() - dayNum + 3); // Thu of this week
+      const firstThursday = new Date(Date.UTC(date.getUTCFullYear(),0,4));
+      const firstDayNum = (firstThursday.getUTCDay()+6)%7;
+      firstThursday.setUTCDate(firstThursday.getUTCDate() - firstDayNum + 3);
+      const week = 1 + Math.round((date - firstThursday) / (7*24*3600*1000));
+      return week;
+    },
+    buildMonthCells(d){
+      const year=d.getFullYear(); const month=d.getMonth();
+      const firstPad=this.weekStart(d);
+      const days=this.daysInMonth(d);
+      const prevMonth=new Date(year,month-1,1);
+      const prevDays=this.daysInMonth(prevMonth);
+      const cells=[];
+      // leading from prev month
+      for(let i=firstPad-1;i>=0;i--){ cells.push({ date:new Date(year,month-1,prevDays-i), inMonth:false }); }
+      // current month
+      for(let i=1;i<=days;i++){ cells.push({ date:new Date(year,month,i), inMonth:true }); }
+      // trailing to complete 42
+      while(cells.length%7!==0){ const last=cells[cells.length-1].date; cells.push({ date:new Date(last.getFullYear(), last.getMonth(), last.getDate()+1), inMonth:false }); }
+      return cells;
+    },
+    buildWeeks(d){ const cells=this.buildMonthCells(d); const rows=[]; for(let i=0;i<cells.length;i+=7){ const row=cells.slice(i,i+7); rows.push({ key:this.ymd(row[0].date)+'-w', week:this.isoWeek(row[0].date), cells:row }); } return rows; },
+    isSame(a,b){ return a && b && a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate() },
+    isDisabled(d){ if(!d) return true; if(this.minDate && d < this.minDate) return true; if(this.maxDate && d > this.maxDate) return true; if(this.disableWeekends){ const wd=d.getDay(); if(wd===0||wd===6) return true; } return false; },
+    inRange(d){ if(!this.start||!this.end||!d) return false; const t=d.getTime(); return t>=this.start.getTime() && t<=this.end.getTime() },
+    previewInRange(d){ if(!d||!this.start||this.end) return false; if(!this.hover) return false; const a=this.start.getTime(); const b=this.hover.getTime(); const min=Math.min(a,b), max=Math.max(a,b); const t=d.getTime(); return t>=min && t<=max; },
+    pick(d){ if(!d || this.isDisabled(d)) return; if(!this.range){ this.start=d; this.end=d; return; }
+      if(!this.start || (this.start && this.end)) { this.start=d; this.end=null; }
+      else if(d.getTime()<this.start.getTime()) { this.end=this.start; this.start=d; }
+      else { this.end=d; }
+    },
+    setPreset(name){ const today=new Date(); const s=(n)=>{const x=new Date(today); x.setDate(x.getDate()+n); return new Date(x.getFullYear(),x.getMonth(),x.getDate());};
+      if(name==='today'){ this.start=s(0); this.end=s(0); }
+      else if(name==='yesterday'){ this.start=s(-1); this.end=s(-1); }
+      else if(name==='last7'){ this.start=s(-6); this.end=s(0); }
+      else if(name==='last30'){ this.start=s(-29); this.end=s(0); }
+      else if(name==='thisWeek'){ const wd=(today.getDay()+6)%7; this.start=s(-wd); this.end=s(6-wd); }
+      else if(name==='lastWeek'){ const wd=(today.getDay()+6)%7; this.start=s(-wd-7); this.end=s(6-wd-7); }
+      else if(name==='thisMonth'){ const d=new Date(today.getFullYear(), today.getMonth(), 1); this.start=d; this.end=new Date(today.getFullYear(), today.getMonth()+1, 0); }
+      else if(name==='lastMonth'){ const d=new Date(today.getFullYear(), today.getMonth()-1, 1); this.start=d; this.end=new Date(d.getFullYear(), d.getMonth()+1, 0); }
+      else if(name==='thisYear'){ this.start=new Date(today.getFullYear(),0,1); this.end=new Date(today.getFullYear(),11,31); }
+      else if(name==='lastYear'){ const y=today.getFullYear()-1; this.start=new Date(y,0,1); this.end=new Date(y,11,31); }
+      else if(name==='allTime'){ this.start=new Date(2000,0,1); this.end=new Date(today.getFullYear()+5,11,31); }
+    },
+    // Time selection
+    startTime:'00:00', endTime:'00:00',
+    clear(){ this.start=null; this.end=null; this.hover=null; this.startTime='00:00'; this.endTime='00:00'; },
+    apply(){
+      const parseHM=(s)=>{ if(!s) return [0,0]; const [h,m]=s.split(':').map(n=>parseInt(n,10)||0); return [h,m]; };
+      let s=this.start? new Date(this.start) : null; let e=this.end? new Date(this.end) : null;
+      if(s){ const [sh,sm]=parseHM(this.startTime); s.setHours(sh,sm,0,0); }
+      if(e){ const [eh,em]=parseHM(this.endTime); e.setHours(eh,em,0,0); }
+      window.dispatchEvent(new CustomEvent('daterange:apply', { detail:{ start:s, end:e } }));
+      this.open=false;
+    }
+  }"
+  >
+    <Button
+      variant="default"
+      size="sm"
+      type="button"
+      class="mx-auto"
+      @click="open=true">Choose dates</Button>
+    <div
+      x-show="open"
+      x-transition.opacity
+      class="fixed inset-0 z-40 bg-black/40 dark:bg-white/20"
+      aria-hidden="true"
+      @click="open=false"
+    >
+    </div>
+    <div
+      x-show="open"
+      x-transition:enter="transition ease-out duration-200"
+      x-transition:enter-start="opacity-0"
+      x-transition:enter-end="opacity-100"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-start="opacity-100"
+      x-transition:leave-end="opacity-0"
+      class="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="drp-title"
+      @keydown.escape.window.prevent="open=false"
+    >
+      <div
+        x-show="open"
+        @click.outside="open=false"
+        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="translate-y-4 sm:translate-y-0 sm:scale-95"
+        x-transition:enter-end="translate-y-0 sm:scale-100"
+        x-transition:leave="transition ease-in duration-150"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="w-full sm:max-w-4xl rounded-2xl bg-white dark:bg-zinc-800 shadow-xl outline outline-1 outline-black/5 dark:-outline-offset-1 dark:outline-white/10"
+      >
+        <div class="lg:grid lg:grid-cols-[220px_1fr]">
+          <!-- Presets -->
+          <aside
+            class="p-4 lg:border-r border-zinc-100 dark:border-zinc-700 text-sm relative"
+          >
+            <div>
+              <Button
+                variant="outline"
+                justify="between"
+                size="xs"
+                type="button"
+                class="w-full flex items-center justify-between"
+                @click="presetsOpen=!presetsOpen"
+              >
+                <span>Presets</span>
+                <ChevronDown slot="right-icon" size="sm" />
+              </Button>
+              <div
+                x-show="presetsOpen"
+                @click.outside="presetsOpen=false"
+                class="absolute z-10 mt-2 w-48 rounded-md bg-white dark:bg-zinc-800 shadow ring-1 ring-zinc-200 dark:ring-zinc-700 overflow-hidden"
+              >
+                <button
+                  class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
+                  @click="setPreset('today'); presetsOpen=false">Today</button>
+                <button
+                  class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
+                  @click="setPreset('yesterday'); presetsOpen=false">Yesterday</button>
+                <button
+                  class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
+                  @click="setPreset('last7'); presetsOpen=false">Last 7 days</button>
+                <button
+                  class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
+                  @click="setPreset('last30'); presetsOpen=false">Last 30 days</button>
+                <button
+                  class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
+                  @click="setPreset('thisWeek'); presetsOpen=false">This week</button>
+                <button
+                  class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
+                  @click="setPreset('lastWeek'); presetsOpen=false">Last week</button>
+                <button
+                  class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
+                  @click="setPreset('thisMonth'); presetsOpen=false">This month</button>
+                <button
+                  class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
+                  @click="setPreset('lastMonth'); presetsOpen=false">Last month</button>
+                <button
+                  class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
+                  @click="setPreset('thisYear'); presetsOpen=false">This year</button>
+                <button
+                  class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
+                  @click="setPreset('lastYear'); presetsOpen=false">Last year</button>
+                <button
+                  class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
+                  @click="setPreset('allTime'); presetsOpen=false">All time</button>
+              </div>
+            </div>
+            <div
+              class="mt-4 space-y-2 border-t pt-4 border-zinc-100 dark:border-zinc-700"
+            >
+              <label
+                class="flex items-center gap-2 text-zinc-700 dark:text-zinc-300"
+              >
+                <input
+                  type="checkbox"
+                  class="rounded border-zinc-300 dark:border-zinc-600 dark:bg-zinc-800 text-blue-600 focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 shadow size-4"
+                  x-model="range"
+                />
+                <span>Range selection</span>
+              </label>
+              <label
+                class="flex items-center gap-2 text-zinc-700 dark:text-zinc-300"
+              >
+                <input
+                  type="checkbox"
+                  class="rounded border-zinc-300 dark:border-zinc-600 dark:bg-zinc-800 text-blue-600 focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 shadow size-4"
+                  x-model="disableWeekends"
+                />
+                <span>Disable weekends</span>
+              </label>
+              <div class="flex flex-col gap-2 text-xs text-zinc-500 mt-4">
+                <Button
+                  size="xxs"
+                  variant="outline"
+                  type="button"
+                  @click="const t=new Date(); minDate=new Date(t.getFullYear(),t.getMonth(),1); maxDate=new Date(t.getFullYear(),t.getMonth()+1,0)">Limit to this month</Button>
+                <Button
+                  size="xxs"
+                  variant="outline"
+                  type="button"
+                  @click="minDate=null; maxDate=null">Clear limits</Button>
+              </div>
+            </div>
+          </aside>
+          <!-- Calendars -->
+          <section class="p-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div
+                class="rounded-xl outline outline-zinc-200 dark:outline-zinc-700 overflow-hidden"
+              >
+                <div
+                  class="flex items-center justify-between px-3 py-2 border-b border-zinc-100 dark:border-zinc-700"
+                >
+                  <IconButton
+                    size="xxs"
+                    variant="muted"
+                    @click="view = addMonths(view,-1)"
+                  >
+                    <ChevronLeft slot="icon" size="xs" />
+                  </IconButton>
+                  <div
+                    class="text-sm font-medium text-zinc-500 dark:text-zinc-300"
+                    x-text="view.toLocaleDateString(undefined,{ month:'long', year:'numeric' })"
+                  >
+                  </div>
+                  <div class="w-6"></div>
+                </div>
+                <div class="p-3 text-xs">
+                  <div
+                    class="grid grid-cols-8 text-center text-zinc-500 dark:text-zinc-300"
+                  >
+                    <span class="text-left pl-1">Wk</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span>
+                  </div>
+                  <div class="mt-1 space-y-1">
+                    <template x-for="row in buildWeeks(view)" :key="row.key">
+                      <div class="grid grid-cols-8">
+                        <span class="text-[10px] leading-8 text-zinc-400 dark:text-zinc-300 pl-1">#<span x-text="row.week"></span></span>
+                        <template
+                          x-for="cell in row.cells"
+                          :key="ymd(cell.date)"
+                        >
+                          <button
+                            @mouseenter="hover = cell.date"
+                            @mouseleave="hover = null"
+                            :disabled="isDisabled(cell.date)"
+                            @click="pick(cell.date)"
+                            class="h-8 w-8 mx-auto rounded-full text-xs flex items-center justify-center"
+                            :class="[
+                              isDisabled(cell.date) ? 'opacity-40 cursor-not-allowed' : 'hover:bg-zinc-100 dark:hover:bg-white/10',
+                              (isSame(cell.date,start) || isSame(cell.date,end))
+                                ? 'bg-blue-600 text-white'
+                                : ((inRange(cell.date) || previewInRange(cell.date))
+                                    ? 'bg-blue-600/20 text-blue-700 dark:text-blue-300'
+                                    : (cell.inMonth ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500')
+                                  )
+                            ]"
+                            x-text="cell.date.getDate()"></button>
+                        </template>
+                      </div>
+                    </template>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="rounded-xl outline outline-zinc-200 dark:outline-zinc-700 overflow-hidden"
+              >
+                <div
+                  class="flex items-center justify-between px-3 py-2 border-b border-zinc-100 dark:border-zinc-700"
+                >
+                  <div class="w-6"></div>
+                  <div
+                    class="text-sm font-medium text-zinc-500 dark:text-zinc-300"
+                    x-text="addMonths(view,1).toLocaleDateString(undefined,{ month:'long', year:'numeric' })"
+                  >
+                  </div>
+                  <IconButton
+                    size="xxs"
+                    variant="muted"
+                    class="px-2 py-1"
+                    @click="view = addMonths(view,1)"
+                  >
+                    <ChevronRight slot="icon" size="xs" />
+                  </IconButton>
+                </div>
+                <div class="p-3 text-xs">
+                  <div
+                    class="grid grid-cols-8 text-center text-zinc-500 dark:text-zinc-300"
+                  >
+                    <span class="text-left pl-1">Wk</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span>
+                  </div>
+                  <div class="mt-1 space-y-1">
+                    <template
+                      x-for="row in buildWeeks(addMonths(view,1))"
+                      :key="row.key"
+                    >
+                      <div class="grid grid-cols-8">
+                        <span class="text-[10px] leading-8 text-zinc-500 dark:text-zinc-300 pl-1">#<span x-text="row.week"></span></span>
+                        <template
+                          x-for="cell in row.cells"
+                          :key="ymd(cell.date)"
+                        >
+                          <button
+                            @mouseenter="hover = cell.date"
+                            @mouseleave="hover = null"
+                            :disabled="isDisabled(cell.date)"
+                            @click="pick(cell.date)"
+                            class="h-8 w-8 mx-auto rounded-full text-xs flex items-center justify-center"
+                            :class="[
+                              isDisabled(cell.date) ? 'opacity-40 cursor-not-allowed' : 'hover:bg-zinc-100 dark:hover:bg-white/10',
+                              (isSame(cell.date,start) || isSame(cell.date,end))
+                                ? 'bg-blue-600 text-white'
+                                : ((inRange(cell.date) || previewInRange(cell.date))
+                                    ? 'bg-blue-600/20 text-blue-700 dark:text-blue-300'
+                                    : (cell.inMonth ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500')
+                                  )
+                            ]"
+                            x-text="cell.date.getDate()"></button>
+                        </template>
+                      </div>
+                    </template>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Inputs + actions -->
+            <div
+              class="mt-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center gap-2 border-t border-zinc-100 dark:border-zinc-700 pt-3"
+            >
+              <input
+                :value="fmt(start)"
+                readonly
+                class="block w-full h-10 px-4 py-2 text-xs bg-white border border-transparent rounded-lg appearance-none dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-blue-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+                placeholder="Start date"
+              />
+              <input
+                :value="fmt(end)"
+                readonly
+                class="block w-full h-10 px-4 py-2 text-xs bg-white border border-transparent rounded-lg appearance-none dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-blue-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+                placeholder="End date"
+              />
+              <input
+                type="time"
+                x-model="startTime"
+                class="block w-full h-10 px-4 py-2 text-xs bg-white border border-transparent rounded-lg appearance-none dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-blue-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm dark:[color-scheme:dark]"
+              />
+              <input
+                type="time"
+                x-model="endTime"
+                class="block w-full h-10 px-4 py-2 text-xs bg-white border border-transparent rounded-lg appearance-none dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-blue-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm dark:[color-scheme:dark]"
+              />
+              <div
+                class="col-span-2 lg:col-span-4 flex items-center justify-between gap-2 mt-2"
+              >
+                <div class="flex flex-wrap items-center gap-2">
+                  <Button
+                    size="xxs"
+                    variant="outline"
+                    type="button"
+                    @click="clear()">Clear</Button>
+                  <Button
+                    size="xxs"
+                    variant="outline"
+                    type="button"
+                    @click="setPreset('today')">Today</Button>
+                </div>
+                <div class="flex flex-wrap items-center gap-2">
+                  <Button
+                    size="xxs"
+                    variant="danger"
+                    type="button"
+                    @click="open=false">Cancel</Button>
+                  <Button
+                    size="xxs"
+                    variant="accent"
+                    type="button"
+                    :disabled="!start||!end"
+                    @click="apply()">Apply</Button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Copy:end -->
+</div>

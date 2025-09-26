@@ -209,7 +209,7 @@ export default function ColorPalette() {
 
   return (
     <div className="w-full">
-      <div className="flex items-center gap-2 mb-4">
+      <div className="flex items-center mb-4 gap-2">
         <div className="relative" ref={dropdownRef}>
           <button
             type="button"
@@ -250,7 +250,7 @@ export default function ColorPalette() {
                   >
                     <span className="font-mono">{opt}</span>
                     {format === opt && (
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-4 text-blue-600">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="text-blue-600 size-4">
                         <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4-4a.75.75 0 011.06-1.06l3.353 3.353 7.528-9.884a.75.75 0 011.043-.136z" clipRule="evenodd" />
                       </svg>
                     )}
@@ -291,10 +291,10 @@ export default function ColorPalette() {
                       className={`relative h-14 rounded-md ${cls}`}
                     >
                       {copiedKey === key && (
-                        <span className="absolute inset-0 grid text-[11px] font-mono place-items-center rounded-md bg-black/40 text-white">Copied</span>
+                        <span className="absolute inset-0 grid text-[0.70rem] font-mono place-items-center rounded-md bg-black/40 text-white">Copied</span>
                       )}
                     </button>
-                    <span className="mt-1 text-[11px] font-mono text-zinc-600">{shade}</span>
+                    <span className="mt-1 text-[0.70rem] font-mono text-zinc-600">{shade}</span>
                   </div>
                 );
               })}

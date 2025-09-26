@@ -12,7 +12,7 @@ const countryOptions = [
 ];
 ---
 
-<div class="flex justify-center p-18 mx-auto bg-white dark:bg-zinc-900 mx-auto">
+<div class="flex justify-center mx-auto bg-white p-18 dark:bg-zinc-900">
   <div>
     <!-- copy:start -->
     <div
@@ -53,7 +53,7 @@ const countryOptions = [
           id="search"
           x-model="searchTerm"
           @input="filterOptions()"
-          class="block w-full h-10 px-4 py-2 text-sm bg-white dark:bg-zinc-900 border border-transparent text-zinc-500 dark:text-zinc-100 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-400 focus:border-zinc-300 dark:focus:border-zinc-600 focus:bg-transparent focus:outline-none focus:ring-blue-500 dark:focus:ring-zinc-500 focus:ring-offset-2 focus:ring-2 rounded-md"
+          class="block w-full h-10 px-4 py-2 text-sm bg-white border border-transparent dark:bg-zinc-900 text-zinc-500 dark:text-zinc-100 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-400 focus:border-zinc-300 dark:focus:border-zinc-600 focus:bg-transparent focus:outline-none focus:ring-blue-500 dark:focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 rounded-md"
           placeholder="Type to search..."
         />
       </div>
@@ -68,7 +68,7 @@ const countryOptions = [
           id="filtered-select"
           name="filtered-select"
           x-model="selectedValue"
-          class="block w-full h-10 px-4 py-2 text-sm bg-white dark:bg-zinc-900 border border-transparent text-zinc-500 dark:text-zinc-100 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-400 focus:border-zinc-300 dark:focus:border-zinc-600 focus:bg-transparent focus:outline-none focus:ring-blue-500 dark:focus:ring-zinc-500 focus:ring-offset-2 focus:ring-2 rounded-md"
+          class="block w-full h-10 px-4 py-2 text-sm bg-white border border-transparent dark:bg-zinc-900 text-zinc-500 dark:text-zinc-100 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-400 focus:border-zinc-300 dark:focus:border-zinc-600 focus:bg-transparent focus:outline-none focus:ring-blue-500 dark:focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 rounded-md"
         >
           <option value="">Select a country</option>
           <template x-for="option in filteredOptions">
@@ -92,7 +92,7 @@ const countryOptions = [
           <p>Search term: <span x-text="searchTerm"></span></p>
           <div
             x-show="filteredOptions.length === 0"
-            class="font-medium text-red-500 hidden"
+            class="hidden font-medium text-red-500"
             :class="{ 'hidden': filteredOptions.length !== 0 }"
           >
             No matching options found

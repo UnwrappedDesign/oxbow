@@ -27,18 +27,18 @@ const entriesWithIds = entries.map((entry) => ({
 <BaseLayout>
   <Wrapper variant="standard" class="relative pt-12 pb-8 lg:pt-14">
     <h1 class="text-2xl font-semibold text-zinc-900">Changelog</h1>
-    <div class="flex flex-col lg:flex-row gap-12 mt-12">
-      <aside class="hidden md:block  lg:w-1/5 sticky top-20">
-        <Text tag="h4" variant="textSM" class="font-semibold mb-2"
+    <div class="flex flex-col mt-12 lg:flex-row gap-12">
+      <aside class="sticky hidden md:block  lg:w-1/5 top-20">
+        <Text tag="h4" variant="textSM" class="mb-2 font-semibold"
           >Contents</Text
         >
-        <ul class="space-y-1 mt-4">
+        <ul class="mt-4 space-y-1">
           {
             entriesWithIds.map((entry) => (
               <li>
                 <a
                   href={`#${entry.id}`}
-                  class="text-zinc-700 hover:underline text-xs"
+                  class="text-xs text-zinc-700 hover:underline"
                 >
                  
                   {entry.data.title}
@@ -53,10 +53,10 @@ const entriesWithIds = entries.map((entry) => ({
           entriesWithIds.map((entry) => (
             <section id={entry.id} class="pb-8">
               <Kicker>{entry.data.date}</Kicker>
-              <Text tag="h3" variant="textLG" class="font-semibold mt-8">
+              <Text tag="h3" variant="textLG" class="mt-8 font-semibold">
                 {entry.data.title}
               </Text>
-              <div class="prose mt-1 text-zinc-500 ">
+              <div class="mt-1 prose text-zinc-500 ">
                 <entry.Content />
               </div>
             </section>

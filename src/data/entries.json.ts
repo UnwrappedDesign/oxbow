@@ -475,7 +475,7 @@ const templates: { [key: string]: Template[] } = {
   ],
   // Overlays
   overlay: [
-    /* {
+    {
       name: "Modals",
       link: "/playground/application/modals",
       image: "modals.png",
@@ -486,7 +486,7 @@ const templates: { [key: string]: Template[] } = {
         "modal image",
         "modal link",
       ],
-    }, */
+    }, 
     /*  {
       name: "Slideover",
       link: "/playground/application/slideover",

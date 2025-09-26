@@ -10,11 +10,14 @@ interface Props {
     | "accent"
     | "accentDark"
     | "muted"
-    | "mutedDark"
     | "alternative"
     | "text"
     | "link"
     | "outline"
+    | "info"
+    | "success"
+    | "warning"
+    | "danger"
     | "ghost";
   size?: "xxs" | "xs" | "sm" | "base" | "md" | "lg" | "xl";
   onlyIconSize?: "xxs" | "xs" | "sm" | "base" | "md" | "lg" | "xl";
@@ -34,6 +37,7 @@ interface Props {
   noRoundedTopRight?: boolean;
   noRoundedBottomLeft?: boolean;
   noRoundedBottomRight?: boolean;
+  justify?: "center" | "between" | "end";
   [key: string]: any;
 }
 const {
@@ -56,6 +60,7 @@ const {
   noRoundedTopRight = false,
   noRoundedBottomLeft = false,
   noRoundedBottomRight = false,
+  justify = "center",
   ...rest
 } = Astro.props as Props;
 const _noTopLeft =
@@ -82,6 +87,11 @@ if (anyCornerOverride) {
     roundedClass = parts.join(" ");
   }
 }
+const justifyClass = {
+  center: "justify-center",
+  between: "justify-between",
+  end: "justify-end",
+}[justify];
 const isLink = typeof href === "string";
 const finalHref = isLink ? href : undefined;
 const finalTarget = target || undefined;
@@ -96,7 +106,6 @@ const oxbowDefaultClass = [
   "outline-zinc-900",
   "hover:bg-zinc-950",
   "focus:outline-zinc-950",
-  "shadow-sm",
   "dark:bg-zinc-800",
   "dark:text-white",
   "dark:outline-zinc-600",
@@ -110,7 +119,6 @@ const oxbowAccentClass = [
   "outline-accent-500",
   "hover:bg-accent-500",
   "focus:outline-accent-600",
-  "shadow-sm",
   "dark:bg-blue-600",
   "dark:text-white",
   "dark:outline-blue-400",
@@ -137,7 +145,6 @@ const oxbowOutlineClass = [
   "bg-transparent",
   "hover:outline-accent-600",
   "focus:outline-accent-500",
-  "shadow-sm",
   "dark:text-sand-200",
   "dark:outline-sand-400",
   "dark:hover:outline-accent-400",
@@ -152,7 +159,6 @@ const defaultClass = [
   "outline-zinc-900",
   "hover:bg-zinc-950",
   "focus:outline-zinc-950",
-  "shadow-sm",
   // Dark
   "dark:bg-zinc-100",
   "dark:text-zinc-900",
@@ -168,7 +174,6 @@ const accentClass = [
   "outline-blue-700",
   "hover:bg-blue-600",
   "focus:outline-blue-600",
-  "shadow-sm",
   // Dark
   "dark:bg-blue-600",
   "dark:text-zinc-100",
@@ -191,7 +196,6 @@ const mutedClass = [
   "dark:hover:bg-zinc-700",
   "dark:focus:outline-zinc-700",
 ];
-
 const outlineClass = [
   // Light
   "text-zinc-700",
@@ -200,10 +204,9 @@ const outlineClass = [
   "outline-zinc-200",
   "hover:shadow-sm",
   "focus:outline-zinc-900",
-  "shadow-sm",
   // Dark
   "dark:text-zinc-100",
-  "dark:bg-zinc-900",
+  "dark:bg-zinc-800",
   "dark:outline-zinc-700",
   "dark:hover:bg-zinc-800",
   "dark:focus:outline-zinc-500",
@@ -226,7 +229,7 @@ const textClass = [
   "hover:text-blue-600",
   "hover:bg-zinc-50",
   "focus:outline-blue-500",
-  "shadow-sm",
+  // Dark
   "dark:text-zinc-200",
   "dark:bg-zinc-700",
   "dark:outline-zinc-600",
@@ -243,6 +246,70 @@ const linkClass = [
   "rounded-none",
   "dark:text-blue-400",
   "dark:bg-transparent",
+];
+// Info badge
+const infoClass = [
+  // Light
+  "text-white",
+  "bg-sky-700",
+  "outline",
+  "outline-sky-700",
+  "hover:bg-sky-600",
+  "focus:outline-sky-600",
+  // Dark
+  "dark:bg-sky-600",
+  "dark:text-zinc-100",
+  "dark:outline-sky-600",
+  "dark:hover:bg-sky-700",
+  "dark:focus:outline-sky-500",
+];
+// Success badge
+const successClass = [
+  // Light
+  "text-white",
+  "bg-emerald-700",
+  "outline",
+  "outline-emerald-700",
+  "hover:bg-emerald-600",
+  "focus:outline-emerald-600",
+  // Dark
+  "dark:bg-emerald-600",
+  "dark:text-zinc-100",
+  "dark:outline-emerald-600",
+  "dark:hover:bg-emerald-700",
+  "dark:focus:outline-emerald-500",
+];
+// Warning badge
+const warningClass = [
+  // Light
+  "text-white",
+  "bg-amber-700",
+  "outline",
+  "outline-amber-700",
+  "hover:bg-amber-600",
+  "focus:outline-amber-600",
+  // Dark
+  "dark:bg-amber-600",
+  "dark:text-zinc-100",
+  "dark:outline-amber-600",
+  "dark:hover:bg-amber-700",
+  "dark:focus:outline-amber-500",
+];
+// Danger badge
+const dangerClass = [
+  // Light
+  "text-white",
+  "bg-rose-700",
+  "outline",
+  "outline-rose-700",
+  "hover:bg-rose-600",
+  "focus:outline-rose-600",
+  // Dark
+  "dark:bg-rose-600",
+  "dark:text-zinc-100",
+  "dark:outline-rose-600",
+  "dark:hover:bg-rose-700",
+  "dark:focus:outline-rose-500",
 ];
 const xxs = ["h-7", "px-3", "py-1.5", "text-xs"];
 const xs = ["h-8", "px-4", "py-2", "text-xs"];
@@ -286,11 +353,14 @@ const variantClass =
     default: defaultClass,
     accent: accentClass,
     muted: mutedClass,
- 
     outline: outlineClass,
     ghost: ghostClass,
     text: textClass,
     link: linkClass,
+    info: infoClass,
+    success: successClass,
+    warning: warningClass,
+    danger: dangerClass,
   }[variant] || defaultClass;
 const sizeClass = onlyIconSize
   ? {
@@ -333,7 +403,7 @@ const gapClass = gapMap[gap] || [];
 const baseClasses = [
   "flex",
   "items-center",
-  "justify-center",
+  justifyClass,
   "text-center",
   "font-semibold",
   "duration-500",
@@ -374,7 +444,7 @@ const spinnerHTML = `
       class:list={baseClasses}
       {...rest}
     >
-      {loading && <Fragment set:html={spinnerHTML} />}
+      {loading && <span set:html={spinnerHTML} />}
       {!loading && (
         <>
           {Astro.slots.has("left-icon") && <slot name="left-icon" />}
@@ -390,7 +460,7 @@ const spinnerHTML = `
       tabindex={tabIndexValue}
       {...rest}
     >
-      {loading && <Fragment set:html={spinnerHTML} />}
+      {loading && <span set:html={spinnerHTML} />}
       {!loading && (
         <>
           {Astro.slots.has("left-icon") && <slot name="left-icon" />}

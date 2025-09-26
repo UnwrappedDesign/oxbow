@@ -40,11 +40,11 @@ const gallery = [
     prev() { this.currentIndex = (this.currentIndex - 1 + this.gallery.length) % this.gallery.length; }
   }`}
 >
-  <div class="max-w-7xl mx-auto px-8 md:px-12 lg:px-32 py-24">
+  <div class="px-8 py-24 mx-auto max-w-7xl md:px-12 lg:px-32">
     <Text
       variant="textSM"
       tag="p"
-      class="mt-4 italic text-zinc-500 dark:text-zinc-400 pb-12 text-center"
+      class="pb-12 mt-4 italic text-center text-zinc-500 dark:text-zinc-400"
     >
       Click on the image to open it in a lightbox.
     </Text>
@@ -54,7 +54,7 @@ const gallery = [
           <img
             src={src}
             alt={alt}
-            class="object-cover size-full aspect-square cursor-pointer hover:opacity-80 transition-opacity"
+            class="object-cover cursor-pointer size-full aspect-square hover:opacity-80 transition-opacity"
             @click={`openLightbox(${index})`}
           />
         ))
@@ -81,16 +81,16 @@ const gallery = [
       <img
         :src="gallery[currentIndex].src"
         :alt="gallery[currentIndex].alt"
-        class="lg:max-w-xl h-100 aspect-top object-cover object-top mx-auto"
+        class="object-cover object-top mx-auto lg:max-w-xl h-100 aspect-top"
       />
 
       <!-- Thumbnails -->
-      <div class="flex justify-center mt-4 space-x-2 overflow-x-auto py-2">
+      <div class="flex justify-center py-2 mt-4 overflow-x-auto space-x-2">
         <template x-for="(item, index) in gallery" :key="index">
           <img
             :src="item.src"
             :alt="item.alt"
-            class="size-16 object-cover cursor-pointer outline flex-shrink-0 aspect-square object-top"
+            class="flex-shrink-0 object-cover object-top cursor-pointer size-16 outline aspect-square"
             :class="index === currentIndex ? 'outline-zinc-500' : 'outline-zinc-300 hover:outline-zinc-500'"
             @click="currentIndex = index"
           />
@@ -98,7 +98,7 @@ const gallery = [
       </div>
 
       <button
-        class="absolute top-2 right-2 z-50"
+        class="absolute z-50 top-2 right-2"
         aria-label="Close gallery"
         @click.stop="closeLightbox"
       >
@@ -108,7 +108,7 @@ const gallery = [
           class="text-black dark:text-white hover:text-zinc-300"
         />
       </button>
-      <div class="flex justify-between gap-2 items-center mt-2">
+      <div class="flex items-center justify-between mt-2 gap-2">
         <IconButton
           variant="default"
           size="sm"

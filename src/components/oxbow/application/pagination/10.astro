@@ -9,11 +9,11 @@ import Select from "@/components/fundations/inputs/Select.astro";
   <nav
     aria-label="Pagination"
     x-data="{ page: 1, total: 12, size: 10, input: '' }"
-    class="grid grid-cols-1 lg:grid-cols-2 w-full gap-3 sm:items-center sm:justify-between"
+    class="w-full grid grid-cols-1 lg:grid-cols-2 gap-3 sm:items-center sm:justify-between"
   >
     <!-- Group A: Prev / Page X of Y / Next -->
     <div
-      class="flex items-center justify-between sm:justify-start gap-2 w-full"
+      class="flex items-center justify-between w-full sm:justify-start gap-2"
     >
       <Button
         size="xs"
@@ -34,10 +34,10 @@ import Select from "@/components/fundations/inputs/Select.astro";
 
     <!-- Group B: Go to input and Per-page select -->
     <div
-      class="hidden md:flex flex-col gap-2 w-full sm:w-fit sm:flex-row sm:items-center lg:ml-auto"
+      class="flex-col hidden w-full md:flex gap-2 sm:w-fit sm:flex-row sm:items-center lg:ml-auto"
     >
       <div
-        class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"
+        class="flex items-center text-sm gap-2 text-zinc-600 dark:text-zinc-300"
       >
         Go to
         <input
@@ -45,7 +45,7 @@ import Select from "@/components/fundations/inputs/Select.astro";
           type="number"
           min="1"
           :max="total"
-          class="w-20 h-8 px-2 rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-sm"
+          class="w-20 h-8 px-2 text-sm bg-white border rounded border-zinc-300 dark:border-zinc-700 dark:bg-zinc-900"
           :placeholder="page"
         />
         <Button
@@ -56,7 +56,7 @@ import Select from "@/components/fundations/inputs/Select.astro";
         >
       </div>
       <div
-        class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"
+        class="flex items-center text-sm gap-2 text-zinc-600 dark:text-zinc-300"
       >
         Per page
         <div class="w-24">

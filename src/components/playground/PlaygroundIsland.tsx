@@ -380,19 +380,19 @@ export default function PlaygroundIsland({
               onClick={() => setMode("light")}
               className={`h-7 px-2 inline-flex items-center gap-1 rounded-md outline outline-1 outline-zinc-200 ${mode === "light" ? "text-accent-600" : "text-zinc-600"}`}
             >
-              <Sun size={14} /> <span className="text-[11px]">Light</span>
+              <Sun size={14} /> <span className="text-[0.70rem]">Light</span>
             </button>
             <button
               onClick={() => setMode("system")}
               className={`h-7 px-2 inline-flex items-center gap-1 rounded-md outline outline-1 outline-zinc-200 ${mode === "system" ? "text-accent-600" : "text-zinc-600"}`}
             >
-              <Laptop size={14} /> <span className="text-[11px]">System</span>
+              <Laptop size={14} /> <span className="text-[0.70rem]">System</span>
             </button>
             <button
               onClick={() => setMode("dark")}
               className={`h-7 px-2 inline-flex items-center gap-1 rounded-md outline outline-1 outline-zinc-200 ${mode === "dark" ? "text-accent-600" : "text-zinc-600"}`}
             >
-              <Moon size={14} /> <span className="text-[11px]">Dark</span>
+              <Moon size={14} /> <span className="text-[0.70rem]">Dark</span>
             </button>
           </span>
           {/* Code controls next to theme toggles */}
@@ -416,7 +416,7 @@ export default function PlaygroundIsland({
               </button>
               <button
                 onClick={copyCode}
-                className="size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 text-zinc-600"
+                className="inline-flex items-center justify-center size-7 rounded-md outline outline-1 outline-zinc-200 text-zinc-600"
                 title="Copy"
                 aria-label="Copy"
               >
@@ -428,7 +428,7 @@ export default function PlaygroundIsland({
               />
               <button
                 onClick={downloadCode}
-                className="size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 text-zinc-600"
+                className="inline-flex items-center justify-center size-7 rounded-md outline outline-1 outline-zinc-200 text-zinc-600"
                 title="Download code"
                 aria-label="Download code"
               >
@@ -436,7 +436,7 @@ export default function PlaygroundIsland({
               </button>
               <button
                 onClick={openInNewWindow}
-                className="size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 text-zinc-600"
+                className="inline-flex items-center justify-center size-7 rounded-md outline outline-1 outline-zinc-200 text-zinc-600"
                 title="Open in new window"
                 aria-label="Open in new window"
               >
@@ -446,7 +446,7 @@ export default function PlaygroundIsland({
           ) : (
             <a
               href="/pricing"
-              className="h-7 px-2 hidden md:inline-flex items-center rounded-md bg-zinc-900 text-white text-[11px]"
+              className="h-7 px-2 hidden md:inline-flex items-center rounded-md bg-zinc-900 text-white text-[0.70rem]"
             >
               Get Access
             </a>
@@ -459,7 +459,7 @@ export default function PlaygroundIsland({
               {/* Category */}
               <button
                 onClick={(e) => openNavMenu("cat", e)}
-                className="inline-flex items-center gap-2 h-[28px] px-2 py-1 rounded-lg outline outline-1 outline-zinc-200 text-zinc-700 text-[11px]"
+                className="inline-flex items-center gap-2 h-[28px] px-2 py-1 rounded-lg outline outline-1 outline-zinc-200 text-zinc-700 text-[0.70rem]"
               >
                 <span className="capitalize">
                   {fmt(arguments[0]!.navCat || "")}
@@ -469,7 +469,7 @@ export default function PlaygroundIsland({
               {/* Block */}
               <button
                 onClick={(e) => openNavMenu("sub", e)}
-                className="hidden md:inline-flex items-center gap-2 h-[28px] px-2 py-1 rounded-lg  outline outline-1 outline-zinc-200 text-zinc-700 text-[11px]"
+                className="hidden md:inline-flex items-center gap-2 h-[28px] px-2 py-1 rounded-lg  outline outline-1 outline-zinc-200 text-zinc-700 text-[0.70rem]"
               >
                 <span className="capitalize">
                   {fmt(arguments[0]!.navSub || "")}
@@ -479,7 +479,7 @@ export default function PlaygroundIsland({
               {/* Number */}
               <button
                 onClick={(e) => openNavMenu("idx", e)}
-                className="hidden md:inline-flex items-center   h-[28px] px-2 py-1 rounded-lg outline outline-1 outline-zinc-200 text-zinc-700 text-[11px]"
+                className="hidden md:inline-flex items-center   h-[28px] px-2 py-1 rounded-lg outline outline-1 outline-zinc-200 text-zinc-700 text-[0.70rem]"
               >
                 <span>NO</span>
                 
@@ -498,10 +498,10 @@ export default function PlaygroundIsland({
               {navOpen === "cat" && (
                 <div
                   ref={navMenuRef}
-                  className="fixed z-50 mt-2 w-56 rounded-xl outline outline-zinc-100 shadow bg-white text-xs text-zinc-600 divide-y divide-zinc-100"
+                  className="fixed z-50 w-56 mt-2 text-xs bg-white shadow rounded-xl outline outline-zinc-100 text-zinc-600 divide-y divide-zinc-100"
                   style={{ top: navPos.top, left: navPos.left }}
                 >
-                  <div className="py-2 max-h-64 overflow-hidden">
+                  <div className="py-2 overflow-hidden max-h-64">
                     {Object.keys(arguments[0]!.subsByCat!)
                       .sort()
                       .map((key) => (
@@ -528,10 +528,10 @@ export default function PlaygroundIsland({
               {navOpen === "sub" && (
                 <div
                   ref={navMenuRef}
-                  className="fixed z-50 mt-2 w-64 rounded-xl outline outline-zinc-100 shadow bg-white text-xs text-zinc-600 divide-y divide-zinc-100"
+                  className="fixed z-50 w-64 mt-2 text-xs bg-white shadow rounded-xl outline outline-zinc-100 text-zinc-600 divide-y divide-zinc-100"
                   style={{ top: navPos.top, left: navPos.left }}
                 >
-                  <div className="py-2 max-h-64 overflow-auto">
+                  <div className="py-2 overflow-auto max-h-64">
                     {(
                       arguments[0]!.subsByCat![arguments[0]!.navCat || ""] || []
                     ).map((name) => (
@@ -552,10 +552,10 @@ export default function PlaygroundIsland({
               {navOpen === "idx" && (
                 <div
                   ref={navMenuRef}
-                  className="fixed z-50 mt-2 w-40 rounded-xl outline outline-zinc-100 shadow bg-white text-xs text-zinc-600"
+                  className="fixed z-50 w-40 mt-2 text-xs bg-white shadow rounded-xl outline outline-zinc-100 text-zinc-600"
                   style={{ top: navPos.top, left: navPos.left }}
                 >
-                  <div className="py-2 max-h-64 overflow-auto grid grid-cols-4 gap-1 px-2">
+                  <div className="px-2 py-2 overflow-auto max-h-64 grid grid-cols-4 gap-1">
                     {Array.from(
                       {
                         length: count(
@@ -585,12 +585,12 @@ export default function PlaygroundIsland({
                 <a
                   href={arguments[0]!.prevHref}
                   aria-label="Previous"
-                  className="size-7 inline-flex  items-center justify-center rounded-md outline outline-1 outline-zinc-200 text-zinc-600"
+                  className="inline-flex items-center justify-center size-7  rounded-md outline outline-1 outline-zinc-200 text-zinc-600"
                 >
                   <ChevronLeft className="size-4" />
                 </a>
               ) : (
-                <div className="size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-100 opacity-50 text-zinc-600">
+                <div className="inline-flex items-center justify-center opacity-50 size-7 rounded-md outline outline-1 outline-zinc-100 text-zinc-600">
                   <ChevronLeft className="size-4" />
                 </div>
               )}
@@ -598,12 +598,12 @@ export default function PlaygroundIsland({
                 <a
                   href={arguments[0]!.nextHref}
                   aria-label="Next"
-                  className="size-7  inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-200 text-zinc-600"
+                  className="inline-flex items-center justify-center size-7  rounded-md outline outline-1 outline-zinc-200 text-zinc-600"
                 >
                   <ChevronRight className="size-4" />
                 </a>
               ) : (
-                <div className="size-7 inline-flex items-center justify-center rounded-md outline outline-1 outline-zinc-100 opacity-50 text-zinc-600">
+                <div className="inline-flex items-center justify-center opacity-50 size-7 rounded-md outline outline-1 outline-zinc-100 text-zinc-600">
                   <ChevronRight className="size-4" />
                 </div>
               )}
@@ -611,14 +611,14 @@ export default function PlaygroundIsland({
           )}
         </div>
       </div>
-      <div className="relative min-h-0 w-full flex rounded-xl shadow-oxbow bg-white z-1 isolate scrollbar-hide overflow-hidden ">
+      <div className="relative flex w-full min-h-0 overflow-hidden bg-white rounded-xl shadow-oxbow z-1 isolate scrollbar-hide ">
         <PlaygroundShortcutsButton />
         {tab === "preview" && (
-          <div className="flex flex-col items-center bg-white w-full scrollbar-hide">
+          <div className="flex flex-col items-center w-full bg-white scrollbar-hide">
             <div
               ref={containerRef}
               id="playground-preview-container"
-              className="bg-white text-base shadow-normal  mx-auto w-full flex flex-col scrollbar-hide "
+              className="flex flex-col w-full mx-auto text-base bg-white shadow-normal  scrollbar-hide"
               style={{
                 transition: "width 250ms ease-in-out, height 200ms ease",
               }}
@@ -642,7 +642,7 @@ export default function PlaygroundIsland({
           </div>
         )}
         {canSeeCode && tab === "code" && (
-          <div className="code-pane flex-grow p-4 text-xs bg-white size-full selection:bg-zinc-100 scrollbar-hide">
+          <div className="flex-grow p-4 text-xs bg-white code-pane size-full selection:bg-zinc-100 scrollbar-hide">
             {mode === "system" && !!arguments[0]?.highlightedSystem ? (
               <div
                 className="overflow-x-auto scrollbar-hide"
@@ -665,7 +665,7 @@ export default function PlaygroundIsland({
                 }}
               />
             ) : (
-              <pre className="whitespace-pre overflow-x-auto scrollbar-hide">
+              <pre className="overflow-x-auto whitespace-pre scrollbar-hide">
                 <code>{codeText}</code>
               </pre>
             )}

@@ -1,0 +1,252 @@
+---
+export const excludeFromObfuscation = [
+  "opacity-0",
+  "opacity-100",
+  "translate-y-4",
+  "sm:translate-y-0",
+  "sm:scale-95",
+  "w-0",
+];
+import Settings from "@/components/fundations/icons/Settings.astro";
+import Sun from "@/components/fundations/icons/Sun.astro";
+import Moon from "@/components/fundations/icons/Moon.astro";
+import Logo from "@/components/assets/Logo.astro";
+import Check from "@/components/fundations/icons/Check.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+---
+
+<div
+  class="p-8 pb-150 pt-20 bg-white dark:bg-zinc-900 flex items-center justify-center"
+>
+  <!-- Copy:start -->
+  <!--
+// Make sure to change  "open: false",  to  open: true. On the z-data="{}".
+-->
+  <div
+    class="w-full max-w-xl"
+    x-data="{
+      open:true,
+      i:0,
+      slides:[
+        { id:'welcome', title:'Welcome – quick tour', body:'Here are a few tips to get you productive in under a minute.', media:'welcome' },
+        { id:'theme', title:'Pick a theme', body:'Choose the interface that feels right. You can change it anytime.', media:'theme' },
+        { id:'shortcuts', title:'Keyboard shortcuts', body:'Open the command bar with ⌘K or /, then use ↑ ↓ and ↵ to navigate.', media:'kbd' },
+        { id:'done', title:'You’re all set', body:'We’ve configured the basics. You can revisit this tour from Settings.', media:'done' },
+      ],
+      theme:'system',
+      get total(){ return this.slides.length; },
+      get last(){ return this.i === this.total - 1; },
+      show(){ this.open=true; this.i=0; },
+      close(){ this.open=false; },
+      next(){ if(this.i < this.total-1) this.i++; else this.finish(); },
+      prev(){ if(this.i>0) this.i--; },
+      jump(n){ if(n>=0 && n<this.total) this.i=n; },
+      finish(){ this.open=false; window.dispatchEvent(new CustomEvent('onboarding:complete', { detail:{ theme:this.theme }})); },
+      onKey(e){ if(!this.open) return; if(e.key==='ArrowRight') { e.preventDefault(); this.next(); } if(e.key==='ArrowLeft'){ e.preventDefault(); this.prev(); } }
+    }"
+    @keydown.window="onKey($event)"
+  >
+    <Button
+      variant="default"
+      size="sm"
+      type="button"
+      class="mx-auto"
+      @click="show()">Start onboarding</Button
+    >
+    <!-- Backdrop -->
+    <div
+      x-show="open"
+      x-transition.opacity
+      class="fixed inset-0 z-40 bg-black/40 dark:bg-white/20"
+      aria-hidden="true"
+      @click="close()"
+    >
+    </div>
+    <!-- Dialog -->
+    <div
+      x-show="open"
+      x-transition:enter="transition ease-out duration-200"
+      x-transition:enter-start="opacity-0"
+      x-transition:enter-end="opacity-100"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-start="opacity-100"
+      x-transition:leave-end="opacity-0"
+      class="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="ob-title"
+      @keydown.escape.window.prevent="close()"
+    >
+      <div
+        x-show="open"
+        @click.outside="close()"
+        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="translate-y-4 sm:translate-y-0 sm:scale-95"
+        x-transition:enter-end="translate-y-0 sm:scale-100"
+        x-transition:leave="transition ease-in duration-150"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="w-full sm:max-w-md rounded-2xl bg-white dark:bg-zinc-800 shadow-xl outline outline-1 outline-black/5 dark:-outline-offset-1 dark:outline-white/10"
+      >
+        <!-- Media / Header -->
+        <div class="p-4 pb-0">
+          <div
+            class="rounded-xl overflow-hidden bg-radial-[at_50%_75%] from-sky-200 via-blue-400 to-indigo-900 to-90%"
+          >
+            <!-- Media variants -->
+            <div class="aspect-[16/9] grid place-items-center">
+              <template x-if="slides[i].media==='welcome'">
+                <Logo size="base" class="h-32 text-white dark:text-zinc-900" />
+              </template>
+              <template x-if="slides[i].media==='theme'">
+                <div class="grid grid-cols-3 gap-2 p-4 w-full justify-center">
+                  <div
+                    class="flex items-center justify-center rounded outline outline-zinc-100 dark:outline-zinc-800 bg-zinc-50 dark:bg-zinc-900"
+                  >
+                    <img
+                      src="/images/forms/light.png"
+                      alt="Light theme placeholder"
+                      class="rounded"
+                    />
+                  </div>
+                  <div
+                    class="flex items-center justify-center rounded outline outline-zinc-100 dark:outline-zinc-800 bg-zinc-50 dark:bg-zinc-900"
+                  >
+                    <img
+                      src="/images/forms/dark.png"
+                      alt="Dark theme placeholder"
+                      class="rounded"
+                    />
+                  </div>
+                  <div
+                    class="flex items-center justify-center rounded outline outline-zinc-100 dark:outline-zinc-800 bg-zinc-50 dark:bg-zinc-900"
+                  >
+                    <img
+                      src="/images/forms/system.png"
+                      alt="System theme placeholder"
+                      class="rounded"
+                    />
+                  </div>
+                </div>
+              </template>
+              <template x-if="slides[i].media==='kbd'">
+                <div class="p-6 flex gap-2 items-center">
+                  <kbd
+                    class="px-1 size-8 border rounded flex items-center justify-center bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+                    >⌘</kbd
+                  >
+                  <kbd
+                    class="px-1 size-8 border rounded flex items-center justify-center bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+                    >K</kbd
+                  >
+                  <span class="text-zinc-900 font-medium">then</span>
+                  <kbd
+                    class="px-1 size-8 border rounded flex items-center justify-center bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+                    >↑</kbd
+                  >
+                  <kbd
+                    class="px-1 size-8 border rounded flex items-center justify-center bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+                    >↓</kbd
+                  >
+                  <kbd
+                    class="px-1 size-8 border rounded flex items-center justify-center bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+                    >↵</kbd
+                  >
+                </div>
+              </template>
+              <template x-if="slides[i].media==='done'"
+                ><div
+                  class="inline-flex items-center justify-center rounded-full size-24 bg-white/20 text-emerald-700 dark:bg-zinc-900/20 dark:text-emerald-200"
+                >
+                  <Check
+                    size="xl"
+                    class="text-emerald-600 dark:text-emerald-200"
+                  />
+                </div></template
+              >
+            </div>
+          </div>
+        </div>
+        <!-- Body -->
+        <div class="px-5 py-4">
+          <Text
+            tag="h3"
+            variant="textBase"
+            id="ob-title"
+            class="font-semibold text-zinc-900 dark:text-white"
+            x-text="slides[i].title"
+          />
+          <Text
+            tag="p"
+            variant="textSM"
+            class="text-zinc-600 dark:text-zinc-300 mt-1"
+            x-text="slides[i].body"
+          />
+          <!-- Slide-specific controls -->
+          <div class="mt-3" x-show="slides[i].id==='theme'">
+            <div class="inline-flex gap-2">
+              <button
+                @click="theme='light'"
+                :class="theme==='light' ? 'bg-zinc-900 text-white' : 'outline outline-1 outline-zinc-200 text-zinc-700 dark:text-zinc-200'"
+                class="h-8 px-2 rounded-md text-xs inline-flex items-center gap-1 font-medium"
+                ><Sun size="sm" /> Light</button
+              >
+              <button
+                @click="theme='system'"
+                :class="theme==='system' ? 'bg-zinc-900 text-white' : 'outline outline-1 outline-zinc-200 text-zinc-700 dark:text-zinc-200'"
+                class="h-8 px-2 rounded-md text-xs inline-flex items-center gap-1 font-medium"
+                ><Settings size="sm" /> System</button
+              >
+              <button
+                @click="theme='dark'"
+                :class="theme==='dark' ? 'bg-zinc-900 text-white' : 'outline outline-1 outline-zinc-200 text-zinc-700 dark:text-zinc-200'"
+                class="h-8 px-2 rounded-md text-xs inline-flex items-center gap-1 font-medium"
+                ><Moon size="sm" /> Dark</button
+              >
+            </div>
+          </div>
+          <!-- Dots -->
+          <div class="mt-4 flex items-center gap-2">
+            <template x-for="(s,idx) in slides" :key="s.id">
+              <button
+                @click="jump(idx)"
+                :aria-current="i===idx"
+                :class="i===idx ? 'bg-blue-600' : 'bg-zinc-300 dark:bg-zinc-600'"
+                class="size-2 rounded-full"></button>
+            </template>
+          </div>
+        </div>
+        <!-- Footer -->
+        <div
+          class="px-5 py-4 border-t border-zinc-100 dark:border-zinc-700 flex items-center gap-2"
+        >
+          <Button
+            variant="outline"
+            size="xxs"
+            type="button"
+            class="h-9 px-3 rounded-md outline outline-1 outline-zinc-200 text-sm text-zinc-700 dark:text-zinc-200"
+            @click="close()">Skip</Button
+          >
+          <div class="ml-auto flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="xxs"
+              type="button"
+              @click="prev()"
+              :disabled="i===0">Back</Button
+            >
+            <Button
+              variant="accent"
+              size="xxs"
+              type="button"
+              @click="next()"
+              x-text="last ? 'Finish' : 'Continue'"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Copy:end -->
+</div>

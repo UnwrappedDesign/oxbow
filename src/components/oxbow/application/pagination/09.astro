@@ -11,10 +11,10 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
   <nav
     aria-label="Pagination"
     x-data="{page:1,totalItems:100,pageSize:25,get lastPage(){return Math.ceil(this.totalItems/this.pageSize)},get rangeStart(){return ((this.page-1)*this.pageSize)+1},get rangeEnd(){return Math.min(this.totalItems,this.page*this.pageSize)} }"
-    class="flex w-full max-w-2xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+    class="flex flex-col w-full max-w-2xl gap-3 sm:flex-row sm:items-center sm:justify-between"
   >
     <div
-      class="hidden md:flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300 w-full sm:w-auto justify-between sm:justify-start"
+      class="items-center justify-between hidden w-full text-sm md:flex gap-2 text-zinc-600 dark:text-zinc-300 sm:w-auto sm:justify-start"
     >
       Rows per page
       <div class="w-24">
@@ -31,13 +31,13 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
       </div>
     </div>
     <div
-      class="text-sm text-zinc-600 dark:text-zinc-300 text-center sm:text-left"
+      class="text-sm text-center text-zinc-600 dark:text-zinc-300 sm:text-left"
     >
       <span x-text="rangeStart"></span>-<span x-text="rangeEnd"></span> of <span
         x-text="totalItems"></span>
     </div>
     <div
-      class="flex items-center gap-2 self-end sm:self-auto w-full md:w-auto justify-center md:justify-end"
+      class="flex items-center self-end justify-center w-full gap-2 sm:self-auto md:w-auto md:justify-end"
     >
       <IconButton
         size="xs"

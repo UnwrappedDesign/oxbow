@@ -32,22 +32,22 @@ import Button from "@/components/fundations/buttons/Button.astro";
     pages(){ return Math.max(1, Math.ceil(this.total()/this.size)); },
     pageRows(){ const s=(this.page-1)*this.size; return this.sorted().slice(s,s+this.size); }
   }"
-    class="flow-root max-w-7xl mx-auto"
+    class="mx-auto flow-root max-w-7xl"
   >
     <!-- Filter/search removed -->
     <div class="overflow-x-auto">
       <div class="flex flex-col justify-center">
         <table class="min-w-[900px] text-sm bg-white dark:bg-zinc-900">
           <thead
-            class="bg-zinc-100 dark:bg-zinc-800 border-b border-zinc-200 dark:border-zinc-700"
+            class="border-b bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700"
           >
             <tr>
               <th
-                class="px-3 py-2 text-left font-medium text-zinc-700 dark:text-zinc-100"
+                class="px-3 py-2 font-medium text-left text-zinc-700 dark:text-zinc-100"
               >
                 <button
                   @click="setSort('name')"
-                  class="hover:underline flex items-center gap-1"
+                  class="flex items-center hover:underline gap-1"
                 >
                   Name
                   <template x-if="sortKey==='name'">
@@ -63,7 +63,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
                 </button>
               </th>
               <th
-                class="px-3 py-2 text-left font-medium text-zinc-700 dark:text-zinc-100"
+                class="px-3 py-2 font-medium text-left text-zinc-700 dark:text-zinc-100"
                 ><button @click="setSort('email')" class="hover:underline"
                   >Email <span
                     x-text="sortKey==='email'?(sortDir==='asc'?'▲':'▼'):''"
@@ -71,15 +71,15 @@ import Button from "@/components/fundations/buttons/Button.astro";
                 ></th
               >
               <th
-                class="px-3 py-2 text-left font-medium text-zinc-700 dark:text-zinc-100"
+                class="px-3 py-2 font-medium text-left text-zinc-700 dark:text-zinc-100"
                 >Location</th
               >
               <th
-                class="px-3 py-2 text-left font-medium text-zinc-700 dark:text-zinc-100"
+                class="px-3 py-2 font-medium text-left text-zinc-700 dark:text-zinc-100"
                 >Status</th
               >
               <th
-                class="px-3 py-2 text-right font-medium text-zinc-700 dark:text-zinc-100"
+                class="px-3 py-2 font-medium text-right text-zinc-700 dark:text-zinc-100"
                 ><button @click="setSort('balance')" class="hover:underline"
                   >Balance <span
                     x-text="sortKey==='balance'?(sortDir==='asc'?'▲':'▼'):''"
@@ -92,7 +92,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
             <template x-for="r in pageRows()" :key="r.email">
               <tr class="even:bg-zinc-50 dark:even:bg-zinc-800">
                 <td
-                  class="px-3 py-2 text-zinc-700 dark:text-zinc-100 font-medium"
+                  class="px-3 py-2 font-medium text-zinc-700 dark:text-zinc-100"
                   x-text="r.name"></td>
                 <td
                   class="px-3 py-2 text-zinc-500 dark:text-zinc-300"
@@ -105,7 +105,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
                   :class="r.status==='Active' ? 'text-emerald-600 dark:text-emerald-400' : r.status==='Inactive' ? 'text-red-600 dark:text-red-400' : 'text-yellow-600 dark:text-yellow-400'"
                   x-text="r.status"></td>
                 <td
-                  class="px-3 py-2 text-right tabular-nums text-zinc-700 dark:text-zinc-100 font-mono font-medium"
+                  class="px-3 py-2 font-mono font-medium text-right tabular-nums text-zinc-700 dark:text-zinc-100"
                   x-text="Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(r.balance)"
                 ></td>
               </tr>
@@ -121,7 +121,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
         <div
           class="flex items-center justify-between p-3 border-t border-zinc-200 dark:border-zinc-700"
         >
-          <div class="text-zinc-900 dark:text-white text-sm font-mono">
+          <div class="font-mono text-sm text-zinc-900 dark:text-white">
             <span x-text="(page-1)*size + 1"></span> – <span
               x-text="Math.min(page*size,total())"></span> of <span
               x-text="total()"></span>

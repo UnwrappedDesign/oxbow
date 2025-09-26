@@ -13,7 +13,7 @@ import ComponentIcon from "@/components/fundations/icons/Component.astro";
 ---
 
 <div
-  class="flex flex-col justify-center p-12 mx-auto items-center bg-white dark:bg-zinc-900"
+  class="flex flex-col items-center justify-center p-12 mx-auto bg-white dark:bg-zinc-900"
 >
   <!-- Accessible Tabs • With icons and counts -->
   <div
@@ -37,16 +37,16 @@ import ComponentIcon from "@/components/fundations/icons/Component.astro";
         this.$nextTick(() => this.$refs['tab-'+id]?.focus());
       }
     }"
-    class="mx-auto max-w-3xl"
+    class="max-w-3xl mx-auto"
   >
     <div
       role="tablist"
       aria-orientation="horizontal"
-      class="flex flex-wrap gap-2 justify-center"
+      class="flex flex-wrap justify-center gap-2"
     >
       <template x-for="(id, idx) in keys" :key="id">
         <button
-          class="inline-flex items-center gap-2 px-3 h-9 text-sm font-medium rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500/50 transition"
+          class="inline-flex items-center px-3 text-sm font-medium gap-2 h-9 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500/50 transition"
           :id="'tab-'+id"
           role="tab"
           :aria-selected="selected===id"
@@ -79,7 +79,7 @@ import ComponentIcon from "@/components/fundations/icons/Component.astro";
             <span x-text="id.charAt(0).toUpperCase()+id.slice(1)"></span>
             <template x-if="id!=='overview'">
               <span
-                class="ml-1 inline-flex items-center px-1.5 h-5 text-[11px] rounded-full bg-zinc-50 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700"
+                class="ml-1 inline-flex items-center px-1.5 h-5 text-[0.70rem] rounded-full bg-zinc-50 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700"
                 x-text="id==='projects'? '3' : id==='packages' ? '7' : '2'"
               ></span>
             </template>
@@ -87,7 +87,7 @@ import ComponentIcon from "@/components/fundations/icons/Component.astro";
         </button>
       </template>
     </div>
-    <div class="pt-4 text-sm text-zinc-500 dark:text-zinc-300 w-full">
+    <div class="w-full pt-4 text-sm text-zinc-500 dark:text-zinc-300">
       <section
         x-show="selected==='overview'"
         x-cloak
