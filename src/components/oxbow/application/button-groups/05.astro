@@ -1,25 +1,37 @@
 ---
-import HorizontalButtonGroup from "@/components/fundations/buttonGroups/HorizontalButtonGroup.astro";
-import ExternalLink from "@/components/fundations/icons/ExternalLink.astro";
+
+export const description = "Split button";
+import Button from "@/components/fundations/buttons/Button.astro";
+import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
 ---
 
-<section
-  class="flex flex-wrap items-center justify-center h-full bg-white gap-2 p-18 dark:bg-zinc-900"
->
+<section class="flex items-center justify-center bg-white p-18 dark:bg-zinc-900">
   <!-- copy:start -->
-  <span class="inline-flex isolate">
-    <HorizontalButtonGroup variant="default" position="right" size="base">
-      Live preview
-    </HorizontalButtonGroup>
-
-    <HorizontalButtonGroup
-      position="left"
-      variant="default"
-      size="base"
-      slot="centered"
+  <div
+    class="inline-flex overflow-hidden rounded-md border border-zinc-200 bg-white text-sm shadow-sm dark:border-zinc-700 dark:bg-zinc-800"
+    role="group"
+    aria-label="Run or schedule action"
+  >
+    <Button
+      variant="accent"
+      size="sm"
+      type="button"
+      noRounded
+      class="px-5 transition-none"
     >
-      <ExternalLink size="base" slot="centered-icon" />
-    </HorizontalButtonGroup>
-  </span>
+      Run report
+    </Button>
+    <Button
+      variant="muted"
+      size="sm"
+      iconOnly
+      type="button"
+      noRounded
+      class="border-l border-zinc-200 transition-none dark:border-zinc-700"
+      aria-label="More options"
+    >
+      <ChevronDown slot="left-icon" size="sm" />
+    </Button>
+  </div>
   <!-- copy:end -->
 </section>

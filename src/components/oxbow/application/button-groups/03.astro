@@ -1,20 +1,45 @@
 ---
-import HorizontalButtonGroup from "@/components/fundations/buttonGroups/HorizontalButtonGroup.astro";
-import ChevronLeft from "@/components/fundations/icons/ChevronLeft.astro";
-import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
+export const freeComponent = true;
+export const description = "Stacked action list";
+import Button from "@/components/fundations/buttons/Button.astro";
+import Settings from "@/components/fundations/icons/Settings.astro";
+import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
+import Report from "@/components/fundations/icons/Report.astro";
 ---
 
-<section
-  class="flex flex-wrap items-center justify-center h-full bg-white gap-2 p-18 dark:bg-zinc-900"
->
+<section class="flex items-center justify-center bg-white p-18 dark:bg-zinc-900">
   <!-- copy:start -->
-  <span class="inline-flex isolate">
-    <HorizontalButtonGroup variant="default" position="right" size="base">
-      <ChevronLeft size="base" slot="left-icon" />
-    </HorizontalButtonGroup>
-    <HorizontalButtonGroup position="left" variant="default" size="base">
-      <ChevronRight size="base" slot="right-icon" />
-    </HorizontalButtonGroup>
-  </span>
+  <div class="flex w-72 flex-col overflow-hidden rounded-lg border border-zinc-200 bg-white text-sm shadow-sm dark:border-zinc-700 dark:bg-zinc-800">
+    <Button
+      variant="muted"
+      size="sm"
+      fullWidth
+      noRoundedBottom
+      class="justify-start gap-3 transition-none"
+    >
+      <Settings slot="left-icon" size="sm" />
+      Workspace settings
+    </Button>
+    <Button
+      variant="muted"
+      size="sm"
+      fullWidth
+      noRounded
+      class="justify-start gap-3 transition-none"
+    >
+      <UsersGroup slot="left-icon" size="sm" />
+      Team access
+    </Button>
+    <Button
+      variant="danger"
+      size="sm"
+      fullWidth
+      noRoundedTop
+      class="justify-start gap-3 transition-none"
+    >
+      <Report slot="left-icon" size="sm" />
+      Report an issue
+    </Button>
+  </div>
   <!-- copy:end -->
 </section>

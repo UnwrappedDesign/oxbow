@@ -1,71 +1,43 @@
 ---
-export const description = "Files / Media / More";
-import HorizontalButtonGroup from "@/components/fundations/buttonGroups/HorizontalButtonGroup.astro";
-import FileDots from "@/components/fundations/icons/FileDots.astro";
-import LibraryPhoto from "@/components/fundations/icons/LibraryPhoto.astro";
-import ThreeDots from "@/components/fundations/icons/ThreeDots.astro";
+
+export const description = "View toggle";
+import Button from "@/components/fundations/buttons/Button.astro";
+import Grid from "@/components/fundations/icons/Grid.astro";
+import List from "@/components/fundations/icons/List.astro";
+import Chart from "@/components/fundations/icons/Analytics.astro";
 ---
 
-<section
-  class="flex items-center justify-center bg-white p-18 pb-34 dark:bg-zinc-900"
->
+<section class="flex items-center justify-center bg-white p-18 dark:bg-zinc-900">
   <!-- copy:start -->
   <div
+    class="inline-flex overflow-hidden rounded-full border border-zinc-200 bg-white text-sm shadow-sm dark:border-zinc-700 dark:bg-zinc-800"
     role="group"
-    aria-label="Attachments"
-    class="relative inline-flex isolate"
-    x-data="{ active:'Files', open:false }"
+    aria-label="Change view mode"
   >
-    <HorizontalButtonGroup
-      variant="default"
-      position="right"
-      size="xs"
-      @click="active='Files'"
-      :aria-pressed="active==='Files'"
-      :class="active==='Files' ? '' : ''"
+    <Button variant="accent" size="sm" type="button" noRounded aria-pressed="true">
+      <Grid slot="left-icon" size="sm" />
+      Grid
+    </Button>
+    <Button
+      variant="muted"
+      size="sm"
+      type="button"
+      noRounded
+      aria-pressed="false"
     >
-      <FileDots size="base" slot="left-icon" /> Files
-    </HorizontalButtonGroup>
-    <HorizontalButtonGroup
-      variant="default"
-      position="middle"
-      size="xs"
-      @click="active='Media'"
-      :aria-pressed="active==='Media'"
-      :class="active==='Media' ? '' : ''"
+      <List slot="left-icon" size="sm" />
+      List
+    </Button>
+    <Button
+      variant="muted"
+      size="sm"
+      type="button"
+      noRounded
+      aria-pressed="false"
     >
-      <LibraryPhoto size="base" slot="left-icon" /> Media
-    </HorizontalButtonGroup>
-    <HorizontalButtonGroup
-      variant="default"
-      position="left"
-      size="xs"
-      aria-label="More options"
-      @click="open=!open"
-      :aria-expanded="open"
-      aria-controls="attach-menu"
-    >
-      <ThreeDots size="base" slot="centered-icon" />
-    </HorizontalButtonGroup>
-    <div
-      x-show="open"
-      id="attach-menu"
-      class="absolute z-20 p-2 mt-2 bg-white shadow-md top-full w-44 rounded-md ring-1 ring-zinc-200 dark:ring-zinc-700 dark:bg-zinc-900"
-      style="display:none"
-      @click.outside="open=false"
-    >
-      <button
-        class="w-full text-left px-2 py-1.5 rounded hover:bg-zinc-50 dark:hover:bg-zinc-800 text-sm text-zinc-700 dark:text-zinc-200"
-        >Create folder</button
-      >
-      <button
-        class="w-full text-left px-2 py-1.5 rounded hover:bg-zinc-50 dark:hover:bg-zinc-800 text-sm text-zinc-700 dark:text-zinc-200"
-        >Upload from URL</button
-      >
-    </div>
-    <span class="sr-only" aria-live="polite"
-      >Selected: <span x-text="active"></span></span
-    >
+      <Chart slot="left-icon" size="sm" />
+      Insights
+    </Button>
   </div>
   <!-- copy:end -->
 </section>

@@ -1,51 +1,49 @@
 ---
-export const description = "Pinned Action with Select";
-import HorizontalButtonGroup from "@/components/fundations/buttonGroups/HorizontalButtonGroup.astro";
-import Start from "@/components/fundations/icons/Start.astro";
-import Select from "@/components/fundations/inputs/Select.astro";
+
+export const description = "Pagination controls";
+import Button from "@/components/fundations/buttons/Button.astro";
+import ChevronLeft from "@/components/fundations/icons/ChevronLeft.astro";
+import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 ---
 
-<section
-  class="flex items-center justify-center bg-white p-18 dark:bg-zinc-900"
->
+<section class="flex items-center justify-center bg-white p-18 dark:bg-zinc-900">
   <!-- copy:start -->
-  <div
-    class="inline-flex items-stretch isolate"
-    x-data="{ pinned:false, action:'Pin to top' }"
-    aria-label="Pin options"
+  <nav
+    class="inline-flex items-center gap-px rounded-md bg-zinc-100 p-1 dark:bg-zinc-800"
+    role="navigation"
+    aria-label="Pagination"
   >
-    <div role="group" aria-label="Pin toggle" class="inline-flex isolate">
-      <HorizontalButtonGroup
-        variant="default"
-        position="right"
-        size="xs"
-        @click="pinned=!pinned"
-        :aria-pressed="pinned"
-        class="items-center gap-2"
-        :class="pinned ? 'bg-blue-600 text-white ring-blue-700 hover:bg-blue-600' : ''"
-      >
-        <Start size="sm" slot="left-icon" />Pinned
-      </HorizontalButtonGroup>
-    </div>
-    <div class="w-40 -ml-px">
-      <Select
-        id="pin-action"
-        name="pin-action"
-        size="xs"
-        noRoundedLeft={true}
-        compact={true}
-        hideLabel={true}
-        noMarginTop={true}
-        xModel="action"
-        xOn={{ change: "pinned = ($event.target.value === 'Pin to top')" }}
-      >
-        <option>Pin to top</option>
-        <option>Unpin</option>
-      </Select>
-    </div>
-    <span class="sr-only" aria-live="polite"
-      >Pinned: <span x-text="pinned ? 'yes' : 'no'"></span></span
+    <Button
+      variant="icon"
+      size="sm"
+      iconOnly
+      type="button"
+      noRounded
+      class="rounded-l-md transition-none"
+      aria-label="Previous page"
     >
-  </div>
+      <ChevronLeft slot="left-icon" size="sm" />
+    </Button>
+    <Button variant="accent" size="sm" type="button" noRounded class="transition-none">
+      12
+    </Button>
+    <Button variant="muted" size="sm" type="button" noRounded class="transition-none">
+      13
+    </Button>
+    <Button variant="muted" size="sm" type="button" noRounded class="transition-none">
+      14
+    </Button>
+    <Button
+      variant="icon"
+      size="sm"
+      iconOnly
+      type="button"
+      noRounded
+      class="rounded-r-md transition-none"
+      aria-label="Next page"
+    >
+      <ChevronRight slot="left-icon" size="sm" />
+    </Button>
+  </nav>
   <!-- copy:end -->
 </section>

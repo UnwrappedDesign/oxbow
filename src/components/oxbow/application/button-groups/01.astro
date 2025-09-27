@@ -1,22 +1,44 @@
 ---
-export const description = "Counter Group (− value +)";
-import HorizontalButtonGroup from "@/components/fundations/buttonGroups/HorizontalButtonGroup.astro";
+
+export const description = "Counter group (− value +)";
+import Button from "@/components/fundations/buttons/Button.astro";
 import Minus from "@/components/fundations/icons/Minus.astro";
 import Plus from "@/components/fundations/icons/Plus.astro";
 ---
 
 <section class="flex items-center justify-center bg-white p-18 dark:bg-zinc-900">
   <!-- copy:start -->
-  <div class="inline-flex isolate" x-data="{ n: 235 }" role="group" aria-label="Counter">
-    <HorizontalButtonGroup variant="default" position="right" size="sm" @click="n=Math.max(0,n-1)" aria-label="Decrease">
-      <Minus size="base" slot="centered-icon" />
-    </HorizontalButtonGroup>
-    <HorizontalButtonGroup variant="default" position="middle" size="sm" aria-live="polite" aria-label="Current value">
-      <span x-text="n"></span>
-    </HorizontalButtonGroup>
-    <HorizontalButtonGroup position="left" variant="default" size="sm" @click="n=n+1" aria-label="Increase">
-      <Plus size="base" slot="centered-icon" />
-    </HorizontalButtonGroup>
+  <div
+    class="inline-flex items-stretch overflow-hidden rounded-md border border-zinc-200 bg-white text-sm shadow-sm dark:border-zinc-700 dark:bg-zinc-800"
+    x-data="{ n: 235 }"
+    role="group"
+    aria-label="Adjust quantity"
+  >
+    <Button
+      variant="muted"
+      size="sm"
+      iconOnly
+      type="button"
+      noRounded
+      class="border-r border-zinc-200 text-zinc-600 transition-none dark:border-zinc-700 dark:text-zinc-300"
+      @click="n = Math.max(0, n - 1)"
+      aria-label="Decrease"
+    >
+      <Minus slot="left-icon" size="sm" />
+    </Button>
+    <span class="flex items-center px-5 font-semibold text-zinc-700 dark:text-zinc-100" x-text="n"></span>
+    <Button
+      variant="accent"
+      size="sm"
+      iconOnly
+      type="button"
+      noRounded
+      class="border-l border-zinc-200 transition-none dark:border-zinc-700"
+      @click="n = n + 1"
+      aria-label="Increase"
+    >
+      <Plus slot="left-icon" size="sm" />
+    </Button>
   </div>
   <!-- copy:end -->
 </section>

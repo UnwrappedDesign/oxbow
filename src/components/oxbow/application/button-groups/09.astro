@@ -1,68 +1,35 @@
 ---
-export const description = "Sign in Split Button (QR Modal)";
-import HorizontalButtonGroup from "@/components/fundations/buttonGroups/HorizontalButtonGroup.astro";
-import Qr from "@/components/fundations/icons/Apps.astro";
+export const description = "Primary/secondary pair";
 import Button from "@/components/fundations/buttons/Button.astro";
-import { Image } from "astro:assets";
-import qrCode from "@/images/assets/qrcode.png";
 ---
 
 <section
-  class="flex items-center justify-center bg-white p-18 py-42 dark:bg-zinc-900"
+  class="flex items-center justify-center bg-white p-18 dark:bg-zinc-900"
 >
   <!-- copy:start -->
   <div
-    class="inline-flex isolate"
+    class="inline-flex overflow-hidden rounded-lg border border-zinc-200 bg-white text-sm dark:border-zinc-700 dark:bg-zinc-800"
     role="group"
-    aria-label="Sign in"
-    x-data="{ open:false }"
+    aria-label="Primary and secondary actions"
   >
-    <HorizontalButtonGroup
-      variant="default"
-      position="right"
+    <Button
+      variant="accent"
       size="sm"
-      aria-label="Open QR sign-in"
-      @click="open=true"
+      type="button"
+      noRounded
+      class="px-5 transition-none"
     >
-      <Qr size="sm" slot="centered-icon" />
-    </HorizontalButtonGroup>
-    <HorizontalButtonGroup variant="default" position="left" size="sm">
-      Sign in
-    </HorizontalButtonGroup>
-
-    <!-- Modal -->
-    <div
-      x-show="open"
-      class="fixed inset-0 z-50 flex items-center justify-center p-42"
-      style="display:none"
+      Deploy
+    </Button>
+    <Button
+      variant="outline"
+      size="sm"
+      type="button"
+      noRounded
+      class="border-l border-zinc-200 transition-none dark:border-zinc-700"
     >
-      <div
-        class="absolute inset-0 bg-black/40"
-        @click="open=false"
-        aria-hidden="true"
-      >
-      </div>
-      <div
-        role="dialog"
-        aria-modal="true"
-        class="relative p-4 bg-white shadow-xl w-80 w-fit rounded-xl dark:bg-zinc-900 ring-1 ring-zinc-200 dark:ring-zinc-700"
-      >
-        <h3 class="mb-2 text-sm font-semibold text-zinc-900 dark:text-white">
-          Scan to sign in
-        </h3>
-
-        <Image
-          width={500}
-          height={500}
-          src={qrCode}
-          alt="QR code for lexingtonthemes.com"
-          class="object-contain p-2 size-42"
-        />
-        <div class="flex justify-end mt-3">
-          <Button size="xs" variant="outline" @click="open=false">Close</Button>
-        </div>
-      </div>
-    </div>
+      Cancel
+    </Button>
   </div>
   <!-- copy:end -->
 </section>

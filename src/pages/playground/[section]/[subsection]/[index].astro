@@ -21,7 +21,7 @@ const componentModule = currentKey ? await modules[currentKey]() : undefined;
 
 // Metadata from module exports
 const componentDescription = componentModule?.description || "";
-const freeComponent = componentModule?.freeComponent || false;
+const freeComponent = componentModule?.freeComponent ?? true;
 
 const sectionLength = sectionKeys.length;
 const PreviewElement = parseInt(index) === 1 ? "div" : "a";

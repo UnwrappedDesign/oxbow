@@ -1,21 +1,64 @@
 ---
-import VerticalButtonGroup from "@/components/fundations/buttonGroups/VerticalButtonGroup.astro";
-import ChevronUp from "@/components/fundations/icons/ChevronUp.astro";
-import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
+
+export const description = "Icon toolbar";
+import Button from "@/components/fundations/buttons/Button.astro";
+import Search from "@/components/fundations/icons/Search.astro";
+import Refresh from "@/components/fundations/icons/Refresh.astro";
+import Settings from "@/components/fundations/icons/Settings.astro";
+import Download from "@/components/fundations/icons/Download.astro";
 ---
 
-<section
-  class="flex flex-wrap items-center justify-center h-full bg-white gap-2 p-18 dark:bg-zinc-900"
->
+<section class="flex items-center justify-center bg-white p-18 dark:bg-zinc-900">
   <!-- copy:start -->
-  <span class="flex flex-col isolate">
-    <VerticalButtonGroup variant="default" position="top" size="base">
-      <ChevronUp size="base" slot="icon" slot="up-icon" />
-    </VerticalButtonGroup>
-
-    <VerticalButtonGroup position="bottom" variant="default" size="base">
-      <ChevronDown size="base" slot="icon" slot="down-icon" />
-    </VerticalButtonGroup>
-  </span>
+  <div
+    class="inline-flex items-center overflow-hidden rounded-full border border-zinc-200 bg-white shadow-sm dark:border-zinc-700 dark:bg-zinc-800"
+    role="toolbar"
+    aria-label="Table actions"
+  >
+    <Button
+      variant="icon"
+      size="sm"
+      iconOnly
+      type="button"
+      noRounded
+      class="border-r border-zinc-200 transition-none dark:border-zinc-700"
+      aria-label="Search"
+    >
+      <Search slot="left-icon" size="sm" />
+    </Button>
+    <Button
+      variant="icon"
+      size="sm"
+      iconOnly
+      type="button"
+      noRounded
+      class="border-r border-zinc-200 transition-none dark:border-zinc-700"
+      aria-label="Refresh"
+    >
+      <Refresh slot="left-icon" size="sm" />
+    </Button>
+    <Button
+      variant="icon"
+      size="sm"
+      iconOnly
+      type="button"
+      noRounded
+      class="border-r border-zinc-200 transition-none dark:border-zinc-700"
+      aria-label="Settings"
+    >
+      <Settings slot="left-icon" size="sm" />
+    </Button>
+    <Button
+      variant="accent"
+      size="sm"
+      iconOnly
+      type="button"
+      noRounded
+      class="transition-none"
+      aria-label="Download"
+    >
+      <Download slot="left-icon" size="sm" />
+    </Button>
+  </div>
   <!-- copy:end -->
 </section>

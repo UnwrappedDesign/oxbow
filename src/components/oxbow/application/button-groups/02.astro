@@ -1,21 +1,49 @@
 ---
-import VerticalButtonGroup from "@/components/fundations/buttonGroups/VerticalButtonGroup.astro";
+
+export const description = "Segmented filter";
+import Button from "@/components/fundations/buttons/Button.astro";
 ---
 
-<section
-  class="flex flex-wrap items-center justify-center h-full bg-white gap-2 p-18 dark:bg-zinc-900"
->
+<section class="flex items-center justify-center bg-white p-18 dark:bg-zinc-900">
   <!-- copy:start -->
-  <span class="flex flex-col isolate">
-    <VerticalButtonGroup variant="default" position="top" size="base">
-      Top
-    </VerticalButtonGroup>
-    <VerticalButtonGroup variant="default" position="middle" size="base">
-      Center
-    </VerticalButtonGroup>
-    <VerticalButtonGroup position="bottom" variant="default" size="base">
-      Middle
-    </VerticalButtonGroup>
-  </span>
+  <div
+    class="inline-flex overflow-hidden rounded-lg ring-1 ring-inset ring-zinc-200 shadow-sm dark:ring-zinc-700"
+    role="radiogroup"
+    aria-label="Billing cadence"
+  >
+    <Button
+      variant="accent"
+      size="sm"
+      type="button"
+      noRounded
+      class="transition-none"
+      aria-checked="true"
+      role="radio"
+    >
+      Monthly
+    </Button>
+    <Button
+      variant="muted"
+      size="sm"
+      type="button"
+      noRounded
+      class="transition-none"
+      aria-checked="false"
+      role="radio"
+    >
+      Quarterly
+    </Button>
+    <Button
+      variant="muted"
+      size="sm"
+      type="button"
+      noRounded
+      class="transition-none"
+      aria-checked="false"
+      role="radio"
+    >
+      Yearly
+    </Button>
+  </div>
   <!-- copy:end -->
 </section>
