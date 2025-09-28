@@ -28,36 +28,36 @@ export default function SubsectionToolbarIsland({ cat, sub, subsByCat }: Props){
     setOpen(which);
   };
   return (
-    <div className="flex items-center  gap-2">
+    <div className="flex items-center gap-2">
       {/* Category */}
-      <button onClick={(e)=>openMenu('cat', e)} className="inline-flex items-center gap-2 h-[28px] px-2 py-1 rounded-lg outline outline-1 outline-zinc-200 text-zinc-700 text-xs">
+      <button onClick={(e)=>openMenu('cat', e)} className="inline-flex items-center gap-2 h-[28px] px-2 py-1 rounded-lg outline outline-1 outline-zinc-200 text-zinc-700 text-xs transition-colors dark:outline-base-700 dark:text-base-200 dark:bg-base-900/60">
         <span className="capitalize">{fmt(cat)}</span>
         <ChevronDown className="size-4"/>
       </button>
       {open==='cat' && (
-        <div ref={menuRef} className="fixed z-50 mt-2 w-56 rounded-xl outline outline-zinc-100 shadow bg-white text-[12px] text-zinc-600 divide-y divide-zinc-100" style={{top:pos.top,left:pos.left}}>
+        <div ref={menuRef} className="fixed z-50 mt-2 w-56 rounded-xl outline outline-zinc-100 shadow bg-white text-[12px] text-zinc-600 divide-y divide-zinc-100 dark:bg-base-900 dark:text-base-300 dark:outline-base-700 dark:divide-base-700" style={{top:pos.top,left:pos.left}}>
           <div className="py-2 overflow-auto max-h-64">
             {Object.keys(subsByCat).sort().map(key => (
-              <a key={key} href={`/playground/${key}/${(subsByCat[key]||[])[0]||''}`} className="w-full flex items-center justify-between px-3 py-1.5 hover:bg-sand-100">
+              <a key={key} href={`/playground/${key}/${(subsByCat[key]||[])[0]||''}`} className="w-full flex items-center justify-between px-3 py-1.5 hover:bg-base-100 dark:hover:bg-base-800/60">
                 <span className="capitalize">{fmt(key)}</span>
-                {cat===key && <Check className="text-blue-600 size-4"/>}
+                {cat===key && <Check className="text-blue-600 dark:text-blue-400 size-4"/>}
               </a>
             ))}
           </div>
         </div>
       )}
       {/* Subsection */}
-      <button onClick={(e)=>openMenu('sub', e)} className="inline-flex items-center gap-2 h-[28px] px-2 py-1 rounded-lg  outline outline-1 outline-zinc-200 text-zinc-700 text-xs">
+      <button onClick={(e)=>openMenu('sub', e)} className="inline-flex items-center gap-2 h-[28px] px-2 py-1 rounded-lg outline outline-1 outline-zinc-200 text-zinc-700 text-xs transition-colors dark:outline-base-700 dark:text-base-200 dark:bg-base-900/60">
         <span className="capitalize">{fmt(sub)}</span>
         <ChevronDown className="size-4"/>
       </button>
       {open==='sub' && (
-        <div ref={menuRef} className="fixed z-50 mt-2 w-64 rounded-xl outline outline-zinc-100 shadow bg-white text-[12px] text-zinc-600 divide-y divide-zinc-100" style={{top:pos.top,left:pos.left}}>
+        <div ref={menuRef} className="fixed z-50 mt-2 w-64 rounded-xl outline outline-zinc-100 shadow bg-white text-[12px] text-zinc-600 divide-y divide-zinc-100 dark:bg-base-900 dark:text-base-300 dark:outline-base-700 dark:divide-base-700" style={{top:pos.top,left:pos.left}}>
           <div className="py-2 overflow-auto max-h-64">
             {(subsByCat[cat]||[]).map(name => (
-              <a key={name} href={`/playground/${cat}/${name}`} className="w-full flex items-center justify-between px-3 py-1.5 hover:bg-sand-100">
+              <a key={name} href={`/playground/${cat}/${name}`} className="w-full flex items-center justify-between px-3 py-1.5 hover:bg-base-100 dark:hover:bg-base-800/60">
                 <span className="capitalize">{fmt(name)}</span>
-                {sub===name && <Check className="text-blue-600 size-4"/>}
+                {sub===name && <Check className="text-blue-600 dark:text-blue-400 size-4"/>}
               </a>
             ))}
           </div>

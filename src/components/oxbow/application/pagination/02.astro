@@ -1,7 +1,6 @@
 ---
 import Text from "@/components/fundations/typography/Text.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
-import IconButton from "@/components/fundations/buttons/IconButton.astro";
 import ChevronLeft from "@/components/fundations/icons/ChevronLeft.astro";
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 ---
@@ -14,42 +13,40 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
     <ol role="list" class="relative z-0 inline-flex items-center gap-2">
       <!-- Prev -->
       <li>
-        <IconButton
+        <Button
+          iconOnly
           disabled
           aria-label="Go to previous page"
           variant="muted"
           size="xs"
         >
-          <ChevronLeft size="xs" slot="icon" />
+          <ChevronLeft size="xs" slot="left-icon" />
           <span class="sr-only">Previous</span>
-        </IconButton>
+        </Button>
       </li>
-
       <!-- Page numbers -->
       <li>
-        <IconButton
+        <Button
+          iconOnly
           variant="muted"
           size="xs"
           aria-current="page"
           aria-label="Page 1, current page"
         >
           1
-        </IconButton>
+        </Button>
       </li>
       <li>
-        <IconButton variant="muted" size="xs" aria-label="Go to page 2">
+        <Button iconOnly variant="muted" size="xs" aria-label="Go to page 2">
           2
-        </IconButton>
+        </Button>
       </li>
-
       <li aria-hidden="true" class="text-zinc-500 dark:text-zinc-400">…</li>
-
       <li>
-        <IconButton variant="muted" size="xs" aria-label="Go to page 60">
+        <Button iconOnly variant="muted" size="xs" aria-label="Go to page 60">
           60
-        </IconButton>
+        </Button>
       </li>
-
       <!-- Go to page -->
       <li class="items-center hidden md:flex space-x-2">
         <Text
@@ -74,18 +71,16 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
           Confirm
         </Button>
       </li>
-
       <!-- Next -->
       <li>
-        <IconButton aria-label="Go to next page" variant="muted" size="xs">
-          <ChevronRight size="xs" slot="icon" />
+        <Button iconOnly aria-label="Go to next page" variant="muted" size="xs">
+          <ChevronRight size="xs" slot="right-icon" />
           <span class="sr-only">Next</span>
-        </IconButton>
+        </Button>
       </li>
     </ol>
     <p id="goto-help" class="sr-only">Enter a page number between 1 and 60</p>
   </nav>
-
   <Text tag="p" variant="textSM" class="text-zinc-500 dark:text-zinc-300">
     Showing <strong>1</strong> to <strong>10</strong> of <strong>60</strong> pages
   </Text>

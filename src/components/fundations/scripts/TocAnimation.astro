@@ -1,0 +1,69 @@
+<script is:inline>
+  (() => {
+    if (typeof window === "undefined") return;
+    const tocLinks = document.querySelectorAll(".toc-link");
+    const headings = document.querySelectorAll("h2, h3");
+    // Function to update active TOC link
+    function updateActiveTocLink() {
+      let activeHeading = null;
+      const scrollPosition = window.scrollY + 100; // Offset for better UX
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      // Check if we're near the bottom of the page (within 100px)
+      const isNearBottom =
+        scrollPosition + windowHeight >= documentHeight - 100;
+      if (isNearBottom && headings.length > 0) {
+        // If near bottom, activate the last heading
+        activeHeading = headings[headings.length - 1];
+      } else {
+        // Find the current active heading based on scroll position
+        headings.forEach((heading) => {
+          const headingTop = heading.offsetTop;
+          if (scrollPosition >= headingTop) {
+            activeHeading = heading;
+          }
+        });
+      }
+      // Update TOC links
+      tocLinks.forEach((link) => {
+        const isActive =
+          activeHeading && link.dataset.headingId === activeHeading.id;
+        if (isActive) {
+          // Active styles - similar to your accordion active link
+          link.classList.remove(
+            "border-transparent",
+            "text-base-500",
+            "dark:text-base-400"
+          );
+          link.classList.add(
+            "border-l-accent-500",
+            "dark:border-l-accent-400",
+            "text-base-900",
+            "dark:text-base-300"
+          );
+        } else {
+          // Inactive styles
+          link.classList.remove(
+            "border-l-accent-500",
+            "dark:border-l-accent-400",
+            "text-base-900",
+            "dark:text-base-300",
+            "font-medium"
+          );
+          link.classList.add(
+            "border-transparent",
+            "text-base-500",
+            "dark:text-base-400"
+          );
+        }
+      });
+    }
+    // Initialize and listen for scroll
+    updateActiveTocLink();
+    window.addEventListener("scroll", updateActiveTocLink);
+    // Also update when hash changes (direct clicks)
+    window.addEventListener("hashchange", () => {
+      setTimeout(updateActiveTocLink, 100);
+    });
+  })();
+</script>

@@ -1,0 +1,13 @@
+<script is:inline>
+  (function () {
+    // Prevent flash of unstyled content
+    const theme = localStorage.getItem("theme") || "system";
+    const systemPrefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+    const shouldBeDark =
+      theme === "dark" || (theme === "system" && systemPrefersDark);
+
+    document.documentElement.classList.toggle("dark", shouldBeDark);
+  })();
+</script>

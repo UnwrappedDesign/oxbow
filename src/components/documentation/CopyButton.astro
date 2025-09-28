@@ -1,0 +1,140 @@
+---
+import Button from "@/components/fundations/buttons/Button.astro";
+import Clipboard from "@/components/fundations/icons/Clipboard.astro";
+import CircleCheck from "@/components/fundations/icons/CircleCheck.astro";
+
+interface Props {
+  targetSelector?: string;
+}
+
+const { targetSelector = "pre code" } = Astro.props as Props;
+---
+
+<div class="absolute z-10 copy-button-container top-1 right-1" data-copy-button-root>
+  <Button
+    iconOnly
+    variant="muted"
+    onlyIconSize="xs"
+    class="!absolute opacity-0 copy-btn top-1 right-1 transition-opacity duration-200"
+    data-copy-button-template
+    aria-label="Copy code to clipboard"
+  >
+    <Clipboard slot="right-icon" size="xs" class="copy-icon" />
+    <CircleCheck slot="right-icon" size="xs" class="hidden check-icon" />
+  </Button>
+</div>
+
+<script is:inline>
+  (() => {
+    const targetSelector = {JSON.stringify(targetSelector)};
+
+    const writeText = (value) => {
+      if (
+        typeof navigator !== "undefined" &&
+        navigator.clipboard &&
+        typeof navigator.clipboard.writeText === "function"
+      ) {
+        return navigator.clipboard.writeText(value);
+      }
+
+      const textarea = document.createElement("textarea");
+      textarea.value = value;
+      textarea.setAttribute("readonly", "");
+      textarea.style.position = "absolute";
+      textarea.style.left = "-9999px";
+      document.body.appendChild(textarea);
+      textarea.select();
+      const succeeded = document.execCommand("copy");
+      document.body.removeChild(textarea);
+      return succeeded ? Promise.resolve() : Promise.reject();
+    };
+
+    const copyToClipboard = (sourceNode, button) => {
+      const copyIcon = button.querySelector(".copy-icon");
+      const checkIcon = button.querySelector(".check-icon");
+
+      const textTarget = (() => {
+        if (sourceNode instanceof HTMLElement && sourceNode.matches("pre")) {
+          const nested = sourceNode.querySelector("code");
+          return nested ?? sourceNode;
+        }
+        return sourceNode instanceof HTMLElement ? sourceNode : null;
+      })();
+
+      const text = textTarget?.textContent ?? "";
+
+      if (!text.length) return;
+
+      writeText(text)
+        .then(() => {
+          copyIcon?.classList.add("hidden");
+          checkIcon?.classList.remove("hidden");
+          button.classList.add("copied");
+
+          window.setTimeout(() => {
+            copyIcon?.classList.remove("hidden");
+            checkIcon?.classList.add("hidden");
+            button.classList.remove("copied");
+          }, 2000);
+        })
+        .catch(() => {
+          window.setTimeout(() => {
+            copyIcon?.classList.remove("hidden");
+            checkIcon?.classList.add("hidden");
+          }, 2000);
+        });
+    };
+
+    const attachCopyButton = (block, template) => {
+      if (!(block instanceof HTMLElement)) return;
+
+      const pre = block.matches("pre")
+        ? block
+        : block.closest?.("pre");
+
+      if (!(pre instanceof HTMLElement)) return;
+
+      if (
+        pre.querySelector(
+          ':scope > .copy-btn[data-copy-attached="true"]'
+        )
+      ) {
+        return;
+      }
+
+      if (!pre.style.position) {
+        pre.style.position = "relative";
+      }
+
+      const button = template.cloneNode(true);
+      if (!(button instanceof HTMLElement)) return;
+
+      button.removeAttribute("data-copy-button-template");
+      button.classList.remove("opacity-0");
+      button.dataset.copyAttached = "true";
+      button.addEventListener("click", () => copyToClipboard(pre, button));
+
+      pre.appendChild(button);
+    };
+
+    const initCopyButtons = () => {
+      const root = document.querySelector("[data-copy-button-root]");
+      const template = root?.querySelector(
+        "[data-copy-button-template]"
+      );
+
+      if (!(template instanceof HTMLElement)) return;
+
+      document.querySelectorAll(targetSelector).forEach((block) => {
+        attachCopyButton(block, template);
+      });
+
+      if (root instanceof HTMLElement) {
+        root.style.display = "none";
+      }
+    };
+
+    document.addEventListener("DOMContentLoaded", initCopyButtons);
+    document.addEventListener("astro:page-load", initCopyButtons);
+  })();
+</script>

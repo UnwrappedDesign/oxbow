@@ -1,0 +1,56 @@
+<script is:inline>
+  (() => {
+    if (typeof window === "undefined") return;
+    const toggleButtons = Array.from(
+      document.querySelectorAll("[data-docs-toggle]")
+    );
+    const closeButtons = Array.from(
+      document.querySelectorAll("[data-docs-close]")
+    );
+    const sidebar = document.querySelector("[data-docs-sidebar]");
+    const backdrop = document.querySelector("[data-docs-backdrop]");
+    if (!sidebar || !backdrop) return;
+    const lockScroll = (open) => {
+      document.documentElement.classList.toggle("overflow-hidden", open);
+      document.body.classList.toggle("overflow-hidden", open);
+    };
+    const openSidebar = () => {
+      if (window.innerWidth >= 1024) return;
+      sidebar.classList.remove("hidden", "-translate-x-full");
+      sidebar.classList.add("flex", "translate-x-0");
+      backdrop.classList.remove("hidden");
+      lockScroll(true);
+    };
+    const closeSidebar = () => {
+      const desktop = window.innerWidth >= 1024;
+      sidebar.classList.remove("translate-x-0");
+      sidebar.classList.add("-translate-x-full");
+      if (!desktop) {
+        sidebar.classList.remove("flex");
+        sidebar.classList.add("hidden");
+        backdrop.classList.add("hidden");
+        lockScroll(false);
+      }
+    };
+    toggleButtons.forEach((btn) => btn.addEventListener("click", openSidebar));
+    closeButtons.forEach((btn) => btn.addEventListener("click", closeSidebar));
+    backdrop.addEventListener("click", closeSidebar);
+    sidebar.querySelectorAll("a").forEach((link) =>
+      link.addEventListener("click", () => {
+        if (window.innerWidth < 1024) closeSidebar();
+      })
+    );
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeSidebar();
+    });
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 1024) {
+        sidebar.classList.remove("hidden", "-translate-x-full");
+        sidebar.classList.add("flex", "translate-x-0");
+        backdrop.classList.add("hidden");
+        lockScroll(false);
+      }
+    });
+    window.addEventListener("astro:after-swap", closeSidebar);
+  })();
+</script>

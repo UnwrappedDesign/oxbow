@@ -1,9 +1,11 @@
 ---
 export const description = "Table Footer: Rows per page + Range";
-import IconButton from "@/components/fundations/buttons/IconButton.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
 import Select from "@/components/fundations/inputs/Select.astro";
 import ChevronLeft from "@/components/fundations/icons/ChevronLeft.astro";
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
+import ChevronsLeft from "@/components/fundations/icons/ChevronsLeft.astro";
+import ChevronsRight from "@/components/fundations/icons/ChevronsRight.astro";
 ---
 
 <section class="flex justify-center p-16 bg-white dark:bg-zinc-900">
@@ -39,33 +41,49 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
     <div
       class="flex items-center self-end justify-center w-full gap-2 sm:self-auto md:w-auto md:justify-end"
     >
-      <IconButton
+      <Button
+        iconOnly
         size="xs"
         variant="muted"
         :disabled="page===1"
         @click="page=1"
-        aria-label="First">«</IconButton
+        aria-label="First"
       >
-      <IconButton
+        <ChevronsLeft size="xs" slot="left-icon" />
+        <span class="sr-only">Previous</span></Button
+      >
+      <Button
+        iconOnly
         size="xs"
         variant="muted"
         :disabled="page===1"
         @click="page=Math.max(1,page-1)"
-        aria-label="Previous"><ChevronLeft size="xs" slot="icon" /></IconButton
+        aria-label="Previous"
       >
-      <IconButton
+        <ChevronLeft size="xs" slot="left-icon" />
+        <span class="sr-only">Previous</span></Button
+      >
+      <Button
+        iconOnly
         size="xs"
         variant="muted"
         :disabled="page===lastPage"
         @click="page=Math.min(lastPage,page+1)"
-        aria-label="Next"><ChevronRight size="xs" slot="icon" /></IconButton
+        aria-label="Next"
       >
-      <IconButton
+        <ChevronRight size="xs" slot="right-icon" />
+        <span class="sr-only">Next</span></Button
+      >
+      <Button
+        iconOnly
         size="xs"
         variant="muted"
         :disabled="page===lastPage"
         @click="page=lastPage"
-        aria-label="Last">»</IconButton
+        aria-label="Last"
+      >
+        <ChevronsRight size="xs" slot="right-icon" />
+        <span class="sr-only">Next</span></Button
       >
     </div>
   </nav>

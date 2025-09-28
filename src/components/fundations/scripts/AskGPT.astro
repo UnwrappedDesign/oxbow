@@ -1,0 +1,28 @@
+<script type="module">
+  document.addEventListener("DOMContentLoaded", () => {
+    const askChatGPTButton = document.getElementById("ask-chatgpt");
+
+    if (!askChatGPTButton) {
+      console.error("Missing Ask ChatGPT button.");
+      return;
+    }
+
+    askChatGPTButton.addEventListener("click", () => {
+      // Get the current page URL and title
+      const currentUrl = window.location.href;
+      const pageTitle = document.title;
+
+      // Create a more detailed prompt for ChatGPT
+      const prompt = `Please read the documentation from ${currentUrl} (titled: "${pageTitle}") so I can ask questions about it. This is a documentation page that I'd like to discuss with you.`;
+
+      // Encode the prompt for URL
+      const encodedPrompt = encodeURIComponent(prompt);
+
+      // Open ChatGPT with the pre-filled prompt
+      const chatGPTUrl = `https://chatgpt.com/?q=${encodedPrompt}`;
+
+      // Open in a new tab
+      window.open(chatGPTUrl, "_blank");
+    });
+  });
+</script>

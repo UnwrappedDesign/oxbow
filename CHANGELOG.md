@@ -1,5 +1,16 @@
 # Changelog for Oxbow UI Components
 
+## **2025-09-27**
+
+### Modified
+- button-groups: [9 components](https://oxbowui.com/playground/application/button-groups)
+- buttons: [9 components](https://oxbowui.com/playground/application/buttons)
+- navbars: [1 component](https://oxbowui.com/playground/application/navbars)
+- landing-pages: [1 component](https://oxbowui.com/playground/marketing/landing-pages)
+
+### Deleted
+- button-groups: [2 components](https://oxbowui.com/playground/application/button-groups)
+
 ## **2025-09-26**
 
 ### Added

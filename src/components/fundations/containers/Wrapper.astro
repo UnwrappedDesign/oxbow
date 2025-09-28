@@ -14,8 +14,58 @@ const { variant = "standard", class: extraClass = "" } = Astro.props;
 const variantClasses = {
   narrow: "max-w-xl 2xl:max-w-3xl mx-auto p-8 lg:p-4 ",
   //
-  prose:
-    "prose font-normal prose-sm prose-headings:font-medium text-zinc-600  prose-headings:text-black  prose-blockquote:text-zinc-500 prose-blockquote:font-normal prose-blockquote:tracking-normal prose-img:border prose-img:border-zinc-100  prose-img:rounded-xl prose-a:text-black  prose-a:hover:text-blue-400 prose-a:duration-200 prose-hr:border-zinc-300  prose-pre:border-none prose-pre:rounded-2xl prose-strong:font-medium prose-strong:text-black  prose-code:text-black  max-w-none prose:font-sans  prose-tr:border-zinc-100 prose-thead:border-zinc-800  prose-pre:!bg-sand-100",
+  prose: [
+    // Base typography
+    "prose",
+    "prose-base",
+    "max-w-none",
+    "prose-headings:scroll-mt-24",
+    // Body text
+    "text-base-500",
+    "dark:text-base-400",
+    // Headings
+    "prose-headings:font-medium",
+    "prose-headings:text-base-900",
+    "dark:prose-headings:text-white",
+    // Links
+    "prose-a:text-base-500",
+    "prose-a:hover:text-base-900",
+    "dark:prose-a:hover:text-base-300",
+    "prose-a:duration-200",
+    // Strong text
+    "prose-strong:font-medium",
+    "dark:prose-strong:text-white",
+    // Blockquotes
+    "prose-blockquote:font-normal",
+    "prose-blockquote:tracking-normal",
+    "prose-blockquote:text-base-500",
+    "dark:prose-blockquote:text-base-600",
+    "dark:prose-blockquote:border-base-500",
+    // Horizontal rules
+    "prose-hr:border-base-300",
+    "dark:prose-hr:border-base-700",
+    // Images
+    "prose-img:border",
+    "prose-img:border-base-200",
+    "dark:prose-img:border-base-700",
+    // Code blocks
+    "prose-pre:border-none",
+    "prose-pre:rounded-xl",
+    "prose-pre:relative",
+    "prose-pre:my-0",
+    "prose-pre:outline-base-200",
+    "dark:prose-pre:outline-base-800",
+    "prose-pre:selection:bg-accent-600/10",
+    "prose-pre:selection:text-base-900",
+    "dark:prose-pre:selection:text-white",
+    "prose-pre:overflow-y-hidden",
+    "prose-pre:scrollbar-hide",
+    // Inline code
+    "dark:prose-code:text-white",
+    // Tables
+    "dark:prose-tr:border-base-700",
+    "dark:prose-thead:border-base-700",
+  ].join(" "),
   //
   wide: "max-w-screen 2xl:max-w-7xl w-full mx-auto p-8 lg:p-4",
   //
@@ -30,7 +80,6 @@ const variantClasses = {
 // Combine the classes for the specified variant with any extra classes
 const classes = `${variantClasses[variant]} ${extraClass}`.trim();
 ---
-
 <div class={classes}>
   <slot />
 </div>

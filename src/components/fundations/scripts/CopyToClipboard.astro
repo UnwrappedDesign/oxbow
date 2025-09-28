@@ -1,0 +1,68 @@
+---
+// Icons
+import Clipboard from "@/components/fundations/icons/Clipboard.astro";
+import CircleCheck from "@/components/fundations/icons/CircleCheck.astro";
+
+// Fundations
+import Button from "@/components/fundations/buttons/Button.astro";
+
+export interface Props {
+  targetSelector?: string;
+}
+
+const { targetSelector = "pre code" } = Astro.props;
+---
+
+<div class="absolute z-10 copy-button-container top-4 right-4">
+  <Button iconOnly size="xs" variant="muted">
+    <Clipboard slot="right-icon" size="sm" class="copy-icon" />
+    <CircleCheck slot="right-icon" size="sm" class="hidden check-icon" />
+  </Button>
+</div>
+
+<script define:vars={{ targetSelector }}>
+  document.addEventListener("DOMContentLoaded", () => {
+    function copyToClipboard(text, button) {
+      const copyIcon = button.querySelector(".copy-icon");
+      const checkIcon = button.querySelector(".check-icon");
+
+      navigator.clipboard
+        .writeText(text)
+        .then(() => {
+          copyIcon.classList.add("hidden");
+          checkIcon.classList.remove("hidden");
+          button.classList.add("copied");
+
+          setTimeout(() => {
+            copyIcon.classList.remove("hidden");
+            checkIcon.classList.add("hidden");
+            button.classList.remove("copied");
+          }, 2000);
+        })
+        .catch((err) => {
+          console.error("Failed to copy: ", err);
+          setTimeout(() => {
+            copyIcon.classList.remove("hidden");
+            checkIcon.classList.add("hidden");
+          }, 2000);
+        });
+    }
+
+    // Clone and attach copy buttons to code blocks
+    const template = document.querySelector(".copy-button-container .copy-btn");
+    if (!template) return;
+
+    document.querySelectorAll(targetSelector).forEach((block) => {
+      const button = template.cloneNode(true);
+      button.classList.remove("opacity-0");
+      button.onclick = () => copyToClipboard(block.textContent, button);
+
+      // Make sure the parent element has relative positioning
+      block.parentElement.style.position = "relative";
+      block.parentElement.insertBefore(button, block);
+    });
+
+    // Hide the template
+    document.querySelector(".copy-button-container").style.display = "none";
+  });
+</script>

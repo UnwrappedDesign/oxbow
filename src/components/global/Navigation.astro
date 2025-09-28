@@ -10,6 +10,7 @@ import LogoutTwo from "@/components/fundations/icons/LogoutTwo.astro";
 import CircleInfo from "@/components/fundations/icons/CircleInfo.astro";
 import Command from "@/components/fundations/icons/Command.astro";
 import Search from "@/components/fundations/icons/Search.astro";
+import ThemeToggle from "@/components/assets/ThemeToggle.astro";
 
 // Assets
 import Logo from "@/components/assets/Logo.astro";
@@ -32,11 +33,11 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
       <div class="flex flex-row items-center justify-between lg:justify-start">
         <a
           href="/"
-          class="flex items-center w-full gap-2 sm:w-auto text-zinc-950"
-          ><Logo class="text-black h-7 dark:text-white" /> oxbow ui</a
+          class="flex items-center w-full gap-2 sm:w-auto text-base-900 dark:text-white"
+          ><Logo class="h-7" /> oxbow ui</a
         >
         <button
-          class="flex items-center text-black cursor-pointer sm:hidden"
+          class="flex items-center text-base-900 dark:text-white cursor-pointer sm:hidden"
           onclick="document.querySelector('ninja-keys').open()"
         >
           <Search class="size-4" />
@@ -44,7 +45,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
         <button
           aria-label="open"
           @click="open = !open"
-          class="inline-flex items-center justify-center p-2 text-black focus:outline-none focus:text-accent-400 md:hidden"
+          class="inline-flex items-center justify-center p-2 text-base-900 dark:text-white focus:outline-none focus:text-accent-400 md:hidden"
           ><svg
             viewBox="0 0 24 24"
             class="size-6"
@@ -70,7 +71,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
       </div>
       <nav
         :class="{'flex': open, 'hidden': !open}"
-        class="flex-col items-center justify-end flex-grow hidden text-sm text-zinc-500 md:flex md:flex-row md:pb-0 gap-x-4 gap-y-4"
+        class="flex-col items-center justify-end flex-grow hidden text-sm text-base-500 md:flex md:flex-row md:pb-0 gap-x-4 gap-y-4"
       >
         <button
           class="items-center hidden cursor-pointer lg:flex"
@@ -79,7 +80,8 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
           <Command class="size-4" />
           K
         </button>
-        <div class="hidden w-px h-5 lg:block bg-zinc-200"></div>
+        <div class="hidden w-px h-5 lg:block bg-base-200 dark:bg-base-800">
+        </div>
         <div class="flex flex-col items-center gap-3 md:flex-row">
           <Text
             tag="a"
@@ -93,10 +95,18 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
             tag="a"
             variant="textSM"
             x-show="!username"
-            href="/getting-started"
-            class="hidden hover:text-accent-600 duration-300 md:block"
-            >Getting Started</Text
+            href="/documentation/getting-started"
+            class="hover:text-accent-600 duration-300">Getting Started</Text
           >
+          <Text
+            x-cloak
+            tag="a"
+            variant="textSM"
+            x-show="!username"
+            href="/documentation/getting-started"
+            class="hover:text-accent-600 duration-300">Documentation</Text
+          >
+          <ThemeToggle />
           <!--  <Text
             x-cloak
             tag="a"
@@ -144,14 +154,14 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
           <div
             x-popover:panel
             x-transition.origin.top.left
-            class="absolute right-0 top-full z-50 -mr-0.5 mt-3 w-48 origin-top-right divide-y divide-zinc-100 outline rounded-xl outline-zinc-100 shadow bg-white font-normal text-zinc-500 focus:outline-none sm:-mr-3.5 transform opacity-100 scale-100"
+            class="absolute right-0 top-full z-50 -mr-0.5 mt-3 w-48 origin-top-right divide-y divide-base-100 outline rounded-xl outline-base-100 shadow bg-white font-normal text-base-500 focus:outline-none sm:-mr-3.5 transform opacity-100 scale-100"
           >
             <div class="truncate px-3.5 py-3" role="none">
               <Text
                 tag="span"
                 role="none"
                 variant="textSM"
-                class="block text-zinc-500">Signed in as</Text
+                class="block text-base-500">Signed in as</Text
               >
               <Text
                 tag="span"
@@ -168,7 +178,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
                 role="menuitem"
                 variant="textSM"
                 href="https://discord.gg/9WH6G2XJRa"
-                class="py-1.5 px-3.5 hover:bg-zinc-100 hover:text-accent-600 duration-300 items-center gap-2 flex"
+                class="py-1.5 px-3.5 hover:bg-base-100 hover:text-accent-600 duration-300 items-center gap-2 flex"
               >
                 <Discord class="size-4" />
                 Discord
@@ -179,7 +189,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
                 role="menuitem"
                 href="/support"
                 variant="textSM"
-                class="py-1.5 px-3.5 hover:bg-zinc-100 hover:text-accent-600 duration-300 items-center gap-2 flex"
+                class="py-1.5 px-3.5 hover:bg-base-100 hover:text-accent-600 duration-300 items-center gap-2 flex"
               >
                 <Lifebuoy class="size-4" />
                 Support</Text
@@ -190,7 +200,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
                 role="menuitem"
                 href="/changelog"
                 variant="textSM"
-                class="py-1.5 px-3.5 hover:bg-zinc-100 hover:text-accent-600 duration-300 items-center gap-2 flex"
+                class="py-1.5 px-3.5 hover:bg-base-100 hover:text-accent-600 duration-300 items-center gap-2 flex"
               >
                 <Refresh class="size-4" />
                 Changelog</Text
@@ -201,7 +211,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
                 role="menuitem"
                 href="/license"
                 variant="textSM"
-                class="py-1.5 px-3.5 hover:bg-zinc-100 hover:text-accent-600 duration-300 items-center gap-2 flex"
+                class="py-1.5 px-3.5 hover:bg-base-100 hover:text-accent-600 duration-300 items-center gap-2 flex"
               >
                 <FileDots class="size-4" />
                 License</Text
@@ -212,7 +222,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
                 role="menuitem"
                 variant="textSM"
                 href="/getting-started"
-                class="py-1.5 px-3.5 hover:bg-zinc-100 hover:text-accent-600 duration-300 items-center gap-2 flex"
+                class="py-1.5 px-3.5 hover:bg-base-100 hover:text-accent-600 duration-300 items-center gap-2 flex"
               >
                 <CircleInfo class="size-4" />
                 Getting Started</Text
@@ -223,7 +233,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
                 role="menuitem"
                 variant="textSM"
                 href="/free-tools"
-                class="py-1.5 px-3.5 hover:bg-zinc-100 hover:text-accent-600 duration-300 items-center gap-2 flex"
+                class="py-1.5 px-3.5 hover:bg-base-100 hover:text-accent-600 duration-300 items-center gap-2 flex"
               >
                 <Tools class="size-4" />
                 Free Tools</Text
@@ -236,7 +246,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
                 role="menuitem"
                 variant="textSM"
                 href="https://lexingtonthemes.com/"
-                class="py-1.5 px-3.5 hover:bg-zinc-100 hover:text-accent-600 duration-300 items-center gap-2 flex"
+                class="py-1.5 px-3.5 hover:bg-base-100 hover:text-accent-600 duration-300 items-center gap-2 flex"
               >
                 <svg
                   class="size-3"
@@ -268,7 +278,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
                 tabindex="-1"
                 role="menuitem"
                 @click="signOut()"
-                class="py-1.5 px-3.5 hover:bg-zinc-100 text-sm hover:text-accent-600 duration-300 items-center gap-2 flex w-full"
+                class="py-1.5 px-3.5 hover:bg-base-100 text-sm hover:text-accent-600 duration-300 items-center gap-2 flex w-full"
               >
                 <LogoutTwo class="size-4" />
                 Sign out</button

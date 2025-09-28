@@ -1,0 +1,24 @@
+---
+interface Props {
+  tab: string;
+  class?: string;
+}
+const { tab, class: className } = Astro.props as Props;
+const buttonId = `tab-${tab}`;
+const panelId = `tab-panel-${tab}`;
+---
+
+<button
+  type="button"
+  id={buttonId}
+  role="tab"
+  data-tab={tab}
+  aria-controls={panelId}
+  aria-selected="false"
+  class:list={[
+    "flex items-center gap-2  pb-2  text-sm font-medium cursor-pointer  transition-all duration-200 text-base-600 hover:text-base-800 dark:text-base-500 dark:hover:text-base-200",
+    className,
+  ]}
+>
+  <slot />
+</button>

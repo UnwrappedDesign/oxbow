@@ -81,11 +81,11 @@ const BUTTON_VARIANTS: Record<ButtonVariant, string[]> = {
   ],
   oxbowMuted: [
     "text-zinc-600",
-    "bg-sand-100",
+    "bg-base-100",
     "outline",
-    "outline-sand-50",
-    "hover:bg-sand-50",
-    "focus-visible:outline-sand-100",
+    "outline-base-50",
+    "hover:bg-base-50",
+    "focus-visible:outline-base-100",
     "dark:text-zinc-200",
     "dark:bg-zinc-700",
     "dark:outline-zinc-600",
@@ -106,14 +106,14 @@ const BUTTON_VARIANTS: Record<ButtonVariant, string[]> = {
     "dark:focus-visible:outline-blue-300",
   ],
   oxbowOutline: [
-    "text-sand-700",
+    "text-base-700",
     "outline",
-    "outline-sand-200",
+    "outline-base-200",
     "bg-transparent",
     "hover:outline-accent-600",
     "focus-visible:outline-accent-500",
-    "dark:text-sand-200",
-    "dark:outline-sand-400",
+    "dark:text-base-200",
+    "dark:outline-base-400",
     "dark:hover:outline-accent-400",
     "dark:bg-zinc-800",
   ],
@@ -334,7 +334,7 @@ const BASE_CLASSES = [
   "items-center",
   "justify-center",
   "text-center",
-  "font-semibold",
+  "font-medium",
   "transition-colors",
   "duration-200",
   "ease-in-out",
@@ -343,7 +343,11 @@ const BASE_CLASSES = [
   "focus-visible:outline-offset-2",
   "focus-visible:z-10",
 ];
-const DISABLED_CLASSES = ["pointer-events-none", "cursor-not-allowed", "opacity-60"];
+const DISABLED_CLASSES = [
+  "pointer-events-none",
+  "cursor-not-allowed",
+  "opacity-60",
+];
 const LOADING_CLASSES = ["opacity-80", "cursor-wait"];
 
 const {
@@ -371,14 +375,18 @@ const {
   ...rest
 } = Astro.props as Props;
 
-const _noTopLeft = noRounded || noRoundedTop || noRoundedLeft || noRoundedTopLeft;
-const _noTopRight = noRounded || noRoundedTop || noRoundedRight || noRoundedTopRight;
-const _noBottomLeft = noRounded || noRoundedBottom || noRoundedLeft || noRoundedBottomLeft;
+const _noTopLeft =
+  noRounded || noRoundedTop || noRoundedLeft || noRoundedTopLeft;
+const _noTopRight =
+  noRounded || noRoundedTop || noRoundedRight || noRoundedTopRight;
+const _noBottomLeft =
+  noRounded || noRoundedBottom || noRoundedLeft || noRoundedBottomLeft;
 const _noBottomRight =
   noRounded || noRoundedBottom || noRoundedRight || noRoundedBottomRight;
 
 let roundedClasses: string[] = ["rounded-md"];
-const anyCornerOverride = _noTopLeft || _noTopRight || _noBottomLeft || _noBottomRight;
+const anyCornerOverride =
+  _noTopLeft || _noTopRight || _noBottomLeft || _noBottomRight;
 if (anyCornerOverride) {
   if (_noTopLeft && _noTopRight && _noBottomLeft && _noBottomRight) {
     roundedClasses = ["rounded-none"];
@@ -422,7 +430,8 @@ const iconSizeKey = (onlyIconSize ?? size) as ButtonSize;
 const iconSizeEntry = SIZE_MAP[iconSizeKey] ?? sizeEntry;
 const sizeClasses = iconOnly ? iconSizeEntry.icon : sizeEntry.button;
 
-const hasIconAndLabel = !iconOnly && hasDefaultSlot && (hasLeftIcon || hasRightIcon);
+const hasIconAndLabel =
+  !iconOnly && hasDefaultSlot && (hasLeftIcon || hasRightIcon);
 const computedGapKey = gap ?? (hasIconAndLabel ? "xs" : undefined);
 const gapClasses =
   computedGapKey && GAP_MAP[computedGapKey as ButtonGap]
@@ -449,7 +458,6 @@ const baseClasses = [
   ...(loading ? LOADING_CLASSES : []),
   ...additionalClasses,
 ].filter(Boolean);
-
 ---
 
 {
@@ -466,7 +474,10 @@ const baseClasses = [
       {...rest}
     >
       {loading ? (
-        <span class="absolute inset-0 grid place-items-center" aria-hidden="true">
+        <span
+          class="absolute inset-0 grid place-items-center"
+          aria-hidden="true"
+        >
           <LoadingIcon class="h-5 w-5 animate-spin" />
         </span>
       ) : (
@@ -485,7 +496,10 @@ const baseClasses = [
       {...rest}
     >
       {loading ? (
-        <span class="absolute inset-0 grid place-items-center" aria-hidden="true">
+        <span
+          class="absolute inset-0 grid place-items-center"
+          aria-hidden="true"
+        >
           <LoadingIcon class="h-5 w-5 animate-spin" />
         </span>
       ) : (

@@ -1,0 +1,96 @@
+---
+import DocumentationLayout from "@/layouts/DocsLayout.astro";
+import { getCollection, getEntry } from "astro:content";
+import {
+  pageSections,
+  pageExamples,
+  navigation as navigationBlocks,
+  overlay,
+  forms,
+  elements,
+  storeSections,
+} from "@/data/entries.json";
+
+const slugParam = Astro.params.slug;
+const slug = Array.isArray(slugParam)
+  ? slugParam.join("/")
+  : slugParam || "";
+
+if (!slug) {
+  throw Astro.redirect("/documentation");
+}
+
+const entry = await getEntry("documentation", slug);
+
+if (!entry) {
+  throw Astro.redirect("/documentation");
+}
+
+const { Content, headings } = await entry.render();
+const siblings = (await getCollection("documentation")).sort((a, b) => {
+  const orderA = a.data.order ?? Number.MAX_SAFE_INTEGER;
+  const orderB = b.data.order ?? Number.MAX_SAFE_INTEGER;
+  if (orderA !== orderB) return orderA - orderB;
+  return a.slug.localeCompare(b.slug);
+});
+
+const entries = siblings.map((item) => ({
+  slug: item.slug,
+  title: item.data.title,
+  description: item.data.description,
+  category: item.data.category,
+  order: item.data.order,
+  pinned: item.data.pinned,
+}));
+
+const currentIndex = siblings.findIndex((item) => item.slug === entry.slug);
+const prev = currentIndex > 0 ? siblings[currentIndex - 1] : null;
+const next = currentIndex < siblings.length - 1 ? siblings[currentIndex + 1] : null;
+
+const mapTemplates = (templates: { name: string; link: string }[]) =>
+  templates.map((template) => ({ title: template.name, href: template.link }));
+
+const blockGroups = [
+  {
+    title: "Marketing",
+    items: [...mapTemplates(pageSections), ...mapTemplates(pageExamples)],
+    order: 1,
+  },
+  {
+    title: "Application",
+    items: [
+      ...mapTemplates(navigationBlocks),
+      ...mapTemplates(overlay),
+      ...mapTemplates(forms),
+      ...mapTemplates(elements),
+    ],
+    order: 2,
+  },
+  {
+    title: "eCommerce",
+    items: [...mapTemplates(storeSections)],
+    order: 3,
+  },
+];
+
+const breadcrumbs = [
+  { title: "Home", href: "/" },
+  { title: "Documentation", href: "/documentation" },
+  ...(entry.data.category ? [{ title: entry.data.category }] : []),
+  { title: entry.data.title },
+];
+
+---
+<DocumentationLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  entries={entries}
+  activeSlug={entry.slug}
+  headings={headings}
+  prev={prev ? { slug: prev.slug, title: prev.data.title } : null}
+  next={next ? { slug: next.slug, title: next.data.title } : null}
+  blocks={blockGroups}
+  breadcrumbs={breadcrumbs}
+>
+  <Content />
+</DocumentationLayout>

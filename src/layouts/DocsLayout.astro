@@ -1,0 +1,509 @@
+---
+// Fundations
+import Logo from "@/components/assets/Logo.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Components
+import DesktopTopBar from "@/components/global/navigation/DesktopTopBar.astro";
+// Scripts
+import AskGPT from "@/components/fundations/scripts/AskGPT.astro";
+import AskClaude from "@/components/fundations/scripts/AskClaude.astro";
+import TabsScript from "@/components/fundations/scripts/TabsScript.astro";
+import TocAnimation from "@/components/fundations/scripts/TocAnimation.astro";
+import SidebarScript from "@/components/fundations/scripts/SidebarScript.astro";
+import CopyToClipboard from "@/components/fundations/scripts/CopyToClipboard.astro";
+import CopyAsMarkdown from "@/components/fundations/scripts/CopyAsMarkdown.astro";
+
+// Icons
+import X from "@/components/fundations/icons/X.astro";
+import Search from "@/components/fundations/icons/Search.astro";
+import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
+import Gpt from "@/components/fundations/icons/Gpt.astro";
+import Claude from "@/components/fundations/icons/Claude.astro";
+import Markdown from "@/components/fundations/icons/Markdown.astro";
+import GithubBrand from "@/components/fundations/icons/GithubBrand.astro";
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+interface DocLink {
+  slug: string;
+  title: string;
+  description?: string;
+  category?: string;
+  order?: number;
+  pinned?: boolean;
+}
+interface NavLink {
+  slug: string;
+  title: string;
+}
+interface BlockLink {
+  title: string;
+  href: string;
+}
+interface BlockGroup {
+  title: string;
+  items: BlockLink[];
+  order?: number;
+}
+interface PinnedLink {
+  title: string;
+  href: string;
+  slug?: string;
+}
+interface Breadcrumb {
+  title: string;
+  href?: string;
+}
+interface Props {
+  title: string;
+  description?: string;
+  entries: DocLink[];
+  activeSlug: string;
+  headings?: Heading[];
+  prev?: NavLink | null;
+  next?: NavLink | null;
+  blocks?: BlockGroup[];
+  pinnedLinks?: PinnedLink[];
+  breadcrumbs?: Breadcrumb[];
+}
+const {
+  title,
+  description,
+  entries,
+  activeSlug,
+  headings = [],
+  prev,
+  next,
+  blocks = [],
+  pinnedLinks = [],
+  breadcrumbs = [],
+} = Astro.props as Props;
+const filteredHeadings = headings.filter((heading) => heading.depth <= 3);
+const pinnedEntryLinks = entries
+  .filter((entry) => entry.pinned)
+  .map((entry) => ({
+    title: entry.title,
+    href: `/documentation/${entry.slug}`,
+    slug: entry.slug,
+  }));
+const manualPinnedLinks = pinnedLinks.map((link) => ({
+  ...link,
+  slug: link.slug,
+}));
+const combinedPinnedLinks = [
+  ...pinnedEntryLinks,
+  ...manualPinnedLinks.filter(
+    (link) => !pinnedEntryLinks.some((auto) => auto.href === link.href)
+  ),
+];
+const entriesForGroups = entries.filter((entry) => !entry.pinned);
+const componentGroups = Array.from(
+  entriesForGroups.reduce((map, entry) => {
+    const key = entry.category || "Components";
+    if (!map.has(key)) map.set(key, [] as DocLink[]);
+    map.get(key)!.push(entry);
+    return map;
+  }, new Map<string, DocLink[]>())
+).map(([groupTitle, items]) => ({
+  title: groupTitle,
+  items: items
+    .slice()
+    .sort(
+      (a, b) =>
+        (a.order ?? Number.MAX_SAFE_INTEGER) -
+          (b.order ?? Number.MAX_SAFE_INTEGER) || a.title.localeCompare(b.title)
+    ),
+}));
+const blockGroups = blocks
+  .slice()
+  .sort(
+    (a, b) =>
+      (a.order ?? Number.MAX_SAFE_INTEGER) -
+        (b.order ?? Number.MAX_SAFE_INTEGER) || a.title.localeCompare(b.title)
+  );
+const prevNav = prev
+  ? {
+      href: `/documentation/${prev.slug}`,
+      title: prev.title,
+      helper: "Previous",
+    }
+  : { href: "/documentation", title: "All documentation", helper: "Previous" };
+const nextNav = next
+  ? { href: `/documentation/${next.slug}`, title: next.title, helper: "Next" }
+  : { href: "/documentation", title: "Browse components", helper: "Next" };
+---
+
+<BaseLayout hideNav={true} hideFooter={true}>
+  <div class="lg:flex min-h-screen bg-white dark:bg-base-900">
+    <!-- Mobile overlay -->
+    <div
+      class="hidden fixed inset-0 z-40 bg-base-900/40 backdrop-blur-sm lg:hidden"
+      data-docs-backdrop
+    >
+    </div>
+    <!-- Sidebar -->
+    <aside
+      class="hidden lg:flex fixed inset-y-0 left-0 z-50 w-62 -translate-x-full flex-col gap-6 overflow-y-auto border-r border-base-200 dark:border-base-800 bg-white px-5 py- transition-transform duration-200 dark:bg-base-900 lg:translate-x-0 scrollbar-hide py-4"
+      data-docs-sidebar
+    >
+      <header class="gap-2">
+        <div class="flex items-center justify-between">
+          <a
+            href="/"
+            class="flex items-center gap-3 text-sm font-medium uppercase tracking-wide text-base-900 dark:text-base-50"
+          >
+            <Logo class="h-6 text-accent-600" />
+            <span>Oxbowui</span>
+          </a>
+          <Button
+            variant="muted"
+            size="xs"
+            iconOnly
+            type="button"
+            class="lg:hidden"
+            data-docs-close
+          >
+            <X size="xs" slot="right-icon" />
+            <span class="sr-only">Open navigation</span>
+          </Button>
+        </div>
+      </header>
+      <nav class="flex-1 space-y-8 select-none">
+        <div>
+          <Text
+            class="text-[0.65rem] font-medium uppercase tracking-wide text-base-600 dark:text-white"
+          >
+            Setup
+          </Text>
+          {
+            combinedPinnedLinks.length > 0 && (
+              <div
+                class="space-y-2 text-sm border-l border-base-200 dark:border-base-800 mt-2 ml-2"
+                data-docs-pinned
+              >
+                {combinedPinnedLinks.map((link) => {
+                  const isActive =
+                    link.slug === activeSlug ||
+                    link.href === `/documentation/${activeSlug}`;
+                  return (
+                    <a
+                      href={link.href}
+                      aria-current={isActive ? "page" : undefined}
+                      class:list={[
+                        "pl-4",
+                        isActive
+                          ? "text-accent-600 hover:text-base-600"
+                          : "text-base-600 hover:text-accent-600",
+                      ]}
+                    >
+                      <span>{link.title}</span>
+                    </a>
+                  );
+                })}
+              </div>
+            )
+          }
+        </div>
+        {
+          componentGroups.map((group) => (
+            <details open class="group select-none">
+              <summary class="flex cursor-pointer items-center justify-between gap-2 text-[0.65rem] font-medium uppercase tracking-wide text-base-600  dark:text-base-400 ">
+                <span>{group.title}</span>
+                <ChevronDown
+                  class="ml-auto duration-300 ease-out transform group-open:-rotate-180 "
+                  slot="right-icon"
+                  size="xs"
+                />
+              </summary>
+              <ul class="space-y-2 text-sm border-l border-base-200 dark:border-base-800 mt-2 ml-2">
+                {group.items.map((item) => (
+                  <li>
+                    <a
+                      href={`/documentation/${item.slug}`}
+                      class:list={[
+                        "pl-4",
+                        item.slug === activeSlug
+                          ? "text-accent-700 dark:text-accent-500"
+                          : "text-base-600 dark:text-base-400",
+                      ]}
+                    >
+                      <span>{item.title}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          ))
+        }
+        {
+          blockGroups.length > 0 && (
+            <details open class="group select-none">
+              <summary class="flex cursor-pointer items-center justify-between gap-2 text-[0.65rem] font-medium uppercase tracking-wide text-base-600  dark:group-open:text-base-400 dark:text-base-400 dark:group-open:text-base-200">
+                <span>Blocks</span>
+                <ChevronDown
+                  class="ml-auto duration-300 ease-out transform group-open:-rotate-180 "
+                  slot="right-icon"
+                  size="xs"
+                />
+              </summary>
+              <div class="mt-3 space-y-8 ">
+                {blockGroups.map((group) => (
+                  <div>
+                    <p class="text-xs font-medium uppercase tracking-wide text-base-400 dark:text-base-500">
+                      {group.title}
+                    </p>
+                    <ul class="space-y-2 text-sm border-l border-base-200 dark:border-base-800 mt-2 ml-2">
+                      {group.items.map((link) => (
+                        <li>
+                          <a
+                            href={link.href}
+                            class="pl-4 text-base-600 dark:text-base-400 hover:text-accent-600"
+                          >
+                            <span>{link.title}</span>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </details>
+          )
+        }
+      </nav>
+    </aside>
+    <!-- Main content -->
+    <div class="flex min-h-svh flex-1 flex-col lg:ml-62">
+      <DesktopTopBar />
+      <div class="flex-1 px-8 lg:px-12 grow">
+        <div
+          class="flex flex-col lg:flex-row lg:items-start lg:divide-x lg:divide-base-200 lg:dark:divide-base-800"
+        >
+          <article class="flex-1 space-y-10 lg:pr-12 py-8">
+            <div class="grow">
+              <div class="flex items.center justify-between">
+                <div>
+                  {
+                    breadcrumbs.length > 0 && (
+                      <nav aria-label="Breadcrumb" class="mb-6">
+                        <ol class="flex flex-wrap items-center gap-2 text-xs font-medium text-base-400 dark:text-base-500">
+                          {breadcrumbs.map((crumb, index) => {
+                            const isLast = index === breadcrumbs.length - 1;
+                            return (
+                              <li class="flex items-center gap-2">
+                                {!isLast && crumb.href ? (
+                                  <a
+                                    href={crumb.href}
+                                    class="text-base-500 hover:text-accent-600 transition dark:text-base-400 dark:hover:text-accent-400"
+                                  >
+                                    {crumb.title}
+                                  </a>
+                                ) : (
+                                  <span
+                                    class={
+                                      isLast
+                                        ? "text-base-600 dark:text-base-200"
+                                        : undefined
+                                    }
+                                  >
+                                    {crumb.title}
+                                  </span>
+                                )}
+                                {!isLast && (
+                                  <span class="text-base-300 dark:text-base-600">
+                                    /
+                                  </span>
+                                )}
+                              </li>
+                            );
+                          })}
+                        </ol>
+                      </nav>
+                    )
+                  }
+                </div>
+
+                <div class="relative hidden lg:block" x-data="{ open: false }">
+                  <Button
+                    id="docs-tools-toggle"
+                    variant="muted"
+                    size="xxs"
+                    class="w-full justify-between text-xs text-base-900 dark:text-white"
+                    aria-haspopup="menu"
+                    aria-expanded="false"
+                    type="button"
+                    @click="open = !open"
+                    @keydown.escape.window="open = false"
+                    :aria-expanded="open"
+                  >
+                    Ask AI
+                    <ChevronDown
+                      slot="right-icon"
+                      size="xs"
+                      class="transition-transform duration-200"
+                      :class="open ? '-rotate-180' : ''"
+                      data-docs-tools-icon
+                    />
+                  </Button>
+                  <div
+                    data-docs-tools-menu
+                    x-show="open"
+                    x-transition
+                    @click.outside="open = false"
+                    class="absolute right-0 z-20 mt-2 w-60 rounded-md border border-base-200 bg-white p-2 shadow-lg focus:outline-none dark:border-base-700 dark:bg-base-800"
+                    role="menu"
+                    aria-labelledby="docs-tools-toggle"
+                  >
+                    <div class="flex flex-col">
+                      <button
+                        id="copy-markdown"
+                        class="text-base-900 dark:text-white hover:text-accent-600 flex items-center w-full gap-2 rounded-md px-2 py-1.5 text-xs text-left"
+                        role="menuitem"
+                      >
+                        <Markdown
+                          slot="icon"
+                          size="sm"
+                          class="text-base-900 dark:text-white"
+                        />
+                        Copy page Markdown for LLMs
+                      </button>
+                      <button
+                        id="ask-chatgpt"
+                        class="text-base-900 dark:text-white hover:text-accent-600 flex items-center w-full gap-2 rounded-md px-2 py-1.5 text-xs text-left"
+                        role="menuitem"
+                      >
+                        <Gpt
+                          slot="icon"
+                          size="sm"
+                          class="text-base-900 dark:text-white"
+                        />
+                        Ask ChatGPT
+                      </button>
+                      <button
+                        id="ask-claude"
+                        class="text-base-900 dark:text-white hover:text-accent-600 flex items-center w-full gap-2 rounded-md px-2 py-1.5 text-xs text-left"
+                        role="menuitem"
+                      >
+                        <Claude
+                          slot="icon"
+                          size="sm"
+                          class="text-base-900 dark:text-white"
+                        />
+                        Ask Claude
+                      </button>
+                      <a
+                        href="#_"
+                        class="text-base-900 dark:text-white hover:text-accent-600 flex items-center w-full gap-2 rounded-md px-2 py-1.5 text-xs text-left"
+                        role="menuitem"
+                      >
+                        <GithubBrand
+                          slot="icon"
+                          size="sm"
+                          class="text-base-900 dark:text-white"
+                        />
+                        Edit on GitHub
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="markdown-content" class="mt-24">
+                <Wrapper variant="prose">
+                  <slot />
+                </Wrapper>
+              </div>
+              <nav
+                aria-label="Documentation pagination"
+                class="grid gap-4 md:grid-cols-2 mt-24 border-t border-base-200 pt-8 dark:border-base-800"
+              >
+                <a href={prevNav.href} class="group">
+                  <Text
+                    tag="p"
+                    variant="textXS"
+                    class="uppercase tracking-wide text-base-400"
+                  >
+                    {prevNav.helper}
+                  </Text>
+                  <Text
+                    tag="h3"
+                    variant="textBase"
+                    class="text-base-600 group-hover:text-accent-600 mt-12"
+                  >
+                    {prevNav.title}
+                  </Text>
+                </a>
+                <a href={nextNav.href} class="group">
+                  <Text
+                    tag="p"
+                    variant="textXS"
+                    class="uppercase tracking-wide text-base-400"
+                  >
+                    {nextNav.helper}
+                  </Text>
+                  <Text
+                    tag="h3"
+                    variant="textBase"
+                    class="text-base-600 group-hover:text-accent-600 mt-12"
+                  >
+                    {nextNav.title}
+                  </Text>
+                </a>
+              </nav>
+            </div>
+          </article>
+          <aside class="sticky top-0 w-64 shrink-0 hidden lg:block py-8">
+            <div class="space-y-4">
+              <div class="px-4">
+                <Text
+                  variant="textSM"
+                  tag="p"
+                  class="text-xs font-medium uppercase tracking-wide text-base-400 dark:text-base-500"
+                >
+                  On this page
+                </Text>
+              </div>
+              <ol class="space-y-2 text-sm" data-docs-toc>
+                {
+                  filteredHeadings.length ? (
+                    filteredHeadings.map((heading) => (
+                      <li>
+                        <a
+                          href={`#${heading.slug}`}
+                          data-heading-id={heading.slug}
+                          data-heading-depth={heading.depth}
+                          class:list={[
+                            "toc-link block py-1 text-xs border-l-2 select-none hover:text-accent-600 dark:hover:text-accent-400 transition-all duration-200 border-transparent text-base-500 dark:text-base-400 font-medium",
+                            heading.depth > 2 ? "pl-6" : "pl-4",
+                          ]}
+                        >
+                          {heading.text}
+                        </a>
+                      </li>
+                    ))
+                  ) : (
+                    <li class="pl-4 text-xs text-base-400 dark:text-base-500">
+                      No headings yet.
+                    </li>
+                  )
+                }
+              </ol>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <TabsScript />
+  <TocAnimation />
+  <SidebarScript />
+  <CopyToClipboard />
+  <CopyAsMarkdown />
+  <AskGPT />
+  <AskClaude />
+</BaseLayout>

@@ -70,7 +70,7 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
       const isUpdatedLastWeek = updatedAt > SEVEN_DAYS_AGO;
 
       return (
-        <li class="relative py-2.5 group border-b border-zinc-200">
+        <li class="relative py-2.5 group ">
           <a
             title={template.name}
             href={template.link}
@@ -78,19 +78,19 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
           />
           <div>
             {/*   <Image
-              class="object-cover object-top rounded-lg  transition-all duration-300 ease-in-out shadow-subtle shadow-zinc-500/10 aspect-16/9"
+              class="object-cover object-top rounded-lg  transition-all duration-300 ease-in-out shadow-subtle shadow-base-500/10 aspect-16/9"
               alt={template.name}
               src={template.image()}
             /> */}
             <div class="  group-hover:text-accent-600 lg:items-center">
               <div class="flex items-center  gap-4">
-                <div class="flex items-center justify-center p-1 text-[0.70rem] bg-sand-900/6 rounded-full text-zinc-900 size-6 transition-colors duration-500">
+                <div class="flex items-center justify-center p-1 text-[0.70rem] bg-base-900/6 dark:bg-white/5 rounded-full text-base-900 dark:text-white size-6 transition-colors duration-500">
                   {template.quantity}
                 </div>
                 <Text
                   tag="p"
                   variant="textSM"
-                  class="relative font-medium text-zinc-600 group-hover:text-accent-600"
+                  class="relative  text-base-600 dark:text-base-400 group-hover:text-accent-600"
                 >
                   {template.name}
                 </Text>
@@ -99,7 +99,7 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
               {/*   <Text
                 tag="p"
                 variant="textXXS"
-                class="relative flex items-center ml-auto gap-1 text-zinc-500 group-hover:text-accent-600"
+                class="relative flex items-center ml-auto gap-1 text-base-500 group-hover:text-accent-600"
               >
                 Updated
                 {formatDistanceToNowStrict(updatedAt, {

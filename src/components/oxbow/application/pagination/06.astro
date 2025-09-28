@@ -1,8 +1,10 @@
 ---
 export const description = "Minimal Arrows Only";
-import IconButton from "@/components/fundations/buttons/IconButton.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
 import ChevronLeft from "@/components/fundations/icons/ChevronLeft.astro";
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
+import ChevronsLeft from "@/components/fundations/icons/ChevronsLeft.astro";
+import ChevronsRight from "@/components/fundations/icons/ChevronsRight.astro";
 ---
 
 <section class="flex justify-center p-16 bg-white dark:bg-zinc-900">
@@ -12,37 +14,47 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
     x-data="{ page: 1, total: 10 }"
     class="flex items-center gap-2"
   >
-    <IconButton
+    <Button
       size="xs"
       variant="muted"
+      iconOnly
       :disabled="page===1"
       @click="page=1"
-      aria-label="First page">«</IconButton
+      aria-label="First page"
     >
-    <IconButton
+      <ChevronsLeft size="xs" slot="left-icon" />
+      <span class="sr-only">Previous</span>
+    </Button>
+    <Button
       size="xs"
       variant="muted"
+      iconOnly
       :disabled="page===1"
       @click="page=Math.max(1,page-1)"
       aria-label="Previous page"
-      ><ChevronLeft size="xs" slot="icon" /></IconButton
+      ><ChevronLeft size="xs" slot="left-icon" /></Button
     >
     <span
       class="w-10 text-sm text-center text-zinc-600 dark:text-zinc-300"
       x-text="page"></span>
-    <IconButton
+    <Button
       size="xs"
       variant="muted"
+      iconOnly
       :disabled="page===total"
       @click="page=Math.min(total,page+1)"
-      aria-label="Next page"><ChevronRight size="xs" slot="icon" /></IconButton
+      aria-label="Next page"><ChevronRight size="xs" slot="left-icon" /></Button
     >
-    <IconButton
+    <Button
       size="xs"
       variant="muted"
+      iconOnly
       :disabled="page===total"
       @click="page=total"
-      aria-label="Last page">»</IconButton
+      aria-label="Last page"
+    >
+      <ChevronsRight size="xs" slot="right-icon" />
+      <span class="sr-only">Next</span></Button
     >
   </nav>
   <!-- copy:end -->

@@ -115,6 +115,7 @@ if (_noTopLeft && _noTopRight && _noBottomLeft && _noBottomRight) {
 }
 let selectClasses = [
   "block",
+  "w-fit",
   "transition",
   "duration-300",
   "ease-in-out",
@@ -149,7 +150,7 @@ const hasAlpine =
 {/* Version without Alpine.js */}
 {
   !hasAlpine && (
-    <div class="w-full">
+    <div class="w-full flex flex-col gap-1">
       {!hideLabel && (
         <label
           for={id}
@@ -167,7 +168,7 @@ const hasAlpine =
         </label>
       )}
       <div
-        class={`relative${!hideLabel && label && !noMarginTop ? " mt-1" : ""}`}
+        class={`relative${!hideLabel && label && !noMarginTop ? " " : ""}`}
       >
         <select
           {...rest}
@@ -199,7 +200,7 @@ const hasAlpine =
 {
   hasAlpine && (
     <div
-      class="w-full"
+      class="w-full flex flex-col gap-1"
       x-data={xData}
       x-init={xInit}
       x-show={xShow}
@@ -209,7 +210,7 @@ const hasAlpine =
       {!hideLabel && (
         <label
           for={id}
-          class={`block mb-1 font-medium text-zinc-500 ${
+          class={`block  font-medium text-zinc-500 ${
             size === "xs"
               ? "text-xs"
               : size === "sm"
@@ -223,7 +224,7 @@ const hasAlpine =
         </label>
       )}
       <div
-        class={`relative${!hideLabel && label && !noMarginTop ? " mt-1" : ""}`}
+        class={`relative${!hideLabel && label && !noMarginTop ? "" : ""}`}
       >
         <select
           {...rest}

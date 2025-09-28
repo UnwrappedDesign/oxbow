@@ -1,0 +1,34 @@
+<script type="module">
+  document.addEventListener("DOMContentLoaded", () => {
+    const askChatGPTButton = document.getElementById("ask-chatgpt");
+    const askClaudeButton = document.getElementById("ask-claude");
+
+    if (!askChatGPTButton || !askClaudeButton) {
+      console.error("Missing AI assistant buttons.");
+      return;
+    }
+
+    // Function to create the prompt
+    function createPrompt() {
+      const currentUrl = window.location.href;
+      const pageTitle = document.title;
+      return `Please read the documentation from ${currentUrl} (titled: "${pageTitle}") so I can ask questions about it. This is a documentation page that I'd like to discuss with you.`;
+    }
+
+    // ChatGPT button functionality
+    askChatGPTButton.addEventListener("click", () => {
+      const prompt = createPrompt();
+      const encodedPrompt = encodeURIComponent(prompt);
+      const chatGPTUrl = `https://chatgpt.com/?q=${encodedPrompt}`;
+      window.open(chatGPTUrl, "_blank");
+    });
+
+    // Claude button functionality
+    askClaudeButton.addEventListener("click", () => {
+      const prompt = createPrompt();
+      const encodedPrompt = encodeURIComponent(prompt);
+      const claudeUrl = `https://claude.ai/chat?q=${encodedPrompt}`;
+      window.open(claudeUrl, "_blank");
+    });
+  });
+</script>

@@ -5,6 +5,7 @@ import BaseHead from "@/components/BaseHead.astro";
 import Navigation from "@/components/global/Navigation.astro";
 import Footer from "@/components/global/Footer.astro";
 import NinjaScript from "@/components/commandBar/NinjaScript.astro";
+import CopyButton from "@/components/documentation/CopyButton.astro";
 
 import { app } from "@/firebase/server";
 
@@ -14,7 +15,7 @@ const customToken = uid ? await auth.createCustomToken(uid) : null;
 const siteUrl = (Astro.site && Astro.site.toString()) || "https://oxbowui.com";
 const canonicalUrl = new URL(
   Astro.url.pathname,
-  Astro.site ?? siteUrl,
+  Astro.site ?? siteUrl
 ).toString();
 const privatePaths = [
   /^\/404$/,
@@ -36,8 +37,16 @@ interface HeadOverrides {
   noindex?: boolean;
   structuredData?: any | any[];
 }
-const { title, description, image, noindex, structuredData, hideNav = false, hideFooter = false }: HeadOverrides & { hideNav?: boolean; hideFooter?: boolean } =
-  (Astro.props ?? {}) as any;
+const {
+  title,
+  description,
+  image,
+  noindex,
+  structuredData,
+  hideNav = false,
+  hideFooter = false,
+}: HeadOverrides & { hideNav?: boolean; hideFooter?: boolean } = (Astro.props ??
+  {}) as any;
 ---
 
 <html lang="en" class="scroll-smooth">
@@ -53,16 +62,16 @@ const { title, description, image, noindex, structuredData, hideNav = false, hid
       structuredData={structuredData}
     />
   </head>
-  <body class="bg-sand-50 min-h-screen flex flex-col">
-    { !hideNav && <Navigation /> }
+  <body class="bg-base-50 dark:bg-base-900 min-h-screen flex flex-col">
+    {!hideNav && <Navigation />}
     <main class="grow z-1">
       <slot />
     </main>
-    { !hideFooter && <Footer isSignedIn={!!uid} /> }
+    {!hideFooter && <Footer isSignedIn={!!uid} />}
 
     <ninja-keys
       id="ninja"
-      class="light"
+      class="dark"
       selectHotkey="enter"
       placeholder="Search for anything..."
     >
@@ -155,7 +164,6 @@ const { title, description, image, noindex, structuredData, hideNav = false, hid
       }
       customElements.define("astro-firebase", AstroFirebase);
     </script>
-
-    
+    <CopyButton targetSelector="pre" />
   </body>
 </html>

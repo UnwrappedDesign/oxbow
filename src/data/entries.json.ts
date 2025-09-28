@@ -649,18 +649,7 @@ const templates: { [key: string]: Template[] } = {
         "typography link",
       ],
     },
-    {
-      name: "Buttons",
-      link: "/playground/application/buttons",
-      image: "buttons.png",
-      tags: [
-        "button",
-        "button section",
-        "button content",
-        "button image",
-        "button link",
-      ],
-    },
+   
     {
       name: "Button icon",
       link: "/playground/application/button-icon",

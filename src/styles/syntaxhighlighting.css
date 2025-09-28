@@ -1,0 +1,157 @@
+/* Line numbers */
+code {
+  counter-reset: step;
+  counter-increment: step 0;
+}
+code .line::before {
+  content: counter(step);
+  counter-increment: step;
+
+  margin-right: 1.5rem;
+  display: inline-block;
+  text-align: right;
+  padding-left: 0.5rem;
+  color: theme(colors.base.400);
+}
+/* Shiki Diff Annotations - using the exact classes from transformerNotationDiff */
+
+.diff.add {
+  background-color: oklch(77.7% 0.152 181.912 / 10%) !important;
+  border-left: 1px solid  theme(colors.teal.500) !important;
+}
+.diff.remove {
+  background-color: oklch(83.3% 0.145 321.434 / 10%) !important;
+  border-left: 1px solid theme(colors.fuchsia.500) !important;
+}
+/* Focus annotations */
+.focused {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-left: 1px solid #0366d6 !important;
+}
+/* Meta highlight */
+.highlighted {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+/* Dark mode adjustments */
+:root .focused {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+:root .highlighted {
+  background-color: rgba(0, 0, 0, 0.02) !important;
+}
+/* Dark mode adjustments */
+:root.dark .focused {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+:root.dark .highlighted {
+  background-color: rgba(255, 255, 255, 0.02) !important;
+}
+
+
+/* Your existing color variables */
+:root {
+  /* Enhanced Shiki code styles with improved contrast and modern colors */
+  --astro-code-color-text: theme(colors.cyan.800);
+  --astro-code-background: theme(colors.base.50);
+  --astro-code-token-punctuation: theme(colors.cyan.600);
+  --astro-code-token-parameter: theme(colors.cyan.800);
+  --astro-code-token-line-number: theme(colors.cyan.400);
+  --astro-code-token-comment: theme(colors.base.400);
+  --astro-code-token-cdata: theme(colors.cyan.800);
+  /* Functions and methods - vibrant blue */
+  --astro-code-token-constant: theme(colors.blue.600);
+  --astro-code-token-function: theme(colors.blue.700);
+  --astro-code-token-builtin: theme(colors.blue.500);
+  --astro-code-token-class-name: theme(colors.blue.800);
+  --astro-code-token-property: theme(colors.blue.600);
+  --astro-code-token-selector: theme(colors.blue.700);
+  /* Attributes and HTML */
+  --astro-code-token-attr-name: theme(colors.indigo.600);
+  --astro-code-token-attr-value: theme(colors.indigo.700);
+  --astro-code-token-tag: theme(colors.indigo.700);
+  /* Strings - warm green */
+  --astro-code-token-string: theme(colors.lime.700);
+  --astro-code-token-string-expression: theme(colors.lime.600);
+  /* Variables and identifiers - teal */
+  --astro-code-token-variable: theme(colors.teal.600);
+  --astro-code-token-namespace: theme(colors.teal.700);
+  /* Keywords and operators - accent */
+  --astro-code-token-keyword: theme(colors.accent.700);
+  --astro-code-token-operator: theme(colors.accent.600);
+  --astro-code-token-symbol: theme(colors.accent.600);
+  /* Numbers and booleans - orange */
+  --astro-code-token-number: theme(colors.orange.600);
+  --astro-code-token-boolean: theme(colors.orange.700);
+  /* Special tokens */
+  --astro-code-token-deleted: theme(colors.red.600);
+  --astro-code-token-inserted: theme(colors.green.600);
+  --astro-code-token-changed: theme(colors.yellow.600);
+  --astro-code-token-important: theme(colors.red.700);
+  --astro-code-token-highlight: theme(colors.yellow.400);
+  --astro-code-token-alert: theme(colors.red.600);
+  --astro-code-token-emphasis: theme(colors.yellow.600);
+  --astro-code-token-focus: theme(colors.yellow.700);
+  --astro-code-token-notice: theme(colors.blue.600);
+  /* CSS specific */
+  --astro-code-token-atrule: theme(colors.pink.600);
+  --astro-code-token-entity: theme(colors.pink.700);
+  --astro-code-token-regex: theme(colors.green.600);
+  /* Meta tokens */
+  --astro-code-token-doctype: theme(colors.cyan.500);
+  --astro-code-token-prolog: theme(colors.cyan.400);
+  /* Text formatting */
+  --astro-code-token-bold: inherit;
+  --astro-code-token-italic: italic;
+  --astro-code-token-underline: underline;
+}
+/* Enhanced dark mode with better contrast and modern colors */
+:root.dark {
+  --astro-code-color-text: theme(colors.cyan.200);
+  --astro-code-background: #ffffff05;
+  --astro-code-token-punctuation: theme(colors.cyan.400);
+  --astro-code-token-parameter: theme(colors.cyan.200);
+  --astro-code-token-line-number: theme(colors.cyan.500);
+  --astro-code-token-comment: theme(colors.base.500);
+  --astro-code-token-cdata: theme(colors.cyan.200);
+  /* Functions and methods - bright blue */
+  --astro-code-token-constant: theme(colors.blue.400);
+  --astro-code-token-function: theme(colors.blue.300);
+  --astro-code-token-builtin: theme(colors.blue.400);
+  --astro-code-token-class-name: theme(colors.blue.200);
+  --astro-code-token-property: theme(colors.blue.400);
+  --astro-code-token-selector: theme(colors.blue.300);
+  /* Attributes and HTML */
+  --astro-code-token-attr-name: theme(colors.indigo.300);
+  --astro-code-token-attr-value: theme(colors.indigo.200);
+  --astro-code-token-tag: theme(colors.indigo.300);
+  /* Strings - bright green */
+  --astro-code-token-string: theme(colors.lime.300);
+  --astro-code-token-string-expression: theme(colors.lime.300);
+  /* Variables and identifiers - cyan */
+  --astro-code-token-variable: theme(colors.cyan.300);
+  --astro-code-token-namespace: theme(colors.cyan.200);
+  /* Keywords and operators - accent */
+  --astro-code-token-keyword: theme(colors.accent.300);
+  --astro-code-token-operator: theme(colors.accent.400);
+  --astro-code-token-symbol: theme(colors.accent.400);
+  /* Numbers and booleans - orange */
+  --astro-code-token-number: theme(colors.orange.300);
+  --astro-code-token-boolean: theme(colors.orange.200);
+  /* Special tokens */
+  --astro-code-token-deleted: theme(colors.red.400);
+  --astro-code-token-inserted: theme(colors.green.400);
+  --astro-code-token-changed: theme(colors.yellow.400);
+  --astro-code-token-important: theme(colors.red.300);
+  --astro-code-token-highlight: theme(colors.yellow.400);
+  --astro-code-token-alert: theme(colors.red.400);
+  --astro-code-token-emphasis: theme(colors.yellow.400);
+  --astro-code-token-focus: theme(colors.yellow.300);
+  --astro-code-token-notice: theme(colors.blue.400);
+  /* CSS specific */
+  --astro-code-token-atrule: theme(colors.pink.400);
+  --astro-code-token-entity: theme(colors.pink.300);
+  --astro-code-token-regex: theme(colors.green.400);
+  /* Meta tokens */
+  --astro-code-token-doctype: theme(colors.cyan.400);
+  --astro-code-token-prolog: theme(colors.cyan.500);
+}

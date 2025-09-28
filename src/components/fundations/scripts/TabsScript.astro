@@ -1,0 +1,76 @@
+<script is:inline>
+  (() => {
+    if (typeof window === "undefined") return;
+    // Initialize tabs
+    class TabsComponent {
+      constructor(container) {
+        this.container = container;
+        this.buttons = container.querySelectorAll("[data-tab]");
+        this.panels = container.querySelectorAll("[data-tab-panel]");
+        this.init();
+      }
+      container;
+      buttons;
+      panels;
+      init() {
+        const defaultTab = this.container.getAttribute("data-default-tab");
+        const firstTab = this.buttons[0]?.getAttribute("data-tab");
+        const activeTab = defaultTab || firstTab;
+        if (activeTab) {
+          this.showTab(activeTab);
+        }
+        this.buttons.forEach((button, index) => {
+          // Click event
+          button.addEventListener("click", (e) => {
+            e.preventDefault();
+            const tabId = button.getAttribute("data-tab");
+            if (tabId) {
+              this.showTab(tabId);
+              button.focus();
+            }
+          });
+          // Keyboard nav (← →)
+          button.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+              e.preventDefault();
+              const dir = e.key === "ArrowRight" ? 1 : -1;
+              const newIndex =
+                (index + dir + this.buttons.length) % this.buttons.length;
+              this.buttons[newIndex].click();
+              this.buttons[newIndex].focus();
+            }
+          });
+        });
+      }
+      showTab(tabId) {
+        this.buttons.forEach((button) => {
+          const isActive = button.getAttribute("data-tab") === tabId;
+          button.setAttribute("aria-selected", isActive ? "true" : "false");
+          button.setAttribute("tabindex", isActive ? "0" : "-1");
+          button.classList.toggle("text-sky-600", isActive);
+          button.classList.toggle("dark:text-sky-300", isActive);
+          button.classList.toggle("border-b", isActive);
+          button.classList.toggle("border-sky-600", isActive);
+          button.classList.toggle("dark:border-sky-400", isActive);
+          button.classList.toggle("text-base-600", !isActive);
+          button.classList.toggle("dark:text-base-500", !isActive);
+          button.classList.toggle("hover:text-base-800", !isActive);
+          button.classList.toggle("dark:hover:text-base-200", !isActive);
+        });
+        this.panels.forEach((panel) => {
+          const isActive = panel.getAttribute("data-tab-panel") === tabId;
+          panel.hidden = !isActive;
+        });
+      }
+    }
+    const initTabs = () => {
+      document
+        .querySelectorAll("[data-tabs-container]")
+        .forEach((container) => {
+          new TabsComponent(container);
+        });
+    };
+    document.addEventListener("DOMContentLoaded", initTabs);
+    document.addEventListener("astro:page-load", initTabs);
+  })();
+</script>

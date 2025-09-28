@@ -1,0 +1,21 @@
+---
+interface Props {
+  tab: string;
+  class?: string;
+}
+const { tab, class: className } = Astro.props as Props;
+const panelId = `tab-panel-${tab}`;
+const buttonId = `tab-${tab}`;
+---
+
+<div
+  id={panelId}
+  role="tabpanel"
+  aria-labelledby={buttonId}
+  data-tab-panel={tab}
+  hidden
+  class="-mt-2.5"
+  class:list={["block scrollbar-hide", className]}
+>
+  <slot />
+</div>

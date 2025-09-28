@@ -10,6 +10,76 @@
     forms,
   } from "../../data/entries.json.ts";
 
+  const marketingComponentChildren = pageSections.map((section) => ({
+    id: section.name,
+    title: section.name,
+    keywords: section.tags.join(", "),
+    parent: "marketing-components",
+    handler: () => {
+      window.open(section.link, "_self");
+    },
+  }));
+  marketingComponentChildren.push(
+    ...pageExamples.map((example) => ({
+      id: example.name,
+      title: example.name,
+      keywords: example.tags.join(", "),
+      parent: "marketing-components",
+      handler: () => {
+        window.open(example.link, "_self");
+      },
+    }))
+  );
+
+  const applicationComponentChildren = elements.map((element) => ({
+    id: element.name,
+    title: element.name,
+    keywords: element.tags.join(", "),
+    parent: "application-components",
+    handler: () => {
+      window.open(element.link, "_self");
+    },
+  }));
+  applicationComponentChildren.push(
+    ...navigation.map((navigation) => ({
+      id: navigation.name,
+      title: navigation.name,
+      keywords: navigation.tags.join(", "),
+      parent: "application-components",
+      handler: () => {
+        window.open(navigation.link, "_self");
+      },
+    })),
+    ...overlay.map((overlay) => ({
+      id: overlay.name,
+      title: overlay.name,
+      keywords: overlay.tags.join(", "),
+      parent: "application-components",
+      handler: () => {
+        window.open(overlay.link, "_self");
+      },
+    })),
+    ...forms.map((form) => ({
+      id: form.name,
+      title: form.name,
+      keywords: form.tags.join(", "),
+      parent: "application-components",
+      handler: () => {
+        window.open(form.link, "_self");
+      },
+    }))
+  );
+
+  const ecommerceComponentChildren = storeSections.map((section) => ({
+    id: section.name,
+    title: section.name,
+    keywords: section.tags.join(", "),
+    parent: "ecommerce-components",
+    handler: () => {
+      window.open(section.link, "_self");
+    },
+  }));
+
   // Build command data once
   const DATA = [
     {
@@ -30,6 +100,14 @@
       },
     },
     {
+      id: "docs",
+      title: "Documentation",
+      keywords: "docs, documentation, guides, tutorials, how-to ",
+      handler: () => {
+        window.open("/documentation/getting-started", "_self");
+      },
+    },
+    {
       id: "changelog",
       title: "Changelog",
       keywords: "changelog, updates, new features, version history",
@@ -45,85 +123,19 @@
           id: "marketing-components",
           title: "Marketing Components",
           parent: "components",
-          children: [
-            ...pageSections.map((section) => ({
-              id: section.name,
-              title: section.name,
-              keywords: section.tags.join(", "),
-              parent: "marketing-components",
-              handler: () => {
-                window.open(section.link, "_self");
-              },
-            })),
-            ...pageExamples.map((example) => ({
-              id: example.name,
-              title: example.name,
-              keywords: example.tags.join(", "),
-              parent: "marketing-components",
-              handler: () => {
-                window.open(example.link, "_self");
-              },
-            })),
-          ],
+          children: marketingComponentChildren,
         },
         {
           id: "application-components",
           title: "Application Components",
           parent: "components",
-          children: [
-            ...elements.map((element) => ({
-              id: element.name,
-              title: element.name,
-              keywords: element.tags.join(", "),
-              parent: "application-components",
-              handler: () => {
-                window.open(element.link, "_self");
-              },
-            })),
-            ...navigation.map((navigation) => ({
-              id: navigation.name,
-              title: navigation.name,
-              keywords: navigation.tags.join(", "),
-              parent: "application-components",
-              handler: () => {
-                window.open(navigation.link, "_self");
-              },
-            })),
-            ...overlay.map((overlay) => ({
-              id: overlay.name,
-              title: overlay.name,
-              keywords: overlay.tags.join(", "),
-              parent: "application-components",
-              handler: () => {
-                window.open(overlay.link, "_self");
-              },
-            })),
-            ...forms.map((form) => ({
-              id: form.name,
-              title: form.name,
-              keywords: form.tags.join(", "),
-              parent: "application-components",
-              handler: () => {
-                window.open(form.link, "_self");
-              },
-            })),
-          ],
+          children: applicationComponentChildren,
         },
         {
           id: "ecommerce-components",
           title: "Ecommerce components",
           parent: "components",
-          children: [
-            ...storeSections.map((section) => ({
-              id: section.name,
-              title: section.name,
-              keywords: section.tags.join(", "),
-              parent: "ecommerce-components",
-              handler: () => {
-                window.open(section.link, "_self");
-              },
-            })),
-          ],
+          children: ecommerceComponentChildren,
         },
       ],
     },
@@ -131,11 +143,17 @@
 
   function cloneData() {
     // Prefer structuredClone if available for a fresh reference
-    try { return structuredClone ? structuredClone(DATA) : JSON.parse(JSON.stringify(DATA)); } catch { return DATA.slice(); }
+    try {
+      return structuredClone
+        ? structuredClone(DATA)
+        : JSON.parse(JSON.stringify(DATA));
+    } catch {
+      return DATA.slice();
+    }
   }
 
   function ensureData() {
-    const ninja = document.getElementById('ninja');
+    const ninja = document.getElementById("ninja");
     if (!ninja) return false;
     try {
       // @ts-ignore
@@ -145,38 +163,43 @@
         ninja.data = cloneData();
       }
       return true;
-    } catch { return false; }
+    } catch {
+      return false;
+    }
   }
 
   async function initNinja() {
     // Wait for the custom element to be defined and present in the DOM
-    await customElements.whenDefined('ninja-keys').catch(() => {});
-    let ninja = document.getElementById('ninja');
+    await customElements.whenDefined("ninja-keys").catch(() => {});
+    let ninja = document.getElementById("ninja");
     if (!ninja) {
       // Try again on next frame if transitions haven't injected it yet
       return void requestAnimationFrame(initNinja);
     }
+    // Force dark variant by default
+    ninja.classList.remove("light");
+    ninja.classList.add("dark");
     // Assign a fresh array so the element re-initializes its internal list
     ensureData();
 
     // Guard: when user triggers Cmd/Ctrl+K, make sure data exists
-    window.addEventListener('keydown', (e) => {
-      const isK = (e.key || '').toLowerCase() === 'k';
+    window.addEventListener("keydown", (e) => {
+      const isK = (e.key || "").toLowerCase() === "k";
       if ((e.metaKey || e.ctrlKey) && isK) {
         ensureData();
       }
     });
 
     // When the element gains focus (before opening), ensure data
-    ninja.addEventListener('focusin', ensureData);
+    ninja.addEventListener("focusin", ensureData);
   }
 
   // Initialize on first load and after Astro transitions
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initNinja, { once: true });
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initNinja, { once: true });
   } else {
     initNinja();
   }
-  window.addEventListener('astro:page-load', initNinja);
-  window.addEventListener('astro:after-swap', initNinja);
+  window.addEventListener("astro:page-load", initNinja);
+  window.addEventListener("astro:after-swap", initNinja);
 </script>

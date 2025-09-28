@@ -10,6 +10,17 @@ const sections = defineCollection({
     description: z.string().optional(),
   }),
 });
+
+const documentation = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    order: z.number().optional(),
+    category: z.string().optional(),
+    pinned: z.boolean().optional(),
+  }),
+});
 export const collections = {
   simple: simple,
   sections: sections,
@@ -25,4 +36,5 @@ export const collections = {
       })
       .passthrough(),
   }),
+  documentation,
 };

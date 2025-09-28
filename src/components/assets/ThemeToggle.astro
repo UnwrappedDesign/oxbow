@@ -1,0 +1,130 @@
+---
+// Fundations
+import Button from "@/components/fundations/buttons/Button.astro";
+// Icons
+import Moon from "@/components/fundations/icons/Moon.astro";
+import Sun from "@/components/fundations/icons/Sun.astro";
+import Desktop from "@/components/fundations/icons/Desktop.astro";
+// Icons
+// Three-State Theme Toggle Component
+// This component renders a theme toggle with three states: system, light, and dark
+// Props: - class: A string of additional classes to style the component.
+// - ...rest: Any other valid attributes for the container element
+const { class: className = "", ...rest } = Astro.props;
+---
+
+<div
+  class={`inline-flex items-center bg-base-100 dark:bg-white/20 rounded-lg p-0.5 transition-colors duration-200 gap-1 ${className}`}
+  {...rest}
+  data-theme-toggle-container
+>
+  <!-- System/Auto Button -->
+  <Button
+    size="xs"
+    variant="muted"
+    iconOnly
+    data-theme-option="system"
+    role="radio"
+    aria-checked="false"
+    aria-label="Use system theme"
+    title="System theme"
+  >
+    <Desktop slot="right-icon" size="xs" />
+  </Button>
+  <!-- Light Button -->
+  <Button
+    size="xs"
+    variant="muted"
+    iconOnly
+    data-theme-option="light"
+    role="radio"
+    aria-checked="false"
+    aria-label="Light theme"
+    title="Light theme"
+  >
+    <Sun slot="right-icon" size="xs" />
+  </Button>
+  <!-- Dark Button -->
+  <Button
+    size="xs"
+    variant="muted"
+    iconOnly
+    data-theme-option="dark"
+    role="radio"
+    aria-checked="false"
+    aria-label="Dark theme"
+    title="Dark theme"
+  >
+    <Moon slot="right-icon" size="xs" />
+  </Button>
+</div>
+<script type="module">
+  // Theme management
+  const THEMES = {
+    SYSTEM: "system",
+    LIGHT: "light",
+    DARK: "dark",
+  };
+
+  function getSystemTheme() {
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  }
+
+  function applyTheme(theme) {
+    let actualTheme = theme;
+    if (theme === THEMES.SYSTEM) {
+      actualTheme = getSystemTheme();
+    }
+    document.documentElement.classList.toggle("dark", actualTheme === "dark");
+  }
+
+  function updateThemeToggle(currentTheme) {
+    const buttons = document.querySelectorAll("[data-theme-option]");
+    buttons.forEach((button) => {
+      const isActive = button.dataset.themeOption === currentTheme;
+      button.setAttribute("aria-checked", isActive ? "true" : "false");
+
+      // Update visual state - just toggle shadow for active state
+      if (isActive) {
+        button.classList.add("shadow-sm");
+      } else {
+        button.classList.remove("shadow-sm");
+      }
+    });
+  }
+
+  function setTheme(theme) {
+    localStorage.setItem("theme", theme);
+    applyTheme(theme);
+    updateThemeToggle(theme);
+  }
+
+  function initializeTheme() {
+    const savedTheme = localStorage.getItem("theme") || THEMES.SYSTEM;
+    applyTheme(savedTheme);
+    updateThemeToggle(savedTheme);
+  }
+
+  // Initialize theme on page load
+  initializeTheme();
+
+  // Listen for system theme changes
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", () => {
+      const currentTheme = localStorage.getItem("theme") || THEMES.SYSTEM;
+      if (currentTheme === THEMES.SYSTEM) {
+        applyTheme(THEMES.SYSTEM);
+      }
+    });
+
+  // Add event listeners to theme buttons
+  document.querySelectorAll("[data-theme-option]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const theme = button.dataset.themeOption;
+      setTheme(theme);
+    });
+  });
+</script>

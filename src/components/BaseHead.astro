@@ -1,8 +1,8 @@
 ---
-import "../styles/global.css";
+import "@/styles/global.css";
 import { AstroSeo } from "@astrolib/seo";
-const umamiScriptSrc = import.meta.env.PUBLIC_UMAMI_URL;
-const umamiWebsiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
+import ToggleLocalStorage from "@/components/fundations/scripts/ToggleLocalStorage.astro";
+
 const toltId = import.meta.env.PUBLIC_TOLT_ID;
 
 // Optional SEO props provided by layouts/pages
@@ -70,7 +70,7 @@ const seoDescription = clampText(defaultDescription, 160);
 const breadcrumbItems = pathSegments.map((seg, idx) => {
   const url = new URL(
     "/" + pathSegments.slice(0, idx + 1).join("/"),
-    siteUrl,
+    siteUrl
   ).toString();
   return {
     "@type": "ListItem",
@@ -214,3 +214,4 @@ const jsonLdCombined = Array.isArray(additionalStructured)
   href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
   rel="stylesheet"
 />
+<ToggleLocalStorage />

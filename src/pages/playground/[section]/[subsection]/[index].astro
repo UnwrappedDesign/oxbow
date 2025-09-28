@@ -8,10 +8,19 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
 import ChevronLeft from "@/components/fundations/icons/ChevronLeft.astro";
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 // import DetailToolbarIsland from "@/components/playground/DetailToolbarIsland";
+import type { ComponentInstance } from "astro";
+
+type PlaygroundComponentModule = ComponentInstance & {
+  description?: string;
+  freeComponent?: boolean;
+};
 
 // Parameters
 const { section, subsection, index } = Astro.params;
-const modules = import.meta.glob("@/components/oxbow/**/*.astro");
+const modules = import.meta.glob("@/components/oxbow/**/*.astro") as Record<
+  string,
+  () => Promise<PlaygroundComponentModule>
+>;
 const keys = Object.keys(modules);
 const sectionRegex = new RegExp(`${section}/${subsection}/.+\\.astro$`, "i");
 const sectionKeys = keys.filter((k) => k.match(sectionRegex));
@@ -85,15 +94,22 @@ const countsByCatSub = triples.reduce(
             <Text
               tag="h1"
               variant="textSM"
-              class="font-medium capitalize text-zinc-900"
+              class="font-medium capitalize text-zinc-900 dark:text-zinc-50"
             >
               {subsection.replace(/-/g, " ")}
             </Text>
           </div>
-          <Text tag="p" variant="textSM" class="flex text-zinc-500 gap-1">
+          <Text
+            tag="p"
+            variant="textSM"
+            class="flex gap-1 text-zinc-500 dark:text-zinc-400"
+          >
             {
               componentDescription && (
-                <span aria-hidden="true" class="hidden text-zinc-500 md:block">
+                <span
+                  aria-hidden="true"
+                  class="hidden text-zinc-500 md:block dark:text-zinc-400"
+                >
                   /
                 </span>
               )

@@ -1,0 +1,62 @@
+---
+// Fundations
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import MainHero from "@/components/fundations/containers/MainHero.astro";
+// Icons
+import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
+
+import { getCollection } from "astro:content";
+
+const docs = (await getCollection("documentation")).sort((a, b) => {
+  const orderA = a.data.order ?? Number.MAX_SAFE_INTEGER;
+  const orderB = b.data.order ?? Number.MAX_SAFE_INTEGER;
+  if (orderA !== orderB) return orderA - orderB;
+  return a.slug.localeCompare(b.slug);
+});
+---
+
+<BaseLayout>
+  <MainHero
+    textCentered
+    title=" Component documentation"
+    subtitle=" Explore implementation details, props, and code samples for every building block in the system."
+    showAlpineTailwind={true}
+  />
+  <Wrapper variant="standard" class="py-8">
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {
+        docs.map((entry) => (
+          <div class="relative group">
+            <a
+              href={`/documentation/${entry.slug}`}
+              class="absolute z-10 inset-0"
+            />
+            <div>
+              <Text
+                tag="h3"
+                variant="textSM"
+                class="font-medium  text-zinc-900"
+              >
+                {entry.data.title}
+              </Text>
+
+              <Text tag="p" variant="textSM" class="mt-2 text-zinc-500">
+                {entry.data.description}
+              </Text>
+            </div>
+            <Text
+              tag="p"
+              variant="textSM"
+              class="mt-8 text-zinc-500 group-hover:text-accent-500 flex items-center gap-2"
+            >
+              Read more
+              <ChevronRight slot="right-icon" size="xs" />
+            </Text>
+          </div>
+        ))
+      }
+    </div>
+  </Wrapper>
+</BaseLayout>

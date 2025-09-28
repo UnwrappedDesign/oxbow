@@ -1,66 +1,62 @@
 ---
 export const freeComponent = true;
-import IconButton from "@/components/fundations/buttons/IconButton.astro";
+import Button from "@/components/fundations/buttons/Button.astro";
 import ChevronLeft from "@/components/fundations/icons/ChevronLeft.astro";
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 ---
-
 <div class="flex justify-center p-16 mx-auto bg-white dark:bg-zinc-900">
   <!-- copy:start -->
   <nav class="relative z-0" aria-label="Pagination">
     <ol role="list" class="inline-flex items-center gap-1.5">
       <!-- Previous -->
       <li>
-        <IconButton
+        <Button
           disabled
           aria-label="Go to previous page"
-          variant="text"
+          variant="muted"
           size="xs"
+          iconOnly
         >
-          <ChevronLeft size="xs" slot="icon" />
+          <ChevronLeft slot="left-icon" size="xs" />
           <span class="sr-only">Previous</span>
-        </IconButton>
+        </Button>
       </li>
-
       <!-- Page numbers -->
       <li>
-        <IconButton
+        <Button
           variant="text"
           size="xs"
           aria-current="page"
           aria-label="Page 1, current page"
         >
           1
-        </IconButton>
+        </Button>
       </li>
       <li>
-        <IconButton variant="text" size="xs" aria-label="Go to page 2">
+        <Button variant="text" size="xs" aria-label="Go to page 2">
           2
-        </IconButton>
+        </Button>
       </li>
-
       <!-- Ellipsis -->
       <li aria-hidden="true" class="px-1 text-zinc-500 dark:text-zinc-400">
         …
       </li>
-
       <li>
-        <IconButton variant="text" size="xs" aria-label="Go to page 9">
+        <Button variant="text" size="xs" aria-label="Go to page 9">
           9
-        </IconButton>
+        </Button>
       </li>
       <li>
-        <IconButton variant="text" size="xs" aria-label="Go to page 10">
+        <Button variant="text" size="xs" aria-label="Go to page 10">
           10
-        </IconButton>
+        </Button>
       </li>
-
       <!-- Next -->
       <li>
-        <IconButton aria-label="Go to next page" variant="text" size="xs">
-          <ChevronRight size="xs" slot="icon" />
+        <Button aria-label="Go to next page" variant="accent" size="xs" iconOnly>
+          <ChevronRight slot="left-icon" size="xs" />
           <span class="sr-only">Next</span>
-        </IconButton>
+        </Button>
       </li>
     </ol>
   </nav>

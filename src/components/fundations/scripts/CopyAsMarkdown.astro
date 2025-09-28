@@ -1,0 +1,138 @@
+<script type="module">
+  // HTML to Markdown converter
+  function htmlToMarkdown(html) {
+    const temp = document.createElement("div");
+    temp.innerHTML = html;
+
+    function processNode(node) {
+      let result = "";
+
+      if (node.nodeType === Node.TEXT_NODE) {
+        return node.textContent || "";
+      }
+
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        const element = node;
+        const tagName = element.tagName.toLowerCase();
+        const children = Array.from(element.childNodes);
+        const childContent = children
+          .map((child) => processNode(child))
+          .join("");
+
+        switch (tagName) {
+          case "h1":
+            result = `# ${childContent}\n\n`;
+            break;
+          case "h2":
+            result = `## ${childContent}\n\n`;
+            break;
+          case "h3":
+            result = `### ${childContent}\n\n`;
+            break;
+          case "h4":
+            result = `#### ${childContent}\n\n`;
+            break;
+          case "h5":
+            result = `##### ${childContent}\n\n`;
+            break;
+          case "h6":
+            result = `###### ${childContent}\n\n`;
+            break;
+          case "p":
+            result = `${childContent}\n\n`;
+            break;
+          case "strong":
+          case "b":
+            result = `**${childContent}**`;
+            break;
+          case "em":
+          case "i":
+            result = `*${childContent}*`;
+            break;
+          case "code":
+            if (element.parentElement?.tagName.toLowerCase() === "pre") {
+              result = childContent;
+            } else {
+              result = `\`${childContent}\``;
+            }
+            break;
+          case "pre":
+            result = `\`\`\`\n${childContent}\n\`\`\`\n\n`;
+            break;
+          case "a":
+            const href = element.getAttribute("href") || "";
+            result = `[${childContent}](${href})`;
+            break;
+          case "ul":
+            result = `${childContent}\n`;
+            break;
+          case "ol":
+            result = `${childContent}\n`;
+            break;
+          case "li":
+            const parent = element.parentElement;
+            if (parent?.tagName.toLowerCase() === "ul") {
+              result = `- ${childContent}\n`;
+            } else if (parent?.tagName.toLowerCase() === "ol") {
+              const index = Array.from(parent.children).indexOf(element) + 1;
+              result = `${index}. ${childContent}\n`;
+            }
+            break;
+          case "blockquote":
+            result = `> ${childContent}\n\n`;
+            break;
+          case "br":
+            result = "\n";
+            break;
+          case "hr":
+            result = "---\n\n";
+            break;
+          default:
+            result = childContent;
+        }
+      }
+
+      return result;
+    }
+
+    let markdown = "";
+    Array.from(temp.childNodes).forEach((node) => {
+      markdown += processNode(node);
+    });
+
+    return markdown.replace(/\n{3,}/g, "\n\n").trim();
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const button = document.getElementById("copy-markdown");
+    const contentDiv = document.getElementById("markdown-content");
+
+    if (!button || !contentDiv) {
+      console.error("Missing button or content div.");
+      return;
+    }
+
+    button.addEventListener("click", async () => {
+      try {
+        // Get the HTML content from the prose wrapper
+        const proseWrapper = contentDiv.querySelector('[class*="prose"]');
+        const htmlContent = proseWrapper
+          ? proseWrapper.innerHTML
+          : contentDiv.innerHTML;
+
+        // Convert HTML back to markdown
+        const markdownContent = htmlToMarkdown(htmlContent);
+
+        await navigator.clipboard.writeText(markdownContent);
+
+        button.textContent = "Copied!";
+        setTimeout(() => {
+          button.textContent = "Copy page as Markdown";
+        }, 2000);
+      } catch (err) {
+        console.error("Failed to copy:", err);
+        button.textContent = "Error copying";
+      }
+    });
+  });
+</script>
