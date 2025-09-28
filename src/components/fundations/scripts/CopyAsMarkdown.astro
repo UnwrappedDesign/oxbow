@@ -112,6 +112,8 @@
       return;
     }
 
+    const originalLabel = button.textContent?.trim() ?? "Copy page Markdown";
+
     button.addEventListener("click", async () => {
       try {
         // Get the HTML content from the prose wrapper
@@ -127,11 +129,14 @@
 
         button.textContent = "Copied!";
         setTimeout(() => {
-          button.textContent = "Copy page as Markdown";
+          button.textContent = originalLabel;
         }, 2000);
       } catch (err) {
         console.error("Failed to copy:", err);
         button.textContent = "Error copying";
+        setTimeout(() => {
+          button.textContent = originalLabel;
+        }, 2000);
       }
     });
   });

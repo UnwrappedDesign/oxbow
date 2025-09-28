@@ -286,7 +286,7 @@ const nextNav = next
         >
           <article class="flex-1 space-y-10 lg:pr-12 py-8">
             <div class="grow">
-              <div class="flex items.center justify-between">
+              <div class="flex items-center justify-between">
                 <div>
                   {
                     breadcrumbs.length > 0 && (
@@ -328,42 +328,50 @@ const nextNav = next
                   }
                 </div>
 
-                <div class="relative hidden lg:block" x-data="{ open: false }">
+                <div
+                  class="relative"
+                  data-docs-tools
+                  x-data="{ open: false }"
+                  x-on:keydown.escape.window="open = false"
+                  x-on:click.outside="open = false"
+                >
                   <Button
                     id="docs-tools-toggle"
                     variant="muted"
-                    size="xxs"
+                    size="xs"
                     class="w-full justify-between text-xs text-base-900 dark:text-white"
                     aria-haspopup="menu"
-                    aria-expanded="false"
                     type="button"
-                    @click="open = !open"
-                    @keydown.escape.window="open = false"
-                    :aria-expanded="open"
+                    x-ref="docsToolsToggle"
+                    x-bind:aria-expanded="open"
+                    x-on:click="open = !open; if (open) { $nextTick(() => { if ($refs.docsToolsFirst) { $refs.docsToolsFirst.focus(); } }); }"
                   >
-                    Ask AI
+                    Page tools
                     <ChevronDown
                       slot="right-icon"
                       size="xs"
                       class="transition-transform duration-200"
-                      :class="open ? '-rotate-180' : ''"
+                      x-bind:class="open ? 'rotate-180' : ''"
                       data-docs-tools-icon
                     />
                   </Button>
                   <div
                     data-docs-tools-menu
+                    x-cloak
                     x-show="open"
-                    x-transition
-                    @click.outside="open = false"
+                    x-transition.origin-top-right
                     class="absolute right-0 z-20 mt-2 w-60 rounded-md border border-base-200 bg-white p-2 shadow-lg focus:outline-none dark:border-base-700 dark:bg-base-800"
                     role="menu"
                     aria-labelledby="docs-tools-toggle"
+                    x-on:keydown.escape.stop="open = false; if ($refs.docsToolsToggle) { $refs.docsToolsToggle.focus(); }"
                   >
                     <div class="flex flex-col">
                       <button
                         id="copy-markdown"
                         class="text-base-900 dark:text-white hover:text-accent-600 flex items-center w-full gap-2 rounded-md px-2 py-1.5 text-xs text-left"
                         role="menuitem"
+                        x-ref="docsToolsFirst"
+                        x-on:click="open = false"
                       >
                         <Markdown
                           slot="icon"
@@ -376,6 +384,7 @@ const nextNav = next
                         id="ask-chatgpt"
                         class="text-base-900 dark:text-white hover:text-accent-600 flex items-center w-full gap-2 rounded-md px-2 py-1.5 text-xs text-left"
                         role="menuitem"
+                        x-on:click="open = false"
                       >
                         <Gpt
                           slot="icon"
@@ -388,6 +397,7 @@ const nextNav = next
                         id="ask-claude"
                         class="text-base-900 dark:text-white hover:text-accent-600 flex items-center w-full gap-2 rounded-md px-2 py-1.5 text-xs text-left"
                         role="menuitem"
+                        x-on:click="open = false"
                       >
                         <Claude
                           slot="icon"
@@ -400,6 +410,8 @@ const nextNav = next
                         href="#_"
                         class="text-base-900 dark:text-white hover:text-accent-600 flex items-center w-full gap-2 rounded-md px-2 py-1.5 text-xs text-left"
                         role="menuitem"
+                        x-ref="docsToolsLast"
+                        x-on:click="open = false"
                       >
                         <GithubBrand
                           slot="icon"
