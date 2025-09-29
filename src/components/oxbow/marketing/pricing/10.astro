@@ -32,15 +32,13 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
 ---
 
 <section x-data="{ duration: 'monthly' }" class="bg-white dark:bg-zinc-900">
-  <div class="px-8 py-24 mx-auto max-w-7xl md:px-12 lg:px-32">
+  <div class="px-8 py-24 mx-auto max-w-7xl md:px-12 lg:px-20">
     <p class="text-center text-zinc-500 lg:hidden">
       Pricing table for desktop use
     </p>
     <!---- Use only from xl: -->
     <div class="hidden lg:block">
-      <div
-        class="flex flex-col max-w-sm text-center md:text-left"
-      >
+      <div class="flex flex-col max-w-sm text-center md:text-left">
         <Text
           tag="h1"
           variant="displayMD"
@@ -48,34 +46,34 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
         >
           Equip your business with great software
         </Text>
-         <div
-        aria-labelledby="pricing-toggle"
-        class="relative z-0 inline-flex w-full p-1 mx-auto mt-8 ml-auto overflow-hidden bg-white shadow justify-right dark:bg-zinc-900 ring-1 ring-zinc-200 dark:ring-zinc-700 ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52 dark:ring-offset-black"
-      >
         <div
-          class="absolute inset-0 bg-zinc-50 dark:bg-zinc-800 rounded-md transition-transform duration-200 ease-in-out"
-          :class="duration === 'monthly' ? 'w-1/2 translate-x-0' : 'w-1/2 translate-x-full'"
+          aria-labelledby="pricing-toggle"
+          class="relative z-0 inline-flex w-full p-1 mx-auto mt-8 ml-auto overflow-hidden bg-white shadow justify-right dark:bg-zinc-900 ring-1 ring-zinc-200 dark:ring-zinc-700 ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52 dark:ring-offset-black"
         >
+          <div
+            class="absolute inset-0 bg-zinc-50 dark:bg-zinc-800 rounded-md transition-transform duration-200 ease-in-out"
+            :class="duration === 'monthly' ? 'w-1/2 translate-x-0' : 'w-1/2 translate-x-full'"
+          >
+          </div>
+          <button
+            class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
+            :class="duration === 'monthly' ? 'text-zinc-600 dark:text-zinc-300' : 'focus:text-zinc-900 hover:text-zinc-900 dark:focus:text-zinc-100 dark:hover:text-zinc-100 dark:text-zinc-300'"
+            @click="duration = 'monthly'"
+            type="button"
+            :aria-pressed="duration === 'monthly'"
+          >
+            Monthly
+          </button>
+          <button
+            class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
+            :class="duration === 'annual' ? 'text-zinc-600 dark:text-zinc-300' : 'focus:text-zinc-900 hover:text-zinc-900 dark:focus:text-zinc-100 dark:hover:text-zinc-100 dark:text-zinc-300'"
+            @click="duration = 'annual'"
+            type="button"
+            :aria-pressed="duration === 'annual'"
+          >
+            Annual
+          </button>
         </div>
-        <button
-          class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-          :class="duration === 'monthly' ? 'text-zinc-600 dark:text-zinc-300' : 'focus:text-zinc-900 hover:text-zinc-900 dark:focus:text-zinc-100 dark:hover:text-zinc-100 dark:text-zinc-300'"
-          @click="duration = 'monthly'"
-          type="button"
-          :aria-pressed="duration === 'monthly'"
-        >
-          Monthly
-        </button>
-        <button
-          class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-          :class="duration === 'annual' ? 'text-zinc-600 dark:text-zinc-300' : 'focus:text-zinc-900 hover:text-zinc-900 dark:focus:text-zinc-100 dark:hover:text-zinc-100 dark:text-zinc-300'"
-          @click="duration = 'annual'"
-          type="button"
-          :aria-pressed="duration === 'annual'"
-        >
-          Annual
-        </button>
-      </div>
       </div>
       <table class="w-full mt-8 text-center bg-transparent mx-autom">
         <thead>
@@ -166,7 +164,11 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
                     >
                       Momentum
                     </Text>
-                    <Text tag="p" variant="textSM" class="mt-1 text-zinc-500 dark:text-zinc-400">
+                    <Text
+                      tag="p"
+                      variant="textSM"
+                      class="mt-1 text-zinc-500 dark:text-zinc-400"
+                    >
                       Designed for businesses.
                     </Text>
                   </div>
@@ -182,7 +184,9 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
                         data-annual="$39"
                         x-text="$el.dataset[duration]"></span>
                     </p>
-                    <div class="text-xs font-medium capitalize text-zinc-900 dark:text-white">
+                    <div
+                      class="text-xs font-medium capitalize text-zinc-900 dark:text-white"
+                    >
                       <span x-show="duration === 'monthly'">
                         <span x-show="duration === 'monthly'">
                           month</span
@@ -194,7 +198,10 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
                       >
                         annually</span
                       >
-                      <Text tag="p" variant="textXS" class="text-zinc-500 dark:text-zinc-400"
+                      <Text
+                        tag="p"
+                        variant="textXS"
+                        class="text-zinc-500 dark:text-zinc-400"
                         >USD + Local taxes</Text
                       >
                     </div>
@@ -257,7 +264,9 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
               class="px-2 text-xs font-medium border-t bg-zinc-50 border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 dark:text-white"
               >2</td
             >
-            <td class="px-2 border-t border-blue-100 text-zinc-900 dark:text-white bg-blue-50 dark:border-blue-900 dark:bg-blue-900">
+            <td
+              class="px-2 border-t border-blue-100 text-zinc-900 dark:text-white bg-blue-50 dark:border-blue-900 dark:bg-blue-900"
+            >
               <CircleCheck size="sm" class="mx-auto" />
             </td>
           </tr>
@@ -292,7 +301,9 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
             >
               <CircleX size="sm" class="mx-auto" />
             </td>
-            <td class="px-2 border-t border-blue-100 text-zinc-900 dark:text-white bg-blue-50 dark:border-blue-900 dark:bg-blue-900">
+            <td
+              class="px-2 border-t border-blue-100 text-zinc-900 dark:text-white bg-blue-50 dark:border-blue-900 dark:bg-blue-900"
+            >
               <CircleCheck size="sm" class="mx-auto" />
             </td>
           </tr>
@@ -309,7 +320,9 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
             >
               <CircleX size="sm" class="mx-auto" />
             </td>
-            <td class="px-2 border-t border-blue-100 text-zinc-900 dark:text-white bg-blue-50 dark:border-blue-900 dark:bg-blue-900">
+            <td
+              class="px-2 border-t border-blue-100 text-zinc-900 dark:text-white bg-blue-50 dark:border-blue-900 dark:bg-blue-900"
+            >
               <CircleCheck size="sm" class="mx-auto" />
             </td>
           </tr>
@@ -326,7 +339,9 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
             >
               <CircleX size="sm" class="mx-auto" />
             </td>
-            <td class="px-2 border-t border-blue-100 text-zinc-900 dark:text-white bg-blue-50 dark:border-blue-900 dark:bg-blue-900">
+            <td
+              class="px-2 border-t border-blue-100 text-zinc-900 dark:text-white bg-blue-50 dark:border-blue-900 dark:bg-blue-900"
+            >
               <CircleCheck size="sm" class="mx-auto" />
             </td>
           </tr>

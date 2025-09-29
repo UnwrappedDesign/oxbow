@@ -10,6 +10,16 @@
 - buttons: [10 components](https://oxbowui.com/playground/application/buttons)
 - pagination: [1 component](https://oxbowui.com/playground/application/pagination)
 
+## **2025-09-29**
+
+### Modified
+- navbars: [1 component](https://oxbowui.com/playground/application/navbars)
+- pagination: [7 components](https://oxbowui.com/playground/application/pagination)
+
+### Deleted
+- buttons: [10 components](https://oxbowui.com/playground/application/buttons)
+- pagination: [1 component](https://oxbowui.com/playground/application/pagination)
+
 ## **2025-09-27**
 
 ### Modified
