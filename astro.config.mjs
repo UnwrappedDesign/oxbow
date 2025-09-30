@@ -3,8 +3,8 @@ import netlify from "@astrojs/netlify";
 import node from "@astrojs/node";
 import sitemap from "@astrojs/sitemap";
 import alpinejs from "@astrojs/alpinejs";
-import tailwindcss from '@tailwindcss/vite';
-import { defineConfig } from 'astro/config';
+import tailwindcss from "@tailwindcss/vite";
+import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
 
 import react from "@astrojs/react";
@@ -26,7 +26,7 @@ export default defineConfig({
     devToolbar: false,
   },
   redirects: {
-    "/free-tools/home": "/free-tools",
+    "/tools/home": "/tools",
   },
   markdown: {
     drafts: true,
@@ -42,11 +42,16 @@ export default defineConfig({
     skipInline: false,
     drafts: true,
   },
-  site: 'https://oxbowui.com',
-  integrations: [sitemap(), mdx(), alpinejs({ entrypoint: 'src/alpine' }), react()],
-  adapter: localhost ? node({ mode: 'standalone' }) : netlify(),
-  output: 'server',
+  site: "https://oxbowui.com",
+  integrations: [
+    sitemap(),
+    mdx(),
+    alpinejs({ entrypoint: "src/alpine" }),
+    react(),
+  ],
+  adapter: localhost ? node({ mode: "standalone" }) : netlify(),
+  output: "server",
   vite: {
-    plugins: [tailwindcss()]
-  }
+    plugins: [tailwindcss()],
+  },
 });

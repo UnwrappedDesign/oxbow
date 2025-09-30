@@ -192,12 +192,12 @@ export default function ColorPalette() {
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex items-center gap-2 px-3 py-2 text-sm rounded-md border border-zinc-200 bg-white text-zinc-700 h-[38px]"
+            className="inline-flex items-center gap-2 px-3 py-2 text-sm rounded-md border border-zinc-200 bg-white text-zinc-700 h-[38px] dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-200"
             aria-haspopup="menu"
             aria-expanded={open}
             title="Change copy format"
           >
-            <span className="text-zinc-500">Format:</span>
+            <span className="text-zinc-500 dark:text-zinc-400">Format:</span>
             <span className="font-mono">{format}</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -216,7 +216,7 @@ export default function ColorPalette() {
           {open && (
             <div
               role="menu"
-              className="absolute left-0 top-full z-50 mt-2 w-52 origin-top-left rounded-xl outline outline-zinc-100 shadow bg-white text-[13px] text-zinc-600 divide-y divide-zinc-100"
+              className="absolute left-0 top-full z-50 mt-2 w-52 origin-top-left rounded-xl outline outline-zinc-100 shadow bg-white text-[13px] text-zinc-600 divide-y divide-zinc-100 dark:outline-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:divide-zinc-800 dark:shadow-lg"
             >
               <div className="py-2">
                 {(['var','hex','rgb','hsl','oklch'] as Format[]).map((opt) => (
@@ -224,7 +224,7 @@ export default function ColorPalette() {
                     key={opt}
                     role="menuitem"
                     onClick={() => { setFormat(opt); setOpen(false); }}
-                    className="w-full flex items-center justify-between px-3 py-1.5 hover:bg-zinc-100"
+                    className="w-full flex items-center justify-between px-3 py-1.5 hover:bg-zinc-100 dark:hover:bg-zinc-800"
                   >
                     <span className="font-mono">{opt}</span>
                     {format === opt && (
@@ -235,7 +235,7 @@ export default function ColorPalette() {
                   </button>
                 ))}
               </div>
-              <div className="px-3 py-2 text-xs text-zinc-500">
+              <div className="px-3 py-2 text-xs text-zinc-500 dark:text-zinc-400">
                 Tip: clicking a swatch copies in this format.
               </div>
             </div>
@@ -246,13 +246,13 @@ export default function ColorPalette() {
           placeholder="Filter colors (e.g., charcoal, sky)"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="flex-1 px-3 py-2 text-sm text-zinc-900 placeholder:text-zinc-400 bg-white border rounded-md outline-none border-zinc-200 focus:border-zinc-300 h-[38px]"
+          className="flex-1 px-3 py-2 text-sm text-zinc-900 placeholder:text-zinc-400 bg-white border rounded-md outline-none border-zinc-200 focus:border-zinc-300 h-[38px] dark:text-zinc-100 dark:placeholder:text-zinc-500 dark:bg-zinc-900 dark:border-zinc-700 dark:focus:border-zinc-600"
         />
       </div>
       <div className="space-y-8">
         {list.map((family) => (
           <section key={family}>
-            <div className="mb-2 text-sm font-medium capitalize text-zinc-700">{family}</div>
+            <div className="mb-2 text-sm font-medium capitalize text-zinc-700 dark:text-zinc-200">{family}</div>
             <div className="grid gap-2 grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-10">
               {shades.map((shade) => {
                 const variable = cssVariableName(family, shade);
@@ -266,14 +266,14 @@ export default function ColorPalette() {
                         copy(value, key);
                       }}
                       title={`Click to copy ${variable}`}
-                      className="relative h-14 rounded-md transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                      className="relative h-14 rounded-md transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 dark:focus-visible:ring-offset-zinc-900"
                       style={{ backgroundColor: `var(${variable})` }}
                     >
                       {copiedKey === key && (
                         <span className="absolute inset-0 grid text-[0.70rem] font-mono place-items-center rounded-md bg-black/40 text-white">Copied</span>
                       )}
                     </button>
-                    <span className="mt-1 text-[0.70rem] font-mono text-zinc-600">{shade}</span>
+                    <span className="mt-1 text-[0.70rem] font-mono text-zinc-600 dark:text-zinc-400">{shade}</span>
                   </div>
                 );
               })}

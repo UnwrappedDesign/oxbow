@@ -1,5 +1,6 @@
 "use client";
-import { useState, useRef, useCallback, useMemo } from "react";
+import { useState, useRef, useCallback, useMemo, useEffect } from "react";
+import type { Highlighter } from "shiki";
 import { X, ArrowDownRight } from "lucide-react";
 import { Rnd } from "react-rnd";
 interface GridItem {
@@ -17,7 +18,14 @@ export default function GridGenerator() {
   const [format, setFormat] = useState("jsx");
   const [isCopied, setIsCopied] = useState(false);
   const [isResizing, setIsResizing] = useState(false);
+  const [highlightedCode, setHighlightedCode] = useState<string>("");
+  const [highlightFailed, setHighlightFailed] = useState(false);
   const gridRef = useRef<HTMLDivElement>(null);
+  const highlighterCache = useRef<{
+    highlighter: Highlighter | null;
+    themeName: string;
+    loading: Promise<void> | null;
+  }>({ highlighter: null, themeName: "css-variables", loading: null });
   const gapSize = gap * 2; // Convert gap to pixels
   const getCellHeight = useCallback(
     () => 96,
@@ -51,7 +59,7 @@ export default function GridGenerator() {
   const handleRemoveItem = (id: string) => {
     setItems(items.filter((item) => item.id !== id));
   };
-  const onResizeStart = (id: string) => {
+  const onResizeStart = (_id: string) => {
     setIsResizing(true);
   };
   const onResizeStop = (
@@ -131,11 +139,60 @@ export default function GridGenerator() {
   const handleReset = () => {
     setItems([]);
   };
+  useEffect(() => {
+    let cancelled = false;
+    const highlight = async () => {
+      const code = generateCode;
+      if (!code) {
+        setHighlightedCode("");
+        return;
+      }
+      try {
+        if (!highlighterCache.current.highlighter) {
+          if (!highlighterCache.current.loading) {
+            highlighterCache.current.loading = (async () => {
+              const { createHighlighter, createCssVariablesTheme } = await import("shiki");
+              const theme = createCssVariablesTheme({ name: "css-variables" });
+              highlighterCache.current.themeName = theme.name;
+              highlighterCache.current.highlighter = await createHighlighter({
+                themes: [theme],
+                langs: ["html", "jsx", "tsx"],
+              });
+            })();
+          }
+          await highlighterCache.current.loading;
+        }
+        if (!highlighterCache.current.highlighter) return;
+        const lang = format === "html" ? "html" : "tsx";
+        const html: string = await highlighterCache.current.highlighter.codeToHtml(
+          code,
+          {
+            lang,
+            theme: highlighterCache.current.themeName,
+          },
+        );
+        if (!cancelled) {
+          setHighlightedCode(html);
+          setHighlightFailed(false);
+        }
+      } catch (error) {
+        console.error("Failed to highlight grid output", error);
+        if (!cancelled) {
+          setHighlightedCode("");
+          setHighlightFailed(true);
+        }
+      }
+    };
+    highlight();
+    return () => {
+      cancelled = true;
+    };
+  }, [generateCode, format]);
   return (
-    <div >
-      <div className="w-full grid grid-cols-3 md:grid-cols-4 gap-2 ">
+    <div>
+      <div className="w-full grid grid-cols-3 md:grid-cols-4 gap-2">
         <div className="flex flex-col gap-1">
-          <label htmlFor="columns" className="text-sm text-zinc-500 ">
+          <label htmlFor="columns" className="text-sm text-zinc-500 dark:text-zinc-400">
             Columns
           </label>
           <input
@@ -145,11 +202,11 @@ export default function GridGenerator() {
             max={12}
             value={columns}
             onChange={(e) => setColumns(Number(e.target.value))}
-            className="w-full h-10 px-3 py-2 text-sm bg-white border rounded-lg appearance-none focus:outline-none focus:ring-0 focus:border-zinc-200 text-zinc-600 border-zinc-100 leading-6 transition-colors duration-200 ease-in-out"
+            className="w-full h-10 px-3 py-2 text-sm bg-white dark:bg-base-800 border rounded-lg appearance-none focus:outline-none focus:ring-0 focus:border-zinc-200 dark:focus:border-white/20 text-zinc-600 dark:text-zinc-100 border-zinc-100 dark:border-white/10 leading-6 transition-colors duration-200 ease-in-out"
           />
         </div>
         <div className="flex flex-col gap-1">
-          <label htmlFor="rows" className="text-sm text-zinc-500 ">
+          <label htmlFor="rows" className="text-sm text-zinc-500 dark:text-zinc-400">
             Rows
           </label>
           <input
@@ -159,11 +216,11 @@ export default function GridGenerator() {
             max={12}
             value={rows}
             onChange={(e) => setRows(Number(e.target.value))}
-            className="w-full h-10 px-3 py-2 text-sm bg-white border rounded-lg appearance-none focus:outline-none focus:ring-0 focus:border-zinc-200 text-zinc-600 border-zinc-100 leading-6 transition-colors duration-200 ease-in-out"
+            className="w-full h-10 px-3 py-2 text-sm bg-white dark:bg-base-800 border rounded-lg appearance-none focus:outline-none focus:ring-0 focus:border-zinc-200 dark:focus:border-white/20 text-zinc-600 dark:text-zinc-100 border-zinc-100 dark:border-white/10 leading-6 transition-colors duration-200 ease-in-out"
           />
         </div>
         <div className="flex flex-col gap-1">
-          <label htmlFor="gap" className="text-sm text-zinc-500 ">
+          <label htmlFor="gap" className="text-sm text-zinc-500 dark:text-zinc-400">
             Gap
           </label>
           <input
@@ -173,17 +230,17 @@ export default function GridGenerator() {
             max={16}
             value={gap}
             onChange={(e) => setGap(Number(e.target.value))}
-            className="w-full h-10 px-3 py-2 text-sm bg-white border rounded-lg appearance-none focus:outline-none focus:ring-0 focus:border-zinc-200 text-zinc-600 border-zinc-100 leading-6 transition-colors duration-200 ease-in-out"
+            className="w-full h-10 px-3 py-2 text-sm bg-white dark:bg-base-800 border rounded-lg appearance-none focus:outline-none focus:ring-0 focus:border-zinc-200 dark:focus:border-white/20 text-zinc-600 dark:text-zinc-100 border-zinc-100 dark:border-white/10 leading-6 transition-colors duration-200 ease-in-out"
           />
         </div>
       </div>
       <div
-        className="relative w-full my-4 "
+        className="relative w-full my-4"
       >
         <div
           ref={gridRef}
           className={`
-              grid font-mono text-black     text-sm text-center font-bold  w-full h-full
+              grid font-mono text-zinc-900 dark:text-zinc-100 text-sm text-center font-bold w-full h-full
               grid-cols-${columns} grid-rows-${rows}
             `}
           style={{
@@ -197,10 +254,10 @@ export default function GridGenerator() {
             return (
               <div
                 key={index}
-                className="relative flex items-center justify-center p-8 text-2xl bg-white cursor-pointer  rounded-xl shadow-oxbow"
+                className="relative flex items-center justify-center p-8 text-2xl bg-white dark:bg-base-800 cursor-pointer rounded-xl shadow-oxbow border border-zinc-100 dark:border-white/10"
                 onClick={() => handleAddItem(x, y)}
               >
-                +
+                <span className="text-zinc-400 dark:text-zinc-500">+</span>
               </div>
             );
           })}
@@ -227,30 +284,30 @@ export default function GridGenerator() {
               onResizeStop(item.id, delta)
             }
             onDragStop={(e, data) => onDragStop(item.id, data)}
-            className="relative flex items-center justify-center p-4 bg-white cursor-pointer  outline-2 rounded-xl outline-blue-600"
+            className="relative flex items-center justify-center p-4 bg-white dark:bg-base-800 cursor-pointer outline-2 rounded-xl outline-blue-600 dark:outline-accent-400/70 border border-blue-100 dark:border-white/10"
           >
             <button
               onClick={() => handleRemoveItem(item.id)}
               onTouchEnd={() => handleRemoveItem(item.id)}
-              className="absolute z-10 top-4 right-4  text-zinc-500 hover:text-black"
+              className="absolute z-10 top-4 right-4 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200"
               aria-label={`Remove item ${item.id}`}
             >
               <X className="size-4" />
             </button>
-            <span className="text-black ">{item.id.replace("item-", "")}</span>
-            <div className="absolute flex items-center justify-center rounded-bl bottom-4 right-4 ">
-              <ArrowDownRight className="text-black size-4 " />
+            <span className="text-zinc-900 dark:text-zinc-100">{item.id.replace("item-", "")}</span>
+            <div className="absolute flex items-center justify-center rounded-bl bottom-4 right-4">
+              <ArrowDownRight className="text-zinc-900 dark:text-zinc-100 size-4" />
             </div>
           </Rnd>
         ))}
       </div>
       <div className="flex flex-col justify-between w-full pt-4 md:flex-row md:items-center">
-        <h3 className="text-zinc-900 ">Get your code</h3>
-        <div className="flex items-center gap-2 ">
+        <h3 className="text-zinc-900 dark:text-zinc-100">Get your code</h3>
+        <div className="flex items-center gap-2">
           <button
             className={`
-                    flex items-center justify-center text-center shadow-subtle font-medium duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 text-black bg-white hover:bg-zinc-100 focus:outline-zinc-900 h-7 px-4 py-2 text-xs rounded-md w-full  
-                    ${format === "html" ? "!outline-zinc-700" : " "}
+                    flex items-center justify-center text-center shadow-subtle font-medium duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-base-800 hover:bg-zinc-100 dark:hover:bg-base-800 focus:outline-zinc-900 dark:focus:outline-base-100 h-7 px-4 py-2 text-xs rounded-md w-full
+                    ${format === "html" ? "!outline-zinc-700 dark:!outline-base-200" : "text-zinc-500 dark:text-zinc-400"}
                   `}
             onClick={() => setFormat("html")}
           >
@@ -258,31 +315,42 @@ export default function GridGenerator() {
           </button>
           <button
             className={`
-                  flex items-center justify-center text-center shadow-subtle font-medium duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 text-black bg-white hover:bg-zinc-100 focus:outline-zinc-900 h-7 px-4 py-2 text-xs rounded-md w-full  
-                    ${format === "jsx" ? "!outline-zinc-700" : ""}
+                  flex items-center justify-center text-center shadow-subtle font-medium duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-base-800 hover:bg-zinc-100 dark:hover:bg-base-800 focus:outline-zinc-900 dark:focus:outline-base-100 h-7 px-4 py-2 text-xs rounded-md w-full
+                    ${format === "jsx" ? "!outline-zinc-700 dark:!outline-base-200" : "text-zinc-500 dark:text-zinc-400"}
                   `}
             onClick={() => setFormat("jsx")}
           >
             JSX
           </button>
           <button
-            className="flex items-center justify-center w-full px-4 py-2 text-xs font-medium text-center text-black bg-white shadow-subtle duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 hover:bg-zinc-100 focus:outline-zinc-900 h-7 rounded-md "
+            className="flex items-center justify-center w-full px-4 py-2 text-xs font-medium text-center text-zinc-900 dark:text-zinc-100 bg-white dark:bg-base-800 shadow-subtle duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 hover:bg-zinc-100 dark:hover:bg-base-800 focus:outline-zinc-900 dark:focus:outline-base-100 h-7 rounded-md"
             onClick={handleReset}
           >
             Reset
           </button>
           <button
-            className="flex items-center justify-center w-24 px-4 py-2 text-xs font-medium text-center text-black bg-white shadow-subtle duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 hover:bg-zinc-100 focus:outline-zinc-900 h-7 rounded-md"
+            className="flex items-center justify-center w-24 px-4 py-2 text-xs font-medium text-center text-zinc-900 dark:text-zinc-100 bg-white dark:bg-base-800 shadow-subtle duration-500 ease-in-out transition-colors focus:outline-2 focus:outline-offset-2 hover:bg-zinc-100 dark:hover:bg-base-800 focus:outline-zinc-900 dark:focus:outline-base-100 h-7 rounded-md"
             onClick={handleCopy}
           >
             {isCopied ? "Copied!" : "Copy"}
           </button>
         </div>
       </div>
-      <div className="p-4 mt-2 bg-white shadow-oxbow rounded-xl ">
-        <pre className="overflow-x-auto text-xs text-zinc-500 ">
-          <code>{generateCode}</code>
-        </pre>
+      <div className="mt-2">
+        <div className="shadow-oxbow border border-zinc-100 dark:border-white/10 rounded-xl overflow-hidden text-xs">
+          {highlightedCode ? (
+            <div dangerouslySetInnerHTML={{ __html: highlightedCode }} />
+          ) : (
+            <pre className="astro-code">
+              <code>{generateCode}</code>
+            </pre>
+          )}
+        </div>
+        {highlightFailed && (
+          <p className="mt-2 text-xs text-amber-600 dark:text-amber-400">
+            Syntax highlighting is temporarily unavailable; showing plain text.
+          </p>
+        )}
       </div>
     </div>
   );

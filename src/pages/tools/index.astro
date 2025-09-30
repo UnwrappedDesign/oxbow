@@ -9,19 +9,19 @@ const site = (Astro.site && Astro.site.toString()) || "https://oxbowui.com";
 const list = [
   {
     name: "Tailwind CSS grid generator",
-    path: "/free-tools/tailwind-css-grid-generator",
+    path: "/tools/tailwind-css-grid-generator",
     description:
       "Generate responsive Tailwind CSS grid layouts and copy classes.",
   },
   {
     name: "Tailwind CSS gradient generator",
-    path: "/free-tools/tailwind-css-gradient-generator",
+    path: "/tools/tailwind-css-gradient-generator",
     description:
       "Build smooth gradients and get the Tailwind classes instantly.",
   },
   {
     name: "Tailwind CSS color palette",
-    path: "/free-tools/tailwind-css-color-palette",
+    path: "/tools/tailwind-css-color-palette",
     description: "Browse all Tailwind colors and copy utility classes quickly.",
   },
 ];
@@ -56,17 +56,21 @@ const description =
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         {
           list.map((item) => (
-            <div class="relative flex flex-col h-full p-4 bg-white rounded-xl outline-transparent">
+            <div class="relative flex flex-col h-full p-4 bg-white rounded-xl outline-transparent dark:bg-base-800">
               <a class="absolute inset-0 z-10" href={item.path} />
               <div>
                 <Text
                   tag="h3"
                   variant="textSM"
-                  class="font-medium  text-zinc-900"
+                  class="font-medium  text-base-900 dark:text-white"
                 >
                   {item.name}
                 </Text>
-                <Text tag="p" variant="textSM" class="mt-2 text-zinc-500">
+                <Text
+                  tag="p"
+                  variant="textSM"
+                  class="mt-2 text-base-500 dark:text-base-400"
+                >
                   {item.description}
                 </Text>
               </div>
