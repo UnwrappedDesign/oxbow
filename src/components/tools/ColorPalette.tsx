@@ -1,22 +1,22 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 const families = [
-  'slate','gray','zinc','neutral','stone',
-  'red','orange','amber','yellow','lime','green','emerald','teal','cyan','sky','blue','indigo','violet','purple','fuchsia','pink','rose',
+  'charcoal','metal','haiti','purple','blueBerry','blue','sky','turquoise',
+  'persianGreen','pastelGreen','grass','carrot','orange','red','raspberry','fuchsia',
 ];
-const shades = [50,100,200,300,400,500,600,700,800,900,950] as const;
+const shades = [50,100,200,300,400,500,600,700,800,900] as const;
 
-function className(family: string, shade: number) {
-  return `bg-${family}-${shade}`;
+function cssVariableName(family: string, shade: number) {
+  return `--color-${family}-${shade}`;
 }
 
-type Format = 'class' | 'hex' | 'rgb' | 'hsl' | 'oklch' | 'var';
+type Format = 'var' | 'hex' | 'rgb' | 'hsl' | 'oklch';
 
 export default function ColorPalette() {
   const [query, setQuery] = useState('');
-  const [ setCopied] = useState<string>('');
+  const [, setCopied] = useState<string>('');
   const [copiedKey, setCopiedKey] = useState<string>('');
-  const [format, setFormat] = useState<Format>('class');
+  const [format, setFormat] = useState<Format>('var');
   const [open, setOpen] = useState(false);
   const cacheRef = useRef<Record<string, string>>({});
   const dropdownRef = useRef<HTMLDivElement | null>(null);
@@ -36,20 +36,20 @@ export default function ColorPalette() {
     } catch {}
   }
 
-  function getComputedBg(cls: string): string | null {
-    if (cacheRef.current[cls]) return cacheRef.current[cls];
+  function getComputedBg(variable: string): string | null {
+    if (cacheRef.current[variable]) return cacheRef.current[variable];
     try {
       const el = document.createElement('div');
-      el.className = `${cls}`;
       el.style.position = 'absolute';
       el.style.left = '-9999px';
       el.style.top = '-9999px';
       el.style.width = '1px';
       el.style.height = '1px';
+      el.style.backgroundColor = `var(${variable})`;
       document.body.appendChild(el);
       const color = getComputedStyle(el).backgroundColor || '';
       document.body.removeChild(el);
-      cacheRef.current[cls] = color;
+      cacheRef.current[variable] = color;
       return color;
     } catch {
       return null;
@@ -154,34 +154,12 @@ export default function ColorPalette() {
     return [+(L).toFixed(2), +C.toFixed(2), +H.toFixed(0)];
   }
 
-  function formatValue(family: string, shade: number): string {
-    const cls = className(family, shade);
-    const varName = `--color-${family}-${shade}`;
-    if (format === 'class') return `bg-${family}-${shade}`;
-    if (format === 'var') return varName;
-    const bg = getComputedBg(cls);
-    const rgb = bg ? rgbFromCss(bg) : null;
-    if (!rgb) return `bg-${family}-${shade}`;
-    if (format === 'hex') return toHex(rgb).toLowerCase();
-    if (format === 'rgb') return `${rgb[0]} ${rgb[1]} ${rgb[2]}`;
-    if (format === 'hsl') {
-      const [h, s, l] = toHsl(rgb);
-      return `${h} ${s}% ${l}%`;
-    }
-    if (format === 'oklch') {
-      const [L, C, H] = toOKLCH(rgb);
-      return `oklch(${L} ${C} ${H})`;
-    }
-    return `bg-${family}-${shade}`;
-  }
-
   function formatValueFromEl(el: HTMLElement, family: string, shade: number): string {
-    const cls = className(family, shade);
-    if (format === 'class') return `bg-${family}-${shade}`;
-    if (format === 'var') return `--color-${family}-${shade}`;
-    const bg = getComputedStyle(el).backgroundColor || getComputedBg(cls);
+    const variable = cssVariableName(family, shade);
+    if (format === 'var') return variable;
+    const bg = getComputedStyle(el).backgroundColor || getComputedBg(variable);
     const rgb = bg ? rgbFromCss(bg) : null;
-    if (!rgb) return `bg-${family}-${shade}`;
+    if (!rgb) return variable;
     if (format === 'hex') return toHex(rgb).toLowerCase();
     if (format === 'rgb') return `${rgb[0]} ${rgb[1]} ${rgb[2]}`;
     if (format === 'hsl') {
@@ -192,7 +170,7 @@ export default function ColorPalette() {
       const [L, C, H] = toOKLCH(rgb);
       return `oklch(${L} ${C} ${H})`;
     }
-    return `bg-${family}-${shade}`;
+    return variable;
   }
 
   useEffect(() => {
@@ -241,7 +219,7 @@ export default function ColorPalette() {
               className="absolute left-0 top-full z-50 mt-2 w-52 origin-top-left rounded-xl outline outline-zinc-100 shadow bg-white text-[13px] text-zinc-600 divide-y divide-zinc-100"
             >
               <div className="py-2">
-                {(['class','hex','rgb','hsl','oklch','var'] as Format[]).map((opt) => (
+                {(['var','hex','rgb','hsl','oklch'] as Format[]).map((opt) => (
                   <button
                     key={opt}
                     role="menuitem"
@@ -265,7 +243,7 @@ export default function ColorPalette() {
         </div>
         <input
           type="text"
-          placeholder="Filter colors (e.g., blue, gray)"
+          placeholder="Filter colors (e.g., charcoal, sky)"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           className="flex-1 px-3 py-2 text-sm text-zinc-900 placeholder:text-zinc-400 bg-white border rounded-md outline-none border-zinc-200 focus:border-zinc-300 h-[38px]"
@@ -275,9 +253,9 @@ export default function ColorPalette() {
         {list.map((family) => (
           <section key={family}>
             <div className="mb-2 text-sm font-medium capitalize text-zinc-700">{family}</div>
-            <div className="color-grid">
+            <div className="grid gap-2 grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-10">
               {shades.map((shade) => {
-                const cls = className(family, shade);
+                const variable = cssVariableName(family, shade);
                 const label = `${family}-${shade}`;
                 const key = label;
                 return (
@@ -287,8 +265,9 @@ export default function ColorPalette() {
                         const value = formatValueFromEl(e.currentTarget as HTMLElement, family, shade);
                         copy(value, key);
                       }}
-                      title={`Click to copy`}
-                      className={`relative h-14 rounded-md ${cls}`}
+                      title={`Click to copy ${variable}`}
+                      className="relative h-14 rounded-md transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                      style={{ backgroundColor: `var(${variable})` }}
                     >
                       {copiedKey === key && (
                         <span className="absolute inset-0 grid text-[0.70rem] font-mono place-items-center rounded-md bg-black/40 text-white">Copied</span>
@@ -302,29 +281,6 @@ export default function ColorPalette() {
           </section>
         ))}
       </div>
-
-      <style jsx>{`
-        .color-grid {
-          display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 0.5rem;
-        }
-        @media (min-width: 640px) {
-          .color-grid {
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-          }
-        }
-        @media (min-width: 768px) {
-          .color-grid {
-            grid-template-columns: repeat(6, minmax(0, 1fr));
-          }
-        }
-        @media (min-width: 1024px) {
-          .color-grid {
-            grid-template-columns: repeat(11, minmax(0, 1fr));
-          }
-        }
-      `}</style>
     </div>
   );
 }
