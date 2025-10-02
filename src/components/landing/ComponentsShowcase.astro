@@ -1,0 +1,117 @@
+---
+import Text from "@/components/fundations/typography/Text.astro";
+import EntryStructure from "@/components/landing/EntryStructure.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+//
+//
+// Marketing
+import { pageSections } from "@/data/entries.json";
+import { pageExamples } from "@/data/entries.json";
+//
+//
+// Application
+import { forms, elements, overlay, navigation } from "@/data/entries.json";
+//
+//
+// Ecommerce
+import { storeSections } from "@/data/entries.json";
+
+const groupedEntries = [
+  {
+    id: "marketing",
+    title: "Marketing",
+    description:
+      "Heroes, pricing, features, footers, everything you need to make a landing page that looks legit instead of a template graveyard.",
+    groups: [
+      { id: "pageSections", label: "Page sections", data: pageSections },
+      { id: "pageExamples", label: "Landing Pages", data: pageExamples },
+    ],
+  },
+  {
+    id: "application",
+    title: "Application",
+    description:
+      "Navs, buttons, forms, layouts, all the boring but necessary pieces that stop your app from looking like a hackathon project.",
+    groups: [
+      { id: "navigation", label: "Navigation", data: navigation },
+      { id: "overlay", label: "Overlay", data: overlay },
+      { id: "forms", label: "Forms", data: forms },
+      { id: "elements", label: "Elements", data: elements },
+    ],
+  },
+  {
+    id: "ecommerce",
+    title: "eCommerce",
+    description:
+      "Carts, checkouts, promos, product pages, basically everything except the product itself. That part’s on you.",
+    groups: [{ id: "storeSections", label: "Pages", data: storeSections }],
+  },
+];
+---
+<section
+  data-fast-goal="navigated-to-components"
+  x-data="{ tab: 'marketing', setTab(id){ this.tab = id; history.replaceState({}, '', `#${id}`) } }"
+  x-init="(() => { const id = location.hash?.slice(1); if (id) tab = id })()"
+>
+  <Wrapper variant="standard" class="py-12">
+    <nav class="relative flex space-x-2 w-fit" role="tablist" aria-label="Components sections">
+      {groupedEntries.map(({ id, title }) => (
+        <a
+          role="tab"
+          href={`#${id}`}
+          data-id={id}
+          @click.prevent="setTab($el.dataset.id)"
+          :aria-selected={`tab === '${id}'`}
+          class="inline-flex items-center justify-center px-2 text-xs h-7 rounded-md outline outline-1 outline-base-200 transition-colors dark:outline-base-700 dark:text-base-300"
+          :class={`tab === '${id}' ? 'text-accent-600 bg-base-100 shadow-subtle shadow-base-500/20 dark:text-accent-400 dark:bg-base-800 dark:shadow-base-900/40' : 'text-base-700 hover:text-accent-600 dark:text-base-300 dark:hover:text-accent-300'`}
+        >{title}</a>
+      ))}
+    </nav>
+  </Wrapper>
+  {groupedEntries.map(({ id, title, description, groups }) => {
+    const firstGroup = groups[0]?.id || '';
+    return (
+      <section
+        id={id}
+        x-show={`tab === '${id}'`}
+        x-cloak
+        style={id === 'marketing' ? '' : 'display:none'}
+        x-data={`{ inner: '${firstGroup}', setInner(id){ this.inner = id } }`}
+      >
+        <Wrapper variant="standard">
+          <section class="flex flex-col scroll-mt-24">
+            <div>
+              <Text tag="p" variant="textSM" class="max-w-md  text-base-600 dark:text-base-400 md:text-balance">{description}</Text>
+              {/* Nested tabs for groups */}
+              <nav class="flex items-center mt-12 gap-2 w-fit" role="tablist" aria-label={`${title} groups`}>
+                {groups.map(({ id: groupId, label }) => (
+                  <a
+                    role="tab"
+                    href={`#${id}-${groupId}`}
+                    data-id={groupId}
+                    @click.prevent="setInner($el.dataset.id)"
+                    class="inline-flex items-center justify-center px-2 text-xs h-7 rounded-md outline outline-1 outline-base-200 transition-colors dark:outline-base-700 dark:text-base-300"
+                    :class={`inner === '${groupId}' ? 'text-accent-600 bg-base-100 shadow-subtle shadow-base-500/20 dark:text-accent-400 dark:bg-base-800 dark:shadow-base-900/40' : 'text-base-700 hover:text-accent-600 dark:text-base-300 dark:hover:text-accent-300'`}
+                  >{label}</a>
+                ))}
+              </nav>
+              <div class="mt-8">
+                {groups.map(({ id: groupId, label, data }, idx) => (
+                  <div
+                    id={groupId}
+                    x-show={`inner === '${groupId}'`}
+                    x-cloak
+                    style={idx === 0 ? '' : 'display:none'}
+                    class="flex flex-col gap-6"
+                  >
+                    <EntryStructure entries={data} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        </Wrapper>
+      </section>
+    );
+  })}
+</section>

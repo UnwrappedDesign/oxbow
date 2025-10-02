@@ -10,9 +10,8 @@
 @custom-variant dark (&:where(.dark, .dark *, [data-theme=dark], [data-theme=dark] *));
 @theme {
   /* Typography */
-  --font-sans: Geist, sans-serif;
-  --font-mono: Geist Mono, monospace;
-  --font-serif: Instrument Serif, serif;
+ --font-sans: "Overused Grotesk", Inter, sans-serif;
+
   /* blues */
   --color-blue-light: #60beff;
   --color-blue: #1da8ff;
@@ -27,17 +26,17 @@
   --color-orange: #fa5925;
   --color-orange-dark: #fd4202;
   /* Colors */
- --color-accent-50: oklch(0.965 0.015 273.9);
-  --color-accent-100: oklch(0.923 0.035 271.59);
-  --color-accent-200: oklch(0.854 0.068 269.37);
-  --color-accent-300: oklch(0.779 0.107 266.88);
-  --color-accent-400: oklch(0.71 0.142 263.28);
-  --color-accent-500: oklch(0.637 0.186 257.83);
-  --color-accent-600: oklch(0.537 0.169 256.53);
-  --color-accent-700: oklch(0.435 0.137 256.38);
-  --color-accent-800: oklch(0.339 0.107 256.49);
-  --color-accent-900: oklch(0.235 0.074 256.59);
-  --color-accent-950: oklch(0.19 0.058 256.6);
+ --color-accent-50: oklch(0.961 0.035 145.24);
+  --color-accent-100: oklch(0.914 0.09 144.78);
+  --color-accent-200: oklch(0.833 0.127 144.32);
+  --color-accent-300: oklch(0.764 0.118 144.31);
+  --color-accent-400: oklch(0.688 0.105 144.32);
+  --color-accent-500: oklch(0.61 0.094 144.32);
+  --color-accent-600: oklch(0.535 0.083 144.29);
+  --color-accent-700: oklch(0.466 0.071 144.33);
+  --color-accent-800: oklch(0.388 0.06 144.32);
+  --color-accent-900: oklch(0.263 0.041 144.3);
+  --color-accent-950: oklch(0.193 0.029 144.33);
   /* base*/
 --color-base-50: oklch(0.985 0 0);
   --color-base-100: oklch(0.97 0 0);
@@ -53,26 +52,53 @@
   
  
 }
+@font-face {
+  font-family: "Overused Grotesk";
+  src: url("https://raw.githubusercontent.com/RandomMaerks/Overused-Grotesk/master/fonts/variable/OverusedGroteskRoman-VF.ttf")
+    format("truetype-variations");
+  font-weight: 300 900;
+  font-display: swap;
+  font-style: normal;
+}
+@supports (font-variation-settings: normal) {
+  :root {
+    font-family: "Overused Grotesk", sans-serif;
+  }
+}
 :root {
-  font-family: "Geist", sans-serif;
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "Overused Grotesk", Inter, sans-serif;
   font-feature-settings:
     "liga" 1,
-    "calt" 1;
+    "calt" 1; /* fix for Chrome */
   font-variant-numeric: tabular-nums;
-  
-  /* test*/
-  --shiki-token-string-expression: var(--color-accent-600);
-  --shiki-token-function: var(--color-base-500);
-  --shiki-foreground: var(--color-base-400);
-  /* Shiki css-variables theme support */
-  --shiki-color-text: var(--color-base-400);
-  --shiki-color-background: var(--color-base-50);
-  --shiki-token-comment: var(--color-base-400);
-  --shiki-token-string: var(--color-accent-600);
-  --shiki-token-constant: var(--color-accent-600);
-  --shiki-token-keyword: var(--color-accent-600);
-  --shiki-token-parameter: var(--color-base-400);
-  --shiki-token-punctuation: var(--color-base-400);
+  --shiki-token-string-expression: var(--color-charcoal-500);
+  --shiki-token-function: var(--color-charcoal-700);
+  --shiki-foreground: var(--color-charcoal-800);
+  --shiki-color-text: var(--color-charcoal-800);
+  --shiki-color-background: var(--color-charcoal-50);
+  --shiki-token-comment: var(--color-charcoal-400);
+  --shiki-token-string: var(--color-charcoal-600);
+  --shiki-token-constant: var(--color-charcoal-700);
+  --shiki-token-keyword: var(--color-charcoal-800);
+  --shiki-token-parameter: var(--color-charcoal-600);
+  --shiki-token-punctuation: var(--color-charcoal-500);
+}
+
+:root.dark {
+  --shiki-token-string-expression: var(--color-metal-400);
+  --shiki-token-function: var(--color-metal-200);
+  --shiki-foreground: var(--color-metal-100);
+  --shiki-color-text: var(--color-metal-100);
+  --shiki-color-background: var(--color-charcoal-900);
+  --shiki-token-comment: var(--color-charcoal-500);
+  --shiki-token-string: var(--color-metal-300);
+  --shiki-token-constant: var(--color-metal-200);
+  --shiki-token-keyword: var(--color-metal-200);
+  --shiki-token-parameter: var(--color-metal-300);
+  --shiki-token-punctuation: var(--color-metal-400);
 }
 
 
@@ -120,7 +146,7 @@ code .line::before {
   margin-right: 1.5rem;
   display: inline-block;
   text-align: right;
-  color: var(--color-accent-600);
+  color: var(--color-base-600);
 }
 [x-cloak] {
   display: none !important;
