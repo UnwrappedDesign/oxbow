@@ -1,43 +1,13 @@
+![Oxbow Logo](/images/OpenGraph/readme.png)
 ## Oxbow UI
 
-### Getting started
+### Now Open Source!
 
-Install firebase tools for local development in case you don't have install it in your machine
-`npm install -g firebase-tools`
+This project is now open source! All blocks and content available on the website are **free to use** under the [MIT License](LICENSE.md).
 
-```bash
-git pull
-npm install
-npm run dev
-```
+#### Contributing
+We'll update this README once we're ready to accept contributions. Thank you for your patience and interest!
 
-## Environment variables
-
-### Backend environment variables
-
-- LOCAL: `Set to true if running locally`
-- LEMON_SQUEEZE_SECRET: `Secret for Lemon Squeeze webhook`
-- FIREBASE_SERVICE_ACCOUNT_ENCODED: `Service account encoded in base64`
-- FIREBASE_TOKEN: `Firebase token for authentication as admin`
-
-#### Product variables
-
-- PRODUCT_INDIVIDUAL_LICENSE_URL: `URL for the Oxbow UI product individual license`
-- PRODUCT_TEAM_LICENSE_URL: `URL for the Oxbow UI product team license`
-
-### Frontend environment variables
-
-- PUBLIC_APP_BASE_URL: `Base URL for the app`
-- PUBLIC_FIREBASE_API_KEY: `Firebase API key`
-- PUBLIC_FIREBASE_AUTH_DOMAIN: `Firebase auth domain`
-- PUBLIC_FIREBASE_PROJECT_ID: `Firebase project ID`
-- PUBLIC_FIREBASE_STORAGE_BUCKET: `Firebase storage bucket`
-- PUBLIC_FIREBASE_MESSAGING_SENDER_ID: `Firebase messaging sender ID`
-- PUBLIC_FIREBASE_APP_ID: `Firebase app ID`
-- PUBLIC_FIREBASE_AUTH_EMULATOR_HOST: `Firebase auth emulator host. Only used in development`
-- PUBLIC_UMAMI_URL: `Url where the umami analytics is hosted`
-- PUBLIC_UMAMI_WEBSITE_ID: `Website ID for the umami analytics`
-
-Actualiza changelog npm run changelog
-Acutaliza updates npm run updates
-nuevos screenshots npm run screenshots con el server abierto
+#### Project Status
+-  Free to use under the MIT license.
+-  Contributions and pull requests are paused while we prepare the new design system.

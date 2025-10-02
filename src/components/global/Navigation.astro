@@ -11,7 +11,6 @@ import CircleInfo from "@/components/fundations/icons/CircleInfo.astro";
 import Command from "@/components/fundations/icons/Command.astro";
 import Search from "@/components/fundations/icons/Search.astro";
 import ThemeToggle from "@/components/assets/ThemeToggle.astro";
-
 // Assets
 import Logo from "@/components/assets/Logo.astro";
 // Fundations
@@ -19,7 +18,6 @@ import Text from "@/components/fundations/typography/Text.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 ---
-
 <div
   class="items-center w-full mx-auto duration-300"
   x-data={`{...navigation(), username: "${user?.email ?? ""}"}`}
@@ -90,7 +88,6 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
             href="https://lexingtonthemes.com"
             class="hover:text-accent-600 duration-300">Astro Templates</Text
           >
-
           <Text
             x-cloak
             tag="a"
@@ -100,184 +97,6 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
             class="hover:text-accent-600 duration-300">Documentation</Text
           >
           <ThemeToggle />
-          <!--  <Text
-            x-cloak
-            tag="a"
-            variant="textSM"
-            x-show="!username"
-            href="/login"
-            class="hidden hover:text-accent-600 duration-300 md:block"
-            >Sign in</Text
-          >
-
-          <Button
-            data-fast-goal="access-navigation-cta"
-            id="access-navigation-cta"
-            href="/pricing"
-            gap="xs"
-            size="xxs"
-            variant="oxbowAccent"
-            x-cloak
-            oxbox
-            x-show="!username"
-          >
-            Full Access $59
-          </Button> -->
-        </div>
-        <div x-popover x-cloak x-show="!!username" class="relative">
-          <button
-            x-popover:button
-            type="button"
-            class="flex items-center text-sm gap-2"
-          >
-            Account
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="size-4 icon icon-tabler icons-tabler-outline icon-tabler-chevron-down"
-              ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-                d="M6 9l6 6l6 -6"></path></svg
-            >
-          </button>
-          <div
-            x-popover:panel
-            x-transition.origin.top.left
-            class="absolute right-0 top-full z-50 -mr-0.5 mt-3 w-48 origin-top-right divide-y divide-base-100 outline rounded-xl outline-base-100 shadow bg-white font-normal text-base-500 focus:outline-none sm:-mr-3.5 transform opacity-100 scale-100"
-          >
-            <div class="truncate px-3.5 py-3" role="none">
-              <Text
-                tag="span"
-                role="none"
-                variant="textSM"
-                class="block text-base-500">Signed in as</Text
-              >
-              <Text
-                tag="span"
-                role="none"
-                variant="textSM"
-                x-text="username"
-                class="mt-0.5 font-semibold"
-              />
-            </div>
-            <div class="py-1.5" role="none">
-              <Text
-                tag="a"
-                tabindex={-1}
-                role="menuitem"
-                variant="textSM"
-                href="https://discord.gg/9WH6G2XJRa"
-                class="py-1.5 px-3.5 hover:bg-base-100 hover:text-accent-600 duration-300 items-center gap-2 flex"
-              >
-                <Discord class="size-4" />
-                Discord
-              </Text>
-              <Text
-                tag="a"
-                tabindex={-1}
-                role="menuitem"
-                href="/support"
-                variant="textSM"
-                class="py-1.5 px-3.5 hover:bg-base-100 hover:text-accent-600 duration-300 items-center gap-2 flex"
-              >
-                <Lifebuoy class="size-4" />
-                Support</Text
-              >
-              <Text
-                tag="a"
-                tabindex={-1}
-                role="menuitem"
-                href="/changelog"
-                variant="textSM"
-                class="py-1.5 px-3.5 hover:bg-base-100 hover:text-accent-600 duration-300 items-center gap-2 flex"
-              >
-                <Refresh class="size-4" />
-                Changelog</Text
-              >
-              <Text
-                tag="a"
-                tabindex={-1}
-                role="menuitem"
-                href="/license"
-                variant="textSM"
-                class="py-1.5 px-3.5 hover:bg-base-100 hover:text-accent-600 duration-300 items-center gap-2 flex"
-              >
-                <FileDots class="size-4" />
-                License</Text
-              >
-              <Text
-                tag="a"
-                tabindex={-1}
-                role="menuitem"
-                variant="textSM"
-                href="/getting-started"
-                class="py-1.5 px-3.5 hover:bg-base-100 hover:text-accent-600 duration-300 items-center gap-2 flex"
-              >
-                <CircleInfo class="size-4" />
-                Getting Started</Text
-              >
-              <Text
-                tag="a"
-                tabindex={-1}
-                role="menuitem"
-                variant="textSM"
-                href="/tools"
-                class="py-1.5 px-3.5 hover:bg-base-100 hover:text-accent-600 duration-300 items-center gap-2 flex"
-              >
-                <Tools class="size-4" />
-                Free Tools</Text
-              >
-            </div>
-            <div class="py-1.5" role="none">
-              <Text
-                tag="a"
-                tabindex={-1}
-                role="menuitem"
-                variant="textSM"
-                href="https://lexingtonthemes.com/"
-                class="py-1.5 px-3.5 hover:bg-base-100 hover:text-accent-600 duration-300 items-center gap-2 flex"
-              >
-                <svg
-                  class="size-3"
-                  viewBox="0 0 211 207"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g clip-path="url(#clip0_2347_10)">
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M166.557 2.33105L206.482 42.4015L147.816 100.855L204.269 146.887V206.595H147.703V100.967L43.3903 204.903L3.46467 164.832L109.785 58.8968H3.14502V2.33105H166.557Z"
-                      fill="currentColor"></path>
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_2347_10">
-                      <rect
-                        width="210.613"
-                        height="206.713"
-                        fill="white"
-                        transform="translate(-0.000488281)"></rect>
-                    </clipPath>
-                  </defs>
-                </svg>
-                Astro Themes</Text
-              >
-              <button
-                type="button"
-                tabindex="-1"
-                role="menuitem"
-                @click="signOut()"
-                class="py-1.5 px-3.5 hover:bg-base-100 text-sm hover:text-accent-600 duration-300 items-center gap-2 flex w-full"
-              >
-                <LogoutTwo class="size-4" />
-                Sign out</button
-              >
-            </div>
-          </div>
         </div>
       </nav>
     </div>
