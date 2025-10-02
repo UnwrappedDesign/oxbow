@@ -1,4 +1,4 @@
-![Oxbow Logo](/images/OpenGraph/readme.png)
+![Oxbow banner](/public/images/OpenGraph/readme.png)
 ## Oxbow UI
 
 ### Now Open Source!
