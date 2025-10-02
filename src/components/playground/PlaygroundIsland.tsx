@@ -335,100 +335,87 @@ export default function PlaygroundIsland({
   };
   return (
     <div className="relative">
-  <div className="flex items-center justify-between gap-1 pb-2 ">
+  <div className="flex items-center justify-between gap-4 pb-2 ">
         {/* Left: index + tools */}
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-4">
           <button
             type="button"
             onClick={copyUrl}
-            className={`inline-flex items-center justify-center size-7 px-2 text-xs transition-colors rounded-md bg-zinc-50 outline outline-1 outline-zinc-200 dark:bg-base-900/60 dark:outline-base-700 ${copiedUrl ? "text-accent-500 dark:text-accent-400" : "text-zinc-600 dark:text-base-200"}`}
+            className={`inline-flex items-center justify-center text-sm transition-colors font-semibold ${copiedUrl ? "text-base-950 dark:text-white" : "text-base-950 hover:text-base-600 dark:text-white dark:hover:text-base-400"}`}
             title="Copy block URL"
             aria-label="Copy block URL"
           >
             {copiedUrl ? <Check size={14} /> : iframeId.replace("iframe-", "")}
           </button>
-          <div
-            aria-hidden
-            className="hidden h-4 w-[1px] bg-zinc-200 md:inline-block dark:bg-base-700"
-          />
-          <span className="items-center hidden gap-1 isolate md:inline-flex">
+          <div className="w-px h-4 bg-base-200 dark:bg-base-800"></div>
+          <span className="items-center hidden gap-4 isolate md:inline-flex">
             <button
               onClick={() => setViewportWidth("mobile")}
-              className={`inline-flex items-center justify-center size-7 transition-colors rounded-md outline outline-1 outline-zinc-200 dark:bg-base-900/60 dark:outline-base-700 ${viewport === "mobile" ? "text-accent-600 dark:text-accent-400" : "text-zinc-600 dark:text-base-200"}`}
+              className={`inline-flex items-center justify-center transition-colors ${viewport === "mobile" ? "text-base-950 dark:text-white font-semibold" : "text-base-600 hover:text-base-950 dark:text-base-400 dark:hover:text-white"}`}
             >
               <Smartphone size={14} />
             </button>
             <button
               onClick={() => setViewportWidth("tablet")}
-              className={`inline-flex items-center justify-center size-7 transition-colors rounded-md outline outline-1 outline-zinc-200 dark:bg-base-900/60 dark:outline-base-700 ${viewport === "tablet" ? "text-accent-600 dark:text-accent-400" : "text-zinc-600 dark:text-base-200"}`}
+              className={`inline-flex items-center justify-center transition-colors ${viewport === "tablet" ? "text-base-950 dark:text-white font-semibold" : "text-base-600 hover:text-base-950 dark:text-base-400 dark:hover:text-white"}`}
             >
               <Tablet size={14} />
             </button>
             <button
               onClick={() => setViewportWidth("desktop")}
-              className={`inline-flex items-center justify-center size-7 transition-colors rounded-md outline outline-1 outline-zinc-200 dark:bg-base-900/60 dark:outline-base-700 ${viewport === "desktop" ? "text-accent-600 dark:text-accent-400" : "text-zinc-600 dark:text-base-200"}`}
+              className={`inline-flex items-center justify-center transition-colors ${viewport === "desktop" ? "text-base-950 dark:text-white font-semibold" : "text-base-600 hover:text-base-950 dark:text-base-400 dark:hover:text-white"}`}
             >
               <Monitor size={14} />
             </button>
           </span>
-          <div
-            aria-hidden
-            className="hidden h-4 w-[1px] bg-zinc-200 md:inline-block dark:bg-base-700"
-          />
-          <span className="items-center hidden gap-1 isolate md:inline-flex">
+           <div className="w-px h-4 bg-base-200 dark:bg-base-800"></div>
+          <span className="items-center hidden gap-4 isolate md:inline-flex">
             <button
               onClick={() => setMode("light")}
-              className={`inline-flex items-center gap-1 h-7 px-2 transition-colors rounded-md outline outline-1 outline-zinc-200 dark:bg-base-900/60 dark:outline-base-700 ${mode === "light" ? "text-accent-600 dark:text-accent-400" : "text-zinc-600 dark:text-base-200"}`}
+              className={`inline-flex items-center gap-1.5 text-xs transition-colors ${mode === "light" ? "text-base-950 dark:text-white font-semibold" : "text-base-600 hover:text-base-950 dark:text-base-400 dark:hover:text-white"}`}
             >
-              <Sun size={14} /> <span className="text-[0.70rem]">Light</span>
+               <span>Light</span>
             </button>
             <button
               onClick={() => setMode("system")}
-              className={`inline-flex items-center gap-1 h-7 px-2 transition-colors rounded-md outline outline-1 outline-zinc-200 dark:bg-base-900/60 dark:outline-base-700 ${mode === "system" ? "text-accent-600 dark:text-accent-400" : "text-zinc-600 dark:text-base-200"}`}
+              className={`inline-flex items-center gap-1.5 text-xs transition-colors ${mode === "system" ? "text-base-950 dark:text-white font-semibold" : "text-base-600 hover:text-base-950 dark:text-base-400 dark:hover:text-white"}`}
             >
-              <Laptop size={14} /> <span className="text-[0.70rem]">System</span>
+               <span>System</span>
             </button>
             <button
               onClick={() => setMode("dark")}
-              className={`inline-flex items-center gap-1 h-7 px-2 transition-colors rounded-md outline outline-1 outline-zinc-200 dark:bg-base-900/60 dark:outline-base-700 ${mode === "dark" ? "text-accent-600 dark:text-accent-400" : "text-zinc-600 dark:text-base-200"}`}
+              className={`inline-flex items-center gap-1.5 text-xs transition-colors ${mode === "dark" ? "text-base-950 dark:text-white font-semibold" : "text-base-600 hover:text-base-950 dark:text-base-400 dark:hover:text-white"}`}
             >
-              <Moon size={14} /> <span className="text-[0.70rem]">Dark</span>
+               <span>Dark</span>
             </button>
           </span>
+           <div className="w-px h-4 bg-base-200 dark:bg-base-800"></div>
           {/* Code controls next to theme toggles */}
-          <div
-            aria-hidden
-            className="hidden h-4 w-[1px] bg-zinc-200 md:inline-block dark:bg-base-700"
-          />
           {canSeeCode ? (
-            <div className="items-center hidden gap-1 md:inline-flex">
+            <div className="items-center hidden gap-4 md:inline-flex">
               <button
                 onClick={() => setTab("preview")}
-                className={`inline-flex items-center justify-center size-7 transition-colors rounded-md outline outline-1 outline-zinc-200 dark:bg-base-900/60 dark:outline-base-700 ${tab === "preview" ? "text-accent-600 dark:text-accent-400" : "text-zinc-600 dark:text-base-200"}`}
+                className={`inline-flex items-center justify-center transition-colors ${tab === "preview" ? "text-base-950 dark:text-white font-semibold" : "text-base-600 hover:text-base-950 dark:text-base-400 dark:hover:text-white"}`}
               >
                 <Eye size={14} />
               </button>
               <button
                 onClick={() => setTab("code")}
-                className={`inline-flex items-center justify-center size-7 transition-colors rounded-md outline outline-1 outline-zinc-200 dark:bg-base-900/60 dark:outline-base-700 ${tab === "code" ? "text-accent-600 dark:text-accent-400" : "text-zinc-600 dark:text-base-200"}`}
+                className={`inline-flex items-center justify-center transition-colors ${tab === "code" ? "text-base-950 dark:text-white font-semibold" : "text-base-600 hover:text-base-950 dark:text-base-400 dark:hover:text-white"}`}
               >
                 <Code size={14} />
               </button>
               <button
                 onClick={copyCode}
-                className="inline-flex items-center justify-center size-7 transition-colors rounded-md outline outline-1 outline-zinc-200 text-zinc-600 hover:text-accent-600 dark:bg-base-900/60 dark:outline-base-700 dark:text-base-200 dark:hover:text-accent-400"
+                className="inline-flex items-center justify-center transition-colors text-base-600 hover:text-base-950 dark:text-base-400 dark:hover:text-white"
                 title="Copy"
                 aria-label="Copy"
               >
                 {copiedCode ? <Check size={14} /> : <Copy size={14} />}
               </button>
-              <div
-                aria-hidden
-                className="hidden h-4 w-[1px] bg-zinc-200 md:inline-block dark:bg-base-700"
-              />
               <button
                 onClick={downloadCode}
-                className="inline-flex items-center justify-center size-7 transition-colors rounded-md outline outline-1 outline-zinc-200 text-zinc-600 hover:text-accent-600 dark:bg-base-900/60 dark:outline-base-700 dark:text-base-200 dark:hover:text-accent-400"
+                className="inline-flex items-center justify-center transition-colors text-base-600 hover:text-base-950 dark:text-base-400 dark:hover:text-white"
                 title="Download code"
                 aria-label="Download code"
               >
@@ -436,7 +423,7 @@ export default function PlaygroundIsland({
               </button>
               <button
                 onClick={openInNewWindow}
-                className="inline-flex items-center justify-center size-7 transition-colors rounded-md outline outline-1 outline-zinc-200 text-zinc-600 hover:text-accent-600 dark:bg-base-900/60 dark:outline-base-700 dark:text-base-200 dark:hover:text-accent-400"
+                className="inline-flex items-center justify-center transition-colors text-base-600 hover:text-base-950 dark:text-base-400 dark:hover:text-white"
                 title="Open in new window"
                 aria-label="Open in new window"
               >
@@ -446,59 +433,65 @@ export default function PlaygroundIsland({
           ) : (
             <a
               href="/pricing"
-              className="hidden md:inline-flex items-center h-7 px-2 text-[0.70rem] rounded-md bg-zinc-900 text-white dark:bg-accent-500 dark:text-base-900"
+              className="hidden md:inline-flex items-center text-sm font-semibold text-base-950 hover:text-base-600 dark:text-white dark:hover:text-base-400"
             >
               Get Access
             </a>
           )}
         </div>
         {/* Right: code controls + nav (if provided) */}
-        <div className="items-center justify-end hidden gap-2 md:flex">
+        <div className="items-center justify-end hidden gap-4 md:flex">
           {arguments[0]?.subsByCat && (
             <>
               {/* Category */}
-              <button
-                onClick={(e) => openNavMenu("cat", e)}
-                className="inline-flex items-center gap-2 h-[28px] px-2 py-1 text-[0.70rem] transition-colors rounded-lg outline outline-1 outline-zinc-200 text-zinc-700 dark:bg-base-900/60 dark:text-base-200 dark:outline-base-700"
-              >
-                <span className="capitalize">
-                  {fmt(arguments[0]!.navCat || "")}
-                </span>
-                <ChevronDown className="size-4" />
-              </button>
+              <div className="relative">
+                <button
+                  onClick={(e) => openNavMenu("cat", e)}
+                  className="inline-flex items-center gap-1.5 text-xs transition-colors font-semibold text-base-950 hover:text-base-600 dark:text-white dark:hover:text-base-400"
+                >
+                  <span className="capitalize">
+                    {fmt(arguments[0]!.navCat || "")}
+                  </span>
+                  <ChevronDown className="size-4" />
+                </button>
+              </div>
               {/* Block */}
-              <button
-                onClick={(e) => openNavMenu("sub", e)}
-                className="hidden md:inline-flex items-center gap-2 h-[28px] px-2 py-1 text-[0.70rem] transition-colors rounded-lg outline outline-1 outline-zinc-200 text-zinc-700 dark:bg-base-900/60 dark:text-base-200 dark:outline-base-700"
-              >
-                <span className="capitalize">
-                  {fmt(arguments[0]!.navSub || "")}
-                </span>
-                <ChevronDown className="size-4" />
-              </button>
+              <div className="relative">
+                <button
+                  onClick={(e) => openNavMenu("sub", e)}
+                  className="hidden md:inline-flex items-center gap-1.5 text-xs transition-colors font-semibold text-base-950 hover:text-base-600 dark:text-white dark:hover:text-base-400"
+                >
+                  <span className="capitalize">
+                    {fmt(arguments[0]!.navSub || "")}
+                  </span>
+                  <ChevronDown className="size-4" />
+                </button>
+              </div>
               {/* Number */}
-              <button
-                onClick={(e) => openNavMenu("idx", e)}
-                className="hidden md:inline-flex items-center h-[28px] px-2 py-1 text-[0.70rem] transition-colors rounded-lg outline outline-1 outline-zinc-200 text-zinc-700 dark:bg-base-900/60 dark:text-base-200 dark:outline-base-700"
-              >
-                <span>NO</span>
-                
-                <span>
-                  {clamp(
-                    arguments[0]!.navIdx || 1,
-                    1,
-                    count(
-                      arguments[0]!.navCat || "",
-                      arguments[0]!.navSub || "",
-                    ),
-                  )}
-                </span>
-                <ChevronDown className="size-4" />
-              </button>
+              <div className="relative">
+                <button
+                  onClick={(e) => openNavMenu("idx", e)}
+                  className="hidden md:inline-flex items-center gap-1.5 text-xs transition-colors font-semibold text-base-950 hover:text-base-600 dark:text-white dark:hover:text-base-400"
+                >
+                  <span>NO</span>
+                  
+                  <span>
+                    {clamp(
+                      arguments[0]!.navIdx || 1,
+                      1,
+                      count(
+                        arguments[0]!.navCat || "",
+                        arguments[0]!.navSub || "",
+                      ),
+                    )}
+                  </span>
+                  <ChevronDown className="size-4" />
+                </button>
+              </div>
               {navOpen === "cat" && (
                 <div
                   ref={navMenuRef}
-                  className="fixed z-50 w-56 mt-2 text-xs transition-colors bg-white shadow rounded-xl outline outline-zinc-100 text-zinc-600 divide-y divide-zinc-100 dark:bg-base-900 dark:text-base-300 dark:outline-base-700 dark:divide-base-800"
+                  className="fixed z-50 w-56 mt-2 text-xs transition-colors bg-white shadow rounded-xl outline outline-base-100 text-base-600 divide-y divide-base-100 dark:bg-base-900 dark:text-base-300 dark:outline-base-700 dark:divide-base-700"
                   style={{ top: navPos.top, left: navPos.left }}
                 >
                   <div className="py-2 overflow-hidden max-h-64">
@@ -518,7 +511,7 @@ export default function PlaygroundIsland({
                         >
                           <span className="capitalize">{fmt(key)}</span>
                           {arguments[0]!.navCat === key && (
-                            <Check className="size-4 text-accent-600 dark:text-accent-400" />
+                            <Check className="size-4 text-base-950 dark:text-white" />
                           )}
                         </button>
                       ))}
@@ -528,7 +521,7 @@ export default function PlaygroundIsland({
               {navOpen === "sub" && (
                 <div
                   ref={navMenuRef}
-                  className="fixed z-50 w-64 mt-2 text-xs transition-colors bg-white shadow rounded-xl outline outline-zinc-100 text-zinc-600 divide-y divide-zinc-100 dark:bg-base-900 dark:text-base-300 dark:outline-base-700 dark:divide-base-800"
+                  className="fixed z-50 w-64 mt-2 text-xs transition-colors bg-white shadow rounded-xl outline outline-base-100 text-base-600 divide-y divide-base-100 dark:bg-base-900 dark:text-base-300 dark:outline-base-700 dark:divide-base-700"
                   style={{ top: navPos.top, left: navPos.left }}
                 >
                   <div className="py-2 overflow-auto max-h-64">
@@ -542,7 +535,7 @@ export default function PlaygroundIsland({
                       >
                         <span className="capitalize">{fmt(name)}</span>
                         {arguments[0]!.navSub === name && (
-                          <Check className="size-4 text-accent-600 dark:text-accent-400" />
+                          <Check className="size-4 text-base-950 dark:text-white" />
                         )}
                       </a>
                     ))}
@@ -552,7 +545,7 @@ export default function PlaygroundIsland({
               {navOpen === "idx" && (
                 <div
                   ref={navMenuRef}
-                  className="fixed z-50 w-40 mt-2 text-xs transition-colors bg-white shadow rounded-xl outline outline-zinc-100 text-zinc-600 dark:bg-base-900 dark:text-base-300 dark:outline-base-700"
+                  className="fixed z-50 w-40 mt-2 text-xs transition-colors bg-white shadow rounded-xl outline outline-base-100 text-base-600 dark:bg-base-900 dark:text-base-300 dark:outline-base-700"
                   style={{ top: navPos.top, left: navPos.left }}
                 >
                   <div className="grid grid-cols-4 gap-1 px-2 py-2 overflow-auto max-h-64">
@@ -568,7 +561,7 @@ export default function PlaygroundIsland({
                       <a
                         key={n}
                         href={`/playground/${arguments[0]!.navCat}/${arguments[0]!.navSub}/${n}`}
-                        className={`flex items-center justify-center px-2 py-1.5 transition-colors rounded hover:bg-base-100 dark:hover:bg-base-800/60 ${n === clamp(arguments[0]!.navIdx || 1, 1, count(arguments[0]!.navCat || "", arguments[0]!.navSub || "")) ? "text-accent-600 font-medium dark:text-accent-400" : "text-zinc-600 dark:text-base-200"}`}
+                        className={`flex items-center justify-center px-2 py-1.5 transition-colors rounded hover:bg-base-100 dark:hover:bg-base-800/60 ${n === clamp(arguments[0]!.navIdx || 1, 1, count(arguments[0]!.navCat || "", arguments[0]!.navSub || "")) ? "text-base-950 font-medium dark:text-white" : "text-base-600 dark:text-base-200"}`}
                       >
                         {n}
                       </a>
@@ -576,34 +569,32 @@ export default function PlaygroundIsland({
                   </div>
                 </div>
               )}
+               <div className="w-px h-4 bg-base-200 dark:bg-base-800"></div>
               {/* Pagination */}
-              <div
-                aria-hidden
-                className="hidden h-4 w-[1px] bg-zinc-200 md:inline-block dark:bg-base-700"
-              />
               {arguments[0]!.prevHref ? (
                 <a
                   href={arguments[0]!.prevHref}
                   aria-label="Previous"
-                  className="inline-flex items-center justify-center size-7 transition-colors rounded-md outline outline-1 outline-zinc-200 text-zinc-600 hover:text-accent-600 dark:bg-base-900/60 dark:outline-base-700 dark:text-base-200 dark:hover:text-accent-400"
+                  className="inline-flex items-center justify-center transition-colors text-base-600 hover:text-base-950 dark:text-base-400 dark:hover:text-white"
                 >
                   <ChevronLeft className="size-4" />
                 </a>
               ) : (
-                <div className="inline-flex items-center justify-center size-7 opacity-50 rounded-md outline outline-1 outline-zinc-100 text-zinc-600 dark:outline-base-800 dark:text-base-400">
+                <div className="inline-flex items-center justify-center opacity-50 text-base-600 dark:text-base-400">
                   <ChevronLeft className="size-4" />
                 </div>
               )}
+              
               {arguments[0]!.nextHref ? (
                 <a
                   href={arguments[0]!.nextHref}
                   aria-label="Next"
-                  className="inline-flex items-center justify-center size-7 transition-colors rounded-md outline outline-1 outline-zinc-200 text-zinc-600 hover:text-accent-600 dark:bg-base-900/60 dark:outline-base-700 dark:text-base-200 dark:hover:text-accent-400"
+                  className="inline-flex items-center justify-center transition-colors text-base-600 hover:text-base-950 dark:text-base-400 dark:hover:text-white"
                 >
                   <ChevronRight className="size-4" />
                 </a>
               ) : (
-                <div className="inline-flex items-center justify-center size-7 opacity-50 rounded-md outline outline-1 outline-zinc-100 text-zinc-600 dark:outline-base-800 dark:text-base-400">
+                <div className="inline-flex items-center justify-center opacity-50 text-base-600 dark:text-base-400">
                   <ChevronRight className="size-4" />
                 </div>
               )}
@@ -611,7 +602,7 @@ export default function PlaygroundIsland({
           )}
         </div>
       </div>
-      <div className="relative flex w-full min-h-0 overflow-hidden bg-white rounded-xl shadow-oxbow z-1 isolate scrollbar-hide dark:bg-base-950/60">
+      <div className="relative flex w-full min-h-0 overflow-hidden outline outline-base-200 dark:outline-base-800 rounded-xl shadow-oxbow z-1 isolate scrollbar-hide bg-white dark:bg-base-950/60">
         <PlaygroundShortcutsButton />
         {tab === "preview" && (
           <div className="flex flex-col items-center w-full bg-white scrollbar-hide dark:bg-base-950/60">

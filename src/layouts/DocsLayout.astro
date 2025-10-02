@@ -148,7 +148,7 @@ const nextNav = next
     </div>
     <!-- Sidebar -->
     <aside
-      class="hidden lg:flex fixed inset-y-0 left-0 z-50 w-62 -translate-x-full flex-col gap-6 overflow-y-auto border-r border-base-200 dark:border-base-800 bg-white px-5 py- transition-transform duration-200 dark:bg-base-900 lg:translate-x-0 scrollbar-hide py-4"
+      class="hidden lg:flex fixed inset-y-0 left-0 z-50 w-62 -translate-x-full flex-col gap-6 overflow-y-auto bg-white px-5 py- transition-transform duration-200 dark:bg-base-900 lg:translate-x-0 scrollbar-hide py-4"
       data-docs-sidebar
     >
       <header class="gap-2">
@@ -182,10 +182,7 @@ const nextNav = next
           </Text>
           {
             combinedPinnedLinks.length > 0 && (
-              <div
-                class="space-y-2 text-sm border-l border-base-200 dark:border-base-800 mt-2 ml-2"
-                data-docs-pinned
-              >
+              <div class="space-y-2 text-sm mt-2" data-docs-pinned>
                 {combinedPinnedLinks.map((link) => {
                   const isActive =
                     link.slug === activeSlug ||
@@ -195,10 +192,10 @@ const nextNav = next
                       href={link.href}
                       aria-current={isActive ? "page" : undefined}
                       class:list={[
-                        "pl-4",
+                        "text-xs",
                         isActive
-                          ? "text-accent-600 hover:text-base-400 dark:text-accent-500"
-                          : "text-base-600 hover:text-accent-600 dark:text-base-400",
+                          ? "text-white hover:text-base-400 dark:text-base-100"
+                          : "text-base-100 hover:text-white dark:text-base-400",
                       ]}
                     >
                       <span>{link.title}</span>
@@ -212,7 +209,7 @@ const nextNav = next
         {
           componentGroups.map((group) => (
             <details open class="group select-none">
-              <summary class="flex cursor-pointer items-center justify-between gap-2 text-[0.65rem] font-medium uppercase tracking-wide text-base-600  dark:text-base-400 ">
+              <summary class="flex cursor-pointer items-center justify-between font-bold gap-2 text-[0.65rem] font-medium uppercase tracking-wide text-base-600  dark:text-base-400 ">
                 <span>{group.title}</span>
                 <ChevronDown
                   class="ml-auto duration-300 ease-out transform group-open:-rotate-180 "
@@ -220,16 +217,16 @@ const nextNav = next
                   size="xs"
                 />
               </summary>
-              <ul class="space-y-2 text-sm border-l border-base-200 dark:border-base-800 mt-2 ml-2">
+              <ul class="space-y-2 text-sm mt-2">
                 {group.items.map((item) => (
                   <li>
                     <a
                       href={`/documentation/${item.slug}`}
                       class:list={[
-                        "pl-4",
+                        "text-xs",
                         item.slug === activeSlug
-                          ? "text-accent-700 dark:text-accent-500"
-                          : "text-base-600 dark:text-base-400",
+                          ? "text-white hover:text-base-400 dark:text-base-100"
+                          : "text-base-100 hover:text-white dark:text-base-400",
                       ]}
                     >
                       <span>{item.title}</span>
@@ -243,7 +240,7 @@ const nextNav = next
         {
           blockGroups.length > 0 && (
             <details open class="group select-none">
-              <summary class="flex cursor-pointer items-center justify-between gap-2 text-[0.65rem] font-medium uppercase tracking-wide text-base-600  dark:group-open:text-base-400 dark:text-base-400 dark:group-open:text-base-200">
+              <summary class="flex cursor-pointer items-center justify-between font-bold gap-2 text-[0.65rem] font-medium uppercase tracking-wide text-base-600  dark:group-open:text-base-400 dark:text-base-400 dark:group-open:text-base-200">
                 <span>Blocks</span>
                 <ChevronDown
                   class="ml-auto duration-300 ease-out transform group-open:-rotate-180 "
@@ -254,15 +251,15 @@ const nextNav = next
               <div class="mt-3 space-y-8 ">
                 {blockGroups.map((group) => (
                   <div>
-                    <p class="text-xs font-medium uppercase tracking-wide text-base-400 dark:text-base-500">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-base-400 dark:text-base-500">
                       {group.title}
                     </p>
-                    <ul class="space-y-2 text-sm border-l border-base-200 dark:border-base-800 mt-2 ml-2">
+                    <ul class="space-y-2 text-sm mt-2">
                       {group.items.map((link) => (
                         <li>
                           <a
                             href={link.href}
-                            class="pl-4 text-base-600 dark:text-base-400 hover:text-accent-600"
+                            class="text-xs text-base-600 dark:text-base-400 hover:text-accent-600"
                           >
                             <span>{link.title}</span>
                           </a>
@@ -281,9 +278,7 @@ const nextNav = next
     <div class="flex min-h-svh flex-1 flex-col lg:ml-62">
       <DesktopTopBar />
       <div class="flex-1 px-8 lg:px-12 grow max-w-7xl mx-auto w-full">
-        <div
-          class="flex flex-col lg:flex-row lg:items-start lg:divide-x lg:divide-base-200 lg:dark:divide-base-800"
-        >
+        <div class="flex flex-col lg:flex-row lg:items-start">
           <article class="flex-1 space-y-10 lg:pr-12 py-8">
             <div class="grow">
               <div class="flex items-center justify-between">
@@ -470,15 +465,13 @@ const nextNav = next
           </article>
           <aside class="sticky top-0 w-64 shrink-0 hidden lg:block py-8">
             <div class="space-y-4">
-              <div class="px-4">
-                <Text
-                  variant="textSM"
-                  tag="p"
-                  class="text-xs font-medium uppercase tracking-wide text-base-400 dark:text-base-500"
-                >
-                  On this page
-                </Text>
-              </div>
+              <Text
+                variant="textSM"
+                tag="p"
+                class="text-xs font-medium uppercase tracking-wide text-base-400 dark:text-base-500 pl-4"
+              >
+                On this page
+              </Text>
               <ol class="space-y-2 text-sm" data-docs-toc>
                 {
                   filteredHeadings.length ? (
@@ -489,8 +482,8 @@ const nextNav = next
                           data-heading-id={heading.slug}
                           data-heading-depth={heading.depth}
                           class:list={[
-                            "toc-link block py-1 text-xs border-l-2 select-none hover:text-accent-600 dark:hover:text-accent-400 transition-all duration-200 border-transparent text-base-500 dark:text-base-400 font-medium",
-                            heading.depth > 2 ? "pl-6" : "pl-4",
+                            "toc-link block py-1 pl-4 text-xs border-l-2 select-none hover:text-accent-600 dark:hover:text-accent-400 transition-all duration-200 border-transparent text-base-500 dark:text-base-400 font-medium",
+                            heading.depth > 2 ? "pl-6" : "text-xs",
                           ]}
                         >
                           {heading.text}
@@ -498,7 +491,7 @@ const nextNav = next
                       </li>
                     ))
                   ) : (
-                    <li class="pl-4 text-xs text-base-400 dark:text-base-500">
+                    <li class="text-xs text-xs text-base-400 dark:text-base-500">
                       No headings yet.
                     </li>
                   )

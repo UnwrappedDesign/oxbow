@@ -111,36 +111,30 @@ const subsectionKey = (subsection || "").toLowerCase();
   }
 </style>
 <BaseLayout>
-  <div
+  <section
     x-data={`{ layout: 'grid', cat: '${section}', sub: '${subsection}', subs: {}, fmt(s){ return (s||'').replace(/-/g,' ').replace(/\b\w/g, c => c.toUpperCase()); } }`}
     x-init="subs = JSON.parse($el.dataset.subs || '{}')"
     data-subs={JSON.stringify(subsByCat)}
   >
-    <section>
-      <Wrapper variant="standard">
-        <div class="flex items-center justify-between gap-2">
-          <Text
-            tag="h1"
-            variant="textSM"
-            class="font-medium tracking-tight capitalize text-zinc-900 dark:text-base-50"
-          >
-            {subsection.replace(/-/g, " ")}
-          </Text>
-          <div>
-            <SubsectionToolbarIsland
-              client:load
-              cat={section}
-              sub={subsection}
-              subsByCat={subsByCat}
-            />
-          </div>
-        </div>
-      </Wrapper>
-    </section>
-  </div>
-  <section>
     <Wrapper variant="standard">
-      <div class="masonry-grid">
+      <div class="flex items-center justify-between gap-2">
+        <Text
+          tag="h1"
+          variant="textSM"
+          class="font-medium tracking-tight capitalize text-zinc-900 dark:text-base-50"
+        >
+          {subsection.replace(/-/g, " ")}
+        </Text>
+        <div>
+          <SubsectionToolbarIsland
+            client:load
+            cat={section}
+            sub={subsection}
+            subsByCat={subsByCat}
+          />
+        </div>
+      </div>
+      <div class="masonry-grid mt-8">
         {
           sectionComponents.map(
             (
