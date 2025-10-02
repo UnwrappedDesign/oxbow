@@ -1,5 +1,4 @@
 @import "./kromatika.css";
-
 @import "./syntaxhighlighting.css";
 @import "tailwindcss" source("../");
 @plugin "@tailwindcss/forms";
@@ -10,8 +9,8 @@
 @custom-variant dark (&:where(.dark, .dark *, [data-theme=dark], [data-theme=dark] *));
 @theme {
   /* Typography */
- --font-sans: "Overused Grotesk", Inter, sans-serif;
-
+ --font-sans: "Inter", sans-serif;
+ --font-mono: "JetBrains Mono", monospace;
   /* blues */
   --color-blue-light: #60beff;
   --color-blue: #1da8ff;
@@ -49,30 +48,16 @@
   --color-base-800: oklch(0.269 0 0);
   --color-base-900: oklch(0.205 0 0);
   --color-base-950: oklch(0.145 0 0);
-  
- 
 }
-@font-face {
-  font-family: "Overused Grotesk";
-  src: url("https://raw.githubusercontent.com/RandomMaerks/Overused-Grotesk/master/fonts/variable/OverusedGroteskRoman-VF.ttf")
-    format("truetype-variations");
-  font-weight: 300 900;
-  font-display: swap;
-  font-style: normal;
-}
+
 @supports (font-variation-settings: normal) {
-  :root {
-    font-family: "Overused Grotesk", sans-serif;
-  }
+  :root { font-family: InterVariable, sans-serif; }
 }
 :root {
-  font-variant-numeric: tabular-nums;
+  font-family: Inter, sans-serif;
+  font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: "Overused Grotesk", Inter, sans-serif;
-  font-feature-settings:
-    "liga" 1,
-    "calt" 1; /* fix for Chrome */
   font-variant-numeric: tabular-nums;
   --shiki-token-string-expression: var(--color-charcoal-500);
   --shiki-token-function: var(--color-charcoal-700);
@@ -86,7 +71,6 @@
   --shiki-token-parameter: var(--color-charcoal-600);
   --shiki-token-punctuation: var(--color-charcoal-500);
 }
-
 :root.dark {
   --shiki-token-string-expression: var(--color-metal-400);
   --shiki-token-function: var(--color-metal-200);
@@ -100,8 +84,6 @@
   --shiki-token-parameter: var(--color-metal-300);
   --shiki-token-punctuation: var(--color-metal-400);
 }
-
-
 /* Ensure a stable vertical scrollbar to avoid layout shift */
 html { overflow-y: auto; scrollbar-gutter: stable; }
 /* Hide Firebase emulator warning banners */
@@ -123,7 +105,6 @@ ninja-keys {
   z-index: 9999999;
 }
 ninja-keys::part(ninja-input) {
- 
   margin-left: 0 !important;
   margin-right: 0 !important;
 }
@@ -133,11 +114,11 @@ ninja-keys::part(ninja-action) {
 }
 ninja-keys::part(ninja-selected) {
   border-left: 4px solid var(--color-accent-600);
- 
 }
 code {
   counter-reset: step;
   counter-increment: step 0;
+  font-weight: 600;
 }
 code .line::before {
   content: counter(step);
@@ -166,7 +147,6 @@ select {
   -moz-appearance: none; /* Firefox */
   appearance: none; /* estandar */
 }
-
  :global([x-cloak]) {
     display: none !important;
   }

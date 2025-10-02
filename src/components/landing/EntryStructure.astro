@@ -2,14 +2,11 @@
 import Text from "@/components/fundations/typography/Text.astro";
 import { Image } from "astro:assets";
 import { formatDistanceToNowStrict } from "date-fns";
-
 import type { Template } from "@/data/entries.json";
 import updates from "@/data/updates.json";
-
 interface Props {
   entries: Template[];
 }
-
 const { entries } = Astro.props; // Make sure entries is correctly passed and used
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/images/**/*.{jpeg,jpg,png,gif}"
@@ -45,7 +42,6 @@ const entriesWithQuantity = entries
   .filter((entry) => entry.quantity > 0)
   // Sort alphabetically by component name
   .sort((a, b) => a.name.localeCompare(b.name));
-
 const updatedSubsections = Object.keys(updates).reduce((acc, path) => {
   const [section, subsection] = path.split("/");
   acc[subsection] = acc[subsection]
@@ -55,22 +51,18 @@ const updatedSubsections = Object.keys(updates).reduce((acc, path) => {
     : updates[path];
   return acc;
 }, {});
-
 const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
 ---
 
-<ul class="columns-1 md:columns-3 sm:columns-2 lg:columns-4 lg:gap-x-4">
+<ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
   {
     entriesWithQuantity.map((template) => {
       const subsection = template.link.split("/").pop();
       const updated = updatedSubsections[subsection];
-
       const updatedAt = new Date(updated * 1000);
-
       const isUpdatedLastWeek = updatedAt > SEVEN_DAYS_AGO;
-
       return (
-        <li class="relative py-2.5 group ">
+        <li class="relative p-4 group bg-base-100 dark:bg-base-800">
           <a
             title={template.name}
             href={template.link}
@@ -82,21 +74,19 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
               alt={template.name}
               src={template.image()}
             /> */}
-            <div class="  group-hover:text-accent-600 lg:items-center">
-              <div class="flex items-center  gap-4">
-                <div class="flex items-center justify-center p-1 text-[0.70rem] bg-base-900/6 dark:bg-white/5 rounded-full text-base-900 dark:text-white size-6 transition-colors duration-500">
+            <div class="group-hover:text-accent-600 lg:items-center">
+             
+                <div class="text-black dark:text-white">
                   {template.quantity}
                 </div>
                 <Text
                   tag="p"
                   variant="textSM"
-                  class="relative  text-base-600 dark:text-base-400 group-hover:text-accent-600"
+                  class="relative  text-base-600 dark:text-base-400 group-hover:text-accent-600 mt-12"
                 >
                   {template.name}
                 </Text>
-              </div>
-
-              {/*   <Text
+              <Text
                 tag="p"
                 variant="textXXS"
                 class="relative flex items-center ml-auto gap-1 text-base-500 group-hover:text-accent-600"
@@ -107,7 +97,7 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
                   roundingMethod: "ceil",
                 })}
                 {" ago"}
-              </Text> */}
+              </Text>
             </div>
           </div>
         </li>

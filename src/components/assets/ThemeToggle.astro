@@ -14,15 +14,12 @@ const { class: className = "", ...rest } = Astro.props;
 ---
 
 <div
-  class={`inline-flex items-center bg-base-100 dark:bg-white/20 rounded-lg p-0.5 transition-colors duration-200 gap-1 ${className}`}
+  class={`inline-flex items-center  transition-colors duration-200 gap-1 ${className}`}
   {...rest}
   data-theme-toggle-container
 >
   <!-- System/Auto Button -->
-  <Button
-    size="xs"
-    variant="muted"
-    iconOnly
+  <button class="p-0.5 rounded-full"
     data-theme-option="system"
     role="radio"
     aria-checked="false"
@@ -30,12 +27,9 @@ const { class: className = "", ...rest } = Astro.props;
     title="System theme"
   >
     <Desktop slot="right-icon" size="xs" />
-  </Button>
+  </button>
   <!-- Light Button -->
-  <Button
-    size="xs"
-    variant="muted"
-    iconOnly
+  <button class="p-0.5 rounded-full"
     data-theme-option="light"
     role="radio"
     aria-checked="false"
@@ -43,12 +37,9 @@ const { class: className = "", ...rest } = Astro.props;
     title="Light theme"
   >
     <Sun slot="right-icon" size="xs" />
-  </Button>
+  </button>
   <!-- Dark Button -->
-  <Button
-    size="xs"
-    variant="muted"
-    iconOnly
+  <button class="p-0.5 rounded-full"
     data-theme-option="dark"
     role="radio"
     aria-checked="false"
@@ -56,7 +47,7 @@ const { class: className = "", ...rest } = Astro.props;
     title="Dark theme"
   >
     <Moon slot="right-icon" size="xs" />
-  </Button>
+  </button>
 </div>
 <script type="module">
   // Theme management
@@ -88,9 +79,9 @@ const { class: className = "", ...rest } = Astro.props;
 
       // Update visual state - just toggle shadow for active state
       if (isActive) {
-        button.classList.add("shadow-sm");
+        button.classList.add("shadow");
       } else {
-        button.classList.remove("shadow-sm");
+        button.classList.remove("shadow");
       }
     });
   }
