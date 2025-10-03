@@ -11,11 +11,12 @@ import Text from "@/components/fundations/typography/Text.astro";
 
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 ---
+
 <div
   class="items-center w-full mx-auto duration-300"
   x-data={`{...navigation(), username: "${user?.email ?? ""}"}`}
 >
-  <!-- {!user && <OfferBanner60Accent />} -->
+  <!-- {!user && <OfferBanner60base />} -->
   <Wrapper variant="standard" class="w-full">
     <div
       class="flex flex-col w-full lg:bg-none md:flex-row md:items-center md:justify-between"
@@ -25,7 +26,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
         <a
           href="/"
           class="flex items-center w-full gap-2 sm:w-auto text-base-900 dark:text-white"
-          ><Logo class="h-7" /> oxbow ui</a
+          ><Logo class="h-7 dark:invert" /> oxbow ui</a
         >
         <button
           class="flex items-center text-base-900 dark:text-white cursor-pointer sm:hidden"
@@ -36,7 +37,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
         <button
           aria-label="open"
           @click="open = !open"
-          class="inline-flex items-center justify-center p-2 text-base-900 dark:text-white focus:outline-none focus:text-accent-400 md:hidden"
+          class="inline-flex items-center justify-center p-2 text-base-900 dark:text-white focus:outline-none focus:text-base-400 md:hidden"
           ><svg
             viewBox="0 0 24 24"
             class="size-6"
@@ -71,22 +72,22 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
           <Command class="size-4" />
           K
         </button>
-     
+
         <div class="flex flex-col items-center gap-3 md:flex-row">
           <Text
             tag="a"
             variant="textSM"
-           
             href="https://lexingtonthemes.com"
-            class="hover:text-accent-600 duration-300 font-semibold">Astro Templates</Text
+            class="hover:text-base-600 duration-300 font-semibold"
+            >Astro Templates</Text
           >
           <Text
             x-cloak
             tag="a"
             variant="textSM"
-           
             href="/documentation/getting-started"
-            class="hover:text-accent-600 duration-300 font-semibold">Documentation</Text
+            class="hover:text-base-600 duration-300 font-semibold"
+            >Documentation</Text
           >
           <ThemeToggle />
         </div>
