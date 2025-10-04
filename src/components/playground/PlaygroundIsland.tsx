@@ -8,9 +8,6 @@ import {
   Monitor,
   Copy,
   Check,
-  Sun,
-  Moon,
-  Laptop,
   Download,
   ChevronDown,
   ChevronLeft,
@@ -23,7 +20,6 @@ type Tab = "preview" | "code";
 interface Props {
   iframeId: string;
   iframeSrc: string;
-  canSeeCode: boolean;
   initialTab: Tab;
   ppcode: string;
   ppcodeLight?: string;
@@ -46,7 +42,6 @@ interface Props {
 export default function PlaygroundIsland({
   iframeId,
   iframeSrc,
-  canSeeCode,
   initialTab,
   ppcode,
   ppcodeLight,
@@ -199,17 +194,17 @@ export default function PlaygroundIsland({
         }
       }
       // Download code: Cmd + Shift + D
-      if (canSeeCode && tab === "code" && e.metaKey && e.shiftKey && !e.altKey && !e.ctrlKey && e.key.toLowerCase() === "d") {
+      if (tab === "code" && e.metaKey && e.shiftKey && !e.altKey && !e.ctrlKey && e.key.toLowerCase() === "d") {
         downloadCode();
         e.preventDefault();
       }
       // Open in new window: Cmd + O
-      if (canSeeCode && e.metaKey && !e.shiftKey && !e.altKey && !e.ctrlKey && e.key.toLowerCase() === "o") {
+      if (e.metaKey && !e.shiftKey && !e.altKey && !e.ctrlKey && e.key.toLowerCase() === "o") {
         openInNewWindow();
         e.preventDefault();
       }
       // Copy code: Cmd + C
-      if (canSeeCode && tab === "code" && e.metaKey && !e.shiftKey && !e.altKey && !e.ctrlKey && e.key.toLowerCase() === "c") {
+      if (tab === "code" && e.metaKey && !e.shiftKey && !e.altKey && !e.ctrlKey && e.key.toLowerCase() === "c") {
         copyCode();
         e.preventDefault();
       }
@@ -224,7 +219,7 @@ export default function PlaygroundIsland({
       window.removeEventListener("keydown", onArrow);
       window.removeEventListener("keydown", onThemeShortcuts);
     };
-  }, [canSeeCode, tab]);
+  }, [tab]);
   useEffect(() => {
     // Re-request height when returning to preview tab
     if (tab === "preview") {
@@ -391,53 +386,44 @@ export default function PlaygroundIsland({
           </span>
            <div className="w-px h-4 bg-base-200 dark:bg-base-700 hidden md:flex"></div>
           {/* Code controls next to theme toggles */}
-          {canSeeCode ? (
-            <div className="items-center hidden gap-1 md:flex">
-              <button
-                onClick={() => setTab("preview")}
-                className={`flex items-center justify-center size-7 transition-colors rounded-md ${tab === "preview" ? "bg-base-900 text-white dark:bg-white dark:text-base-900" : "bg-base-100 text-base-600 hover:bg-base-200 hover:text-base-950 dark:bg-base-800 dark:text-base-400 dark:hover:bg-base-700 dark:hover:text-white"}`}
-              >
-                <Eye size={14} />
-              </button>
-              <button
-                onClick={() => setTab("code")}
-                className={`flex items-center justify-center size-7 transition-colors rounded-md ${tab === "code" ? "bg-base-900 text-white dark:bg-white dark:text-base-900" : "bg-base-100 text-base-600 hover:bg-base-200 hover:text-base-950 dark:bg-base-800 dark:text-base-400 dark:hover:bg-base-700 dark:hover:text-white"}`}
-              >
-                <Code size={14} />
-              </button>
-              <button
-                onClick={copyCode}
-                className="flex items-center justify-center size-7 transition-colors rounded-md bg-base-100 text-base-600 hover:bg-base-200 hover:text-base-950 dark:bg-base-800 dark:text-base-400 dark:hover:bg-base-700 dark:hover:text-white"
-                title="Copy"
-                aria-label="Copy"
-              >
-                {copiedCode ? <Check size={14} /> : <Copy size={14} />}
-              </button>
-              <button
-                onClick={downloadCode}
-                className="flex items-center justify-center size-7 transition-colors rounded-md bg-base-100 text-base-600 hover:bg-base-200 hover:text-base-950 dark:bg-base-800 dark:text-base-400 dark:hover:bg-base-700 dark:hover:text-white"
-                title="Download code"
-                aria-label="Download code"
-              >
-                <Download size={14} />
-              </button>
-              <button
-                onClick={openInNewWindow}
-                className="flex items-center justify-center size-7 transition-colors rounded-md bg-base-100 text-base-600 hover:bg-base-200 hover:text-base-950 dark:bg-base-800 dark:text-base-400 dark:hover:bg-base-700 dark:hover:text-white"
-                title="Open in new window"
-                aria-label="Open in new window"
-              >
-                <ExternalLink size={14} />
-              </button>
-            </div>
-          ) : (
-            <a
-              href="/pricing"
-              className="hidden md:flex items-center h-7 px-2 text-xs transition-colors rounded-md bg-base-100 text-base-600 hover:bg-base-200 hover:text-base-950 dark:bg-base-800 dark:text-base-400 dark:hover:bg-base-700 dark:hover:text-white"
+          <div className="items-center hidden gap-1 md:flex">
+            <button
+              onClick={() => setTab("preview")}
+              className={`flex items-center justify-center size-7 transition-colors rounded-md ${tab === "preview" ? "bg-base-900 text-white dark:bg-white dark:text-base-900" : "bg-base-100 text-base-600 hover:bg-base-200 hover:text-base-950 dark:bg-base-800 dark:text-base-400 dark:hover:bg-base-700 dark:hover:text-white"}`}
             >
-              Get Access
-            </a>
-          )}
+              <Eye size={14} />
+            </button>
+            <button
+              onClick={() => setTab("code")}
+              className={`flex items-center justify-center size-7 transition-colors rounded-md ${tab === "code" ? "bg-base-900 text-white dark:bg-white dark:text-base-900" : "bg-base-100 text-base-600 hover:bg-base-200 hover:text-base-950 dark:bg-base-800 dark:text-base-400 dark:hover:bg-base-700 dark:hover:text-white"}`}
+            >
+              <Code size={14} />
+            </button>
+            <button
+              onClick={copyCode}
+              className="flex items-center justify-center size-7 transition-colors rounded-md bg-base-100 text-base-600 hover:bg-base-200 hover:text-base-950 dark:bg-base-800 dark:text-base-400 dark:hover:bg-base-700 dark:hover:text-white"
+              title="Copy"
+              aria-label="Copy"
+            >
+              {copiedCode ? <Check size={14} /> : <Copy size={14} />}
+            </button>
+            <button
+              onClick={downloadCode}
+              className="flex items-center justify-center size-7 transition-colors rounded-md bg-base-100 text-base-600 hover:bg-base-200 hover:text-base-950 dark:bg-base-800 dark:text-base-400 dark:hover:bg-base-700 dark:hover:text-white"
+              title="Download code"
+              aria-label="Download code"
+            >
+              <Download size={14} />
+            </button>
+            <button
+              onClick={openInNewWindow}
+              className="flex items-center justify-center size-7 transition-colors rounded-md bg-base-100 text-base-600 hover:bg-base-200 hover:text-base-950 dark:bg-base-800 dark:text-base-400 dark:hover:bg-base-700 dark:hover:text-white"
+              title="Open in new window"
+              aria-label="Open in new window"
+            >
+              <ExternalLink size={14} />
+            </button>
+          </div>
         </div>
         {/* Right: code controls + nav (if provided) */}
         <div className="items-center justify-end hidden gap-1 md:flex">
@@ -633,7 +619,7 @@ export default function PlaygroundIsland({
             </div>
           </div>
         )}
-        {canSeeCode && tab === "code" && (
+        {tab === "code" && (
           <div className="flex-grow  text-xs transition-colors bg-white code-pane size-full selection:bg-zinc-100 scrollbar-hide dark:bg-base-950 dark:text-base-200 dark:selection:bg-base-800/60">
             {mode === "system" && !!arguments[0]?.highlightedSystem ? (
               <div

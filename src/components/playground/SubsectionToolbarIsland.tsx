@@ -25,16 +25,16 @@ export default function SubsectionToolbarIsland({ cat, sub, subsByCat }: Props){
     setOpen(which);
   };
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-2">
       {/* Category */}
       <div className="relative">
-        <button onClick={(e)=>openMenu('cat', e)} className="inline-flex items-center gap-1.5 text-sm transition-colors font-semibold text-base-950 hover:text-base-600 dark:text-white dark:hover:text-base-400">
+        <button onClick={(e)=>openMenu('cat', e)} className="flex items-center gap-1.5 h-7 px-2 text-xs transition-colors rounded-md bg-base-100 text-base-600 hover:bg-base-200 hover:text-base-950 dark:bg-base-800 dark:text-base-400 dark:hover:bg-base-700 dark:hover:text-white">
           <span className="capitalize">{fmt(cat)}</span>
           <ChevronDown className="size-4"/>
         </button>
         {open==='cat' && (
-          <div ref={menuRef} className="absolute z-50 top-full rounded mt-2 right-0 w-56 outline outline-base-100 shadow bg-white text-[12px] text-base-600 divide-y divide-base-100 dark:bg-base-900 dark:text-base-300 dark:outline-base-700 dark:divide-base-700">
-            <div className="py-2 overflow-auto max-h-64 ">
+          <div ref={menuRef} className="absolute z-50 top-full rounded-xl mt-2 right-0 w-56 outline outline-base-100 shadow bg-white text-xs text-base-600 divide-y divide-base-100 dark:bg-base-900 dark:text-base-300 dark:outline-base-700 dark:divide-base-700">
+            <div className="py-2 overflow-auto max-h-64">
               {Object.keys(subsByCat).sort().map(key => (
                 <a key={key} href={`/playground/${key}/${(subsByCat[key]||[])[0]||''}`} className="w-full flex items-center justify-between px-3 py-1.5 hover:bg-base-100 dark:hover:bg-base-800/60">
                   <span className="capitalize">{fmt(key)}</span>
@@ -47,13 +47,13 @@ export default function SubsectionToolbarIsland({ cat, sub, subsByCat }: Props){
       </div>
       {/* Subsection */}
       <div className="relative">
-        <button onClick={(e)=>openMenu('sub', e)} className="inline-flex items-center gap-1.5 text-sm transition-colors font-semibold text-base-950 hover:text-base-600 dark:text-white dark:hover:text-base-400">
+        <button onClick={(e)=>openMenu('sub', e)} className="flex items-center gap-1.5 h-7 px-2 text-xs transition-colors rounded-md bg-base-100 text-base-600 hover:bg-base-200 hover:text-base-950 dark:bg-base-800 dark:text-base-400 dark:hover:bg-base-700 dark:hover:text-white">
           <span className="capitalize">{fmt(sub)}</span>
           <ChevronDown className="size-4"/>
         </button>
         {open==='sub' && (
-          <div ref={menuRef} className="absolute z-50 top-full rounded mt-2 right-0 w-64 outline outline-base-100 shadow bg-white text-[12px] text-base-600 divide-y divide-base-100 dark:bg-base-900 dark:text-base-300 dark:outline-base-700 dark:divide-base-700">
-            <div className="py-2 overflow-auto max-h-64 ">
+          <div ref={menuRef} className="absolute z-50 top-full rounded-xl mt-2 right-0 w-64 outline outline-base-100 shadow bg-white text-xs text-base-600 divide-y divide-base-100 dark:bg-base-900 dark:text-base-300 dark:outline-base-700 dark:divide-base-700">
+            <div className="py-2 overflow-auto max-h-64">
               {(subsByCat[cat]||[]).map(name => (
                 <a key={name} href={`/playground/${cat}/${name}`} className="w-full flex items-center justify-between px-3 py-1.5 hover:bg-base-100 dark:hover:bg-base-800/60">
                   <span className="capitalize">{fmt(name)}</span>

@@ -50,11 +50,18 @@ const groupedEntries = [
 <section
   data-fast-goal="navigated-to-components"
   x-data="{ tab: 'marketing', setTab(id){ this.tab = id; history.replaceState({}, '', `#${id}`) } }"
-  x-init="(() => { const id = location.hash?.slice(1); if (id) tab = id })()"
+  x-init="(() => { 
+    const hash = location.hash?.slice(1); 
+    if (hash) {
+      // Extract main tab (part before '-' or the whole hash)
+      const mainTab = hash.includes('-') ? hash.split('-')[0] : hash;
+      if (mainTab) tab = mainTab;
+    }
+  })()"
 >
-  <Wrapper variant="standard" class="pt-12">
+  <Wrapper variant="standard" >
     
-    <nav class="relative flex space-x-4 w-full  border-b border-base-200 dark:border-base-800" role="tablist" aria-label="Components sections">
+    <nav class="relative flex gap-2 w-fit p-1 bg-base-100 dark:bg-base-800 rounded-lg" role="tablist" aria-label="Components sections">
       {groupedEntries.map(({ id, title }) => (
         <a
           role="tab"
@@ -62,33 +69,47 @@ const groupedEntries = [
           data-id={id}
           @click.prevent="setTab($el.dataset.id)"
           :aria-selected={`tab === '${id}'`}
-          class="inline-flex items-center justify-center font-semibold text-sm transition-colors pb-2 border-b-2 -mb-[2px]"
-          :class={`tab === '${id}' ? 'text-base-950 dark:text-white font-medium border-base-950 dark:border-white' : 'text-base-600 hover:text-base-950 dark:text-base-400 dark:hover:text-white border-transparent'`}
+          class="flex items-center justify-center h-7 px-3 text-xs transition-colors rounded-md shadow-oxbow"
+          :class={`tab === '${id}' ? 'bg-base-900 text-white dark:bg-white dark:text-base-900' : 'bg-base-50 text-base-600 hover:bg-white hover:text-base-950 dark:bg-base-900 dark:text-base-400 dark:hover:bg-base-700 dark:hover:text-white '`}
         >{title}</a>
       ))}
     </nav>
     {groupedEntries.map(({ id, title, description, groups }) => {
       const firstGroup = groups[0]?.id || '';
       return (
-        <div class="pt-4"
+        <div class=" mt-2"
           id={id}
           x-show={`tab === '${id}'`}
           x-cloak
           style={id === 'marketing' ? '' : 'display:none'}
-          x-data={`{ inner: '${firstGroup}', setInner(id){ this.inner = id } }`}
+          x-data={`{ 
+            inner: localStorage.getItem('oxbow-inner-${id}') || '${firstGroup}', 
+            setInner(id){ 
+              this.inner = id; 
+              localStorage.setItem('oxbow-inner-${id}', id);
+              history.replaceState({}, '', \`#${id}-\${id}\`);
+            } 
+          }`}
+          x-init={`(() => { 
+            const hash = location.hash?.slice(1); 
+            if (hash?.startsWith('${id}-')) {
+              const groupId = hash.replace('${id}-', '');
+              if (groupId) this.inner = groupId;
+            }
+          })()`}
         >
         
                 <Text tag="p" variant="textSM" class="max-w-md  text-base-600 dark:text-base-400 md:text-balance font-medium">{description}</Text>
                 {/* Nested tabs for groups */}
-                <nav class="flex items-center mt-12 gap-4 w-full border-b border-base-200 dark:border-base-800 " role="tablist" aria-label={`${title} groups`}>
+                <nav class="flex items-center mt-12 gap-2 w-fit p-1 bg-base-100 dark:bg-base-800 rounded-lg" role="tablist" aria-label={`${title} groups`}>
                   {groups.map(({ id: groupId, label }) => (
                     <a
                       role="tab"
                       href={`#${id}-${groupId}`}
                       data-id={groupId}
                       @click.prevent="setInner($el.dataset.id)"
-                      class="inline-flex items-center justify-center font-semibold text-sm transition-colors pb-2 border-b-2 -mb-[2px]"
-                      :class={`inner === '${groupId}' ? 'text-base-950 dark:text-white font-medium border-base-950 dark:border-white' : 'text-base-600 hover:text-base-950 dark:text-base-400 dark:hover:text-white border-transparent'`}
+                      class="flex items-center justify-center h-7 px-3 text-xs transition-colors rounded-md shadow-oxbow"
+                      :class={`inner === '${groupId}' ? 'bg-base-900 text-white dark:bg-white dark:text-base-900' : 'bg-base-50 text-base-600 hover:bg-white hover:text-base-950 dark:bg-base-900 dark:text-base-400 dark:hover:bg-base-700 dark:hover:text-white'`}
                     >{label}</a>
                   ))}
                 </nav>
@@ -110,4 +131,6 @@ const groupedEntries = [
       );
     })}
   </Wrapper>
+  
 </section>
+

@@ -8,12 +8,11 @@ import * as prettier from "prettier";
 import { createHighlighter, createCssVariablesTheme } from "shiki";
 // Utils
 import { getUserThemeColor } from "@/utils/getUserTheme";
-import { canSeeCode } from "@/utils/canSeeCode";
+
 interface Props {
   componentIndex: number;
   componentPath: string;
   playgroundRef: string;
-  freeComponent?: boolean;
   initialTabIsCode?: boolean;
   navCat?: string;
   navSub?: string;
@@ -28,7 +27,6 @@ const {
   componentIndex,
   componentPath,
   playgroundRef,
-  freeComponent = false,
   initialTabIsCode = false,
   navCat,
   navSub,
@@ -40,7 +38,7 @@ const {
   sectionLength,
 } = Astro.props as Props;
 const user = Astro.locals.user;
-const canSeeCodeValue = canSeeCode(user, freeComponent);
+
 // Get user's theme preference from custom claims
 const userThemeColor = getUserThemeColor(user, "blue", Astro);
 // Always render the slot so we can transform it for container queries in preview
@@ -48,83 +46,83 @@ const rawSlotCode = await Astro.slots.render("default");
 // Allow authors to mark the actual snippet to show/copy using HTML comments
 // <!-- copy:start --> ... <!-- copy:end -->
 let code = "";
-if (canSeeCodeValue) {
-  const startMarker = /<!--\s*copy:start\s*-->/i;
-  const endMarker = /<!--\s*copy:end\s*-->/i;
-  if (startMarker.test(rawSlotCode) && endMarker.test(rawSlotCode)) {
-    const startIdx = rawSlotCode.search(startMarker);
-    const endIdx = rawSlotCode.search(endMarker);
-    if (startIdx > -1 && endIdx > startIdx) {
-      const afterStart = rawSlotCode.replace(startMarker, "__COPY_START__");
-      const between = afterStart.split("__COPY_START__")[1] || "";
-      code =
-        between.split(
-          rawSlotCode.match(endMarker)?.[0] || "<!-- copy:end -->"
-        )[0] || "";
-    }
-  }
-  // Fallback to full slot content if no markers were found
-  if (!code) {
-    // Special case: Typography – copy only the Text component
-    if (componentPath && /\/typography\//i.test(componentPath)) {
-      const m = rawSlotCode.match(/<Text[\s\S]*?<\/Text>/);
-      if (m) {
-        code = m[0];
-      }
-    }
-  }
-  if (!code) {
-    let s = rawSlotCode;
-    // Try to strip one outer <section> wrapper
-    const hasOuterSection = /^\s*<section[\s\S]*<\/section>\s*$/i.test(s);
-    if (hasOuterSection) {
-      s = s.replace(/^\s*<section[^>]*>/i, "").replace(/<\/section>\s*$/i, "");
-    }
-    // Try to strip one outer <div> wrapper
-    const hasOuterDiv = /^\s*<div[\s\S]*<\/div>\s*$/i.test(s);
-    if (hasOuterDiv) {
-      s = s.replace(/^\s*<div[^>]*>/i, "").replace(/<\/div>\s*$/i, "");
-    }
-    code = s || rawSlotCode;
+
+const startMarker = /<!--\s*copy:start\s*-->/i;
+const endMarker = /<!--\s*copy:end\s*-->/i;
+if (startMarker.test(rawSlotCode) && endMarker.test(rawSlotCode)) {
+  const startIdx = rawSlotCode.search(startMarker);
+  const endIdx = rawSlotCode.search(endMarker);
+  if (startIdx > -1 && endIdx > startIdx) {
+    const afterStart = rawSlotCode.replace(startMarker, "__COPY_START__");
+    const between = afterStart.split("__COPY_START__")[1] || "";
+    code =
+      between.split(
+        rawSlotCode.match(endMarker)?.[0] || "<!-- copy:end -->"
+      )[0] || "";
   }
 }
+// Fallback to full slot content if no markers were found
+if (!code) {
+  // Special case: Typography – copy only the Text component
+  if (componentPath && /\/typography\//i.test(componentPath)) {
+    const m = rawSlotCode.match(/<Text[\s\S]*?<\/Text>/);
+    if (m) {
+      code = m[0];
+    }
+  }
+}
+if (!code) {
+  let s = rawSlotCode;
+  // Try to strip one outer <section> wrapper
+  const hasOuterSection = /^\s*<section[\s\S]*<\/section>\s*$/i.test(s);
+  if (hasOuterSection) {
+    s = s.replace(/^\s*<section[^>]*>/i, "").replace(/<\/section>\s*$/i, "");
+  }
+  // Try to strip one outer <div> wrapper
+  const hasOuterDiv = /^\s*<div[\s\S]*<\/div>\s*$/i.test(s);
+  if (hasOuterDiv) {
+    s = s.replace(/^\s*<div[^>]*>/i, "").replace(/<\/div>\s*$/i, "");
+  }
+  code = s || rawSlotCode;
+}
+
 let ppcode = "";
 let ppcodeLight = "";
 let ppcodeDarkOnly = "";
-if (canSeeCodeValue) {
-  // Always format so the Code tab shows pretty output by default
-  ppcode = await prettier.format(code, { parser: "html" });
-  // Also prepare a light-only version with dark: classes removed
-  try {
-    const stripped = code.replace(/(^|\s)dark:[^\s"'>]+/g, " ");
-    ppcodeLight = await prettier.format(stripped, { parser: "html" });
-  } catch {}
-  // Prepare a dark-only version: keep dark:* tokens, drop their light counterparts, then unprefix dark:
-  try {
-    const categoryOf = (tok: string) => {
-      // Strip variants like hover:, focus: etc. Keep final utility
-      const parts = tok.split(":");
-      const core = parts[parts.length - 1];
-      return core.split("-")[0];
-    };
-    const darkified = ppcode.replace(/class=("|')(.*?)(\1)/gs, (m, q, cls) => {
-      const tokens = cls.split(/\s+/).filter(Boolean);
-      const darkTokens = tokens.filter((t) => t.includes("dark:"));
-      const darkCategories = new Set(
-        darkTokens.map((t) => categoryOf(t.replace(/^.*dark:/, "")))
-      );
-      const kept = tokens.filter((t) => {
-        if (t.includes("dark:")) return true; // keep all dark: tokens
-        const cat = categoryOf(t);
-        if (darkCategories.has(cat)) return false; // drop light in same category
-        return true;
-      });
-      const normalized = kept.map((t) => t.replace(/^.*dark:/, ""));
-      return `class=${q}${normalized.join(" ")}${q}`;
+
+// Always format so the Code tab shows pretty output by default
+ppcode = await prettier.format(code, { parser: "html" });
+// Also prepare a light-only version with dark: classes removed
+try {
+  const stripped = code.replace(/(^|\s)dark:[^\s"'>]+/g, " ");
+  ppcodeLight = await prettier.format(stripped, { parser: "html" });
+} catch {}
+// Prepare a dark-only version: keep dark:* tokens, drop their light counterparts, then unprefix dark:
+try {
+  const categoryOf = (tok: string) => {
+    // Strip variants like hover:, focus: etc. Keep final utility
+    const parts = tok.split(":");
+    const core = parts[parts.length - 1];
+    return core.split("-")[0];
+  };
+  const darkified = ppcode.replace(/class=("|')(.*?)(\1)/gs, (m, q, cls) => {
+    const tokens = cls.split(/\s+/).filter(Boolean);
+    const darkTokens = tokens.filter((t) => t.includes("dark:"));
+    const darkCategories = new Set(
+      darkTokens.map((t) => categoryOf(t.replace(/^.*dark:/, "")))
+    );
+    const kept = tokens.filter((t) => {
+      if (t.includes("dark:")) return true; // keep all dark: tokens
+      const cat = categoryOf(t);
+      if (darkCategories.has(cat)) return false; // drop light in same category
+      return true;
     });
-    ppcodeDarkOnly = await prettier.format(darkified, { parser: "html" });
-  } catch {}
-}
+    const normalized = kept.map((t) => t.replace(/^.*dark:/, ""));
+    return `class=${q}${normalized.join(" ")}${q}`;
+  });
+  ppcodeDarkOnly = await prettier.format(darkified, { parser: "html" });
+} catch {}
+
 // Build preview HTML that swaps viewport breakpoints (sm:, md:, ...) to container queries (@sm:, @md:, ...)
 // This lets the demo respond to the resizable container instead of the viewport.
 // Iframe source for same-origin preview page (align id with param)
@@ -137,27 +135,26 @@ const hostId = `playground-host-${componentIndex}`;
 let highlightedSystem = "",
   highlightedLight = "",
   highlightedDark = "";
-if (canSeeCodeValue) {
-  try {
-    const shikiTheme = createCssVariablesTheme({ name: "css-variables" });
-    const highlighter = await createHighlighter({
-      langs: ["html"],
-      themes: [shikiTheme],
-    });
-    highlightedSystem = await highlighter.codeToHtml(ppcode, {
-      lang: "html",
-      theme: "css-variables",
-    });
-    highlightedLight = await highlighter.codeToHtml(ppcodeLight || ppcode, {
-      lang: "html",
-      theme: "css-variables",
-    });
-    highlightedDark = await highlighter.codeToHtml(ppcodeDarkOnly || ppcode, {
-      lang: "html",
-      theme: "css-variables",
-    });
-  } catch {}
-}
+
+try {
+  const shikiTheme = createCssVariablesTheme({ name: "css-variables" });
+  const highlighter = await createHighlighter({
+    langs: ["html"],
+    themes: [shikiTheme],
+  });
+  highlightedSystem = await highlighter.codeToHtml(ppcode, {
+    lang: "html",
+    theme: "css-variables",
+  });
+  highlightedLight = await highlighter.codeToHtml(ppcodeLight || ppcode, {
+    lang: "html",
+    theme: "css-variables",
+  });
+  highlightedDark = await highlighter.codeToHtml(ppcodeDarkOnly || ppcode, {
+    lang: "html",
+    theme: "css-variables",
+  });
+} catch {}
 ---
 
 <div id={hostId} style="min-height: 640px">
@@ -165,7 +162,6 @@ if (canSeeCodeValue) {
     client:load
     iframeId={iframeId}
     iframeSrc={iframeSrc}
-    canSeeCode={canSeeCodeValue}
     initialTab={initialTabIsCode ? "code" : "preview"}
     ppcode={ppcode}
     ppcodeLight={ppcodeLight}

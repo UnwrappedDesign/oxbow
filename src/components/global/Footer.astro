@@ -6,34 +6,23 @@ import Button from "@/components/fundations/buttons/Button.astro";
 import Logo from "@/components/assets/Logo.astro";
 // Fundations
 
-// Add prop to control CTA visibility
-const { isSignedIn = false } = Astro.props;
-
 const navLinks = [
   {
     title: "Navigation",
     links: [
       { label: "Home", href: "/" },
-      // { label: "Log in", href: "/login" },
+
       { label: "Changelog", href: "/changelog" },
-      // { label: "Support", href: "/support" },
-      // { label: "Affiliates", href: "https://oxbowui.affonso.io" },
-      // { label: "Customers", href: "/customers" },
-      //{ label: "License", href: "/license" },
     ],
   },
-  /* {
-    title: "Legal",
-    links: [
-      { label: "Faq", href: "/faq" },
-      { label: "Terms", href: "/terms" },
-      { label: "Privacy", href: "/privacy" },
-      { label: "Refund", href: "/refund" },
-    ],
-  }, */
+
   {
     title: "Social",
-    links: [{ label: "X", href: "https://x.com/oxbowui" }],
+    links: [
+      { label: "Gabriel ", href: "https://x.com/g_perales" },
+      { label: "Michael", href: "https://x.com/Mike_Andreuzza" },
+      { label: "Oxbow UI", href: "https://x.com/oxbowui" },
+    ],
   },
   {
     title: "Tools",
@@ -57,54 +46,19 @@ const navLinks = [
 
 <footer class="overflow-hidden">
   <Wrapper variant="narrow" class="pb-8 mt-24">
-    <!--   {
-      !isSignedIn && (
-        <div class="p-8 py-12 text-center bg-white rounded-xl shadow-normal shadow-base-500/10 ">
-          <div class="max-w-lg mx-auto  text-balance">
-            <Text
-              tag="h2"
-              variant="displaySM"
-              class="font-medium text-zinc-900"
-            >
-              Lifetime access
-            </Text>
-            <Text tag="p" variant="textBase" class="mt-2 text-zinc-700">
-              Get everything for $99. One-time payment. Lifetime access,
-              updates, and support included.
-            </Text>
-            <Button
-              size="xxs"
-              variant="oxbowAccent"
-              href="/pricing"
-              id="full-access-cta-bottom"
-            
-              title="Get the full-access"
-              class="mx-auto mt-8 w-fit"
-            >
-              Full access for $99
-            </Button>
-          </div>
-        </div>
-      )
-    } -->
-    <div>
-      <div class="text-black">
-        <a href="/">
-          <span class="sr-only">Go to homepage</span>
-          <Logo class="h-8 text-zinc-900 dark:text-white" />
-        </a>
-        <p class="mt-1 text-sm font-normal text-zinc-500 text-balance">
-          It's just Tailwind & Alpine blocks.
-        </p>
-      </div>
-      <div class="flex flex-col mt-12 lg:col-span-3">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+      <a href="/">
+        <span class="sr-only">Go to homepage</span>
+        <Logo class="h-8 text-zinc-900 dark:text-white" />
+      </a>
+      <div class="grid grid-cols-2 lg:grid-cols-3 lg:col-span-2">
         {
           navLinks.map((section, i) => (
             <nav aria-label={section.title}>
               <Text
                 tag="h3"
-                variant="textBase"
-                class="font-semibold sr-only text-zinc-900"
+                variant="textXS"
+                class="font-medium  text-zinc-900"
               >
                 {section.title}
               </Text>
@@ -113,7 +67,7 @@ const navLinks = [
                 class="flex flex-col text-xs  space-y-1 text-zinc-600 "
               >
                 {section.links.map((link, j) => (
-                  <li class="py-1.5">
+                  <li>
                     <a
                       class="hover:text-accent-600"
                       href={link.href}
