@@ -336,7 +336,7 @@ export default function PlaygroundIsland({
           <button
             type="button"
             onClick={copyUrl}
-            className={`flex items-center justify-center size-7 px-2 text-xs transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 ${copiedUrl ? "bg-base-900 text-white dark:bg-white dark:text-base-900" : "bg-base-50 text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white"}`}
+            className={`flex items-center justify-center size-7 px-2 text-xs transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 ${copiedUrl ? "bg-base-900 text-white dark:bg-white dark:text-base-900" : "bg-white text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white"}`}
             title="Copy block URL"
             aria-label="Copy block URL"
           >
@@ -346,19 +346,19 @@ export default function PlaygroundIsland({
                     <span className="items-center hidden gap-1 md:flex">
             <button
               onClick={() => setViewportWidth("mobile")}
-              className={`flex items-center justify-center size-7 transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 ${viewport === "mobile" ? "bg-base-900 text-white dark:bg-white dark:text-base-900" : "bg-base-50 text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white"}`}
+              className={`flex items-center justify-center size-7 transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 ${viewport === "mobile" ? "bg-base-900 text-white dark:bg-white dark:text-base-900" : "bg-white text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white"}`}
             >
               <Smartphone size={14} />
             </button>
             <button
               onClick={() => setViewportWidth("tablet")}
-              className={`flex items-center justify-center size-7 transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 ${viewport === "tablet" ? "bg-base-900 text-white dark:bg-white dark:text-base-900" : "bg-base-50 text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white"}`}
+              className={`flex items-center justify-center size-7 transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 ${viewport === "tablet" ? "bg-base-900 text-white dark:bg-white dark:text-base-900" : "bg-white text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white"}`}
             >
               <Tablet size={14} />
             </button>
             <button
               onClick={() => setViewportWidth("desktop")}
-              className={`flex items-center justify-center size-7 transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 ${viewport === "desktop" ? "bg-base-900 text-white dark:bg-white dark:text-base-900" : "bg-base-50 text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white"}`}
+              className={`flex items-center justify-center size-7 transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 ${viewport === "desktop" ? "bg-base-900 text-white dark:bg-white dark:text-base-900" : "bg-white text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white"}`}
             >
               <Monitor size={14} />
             </button>
@@ -367,19 +367,19 @@ export default function PlaygroundIsland({
           <span className="items-center hidden gap-1 isolate md:flex">
             <button
               onClick={() => setMode("light")}
-              className={`flex items-center gap-1.5 h-7 px-2 text-xs transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 ${mode === "light" ? "bg-base-900 text-white dark:bg-white dark:text-base-900" : "bg-base-50 text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white"}`}
+              className={`flex items-center gap-1.5 h-7 px-2 text-xs transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 ${mode === "light" ? "bg-base-900 text-white dark:bg-white dark:text-base-900" : "bg-white text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white"}`}
             >
                <span>Light</span>
             </button>
             <button
               onClick={() => setMode("system")}
-              className={`flex items-center gap-1.5 h-7 px-2 text-xs transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 ${mode === "system" ? "bg-base-900 text-white dark:bg-white dark:text-base-900" : "bg-base-50 text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white"}`}
+              className={`flex items-center gap-1.5 h-7 px-2 text-xs transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 ${mode === "system" ? "bg-base-900 text-white dark:bg-white dark:text-base-900" : "bg-white text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white"}`}
             >
                <span>System</span>
             </button>
             <button
               onClick={() => setMode("dark")}
-              className={`flex items-center gap-1.5 h-7 px-2 text-xs transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 ${mode === "dark" ? "bg-base-900 text-white dark:bg-white dark:text-base-900" : "bg-base-50 text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white"}`}
+              className={`flex items-center gap-1.5 h-7 px-2 text-xs transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 ${mode === "dark" ? "bg-base-900 text-white dark:bg-white dark:text-base-900" : "bg-white text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white"}`}
             >
                <span>Dark</span>
             </button>
@@ -389,19 +389,19 @@ export default function PlaygroundIsland({
           <div className="items-center hidden gap-1 md:flex">
             <button
               onClick={() => setTab("preview")}
-              className={`flex items-center justify-center size-7 transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 ${tab === "preview" ? "bg-base-900 text-white dark:bg-white dark:text-base-900" : "bg-base-50 text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white"}`}
+              className={`flex items-center justify-center size-7 transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 ${tab === "preview" ? "bg-base-900 text-white dark:bg-white dark:text-base-900" : "bg-white text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white"}`}
             >
               <Eye size={14} />
             </button>
             <button
               onClick={() => setTab("code")}
-              className={`flex items-center justify-center size-7 transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 ${tab === "code" ? "bg-base-900 text-white dark:bg-white dark:text-base-900" : "bg-base-50 text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white"}`}
+              className={`flex items-center justify-center size-7 transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 ${tab === "code" ? "bg-base-900 text-white dark:bg-white dark:text-base-900" : "bg-white text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white"}`}
             >
               <Code size={14} />
             </button>
             <button
               onClick={copyCode}
-              className="flex items-center justify-center size-7 transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 bg-base-50 text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white"
+              className="flex items-center justify-center size-7 transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 bg-white text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white"
               title="Copy"
               aria-label="Copy"
             >
@@ -409,7 +409,7 @@ export default function PlaygroundIsland({
             </button>
             <button
               onClick={downloadCode}
-              className="flex items-center justify-center size-7 transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 bg-base-50 text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white"
+              className="flex items-center justify-center size-7 transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 bg-white text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white"
               title="Download code"
               aria-label="Download code"
             >
@@ -417,7 +417,7 @@ export default function PlaygroundIsland({
             </button>
             <button
               onClick={openInNewWindow}
-              className="flex items-center justify-center size-7 transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 bg-base-50 text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white"
+              className="flex items-center justify-center size-7 transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 bg-white text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white"
               title="Open in new window"
               aria-label="Open in new window"
             >
@@ -433,7 +433,7 @@ export default function PlaygroundIsland({
               <div className="relative">
                 <button
                   onClick={(e) => openNavMenu("cat", e)}
-                  className="flex items-center gap-1.5 h-7 px-2 text-xs transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 bg-base-50 text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white px-3"
+                  className="flex items-center gap-1.5 h-7 px-2 text-xs transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 bg-white text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white px-3"
                 >
                   <span className="capitalize">
                     {fmt(arguments[0]!.navCat || "")}
@@ -445,7 +445,7 @@ export default function PlaygroundIsland({
               <div className="relative">
                 <button
                   onClick={(e) => openNavMenu("sub", e)}
-                  className="hidden md:flex items-center gap-1.5 h-7 px-2 text-xs transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 bg-base-50 text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white px-3"
+                  className="hidden md:flex items-center gap-1.5 h-7 px-2 text-xs transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 bg-white text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white px-3"
                 >
                   <span className="capitalize">
                     {fmt(arguments[0]!.navSub || "")}
@@ -457,7 +457,7 @@ export default function PlaygroundIsland({
               <div className="relative">
                 <button
                   onClick={(e) => openNavMenu("idx", e)}
-                  className="hidden md:flex items-center gap-1.5 h-7 px-2 text-xs transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 bg-base-50 text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white px-3"
+                  className="hidden md:flex items-center gap-1.5 h-7 px-2 text-xs transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 bg-white text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white px-3"
                 >
                   <span>NO</span>
                   
@@ -562,7 +562,7 @@ export default function PlaygroundIsland({
                 <a
                   href={arguments[0]!.prevHref}
                   aria-label="Previous"
-                  className="flex items-center justify-center size-7 transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 bg-base-50 text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white"
+                  className="flex items-center justify-center size-7 transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 bg-white text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white"
                 >
                   <ChevronLeft className="size-4" />
                 </a>
@@ -576,7 +576,7 @@ export default function PlaygroundIsland({
                 <a
                   href={arguments[0]!.nextHref}
                   aria-label="Next"
-                  className="flex items-center justify-center size-7 transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 bg-base-50 text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white"
+                  className="flex items-center justify-center size-7 transition-colors rounded-md shadow-oxbow dark:shadow-base-900/50 bg-white text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white"
                 >
                   <ChevronRight className="size-4" />
                 </a>
