@@ -1,6 +1,5 @@
 ---
 // Fundations
-import Button from "@/components/fundations/buttons/Button.astro";
 // Icons
 import Moon from "@/components/fundations/icons/Moon.astro";
 import Sun from "@/components/fundations/icons/Sun.astro";
@@ -14,43 +13,116 @@ const { class: className = "", ...rest } = Astro.props;
 ---
 
 <div
-  class={`inline-flex items-center  transition-colors duration-200 gap-1 ${className}`}
+  class={`relative inline-flex items-center ${className}`}
   {...rest}
   data-theme-toggle-container
+  x-data="{ open: false, theme: 'system' }"
+  x-init="theme = localStorage.getItem('theme') || 'system'"
+  @click.outside="open = false"
 >
-  <!-- System/Auto Button -->
+  <!-- Trigger Button -->
   <button
-    class="p-0.5 rounded-full text-base-900 dark:text-white"
-    data-theme-option="system"
-    role="radio"
-    aria-checked="false"
-    aria-label="Use system theme"
-    title="System theme"
+    @click="open = !open"
+    class="flex items-center gap-1 text-xs font-medium transition-colors text-base-500 hover:text-base-900 dark:text-base-400 dark:hover:text-white"
+    type="button"
+    aria-haspopup="menu"
+    :aria-expanded="open"
   >
-    <Desktop slot="right-icon" size="sm" />
+    <span
+      x-text="theme === 'system' ? 'System' : theme === 'light' ? 'Light' : 'Dark'"
+    ></span>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="size-4"
+    >
+      <path d="M6 9l6 6l6 -6"></path>
+    </svg>
   </button>
-  <!-- Light Button -->
-  <button
-    class="p-0.5 rounded-full text-base-900 dark:text-white"
-    data-theme-option="light"
-    role="radio"
-    aria-checked="false"
-    aria-label="Light theme"
-    title="Light theme"
+  <!-- Dropdown Menu -->
+  <div
+    x-show="open"
+    x-cloak
+    class="absolute z-50 top-full right-0 mt-2 w-40 rounded-xl outline outline-base-100 shadow bg-white text-xs text-base-600 divide-y divide-base-100 dark:bg-base-900 dark:text-base-300 dark:outline-base-700 dark:divide-base-700"
+    role="menu"
   >
-    <Sun slot="right-icon" size="sm" />
-  </button>
-  <!-- Dark Button -->
-  <button
-    class="p-0.5 rounded-full text-base-900 dark:text-white"
-    data-theme-option="dark"
-    role="radio"
-    aria-checked="false"
-    aria-label="Dark theme"
-    title="Dark theme"
-  >
-    <Moon slot="right-icon" size="sm" />
-  </button>
+    <div class="py-2">
+      <button
+        @click="theme = 'system'; open = false"
+        data-theme-option="system"
+        class="w-full flex items-center justify-between px-3 py-1.5 hover:bg-base-100 dark:hover:bg-base-800/60"
+        role="menuitem"
+      >
+        <span class="flex items-center gap-2">
+          <Desktop size="xs" />
+          System
+        </span>
+        <svg
+          x-show="theme === 'system'"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          class="text-base-950 dark:text-white size-4"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4-4a.75.75 0 011.06-1.06l3.353 3.353 7.528-9.884a.75.75 0 011.043-.136z"
+            clip-rule="evenodd"></path>
+        </svg>
+      </button>
+      <button
+        @click="theme = 'light'; open = false"
+        data-theme-option="light"
+        class="w-full flex items-center justify-between px-3 py-1.5 hover:bg-base-100 dark:hover:bg-base-800/60"
+        role="menuitem"
+      >
+        <span class="flex items-center gap-2">
+          <Sun size="xs" />
+          Light
+        </span>
+        <svg
+          x-show="theme === 'light'"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          class="text-base-950 dark:text-white size-4"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4-4a.75.75 0 011.06-1.06l3.353 3.353 7.528-9.884a.75.75 0 011.043-.136z"
+            clip-rule="evenodd"></path>
+        </svg>
+      </button>
+      <button
+        @click="theme = 'dark'; open = false"
+        data-theme-option="dark"
+        class="w-full flex items-center justify-between px-3 py-1.5 hover:bg-base-100 dark:hover:bg-base-800/60"
+        role="menuitem"
+      >
+        <span class="flex items-center gap-2">
+          <Moon size="xs" />
+          Dark
+        </span>
+        <svg
+          x-show="theme === 'dark'"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          class="text-base-950 dark:text-white size-4"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4-4a.75.75 0 011.06-1.06l3.353 3.353 7.528-9.884a.75.75 0 011.043-.136z"
+            clip-rule="evenodd"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
 </div>
 <script type="module">
   // Theme management
@@ -59,13 +131,11 @@ const { class: className = "", ...rest } = Astro.props;
     LIGHT: "light",
     DARK: "dark",
   };
-
   function getSystemTheme() {
     return window.matchMedia("(prefers-color-scheme: dark)").matches
       ? "dark"
       : "light";
   }
-
   function applyTheme(theme) {
     let actualTheme = theme;
     if (theme === THEMES.SYSTEM) {
@@ -73,37 +143,16 @@ const { class: className = "", ...rest } = Astro.props;
     }
     document.documentElement.classList.toggle("dark", actualTheme === "dark");
   }
-
-  function updateThemeToggle(currentTheme) {
-    const buttons = document.querySelectorAll("[data-theme-option]");
-    buttons.forEach((button) => {
-      const isActive = button.dataset.themeOption === currentTheme;
-      button.setAttribute("aria-checked", isActive ? "true" : "false");
-
-      // Update visual state - just toggle shadow for active state
-      if (isActive) {
-        button.classList.add("shadow");
-      } else {
-        button.classList.remove("shadow");
-      }
-    });
-  }
-
   function setTheme(theme) {
     localStorage.setItem("theme", theme);
     applyTheme(theme);
-    updateThemeToggle(theme);
   }
-
   function initializeTheme() {
     const savedTheme = localStorage.getItem("theme") || THEMES.SYSTEM;
     applyTheme(savedTheme);
-    updateThemeToggle(savedTheme);
   }
-
   // Initialize theme on page load
   initializeTheme();
-
   // Listen for system theme changes
   window
     .matchMedia("(prefers-color-scheme: dark)")
@@ -113,7 +162,6 @@ const { class: className = "", ...rest } = Astro.props;
         applyTheme(THEMES.SYSTEM);
       }
     });
-
   // Add event listeners to theme buttons
   document.querySelectorAll("[data-theme-option]").forEach((button) => {
     button.addEventListener("click", () => {

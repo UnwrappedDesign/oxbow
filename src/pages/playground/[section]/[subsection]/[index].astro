@@ -87,12 +87,12 @@ const countsByCatSub = triples.reduce(
 
 <BaseLayout>
   <section class="relative">
-    <Wrapper variant="standard">
+    <Wrapper variant="standard" class="py-8">
       <div class="flex items-center gap-2">
         <Text
           tag="h1"
-          variant="textSM"
-          class="font-semibold capitalize text-zinc-900 dark:text-zinc-50"
+          variant="textXL"
+          class="font-semibold tracking-tight capitalize text-zinc-900 dark:text-base-50"
         >
           {subsection.replace(/-/g, " ")}
         </Text>
@@ -122,7 +122,6 @@ const countsByCatSub = triples.reduce(
         componentIndex={parseInt(index)}
         componentPath={currentKey ? currentKey.replace(/^\//, "") : ""}
         playgroundRef={`${section}-${subsection}-${index}`}
-        freeComponent={freeComponent}
         initialTabIsCode={Astro.url.searchParams.get("tab") === "code"}
         navCat={section}
         navSub={subsection}
