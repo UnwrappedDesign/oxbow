@@ -117,11 +117,13 @@ const subsectionKey = (subsection || "").toLowerCase();
     data-subs={JSON.stringify(subsByCat)}
   >
     <Wrapper variant="standard">
-      <div class="flex items-center justify-between gap-2">
+      <div
+        class="flex flex-wrap items-center justify-between gap-2 border-b pb-2 border-zinc-100 dark:border-zinc-800"
+      >
         <Text
           tag="h1"
           variant="textSM"
-          class="font-medium tracking-tight capitalize text-zinc-900 dark:text-base-50"
+          class="font-semibold tracking-tight capitalize text-zinc-900 dark:text-base-50"
         >
           {subsection.replace(/-/g, " ")}
         </Text>
@@ -134,7 +136,7 @@ const subsectionKey = (subsection || "").toLowerCase();
           />
         </div>
       </div>
-      <div class="masonry-grid mt-8">
+      <div class="masonry-grid mt-4">
         {
           sectionComponents.map(
             (
@@ -167,13 +169,13 @@ const subsectionKey = (subsection || "").toLowerCase();
                       </Text>
                     )}
                   </div>
-                  <div class="mt-2 overflow-hidden bg-white rounded-lg shadow-normal border border-base-200 dark:bg-base-900 dark:border-base-700">
+                  <div class="mt-2 overflow-hidden bg-white rounded-lg shadow-oxbow shadow-base-700/10 dark:bg-base-900">
                     <Image
                       width={1000}
                       height={1000}
                       src={images[imagePath]?.() ?? "/placeholder.png"}
                       alt={`${subsection} preview ${index + 1}`}
-                      class="object-cover object-top shadow-normal"
+                      class="object-cover object-top "
                     />
                   </div>
                 </a>

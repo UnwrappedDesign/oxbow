@@ -91,15 +91,15 @@ const path = require("path");
     });
 
     try {
+      // Wait for fonts to load
+      await page.evaluateHandle("document.fonts.ready");
+
       // After navigation, aggressively force light mode in the document itself.
-      // Some previews include a nested `.dark` scope for demonstration; strip it.
       await page.addStyleTag({
         content: `:root{color-scheme: light !important}
           html,body{background:#fff !important}
-          /* Neutralize hard-coded dark tokens often used in demos */
-          .bg-black, .bg-zinc-950, .bg-zinc-900, .bg-neutral-950, .bg-neutral-900, .bg-slate-950, .bg-slate-900 { background-color: #fff !important; }
-          .text-white { color: #0a0a0a !important; }
-          .ring-zinc-900, .ring-zinc-800 { --tw-ring-color: rgba(0,0,0,0.10) !important; }
+          /* Force proper font rendering */
+          * { -webkit-font-smoothing: antialiased !important; -moz-osx-font-smoothing: grayscale !important; }
         `,
       });
       await page.evaluate(() => {
@@ -125,8 +125,24 @@ const path = require("path");
           });
         } catch {}
       });
-      // Give the page a brief moment to reflow after class/attr changes
-      await new Promise((r) => setTimeout(r, 50));
+
+      // Wait for images to load
+      await page.evaluate(async () => {
+        const images = Array.from(document.images);
+        await Promise.all(
+          images.map((img) => {
+            if (img.complete) return Promise.resolve();
+            return new Promise((resolve) => {
+              img.addEventListener("load", resolve);
+              img.addEventListener("error", resolve); // resolve even on error to continue
+              setTimeout(resolve, 2000); // timeout after 2s
+            });
+          }),
+        );
+      });
+
+      // Give the page more time to reflow and render properly
+      await new Promise((r) => setTimeout(r, 500));
     } catch (error) {
       console.log(
         `Failed to apply light mode styles for ${file}: ${error.message}`,

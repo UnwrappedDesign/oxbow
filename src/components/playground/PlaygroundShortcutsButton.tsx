@@ -37,7 +37,7 @@ export default function PlaygroundShortcutsButton() {
             aria-label="Keyboard Shortcuts"
           >
             <div className="flex items-center justify-between px-8 py-4 gap-2">
-              <h2 className=" text-2xl italic font-semibold text-zinc-900 dark:text-base-50">
+              <h2 className=" text-base font-semibold text-zinc-900 dark:text-base-50">
                 Keyboard Shortcuts
               </h2>
               <button
