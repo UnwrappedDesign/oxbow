@@ -4,6 +4,8 @@ import { getCollection } from "astro:content";
 import Kicker from "@/components/fundations/typography/Kicker.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Cross from "@/components/assets/Cross.astro";
+import StripesBG from "@/components/assets/StripesBG.astro";
 // Load all changelog entries from content collection
 const raw = await getCollection("changelog");
 // Render MDX body for each entry
@@ -25,36 +27,79 @@ const entriesWithIds = entries.map((entry) => ({
 ---
 
 <BaseLayout>
-  <Wrapper variant="standard" class="relative pt-12 pb-8 lg:pt-14">
-    <h1 class="text-2xl font-semibold text-zinc-900">Changelog</h1>
-    <div class="flex flex-col mt-12 lg:flex-row gap-12">
+  <Wrapper variant="standard" class="pt-32 pb-12 relative">
+    <!-- Top Right Plus 
+    <Cross class="-top-[0.6rem] -right-[0.65rem] z-51" />
+     -->
+    <!-- Top left Plus 
+    <Cross class="-top-[0.6rem] -left-[0.65rem] z-51" />
+     -->
+    <StripesBG
+      variant="light"
+      direction="horizontal"
+      class="absolute hidden md:block inset-0 w-[25%] -mx-px h-[50%] top-0 ml-auto"
+    />
+    <StripesBG
+      variant="accent"
+      direction="horizontal"
+      class="absolute hidden md:block inset-0 w-[25%] -mx-px h-[50%] top-[50%] ml-auto"
+    />
+
+    <div class="text-balance max-w-xl relative">
+      <Text
+        tag="h1"
+        variant="displayMD"
+        class="font-medium tracking-tight text-base-600 dark:text-white"
+      >
+        Changelog
+      </Text>
+      <Text
+        tag="p"
+        variant="textBase"
+        class="mt-4 text-base-500 dark:text-base-400"
+      >
+        New features, improvements, and bugs we sent to the shadow realm. All
+        tracked right here.
+      </Text>
+    </div>
+  </Wrapper>
+  <Wrapper
+    variant="paddinglessDesktop"
+    class="relative border-y border-x border-base-200 dark:border-base-800"
+  >
+    <div class="flex flex-col lg:flex-row">
       <aside class="hidden md:block lg:w-1/5">
         <div class="sticky top-20 z-20">
-          <Text tag="h4" variant="textSM" class="mb-2 font-semibold"
-            >Contents</Text
-          >
-          <ul class="mt-4 space-y-1">
-            {
-              entriesWithIds.map((entry) => (
-                <li>
-                  <a
-                    href={`#${entry.id}`}
-                    class="text-xs text-zinc-700 dark:text-base-400 hover:underline"
-                  >
-                    {(() => {
-                      const d = new Date(entry.data.date);
-                      return `${d.toLocaleDateString("en-US", { weekday: "short" })}, ${d.getDate()} of ${d.toLocaleDateString("en-US", { month: "short" })}, ${d.getFullYear()}`;
-                    })()}
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
+          <div class="lg:p-8">
+            <Text
+              tag="h4"
+              variant="textSM"
+              class="mb-2 font-semibold text-base-900 dark:text-white"
+              >Contents</Text
+            >
+            <ul class="mt-4 space-y-1">
+              {
+                entriesWithIds.map((entry) => (
+                  <li>
+                    <a
+                      href={`#${entry.id}`}
+                      class="text-xs text-zinc-700 dark:text-base-400 hover:underline"
+                    >
+                      {(() => {
+                        const d = new Date(entry.data.date);
+                        return `${d.toLocaleDateString("en-US", { weekday: "short" })}, ${d.getDate()} of ${d.toLocaleDateString("en-US", { month: "short" })}, ${d.getFullYear()}`;
+                      })()}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
         </div>
       </aside>
       <Wrapper
         variant="prose"
-        class="max-w-xl lg:mx-auto lg:flex-1 lg:w-5/5 divide-y divide-zinc-200 dark:divide-base-800"
+        class="max-w-xl lg:mx-auto lg:flex-1 lg:w-5/5 divide-y divide-zinc-200 dark:divide-base-800 lg:border-l lg:border-base-200 lg:dark:border-base-800 lg:p-8"
       >
         {
           entriesWithIds.map((entry) => (

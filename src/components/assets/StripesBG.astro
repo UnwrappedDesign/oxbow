@@ -1,0 +1,36 @@
+---
+const {
+  class: className = "",
+  variant = "base",
+  direction = "vertical",
+  ...rest
+} = Astro.props;
+
+const variantClass = {
+  base: {
+    vertical: "bg-base-vertical-stripes",
+    horizontal: "bg-base-horizontal-stripes",
+  },
+  accent: {
+    vertical: "bg-accent-vertical-stripes",
+    horizontal: "bg-accent-horizontal-stripes",
+  },
+  pink: {
+    vertical: "bg-pink-vertical-stripes",
+    horizontal: "bg-pink-horizontal-stripes",
+  },
+  light: {
+    vertical: "bg-light-vertical-stripes",
+    horizontal: "bg-light-horizontal-stripes",
+  },
+};
+
+const bgClass = variantClass[variant]?.[direction] ?? "";
+---
+
+<div
+  {...rest}
+  aria-hidden="true"
+  class={`pointer-events-none ${bgClass} ${className}`}
+>
+</div>

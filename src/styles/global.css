@@ -1,4 +1,5 @@
 @import "./kromatika.css";
+@import "./gradients.css";
 @import "./syntaxhighlighting.css";
 @import "tailwindcss" source("../");
 @plugin "@tailwindcss/forms";
@@ -8,36 +9,23 @@
 /* Enable manual dark mode via `.dark` class or `[data-theme=dark]` attribute */
 @custom-variant dark (&:where(.dark, .dark *, [data-theme=dark], [data-theme=dark] *));
 @theme {
-  /* Typography */
- --font-sans: "Geist", sans-serif;
- --font-mono: "Geist Mono", monospace;
-  /* blues */
-  --color-blue-light: #60beff;
-  --color-blue: #1da8ff;
-  --color-blue-dark: #007bff;
-  --color-green-light: #33cd8e;
-  --color-green: #00c172;
-  --color-green-dark: #00a651;
-  --color-yellow-light: #ffcd6c;
-  --color-yellow: #ffb112;
-  --color-yellow-dark: #ffa100;
-  --color-orange-light: #ff713d;
-  --color-orange: #fa5925;
-  --color-orange-dark: #fd4202;
-  /* Colors */
---color-accent-50: oklch(95.82% 0.018 269.09);
-  --color-accent-100: oklch(90.6% 0.042 266.32);
-  --color-accent-200: oklch(82.18% 0.082 266.28);
-  --color-accent-300: oklch(72.97% 0.129 265.27);
-  --color-accent-400: oklch(64.02% 0.178 264.69);
-  --color-accent-500: oklch(56.4% 0.222 263.67);
-  --color-accent-600: oklch(47.87% 0.229 263.16);
-  --color-accent-700: oklch(39.32% 0.184 263.21);
-  --color-accent-800: oklch(30.16% 0.134 263.02);
-  --color-accent-900: oklch(19.65% 0.074 262.38);
-  --color-accent-950: oklch(14.72% 0.045 256.86);
-  /* base*/
-   --color-base-50: oklch(0.985 0 0);
+   /* Typography */
+  --font-display: "InterDisplay", sans-serif;
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "Geist Mono", monospace;
+  /* Accents */
+--color-accent-50: oklch(94.4% 0.025 301.07);
+  --color-accent-100: oklch(90.08% 0.045 301.16);
+  --color-accent-200: oklch(79.89% 0.095 299.55);
+  --color-accent-300: oklch(69% 0.147 297.95);
+  --color-accent-400: oklch(59.34% 0.196 295.11);
+  --color-accent-500: oklch(50.89% 0.233 290.96);
+  --color-accent-600: oklch(44.26% 0.225 288.6);
+  --color-accent-700: oklch(36.36% 0.181 289.01);
+  --color-accent-800: oklch(27.39% 0.129 290.51);
+  --color-accent-900: oklch(18.44% 0.075 292.49);
+  --color-accent-950: oklch(13.92% 0.049 298.54);
+  --color-base-50: oklch(0.985 0 0);
   --color-base-100: oklch(0.97 0 0);
   --color-base-200: oklch(0.922 0 0);
   --color-base-300: oklch(0.87 0 0);
@@ -49,27 +37,82 @@
   --color-base-900: oklch(0.205 0 0);
   --color-base-950: oklch(0.145 0 0);
 
+ /* Gradients stripes vertical */
+  --background-image-base-vertical-stripes: 
+  repeating-linear-gradient(
+    to right,
+    oklch(0.269 0 0) 0px,
+    oklch(0.269 0 0) 1px,
+    transparent 1px,
+    transparent 8px
+  );
+ 
+  --background-image-accent-vertical-stripes: 
+  repeating-linear-gradient(
+    to right,
+    oklch(50.89% 0.233 290.96) 0px,
+    oklch(50.89% 0.233 290.96) 1px,
+    transparent 1px,
+    transparent 8px
+  );
+  --background-image-light-vertical-stripes: 
+  repeating-linear-gradient(
+    to right,
+    oklch(0.92 0 0) 0px,
+    oklch(0.92 0 0) 1px,
+    transparent 1px,
+    transparent 8px
+  );
+  /* Gradients stripes horizontal */
+--background-image-base-horizontal-stripes: 
+  repeating-linear-gradient(
+    to bottom,
+    oklch(0.269 0 0) 0px,
+    oklch(0.269 0 0) 1px,
+    transparent 1px,
+    transparent 8px
+  );
 
-  
-  --shadow-normal: rgba(14, 63, 126, 0.04) 0px 0px 0px 1px,
-    rgba(42, 51, 69, 0.04) 0px 1px 1px -0.5px,
-    rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px,
-    rgba(42, 51, 70, 0.04) 0px 6px 6px -3px,
-    rgba(14, 63, 126, 0.04) 0px 12px 12px -6px,
-    rgba(14, 63, 126, 0.04) 0px 24px 24px -12px;
-  --shadow-oxbow: 0px 4px 20px 0px rgba(15, 12, 12, 0.08),
-    0px 8px 12px -4px rgba(15, 12, 12, 0.08),
-    0px 0px 2px 0px rgba(15, 12, 12, 0.1), 0px 1px 2px 0px rgba(15, 12, 12, 0.1);
-  --shadow-subtle: 0px 0px 0px 1px rgba(30, 31, 37, 0.09),
-    0px 1px 2px 0px rgba(30, 31, 37, 0.02),
-    0px 1px 0px 0px rgba(30, 31, 37, 0.08);
-    --shadow-button:0 8px 12px -4px #1a19250f, 0 4px 8px -4px #1a19251f, 0 2px 4px -1px #1a19251f, 0 1px 1.5px -.5px #1a19251f, 0 .75px .75px #1a19251f, 0 .25px .25px #1a19253d, inset 0 -8px 20px #1a192514, inset 0 1px 3px #ffffff14, inset 0 .75px .75px #ffffff14, inset 0 .25px .25px #ffffff1f;
+--background-image-pink-horizontal-stripes: 
+  repeating-linear-gradient(
+    to bottom,
+    hsla(5, 84%, 78%, 1) 0px,
+    hsla(5, 84%, 78%, 1) 1px,
+    transparent 1px,
+    transparent 8px
+  );
+
+--background-image-accent-horizontal-stripes: 
+  repeating-linear-gradient(
+    to bottom,
+    oklch(50.89% 0.233 290.96) 0px,
+    oklch(50.89% 0.233 290.96) 1px,
+    transparent 1px,
+    transparent 8px
+  );
+
+--background-image-light-horizontal-stripes: 
+  repeating-linear-gradient(
+    to bottom,
+    oklch(0.92 0 0) 0px,
+    oklch(0.92 0 0) 1px,
+    transparent 1px,
+    transparent 8px
+  );
+
 }
 
-
+@supports (font-variation-settings: normal) {
+  :root {
+    font-family: InterVariable, sans-serif;
+  }
+ }
+  
 :root {
-  font-family: Geist, sans-serif;
-  font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+   font-family: Inter, sans-serif;
+  font-feature-settings:
+    "liga" 1,
+    "calt" 1; /* fix for Chrome */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-variant-numeric: tabular-nums;

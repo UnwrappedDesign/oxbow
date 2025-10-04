@@ -122,14 +122,12 @@ const subsectionKey = (subsection || "").toLowerCase();
     x-init="subs = JSON.parse($el.dataset.subs || '{}')"
     data-subs={JSON.stringify(subsByCat)}
   >
-    <Wrapper variant="standard" class="py-8">
-      <div
-        class="flex flex-wrap items-center justify-between gap-2 border-b pb-2 border-zinc-100 dark:border-zinc-800"
-      >
+    <Wrapper variant="standard" class="pt-8 pb-4">
+      <div class="flex flex-wrap items-center justify-between gap-2">
         <Text
           tag="h1"
           variant="textXL"
-          class="font-semibold tracking-tight capitalize text-zinc-900 dark:text-base-50"
+          class="font-semibold tracking-tight capitalize text-base-900 dark:text-base-50"
         >
           {subsection.replace(/-/g, " ")}
         </Text>
@@ -142,7 +140,9 @@ const subsectionKey = (subsection || "").toLowerCase();
           />
         </div>
       </div>
-      <div class="masonry-grid mt-4">
+    </Wrapper>
+    <Wrapper variant="standard" class="border-y py-8">
+      <div class="masonry-grid">
         {
           sectionComponents.map(
             (
@@ -164,7 +164,7 @@ const subsectionKey = (subsection || "").toLowerCase();
                       <Text
                         tag="p"
                         variant="textXS"
-                        class="relative flex items-center gap-1 text-zinc-400 dark:text-base-500"
+                        class="relative flex items-center gap-1 text-base-400 dark:text-base-500"
                       >
                         Updated{" "}
                         {formatDistanceToNowStrict(updatedAt, {
@@ -175,7 +175,7 @@ const subsectionKey = (subsection || "").toLowerCase();
                       </Text>
                     )}
                   </div>
-                  <div class="mt-2 overflow-hidden bg-white rounded-lg shadow-oxbow dark:shadow-base-900/50 dark:bg-base-900">
+                  <div class="overflow-hidden bg-white outline outline-base-200 dark:outline-base-800 ">
                     <Image
                       width={1000}
                       height={1000}

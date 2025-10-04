@@ -1,6 +1,13 @@
 ---
 interface Props {
-  variant?: "wide" | "prose" | "standard" | "nav" | "blockStandard" | "narrow"; // Define any variants you need
+  variant?:
+    | "wide"
+    | "prose"
+    | "standard"
+    | "nav"
+    | "footer"
+    | "paddinglessDesktop"
+    | "narrow"; // Define any variants you need
   class?: string; // Optional prop for additional classes
 }
 const { variant = "standard", class: extraClass = "" } = Astro.props;
@@ -54,6 +61,7 @@ const variantClasses = {
     "dark:prose-pre:selection:text-white",
     "prose-pre:overflow-y-hidden",
     "prose-pre:scrollbar-hide",
+    "prose-pre:!bg-base-900",
     // Inline code
     "dark:prose-code:text-white",
     // Tables
@@ -63,13 +71,12 @@ const variantClasses = {
   //
   wide: "max-w-screen 2xl:max-w-[1440px] w-full mx-auto px-8 ",
   //
-  standard: "mx-auto px-8 w-full max-w-7xl ",
-  nav: "mx-auto px-8 py-2 w-full max-w-7xl ",
-
-  //
-  // Classes for blocks never change
-  //
-  blockStandard: "mx-auto px-8  md:px-12 lg:px-20  w-full  max-w-7xl",
+  footer: "mx-auto px-8 w-full max-w-6xl lg:px-0",
+  paddinglessDesktop:
+    "mx-auto max-w-6xl px-4 xl:px-0  overflow-hidden xl:overflow-visible",
+  standard:
+    "mx-auto px-8 w-full max-w-6xl xl:border-x border-base-200 dark:border-base-800",
+  nav: "mx-auto px-8 py-8 xl:px-0 w-full max-w-6xl border-b border-base-200 dark:border-base-800",
 };
 // Combine the classes for the specified variant with any extra classes
 const classes = `${variantClasses[variant]} ${extraClass}`.trim();

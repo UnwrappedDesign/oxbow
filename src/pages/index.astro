@@ -1,16 +1,62 @@
 ---
+// Assets
+import Cross from "@/components/assets/Cross.astro";
+import StripesBG from "@/components/assets/StripesBG.astro";
+import AlpineTailwind from "@/components/global/AlpineTailwind.astro";
 // Fundations
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import MainHero from "@/components/fundations/containers/MainHero.astro";
+import Text from "@/components/fundations/typography/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import ComponentsShowcase from "@/components/landing/ComponentsShowcase.astro";
 ---
 
 <BaseLayout>
-  <MainHero
-    title="Oxbow UI is Open Source."
-    subtitle="427 Tailwind CSS & Alpine JS blocks — MIT-licensed and production-ready. Copy paste, fork it, remix it, ship it, share it."
-    showAlpineTailwind={false}
-  />
+  <section class="relative">
+    <Wrapper variant="standard" class="pt-32 pb-12 relative">
+      <!-- Top Right Plus 
+      <Cross class="-top-[0.6rem] -right-[0.65rem] z-51" />
+       -->
+      <!-- Top left Plus 
+      <Cross class="-top-[0.6rem] -left-[0.65rem] z-51" />
+       -->
+      <StripesBG
+        variant="light"
+        aria-hidden="true"
+        direction="horizontal"
+        class="absolute hidden md:block inset-0 w-[25%] -mx-px h-[50%] top-0 ml-auto dark:hidden -mt-1"
+      />
+      <StripesBG
+        variant="base"
+        aria-hidden="true"
+        direction="horizontal"
+        class="absolute inset-0 w-[25%] -mx-px h-[50%] top-0 ml-auto hidden dark:md:block -mt-1"
+      />
+      <StripesBG
+        variant="accent"
+        aria-hidden="true"
+        direction="horizontal"
+        class="absolute hidden md:block inset-0 w-[25%] -mx-px h-[50%] top-[50%] ml-auto"
+      />
 
+      <div class="text-balance max-w-xl relative">
+        <AlpineTailwind />
+        <Text
+          tag="h1"
+          variant="displayMD"
+          class="font-medium tracking-tight text-base-600 dark:text-white mt-12"
+        >
+          Oxbow UI is Open Source.
+        </Text>
+        <Text
+          tag="p"
+          variant="textBase"
+          class="mt-4 text-base-500 dark:text-base-400"
+        >
+          427 Tailwind CSS & Alpine JS blocks — MIT-licensed and
+          production-ready. Copy paste, fork it, remix it, ship it, share it.
+        </Text>
+      </div>
+    </Wrapper>
+  </section>
   <ComponentsShowcase />
 </BaseLayout>

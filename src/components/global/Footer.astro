@@ -1,7 +1,7 @@
 ---
 import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-import Button from "@/components/fundations/buttons/Button.astro";
+import StripesBG from "@/components/assets/StripesBG.astro";
 // Assets
 import Logo from "@/components/assets/Logo.astro";
 // Fundations
@@ -45,26 +45,35 @@ const navLinks = [
 ---
 
 <footer class="overflow-hidden">
-  <Wrapper variant="standard" class="pb-8 mt-24">
+  <Wrapper variant="footer" class="pb-12">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-      <a href="/">
-        <span class="sr-only">Go to homepage</span>
-        <Logo class="h-8 text-base-900 dark:invert" />
-      </a>
-      <div class="grid grid-cols-2 lg:grid-cols-3 lg:col-span-2">
+      <div>
+        <a
+          href="/"
+          class="flex items-center text-sm text-base-900 dark:text-white gap-2"
+        >
+          <span class="sr-only">Go to homepage</span>
+          <Logo class="h-6" />
+          Oxbow UI
+        </a>
+        <p class="mt-1 text-sm font-normal text-base-500 text-balance">
+          Tailwind CSS & Alpine JS blocks
+        </p>
+      </div>
+      <div class="grid grid-cols-2 gap-8 xl:col-span-2 xl:col-start-3">
         {
           navLinks.map((section, i) => (
             <nav aria-label={section.title}>
               <Text
                 tag="h3"
-                variant="textXS"
-                class="font-medium  text-base-900 dark:text-white"
+                variant="textBase"
+                class="font-medium font-display text-base-900 dark:text-white"
               >
                 {section.title}
               </Text>
               <ul
                 role="list"
-                class="flex flex-col text-xs  space-y-1 text-base-600 dark:text-base-400 mt-4"
+                class="mt-2 text-sm space-y-1 text-base-600 dark:text-base-400"
               >
                 {section.links.map((link, j) => (
                   <li>
@@ -90,6 +99,12 @@ const navLinks = [
           ))
         }
       </div>
+    </div>
+
+    <div
+      aria-hidden="true"
+      class="bg-light-vertical-stripes p-20 clip-rect-inset lg:py-62 mt-12"
+    >
     </div>
     <div
       class="flex items-center justify-between pt-8 mt-8 border-t border-base-200 dark:border-base-800"

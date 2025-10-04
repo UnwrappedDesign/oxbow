@@ -1,14 +1,11 @@
 ---
 import { getAuth } from "firebase-admin/auth";
-
 import BaseHead from "@/components/BaseHead.astro";
 import Navigation from "@/components/global/Navigation.astro";
 import Footer from "@/components/global/Footer.astro";
 import NinjaScript from "@/components/commandBar/NinjaScript.astro";
 import CopyButton from "@/components/documentation/CopyButton.astro";
-
 import { app } from "@/firebase/server";
-
 const auth = getAuth(app);
 const uid = Astro.locals.user?.uid;
 const customToken = uid ? await auth.createCustomToken(uid) : null;
@@ -28,7 +25,6 @@ const privatePaths = [
   /^\/iframe\//,
 ];
 const defaultNoindex = privatePaths.some((rx) => rx.test(Astro.url.pathname));
-
 // Optional per-page SEO overrides
 interface HeadOverrides {
   title?: string;
@@ -62,13 +58,12 @@ const {
       structuredData={structuredData}
     />
   </head>
-  <body class="bg-white dark:bg-base-900 min-h-screen flex flex-col">
+  <body class="bg-white dark:bg-base-950 min-h-screen flex flex-col">
     {!hideNav && <Navigation />}
-    <main class="grow z-1">
+    <main class="grow w-full mx-auto py-26 lg:py-23">
       <slot />
     </main>
     {!hideFooter && <Footer isSignedIn={!!uid} />}
-
     <ninja-keys
       id="ninja"
       class="dark"
@@ -78,9 +73,7 @@ const {
       <slot name="footer" />
     </ninja-keys>
     <NinjaScript />
-
     <astro-firebase data-customtoken={customToken}></astro-firebase>
-
     <script is:inline>
       // Hide Firebase emulator warning (root + iframes), resilient to dynamic insertion
       (function () {
@@ -93,7 +86,6 @@ const {
             });
           } catch {}
         };
-
         const observeDoc = (doc) => {
           hideIn(doc);
           try {
@@ -104,7 +96,6 @@ const {
             });
           } catch {}
         };
-
         const scan = () => {
           observeDoc(document);
           // Same-origin iframes (our /iframe pages) — hook load + observe
@@ -119,7 +110,6 @@ const {
             } catch {}
           });
         };
-
         if (document.readyState === "loading") {
           document.addEventListener("DOMContentLoaded", scan, { once: true });
         } else {
@@ -129,22 +119,18 @@ const {
         window.addEventListener("astro:after-swap", scan);
       })();
     </script>
-
     <script>
       import {
         inMemoryPersistence,
         signInWithCustomToken,
       } from "firebase/auth";
       import { auth } from "@/firebase/client";
-
       class AstroFirebase extends HTMLElement {
         constructor() {
           super();
           const customToken = this.dataset.customtoken;
-
           if (customToken) {
             auth.setPersistence(inMemoryPersistence);
-
             signInWithCustomToken(auth, customToken)
               .then((credentials) => {
                 window.umami?.track("login", {
@@ -153,7 +139,6 @@ const {
                 window.umami?.identify({
                   id: credentials.user.uid,
                 });
-
                 console.log("Successfully signed in with custom token");
               })
               .catch((error) => {

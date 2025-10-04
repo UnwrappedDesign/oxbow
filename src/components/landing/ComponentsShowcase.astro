@@ -2,6 +2,8 @@
 import Text from "@/components/fundations/typography/Text.astro";
 import EntryStructure from "@/components/landing/EntryStructure.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Cross from "@/components/assets/Cross.astro";
+import StripesBG from "@/components/assets/StripesBG.astro";
 //
 //
 // Marketing
@@ -59,37 +61,36 @@ const groupedEntries = [
     }
   })()"
 >
- 
-<div class="border-b border-base-200 dark:border-base-800">
-    <Wrapper variant="standard" >
-      <nav class="relative flex gap-6" role="tablist" aria-label="Components sections">
-        {groupedEntries.map(({ id, title }) => (
-          <a
-            role="tab"
-            href={`#${id}`}
-            data-id={id}
-            @click.prevent="setTab($el.dataset.id)"
-            :aria-selected={`tab === '${id}'`}
-            class="relative pb-3 text-base font-medium transition-colors"
-            :class={`tab === '${id}' ? 'text-base-900 dark:text-white' : 'text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white'`}
-          >
-            {title}
-            <span 
-              class="absolute bottom-0 left-0 right-0 h-0.5 bg-base-900 dark:bg-white transition-opacity"
-              :class={`tab === '${id}' ? 'opacity-100' : 'opacity-0'`}
-            ></span>
-          </a>
-        ))}
-      </nav>
-    </Wrapper>
+<Wrapper variant="standard" class="lg:sticky lg:top-16 z-50 border-t bg-white dark:bg-base-950 border-b border-base-200 dark:border-base-800">
   
-</div>
-  
-<div class="bg-base-50 dark:bg-white/2 py-8">
-    <Wrapper variant="standard">{groupedEntries.map(({ id, title, description, groups }) => {
+  <nav class="relative flex gap-6" role="tablist" aria-label="Components sections">
+    
+    {groupedEntries.map(({ id, title }) => (
+      <a
+        role="tab"
+        href={`#${id}`}
+        data-id={id}
+        @click.prevent="setTab($el.dataset.id)"
+        :aria-selected={`tab === '${id}'`}
+        class="relative py-3 text-xs font-medium transition-colors"
+        :class={`tab === '${id}' ? 'text-base-900 dark:text-white' : 'text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white'`}
+      >
+        {title}
+        <span 
+          class="absolute bottom-0 left-0 right-0 h-0.5 bg-base-900 dark:bg-white transition-opacity"
+          :class={`tab === '${id}' ? 'opacity-100' : 'opacity-0'`}
+        ></span>
+      </a>
+    ))}
+  </nav>
+</Wrapper>
+    <Wrapper variant="paddinglessDesktop" class="border-x border-b border-base-200 dark:border-base-800">
+      
+      {groupedEntries.map(({ id, title, description, groups }) => {
         const firstGroup = groups[0]?.id || '';
         return (
           <div
+          class="relative grid grid-cols-1 lg:grid-cols-3"
             id={id}
             x-show={`tab === '${id}'`}
             x-cloak
@@ -110,48 +111,66 @@ const groupedEntries = [
               }
             })()`}
           >
-          
-                <div class="flex flex-col gap-4">
-                    <Text tag="p" variant="textSM" class="text-base-600 dark:text-base-400 font-medium max-w-sm text-balance">{description}</Text>
-                    {/* Nested tabs for groups */}
-                    <nav class="flex items-center gap-4 border-b border-base-200 dark:border-base-700 mt-8" role="tablist" aria-label={`${title} groups`}>
-                      {groups.map(({ id: groupId, label }) => (
-                        <a
-                          role="tab"
-                          href={`#${id}-${groupId}`}
-                          data-id={groupId}
-                          @click.prevent="setInner($el.dataset.id)"
-                          class="relative pb-2 text-sm font-medium transition-colors"
-                          :class={`inner === '${groupId}' ? 'text-base-900 dark:text-white' : 'text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white'`}
-                        >
-                          {label}
-                          <span 
-                            class="absolute bottom-0 left-0 right-0 h-0.5 bg-base-900 dark:bg-white transition-opacity"
-                            :class={`inner === '${groupId}' ? 'opacity-100' : 'opacity-0'`}
-                          ></span>
-                        </a>
-                      ))}
-                    </nav>
-                </div>
-                  <div class="mt-2">
-                    {groups.map(({ id: groupId, label, data }, idx) => (
-                      <div
-                        id={groupId}
-                        x-show={`inner === '${groupId}'`}
-                        x-cloak
-                        style={idx === 0 ? '' : 'display:none'}
-                        class="flex flex-col gap-6"
-                      >
-                        <EntryStructure entries={data} />
-                      </div>
-                    ))}
+            
+                  <div class=" px-4 lg:px-8 py-8 relative ">
+                  <div class="lg:sticky lg:top-32">
+                    <Text tag="p" variant="textSM" class="text-base-500 dark:text-base-400 font-medium max-w-sm text-balance mb-8">{description}</Text>
+                     <StripesBG
+       aria-hidden="true"
+      variant="light"
+      direction="horizontal"
+      class=" p-20 mt-auto h-1/3 -mb-1 dark:hidden"
+    />
+       <StripesBG
+       aria-hidden="true"
+      variant="base"
+      direction="horizontal"
+      class=" p-20 mt-auto h-1/3 -mb-1 hidden dark:block"
+    />
+                      {/*   <Cross class="-top-[0.6rem] -right-[0.65rem] z-51" />
+                       <Cross class="-top-[0.6rem] -left-[0.65rem] z-51" /> */}
                   </div>
-             
+                  </div>
+                 <div class="relative w-full divide-y divide-base-800 lg:col-span-2 lg:border-l lg:border-base-200 lg:dark:border-base-800 ">
+                    <div class="lg:sticky lg:top-[6.5rem] z-40 pt-4 px-4 border-b border-base-200 dark:border-base-800 bg-white dark:bg-base-950">
+                        {/* Nested tabs for groups */}
+                        <nav class="flex items-center gap-4  " role="tablist" aria-label={`${title} groups`}>
+                          {groups.map(({ id: groupId, label }) => (
+                            <a
+                              role="tab"
+                              href={`#${id}-${groupId}`}
+                              data-id={groupId}
+                              @click.prevent="setInner($el.dataset.id)"
+                              class="relative pb-2 text-xs font-medium transition-colors"
+                              :class={`inner === '${groupId}' ? 'text-base-900 dark:text-white' : 'text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white'`}
+                            >
+                              {label}
+                              <span 
+                                class="absolute bottom-0 left-0 right-0 h-0.5 bg-base-900 dark:bg-white transition-opacity"
+                                :class={`inner === '${groupId}' ? 'opacity-100' : 'opacity-0'`}
+                              ></span>
+                            </a>
+                          ))}
+                        </nav>
+                    </div>
+                   <div>
+                      <div>
+                        {groups.map(({ id: groupId, label, data }, idx) => (
+                          <div
+                            id={groupId}
+                            x-show={`inner === '${groupId}'`}
+                            x-cloak
+                            style={idx === 0 ? '' : 'display:none'}
+                            class="flex flex-col gap-6"
+                          >
+                            <EntryStructure entries={data} />
+                          </div>
+                        ))}
+                      </div>
+                   </div>
+                 </div>
           </div>
         );
       })}
     </Wrapper>
 </div>
-</div>
-
-
