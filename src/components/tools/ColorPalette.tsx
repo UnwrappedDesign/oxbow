@@ -16,7 +16,7 @@ export default function ColorPalette() {
   const [query, setQuery] = useState('');
   const [, setCopied] = useState<string>('');
   const [copiedKey, setCopiedKey] = useState<string>('');
-  const [format, setFormat] = useState<Format>('var');
+  const [format, setFormat] = useState<Format>('oklch');
   const [open, setOpen] = useState(false);
   const cacheRef = useRef<Record<string, string>>({});
   const dropdownRef = useRef<HTMLDivElement | null>(null);
