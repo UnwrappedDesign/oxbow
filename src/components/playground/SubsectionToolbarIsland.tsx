@@ -25,10 +25,10 @@ export default function SubsectionToolbarIsland({ cat, sub, subsByCat }: Props){
     setOpen(which);
   };
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-1 size-fit p-1 bg-base-100 dark:bg-base-700 rounded-lg">
       {/* Category */}
       <div className="relative">
-        <button onClick={(e)=>openMenu('cat', e)} className="flex items-center gap-1.5 h-7 px-2 text-xs transition-colors rounded-md bg-base-100 text-base-600 hover:bg-base-200 hover:text-base-950 dark:bg-base-800 dark:text-base-400 dark:hover:bg-base-700 dark:hover:text-white">
+        <button onClick={(e)=>openMenu('cat', e)} className="flex items-center gap-1.5 h-7 px-2 text-xs transition-colors rounded-md bg-base-50 text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white shadow-oxbow dark:shadow-base-900/50">
           <span className="capitalize">{fmt(cat)}</span>
           <ChevronDown className="size-4"/>
         </button>
@@ -47,7 +47,7 @@ export default function SubsectionToolbarIsland({ cat, sub, subsByCat }: Props){
       </div>
       {/* Subsection */}
       <div className="relative">
-        <button onClick={(e)=>openMenu('sub', e)} className="flex items-center gap-1.5 h-7 px-2 text-xs transition-colors rounded-md bg-base-100 text-base-600 hover:bg-base-200 hover:text-base-950 dark:bg-base-800 dark:text-base-400 dark:hover:bg-base-700 dark:hover:text-white">
+        <button onClick={(e)=>openMenu('sub', e)} className="flex items-center gap-1.5 h-7 px-2 text-xs transition-colors rounded-md bg-base-50 text-base-600  hover:text-base-950 dark:bg-base-900 dark:text-base-400  dark:hover:text-white shadow-oxbow dark:shadow-base-900/50">
           <span className="capitalize">{fmt(sub)}</span>
           <ChevronDown className="size-4"/>
         </button>
