@@ -54,7 +54,9 @@ const updatedSubsections = Object.keys(updates).reduce((acc, path) => {
 const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
 ---
 
-<ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+<ul
+  class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-12"
+>
   {
     entriesWithQuantity.map((template) => {
       const subsection = template.link.split("/").pop();
@@ -62,30 +64,36 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
       const updatedAt = new Date(updated * 1000);
       const isUpdatedLastWeek = updatedAt > SEVEN_DAYS_AGO;
       return (
-        <li class="relative p-4 group rounded bg-base-50 dark:bg-base-800 outline outline-transparent hover:outline-base-900 dark:hover:outline-white duration-300">
+        <li class="relative">
           <a
             title={template.name}
             href={template.link}
             class="absolute inset-0 z-1"
           />
           <div>
-            {/*   <Image
-              class="object-cover object-top rounded-lg  transition-all duration-300 ease-in-out shadow-subtle shadow-base-500/10 aspect-16/9"
+            <Image
+              class="object-cover object-top rounded-lg  transition-all duration-300 ease-in-out shadow-subtle shadow-base-500/10 aspect-16/10"
               alt={template.name}
               src={template.image()}
-            /> */}
-            <div class="group-hover:text-black  lg:items-center">
-              <div class="text-black dark:text-white font-medium font-semibold">
-                {template.quantity}
-              </div>
+            />
+            <div class="group-hover:text-black  lg:items-center mt-1">
               <Text
                 tag="p"
                 variant="textSM"
-                class="relative  text-base-600 dark:text-base-400 group-hover:text-black dark:text-base-400 dark:group-hover:text-white  mt-12 font-semibold"
+                class="relative font-medium text-black  group-hover:text-blue-500 dark:text-white"
               >
                 {template.name}
               </Text>
               <Text
+                tag="p"
+                variant="textXS"
+                class="relative flex items-center gap-1  2xl:text-sm text-base-500"
+              >
+                {template.quantity} Components
+              </Text>
+              {/* 
+          
+             <Text
                 tag="p"
                 variant="textXXS"
                 class="relative flex items-center ml-auto gap-1 text-base-500 group-hover:text-black  dark:text-base-400 dark:group-hover:text-white font-medium"
@@ -96,7 +104,7 @@ const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
                   roundingMethod: "ceil",
                 })}
                 {" ago"}
-              </Text>
+              </Text> */}
             </div>
           </div>
         </li>

@@ -347,8 +347,8 @@ export default function PlaygroundIsland({
           >
             {copiedUrl ? <Check size={14} /> : iframeId.replace("iframe-", "")}
           </button>
-          <div className="w-px h-4 bg-base-200 dark:bg-base-800"></div>
-          <span className="items-center hidden gap-4 isolate md:inline-flex">
+          <div className="w-px h-4 bg-base-200 dark:bg-base-800 hidden md:flex"></div>
+          <span className="items-center hidden gap-4 isolate md:flex">
             <button
               onClick={() => setViewportWidth("mobile")}
               className={`inline-flex items-center justify-center transition-colors ${viewport === "mobile" ? "text-base-950 dark:text-white font-semibold" : "text-base-600 hover:text-base-950 dark:text-base-400 dark:hover:text-white"}`}
@@ -368,8 +368,8 @@ export default function PlaygroundIsland({
               <Monitor size={14} />
             </button>
           </span>
-           <div className="w-px h-4 bg-base-200 dark:bg-base-800"></div>
-          <span className="items-center hidden gap-4 isolate md:inline-flex">
+           <div className="w-px h-4 bg-base-200 dark:bg-base-800 hidden md:flex"></div>
+          <span className="items-center hidden gap-4 isolate md:flex">
             <button
               onClick={() => setMode("light")}
               className={`inline-flex items-center gap-1.5 text-xs transition-colors ${mode === "light" ? "text-base-950 dark:text-white font-semibold" : "text-base-600 hover:text-base-950 dark:text-base-400 dark:hover:text-white"}`}
@@ -389,10 +389,10 @@ export default function PlaygroundIsland({
                <span>Dark</span>
             </button>
           </span>
-           <div className="w-px h-4 bg-base-200 dark:bg-base-800"></div>
+           <div className="w-px h-4 bg-base-200 dark:bg-base-800 hidden md:flex"></div>
           {/* Code controls next to theme toggles */}
           {canSeeCode ? (
-            <div className="items-center hidden gap-4 md:inline-flex">
+            <div className="items-center hidden gap-4 md:flex">
               <button
                 onClick={() => setTab("preview")}
                 className={`inline-flex items-center justify-center transition-colors ${tab === "preview" ? "text-base-950 dark:text-white font-semibold" : "text-base-600 hover:text-base-950 dark:text-base-400 dark:hover:text-white"}`}
@@ -433,7 +433,7 @@ export default function PlaygroundIsland({
           ) : (
             <a
               href="/pricing"
-              className="hidden md:inline-flex items-center text-sm font-semibold text-base-950 hover:text-base-600 dark:text-white dark:hover:text-base-400"
+              className="hidden md:flex items-center text-sm font-semibold text-base-950 hover:text-base-600 dark:text-white dark:hover:text-base-400"
             >
               Get Access
             </a>
@@ -459,7 +459,7 @@ export default function PlaygroundIsland({
               <div className="relative">
                 <button
                   onClick={(e) => openNavMenu("sub", e)}
-                  className="hidden md:inline-flex items-center gap-1.5 text-xs transition-colors font-semibold text-base-950 hover:text-base-600 dark:text-white dark:hover:text-base-400"
+                  className="hidden md:flex items-center gap-1.5 text-xs transition-colors font-semibold text-base-950 hover:text-base-600 dark:text-white dark:hover:text-base-400"
                 >
                   <span className="capitalize">
                     {fmt(arguments[0]!.navSub || "")}
@@ -471,7 +471,7 @@ export default function PlaygroundIsland({
               <div className="relative">
                 <button
                   onClick={(e) => openNavMenu("idx", e)}
-                  className="hidden md:inline-flex items-center gap-1.5 text-xs transition-colors font-semibold text-base-950 hover:text-base-600 dark:text-white dark:hover:text-base-400"
+                  className="hidden md:flex items-center gap-1.5 text-xs transition-colors font-semibold text-base-950 hover:text-base-600 dark:text-white dark:hover:text-base-400"
                 >
                   <span>NO</span>
                   
@@ -569,7 +569,7 @@ export default function PlaygroundIsland({
                   </div>
                 </div>
               )}
-               <div className="w-px h-4 bg-base-200 dark:bg-base-800"></div>
+               <div className="w-px h-4 bg-base-200 dark:bg-base-800 hidden md:flex"></div>
               {/* Pagination */}
               {arguments[0]!.prevHref ? (
                 <a
