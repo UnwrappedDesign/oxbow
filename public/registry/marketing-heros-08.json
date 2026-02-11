@@ -1,0 +1,29 @@
+{
+  "name": "marketing-heros-08",
+  "type": "component",
+  "description": "Left aligned with imaged",
+  "category": "marketing",
+  "section": "marketing-heros",
+  "variant": 8,
+  "aliases": [
+    "marketing heros",
+    "marketing heros 8",
+    "marketing heros 08",
+    "hero",
+    "hero 8",
+    "hero 08",
+    "heroes",
+    "heroes 8",
+    "heroes 08"
+  ],
+  "files": [
+    {
+      "name": "08.astro",
+      "path": "oxbow/marketing/marketing-heros/08.astro",
+      "content": "---\nexport const description = \"Left aligned with imaged\";\n// Inages\nimport { Image } from \"astro:assets\";\nimport DashboardLight from \"@/images/assets/dashboardLight.svg\";\nimport Avatar1 from \"@/images/avatars/1.jpg\";\nimport Avatar2 from \"@/images/avatars/2.jpg\";\nimport Avatar3 from \"@/images/avatars/3.jpg\";\nimport Avatar4 from \"@/images/avatars/4.jpg\";\n// Fundations\nimport Text from \"@/components/fundations/typography/Text.astro\";\nimport Button from \"@/components/fundations/buttons/Button.astro\";\nimport Kicker from \"@/components/fundations/typography/Kicker.astro\";\nimport Wrapper from \"@/components/fundations/containers/Wrapper.astro\";\n// Icons\nimport Check from \"@/components/fundations/icons/Check.astro\";\nconst data = [\n  {\n    category: \"Works out of the box\",\n    text: \"No 42-step setup. No sacrificing your weekend. Just plug it in and pretend you did something really hard.\",\n    items: [\"Zero configuration hero\", \"Launch before lunch\"],\n  },\n  {\n    category: \"Actually helpful features\",\n    text: \"We built the stuff people actually need — not just whatever looked good in a pitch deck.\",\n    items: [\"Tools that do things\", \"Not just buttons for show\"],\n  },\n  {\n    category: \"Plays nice with others\",\n    text: \"Your stack is a mess. Ours isn't. We integrate without turning your app into a science experiment.\",\n    items: [\"API-friendly by default\", \"No blood sacrifices required\"],\n  },\n];\nconst avatars = [\n  { src: Avatar1, alt: \"#_\" },\n  { src: Avatar2, alt: \"#_\" },\n  { src: Avatar3, alt: \"#_\" },\n  { src: Avatar4, alt: \"#_\" },\n];\n---\n\n<div class=\"bg-white \">\n  <!-- copy:start -->\n  <div class=\"px-8 py-24 mx-auto max-w-7xl md:px-12 lg:px-20\">\n    <div>\n      <Kicker\n        showLink={true}\n        href=\"#_\"\n        linkText=\"See what’s new\"\n        class=\"text-primary/88\"\n      >\n        Oxbow for desktop is here\n      </Kicker>\n\n      <Text\n        tag=\"h1\"\n        variant=\"displayMD\"\n        class=\"mt-12 font-semibold tracking-tight text-base-900 lg:text-balance\"\n      >\n        Powerful features, zero hassle\n      </Text>\n      <div class=\"flex flex-wrap mt-8 sm:items-center gap-4\">\n        <Button variant=\"accent\" size=\"sm\">Download now</Button>\n\n        <div class=\"flex flex-wrap items-center gap-2\">\n          <div class=\"flex -space-x-2\">\n            {\n              avatars.map((avatar) => (\n                <Image\n                  width={200}\n                  height={200}\n                  src={avatar.src}\n                  alt={avatar.alt}\n                  class=\"inline-block object-cover object-center rounded-full size-8 outline-2 outline-white\"\n                />\n              ))\n            }\n          </div>\n          <div class=\"text-xs text-base-500 lg:items-center\">\n            <span class=\"block\">Trusted by teams</span>\n            <span class=\"block\">who value simplicity</span>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div class=\"mx-auto mt-12\">\n      <Image\n        width={1200}\n        height={1200}\n        loading=\"eager\"\n        decoding=\"async\"\n        alt=\"dashboard\"\n        src={DashboardLight}\n        class=\"object-cover h-full rounded-lg shadow outline outline-base-200 \"\n      />\n    </div>\n    <div\n      class=\"mt-12 gap-x-2 gap-y-14 lg:gap-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3\"\n    >\n      {\n        data.map((section) => (\n          <div class=\"flex flex-col justify-between h-full\">\n            <div>\n              <Text\n                tag=\"h3\"\n                variant=\"textBase\"\n                class=\"font-medium  text-base-900 \"\n              >\n                {section.category}\n              </Text>\n              <Text\n                tag=\"p\"\n                variant=\"textSM\"\n                class=\"mt-2  text-base-500 \"\n              >\n                {section.text}\n              </Text>\n            </div>\n            <ul\n              role=\"list\"\n              class=\"mt-6 font-medium  space-y-1 text-base-500 \"\n            >\n              {section.items.map((item, idx) => (\n                <li>\n                  <div class=\"flex items-center  gap-2\">\n                    <Check class=\"text-primary/88\" size=\"base\" slot=\"icon\" />\n                    <Text tag=\"span\" variant=\"textSM\">\n                      {item}\n                    </Text>\n                  </div>\n                </li>\n              ))}\n            </ul>\n          </div>\n        ))\n      }\n    </div>\n  </div>\n  <!-- copy:end -->\n</div>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

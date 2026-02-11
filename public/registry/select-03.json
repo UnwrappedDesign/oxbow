@@ -1,0 +1,23 @@
+{
+  "name": "select-03",
+  "type": "component",
+  "description": "Dependant selects",
+  "category": "application",
+  "section": "select",
+  "variant": 3,
+  "aliases": [
+    "select",
+    "select 3",
+    "select 03"
+  ],
+  "files": [
+    {
+      "name": "03.astro",
+      "path": "oxbow/application/select/03.astro",
+      "content": "---\nexport const description = \"Dependant selects\";\nimport Select from \"@/components/fundations/inputs/Select.astro\";\n// Remove duplicate imports\nconst countryOptions = [\n  { label: \"United States\", value: \"us\" },\n  { label: \"Canada\", value: \"ca\" },\n  { label: \"United Kingdom\", value: \"uk\" },\n  { label: \"Australia\", value: \"au\" },\n  { label: \"Germany\", value: \"de\" },\n  { label: \"France\", value: \"fr\" },\n  { label: \"Japan\", value: \"jp\" },\n];\n---\n\n<div class=\"flex justify-center p-16 mx-auto bg-white \">\n  <div class=\"w-full max-w-sm mx-auto\">\n    <!-- copy:start -->\n    <div\n      class=\"flex flex-col w-full max-w-sm gap-2\"\n      x-data=\"{\n   country: 'us',\n   stateOptions: [],\n   state: '',\n   loadStates() {\n     const options = {\n       us: [\n         { label: 'California', value: 'ca' },\n         { label: 'New York', value: 'ny' },\n         { label: 'Texas', value: 'tx' }\n       ],\n       ca: [\n         { label: 'Ontario', value: 'on' },\n         { label: 'Quebec', value: 'qc' },\n         { label: 'British Columbia', value: 'bc' }\n       ],\n       uk: [\n         { label: 'England', value: 'eng' },\n         { label: 'Scotland', value: 'sco' },\n         { label: 'Wales', value: 'wal' }\n       ]\n     };\n     this.stateOptions = options[this.country] || [];\n     this.state = this.stateOptions.length > 0 ? this.stateOptions[0].value : '';\n   }\n  }\"\n      x-init=\"loadStates()\"\n    >\n      <div class=\"flex flex-col gap-4\">\n        <Select\n          id=\"country-dependent\"\n          name=\"country\"\n          label=\"Country\"\n          options={countryOptions}\n          xModel=\"country\"\n          xOn={{ change: \"loadStates()\" }}\n          class=\"w-full\"\n        />\n\n        <div>\n          <!-- Fixed state select -->\n          <label\n            for=\"state\"\n            class=\"block mb-1 text-sm font-medium text-base-500\"\n            >State/Province</label\n          >\n          <Select id=\"state\" name=\"state\" x-model=\"state\" class=\"w-full\">\n            <template x-for=\"option in stateOptions\" :key=\"option.value\">\n              <option :value=\"option.value\" x-text=\"option.label\"></option>\n            </template>\n          </Select>\n        </div>\n      </div>\n\n      <div class=\"mt-2\">\n        <p class=\"text-xs font-medium text-base-500\">\n          Selected country: <span class=\"uppercase\" x-text=\"country\"></span>\n        </p>\n        <p class=\"text-xs font-medium text-base-500\">\n          Selected state/province: <span class=\"uppercase\" x-text=\"state\"\n          ></span>\n        </p>\n      </div>\n    </div>\n    <!-- copy:end -->\n  </div>\n</div>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

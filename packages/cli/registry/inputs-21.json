@@ -1,0 +1,24 @@
+{
+  "name": "inputs-21",
+  "type": "component",
+  "description": "Tags input",
+  "category": "application",
+  "section": "inputs",
+  "variant": 21,
+  "aliases": [
+    "inputs",
+    "inputs 21",
+    "input",
+    "input 21"
+  ],
+  "files": [
+    {
+      "name": "21.astro",
+      "path": "oxbow/application/inputs/21.astro",
+      "content": "---\nexport const description = \"Tags input\";\n---\n\n<div class=\"justify-center h-full bg-white gap-2 p-15 \">\n  <div class=\"w-full max-w-sm mx-auto\">\n    <!-- copy:start -->\n    <div class=\"w-full\">\n      <label\n        for=\"tags-input\"\n        class=\"block mb-1 text-sm font-medium text-base-500 \"\n      >\n        Tags\n      </label>\n      <div\n        x-data=\"{ \n              tags: [&quot;Tailwind &quot;,&quot;Astro&quot;,&quot;Alpine&quot;], \n              newTag: '',\n              addTag() {\n                if (this.newTag.trim() !== '' && !this.tags.includes(this.newTag.trim())) {\n                  this.tags.push(this.newTag.trim())\n                  this.newTag = ''\n                }\n              },\n              removeTag(index) {\n                this.tags.splice(index, 1)\n              }\n            }\"\n        class=\"space-y-2\"\n      >\n        <input\n          type=\"text\"\n          id=\"tags-input\"\n          name=\"tags-input\"\n          placeholder=\"Add a tag\"\n          x-model=\"newTag\"\n          @keydown.enter.prevent=\"addTag()\"\n          class=\"block w-full h-10 px-4 py-2 text-sm bg-white border border-transparent appearance-none transition duration-300 ease-in-out rounded-md text-base-500 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-primary/88 focus:ring-offset-2 focus:ring-2  \"\n        />\n        <div class=\"flex flex-wrap mt-2 gap-2\">\n          <template x-for=\"(tag, index) in tags\" :key=\"index\">\n            <span\n              class=\"inline-flex items-center font-medium relative text-base-700 bg-base-50 px-2.5 py-1 text-xs rounded-md gap-1  \"\n            >\n              <span x-text=\"tag\"></span>\n              <button\n                @click=\"removeTag(index)\"\n                type=\"button\"\n                class=\"inline-flex items-center justify-center rounded-full size-4 hover:bg-base-200 focus:outline-none focus:ring-2 focus:ring-primary/88\"\n                aria-label=\"Remove tag\"\n              >\n                <svg\n                  xmlns=\"http://www.w3.org/2000/svg\"\n                  viewBox=\"0 0 24 24\"\n                  fill=\"none\"\n                  stroke=\"currentColor\"\n                  stroke-width=\"2\"\n                  stroke-linecap=\"round\"\n                  stroke-linejoin=\"round\"\n                  class=\"icon icon-tabler icons-tabler-outline icon-tabler-wave-x size-3\"\n                  slot=\"left-icon\"\n                >\n                  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n                  <path d=\"M18 6l-12 12\"></path>\n                  <path d=\"M6 6l12 12\"></path>\n                </svg>\n              </button>\n            </span>\n          </template>\n        </div>\n        <p class=\"text-xs text-base-500 \">\n          Press Enter to add a tag\n        </p>\n        <input\n          type=\"hidden\"\n          name=\"tags-input-values\"\n          x-bind:value=\"JSON.stringify(tags)\"\n        />\n      </div>\n    </div>\n    <!-- copy:end -->\n  </div>\n</div>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

@@ -1,0 +1,26 @@
+{
+  "name": "blog-entries-06",
+  "type": "component",
+  "description": "blog-entries block 06",
+  "category": "marketing",
+  "section": "blog-entries",
+  "variant": 6,
+  "aliases": [
+    "blog entries",
+    "blog entries 6",
+    "blog entries 06",
+    "blog entry",
+    "blog entry 6",
+    "blog entry 06"
+  ],
+  "files": [
+    {
+      "name": "06.astro",
+      "path": "oxbow/marketing/blog-entries/06.astro",
+      "content": "---\nimport Text from \"@/components/fundations/typography/Text.astro\";\nimport Kicker from \"@/components/fundations/typography/Kicker.astro\";\nimport b4 from \"@/images/placeholders/b4.png\";\nimport { Image } from \"astro:assets\";\nconst articles = [\n  {\n    image: b4,\n    title: \"What we learned from a year of remote work\",\n    description:\n      \"Reflections on the challenges, surprises, and wins of building Oxbow with a distributed team.\",\n    author: \"Nino Alvarez\",\n    authorImage: \"/avatars/10.jpg\",\n    date: \"Thu Apr 18\",\n    link: \"#_\",\n  },\n];\n---\n\n<section class=\"bg-white \">\n  <div class=\"px-8 py-24 mx-auto max-w-7xl md:px-12 lg:px-20\">\n    <div class=\"relative flex flex-col gap-12\">\n      {\n        articles.map((article) => (\n          <>\n            <article class=\"relative flex flex-col justify-end px-8 pb-8 overflow-hidden bg-white  isolate rounded-2xl pt-80 sm:pt-48 lg:pt-80 \">\n              <Image\n                width={570}\n                height={480}\n                src={article.image}\n                alt=\"#_\"\n                class=\"absolute inset-0 object-cover -z-10 size-full bg-base-50 \"\n              />\n              <div class=\"absolute inset-0 -z-10 bg-gradient-to-t from-base-100 via-base-200/70 \" />\n              <div class=\"max-w-md\">\n                <Text\n                  tag=\"h3\"\n                  variant=\"displayMD\"\n                  class=\"font-semibold tracking-tight text-base-900 \"\n                >\n                  {article.title}\n                </Text>\n                <div class=\"relative flex items-center mt-4 gap-x-4\">\n                  <img\n                    src={article.authorImage}\n                    alt=\"#_\"\n                    class=\"object-cover rounded-full size-10 bg-base-50 \"\n                  />\n                  <div>\n                    <Text\n                      tag=\"h3\"\n                      variant=\"textSM\"\n                      class=\"font-medium text-base-900 \"\n                    >\n                      {article.author}\n                    </Text>\n                    <Kicker>\n                      <time datetime={article.date}>{article.date}</time>\n                    </Kicker>\n                  </div>\n                </div>\n              </div>\n            </article>\n          </>\n        ))\n      }\n    </div>\n  </div>\n</section>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

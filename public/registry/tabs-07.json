@@ -1,0 +1,26 @@
+{
+  "name": "tabs-07",
+  "type": "component",
+  "description": "tabs block 07",
+  "category": "application",
+  "section": "tabs",
+  "variant": 7,
+  "aliases": [
+    "tabs",
+    "tabs 7",
+    "tabs 07",
+    "tab",
+    "tab 7",
+    "tab 07"
+  ],
+  "files": [
+    {
+      "name": "07.astro",
+      "path": "oxbow/application/tabs/07.astro",
+      "content": "---\nimport Button from \"@/components/fundations/buttons/Button.astro\";\nexport const excludeFromObfuscation = [\n  \"bg-base-600\",\n  \"text-base-600\",\n  \"border-b\",\n  \"ring-1\",\n  \"ring-base-200\",\n];\n---\n\n<div\n  class=\"flex flex-col justify-center p-12 mx-auto bg-white \"\n>\n  <!-- Accessible Tabs • Scrollable (overflow-x) with action on right -->\n  <div\n    x-data=\"{\n      keys: ['overview','projects','packages','team','billing','settings'],\n      selected: 'overview',\n      focus: 0,\n      init(){ this.focus = 0 },\n      select(id){ this.selected = id; this.focus = this.keys.indexOf(id) },\n      onKeydown(e){\n        const last = this.keys.length - 1\n        let i = this.focus\n        if (e.key==='ArrowRight' || e.key==='ArrowDown') i = i===last?0:i+1\n        else if (e.key==='ArrowLeft' || e.key==='ArrowUp') i = i===0?last:i-1\n        else if (e.key==='Home') i = 0\n        else if (e.key==='End') i = last\n        else return\n        e.preventDefault(); const id = this.keys[i]; this.focus=i; this.$nextTick(()=>this.$refs['tab-'+id]?.focus())\n      }\n    }\"\n    class=\"w-full max-w-5xl mx-auto\"\n  >\n    <div class=\"flex items-center justify-between gap-4\">\n      <div class=\"relative flex-1 overflow-x-auto overflow-y-hidden\">\n        <div\n          class=\"border-b min-w-max border-base-200 \"\n          role=\"tablist\"\n          aria-orientation=\"horizontal\"\n        >\n          <div class=\"flex text-sm gap-6 text-base-600 \">\n            <template x-for=\"(id, idx) in keys\" :key=\"id\">\n              <button\n                class=\"relative pb-2 font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-base-500/50\"\n                :id=\"'tab-'+id\"\n                role=\"tab\"\n                :aria-selected=\"selected===id\"\n                :tabindex=\"focus===idx?0:-1\"\n                :aria-controls=\"'panel-'+id\"\n                x-ref=\"tab-[[id]]\"\n                @click=\"select(id)\"\n                @keydown=\"onKeydown($event)\"\n                :class=\"selected===id ? 'text-base-600 ' : 'hover:text-base-900 '\"\n              >\n                <span x-text=\"id.charAt(0).toUpperCase()+id.slice(1)\"></span>\n                <span\n                  class=\"absolute left-0 bottom-0 h-[2px] w-full transition-all\"\n                  :class=\"selected===id ? 'bg-base-600 ' : 'bg-transparent'\"\n                  aria-hidden=\"true\"></span>\n              </button>\n            </template>\n          </div>\n        </div>\n      </div>\n      <div class=\"hidden shrink-0 sm:flex gap-2\">\n        <Button\n          variant=\"muted\"\n          size=\"xs\"\n          type=\"button\"\n         \n          >Export</Button\n        >\n        <Button\n          variant=\"default\"\n          size=\"xs\"\n          type=\"button\"\n   \n          >New</Button\n        >\n      </div>\n    </div>\n\n    <div class=\"pt-4 text-sm text-base-500 \">\n      <template x-for=\"id in keys\" :key=\"'panel-'+id\">\n        <section\n          x-show=\"selected===id\"\n          x-cloak\n          role=\"tabpanel\"\n          :id=\"'panel-'+id\"\n          :aria-labelledby=\"'tab-'+id\"\n        >\n          <p>\n            <span x-text=\"id.charAt(0).toUpperCase()+id.slice(1)\"></span> content\n            — replace with your blocks.\n          </p>\n        </section>\n      </template>\n    </div>\n  </div>\n</div>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

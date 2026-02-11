@@ -1,0 +1,23 @@
+{
+  "name": "faq-01",
+  "type": "component",
+  "description": "faq block 01",
+  "category": "marketing",
+  "section": "faq",
+  "variant": 1,
+  "aliases": [
+    "faq",
+    "faq 1",
+    "faq 01"
+  ],
+  "files": [
+    {
+      "name": "01.astro",
+      "path": "oxbow/marketing/faq/01.astro",
+      "content": "---\nexport const freeComponent = true;\nimport Text from \"@/components/fundations/typography/Text.astro\";\nconst faqs = [\n  {\n    question: \"What is Oxbow and how can it help my team?\",\n    answer:\n      \"Oxbow is a collaborative workflow platform that centralizes tasks, files, and communication in one intuitive interface, so your team stays aligned and productive.\",\n  },\n  {\n    question: \"Is there a free trial or plan available?\",\n    answer:\n      \"Yes, we offer a 7-day free trial with full access to all features, plus a free plan for small teams to get started at no cost.\",\n  },\n  {\n    question: \"How secure is my data on Oxbow?\",\n    answer:\n      \"We use industry-standard encryption for data at rest and in transit, with regular security audits to ensure your information is always protected.\",\n  },\n  {\n    question: \"Can I integrate Oxbow with other tools I already use?\",\n    answer:\n      \"Absolutely! Oxbow supports integrations with Slack, Google Drive, Zapier, and more—so you can keep your existing workflows connected.\",\n  },\n  {\n    question: \"How do I upgrade to a paid plan?\",\n    answer:\n      \"Upgrading is simple: just visit the Billing section in your account settings, choose a plan that fits your needs, and you’ll be all set.\",\n  },\n];\n---\n\n<section class=\"bg-white \">\n  <div class=\"px-8 py-24 mx-auto max-w-7xl md:px-12 lg:px-20\">\n    <div class=\"max-w-2xl mx-auto lg:text-balance\">\n      <Text\n        tag=\"h1\"\n        variant=\"displayMD\"\n        class=\"font-semibold tracking-tight text-base-900 \"\n      >\n        Got questions? <br /> We’ve got answers.\n      </Text>\n      <Text\n        tag=\"p\"\n        variant=\"textBase\"\n        class=\"mt-2 font-medium text-base-500 \"\n      >\n        Here’s everything you need to know to get the most out of Oxbow.\n      </Text>\n      <dl\n        class=\"flex flex-col pt-12 mt-12 border-t gap-12 border-base-200 \"\n      >\n        {\n          faqs.map((faq) => (\n            <>\n              <div>\n                <dt>\n                  <Text\n                    tag=\"h3\"\n                    variant=\"textLG\"\n                    class=\"font-semibold text-base-900 \"\n                  >\n                    {faq.question}\n                  </Text>\n                </dt>\n                <dd>\n                  <Text\n                    tag=\"p\"\n                    variant=\"textSM\"\n                    class=\"mt-2 font-medium text-base-500 \"\n                  >\n                    {faq.answer}\n                  </Text>\n                </dd>\n              </div>\n            </>\n          ))\n        }\n      </dl>\n    </div>\n  </div>\n</section>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

@@ -1,0 +1,23 @@
+{
+  "name": "pagination-08",
+  "type": "component",
+  "description": "Compact Centered Numbers",
+  "category": "application",
+  "section": "pagination",
+  "variant": 8,
+  "aliases": [
+    "pagination",
+    "pagination 8",
+    "pagination 08"
+  ],
+  "files": [
+    {
+      "name": "08.astro",
+      "path": "oxbow/application/pagination/08.astro",
+      "content": "---\nexport const description = \"Compact Centered Numbers\";\nimport Button from \"@/components/fundations/buttons/Button.astro\";\n\n---\n\n<section class=\"flex justify-center p-16 bg-white \">\n  <!-- copy:start -->\n  <nav\n    aria-label=\"Pagination\"\n    x-data=\"{ page: 3, total: 9 }\"\n    class=\"flex items-center w-full max-w-md mx-auto gap-1\"\n  >\n    <Button\n      size=\"xs\"\n      variant=\"muted\"\n      :disabled=\"page===1\"\n      @click=\"page=page-1\"\n      class=\"shrink-0\">Prev</Button\n    >\n    <div\n      class=\"hidden max-w-full py-1 -my-1 overflow-x-auto overflow-y-visible md:block\"\n    >\n      <div class=\"flex items-center px-1 gap-2 whitespace-nowrap\">\n        <template x-for=\"n in total\" :key=\"n\">\n          <Button\n            iconOnly\n            size=\"xs\"\n            variant=\"muted\"\n            class=\"leading-none\"\n            :class=\"page===n ? 'bg-primary text-white' : ''\"\n            x-text=\"n\"\n            @click=\"page=n\"\n            :aria-current=\"page===n ? 'page' : null\"\n          />\n        </template>\n      </div>\n    </div>\n    <Button\n      size=\"xs\"\n      variant=\"muted\"\n      :disabled=\"page===total\"\n      @click=\"page=page+1\"\n      class=\"shrink-0\">Next</Button\n    >\n  </nav>\n  <!-- copy:end -->\n</section>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

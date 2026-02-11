@@ -1,0 +1,24 @@
+{
+  "name": "checkboxes-13",
+  "type": "component",
+  "description": "Checklist with Progress Indicator",
+  "category": "application",
+  "section": "checkboxes",
+  "variant": 13,
+  "aliases": [
+    "checkboxes",
+    "checkboxes 13",
+    "checkboxe",
+    "checkboxe 13"
+  ],
+  "files": [
+    {
+      "name": "13.astro",
+      "path": "oxbow/application/checkboxes/13.astro",
+      "content": "---\nexport const description = \"Checklist with Progress Indicator\";\nimport Text from \"@/components/fundations/typography/Text.astro\";\n---\n\n<section\n  class=\"flex flex-wrap items-center justify-center h-full p-24 bg-white gap-2 \"\n>\n  <!-- copy:start -->\n  <div\n    class=\"flex flex-col w-full max-w-md gap-3\"\n    x-data=\"{\n      tasks: [\n        { label: 'Write title', done: true },\n        { label: 'Add description', done: false },\n        { label: 'Attach screenshots', done: false },\n        { label: 'Request review', done: false },\n      ],\n      get completed(){ return this.tasks.filter(t => t.done).length },\n      get percent(){ return Math.round((this.completed / this.tasks.length) * 100) },\n      completeAll(){ this.tasks = this.tasks.map(t => ({...t, done: true})) },\n      resetAll(){ this.tasks = this.tasks.map(t => ({...t, done: false})) }\n    }\"\n  >\n    <div class=\"flex items-center justify-between\">\n      <div class=\"text-sm text-base-700 \">\n        Progress: <span x-text=\"completed\"></span>/<span x-text=\"tasks.length\"\n        ></span> (<span x-text=\"percent\"></span>%)\n      </div>\n      <div class=\"flex gap-2\">\n        <button\n          type=\"button\"\n          class=\"px-2 py-1 text-xs text-white bg-primary rounded\"\n          @click=\"completeAll()\">Complete All</button\n        >\n        <button\n          type=\"button\"\n          class=\"px-2 py-1 text-xs border rounded border-base-300 text-base-700 \"\n          @click=\"resetAll()\">Reset</button\n        >\n      </div>\n    </div>\n    <div\n      class=\"w-full h-2 overflow-hidden rounded bg-base-200 \"\n    >\n      <div class=\"h-full bg-primary\" :style=\"`width: ${percent}%`\"></div>\n    </div>\n    <template x-for=\"(task, idx) in tasks\" :key=\"task.label\">\n      <div class=\"flex items-center gap-3\">\n        <input\n          type=\"checkbox\"\n          :id=\"`task-` + idx\"\n          x-model=\"task.done\"\n          class=\"text-primary rounded shadow size-4 border-base-300 focus:ring-primary \"\n        />\n        <Text\n          :for=\"`task-` + idx\"\n          tag=\"label\"\n          class=\"block text-sm text-base-700 \"\n          :class=\"task.done ? 'line-through text-base-400 ' : ''\"\n          x-text=\"task.label\"\n        />\n      </div>\n    </template>\n  </div>\n  <!-- copy:end -->\n</section>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

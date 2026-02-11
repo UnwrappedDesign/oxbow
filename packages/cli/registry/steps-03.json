@@ -1,0 +1,26 @@
+{
+  "name": "steps-03",
+  "type": "component",
+  "description": "steps block 03",
+  "category": "marketing",
+  "section": "steps",
+  "variant": 3,
+  "aliases": [
+    "steps",
+    "steps 3",
+    "steps 03",
+    "step",
+    "step 3",
+    "step 03"
+  ],
+  "files": [
+    {
+      "name": "03.astro",
+      "path": "oxbow/marketing/steps/03.astro",
+      "content": "---\nimport Text from \"@/components/fundations/typography/Text.astro\";\n// Define onboarding steps; numbering is auto-generated\nconst steps = [\n  {\n    title: \"Data Collection\",\n    description: \"Gather and preprocess raw data for your models.\",\n  },\n  {\n    title: \"Model Training\",\n    description: \"Train algorithms to detect patterns and make predictions.\",\n  },\n  {\n    title: \"Performance Tuning\",\n    description: \"Optimize models for accuracy and efficiency.\",\n  },\n  {\n    title: \"Deployment\",\n    description: \"Launch your AI solution and monitor performance.\",\n  },\n];\n---\n\n<section class=\"bg-white \">\n  <div class=\"px-8 py-24 mx-auto max-w-7xl md:px-12 lg:px-20\">\n    <div class=\"max-w-3xl\">\n      <Text\n        tag=\"h2\"\n        variant=\"displayMD\"\n        class=\"font-semibold tracking-tight text-base-900 text-balance\"\n      >\n        Onboard in four simple steps\n      </Text>\n      <Text\n        tag=\"p\"\n        variant=\"textBase\"\n        class=\"mt-2 font-medium text-base-500 \"\n      >\n        Follow the steps below to set up your account and start managing your\n        finances in minutes.\n      </Text>\n    </div>\n    <div class=\"relative flex flex-col items-center mt-24\">\n      <div\n        data-orientation=\"horizontal\"\n        class=\"bg-base-200 shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px absolute -top-8 left-0 hidden md:block\"\n      >\n      </div>\n\n      <div class=\"grid gap-4 md:grid-cols-4\">\n        {\n          steps.map((step, index) => (\n            <div class=\"relative p-4 shadow space-y-2 bg-linear-180 outline outline-base-100 from-base-50 to-base-100 rounded-xl\">\n              <div\n                data-orientation=\"vertical\"\n                role=\"none\"\n                data-slot=\"separator-root\"\n                class=\" shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px absolute top-6 left-0 block md:hidden\"\n              />\n              <div class=\"absolute top-0 -left-[9px] z-10  flex size-8 items-center justify-center rounded-full bg-base-100 p-1 md:-top-12 md:left-0\">\n                <span class=\"text-sm font-medium text-base-900 \">\n                  {index + 1}\n                </span>\n              </div>\n              <div class=\"pl-7 md:pl-0 \">\n                <Text\n                  tag=\"h3\"\n                  variant=\"textBase\"\n                  class=\"font-semibold tracking-tight  text-base-900 \"\n                >\n                  {step.title}\n                </Text>\n                <Text\n                  tag=\"p\"\n                  variant=\"textSM\"\n                  class=\"text-base-500 lg:text-balance\"\n                >\n                  {step.description}\n                </Text>\n              </div>\n            </div>\n          ))\n        }\n      </div>\n    </div>\n  </div>\n</section>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

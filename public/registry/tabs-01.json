@@ -1,0 +1,26 @@
+{
+  "name": "tabs-01",
+  "type": "component",
+  "description": "tabs block 01",
+  "category": "application",
+  "section": "tabs",
+  "variant": 1,
+  "aliases": [
+    "tabs",
+    "tabs 1",
+    "tabs 01",
+    "tab",
+    "tab 1",
+    "tab 01"
+  ],
+  "files": [
+    {
+      "name": "01.astro",
+      "path": "oxbow/application/tabs/01.astro",
+      "content": "---\nexport const freeComponent = true;\nexport const excludeFromObfuscation = [\n  \"ring-1\",\n  \"ring-base-500/20\",\n  \"text-base-600\",\n  \"border-b-2\",\n  \"border-base-600\",\n];\n---\n\n<div\n  class=\"flex flex-col justify-center p-12 mx-auto bg-white \"\n>\n  <!-- Accessible Tabs • Underline style -->\n  <div\n    x-data=\"{\n      keys: ['overview','projects','packages'],\n      selected: 'overview',\n      focus: 0,\n      init(){ this.focus = this.keys.indexOf(this.selected); },\n      select(id){ this.selected = id; this.focus = this.keys.indexOf(id); },\n      onKeydown(e){\n        const last = this.keys.length - 1;\n        let i = this.focus;\n        if (e.key==='ArrowRight' || e.key==='ArrowDown'){ i = i === last ? 0 : i+1; }\n        else if (e.key==='ArrowLeft' || e.key==='ArrowUp'){ i = i === 0 ? last : i-1; }\n        else if (e.key==='Home'){ i = 0; }\n        else if (e.key==='End'){ i = last; }\n        else { return; }\n        e.preventDefault();\n        const id = this.keys[i];\n        this.focus = i;\n        this.$nextTick(() => this.$refs['tab-'+id]?.focus());\n      }\n    }\"\n    class=\"w-full max-w-xl mx-auto\"\n  >\n    <div\n      class=\"border-b border-base-200 \"\n      role=\"tablist\"\n      aria-orientation=\"horizontal\"\n    >\n      <div class=\"flex text-sm gap-6\">\n        <template x-for=\"(id, idx) in keys\" :key=\"id\">\n          <button\n            class=\"relative pb-2 -mb-px font-medium text-base-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-base-500/50\"\n            :id=\"'tab-'+id\"\n            role=\"tab\"\n            :aria-selected=\"selected===id\"\n            :tabindex=\"focus===idx ? 0 : -1\"\n            :aria-controls=\"'panel-'+id\"\n            x-ref=\"tab-[[id]]\"\n            @click=\"select(id)\"\n            @keydown=\"onKeydown($event)\"\n          >\n            <span\n              x-text=\"id==='overview' ? 'Overview' : id==='projects' ? 'Projects' : 'Packages'\"\n            ></span>\n            <span\n              class=\"absolute left-0 -bottom-px h-[2px] w-full transition-all\"\n              :class=\"selected===id ? 'bg-base-600 ' : 'bg-transparent'\"\n              aria-hidden=\"true\"></span>\n          </button>\n        </template>\n      </div>\n    </div>\n    <div class=\"pt-4 text-sm text-base-500 \">\n      <section\n        x-show=\"selected==='overview'\"\n        x-cloak\n        role=\"tabpanel\"\n        :id=\"'panel-overview'\"\n        aria-labelledby=\"tab-overview\"\n      >\n        <p>\n          Overview content — use this space for summaries, stats, and quick\n          links.\n        </p>\n      </section>\n      <section\n        x-show=\"selected==='projects'\"\n        x-cloak\n        role=\"tabpanel\"\n        :id=\"'panel-projects'\"\n        aria-labelledby=\"tab-projects\"\n      >\n        <p>Projects content — recent activity, assignments, and deadlines.</p>\n      </section>\n      <section\n        x-show=\"selected==='packages'\"\n        x-cloak\n        role=\"tabpanel\"\n        :id=\"'panel-packages'\"\n        aria-labelledby=\"tab-packages\"\n      >\n        <p>Packages content — versions, releases, and release notes.</p>\n      </section>\n    </div>\n  </div>\n</div>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

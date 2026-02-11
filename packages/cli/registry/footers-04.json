@@ -1,0 +1,26 @@
+{
+  "name": "footers-04",
+  "type": "component",
+  "description": "footers block 04",
+  "category": "marketing",
+  "section": "footers",
+  "variant": 4,
+  "aliases": [
+    "footers",
+    "footers 4",
+    "footers 04",
+    "footer",
+    "footer 4",
+    "footer 04"
+  ],
+  "files": [
+    {
+      "name": "04.astro",
+      "path": "oxbow/marketing/footers/04.astro",
+      "content": "---\nimport Text from \"@/components/fundations/typography/Text.astro\";\nimport Logo from \"@/components/assets/Logo.astro\";\nimport XBrand from \"@/components/fundations/icons/XBrand.astro\";\nimport LinkedinBrand from \"@/components/fundations/icons/LinkedinBrand.astro\";\nimport YoutubeBrand from \"@/components/fundations/icons/YoutubeBrand.astro\";\nimport GithubBrand from \"@/components/fundations/icons/GithubBrand.astro\";\nconst footerLinks = [\n  {\n    heading: \"Company \",\n    links: [\n      { href: \"#\", text: \"About\" },\n      { href: \"#\", text: \"Overview\" },\n      { href: \"#\", text: \"Pricing\" },\n      { href: \"#\", text: \"Blog\" },\n    ],\n  },\n];\n---\n\n<section class=\"bg-white \">\n  <div class=\"px-8 py-24 mx-auto max-w-7xl md:px-12 lg:px-20\">\n    <div\n      class=\"flex flex-col items-center justify-between w-full p-8 text-center shadow gap-8 lg:text-left lg:flex-row bg-linear-180 outline outline-base-100 from-base-50 to-base-100 rounded-xl\"\n    >\n      <div class=\"justify-center w-full lg:justify-start\">\n        <Logo class=\"h-12 mx-auto text-base-900 lg:mx-0\" />\n      </div>\n      {\n        footerLinks.map((section, index) => (\n          <nav aria-labelledby={`footer-heading-${index}`}>\n            <ul class=\"flex flex-col justify-center lg:flex-row  gap-x-4 gap-y-2\">\n              {section.links.map((link) => (\n                <li>\n                  <Text\n                    tag=\"a\"\n                    href=\"#_\"\n                    variant=\"textBase\"\n                    class=\"text-sm font-medium text-base-900 hover:text-primary \"\n                  >\n                    {link.text}\n                  </Text>\n                </li>\n              ))}\n            </ul>\n          </nav>\n        ))\n      }\n      <nav\n        aria-labelledby=\"social-icons-heading\"\n        role=\"navigation\"\n        class=\"flex items-center justify-center w-full gap-4 text-base-500 lg:justify-end\"\n      >\n        <Text id=\"social-icons-heading\" class=\"sr-only\">\n          Follow us on social media\n        </Text>\n        <Text\n          tag=\"a\"\n          href=\"#_\"\n          variant=\"textBase\"\n          class=\"text-sm font-medium text-base-900 hover:text-primary \"\n        >\n          <XBrand size=\"sm\" />\n        </Text>\n        <Text\n          tag=\"a\"\n          href=\"#_\"\n          variant=\"textBase\"\n          class=\"font-medium hover:text-primary/88 text-base-500 \"\n        >\n          <LinkedinBrand size=\"sm\" />\n        </Text>\n        <Text\n          tag=\"a\"\n          href=\"#_\"\n          variant=\"textBase\"\n          class=\"font-medium hover:text-primary/88 text-base-500 \"\n        >\n          <GithubBrand size=\"sm\" />\n        </Text>\n        <Text\n          tag=\"a\"\n          href=\"#_\"\n          variant=\"textBase\"\n          class=\"font-medium hover:text-primary/88 text-base-500 \"\n        >\n          <YoutubeBrand size=\"sm\" />\n        </Text>\n      </nav>\n    </div>\n  </div>\n</section>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

@@ -1,0 +1,26 @@
+{
+  "name": "checkboxes-08",
+  "type": "component",
+  "description": "Permissions Matrix (Read/Write/Admin)",
+  "category": "application",
+  "section": "checkboxes",
+  "variant": 8,
+  "aliases": [
+    "checkboxes",
+    "checkboxes 8",
+    "checkboxes 08",
+    "checkboxe",
+    "checkboxe 8",
+    "checkboxe 08"
+  ],
+  "files": [
+    {
+      "name": "08.astro",
+      "path": "oxbow/application/checkboxes/08.astro",
+      "content": "---\nexport const description = \"Permissions Matrix (Read/Write/Admin)\";\nimport Text from \"@/components/fundations/typography/Text.astro\";\n---\n\n<section\n  class=\"flex flex-wrap items-center justify-center h-full p-24 bg-white gap-2 \"\n>\n  <!-- copy:start -->\n  <div\n    class=\"flex flex-col w-full max-w-2xl gap-3\"\n    x-data=\"{\n      rows: [\n        { name: 'Projects', read: true, write: false, admin: false },\n        { name: 'Billing', read: false, write: false, admin: false },\n        { name: 'Analytics', read: true, write: true, admin: false },\n      ],\n      toggle(row, key, event){\n        const checked = event.target.checked\n        row[key] = checked\n        if (key === 'admin') {\n          row.read = checked\n          row.write = checked\n        }\n        if (!row.read && row.admin) row.admin = false\n        if (!row.write && row.admin) row.admin = false\n      },\n      summary(row){\n        const parts = []\n        if (row.read) parts.push('Read')\n        if (row.write) parts.push('Write')\n        if (row.admin) parts.push('Admin')\n        return parts.join(', ') || 'None'\n      }\n    }\"\n  >\n    <div class=\"text-sm text-base-700 \">\n      Admin implies Read and Write. Unchecking Read/Write removes Admin.\n    </div>\n    <div\n      class=\"px-2 text-xs font-medium grid grid-cols-4 text-base-500 \"\n    >\n      <div>Resource</div>\n      <div class=\"text-center\">Read</div>\n      <div class=\"text-center\">Write</div>\n      <div class=\"text-center\">Admin</div>\n    </div>\n    <template x-for=\"(row, i) in rows\" :key=\"row.name\">\n      <div\n        class=\"items-center px-2 py-2 bg-white border rounded grid grid-cols-4 border-base-200 \"\n      >\n        <div class=\"flex flex-col\">\n          <span\n            class=\"text-sm text-base-700 \"\n            x-text=\"row.name\"></span>\n          <span\n            class=\"text-xs text-base-500 \"\n            x-text=\"summary(row)\"></span>\n        </div>\n        <div class=\"flex justify-center\">\n          <input\n            type=\"checkbox\"\n            :id=\"`r-`+i\"\n            :checked=\"row.read\"\n            @change=\"toggle(row,'read',$event)\"\n            class=\"text-primary rounded shadow size-4 border-base-300 focus:ring-primary \"\n          />\n        </div>\n        <div class=\"flex justify-center\">\n          <input\n            type=\"checkbox\"\n            :id=\"`w-`+i\"\n            :checked=\"row.write\"\n            @change=\"toggle(row,'write',$event)\"\n            class=\"text-primary rounded shadow size-4 border-base-300 focus:ring-primary \"\n          />\n        </div>\n        <div class=\"flex justify-center\">\n          <input\n            type=\"checkbox\"\n            :id=\"`a-`+i\"\n            :checked=\"row.admin\"\n            @change=\"toggle(row,'admin',$event)\"\n            class=\"text-primary rounded shadow size-4 border-base-300 focus:ring-primary \"\n          />\n        </div>\n      </div>\n    </template>\n  </div>\n  <!-- copy:end -->\n</section>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

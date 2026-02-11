@@ -1,0 +1,23 @@
+{
+  "name": "textarea-02",
+  "type": "component",
+  "description": "word counter",
+  "category": "application",
+  "section": "textarea",
+  "variant": 2,
+  "aliases": [
+    "textarea",
+    "textarea 2",
+    "textarea 02"
+  ],
+  "files": [
+    {
+      "name": "02.astro",
+      "path": "oxbow/application/textarea/02.astro",
+      "content": "---\nexport const description = \"word counter\";\nimport Text from \"@/components/fundations/typography/Text.astro\";\n---\n\n<div class=\"flex flex-col justify-center p-8 mx-auto bg-white \">\n  <div class=\"w-full max-w-sm mx-auto\">\n    <!-- copy:start -->\n    <div\n      class=\"w-full space-y-1\"\n      x-data=\"{ text: '', wordCount: 0 }\"\n      x-init=\"$watch('text', () => wordCount = text.trim().split(/\\s+/).filter(Boolean).length)\"\n    >\n      <Text\n        for=\"word-counter\"\n        tag=\"label\"\n        variant=\"textSM\"\n        class=\"font-medium text-base-500\"\n      >\n        Word counter\n      </Text>\n      <textarea\n        id=\"word-counter\"\n        x-model=\"text\"\n        rows=\"4\"\n        placeholder=\"Type your message\"\n        class=\"block w-full px-4 py-2 text-sm text-primary/88 bg-white border border-transparent rounded-lg appearance-none duration-300 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-primary/88 focus:ring-offset-2 focus:ring-2 sm:text-sm\"\n      ></textarea>\n      <div class=\"mt-2 text-sm text-base-500\">\n        Words: <span x-text=\"wordCount\"></span>\n      </div>\n    </div>\n    <!-- copy:end -->\n  </div>\n</div>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

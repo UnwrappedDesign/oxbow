@@ -1,0 +1,26 @@
+{
+  "name": "navbars-02",
+  "type": "component",
+  "description": "navbars block 02",
+  "category": "application",
+  "section": "navbars",
+  "variant": 2,
+  "aliases": [
+    "navbars",
+    "navbars 2",
+    "navbars 02",
+    "navbar",
+    "navbar 2",
+    "navbar 02"
+  ],
+  "files": [
+    {
+      "name": "02.astro",
+      "path": "oxbow/application/navbars/02.astro",
+      "content": "---\nexport const freeComponent = true;\nexport const excludeFromObfuscation = [\"flex\", \"hidden\"];\n\nimport Button from \"@/components/fundations/buttons/Button.astro\";\nimport IconButton from \"@/components/fundations/buttons/IconButton.astro\";\nimport Burger from \"@/components/fundations/icons/Burger.astro\";\nimport Text from \"@/components/fundations/typography/Text.astro\";\nimport Logo from \"@/components/assets/Logo.astro\";\n---\n\n<!-- copy:start -->\n<header\n  class=\"w-full bg-white border-b border-base-200 \"\n>\n  <div\n    x-data=\"{ open:false, q:'' }\"\n    class=\"px-6 mx-auto max-w-screen-xl md:px-10 lg:px-16\"\n  >\n    <div class=\"flex items-center justify-between h-16 gap-4\">\n      <a href=\"#_\" class=\"inline-flex items-center gap-2\">\n        <Logo class=\"text-black h-7 \" />\n        <span class=\"sr-only\">Home</span>\n      </a>\n      <!-- Search (desktop) -->\n      <div class=\"items-center justify-center flex-1 hidden md:flex\">\n        <label class=\"relative w-full max-w-md\">\n          <input\n            x-model=\"q\"\n            type=\"search\"\n            placeholder=\"Search…\"\n            class=\"w-full px-3 py-2 text-sm bg-white border outline-none rounded-md border-base-300 pl-9 text-base-700 placeholder-base-400 focus:border-primary/88 focus:ring-2 focus:ring-primary/18\"\n          />\n          <svg\n            class=\"absolute left-2.5 top-2.5 h-4 w-4 text-base-400\"\n            viewBox=\"0 0 20 20\"\n            fill=\"currentColor\"\n            ><path\n              fill-rule=\"evenodd\"\n              d=\"M12.9 14.32a8 8 0 111.414-1.414l4.387 4.387a1 1 0 01-1.414 1.414l-4.387-4.387zM14 8a6 6 0 11-12 0 6 6 0 0112 0z\"\n              clip-rule=\"evenodd\"></path></svg\n          >\n        </label>\n      </div>\n      <div class=\"items-center hidden md:flex gap-3\">\n        <Button variant=\"muted\" size=\"xs\">Docs</Button>\n        <Button variant=\"default\" size=\"xs\">Sign up</Button>\n      </div>\n      <IconButton\n        class=\"md:hidden\"\n        @click=\"open=!open\"\n        :aria-expanded=\"open\"\n        aria-controls=\"nav-02\"\n        variant=\"outline\"\n        size=\"xs\"\n        variant=\"muted\"\n      >\n        <Burger size=\"xs\" slot=\"icon\" />\n      </IconButton>\n    </div>\n    <!-- Mobile -->\n    <div\n      id=\"nav-02\"\n      :class=\"{ 'grid': open, 'hidden': !open }\"\n      class=\"hidden pb-4 grid-cols-1 gap-2\"\n    >\n      <label class=\"relative w-full\">\n        <input\n          x-model=\"q\"\n          type=\"search\"\n          placeholder=\"Search…\"\n          class=\"w-full px-3 py-2 text-sm bg-white border outline-none rounded-md border-base-300 pl-9 text-base-700 placeholder-base-400 focus:border-primary/88 focus:ring-2 focus:ring-primary/18\"\n        />\n        <svg\n          class=\"absolute left-2.5 top-2.5 h-4 w-4 text-base-400\"\n          viewBox=\"0 0 20 20\"\n          fill=\"currentColor\"\n          ><path\n            fill-rule=\"evenodd\"\n            d=\"M12.9 14.32a8 8 0 111.414-1.414l4.387 4.387a1 1 0 01-1.414 1.414l-4.387-4.387zM14 8a6 6 0 11-12 0 6 6 0 0112 0z\"\n            clip-rule=\"evenodd\"></path></svg\n        >\n      </label>\n      <div class=\"flex flex-col gap-2\">\n        <Button variant=\"muted\" size=\"xs\" class=\"w-full\">Docs</Button>\n        <Button variant=\"default\" size=\"xs\" class=\"w-full\">Sign up</Button>\n      </div>\n    </div>\n  </div>\n</header>\n<!-- copy:end -->\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

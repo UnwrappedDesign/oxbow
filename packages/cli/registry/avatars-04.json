@@ -1,0 +1,26 @@
+{
+  "name": "avatars-04",
+  "type": "component",
+  "description": "avatars block 04",
+  "category": "application",
+  "section": "avatars",
+  "variant": 4,
+  "aliases": [
+    "avatars",
+    "avatars 4",
+    "avatars 04",
+    "avatar",
+    "avatar 4",
+    "avatar 04"
+  ],
+  "files": [
+    {
+      "name": "04.astro",
+      "path": "oxbow/application/avatars/04.astro",
+      "content": "---\nconst avatars = [\n  { src: \"/avatars/1.jpg\", alt: \"#_\" },\n  { src: \"/avatars/2.jpg\", alt: \"#_\" },\n  { src: \"/avatars/3.jpg\", alt: \"#_\" },\n  { src: \"/avatars/4.jpg\", alt: \"#_\" },\n];\n---\n\n<div class=\"flex items-center justify-center p-12 bg-white \">\n  <!-- copy:start -->\n  <div\n    class=\"flex items-center gap-3\"\n    x-data=\"{\n      members: ['/avatars/1.jpg','/avatars/2.jpg','/avatars/3.jpg','/avatars/4.jpg','/avatars/5.jpg'],\n      expanded: false,\n      max: 3,\n      promote(i){ if(i===0) return; const m=this.members; [m[0], m[i]] = [m[i], m[0]] },\n      get visibleRest(){ return this.expanded ? this.members.slice(1) : this.members.slice(1, 1+this.max) },\n      get extra(){ return Math.max(0, this.members.length - 1 - this.visibleRest.length) }\n    }\"\n  >\n    <img\n      :src=\"members[0]\"\n      alt=\"Primary member\"\n      class=\"object-cover rounded-full size-14 ring-2 ring-white \"\n    />\n    <div class=\"flex items-center -space-x-2\">\n      <template x-for=\"(src, idx) in visibleRest\" :key=\"src\">\n        <button\n          type=\"button\"\n          class=\"focus:outline-none\"\n          @click=\"promote(idx+1)\"\n          :aria-label=\"`Make member ${idx+2} primary`\"\n          title=\"Make primary\"\n        >\n          <img :src=\"src\" alt=\"\" class=\"inline-block object-cover object-center rounded-full size-10 ring-2 ring-white \" />\n        </button>\n      </template>\n      <button\n        type=\"button\"\n        x-show=\"extra > 0\"\n        @click=\"expanded = !expanded\"\n        class=\"inline-flex items-center justify-center rounded-full size-10 bg-base-100 text-base-600 ring-2 ring-white \"\n        :aria-expanded=\"expanded\"\n      >\n        <span x-text=\"expanded ? '–' : ('+' + extra)\"></span>\n      </button>\n    </div>\n  </div>\n  <!-- copy:end -->\n</div>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

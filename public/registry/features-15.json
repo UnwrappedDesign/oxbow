@@ -1,0 +1,24 @@
+{
+  "name": "features-15",
+  "type": "component",
+  "description": "features block 15",
+  "category": "marketing",
+  "section": "features",
+  "variant": 15,
+  "aliases": [
+    "features",
+    "features 15",
+    "feature",
+    "feature 15"
+  ],
+  "files": [
+    {
+      "name": "15.astro",
+      "path": "oxbow/marketing/features/15.astro",
+      "content": "---\nimport Text from \"@/components/fundations/typography/Text.astro\";\nconst items = [\n  {\n    imgSrc: \"/widgets/progressCircles.svg\",\n    imgAlt: \"#_\",\n    title: \"Easy navigation\",\n    description:\n      \"Hover over any element to see its Tailwind classes. Press Space to easily pin and edit your settings.\",\n  },\n  {\n    imgSrc: \"/widgets/calendar.svg\",\n    imgAlt: \"#_\",\n    title: \"Persistence\",\n    description:\n      \"Spotless will remember all your changes to every element so you can copy all changes at once!\",\n  },\n  {\n    imgSrc: \"/widgets/figmaComp2.svg\",\n    imgAlt: \"#_\",\n    title: \"Screenshot tool\",\n    description:\n      \"Make screenshots of a particular part of the screen to share quickly and easily.\",\n  },\n];\n---\n\n<section class=\"bg-white \">\n  <div class=\"px-8 py-24 mx-auto max-w-7xl md:px-12 lg:px-20\">\n    <dl\n      class=\"items-baseline text-center grid sm:grid-cols-2 gap-x-4 gap-y-12 lg:grid-cols-3 lg:gap-y-16\"\n    >\n      {\n        items.map((item) => (\n          <div class=\"flex flex-col justify-between h-full\">\n            <div>\n              <div class=\"p-6 pb-0 overflow-hidden  bg-base-50 rounded-2xl\">\n                <img\n                  class=\"shadow  rounded-t-2xl size-full\"\n                  src={item.imgSrc}\n                  alt={item.imgAlt}\n                />\n              </div>\n              <dt class=\"mt-8\">\n                <Text\n                  tag=\"h3\"\n                  variant=\"textBase\"\n                  class=\"font-semibold  text-base-900 \"\n                >\n                  {item.title}\n                </Text>\n              </dt>\n              <dd>\n                <Text\n                  tag=\"p\"\n                  variant=\"textBase\"\n                  class=\"mt-2 font-medium text-base-500 lg:text-balance\"\n                >\n                  {item.description}\n                </Text>\n              </dd>\n            </div>\n          </div>\n        ))\n      }\n    </dl>\n  </div>\n</section>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

@@ -4,6 +4,9 @@
   "description": "Oxbow UI – open-source building blocks for modern product sites",
   "private": true,
   "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
   "engines": {
     "node": ">=20.0.0"
   },
@@ -24,15 +27,26 @@
     "serve:dist": "npx serve ./dist",
     "serve": "npm run serve:dev",
     "screenshots": "npm run serve:dev && node bin/screenshots.cjs",
-    "safelist": "node bin/twsafelist.cjs"
+    "safelist": "node bin/twsafelist.cjs",
+    "registry:build": "node bin/build-registry.cjs",
+    "cli:build": "npm run build -w oxbowui",
+    "mcp:build": "npm run build -w oxbowui-mcp",
+    "packages:build": "npm run registry:build && npm run cli:build && npm run mcp:build",
+    "oxbow": "node packages/cli/src/index.js",
+    "oxbow-ui": "node packages/cli/src/index.js",
+    "oxbowui": "node packages/cli/src/index.js",
+    "pack:cli": "npm pack -w oxbowui --dry-run",
+    "pack:mcp": "npm pack -w oxbowui-mcp --dry-run",
+    "publish:cli": "npm publish -w oxbowui",
+    "publish:mcp": "npm publish -w oxbowui-mcp --access public"
   },
   "dependencies": {
-    "@alpinejs/focus": "^3.15.3",
-    "@alpinejs/intersect": "^3.15.3",
-    "@alpinejs/ui": "^3.15.3",
+    "@alpinejs/focus": "^3.15.8",
+    "@alpinejs/intersect": "^3.15.8",
+    "@alpinejs/ui": "^3.15.8",
     "@astrojs/alpinejs": "^0.4.9",
     "@astrojs/react": "^4.4.2",
-    "@astrojs/sitemap": "^3.6.1",
+    "@astrojs/sitemap": "^3.7.0",
     "@astrojs/ts-plugin": "^1.10.6",
     "@astrolib/seo": "^1.0.0-beta.8",
     "@ryangjchandler/alpine-clipboard": "^2.3.0",
@@ -40,30 +54,30 @@
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.1.18",
     "@types/react-dom": "^19.2.3",
-    "alpinejs": "^3.15.3",
-    "astro": "^5.16.9",
-    "lucide-react": "^0.562.0",
+    "alpinejs": "^3.15.8",
+    "astro": "^5.17.1",
+    "lucide-react": "^0.563.0",
     "outdent": "^0.8.0",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "react-rnd": "^10.5.2",
-    "shiki": "^3.21.0",
+    "shiki": "^3.22.0",
     "tailwind-scrollbar-hide": "^4.0.0"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "4.55.1"
+    "@rollup/rollup-linux-x64-gnu": "4.57.1"
   },
   "devDependencies": {
     "@tailwindcss/nesting": "^0.0.0-insiders.565cd3e",
     "@tailwindcss/postcss": "^4.1.18",
-    "@types/node": "^25.0.6",
+    "@types/node": "^25.2.3",
     "concurrently": "^9.2.1",
-    "prettier": "3.7.4",
+    "prettier": "3.8.1",
     "prettier-plugin-astro": "^0.14.1",
-    "puppeteer": "^24.35.0",
+    "puppeteer": "^24.37.2",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3",
     "vite": "^7.3.1",
-    "vitest": "^4.0.17"
+    "vitest": "^4.0.18"
   }
 }

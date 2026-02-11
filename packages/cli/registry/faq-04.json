@@ -1,0 +1,23 @@
+{
+  "name": "faq-04",
+  "type": "component",
+  "description": "faq block 04",
+  "category": "marketing",
+  "section": "faq",
+  "variant": 4,
+  "aliases": [
+    "faq",
+    "faq 4",
+    "faq 04"
+  ],
+  "files": [
+    {
+      "name": "04.astro",
+      "path": "oxbow/marketing/faq/04.astro",
+      "content": "---\nimport Text from \"@/components/fundations/typography/Text.astro\";\nimport Plus from \"@/components/fundations/icons/Plus.astro\";\nimport Kicker from \"@/components/fundations/typography/Kicker.astro\";\n// Consolidated FAQ sections\nconst faqSections = [\n  {\n    title: \"General questions\",\n    faqs: [\n      {\n        question: \"How does end-to-end encryption work?\",\n        answer:\n          \"End-to-end encryption ensures only you and your recipient can read messages.\",\n      },\n      {\n        question: \"Can I access encrypted data if I lose my key?\",\n        answer:\n          \"Without your encryption key, your data cannot be decrypted, keeping it secure.\",\n      },\n      {\n        question: \"Are there limits to self-destructing messages?\",\n        answer:\n          \"Messages auto-delete after a set time or once viewed, as configured.\",\n      },\n    ],\n  },\n  {\n    title: \"Usage & Storage\",\n    faqs: [\n      {\n        question: \"Can I use this platform across devices?\",\n        answer:\n          \"Yes—your encrypted data syncs across all your devices in real-time.\",\n      },\n      {\n        question: \"Any storage limitations?\",\n        answer:\n          \"We offer tiered plans: higher tiers unlock more storage space.\",\n      },\n      {\n        question: \"Can I export my data?\",\n        answer:\n          \"You can export messages, files, and documents for backup or migration.\",\n      },\n    ],\n  },\n  {\n    title: \"Support & Policies\",\n    faqs: [\n      {\n        question: \"Is my information shared with third parties?\",\n        answer:\n          \"Never—we adhere to strict privacy protocols; your data stays yours.\",\n      },\n      {\n        question: \"How do I contact support?\",\n        answer:\n          \"Email us at support@example.com or use the in-app chat for help.\",\n      },\n    ],\n  },\n];\n---\n\n<section class=\"bg-white \">\n  <div class=\"px-8 py-24 mx-auto max-w-7xl md:px-12 lg:px-20\">\n    <div class=\"text-center\">\n      <Kicker> Curious? </Kicker>\n      <Text\n        tag=\"h1\"\n        variant=\"displayMD\"\n        class=\"mt-4 font-semibold tracking-tight text-base-900 \"\n      >\n        We’ve got answers\n      </Text>\n      <Text\n        tag=\"p\"\n        variant=\"textBase\"\n        class=\"mt-2 font-medium text-base-500 \"\n      >\n        Find clear solutions to common questions about Oxbow in seconds.\n      </Text>\n    </div>\n    <div\n      class=\"mt-12 overflow-hidden border border-base-200 rounded-2xl\"\n    >\n      {\n        faqSections.map((section) => (\n          <div class=\"divide-y divide-base-200 \">\n            <div class=\"px-8 py-4 bg-linear-180 outline outline-base-100 from-base-50 to-base-100 \">\n              <Text\n                tag=\"h3\"\n                variant=\"textLG\"\n                class=\"font-medium text-base-900 \"\n              >\n                {section.title}\n              </Text>\n            </div>\n            {section.faqs.map((faq) => (\n              <details class=\"cursor-pointer group\">\n                <summary class=\"items-start justify-between w-full px-8 py-4 text-base font-medium text-left select-none grid grid-cols-4 gap-8  text-base-900 hover:text-base-500 focus:text-base-500 \">\n                  <span class=\"col-span-3\">{faq.question}</span>\n                  <Plus\n                    class=\"ml-auto duration-300 ease-out transform group-open:-rotate-45 group-open:text-primary \"\n                    size=\"sm\"\n                  />\n                </summary>\n                <div class=\"px-8 py-4 pt-2 text-sm text-base-500 \">\n                  <Text\n                    tag=\"p\"\n                    variant=\"textBase\"\n                    class=\"font-medium text-base-500 \"\n                  >\n                    {faq.answer}\n                  </Text>\n                </div>\n              </details>\n            ))}\n          </div>\n        ))\n      }\n    </div>\n  </div>\n</section>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

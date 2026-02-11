@@ -1,0 +1,26 @@
+{
+  "name": "tables-06",
+  "type": "component",
+  "description": "tables block 06",
+  "category": "application",
+  "section": "tables",
+  "variant": 6,
+  "aliases": [
+    "tables",
+    "tables 6",
+    "tables 06",
+    "table",
+    "table 6",
+    "table 06"
+  ],
+  "files": [
+    {
+      "name": "06.astro",
+      "path": "oxbow/application/tables/06.astro",
+      "content": "---\nexport const excludeFromObfuscation = [\n  \"bg-base-50\",\n  \"border-base-200\",\n  \"text-base-700\",\n  \"sticky\",\n  \"top-0\",\n];\n---\n\n<div class=\"flex flex-col justify-center p-8 mx-auto bg-white \">\n  <!-- copy:start -->\n  <div\n    class=\"w-full max-w-5xl mx-auto overflow-hidden bg-white border rounded-lg border-base-200 \"\n  >\n    <div class=\"overflow-auto max-h-80\">\n      <table class=\"min-w-full text-xs bg-white \">\n        <thead\n          class=\"sticky top-0 z-10 bg-base-50 text-base-600 \"\n        >\n          <tr>\n            <th class=\"px-3 py-2 font-medium text-left\">ID</th>\n            <th class=\"px-3 py-2 font-medium text-left\">Title</th>\n            <th class=\"px-3 py-2 font-medium text-left\">Owner</th>\n            <th class=\"px-3 py-2 font-medium text-left\">Updated</th>\n            <th class=\"px-3 py-2 font-medium text-right\">Items</th>\n          </tr>\n        </thead>\n        <tbody>\n          {\n            Array.from({ length: 40 }).map((_, i) => (\n              <tr class=\"even:bg-base-50 \">\n                <td class=\"px-3 py-2 text-base-500 \">\n                  #{i + 1001}\n                </td>\n                <td class=\"px-3 py-2 text-base-700 \">\n                  Collection {i + 1}\n                </td>\n                <td class=\"px-3 py-2 text-base-500 \">\n                  owner{i % 7}@example.com\n                </td>\n                <td class=\"px-3 py-2 text-base-500 \">\n                  2025-09-{String((i % 28) + 1).padStart(2, \"0\")}\n                </td>\n                <td class=\"px-3 py-2 font-mono text-right text-base-700 tabular-nums\">\n                  {(i * 3) % 50}\n                </td>\n              </tr>\n            ))\n          }\n        </tbody>\n      </table>\n    </div>\n  </div>\n  <!-- copy:end -->\n</div>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

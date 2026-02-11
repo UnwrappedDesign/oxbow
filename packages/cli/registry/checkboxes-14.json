@@ -1,0 +1,24 @@
+{
+  "name": "checkboxes-14",
+  "type": "component",
+  "description": "At Least One Required (Group)",
+  "category": "application",
+  "section": "checkboxes",
+  "variant": 14,
+  "aliases": [
+    "checkboxes",
+    "checkboxes 14",
+    "checkboxe",
+    "checkboxe 14"
+  ],
+  "files": [
+    {
+      "name": "14.astro",
+      "path": "oxbow/application/checkboxes/14.astro",
+      "content": "---\nexport const description = \"At Least One Required (Group)\";\nimport Text from \"@/components/fundations/typography/Text.astro\";\n---\n\n<section\n  class=\"flex flex-wrap items-center justify-center h-full p-24 bg-white gap-2 \"\n>\n  <!-- copy:start -->\n  <form\n    class=\"flex flex-col w-full max-w-md gap-2\"\n    x-data=\"{ options: ['Email', 'SMS', 'Push'], selected: [], submitted: false }\"\n    @submit.prevent=\"submitted = true; if (selected.length === 0) return; alert('Saved')\"\n  >\n    <div class=\"text-sm text-base-700 \">\n      Notify me via (choose at least one)\n    </div>\n    <template x-for=\"opt in options\" :key=\"opt\">\n      <div class=\"flex items-center gap-3\">\n        <input\n          type=\"checkbox\"\n          :id=\"`notify-` + opt\"\n          :value=\"opt\"\n          x-model=\"selected\"\n          :aria-invalid=\"submitted && selected.length === 0\"\n          aria-describedby=\"notify-error\"\n          class=\"text-primary rounded shadow size-4 border-base-300 focus:ring-primary \"\n        />\n        <Text\n          :for=\"`notify-` + opt\"\n          tag=\"label\"\n          class=\"block text-sm text-base-600 \"\n          x-text=\"opt\"\n        />\n      </div>\n    </template>\n    <p\n      id=\"notify-error\"\n      x-show=\"submitted && selected.length === 0\"\n      class=\"text-xs text-destructive \"\n      role=\"alert\"\n    >\n      Select at least one notification method.\n    </p>\n    <div class=\"flex gap-2\">\n      <button\n        type=\"submit\"\n        class=\"px-3 py-1.5 text-sm rounded bg-primary text-white\"\n        >Save Preferences</button\n      >\n      <span\n        class=\"self-center text-xs text-base-500 \"\n        x-text=\"selected.join(', ') || 'None selected'\"></span>\n    </div>\n  </form>\n  <!-- copy:end -->\n</section>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

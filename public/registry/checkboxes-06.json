@@ -1,0 +1,26 @@
+{
+  "name": "checkboxes-06",
+  "type": "component",
+  "description": "Checkbox Group with Max Selection",
+  "category": "application",
+  "section": "checkboxes",
+  "variant": 6,
+  "aliases": [
+    "checkboxes",
+    "checkboxes 6",
+    "checkboxes 06",
+    "checkboxe",
+    "checkboxe 6",
+    "checkboxe 06"
+  ],
+  "files": [
+    {
+      "name": "06.astro",
+      "path": "oxbow/application/checkboxes/06.astro",
+      "content": "---\nexport const description = \"Checkbox Group with Max Selection\";\nimport Text from \"@/components/fundations/typography/Text.astro\";\n---\n\n<section\n  class=\"flex flex-wrap items-center justify-center h-full p-24 bg-white gap-2 \"\n>\n  <!-- copy:start -->\n  <div\n    class=\"flex flex-col w-full max-w-md gap-2\"\n    x-data=\"{\n      options: ['UI', 'API', 'Docs', 'Analytics', 'Billing'],\n      selected: [],\n      limit: 2,\n      isDisabled(opt){ return !this.selected.includes(opt) && this.selected.length >= this.limit }\n    }\"\n  >\n    <div class=\"text-xs text-base-500 \">Select up to 2</div>\n    <template x-for=\"option in options\" :key=\"option\">\n      <div class=\"flex items-center gap-3\">\n        <input\n          type=\"checkbox\"\n          :id=\"`limit-` + option\"\n          :value=\"option\"\n          x-model=\"selected\"\n          :disabled=\"isDisabled(option)\"\n          class=\"text-primary rounded shadow size-4 border-base-300 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed \"\n        />\n        <Text\n          :for=\"`limit-` + option\"\n          tag=\"label\"\n          class=\"block text-sm text-base-600 \"\n          x-text=\"option\"\n        />\n      </div>\n    </template>\n    <div class=\"mt-2 text-sm text-base-600 \">\n      Selected: <span\n        class=\"text-base-500 \"\n        x-text=\"selected.join(', ')\"></span>\n    </div>\n  </div>\n  <!-- copy:end -->\n</section>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

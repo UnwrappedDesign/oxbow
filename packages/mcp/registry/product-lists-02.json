@@ -1,0 +1,26 @@
+{
+  "name": "product-lists-02",
+  "type": "component",
+  "description": "product-lists block 02",
+  "category": "ecommerce",
+  "section": "product-lists",
+  "variant": 2,
+  "aliases": [
+    "product lists",
+    "product lists 2",
+    "product lists 02",
+    "product list",
+    "product list 2",
+    "product list 02"
+  ],
+  "files": [
+    {
+      "name": "02.astro",
+      "path": "oxbow/ecommerce/product-lists/02.astro",
+      "content": "---\nexport const description =\n  \"Simple cards with description, color and price below image\";\nimport Text from \"@/components/fundations/typography/Text.astro\";\nconst products = [\n  {\n    image: \"/store/shoes/airforceblack/3.jpg\",\n    title: \"Nike Air Force 1´07 Fresh\",\n    price: \"$140.00\",\n    link: \"#_\",\n    colors: [\"bg-black\", \"bg-white\"], // Add the color codes here\n  },\n  {\n    image: \"/store/shoes/airforcewhite/2.png\",\n    title: \"Nike Air Force 1 LE\",\n    price: \"$280.00\",\n    link: \"#_\",\n    colors: [\"bg-white\", \"bg-destructive/88\", \"bg-info/88\"], // Add the color codes here\n  },\n  {\n    image: \"/store/shoes/airmax/3.png\",\n    title: \"Nike Air Max 90\",\n    price: \"120.00\",\n    colors: [\"bg-black\", \"bg-base-600\", \"bg-warning/70\"], // Add the color codes here\n  },\n];\n---\n\n<section class=\"bg-white \">\n  <div class=\"relative px-8 py-24 mx-auto md:px-12 lg:px-20 max-w-7xl\">\n    <div class=\"relative grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3\">\n      {\n        products.map((article) => (\n          <div class=\"relative flex flex-col gap-2\">\n            <div class=\"relative aspect-[4/3]\">\n              <img\n                src={article.image}\n                alt={article.title}\n                class=\"absolute inset-0 object-cover size-full rounded-2xl bg-base-50\"\n              />\n            </div>\n            <div>\n              <div class=\"flex items-center justify-between w-full\">\n                <Text\n                  tag=\"h3\"\n                  variant=\"textSM\"\n                  class=\"font-medium text-base-900 \"\n                >\n                  {article.title}\n                  <a href=\"#_\">\n                    <span class=\"absolute inset-0\" />\n                  </a>\n                </Text>\n                <ul role=\"list\" class=\"flex items-center gap-x-1\">\n                  {article.colors.map((color, index) => (\n                    <li\n                      class={`size-3 rounded-full border border-black/10 ${color}`}\n                    >\n                      <span class=\"sr-only\">{color}</span>\n                    </li>\n                  ))}\n                </ul>\n              </div>\n              <Text\n                tag=\"h3\"\n                variant=\"textSM\"\n                class=\"text-base-500 \"\n              >\n                {article.price}\n              </Text>\n            </div>\n          </div>\n        ))\n      }\n    </div>\n  </div>\n</section>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

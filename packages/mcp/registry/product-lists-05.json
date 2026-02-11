@@ -1,0 +1,26 @@
+{
+  "name": "product-lists-05",
+  "type": "component",
+  "description": "product-lists block 05",
+  "category": "ecommerce",
+  "section": "product-lists",
+  "variant": 5,
+  "aliases": [
+    "product lists",
+    "product lists 5",
+    "product lists 05",
+    "product list",
+    "product list 5",
+    "product list 05"
+  ],
+  "files": [
+    {
+      "name": "05.astro",
+      "path": "oxbow/ecommerce/product-lists/05.astro",
+      "content": "---\nexport const description =\n  \"Simple cards with  add to cart CTA and overlayed price\";\nimport Text from \"@/components/fundations/typography/Text.astro\";\nimport Button from \"@/components/fundations/buttons/Button.astro\";\nconst products = [\n  {\n    image: \"/store/shoes/airforceblack/3.jpg\",\n    title: \"Nike Air Force 1´07 Fresh\",\n    price: \"$140.00\",\n    discountedPrice: \"$99.00\",\n    description: \"23 Different Colors\",\n    link: \"#_\",\n  },\n  {\n    image: \"/store/shoes/airforcewhite/2.png\",\n    title: \"Nike Air Force 1 LE\",\n    price: \"$280.00\",\n    discountedPrice: \"$149.00\",\n    description: \"40 Different Colors\",\n    link: \"#_\",\n  },\n  {\n    image: \"/store/shoes/airmax/3.png\",\n    title: \"Nike Air Max 90\",\n    price: \"$120.00\",\n    discountedPrice: \"$80.00\",\n    description: \"10 Different Colors\",\n    link: \"#_\",\n  },\n];\n---\n\n<section class=\"bg-white \">\n  <div class=\"relative px-8 py-24 mx-auto md:px-12 lg:px-20 max-w-7xl\">\n    <div class=\"relative grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3\">\n      {\n        products.map((article) => (\n          <div>\n            <div class=\"relative\">\n              <div class=\"relative w-full overflow-hidden rounded-lg h-72\">\n                <img\n                  src={article.image}\n                  alt=\"#_\"\n                  class=\"object-cover size-full\"\n                />\n              </div>\n              <div class=\"relative mt-2\">\n                <Text\n                  tag=\"h3\"\n                  variant=\"textSM\"\n                  class=\"font-medium text-base-900 \"\n                >\n                  {article.title}\n                </Text>\n                <Text\n                  tag=\"p\"\n                  variant=\"textSM\"\n                  class=\"relative  text-base-500 \"\n                >\n                  {article.description}\n                  <a href=\"#_\">\n                    <span class=\"absolute inset-0\" />\n                  </a>\n                </Text>\n              </div>\n              <div class=\"absolute inset-x-0 top-0 flex items-end justify-end p-4 overflow-hidden rounded-lg \">\n                <Text\n                  tag=\"h3\"\n                  variant=\"textSM\"\n                  class=\"relative flex items-center text-base-500 gap-x-1\"\n                >\n                  {article.price}\n                </Text>\n              </div>\n            </div>\n            <div class=\"mt-6\">\n              <Button size=\"xs\" variant=\"muted\" class=\"w-full\">\n                Add to cart<span class=\"sr-only\">, {article.title}</span>\n              </Button>\n            </div>\n          </div>\n        ))\n      }\n    </div>\n  </div>\n</section>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

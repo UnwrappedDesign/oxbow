@@ -1,0 +1,24 @@
+{
+  "name": "avatars-11",
+  "type": "component",
+  "description": "Uploadable Avatar (Preview)",
+  "category": "application",
+  "section": "avatars",
+  "variant": 11,
+  "aliases": [
+    "avatars",
+    "avatars 11",
+    "avatar",
+    "avatar 11"
+  ],
+  "files": [
+    {
+      "name": "11.astro",
+      "path": "oxbow/application/avatars/11.astro",
+      "content": "---\nexport const description = \"Uploadable Avatar (Preview)\";\nimport Camera from \"@/components/fundations/icons/Camera.astro\";\n---\n\n<section class=\"flex items-center justify-center p-12 bg-white \">\n  <!-- copy:start -->\n  <div x-data=\"{ src: '/avatars/1.jpg', pick(){ this.$refs.file.click() }, onFile(e){ const f=e.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=ev=>this.src=ev.target.result; r.readAsDataURL(f) } }\" class=\"relative\">\n    <img :src=\"src\" alt=\"\" class=\"object-cover rounded-full size-20 ring-2 ring-white \" />\n    <button type=\"button\" @click=\"pick()\" class=\"absolute bottom-0 right-0 flex items-center justify-center bg-white rounded-full size-8 text-base-700 ring-2 ring-white \" aria-label=\"Upload\">\n      <Camera size=\"sm\" />\n    </button>\n    <input x-ref=\"file\" type=\"file\" accept=\"image/*\" class=\"hidden\" @change=\"onFile\" />\n  </div>\n  <!-- copy:end -->\n</section>\n\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

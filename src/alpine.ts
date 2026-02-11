@@ -42,11 +42,11 @@ export default (Alpine: Alpine) => {
       this.loadBaseThemePreference();
     },
     colors: [
-      { name: "Slate", color: "bg-slate-500" },
-      { name: "Gray", color: "bg-zinc-500" },
-      { name: "Zinc", color: "bg-zinc-500" },
-      { name: "Neutral", color: "bg-neutral-500" },
-      { name: "Stone", color: "bg-stone-500" },
+      { name: "Slate", color: "bg-base-500" },
+      { name: "Gray", color: "bg-base-500" },
+      { name: "Zinc", color: "bg-base-500" },
+      { name: "Neutral", color: "bg-base-500" },
+      { name: "Stone", color: "bg-base-500" },
     ],
     selected: "Gray",
     open: false,
@@ -121,22 +121,22 @@ export default (Alpine: Alpine) => {
       this.loadUserThemePreference();
     },
     colors: [
-      { name: "Blue", color: "bg-blue-500" },
-      { name: "Red", color: "bg-red-500" },
-      { name: "Amber", color: "bg-amber-500" },
-      { name: "Yellow", color: "bg-yellow-500" },
-      { name: "Lime", color: "bg-lime-500" },
-      { name: "Green", color: "bg-green-500" },
-      { name: "Emerald", color: "bg-emerald-500" },
-      { name: "Teal", color: "bg-teal-500" },
-      { name: "Cyan", color: "bg-cyan-500" },
-      { name: "Sky", color: "bg-sky-500" },
-      { name: "Indigo", color: "bg-indigo-500" },
-      { name: "Violet", color: "bg-violet-500" },
-      { name: "Purple", color: "bg-purple-500" },
-      { name: "Fuchsia", color: "bg-fuchsia-500" },
-      { name: "Pink", color: "bg-pink-500" },
-      { name: "Rose", color: "bg-rose-500" },
+      { name: "Blue", color: "bg-brand/88" },
+      { name: "Red", color: "bg-danger/88" },
+      { name: "Amber", color: "bg-warning/88" },
+      { name: "Yellow", color: "bg-warning/88" },
+      { name: "Lime", color: "bg-success/88" },
+      { name: "Green", color: "bg-success/88" },
+      { name: "Emerald", color: "bg-success/88" },
+      { name: "Teal", color: "bg-info/88" },
+      { name: "Cyan", color: "bg-info/88" },
+      { name: "Sky", color: "bg-brand/88" },
+      { name: "Indigo", color: "bg-brand/88" },
+      { name: "Violet", color: "bg-brand/88" },
+      { name: "Purple", color: "bg-brand/88" },
+      { name: "Fuchsia", color: "bg-danger/88" },
+      { name: "Pink", color: "bg-danger/88" },
+      { name: "Rose", color: "bg-danger/88" },
     ],
     selected: "Blue",
     open: false,
@@ -618,16 +618,7 @@ export default (Alpine: Alpine) => {
         }
       },
       stripDarkClasses(s: string): string {
-        try {
-          // Remove Tailwind dark: prefixed classes across the code text
-          let out = s.replace(/(^|\s)dark:[^\s"'>]+/g, " ");
-          // Tidy up excessive spaces on lines
-          out = out.replace(/\t+/g, "  ");
-          out = out.replace(/ +/g, " ");
-          return out;
-        } catch {
-          return s;
-        }
+        return s;
       },
       setBaseTheme(baseColor: string) {
         const shades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];

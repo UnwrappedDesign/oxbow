@@ -1,0 +1,26 @@
+{
+  "name": "features-05",
+  "type": "component",
+  "description": "features block 05",
+  "category": "marketing",
+  "section": "features",
+  "variant": 5,
+  "aliases": [
+    "features",
+    "features 5",
+    "features 05",
+    "feature",
+    "feature 5",
+    "feature 05"
+  ],
+  "files": [
+    {
+      "name": "05.astro",
+      "path": "oxbow/marketing/features/05.astro",
+      "content": "---\nimport Text from \"@/components/fundations/typography/Text.astro\";\n// Enhanced feature highlights\nconst features = [\n  {\n    title: \"Cutting-Edge Interface\",\n    description:\n      \"Experience a sleek, modern design that captivates users and boosts engagement.\",\n    imageSrc: \"/widgets/sliders.svg\",\n    imageAlt: \"Cutting-edge interface preview\",\n  },\n  {\n    title: \"Advanced Capabilities\",\n    description:\n      \"Utilize powerful tools to tackle complex workflows with ease and precision.\",\n    imageSrc: \"/widgets/progressCircles.svg\",\n    imageAlt: \"Advanced capabilities illustration\",\n  },\n  {\n    title: \"Seamless Connectivity\",\n    description:\n      \"Integrate effortlessly with your existing platforms for uninterrupted operations.\",\n    imageSrc: \"/widgets/figmaComp.svg\",\n    imageAlt: \"Seamless connectivity graphic\",\n  },\n  {\n    title: \"Dynamic Insights\",\n    description:\n      \"Access real-time analytics and comprehensive reports to make informed decisions instantly.\",\n    imageSrc: \"/widgets/figmaComp2.svg\",\n    imageAlt: \"Dynamic insights dashboard\",\n  },\n];\n---\n\n<section class=\"bg-white \">\n  <div class=\"px-8 py-24 mx-auto max-w-7xl md:px-12 lg:px-20\">\n    <div class=\"max-w-xl\">\n      <Text\n        tag=\"h2\"\n        variant=\"displayMD\"\n        class=\"font-semibold tracking-tight text-base-900 text-balance\"\n      >\n        Elevating finance through innovative features\n      </Text>\n      <Text\n        tag=\"p\"\n        variant=\"textBase\"\n        class=\"mt-4 font-medium text-base-500 \"\n      >\n        Discover tools designed to streamline collaboration and drive\n        efficiency.\n      </Text>\n    </div>\n    <dl\n      class=\"mt-12 grid sm:grid-cols-2 gap-x-6 gap-y-12 lg:gap-x-8 lg:gap-y-16 lg:Text-balance\"\n    >\n      {\n        features.map((feature) => (\n          <div class=\"flex flex-col justify-between h-full gap-8\">\n            <div>\n              <dt>\n                <Text\n                  tag=\"h3\"\n                  variant=\"textBase\"\n                  class=\"font-semibold  text-base-900 \"\n                >\n                  {feature.title}\n                </Text>\n              </dt>\n              <dd class=\"mt-2 \">\n                <Text\n                  tag=\"p\"\n                  variant=\"textSM\"\n                  class=\"font-medium  text-base-500 \"\n                >\n                  {feature.description}\n                </Text>\n              </dd>\n            </div>\n            <div class=\"h-full p-8 pb-0 overflow-hidden bg-base-50 rounded-2xl\">\n              <img\n                class=\"object-center w-full -mb-12 shadow  rounded-t-xl\"\n                src={feature.imageSrc}\n                alt={feature.imageAlt}\n              />\n            </div>\n          </div>\n        ))\n      }\n    </dl>\n  </div>\n</section>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

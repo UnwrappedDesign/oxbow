@@ -1,0 +1,26 @@
+{
+  "name": "product-lists-04",
+  "type": "component",
+  "description": "product-lists block 04",
+  "category": "ecommerce",
+  "section": "product-lists",
+  "variant": 4,
+  "aliases": [
+    "product lists",
+    "product lists 4",
+    "product lists 04",
+    "product list",
+    "product list 4",
+    "product list 04"
+  ],
+  "files": [
+    {
+      "name": "04.astro",
+      "path": "oxbow/ecommerce/product-lists/04.astro",
+      "content": "---\nexport const description =\n  \"Simple cards with  price and discouned  price below image and cta\";\nimport Text from \"@/components/fundations/typography/Text.astro\";\nimport Button from \"@/components/fundations/buttons/Button.astro\";\nconst products = [\n  {\n    image: \"/store/shoes/airforceblack/3.jpg\",\n    title: \"Nike Air Force 1´07 Fresh\",\n    price: \"$140.00\",\n    discountedPrice: \"$99.00\",\n    description: \"23 Different Colors\",\n    link: \"#_\",\n  },\n  {\n    image: \"/store/shoes/airforcewhite/2.png\",\n    title: \"Nike Air Force 1 LE\",\n    price: \"$280.00\",\n    discountedPrice: \"$149.00\",\n    description: \"40 Different Colors\",\n    link: \"#_\",\n  },\n  {\n    image: \"/store/shoes/airmax/3.png\",\n    title: \"Nike Air Max 90\",\n    price: \"$120.00\",\n    discountedPrice: \"$80.00\",\n    description: \"10 Different Colors\",\n    link: \"#_\",\n  },\n];\n---\n\n<section class=\"bg-white \">\n  <div class=\"relative px-8 py-24 mx-auto md:px-12 lg:px-20 max-w-7xl\">\n    <div\n      class=\"text-center md:text-left grid grid-cols-1 gap-12 md:grid-cols-2 md:items-end\"\n    >\n      <div>\n        <Text\n          tag=\"h2\"\n          variant=\"displaySM\"\n          class=\"font-semibold tracking-tight text-base-900 lg:text-balance\"\n        >\n          Our products\n        </Text>\n      </div>\n\n      <Button variant=\"muted\" size=\"sm\" class=\"ml-auto\">\n        See all our products\n      </Button>\n    </div>\n    <div\n      class=\"relative mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3\"\n    >\n      {\n        products.map((article) => (\n          <div class=\"relative flex flex-col gap-2\">\n            <div class=\"relative aspect-[4/4] \">\n              <img\n                src={article.image}\n                alt=\"#_\"\n                class=\"absolute inset-0 object-cover size-full  rounded-2xl bg-base-50\"\n              />\n            </div>\n            <div>\n              <div class=\"flex items-center justify-between w-full \">\n                <Text\n                  tag=\"h3\"\n                  variant=\"textSM\"\n                  class=\"font-medium text-base-900\"\n                >\n                  {article.title}\n                </Text>\n              </div>\n              <Text\n                tag=\"h3\"\n                variant=\"textSM\"\n                class=\"flex items-center text-base-500  gap-x-1\"\n              >\n                <del class=\"opacity-70\">{article.discountedPrice}</del>\n                <span class=\"text-base-900\"> {article.price}</span>\n                <a href=\"#_\">\n                  <span class=\"absolute inset-0\" />\n                </a>\n              </Text>\n              <Text tag=\"p\" variant=\"textSM\" class=\"mt-8 text-base-500 \">\n                {article.description}\n              </Text>\n            </div>\n          </div>\n        ))\n      }\n    </div>\n  </div>\n</section>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

@@ -1,0 +1,24 @@
+{
+  "name": "tabs-10",
+  "type": "component",
+  "description": "tabs block 10",
+  "category": "application",
+  "section": "tabs",
+  "variant": 10,
+  "aliases": [
+    "tabs",
+    "tabs 10",
+    "tab",
+    "tab 10"
+  ],
+  "files": [
+    {
+      "name": "10.astro",
+      "path": "oxbow/application/tabs/10.astro",
+      "content": "---\nexport const excludeFromObfuscation = [\n  \"text-base-600\",\n  \"bg-base-600\",\n  \"ring-1\",\n  \"ring-base-200\",\n  \"bg-base-50\",\n  \"border-base-200\",\n];\n---\n\n<div class=\"flex flex-col justify-center p-8 mx-auto bg-white \">\n  <!-- Accessible Tabs • Tabs header with search -->\n  <div\n    x-data=\"{\n      keys: ['overview','projects','packages','team'],\n      selected: 'overview',\n      focus: 0,\n      query: '',\n      init(){ this.focus = 0 },\n      select(id){ this.selected = id; this.focus = this.keys.indexOf(id) },\n      onKeydown(e){ const last=this.keys.length-1; let i=this.focus;\n        if(e.key==='ArrowRight'||e.key==='ArrowDown') i=i===last?0:i+1;\n        else if(e.key==='ArrowLeft'||e.key==='ArrowUp') i=i===0?last:i-1;\n        else if(e.key==='Home') i=0; else if(e.key==='End') i=last; else return;\n        e.preventDefault(); const id=this.keys[i]; this.focus=i; this.$nextTick(()=>this.$refs['tab-'+id]?.focus()); }\n    }\"\n    class=\"w-full max-w-5xl mx-auto\"\n  >\n    <div class=\"flex items-center justify-between gap-4\">\n      <div\n        class=\"border-b border-base-200 \"\n        role=\"tablist\"\n        aria-orientation=\"horizontal\"\n      >\n        <div class=\"flex text-sm gap-6 text-base-600 \">\n          <template x-for=\"(id, idx) in keys\" :key=\"id\">\n            <button\n              class=\"relative pb-2 font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-base-500/50\"\n              :id=\"'tab-'+id\"\n              role=\"tab\"\n              :aria-selected=\"selected===id\"\n              :tabindex=\"focus===idx?0:-1\"\n              :aria-controls=\"'panel-'+id\"\n              x-ref=\"tab-[[id]]\"\n              @click=\"select(id)\"\n              @keydown=\"onKeydown($event)\"\n              :class=\"selected===id ? 'text-base-600 ' : 'hover:text-base-900 '\"\n            >\n              <span x-text=\"id.charAt(0).toUpperCase()+id.slice(1)\"></span>\n              <span\n                class=\"absolute left-0 bottom-0 h-[2px] w-full transition-all\"\n                :class=\"selected===id ? 'bg-base-600 ' : 'bg-transparent'\"\n                aria-hidden=\"true\"></span>\n            </button>\n          </template>\n        </div>\n      </div>\n      <div class=\"hidden sm:block\">\n        <label class=\"relative block\">\n          <span class=\"sr-only\">Search</span>\n          <input\n            type=\"search\"\n            x-model=\"query\"\n            placeholder=\"Search...\"\n            class=\"w-56 px-3 text-sm border h-9 rounded-md bg-base-50 border-base-200 text-base-700 placeholder:text-base-400 focus:outline-none focus:ring-2 focus:ring-primary/88 /40 \"\n          />\n        </label>\n      </div>\n    </div>\n\n    <div class=\"pt-4 text-sm text-base-500 \">\n      <template x-for=\"id in keys\" :key=\"'panel-'+id\">\n        <section\n          x-show=\"selected===id\"\n          x-cloak\n          role=\"tabpanel\"\n          :id=\"'panel-'+id\"\n          :aria-labelledby=\"'tab-'+id\"\n          class=\"p-4 border rounded-lg border-base-200 \"\n        >\n          <p>\n            <span x-text=\"id.charAt(0).toUpperCase()+id.slice(1)\"></span> content\n            — inline search on the right.\n          </p>\n          <p x-show=\"query\" class=\"mt-2\">\n            <span class=\"text-base-600\">Query:</span>\n            <span x-text=\"query\"></span>\n          </p>\n        </section>\n      </template>\n    </div>\n  </div>\n</div>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

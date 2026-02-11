@@ -1,0 +1,26 @@
+{
+  "name": "breadcrumbs-05",
+  "type": "component",
+  "description": "Responsive Collapsed Breadcrumb",
+  "category": "application",
+  "section": "breadcrumbs",
+  "variant": 5,
+  "aliases": [
+    "breadcrumbs",
+    "breadcrumbs 5",
+    "breadcrumbs 05",
+    "breadcrumb",
+    "breadcrumb 5",
+    "breadcrumb 05"
+  ],
+  "files": [
+    {
+      "name": "05.astro",
+      "path": "oxbow/application/breadcrumbs/05.astro",
+      "content": "---\nexport const description = \"Responsive Collapsed Breadcrumb\";\nimport Text from \"@/components/fundations/typography/Text.astro\";\nimport Home from \"@/components/fundations/icons/Home.astro\";\nimport ChevronRight from \"@/components/fundations/icons/ChevronRight.astro\";\nimport ThreeDots from \"@/components/fundations/icons/ThreeDots.astro\";\n---\n\n<section\n  class=\"flex items-center justify-center bg-white p-18 \"\n>\n  <!-- copy:start -->\n  <nav\n    aria-label=\"Breadcrumb\"\n    x-data=\"{ crumbs:['Home','Library','Docs','Guides','Installation'], open:false, focusFirst(){ this.$nextTick(()=> this.$refs.first?.focus()) } }\"\n    class=\"max-w-xl mc-auto\"\n  >\n    <ol\n      role=\"list\"\n      class=\"flex items-center gap-1 t text-base-600 \"\n    >\n      <li>\n        <Text\n          tag=\"a\"\n          href=\"#_\"\n          class=\"flex items-center gap-1 hover:text-primary/70\"\n          ><Home size=\"sm\" /><span class=\"sr-only\">Home</span></Text\n        >\n      </li>\n      <ChevronRight size=\"sm\" class=\"text-base-400\" />\n\n      <!-- Collapsed middle on small screens -->\n      <li class=\"sm:hidden\">\n        <button\n          type=\"button\"\n          class=\"inline-flex items-center px-2 rounded gap-1 h-7 bg-base-100 text-base-700 \"\n          @click=\"open=!open; if(open) focusFirst()\"\n          :aria-expanded=\"open\"\n          aria-controls=\"crumbs-collapsed\"\n        >\n          <ThreeDots size=\"sm\" />\n          <span class=\"sr-only\">Show path</span>\n        </button>\n        <div\n          id=\"crumbs-collapsed\"\n          x-show=\"open\"\n          x-transition\n          class=\"p-2 mt-2 bg-white rounded-lg ring-1 ring-base-200 shadow-sm\"\n          style=\"display:none\"\n        >\n          <template x-for=\"(c,i) in crumbs.slice(1, -1)\" :key=\"c\">\n            <Text\n              tag=\"a\"\n              href=\"#_\"\n              class=\"block px-2 py-1 rounded hover:bg-base-50 hover:text-primary/70\"\n              x-text=\"c\"\n              tabindex=\"-1\"\n              x-ref=\"first\"\n            />\n          </template>\n        </div>\n      </li>\n\n      <!-- Expanded on sm+ -->\n      <template x-for=\"(c,i) in crumbs.slice(1, -1)\" :key=\"c\">\n        <span class=\"contents\">\n          <li class=\"hidden sm:block\">\n            <Text\n              tag=\"a\"\n              variant=\"textSM\"\n              href=\"#_\"\n              class=\"inline-flex items-center gap-1 hover:text-primary/70\"\n              x-text=\"c\"\n            />\n          </li>\n          <ChevronRight\n            size=\"sm\"\n            class=\"hidden sm:block text-base-400\"\n            aria-hidden=\"true\"\n          />\n        </span>\n      </template>\n\n      <!-- Current -->\n      <li\n        class=\"text-sm font-medium text-primary/88 \"\n        x-text=\"crumbs[crumbs.length-1]\"\n        aria-current=\"page\"\n      >\n      </li>\n    </ol>\n  </nav>\n  <!-- copy:end -->\n</section>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

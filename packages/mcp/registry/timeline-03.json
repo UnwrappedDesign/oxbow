@@ -1,0 +1,23 @@
+{
+  "name": "timeline-03",
+  "type": "component",
+  "description": "timeline block 03",
+  "category": "marketing",
+  "section": "timeline",
+  "variant": 3,
+  "aliases": [
+    "timeline",
+    "timeline 3",
+    "timeline 03"
+  ],
+  "files": [
+    {
+      "name": "03.astro",
+      "path": "oxbow/marketing/timeline/03.astro",
+      "content": "---\nimport Text from \"@/components/fundations/typography/Text.astro\";\nimport Kicker from \"@/components/fundations/typography/Kicker.astro\";\n// Timeline events data\nconst events = [\n  {\n    date: \"01.08.2024\",\n    title: \"Launch of Version 1.0\",\n    description:\n      \"Our initial release introduced core features and lay the foundation for innovation.\",\n  },\n  {\n    date: \"04.15.2024\",\n    title: \"Feature Dashboard Rollout\",\n    description:\n      \"Deployed an intuitive dashboard for real-time insights and analytics.\",\n  },\n  {\n    date: \"08.20.2024\",\n    title: \"Mobile App Launch\",\n    description:\n      \"Expanded to mobile with dedicated iOS and Android apps for on-the-go access.\",\n  },\n  {\n    date: \"12.05.2024\",\n    title: \"AI Integration\",\n    description:\n      \"Integrated AI-driven recommendations to personalize user experiences.\",\n  },\n];\n---\n\n<section class=\"bg-white \">\n  <div class=\"relative px-8 py-24 mx-auto md:px-12 lg:px-20 max-w-7xl\">\n    <div class=\"max-w-3xl\">\n      <Text\n        tag=\"h2\"\n        variant=\"displayMD\"\n        class=\"font-semibold tracking-tight text-base-900 text-balance\"\n      >\n        Our product journey\n      </Text>\n      <Text\n        tag=\"p\"\n        variant=\"textBase\"\n        class=\"mt-2 font-medium text-base-500 \"\n      >\n        Explore the key milestones that shaped our platform’s evolution.\n      </Text>\n    </div>\n    <ol\n      class=\"h-full mt-12 border-l md:grid lg:grid-cols-4 md:gap-6 md:border-l-0 md:border-t border-base-100 \"\n    >\n      {\n        events.map((event, idx) => (\n          <li>\n            <div class=\"flex items-center pt-2 md:block md:pt-0\">\n              <div class=\"-ml-[5px] mr-3 h-[9px] w-[9px] rounded-full outline-2 outline-base-100 rounded-full bg-base-100 md:-mt-[5px] md:ml-0 md:mr-0\" />\n            </div>\n            <div class=\"mt-4 ml-4 md:ml-0 lg:mr-4\">\n              <div>\n                <Kicker>\n                  <time datetime={event.date}>{event.date}</time>\n                </Kicker>\n                <Text\n                  tag=\"h3\"\n                  variant=\"textBase\"\n                  class=\"mt-8 font-semibold tracking-tight text-base-900 \"\n                >\n                  {event.title}\n                </Text>\n                <Text\n                  tag=\"p\"\n                  variant=\"textBase\"\n                  class=\"mt-2 text-base-500 lg:text-balance\"\n                >\n                  {event.description}\n                </Text>\n              </div>\n            </div>\n          </li>\n        ))\n      }\n    </ol>\n  </div>\n</section>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

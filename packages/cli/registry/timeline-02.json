@@ -1,0 +1,23 @@
+{
+  "name": "timeline-02",
+  "type": "component",
+  "description": "timeline block 02",
+  "category": "marketing",
+  "section": "timeline",
+  "variant": 2,
+  "aliases": [
+    "timeline",
+    "timeline 2",
+    "timeline 02"
+  ],
+  "files": [
+    {
+      "name": "02.astro",
+      "path": "oxbow/marketing/timeline/02.astro",
+      "content": "---\nimport Text from \"@/components/fundations/typography/Text.astro\";\nimport ChevronRight from \"@/components/fundations/icons/ChevronRight.astro\";\nimport Kicker from \"@/components/fundations/typography/Kicker.astro\";\nconst releases = [\n  {\n    version: \"3.0.0\",\n    title: \"Introducing Version 3.0.0\",\n    description:\n      \"Kickstart a new era with a refreshed interface, AI-driven tools, and seamless app integrations to boost your productivity.\",\n    date: \"May 21\",\n  },\n  {\n    version: \"3.1.0\",\n    title: \"Update 3.1.0: Stellar Performance\",\n    description:\n      \"Enhance your workflow with faster processing, deeper customization, and vibrant new visuals for an out-of-this-world experience.\",\n    date: \"Jun 15\",\n  },\n  {\n    version: \"3.2.0\",\n    title: \"Release 3.2.0: AI Onboarding\",\n    description:\n      \"Streamline AI setup with intuitive wizards and quick-start templates to get you up and running fast.\",\n    date: \"Jul 30\",\n  },\n  {\n    version: \"4.0.0\",\n    title: \"Introducing Version 4.0: Next-Gen Insights\",\n    description:\n      \"Unlock real-time analytics and predictive insights with our most powerful update yet.\",\n    date: \"Sep 10\",\n  },\n  {\n    version: \"4.1.0\",\n    title: \"Patch 4.1: Performance Boost\",\n    description:\n      \"Enhancements for speed, stability, and cross-platform compatibility.\",\n    date: \"Oct 05\",\n  },\n];\n---\n\n<section class=\"bg-white \">\n  <div class=\"relative px-8 py-24 mx-auto md:px-12 lg:px-20 max-w-7xl\">\n    <div class=\"max-w-xl lg:text-balance\">\n      <Kicker> Release Highlights </Kicker>\n      <Text\n        tag=\"h2\"\n        variant=\"displayMD\"\n        class=\"mt-4 font-semibold tracking-tight text-base-900 \"\n      >\n        Release highlights & updates\n      </Text>\n      <Text\n        tag=\"p\"\n        variant=\"textBase\"\n        class=\"mt-4 font-medium text-base-500 \"\n      >\n        Discover the key versions and feature upgrades that have shaped our\n        platform.\n      </Text>\n    </div>\n    <div class=\"relative lg:ml-[max(calc(9.5rem+1px),calc(100%-80rem))]\">\n      <div\n        class=\"hidden absolute top-3 bottom-0 right-full mr-7 md:mr-[3.25rem] w-px bg-base-200 hidden lg:block\"\n      >\n      </div>\n      <div class=\"mt-12 space-y-8\">\n        {\n          releases.map((article) => (\n            <article class=\"relative group\">\n              <div class=\"relative hidden mr-10 lg:flex md:mx-auto\">\n                <div class=\"flex items-center justify-center w-3 h-full\">\n                  <div class=\"h-full w-[0.05rem] bg-base-200 pointer-events-none\" />\n                </div>\n                <div class=\"absolute right-full mr-6 top-2 text-primary/88 md:mr-12 w-[calc(0.5rem+1px)] h-[calc(0.5rem+1px)] overflow-visible sm:block\">\n                  <div class=\"rounded-full size-full outline-2 outline-base-100 bg-base-100\" />\n                </div>\n              </div>\n              <div class=\"relative flex flex-col p-4 shadow bg-linear-180 outline outline-base-100 from-base-50 to-base-100 rounded-xl\">\n                <Text\n                  tag=\"h3\"\n                  variant=\"textLG\"\n                  class=\"mt-4 font-semibold tracking-tight  lg:mt-0 text-base-900 \"\n                >\n                  {article.title}\n                </Text>\n                <Text\n                  tag=\"p\"\n                  variant=\"textBase\"\n                  class=\"mt-2 text-base-500 lg:text-balance\"\n                >\n                  {article.description}\n                </Text>\n                <dl class=\"lg:absolute lg:left-0 order-first lg:top-0 tracking-tight text-sm text-base-500 lg:left-auto lg:right-full lg:mr-[calc(6.5rem+1px)]\">\n                  <dt class=\"sr-only\">{article.date}</dt>\n                  <dd class=\"whitespace-nowrap\">\n                    <Kicker>\n                      <time datetime={article.date}>{article.date}</time>\n                    </Kicker>\n                  </dd>\n                </dl>\n              </div>\n            </article>\n          ))\n        }\n      </div>\n    </div>\n  </div>\n</section>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

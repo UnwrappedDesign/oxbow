@@ -1,0 +1,23 @@
+{
+  "name": "pagination-05",
+  "type": "component",
+  "description": "Prev/Next with Page Counter",
+  "category": "application",
+  "section": "pagination",
+  "variant": 5,
+  "aliases": [
+    "pagination",
+    "pagination 5",
+    "pagination 05"
+  ],
+  "files": [
+    {
+      "name": "05.astro",
+      "path": "oxbow/application/pagination/05.astro",
+      "content": "---\nexport const description = \"Prev/Next with Page Counter\";\nimport Button from \"@/components/fundations/buttons/Button.astro\";\nimport ChevronLeft from \"@/components/fundations/icons/ChevronLeft.astro\";\nimport ChevronRight from \"@/components/fundations/icons/ChevronRight.astro\";\n---\n\n<section class=\"flex justify-center p-16 bg-white \">\n  <!-- copy:start -->\n  <nav\n    aria-label=\"Pagination\"\n    x-data=\"{ page: 1, total: 10 }\"\n    class=\"flex items-center gap-3\"\n  >\n    <Button\n      size=\"xs\"\n      variant=\"muted\"\n      :disabled=\"page === 1\"\n      @click=\"page = Math.max(1, page - 1)\"\n      aria-label=\"Go to previous page\"\n    >\n      <ChevronLeft size=\"sm\" slot=\"left-icon\" />\n      Previous\n    </Button>\n    <span class=\"text-sm text-base-600 \"\n      >Page <span x-text=\"page\"></span> of <span x-text=\"total\"></span></span\n    >\n    <Button\n      size=\"xs\"\n      variant=\"muted\"\n      :disabled=\"page === total\"\n      @click=\"page = Math.min(total, page + 1)\"\n      aria-label=\"Go to next page\"\n    >\n      Next\n      <ChevronRight size=\"sm\" slot=\"right-icon\" />\n    </Button>\n  </nav>\n  <!-- copy:end -->\n</section>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

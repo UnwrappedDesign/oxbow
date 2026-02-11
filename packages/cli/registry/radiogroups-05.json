@@ -1,0 +1,26 @@
+{
+  "name": "radiogroups-05",
+  "type": "component",
+  "description": "Radio Group with Toggle Details",
+  "category": "application",
+  "section": "radiogroups",
+  "variant": 5,
+  "aliases": [
+    "radiogroups",
+    "radiogroups 5",
+    "radiogroups 05",
+    "radiogroup",
+    "radiogroup 5",
+    "radiogroup 05"
+  ],
+  "files": [
+    {
+      "name": "05.astro",
+      "path": "oxbow/application/radiogroups/05.astro",
+      "content": "---\nexport const description = \"Radio Group with Toggle Details\";\nimport Text from \"@/components/fundations/typography/Text.astro\";\n---\n\n<div class=\"flex justify-center mx-auto bg-white p-15 \">\n  <!-- copy:start -->\n  <div\n    class=\"flex flex-col w-full max-w-2xl mx-auto lg:flex-row gap-12\"\n    x-data=\"{ selected: 'monthly' }\"\n  >\n    <div class=\"space-y-4\">\n      <div class=\"flex items-start gap-3\">\n        <input\n          id=\"radio-monthly\"\n          name=\"radio-toggle-group\"\n          type=\"radio\"\n          value=\"monthly\"\n          x-model=\"selected\"\n          class=\"text-primary bg-white rounded-full shadow size-4 border-base-300 focus:ring-primary \"\n        />\n        <div>\n          <Text\n            for=\"radio-monthly\"\n            tag=\"label\"\n            class=\"block text-sm font-medium text-base-500 \"\n          >\n            Monthly Plan\n          </Text>\n          <p class=\"text-sm text-base-400 \">\n            Pay $10 per month.\n          </p>\n        </div>\n      </div>\n      <div class=\"flex items-start gap-3\">\n        <input\n          id=\"radio-yearly\"\n          name=\"radio-toggle-group\"\n          type=\"radio\"\n          value=\"yearly\"\n          x-model=\"selected\"\n          class=\"text-primary bg-white rounded-full shadow size-4 border-base-300 focus:ring-primary \"\n        />\n        <div>\n          <Text\n            for=\"radio-yearly\"\n            tag=\"label\"\n            class=\"block text-sm font-medium text-base-500 \"\n          >\n            Yearly Plan\n          </Text>\n          <p class=\"text-sm text-base-400 \">\n            Pay $100 per year and save 20%.\n          </p>\n        </div>\n      </div>\n    </div>\n    <div class=\"text-sm text-base-500 \">\n      <div x-show=\"selected === 'monthly'\">\n        Monthly plan is flexible and easy to cancel anytime!\n      </div>\n      <div x-show=\"selected === 'yearly'\">\n        Yearly plan offers a better deal for long-term use!\n      </div>\n    </div>\n  </div>\n  <!-- copy:end -->\n</div>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

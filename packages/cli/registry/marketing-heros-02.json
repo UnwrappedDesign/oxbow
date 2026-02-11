@@ -1,0 +1,29 @@
+{
+  "name": "marketing-heros-02",
+  "type": "component",
+  "description": "Left aligned header with logo section",
+  "category": "marketing",
+  "section": "marketing-heros",
+  "variant": 2,
+  "aliases": [
+    "marketing heros",
+    "marketing heros 2",
+    "marketing heros 02",
+    "hero",
+    "hero 2",
+    "hero 02",
+    "heroes",
+    "heroes 2",
+    "heroes 02"
+  ],
+  "files": [
+    {
+      "name": "02.astro",
+      "path": "oxbow/marketing/marketing-heros/02.astro",
+      "content": "---\nexport const description = \"Left aligned header with logo section\";\n// Inages\nimport { Image } from \"astro:assets\";\nimport DashboardLight from \"@/images/assets/dashboardLight.svg\";\n\n// Fundations\nimport Text from \"@/components/fundations/typography/Text.astro\";\nimport Button from \"@/components/fundations/buttons/Button.astro\";\nimport Kicker from \"@/components/fundations/typography/Kicker.astro\";\n// Icons\nimport Code from \"@/components/fundations/icons/Code.astro\";\nimport Brain from \"@/components/fundations/icons/Brain.astro\";\nimport Database from \"@/components/fundations/icons/Database.astro\";\nimport Clock from \"@/components/fundations/icons/Clock.astro\";\n\nconst data = [\n  {\n    icon: \"Brain\",\n    category: \"Smarter defaults\",\n    text: \"Built to guess what you want before you even know you want it. Creepy? Maybe. Useful? Definitely.\",\n  },\n  {\n    icon: \"Clock\",\n    category: \"Zero wasted time\",\n    text: \"We shaved off every unnecessary click so you can ship before your coffee gets cold.\",\n  },\n  {\n    icon: \"Code\",\n    category: \"Developer-first\",\n    text: \"No gatekeeping, no fluff — just tools that respect your time and don’t fight your keyboard.\",\n  },\n  {\n    icon: \"Database\",\n    category: \"Data you can trust\",\n    text: \"Clean, predictable, and drama-free. Like spreadsheets, if spreadsheets weren’t evil.\",\n  },\n];\n---\n\n<section class=\"bg-white \">\n  <!-- copy:start -->\n  <div class=\"px-8 py-24 mx-auto max-w-7xl md:px-12 lg:px-20\">\n    <div class=\"items-center grid grid-cols-1 lg:grid-cols-3 gap-12\">\n      <div>\n        <Text\n          tag=\"h1\"\n          variant=\"displayMD\"\n          class=\"font-semibold tracking-tight text-base-900 lg:text-balance\"\n        >\n          Work together, 100% stress free\n        </Text>\n        <Text\n          tag=\"p\"\n          variant=\"textSM\"\n          class=\"mt-4 lg:text-balance text-base-500 \"\n        >\n          Organize, create, and launch projects without the noise. Oxbow helps\n          your team stay focused and actually enjoy working together.\n        </Text>\n\n        <div class=\"flex flex-wrap items-center mx-auto mt-8 gap-2\">\n          <Button variant=\"accent\" size=\"sm\">Try it free</Button>\n          <Button variant=\"muted\" size=\"sm\">How it works</Button>\n        </div>\n        <Kicker\n          showLink={true}\n          href=\"#_\"\n          linkText=\"See the details\"\n          class=\"mt-8 text-primary/88 \"\n        >\n          Built for humans, not just teams\n        </Kicker>\n      </div>\n\n      <div class=\"lg:col-span-2\">\n        <Image\n          width={1200}\n          height={1200}\n          loading=\"eager\"\n          decoding=\"async\"\n          alt=\"dashboard\"\n          src={DashboardLight}\n          class=\"object-cover h-full rounded-lg shadow outline outline-base-200 \"\n        />\n      </div>\n    </div>\n\n    <dl\n      class=\"mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8\"\n    >\n      {\n        data.map((section) => (\n          <div>\n            <div class=\"flex items-center text-primary/88 gap-2\">\n              {section.icon === \"Brain\" && (\n                <Brain class=\"text-primary\" size=\"base\" />\n              )}\n              {section.icon === \"Clock\" && (\n                <Clock class=\"text-primary\" size=\"base\" />\n              )}\n              {section.icon === \"Code\" && (\n                <Code class=\"text-primary\" size=\"base\" />\n              )}\n              {section.icon === \"Database\" && (\n                <Database class=\"text-primary\" size=\"base\" />\n              )}\n\n              <dt>\n                <Text\n                  variant=\"textBase\"\n                  tag=\"h3\"\n                  class=\"font-medium m text-base-900 \"\n                >\n                  {section.category}\n                </Text>\n              </dt>\n            </div>\n            <dd>\n              <Text\n                tag=\"p\"\n                variant=\"textSM\"\n                class=\"mt-2 text-base-500 \"\n              >\n                {section.text}\n              </Text>\n            </dd>\n          </div>\n        ))\n      }\n    </dl>\n  </div>\n  <!-- copy:end -->\n</section>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

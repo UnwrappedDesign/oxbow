@@ -19,6 +19,13 @@ import {
 } from "lucide-react";
 type Mode = "light" | "system" | "dark";
 type Tab = "preview" | "code";
+type IdeTab =
+  | "code"
+  | "cursor"
+  | "vsCode"
+  | "openCode"
+  | "claudeCode"
+  | "claudeDesktop";
 interface Props {
   iframeId: string;
   iframeSrc: string;
@@ -74,6 +81,10 @@ export default function PlaygroundIsland({
   const [viewport, setViewport] = useState<"mobile" | "tablet" | "desktop">(
     "desktop",
   );
+  const [isOxbowModalOpen, setIsOxbowModalOpen] = useState(false);
+  const [copiedInstallCommand, setCopiedInstallCommand] = useState(false);
+  const [copiedMcpConfig, setCopiedMcpConfig] = useState(false);
+  const [activeIdeTab, setActiveIdeTab] = useState<IdeTab>("code");
   const [navOpen, setNavOpen] = useState<null | "cat" | "sub" | "idx">(null);
   const navMenuRef = useRef<HTMLDivElement | null>(null);
   const [navPos, setNavPos] = useState<{ top: number; left: number }>({
@@ -153,7 +164,10 @@ export default function PlaygroundIsland({
   // Close nav menus on Escape / outside
   useEffect(() => {
     const onEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setNavOpen(null);
+      if (e.key === "Escape") {
+        setNavOpen(null);
+        setIsOxbowModalOpen(false);
+      }
     };
     const onClick = (e: MouseEvent) => {
       const t = e.target as Node;
@@ -306,6 +320,96 @@ export default function PlaygroundIsland({
   const count = (c: string, s: string) =>
     (arguments[0]?.counts || {})[`${c}/${s}`] || 1;
   const leftPadZero = (n: number | string) => n.toString().padStart(2, "0");
+  const parsedFromIframe = useMemo(() => {
+    try {
+      const url = new URL(iframeSrc, "http://localhost");
+      const parts = url.pathname.split("/").filter(Boolean);
+      if (parts.length >= 4 && parts[0] === "iframe") {
+        return {
+          section: parts[1],
+          subsection: parts[2],
+          index: parts[3],
+        };
+      }
+    } catch {}
+    return { section: "", subsection: "", index: "1" };
+  }, [iframeSrc]);
+  const activeSubsection = (
+    arguments[0]?.navSub ||
+    parsedFromIframe.subsection ||
+    ""
+  ).trim();
+  const activeIndexRaw = `${arguments[0]?.navIdx || parsedFromIframe.index || "1"}`;
+  const activeIndex = Math.max(1, Number.parseInt(activeIndexRaw, 10) || 1);
+  const installCommand = `npx oxbowui add ${activeSubsection.replace(/-/g, " ")} ${activeIndex}`;
+  const mcpConfigs: Record<IdeTab, string> = {
+    code: `{
+  "mcpServers": {
+    "oxbow": {
+      "command": "npx",
+      "args": ["oxbowui-mcp"]
+    }
+  }
+}`,
+    cursor: `{
+  "mcpServers": {
+    "oxbow": {
+      "command": "npx",
+      "args": ["oxbowui-mcp"]
+    }
+  }
+}`,
+    vsCode: `{
+  "servers": {
+    "oxbow": {
+      "command": "npx",
+      "args": ["oxbowui-mcp"]
+    }
+  }
+}`,
+    openCode: `{
+  "mcpServers": {
+    "oxbow": {
+      "command": "npx",
+      "args": ["oxbowui-mcp"]
+    }
+  }
+}`,
+    claudeCode: `{
+  "mcpServers": {
+    "oxbow": {
+      "command": "npx",
+      "args": ["oxbowui-mcp"]
+    }
+  }
+}`,
+    claudeDesktop: `{
+  "mcpServers": {
+    "oxbow": {
+      "command": "npx",
+      "args": ["oxbowui-mcp"]
+    }
+  }
+}`,
+  };
+  const activeMcpConfig = mcpConfigs[activeIdeTab];
+  const copyInstallCommand = async () => {
+    try {
+      await navigator.clipboard.writeText(installCommand);
+      setCopiedInstallCommand(true);
+      setTimeout(() => setCopiedInstallCommand(false), 1200);
+    } catch {}
+  };
+  const copyMcpConfig = async () => {
+    try {
+      await navigator.clipboard.writeText(activeMcpConfig);
+      setCopiedMcpConfig(true);
+      setTimeout(() => setCopiedMcpConfig(false), 1200);
+    } catch {}
+  };
+  useEffect(() => {
+    setCopiedMcpConfig(false);
+  }, [activeIdeTab]);
   const clamp = (n: number, min: number, max: number) =>
     leftPadZero(Math.max(min, Math.min(max, n)));
   const openInNewWindow = () => {
@@ -437,6 +541,25 @@ export default function PlaygroundIsland({
               aria-label="Open in new window"
             >
               <ExternalLink size={16} />
+            </button>
+            <button
+              onClick={() => setIsOxbowModalOpen(true)}
+              className="flex items-center justify-center transition-colors text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white"
+              title="Install with Oxbow CLI/MCP"
+              aria-label="Install with Oxbow CLI/MCP"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 100 100"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path d="M11 47.2749L46.5657 11.7093C51.4763 6.79872 59.438 6.79872 64.3483 11.7093C69.2591 16.6199 69.2591 24.5815 64.3483 29.4921L37.489 56.3516" stroke="currentColor" strokeWidth="6.28718" strokeLinecap="round"/>
+                <path d="M37.8599 55.9806L64.3486 29.4915C69.2594 24.5809 77.2211 24.5809 82.1319 29.4915L82.3169 29.6768C87.2277 34.5874 87.2277 42.549 82.3169 47.4596L50.151 79.6257C48.5142 81.2624 48.5142 83.9161 50.151 85.5529L56.7558 92.1581" stroke="currentColor" strokeWidth="6.28718" strokeLinecap="round"/>
+                <path d="M55.4575 20.6001L29.1536 46.9039C24.2431 51.8143 24.2431 59.776 29.1536 64.6868C34.0642 69.5971 42.0259 69.5971 46.9365 64.6868L73.2402 38.3829" stroke="currentColor" strokeWidth="6.28718" strokeLinecap="round"/>
+              </svg>
             </button>
           </div>
         </div>
@@ -667,6 +790,102 @@ export default function PlaygroundIsland({
           </div>
         )}
       </div>
+      {isOxbowModalOpen && (
+        <div
+          className="fixed inset-0 z-80 flex items-center justify-center p-4 bg-black/30 backdrop-blur-[1px]"
+          onClick={() => setIsOxbowModalOpen(false)}
+        >
+          <div
+            className="w-full max-w-xl rounded-lg bg-white p-4 shadow-lg outline outline-base-200 dark:bg-base-950 dark:outline-base-800"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between">
+              <p className="text-sm font-medium text-base-900 dark:text-white">
+                Install this block
+              </p>
+              <button
+                type="button"
+                className="text-xs text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white"
+                onClick={() => setIsOxbowModalOpen(false)}
+              >
+                Close
+              </button>
+            </div>
+            <div className="mt-3">
+              <p className="text-xs text-base-600 dark:text-base-400">CLI command</p>
+              <div className="mt-1 flex items-center gap-2 rounded-md bg-base-50 px-3 py-2 font-mono text-xs text-base-900 outline outline-base-200 dark:bg-base-900 dark:text-base-100 dark:outline-base-700">
+                <span className="truncate">{installCommand}</span>
+                <button
+                  type="button"
+                  className="ml-auto text-xs text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white"
+                  onClick={copyInstallCommand}
+                >
+                  {copiedInstallCommand ? "Copied" : "Copy"}
+                </button>
+              </div>
+            </div>
+            <div className="mt-4">
+              <p className="text-xs text-base-600 dark:text-base-400">
+                MCP config
+              </p>
+              <div className="mt-2 flex items-center gap-1">
+                <button
+                  type="button"
+                  className={`rounded-md px-2 py-1 text-[11px] transition-colors ${activeIdeTab === "code" ? "bg-base-900 text-white dark:bg-base-100 dark:text-base-900" : "bg-base-100 text-base-700 hover:bg-base-200 dark:bg-base-800 dark:text-base-300 dark:hover:bg-base-700"}`}
+                  onClick={() => setActiveIdeTab("code")}
+                >
+                  Code
+                </button>
+                <button
+                  type="button"
+                  className={`rounded-md px-2 py-1 text-[11px] transition-colors ${activeIdeTab === "cursor" ? "bg-base-900 text-white dark:bg-base-100 dark:text-base-900" : "bg-base-100 text-base-700 hover:bg-base-200 dark:bg-base-800 dark:text-base-300 dark:hover:bg-base-700"}`}
+                  onClick={() => setActiveIdeTab("cursor")}
+                >
+                  Cursor
+                </button>
+                <button
+                  type="button"
+                  className={`rounded-md px-2 py-1 text-[11px] transition-colors ${activeIdeTab === "vsCode" ? "bg-base-900 text-white dark:bg-base-100 dark:text-base-900" : "bg-base-100 text-base-700 hover:bg-base-200 dark:bg-base-800 dark:text-base-300 dark:hover:bg-base-700"}`}
+                  onClick={() => setActiveIdeTab("vsCode")}
+                >
+                  VS Code
+                </button>
+                <button
+                  type="button"
+                  className={`rounded-md px-2 py-1 text-[11px] transition-colors ${activeIdeTab === "openCode" ? "bg-base-900 text-white dark:bg-base-100 dark:text-base-900" : "bg-base-100 text-base-700 hover:bg-base-200 dark:bg-base-800 dark:text-base-300 dark:hover:bg-base-700"}`}
+                  onClick={() => setActiveIdeTab("openCode")}
+                >
+                  OpenCode
+                </button>
+                <button
+                  type="button"
+                  className={`rounded-md px-2 py-1 text-[11px] transition-colors ${activeIdeTab === "claudeCode" ? "bg-base-900 text-white dark:bg-base-100 dark:text-base-900" : "bg-base-100 text-base-700 hover:bg-base-200 dark:bg-base-800 dark:text-base-300 dark:hover:bg-base-700"}`}
+                  onClick={() => setActiveIdeTab("claudeCode")}
+                >
+                  Claude Code
+                </button>
+                <button
+                  type="button"
+                  className={`rounded-md px-2 py-1 text-[11px] transition-colors ${activeIdeTab === "claudeDesktop" ? "bg-base-900 text-white dark:bg-base-100 dark:text-base-900" : "bg-base-100 text-base-700 hover:bg-base-200 dark:bg-base-800 dark:text-base-300 dark:hover:bg-base-700"}`}
+                  onClick={() => setActiveIdeTab("claudeDesktop")}
+                >
+                  Claude Desktop
+                </button>
+              </div>
+              <div className="mt-1 rounded-md bg-base-50 p-3 font-mono text-xs text-base-900 outline outline-base-200 dark:bg-base-900 dark:text-base-100 dark:outline-base-700">
+                <pre className="overflow-x-auto whitespace-pre">{activeMcpConfig}</pre>
+                <button
+                  type="button"
+                  className="mt-2 text-xs text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white"
+                  onClick={copyMcpConfig}
+                >
+                  {copiedMcpConfig ? "Copied" : "Copy config"}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

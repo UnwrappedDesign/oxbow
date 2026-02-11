@@ -1,0 +1,26 @@
+{
+  "name": "navbars-01",
+  "type": "component",
+  "description": "navbars block 01",
+  "category": "application",
+  "section": "navbars",
+  "variant": 1,
+  "aliases": [
+    "navbars",
+    "navbars 1",
+    "navbars 01",
+    "navbar",
+    "navbar 1",
+    "navbar 01"
+  ],
+  "files": [
+    {
+      "name": "01.astro",
+      "path": "oxbow/application/navbars/01.astro",
+      "content": "---\nexport const freeComponent = true;\nexport const excludeFromObfuscation = [\"flex\", \"hidden\"];\nimport Button from \"@/components/fundations/buttons/Button.astro\";\nimport IconButton from \"@/components/fundations/buttons/IconButton.astro\";\nimport Burger from \"@/components/fundations/icons/Burger.astro\";\nimport Text from \"@/components/fundations/typography/Text.astro\";\nimport Logo from \"@/components/assets/Logo.astro\";\n---\n<!-- copy:start -->\n<a\n  href=\"#content\"\n  class=\"px-3 py-1 text-white sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 bg-base-900 rounded-md\"\n  >Skip to content</a\n>\n<header\n  class=\"w-full border-b border-base-200 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 \"\n>\n  <div\n    x-data=\"{ open:false }\"\n    class=\"px-6 mx-auto max-w-screen-xl md:px-10 lg:px-16\"\n  >\n    <div class=\"flex items-center justify-between h-14 gap-3\">\n      <a href=\"#_\" class=\"inline-flex items-center gap-2\">\n        <Logo class=\"text-black h-7 \" />\n        <span class=\"sr-only\">Home</span>\n      </a>\n      <IconButton\n        class=\"md:hidden\"\n        @click=\"open=!open\"\n        :aria-expanded=\"open\"\n        aria-controls=\"nav-01m\"\n        variant=\"muted\"\n        size=\"xs\"\n      >\n        <Burger size=\"xs\" slot=\"icon\" />\n      </IconButton>\n      <!-- Desktop navigation (always hidden on mobile) -->\n      <nav\n        id=\"nav-01\"\n        aria-label=\"Primary\"\n        class=\"items-center hidden md:flex gap-4\"\n      >\n        <Text\n          tag=\"a\"\n          href=\"#_\"\n          variant=\"textSM\"\n          class=\"font-medium text-base-600 hover:text-base-900\"\n          >Features</Text\n        >\n        <Text\n          tag=\"a\"\n          href=\"#_\"\n          variant=\"textSM\"\n          class=\"font-medium text-base-600 hover:text-base-900\"\n          >Pricing</Text\n        >\n        <Text\n          tag=\"a\"\n          href=\"#_\"\n          variant=\"textSM\"\n          class=\"font-medium text-base-600 hover:text-base-900\"\n          >Docs</Text\n        >\n        <span\n          aria-hidden\n          class=\"hidden w-px h-4 mx-1 bg-base-200 md:block\"\n        ></span>\n        <Text\n          tag=\"a\"\n          href=\"#_\"\n          variant=\"textSM\"\n          class=\"font-medium text-base-600 hover:text-base-900\"\n          >Sign in</Text\n        >\n        <Button variant=\"default\" size=\"xs\">Get started</Button>\n      </nav>\n    </div>\n    <!-- Mobile menu -->\n    <nav\n      id=\"nav-01m\"\n      x-cloak\n      x-show=\"open\"\n      aria-label=\"Mobile\"\n      class=\"pb-3 md:hidden grid grid-cols-1 gap-2\"\n    >\n      <Button variant=\"muted\" size=\"xs\">Features</Button>\n      <Button variant=\"muted\" size=\"xs\">Pricing</Button>\n      <Button variant=\"muted\" size=\"xs\">Docs</Button>\n      <Button variant=\"muted\" size=\"xs\">Sign in</Button>\n      <Button variant=\"default\" size=\"xs\">Get started</Button>\n    </nav>\n  </div>\n  <div id=\"content\" class=\"sr-only\"></div>\n</header>\n<!-- copy:end -->\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

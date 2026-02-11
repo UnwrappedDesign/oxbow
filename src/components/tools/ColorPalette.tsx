@@ -189,12 +189,12 @@ export default function ColorPalette() {
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex items-center gap-2 px-3 py-2 text-sm rounded-md border border-zinc-200 bg-white text-zinc-700 h-[38px] dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-200"
+            className="inline-flex items-center gap-2 px-3 py-2 text-sm rounded-md border border-base-200 bg-white text-base-700 h-[38px] "
             aria-haspopup="menu"
             aria-expanded={open}
             title="Change copy format"
           >
-            <span className="text-zinc-500 dark:text-zinc-400">Format:</span>
+            <span className="text-base-500 ">Format:</span>
             <span className="font-mono">{format}</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -213,7 +213,7 @@ export default function ColorPalette() {
           {open && (
             <div
               role="menu"
-              className="absolute left-0 top-full z-50 mt-2 w-52 origin-top-left rounded-xl outline outline-zinc-100 shadow bg-white text-[13px] text-zinc-600 divide-y divide-zinc-100 dark:outline-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:divide-zinc-800 dark:shadow-lg"
+              className="absolute left-0 top-full z-50 mt-2 w-52 origin-top-left rounded-xl outline outline-base-100 shadow bg-white text-[13px] text-base-600 divide-y divide-base-100  "
             >
               <div className="py-2">
                 {(['var','hex','rgb','hsl','oklch'] as Format[]).map((opt) => (
@@ -221,18 +221,18 @@ export default function ColorPalette() {
                     key={opt}
                     role="menuitem"
                     onClick={() => { setFormat(opt); setOpen(false); }}
-                    className="w-full flex items-center justify-between px-3 py-1.5 hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                    className="w-full flex items-center justify-between px-3 py-1.5 hover:bg-base-100 "
                   >
                     <span className="font-mono">{opt}</span>
                     {format === opt && (
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="text-blue-600 size-4">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="text-primary size-4">
                         <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4-4a.75.75 0 011.06-1.06l3.353 3.353 7.528-9.884a.75.75 0 011.043-.136z" clipRule="evenodd" />
                       </svg>
                     )}
                   </button>
                 ))}
               </div>
-              <div className="px-3 py-2 text-xs text-zinc-500 dark:text-zinc-400">
+              <div className="px-3 py-2 text-xs text-base-500 ">
                 Tip: clicking a swatch copies in this format.
               </div>
             </div>
@@ -243,13 +243,13 @@ export default function ColorPalette() {
           placeholder="Filter colors (e.g., charcoal, sky)"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="flex-1 px-3 py-2 text-sm text-zinc-900 placeholder:text-zinc-400 bg-white border rounded-md outline-none border-zinc-200 focus:border-zinc-300 h-[38px] dark:text-zinc-100 dark:placeholder:text-zinc-500 dark:bg-zinc-900 dark:border-zinc-700 dark:focus:border-zinc-600"
+          className="flex-1 px-3 py-2 text-sm text-base-900 placeholder:text-base-400 bg-white border rounded-md outline-none border-base-200 focus:border-base-300 h-[38px]  "
         />
       </div>
       <div className="space-y-8">
         {list.map((family) => (
           <section key={family}>
-            <div className="mb-2 text-sm font-medium capitalize text-zinc-700 dark:text-zinc-200">{family}</div>
+            <div className="mb-2 text-sm font-medium capitalize text-base-700 ">{family}</div>
             <div className="grid gap-2 grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-11">
               {shades.map((shade) => {
                 const color = getColor(family, shade);
@@ -264,14 +264,14 @@ export default function ColorPalette() {
                         copy(value, key);
                       }}
                       title={`Click to copy ${color}`}
-                      className="relative h-14 rounded-md transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 dark:focus-visible:ring-offset-zinc-900"
+                      className="relative h-14 rounded-md transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary/88 "
                       style={{ backgroundColor: color }}
                     >
                       {copiedKey === key && (
                         <span className="absolute inset-0 grid text-[0.70rem] font-mono place-items-center rounded-md bg-black/40 text-white">Copied</span>
                       )}
                     </button>
-                    <span className="mt-1 text-[0.70rem] font-mono text-zinc-600 dark:text-zinc-400">{shade}</span>
+                    <span className="mt-1 text-[0.70rem] font-mono text-base-600 ">{shade}</span>
                   </div>
                 );
               })}

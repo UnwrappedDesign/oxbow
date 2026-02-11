@@ -1,0 +1,23 @@
+{
+  "name": "cta-03",
+  "type": "component",
+  "description": "Centered CTA with download buttons",
+  "category": "marketing",
+  "section": "cta",
+  "variant": 3,
+  "aliases": [
+    "cta",
+    "cta 3",
+    "cta 03"
+  ],
+  "files": [
+    {
+      "name": "03.astro",
+      "path": "oxbow/marketing/cta/03.astro",
+      "content": "---\nexport const description = \"Centered CTA with download buttons\";\n// Fundations\nimport Text from \"@/components/fundations/typography/Text.astro\";\nimport Button from \"@/components/fundations/buttons/Button.astro\";\nimport Kicker from \"@/components/fundations/typography/Kicker.astro\";\nimport Wrapper from \"@/components/fundations/containers/Wrapper.astro\";\nconst features = [\n  {\n    title: \"Take charge of your workflow before it takes charge of you.\",\n    subtitle:\n      \"Tailor it your way—whether you’re a pro or just figuring it out.\",\n    text: \"Say goodbye to outdated tools and upgrade to a modern experience.\",\n  },\n  {\n    title: \"Work smarter, not harder—your process, your rules.\",\n    subtitle: \"Easy to customize, simple to use, no expertise required.\",\n    text: \"It just works. No manuals, no confusion—just productivity.\",\n  },\n];\n---\n\n<section class=\"bg-white \">\n  <div class=\"px-8 py-24 mx-auto max-w-7xl md:px-12 lg:px-20\">\n    <div class=\"max-w-xl mx-auto text-center lg:text-balance\">\n      <Text\n        tag=\"h2\"\n        variant=\"displayMD\"\n        class=\"font-semibold tracking-tight text-base-900 lg:text-balance\"\n      >\n        Oxbow is now available for desktop\n      </Text>\n      <Text\n        tag=\"p\"\n        variant=\"textSM\"\n        class=\"mt-4 text-base-500 lg:text-balance\"\n      >\n        The wait is over—download the app and get started instantly.\n      </Text>\n    </div>\n    <dl\n      class=\"max-w-3xl mx-auto mt-10 text-left grid grid-cols-1 md:grid-cols-2 gap-4\"\n    >\n      {\n        features.map((item) => (\n          <div class=\"p-8 bg-linear-180 outline outline-base-100 from-base-50 to-base-100 rounded-xl\">\n            <div>\n              <dt>\n                <Text\n                  tag=\"h3\"\n                  variant=\"textLG\"\n                  class=\"font-semibold tracking-tight  text-base-900 \"\n                >\n                  {item.title}\n                </Text>\n              </dt>\n              <dd>\n                <Text\n                  tag=\"p\"\n                  variant=\"textBase\"\n                  class=\"mt-2  text-base-600 \"\n                >\n                  {item.subtitle}\n                </Text>\n              </dd>\n            </div>\n            <dd class=\"pt-4 mt-4 border-t border-base-200 \">\n              <Text\n                tag=\"p\"\n                variant=\"textSM\"\n                class=\"text-sm text-base-500 \"\n              >\n                {item.text}\n              </Text>\n            </dd>\n          </div>\n        ))\n      }\n    </dl>\n    <div class=\"flex flex-wrap items-center justify-center mt-8 gap-2\">\n      <Button size=\"base\" variant=\"default\" class=\"shrink-0\">\n        Get Mac version\n      </Button>\n      <Button size=\"base\" variant=\"accent\" class=\"shrink-0\">\n        Get Windows version\n      </Button>\n      <Button size=\"base\" variant=\"muted\" class=\"shrink-0\">\n        Get Linux version\n      </Button>\n    </div>\n    <p class=\"mt-6 text-xs italic text-base-500 \">\n      *Still in beta, but ready for real work. Give it a spin!\n    </p>\n  </div>\n</section>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

@@ -1,0 +1,26 @@
+{
+  "name": "tables-01",
+  "type": "component",
+  "description": "tables block 01",
+  "category": "application",
+  "section": "tables",
+  "variant": 1,
+  "aliases": [
+    "tables",
+    "tables 1",
+    "tables 01",
+    "table",
+    "table 1",
+    "table 01"
+  ],
+  "files": [
+    {
+      "name": "01.astro",
+      "path": "oxbow/application/tables/01.astro",
+      "content": "---\nexport const freeComponent = true;\nexport const excludeFromObfuscation = [\n  \"bg-base-50\",\n  \"border-base-200\",\n  \"text-base-700\",\n  \"tabular-nums\",\n];\nconst rows = [\n  {\n    name: \"Alex Thompson\",\n    email: \"alex.t@company.com\",\n    location: \"San Francisco, US\",\n    status: \"Active\",\n    balance: 1250,\n  },\n  {\n    name: \"Sarah Chen\",\n    email: \"sarah.c@company.com\",\n    location: \"Singapore\",\n    status: \"Active\",\n    balance: 600,\n  },\n  {\n    name: \"James Wilson\",\n    email: \"j.wilson@company.com\",\n    location: \"London, UK\",\n    status: \"Inactive\",\n    balance: 650,\n  },\n  {\n    name: \"Maria Garcia\",\n    email: \"m.garcia@company.com\",\n    location: \"Madrid, Spain\",\n    status: \"Active\",\n    balance: 0,\n  },\n  {\n    name: \"David Kim\",\n    email: \"d.kim@company.com\",\n    location: \"Seoul, KR\",\n    status: \"Active\",\n    balance: -1000,\n  },\n];\n---\n\n<div class=\"flex flex-col justify-center p-8 mx-auto bg-white \">\n  <!-- copy:start -->\n  <div class=\"mx-auto flow-root max-w-7xl\">\n    <div class=\"-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8\">\n      <div class=\"inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8\">\n        <div class=\"flex justify-center\">\n          <table class=\"min-w-[900px] text-sm\">\n            <thead class=\"bg-base-100 \">\n              <tr>\n                <th\n                  class=\"px-3 py-2 font-medium text-left text-base-900 \"\n                  >Name</th\n                >\n                <th\n                  class=\"px-3 py-2 font-medium text-left text-base-900 \"\n                  >Email</th\n                >\n                <th\n                  class=\"px-3 py-2 font-medium text-left text-base-900 \"\n                  >Location</th\n                >\n                <th\n                  class=\"px-3 py-2 font-medium text-left text-base-900 \"\n                  >Status</th\n                >\n                <th\n                  class=\"px-3 py-2 font-medium text-right text-base-900 \"\n                  >Balance</th\n                >\n              </tr>\n            </thead>\n            <tbody>\n              {\n                rows.map((r) => (\n                  <tr class=\"text-sm even:bg-base-50 \">\n                    <td class=\"px-3 py-2 font-medium text-base-700 \">\n                      {r.name}\n                    </td>\n                    <td class=\"px-3 py-2 text-base-500 \">\n                      {r.email}\n                    </td>\n                    <td class=\"px-3 py-2 text-base-500 \">\n                      {r.location}\n                    </td>\n                    <td class=\"px-3 py-2 text-base-600 \">\n                      <span\n                        class={\n                          r.status === \"Active\"\n                            ? \"text-success \"\n                            : r.status === \"Inactive\"\n                              ? \"text-destructive \"\n                              : \"\"\n                        }\n                      >\n                        {r.status}\n                      </span>\n                    </td>\n                    <td class=\"px-3 py-2 font-mono text-right tabular-nums text-base-700 \">\n                      {Intl.NumberFormat(\"en-US\", {\n                        style: \"currency\",\n                        currency: \"USD\",\n                      }).format(r.balance)}\n                    </td>\n                  </tr>\n                ))\n              }\n              <tr class=\"font-medium\">\n                <td class=\"px-3 py-2 \" colspan=\"4\">Total</td>\n                <td class=\"px-3 py-2 text-right tabular-nums \"\n                  >{\n                    Intl.NumberFormat(\"en-US\", {\n                      style: \"currency\",\n                      currency: \"USD\",\n                    }).format(rows.reduce((s, r) => s + r.balance, 0))\n                  }</td\n                >\n              </tr>\n            </tbody>\n          </table>\n        </div>\n      </div>\n    </div>\n  </div>\n  <!-- copy:end -->\n</div>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

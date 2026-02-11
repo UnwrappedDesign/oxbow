@@ -1,0 +1,26 @@
+{
+  "name": "features-01",
+  "type": "component",
+  "description": "features block 01",
+  "category": "marketing",
+  "section": "features",
+  "variant": 1,
+  "aliases": [
+    "features",
+    "features 1",
+    "features 01",
+    "feature",
+    "feature 1",
+    "feature 01"
+  ],
+  "files": [
+    {
+      "name": "01.astro",
+      "path": "oxbow/marketing/features/01.astro",
+      "content": "---\nexport const freeComponent = true;\nimport Text from \"@/components/fundations/typography/Text.astro\";\nimport CircleCheck from \"@/components/fundations/icons/CircleCheck.astro\";\nconst data = [\n  {\n    category: \"Visionary Interfaces\",\n    text: \"Experience a sleek, intuitive interface that elevates user engagement and makes your product shine.\",\n    items: [\"Next-gen communication\", \"Optimized workflows\"],\n  },\n  {\n    category: \"High-Powered Capabilities\",\n    text: \"Leverage cutting-edge tools to simplify complex tasks and supercharge your productivity.\",\n    items: [\"Innovative automation\", \"Cross-platform compatibility\"],\n  },\n  {\n    category: \"Seamless Integration\",\n    text: \"Connect effortlessly with your existing stack using our flexible, developer-friendly API.\",\n    items: [\"Smooth system sync\", \"Rapid deployment\"],\n  },\n];\n---\n\n<section class=\"bg-white \">\n  <div class=\"px-8 py-24 pb-0 mx-auto max-w-7xl md:px-12 lg:px-20\">\n    <div class=\"max-w-3xl\">\n      <Text\n        tag=\"h2\"\n        variant=\"displayMD\"\n        class=\"font-semibold tracking-tight text-base-900 text-balance\"\n      >\n        Reimagining banking for the digital era\n      </Text>\n      <Text\n        tag=\"p\"\n        variant=\"textBase\"\n        class=\"mt-4 font-medium text-base-500 \"\n      >\n        Collaborate effortlessly across staging and sandbox environments.\n      </Text>\n    </div>\n    <div\n      class=\"mt-12 gap-x-2 gap-y-14 lg:gap-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3\"\n    >\n      {\n        data.map((section) => (\n          <div>\n            <div>\n              <Text\n                variant=\"textBase\"\n                tag=\"h3\"\n                class=\"font-semibold  text-base-900 \"\n              >\n                {section.category}\n              </Text>\n              <Text\n                tag=\"p\"\n                variant=\"textSM\"\n                class=\"mt-2 font-medium text-base-500 \"\n              >\n                {section.text}\n              </Text>\n            </div>\n            <ul\n              role=\"list\"\n              class=\"mt-8 text-base font-medium space-y-1 text-base-900 \"\n            >\n              {section.items.map((item, idx) => (\n                <li>\n                  <div class=\"flex items-center  gap-4\">\n                    <CircleCheck\n                      class=\"text-base-600 \"\n                      size=\"base\"\n                      slot=\"icon\"\n                    />\n                    <Text tag=\"span\" variant=\"textSM\">\n                      {item}\n                    </Text>\n                  </div>\n                </li>\n              ))}\n            </ul>\n          </div>\n        ))\n      }\n    </div>\n    <div class=\"w-full mt-12 -mb-12\">\n      <img\n        src=\"/images/dashboardLight.svg\"\n        alt=\"#_\"\n        class=\"w-full shadow rounded-t-2xl\"\n      />\n    </div>\n  </div>\n</section>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

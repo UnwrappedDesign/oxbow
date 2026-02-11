@@ -1,0 +1,26 @@
+{
+  "name": "checkboxes-04",
+  "type": "component",
+  "description": "Parent Checkbox with Tri‑State",
+  "category": "application",
+  "section": "checkboxes",
+  "variant": 4,
+  "aliases": [
+    "checkboxes",
+    "checkboxes 4",
+    "checkboxes 04",
+    "checkboxe",
+    "checkboxe 4",
+    "checkboxe 04"
+  ],
+  "files": [
+    {
+      "name": "04.astro",
+      "path": "oxbow/application/checkboxes/04.astro",
+      "content": "---\nexport const description = \"Parent Checkbox with Tri‑State\";\nimport Text from \"@/components/fundations/typography/Text.astro\";\n---\n\n<section\n  class=\"flex flex-wrap items-center justify-center h-full p-24 bg-white gap-2 \"\n>\n  <!-- copy:start -->\n  <div\n    class=\"flex flex-col w-full max-w-md gap-2\"\n    x-data=\"{\n      items: ['Apples','Bananas','Cherries'],\n      selected: [],\n      toggleAll($refs) {\n        if (this.selected.length === this.items.length) {\n          this.selected = []\n        } else {\n          this.selected = [...this.items]\n        }\n        this.updateParentState($refs)\n      },\n      updateParentState($refs){\n        const all = this.selected.length === this.items.length\n        const none = this.selected.length === 0\n        $refs.parent.checked = all\n        $refs.parent.indeterminate = !all && !none\n      }\n    }\"\n    x-init=\"$watch('selected', () => updateParentState($refs)); updateParentState($refs)\"\n  >\n    <div class=\"flex items-center gap-3\">\n      <input\n        id=\"fruits-all\"\n        name=\"fruits-all\"\n        type=\"checkbox\"\n        x-ref=\"parent\"\n        @change=\"toggleAll($refs)\"\n        class=\"text-primary rounded shadow size-4 border-base-300 focus:ring-primary \"\n      />\n      <Text\n        for=\"fruits-all\"\n        tag=\"label\"\n        class=\"block text-sm text-base-600 \"\n      >\n        Select all fruits\n        <span\n          class=\"ml-2 text-xs text-base-400 \"\n          x-text=\"`${selected.length}/${items.length} selected`\"></span>\n      </Text>\n    </div>\n    <template x-for=\"item in items\" :key=\"item\">\n      <div class=\"flex items-center pl-6 gap-3\">\n        <input\n          type=\"checkbox\"\n          :id=\"`fruit-${item}`\"\n          :value=\"item\"\n          x-model=\"selected\"\n          class=\"text-primary rounded shadow size-4 border-base-300 focus:ring-primary \"\n        />\n        <Text\n          :for=\"`fruit-${item}`\"\n          tag=\"label\"\n          class=\"block text-sm text-base-600 \"\n          x-text=\"item\"\n        />\n      </div>\n    </template>\n  </div>\n  <!-- copy:end -->\n</section>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

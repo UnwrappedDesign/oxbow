@@ -1,0 +1,24 @@
+{
+  "name": "tabs-12",
+  "type": "component",
+  "description": "tabs block 12",
+  "category": "application",
+  "section": "tabs",
+  "variant": 12,
+  "aliases": [
+    "tabs",
+    "tabs 12",
+    "tab",
+    "tab 12"
+  ],
+  "files": [
+    {
+      "name": "12.astro",
+      "path": "oxbow/application/tabs/12.astro",
+      "content": "---\nexport const excludeFromObfuscation = [\n  \"text-base-600\",\n  \"bg-base-600\",\n  \"ring-1\",\n  \"ring-base-200\",\n  \"bg-base-50\",\n];\n\nimport HomeIcon from \"@/components/fundations/icons/Home.astro\";\nimport GridIcon from \"@/components/fundations/icons/Grid.astro\";\nimport ComponentIcon from \"@/components/fundations/icons/Component.astro\";\nimport UsersIcon from \"@/components/fundations/icons/UsersGroup.astro\";\n---\n\n<div class=\"flex flex-col justify-center p-8 mx-auto bg-white \">\n  <!-- Vertical Tabs • Narrow icon-only rail -->\n  <div\n    x-data=\"{\n      keys: ['overview','projects','packages','team'],\n      selected: 'overview',\n      focus: 0,\n      init(){ this.focus = 0 },\n      select(id){ this.selected=id; this.focus=this.keys.indexOf(id) },\n      onKeydown(e){ const last=this.keys.length-1; let i=this.focus;\n        if(e.key==='ArrowDown') i=i===last?0:i+1; else if(e.key==='ArrowUp') i=i===0?last:i-1; else if(e.key==='Home') i=0; else if(e.key==='End') i=last; else return;\n        e.preventDefault(); const id=this.keys[i]; this.focus=i; this.$nextTick(()=>this.$refs['tab-'+id]?.focus()); }\n    }\"\n    class=\"w-full max-w-xl mx-auto grid grid-cols-3 gap-26\"\n  >\n    <aside>\n      <div\n        role=\"tablist\"\n        aria-orientation=\"vertical\"\n        class=\"flex flex-col gap-2\"\n      >\n        <template x-for=\"(id, idx) in keys\" :key=\"id\">\n          <button\n            class=\"inline-flex items-center justify-center size-10 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-base-500/50\"\n            :id=\"'tab-'+id\"\n            role=\"tab\"\n            aria-label=\"Tab\"\n            :aria-selected=\"selected===id\"\n            :tabindex=\"focus===idx?0:-1\"\n            :aria-controls=\"'panel-'+id\"\n            x-ref=\"tab-[[id]]\"\n            @click=\"select(id)\"\n            @keydown=\"onKeydown($event)\"\n            :class=\"selected===id ? 'text-base-600 bg-white ring-1 ring-base-200 ' : 'text-base-600 bg-base-50 hover:text-base-900 '\"\n            :title=\"id.charAt(0).toUpperCase()+id.slice(1)\"\n          >\n            <template x-if=\"id==='overview'\"\n              ><span><HomeIcon size=\"sm\" class=\"text-current\" /></span\n              ></template\n            >\n            <template x-if=\"id==='projects'\"\n              ><span><GridIcon size=\"sm\" class=\"text-current\" /></span\n              ></template\n            >\n            <template x-if=\"id==='packages'\"\n              ><span><ComponentIcon size=\"sm\" class=\"text-current\" /></span\n              ></template\n            >\n            <template x-if=\"id==='team'\"\n              ><span><UsersIcon size=\"sm\" class=\"text-current\" /></span\n              ></template\n            >\n          </button>\n        </template>\n      </div>\n    </aside>\n    <main class=\"w-full text-sm col-span-2 text-base-500 \">\n      <template x-for=\"id in keys\" :key=\"'panel-'+id\">\n        <section\n          x-show=\"selected===id\"\n          x-cloak\n          role=\"tabpanel\"\n          :id=\"'panel-'+id\"\n          :aria-labelledby=\"'tab-'+id\"\n          class=\"p-4 border rounded-lg border-base-200 \"\n        >\n          <p>\n            <span x-text=\"id.charAt(0).toUpperCase()+id.slice(1)\"></span> content\n            — compact icon rail.\n          </p>\n        </section>\n      </template>\n    </main>\n  </div>\n</div>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

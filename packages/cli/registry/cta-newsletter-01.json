@@ -1,0 +1,23 @@
+{
+  "name": "cta-newsletter-01",
+  "type": "component",
+  "description": "Newsletter CTA with benefits",
+  "category": "marketing",
+  "section": "cta-newsletter",
+  "variant": 1,
+  "aliases": [
+    "cta newsletter",
+    "cta newsletter 1",
+    "cta newsletter 01"
+  ],
+  "files": [
+    {
+      "name": "01.astro",
+      "path": "oxbow/marketing/cta-newsletter/01.astro",
+      "content": "---\nexport const freeComponent = true;\nexport const description = \"Newsletter CTA with benefits\";\n// Fundations\nimport Text from \"@/components/fundations/typography/Text.astro\";\nimport Button from \"@/components/fundations/buttons/Button.astro\";\nimport Kicker from \"@/components/fundations/typography/Kicker.astro\";\nimport TextInput from \"@/components/fundations/inputs/TextInput.astro\";\nimport Wrapper from \"@/components/fundations/containers/Wrapper.astro\";\n// Icons\nimport Brain from \"@/components/fundations/icons/Brain.astro\";\nimport Tools from \"@/components/fundations/icons/Tools.astro\";\nimport Analytics from \"@/components/fundations/icons/Analytics.astro\";\n\nconst features = [\n  {\n    icon: Brain,\n    title: \"Content That Counts\",\n    text: \"Insights you’ll actually use—no clickbait, ever.\",\n  },\n  {\n    icon: Tools,\n    title: \"Practical Guidance\",\n    text: \"Field-tested tips and resources to boost your productivity.\",\n  },\n  {\n    icon: Analytics,\n    title: \"Balanced Cadence\",\n    text: \"Weekly dispatches—packed with insights, never spam.\",\n  },\n];\n---\n\n<section class=\"bg-white \">\n  <div class=\"px-8 py-24 mx-auto max-w-7xl md:px-12 lg:px-20\">\n    <div class=\"max-w-xl mx-auto lg:text-balance lg:text-center\">\n      <Text\n        tag=\"h1\"\n        variant=\"displayMD\"\n        class=\"font-semibold tracking-tight text-base-900 lg:text-balance\"\n      >\n        Elevate your inbox with Oxbow insights.\n      </Text>\n      <Text\n        tag=\"p\"\n        variant=\"textBase\"\n        class=\"mt-4 text-base-500 \"\n      >\n        Sign up for concise, actionable updates—no fillers, just value in every\n        message.\n      </Text>\n      <form\n        class=\"flex flex-col w-full max-w-xs mx-auto mt-8 md:flex-row lg:items-center gap-2\"\n      >\n        <TextInput\n          id=\"email\"\n          name=\"email\"\n          type=\"email\"\n          placeholder=\"you@probablyimportant.com\"\n          variant=\"default\"\n          label=\"Email address\"\n          size=\"sm\"\n          isGrouped\n        />\n        <Button type=\"submit\" size=\"sm\" variant=\"accent\" class=\"shrink-0\">\n          Join us!\n        </Button>\n      </form>\n    </div>\n\n    <dl\n      class=\"mt-12 grid grid-cols-1 md:grid-cols-3 gap-4 lg:text-center lg:text-balance\"\n    >\n      {\n        features.map((feature) => (\n          <div>\n            <dt class=\"flex flex-col text-warning lg:items-center gap-2\">\n              {feature.icon && (\n                <feature.icon\n                  class=\"text-primary \"\n                  size=\"base\"\n                />\n              )}\n              <Text\n                tag=\"h3\"\n                variant=\"\"\n                class=\"font-semibold text-base-900 \"\n              >\n                {feature.title}\n              </Text>\n            </dt>\n            <dd>\n              <Text\n                tag=\"p\"\n                variant=\"textSM\"\n                class=\"mt-2 text-base-500 \"\n              >\n                {feature.text}\n              </Text>\n            </dd>\n          </div>\n        ))\n      }\n    </dl>\n  </div>\n</section>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

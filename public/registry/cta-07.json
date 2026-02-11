@@ -1,0 +1,23 @@
+{
+  "name": "cta-07",
+  "type": "component",
+  "description": "Split CTA with custom avatars",
+  "category": "marketing",
+  "section": "cta",
+  "variant": 7,
+  "aliases": [
+    "cta",
+    "cta 7",
+    "cta 07"
+  ],
+  "files": [
+    {
+      "name": "07.astro",
+      "path": "oxbow/marketing/cta/07.astro",
+      "content": "---\nexport const description = \"Split CTA with custom avatars\";\nimport { Image } from \"astro:assets\";\nimport Avatar1 from \"@/images/avatars/1.jpg\";\nimport Avatar2 from \"@/images/avatars/2.jpg\";\nimport Avatar3 from \"@/images/avatars/3.jpg\";\nimport Avatar4 from \"@/images/avatars/4.jpg\";\nconst avatars = [\n  { src: Avatar1, alt: \"#_\" },\n  { src: Avatar2, alt: \"#_\" },\n  { src: Avatar3, alt: \"#_\" },\n  { src: Avatar4, alt: \"#_\" },\n];\n// Fundations\nimport Text from \"@/components/fundations/typography/Text.astro\";\nimport Button from \"@/components/fundations/buttons/Button.astro\";\nimport Wrapper from \"@/components/fundations/containers/Wrapper.astro\";\n---\n\n<section class=\"bg-white \">\n  <div class=\"px-8 py-24 mx-auto max-w-7xl md:px-12 lg:px-20\">\n    <div\n      class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 lg:items-end gap-8\"\n    >\n      <div>\n        <Text\n          tag=\"h3\"\n          variant=\"textXL\"\n          class=\"font-semibold tracking-tighter text-base-900 text-balance\"\n        >\n          Break the scroll cycle — rediscover your focus in <span\n            class=\"text-primary\">one week</span\n          >.\n        </Text>\n        <div class=\"flex flex-wrap mt-4 sm:items-center gap-4\">\n          <Button variant=\"accent\" size=\"sm\"> Focus up now </Button>\n          <div class=\"text-xs text-base-500 lg:items-center\">\n            <span class=\"block\"\n              >4.9/5 from people who finally finished a project</span\n            >\n            <span class=\"block\">(and didn’t check their phone once)</span>\n          </div>\n        </div>\n      </div>\n\n      <div>\n        <Text\n          tag=\"p\"\n          variant=\"textBase\"\n          class=\"text-base-500 text-balance\"\n        >\n          Designed for anyone juggling endless tabs, constant pings, and the\n          urge to unplug.\n        </Text>\n        <div class=\"flex flex-col mt-8 md:flex-row lg:items-center gap-2\">\n          <div class=\"flex -space-x-2\">\n            {\n              avatars.map((avatar) => (\n                <Image\n                  width={200}\n                  height={200}\n                  src={avatar.src}\n                  alt={avatar.alt}\n                  class=\"inline-block object-cover object-center rounded-full size-8 outline-2 outline-white \"\n                />\n              ))\n            }\n          </div>\n          <div class=\"text-xs text-base-500 lg:items-center\">\n            <span class=\"block\">Loved by introverts, deep thinkers,</span>\n            <span class=\"block\"> and anyone who values quiet focus.</span>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</section>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

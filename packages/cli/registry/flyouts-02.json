@@ -1,0 +1,26 @@
+{
+  "name": "flyouts-02",
+  "type": "component",
+  "description": "flyouts block 02",
+  "category": "application",
+  "section": "flyouts",
+  "variant": 2,
+  "aliases": [
+    "flyouts",
+    "flyouts 2",
+    "flyouts 02",
+    "flyout",
+    "flyout 2",
+    "flyout 02"
+  ],
+  "files": [
+    {
+      "name": "02.astro",
+      "path": "oxbow/application/flyouts/02.astro",
+      "content": "---\nexport const excludeFromObfuscation = [\n  \"opacity-0\",\n  \"translate-y-1\",\n  \"opacity-100\",\n  \"translate-y-0\",\n];\nimport Button from \"@/components/fundations/buttons/Button.astro\";\nimport FlyoutLinkBox from \"@/components/fundations/wrappers/FlyoutLinkBox.astro\";\nimport ChevronDown from \"@/components/fundations/icons/ChevronDown.astro\";\nimport Refresh from \"@/components/fundations/icons/Refresh.astro\";\nimport FileDots from \"@/components/fundations/icons/FileDots.astro\";\nimport Edit from \"@/components/fundations/icons/Edit.astro\";\nimport Brain from \"@/components/fundations/icons/Brain.astro\";\nimport Subtask from \"@/components/fundations/icons/Subtask.astro\";\n---\n\n<div\n  class=\"flex items-center justify-center w-full p-8 pb-145.5 mx-auto bg-white \"\n>\n  <!-- copy:start -->\n  <div\n    class=\"relative\"\n    x-data=\"{\n      uid: Math.random().toString(36).slice(2),\n  // Set to true to show the flyout open by default. Change to false to have it closed by default.\n  open: true,\n      style: '',\n      gap: 8,\n      align() {\n        const r = this.$refs.btn.getBoundingClientRect();\n        const left = r.left + r.width / 2;     // center under button\n        const top  = r.bottom + this.gap;      // just below\n        this.style = `position:fixed; left:${left}px; top:${top}px; transform:translateX(-50%);`;\n      },\n      toggle() {\n        if (this.open) { this.open = false; return; }\n        // close others first\n        window.dispatchEvent(new CustomEvent('close-all-flyouts', { detail: this.uid }));\n        this.align();                          // position first\n        requestAnimationFrame(() => this.open = true); // then show (no jitter)\n      },\n      close() { this.open = false; }\n    }\"\n    x-init=\"\n      // Close when someone else opens\n      window.addEventListener('close-all-flyouts', (e) => { if (e.detail !== uid) open = false });\n      // Keep position in sync while open\n      const realign = () => { if (open) align() };\n      window.addEventListener('resize', realign);\n      window.addEventListener('scroll', realign, { passive: true });\n      // If open by default, align immediately\n      if (open) align();\n    \"\n  >\n    <Button\n      x-ref=\"btn\"\n      aria-expanded=\"false\"\n      @click.stop=\"toggle\"\n      variant=\"muted\"\n      size=\"sm\"\n      gap=\"sm\"\n    >\n      <span>Button</span>\n      <ChevronDown size=\"sm\" slot=\"right-icon\" />\n    </Button>\n    <!-- Backdrop for click-outside -->\n    <div\n      x-show=\"open\"\n      x-transition.opacity\n      class=\"fixed inset-0 z-[999]\"\n      @click=\"close\"\n      style=\"display:none\"\n    >\n    </div>\n    <!-- Teleported dropdown (no clipping) -->\n    <template x-teleport=\"body\">\n      <div\n        x-show=\"open\"\n        :style=\"style\"\n        class=\"z-[1000]\"\n        style=\"display:none\"\n        @keydown.escape.window=\"close\"\n        x-transition:enter=\"transition ease-out duration-200\"\n        x-transition:enter-start=\"opacity-0 translate-y-1\"\n        x-transition:enter-end=\"opacity-100 translate-y-0\"\n        x-transition:leave=\"transition ease-in duration-150\"\n        x-transition:leave-start=\"opacity-100 translate-y-0\"\n        x-transition:leave-end=\"opacity-0 translate-y-1\"\n      >\n        <div\n          class=\"flex-auto w-screen max-w-sm p-4 text-sm bg-white shadow-lg leading-6 rounded-xl outline outline-base-900/5 \"\n        >\n          <div class=\"flex flex-col gap-4\">\n            <FlyoutLinkBox\n              href=\"#_\"\n              icon={Refresh}\n              title=\"Sync across devices\"\n              description=\"Enable syncing across devices\"\n            />\n            <FlyoutLinkBox\n              href=\"#_\"\n              icon={FileDots}\n              title=\"Create custom documents\"\n              description=\"Stlye your documents with ease\"\n            />\n            <FlyoutLinkBox\n              href=\"#_\"\n              icon={Edit}\n              title=\" Edit your files\"\n              description=\"Endless possibilities\"\n            />\n            <FlyoutLinkBox\n              href=\"#_\"\n              icon={Brain}\n              title=\"Organize files\"\n              description=\"Keep them all in one place\"\n            />\n            <FlyoutLinkBox\n              href=\"#_\"\n              icon={Subtask}\n              title=\" Manage tasks and projects\"\n              description=\"  Make simple tasks a breeze\"\n            />\n          </div>\n        </div>\n      </div>\n    </template>\n  </div>\n  <!-- copy:end -->\n</div>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

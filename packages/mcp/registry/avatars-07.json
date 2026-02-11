@@ -1,0 +1,26 @@
+{
+  "name": "avatars-07",
+  "type": "component",
+  "description": "avatars block 07",
+  "category": "application",
+  "section": "avatars",
+  "variant": 7,
+  "aliases": [
+    "avatars",
+    "avatars 7",
+    "avatars 07",
+    "avatar",
+    "avatar 7",
+    "avatar 07"
+  ],
+  "files": [
+    {
+      "name": "07.astro",
+      "path": "oxbow/application/avatars/07.astro",
+      "content": "---\nimport IconButton from \"@/components/fundations/buttons/IconButton.astro\";\nimport Plus from \"@/components/fundations/icons/Plus.astro\";\nimport Check from \"@/components/fundations/icons/Check.astro\";\nimport Text from \"@/components/fundations/typography/Text.astro\";\n---\n\n<div class=\"flex items-center justify-center p-24 bg-white \">\n  <!-- copy:start -->\n  <div\n    class=\"flex-shrink-0 block group\"\n    x-data=\"{ invited:false, flash:false, invite(){ if(this.invited) return; this.invited=true; this.flash=true; setTimeout(()=>this.flash=false,1500)} }\"\n  >\n    <div class=\"flex flex-col gap-4 max-w-52\">\n      <div class=\"flex items-center justify-between\">\n        <img\n          class=\"inline-block rounded-full size-10\"\n          src=\"/avatars/1.jpg\"\n          alt=\"\"\n        />\n        <IconButton\n          variant=\"muted\"\n          size=\"sm\"\n          @click=\"invite()\"\n          :aria-label=\"invited ? 'Invited' : 'Invite'\"\n          :disabled=\"invited\"\n        >\n          <template x-if=\"!invited\">\n            <Plus size=\"sm\" slot=\"icon\" />\n          </template>\n          <template x-if=\"invited\">\n            <Check size=\"sm\" slot=\"icon\" />\n          </template>\n        </IconButton>\n      </div>\n      <div>\n        <Text\n          tag=\"a\"\n          href=\"#_\"\n          variant=\"textBase\"\n          class=\"font-medium hover:text-primary text-base-500\"\n        >\n          <Text\n            tag=\"h3\"\n            variant=\"textBase\"\n            class=\"font-medium text-base-900 \"\n          >\n            Michael Andreuzza\n          </Text>\n          <Text tag=\"p\" variant=\"textXS\" class=\"font-medium text-base-400\">\n            example@example.com\n          </Text>\n        </Text>\n        <Text\n          tag=\"p\"\n          variant=\"textBase\"\n          class=\"mt-4 font-medium text-base-500 \"\n        >\n          Freelance design engineer with a passion for clean and minimalistic\n          interfaces.\n        </Text>\n        <div\n          x-show=\"flash\"\n          x-transition.opacity\n          class=\"mt-2 text-xs text-success \"\n          role=\"status\"\n        >\n          Invite sent\n        </div>\n      </div>\n    </div>\n  </div>\n  <!-- copy:end -->\n</div>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

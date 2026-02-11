@@ -1,0 +1,26 @@
+{
+  "name": "tabs-02",
+  "type": "component",
+  "description": "tabs block 02",
+  "category": "application",
+  "section": "tabs",
+  "variant": 2,
+  "aliases": [
+    "tabs",
+    "tabs 2",
+    "tabs 02",
+    "tab",
+    "tab 2",
+    "tab 02"
+  ],
+  "files": [
+    {
+      "name": "02.astro",
+      "path": "oxbow/application/tabs/02.astro",
+      "content": "---\nexport const excludeFromObfuscation = [\n  \"bg-white\",\n  \"bg-base-50\",\n  \"text-base-600\",\n  \"ring-1\",\n  \"ring-base-200\",\n];\n---\n\n<div\n  class=\"flex flex-col justify-center p-12 mx-auto bg-white \"\n>\n  <!-- copy:start -->\n  <div\n    x-data=\"{\n      keys: ['overview','projects','packages'],\n      selected: 'overview',\n      focus: 0,\n      init(){ this.focus = this.keys.indexOf(this.selected); },\n      select(id){ this.selected = id; this.focus = this.keys.indexOf(id); },\n      onKeydown(e){\n        const last = this.keys.length - 1;\n        let i = this.focus;\n        if (e.key==='ArrowRight' || e.key==='ArrowDown'){ i = i === last ? 0 : i+1; }\n        else if (e.key==='ArrowLeft' || e.key==='ArrowUp'){ i = i === 0 ? last : i-1; }\n        else if (e.key==='Home'){ i = 0; }\n        else if (e.key==='End'){ i = last; }\n        else { return; }\n        e.preventDefault();\n        const id = this.keys[i];\n        this.focus = i;\n        this.$nextTick(() => this.$refs['tab-'+id]?.focus());\n      }\n    }\"\n    class=\"max-w-xl mx-auto\"\n  >\n    <div\n      role=\"tablist\"\n      aria-orientation=\"horizontal\"\n      class=\"flex justify-center\"\n    >\n      <div class=\"flex p-1 rounded-lg gap-1 bg-base-50 \">\n        <template x-for=\"(id, idx) in keys\" :key=\"id\">\n          <button\n            class=\"px-4 text-sm font-medium h-9 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-base-500/50 transition\"\n            :id=\"'tab-'+id\"\n            role=\"tab\"\n            :aria-selected=\"selected===id\"\n            :tabindex=\"focus===idx ? 0 : -1\"\n            :aria-controls=\"'panel-'+id\"\n            x-ref=\"tab-[[id]]\"\n            @click=\"select(id)\"\n            @keydown=\"onKeydown($event)\"\n            :class=\"selected===id ? 'bg-white text-base-600 shadow-sm ring-1 ring-base-200 ' : 'text-base-600 hover:text-base-900 '\"\n          >\n            <span\n              x-text=\"id==='overview' ? 'Overview' : id==='projects' ? 'Projects' : 'Packages'\"\n            ></span>\n          </button>\n        </template>\n      </div>\n    </div>\n    <div class=\"pt-4 text-sm text-base-500 \">\n      <section\n        x-show=\"selected==='overview'\"\n        x-cloak\n        role=\"tabpanel\"\n        :id=\"'panel-overview'\"\n        aria-labelledby=\"tab-overview\"\n      >\n        <p>Overview content — quick status and highlights.</p>\n      </section>\n      <section\n        x-show=\"selected==='projects'\"\n        x-cloak\n        role=\"tabpanel\"\n        :id=\"'panel-projects'\"\n        aria-labelledby=\"tab-projects\"\n      >\n        <p>Projects content — Kanban, lists, and milestones.</p>\n      </section>\n      <section\n        x-show=\"selected==='packages'\"\n        x-cloak\n        role=\"tabpanel\"\n        :id=\"'panel-packages'\"\n        aria-labelledby=\"tab-packages\"\n      >\n        <p>Packages content — artifacts, sizes, and publish settings.</p>\n      </section>\n    </div>\n  </div>\n  <!-- copy:end -->\n</div>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

@@ -1,0 +1,23 @@
+{
+  "name": "pagination-02",
+  "type": "component",
+  "description": "pagination block 02",
+  "category": "application",
+  "section": "pagination",
+  "variant": 2,
+  "aliases": [
+    "pagination",
+    "pagination 2",
+    "pagination 02"
+  ],
+  "files": [
+    {
+      "name": "02.astro",
+      "path": "oxbow/application/pagination/02.astro",
+      "content": "---\nimport Text from \"@/components/fundations/typography/Text.astro\";\nimport Button from \"@/components/fundations/buttons/Button.astro\";\nimport ChevronLeft from \"@/components/fundations/icons/ChevronLeft.astro\";\nimport ChevronRight from \"@/components/fundations/icons/ChevronRight.astro\";\n---\n\n<div\n  class=\"flex flex-col items-center justify-between w-full p-16 mx-auto bg-white gap-8 \"\n>\n  <!-- copy:start -->\n  <nav aria-label=\"Pagination\">\n    <ol role=\"list\" class=\"relative z-0 inline-flex items-center gap-2\">\n      <!-- Prev -->\n      <li>\n        <Button\n          iconOnly\n          disabled\n          aria-label=\"Go to previous page\"\n          variant=\"muted\"\n          size=\"xs\"\n        >\n          <ChevronLeft size=\"xs\" slot=\"left-icon\" />\n          <span class=\"sr-only\">Previous</span>\n        </Button>\n      </li>\n      <!-- Page numbers -->\n      <li>\n        <Button\n          iconOnly\n          variant=\"muted\"\n          size=\"xs\"\n          aria-current=\"page\"\n          aria-label=\"Page 1, current page\"\n        >\n          1\n        </Button>\n      </li>\n      <li>\n        <Button iconOnly variant=\"muted\" size=\"xs\" aria-label=\"Go to page 2\">\n          2\n        </Button>\n      </li>\n      <li aria-hidden=\"true\" class=\"text-base-500 \">…</li>\n      <li>\n        <Button iconOnly variant=\"muted\" size=\"xs\" aria-label=\"Go to page 60\">\n          60\n        </Button>\n      </li>\n      <!-- Go to page -->\n      <li class=\"items-center hidden md:flex space-x-2\">\n        <Text\n          tag=\"label\"\n          variant=\"textSM\"\n          class=\"px-2 text-base-500 \"\n          for=\"goto-page\"\n        >\n          Go to page\n        </Text>\n        <input\n          id=\"goto-page\"\n          type=\"number\"\n          min=\"1\"\n          max=\"60\"\n          inputmode=\"numeric\"\n          class=\"block w-16 h-8 p-1 text-sm text-center text-primary/88 bg-white border border-transparent rounded shadow appearance-none duration-300 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:muted-none focus:ring-primary/88 focus:ring-offset-2 focus:ring-2 sm:text-sm\"\n          placeholder=\"60\"\n          aria-describedby=\"goto-help\"\n        />\n        <Button variant=\"default\" size=\"xs\" aria-label=\"Confirm page number\">\n          Confirm\n        </Button>\n      </li>\n      <!-- Next -->\n      <li>\n        <Button iconOnly aria-label=\"Go to next page\" variant=\"muted\" size=\"xs\">\n          <ChevronRight size=\"xs\" slot=\"right-icon\" />\n          <span class=\"sr-only\">Next</span>\n        </Button>\n      </li>\n    </ol>\n    <p id=\"goto-help\" class=\"sr-only\">Enter a page number between 1 and 60</p>\n  </nav>\n  <Text tag=\"p\" variant=\"textSM\" class=\"text-base-500 \">\n    Showing <strong>1</strong> to <strong>10</strong> of <strong>60</strong> pages\n  </Text>\n  <!-- copy:end -->\n</div>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

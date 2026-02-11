@@ -1,0 +1,24 @@
+{
+  "name": "checkboxes-15",
+  "type": "component",
+  "description": "Weekday Pills Selector",
+  "category": "application",
+  "section": "checkboxes",
+  "variant": 15,
+  "aliases": [
+    "checkboxes",
+    "checkboxes 15",
+    "checkboxe",
+    "checkboxe 15"
+  ],
+  "files": [
+    {
+      "name": "15.astro",
+      "path": "oxbow/application/checkboxes/15.astro",
+      "content": "---\nexport const description = \"Weekday Pills Selector\";\n---\n\n<section\n  class=\"flex flex-wrap items-center justify-center h-full bg-white gap-2 p-14 \"\n>\n  <!-- copy:start -->\n  <div\n    class=\"flex flex-col w-full max-w-md gap-3\"\n    x-data=\"{ days: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'], selected: [] }\"\n  >\n    <div class=\"flex flex-wrap items-center gap-2\">\n      <template x-for=\"d in days\" :key=\"d\">\n        <div>\n          <input\n            type=\"checkbox\"\n            class=\"sr-only peer\"\n            :id=\"`day-`+d\"\n            :value=\"d\"\n            x-model=\"selected\"\n          />\n          <label\n            :for=\"`day-`+d\"\n            :title=\"d\"\n            class=\"inline-flex items-center justify-center w-10 h-10 text-sm bg-white border rounded-full select-none border-base-300 text-base-600 transition-all cursor-pointer\n  peer-checked:ring-2 peer-checked:ring-primary peer-checked:ring-offset-2 ring-offset-white peer-focus-visible:ring-2 peer-focus-visible:ring-primary peer-focus-visible:ring-offset-2\"\n          >\n            <span x-text=\"d[0]\"></span>\n          </label>\n        </div>\n      </template>\n    </div>\n  </div>\n  <!-- copy:end -->\n</section>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

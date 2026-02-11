@@ -1,0 +1,23 @@
+{
+  "name": "textarea-07",
+  "type": "component",
+  "description": "Expandable textarea",
+  "category": "application",
+  "section": "textarea",
+  "variant": 7,
+  "aliases": [
+    "textarea",
+    "textarea 7",
+    "textarea 07"
+  ],
+  "files": [
+    {
+      "name": "07.astro",
+      "path": "oxbow/application/textarea/07.astro",
+      "content": "---\nexport const description = \"Expandable textarea\";\nimport Text from \"@/components/fundations/typography/Text.astro\";\n---\n\n<div\n  class=\"flex flex-col justify-center p-10 mx-auto bg-white \"\n>\n  <div class=\"w-full max-w-sm mx-auto\">\n    <!-- copy:start -->\n    <div class=\"w-full space-y-1\" x-data=\"{ text: '', rows: 2 }\">\n      <Text\n        for=\"expandable-textarea\"\n        tag=\"label\"\n        variant=\"textSM\"\n        class=\"font-medium text-base-500\"\n      >\n        Expandable textarea\n      </Text>\n      <textarea\n        id=\"expandable-textarea\"\n        x-model=\"text\"\n        :rows=\"rows\"\n        placeholder=\"Type more to expand\"\n        class=\"block w-full px-4 py-2 text-sm text-primary/88 bg-white border border-transparent rounded-lg appearance-none duration-300 ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-primary/88 focus:ring-offset-2 focus:ring-2 sm:text-sm\"\n        @input=\"rows = Math.min(10, Math.floor((text.length / 20) + 2))\"\n      ></textarea>\n    </div>\n    <!-- copy:end -->\n  </div>\n</div>\n"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}
