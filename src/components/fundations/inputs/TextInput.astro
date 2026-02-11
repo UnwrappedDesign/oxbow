@@ -52,32 +52,32 @@ const variantClasses = {
     "bg-white",
     "border",
     "border-transparent",
-    "text-base-500",
+    "text-zinc-500",
     "ring-1",
-    "ring-base-200",
-    "placeholder-base-400",
-    "focus:border-brand/88",
-    "focus:ring-brand/24",
+    "ring-zinc-200",
+    "placeholder-zinc-400",
+    "focus:border-blue-500",
+    "focus:ring-blue-100",
     "focus:ring-2",
     "focus:outline-none",
     "shadow-sm",
     // Dark mode variants
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
+    "dark:bg-zinc-800",
+    "dark:text-zinc-100",
+    "dark:ring-zinc-700",
+    "dark:placeholder-zinc-400",
+    "dark:focus:border-zinc-600",
+    "dark:focus:ring-blue-500 ",
   ],
   dark: [
-    "bg-base-800",
-    "text-base-100",
-    "border-base-700",
+    "bg-zinc-800",
+    "text-zinc-100",
+    "border-zinc-700",
     "ring-1",
-    "ring-base-700",
-    "placeholder-base-400",
-    "focus:border-base-500",
-    "focus:ring-base-50",
+    "ring-zinc-700",
+    "placeholder-zinc-400",
+    "focus:border-zinc-500",
+    "focus:ring-zinc-50",
     "focus:ring-2",
     "focus:outline-none",
     "shadow-sm",
@@ -102,7 +102,7 @@ const squareSizeClasses = {
   xl: ["w-14", "h-14"],
 };
 const disabledClass = disabled
-  ? ["opacity-50", "cursor-not-allowed", "bg-base-100", "pointer-events-none"]
+  ? ["opacity-50", "cursor-not-allowed", "bg-zinc-100", "pointer-events-none"]
   : [];
 const isPassword = type === "password" && passwordToggle;
 const isSearch = type === "search";
@@ -177,7 +177,7 @@ let inputClasses = [
   ...variantClasses[variant],
   ...className.split(" "),
 ];
-const errorTextColor = variant === "dark" ? "text-danger/70" : "text-danger";
+const errorTextColor = variant === "dark" ? "text-red-400" : "text-red-600";
 const creditCardScript = `...`;
 const cvvScript = `...`;
 const expiryScript = `...`;
@@ -211,7 +211,7 @@ const rangeToClasses = [
             isGrouped
               ? "sr-only"
               : label
-                ? `font-medium text-base-500 ${
+                ? `font-medium text-zinc-500 dark:text-zinc-200 ${
                     size === "xs" || size === "sm"
                       ? "text-xs"
                       : size === "base"
@@ -227,7 +227,7 @@ const rangeToClasses = [
         </label>
         {hint && (
           <span
-            class={`text-base-400 ${
+            class={`text-zinc-400 dark:text-zinc-400 ${
               size === "xs" || size === "sm"
                 ? "text-xs"
                 : size === "base"
@@ -261,10 +261,10 @@ const rangeToClasses = [
               x-show="fromValue"
               type="button"
               @click="fromValue = ''"
-              class="text-base-400 hover:text-base-600 focus:outline-none"
+              class="text-zinc-400 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 focus:outline-none"
               aria-label="Clear input"
             >
-              <X size="sm" class="text-base-500 " />
+              <X size="sm" class="text-zinc-500 dark:text-zinc-300" />
             </button>
           </div>
         </div>
@@ -287,10 +287,10 @@ const rangeToClasses = [
               x-show="toValue"
               type="button"
               @click="toValue = ''"
-              class="text-base-400 hover:text-base-600 focus:outline-none"
+              class="text-zinc-400 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 focus:outline-none"
               aria-label="Clear input"
             >
-              <X size="sm" class="text-base-500 " />
+              <X size="sm" class="text-zinc-500 dark:text-zinc-300" />
             </button>
           </div>
         </div>
@@ -327,7 +327,7 @@ const rangeToClasses = [
             isGrouped
               ? "sr-only"
               : label
-                ? `font-medium text-base-500 ${
+                ? `font-medium text-zinc-500 dark:text-zinc-200 ${
                     size === "xs" || size === "sm"
                       ? "text-xs"
                       : size === "base"
@@ -343,7 +343,7 @@ const rangeToClasses = [
         </label>
         {hint && (
           <span
-            class={`text-base-400 ${
+            class={`text-zinc-400 dark:text-zinc-400 ${
               size === "xs" || size === "sm"
                 ? "text-xs"
                 : size === "base"
@@ -362,8 +362,8 @@ const rangeToClasses = [
           <div
             x-bind:class="[
           'size-10 rounded-md text-center font-medium text-lg flex items-center justify-center transition-all',
-          'border bg-white text-base-500 ',
-          isFocused && value.length === i ? 'border-brand/88 ring-2 ring-brand/88' : 'border-base-300 '
+          'border bg-white text-zinc-500 dark:bg-zinc-800 dark:text-zinc-100',
+          isFocused && value.length === i ? 'border-blue-500 ring-2 ring-blue-500' : 'border-zinc-300 dark:border-zinc-700'
         ]"
           >
             <span x-text="digit" />
@@ -404,7 +404,7 @@ const rangeToClasses = [
             isGrouped
               ? "sr-only"
               : label
-                ? `font-medium text-base-500 ${
+                ? `font-medium text-zinc-500 ${
                     size === "xs" || size === "sm"
                       ? "text-xs"
                       : size === "base"
@@ -420,7 +420,7 @@ const rangeToClasses = [
         </label>
         {hint && (
           <span
-            class={`text-base-400 ${
+            class={`text-zinc-400 ${
               size === "xs" || size === "sm"
                 ? "text-xs"
                 : size === "base"
@@ -440,23 +440,23 @@ const rangeToClasses = [
         x-data={isPassword ? '{ value: "", showPassword: false }' : undefined}
       >
         {prefix && (
-          <span class="absolute inset-y-0 left-0 flex items-center pl-3 select-none text-base-400 ">
+          <span class="absolute inset-y-0 left-0 flex items-center pl-3 select-none text-zinc-400 dark:text-zinc-400">
             {prefix}
           </span>
         )}
         {hasLeftIcon && (
           <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             {isSearch && iconPosition === "left" && (
-              <Search size="sm" class="text-base-500 " />
+              <Search size="sm" class="text-zinc-500 dark:text-zinc-300" />
             )}
             {isEmail && (
-              <Mail size="sm" class="text-base-500 " />
+              <Mail size="sm" class="text-zinc-500 dark:text-zinc-300" />
             )}
             {isCreditCard && (
-              <CreditCard size="sm" class="text-base-500 " />
+              <CreditCard size="sm" class="text-zinc-500 dark:text-zinc-300" />
             )}
             {isExpiry && (
-              <Calendar size="sm" class="text-base-500 " />
+              <Calendar size="sm" class="text-zinc-500 dark:text-zinc-300" />
             )}
           </div>
         )}
@@ -490,7 +490,7 @@ const rangeToClasses = [
         {/* Render right search icon if type is search and iconPosition is right */}
         {isSearch && iconPosition === "right" && (
           <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-            <Search size="sm" class="text-base-500 " />
+            <Search size="sm" class="text-zinc-500 dark:text-zinc-300" />
           </div>
         )}
 
@@ -499,7 +499,7 @@ const rangeToClasses = [
             <button
               type="button"
               @click="showPassword = !showPassword"
-              class="text-base-500 focus:outline-none"
+              class="text-zinc-500 dark:text-zinc-300 focus:outline-none"
               tabindex="-1"
               aria-label="Toggle password visibility"
             >
@@ -512,10 +512,10 @@ const rangeToClasses = [
                 x-show="value"
                 type="button"
                 @click="value = ''"
-                class="text-base-400 hover:text-base-600 focus:outline-none"
+                class="text-zinc-400 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 focus:outline-none"
                 aria-label="Clear input"
               >
-                <X size="sm" class="text-base-500 " />
+                <X size="sm" class="text-zinc-500 dark:text-zinc-300" />
               </button>
             )}
           </div>
@@ -525,7 +525,7 @@ const rangeToClasses = [
           <div class="absolute inset-y-0 right-0 flex items-center pr-3">
             <Lock
               size="sm"
-              class="pointer-events-none text-base-500 "
+              class="pointer-events-none text-zinc-500 dark:text-zinc-300"
             />
           </div>
         )}

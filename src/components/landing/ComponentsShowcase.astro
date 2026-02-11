@@ -2,7 +2,7 @@
 import Text from "@/components/fundations/typography/Text.astro";
 import EntryStructure from "@/components/landing/EntryStructure.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-
+import StripesBG from "@/components/assets/StripesBG.astro";
 //
 //
 // Marketing
@@ -60,8 +60,8 @@ const groupedEntries = [
     }
   })()"
 >
-<Wrapper variant="standard" class="lg:sticky lg:top-16 z-50  bg-white ">
-  <nav class="relative flex gap-6 border-b border-base-200 " role="tablist" aria-label="Components sections">
+<Wrapper variant="standard" class="lg:sticky lg:top-16 z-50  bg-white dark:bg-base-950 ">
+  <nav class="relative flex gap-6 border-b border-base-200 dark:border-base-800" role="tablist" aria-label="Components sections">
     {groupedEntries.map(({ id, title }) => (
       <a
         role="tab"
@@ -70,18 +70,18 @@ const groupedEntries = [
         @click.prevent="setTab($el.dataset.id)"
         :aria-selected={`tab === '${id}'`}
         class="relative py-3 text-xs font-medium transition-colors"
-        :class={`tab === '${id}' ? 'text-base-900 ' : 'text-base-600 hover:text-base-900 '`}
+        :class={`tab === '${id}' ? 'text-base-900 dark:text-white' : 'text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white'`}
       >
         {title}
         <span 
-          class="absolute bottom-0 left-0 right-0 h-0.5 bg-base-900 transition-opacity"
+          class="absolute bottom-0 left-0 right-0 h-0.5 bg-base-900 dark:bg-white transition-opacity"
           :class={`tab === '${id}' ? 'opacity-100' : 'opacity-0'`}
         ></span>
       </a>
     ))}
   </nav>
 </Wrapper>
-    <Wrapper variant="standard" >
+    <Wrapper variant="standard" class="border-b border-base-200 dark:border-base-800">
       {groupedEntries.map(({ id, title, description, groups }) => {
         const firstGroup = groups[0]?.id || '';
         return (
@@ -107,9 +107,9 @@ const groupedEntries = [
               }
             })()`}
           >
-                    <Text tag="p" variant="textSM" class="text-base-500 font-medium max-w-sm text-balance ">{description}</Text>
+                    <Text tag="p" variant="textSM" class="text-base-500 dark:text-base-400 font-medium max-w-sm text-balance ">{description}</Text>
                  <div class="relative w-full divide-y divide-base-800 lg:col-span-2 mt-8">
-                    <div class="  border-b border-base-200 bg-white ">
+                    <div class="  border-b border-base-200 dark:border-base-800 bg-white dark:bg-base-950">
                         {/* Nested tabs for groups */}
                         <nav class="flex items-center gap-4  " role="tablist" aria-label={`${title} groups`}>
                           {groups.map(({ id: groupId, label }) => (
@@ -119,11 +119,11 @@ const groupedEntries = [
                               data-id={groupId}
                               @click.prevent="setInner($el.dataset.id)"
                               class="relative pb-2 text-xs font-medium transition-colors"
-                              :class={`inner === '${groupId}' ? 'text-base-900 ' : 'text-base-600 hover:text-base-900 '`}
+                              :class={`inner === '${groupId}' ? 'text-base-900 dark:text-white' : 'text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white'`}
                             >
                               {label}
                               <span 
-                                class="absolute bottom-0 left-0 right-0 h-0.5 bg-base-900 transition-opacity"
+                                class="absolute bottom-0 left-0 right-0 h-0.5 bg-base-900 dark:bg-white transition-opacity"
                                 :class={`inner === '${groupId}' ? 'opacity-100' : 'opacity-0'`}
                               ></span>
                             </a>

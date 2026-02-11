@@ -5,7 +5,6 @@ import Metatags from "@/components/fundations/head/Metatags.astro";
 import Favicons from "@/components/fundations/head/Favicons.astro";
 import Fonts from "@/components/fundations/head/Fonts.astro";
 import StructureData from "@/components/fundations/head/StructureData.astro";
-
 // Optional SEO props provided by layouts/pages
 interface Props {
   title?: string;
@@ -104,7 +103,6 @@ const jsonLdCombined = Array.isArray(additionalStructured)
     ? [...jsonLd, additionalStructured]
     : jsonLd;
 ---
-
 <Metatags
   noindex={noindex}
   siteName={siteName}
@@ -115,6 +113,5 @@ const jsonLdCombined = Array.isArray(additionalStructured)
 />
 <Favicons />
 <StructureData jsonLdCombined={jsonLdCombined} />
-
 <ToggleLocalStorage />
 <Fonts />
