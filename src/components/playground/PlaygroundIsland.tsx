@@ -729,7 +729,7 @@ export default function PlaygroundIsland({
           )}
         </div>
       </div>
-      <div className="relative flex w-full min-h-0 overflow-hidden outline outline-base-200 shadow rounded-lg dark:outline-base-800    dark:shadow-base-900/50 z-1 isolate scrollbar-hide bg-white dark:bg-base-950/60 mt-4 scrollbar-hide">
+      <div className="relative flex w-full min-h-0 overflow-hidden outline outline-base-200 shadow rounded-lg dark:outline-base-800    dark:shadow-base-900/50 z-1 isolate scrollbar-hide bg-white dark:bg-base-950/60 mt-4 ">
         <PlaygroundShortcutsButton />
         {tab === "preview" && (
           <div className="flex flex-col items-center w-full bg-white scrollbar-hide dark:bg-base-950/60">
