@@ -1,0 +1,120 @@
+---
+import "@/styles/global.css";
+import ToggleLocalStorage from "@/components/fundations/scripts/ToggleLocalStorage.astro";
+import Metatags from "@/components/fundations/head/Metatags.astro";
+import Favicons from "@/components/fundations/head/Favicons.astro";
+import Fonts from "@/components/fundations/head/Fonts.astro";
+import StructureData from "@/components/fundations/head/StructureData.astro";
+
+// Optional SEO props provided by layouts/pages
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalUrl?: string;
+  pathname?: string;
+  image?: string;
+  noindex?: boolean;
+  siteUrl?: string;
+  structuredData?: unknown | unknown[];
+}
+const {
+  title,
+  description,
+  canonicalUrl,
+  pathname = "/",
+  image = "/images/OpenGraph/twitter.png",
+  noindex = false,
+  siteUrl = "https://oxbowui.com",
+  structuredData: additionalStructured,
+} = (Astro.props ?? {}) as Props;
+const siteName = "Oxbow UI";
+const defaultDescription =
+  description ??
+  "Tailwind CSS & Alpine JS blocks — MIT-licensed and production-ready. Copy, paste, fork it, remix it, ship it, enjoy it, share it.";
+const absCanonical = canonicalUrl || new URL(pathname, siteUrl).toString();
+const absImage = image?.startsWith("http")
+  ? image
+  : new URL(image || "/images/OpenGraph/twitter.png", siteUrl).toString();
+function toTitleCase(s: string) {
+  return s
+    .replace(/[-_]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/(^|\s)\S/g, (t) => t.toUpperCase());
+}
+function clampText(input: string, max: number) {
+  if (!input) return input;
+  if (input.length <= max) return input;
+  const sliced = input.slice(0, max);
+  const lastSpace = sliced.lastIndexOf(" ");
+  const safe = lastSpace > 40 ? sliced.slice(0, lastSpace) : sliced;
+  return safe.replace(/[\s.,;:!-]+$/g, "") + "…";
+}
+const pathSegments = pathname.split("/").filter(Boolean);
+const baseTitle =
+  title ||
+  (pathSegments.length === 0
+    ? siteName
+    : `${toTitleCase(pathSegments[pathSegments.length - 1])} - ${siteName}`);
+// Recommended: ~50–60 chars for titles, ~150–160 for descriptions
+const seoTitle = clampText(baseTitle, 60);
+const seoDescription = clampText(defaultDescription, 160);
+const breadcrumbItems = pathSegments.map((seg, idx) => {
+  const url = new URL(
+    "/" + pathSegments.slice(0, idx + 1).join("/"),
+    siteUrl,
+  ).toString();
+  return {
+    "@type": "ListItem",
+    position: idx + 1,
+    item: {
+      "@id": url,
+      name: toTitleCase(seg),
+    },
+  };
+});
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    url: siteUrl,
+    name: siteName,
+    inLanguage: "en",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: siteName,
+    url: siteUrl,
+    logo: new URL("/favicons/apple-touch-icon.png", siteUrl).toString(),
+  },
+  ...(breadcrumbItems.length
+    ? [
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: breadcrumbItems,
+        },
+      ]
+    : []),
+];
+const jsonLdCombined = Array.isArray(additionalStructured)
+  ? [...jsonLd, ...additionalStructured]
+  : additionalStructured
+    ? [...jsonLd, additionalStructured]
+    : jsonLd;
+---
+
+<Metatags
+  noindex={noindex}
+  siteName={siteName}
+  seoTitle={seoTitle}
+  seoDescription={seoDescription}
+  absCanonical={absCanonical}
+  absImage={absImage}
+/>
+<Favicons />
+<StructureData jsonLdCombined={jsonLdCombined} />
+
+<ToggleLocalStorage />
+<Fonts />

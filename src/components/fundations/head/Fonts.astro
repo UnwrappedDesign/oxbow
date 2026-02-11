@@ -1,0 +1,80 @@
+---
+import { AstroFont } from "astro-font";
+import { join } from "node:path";
+---
+
+<AstroFont
+  config={[
+    {
+      name: "Inter",
+      src: [
+        {
+          style: "normal",
+          weight: "100 900",
+          path: join(
+            process.cwd(),
+            "/public/fonts/Inter/web/InterVariable.woff2",
+          ),
+        },
+      ],
+      preload: true,
+      display: "swap",
+      selector: "body",
+      fallback: "sans-serif",
+    },
+    {
+      name: "LTRemark",
+      src: [
+        {
+          style: "normal",
+          weight: "400",
+          path: join(
+            process.cwd(),
+            "/public/fonts/LTRemark/LTRemark-Regular.otf",
+          ),
+        },
+        {
+          style: "italic",
+          weight: "400",
+          path: join(
+            process.cwd(),
+            "/public/fonts/LTRemark/LTRemark-Italic.otf",
+          ),
+        },
+        {
+          style: "normal",
+          weight: "700",
+          path: join(process.cwd(), "/public/fonts/LTRemark/LTRemark-Bold.otf"),
+        },
+        {
+          style: "italic",
+          weight: "700",
+          path: join(
+            process.cwd(),
+            "/public/fonts/LTRemark/LTRemark-BoldItalic.otf",
+          ),
+        },
+        {
+          style: "normal",
+          weight: "900",
+          path: join(
+            process.cwd(),
+            "/public/fonts/LTRemark/LTRemark-Black.otf",
+          ),
+        },
+        {
+          style: "italic",
+          weight: "900",
+          path: join(
+            process.cwd(),
+            "/public/fonts/LTRemark/LTRemark-BlackItalic.otf",
+          ),
+        },
+      ],
+      preload: true,
+      display: "swap",
+      fallback: "serif",
+      // No selector: registers the faces without overriding body. Use via CSS font-family when needed.
+    },
+  ]}
+/>

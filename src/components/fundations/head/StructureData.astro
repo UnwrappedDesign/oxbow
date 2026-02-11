@@ -1,0 +1,15 @@
+---
+type JsonLdItem = Record<string, unknown>;
+
+interface Props {
+  jsonLdCombined: JsonLdItem | JsonLdItem[];
+}
+
+const { jsonLdCombined } = Astro.props as Props;
+---
+
+<script
+  type="application/ld+json"
+  is:inline
+  set:html={JSON.stringify(jsonLdCombined)}
+/>
