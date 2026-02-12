@@ -760,9 +760,9 @@ export default function PlaygroundIsland({
         </div>
       </div>
     <div className=" mt-4">
-        <div className="relative flex w-full min-h-0 overflow-hidden z-1 isolate scrollbar-hide bg-white dark:bg-base-950/60  ">
+        <div className="relative flex w-full min-h-0 overflow-hidden z-1 isolate scrollbar-hide bg-white dark:bg-base-950/60   rounded-lg shadow">
           {tab === "preview" && (
-            <div className="flex flex-col items-center w-full bg-white scrollbar-hide dark:bg-base-950/60">
+            <div className="flex flex-col items-center w-full bg-white scrollbar-hide dark:bg-base-950/60 border border-zinc-100 dark:border-zinc-800 rounded-lg shadow">
               <div
                 ref={containerRef}
                 id="playground-preview-container"
@@ -791,25 +791,11 @@ export default function PlaygroundIsland({
           )}
           {tab === "code" && (
             <div className="grow  text-xs transition-colors bg-sand-50  code-pane size-full selection:bg-zinc-100 scrollbar-hide dark:bg-base-900 dark:text-base-200 dark:selection:bg-base-800/60">
-              {mode === "system" && !!systemHighlighted ? (
+              {highlightedSystem || systemHighlighted ? (
                 <div
                   className="overflow-x-auto scrollbar-hide"
                   dangerouslySetInnerHTML={{
-                    __html: systemHighlighted,
-                  }}
-                />
-              ) : mode === "light" && !!(highlightedLight || highlightedSystem) ? (
-                <div
-                  className="overflow-x-auto scrollbar-hide"
-                  dangerouslySetInnerHTML={{
-                    __html: highlightedLight || highlightedSystem || "",
-                  }}
-                />
-              ) : mode === "dark" && !!(highlightedDark || highlightedSystem) ? (
-                <div
-                  className="overflow-x-auto scrollbar-hide"
-                  dangerouslySetInnerHTML={{
-                    __html: highlightedDark || highlightedSystem || "",
+                    __html: highlightedSystem || systemHighlighted || "",
                   }}
                 />
               ) : (

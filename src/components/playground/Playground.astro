@@ -5,7 +5,7 @@ import PlaygroundIsland from "./PlaygroundIsland";
 // Components
 
 import * as prettier from "prettier";
-import { createHighlighter } from "shiki";
+import { codeToHtml } from "shiki";
 
 interface Props {
   componentIndex: number;
@@ -129,28 +129,22 @@ const iframeSrc = `/iframe/${componentPath}?iframeId=${iframeId}`;
 const theme = ``;
 const hostId = `playground-host-${componentIndex}`;
 
-// Pre-render highlighted code for the island (Shiki GitHub themes)
+// Pre-render highlighted code for the island using dual-theme CSS variables
 let highlightedSystem = "",
   highlightedLight = "",
   highlightedDark = "";
 
 try {
-  const highlighter = await createHighlighter({
-    langs: ["html"],
-    themes: ["github-light", "github-dark"],
-  });
-  highlightedSystem = await highlighter.codeToHtml(ppcode, {
+  highlightedSystem = await codeToHtml(ppcode, {
     lang: "html",
-    theme: "github-light",
+    themes: {
+      light: "github-light",
+      dark: "github-dark",
+    },
+    defaultColor: false,
   });
-  highlightedLight = await highlighter.codeToHtml(ppcodeLight || ppcode, {
-    lang: "html",
-    theme: "github-light",
-  });
-  highlightedDark = await highlighter.codeToHtml(ppcodeDarkOnly || ppcode, {
-    lang: "html",
-    theme: "github-dark",
-  });
+  highlightedLight = highlightedSystem;
+  highlightedDark = highlightedSystem;
 } catch {}
 ---
 
@@ -175,7 +169,6 @@ try {
     prevHref={prevHref}
     nextHref={nextHref}
     sectionLength={sectionLength}
-    blockPath={`${Astro.cwd}/${componentPath}`}
   />
 </div>
 <style>
