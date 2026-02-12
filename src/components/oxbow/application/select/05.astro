@@ -2,10 +2,10 @@
 export const description = "Conditional styling";
 export const excludeFromObfuscation = [
   "ring-green-500",
-  "ring-blue-500",
+  "ring-orange-500",
   "ring-red-500",
   "bg-green-50",
-  "bg-blue-50",
+  "bg-orange-50",
   "bg-red-50",
   "bg-zinc-50",
 ];
@@ -31,7 +31,7 @@ const countryOptions = [
          getSelectClass() {
            return {
              'ring-green-500': this.selectedOption === 'us',
-             'ring-blue-500': this.selectedOption === 'ca',
+             'ring-orange-500': this.selectedOption === 'ca',
              'ring-red-500': this.selectedOption === 'uk'
            };
          }
@@ -53,7 +53,7 @@ const countryOptions = [
         class="flex items-center p-4 mt-2 rounded-md gap-2"
         :class="{
         'bg-green-50 dark:bg-green-500/10': selectedOption === 'us',
-        'bg-blue-50 dark:bg-blue-500/10': selectedOption === 'ca',
+        'bg-orange-50 dark:bg-orange-500/10': selectedOption === 'ca',
         'bg-red-50 dark:bg-red-500/10': selectedOption === 'uk',
         'bg-zinc-50 dark:bg-zinc-500/10': !['us', 'ca', 'uk'].includes(selectedOption)
        }"
@@ -72,7 +72,7 @@ const countryOptions = [
         <p
           x-show="selectedOption === 'ca'"
           x-transition
-          class="hidden text-xs font-medium text-blue-700 dark:text-blue-300"
+          class="hidden text-xs font-medium text-orange-700 dark:text-orange-300"
           :class="{ 'hidden': selectedOption !== 'ca' }"
         >
           You selected Canada!

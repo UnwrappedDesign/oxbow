@@ -79,16 +79,16 @@ const directionLabelMap: Record<DirectionShort, typeof directions[number]> =
 export default function GradientGenerator() {
   const [direction, setDirection] = useState(directionMap["to top right"]);
   const [fromColor, setFromColor] = useState<GradientStop>({
-    family: "blue",
+    family: "orange",
     shade: "800",
   });
   const [viaColor, setViaColor] = useState<GradientStop>({
-    family: "blue",
+    family: "orange",
     shade: "600",
   });
   const [useVia, setUseVia] = useState(false);
   const [toColor, setToColor] = useState<GradientStop>({
-    family: "blue",
+    family: "orange",
     shade: "400",
   });
   const [copied, setCopied] = useState(false);

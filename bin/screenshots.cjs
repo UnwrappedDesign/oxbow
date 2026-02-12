@@ -5,10 +5,27 @@ const path = require("path");
 (async function () {
   const dir = "src/components/oxbow";
   const outputDir = "src/screenshots";
+  const baseUrl = (
+    process.env.SCREENSHOTS_BASE_URL || "http://127.0.0.1:4321"
+  ).replace(/\/$/, "");
 
   // create the screenshots directory if it doesn't exist
   if (!fs.existsSync(outputDir)) {
-    fs.mkdirSync(outputDir);
+    fs.mkdirSync(outputDir, { recursive: true });
+  }
+
+  async function waitForServerReady(url, timeoutMs = 60000) {
+    const start = Date.now();
+    while (Date.now() - start < timeoutMs) {
+      try {
+        const response = await fetch(url);
+        if (response.ok) {
+          return;
+        }
+      } catch {}
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+    }
+    throw new Error(`Timed out waiting for server at ${url}`);
   }
 
   const files = await fs.promises.readdir(path.join(__dirname, `../${dir}`), {
@@ -76,8 +93,13 @@ const path = require("path");
     ]);
     await page.setViewport({ width: 1280, height: 720 });
 
-    const filePath = `iframe/${dir}/${file}`;
-    const url = `http://localhost:4321/${filePath}?mode=light`;
+    // The iframe route expects component paths relative to `components/oxbow`
+    // (e.g. `/iframe/marketing/bento-grids/01`), not full src paths.
+    const componentPath = file.replace(/\.astro$/, "");
+    const url = new URL(
+      `/iframe/${componentPath}?mode=light`,
+      `${baseUrl}/`,
+    ).toString();
 
     await page.goto("about:blank");
     await page.evaluate(() => {
@@ -182,6 +204,7 @@ const path = require("path");
     }
   }
 
+  await waitForServerReady(baseUrl);
   await processInBatches(astroFiles, concurrency);
   await browser.close();
 })();

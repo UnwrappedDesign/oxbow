@@ -230,7 +230,7 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
               >
                 <input
                   type="checkbox"
-                  class="rounded border-zinc-300 dark:border-zinc-600 dark:bg-zinc-800 text-blue-600 focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 shadow size-4"
+                  class="rounded border-zinc-300 dark:border-zinc-600 dark:bg-zinc-800 text-orange-600 focus:ring-orange-500 focus:ring-offset-2 focus:ring-2 shadow size-4"
                   x-model="range"
                 />
                 <span>Range selection</span>
@@ -240,7 +240,7 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
               >
                 <input
                   type="checkbox"
-                  class="rounded border-zinc-300 dark:border-zinc-600 dark:bg-zinc-800 text-blue-600 focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 shadow size-4"
+                  class="rounded border-zinc-300 dark:border-zinc-600 dark:bg-zinc-800 text-orange-600 focus:ring-orange-500 focus:ring-offset-2 focus:ring-2 shadow size-4"
                   x-model="disableWeekends"
                 />
                 <span>Disable weekends</span>
@@ -314,9 +314,9 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
                             :class="[
                               isDisabled(cell.date) ? 'opacity-40 cursor-not-allowed' : 'hover:bg-zinc-100 dark:hover:bg-white/10',
                               (isSame(cell.date,start) || isSame(cell.date,end))
-                                ? 'bg-blue-600 text-white'
+                                ? 'bg-orange-600 text-white'
                                 : ((inRange(cell.date) || previewInRange(cell.date))
-                                    ? 'bg-blue-600/20 text-blue-700 dark:text-blue-300'
+                                    ? 'bg-orange-600/20 text-orange-700 dark:text-orange-300'
                                     : (cell.inMonth ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500')
                                   )
                             ]"
@@ -380,9 +380,9 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
                             :class="[
                               isDisabled(cell.date) ? 'opacity-40 cursor-not-allowed' : 'hover:bg-zinc-100 dark:hover:bg-white/10',
                               (isSame(cell.date,start) || isSame(cell.date,end))
-                                ? 'bg-blue-600 text-white'
+                                ? 'bg-orange-600 text-white'
                                 : ((inRange(cell.date) || previewInRange(cell.date))
-                                    ? 'bg-blue-600/20 text-blue-700 dark:text-blue-300'
+                                    ? 'bg-orange-600/20 text-orange-700 dark:text-orange-300'
                                     : (cell.inMonth ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500')
                                   )
                             ]"
@@ -401,24 +401,24 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
               <input
                 :value="fmt(start)"
                 readonly
-                class="block w-full h-10 px-4 py-2 text-xs bg-white border border-transparent rounded-lg appearance-none dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-blue-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+                class="block w-full h-10 px-4 py-2 text-xs bg-white border border-transparent rounded-lg appearance-none dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-orange-700 focus:bg-transparent focus:outline-none focus:ring-orange-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
                 placeholder="Start date"
               />
               <input
                 :value="fmt(end)"
                 readonly
-                class="block w-full h-10 px-4 py-2 text-xs bg-white border border-transparent rounded-lg appearance-none dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-blue-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+                class="block w-full h-10 px-4 py-2 text-xs bg-white border border-transparent rounded-lg appearance-none dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-orange-700 focus:bg-transparent focus:outline-none focus:ring-orange-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
                 placeholder="End date"
               />
               <input
                 type="time"
                 x-model="startTime"
-                class="block w-full h-10 px-4 py-2 text-xs bg-white border border-transparent rounded-lg appearance-none dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-blue-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm dark:[color-scheme:dark]"
+                class="block w-full h-10 px-4 py-2 text-xs bg-white border border-transparent rounded-lg appearance-none dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-orange-700 focus:bg-transparent focus:outline-none focus:ring-orange-500 focus:ring-offset-2 focus:ring-2 sm:text-sm dark:[color-scheme:dark]"
               />
               <input
                 type="time"
                 x-model="endTime"
-                class="block w-full h-10 px-4 py-2 text-xs bg-white border border-transparent rounded-lg appearance-none dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-blue-700 focus:bg-transparent focus:outline-none focus:ring-blue-500 focus:ring-offset-2 focus:ring-2 sm:text-sm dark:[color-scheme:dark]"
+                class="block w-full h-10 px-4 py-2 text-xs bg-white border border-transparent rounded-lg appearance-none dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-orange-700 focus:bg-transparent focus:outline-none focus:ring-orange-500 focus:ring-offset-2 focus:ring-2 sm:text-sm dark:[color-scheme:dark]"
               />
               <div
                 class="col-span-2 lg:col-span-4 flex items-center justify-between gap-2 mt-2"

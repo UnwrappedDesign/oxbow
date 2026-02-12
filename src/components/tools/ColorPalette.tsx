@@ -225,7 +225,7 @@ export default function ColorPalette() {
                   >
                     <span className="font-mono">{opt}</span>
                     {format === opt && (
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="text-blue-600 size-4">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="text-orange-600 size-4">
                         <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4-4a.75.75 0 011.06-1.06l3.353 3.353 7.528-9.884a.75.75 0 011.043-.136z" clipRule="evenodd" />
                       </svg>
                     )}
@@ -264,7 +264,7 @@ export default function ColorPalette() {
                         copy(value, key);
                       }}
                       title={`Click to copy ${color}`}
-                      className="relative h-14 rounded-md transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 dark:focus-visible:ring-offset-zinc-900"
+                      className="relative h-14 rounded-md transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-orange-500 dark:focus-visible:ring-offset-zinc-900"
                       style={{ backgroundColor: color }}
                     >
                       {copiedKey === key && (

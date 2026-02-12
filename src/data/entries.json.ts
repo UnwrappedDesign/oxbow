@@ -652,6 +652,18 @@ const templates: { [key: string]: Template[] } = {
     },
    
     {
+      name: "Buttons",
+      link: "/playground/application/buttons",
+      image: "buttonIcon.png",
+      tags: [
+        "button",
+        "button variants",
+        "cta",
+        "action button",
+        "button styles",
+      ],
+    },
+    {
       name: "Button icon",
       link: "/playground/application/button-icon",
       image: "buttonIcon.png",

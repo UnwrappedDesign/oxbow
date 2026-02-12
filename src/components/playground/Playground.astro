@@ -37,7 +37,7 @@ const {
 } = Astro.props as Props;
 
 // Default theme color (no user authentication)
-const userThemeColor = "blue";
+const userThemeColor = "orange";
 
 // Always render the slot so we can transform it for container queries in preview
 const rawSlotCode = await Astro.slots.render("default");
@@ -137,15 +137,15 @@ let highlightedSystem = "",
 try {
   const highlighter = await createHighlighter({
     langs: ["html"],
-    themes: ["vesper"],
+    themes: ["github-light", "github-dark"],
   });
   highlightedSystem = await highlighter.codeToHtml(ppcode, {
     lang: "html",
-    theme: "vesper",
+    theme: "github-light",
   });
   highlightedLight = await highlighter.codeToHtml(ppcodeLight || ppcode, {
     lang: "html",
-    theme: "vesper",
+    theme: "github-light",
   });
   highlightedDark = await highlighter.codeToHtml(ppcodeDarkOnly || ppcode, {
     lang: "html",

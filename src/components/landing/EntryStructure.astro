@@ -6,8 +6,8 @@ interface Props {
   entries: Template[];
 }
 const { entries } = Astro.props; // Make sure entries is correctly passed and used
-const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/images/**/*.{jpeg,jpg,png,gif}",
+const screenshots = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/screenshots/*.png",
 );
 const modules = import.meta.glob("@/components/oxbow/**/*.astro", {
   eager: true,
@@ -22,58 +22,69 @@ const componentBySection = Object.keys(modules).reduce((acc, file) => {
     [path]: acc[path] ? acc[path] + 1 : 1,
   };
 }, {});
+
+const firstScreenshotForLink = (link: string) => {
+  const match = link.match(/^\/playground\/([^/]+)\/([^/?#]+)/i);
+  if (!match) return undefined;
+  const [, section, subsection] = match;
+  const base = `${section}_${subsection}_`;
+  const exact = `/src/screenshots/${base}01.png`;
+  if (screenshots[exact]) return exact;
+  return Object.keys(screenshots)
+    .filter((key) => key.startsWith(`/src/screenshots/${base}`))
+    .sort()[0];
+};
+
 // Add quantity to each entry
 const entriesWithQuantity = entries
   .map((entry: Template) => {
-    const imagePath = `/src/images/${entry.image}`;
-    if (!images[imagePath])
-      throw new Error(
-        `"${imagePath}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`,
-      );
+    const imagePath = firstScreenshotForLink(entry.link);
+    if (!imagePath) return null;
     return {
       ...entry,
-      image: images[imagePath],
+      image: screenshots[imagePath],
       quantity: componentBySection[entry.link] || 0,
     };
   })
+  .filter((entry): entry is NonNullable<typeof entry> => entry !== null)
   // Filter out entries with quantity 0
   .filter((entry) => entry.quantity > 0)
   // Sort alphabetically by component name
   .sort((a, b) => a.name.localeCompare(b.name));
 ---
 
-<div class="grid grid-cols-1 lg:grid-cols-4 gap-1 mt-8">
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-y-12 gap-x-4 mt-8">
   {
     entriesWithQuantity.map((template) => {
       return (
-        <div class="relative bg-white dark:bg-base-950 flex flex-col ">
+        <div class="relative">
           <a
             title={template.name}
             href={template.link}
             class="absolute inset-0 z-1"
           />
 
-          <div class="p-6 items">
+          <Image
+            class="object-cover object-top  aspect-16/10 w-full  shadow rounded-xl"
+            alt={template.name}
+            src={template.image()}
+          />
+          <div class=" items mt-2">
             <Text
               tag="p"
-              variant="textBad"
+              variant="textSM"
               class="relative font-medium text-black   dark:text-white"
             >
               {template.name}
             </Text>
             <Text
               tag="p"
-              variant="textSM"
+              variant="textXS"
               class="relative flex items-center gap-1  2xl:text-sm text-base-500"
             >
               {template.quantity} Components
             </Text>
           </div>
-          <Image
-            class="object-cover object-top  aspect-16/10 w-full mt-12"
-            alt={template.name}
-            src={template.image()}
-          />
         </div>
       );
     })

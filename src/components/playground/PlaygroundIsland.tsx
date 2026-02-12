@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import PlaygroundShortcutsButton from "./PlaygroundShortcutsButton";
 import {
   Eye,
   Code,
@@ -55,12 +54,16 @@ export default function PlaygroundIsland({
   ppcode,
   ppcodeLight,
   ppcodeDarkOnly,
+  highlightedSystem,
+  highlightedLight,
+  highlightedDark,
   blockPath: _blockPath,
 }: Props) {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   // Persist mode in localStorage
   const [mode, setModeState] = useState<Mode>("system");
+  const [systemPrefersDark, setSystemPrefersDark] = useState(false);
   // Always sync mode from localStorage on mount (and when remounting after navigation)
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -68,6 +71,24 @@ export default function PlaygroundIsland({
       if (saved === "light" || saved === "dark" || saved === "system")
         setModeState(saved);
     }
+  }, []);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    const onChange = () => setSystemPrefersDark(mq.matches);
+    onChange();
+    try {
+      mq.addEventListener("change", onChange);
+    } catch {
+      mq.addListener(onChange);
+    }
+    return () => {
+      try {
+        mq.removeEventListener("change", onChange);
+      } catch {
+        mq.removeListener(onChange);
+      }
+    };
   }, []);
   const setMode = (m: Mode) => {
     setModeState(m);
@@ -97,6 +118,12 @@ export default function PlaygroundIsland({
     if (mode === "dark") return ppcodeDarkOnly || ppcode;
     return ppcode;
   }, [mode, ppcode, ppcodeLight, ppcodeDarkOnly]);
+  const systemHighlighted = useMemo(() => {
+    if (systemPrefersDark) {
+      return highlightedDark || highlightedSystem || highlightedLight || "";
+    }
+    return highlightedLight || highlightedSystem || highlightedDark || "";
+  }, [systemPrefersDark, highlightedDark, highlightedSystem, highlightedLight]);
   const applyModeToIframe = (m: Mode) => {
     const ifr = iframeRef.current;
     const doc = ifr?.contentDocument || ifr?.contentWindow?.document;
@@ -174,66 +201,11 @@ export default function PlaygroundIsland({
       if (navMenuRef.current?.contains(t)) return;
       setNavOpen(null);
     };
-    const onArrow = (e: KeyboardEvent) => {
-      const tgt = e.target as HTMLElement | null;
-      if (tgt && (tgt.tagName === "INPUT" || tgt.isContentEditable)) return;
-      if (e.key === "ArrowLeft" && arguments[0]?.prevHref) {
-        window.location.assign(arguments[0].prevHref);
-      } else if (e.key === "ArrowRight" && arguments[0]?.nextHref) {
-        window.location.assign(arguments[0].nextHref);
-      }
-    };
-    const onThemeShortcuts = (e: KeyboardEvent) => {
-      // Theme switching with Ctrl + number (use code for reliability)
-      if (e.ctrlKey && !e.metaKey && !e.altKey) {
-        const code = e.code;
-        if (code === "Digit1") {
-          setMode("dark");
-          e.preventDefault();
-        } else if (code === "Digit2") {
-          setMode("light");
-          e.preventDefault();
-        } else if (code === "Digit3") {
-          setMode("system");
-          e.preventDefault();
-        }
-      }
-      // Tab switching: Cmd + Shift + 1/2 (use code, since Shift+1 => "!")
-      if (e.metaKey && e.shiftKey && !e.altKey && !e.ctrlKey) {
-        const code = e.code;
-        if (code === "Digit1") {
-          setTab("code");
-          e.preventDefault();
-        } else if (code === "Digit2") {
-          setTab("preview");
-          e.preventDefault();
-        }
-      }
-      // Download code: Cmd + Shift + D
-      if (tab === "code" && e.metaKey && e.shiftKey && !e.altKey && !e.ctrlKey && e.key.toLowerCase() === "d") {
-        downloadCode();
-        e.preventDefault();
-      }
-      // Open in new window: Cmd + O
-      if (e.metaKey && !e.shiftKey && !e.altKey && !e.ctrlKey && e.key.toLowerCase() === "o") {
-        openInNewWindow();
-        e.preventDefault();
-      }
-      // Copy code: Cmd + C
-      if (tab === "code" && e.metaKey && !e.shiftKey && !e.altKey && !e.ctrlKey && e.key.toLowerCase() === "c") {
-        copyCode();
-        e.preventDefault();
-      }
-    };
     window.addEventListener("keydown", onEsc);
     window.addEventListener("click", onClick);
-    window.addEventListener("keydown", onArrow);
-    window.addEventListener("keydown", onThemeShortcuts);
     return () => {
       window.removeEventListener("keydown", onEsc);
       window.removeEventListener("click", onClick);
-      window.removeEventListener("keydown", onArrow);
-      window.removeEventListener("keydown", onThemeShortcuts);
     };
   }, [tab]);
   useEffect(() => {
@@ -787,9 +759,8 @@ export default function PlaygroundIsland({
           )}
         </div>
       </div>
-    <div className="p-8 bg-base-25 dark:bg-base-900 mt-4">
+    <div className=" mt-4">
         <div className="relative flex w-full min-h-0 overflow-hidden z-1 isolate scrollbar-hide bg-white dark:bg-base-950/60  ">
-          <PlaygroundShortcutsButton />
           {tab === "preview" && (
             <div className="flex flex-col items-center w-full bg-white scrollbar-hide dark:bg-base-950/60">
               <div
@@ -820,25 +791,25 @@ export default function PlaygroundIsland({
           )}
           {tab === "code" && (
             <div className="grow  text-xs transition-colors bg-sand-50  code-pane size-full selection:bg-zinc-100 scrollbar-hide dark:bg-base-900 dark:text-base-200 dark:selection:bg-base-800/60">
-              {mode === "system" && !!arguments[0]?.highlightedSystem ? (
+              {mode === "system" && !!systemHighlighted ? (
                 <div
                   className="overflow-x-auto scrollbar-hide"
                   dangerouslySetInnerHTML={{
-                    __html: arguments[0]!.highlightedSystem!,
+                    __html: systemHighlighted,
                   }}
                 />
-              ) : mode === "light" && !!arguments[0]?.highlightedLight ? (
+              ) : mode === "light" && !!(highlightedLight || highlightedSystem) ? (
                 <div
                   className="overflow-x-auto scrollbar-hide"
                   dangerouslySetInnerHTML={{
-                    __html: arguments[0]!.highlightedLight!,
+                    __html: highlightedLight || highlightedSystem || "",
                   }}
                 />
-              ) : mode === "dark" && !!arguments[0]?.highlightedDark ? (
+              ) : mode === "dark" && !!(highlightedDark || highlightedSystem) ? (
                 <div
                   className="overflow-x-auto scrollbar-hide"
                   dangerouslySetInnerHTML={{
-                    __html: arguments[0]!.highlightedDark!,
+                    __html: highlightedDark || highlightedSystem || "",
                   }}
                 />
               ) : (

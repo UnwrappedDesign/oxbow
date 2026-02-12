@@ -121,7 +121,7 @@ export default (Alpine: Alpine) => {
       this.loadUserThemePreference();
     },
     colors: [
-      { name: "Blue", color: "bg-blue-500" },
+      { name: "Orange", color: "bg-orange-500" },
       { name: "Red", color: "bg-red-500" },
       { name: "Amber", color: "bg-amber-500" },
       { name: "Yellow", color: "bg-yellow-500" },
