@@ -1,10 +1,10 @@
 ---
 export const excludeFromObfuscation = [
   "ring-1",
-  "ring-zinc-200",
-  "bg-zinc-50",
-  "border-zinc-200",
-  "text-zinc-700",
+  "ring-border",
+  "bg-muted",
+  "border-border",
+  "text-muted-foreground",
   "tabular-nums",
 ];
 
@@ -12,7 +12,7 @@ import ChevronUp from "@/components/fundations/icons/ChevronUp.astro";
 import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
 ---
 
-<div class="flex flex-col justify-center p-8 mx-auto bg-white dark:bg-zinc-900">
+<div class="flex flex-col justify-center p-8 mx-auto bg-background">
   <!-- copy:start -->
   <div
     x-data="{
@@ -54,14 +54,12 @@ import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
     <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
         <div class="flex justify-center">
-          <table class="min-w-[900px] text-sm bg-white dark:bg-zinc-900">
-            <thead
-              class="border-b bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700"
-            >
+          <table class="min-w-[900px] text-sm bg-background">
+            <thead class="border-b bg-background border-border">
               <tr>
                 <th class="px-3 py-2 font-medium text-left">
                   <button
-                    class="inline-flex items-center gap-1 hover:underline text-zinc-900 dark:text-white"
+                    class="inline-flex items-center gap-1 hover:underline text-foreground"
                     @click="setSort('name')"
                   >
                     Name
@@ -79,7 +77,7 @@ import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
                 </th>
                 <th class="px-3 py-2 font-medium text-left">
                   <button
-                    class="inline-flex items-center gap-1 hover:underline text-zinc-900 dark:text-white"
+                    class="inline-flex items-center gap-1 hover:underline text-foreground"
                     @click="setSort('email')"
                   >
                     Email <span
@@ -89,7 +87,7 @@ import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
                 </th>
                 <th class="px-3 py-2 font-medium text-left">
                   <button
-                    class="inline-flex items-center gap-1 hover:underline text-zinc-900 dark:text-white"
+                    class="inline-flex items-center gap-1 hover:underline text-foreground"
                     @click="setSort('location')"
                   >
                     Location <span
@@ -99,7 +97,7 @@ import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
                 </th>
                 <th class="px-3 py-2 font-medium text-left">
                   <button
-                    class="inline-flex items-center gap-1 hover:underline text-zinc-900 dark:text-white"
+                    class="inline-flex items-center gap-1 hover:underline text-foreground"
                     @click="setSort('status')"
                   >
                     Status <span
@@ -109,7 +107,7 @@ import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
                 </th>
                 <th class="px-3 py-2 font-medium text-left">
                   <button
-                    class="inline-flex items-center gap-1 hover:underline text-zinc-900 dark:text-white"
+                    class="inline-flex items-center gap-1 hover:underline text-foreground"
                     @click="setSort('performance')"
                   >
                     Performance <span
@@ -121,8 +119,8 @@ import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
             </thead>
             <tbody>
               <template x-for="row in pageRows()" :key="row.email">
-                <tr class="even:bg-zinc-50 dark:even:bg-zinc-800">
-                  <td class="px-3 py-2 text-zinc-700 dark:text-zinc-100">
+                <tr class="even:bg-background">
+                  <td class="px-3 py-2 text-foreground">
                     <div class="flex items-center gap-2">
                       <img
                         class="object-cover w-8 h-8 rounded-full"
@@ -132,10 +130,9 @@ import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
                       <span class="font-medium" x-text="row.name"></span>
                     </div>
                   </td>
-                  <td
-                    class="px-3 py-2 text-zinc-500 dark:text-zinc-300"
-                    x-text="row.email"></td>
-                  <td class="px-3 py-2 text-zinc-500 dark:text-zinc-300">
+                  <td class="px-3 py-2 text-muted-foreground" x-text="row.email"
+                  ></td>
+                  <td class="px-3 py-2 text-muted-foreground">
                     <span class="inline-flex items-center gap-1">
                       <span x-text="row.location.flag"></span>
                       <span
@@ -145,10 +142,10 @@ import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
                   </td>
                   <td
                     class="px-3 py-2"
-                    :class="row.status==='Active' ? 'text-emerald-600 dark:text-emerald-400' : row.status==='Inactive' ? 'text-red-600 dark:text-red-400' : 'text-yellow-600 dark:text-yellow-400'"
+                    :class="row.status==='Active' 'text-success' row.status==='Inactive' ? 'text-destructive' : 'text-warning'"
                     x-text="row.status"></td>
                   <td
-                    class="px-3 py-2 text-zinc-500 dark:text-zinc-300"
+                    class="px-3 py-2 text-muted-foreground"
                     x-text="row.performance"></td>
                 </tr>
               </template>

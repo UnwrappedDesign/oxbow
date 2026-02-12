@@ -18,7 +18,7 @@ import Text from "@/components/fundations/typography/Text.astro";
 ---
 
 <div
-  class="flex items-center justify-center p-8 py-40 bg-white lg:py-56 dark:bg-zinc-900"
+  class="flex items-center justify-center p-8 py-40 bg-background lg:py-56"
 >
   <!-- copy:start -->
   <!-- 
@@ -96,7 +96,7 @@ import Text from "@/components/fundations/typography/Text.astro";
           x-transition:leave-end="opacity-0"
           @mouseenter="clearTimer()"
           @mouseleave="startTimer()"
-          class="w-full max-w-sm bg-white rounded-lg shadow-lg pointer-events-auto outline-1 outline-black/5 transition dark:bg-zinc-800 dark:-outline-offset-1 dark:outline-white/10"
+          class="w-full max-w-sm bg-background rounded-lg shadow-lg pointer-events-auto outline-1 outline-border/5 transition -outline-offset-1 outline-border/10"
           role="status"
           aria-live="polite"
         >
@@ -104,22 +104,22 @@ import Text from "@/components/fundations/typography/Text.astro";
             <div class="flex items-start">
               <div class="shrink-0">
                 <template x-if="type==='success'"
-                  ><div class="text-emerald-500">
+                  ><div class="text-success">
                     <Check size="base" />
                   </div></template
                 >
                 <template x-if="type==='info'"
-                  ><div class="text-blue-500">
+                  ><div class="text-info">
                     <CircleInfo size="base" />
                   </div></template
                 >
                 <template x-if="type==='warning'"
-                  ><div class="text-amber-500">
+                  ><div class="text-warning">
                     <AlertTriangle size="base" />
                   </div></template
                 >
                 <template x-if="type==='error'"
-                  ><div class="text-rose-500">
+                  ><div class="text-destructive">
                     <AlertTriangle size="base" />
                   </div></template
                 >
@@ -128,13 +128,13 @@ import Text from "@/components/fundations/typography/Text.astro";
                 <Text
                   tag="p"
                   variant="textSM"
-                  class="font-medium text-zinc-900 dark:text-white"
+                  class="font-medium text-foreground"
                   x-text="title"
                 />
                 <Text
                   tag="p"
                   variant="textSM"
-                  class="mt-1 text-zinc-500 dark:text-zinc-400 text-pretty"
+                  class="mt-1 text-muted-foreground text-pretty"
                   x-text="message"
                 />
               </div>

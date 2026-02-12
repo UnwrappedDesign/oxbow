@@ -4,7 +4,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
 import Select from "@/components/fundations/inputs/Select.astro";
 ---
 
-<section class="flex justify-center p-16 bg-white dark:bg-zinc-900">
+<section class="flex justify-center p-16 bg-background">
   <!-- copy:start -->
   <nav
     aria-label="Pagination"
@@ -21,7 +21,7 @@ import Select from "@/components/fundations/inputs/Select.astro";
         :disabled="page===1"
         @click="page=Math.max(1,page-1)">Previous</Button
       >
-      <span class="text-sm text-zinc-600 dark:text-zinc-300"
+      <span class="text-sm text-muted-foreground"
         >Page <span x-text="page"></span> of <span x-text="total"></span></span
       >
       <Button
@@ -37,7 +37,7 @@ import Select from "@/components/fundations/inputs/Select.astro";
       class="flex-col hidden w-full md:flex gap-2 sm:w-fit sm:flex-row sm:items-center lg:ml-auto"
     >
       <div
-        class="flex items-center text-sm gap-2 text-zinc-600 dark:text-zinc-300"
+        class="flex items-center text-sm gap-2 text-muted-foreground"
       >
         Go to
         <input
@@ -45,7 +45,7 @@ import Select from "@/components/fundations/inputs/Select.astro";
           type="number"
           min="1"
           :max="total"
-          class="w-20 h-8 px-2 text-sm bg-white border rounded border-zinc-300 dark:border-zinc-700 dark:bg-zinc-900"
+          class="w-20 h-8 px-2 text-sm bg-background border rounded border-border"
           :placeholder="page"
         />
         <Button
@@ -56,7 +56,7 @@ import Select from "@/components/fundations/inputs/Select.astro";
         >
       </div>
       <div
-        class="flex items-center text-sm gap-2 text-zinc-600 dark:text-zinc-300"
+        class="flex items-center text-sm gap-2 text-muted-foreground"
       >
         Per page
         <div class="w-24">

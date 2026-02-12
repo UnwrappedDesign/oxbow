@@ -3,9 +3,10 @@ export const excludeFromObfuscation = [
   "w-1/2",
   "translate-x-0",
   "translate-x-full",
-  "text-zinc-600",
-  "focus:text-zinc-900",
-  "hover:text-zinc-900",
+  "text-muted-foreground",
+  "text-foreground",
+  "focus:text-foreground",
+  "hover:text-foreground",
 ];
 
 export const description = "Single usage based pricing card";
@@ -29,21 +30,21 @@ const pricingTiers = [
 ];
 ---
 
-<section x-data="{ duration: 'monthly' }" class="bg-white dark:bg-zinc-900">
+<section x-data="{ duration: 'monthly' }" class="bg-background">
   <div class="px-8 py-24 mx-auto max-w-7xl md:px-12 lg:px-20">
     <div class="items-end grid grid-cols-1 lg:grid-cols-2">
       <div>
         <Text
           tag="h1"
           variant="displaySM"
-          class="font-semibold tracking-tight text-zinc-900 dark:text-white lg:text-balance"
+          class="font-semibold tracking-tight text-foreground lg:text-balance"
         >
           Equip your business with world class software
         </Text>
         <Text
           tag="p"
           variant="textBase"
-          class="mt-2 font-medium text-zinc-600 dark:text-zinc-400 lg:text-balance"
+          class="mt-2 font-medium text-muted-foreground lg:text-balance"
         >
           Choose a plan that works the best for you and your team. Start small,
           upgrade when you need to.
@@ -51,16 +52,16 @@ const pricingTiers = [
       </div>
       <div
         aria-labelledby="pricing-toggle"
-        class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-white shadow dark:bg-zinc-900 ring-1 ring-zinc-200 dark:ring-zinc-700 ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52 dark:ring-offset-black lg:ml-auto"
+        class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-background shadow ring-1 ring-border ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52 ring-offset-background lg:ml-auto"
       >
         <div
-          class="absolute inset-0 bg-zinc-50 dark:bg-zinc-800 rounded-md transition-transform duration-200 ease-in-out"
+          class="absolute inset-0 bg-muted rounded-md ring-1 ring-border/60 shadow-sm transition-transform duration-200 ease-in-out"
           :class="duration === 'monthly' ? 'w-1/2 translate-x-0' : 'w-1/2 translate-x-full'"
         >
         </div>
         <button
           class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-          :class="duration === 'monthly' ? 'text-zinc-600 dark:text-zinc-300' : 'focus:text-zinc-900 hover:text-zinc-900 dark:focus:text-zinc-100 dark:hover:text-zinc-100 dark:text-zinc-300'"
+          :class="duration === 'monthly' ? 'text-foreground' : 'text-muted-foreground hover:text-foreground focus:text-foreground'"
           @click="duration = 'monthly'"
           type="button"
           :aria-pressed="duration === 'monthly'"
@@ -69,7 +70,7 @@ const pricingTiers = [
         </button>
         <button
           class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-          :class="duration === 'annual' ? 'text-zinc-600 dark:text-zinc-300' : 'focus:text-zinc-900 hover:text-zinc-900 dark:focus:text-zinc-100 dark:hover:text-zinc-100 dark:text-zinc-300'"
+          :class="duration === 'annual' ? 'text-foreground' : 'text-muted-foreground hover:text-foreground focus:text-foreground'"
           @click="duration = 'annual'"
           type="button"
           :aria-pressed="duration === 'annual'"
@@ -80,7 +81,7 @@ const pricingTiers = [
     </div>
     <div class="flex flex-col mt-8 gap-2">
       <div
-        class="p-4 overflow-hidden shadow bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl"
+        class="p-4 overflow-hidden shadow bg-background outline outline-border rounded-xl"
       >
         <div class="grid md:grid-cols-12">
           <div class="p-4 md:col-span-7 sm:p-8">
@@ -88,10 +89,10 @@ const pricingTiers = [
               <Text
                 tag="h2"
                 variant="textLG"
-                class="font-medium text-zinc-900 dark:text-white"
+                class="font-medium text-foreground"
               >
                 AI Add-Ons —
-                <span class="font-normal text-zinc-500 dark:text-zinc-400">
+                <span class="font-normal text-muted-foreground">
                   Oxbow UI gives your AI tools the upgrade they didn't know they
                   needed.
                 </span>
@@ -99,59 +100,55 @@ const pricingTiers = [
             </div>
             <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-4">
               <div class="flex items-center text-sm gap-2">
-                <div class="text-zinc-500 dark:text-zinc-400">
+                <div class="text-muted-foreground">
                   <Clock size="sm" />
                 </div>
-                <span class="text-zinc-600 dark:text-zinc-300">
-                  <span class="font-medium text-zinc-900 dark:text-white"
-                    >30 day</span
-                  > model retention
+                <span class="text-muted-foreground">
+                  <span class="font-medium text-foreground">30 day</span> model retention
                 </span>
               </div>
 
               <div class="flex items-center text-sm gap-2">
-                <div class="text-zinc-500 dark:text-zinc-400">
+                <div class="text-muted-foreground">
                   <Refresh size="base" />
                 </div>
-                <span class="text-zinc-600 dark:text-zinc-300">
-                  <span class="font-medium text-zinc-900 dark:text-white"
-                    >5,000</span
-                  > AI calls/month
+                <span class="text-muted-foreground">
+                  <span class="font-medium text-foreground">5,000</span> AI calls/month
                 </span>
               </div>
 
               <div class="flex items-center text-sm gap-2">
-                <div class="text-zinc-500 dark:text-zinc-400">
+                <div class="text-muted-foreground">
                   <Database size="base" />
                 </div>
-                <span class="text-zinc-600 dark:text-zinc-300"
+                <span class="text-muted-foreground"
                   >Custom model rebuilding</span
                 >
               </div>
 
               <div class="flex items-center text-sm gap-2">
-                <div class="text-zinc-500 dark:text-zinc-400">
+                <div class="text-muted-foreground">
                   <Lifebuoy size="base" />
                 </div>
-                <span class="text-zinc-600 dark:text-zinc-300"
+                <span class="text-muted-foreground"
                   >Training validation included</span
                 >
               </div>
 
               <div class="flex items-center text-sm gap-2">
-                <div class="text-zinc-500 dark:text-zinc-400">
+                <div class="text-muted-foreground">
                   <Brain size="base" />
                 </div>
-                <span class="text-zinc-600 dark:text-zinc-300"
+                <span class="text-muted-foreground"
                   >Real-time inference feedback</span
                 >
               </div>
 
               <div class="flex items-center text-sm gap-2">
-                <div class="text-zinc-500 dark:text-zinc-400">
+                <div class="text-muted-foreground">
                   <Lock size="base" />
                 </div>
-                <span class="text-zinc-600 dark:text-zinc-300"
+                <span class="text-muted-foreground"
                   >One-click prompt tuning</span
                 >
               </div>
@@ -163,34 +160,33 @@ const pricingTiers = [
             </div>
           </div>
           <div
-            class="flex flex-col justify-between h-full bg-white md:col-span-5 dark:bg-zinc-900 outline outline-zinc-100 dark:outline-zinc-800 rounded-xl"
+            class="flex flex-col justify-between h-full bg-background md:col-span-5 outline outline-border rounded-xl"
           >
             <div class="p-4 grid grid-cols-2">
               <Text
                 tag="h3"
                 variant="textBase"
-                class="font-semibold text-zinc-900 dark:text-white"
-                >Monthly requests</Text
+                class="font-semibold text-foreground">Monthly requests</Text
               >
               <Text
                 tag="p"
                 variant="textSM"
-                class="font-semibold text-right text-zinc-500 dark:text-zinc-400"
+                class="font-semibold text-right text-muted-foreground"
                 >Pricing</Text
               >
             </div>
-            <div class="divide-y divide-zinc-200 dark:divide-zinc-800">
+            <div class="divide-y divide-border">
               {
                 pricingTiers.map((tier) => (
                   <div class="p-4 grid grid-cols-2">
-                    <div class="font-medium text-zinc-600 dark:text-zinc-300">
+                    <div class="font-medium text-muted-foreground">
                       {tier.amount}
                     </div>
-                    <div class="font-medium text-right text-zinc-900 dark:text-white">
+                    <div class="font-medium text-right text-foreground">
                       <Text
                         tag="p"
                         variant="textBase"
-                        class="font-medium text-zinc-900 dark:text-white"
+                        class="font-medium text-foreground"
                       >
                         <span
                           data-monthly={tier.monthly}
@@ -213,15 +209,13 @@ const pricingTiers = [
           </div>
         </div>
       </div>
-      <div
-        class="p-4 shadow bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl"
-      >
+      <div class="p-4 shadow bg-background outline outline-border rounded-xl">
         <div
           class="flex flex-col lg:flex-row gap-4 lg:justify-between lg:items-center"
         >
           <div class="flex flex-col items-start sm:flex-row gap-2">
             <div
-              class="p-3 text-orange-500 bg-white rounded-lg dark:bg-zinc-800 outline outline-zinc-100 dark:outline-zinc-700 dark:text-white"
+              class="p-3 bg-background rounded-lg outline outline-border text-foreground"
             >
               <Plus size="base" />
             </div>
@@ -229,14 +223,9 @@ const pricingTiers = [
               <Text
                 tag="h2"
                 variant="textLG"
-                class="font-medium text-zinc-900 dark:text-white"
-                >Enterprise</Text
+                class="font-medium text-foreground">Enterprise</Text
               >
-              <Text
-                tag="p"
-                variant="textSM"
-                class="text-zinc-500 dark:text-zinc-400"
-              >
+              <Text tag="p" variant="textSM" class="text-muted-foreground">
                 Built for teams that move fast, break stuff, and need more
                 firepower than your average startup plan allows.
               </Text>

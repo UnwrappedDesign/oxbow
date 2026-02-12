@@ -2,7 +2,8 @@
 export const description = "Dynamic Numbered with Ellipsis";
 import Button from "@/components/fundations/buttons/Button.astro";
 ---
-<section class="flex justify-center p-16 bg-white dark:bg-zinc-900">
+
+<section class="flex justify-center p-16 bg-background">
   <!-- copy:start -->
   <nav
     aria-label="Pagination"
@@ -28,17 +29,18 @@ import Button from "@/components/fundations/buttons/Button.astro";
     >
     <template x-for="(n,i) in pages()" :key="n">
       <span class="contents">
-        <Button iconOnly
+        <Button
+          iconOnly
           size="xs"
           variant="muted"
           @click="page=n"
           x-text="n"
           :aria-current="page===n ? 'page' : null"
-          :class="page===n ? ' text-orange-600 dark:text-orange-300' : ''"
+          :class="page===n ? ' text-foreground' : ''"
         />
         <span
           x-show="i < pages().length-1 && pages()[i+1] - n > 1"
-          class="px-4 text-zinc-500">…</span
+          class="px-4 text-muted-foreground">…</span
         >
       </span>
     </template>

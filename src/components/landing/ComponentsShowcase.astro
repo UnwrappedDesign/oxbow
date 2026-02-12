@@ -60,9 +60,9 @@ const groupedEntries = [
     }
   })()"
 >
-<Wrapper variant="standard" class="lg:sticky lg:top-16 z-50 dark:bg-base-950">
+<Wrapper variant="standard" class="lg:sticky lg:top-16 z-50 bg-background">
   <nav
-    class="relative w-fit mx-auto flex items-center gap-1 p-1 rounded-lg bg-base-25  dark:bg-base-900 justify-center "
+    class="relative w-fit mx-auto flex items-center gap-1 p-1 rounded-lg bg-muted  justify-center"
     role="tablist"
     aria-label="Components sections"
   >
@@ -74,7 +74,7 @@ const groupedEntries = [
         @click.prevent="setTab($el.dataset.id)"
         :aria-selected={`tab === '${id}'`}
         class="relative px-3 h-8 flex items-center text-xs font-medium rounded-md transition-colors duration-200"
-        :class={`tab === '${id}' ? 'bg-white dark:bg-base-800 text-base-900 dark:text-base-100 shadow-sm dark:ring-base-700' : 'text-base-600 hover:text-base-900 dark:hover:text-base-100'`}
+        :class={`tab === '${id}' ? 'bg-background text-foreground shadow-sm ring-1 ring-border' : 'text-muted-foreground hover:text-foreground'`}
       >
         {title}
       </a>
@@ -82,34 +82,35 @@ const groupedEntries = [
   </nav>
 </Wrapper>
     <Wrapper variant="standard">
-      {groupedEntries.map(({ id, description, groups }) => {
-        return (
-          <div
-            class="relative"
-            id={id}
-            x-show={`tab === '${id}'`}
-            x-cloak
-            style={id === 'marketing' ? '' : 'display:none'}
-          >
-            <Text tag="p" variant="textSM" class="sr-only">
-              {description}
-            </Text>
-            <div class="relative w-full flex flex-col gap-12 mt-8">
-              {groups.map(({ id: groupId, label, data }) => (
-                <section id={groupId} class="p-8 bg-base-25 dark:bg-base-900">
-                  <Text
-                    tag="h3"
-                    variant="displayMD"
-                    class=" text-base-900 dark:text-white tracking-tight font-serif"
-                  >
-                    {label}
-                  </Text>
-                  <EntryStructure entries={data} />
-                </section>
-              ))}
+   
+        {groupedEntries.map(({ id, description, groups }) => {
+          return (
+            <div
+              class="relative"
+              id={id}
+              x-show={`tab === '${id}'`}
+              x-cloak
+              style={id === 'marketing' ? '' : 'display:none'}
+            >
+              <Text tag="p" variant="textSM" class="sr-only">
+                {description}
+              </Text>
+              <div class="relative w-full flex flex-col gap-12 mt-8">
+                {groups.map(({ id: groupId, label, data }) => (
+                  <section id={groupId}>
+                    <Text
+                      tag="h3"
+                      variant="displaySM"
+                      class="text-foreground tracking-tight font-serif"
+                    >
+                      {label}
+                    </Text>
+                    <EntryStructure entries={data} />
+                  </section>
+                ))}
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
     </Wrapper>
 </div>

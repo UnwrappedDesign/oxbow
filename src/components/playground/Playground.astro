@@ -55,7 +55,7 @@ if (startMarker.test(rawSlotCode) && endMarker.test(rawSlotCode)) {
     const between = afterStart.split("__COPY_START__")[1] || "";
     code =
       between.split(
-        rawSlotCode.match(endMarker)?.[0] || "<!-- copy:end -->"
+        rawSlotCode.match(endMarker)?.[0] || "<!-- copy:end -->",
       )[0] || "";
   }
 }
@@ -85,41 +85,9 @@ if (!code) {
 }
 
 let ppcode = "";
-let ppcodeLight = "";
-let ppcodeDarkOnly = "";
 
 // Always format so the Code tab shows pretty output by default
 ppcode = await prettier.format(code, { parser: "html" });
-// Also prepare a light-only version with dark: classes removed
-try {
-  const stripped = code.replace(/(^|\s)dark:[^\s"'>]+/g, " ");
-  ppcodeLight = await prettier.format(stripped, { parser: "html" });
-} catch {}
-// Prepare a dark-only version: keep dark:* tokens, drop their light counterparts, then unprefix dark:
-try {
-  const categoryOf = (tok: string) => {
-    // Strip variants like hover:, focus: etc. Keep final utility
-    const parts = tok.split(":");
-    const core = parts[parts.length - 1];
-    return core.split("-")[0];
-  };
-  const darkified = ppcode.replace(/class=("|')(.*?)(\1)/gs, (m, q, cls) => {
-    const tokens = cls.split(/\s+/).filter(Boolean);
-    const darkTokens = tokens.filter((t) => t.includes("dark:"));
-    const darkCategories = new Set(
-      darkTokens.map((t) => categoryOf(t.replace(/^.*dark:/, "")))
-    );
-    const kept = tokens.filter((t) => {
-      if (t.includes("dark:")) return true; // keep all dark: tokens
-      const cat = categoryOf(t);
-      if (darkCategories.has(cat)) return false; // drop light in same category
-      return true;
-    });
-    const normalized = kept.map((t) => t.replace(/^.*dark:/, ""));
-    return `class=${q}${normalized.join(" ")}${q}`;
-  });
-  ppcodeDarkOnly = await prettier.format(darkified, { parser: "html" });
-} catch {}
 
 // Build preview HTML that swaps viewport breakpoints (sm:, md:, ...) to container queries (@sm:, @md:, ...)
 // This lets the demo respond to the resizable container instead of the viewport.
@@ -130,21 +98,17 @@ const theme = ``;
 const hostId = `playground-host-${componentIndex}`;
 
 // Pre-render highlighted code for the island using dual-theme CSS variables
-let highlightedSystem = "",
-  highlightedLight = "",
-  highlightedDark = "";
+let highlightedSystem = "";
 
 try {
   highlightedSystem = await codeToHtml(ppcode, {
     lang: "html",
     themes: {
       light: "github-light",
-      dark: "github-dark",
+      ["dark"]: "github-dark",
     },
     defaultColor: false,
   });
-  highlightedLight = highlightedSystem;
-  highlightedDark = highlightedSystem;
 } catch {}
 ---
 
@@ -155,11 +119,7 @@ try {
     iframeSrc={iframeSrc}
     initialTab={initialTabIsCode ? "code" : "preview"}
     ppcode={ppcode}
-    ppcodeLight={ppcodeLight}
-    ppcodeDarkOnly={ppcodeDarkOnly}
     highlightedSystem={highlightedSystem}
-    highlightedLight={highlightedLight}
-    highlightedDark={highlightedDark}
     hostId={hostId}
     navCat={navCat}
     navSub={navSub}

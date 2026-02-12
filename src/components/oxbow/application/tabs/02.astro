@@ -1,16 +1,14 @@
 ---
 export const excludeFromObfuscation = [
-  "bg-white",
-  "bg-zinc-50",
-  "text-zinc-600",
+  "bg-background",
+  "bg-muted",
+  "text-muted-foreground",
   "ring-1",
-  "ring-zinc-200",
+  "ring-border",
 ];
 ---
 
-<div
-  class="flex flex-col justify-center p-12 mx-auto bg-white dark:bg-zinc-900"
->
+<div class="flex flex-col justify-center p-12 mx-auto bg-background">
   <!-- copy:start -->
   <div
     x-data="{
@@ -40,10 +38,10 @@ export const excludeFromObfuscation = [
       aria-orientation="horizontal"
       class="flex justify-center"
     >
-      <div class="flex p-1 rounded-lg gap-1 bg-zinc-50 dark:bg-zinc-800">
+      <div class="flex p-1 rounded-lg gap-1 bg-background">
         <template x-for="(id, idx) in keys" :key="id">
           <button
-            class="px-4 text-sm font-medium h-9 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500/50 transition"
+            class="px-4 text-sm font-medium h-9 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-border transition"
             :id="'tab-'+id"
             role="tab"
             :aria-selected="selected===id"
@@ -52,7 +50,7 @@ export const excludeFromObfuscation = [
             x-ref="tab-[[id]]"
             @click="select(id)"
             @keydown="onKeydown($event)"
-            :class="selected===id ? 'bg-white dark:bg-zinc-900 text-zinc-600 shadow-sm ring-1 ring-zinc-200 dark:ring-zinc-700' : 'text-zinc-600 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-zinc-100'"
+            :class="selected===id ? 'bg-background text-foreground shadow-sm ring-1 ring-border' : 'text-muted-foreground hover:text-foreground'"
           >
             <span
               x-text="id==='overview' ? 'Overview' : id==='projects' ? 'Projects' : 'Packages'"
@@ -61,7 +59,7 @@ export const excludeFromObfuscation = [
         </template>
       </div>
     </div>
-    <div class="pt-4 text-sm text-zinc-500 dark:text-zinc-300">
+    <div class="pt-4 text-sm text-muted-foreground">
       <section
         x-show="selected==='overview'"
         x-cloak

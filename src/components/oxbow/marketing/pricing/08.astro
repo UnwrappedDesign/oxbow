@@ -3,9 +3,9 @@ export const excludeFromObfuscation = [
   "w-1/2",
   "translate-x-0",
   "translate-x-full",
-  "text-zinc-600",
-  "focus:text-zinc-900",
-  "hover:text-zinc-900",
+  "text-muted-foreground",
+  "focus:text-foreground",
+  "hover:text-foreground",
 ];
 
 export const description = "Pricing section with 4 tiers";
@@ -38,11 +38,10 @@ import AdjustmentsHorizontal from "@/components/fundations/icons/AdjustmentsHori
 const pricingOptions = [
   {
     id: "core",
-    cardClass:
-      "bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 ",
-    primaryTextColor: "text-zinc-900 dark:text-white",
-    secondaryTextColor: "text-zinc-500 dark:text-zinc-400",
-    featuresBorderColor: "border-zinc-200 dark:border-zinc-800",
+    cardClass: "bg-background outline outline-border ",
+    primaryTextColor: "text-foreground",
+    secondaryTextColor: "text-muted-foreground",
+    featuresBorderColor: "border-border border-border",
     title: "Core",
     monthly: "$29.00",
     annual: "$19.00",
@@ -64,11 +63,10 @@ const pricingOptions = [
   {
     id: "momentum",
     isPopular: true,
-    cardClass:
-      "bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 ",
-    primaryTextColor: "text-zinc-900 dark:text-white",
-    secondaryTextColor: "text-zinc-500 dark:text-zinc-400",
-    featuresBorderColor: "border-zinc-200 dark:border-zinc-800",
+    cardClass: "bg-background outline outline-border ",
+    primaryTextColor: "text-foreground",
+    secondaryTextColor: "text-muted-foreground",
+    featuresBorderColor: "border-border border-border",
     title: "Momentum",
     monthly: "$49.00",
     annual: "$39.00",
@@ -92,11 +90,10 @@ const pricingOptions = [
   },
   {
     id: "velocity",
-    cardClass:
-      "bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 ",
-    primaryTextColor: "text-zinc-900 dark:text-white",
-    secondaryTextColor: "text-zinc-500 dark:text-zinc-400",
-    featuresBorderColor: "border-zinc-200 dark:border-zinc-800",
+    cardClass: "bg-background outline outline-border ",
+    primaryTextColor: "text-foreground",
+    secondaryTextColor: "text-muted-foreground",
+    featuresBorderColor: "border-border border-border",
     title: "Velocity",
     monthly: "$99.00",
     annual: "$79.00",
@@ -117,11 +114,10 @@ const pricingOptions = [
   },
   {
     id: "titan",
-    cardClass:
-      "bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 ",
-    primaryTextColor: "text-zinc-900 dark:text-white",
-    secondaryTextColor: "text-zinc-500 dark:text-zinc-400",
-    featuresBorderColor: "border-zinc-200 dark:border-zinc-800",
+    cardClass: "bg-background outline outline-border ",
+    primaryTextColor: "text-foreground",
+    secondaryTextColor: "text-muted-foreground",
+    featuresBorderColor: "border-border border-border",
     title: "Titan",
     monthly: "$199.00",
     annual: "$149.00",
@@ -144,21 +140,21 @@ const pricingOptions = [
 ];
 ---
 
-<section x-data="{ duration: 'monthly' }" class="bg-white dark:bg-zinc-900">
+<section x-data="{ duration: 'monthly' }" class="bg-background">
   <div class="px-8 py-24 mx-auto max-w-7xl md:px-12 lg:px-20">
     <div class="items-end grid grid-cols-1 lg:grid-cols-2">
       <div>
         <Text
           tag="h1"
           variant="displaySM"
-          class="font-medium tracking-tight text-zinc-900 dark:text-white lg:text-balance"
+          class="font-medium tracking-tight text-foreground lg:text-balance"
         >
           Equip your business with world class software
         </Text>
         <Text
           tag="p"
           variant="textBase"
-          class="mt-2 font-medium text-zinc-600 dark:text-zinc-300 lg:text-balance"
+          class="mt-2 font-medium text-muted-foreground lg:text-balance"
         >
           Choose a plan that works the best for you and your team. Start small,
           upgrade when you need to.
@@ -166,16 +162,16 @@ const pricingOptions = [
       </div>
       <div
         aria-labelledby="pricing-toggle"
-        class="relative z-0 inline-flex justify-center w-full p-1 mt-8 overflow-hidden bg-white shadow dark:bg-zinc-900 ring-1 ring-zinc-200 dark:ring-zinc-700 ring-offset-2 gap-4 lg:ml-auto rounded-md max-w-52 dark:ring-offset-black"
+        class="relative z-0 inline-flex justify-center w-full p-1 mt-8 overflow-hidden bg-background shadow ring-1 ring-border ring-offset-2 gap-4 lg:ml-auto rounded-md max-w-52 ring-offset-background"
       >
         <div
-          class="absolute inset-0 bg-zinc-50 dark:bg-zinc-800 rounded-md transition-transform duration-200 ease-in-out"
+          class="absolute inset-0 bg-muted rounded-md ring-1 ring-border/60 shadow-sm transition-transform duration-200 ease-in-out"
           :class="duration === 'monthly' ? 'w-1/2 translate-x-0' : 'w-1/2 translate-x-full'"
         >
         </div>
         <button
           class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-          :class="duration === 'monthly' ? 'text-zinc-600 dark:text-zinc-300' : 'focus:text-zinc-900 hover:text-zinc-900 dark:focus:text-zinc-100 dark:hover:text-zinc-100 dark:text-zinc-300'"
+          :class="duration === 'monthly' ? 'text-foreground' : 'text-muted-foreground hover:text-foreground focus:text-foreground'"
           @click="duration = 'monthly'"
           type="button"
           :aria-pressed="duration === 'monthly'"
@@ -184,7 +180,7 @@ const pricingOptions = [
         </button>
         <button
           class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-          :class="duration === 'annual' ? 'text-zinc-600 dark:text-zinc-300' : 'focus:text-zinc-900 hover:text-zinc-900 dark:focus:text-zinc-100 dark:hover:text-zinc-100 dark:text-zinc-300'"
+          :class="duration === 'annual' ? 'text-foreground' : 'text-muted-foreground hover:text-foreground focus:text-foreground'"
           @click="duration = 'annual'"
           type="button"
           :aria-pressed="duration === 'annual'"
@@ -195,7 +191,7 @@ const pricingOptions = [
     </div>
     <!-- Pricing Cards -->
     <div
-      class="mt-12 overflow-hidden shadow grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 outline rounded-xl outline-zinc-200 lg:divide-x lg:divide-zinc-200 dark:outline-zinc-900 dark:divide-zinc-900 lg:-mx-18 2xl:mx-0"
+      class="mt-12 overflow-hidden shadow grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 outline rounded-xl outline-border lg:divide-x lg:divide-border divide-border lg:-mx-18 2xl:mx-0"
     >
       {
         pricingOptions.map((tier) => (
@@ -205,12 +201,12 @@ const pricingOptions = [
                 <Text
                   tag="h3"
                   variant="textBase"
-                  class={` font-medium text-zinc-900 dark:text-white ${tier.primaryTextColor}`}
+                  class={` font-medium text-foreground ${tier.primaryTextColor}`}
                 >
                   {tier.title}
                 </Text>
                 {tier.isPopular && (
-                  <div class="text-xs font-medium text-white uppercase">
+                  <div class="text-xs font-medium text-foreground uppercase">
                     Most Popular
                   </div>
                 )}
@@ -218,13 +214,13 @@ const pricingOptions = [
               <Text
                 tag="p"
                 variant="textSM"
-                class={`mt-2 ${tier.secondaryTextColor} dark:text-zinc-300`}
+                class={`mt-2 ${tier.secondaryTextColor} text-muted-foreground`}
               >
                 {tier.description}
               </Text>
               <Text
                 variant="displaySM"
-                class={`font-medium flex items-baseline tracking-tighter mt-4 ${tier.primaryTextColor} dark:text-zinc-100`}
+                class={`font-medium flex items-baseline tracking-tighter mt-4 ${tier.primaryTextColor} text-foreground`}
               >
                 <span
                   data-monthly={tier.monthly}
@@ -232,7 +228,7 @@ const pricingOptions = [
                   x-text="$el.dataset[duration]"
                 />
                 <span
-                  class={`text-sm font-normal  tracking-normal ${tier.secondaryTextColor} dark:text-zinc-300`}
+                  class={`text-sm font-normal  tracking-normal ${tier.secondaryTextColor} text-muted-foreground`}
                 >
                   <span x-show="duration === 'monthly'">/month</span>
                   <span x-show="duration === 'annual'" style="display: none;">
@@ -250,14 +246,14 @@ const pricingOptions = [
               <Text
                 tag="p"
                 variant="textXS"
-                class={`font-medium uppercase ${tier.secondaryTextColor} dark:text-zinc-400`}
+                class={`font-medium uppercase ${tier.secondaryTextColor} text-muted-foreground`}
               >
                 {tier.title === "Momentum"
                   ? "Everything in Core plus:"
                   : "Core plan includes:"}
               </Text>
               <ul
-                class={`flex flex-col mt-4 text-sm  gap-y-3 ${tier.primaryTextColor} dark:text-zinc-100`}
+                class={`flex flex-col mt-4 text-sm  gap-y-3 ${tier.primaryTextColor} text-foreground`}
                 role="list"
               >
                 {tier.features.map((feature, index) => (

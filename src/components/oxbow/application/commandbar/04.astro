@@ -3,16 +3,16 @@ import Button from "@/components/fundations/buttons/Button.astro";
 import IconButton from "@/components/fundations/buttons/IconButton.astro";
 // Prevent obfuscation for classes we toggle via :class
 export const excludeFromObfuscation = [
-  "bg-zinc-50",
-  "bg-white/5",
-  "dark:bg-white/5",
-  "text-accent-600",
-  "text-zinc-600",
+  "bg-muted",
+  "bg-background/5",
+  "bg-background/5",
+  "text-foreground",
+  "text-muted-foreground",
   // filter button states
-  "bg-zinc-100",
-  "dark:bg-zinc-800",
-  "text-zinc-900",
-  "dark:text-zinc-100",
+  "bg-muted",
+  "bg-background",
+  "text-foreground",
+  "text-foreground",
 ];
 import Search from "@/components/fundations/icons/Search.astro";
 import XIcon from "@/components/fundations/icons/X.astro";
@@ -25,9 +25,7 @@ import Check from "@/components/fundations/icons/Check.astro";
 import Settings from "@/components/fundations/icons/Settings.astro";
 ---
 
-<div
-  class="flex items-center justify-center p-8 py-24 bg-white dark:bg-zinc-900"
->
+<div class="flex items-center justify-center p-8 py-24 bg-background">
   <!-- Copy:start -->
   <!--
   
@@ -42,7 +40,7 @@ import Settings from "@/components/fundations/icons/Settings.astro";
 
 -->
   <div
-    class="w-full max-w-3xl overflow-hidden bg-white shadow-lg dark:bg-zinc-800 rounded-xl outline outline-zinc-200 dark:outline-zinc-800"
+    class="w-full max-w-3xl overflow-hidden bg-background shadow-lg rounded-xl outline outline-border"
     x-data="{
       // UI state
       open: true,
@@ -166,7 +164,7 @@ import Settings from "@/components/fundations/icons/Settings.astro";
     <div class="p-2">
       <div class="relative">
         <Search
-          class="pointer-events-none absolute top-3.5 left-4 text-zinc-400"
+          class="pointer-events-none absolute top-3.5 left-4 text-muted-foreground"
           size="base"
           slot="icon"
         />
@@ -174,27 +172,21 @@ import Settings from "@/components/fundations/icons/Settings.astro";
           x-ref="input"
           x-model="query"
           @focus="open=true"
-          class="w-full h-12 bg-transparent border-0 rounded-lg pr-28 text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 pl-11 sm:text-sm ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none focus:ring-2 focus:ring-orange-500"
+          class="w-full h-12 bg-transparent border-0 rounded-lg pr-28 text-foreground placeholder:text-muted-foreground pl-11 sm:text-sm ring-1 ring-border focus:outline-none focus:ring-2 focus:ring-border"
           placeholder="Run or schedule an automation…"
           autocomplete="off"
         />
         <div
-          class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 hidden sm:flex gap-1 text-[0.70rem] text-zinc-500"
+          class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 hidden sm:flex gap-1 text-[0.70rem] text-muted-foreground"
         >
-          <kbd
-            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700"
-            >⌘</kbd
-          >
-          <kbd
-            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700"
-            >K</kbd
-          >
+          <kbd class="px-1 border rounded bg-background border-border">⌘</kbd>
+          <kbd class="px-1 border rounded bg-background border-border">K</kbd>
         </div>
         <button
           type="button"
           x-show="query.length>0"
           @click="query=''; $nextTick(()=> $refs.input?.focus())"
-          class="absolute right-[3.75rem] top-1/2 -translate-y-1/2 size-7 inline-flex items-center justify-center rounded-md text-zinc-500 hover:text-zinc-700 hover:bg-zinc-100 dark:hover:bg-white/10"
+          class="absolute right-[3.75rem] top-1/2 -translate-y-1/2 size-7 inline-flex items-center justify-center rounded-md text-muted-foreground hover:text-muted-foreground hover:bg-background/10"
           aria-label="Clear search"
         >
           <XIcon size="sm" />
@@ -204,17 +196,17 @@ import Settings from "@/components/fundations/icons/Settings.astro";
       <div class="mt-2 px-2 flex items-center gap-2 text-[12px]">
         <button
           @click="filter='all'"
-          :class="filter==='all' ? 'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100' : 'text-zinc-600 dark:text-zinc-400'"
+          :class="filter==='all' ? 'bg-background text-foreground' : 'text-muted-foreground'"
           class="px-2 py-1 rounded-md">All</button
         >
         <button
           @click="filter='favorites'"
-          :class="filter==='favorites' ? 'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100' : 'text-zinc-600 dark:text-zinc-400'"
+          :class="filter==='favorites' ? 'bg-background text-foreground' : 'text-muted-foreground'"
           class="px-2 py-1 rounded-md">Favorites</button
         >
         <button
           @click="filter='scheduled'"
-          :class="filter==='scheduled' ? 'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100' : 'text-zinc-600 dark:text-zinc-400'"
+          :class="filter==='scheduled' ? 'bg-background text-foreground' : 'text-muted-foreground'"
           class="px-2 py-1 rounded-md">Scheduled</button
         >
       </div>
@@ -223,21 +215,19 @@ import Settings from "@/components/fundations/icons/Settings.astro";
     <!-- STEP 1: Automation list -->
     <template x-if="step===1">
       <div class="py-1">
-        <div
-          class="px-6 py-1 text-[0.70rem] font-medium text-zinc-500 dark:text-zinc-400"
-        >
+        <div class="px-6 py-1 text-[0.70rem] font-medium text-muted-foreground">
           Automations
         </div>
-        <ul class="divide-y divide-zinc-100 dark:divide-zinc-900">
+        <ul class="divide-y divide-border">
           <template x-for="(a, idx) in list()" :key="a.id">
             <li
-              :class="selected===idx ? 'bg-white/10 dark:bg-white/5' : ''"
-              class="flex items-center justify-between px-6 py-3 cursor-pointer gap-3 text-zinc-900 dark:text-zinc-50"
+              :class="selected===idx ? 'bg-background/10 bg-background/5' : ''"
+              class="flex items-center justify-between px-6 py-3 cursor-pointer gap-3 text-muted-foreground"
               @mouseenter="selected = idx"
             >
               <div class="flex items-center gap-3">
                 <div
-                  class="bg-white rounded-lg size-8 dark:bg-zinc-800 grid place-items-center"
+                  class="bg-background rounded-lg size-8 grid place-items-center"
                 >
                   <template x-if="a.icon==='tools'"
                     ><Tools size="sm" /></template
@@ -257,17 +247,14 @@ import Settings from "@/components/fundations/icons/Settings.astro";
                 </div>
                 <div>
                   <div class="text-sm font-medium" x-text="a.name"></div>
-                  <div
-                    class="text-xs text-zinc-500 dark:text-zinc-400"
-                    x-text="a.desc"
-                  >
+                  <div class="text-xs text-muted-foreground" x-text="a.desc">
                   </div>
                 </div>
               </div>
               <div class="flex items-center gap-2">
                 <template x-for="t in a.tags" :key="t">
                   <span
-                    class="hidden md:inline text-[0.70rem] px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-white/5 text-zinc-700 dark:text-zinc-300"
+                    class="hidden md:inline text-[0.70rem] px-2 py-0.5 rounded-full bg-background/5 text-muted-foreground"
                     x-text="t"></span>
                 </template>
                 <IconButton
@@ -275,7 +262,7 @@ import Settings from "@/components/fundations/icons/Settings.astro";
                   :aria-pressed="favorites.has(a.id)"
                   size="xxs"
                   variant="muted"
-                  :class="favorites.has(a.id)?'text-accent-600':'text-zinc-600'"
+                  :class="favorites.has(a.id)?'text-foreground':'text-muted-foreground'"
                 >
                   <Settings size="sm" class="opacity-70" />
                   <span class="sr-only">Toggle favorite</span>
@@ -291,17 +278,17 @@ import Settings from "@/components/fundations/icons/Settings.astro";
           </template>
           <li
             x-show="list().length===0"
-            class="px-6 py-6 text-sm italic text-center text-zinc-500"
+            class="px-6 py-6 text-sm italic text-center text-muted-foreground"
           >
             Nothing to show
           </li>
         </ul>
         <!-- Scheduled overview -->
         <div class="px-6 py-3" x-show="scheduled.length">
-          <div class="text-[0.70rem] font-medium text-zinc-500 mb-2">
+          <div class="text-[0.70rem] font-medium text-muted-foreground mb-2">
             Upcoming
           </div>
-          <ul class="text-xs space-y-1 text-zinc-600">
+          <ul class="text-xs space-y-1 text-muted-foreground">
             <template x-for="s in scheduled" :key="s.id + s.at">
               <li>
                 <span class="font-medium" x-text="s.name"></span> — <span
@@ -316,11 +303,9 @@ import Settings from "@/components/fundations/icons/Settings.astro";
     <!-- STEP 2: Configure form (dynamic) -->
     <template x-if="step===2">
       <div class="px-4 py-3">
-        <div class="px-2 text-[0.70rem] text-zinc-500 dark:text-zinc-400">
-          Configure
-        </div>
+        <div class="px-2 text-[0.70rem] text-muted-foreground">Configure</div>
         <div
-          class="px-2 mt-2 text-sm font-medium dark:text-zinc-400"
+          class="px-2 mt-2 text-sm font-medium text-muted-foreground"
           x-text="current?.name"
         >
         </div>
@@ -330,12 +315,12 @@ import Settings from "@/components/fundations/icons/Settings.astro";
           <template x-for="p in current?.params || []" :key="p.key">
             <div>
               <label
-                class="text-[0.70rem] text-zinc-600 block dark:text-zinc-400"
+                class="text-[0.70rem] text-muted-foreground block"
                 x-text="p.label"></label>
               <template x-if="p.type==='text'">
                 <input
                   type="text"
-                  class="w-full h-9 px-2 rounded-md ring-1 ring-zinc-200 dark:ring-zinc-700 bg-transparent text-sm mt-0.5 border-zinc-200 dark:border-zinc-700"
+                  class="w-full h-9 px-2 rounded-md ring-1 ring-border bg-transparent text-sm mt-0.5 border-border"
                   :placeholder="p.placeholder || ''"
                   x-model="form[p.key]"
                 />
@@ -344,17 +329,17 @@ import Settings from "@/components/fundations/icons/Settings.astro";
                 <label class="flex items-center text-sm gap-2">
                   <input
                     type="checkbox"
-                    class="border accent-zinc-900 rounded-md border-zinc-200 dark:border-zinc-900"
+                    class="border text-foreground rounded-md border-border"
                     x-model="form[p.key]"
                   />
                   <span
-                    class="text-zinc-500 dark:text-zinc-400"
+                    class="text-muted-foreground"
                     x-text="form[p.key] ? 'Enabled' : 'Disabled'"></span>
                 </label>
               </template>
               <template x-if="p.type==='select'">
                 <select
-                  class="w-full h-9 px-2 rounded-md ring-1 ring-zinc-200 dark:ring-zinc-700 bg-transparent text-sm rounded border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 mt-0.5"
+                  class="w-full h-9 px-2 rounded-md ring-1 ring-border bg-transparent text-sm rounded border-border text-muted-foreground mt-0.5"
                   x-model="form[p.key]"
                 >
                   <template x-for="opt in p.options || []" :key="opt">
@@ -365,7 +350,7 @@ import Settings from "@/components/fundations/icons/Settings.astro";
               <template x-if="p.type==='datetime'">
                 <input
                   type="datetime-local"
-                  class="w-full px-2 text-sm bg-transparent h-9 rounded-md ring-1 ring-zinc-200 dark:ring-zinc-700 dark:text-zinc-400 border-zinc-200 dark:border-zinc-700"
+                  class="w-full px-2 text-sm bg-transparent h-9 rounded-md ring-1 ring-border text-muted-foreground border-border"
                   x-model="form[p.key]"
                 />
               </template>
@@ -393,16 +378,16 @@ import Settings from "@/components/fundations/icons/Settings.astro";
     <template x-if="step===3">
       <div class="px-6 py-10 text-center">
         <div
-          class="inline-flex items-center justify-center rounded-full size-12 bg-emerald-100 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-200"
+          class="inline-flex items-center justify-center rounded-full size-12 text-success bg-success/10"
         >
           <Check size="base" />
         </div>
         <div
-          class="mt-3 text-sm font-medium text-zinc-900 dark:text-zinc-100"
+          class="mt-3 text-sm font-medium text-foreground"
           x-text="toast || 'Completed'"
         >
         </div>
-        <div class="mt-2 text-xs text-zinc-600 dark:text-zinc-400">
+        <div class="mt-2 text-xs text-muted-foreground">
           You can close this panel or run another automation.
         </div>
         <div class="flex items-center justify-center mt-4 gap-2">
@@ -419,17 +404,17 @@ import Settings from "@/components/fundations/icons/Settings.astro";
 
     <!-- Footer help -->
     <div
-      class="px-4 py-2 text-[0.70rem] text-zinc-500 dark:text-zinc-400 flex items-center justify-between bg-zinc-50 dark:bg-white/10"
+      class="px-4 py-2 text-[0.70rem] text-muted-foreground flex items-center justify-between bg-background/10"
     >
       <div>
         Press <kbd
-          class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+          class="px-1 border rounded bg-background border-border text-muted-foreground"
           >/</kbd
         > to search • <kbd
-          class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+          class="px-1 border rounded bg-background border-border text-muted-foreground"
           >Shift</kbd
         > + <kbd
-          class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+          class="px-1 border rounded bg-background border-border text-muted-foreground"
           >↵</kbd
         >
         quick run
@@ -437,16 +422,16 @@ import Settings from "@/components/fundations/icons/Settings.astro";
       <div class="items-center hidden sm:flex gap-2">
         <span class="flex items-center gap-1"
           ><kbd
-            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            class="px-1 border rounded bg-background border-border text-muted-foreground"
             >↑</kbd
           ><kbd
-            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            class="px-1 border rounded bg-background border-border text-muted-foreground"
             >↓</kbd
           > to navigate</span
         >
         <span class="flex items-center gap-1"
           ><kbd
-            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            class="px-1 border rounded bg-background border-border text-muted-foreground"
             >↵</kbd
           > to configure</span
         >

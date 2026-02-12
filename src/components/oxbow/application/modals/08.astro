@@ -14,7 +14,7 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
 ---
 
 <div
-  class="p-8 pb-200 lg:pb-200 pt-40 lg:pt-20 bg-white dark:bg-zinc-900 flex items-center justify-center"
+  class="p-8 pb-200 lg:pb-200 pt-40 lg:pt-20 bg-background flex items-center justify-center"
 >
   <!-- Copy:start -->
   <!--
@@ -114,7 +114,7 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
     <div
       x-show="open"
       x-transition.opacity
-      class="fixed inset-0 z-40 bg-black/40 dark:bg-white/20"
+      class="fixed inset-0 z-40 bg-background/20"
       aria-hidden="true"
       @click="open=false"
     >
@@ -142,13 +142,11 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
         x-transition:leave="transition ease-in duration-150"
         x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0"
-        class="w-full sm:max-w-4xl rounded-2xl bg-white dark:bg-zinc-800 shadow-xl outline outline-1 outline-black/5 dark:-outline-offset-1 dark:outline-white/10"
+        class="w-full sm:max-w-4xl rounded-2xl bg-background shadow-xl outline outline-1 outline-border/5 -outline-offset-1 outline-border/10"
       >
         <div class="lg:grid lg:grid-cols-[220px_1fr]">
           <!-- Presets -->
-          <aside
-            class="p-4 lg:border-r border-zinc-100 dark:border-zinc-700 text-sm relative"
-          >
+          <aside class="p-4 lg:border-r border-border text-sm relative">
             <div>
               <Button
                 variant="outline"
@@ -164,88 +162,84 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
               <div
                 x-show="presetsOpen"
                 @click.outside="presetsOpen=false"
-                class="absolute z-10 mt-2 w-48 rounded-md bg-white dark:bg-zinc-800 shadow ring-1 ring-zinc-200 dark:ring-zinc-700 overflow-hidden"
+                class="absolute z-10 mt-2 w-48 rounded-md bg-background shadow ring-1 ring-border overflow-hidden"
               >
                 <button
-                  class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
+                  class="w-full text-left px-3 py-2 hover:bg-background/10 text-foreground"
                   @click="setPreset('today'); presetsOpen=false">Today</button
                 >
                 <button
-                  class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
+                  class="w-full text-left px-3 py-2 hover:bg-background/10 text-foreground"
                   @click="setPreset('yesterday'); presetsOpen=false"
                   >Yesterday</button
                 >
                 <button
-                  class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
+                  class="w-full text-left px-3 py-2 hover:bg-background/10 text-foreground"
                   @click="setPreset('last7'); presetsOpen=false"
                   >Last 7 days</button
                 >
                 <button
-                  class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
+                  class="w-full text-left px-3 py-2 hover:bg-background/10 text-foreground"
                   @click="setPreset('last30'); presetsOpen=false"
                   >Last 30 days</button
                 >
                 <button
-                  class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
+                  class="w-full text-left px-3 py-2 hover:bg-background/10 text-foreground"
                   @click="setPreset('thisWeek'); presetsOpen=false"
                   >This week</button
                 >
                 <button
-                  class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
+                  class="w-full text-left px-3 py-2 hover:bg-background/10 text-foreground"
                   @click="setPreset('lastWeek'); presetsOpen=false"
                   >Last week</button
                 >
                 <button
-                  class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
+                  class="w-full text-left px-3 py-2 hover:bg-background/10 text-foreground"
                   @click="setPreset('thisMonth'); presetsOpen=false"
                   >This month</button
                 >
                 <button
-                  class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
+                  class="w-full text-left px-3 py-2 hover:bg-background/10 text-foreground"
                   @click="setPreset('lastMonth'); presetsOpen=false"
                   >Last month</button
                 >
                 <button
-                  class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
+                  class="w-full text-left px-3 py-2 hover:bg-background/10 text-foreground"
                   @click="setPreset('thisYear'); presetsOpen=false"
                   >This year</button
                 >
                 <button
-                  class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
+                  class="w-full text-left px-3 py-2 hover:bg-background/10 text-foreground"
                   @click="setPreset('lastYear'); presetsOpen=false"
                   >Last year</button
                 >
                 <button
-                  class="w-full text-left px-3 py-2 hover:bg-zinc-50 dark:hover:bg-white/10 text-zinc-900 dark:text-white"
+                  class="w-full text-left px-3 py-2 hover:bg-background/10 text-foreground"
                   @click="setPreset('allTime'); presetsOpen=false"
                   >All time</button
                 >
               </div>
             </div>
-            <div
-              class="mt-4 space-y-2 border-t pt-4 border-zinc-100 dark:border-zinc-700"
-            >
-              <label
-                class="flex items-center gap-2 text-zinc-700 dark:text-zinc-300"
-              >
+            <div class="mt-4 space-y-2 border-t pt-4 border-border">
+              <label class="flex items-center gap-2 text-muted-foreground">
                 <input
                   type="checkbox"
-                  class="rounded border-zinc-300 dark:border-zinc-600 dark:bg-zinc-800 text-orange-600 focus:ring-orange-500 focus:ring-offset-2 focus:ring-2 shadow size-4"
+                  class="rounded border-border bg-background text-foreground focus:ring-border focus:ring-offset-2 focus:ring-2 shadow size-4"
                   x-model="range"
                 />
                 <span>Range selection</span>
               </label>
-              <label
-                class="flex items-center gap-2 text-zinc-700 dark:text-zinc-300"
-              >
+              <label class="flex items-center gap-2 text-muted-foreground">
                 <input
                   type="checkbox"
-                  class="rounded border-zinc-300 dark:border-zinc-600 dark:bg-zinc-800 text-orange-600 focus:ring-orange-500 focus:ring-offset-2 focus:ring-2 shadow size-4"
+                  class="rounded border-border bg-background text-foreground focus:ring-border focus:ring-offset-2 focus:ring-2 shadow size-4"
                   x-model="disableWeekends"
                 />
                 <span>Disable weekends</span>
               </label>
-              <div class="flex flex-col gap-2 text-xs text-zinc-500 mt-4">
+              <div
+                class="flex flex-col gap-2 text-xs text-muted-foreground mt-4"
+              >
                 <Button
                   size="xxs"
                   variant="outline"
@@ -265,11 +259,9 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
           <!-- Calendars -->
           <section class="p-4">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div
-                class="rounded-xl outline outline-zinc-200 dark:outline-zinc-700 overflow-hidden"
-              >
+              <div class="rounded-xl outline outline-border overflow-hidden">
                 <div
-                  class="flex items-center justify-between px-3 py-2 border-b border-zinc-100 dark:border-zinc-700"
+                  class="flex items-center justify-between px-3 py-2 border-b border-border"
                 >
                   <IconButton
                     size="xxs"
@@ -279,7 +271,7 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
                     <ChevronLeft slot="icon" size="xs" />
                   </IconButton>
                   <div
-                    class="text-sm font-medium text-zinc-500 dark:text-zinc-300"
+                    class="text-sm font-medium text-muted-foreground"
                     x-text="view.toLocaleDateString(undefined,{ month:'long', year:'numeric' })"
                   >
                   </div>
@@ -287,7 +279,7 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
                 </div>
                 <div class="p-3 text-xs">
                   <div
-                    class="grid grid-cols-8 text-center text-zinc-500 dark:text-zinc-300"
+                    class="grid grid-cols-8 text-center text-muted-foreground"
                   >
                     <span class="text-left pl-1">Wk</span><span>Mo</span><span
                       >Tu</span
@@ -298,7 +290,7 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
                     <template x-for="row in buildWeeks(view)" :key="row.key">
                       <div class="grid grid-cols-8">
                         <span
-                          class="text-[10px] leading-8 text-zinc-400 dark:text-zinc-300 pl-1"
+                          class="text-[10px] leading-8 text-muted-foreground pl-1"
                           >#<span x-text="row.week"></span></span
                         >
                         <template
@@ -311,15 +303,7 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
                             :disabled="isDisabled(cell.date)"
                             @click="pick(cell.date)"
                             class="h-8 w-8 mx-auto rounded-full text-xs flex items-center justify-center"
-                            :class="[
-                              isDisabled(cell.date) ? 'opacity-40 cursor-not-allowed' : 'hover:bg-zinc-100 dark:hover:bg-white/10',
-                              (isSame(cell.date,start) || isSame(cell.date,end))
-                                ? 'bg-orange-600 text-white'
-                                : ((inRange(cell.date) || previewInRange(cell.date))
-                                    ? 'bg-orange-600/20 text-orange-700 dark:text-orange-300'
-                                    : (cell.inMonth ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500')
-                                  )
-                            ]"
+                            :class="[ isDisabled(cell.date) 'opacity-40 cursor-not-allowed' 'hover:bg-background/10', (isSame(cell.date,start) || isSame(cell.date,end)) 'bg-muted ((inRange(cell.date) previewInRange(cell.date)) 'bg-muted/20 text-foreground' (cell.inMonth ? 'text-foreground' : 'text-muted-foreground') ) ]"
                             x-text="cell.date.getDate()"></button>
                         </template>
                       </div>
@@ -327,15 +311,13 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
                   </div>
                 </div>
               </div>
-              <div
-                class="rounded-xl outline outline-zinc-200 dark:outline-zinc-700 overflow-hidden"
-              >
+              <div class="rounded-xl outline outline-border overflow-hidden">
                 <div
-                  class="flex items-center justify-between px-3 py-2 border-b border-zinc-100 dark:border-zinc-700"
+                  class="flex items-center justify-between px-3 py-2 border-b border-border"
                 >
                   <div class="w-6"></div>
                   <div
-                    class="text-sm font-medium text-zinc-500 dark:text-zinc-300"
+                    class="text-sm font-medium text-muted-foreground"
                     x-text="addMonths(view,1).toLocaleDateString(undefined,{ month:'long', year:'numeric' })"
                   >
                   </div>
@@ -350,7 +332,7 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
                 </div>
                 <div class="p-3 text-xs">
                   <div
-                    class="grid grid-cols-8 text-center text-zinc-500 dark:text-zinc-300"
+                    class="grid grid-cols-8 text-center text-muted-foreground"
                   >
                     <span class="text-left pl-1">Wk</span><span>Mo</span><span
                       >Tu</span
@@ -364,7 +346,7 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
                     >
                       <div class="grid grid-cols-8">
                         <span
-                          class="text-[10px] leading-8 text-zinc-500 dark:text-zinc-300 pl-1"
+                          class="text-[10px] leading-8 text-muted-foreground pl-1"
                           >#<span x-text="row.week"></span></span
                         >
                         <template
@@ -377,15 +359,7 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
                             :disabled="isDisabled(cell.date)"
                             @click="pick(cell.date)"
                             class="h-8 w-8 mx-auto rounded-full text-xs flex items-center justify-center"
-                            :class="[
-                              isDisabled(cell.date) ? 'opacity-40 cursor-not-allowed' : 'hover:bg-zinc-100 dark:hover:bg-white/10',
-                              (isSame(cell.date,start) || isSame(cell.date,end))
-                                ? 'bg-orange-600 text-white'
-                                : ((inRange(cell.date) || previewInRange(cell.date))
-                                    ? 'bg-orange-600/20 text-orange-700 dark:text-orange-300'
-                                    : (cell.inMonth ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500')
-                                  )
-                            ]"
+                            :class="[ isDisabled(cell.date) 'opacity-40 cursor-not-allowed' 'hover:bg-background/10', (isSame(cell.date,start) || isSame(cell.date,end)) 'bg-muted ((inRange(cell.date) previewInRange(cell.date)) 'bg-muted/20 text-foreground' (cell.inMonth ? 'text-foreground' : 'text-muted-foreground') ) ]"
                             x-text="cell.date.getDate()"></button>
                         </template>
                       </div>
@@ -396,29 +370,29 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
             </div>
             <!-- Inputs + actions -->
             <div
-              class="mt-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center gap-2 border-t border-zinc-100 dark:border-zinc-700 pt-3"
+              class="mt-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center gap-2 border-t border-border pt-3"
             >
               <input
                 :value="fmt(start)"
                 readonly
-                class="block w-full h-10 px-4 py-2 text-xs bg-white border border-transparent rounded-lg appearance-none dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-orange-700 focus:bg-transparent focus:outline-none focus:ring-orange-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+                class="block w-full h-10 px-4 py-2 text-xs bg-background border border-transparent rounded-lg appearance-none text-muted-foreground duration-300 ring-1 ring-border placeholder:text-muted-foreground focus:border-border focus:border-border focus:bg-transparent focus:outline-none focus:ring-border focus:ring-offset-2 focus:ring-2 sm:text-sm"
                 placeholder="Start date"
               />
               <input
                 :value="fmt(end)"
                 readonly
-                class="block w-full h-10 px-4 py-2 text-xs bg-white border border-transparent rounded-lg appearance-none dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-orange-700 focus:bg-transparent focus:outline-none focus:ring-orange-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+                class="block w-full h-10 px-4 py-2 text-xs bg-background border border-transparent rounded-lg appearance-none text-muted-foreground duration-300 ring-1 ring-border placeholder:text-muted-foreground focus:border-border focus:border-border focus:bg-transparent focus:outline-none focus:ring-border focus:ring-offset-2 focus:ring-2 sm:text-sm"
                 placeholder="End date"
               />
               <input
                 type="time"
                 x-model="startTime"
-                class="block w-full h-10 px-4 py-2 text-xs bg-white border border-transparent rounded-lg appearance-none dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-orange-700 focus:bg-transparent focus:outline-none focus:ring-orange-500 focus:ring-offset-2 focus:ring-2 sm:text-sm dark:[color-scheme:dark]"
+                class="block w-full h-10 px-4 py-2 text-xs bg-background border border-transparent rounded-lg appearance-none text-muted-foreground duration-300 ring-1 ring-border placeholder:text-muted-foreground focus:border-border focus:border-border focus:bg-transparent focus:outline-none focus:ring-border focus:ring-offset-2 focus:ring-2 sm:text-sm [color-scheme:dark]"
               />
               <input
                 type="time"
                 x-model="endTime"
-                class="block w-full h-10 px-4 py-2 text-xs bg-white border border-transparent rounded-lg appearance-none dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-orange-700 focus:bg-transparent focus:outline-none focus:ring-orange-500 focus:ring-offset-2 focus:ring-2 sm:text-sm dark:[color-scheme:dark]"
+                class="block w-full h-10 px-4 py-2 text-xs bg-background border border-transparent rounded-lg appearance-none text-muted-foreground duration-300 ring-1 ring-border placeholder:text-muted-foreground focus:border-border focus:border-border focus:bg-transparent focus:outline-none focus:ring-border focus:ring-offset-2 focus:ring-2 sm:text-sm [color-scheme:dark]"
               />
               <div
                 class="col-span-2 lg:col-span-4 flex items-center justify-between gap-2 mt-2"

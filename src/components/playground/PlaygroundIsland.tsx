@@ -14,9 +14,8 @@ import {
   ExternalLink,
   Sun,
   Moon,
-  Laptop,
 } from "lucide-react";
-type Mode = "light" | "system" | "dark";
+type Mode = "light" | "dark";
 type Tab = "preview" | "code";
 type IdeTab =
   | "code"
@@ -30,11 +29,7 @@ interface Props {
   iframeSrc: string;
   initialTab: Tab;
   ppcode: string;
-  ppcodeLight?: string;
-  ppcodeDarkOnly?: string;
   highlightedSystem?: string;
-  highlightedLight?: string;
-  highlightedDark?: string;
   hostId?: string;
   // Optional nav controls (detail page)
   navCat?: string;
@@ -52,43 +47,23 @@ export default function PlaygroundIsland({
   iframeSrc,
   initialTab,
   ppcode,
-  ppcodeLight,
-  ppcodeDarkOnly,
   highlightedSystem,
-  highlightedLight,
-  highlightedDark,
   blockPath: _blockPath,
 }: Props) {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   // Persist mode in localStorage
-  const [mode, setModeState] = useState<Mode>("system");
-  const [systemPrefersDark, setSystemPrefersDark] = useState(false);
+  const [mode, setModeState] = useState<Mode>("light");
   // Always sync mode from localStorage on mount (and when remounting after navigation)
   useEffect(() => {
     if (typeof window !== "undefined") {
       const saved = window.localStorage.getItem("oxbow-playground-mode");
-      if (saved === "light" || saved === "dark" || saved === "system")
+      if (saved === "light" || saved === "dark") {
         setModeState(saved);
-    }
-  }, []);
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
-    const onChange = () => setSystemPrefersDark(mq.matches);
-    onChange();
-    try {
-      mq.addEventListener("change", onChange);
-    } catch {
-      mq.addListener(onChange);
-    }
-    return () => {
-      try {
-        mq.removeEventListener("change", onChange);
-      } catch {
-        mq.removeListener(onChange);
+      } else if (saved === "system") {
+        setModeState("light");
       }
-    };
+    }
   }, []);
   const setMode = (m: Mode) => {
     setModeState(m);
@@ -112,27 +87,14 @@ export default function PlaygroundIsland({
     top: 0,
     left: 0,
   });
-  // Choose the text version of the code to display (escaped in <pre><code>)
-  const codeText = useMemo(() => {
-    if (mode === "light") return ppcodeLight || ppcode;
-    if (mode === "dark") return ppcodeDarkOnly || ppcode;
-    return ppcode;
-  }, [mode, ppcode, ppcodeLight, ppcodeDarkOnly]);
-  const systemHighlighted = useMemo(() => {
-    if (systemPrefersDark) {
-      return highlightedDark || highlightedSystem || highlightedLight || "";
-    }
-    return highlightedLight || highlightedSystem || highlightedDark || "";
-  }, [systemPrefersDark, highlightedDark, highlightedSystem, highlightedLight]);
+  const codeText = ppcode;
+  const codePaneDark = mode === "dark";
   const applyModeToIframe = (m: Mode) => {
     const ifr = iframeRef.current;
     const doc = ifr?.contentDocument || ifr?.contentWindow?.document;
     const html = doc?.documentElement;
     const body = doc?.body || undefined;
-    const prefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)",
-    ).matches;
-    const enableDark = m === "dark" || (m === "system" && prefersDark);
+    const enableDark = m === "dark";
     if (html) {
       html.classList.toggle("dark", enableDark);
       if (body) body.classList.toggle("dark", enableDark);
@@ -175,6 +137,28 @@ export default function PlaygroundIsland({
     } catch {}
   };
   useEffect(() => {
+    const onMessage = (e: MessageEvent) => {
+      const data = (e?.data || {}) as {
+        type?: string;
+        id?: string;
+        height?: number;
+      };
+      if (data.type !== "oxbow-height") return;
+      if (data.id && data.id !== iframeId) return;
+      const h = Number(data.height) || 0;
+      if (h <= 0) return;
+      const target = `${h}px`;
+      const ifr = iframeRef.current;
+      if (ifr && ifr.style.height !== target) ifr.style.height = target;
+      const container = containerRef.current;
+      if (container && container.style.height !== target) {
+        container.style.height = target;
+      }
+    };
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, [iframeId]);
+  useEffect(() => {
     // Apply mode on change
     applyModeToIframe(mode);
   }, [mode]);
@@ -215,24 +199,6 @@ export default function PlaygroundIsland({
       return () => clearTimeout(t);
     }
   }, [tab]);
-  useEffect(() => {
-    // In system mode, keep in sync with OS
-    if (mode !== "system") return;
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
-    const listener = () => applyModeToIframe("system");
-    try {
-      mq.addEventListener("change", listener);
-    } catch {
-      mq.addListener(listener);
-    }
-    return () => {
-      try {
-        mq.removeEventListener("change", listener);
-      } catch {
-        mq.removeListener(listener);
-      }
-    };
-  }, [mode]);
   const copyCode = async () => {
     const text = codeText || "";
     try {
@@ -415,31 +381,31 @@ export default function PlaygroundIsland({
     className?: string;
   }) => (
     <span
-      className={`pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-black px-3 py-1.5 text-xs font-medium text-white opacity-0 shadow-sm transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100 ${className}`}
+      className={`pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-background px-3 py-1.5 text-xs font-medium text-foreground opacity-0 shadow-sm transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100 ${className}`}
     >
       {label}
     </span>
   );
   const iconButtonBase =
-    "flex size-8 items-center justify-center rounded-md bg-base-25 transition-colors hover:bg-base-50 dark:bg-base-900 dark:hover:bg-base-800/80";
-  const iconButtonText = "text-base-600 dark:text-base-300 hover:text-base-900 dark:hover:text-white";
-  const iconButtonActive = "text-base-900 shadow-xs dark:text-white";
+    "flex size-8 items-center justify-center rounded-md bg-muted transition-colors hover:bg-background/80";
+  const iconButtonText = "text-muted-foreground hover:text-foreground";
+  const iconButtonActive = "text-foreground shadow-xs";
   const textButtonBase =
-    "flex h-8 items-center gap-2 rounded-md bg-base-25 px-2.5 text-xs transition-colors hover:bg-base-50 dark:bg-base-900 dark:hover:bg-base-800/80";
+    "flex h-8 items-center gap-2 rounded-md bg-muted px-2.5 text-xs transition-colors hover:bg-background/80";
   const navMenuBase =
-    "fixed z-50 mt-2 rounded-lg bg-white shadow-md text-sm text-base-700 dark:bg-base-900 dark:text-base-200";
+    "fixed z-50 mt-2 rounded-lg shadow-md text-sm bg-background text-foreground";
   const navMenuItemBase =
-    "flex items-center justify-between w-full rounded-lg px-3 py-2.5 text-left text-xs transition-colors hover:bg-base-50 dark:hover:bg-base-800/70";
+    "flex items-center justify-between w-full rounded-lg px-3 py-2.5 text-left text-xs transition-colors hover:bg-background/70";
   return (
     <div className="relative">
-  <div className="flex items-center justify-between gap-2 pb-2 ">
+  <div className="flex items-center justify-between gap-2 pb-2">
         {/* Left: index + tools */}
-        <div className="flex items-center gap-1.5 ">
+        <div className="flex items-center gap-1.5">
           <div className="relative group">
             <button
               type="button"
               onClick={copyUrl}
-              className={`inline-flex h-8 min-w-8 items-center justify-center rounded-md bg-base-25 px-2 text-xs transition-colors hover:bg-base-50 dark:bg-base-900 dark:hover:bg-base-800/80 ${copiedUrl ? "text-accent-600 dark:text-accent-400" : "text-base-600 hover:text-base-900 dark:text-base-300 dark:hover:text-white"}`}
+              className={`inline-flex h-8 min-w-8 items-center justify-center rounded-md bg-muted px-2 text-xs transition-colors hover:bg-background/80 ${copiedUrl ? "text-foreground" : "text-muted-foreground hover:text-foreground"}`}
               title="Copy block URL"
               aria-label="Copy block URL"
             >
@@ -450,7 +416,7 @@ export default function PlaygroundIsland({
               className="left-0 translate-x-0 px-2.5 py-1"
             />
           </div>
-          <div className="w-px h-4 bg-base-300 dark:bg-base-700 hidden md:flex"></div>
+          <div className="w-px h-4 bg-muted hidden md:flex"></div>
           <span className="items-center hidden gap-2 md:flex">
             <div className="relative group">
               <button
@@ -480,7 +446,7 @@ export default function PlaygroundIsland({
               <ToolbarTooltip label="Desktop view" />
             </div>
           </span>
-          <div className="w-px h-4 bg-base-300 dark:bg-base-700 hidden md:flex"></div>
+          <div className="w-px h-4 bg-muted hidden md:flex"></div>
           <span className="items-center hidden gap-2 md:flex">
             <div className="relative group">
               <button
@@ -493,15 +459,6 @@ export default function PlaygroundIsland({
             </div>
             <div className="relative group">
               <button
-                onClick={() => setMode("system")}
-                className={`${iconButtonBase} ${mode === "system" ? iconButtonActive : iconButtonText}`}
-              >
-                <Laptop size={14} />
-              </button>
-              <ToolbarTooltip label="System mode" />
-            </div>
-            <div className="relative group">
-              <button
                 onClick={() => setMode("dark")}
                 className={`${iconButtonBase} ${mode === "dark" ? iconButtonActive : iconButtonText}`}
               >
@@ -510,7 +467,7 @@ export default function PlaygroundIsland({
               <ToolbarTooltip label="Dark mode" />
             </div>
           </span>
-          <div className="w-px h-4 bg-base-300 dark:bg-base-700 hidden md:flex"></div>
+          <div className="w-px h-4 bg-muted hidden md:flex"></div>
           {/* Code controls next to theme toggles */}
           <div className="items-center hidden gap-1.5 md:flex">
             <div className="relative group">
@@ -532,13 +489,13 @@ export default function PlaygroundIsland({
               <ToolbarTooltip label="Code" />
             </div>
             </div>
-          <div className="w-px h-4 bg-base-300 dark:bg-base-700 hidden md:flex"></div>
+          <div className="w-px h-4 bg-muted hidden md:flex"></div>
 
           <div className="items-center hidden gap-2 md:flex">
             <div className="relative group">
               <button
                 onClick={copyCode}
-                className={`${iconButtonBase} ${copiedCode ? "text-accent-600 dark:text-accent-400" : iconButtonText}`}
+                className={`${iconButtonBase} ${copiedCode ? "text-foreground" : iconButtonText}`}
                 aria-label="Copy"
               >
                 {copiedCode ? <Check size={14} /> : <Copy size={14} />}
@@ -589,14 +546,14 @@ export default function PlaygroundIsland({
           </div>
         </div>
         {/* Right: code controls + nav (if provided) */}
-        <div className="items-center justify-end hidden gap-2 md:flex ">
+        <div className="items-center justify-end hidden gap-2 md:flex">
           {arguments[0]?.subsByCat && (
             <>
               {/* Category */}
               <div className="relative group">
                 <button
                   onClick={(e) => openNavMenu("cat", e)}
-                  className={`${textButtonBase} text-base-900 dark:text-white`}
+                  className={`${textButtonBase} text-foreground`}
                 >
                   <span className="capitalize">
                     {fmt(arguments[0]!.navCat || "")}
@@ -609,7 +566,7 @@ export default function PlaygroundIsland({
               <div className="relative group">
                 <button
                   onClick={(e) => openNavMenu("sub", e)}
-                  className={`${textButtonBase} hidden md:flex text-base-900 dark:text-white`}
+                  className={`${textButtonBase} hidden md:flex text-foreground`}
                 >
                   <span className="capitalize">
                     {fmt(arguments[0]!.navSub || "")}
@@ -622,7 +579,7 @@ export default function PlaygroundIsland({
               <div className="relative group">
                 <button
                   onClick={(e) => openNavMenu("idx", e)}
-                  className={`${textButtonBase} hidden md:flex text-base-900 hover:text-accent-600 dark:text-white dark:hover:text-accent-400`}
+                  className={`${textButtonBase} hidden md:flex text-foreground hover:text-foreground`}
                 >
                  <div>
                     <span>#</span>
@@ -644,7 +601,7 @@ export default function PlaygroundIsland({
                 </button>
                 <ToolbarTooltip label="Block number" />
               </div>
-           <div className="w-px h-4 bg-base-300 dark:bg-base-700 hidden md:flex"></div>
+           <div className="w-px h-4 bg-muted hidden md:flex"></div>
 
               {navOpen === "cat" && (
                 <div
@@ -669,7 +626,7 @@ export default function PlaygroundIsland({
                         >
                           <span className="capitalize">{fmt(key)}</span>
                           {arguments[0]!.navCat === key && (
-                            <Check className="size-4 text-base-950 dark:text-white" />
+                            <Check className="size-4 text-foreground" />
                           )}
                         </button>
                       ))}
@@ -693,7 +650,7 @@ export default function PlaygroundIsland({
                       >
                         <span className="capitalize">{fmt(name)}</span>
                         {arguments[0]!.navSub === name && (
-                          <Check className="size-4 text-base-950 dark:text-white" />
+                          <Check className="size-4 text-foreground" />
                         )}
                       </a>
                     ))}
@@ -719,7 +676,7 @@ export default function PlaygroundIsland({
                       <a
                         key={n}
                         href={`/playground/${arguments[0]!.navCat}/${arguments[0]!.navSub}/${leftPadZero(n)}`}
-                        className={`flex h-8 items-center justify-center rounded-lg text-xs transition-colors hover:bg-base-50 dark:hover:bg-base-800/70 ${n === clamp(arguments[0]!.navIdx || 1, 1, count(arguments[0]!.navCat || "", arguments[0]!.navSub || "")) ? "text-base-950 font-medium dark:text-white" : "text-base-600 dark:text-base-200"}`}
+                        className={`flex h-8 items-center justify-center rounded-lg text-xs transition-colors hover:bg-background/70 ${n === clamp(arguments[0]!.navIdx || 1, 1, count(arguments[0]!.navCat || "", arguments[0]!.navSub || "")) ? "text-foreground font-medium" : "text-muted-foreground"}`}
                       >
                         {n}
                       </a>
@@ -737,7 +694,7 @@ export default function PlaygroundIsland({
                   <ChevronLeft size={14} />
                 </a>
               ) : (
-                <div className="flex items-center justify-center opacity-30 text-base-400 dark:text-base-600">
+                <div className="flex items-center justify-center opacity-30 text-muted-foreground">
                   <ChevronLeft size={14} />
                 </div>
               )}
@@ -751,7 +708,7 @@ export default function PlaygroundIsland({
                   <ChevronRight size={14} />
                 </a>
               ) : (
-                <div className="flex items-center justify-center opacity-30 text-base-400 dark:text-base-600">
+                <div className="flex items-center justify-center opacity-30 text-muted-foreground">
                   <ChevronRight size={14} />
                 </div>
               )}
@@ -759,14 +716,14 @@ export default function PlaygroundIsland({
           )}
         </div>
       </div>
-    <div className=" mt-4">
-        <div className="relative flex w-full min-h-0 overflow-hidden z-1 isolate scrollbar-hide bg-white dark:bg-base-950/60   rounded-lg shadow">
+    <div className="mt-4">
+        <div className="relative flex w-full min-h-0 overflow-hidden z-1 isolate scrollbar-hide bg-background/60 ">
           {tab === "preview" && (
-            <div className="flex flex-col items-center w-full bg-white scrollbar-hide dark:bg-base-950/60 border border-zinc-100 dark:border-zinc-800 rounded-lg shadow">
+            <div className="flex flex-col items-center w-full scrollbar-hide bg-background/60  overflow-hidden border border-border rounded-lg shadow">
               <div
                 ref={containerRef}
                 id="playground-preview-container"
-                className="flex flex-col w-full mx-auto text-base transition-colors bg-white shadow-normal scrollbar-hide dark:bg-base-950/80"
+                className="flex flex-col w-full mx-auto text-base transition-colors shadow-normal scrollbar-hide bg-background/80"
                 style={{
                   transition: "width 250ms ease-in-out, height 200ms ease",
                 }}
@@ -774,7 +731,7 @@ export default function PlaygroundIsland({
                 <iframe
                   ref={iframeRef}
                   id={iframeId}
-                  className="block w-full border-0 transition-colors scrollbar-hide dark:bg-base-950"
+                  className="block w-full border-0 transition-colors scrollbar-hide bg-background"
                   title={`Preview ${iframeSrc}`}
                   style={{ height: "auto", visibility: "visible" }}
                   src={iframeSrc}
@@ -790,16 +747,16 @@ export default function PlaygroundIsland({
             </div>
           )}
           {tab === "code" && (
-            <div className="grow  text-xs transition-colors bg-sand-50  code-pane size-full selection:bg-zinc-100 scrollbar-hide dark:bg-base-900 dark:text-base-200 dark:selection:bg-base-800/60">
-              {highlightedSystem || systemHighlighted ? (
+            <div className={`grow text-xs transition-colors code-pane border border-border  overflow-hidden rounded-lg shadow size-full scrollbar-hide bg-background text-foreground selection:bg-background/60 ${codePaneDark ? "dark" : ""}`}>
+              {highlightedSystem ? (
                 <div
                   className="overflow-x-auto scrollbar-hide"
                   dangerouslySetInnerHTML={{
-                    __html: highlightedSystem || systemHighlighted || "",
+                    __html: highlightedSystem,
                   }}
                 />
               ) : (
-                <pre className="overflow-x-auto text-zinc-800 whitespace-pre scrollbar-hide dark:text-base-200">
+                <pre className="overflow-x-auto whitespace-pre scrollbar-hide text-foreground">
                   <code>{codeText}</code>
                 </pre>
               )}
@@ -809,32 +766,32 @@ export default function PlaygroundIsland({
     </div>
       {isOxbowModalOpen && (
         <div
-          className="fixed inset-0 z-80 flex items-center justify-center p-4 bg-black/30 backdrop-blur-[1px]"
+          className="fixed inset-0 z-80 flex items-center justify-center p-4 bg-background/30 backdrop-blur-[1px]"
           onClick={() => setIsOxbowModalOpen(false)}
         >
           <div
-            className="w-full max-w-xl rounded-lg bg-white p-4 shadow-lg  dark:bg-base-950"
+            className="w-full max-w-xl rounded-lg p-4 shadow-lg bg-background"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between">
-              <p className="text-sm font-medium text-base-900 dark:text-white">
+              <p className="text-sm font-medium text-foreground">
                 Install this block
               </p>
               <button
                 type="button"
-                className="text-xs text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white"
+                className="text-xs text-muted-foreground hover:text-foreground"
                 onClick={() => setIsOxbowModalOpen(false)}
               >
                 Close
               </button>
             </div>
             <div className="mt-3">
-              <p className="text-xs text-base-600 dark:text-base-400">CLI command</p>
-              <div className="mt-1 flex items-center gap-2 rounded-md bg-base-25 px-3 h-10 font-mono text-xs text-base-900  dark:bg-base-900 dark:text-base-100 0">
+              <p className="text-xs text-muted-foreground">CLI command</p>
+              <div className="mt-1 flex items-center gap-2 rounded-md bg-muted px-3 h-10 font-mono text-xs text-foreground">
                 <span className="truncate">{installCommand}</span>
                 <button
                   type="button"
-                  className="ml-auto text-xs text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white"
+                  className="ml-auto text-xs text-muted-foreground hover:text-foreground"
                   onClick={copyInstallCommand}
                 >
                   {copiedInstallCommand ? "Copied" : "Copy"}
@@ -842,58 +799,58 @@ export default function PlaygroundIsland({
               </div>
             </div>
             <div className="mt-4">
-              <p className="text-xs text-base-600 dark:text-base-400">
+              <p className="text-xs text-muted-foreground">
                 MCP config
               </p>
               <div className="mt-2 flex items-center gap-1">
                 <button
                   type="button"
-                  className={`rounded-md px-2 py-1 text-[11px] transition-colors ${activeIdeTab === "code" ? "bg-base-900 text-white dark:bg-base-100 dark:text-base-900" : "bg-base-50 text-base-700 hover:bg-base-100 dark:bg-base-800 dark:text-base-300 dark:hover:bg-base-700"}`}
+                  className={`rounded-md px-2 py-1 text-[11px] transition-colors ${activeIdeTab === "code" ? "bg-muted text-foreground" : "bg-muted text-muted-foreground hover:bg-muted"}`}
                   onClick={() => setActiveIdeTab("code")}
                 >
                   Code
                 </button>
                 <button
                   type="button"
-                  className={`rounded-md px-2 py-1 text-[11px] transition-colors ${activeIdeTab === "cursor" ? "bg-base-900 text-white dark:bg-base-100 dark:text-base-900" : "bg-base-50 text-base-700 hover:bg-base-100 dark:bg-base-800 dark:text-base-300 dark:hover:bg-base-700"}`}
+                  className={`rounded-md px-2 py-1 text-[11px] transition-colors ${activeIdeTab === "cursor" ? "bg-muted text-foreground" : "bg-muted text-muted-foreground hover:bg-muted"}`}
                   onClick={() => setActiveIdeTab("cursor")}
                 >
                   Cursor
                 </button>
                 <button
                   type="button"
-                  className={`rounded-md px-2 py-1 text-[11px] transition-colors ${activeIdeTab === "vsCode" ? "bg-base-900 text-white dark:bg-base-100 dark:text-base-900" : "bg-base-50 text-base-700 hover:bg-base-100 dark:bg-base-800 dark:text-base-300 dark:hover:bg-base-700"}`}
+                  className={`rounded-md px-2 py-1 text-[11px] transition-colors ${activeIdeTab === "vsCode" ? "bg-muted text-foreground" : "bg-muted text-muted-foreground hover:bg-muted"}`}
                   onClick={() => setActiveIdeTab("vsCode")}
                 >
                   VS Code
                 </button>
                 <button
                   type="button"
-                  className={`rounded-md px-2 py-1 text-[11px] transition-colors ${activeIdeTab === "openCode" ? "bg-base-900 text-white dark:bg-base-100 dark:text-base-900" : "bg-base-50 text-base-700 hover:bg-base-100 dark:bg-base-800 dark:text-base-300 dark:hover:bg-base-700"}`}
+                  className={`rounded-md px-2 py-1 text-[11px] transition-colors ${activeIdeTab === "openCode" ? "bg-muted text-foreground" : "bg-muted text-muted-foreground hover:bg-muted"}`}
                   onClick={() => setActiveIdeTab("openCode")}
                 >
                   OpenCode
                 </button>
                 <button
                   type="button"
-                  className={`rounded-md px-2 py-1 text-[11px] transition-colors ${activeIdeTab === "claudeCode" ? "bg-base-900 text-white dark:bg-base-100 dark:text-base-900" : "bg-base-50 text-base-700 hover:bg-base-100 dark:bg-base-800 dark:text-base-300 dark:hover:bg-base-700"}`}
+                  className={`rounded-md px-2 py-1 text-[11px] transition-colors ${activeIdeTab === "claudeCode" ? "bg-muted text-foreground" : "bg-muted text-muted-foreground hover:bg-muted"}`}
                   onClick={() => setActiveIdeTab("claudeCode")}
                 >
                   Claude Code
                 </button>
                 <button
                   type="button"
-                  className={`rounded-md px-2 py-1 text-[11px] transition-colors ${activeIdeTab === "claudeDesktop" ? "bg-base-900 text-white dark:bg-base-100 dark:text-base-900" : "bg-base-50 text-base-700 hover:bg-base-100 dark:bg-base-800 dark:text-base-300 dark:hover:bg-base-700"}`}
+                  className={`rounded-md px-2 py-1 text-[11px] transition-colors ${activeIdeTab === "claudeDesktop" ? "bg-muted text-foreground" : "bg-muted text-muted-foreground hover:bg-muted"}`}
                   onClick={() => setActiveIdeTab("claudeDesktop")}
                 >
                   Claude Desktop
                 </button>
               </div>
-              <div className="mt-2 rounded-md bg-base-25 p-3 font-mono text-xs text-base-900  dark:bg-base-900 dark:text-base-100 relative">
+              <div className="mt-2 rounded-md bg-muted p-3 font-mono text-xs text-foreground relative">
                 <pre className="overflow-x-auto whitespace-pre">{activeMcpConfig}</pre>
                 <button
                   type="button"
-                  className="mt-2 text-xs text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white absolute top-0 right-2"
+                  className="mt-2 text-xs text-muted-foreground hover:text-foreground absolute top-0 right-2"
                   onClick={copyMcpConfig}
                 >
                   {copiedMcpConfig ? "Copied" : "Copy config"}

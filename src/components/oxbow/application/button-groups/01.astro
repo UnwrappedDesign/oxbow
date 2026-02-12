@@ -6,10 +6,10 @@ import Minus from "@/components/fundations/icons/Minus.astro";
 import Plus from "@/components/fundations/icons/Plus.astro";
 ---
 
-<section class="flex items-center justify-center bg-white p-18 dark:bg-zinc-900">
+<section class="flex items-center justify-center bg-background p-18">
   <!-- copy:start -->
   <div
-    class="inline-flex items-stretch overflow-hidden rounded-md border border-zinc-200 bg-white text-sm shadow-sm dark:border-zinc-700 dark:bg-zinc-800"
+    class="inline-flex items-stretch overflow-hidden rounded-md border border-border bg-background text-sm shadow-sm"
     x-data="{ n: 235 }"
     role="group"
     aria-label="Adjust quantity"
@@ -20,20 +20,20 @@ import Plus from "@/components/fundations/icons/Plus.astro";
       iconOnly
       type="button"
       noRounded
-      class="border-r border-zinc-200 text-zinc-600 transition-none dark:border-zinc-700 dark:text-zinc-300"
+      class="border-r border-border text-muted-foreground transition-none"
       @click="n = Math.max(0, n - 1)"
       aria-label="Decrease"
     >
       <Minus slot="left-icon" size="sm" />
     </Button>
-    <span class="flex items-center px-5 font-semibold text-zinc-700 dark:text-zinc-100" x-text="n"></span>
+    <span class="flex items-center px-5 font-semibold text-foreground" x-text="n"></span>
     <Button
       variant="accent"
       size="sm"
       iconOnly
       type="button"
       noRounded
-      class="border-l border-zinc-200 transition-none dark:border-zinc-700"
+      class="border-l border-border transition-none"
       @click="n = n + 1"
       aria-label="Increase"
     >

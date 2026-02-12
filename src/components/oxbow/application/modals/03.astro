@@ -13,9 +13,7 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
 
-<div
-  class="p-8 pt-12 pb-170 bg-white dark:bg-zinc-900 flex items-center justify-center"
->
+<div class="p-8 pt-12 pb-170 bg-background flex items-center justify-center">
   <!-- Copy:start -->
   <!--
 // Make sure to change  "open: false",  to  open: true. On the z-data="{}".
@@ -59,7 +57,7 @@ import Text from "@/components/fundations/typography/Text.astro";
     <div
       x-show="open"
       x-transition.opacity
-      class="fixed inset-0 z-40 bg-black/40 dark:bg-white/20"
+      class="fixed inset-0 z-40 bg-background/20"
       aria-hidden="true"
       @click="close()"
     >
@@ -88,26 +86,22 @@ import Text from "@/components/fundations/typography/Text.astro";
         x-transition:leave="transition ease-in duration-150"
         x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0"
-        class="w-full sm:max-w-xl rounded-2xl bg-white dark:bg-zinc-800 shadow-xl outline outline-1 outline-black/5 dark:-outline-offset-1 dark:outline-white/10"
+        class="w-full sm:max-w-xl rounded-2xl bg-background shadow-xl outline outline-1 outline-border/5 -outline-offset-1 outline-border/10"
       >
         <!-- Header -->
         <div
-          class="flex items-center justify-between px-5 py-4 border-b border-zinc-100 dark:border-zinc-700"
+          class="flex items-center justify-between px-5 py-4 border-b border-border"
         >
           <div>
             <Text
               tag="h2"
               variant="sm"
               id="profile-title"
-              class="text-sm font-semibold text-zinc-900 dark:text-white"
+              class="text-sm font-semibold text-foreground"
             >
               Finish setting up your profile
             </Text>
-            <Text
-              tag="p"
-              variant="textXS"
-              class="text-zinc-600 dark:text-zinc-300"
-            >
+            <Text tag="p" variant="textXS" class="text-muted-foreground">
               Add an avatar, choose a handle, and a short bio.
             </Text>
           </div>
@@ -126,10 +120,12 @@ import Text from "@/components/fundations/typography/Text.astro";
             <!-- Avatar -->
             <div class="flex flex-col items-center gap-2">
               <div
-                class="size-24 rounded-xl overflow-hidden ring-1 ring-zinc-200 dark:ring-zinc-700 bg-zinc-100 dark:bg-zinc-700 grid place-items-center"
+                class="size-24 rounded-xl overflow-hidden ring-1 ring-border bg-muted grid place-items-center"
               >
                 <template x-if="!form.avatar">
-                  <div class="text-zinc-400"><LibraryPhoto size="base" /></div>
+                  <div class="text-muted-foreground">
+                    <LibraryPhoto size="base" />
+                  </div>
                 </template>
                 <img
                   x-show="form.avatar"
@@ -138,15 +134,14 @@ import Text from "@/components/fundations/typography/Text.astro";
                   class="size-full object-cover"
                 />
               </div>
-              <label
-                class="text-[0.70rem] text-zinc-600 dark:text-zinc-300 text-center"
+              <label class="text-[0.70rem] text-muted-foreground text-center"
                 >Square images look best</label
               >
             </div>
             <!-- Dropzone -->
             <div>
               <label
-                class="block text-[0.70rem] font-medium text-zinc-700 dark:text-zinc-200"
+                class="block text-[0.70rem] font-medium text-foreground"
                 >Profile image</label
               >
               <div
@@ -154,20 +149,15 @@ import Text from "@/components/fundations/typography/Text.astro";
                 @dragenter.prevent="drag=true"
                 @dragleave.prevent="drag=false"
                 @drop="drop($event)"
-                :class="drag ? 'outline-2 outline-orange-500 bg-orange-50/40 dark:bg-orange-400/10' : 'outline-1 outline-orange-500'"
-                class="mt-1 rounded-xl p-4 bg-white dark:bg-zinc-800 flex items-center justify-center text-center h-[120px] outline outline-1 outline-zinc-200 dark:outline-zinc-700"
+                :class="drag ? 'outline-2 outline-border bg-muted/10' : 'outline-1 outline-border'"
+                class="mt-1 rounded-xl p-4 bg-background flex items-center justify-center text-center h-[120px] outline outline-1 outline-border"
               >
                 <div>
                   <LibraryPhoto
                     size="sm"
-                    class="text-zinc-500 dark:text-zinc-30 mx-auto mb-1"
+                    class="text-muted-foreground mx-auto mb-1"
                   />
-                  <label
-                    class="text-xs
-                    text-orange-600
-                    dark:text-orange-400
-                    cursor-pointer font-medium"
-                  >
+                  <label class="text-xs text-foreground cursor-pointer font-medium">
                     <input
                       type="file"
                       class="sr-only"
@@ -176,10 +166,12 @@ import Text from "@/components/fundations/typography/Text.astro";
                     />
                     Click to upload
                   </label>
-                  <span class="text-xs text-zinc-500 font-medium">
+                  <span class="text-xs text-muted-foreground font-medium">
                     or drag & drop</span
                   >
-                  <div class="mt-1 text-[0.70rem] text-zinc-500 font-medium">
+                  <div
+                    class="mt-1 text-[0.70rem] text-muted-foreground font-medium"
+                  >
                     PNG, JPG, GIF (max 800×400px)
                   </div>
                 </div>
@@ -189,12 +181,12 @@ import Text from "@/components/fundations/typography/Text.astro";
           <!-- Handle -->
           <div>
             <label
-              class="block text-xs font-medium text-zinc-700 dark:text-zinc-200"
+              class="block text-xs font-medium text-foreground"
               >Handle</label
             >
             <div class="mt-1 grid grid-cols-[minmax(120px,180px)_1fr]">
               <div
-                class="block w-full h-10 px-4 py-2 text-xs bg-white border border-transparent rounded-lg rounded-r-none appearance-none bg-zinc-50 dark:bg-white/5 text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-orange-700 focus:bg-transparent focus:outline-none focus:ring-orange-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+                class="block w-full h-10 px-4 py-2 text-xs border border-transparent rounded-lg rounded-r-none appearance-none bg-background/5 text-muted-foreground duration-300 ring-1 ring-border placeholder:text-muted-foreground focus:border-border focus:border-border focus:bg-transparent focus:outline-none focus:ring-border focus:ring-offset-2 focus:ring-2 sm:text-sm"
               >
                 example.com/
               </div>
@@ -203,30 +195,30 @@ import Text from "@/components/fundations/typography/Text.astro";
                 x-model="form.handle"
                 type="text"
                 placeholder="@username"
-                class="block w-full h-10 px-4 py-2 text-xs bg-white border border-transparent rounded-lg rounded-l-none appearance-none dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-orange-700 focus:bg-transparent focus:outline-none focus:ring-orange-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+                class="block w-full h-10 px-4 py-2 text-xs bg-background border border-transparent rounded-lg rounded-l-none appearance-none text-muted-foreground duration-300 ring-1 ring-border placeholder:text-muted-foreground focus:border-border focus:border-border focus:bg-transparent focus:outline-none focus:ring-border focus:ring-offset-2 focus:ring-2 sm:text-sm"
               />
             </div>
           </div>
           <!-- Intro -->
           <div>
             <label
-              class="block text-xs font-medium text-zinc-700 dark:text-zinc-200"
+              class="block text-xs font-medium text-foreground"
               >Short bio</label
             >
             <textarea
               x-model="form.intro"
               rows="4"
               placeholder="Tell people what you work on…"
-              class="mt-1 block w-full px-4 py-2 text-xs bg-white border border-transparent rounded-lg appearance-none dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-orange-700 focus:bg-transparent focus:outline-none focus:ring-orange-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+              class="mt-1 block w-full px-4 py-2 text-xs bg-background border border-transparent rounded-lg appearance-none text-muted-foreground duration-300 ring-1 ring-border placeholder:text-muted-foreground focus:border-border focus:border-border focus:bg-transparent focus:outline-none focus:ring-border focus:ring-offset-2 focus:ring-2 sm:text-sm"
             ></textarea>
           </div>
           <!-- Agreement -->
           <label
-            class="inline-flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400"
+            class="inline-flex items-center gap-2 text-xs text-muted-foreground"
           >
             <input
               type="checkbox"
-              class="rounded border-zinc-300 dark:border-zinc-600 dark:bg-zinc-800 text-orange-600 focus:ring-orange-500 focus:ring-offset-2 focus:ring-2 shadow size-4"
+              class="rounded border-border bg-background text-foreground focus:ring-border focus:ring-offset-2 focus:ring-2 shadow size-4"
               x-model="form.agree"
             />
             I agree to the <a href="#" class="underline">terms</a> and <a
@@ -236,15 +228,13 @@ import Text from "@/components/fundations/typography/Text.astro";
           </label>
         </div>
         <!-- Footer -->
-        <div
-          class="px-5 py-4 border-t border-zinc-100 dark:border-zinc-700 flex items-center gap-3"
-        >
+        <div class="px-5 py-4 border-t border-border flex items-center gap-3">
           <label
-            class="inline-flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400 text-xs"
+            class="inline-flex items-center gap-2 text-sm text-muted-foreground text-xs"
           >
             <input
               type="checkbox"
-              class="rounded border-zinc-300 dark:border-zinc-600 dark:bg-zinc-800 text-orange-600 focus:ring-orange-500 focus:ring-offset-2 focus:ring-2 shadow size-4"
+              class="rounded border-border bg-background text-foreground focus:ring-border focus:ring-offset-2 focus:ring-2 shadow size-4"
               x-model="form.dontShow"
             />
             Don’t show again

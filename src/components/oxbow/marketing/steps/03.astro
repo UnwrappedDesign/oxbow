@@ -21,20 +21,20 @@ const steps = [
 ];
 ---
 
-<section class="bg-white dark:bg-zinc-900">
+<section class="bg-background">
   <div class="px-8 py-24 mx-auto max-w-7xl md:px-12 lg:px-20">
     <div class="max-w-3xl">
       <Text
         tag="h2"
         variant="displayMD"
-        class="font-semibold tracking-tight text-zinc-900 dark:text-white text-balance"
+        class="font-semibold tracking-tight text-foreground text-balance"
       >
         Onboard in four simple steps
       </Text>
       <Text
         tag="p"
         variant="textBase"
-        class="mt-2 font-medium text-zinc-500 dark:text-zinc-400"
+        class="mt-2 font-medium text-muted-foreground"
       >
         Follow the steps below to set up your account and start managing your
         finances in minutes.
@@ -43,37 +43,37 @@ const steps = [
     <div class="relative flex flex-col items-center mt-24">
       <div
         data-orientation="horizontal"
-        class="bg-zinc-200 dark:bg-zinc-800 shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px absolute -top-8 left-0 hidden md:block"
+        class="bg-background shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px absolute -top-8 left-0 hidden md:block"
       >
       </div>
 
       <div class="grid gap-4 md:grid-cols-4">
         {
           steps.map((step, index) => (
-            <div class="relative p-4 shadow space-y-2 bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl">
+            <div class="relative p-4 shadow space-y-2 bg-linear-180 outline outline-border from-muted to-background rounded-xl">
               <div
                 data-orientation="vertical"
                 role="none"
                 data-slot="separator-root"
-                class=" shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px absolute top-6 left-0 block md:hidden"
+                class="shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px absolute top-6 left-0 block md:hidden"
               />
-              <div class="absolute top-0 -left-[9px] z-10  flex size-8 items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800 p-1 md:-top-12 md:left-0">
-                <span class="text-sm font-medium text-zinc-900 dark:text-white">
+              <div class="absolute top-0 -left-[9px] z-10 flex size-8 items-center justify-center rounded-full bg-background p-1 md:-top-12 md:left-0">
+                <span class="text-sm font-medium text-foreground">
                   {index + 1}
                 </span>
               </div>
-              <div class="pl-7 md:pl-0 ">
+              <div class="pl-7 md:pl-0">
                 <Text
                   tag="h3"
                   variant="textBase"
-                  class="font-semibold tracking-tight  text-zinc-900 dark:text-white"
+                  class="font-semibold tracking-tight text-foreground"
                 >
                   {step.title}
                 </Text>
                 <Text
                   tag="p"
                   variant="textSM"
-                  class="text-zinc-500 dark:text-zinc-400 lg:text-balance"
+                  class="text-muted-foreground lg:text-balance"
                 >
                   {step.description}
                 </Text>

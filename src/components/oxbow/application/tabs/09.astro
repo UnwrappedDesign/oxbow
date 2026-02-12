@@ -1,14 +1,14 @@
 ---
 export const excludeFromObfuscation = [
-  "bg-zinc-600",
-  "text-zinc-600",
+  "bg-muted",
+  "text-muted-foreground",
   "ring-1",
-  "ring-zinc-200",
-  "bg-zinc-50",
+  "ring-border",
+  "bg-muted",
 ];
 ---
 
-<div class="flex flex-col justify-center p-8 mx-auto bg-white dark:bg-zinc-900">
+<div class="flex flex-col justify-center p-8 mx-auto bg-background">
   <!-- Accessible Tabs • Justified filled tabs -->
   <div
     x-data="{
@@ -32,7 +32,7 @@ export const excludeFromObfuscation = [
     >
       <template x-for="(id, idx) in keys" :key="id">
         <button
-          class="h-10 px-3 text-sm font-medium rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500/50"
+          class="h-10 px-3 text-sm font-medium rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-border"
           :id="'tab-'+id"
           role="tab"
           :aria-selected="selected===id"
@@ -41,7 +41,7 @@ export const excludeFromObfuscation = [
           x-ref="tab-[[id]]"
           @click="select(id)"
           @keydown="onKeydown($event)"
-          :class="selected===id ? 'bg-zinc-600 dark:bg-zinc-500 text-white dark:text-zinc-900' : 'bg-zinc-50 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-100 hover:text-zinc-900 dark:hover:text-zinc-100 ring-1 ring-zinc-200 dark:ring-zinc-700'"
+          :class="selected===id ? 'bg-muted : 'bg-background text-muted-foreground hover:text-foreground ring-1 ring-border'"
         >
           <span
             x-text="id==='overview' ? 'Overview' : id==='projects' ? 'Projects' : 'Packages'"
@@ -49,14 +49,14 @@ export const excludeFromObfuscation = [
         </button>
       </template>
     </div>
-    <div class="pt-4 text-sm text-zinc-500 dark:text-zinc-300">
+    <div class="pt-4 text-sm text-muted-foreground">
       <section
         x-show="selected==='overview'"
         x-cloak
         role="tabpanel"
         :id="'panel-overview'"
         aria-labelledby="tab-overview"
-        class="p-4 border rounded-lg border-zinc-200 dark:border-zinc-700"
+        class="p-4 border rounded-lg border-border"
       >
         <p>Overview content — full-width tab buttons with solid fill.</p>
       </section>
@@ -66,7 +66,7 @@ export const excludeFromObfuscation = [
         role="tabpanel"
         :id="'panel-projects'"
         aria-labelledby="tab-projects"
-        class="p-4 border rounded-lg border-zinc-200 dark:border-zinc-700"
+        class="p-4 border rounded-lg border-border"
       >
         <p>Projects content — team boards and workflows.</p>
       </section>
@@ -76,7 +76,7 @@ export const excludeFromObfuscation = [
         role="tabpanel"
         :id="'panel-packages'"
         aria-labelledby="tab-packages"
-        class="p-4 border rounded-lg border-zinc-200 dark:border-zinc-700"
+        class="p-4 border rounded-lg border-border"
       >
         <p>Packages content — publishing and releases.</p>
       </section>

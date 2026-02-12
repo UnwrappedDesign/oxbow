@@ -3,9 +3,10 @@ export const excludeFromObfuscation = [
   "w-1/2",
   "translate-x-0",
   "translate-x-full",
-  "text-zinc-600",
-  "focus:text-zinc-900 dark:text-white",
-  "hover:text-zinc-900 dark:text-white",
+  "text-muted-foreground",
+  "text-foreground",
+  "focus:text-foreground",
+  "hover:text-foreground",
 ];
 
 export const description = "Pricing section with three tiers and table";
@@ -30,20 +31,20 @@ import Lifebuoy from "@/components/fundations/icons/Lifebuoy.astro";
 import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
 ---
 
-<section x-data="{ duration: 'monthly' }" class="bg-white dark:bg-zinc-900">
+<section x-data="{ duration: 'monthly' }" class="bg-background">
   <div class="px-8 py-24 mx-auto max-w-7xl md:px-12 lg:px-20">
     <div class="max-w-md mx-auto text-center">
       <Text
         tag="h1"
         variant="displayMD"
-        class="font-semibold tracking-tight text-zinc-900 dark:text-white text-balance dark:text-zinc-100"
+        class="font-semibold tracking-tight text-foreground text-balance"
       >
         Give your team tools that don't suck
       </Text>
       <Text
         tag="p"
         variant="textBase"
-        class="mt-2 font-medium text-zinc-600 text-balance dark:text-zinc-400"
+        class="mt-2 font-medium text-muted-foreground text-balance"
       >
         Start with what you need, skip what you don't. Scale up when
         spreadsheets stop cutting it.
@@ -51,16 +52,16 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
       <!-- Pricing Toggle -->
       <div
         aria-labelledby="pricing-toggle"
-        class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-white shadow dark:bg-zinc-900 ring-1 ring-zinc-200 dark:ring-zinc-700 ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52 dark:ring-offset-black"
+        class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-background shadow ring-1 ring-border ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52 ring-offset-background"
       >
         <div
-          class="absolute inset-0 bg-zinc-50 dark:bg-zinc-800 rounded-md transition-transform duration-200 ease-in-out"
+          class="absolute inset-0 bg-muted rounded-md ring-1 ring-border/60 shadow-sm transition-transform duration-200 ease-in-out"
           :class="duration === 'monthly' ? 'w-1/2 translate-x-0' : 'w-1/2 translate-x-full'"
         >
         </div>
         <button
           class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-          :class="duration === 'monthly' ? 'text-zinc-600 dark:text-zinc-300' : 'focus:text-zinc-900 dark:text-white hover:text-zinc-900 dark:text-white dark:focus:text-zinc-100 dark:hover:text-zinc-100 dark:text-zinc-300'"
+          :class="duration === 'monthly' ? 'text-foreground' : 'text-muted-foreground hover:text-foreground focus:text-foreground'"
           @click="duration = 'monthly'"
           type="button"
           :aria-pressed="duration === 'monthly'"
@@ -69,7 +70,7 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
         </button>
         <button
           class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-          :class="duration === 'annual' ? 'text-zinc-600 dark:text-zinc-300' : 'focus:text-zinc-900 dark:text-white hover:text-zinc-900 dark:text-white dark:focus:text-zinc-100 dark:hover:text-zinc-100 dark:text-zinc-300'"
+          :class="duration === 'annual' ? 'text-foreground' : 'text-muted-foreground hover:text-foreground focus:text-foreground'"
           @click="duration = 'annual'"
           type="button"
           :aria-pressed="duration === 'annual'"
@@ -80,28 +81,27 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
     </div>
     <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4">
       <div
-        class="p-8 shadow bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl lg:p-12"
+        class="p-8 shadow bg-background outline outline-border rounded-xl lg:p-12"
       >
         <div>
           <div class="flex flex-col">
             <Text
               tag="h3"
               variant="displaySM"
-              class="font-semibold tracking-tight text-zinc-900 dark:text-white"
-              >Core</Text
+              class="font-semibold tracking-tight text-foreground">Core</Text
             >
             <div class="flex items-center mt-8 gap-2">
               <Text
                 tag="p"
                 variant="displayMD"
-                class="font-medium text-zinc-900 dark:text-white"
+                class="font-medium text-foreground"
               >
                 <span
                   data-monthly="$29"
                   data-annual="$19"
                   x-text="$el.dataset[duration]"></span>
               </Text>
-              <div class="text-xs font-medium text-zinc-600 dark:text-zinc-300">
+              <div class="text-xs font-medium text-muted-foreground">
                 <div class="font-medium">
                   <span class="capitalize" x-show="duration==='monthly'"
                     >month</span
@@ -116,11 +116,7 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
               </div>
             </div>
           </div>
-          <Text
-            tag="p"
-            variant="textSM"
-            class="mt-2 text-zinc-600 dark:text-zinc-300"
-          >
+          <Text tag="p" variant="textSM" class="mt-2 text-muted-foreground">
             Essential AI copywriting tools to boost your content creation.
           </Text>
         </div>
@@ -129,23 +125,21 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
             Start free trial
           </Button>
         </div>
-        <div
-          class="flex flex-col py-8 mt-8 border-t border-zinc-200 dark:border-zinc-700 gap-4"
-        >
+        <div class="flex flex-col py-8 mt-8 border-t border-border gap-4">
           <div class="flex flex-col items-start sm:flex-row gap-4">
             <div
-              class="p-2 text-orange-500 bg-white rounded-lg dark:bg-zinc-700 outline outline-zinc-100 dark:text-white dark:outline-zinc-800"
+              class="p-2 rounded-lg bg-muted outline outline-border text-foreground"
             >
               <Refresh size="sm" />
             </div>
             <Text
               tag="h3"
               variant="textBase"
-              class="font-medium text-zinc-900 dark:text-white"
+              class="font-medium text-foreground"
             >
               Content Generation
               <span aria-hidden="true">—</span>
-              <span class="font-normal text-zinc-600 dark:text-zinc-400">
+              <span class="font-normal text-muted-foreground">
                 Generate blog posts, social media content, and basic marketing
                 copy.
               </span>
@@ -153,28 +147,26 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
           </div>
           <div class="flex flex-col items-start sm:flex-row gap-4">
             <div
-              class="p-2 text-orange-500 bg-white rounded-lg dark:bg-zinc-700 outline outline-zinc-100 dark:text-white dark:outline-zinc-800"
+              class="p-2 rounded-lg bg-muted outline outline-border text-foreground"
             >
               <Edit size="sm" />
             </div>
             <Text
               tag="h3"
               variant="textBase"
-              class="font-medium text-zinc-900 dark:text-white"
+              class="font-medium text-foreground"
             >
               AI Writing Assistant
               <span aria-hidden="true">—</span>
-              <span class="font-normal text-zinc-600 dark:text-zinc-400">
+              <span class="font-normal text-muted-foreground">
                 Basic grammar checking and style suggestions for your content.
               </span>
             </Text>
           </div>
         </div>
-        <div class="pt-4 border-t border-zinc-200 dark:border-zinc-700">
-          <Text
-            tag="h3"
-            variant="textBase"
-            class="font-medium text-zinc-900 dark:text-white">Word Credits</Text
+        <div class="pt-4 border-t border-border">
+          <Text tag="h3" variant="textBase" class="font-medium text-foreground"
+            >Word Credits</Text
           >
           <div class="mt-4 space-y-4">
             <Select
@@ -206,65 +198,53 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
               ]}
             />
             <div class="flex items-center justify-between">
-              <Text
-                tag="p"
-                variant="textSM"
-                class="text-zinc-600 dark:text-zinc-400">Max Templates</Text
+              <Text tag="p" variant="textSM" class="text-muted-foreground"
+                >Max Templates</Text
               >
               <Text tag="p" variant="textSM">
-                <span class="font-medium text-zinc-900 dark:text-white">5</span>
-                <span class="text-zinc-600 dark:text-zinc-400"
-                  >(10,000 words each)</span
-                >
+                <span class="font-medium text-foreground">5</span>
+                <span class="text-muted-foreground">(10,000 words each)</span>
               </Text>
             </div>
             <div class="flex items-center justify-between">
-              <Text
-                tag="p"
-                variant="textSM"
-                class="text-zinc-600 dark:text-zinc-400"
+              <Text tag="p" variant="textSM" class="text-muted-foreground"
                 >Price per 1,000 words</Text
               >
               <Text tag="p" variant="textSM">
-                <span class="font-medium text-zinc-900 dark:text-white">$2</span
-                >
-                <span class="text-zinc-600 dark:text-zinc-400"
-                  >(after credits)</span
-                >
+                <span class="font-medium text-foreground">$2</span>
+                <span class="text-muted-foreground">(after credits)</span>
               </Text>
             </div>
           </div>
           <Text
             tag="p"
             variant="textBase"
-            class="pt-8 mt-8 text-sm border-t border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400"
+            class="pt-8 mt-8 text-sm border-t border-border text-muted-foreground"
           >
             All plans include our basic AI model trained on general copywriting
             principles. Upgrade for access to industry-specific models.
           </Text>
         </div>
-        <div
-          class="flex items-center pt-4 mt-4 border-t gap-2 border-zinc-200 dark:border-zinc-700"
-        >
-          <CircleCheck size="sm" class="text-zinc-500" />
+        <div class="flex items-center pt-4 mt-4 border-t gap-2 border-border">
+          <CircleCheck size="sm" class="text-muted-foreground" />
           <Text
             tag="p"
             variant="textSM"
-            class="font-medium text-zinc-600 dark:text-zinc-300"
+            class="font-medium text-muted-foreground"
           >
             Refunds are available for all paid plans.
           </Text>
         </div>
       </div>
       <div
-        class="p-8 shadow bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl lg:p-12"
+        class="p-8 shadow bg-background outline outline-border rounded-xl lg:p-12"
       >
         <div>
           <div class="flex flex-col">
             <Text
               tag="h3"
               variant="displaySM"
-              class="font-semibold tracking-tight text-zinc-900 dark:text-white"
+              class="font-semibold tracking-tight text-foreground"
             >
               Pro
             </Text>
@@ -272,14 +252,14 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
               <Text
                 tag="p"
                 variant="displayMD"
-                class="font-medium text-zinc-900 dark:text-white"
+                class="font-medium text-foreground"
               >
                 <span
                   data-monthly="$59"
                   data-annual="$45"
                   x-text="$el.dataset[duration]"></span>
               </Text>
-              <div class="text-xs font-medium text-zinc-600 dark:text-zinc-300">
+              <div class="text-xs font-medium text-muted-foreground">
                 <div class="font-medium">
                   <span class="capitalize" x-show="duration==='monthly'"
                     >month</span
@@ -294,11 +274,7 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
               </div>
             </div>
           </div>
-          <Text
-            tag="p"
-            variant="textSM"
-            class="mt-2 text-zinc-600 dark:text-zinc-300"
-          >
+          <Text tag="p" variant="textSM" class="mt-2 text-muted-foreground">
             Advanced AI tools for professional writers &amp; content teams.
           </Text>
         </div>
@@ -307,41 +283,39 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
             >Start free trial</Button
           >
         </div>
-        <div
-          class="flex flex-col py-8 mt-8 border-t border-zinc-200 dark:border-white/10 gap-4"
-        >
+        <div class="flex flex-col py-8 mt-8 border-t border-border/10 gap-4">
           <div class="flex flex-col items-start sm:flex-row gap-4">
             <div
-              class="p-2 text-orange-500 bg-white rounded-lg dark:bg-zinc-800 outline outline-zinc-100 dark:text-white dark:outline-zinc-800"
+              class="p-2 bg-background rounded-lg outline outline-border text-foreground"
             >
               <Refresh size="sm" />
             </div>
             <Text
               tag="h3"
               variant="textBase"
-              class="font-medium text-zinc-900 dark:text-white"
+              class="font-medium text-foreground"
             >
               Unlimited Generation
               <span aria-hidden="true">—</span>
-              <span class="font-normal text-zinc-600 dark:text-zinc-300">
+              <span class="font-normal text-muted-foreground">
                 Create long-form content without token limits.
               </span>
             </Text>
           </div>
           <div class="flex flex-col items-start sm:flex-row gap-4">
             <div
-              class="p-2 text-orange-500 bg-white rounded-lg dark:bg-zinc-800 outline outline-zinc-100 dark:text-white dark:outline-zinc-800"
+              class="p-2 bg-background rounded-lg outline outline-border text-foreground"
             >
               <Edit size="sm" />
             </div>
             <Text
               tag="h3"
               variant="textBase"
-              class="font-medium text-zinc-900 dark:text-white"
+              class="font-medium text-foreground"
             >
               AI Editor+
               <span aria-hidden="true">—</span>
-              <span class="font-normal text-zinc-600 dark:text-zinc-200">
+              <span class="font-normal text-foreground">
                 Access tone shifting, rephrasing, and advanced style
                 suggestions.
               </span>
@@ -349,47 +323,43 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
           </div>
           <div class="flex flex-col items-start sm:flex-row gap-4">
             <div
-              class="p-2 text-orange-500 bg-white rounded-lg dark:bg-zinc-800 outline outline-zinc-100 dark:text-white dark:outline-zinc-800"
+              class="p-2 bg-background rounded-lg outline outline-border text-foreground"
             >
               <Bulb size="sm" />
             </div>
             <Text
               tag="h3"
               variant="textBase"
-              class="font-medium text-zinc-900 dark:text-white"
+              class="font-medium text-foreground"
             >
               Smart Templates
               <span aria-hidden="true">—</span>
-              <span class="font-normal text-zinc-600 dark:text-zinc-200">
+              <span class="font-normal text-foreground">
                 Industry-specific prompts for ads, landing pages, and more.
               </span>
             </Text>
           </div>
           <div class="flex flex-col items-start sm:flex-row gap-4">
             <div
-              class="p-2 text-orange-500 bg-white rounded-lg dark:bg-zinc-800 outline outline-zinc-100 dark:text-white dark:outline-zinc-800"
+              class="p-2 bg-background rounded-lg outline outline-border text-foreground"
             >
               <ApiApp size="sm" />
             </div>
             <Text
               tag="h3"
               variant="textBase"
-              class="font-medium text-zinc-900 dark:text-white"
+              class="font-medium text-foreground"
             >
               API Access
               <span aria-hidden="true">—</span>
-              <span class="font-normal text-zinc-600 dark:text-zinc-200">
+              <span class="font-normal text-foreground">
                 Integrate your AI flows directly with your app or CMS.
               </span>
             </Text>
           </div>
         </div>
-        <div class="pt-4 border-t border-zinc-200 dark:border-white/10">
-          <Text
-            tag="h3"
-            variant="textBase"
-            class="font-medium text-zinc-900 dark:text-white"
-          >
+        <div class="pt-4 border-t border-border/10">
+          <Text tag="h3" variant="textBase" class="font-medium text-foreground">
             Word Credits
           </Text>
           <div class="mt-4 space-y-4">
@@ -422,52 +392,41 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
               ]}
             />
             <div class="flex items-center justify-between">
-              <Text
-                tag="p"
-                variant="textSM"
-                class="text-zinc-500 dark:text-zinc-300">Max Templates</Text
+              <Text tag="p" variant="textSM" class="text-muted-foreground"
+                >Max Templates</Text
               >
               <Text tag="p" variant="textSM">
-                <span class="font-medium text-zinc-900 dark:text-white">25</span
-                >
-                <span class="text-zinc-500 dark:text-zinc-300"
-                  >(25,000 words each)</span
-                >
+                <span class="font-medium text-foreground">25</span>
+                <span class="text-muted-foreground">(25,000 words each)</span>
               </Text>
             </div>
             <div class="flex items-center justify-between">
-              <Text
-                tag="p"
-                variant="textSM"
-                class="text-zinc-500 dark:text-zinc-300"
+              <Text tag="p" variant="textSM" class="text-muted-foreground"
                 >Price per 1,000 words</Text
               >
               <Text tag="p" variant="textSM">
-                <span class="font-medium text-zinc-900 dark:text-white">$1</span
-                >
-                <span class="text-zinc-500 dark:text-zinc-300"
-                  >(after credits)</span
-                >
+                <span class="font-medium text-foreground">$1</span>
+                <span class="text-muted-foreground">(after credits)</span>
               </Text>
             </div>
           </div>
           <Text
             tag="p"
             variant="textBase"
-            class="pt-8 mt-8 text-sm border-t border-zinc-200 dark:border-white/10 text-zinc-500 dark:text-zinc-300"
+            class="pt-8 mt-8 text-sm border-t border-border/10 text-muted-foreground"
           >
             Pro plans include access to our advanced AI models, fine-tuned for
             marketing, legal, tech, and more.
           </Text>
         </div>
         <div
-          class="flex items-center pt-4 mt-4 border-t gap-2 border-zinc-200 dark:border-white/10"
+          class="flex items-center pt-4 mt-4 border-t gap-2 border-border border-border/10"
         >
-          <CircleCheck size="sm" class="text-zinc-500" />
+          <CircleCheck size="sm" class="text-muted-foreground" />
           <Text
             tag="p"
             variant="textSM"
-            class="font-medium text-zinc-600 dark:text-zinc-300"
+            class="font-medium text-muted-foreground"
           >
             Refunds are available for all paid plans.
           </Text>
@@ -480,12 +439,12 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
           <tr>
             <th class="sr-only">Feature</th>
             <th
-              class="py-3 text-base font-semibold text-center text-zinc-900 dark:text-white"
+              class="py-3 text-base font-semibold text-center text-foreground"
             >
               Core
             </th>
             <th
-              class="py-3 font-semibold text-center text-Base text-zinc-900 dark:text-white"
+              class="py-3 font-semibold text-center text-foreground"
             >
               Pro
             </th>
@@ -494,7 +453,7 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
         <tbody>
           <tr>
             <th
-              class="py-4 pl-4 text-sm font-medium text-left border-t text-zinc-900 dark:border-zinc-700 dark:text-white border-zinc-200 dark:border-zinc-800"
+              class="py-4 pl-4 text-sm font-medium text-left border-t text-foreground border-border"
             >
               <div class="flex items-center gap-2">
                 <Analytics size="sm" />
@@ -502,17 +461,17 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700"
+              class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border"
               >3</td
             >
             <td
-              class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-orange-900 text-zinc-900 dark:text-white border-zinc-200 dark:border-orange-900"
+              class="px-2 text-xs font-medium text-center border-t bg-muted text-foreground border-border border-border"
               >10</td
             >
           </tr>
           <tr>
             <th
-              class="py-4 pl-4 text-sm font-medium text-left border-t text-zinc-900 dark:border-zinc-700 dark:text-white border-zinc-200 dark:border-zinc-800"
+              class="py-4 pl-4 text-sm font-medium text-left border-t text-foreground border-border"
             >
               <div class="flex items-center gap-2">
                 <UsersGroup size="sm" />
@@ -520,17 +479,17 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700"
+              class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border"
               >5</td
             >
             <td
-              class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-orange-900 text-zinc-900 dark:text-white border-zinc-200 dark:border-orange-900"
+              class="px-2 text-xs font-medium text-center border-t bg-muted text-foreground border-border border-border"
               >10</td
             >
           </tr>
           <tr>
             <th
-              class="py-4 pl-4 text-sm font-medium text-left border-t text-zinc-900 dark:border-zinc-700 dark:text-white border-zinc-200 dark:border-zinc-800"
+              class="py-4 pl-4 text-sm font-medium text-left border-t text-foreground border-border"
             >
               <div class="flex items-center gap-2">
                 <Plug size="sm" />
@@ -538,17 +497,17 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700"
+              class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border"
               >2</td
             >
             <td
-              class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-orange-900 text-zinc-900 dark:text-white border-zinc-200 dark:border-orange-900"
+              class="px-2 text-xs font-medium text-center border-t bg-muted text-foreground border-border border-border"
               >YES</td
             >
           </tr>
           <tr>
             <th
-              class="py-4 pl-4 text-sm font-medium text-left border-t text-zinc-900 dark:border-zinc-700 dark:text-white border-zinc-200 dark:border-zinc-800"
+              class="py-4 pl-4 text-sm font-medium text-left border-t text-foreground border-border"
             >
               <div class="flex items-center gap-2">
                 <Program size="sm" />
@@ -556,17 +515,17 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700"
+              class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border"
               >NO</td
             >
             <td
-              class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-orange-900 text-zinc-900 dark:text-white border-zinc-200 dark:border-orange-900"
+              class="px-2 text-xs font-medium text-center border-t bg-muted text-foreground border-border border-border"
               >1</td
             >
           </tr>
           <tr>
             <th
-              class="py-4 pl-4 text-sm font-medium text-left border-t text-zinc-900 dark:border-zinc-700 dark:text-white border-zinc-200 dark:border-zinc-800"
+              class="py-4 pl-4 text-sm font-medium text-left border-t text-foreground border-border"
             >
               <div class="flex items-center gap-2">
                 <Brain size="sm" />
@@ -574,17 +533,17 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700"
+              class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border"
               >NO</td
             >
             <td
-              class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-orange-900 text-zinc-900 dark:text-white border-zinc-200 dark:border-orange-900"
+              class="px-2 text-xs font-medium text-center border-t bg-muted text-foreground border-border border-border"
               >YES</td
             >
           </tr>
           <tr>
             <th
-              class="py-4 pl-4 text-sm font-medium text-left border-t text-zinc-900 dark:border-zinc-700 dark:text-white border-zinc-200 dark:border-zinc-800"
+              class="py-4 pl-4 text-sm font-medium text-left border-t text-foreground border-border"
             >
               <div class="flex items-center gap-2">
                 <Code size="sm" />
@@ -592,17 +551,17 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700"
+              class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border"
               >NO</td
             >
             <td
-              class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-orange-900 text-zinc-900 dark:text-white border-zinc-200 dark:border-orange-900"
+              class="px-2 text-xs font-medium text-center border-t bg-muted text-foreground border-border border-border"
               >YES</td
             >
           </tr>
           <tr>
             <th
-              class="py-4 pl-4 text-sm font-medium text-left border-t text-zinc-900 dark:border-zinc-700 dark:text-white border-zinc-200 dark:border-zinc-800"
+              class="py-4 pl-4 text-sm font-medium text-left border-t text-foreground border-border"
             >
               <div class="flex items-center gap-2">
                 <Tools size="sm" />
@@ -610,17 +569,17 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700"
+              class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border"
               >NO</td
             >
             <td
-              class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-orange-900 text-zinc-900 dark:text-white border-zinc-200 dark:border-orange-900"
+              class="px-2 text-xs font-medium text-center border-t bg-muted text-foreground border-border border-border"
               >YES</td
             >
           </tr>
           <tr>
             <th
-              class="py-4 pl-4 text-sm font-medium text-left border-t text-zinc-900 dark:border-zinc-700 dark:text-white border-zinc-200 dark:border-zinc-800"
+              class="py-4 pl-4 text-sm font-medium text-left border-t text-foreground border-border"
             >
               <div class="flex items-center gap-2">
                 <Lifebuoy size="sm" />
@@ -628,26 +587,22 @@ import UsersGroup from "@/components/fundations/icons/UsersGroup.astro";
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700"
+              class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border"
               >Discord community</td
             >
             <td
-              class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-orange-900 text-zinc-900 dark:text-white border-zinc-200 dark:border-orange-900"
+              class="px-2 text-xs font-medium text-center border-t bg-muted text-foreground border-border border-border"
               >Live chat</td
             >
           </tr>
           <tr class="align-top">
-            <th class="border-t border-zinc-200 dark:border-zinc-700"></th>
-            <th
-              class="w-1/4 px-2 py-4 border-t border-zinc-200 dark:border-zinc-700"
-            >
+            <th class="border-t border-border"></th>
+            <th class="w-1/4 px-2 py-4 border-t border-border">
               <Button class="w-full" variant="muted" size="sm">
                 Start free trial
               </Button>
             </th>
-            <th
-              class="w-1/4 px-2 py-4 border-t border-zinc-200 dark:border-zinc-700"
-            >
+            <th class="w-1/4 px-2 py-4 border-t border-border">
               <Button class="w-full" variant="muted" size="sm">
                 Start free trial
               </Button>

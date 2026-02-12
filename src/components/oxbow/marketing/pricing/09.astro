@@ -6,9 +6,9 @@ export const excludeFromObfuscation = [
   "w-1/2",
   "translate-x-0",
   "translate-x-full",
-  "text-zinc-600",
-  "focus:text-zinc-900",
-  "hover:text-zinc-900",
+  "text-muted-foreground",
+  "focus:text-foreground",
+  "hover:text-foreground",
 ];
 
 // Fundations
@@ -42,11 +42,10 @@ import AdjustmentsHorizontal from "@/components/fundations/icons/AdjustmentsHori
 const pricingOptions = [
   {
     id: "core",
-    cardClass:
-      "bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 shadow from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl p-8",
-    primaryTextColor: "text-zinc-900 dark:text-white",
-    secondaryTextColor: "text-zinc-500 dark:text-zinc-400",
-    featuresBorderColor: "border-zinc-200 dark:border-zinc-600",
+    cardClass: "bg-background outline outline-border shadow rounded-xl p-8",
+    primaryTextColor: "text-foreground",
+    secondaryTextColor: "text-muted-foreground",
+    featuresBorderColor: "border-border border-border",
     title: "Core",
     monthly: "$29.00",
     annual: "$19.00",
@@ -67,11 +66,10 @@ const pricingOptions = [
   },
   {
     id: "momentum",
-    cardClass:
-      "bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 shadow from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl",
-    primaryTextColor: "text-zinc-900 dark:text-white",
-    secondaryTextColor: "text-zinc-500 dark:text-zinc-300",
-    featuresBorderColor: "border-orange-200 dark:border-white/20",
+    cardClass: "bg-background outline outline-border shadow rounded-xl",
+    primaryTextColor: "text-foreground",
+    secondaryTextColor: "text-muted-foreground",
+    featuresBorderColor: "border-border/30 border-border/20",
     title: "Momentum",
     monthly: "$49.00",
     annual: "$39.00",
@@ -95,11 +93,10 @@ const pricingOptions = [
   },
   {
     id: "velocity",
-    cardClass:
-      "bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 shadow from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl p-8",
-    primaryTextColor: "text-zinc-900 dark:text-white",
-    secondaryTextColor: "text-zinc-500 dark:text-zinc-400",
-    featuresBorderColor: "border-zinc-200 dark:border-zinc-600",
+    cardClass: "bg-background outline outline-border shadow rounded-xl p-8",
+    primaryTextColor: "text-foreground",
+    secondaryTextColor: "text-muted-foreground",
+    featuresBorderColor: "border-border border-border",
     title: "Velocity",
     monthly: "$99.00",
     annual: "$79.00",
@@ -121,20 +118,20 @@ const pricingOptions = [
 ];
 ---
 
-<section x-data="{ duration: 'monthly' }" class="bg-white dark:bg-zinc-900">
+<section x-data="{ duration: 'monthly' }" class="bg-background">
   <div class="px-8 py-24 mx-auto max-w-7xl md:px-12 lg:px-20">
     <div class="max-w-md mx-auto text-center">
       <Text
         tag="h1"
         variant="displayMD"
-        class="font-semibold tracking-tight text-zinc-900 text-balance dark:text-zinc-100"
+        class="font-semibold tracking-tight text-foreground text-balance"
       >
         Give your team tools that don't suck
       </Text>
       <Text
         tag="p"
         variant="textBase"
-        class="mt-2 font-medium text-zinc-600 text-balance dark:text-zinc-400"
+        class="mt-2 font-medium text-muted-foreground text-balance"
       >
         Start with what you need, skip what you don't. Scale up when
         spreadsheets stop cutting it.
@@ -142,16 +139,16 @@ const pricingOptions = [
       <!-- Pricing Toggle -->
       <div
         aria-labelledby="pricing-toggle"
-        class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-white shadow dark:bg-zinc-900 ring-1 ring-zinc-200 dark:ring-zinc-700 ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52 dark:ring-offset-black"
+        class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-background shadow ring-1 ring-border ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52 ring-offset-background"
       >
         <div
-          class="absolute inset-0 bg-zinc-50 dark:bg-zinc-800 rounded-md transition-transform duration-200 ease-in-out"
+          class="absolute inset-0 bg-muted rounded-md ring-1 ring-border/60 shadow-sm transition-transform duration-200 ease-in-out"
           :class="duration === 'monthly' ? 'w-1/2 translate-x-0' : 'w-1/2 translate-x-full'"
         >
         </div>
         <button
           class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-          :class="duration === 'monthly' ? 'text-zinc-600 dark:text-zinc-300' : 'focus:text-zinc-900 hover:text-zinc-900 dark:focus:text-zinc-100 dark:hover:text-zinc-100 dark:text-zinc-300'"
+          :class="duration === 'monthly' ? 'text-foreground' : 'text-muted-foreground hover:text-foreground focus:text-foreground'"
           @click="duration = 'monthly'"
           type="button"
           :aria-pressed="duration === 'monthly'"
@@ -160,7 +157,7 @@ const pricingOptions = [
         </button>
         <button
           class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-          :class="duration === 'annual' ? 'text-zinc-600 dark:text-zinc-300' : 'focus:text-zinc-900 hover:text-zinc-900 dark:focus:text-zinc-100 dark:hover:text-zinc-100 dark:text-zinc-300'"
+          :class="duration === 'annual' ? 'text-foreground' : 'text-muted-foreground hover:text-foreground focus:text-foreground'"
           @click="duration = 'annual'"
           type="button"
           :aria-pressed="duration === 'annual'"
@@ -244,37 +241,33 @@ const pricingOptions = [
       }
     </div>
     <div class="hidden mt-12 lg:block">
-      <div class="pb-4 mt-20 border-b border-zinc-200 dark:border-zinc-800">
-        <Text
-          tag="p"
-          variant="textXL"
-          class="font-medium text-zinc-900 dark:text-white"
-        >
+      <div class="pb-4 mt-20 border-b border-border">
+        <Text tag="p" variant="textXL" class="font-medium text-foreground">
           Price comparison
         </Text>
-        <p class="text-2xl font-semibold tracking-tight text-zinc-900"></p>
+        <p class="text-2xl font-semibold tracking-tight text-foreground"></p>
       </div>
       <!---- Use only from xl: -->
       <div>
         <table class="w-full mx-auto text-center bg-transparent">
           <thead>
-            <tr class="align-top border-b border-zinc-200 dark:border-zinc-800">
+            <tr class="align-top border-b border-border">
               <th
-                class="w-1/4 py-4 text-sm font-medium text-left leading-6 text-zinc-900 dark:text-white"
+                class="w-1/4 py-4 text-sm font-medium text-left leading-6 text-foreground"
                 >Usage
               </th>
               <th
-                class="w-1/4 py-4 text-sm font-medium leading-6 text-zinc-900 dark:text-white"
+                class="w-1/4 py-4 text-sm font-medium leading-6 text-foreground"
               >
                 Core
               </th>
               <th
-                class="w-1/4 py-4 text-sm font-medium leading-6 text-zinc-900 dark:text-white"
+                class="w-1/4 py-4 text-sm font-medium leading-6 text-foreground"
               >
                 Momentum
               </th>
               <th
-                class="w-1/4 py-4 text-sm font-medium leading-6 text-zinc-900 dark:text-white"
+                class="w-1/4 py-4 text-sm font-medium leading-6 text-foreground"
               >
                 Velocity
               </th>
@@ -282,178 +275,176 @@ const pricingOptions = [
           </thead>
           <tbody>
             <tr>
-              <th
-                class="py-3 text-sm font-medium text-left text-zinc-900 dark:text-white"
-              >
+              <th class="py-3 text-sm font-medium text-left text-foreground">
                 <div class="flex items-center gap-2">
                   <Check size="sm" />
                   Analytics
                 </div>
               </th>
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700"
+                class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border"
                 >3</td
               >
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-orange-900 text-zinc-900 dark:text-white border-zinc-200 dark:border-orange-900"
+                class="px-2 text-xs font-medium text-center border-t bg-muted text-foreground border-border border-border"
                 >10</td
               >
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700"
+                class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border"
                 >Unlimited</td
               >
             </tr>
             <tr>
               <th
-                class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:text-white dark:border-zinc-800"
+                class="py-3 text-sm font-medium text-left border-t text-foreground border-border"
               >
                 <div class="flex items-center gap-2">
                   <Check size="sm" />Accounts
                 </div>
               </th>
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700"
+                class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border"
                 >5</td
               >
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-orange-900 text-zinc-900 dark:text-white border-zinc-200 dark:border-orange-900"
+                class="px-2 text-xs font-medium text-center border-t bg-muted text-foreground border-border border-border"
                 >10</td
               >
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700"
+                class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border"
                 >Unlimited</td
               >
             </tr>
             <tr>
               <th
-                class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:text-white dark:border-zinc-800"
+                class="py-3 text-sm font-medium text-left border-t text-foreground border-border"
               >
                 <div class="flex items-center gap-2">
                   <Check size="sm" />Integrations
                 </div>
               </th>
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700"
+                class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border"
                 >2</td
               >
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-orange-900 text-zinc-900 dark:text-white border-zinc-200 dark:border-orange-900"
+                class="px-2 text-xs font-medium text-center border-t bg-muted text-foreground border-border border-border"
               >
                 YES
               </td>
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700"
+                class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border"
                 >Unlimited</td
               >
             </tr>
             <tr>
               <th
-                class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:text-white dark:border-zinc-800"
+                class="py-3 text-sm font-medium text-left border-t text-foreground border-border"
               >
                 <div class="flex items-center gap-2">
                   <Check size="sm" />Programs
                 </div>
               </th>
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700"
+                class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border"
               >
                 NO
               </td>
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-orange-900 text-zinc-900 dark:text-white border-zinc-200 dark:border-orange-900"
+                class="px-2 text-xs font-medium text-center border-t bg-muted text-foreground border-border border-border"
                 >1</td
               >
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700"
+                class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border"
                 >Unlimited</td
               >
             </tr>
             <tr>
               <th
-                class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:text-white dark:border-zinc-800"
+                class="py-3 text-sm font-medium text-left border-t text-foreground border-border"
               >
                 <div class="flex items-center gap-2">
                   <Check size="sm" />Deployments
                 </div>
               </th>
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700"
+                class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border"
               >
                 NO
               </td>
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-orange-900 text-zinc-900 dark:text-white border-zinc-200 dark:border-orange-900"
+                class="px-2 text-xs font-medium text-center border-t bg-muted text-foreground border-border border-border"
               >
                 YES
               </td>
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700"
+                class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border"
                 >Unlimited</td
               >
             </tr>
             <tr>
               <th
-                class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:text-white dark:border-zinc-800"
+                class="py-3 text-sm font-medium text-left border-t text-foreground border-border"
               >
                 <div class="flex items-center gap-2">
                   <Check size="sm" />Advanced Checkpoints
                 </div>
               </th>
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700"
+                class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border"
               >
                 NO
               </td>
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-orange-900 text-zinc-900 dark:text-white border-zinc-200 dark:border-orange-900"
+                class="px-2 text-xs font-medium text-center border-t bg-muted text-foreground border-border border-border"
               >
                 YES
               </td>
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700"
+                class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border"
                 >Unlimited</td
               >
             </tr>
             <tr>
               <th
-                class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:text-white dark:border-zinc-800"
+                class="py-3 text-sm font-medium text-left border-t text-foreground border-border"
               >
                 <div class="flex items-center gap-2">
                   <Check size="sm" />Reporting tools
                 </div>
               </th>
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700"
+                class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border"
               >
                 NO
               </td>
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-orange-900 text-zinc-900 dark:text-white border-zinc-200 dark:border-orange-900"
+                class="px-2 text-xs font-medium text-center border-t bg-muted text-foreground border-border border-border"
               >
                 YES
               </td>
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700"
+                class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border"
                 >Unlimited</td
               >
             </tr>
             <tr>
               <th
-                class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:text-white dark:border-zinc-800"
+                class="py-3 text-sm font-medium text-left border-t text-foreground border-border"
                 ><div class="flex items-center gap-2">
                   <Check size="sm" />Support
                 </div></th
               >
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700"
+                class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border"
                 >Discord community</td
               >
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-orange-900 text-zinc-900 dark:text-white border-zinc-200 dark:border-orange-900"
+                class="px-2 text-xs font-medium text-center border-t bg-muted text-foreground border-border border-border"
                 >Live chat</td
               >
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700"
+                class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border"
                 >Unlimited</td
               >
             </tr>
@@ -462,96 +453,94 @@ const pricingOptions = [
               <th
                 scope="colgroup"
                 colspan="4"
-                class="py-4 text-sm font-medium text-left leading-6 text-zinc-900 border-y border-zinc-200 dark:text-white dark:border-zinc-800"
+                class="py-4 text-sm font-medium text-left leading-6 text-foreground border-y border-border"
               >
                 Features
               </th>
             </tr>
 
             <tr>
-              <th
-                class="py-3 text-sm font-medium text-left text-zinc-900 dark:text-white"
-              >
+              <th class="py-3 text-sm font-medium text-left text-foreground">
                 <div class="flex items-center gap-2">
                   <Check size="sm" />
                   Service agreement
                 </div>
               </th>
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700"
+                class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border"
                 >No</td
               >
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-orange-900 text-zinc-900 dark:text-white border-zinc-200 dark:border-orange-900"
+                class="px-2 text-xs font-medium text-center border-t bg-muted text-foreground border-border border-border"
                 >No</td
               >
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700"
+                class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border"
                 >YES</td
               >
             </tr>
             <tr>
               <th
-                class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:text-white dark:border-zinc-800"
+                class="py-3 text-sm font-medium text-left border-t text-foreground border-border"
               >
                 <div class="flex items-center gap-2">
                   <Check size="sm" />Dedicted Manager
                 </div>
               </th>
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700"
+                class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border"
                 >No</td
               >
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-orange-900 text-zinc-900 dark:text-white border-zinc-200 dark:border-orange-900"
+                class="px-2 text-xs font-medium text-center border-t bg-muted text-foreground border-border border-border"
                 >Yes</td
               >
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700"
+                class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border"
                 >Yes</td
               >
             </tr>
             <tr>
               <th
-                class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:text-white dark:border-zinc-800"
+                class="py-3 text-sm font-medium text-left border-t text-foreground border-border"
               >
                 <div class="flex items-center gap-2">
                   <Check size="sm" />Onboarding sessions
                 </div>
               </th>
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700"
+                class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border"
                 >No</td
               >
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-orange-900 text-zinc-900 dark:text-white border-zinc-200 dark:border-orange-900"
+                class="px-2 text-xs font-medium text-center border-t bg-muted text-foreground border-border border-border"
               >
                 No
               </td>
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700"
+                class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border"
                 >Yes</td
               >
             </tr>
             <tr>
               <th
-                class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:text-white dark:border-zinc-800"
+                class="py-3 text-sm font-medium text-left border-t text-foreground border-border"
               >
                 <div class="flex items-center gap-2">
                   <Check size="sm" />Dedicated support channel
                 </div>
               </th>
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700 rounded-bl-3xl"
+                class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border rounded-bl-3xl"
               >
                 No
               </td>
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-orange-900 text-zinc-900 dark:text-white border-zinc-200 dark:border-orange-900"
+                class="px-2 text-xs font-medium text-center border-t bg-muted text-foreground border-border border-border"
                 >No</td
               >
               <td
-                class="px-2 text-xs font-medium text-center bg-white border-t dark:bg-zinc-800 text-zinc-900 dark:text-white border-zinc-200 dark:border-zinc-700 rounded-br-3xl"
+                class="px-2 text-xs font-medium text-center bg-background border-t text-foreground border-border rounded-br-3xl"
                 >Yes</td
               >
             </tr>

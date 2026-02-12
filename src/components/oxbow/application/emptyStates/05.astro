@@ -1,8 +1,8 @@
 ---
 export const excludeFromObfuscation = [
-  "text-zinc-500",
+  "text-muted-foreground",
   "border-b-2",
-  "border-zinc-500",
+  "border-border",
 ];
 
 export const description = "Contextual Empty States";
@@ -12,18 +12,18 @@ import Button from "@/components/fundations/buttons/Button.astro";
 import Plus from "@/components/fundations/icons/Plus.astro";
 ---
 
-<div class="flex items-center justify-center p-8 py-24 dark:bg-black">
+<div class="flex items-center justify-center p-8 py-24 bg-background">
   <!-- copy:start -->
   <div x-data="{ tab: 'tab1' }">
     <ul
-      class="flex items-center justify-center text-sm border-b gap-4 text-zinc-500 dark:text-zinc-400 border-zinc-200 dark:border-zinc-700"
+      class="flex items-center justify-center text-sm border-b gap-4 text-muted-foreground border-border"
     >
       <li class="-mb-px">
         <a
           @click.prevent="tab = 'tab1'"
           href="#_"
-          class="inline-block py-2 font-medium border-b-2 text-zinc-500 dark:text-zinc-400 border-zinc-500 dark:border-zinc-400"
-          :class="{ '  text-zinc-500 border-b-2 border-zinc-500' : tab === 'tab1' }"
+          class="inline-block py-2 font-medium border-b-2 text-muted-foreground border-border"
+          :class="{ ' text-muted-foreground border-b-2 border-border' : tab === 'tab1' }"
         >
           Marketing</a
         >
@@ -33,7 +33,7 @@ import Plus from "@/components/fundations/icons/Plus.astro";
           @click.prevent="tab = 'tab2'"
           href="#_"
           class="inline-block py-2 font-medium"
-          :class="{ '  text-zinc-500 border-b-2 border-zinc-500' : tab === 'tab2' }"
+          :class="{ ' text-muted-foreground border-b-2 border-border' : tab === 'tab2' }"
         >
           Application</a
         >
@@ -43,14 +43,14 @@ import Plus from "@/components/fundations/icons/Plus.astro";
           @click.prevent="tab = 'tab3'"
           href="#_"
           class="inline-block py-2 font-medium"
-          :class="{ '  text-zinc-500 border-b-2 border-zinc-500' : tab === 'tab3' }"
+          :class="{ ' text-muted-foreground border-b-2 border-border' : tab === 'tab3' }"
         >
           ECommerce</a
         >
       </li>
     </ul>
     <div class="max-w-xl p-8 mx-auto text-left content">
-      <div x-show="tab==='tab1'" class="text-zinc-500">
+      <div x-show="tab==='tab1'" class="text-muted-foreground">
         <main>
           <div class="flex flex-col items-center justify-center text-center">
             <svg
@@ -63,7 +63,7 @@ import Plus from "@/components/fundations/icons/Plus.astro";
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-stack-front size-6 text-zinc-600 dark:text-zinc-300"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-stack-front size-6 text-muted-foreground"
               ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
                 d="M12 4l-8 4l8 4l8 -4l-8 -4"
                 fill="currentColor"></path><path d="M8 14l-4 2l8 4l8 -4l-4 -2"
@@ -72,14 +72,14 @@ import Plus from "@/components/fundations/icons/Plus.astro";
             <Text
               tag="h3"
               variant="textBase"
-              class="mt-8 font-medium text-zinc-900 dark:text-white"
+              class="mt-8 font-medium text-foreground"
             >
               No Marketing Data
             </Text>
             <Text
               tag="p"
               variant="textSM"
-              class="w-2/3 mt-2 font-medium text-zinc-500 text-balance"
+              class="w-2/3 mt-2 font-medium text-muted-foreground text-balance"
             >
               Start creating marketing campaigns to see your performance metrics
               here.
@@ -92,7 +92,7 @@ import Plus from "@/components/fundations/icons/Plus.astro";
           </div>
         </main>
       </div>
-      <div x-show="tab==='tab2'" class="text-zinc-500" style="display: none">
+      <div x-show="tab==='tab2'" class="text-muted-foreground" style="display: none">
         <main>
           <div class="flex flex-col items-center justify-center text-center">
             <svg
@@ -105,7 +105,7 @@ import Plus from "@/components/fundations/icons/Plus.astro";
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-stack-front size-6 text-zinc-600 dark:text-zinc-300"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-stack-front size-6 text-muted-foreground"
               ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
                 d="M12 4l-8 4l8 4l8 -4l-8 -4"
                 fill="currentColor"></path><path d="M8 14l-4 2l8 4l8 -4l-4 -2"
@@ -114,14 +114,14 @@ import Plus from "@/components/fundations/icons/Plus.astro";
             <Text
               tag="h3"
               variant="textBase"
-              class="mt-8 font-medium text-zinc-900 dark:text-white"
+              class="mt-8 font-medium text-foreground"
             >
               No Application Data
             </Text>
             <Text
               tag="p"
               variant="textSM"
-              class="w-2/3 mt-4 font-medium text-zinc-500 text-balance"
+              class="w-2/3 mt-4 font-medium text-muted-foreground text-balance"
             >
               Build and integrate applications to view your usage statistics.
             </Text>
@@ -133,7 +133,7 @@ import Plus from "@/components/fundations/icons/Plus.astro";
           </div>
         </main>
       </div>
-      <div x-show="tab==='tab3'" class="text-zinc-500" style="display: none">
+      <div x-show="tab==='tab3'" class="text-muted-foreground" style="display: none">
         <main>
           <div class="flex flex-col items-center justify-center text-center">
             <svg
@@ -146,7 +146,7 @@ import Plus from "@/components/fundations/icons/Plus.astro";
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-stack-front size-6 text-zinc-600 dark:text-zinc-300"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-stack-front size-6 text-muted-foreground"
               ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
                 d="M12 4l-8 4l8 4l8 -4l-8 -4"
                 fill="currentColor"></path><path d="M8 14l-4 2l8 4l8 -4l-4 -2"
@@ -155,14 +155,14 @@ import Plus from "@/components/fundations/icons/Plus.astro";
             <Text
               tag="h3"
               variant="textBase"
-              class="mt-8 font-medium text-zinc-900 dark:text-white"
+              class="mt-8 font-medium text-foreground"
             >
               No ECommerce Data
             </Text>
             <Text
               tag="p"
               variant="textSM"
-              class="w-2/3 mt-4 font-medium text-zinc-500 text-balance"
+              class="w-2/3 mt-4 font-medium text-muted-foreground text-balance"
             >
               Start adding products to your store to track sales and inventory.
             </Text>

@@ -2,16 +2,14 @@
 export const freeComponent = true;
 export const excludeFromObfuscation = [
   "ring-1",
-  "ring-zinc-500/20",
-  "text-zinc-600",
+  "ring-border/20",
+  "text-muted-foreground",
   "border-b-2",
-  "border-zinc-600",
+  "border-border",
 ];
 ---
 
-<div
-  class="flex flex-col justify-center p-12 mx-auto bg-white dark:bg-zinc-900"
->
+<div class="flex flex-col justify-center p-12 mx-auto bg-background">
   <!-- Accessible Tabs • Underline style -->
   <div
     x-data="{
@@ -37,14 +35,14 @@ export const excludeFromObfuscation = [
     class="w-full max-w-xl mx-auto"
   >
     <div
-      class="border-b border-zinc-200 dark:border-zinc-700"
+      class="border-b border-border"
       role="tablist"
       aria-orientation="horizontal"
     >
       <div class="flex text-sm gap-6">
         <template x-for="(id, idx) in keys" :key="id">
           <button
-            class="relative pb-2 -mb-px font-medium text-zinc-600 dark:text-zinc-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500/50"
+            class="relative pb-2 -mb-px font-medium text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-border"
             :id="'tab-'+id"
             role="tab"
             :aria-selected="selected===id"
@@ -59,13 +57,13 @@ export const excludeFromObfuscation = [
             ></span>
             <span
               class="absolute left-0 -bottom-px h-[2px] w-full transition-all"
-              :class="selected===id ? 'bg-zinc-600 dark:bg-zinc-400' : 'bg-transparent'"
+              :class="selected===id ? 'bg-muted' : 'bg-transparent'"
               aria-hidden="true"></span>
           </button>
         </template>
       </div>
     </div>
-    <div class="pt-4 text-sm text-zinc-500 dark:text-zinc-300">
+    <div class="pt-4 text-sm text-muted-foreground">
       <section
         x-show="selected==='overview'"
         x-cloak

@@ -40,14 +40,14 @@ const features = [
 ];
 ---
 
-<section class="bg-white dark:bg-zinc-900">
+<section class="bg-background">
   <div class="px-8 py-24 mx-auto max-w-7xl md:px-12 lg:px-20">
     <div class="max-w-xl mx-auto lg:text-balance lg:text-center">
       <Kicker class=""> Surprisingly Helpful Tools </Kicker>
       <Text
         tag="h2"
         variant="displaySM"
-        class="mt-12 font-semibold tracking-tight text-zinc-900 dark:text-white lg:text-balance"
+        class="mt-12 font-semibold tracking-tight text-foreground lg:text-balance"
       >
         Take control of your tasks—before they take control of you
       </Text>
@@ -58,24 +58,14 @@ const features = [
       {
         features.map((feature) => (
           <div>
-            <dt class="flex flex-col text-orange-600 lg:items-center gap-2">
-              {feature.icon && (
-                <feature.icon class="text-orange-600" size="base" />
-              )}
-              <Text
-                tag="h3"
-                variant=""
-                class="font-semibold text-zinc-900 dark:text-white"
-              >
+            <dt class="flex flex-col text-foreground lg:items-center gap-2">
+              {feature.icon && <feature.icon class="text-foreground" size="base" />}
+              <Text tag="h3" variant="" class="font-semibold text-foreground">
                 {feature.title}
               </Text>
             </dt>
             <dd>
-              <Text
-                tag="p"
-                variant="textSM"
-                class="mt-2 text-zinc-500 dark:text-zinc-400"
-              >
+              <Text tag="p" variant="textSM" class="mt-2 text-muted-foreground">
                 {feature.text}
               </Text>
             </dd>
@@ -85,34 +75,34 @@ const features = [
     </dl>
 
     <div
-      class="items-start p-8 mt-8 bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl grid grid-cols-1 md:grid-cols-2 gap-8"
+      class="items-start p-8 mt-8 bg-linear-180 outline outline-border from-muted to-background rounded-xl grid grid-cols-1 md:grid-cols-2 gap-8"
     >
       <div>
         <Text
           tag="h3"
           variant="textXL"
-          class="font-semibold tracking-tighter text-zinc-900 dark:text-white text-balance"
+          class="font-semibold tracking-tighter text-foreground text-balance"
         >
-          Try a <span class="text-orange-600">7-day free trial</span> and see how much
+          Try a <span class="text-foreground">7-day free trial</span> and see how much
           you can get done.
         </Text>
         <div class="flex flex-wrap mt-4 sm:items-center gap-4">
           <Button variant="default" size="sm"> Start free trial </Button>
-          <div class="text-xs text-zinc-500 dark:text-zinc-400 lg:items-center">
+          <div class="text-xs text-muted-foreground lg:items-center">
             <span class="block"> 4.8/5 from real users</span>
             <span class="block"> (and 300+ reviews) </span>
           </div>
         </div>
       </div>
       <ul
-        class="text-base font-medium list-none text-zinc-900 dark:text-white grid grid-cols-1 md:grid-cols-2 gap-y-2 gap-x-4"
+        class="text-base font-medium list-none text-foreground grid grid-cols-1 md:grid-cols-2 gap-y-2 gap-x-4"
         role="list"
       >
         {
           listItems.map((item) => (
             <li>
               <div class="flex items-start gap-2">
-                <CircleCheck class="text-zinc-600" size="sm" />
+                <CircleCheck class="text-muted-foreground" size="sm" />
                 <Text tag="span" variant="textSM">
                   {item}
                 </Text>

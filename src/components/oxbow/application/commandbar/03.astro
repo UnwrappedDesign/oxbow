@@ -1,11 +1,11 @@
 ---
 // Keep dynamic classes readable after CSS obfuscation
 export const excludeFromObfuscation = [
-  "bg-zinc-50",
-  "bg-white/5",
-  "dark:bg-white/5",
-  "text-accent-600",
-  "text-zinc-600",
+  "bg-muted",
+  "bg-background/5",
+  "bg-background/5",
+  "text-foreground",
+  "text-muted-foreground",
 ];
 import Search from "@/components/fundations/icons/Search.astro";
 import XIcon from "@/components/fundations/icons/X.astro";
@@ -18,9 +18,7 @@ import Settings from "@/components/fundations/icons/Settings.astro";
 import CircleInfo from "@/components/fundations/icons/CircleInfo.astro";
 ---
 
-<div
-  class="flex items-center justify-center p-8 py-24 bg-white dark:bg-zinc-900"
->
+<div class="flex items-center justify-center p-8 py-24 bg-background">
   <!-- Copy:start -->
   <!--
   
@@ -35,7 +33,7 @@ import CircleInfo from "@/components/fundations/icons/CircleInfo.astro";
 
 -->
   <div
-    class="w-full max-w-2xl overflow-hidden bg-white shadow-lg dark:bg-zinc-800 rounded-xl outline outline-zinc-200 dark:outline-zinc-800"
+    class="w-full max-w-2xl overflow-hidden bg-background shadow-lg rounded-xl outline outline-border"
     x-data="{
       open: true,
       query: '',
@@ -138,7 +136,7 @@ import CircleInfo from "@/components/fundations/icons/CircleInfo.astro";
     <div class="p-2">
       <div class="relative">
         <Search
-          class="pointer-events-none absolute top-3.5 left-4 text-zinc-400"
+          class="pointer-events-none absolute top-3.5 left-4 text-muted-foreground"
           size="base"
           slot="icon"
         />
@@ -150,7 +148,7 @@ import CircleInfo from "@/components/fundations/icons/CircleInfo.astro";
           @keydown.arrow-up.prevent="prev()"
           @keydown.enter.prevent="choose()"
           @keydown.escape.prevent="closeList()"
-          class="w-full h-12 pr-24 bg-transparent border-0 rounded-lg text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 pl-11 sm:text-sm ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none focus:ring-2 focus:ring-orange-400"
+          class="w-full h-12 pr-24 bg-transparent border-0 rounded-lg text-foreground placeholder:text-muted-foreground pl-11 sm:text-sm ring-1 ring-border focus:outline-none focus:ring-2 focus:ring-border"
           placeholder="Find anything — docs, tickets, teammates"
           autocomplete="off"
           role="combobox"
@@ -159,14 +157,14 @@ import CircleInfo from "@/components/fundations/icons/CircleInfo.astro";
           aria-autocomplete="list"
         />
         <div
-          class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 hidden sm:flex gap-1 text-[0.70rem] text-zinc-500 dark:text-zinc-400"
+          class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 hidden sm:flex gap-1 text-[0.70rem] text-muted-foreground"
         >
           <kbd
-            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            class="px-1 border rounded bg-background border-border text-muted-foreground"
             >⌘</kbd
           >
           <kbd
-            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            class="px-1 border rounded bg-background border-border text-muted-foreground"
             >K</kbd
           >
         </div>
@@ -174,7 +172,7 @@ import CircleInfo from "@/components/fundations/icons/CircleInfo.astro";
           type="button"
           x-show="query.length>0"
           @click="query=''; $nextTick(()=> $refs.input?.focus())"
-          class="absolute right-[3.25rem] top-1/2 -translate-y-1/2 size-7 inline-flex items-center justify-center rounded-md text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 hover:bg-zinc-100 dark:hover:bg-white/10"
+          class="absolute right-[3.25rem] top-1/2 -translate-y-1/2 size-7 inline-flex items-center justify-center rounded-md text-muted-foreground hover:text-muted-foreground hover:bg-background/10"
           aria-label="Clear search"
         >
           <XIcon size="sm" />
@@ -187,8 +185,8 @@ import CircleInfo from "@/components/fundations/icons/CircleInfo.astro";
             <button
               type="button"
               @click="activeTab=t.id; selected=0"
-              :class="activeTab===t.id ? 'text-orange-400' : 'text-zinc-500 dark:text-zinc-400'"
-              class="relative inline-flex items-center px-2 py-1 gap-2 rounded-md hover:bg-zinc-50 dark:hover:bg-white/5"
+              :class="activeTab===t.id ? 'text-foreground' : 'text-muted-foreground'"
+              class="relative inline-flex items-center px-2 py-1 gap-2 rounded-md hover:bg-background/5"
             >
               <template x-if="t.icon==='grid'"><Grid size="sm" /></template>
               <template x-if="t.icon==='file'"><FileDots size="sm" /></template>
@@ -202,34 +200,32 @@ import CircleInfo from "@/components/fundations/icons/CircleInfo.astro";
               <span x-text="t.label"></span>
               <span
                 x-show="activeTab===t.id"
-                class="absolute -bottom-1 left-2 right-2 h-[2px] rounded bg-orange-400"
+                class="absolute -bottom-1 left-2 right-2 h-[2px] rounded bg-muted/40"
               ></span>
             </button>
           </template>
         </div>
         <!-- Quick priority filter -->
         <div class="flex items-center gap-2 py-2 mt-4">
-          <span class="text-[0.70rem] text-zinc-500 dark:text-zinc-400"
-            >Priority:</span
-          >
+          <span class="text-[0.70rem] text-muted-foreground">Priority:</span>
           <button
             @click="priority='all'; selected=0"
-            :class="priority==='all' ? 'bg-zinc-100 dark:bg-white/10 text-zinc-900 dark:text-zinc-100' : 'text-zinc-600 dark:text-zinc-300'"
+            :class="priority==='all' ? 'bg-background/10 text-foreground' : 'text-muted-foreground'"
             class="h-6 px-2 rounded-md text-xs">All</button
           >
           <button
             @click="priority='high'; selected=0"
-            :class="priority==='high' ? 'bg-red-100 text-red-700 dark:bg-red-400/10 dark:text-red-300' : 'text-zinc-600 dark:text-zinc-300'"
+            :class="priority==='high' ? 'bg-destructive/20 text-destructive' : 'text-muted-foreground'"
             class="h-6 px-2 rounded-md text-xs">High</button
           >
           <button
             @click="priority='medium'; selected=0"
-            :class="priority==='medium' ? 'bg-amber-100 text-amber-700 dark:bg-amber-400/10 dark:text-amber-300' : 'text-zinc-600 dark:text-zinc-300'"
+            :class="priority==='medium' ? 'bg-warning/10 text-warning' : 'text-muted-foreground'"
             class="h-6 px-2 rounded-md text-xs">Medium</button
           >
           <button
             @click="priority='low'; selected=0"
-            :class="priority==='low' ? 'bg-green-100 text-green-700 dark:bg-green-400/10 dark:text-green-300' : 'text-zinc-600 dark:text-zinc-300'"
+            :class="priority==='low' ? 'bg-success/10 text-success' : 'text-muted-foreground'"
             class="h-6 px-2 rounded-md text-xs">Low</button
           >
         </div>
@@ -238,38 +234,33 @@ import CircleInfo from "@/components/fundations/icons/CircleInfo.astro";
 
     <!-- Results -->
     <div class="py-1">
-      <div
-        class="px-6 py-1 text-[0.70rem] font-medium text-zinc-500 dark:text-zinc-400"
-      >
+      <div class="px-6 py-1 text-[0.70rem] font-medium text-muted-foreground">
         Recent
       </div>
-      <ul class="divide-y divide-zinc-100 dark:divide-zinc-900">
+      <ul class="divide-y divide-border">
         <template x-for="r in filteredResults()" :key="r.id">
           <li
-            :class="isSelected({key:'item:'+r.id}) ? 'bg-zinc-50 dark:bg-white/5' : ''"
-            class="flex items-center justify-between px-6 py-3 cursor-pointer text-zinc-900 dark:text-zinc-50"
+            :class="isSelected({key:'item:'+r.id}) ? 'bg-background/5' : ''"
+            class="flex items-center justify-between px-6 py-3 cursor-pointer text-muted-foreground"
             @mouseenter="selected = selectable.findIndex(e=>e.key==='item:'+r.id)"
             @click="selected = selectable.findIndex(e=>e.key==='item:'+r.id); choose()"
           >
             <div class="flex items-center gap-3">
               <div
-                class="bg-white rounded-lg size-8 dark:bg-zinc-800 grid place-items-center ring-1 ring-zinc-200 dark:ring-zinc-700"
+                class="bg-background rounded-lg size-8 grid place-items-center ring-1 ring-border"
               >
                 <template x-if="true"><Subtask size="sm" /></template>
               </div>
               <div>
                 <div class="text-sm font-medium" x-text="r.title"></div>
-                <div
-                  class="text-xs text-zinc-500 dark:text-zinc-400"
-                  x-text="r.subtitle"
-                >
+                <div class="text-xs text-muted-foreground" x-text="r.subtitle">
                 </div>
               </div>
             </div>
             <div class="items-center hidden md:flex gap-1">
               <template x-for="b in r.badges" :key="b">
                 <span
-                  class="text-[0.70rem] px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-white/5 text-zinc-700 dark:text-zinc-300"
+                  class="text-[0.70rem] px-2 py-0.5 rounded-full bg-background/5 text-muted-foreground"
                   x-text="b"></span>
               </template>
             </div>
@@ -277,7 +268,7 @@ import CircleInfo from "@/components/fundations/icons/CircleInfo.astro";
         </template>
         <li
           x-show="filteredResults().length===0"
-          class="px-6 py-6 text-sm italic text-center text-zinc-500 dark:text-zinc-400"
+          class="px-6 py-6 text-sm italic text-center text-muted-foreground"
         >
           No matches in this tab
         </li>
@@ -286,22 +277,20 @@ import CircleInfo from "@/components/fundations/icons/CircleInfo.astro";
 
     <!-- Actions -->
     <div class="py-1">
-      <div
-        class="px-6 py-1 text-[0.70rem] font-medium text-zinc-500 dark:text-zinc-400"
-      >
+      <div class="px-6 py-1 text-[0.70rem] font-medium text-muted-foreground">
         Quick actions
       </div>
-      <ul class="divide-y divide-zinc-100 dark:divide-zinc-900">
+      <ul class="divide-y divide-border">
         <template x-for="a in filteredActions()" :key="a.id">
           <li
-            :class="isSelected({key:'action:'+a.id}) ? 'bg-zinc-50 dark:bg-white/5' : ''"
-            class="flex items-center justify-between px-6 py-3 cursor-pointer text-zinc-900 dark:text-zinc-50"
+            :class="isSelected({key:'action:'+a.id}) ? 'bg-background/5' : ''"
+            class="flex items-center justify-between px-6 py-3 cursor-pointer text-muted-foreground"
             @mouseenter="selected = selectable.findIndex(e=>e.key==='action:'+a.id)"
             @click="selected = selectable.findIndex(e=>e.key==='action:'+a.id); choose()"
           >
             <div class="flex items-center gap-3">
               <div
-                class="bg-white rounded-lg size-8 dark:bg-zinc-800 grid place-items-center ring-1 ring-zinc-200 dark:ring-zinc-700"
+                class="bg-background rounded-lg size-8 grid place-items-center ring-1 ring-border"
               >
                 <template x-if="a.icon==='plus'"><Plus size="sm" /></template>
                 <template x-if="a.icon==='users'"
@@ -316,19 +305,16 @@ import CircleInfo from "@/components/fundations/icons/CircleInfo.astro";
               </div>
               <div>
                 <div class="text-sm font-medium" x-text="a.text"></div>
-                <div
-                  class="text-xs text-zinc-500 dark:text-zinc-400"
-                  x-text="a.desc"
-                >
+                <div class="text-xs text-muted-foreground" x-text="a.desc">
                 </div>
               </div>
             </div>
             <div
-              class="hidden sm:flex items-center gap-1 text-[0.70rem] text-zinc-600"
+              class="hidden sm:flex items-center gap-1 text-[0.70rem] text-muted-foreground"
             >
               <template x-for="k in a.shortcuts" :key="k">
                 <kbd
-                  class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+                  class="px-1 border rounded bg-background border-border text-muted-foreground"
                   x-text="k"></kbd>
               </template>
             </div>
@@ -336,7 +322,7 @@ import CircleInfo from "@/components/fundations/icons/CircleInfo.astro";
         </template>
         <li
           x-show="filteredActions().length===0"
-          class="px-6 py-6 text-sm italic text-center text-zinc-500 dark:text-zinc-400"
+          class="px-6 py-6 text-sm italic text-center text-muted-foreground"
         >
           No actions found
         </li>
@@ -345,27 +331,27 @@ import CircleInfo from "@/components/fundations/icons/CircleInfo.astro";
 
     <!-- Footer help -->
     <div
-      class="px-4 py-2 text-[0.70rem] text-zinc-500 dark:text-zinc-400 flex items-center justify-between bg-zinc-50 dark:bg-white/10"
+      class="px-4 py-2 text-[0.70rem] text-muted-foreground flex items-center justify-between bg-background/10"
     >
       <div>
         Hint: press <kbd
-          class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+          class="px-1 border rounded bg-background border-border text-muted-foreground"
           >/</kbd
         > to search
       </div>
       <div class="items-center hidden sm:flex gap-2">
         <span class="flex items-center gap-1"
           ><kbd
-            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            class="px-1 border rounded bg-background border-border text-muted-foreground"
             >↑</kbd
           ><kbd
-            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            class="px-1 border rounded bg-background border-border text-muted-foreground"
             >↓</kbd
           > to navigate</span
         >
         <span class="flex items-center gap-1"
           ><kbd
-            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            class="px-1 border rounded bg-background border-border text-muted-foreground"
             >↵</kbd
           > to open</span
         >

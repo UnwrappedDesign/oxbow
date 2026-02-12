@@ -3,9 +3,10 @@ export const excludeFromObfuscation = [
   "w-1/2",
   "translate-x-0",
   "translate-x-full",
-  "text-zinc-600",
-  "focus:text-zinc-900",
-  "hover:text-zinc-900",
+  "text-muted-foreground",
+  "text-foreground",
+  "focus:text-foreground",
+  "hover:text-foreground",
 ];
 
 export const description = "Pricing section with two  columns comparison table";
@@ -31,9 +32,9 @@ import Tools from "@/components/fundations/icons/Tools.astro";
 import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.astro";
 ---
 
-<section x-data="{ duration: 'monthly' }" class="bg-white dark:bg-zinc-900">
+<section x-data="{ duration: 'monthly' }" class="bg-background">
   <div class="px-8 py-24 mx-auto max-w-7xl md:px-12 lg:px-20">
-    <p class="text-center text-zinc-500 lg:hidden">
+    <p class="text-center text-muted-foreground lg:hidden">
       Pricing table for desktop use
     </p>
     <!---- Use only from xl: -->
@@ -42,22 +43,22 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
         <Text
           tag="h1"
           variant="displayMD"
-          class="font-semibold tracking-tight text-zinc-900 text-balance dark:text-white"
+          class="font-semibold tracking-tight text-foreground text-balance"
         >
           Equip your business with great software
         </Text>
         <div
           aria-labelledby="pricing-toggle"
-          class="relative z-0 inline-flex w-full p-1 mx-auto mt-8 ml-auto overflow-hidden bg-white shadow justify-right dark:bg-zinc-900 ring-1 ring-zinc-200 dark:ring-zinc-700 ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52 dark:ring-offset-black"
+          class="relative z-0 inline-flex w-full p-1 mx-auto mt-8 ml-auto overflow-hidden bg-background shadow justify-right ring-1 ring-border ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52 ring-offset-background"
         >
           <div
-            class="absolute inset-0 bg-zinc-50 dark:bg-zinc-800 rounded-md transition-transform duration-200 ease-in-out"
+            class="absolute inset-0 bg-muted rounded-md ring-1 ring-border/60 shadow-sm transition-transform duration-200 ease-in-out"
             :class="duration === 'monthly' ? 'w-1/2 translate-x-0' : 'w-1/2 translate-x-full'"
           >
           </div>
           <button
             class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-            :class="duration === 'monthly' ? 'text-zinc-600 dark:text-zinc-300' : 'focus:text-zinc-900 hover:text-zinc-900 dark:focus:text-zinc-100 dark:hover:text-zinc-100 dark:text-zinc-300'"
+            :class="duration === 'monthly' ? 'text-foreground' : 'text-muted-foreground hover:text-foreground focus:text-foreground'"
             @click="duration = 'monthly'"
             type="button"
             :aria-pressed="duration === 'monthly'"
@@ -66,7 +67,7 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
           </button>
           <button
             class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-            :class="duration === 'annual' ? 'text-zinc-600 dark:text-zinc-300' : 'focus:text-zinc-900 hover:text-zinc-900 dark:focus:text-zinc-100 dark:hover:text-zinc-100 dark:text-zinc-300'"
+            :class="duration === 'annual' ? 'text-foreground' : 'text-muted-foreground hover:text-foreground focus:text-foreground'"
             @click="duration = 'annual'"
             type="button"
             :aria-pressed="duration === 'annual'"
@@ -82,7 +83,7 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
             <th class="relative w-1/3 p-1 pr-0 font-normal text-left">
               <div
                 aria-hidden="true"
-                class="absolute inset-y-0 right-0 hidden w-full bg-zinc-50 dark:bg-zinc-900 rounded-tl-xl sm:block"
+                class="absolute inset-y-0 right-0 hidden w-full bg-background rounded-tl-xl sm:block"
               >
               </div>
               <div class="relative p-6 sm:p-4 sm:pb-5 lg:p-6">
@@ -91,14 +92,14 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
                     <Text
                       tag="h3"
                       variant="textBase"
-                      class="font-semibold text-zinc-900 dark:text-white"
+                      class="font-semibold text-foreground"
                     >
                       Core
                     </Text>
                     <Text
                       tag="p"
                       variant="textSM"
-                      class="mt-1 text-zinc-500 dark:text-zinc-400"
+                      class="mt-1 text-muted-foreground"
                     >
                       This subscription tier caters to individuals.
                     </Text>
@@ -106,21 +107,19 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
                 </div>
                 <div class="mt-8">
                   <p
-                    class="text-4xl font-medium sm:text-xl md:text-4xl text-zinc-900 dark:text-white"
+                    class="text-4xl font-medium sm:text-xl md:text-4xl text-foreground"
                   >
                   </p>
                   <div class="flex items-center gap-x-4">
                     <p
-                      class="text-4xl font-medium sm:text-xl md:text-4xl text-zinc-900 dark:text-white"
+                      class="text-4xl font-medium sm:text-xl md:text-4xl text-foreground"
                     >
                       <span
                         data-monthly="$29"
                         data-annual="$19"
                         x-text="$el.dataset[duration]"></span>
                     </p>
-                    <div
-                      class="text-xs font-medium capitalize text-zinc-900 dark:text-white"
-                    >
+                    <div class="text-xs font-medium capitalize text-foreground">
                       <span x-show="duration === 'monthly'">
                         <span x-show="duration === 'monthly'">
                           month</span
@@ -135,8 +134,7 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
                       <Text
                         tag="p"
                         variant="textXS"
-                        class="text-zinc-500 dark:text-zinc-400"
-                        >USD + Local taxes</Text
+                        class="text-muted-foreground">USD + Local taxes</Text
                       >
                     </div>
                   </div>
@@ -151,7 +149,7 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
             <th class="relative w-1/3 p-1 pl-0 font-normal text-left">
               <div
                 aria-hidden="true"
-                class="absolute inset-y-0 right-0 hidden w-full bg-orange-50 dark:bg-orange-900 rounded-tr-xl sm:block"
+                class="absolute inset-y-0 right-0 hidden w-full bg-muted rounded-tr-xl sm:block"
               >
               </div>
               <div class="relative p-6 sm:p-4 sm:pb-5 lg:p-6">
@@ -160,14 +158,14 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
                     <Text
                       tag="h3"
                       variant="textBase"
-                      class="font-semibold text-zinc-900 dark:text-white"
+                      class="font-semibold text-foreground"
                     >
                       Momentum
                     </Text>
                     <Text
                       tag="p"
                       variant="textSM"
-                      class="mt-1 text-zinc-500 dark:text-zinc-400"
+                      class="mt-1 text-muted-foreground"
                     >
                       Designed for businesses.
                     </Text>
@@ -177,16 +175,14 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
                 <div class="mt-8">
                   <div class="flex items-center gap-x-4">
                     <p
-                      class="text-4xl font-medium text-zinc-900 dark:text-white sm:text-xl md:text-4xl"
+                      class="text-4xl font-medium text-foreground sm:text-xl md:text-4xl"
                     >
                       <span
                         data-monthly="$49"
                         data-annual="$39"
                         x-text="$el.dataset[duration]"></span>
                     </p>
-                    <div
-                      class="text-xs font-medium capitalize text-zinc-900 dark:text-white"
-                    >
+                    <div class="text-xs font-medium capitalize text-foreground">
                       <span x-show="duration === 'monthly'">
                         <span x-show="duration === 'monthly'">
                           month</span
@@ -201,8 +197,7 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
                       <Text
                         tag="p"
                         variant="textXS"
-                        class="text-zinc-500 dark:text-zinc-400"
-                        >USD + Local taxes</Text
+                        class="text-muted-foreground">USD + Local taxes</Text
                       >
                     </div>
                   </div>
@@ -219,7 +214,7 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
         <tbody>
           <tr>
             <th
-              class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:border-zinc-800 dark:text-white"
+              class="py-3 text-sm font-medium text-left border-t text-foreground border-border"
             >
               <div class="flex items-center gap-2">
                 <Analytics size="sm" />
@@ -227,148 +222,148 @@ import PricingToggle from "@/components/fundations/buttonGroups/PricingToggle.as
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium border-t bg-zinc-50 border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 dark:text-white"
+              class="px-2 text-xs font-medium border-t border-border bg-background text-foreground"
               >3</td
             >
             <td
-              class="px-2 text-xs font-medium border-t border-orange-100 text-zinc-900 dark:text-white bg-orange-50 dark:border-orange-900 dark:bg-orange-900"
+              class="px-2 text-xs font-medium border-t border-border text-foreground bg-muted"
               >10</td
             >
           </tr>
           <tr>
             <th
-              class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:border-zinc-800 dark:text-white"
+              class="py-3 text-sm font-medium text-left border-t text-foreground border-border"
             >
               <div class="flex items-center gap-2">
                 <UserPlus size="sm" />Accounts
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium border-t bg-zinc-50 border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 dark:text-white"
+              class="px-2 text-xs font-medium border-t border-border bg-background text-foreground"
               >5</td
             >
             <td
-              class="px-2 text-xs font-medium border-t border-orange-100 text-zinc-900 dark:text-white bg-orange-50 dark:border-orange-900 dark:bg-orange-900"
+              class="px-2 text-xs font-medium border-t border-border text-foreground bg-muted"
               >10</td
             >
           </tr>
           <tr>
             <th
-              class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:border-zinc-800 dark:text-white"
+              class="py-3 text-sm font-medium text-left border-t text-foreground border-border"
             >
               <div class="flex items-center gap-2">
                 <ArrowIteration size="sm" />Integrations
               </div>
             </th>
             <td
-              class="px-2 text-xs font-medium border-t bg-zinc-50 border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 dark:text-white"
+              class="px-2 text-xs font-medium border-t border-border bg-background text-foreground"
               >2</td
             >
             <td
-              class="px-2 border-t border-orange-100 text-zinc-900 dark:text-white bg-orange-50 dark:border-orange-900 dark:bg-orange-900"
+              class="px-2 border-t border-border text-foreground bg-muted"
             >
               <CircleCheck size="sm" class="mx-auto" />
             </td>
           </tr>
           <tr>
             <th
-              class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:border-zinc-800 dark:text-white"
+              class="py-3 text-sm font-medium text-left border-t text-foreground border-border"
             >
               <div class="flex items-center gap-2">
                 <Brain size="sm" />Programs
               </div>
             </th>
             <td
-              class="px-2 border-t bg-zinc-50 border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 dark:text-white"
+              class="px-2 border-t border-border bg-background text-foreground"
             >
               <CircleX size="sm" class="mx-auto" />
             </td>
             <td
-              class="px-2 text-xs font-medium border-t border-orange-100 text-zinc-900 dark:text-white bg-orange-50 dark:border-orange-900 dark:bg-orange-900"
+              class="px-2 text-xs font-medium border-t border-border text-foreground bg-muted"
               >1</td
             >
           </tr>
           <tr>
             <th
-              class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:border-zinc-800 dark:text-white"
+              class="py-3 text-sm font-medium text-left border-t text-foreground border-border"
             >
               <div class="flex items-center gap-2">
                 <Refresh size="sm" />Deployments
               </div>
             </th>
             <td
-              class="px-2 border-t bg-zinc-50 border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 dark:text-white"
+              class="px-2 border-t border-border bg-background text-foreground"
             >
               <CircleX size="sm" class="mx-auto" />
             </td>
             <td
-              class="px-2 border-t border-orange-100 text-zinc-900 dark:text-white bg-orange-50 dark:border-orange-900 dark:bg-orange-900"
+              class="px-2 border-t border-border text-foreground bg-muted"
             >
               <CircleCheck size="sm" class="mx-auto" />
             </td>
           </tr>
           <tr>
             <th
-              class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:border-zinc-800 dark:text-white"
+              class="py-3 text-sm font-medium text-left border-t text-foreground border-border"
             >
               <div class="flex items-center gap-2">
                 <Code size="sm" />Advanced Checkpoints
               </div>
             </th>
             <td
-              class="px-2 border-t bg-zinc-50 border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 dark:text-white"
+              class="px-2 border-t border-border bg-background text-foreground"
             >
               <CircleX size="sm" class="mx-auto" />
             </td>
             <td
-              class="px-2 border-t border-orange-100 text-zinc-900 dark:text-white bg-orange-50 dark:border-orange-900 dark:bg-orange-900"
+              class="px-2 border-t border-border text-foreground bg-muted"
             >
               <CircleCheck size="sm" class="mx-auto" />
             </td>
           </tr>
           <tr>
             <th
-              class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:border-zinc-800 dark:text-white"
+              class="py-3 text-sm font-medium text-left border-t text-foreground border-border"
             >
               <div class="flex items-center gap-2">
                 <Tools size="sm" />Reporting tools
               </div>
             </th>
             <td
-              class="px-2 border-t bg-zinc-50 border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 dark:text-white"
+              class="px-2 border-t border-border bg-background text-foreground"
             >
               <CircleX size="sm" class="mx-auto" />
             </td>
             <td
-              class="px-2 border-t border-orange-100 text-zinc-900 dark:text-white bg-orange-50 dark:border-orange-900 dark:bg-orange-900"
+              class="px-2 border-t border-border text-foreground bg-muted"
             >
               <CircleCheck size="sm" class="mx-auto" />
             </td>
           </tr>
           <tr>
             <th
-              class="py-3 text-sm font-medium text-left border-t text-zinc-900 border-zinc-200 dark:border-zinc-800 dark:text-white"
+              class="py-3 text-sm font-medium text-left border-t text-foreground border-border"
               ><div class="flex items-center gap-2">
                 <Lifebuoy size="sm" />Support
               </div></th
             >
             <td
-              class="px-2 text-xs font-medium border-t bg-zinc-50 border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 dark:text-white"
+              class="px-2 text-xs font-medium border-t border-border bg-background text-foreground"
               >Discord community</td
             >
             <td
-              class="px-2 text-xs font-medium border-t border-orange-100 text-zinc-900 dark:text-white bg-orange-50 dark:border-orange-900 dark:bg-orange-900"
+              class="px-2 text-xs font-medium border-t border-border text-foreground bg-muted"
               >Live chat</td
             >
           </tr>
           <tr class="align-top">
-            <th class="border-t border-zinc-200 dark:border-zinc-800"></th>
+            <th class="border-t border-border"></th>
             <th
-              class="w-1/4 px-2 py-6 border-t bg-zinc-50 border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 rounded-bl-xl"
+              class="w-1/4 px-2 py-6 border-t border-border bg-background rounded-bl-xl"
             >
             </th>
             <th
-              class="w-1/4 px-2 py-6 border-t rounded-br-xl bg-zinc-50 border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900"
+              class="w-1/4 px-2 py-6 border-t rounded-br-xl border-border bg-background"
             >
             </th>
           </tr>

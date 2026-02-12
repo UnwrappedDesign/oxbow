@@ -10,7 +10,7 @@ const products = [
     description: "23 Different Colors",
     price: "$140.00",
     link: "#_",
-    colors: ["bg-black", "bg-white"],
+    colors: ["bg-background", "bg-background"],
   },
   {
     image: "/store/shoes/airforcewhite/2.png",
@@ -18,83 +18,79 @@ const products = [
     description: "40 Different Colors",
     price: "$280.00",
     link: "#_",
-    colors: ["bg-white", "bg-red-500", "bg-cyan-500"],
+    colors: ["bg-background", "bg-destructive", "bg-info"],
   },
   {
     image: "/store/shoes/airmax/3.png",
     title: "Nike Air Max 90",
     description: "10 Different Colors",
     price: "120.00",
-    colors: ["bg-black", "bg-slate-600", "bg-yellow-400"],
+    colors: ["bg-background", "bg-muted", "bg-warning"],
   },
   {
     image: "/store/shoes/gazelle/1.png",
     title: "Gazelle",
     description: "10 Different Colors",
     price: "120.00",
-    colors: ["bg-orange-500", "bg-orange-400"],
+    colors: ["bg-muted", "bg-muted/80"],
   },
   {
     image: "/store/shoes/campus/1.png",
     title: "Campus",
     description: "13 Different Colors",
     price: "80.00",
-    colors: ["bg-[#2e4b40]", "bg-orange-400"],
+    colors: ["bg-[#2e4b40]", "bg-muted/80"],
   },
   {
     image: "/store/shoes/la/1.png",
     title: "LA Trainer",
     description: "13 Different Colors",
     price: "80.00",
-    colors: ["bg-[#2e4b40]", "bg-orange-400"],
+    colors: ["bg-[#2e4b40]", "bg-muted/80"],
   },
 ];
 ---
 
-<section class="bg-white dark:bg-zinc-900">
+<section class="bg-background">
   <div class="relative px-8 py-24 mx-auto md:px-12 lg:px-20 max-w-7xl">
     <div
       class="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12"
     >
       {
         products.map((article) => (
-          <div class="flex flex-col ">
+          <div class="flex flex-col">
             <div class="relative aspect-[4/3] w-full h-auto">
               <img
                 src={article.image}
                 alt={article.title}
-                class="absolute inset-0 object-cover size-full "
+                class="absolute inset-0 object-cover size-full"
               />
             </div>
             <div class="flex flex-col justify-between h-full mt-2 gap-2">
               <div>
-                <div class="flex items-center justify-between w-full ">
+                <div class="flex items-center justify-between w-full">
                   <Text
                     tag="h3"
                     variant="textSM"
-                    class="relative font-medium text-zinc-900 dark:text-white"
+                    class="relative font-medium text-foreground"
                   >
                     {article.title}
                     <a href="#_">
                       <span class="absolute inset-0" />
                     </a>
                   </Text>
-                  <button class="text-zinc-500 dark:text-zinc-300">
+                  <button class="text-muted-foreground">
                     <Cart size="sm" />
                   </button>
                 </div>
                 <Text
                   tag="p"
                   variant="textSM"
-                  class="mt-1 text-zinc-500 dark:text-zinc-300 "
+                  class="mt-1 text-muted-foreground"
                 >
                   {article.description}
                 </Text>
-                <Text
-                  tag="p"
-                  variant="textSM"
-                  class="text-zinc-500 dark:text-zinc-300"
-                >
+                <Text tag="p" variant="textSM" class="text-muted-foreground">
                   {article.price}
                 </Text>
               </div>

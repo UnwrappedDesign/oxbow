@@ -1,8 +1,8 @@
 ---
 export const excludeFromObfuscation = [
-  "bg-zinc-50",
-  "border-zinc-200",
-  "text-zinc-700",
+  "bg-muted",
+  "border-border",
+  "text-muted-foreground",
   "tabular-nums",
 ];
 import Button from "@/components/fundations/buttons/Button.astro";
@@ -46,40 +46,34 @@ const rows = [
 ];
 ---
 
-<div class="flex flex-col justify-center p-8 mx-auto bg-white dark:bg-zinc-900">
+<div class="flex flex-col justify-center p-8 mx-auto bg-background">
   <!-- copy:start -->
   <div class="mx-auto flow-root max-w-7xl">
     <div class="overflow-x-auto">
       <div class="flex justify-center">
         <table class="min-w-[900px] text-sm">
-          <thead class="bg-zinc-100 dark:bg-zinc-950">
+          <thead class="bg-background">
             <tr>
-              <th
-                class="px-3 py-2 font-medium text-left text-zinc-900 dark:text-white"
+              <th class="px-3 py-2 font-medium text-left text-foreground"
                 >Name</th
               >
-              <th
-                class="px-3 py-2 font-medium text-left text-zinc-900 dark:text-white"
+              <th class="px-3 py-2 font-medium text-left text-foreground"
                 >Providers</th
               >
-              <th
-                class="px-3 py-2 font-medium text-left text-zinc-900 dark:text-white"
+              <th class="px-3 py-2 font-medium text-left text-foreground"
                 >Created</th
               >
-              <th
-                class="px-3 py-2 font-medium text-left text-zinc-900 dark:text-white"
+              <th class="px-3 py-2 font-medium text-left text-foreground"
                 >Signed</th
               >
-              <th
-                class="px-3 py-2 font-medium text-left text-zinc-900 dark:text-white"
+              <th class="px-3 py-2 font-medium text-left text-foreground"
                 >User ID</th
               >
-              <th
-                class="px-3 py-2 font-medium text-left text-zinc-900 dark:text-white"
+              <th class="px-3 py-2 font-medium text-left text-foreground"
                 >Status</th
               >
               <th
-                class="relative py-2 pl-3 pr-4 font-medium text-right text-zinc-900 dark:text-white"
+                class="relative py-2 pl-3 pr-4 font-medium text-right text-foreground"
                 >Edit</th
               >
             </tr>
@@ -88,48 +82,48 @@ const rows = [
             {
               rows.map((r) => (
                 <tr>
-                  <td class="px-3 py-2 font-medium text-zinc-700 dark:text-zinc-100 ">
+                  <td class="px-3 py-2 font-medium text-foreground">
                     {r.name}
                   </td>
-                  <td class="px-3 py-2 text-zinc-500 dark:text-zinc-300 ">
+                  <td class="px-3 py-2 text-muted-foreground">
                     <div class="flex items-center gap-2">
                       {r.providers.includes("mail") && (
-                        <Mail class="text-zinc-400" size="sm" slot="icon" />
+                        <Mail
+                          class="text-muted-foreground"
+                          size="sm"
+                          slot="icon"
+                        />
                       )}
                       {r.providers.includes("github") && (
                         <GithubBrand
-                          class="text-zinc-400"
+                          class="text-muted-foreground"
                           size="sm"
                           slot="icon"
                         />
                       )}
                     </div>
                   </td>
-                  <td class="px-3 py-2 text-zinc-500 dark:text-zinc-300">
-                    {r.created}
-                  </td>
-                  <td class="px-3 py-2 text-zinc-500 dark:text-zinc-300">
-                    {r.signed}
-                  </td>
-                  <td class="px-3 py-2 font-mono text-zinc-900 dark:text-white ">
+                  <td class="px-3 py-2 text-muted-foreground">{r.created}</td>
+                  <td class="px-3 py-2 text-muted-foreground">{r.signed}</td>
+                  <td class="px-3 py-2 font-mono text-foreground">
                     <span class="flex items-center gap-2">{r.userId}</span>
                   </td>
-                  <td class="px-3 py-2 text-zinc-600 dark:text-zinc-200">
+                  <td class="px-3 py-2 text-foreground">
                     <span
                       class={
                         r.status === "Active"
-                          ? "text-emerald-600 dark:text-emerald-400"
+                          ? "text-success"
                           : r.status === "Inactive"
-                            ? "text-red-600 dark:text-red-400"
+                            ? "text-destructive"
                             : r.status === "Pending"
-                              ? "text-yellow-600 dark:text-yellow-400"
+                              ? "text-warning"
                               : ""
                       }
                     >
                       {r.status}
                     </span>
                   </td>
-                  <td class="py-2 ">
+                  <td class="py-2">
                     <div class="flex items-center gap-2">
                       <Button
                         size="sm"

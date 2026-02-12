@@ -46,17 +46,21 @@ const data = [
 ];
 ---
 
-<section class="relative overflow-hidden bg-white dark:bg-zinc-900">
+<section class="relative overflow-hidden bg-background">
   <div class="relative px-8 py-24 mx-auto md:px-12 lg:px-20 max-w-7xl">
     <div class="max-w-xl mx-auto text-center lg:text-balance">
       <Text
         tag="h2"
         variant="displaySM"
-        class="font-semibold tracking-tight text-zinc-900 dark:text-white text-balance"
+        class="font-semibold tracking-tight text-foreground text-balance"
       >
         Stories from teams using Oxbow
       </Text>
-      <Text tag="p" variant="textBase" class="mt-4 font-medium text-zinc-500">
+      <Text
+        tag="p"
+        variant="textBase"
+        class="mt-4 font-medium text-muted-foreground"
+      >
         Real-world examples of how product teams accelerate delivery with our UI
         toolkit.
       </Text>
@@ -64,18 +68,18 @@ const data = [
     <div class="flex flex-col justify-center mt-8 lg:flex-row gap-4">
       {
         data.map((member) => (
-          <div class="flex flex-none w-full  lg:w-96">
-            <figure class="flex flex-col justify-between h-full p-8 shadow bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl">
+          <div class="flex flex-none w-full lg:w-96">
+            <figure class="flex flex-col justify-between h-full p-8 shadow bg-linear-180 outline outline-border from-muted to-background rounded-xl">
               <div>
                 <Text
                   tag="blockquote"
                   variant="textBase"
-                  class="italic font-medium text-zinc-900 dark:text-white"
+                  class="italic font-medium text-foreground"
                 >
                   "{member.testimonial}"
                 </Text>
               </div>
-              <figcaption class="flex items-center justify-between mt-12 ">
+              <figcaption class="flex items-center justify-between mt-12">
                 <div class="flex items-center gap-4">
                   <img
                     class="object-cover rounded-full size-10"
@@ -86,7 +90,7 @@ const data = [
                     <Text
                       tag="h3"
                       variant="textBase"
-                      class="font-medium text-zinc-900 dark:text-white"
+                      class="font-medium text-foreground"
                     >
                       {member.name}
                     </Text>
@@ -94,7 +98,7 @@ const data = [
                     <Text
                       tag="p"
                       variant="textXS"
-                      class="font-medium text-zinc-400 dark:text-zinc-300"
+                      class="font-medium text-muted-foreground"
                     >
                       {member.title}
                     </Text>

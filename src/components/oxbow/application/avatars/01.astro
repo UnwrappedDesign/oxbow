@@ -2,12 +2,12 @@
 export const freeComponent = true;
 ---
 
-<div class="flex items-center justify-center bg-white p-14 dark:bg-zinc-900">
+<div class="flex items-center justify-center bg-background p-14">
   <!-- copy:start -->
   <div x-data="{ error:false, showInitials:false }" class="relative">
     <template x-if="!error">
       <img
-        class="inline-block object-cover rounded-full size-16 ring-2 ring-white dark:ring-zinc-800"
+        class="inline-block object-cover rounded-full size-16 ring-2 ring-border"
         src="/avatars/1.jpg"
         alt="User avatar"
         @error="error=true"
@@ -15,17 +15,17 @@ export const freeComponent = true;
     </template>
     <template x-if="error">
       <div
-        class="inline-flex items-center justify-center rounded-full size-16 bg-zinc-200 dark:bg-zinc-700 ring-2 ring-white dark:ring-zinc-800"
+        class="inline-flex items-center justify-center rounded-full size-16 bg-muted ring-2 ring-border"
       >
         <span
           x-show="showInitials"
-          class="text-zinc-600 dark:text-zinc-200"
+          class="text-foreground"
           aria-label="Avatar initials">MA</span
         >
         <button
           x-show="!showInitials"
           @click="showInitials = true"
-          class="px-2 py-1 text-xs border rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200 border-zinc-200 dark:border-zinc-700"
+          class="px-2 py-1 text-xs border rounded bg-background text-foreground border-border"
           type="button"
         >
           Show initials

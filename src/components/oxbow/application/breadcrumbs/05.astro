@@ -6,34 +6,29 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 import ThreeDots from "@/components/fundations/icons/ThreeDots.astro";
 ---
 
-<section
-  class="flex items-center justify-center bg-white p-18 dark:bg-zinc-900"
->
+<section class="flex items-center justify-center bg-background p-18">
   <!-- copy:start -->
   <nav
     aria-label="Breadcrumb"
     x-data="{ crumbs:['Home','Library','Docs','Guides','Installation'], open:false, focusFirst(){ this.$nextTick(()=> this.$refs.first?.focus()) } }"
     class="max-w-xl mc-auto"
   >
-    <ol
-      role="list"
-      class="flex items-center gap-1 t text-zinc-600 dark:text-zinc-300"
-    >
+    <ol role="list" class="flex items-center gap-1 t text-muted-foreground">
       <li>
         <Text
           tag="a"
           href="#_"
-          class="flex items-center gap-1 hover:text-orange-400"
+          class="flex items-center gap-1 hover:text-foreground"
           ><Home size="sm" /><span class="sr-only">Home</span></Text
         >
       </li>
-      <ChevronRight size="sm" class="text-zinc-400" />
+      <ChevronRight size="sm" class="text-muted-foreground" />
 
       <!-- Collapsed middle on small screens -->
       <li class="sm:hidden">
         <button
           type="button"
-          class="inline-flex items-center px-2 rounded gap-1 h-7 bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200"
+          class="inline-flex items-center px-2 rounded gap-1 h-7 bg-background text-foreground"
           @click="open=!open; if(open) focusFirst()"
           :aria-expanded="open"
           aria-controls="crumbs-collapsed"
@@ -45,14 +40,14 @@ import ThreeDots from "@/components/fundations/icons/ThreeDots.astro";
           id="crumbs-collapsed"
           x-show="open"
           x-transition
-          class="p-2 mt-2 bg-white rounded-lg ring-1 ring-zinc-200 dark:ring-zinc-700 dark:bg-zinc-900 shadow-sm"
+          class="p-2 mt-2 bg-background rounded-lg ring-1 ring-border shadow-sm"
           style="display:none"
         >
           <template x-for="(c,i) in crumbs.slice(1, -1)" :key="c">
             <Text
               tag="a"
               href="#_"
-              class="block px-2 py-1 rounded hover:bg-zinc-50 dark:hover:bg-zinc-800 hover:text-orange-400"
+              class="block px-2 py-1 rounded hover:bg-background hover:text-foreground"
               x-text="c"
               tabindex="-1"
               x-ref="first"
@@ -69,13 +64,13 @@ import ThreeDots from "@/components/fundations/icons/ThreeDots.astro";
               tag="a"
               variant="textSM"
               href="#_"
-              class="inline-flex items-center gap-1 hover:text-orange-400"
+              class="inline-flex items-center gap-1 hover:text-foreground"
               x-text="c"
             />
           </li>
           <ChevronRight
             size="sm"
-            class="hidden sm:block text-zinc-400"
+            class="hidden sm:block text-muted-foreground"
             aria-hidden="true"
           />
         </span>
@@ -83,7 +78,7 @@ import ThreeDots from "@/components/fundations/icons/ThreeDots.astro";
 
       <!-- Current -->
       <li
-        class="text-sm font-medium text-orange-500 dark:text-orange-400"
+        class="text-sm font-medium text-foreground"
         x-text="crumbs[crumbs.length-1]"
         aria-current="page"
       >

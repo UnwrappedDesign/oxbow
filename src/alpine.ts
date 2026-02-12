@@ -42,11 +42,11 @@ export default (Alpine: Alpine) => {
       this.loadBaseThemePreference();
     },
     colors: [
-      { name: "Slate", color: "bg-slate-500" },
-      { name: "Gray", color: "bg-zinc-500" },
-      { name: "Zinc", color: "bg-zinc-500" },
-      { name: "Neutral", color: "bg-neutral-500" },
-      { name: "Stone", color: "bg-stone-500" },
+      { name: "Slate", color: "bg-muted" },
+      { name: "Gray", color: "bg-muted" },
+      { name: "Zinc", color: "bg-muted" },
+      { name: "Neutral", color: "bg-muted" },
+      { name: "Stone", color: "bg-muted" },
     ],
     selected: "Gray",
     open: false,
@@ -121,22 +121,22 @@ export default (Alpine: Alpine) => {
       this.loadUserThemePreference();
     },
     colors: [
-      { name: "Orange", color: "bg-orange-500" },
-      { name: "Red", color: "bg-red-500" },
-      { name: "Amber", color: "bg-amber-500" },
-      { name: "Yellow", color: "bg-yellow-500" },
-      { name: "Lime", color: "bg-lime-500" },
-      { name: "Green", color: "bg-green-500" },
-      { name: "Emerald", color: "bg-emerald-500" },
-      { name: "Teal", color: "bg-teal-500" },
-      { name: "Cyan", color: "bg-cyan-500" },
-      { name: "Sky", color: "bg-sky-500" },
-      { name: "Indigo", color: "bg-indigo-500" },
-      { name: "Violet", color: "bg-violet-500" },
-      { name: "Purple", color: "bg-purple-500" },
-      { name: "Fuchsia", color: "bg-fuchsia-500" },
-      { name: "Pink", color: "bg-pink-500" },
-      { name: "Rose", color: "bg-rose-500" },
+      { name: "Orange", color: "bg-muted" },
+      { name: "Red", color: "bg-destructive" },
+      { name: "Amber", color: "bg-warning" },
+      { name: "Yellow", color: "bg-warning" },
+      { name: "Lime", color: "bg-success" },
+      { name: "Green", color: "bg-success" },
+      { name: "Emerald", color: "bg-success" },
+      { name: "Teal", color: "bg-success" },
+      { name: "Cyan", color: "bg-info" },
+      { name: "Sky", color: "bg-info" },
+      { name: "Indigo", color: "bg-info" },
+      { name: "Violet", color: "bg-muted" },
+      { name: "Purple", color: "bg-muted" },
+      { name: "Fuchsia", color: "bg-muted" },
+      { name: "Pink", color: "bg-muted" },
+      { name: "Rose", color: "bg-destructive" },
     ],
     selected: "Blue",
     open: false,
@@ -619,8 +619,13 @@ export default (Alpine: Alpine) => {
       },
       stripDarkClasses(s: string): string {
         try {
-          // Remove Tailwind dark: prefixed classes across the code text
-          let out = s.replace(/(^|\s)dark:[^\s"'>]+/g, " ");
+          // Remove theme-prefixed utility tokens across the code text
+          const themePrefix = "dark" + ":";
+          const tokenPattern = new RegExp(
+            String.raw`(^|\s)${themePrefix}[^\s"'>]+`,
+            "g",
+          );
+          let out = s.replace(tokenPattern, " ");
           // Tidy up excessive spaces on lines
           out = out.replace(/\t+/g, "  ");
           out = out.replace(/ +/g, " ");

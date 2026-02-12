@@ -7,7 +7,7 @@ const avatars = [
 ];
 ---
 
-<div class="flex items-center justify-center p-12 bg-white dark:bg-zinc-900">
+<div class="flex items-center justify-center p-12 bg-background">
   <!-- copy:start -->
   <div
     class="flex items-center gap-3"
@@ -23,7 +23,7 @@ const avatars = [
     <img
       :src="members[0]"
       alt="Primary member"
-      class="object-cover rounded-full size-14 ring-2 ring-white dark:ring-zinc-800"
+      class="object-cover rounded-full size-14 ring-2 ring-border"
     />
     <div class="flex items-center -space-x-2">
       <template x-for="(src, idx) in visibleRest" :key="src">
@@ -34,14 +34,14 @@ const avatars = [
           :aria-label="`Make member ${idx+2} primary`"
           title="Make primary"
         >
-          <img :src="src" alt="" class="inline-block object-cover object-center rounded-full size-10 ring-2 ring-white dark:ring-zinc-800" />
+          <img :src="src" alt="" class="inline-block object-cover object-center rounded-full size-10 ring-2 ring-border" />
         </button>
       </template>
       <button
         type="button"
         x-show="extra > 0"
         @click="expanded = !expanded"
-        class="inline-flex items-center justify-center rounded-full size-10 bg-zinc-100 text-zinc-600 ring-2 ring-white dark:bg-zinc-800 dark:text-zinc-300 dark:ring-zinc-900"
+        class="inline-flex items-center justify-center rounded-full size-10 bg-muted text-muted-foreground ring-2 ring-border"
         :aria-expanded="expanded"
       >
         <span x-text="expanded ? '–' : ('+' + extra)"></span>

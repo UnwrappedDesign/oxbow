@@ -15,9 +15,7 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
 
-<div
-  class="p-8 pt-12 pb-120 bg-white dark:bg-zinc-900 flex items-center justify-center"
->
+<div class="p-8 pt-12 pb-120 bg-background flex items-center justify-center">
   <!-- Copy:start -->
   <!--
 // Make sure to change  "open: false",  to  open: true. On the z-data="{}".
@@ -48,7 +46,7 @@ import Text from "@/components/fundations/typography/Text.astro";
     <div
       x-show="open"
       x-transition.opacity
-      class="fixed inset-0 z-40 bg-black/40 dark:bg-white/20"
+      class="fixed inset-0 z-40 bg-background/20"
       aria-hidden="true"
       @click="close()"
     >
@@ -78,15 +76,15 @@ import Text from "@/components/fundations/typography/Text.astro";
         x-transition:leave="transition ease-in duration-150"
         x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0"
-        class="w-full sm:max-w-xl rounded-2xl bg-white dark:bg-zinc-800 shadow-xl outline outline-1 outline-black/5 dark:-outline-offset-1 dark:outline-white/10"
+        class="w-full sm:max-w-xl rounded-2xl bg-background shadow-xl outline outline-1 outline-border/5 -outline-offset-1 outline-border/10"
       >
         <!-- Header -->
         <div
-          class="flex items-center justify-between px-5 py-4 border-b border-zinc-100 dark:border-zinc-700"
+          class="flex items-center justify-between px-5 py-4 border-b border-border"
         >
           <div class="flex items-start gap-3">
             <div
-              class="size-9 rounded-full grid place-items-center bg-zinc-100 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-200"
+              class="size-9 rounded-full grid place-items-center bg-muted text-foreground"
             >
               <Stacked size="sm" />
             </div>
@@ -95,15 +93,11 @@ import Text from "@/components/fundations/typography/Text.astro";
                 tag="h2"
                 variant="textSM"
                 id="plan-title"
-                class="font-semibold text-zinc-900 dark:text-white"
+                class="font-semibold text-foreground"
               >
                 Choose Your AI Chat Plan
               </Text>
-              <Text
-                tag="p"
-                variant="textXS"
-                class="text-zinc-600 dark:text-zinc-300"
-              >
+              <Text tag="p" variant="textXS" class="text-muted-foreground">
                 Unlock the power of AI conversations with flexible plans.
               </Text>
             </div>
@@ -123,46 +117,42 @@ import Text from "@/components/fundations/typography/Text.astro";
             <button
               type="button"
               @click="selected='basic'"
-              :class="selected==='basic' ? 'outline-2 outline-orange-500 bg-zinc-50 dark:bg-white/3' : 'outline-2 outline-zinc-200 dark:outline-zinc-700 bg-white dark:bg-zinc-800'"
-              class="text-left w-full rounded-xl p-4 hover:bg-zinc-50 dark:hover:bg-white/4 grid grid-cols-1 md:grid-cols-2 gap-y-4"
+              :class="selected==='basic' ? 'outline-2 outline-border : 'outline-border bg-background'"
+              class="text-left w-full rounded-xl p-4 hover:bg-background/4 grid grid-cols-1 md:grid-cols-2 gap-y-4"
             >
               <div class="flex items-start justify-between">
                 <div>
                   <Text
                     tag="h3"
                     variant="textXL"
-                    class="font-semibold text-zinc-900 dark:text-white"
+                    class="font-semibold text-foreground"
                   >
                     $5/mth
                   </Text>
                   <Text
                     tag="p"
                     variant="textSM"
-                    class="text-sm font-medium text-zinc-800 dark:text-zinc-100"
+                    class="text-sm font-medium text-foreground"
                   >
                     Basic Chat
                   </Text>
-                  <Text
-                    tag="p"
-                    variant="textXS"
-                    class="text-zinc-500 dark:text-zinc-400"
-                  >
+                  <Text tag="p" variant="textXS" class="text-muted-foreground">
                     Billed monthly
                   </Text>
                 </div>
               </div>
-              <ul class="space-y-1 text-sm text-zinc-700 dark:text-zinc-300">
+              <ul class="space-y-1 text-sm text-muted-foreground">
                 <li class="flex items-center gap-2">
-                  <Check size="sm" class="text-orange-600" /> 100 AI messages per month
+                  <Check size="sm" class="text-foreground" /> 100 AI messages per month
                 </li>
                 <li class="flex items-center gap-2">
-                  <Check size="sm" class="text-orange-600" /> Standard response quality
+                  <Check size="sm" class="text-foreground" /> Standard response quality
                 </li>
                 <li class="flex items-center gap-2">
-                  <Check size="sm" class="text-orange-600" /> Basic chat history
+                  <Check size="sm" class="text-foreground" /> Basic chat history
                 </li>
                 <li class="flex items-center gap-2">
-                  <Check size="sm" class="text-orange-600" /> Email support
+                  <Check size="sm" class="text-foreground" /> Email support
                 </li>
               </ul>
             </button>
@@ -171,46 +161,42 @@ import Text from "@/components/fundations/typography/Text.astro";
             <button
               type="button"
               @click="selected='business'"
-              :class="selected==='business' ? 'outline-2 outline-orange-500 bg-zinc-50 dark:bg-white/3' : 'outline-2 outline-zinc-200 dark:outline-zinc-700 bg-white dark:bg-zinc-800'"
-              class="text-left w-full rounded-xl p-4 hover:bg-zinc-50 dark:hover:bg-white/4 grid grid-cols-1 md:grid-cols-2 gap-y-4"
+              :class="selected==='business' ? 'outline-2 outline-border : 'outline-border bg-background'"
+              class="text-left w-full rounded-xl p-4 hover:bg-background/4 grid grid-cols-1 md:grid-cols-2 gap-y-4"
             >
               <div class="flex items-start justify-between">
                 <div>
                   <Text
                     tag="h3"
                     variant="textXL"
-                    class="font-semibold text-zinc-900 dark:text-white"
+                    class="font-semibold text-foreground"
                   >
                     $15/mth
                   </Text>
                   <Text
                     tag="p"
                     variant="textSM"
-                    class="font-medium text-zinc-800 dark:text-zinc-100"
+                    class="font-medium text-foreground"
                   >
                     Pro Chat
                   </Text>
-                  <Text
-                    tag="p"
-                    variant="textXS"
-                    class="text-zinc-500 dark:text-zinc-400"
-                  >
+                  <Text tag="p" variant="textXS" class="text-muted-foreground">
                     Billed monthly
                   </Text>
                 </div>
               </div>
-              <ul class="space-y-1 text-sm text-zinc-700 dark:text-zinc-300">
+              <ul class="space-y-1 text-sm text-muted-foreground">
                 <li class="flex items-center gap-2">
-                  <Check size="sm" class="text-orange-600" /> Unlimited AI messages
+                  <Check size="sm" class="text-foreground" /> Unlimited AI messages
                 </li>
                 <li class="flex items-center gap-2">
-                  <Check size="sm" class="text-orange-600" /> Advanced AI responses
+                  <Check size="sm" class="text-foreground" /> Advanced AI responses
                 </li>
                 <li class="flex items-center gap-2">
-                  <Check size="sm" class="text-orange-600" /> Full chat history
+                  <Check size="sm" class="text-foreground" /> Full chat history
                 </li>
                 <li class="flex items-center gap-2">
-                  <Check size="sm" class="text-orange-600" /> Priority support
+                  <Check size="sm" class="text-foreground" /> Priority support
                 </li>
               </ul>
             </button>
@@ -218,15 +204,13 @@ import Text from "@/components/fundations/typography/Text.astro";
         </div>
 
         <!-- Footer -->
-        <div
-          class="px-5 py-4 border-t border-zinc-100 dark:border-zinc-700 flex items-center gap-3"
-        >
+        <div class="px-5 py-4 border-t border-border flex items-center gap-3">
           <label
-            class="inline-flex items-center gap-2 text-sm text-zinc-700 dark:text-zinc-300"
+            class="inline-flex items-center gap-2 text-sm text-muted-foreground"
           >
             <input
               type="checkbox"
-              class="rounded border-zinc-300 dark:border-zinc-600 dark:bg-zinc-800 text-orange-600 focus:ring-orange-500 focus:ring-offset-2 focus:ring-2 shadow size-4"
+              class="rounded border-border bg-background text-foreground focus:ring-border focus:ring-offset-2 focus:ring-2 shadow size-4"
               x-model="dontShow"
             />
             Don't show again

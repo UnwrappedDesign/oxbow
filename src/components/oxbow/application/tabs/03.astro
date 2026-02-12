@@ -1,10 +1,10 @@
 ---
 export const excludeFromObfuscation = [
-  "bg-white",
-  "text-zinc-600",
+  "bg-background",
+  "text-muted-foreground",
   "ring-1",
-  "ring-zinc-200",
-  "bg-zinc-50",
+  "ring-border",
+  "bg-muted",
 ];
 
 import HomeIcon from "@/components/fundations/icons/Home.astro";
@@ -13,7 +13,7 @@ import ComponentIcon from "@/components/fundations/icons/Component.astro";
 ---
 
 <div
-  class="flex flex-col items-center justify-center p-12 mx-auto bg-white dark:bg-zinc-900"
+  class="flex flex-col items-center justify-center p-12 mx-auto bg-background"
 >
   <!-- Accessible Tabs • With icons and counts -->
   <div
@@ -46,7 +46,7 @@ import ComponentIcon from "@/components/fundations/icons/Component.astro";
     >
       <template x-for="(id, idx) in keys" :key="id">
         <button
-          class="inline-flex items-center px-3 text-sm font-medium gap-2 h-9 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500/50 transition"
+          class="inline-flex items-center px-3 text-sm font-medium gap-2 h-9 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-border transition"
           :id="'tab-'+id"
           role="tab"
           :aria-selected="selected===id"
@@ -55,7 +55,7 @@ import ComponentIcon from "@/components/fundations/icons/Component.astro";
           x-ref="tab-[[id]]"
           @click="select(id)"
           @keydown="onKeydown($event)"
-          :class="selected===id ? 'bg-white dark:bg-zinc-900 text-zinc-600 shadow-sm ring-1 ring-zinc-200 dark:ring-zinc-700' : 'bg-zinc-50 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-zinc-100'"
+          :class="selected===id ? shadow-sm ring-1 ring-border' : 'bg-background text-foreground hover:text-foreground'"
         >
           <span class="inline-flex items-center gap-2">
             <span class="inline-flex items-center justify-center">
@@ -79,7 +79,7 @@ import ComponentIcon from "@/components/fundations/icons/Component.astro";
             <span x-text="id.charAt(0).toUpperCase()+id.slice(1)"></span>
             <template x-if="id!=='overview'">
               <span
-                class="ml-1 inline-flex items-center px-1.5 h-5 text-[0.70rem] rounded-full bg-zinc-50 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700"
+                class="ml-1 inline-flex items-center px-1.5 h-5 text-[0.70rem] rounded-full bg-background text-muted-foreground border border-border"
                 x-text="id==='projects'? '3' : id==='packages' ? '7' : '2'"
               ></span>
             </template>
@@ -87,7 +87,7 @@ import ComponentIcon from "@/components/fundations/icons/Component.astro";
         </button>
       </template>
     </div>
-    <div class="w-full pt-4 text-sm text-zinc-500 dark:text-zinc-300">
+    <div class="w-full pt-4 text-sm text-muted-foreground">
       <section
         x-show="selected==='overview'"
         x-cloak

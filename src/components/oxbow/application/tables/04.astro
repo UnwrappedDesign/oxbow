@@ -4,7 +4,7 @@ import ChevronLeft from "@/components/fundations/icons/ChevronLeft.astro";
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 ---
 
-<div class="flex flex-col justify-center p-8 mx-auto bg-white dark:bg-zinc-900">
+<div class="flex flex-col justify-center p-8 mx-auto bg-background">
   <!-- copy:start -->
   <div
     class="mx-auto flow-root max-w-7xl"
@@ -25,34 +25,34 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
       <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
         <div class="flex justify-center">
           <table class="min-w-[900px] text-sm">
-            <thead class="bg-zinc-100 dark:bg-zinc-950">
+            <thead class="bg-background">
               <tr>
                 <th
                   scope="col"
-                  class="px-3 py-2 font-medium text-left text-zinc-900 dark:text-white"
+                  class="px-3 py-2 font-medium text-left text-foreground"
                 >
                   Name
                   <th
                     scope="col"
-                    class="px-3 py-2 font-medium text-left text-zinc-900 dark:text-white"
+                    class="px-3 py-2 font-medium text-left text-foreground"
                   >
                     Price
                   </th>
                   <th
                     scope="col"
-                    class="px-3 py-2 font-medium text-left text-zinc-900 dark:text-white"
+                    class="px-3 py-2 font-medium text-left text-foreground"
                   >
                     Status
                   </th>
                   <th
                     scope="col"
-                    class="px-3 py-2 font-medium text-left text-zinc-900 dark:text-white"
+                    class="px-3 py-2 font-medium text-left text-foreground"
                   >
                     Total Sales
                   </th>
                   <th
                     scope="col"
-                    class="px-3 py-2 font-medium text-right text-zinc-900 dark:text-white"
+                    class="px-3 py-2 font-medium text-right text-foreground"
                   >
                     Total revenue
                   </th>
@@ -61,11 +61,11 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
                   </th>
                 </th>
               </tr>
-              <tbody class="divide-y divide-zinc-200 dark:divide-zinc-700">
+              <tbody class="divide-y divide-border">
                 <template x-for="r in pageRows()" :key="r.name">
                   <tr>
                     <td
-                      class="py-2 pl-3 pr-3 text-sm font-medium tracking-tighter truncate whitespace-nowrap sm:pl-0 text-zinc-900 dark:text-white"
+                      class="py-2 pl-3 pr-3 text-sm font-medium tracking-tighter truncate whitespace-nowrap sm:pl-0 text-foreground"
                     >
                       <span class="flex items-center gap-2">
                         <img
@@ -77,24 +77,24 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
                       </span>
                     </td>
                     <td
-                      class="px-3 py-2 text-sm font-medium whitespace-nowrap text-zinc-500 dark:text-zinc-400"
+                      class="px-3 py-2 text-sm font-medium whitespace-nowrap text-muted-foreground"
                       x-text="r.price"></td>
                     <td
                       class="max-w-xs px-3 py-2 overflow-hidden whitespace-nowrap"
-                      :class="r.status==='Paid' ? 'text-emerald-600 dark:text-emerald-400' : r.status==='Canceled' ? 'text-red-600 dark:text-red-400' : 'text-yellow-600 dark:text-yellow-400'"
+                      :class="r.status==='Paid' 'text-success' r.status==='Canceled' ? 'text-destructive' : 'text-warning'"
                       x-text="r.status"></td>
                     <td
-                      class="px-3 py-2 text-sm font-medium whitespace-nowrap text-zinc-500"
+                      class="px-3 py-2 text-sm font-medium whitespace-nowrap text-muted-foreground"
                       x-text="r.sales"></td>
                     <td
-                      class="px-3 py-2 font-mono text-sm font-medium text-right whitespace-nowrap text-zinc-900 dark:text-white"
+                      class="px-3 py-2 font-mono text-sm font-medium text-right whitespace-nowrap text-foreground"
                       x-text="r.revenue"></td>
                   </tr>
                 </template>
                 <tr x-show="pageRows().length===0">
                   <td
                     colspan="6"
-                    class="px-3 py-2 text-center text-zinc-500 dark:text-zinc-300"
+                    class="px-3 py-2 text-center text-muted-foreground"
                     >No results</td
                   >
                 </tr>
@@ -117,7 +117,7 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
           <ChevronLeft size="sm" slot="icon" slot="left-icon" />
           Previous
         </Button>
-        <div class="hidden text-sm lg:flex lg:gap-2 text-zinc-500">
+        <div class="hidden text-sm lg:flex lg:gap-2 text-muted-foreground">
           Page <span x-text="page"></span> of <span x-text="pages()"></span>
         </div>
         <Button

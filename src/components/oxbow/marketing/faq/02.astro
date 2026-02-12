@@ -82,20 +82,20 @@ const faqSections = [
 ];
 ---
 
-<section class="bg-white dark:bg-zinc-900">
+<section class="bg-background">
   <div class="px-8 py-24 mx-auto max-w-7xl md:px-12 lg:px-20">
     <div>
       <Text
         tag="h1"
         variant="displayMD"
-        class="font-semibold tracking-tight text-zinc-900 dark:text-white"
+        class="font-semibold tracking-tight text-foreground"
       >
         FAQs
       </Text>
       <Text
         tag="p"
         variant="textBase"
-        class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+        class="mt-4 font-medium text-muted-foreground"
       >
         Everything you need to know about Oxbow in one place.
       </Text>
@@ -105,31 +105,31 @@ const faqSections = [
     >
       {
         faqSections.map((section) => (
-          <div class="overflow-hidden bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800  from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl">
+          <div class="overflow-hidden bg-linear-180 outline outline-border from-muted to-background rounded-xl">
             <div class="p-4">
               <Text
                 tag="h2"
                 variant="textBase"
-                class="font-medium text-zinc-900 dark:text-white lg:text-balance"
+                class="font-medium text-foreground lg:text-balance"
               >
                 {section.title}
               </Text>
             </div>
-            <div class="border-t  divide-y border-zinc-200 dark:divide-zinc-100/10 dark:border-zinc-100/10 divide-zinc-200">
+            <div class="border-t divide-y border-border divide-border/10 border-border/10 divide-border">
               {section.faqs.map((faq) => (
-                <details class="p-4 cursor-pointer group ">
-                  <summary class="items-start justify-between w-full text-sm font-medium text-left select-none grid grid-cols-4 text-zinc-900 dark:text-white hover:text-zinc-500 dark:hover:text-zinc-400 focus:text-zinc-500  gap-4dark:focus:text-zinc-400">
+                <details class="p-4 cursor-pointer group">
+                  <summary class="items-start justify-between w-full text-sm font-medium text-left select-none grid grid-cols-4 text-foreground hover:text-muted-foreground focus:text-muted-foreground gap-4focus:text-muted-foreground">
                     <span class="col-span-3">{faq.question}</span>
                     <Plus
-                      class="ml-auto duration-300 ease-out transform group-open:-rotate-45 group-open:text-orange-600 dark:text-zinc-400"
+                      class="ml-auto duration-300 ease-out transform group-open:-rotate-45 group-open:text-foreground text-muted-foreground"
                       size="sm"
                     />
                   </summary>
-                  <div class="py-2 pt-2 text-sm text-zinc-500 dark:text-zinc-400">
+                  <div class="py-2 pt-2 text-sm text-muted-foreground">
                     <Text
                       tag="p"
                       variant="textSM"
-                      class="font-medium text-zinc-500 dark:text-zinc-400"
+                      class="font-medium text-muted-foreground"
                     >
                       {faq.answer}
                     </Text>

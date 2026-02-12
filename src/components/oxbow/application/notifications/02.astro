@@ -1,5 +1,4 @@
 ---
-
 // Keep transition utilities intact in production
 export const excludeFromObfuscation = [
   "translate-y-2",
@@ -14,9 +13,7 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
 
-<div
-  class="flex items-center justify-center p-8 py-40 bg-white lg:py-56 dark:bg-zinc-900"
->
+<div class="flex items-center justify-center p-8 py-40 bg-background lg:py-56">
   <!-- Copy Start -->
   <!-- 
 // Make sure to change  "open: false",  to  open: true. On the z-data="{}".
@@ -65,12 +62,12 @@ import Text from "@/components/fundations/typography/Text.astro";
           x-transition:leave="transition ease-in duration-150"
           x-transition:leave-start="opacity-100"
           x-transition:leave-end="opacity-0"
-          class="w-full bg-white shadow-lg pointer-events-auto rounded-xl outline outline-1 outline-black/5 transition dark:bg-zinc-800 dark:-outline-offset-1 dark:outline-white/10"
+          class="w-full bg-background shadow-lg pointer-events-auto rounded-xl outline outline-1 outline-border/5 transition -outline-offset-1 outline-border/10"
           role="status"
         >
           <div class="p-4">
             <div class="flex items-start gap-3">
-              <div class="text-blue-600 shrink-0 dark:text-blue-400">
+              <div class="text-info shrink-0">
                 <Refresh size="base" />
               </div>
               <div class="flex-1 min-w-0">
@@ -78,17 +75,17 @@ import Text from "@/components/fundations/typography/Text.astro";
                   <Text
                     tag="p"
                     variant="textSM"
-                    class="text-sm font-medium text-zinc-900 dark:text-white"
+                    class="text-sm font-medium text-foreground"
                   >
                     Update available
                   </Text>
                   <span
-                    class="text-[0.70rem] px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 dark:bg-blue-500/10 dark:text-blue-300"
+                    class="text-[0.70rem] px-2 py-0.5 rounded-full text-info bg-info/10"
                     >v<span x-text="toast.version"></span></span
                   >
                 </div>
                 <p
-                  class="mt-1 text-xs text-zinc-600 dark:text-zinc-300 line-clamp-2"
+                  class="mt-1 text-xs text-muted-foreground line-clamp-2"
                   x-text="toast.notes"
                 >
                 </p>
@@ -107,7 +104,7 @@ import Text from "@/components/fundations/typography/Text.astro";
                   >
                   <button
                     type="button"
-                    class="ml-auto font-medium text-xs text-zinc-900 duration-300 hover:underline hover:text-zinc-700 dark:text-zinc-300 dark:hover:text-zinc-200"
+                    class="ml-auto font-medium text-xs text-foreground duration-300 hover:underline hover:text-foreground"
                     @click="toast.expanded=!toast.expanded"
                     x-text="toast.expanded ? 'Hide notes' : 'View notes'"
                   ></button>
@@ -115,7 +112,7 @@ import Text from "@/components/fundations/typography/Text.astro";
                 <div
                   x-show="toast.expanded"
                   x-transition.opacity
-                  class="mt-2 text-[0.70rem] text-zinc-600 dark:text-zinc-300 bg-zinc-50 dark:bg-zinc-800/50 rounded-md p-2"
+                  class="mt-2 text-[0.70rem] text-muted-foreground bg-background/50 rounded-md p-2"
                 >
                   <pre
                     class="break-words whitespace-pre-wrap font-mono"

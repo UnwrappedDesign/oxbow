@@ -4,7 +4,7 @@ import Text from "@/components/fundations/typography/Text.astro";
 ---
 
 <section
-  class="flex flex-wrap items-center justify-center h-full p-24 bg-white gap-2 dark:bg-zinc-900"
+  class="flex flex-wrap items-center justify-center h-full p-24 bg-background gap-2"
   x-data="{ checked: false }"
 >
   <!-- copy:start -->
@@ -16,11 +16,11 @@ import Text from "@/components/fundations/typography/Text.astro";
           name="checkbox-with-description"
           type="checkbox"
           x-model="checked"
-          class="bg-white border-2 rounded appearance-none size-4 border-zinc-300 checked:bg-orange-600 checked:border-orange-600 focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-white"
+          class="bg-background border-2 rounded appearance-none size-4 border-border checked:bg-muted checked:border-border focus:ring-2 focus:ring-border focus:ring-offset-2 focus:ring-offset-background"
         />
         <svg
           class="absolute inset-0 w-4 h-4 pointer-events-none transition-opacity"
-          :class="{ 'opacity-100 text-white': checked, 'opacity-0': !checked }"
+          :class="{ 'opacity-100 text-foreground': checked, 'opacity-0': !checked }"
           viewBox="0 0 16 16"
           fill="currentColor"
         >
@@ -33,13 +33,13 @@ import Text from "@/components/fundations/typography/Text.astro";
         <Text
           for="checkbox-with-description"
           tag="label"
-          class="block text-sm font-medium text-zinc-500 dark:text-zinc-300"
+          class="block text-sm font-medium text-muted-foreground"
         >
-          Subscribe to newsletter <span class="text-zinc-400 dark:text-zinc-500"
+          Subscribe to newsletter <span class="text-muted-foreground"
             >(Optional)</span
           >
         </Text>
-        <Text tag="p" variant="textSM" class="text-zinc-400 dark:text-zinc-500">
+        <Text tag="p" variant="textSM" class="text-muted-foreground">
           Stay updated with our latest news, articles, and offers by subscribing
           to our newsletter.
         </Text>

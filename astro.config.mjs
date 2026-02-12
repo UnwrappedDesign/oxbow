@@ -28,6 +28,19 @@ export default defineConfig({
   output: "static",
   vite: {
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      // Prevent intermittent missing prebundle chunks in dev
+      // (observed as missing chunk-*.js for these deps).
+      exclude: [
+        "alpinejs",
+        "outdent",
+        "@alpinejs/ui",
+        "@alpinejs/focus",
+        "@alpinejs/intersect",
+        "@ryangjchandler/alpine-clipboard",
+        "shiki",
+      ],
+    },
     ssr: {
       external: [
         "node:fs",

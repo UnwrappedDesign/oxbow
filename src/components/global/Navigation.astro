@@ -9,7 +9,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 ---
 
 <div
-  class="fixed top-0 left-0 right-0 z-50 items-center w-full mx-auto duration-300 bg-white dark:bg-base-950"
+  class="fixed top-0 left-0 right-0 z-50 items-center w-full mx-auto duration-300 bg-background"
   x-data="navigation()"
 >
   <Wrapper variant="nav" class="w-full">
@@ -20,14 +20,14 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
       <div class="flex flex-row items-center justify-between lg:justify-start">
         <a
           href="/"
-          class="flex items-center w-full gap-2 sm:w-auto text-base-900 dark:text-white"
-          ><Logo class="h-7 dark:invert" />
+          class="flex items-center w-full gap-2 sm:w-auto text-foreground"
+          ><Logo class="h-7" />
           <span class="-mt-1 uppercase font-serif">oxbow ui</span></a
         >
         <button
           aria-label="open"
           @click="open = !open"
-          class="inline-flex items-center justify-center p-2 text-base-900 dark:text-white focus:outline-none focus:text-base-400 md:hidden"
+          class="inline-flex items-center justify-center p-2 text-foreground focus:outline-none focus:text-muted-foreground md:hidden"
           ><svg
             viewBox="0 0 24 24"
             class="size-6"
@@ -53,15 +53,15 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
       </div>
       <nav
         :class="{'flex': open, 'hidden': !open}"
-        class="flex-col items-center justify-end text-sm grow hidden font-medium text-base-600 dark:text-base-400 md:flex md:flex-row md:pb-0 gap-x-4 gap-y-4"
+        class="flex-col items-center justify-end text-sm grow hidden font-medium text-muted-foreground md:flex md:flex-row md:pb-0 gap-x-4 gap-y-4"
       >
         <div class="flex flex-col items-center gap-3 md:flex-row">
           <a
-            class="hover:text-accent-dark duration-300 focus:outline-none"
+            class="hover:text-foreground duration-300 focus:outline-none"
             href="https://github.com/UnwrappedDesign/oxbow">GitHub</a
           >
           <a
-            class="hover:text-accent-dark duration-300 focus:outline-none"
+            class="hover:text-foreground duration-300 focus:outline-none"
             href="https://lexingtonthemes.com">Astro Templates</a
           >
 

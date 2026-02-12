@@ -3,9 +3,9 @@ export const excludeFromObfuscation = [
   "w-1/2",
   "translate-x-0",
   "translate-x-full",
-  "text-zinc-600",
-  "focus:text-zinc-900",
-  "hover:text-zinc-900",
+  "text-muted-foreground",
+  "focus:text-foreground",
+  "hover:text-foreground",
 ];
 
 export const description = "Pricing section with three tiers";
@@ -90,20 +90,20 @@ const pricingOptions = [
 ];
 ---
 
-<section x-data="{ duration: 'monthly' }" class="bg-white dark:bg-zinc-900">
+<section x-data="{ duration: 'monthly' }" class="bg-background">
   <div class="px-8 py-24 mx-auto max-w-7xl md:px-12 lg:px-20">
     <div class="max-w-md mx-auto text-center">
       <Text
         tag="h1"
         variant="displayMD"
-        class="font-semibold tracking-tight text-zinc-900 text-balance dark:text-zinc-100"
+        class="font-semibold tracking-tight text-foreground text-balance"
       >
         Give your team tools that don't suck
       </Text>
       <Text
         tag="p"
         variant="textBase"
-        class="mt-2 font-medium text-zinc-600 text-balance dark:text-zinc-400"
+        class="mt-2 font-medium text-muted-foreground text-balance"
       >
         Start with what you need, skip what you don't. Scale up when
         spreadsheets stop cutting it.
@@ -111,16 +111,16 @@ const pricingOptions = [
       <!-- Pricing Toggle -->
       <div
         aria-labelledby="pricing-toggle"
-        class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-white shadow dark:bg-zinc-900 ring-1 ring-zinc-200 dark:ring-zinc-700 ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52 dark:ring-offset-black"
+        class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-background shadow ring-1 ring-border ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52 ring-offset-background"
       >
         <div
-          class="absolute inset-0 bg-zinc-50 dark:bg-zinc-800 rounded-md transition-transform duration-200 ease-in-out"
+          class="absolute inset-0 bg-muted rounded-md ring-1 ring-border/60 shadow-sm transition-transform duration-200 ease-in-out"
           :class="duration === 'monthly' ? 'w-1/2 translate-x-0' : 'w-1/2 translate-x-full'"
         >
         </div>
         <button
           class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-          :class="duration === 'monthly' ? 'text-zinc-600 dark:text-zinc-300' : 'focus:text-zinc-900 hover:text-zinc-900 dark:focus:text-zinc-100 dark:hover:text-zinc-100 dark:text-zinc-300'"
+          :class="duration === 'monthly' ? 'text-foreground' : 'text-muted-foreground hover:text-foreground focus:text-foreground'"
           @click="duration = 'monthly'"
           type="button"
           :aria-pressed="duration === 'monthly'"
@@ -129,7 +129,7 @@ const pricingOptions = [
         </button>
         <button
           class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-          :class="duration === 'annual' ? 'text-zinc-600 dark:text-zinc-300' : 'focus:text-zinc-900 hover:text-zinc-900 dark:focus:text-zinc-100 dark:hover:text-zinc-100 dark:text-zinc-300'"
+          :class="duration === 'annual' ? 'text-foreground' : 'text-muted-foreground hover:text-foreground focus:text-foreground'"
           @click="duration = 'annual'"
           type="button"
           :aria-pressed="duration === 'annual'"
@@ -145,62 +145,53 @@ const pricingOptions = [
           <div class="flex flex-col justify-between h-full rounded-xl">
             <div class="flex flex-col">
               <div class="flex items-center gap-2">
-                <div class="p-2 text-orange-500 rounded-lg bg-zinc-50 dark:bg-zinc-800">
-                  {tier.logo && (
-                    <tier.logo
-                      class="text-orange-600 dark:text-orange-400"
-                      size="sm"
-                    />
-                  )}
+                <div class="p-2 text-foreground rounded-lg bg-background">
+                  {tier.logo && <tier.logo class="text-foreground" size="sm" />}
                 </div>
                 <Text
                   tag="h3"
                   variant="textBase"
-                  class="font-semibold text-zinc-500 dark:text-zinc-400"
+                  class="font-semibold text-muted-foreground"
                 >
                   {tier.title}
                 </Text>
               </div>
               <Text
                 variant="displaySM"
-                class="flex items-baseline mt-4 font-medium tracking-tighter text-zinc-900 dark:text-white"
+                class="flex items-baseline mt-4 font-medium tracking-tighter text-foreground"
               >
                 <span
                   data-monthly={tier.monthly}
                   data-annual={tier.annual}
                   x-text="$el.dataset[duration]"
                 />
-                <span class="text-sm font-normal tracking-normal text-zinc-500 dark:text-zinc-400">
+                <span class="text-sm font-normal tracking-normal text-muted-foreground">
                   <span x-show="duration === 'monthly'">/month</span>
                   <span x-show="duration === 'annual'" style="display: none;">
                     /annually
                   </span>
                 </span>
               </Text>
-              <Text
-                tag="p"
-                variant="textSM"
-                class="mt-2 text-zinc-500 dark:text-zinc-400"
-              >
+              <Text tag="p" variant="textSM" class="mt-2 text-muted-foreground">
                 {tier.description}
               </Text>
-              <div class="pt-8 mt-8 border-t border-zinc-200 dark:border-zinc-700">
+              <div class="pt-8 mt-8 border-t border-border">
                 <Text
                   tag="p"
                   variant="textXS"
-                  class="font-medium uppercase text-zinc-500 dark:text-zinc-400"
+                  class="font-medium uppercase text-muted-foreground"
                 >
                   {tier.title === "Momentum"
                     ? "Everything in Core plus:"
                     : "Core plan includes:"}
                 </Text>
                 <ul
-                  class="flex flex-col mt-4 text-sm text-zinc-600 dark:text-zinc-300 gap-y-3"
+                  class="flex flex-col mt-4 text-sm text-muted-foreground gap-y-3"
                   role="list"
                 >
                   {tier.features.map((feature, index) => (
                     <li class="flex items-center gap-2">
-                      <feature.icon size="sm" class="dark:text-zinc-400" />
+                      <feature.icon size="sm" class="text-muted-foreground" />
                       <span>{feature.text}</span>
                     </li>
                   ))}
@@ -211,15 +202,12 @@ const pricingOptions = [
               <Button class="w-full" variant={tier.button.variant} size="sm">
                 {tier.button.text}
               </Button>
-              <div class="flex items-center mt-4 gap-2 ">
-                <CircleCheck
-                  size="sm"
-                  class="text-zinc-500 dark:text-zinc-300"
-                />
+              <div class="flex items-center mt-4 gap-2">
+                <CircleCheck size="sm" class="text-muted-foreground" />
                 <Text
                   tag="p"
                   variant="textSM"
-                  class="font-medium text-zinc-500 dark:text-zinc-400"
+                  class="font-medium text-muted-foreground"
                 >
                   No credit card required
                 </Text>

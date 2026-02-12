@@ -5,19 +5,19 @@ export async function getStaticPaths() {
   // Get all oxbow components
   const modules = import.meta.glob("@/components/oxbow/**/*.astro");
   const keys = Object.keys(modules);
-  
+
   // Generate paths for all components
   const paths = keys.map((key) => {
     // Remove the src/components/ prefix and .astro extension
     const componentPath = key
       .replace(/^.*?\/src\/components\/oxbow\//, "")
       .replace(/\.astro$/, "");
-    
+
     return {
       params: { componentPath: componentPath },
     };
   });
-  
+
   return paths;
 }
 
@@ -30,7 +30,9 @@ const modules = import.meta.glob("@/components/oxbow/**/*.astro");
 const keys = Object.keys(modules);
 
 // Normalize incoming param and try several matching strategies
-const rawPath = Array.isArray(componentPath) ? componentPath.join("/") : componentPath || "";
+const rawPath = Array.isArray(componentPath)
+  ? componentPath.join("/")
+  : componentPath || "";
 const ensureExt = (p: string) => (p.endsWith(".astro") ? p : `${p}.astro`);
 const relFromSrc = rawPath.replace(/^\/?src\//, "");
 const relFromOxbow = rawPath.replace(/^\/?src\/components\/oxbow\//, "");
@@ -59,7 +61,7 @@ for (const c of candidates) {
 const component = matchKey ? await modules[matchKey]() : undefined;
 ---
 
-<html lang="en" class="selection:text-orange selection:bg-orange/5">
+<html lang="en" class="selection:text-foreground selection:bg-muted/5">
   <head>
     <IframeHead />
     <style>
@@ -89,7 +91,7 @@ const component = matchKey ? await modules[matchKey]() : undefined;
           <component.default />
         )
       ) : (
-        <div class="p-6 text-sm text-red-600 dark:text-red-400">
+        <div class="p-6 text-sm text-destructive">
           Component not found for path: <code>{String(componentPath)}</code>
         </div>
       )
@@ -98,7 +100,7 @@ const component = matchKey ? await modules[matchKey]() : undefined;
       (function () {
         const params = new URLSearchParams(window.location.search);
         const iframeId = params.get("iframeId") || "";
-        const mode = (params.get('mode') || 'system').toLowerCase();
+        const mode = (params.get("mode") || "system").toLowerCase();
 
         const computeHeight = () => {
           try {
@@ -118,14 +120,25 @@ const component = matchKey ? await modules[matchKey]() : undefined;
           }
         };
 
-        let lastH = 0; let thTimer = null;
+        let lastH = 0;
+        let thTimer = null;
         const postHeightNow = () => {
           const h = computeHeight();
-          if (Math.abs(h - lastH) < 1) return; lastH = h;
-          try { parent.postMessage({ type: "oxbow-height", id: iframeId, height: h }, "*"); } catch (_) {}
+          if (Math.abs(h - lastH) < 1) return;
+          lastH = h;
+          try {
+            parent.postMessage(
+              { type: "oxbow-height", id: iframeId, height: h },
+              "*",
+            );
+          } catch (_) {}
         };
         const postHeight = () => {
-          if (thTimer) return; thTimer = setTimeout(() => { thTimer = null; postHeightNow(); }, 33);
+          if (thTimer) return;
+          thTimer = setTimeout(() => {
+            thTimer = null;
+            postHeightNow();
+          }, 33);
         };
 
         const postSoon = () => requestAnimationFrame(postHeight);
@@ -134,12 +147,19 @@ const component = matchKey ? await modules[matchKey]() : undefined;
           try {
             const html = document.documentElement;
             const body = document.body;
-            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const enableDark = m === 'dark' || (m === 'system' && prefersDark);
-            html.classList.toggle('dark', enableDark);
-            body?.classList.toggle('dark', enableDark);
-            if (enableDark) { html.setAttribute('data-theme','dark'); body?.setAttribute('data-theme','dark'); }
-            else { html.removeAttribute('data-theme'); body?.removeAttribute('data-theme'); }
+            const prefersDark =
+              window.matchMedia &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches;
+            const enableDark = m === "dark" || (m === "system" && prefersDark);
+            html.classList.toggle("dark", enableDark);
+            body?.classList.toggle("dark", enableDark);
+            if (enableDark) {
+              html.setAttribute("data-theme", "dark");
+              body?.setAttribute("data-theme", "dark");
+            } else {
+              html.removeAttribute("data-theme");
+              body?.removeAttribute("data-theme");
+            }
           } catch (_) {}
         }
 
@@ -147,14 +167,19 @@ const component = matchKey ? await modules[matchKey]() : undefined;
         applyMode(mode);
 
         // Track system changes if mode=system
-        let mq; try {
-          if (mode === 'system' && window.matchMedia) {
-            mq = window.matchMedia('(prefers-color-scheme: dark)');
-            const onChange = () => { applyMode('system'); postSoon(); };
-            if (mq && 'addEventListener' in mq) mq.addEventListener('change', onChange);
-            else if (mq && 'addListener' in mq) mq.addListener(onChange);
+        let mq;
+        try {
+          if (mode === "system" && window.matchMedia) {
+            mq = window.matchMedia("(prefers-color-scheme: dark)");
+            const onChange = () => {
+              applyMode("system");
+              postSoon();
+            };
+            if (mq && "addEventListener" in mq)
+              mq.addEventListener("change", onChange);
+            else if (mq && "addListener" in mq) mq.addListener(onChange);
           }
-        } catch(_) {}
+        } catch (_) {}
 
         // Initial syncs
         window.addEventListener("DOMContentLoaded", postSoon);
@@ -162,7 +187,10 @@ const component = matchKey ? await modules[matchKey]() : undefined;
           postHeight();
           setTimeout(postHeight, 50);
           setTimeout(postHeight, 200);
-          try { if (document.fonts && document.fonts.ready) document.fonts.ready.then(postSoon); } catch(_) {}
+          try {
+            if (document.fonts && document.fonts.ready)
+              document.fonts.ready.then(postSoon);
+          } catch (_) {}
         });
 
         // Observe size and DOM changes
@@ -174,7 +202,11 @@ const component = matchKey ? await modules[matchKey]() : undefined;
 
         try {
           const mo = new MutationObserver(postSoon);
-          mo.observe(document.documentElement, { childList: true, subtree: true, attributes: true });
+          mo.observe(document.documentElement, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+          });
         } catch (_) {}
 
         // Late-loading assets (images, fonts)
@@ -198,11 +230,17 @@ const component = matchKey ? await modules[matchKey]() : undefined;
             if (e.data.type === "oxbow-set-dark") {
               const enable = !!e.data.enable;
               try {
-                const html = document.documentElement; const body = document.body;
-                html.classList.toggle('dark', enable);
-                body?.classList.toggle('dark', enable);
-                if (enable) { html.setAttribute('data-theme','dark'); body?.setAttribute('data-theme','dark'); }
-                else { html.removeAttribute('data-theme'); body?.removeAttribute('data-theme'); }
+                const html = document.documentElement;
+                const body = document.body;
+                html.classList.toggle("dark", enable);
+                body?.classList.toggle("dark", enable);
+                if (enable) {
+                  html.setAttribute("data-theme", "dark");
+                  body?.setAttribute("data-theme", "dark");
+                } else {
+                  html.removeAttribute("data-theme");
+                  body?.removeAttribute("data-theme");
+                }
               } catch (_) {}
               // After theme change, recompute height soon
               setTimeout(postHeight, 20);

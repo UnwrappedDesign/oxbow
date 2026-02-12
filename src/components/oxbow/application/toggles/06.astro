@@ -4,15 +4,13 @@ export const excludeFromObfuscation = [
   "w-1/2",
   "translate-x-0",
   "translate-x-full",
-  "text-orange-600",
-  "text-zinc-500",
-  "hover:text-orange-500",
+  "text-foreground",
+  "text-muted-foreground",
+  "hover:text-foreground",
 ];
 ---
 
-<div
-  class="flex flex-col justify-center mx-auto bg-white p-14 dark:bg-zinc-900"
->
+<div class="flex flex-col justify-center mx-auto bg-background p-14">
   <!-- copy:start -->
 
   <div
@@ -21,11 +19,11 @@ export const excludeFromObfuscation = [
   >
     <div
       aria-labelledby="pricing-toggle"
-      class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-white shadow dark:bg-zinc-800 ring-1 ring-zinc-200 dark:ring-zinc-700 ring-offset-2 dark:ring-offset-black gap-4 lg:mx-0 rounded-md max-w-52"
+      class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-background shadow ring-1 ring-border ring-offset-2 ring-offset-background gap-4 lg:mx-0 rounded-md max-w-52"
     >
       <!-- Sliding background -->
       <div
-        class="absolute inset-0 bg-zinc-50 dark:bg-zinc-700 rounded-md transition-transform duration-200 ease-in-out"
+        class="absolute inset-0 bg-muted rounded-md transition-transform duration-200 ease-in-out"
         :class="duration === 'monthly' ? 'w-1/2 translate-x-0' : 'w-1/2 translate-x-full'"
       >
       </div>
@@ -34,7 +32,7 @@ export const excludeFromObfuscation = [
       <button
         id="monthly-pricing-button"
         class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-        :class="duration === 'monthly' ? 'text-orange-600 dark:text-orange-400' : 'text-zinc-500 dark:text-zinc-400 hover:text-orange-500'"
+        :class="duration === 'monthly' ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'"
         @click="duration = 'monthly'"
         type="button"
         :aria-pressed="duration === 'monthly'"
@@ -46,7 +44,7 @@ export const excludeFromObfuscation = [
       <button
         id="annual-pricing-button"
         class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-        :class="duration === 'annual' ? 'text-orange-600 dark:text-orange-400' : 'text-zinc-500 dark:text-zinc-400 hover:text-orange-500'"
+        :class="duration === 'annual' ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'"
         @click="duration = 'annual'"
         type="button"
         :aria-pressed="duration === 'annual'"

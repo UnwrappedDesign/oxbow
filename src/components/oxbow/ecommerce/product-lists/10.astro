@@ -29,7 +29,7 @@ const products = [
 ];
 ---
 
-<section class="bg-white dark:bg-zinc-900">
+<section class="bg-background">
   <div class="relative px-8 py-24 mx-auto md:px-12 lg:px-20 max-w-7xl">
     <div class="relative grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {
@@ -47,36 +47,29 @@ const products = [
                 <Text
                   tag="h3"
                   variant="textSM"
-                  class="font-medium text-zinc-900 dark:text-white"
+                  class="font-medium text-foreground"
                 >
                   {article.title}
                 </Text>
                 <Text
                   tag="p"
                   variant="textSM"
-                  class="relative flex items-center text-zinc-500 dark:text-zinc-300  gap-x-1"
+                  class="relative flex items-center text-muted-foreground gap-x-1"
                 >
                   {article.price}
                 </Text>
               </div>
-              <div
-                class="flex items-center gap-1 
- "
-              >
+              <div class="flex items-center gap-1">
                 <ul role="list" class="flex items-center gap-x-1">
                   {article.colors.map((color, index) => (
                     <li
-                      class={`size-3 rounded-full border border-black/10 ${color}`}
+                      class={`size-3 rounded-full border border-border/10 ${color}`}
                     >
                       <span class="sr-only">{color}</span>
                     </li>
                   ))}
                 </ul>
-                <Text
-                  tag="p"
-                  variant="textSM"
-                  class=" text-zinc-500 dark:text-zinc-300"
-                >
+                <Text tag="p" variant="textSM" class="text-muted-foreground">
                   {article.description}
                   <a href="#_">
                     <span class="absolute inset-0" />

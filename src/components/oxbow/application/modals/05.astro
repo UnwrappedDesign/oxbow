@@ -16,9 +16,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 ---
 
-<div
-  class="p-8 pb-150 pt-20 bg-white dark:bg-zinc-900 flex items-center justify-center"
->
+<div class="p-8 pb-150 pt-20 bg-background flex items-center justify-center">
   <!-- Copy:start -->
   <!--
 // Make sure to change  "open: false",  to  open: true. On the z-data="{}".
@@ -58,7 +56,7 @@ import Text from "@/components/fundations/typography/Text.astro";
     <div
       x-show="open"
       x-transition.opacity
-      class="fixed inset-0 z-40 bg-black/40 dark:bg-white/20"
+      class="fixed inset-0 z-40 bg-background/20"
       aria-hidden="true"
       @click="close()"
     >
@@ -87,22 +85,22 @@ import Text from "@/components/fundations/typography/Text.astro";
         x-transition:leave="transition ease-in duration-150"
         x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0"
-        class="w-full sm:max-w-md rounded-2xl bg-white dark:bg-zinc-800 shadow-xl outline outline-1 outline-black/5 dark:-outline-offset-1 dark:outline-white/10"
+        class="w-full sm:max-w-md rounded-2xl bg-background shadow-xl outline outline-1 outline-border/5 -outline-offset-1 outline-border/10"
       >
         <!-- Media / Header -->
         <div class="p-4 pb-0">
           <div
-            class="rounded-xl overflow-hidden bg-radial-[at_50%_75%] from-sky-200 via-orange-400 to-indigo-900 to-90%"
+            class="rounded-xl overflow-hidden bg-radial-[at_50%_75%] from-info/20 via-muted/40 to-info to-90%"
           >
             <!-- Media variants -->
             <div class="aspect-[16/9] grid place-items-center">
               <template x-if="slides[i].media==='welcome'">
-                <Logo size="base" class="h-32 text-white dark:text-zinc-900" />
+                <Logo size="base" class="h-32 text-foreground" />
               </template>
               <template x-if="slides[i].media==='theme'">
                 <div class="grid grid-cols-3 gap-2 p-4 w-full justify-center">
                   <div
-                    class="flex items-center justify-center rounded outline outline-zinc-100 dark:outline-zinc-800 bg-zinc-50 dark:bg-zinc-900"
+                    class="flex items-center justify-center rounded outline outline-border bg-background"
                   >
                     <img
                       src="/images/forms/light.png"
@@ -111,7 +109,7 @@ import Text from "@/components/fundations/typography/Text.astro";
                     />
                   </div>
                   <div
-                    class="flex items-center justify-center rounded outline outline-zinc-100 dark:outline-zinc-800 bg-zinc-50 dark:bg-zinc-900"
+                    class="flex items-center justify-center rounded outline outline-border bg-background"
                   >
                     <img
                       src="/images/forms/dark.png"
@@ -120,7 +118,7 @@ import Text from "@/components/fundations/typography/Text.astro";
                     />
                   </div>
                   <div
-                    class="flex items-center justify-center rounded outline outline-zinc-100 dark:outline-zinc-800 bg-zinc-50 dark:bg-zinc-900"
+                    class="flex items-center justify-center rounded outline outline-border bg-background"
                   >
                     <img
                       src="/images/forms/system.png"
@@ -133,36 +131,33 @@ import Text from "@/components/fundations/typography/Text.astro";
               <template x-if="slides[i].media==='kbd'">
                 <div class="p-6 flex gap-2 items-center">
                   <kbd
-                    class="px-1 size-8 border rounded flex items-center justify-center bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+                    class="px-1 size-8 border rounded flex items-center justify-center bg-background border-border text-muted-foreground"
                     >⌘</kbd
                   >
                   <kbd
-                    class="px-1 size-8 border rounded flex items-center justify-center bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+                    class="px-1 size-8 border rounded flex items-center justify-center bg-background border-border text-muted-foreground"
                     >K</kbd
                   >
-                  <span class="text-zinc-900 font-medium">then</span>
+                  <span class="text-foreground font-medium">then</span>
                   <kbd
-                    class="px-1 size-8 border rounded flex items-center justify-center bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+                    class="px-1 size-8 border rounded flex items-center justify-center bg-background border-border text-muted-foreground"
                     >↑</kbd
                   >
                   <kbd
-                    class="px-1 size-8 border rounded flex items-center justify-center bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+                    class="px-1 size-8 border rounded flex items-center justify-center bg-background border-border text-muted-foreground"
                     >↓</kbd
                   >
                   <kbd
-                    class="px-1 size-8 border rounded flex items-center justify-center bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+                    class="px-1 size-8 border rounded flex items-center justify-center bg-background border-border text-muted-foreground"
                     >↵</kbd
                   >
                 </div>
               </template>
               <template x-if="slides[i].media==='done'"
                 ><div
-                  class="inline-flex items-center justify-center rounded-full size-24 bg-white/20 text-emerald-700 dark:bg-zinc-900/20 dark:text-emerald-200"
+                  class="inline-flex items-center justify-center rounded-full size-24 bg-background/20 text-success"
                 >
-                  <Check
-                    size="xl"
-                    class="text-emerald-600 dark:text-emerald-200"
-                  />
+                  <Check size="xl" class="text-success" />
                 </div></template
               >
             </div>
@@ -174,13 +169,13 @@ import Text from "@/components/fundations/typography/Text.astro";
             tag="h3"
             variant="textBase"
             id="ob-title"
-            class="font-semibold text-zinc-900 dark:text-white"
+            class="font-semibold text-foreground"
             x-text="slides[i].title"
           />
           <Text
             tag="p"
             variant="textSM"
-            class="text-zinc-600 dark:text-zinc-300 mt-1"
+            class="text-muted-foreground mt-1"
             x-text="slides[i].body"
           />
           <!-- Slide-specific controls -->
@@ -188,19 +183,19 @@ import Text from "@/components/fundations/typography/Text.astro";
             <div class="inline-flex gap-2">
               <button
                 @click="theme='light'"
-                :class="theme==='light' ? 'bg-zinc-900 text-white' : 'outline outline-1 outline-zinc-200 text-zinc-700 dark:text-zinc-200'"
+                :class="theme==='light' ? 'bg-background : 'outline outline-1 outline-border text-muted-foreground'"
                 class="h-8 px-2 rounded-md text-xs inline-flex items-center gap-1 font-medium"
                 ><Sun size="sm" /> Light</button
               >
               <button
                 @click="theme='system'"
-                :class="theme==='system' ? 'bg-zinc-900 text-white' : 'outline outline-1 outline-zinc-200 text-zinc-700 dark:text-zinc-200'"
+                :class="theme==='system' ? 'bg-background : 'outline outline-1 outline-border text-muted-foreground'"
                 class="h-8 px-2 rounded-md text-xs inline-flex items-center gap-1 font-medium"
                 ><Settings size="sm" /> System</button
               >
               <button
                 @click="theme='dark'"
-                :class="theme==='dark' ? 'bg-zinc-900 text-white' : 'outline outline-1 outline-zinc-200 text-zinc-700 dark:text-zinc-200'"
+                :class="theme==='dark' ? 'bg-background : 'outline outline-1 outline-border text-muted-foreground'"
                 class="h-8 px-2 rounded-md text-xs inline-flex items-center gap-1 font-medium"
                 ><Moon size="sm" /> Dark</button
               >
@@ -212,20 +207,18 @@ import Text from "@/components/fundations/typography/Text.astro";
               <button
                 @click="jump(idx)"
                 :aria-current="i===idx"
-                :class="i===idx ? 'bg-orange-600' : 'bg-zinc-300 dark:bg-zinc-600'"
+                :class="i===idx ? 'bg-muted' : 'bg-muted'"
                 class="size-2 rounded-full"></button>
             </template>
           </div>
         </div>
         <!-- Footer -->
-        <div
-          class="px-5 py-4 border-t border-zinc-100 dark:border-zinc-700 flex items-center gap-2"
-        >
+        <div class="px-5 py-4 border-t border-border flex items-center gap-2">
           <Button
             variant="outline"
             size="xxs"
             type="button"
-            class="h-9 px-3 rounded-md outline outline-1 outline-zinc-200 text-sm text-zinc-700 dark:text-zinc-200"
+            class="h-9 px-3 rounded-md outline outline-1 outline-border text-sm text-foreground"
             @click="close()">Skip</Button
           >
           <div class="ml-auto flex items-center gap-2">

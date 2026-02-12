@@ -29,7 +29,7 @@ const gallery = [
 // isOpen: true,
 -->
 <section
-  class="bg-white dark:bg-zinc-900"
+  class="bg-background"
   x-data={`{
     gallery: ${JSON.stringify(gallery)},
     currentIndex: 0,
@@ -44,7 +44,7 @@ const gallery = [
     <Text
       variant="textSM"
       tag="p"
-      class="pb-12 mt-4 italic text-center text-zinc-500 dark:text-zinc-400"
+      class="pb-12 mt-4 italic text-center text-muted-foreground"
     >
       Click on the image to open it in a lightbox.
     </Text>
@@ -72,7 +72,7 @@ const gallery = [
     @keydown.escape="closeLightbox"
     @keydown.arrow-left="prev"
     @keydown.arrow-right="next"
-    class="fixed inset-0 bg-white/80 dark:bg-zinc-900/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 supports-[backdrop-filter]:dark:bg-zinc-900/60 flex items-start justify-center z-50 overflow-auto p-8 md:p-12 lg:p-32 outline-none"
+    class="fixed inset-0 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 flex items-start justify-center z-50 overflow-auto p-8 md:p-12 lg:p-32 outline-none"
   >
     <div class="relative w-full max-w-3xl mx-auto" @click.stop>
       <!-- Hidden heading for screen readers -->
@@ -122,7 +122,7 @@ const gallery = [
             <button
               @click="currentIndex = idx"
               class="w-2 h-2 rounded-full"
-              :class="idx === currentIndex ? 'bg-white' : 'bg-white/50 hover:bg-white'"
+              :class="idx === currentIndex ? 'bg-background' : 'bg-background/50 hover:bg-background'"
               :aria-label="`Go to image ${idx + 1}`"></button>
           </template>
         </div>
@@ -136,7 +136,7 @@ const gallery = [
         <X
           slot="icon"
           size="sm"
-          class="text-black dark:text-white hover:text-zinc-300"
+          class="text-foreground hover:text-muted-foreground"
         />
       </button>
     </div>

@@ -4,7 +4,7 @@ import Text from "@/components/fundations/typography/Text.astro";
 ---
 
 <section
-  class="flex flex-wrap items-center justify-center h-full p-24 bg-white gap-2 dark:bg-zinc-900"
+  class="flex flex-wrap items-center justify-center h-full p-24 bg-background gap-2"
 >
   <!-- copy:start -->
   <form
@@ -12,7 +12,7 @@ import Text from "@/components/fundations/typography/Text.astro";
     x-data="{ options: ['Email', 'SMS', 'Push'], selected: [], submitted: false }"
     @submit.prevent="submitted = true; if (selected.length === 0) return; alert('Saved')"
   >
-    <div class="text-sm text-zinc-700 dark:text-zinc-200">
+    <div class="text-sm text-foreground">
       Notify me via (choose at least one)
     </div>
     <template x-for="opt in options" :key="opt">
@@ -24,12 +24,12 @@ import Text from "@/components/fundations/typography/Text.astro";
           x-model="selected"
           :aria-invalid="submitted && selected.length === 0"
           aria-describedby="notify-error"
-          class="text-orange-600 rounded shadow size-4 border-zinc-300 dark:border-zinc-700 focus:ring-orange-600 dark:bg-zinc-900 dark:checked:bg-orange-600"
+          class="text-foreground rounded shadow size-4 border-border focus:ring-border bg-background checked:bg-muted"
         />
         <Text
           :for="`notify-` + opt"
           tag="label"
-          class="block text-sm text-zinc-600 dark:text-zinc-300"
+          class="block text-sm text-muted-foreground"
           x-text="opt"
         />
       </div>
@@ -37,7 +37,7 @@ import Text from "@/components/fundations/typography/Text.astro";
     <p
       id="notify-error"
       x-show="submitted && selected.length === 0"
-      class="text-xs text-red-600 dark:text-red-400"
+      class="text-xs text-destructive"
       role="alert"
     >
       Select at least one notification method.
@@ -45,11 +45,11 @@ import Text from "@/components/fundations/typography/Text.astro";
     <div class="flex gap-2">
       <button
         type="submit"
-        class="px-3 py-1.5 text-sm rounded bg-orange-600 text-white"
+        class="px-3 py-1.5 text-sm rounded bg-muted text-foreground"
         >Save Preferences</button
       >
       <span
-        class="self-center text-xs text-zinc-500 dark:text-zinc-400"
+        class="self-center text-xs text-muted-foreground"
         x-text="selected.join(', ') || 'None selected'"></span>
     </div>
   </form>

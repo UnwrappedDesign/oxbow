@@ -1,17 +1,15 @@
 ---
 import Button from "@/components/fundations/buttons/Button.astro";
 export const excludeFromObfuscation = [
-  "bg-zinc-600",
-  "text-zinc-600",
+  "bg-muted",
+  "text-muted-foreground",
   "border-b",
   "ring-1",
-  "ring-zinc-200",
+  "ring-border",
 ];
 ---
 
-<div
-  class="flex flex-col justify-center p-12 mx-auto bg-white dark:bg-zinc-900"
->
+<div class="flex flex-col justify-center p-12 mx-auto bg-background">
   <!-- Accessible Tabs • Scrollable (overflow-x) with action on right -->
   <div
     x-data="{
@@ -36,14 +34,14 @@ export const excludeFromObfuscation = [
     <div class="flex items-center justify-between gap-4">
       <div class="relative flex-1 overflow-x-auto overflow-y-hidden">
         <div
-          class="border-b min-w-max border-zinc-200 dark:border-zinc-700"
+          class="border-b min-w-max border-border"
           role="tablist"
           aria-orientation="horizontal"
         >
-          <div class="flex text-sm gap-6 text-zinc-600 dark:text-zinc-200">
+          <div class="flex text-sm gap-6 text-foreground">
             <template x-for="(id, idx) in keys" :key="id">
               <button
-                class="relative pb-2 font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500/50"
+                class="relative pb-2 font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-border"
                 :id="'tab-'+id"
                 role="tab"
                 :aria-selected="selected===id"
@@ -52,12 +50,12 @@ export const excludeFromObfuscation = [
                 x-ref="tab-[[id]]"
                 @click="select(id)"
                 @keydown="onKeydown($event)"
-                :class="selected===id ? 'text-zinc-600 dark:text-zinc-400' : 'hover:text-zinc-900 dark:hover:text-zinc-100'"
+                :class="selected===id ? 'text-muted-foreground' : 'hover:text-foreground'"
               >
                 <span x-text="id.charAt(0).toUpperCase()+id.slice(1)"></span>
                 <span
                   class="absolute left-0 bottom-0 h-[2px] w-full transition-all"
-                  :class="selected===id ? 'bg-zinc-600 dark:bg-zinc-400' : 'bg-transparent'"
+                  :class="selected===id ? 'bg-muted' : 'bg-transparent'"
                   aria-hidden="true"></span>
               </button>
             </template>
@@ -65,24 +63,12 @@ export const excludeFromObfuscation = [
         </div>
       </div>
       <div class="hidden shrink-0 sm:flex gap-2">
-        <Button
-          variant="muted"
-          size="xs"
-          type="button"
-         
-          >Export</Button
-        >
-        <Button
-          variant="default"
-          size="xs"
-          type="button"
-   
-          >New</Button
-        >
+        <Button variant="muted" size="xs" type="button">Export</Button>
+        <Button variant="default" size="xs" type="button">New</Button>
       </div>
     </div>
 
-    <div class="pt-4 text-sm text-zinc-500 dark:text-zinc-300">
+    <div class="pt-4 text-sm text-muted-foreground">
       <template x-for="id in keys" :key="'panel-'+id">
         <section
           x-show="selected===id"

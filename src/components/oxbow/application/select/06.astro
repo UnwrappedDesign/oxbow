@@ -12,7 +12,7 @@ const countryOptions = [
 ];
 ---
 
-<div class="flex justify-center mx-auto bg-white p-18 dark:bg-zinc-900">
+<div class="flex justify-center mx-auto bg-background p-18">
   <div>
     <!-- copy:start -->
     <div
@@ -45,7 +45,7 @@ const countryOptions = [
       x-init="filteredOptions = [...allOptions]; console.log('Initial options:', filteredOptions)"
     >
       <div class="mb-4">
-        <label for="search" class="block mb-1 text-sm font-medium text-zinc-500"
+        <label for="search" class="block mb-1 text-sm font-medium text-muted-foreground"
           >Search Countries</label
         >
         <input
@@ -53,7 +53,7 @@ const countryOptions = [
           id="search"
           x-model="searchTerm"
           @input="filterOptions()"
-          class="block w-full h-10 px-4 py-2 text-sm bg-white border border-transparent dark:bg-zinc-900 text-zinc-500 dark:text-zinc-100 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-400 focus:border-zinc-300 dark:focus:border-zinc-600 focus:bg-transparent focus:outline-none focus:ring-orange-500 dark:focus:ring-orange-500 focus:ring-offset-2 focus:ring-2 rounded-md"
+          class="block w-full h-10 px-4 py-2 text-sm bg-background border border-transparent text-foreground ring-1 ring-border placeholder:text-muted-foreground focus:border-border focus:bg-transparent focus:outline-none focus:ring-border focus:ring-offset-2 focus:ring-2 rounded-md"
           placeholder="Type to search..."
         />
       </div>
@@ -61,14 +61,14 @@ const countryOptions = [
       <div>
         <label
           for="filtered-select"
-          class="block mb-1 text-sm font-medium text-zinc-500"
+          class="block mb-1 text-sm font-medium text-muted-foreground"
           >Filtered Countries</label
         >
         <select
           id="filtered-select"
           name="filtered-select"
           x-model="selectedValue"
-          class="block w-full h-10 px-4 py-2 text-sm bg-white border border-transparent dark:bg-zinc-900 text-zinc-500 dark:text-zinc-100 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-400 focus:border-zinc-300 dark:focus:border-zinc-600 focus:bg-transparent focus:outline-none focus:ring-orange-500 dark:focus:ring-orange-500 focus:ring-offset-2 focus:ring-2 rounded-md"
+          class="block w-full h-10 px-4 py-2 text-sm bg-background border border-transparent text-foreground ring-1 ring-border placeholder:text-muted-foreground focus:border-border focus:bg-transparent focus:outline-none focus:ring-border focus:ring-offset-2 focus:ring-2 rounded-md"
         >
           <option value="">Select a country</option>
           <template x-for="option in filteredOptions">
@@ -78,21 +78,21 @@ const countryOptions = [
       </div>
 
       <div class="mt-2">
-        <p class="text-xs font-medium text-zinc-500">
+        <p class="text-xs font-medium text-muted-foreground">
           Selected country: <span
             class="uppercase"
             x-text="selectedValue || 'None'"></span>
         </p>
-        <p class="text-xs font-medium text-zinc-500" mt-1>
+        <p class="text-xs font-medium text-muted-foreground" mt-1>
           Showing <span x-text="filteredOptions.length"></span> of <span
             x-text="allOptions.length"></span> countries
         </p>
         <!-- Debug output -->
-        <div class="mt-2 text-xs font-medium text-zinc-900">
+        <div class="mt-2 text-xs font-medium text-foreground">
           <p>Search term: <span x-text="searchTerm"></span></p>
           <div
             x-show="filteredOptions.length === 0"
-            class="hidden font-medium text-red-500"
+            class="hidden font-medium text-destructive"
             :class="{ 'hidden': filteredOptions.length !== 0 }"
           >
             No matching options found

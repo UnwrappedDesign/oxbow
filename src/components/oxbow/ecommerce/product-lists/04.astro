@@ -31,7 +31,7 @@ const products = [
 ];
 ---
 
-<section class="bg-white dark:bg-zinc-900">
+<section class="bg-background">
   <div class="relative px-8 py-24 mx-auto md:px-12 lg:px-20 max-w-7xl">
     <div
       class="text-center md:text-left grid grid-cols-1 gap-12 md:grid-cols-2 md:items-end"
@@ -40,7 +40,7 @@ const products = [
         <Text
           tag="h2"
           variant="displaySM"
-          class="font-semibold tracking-tight text-zinc-900 dark:text-white lg:text-balance"
+          class="font-semibold tracking-tight text-foreground lg:text-balance"
         >
           Our products
         </Text>
@@ -56,19 +56,19 @@ const products = [
       {
         products.map((article) => (
           <div class="relative flex flex-col gap-2">
-            <div class="relative aspect-[4/4] ">
+            <div class="relative aspect-[4/4]">
               <img
                 src={article.image}
                 alt="#_"
-                class="absolute inset-0 object-cover size-full  rounded-2xl bg-zinc-50"
+                class="absolute inset-0 object-cover size-full rounded-2xl bg-muted"
               />
             </div>
             <div>
-              <div class="flex items-center justify-between w-full ">
+              <div class="flex items-center justify-between w-full">
                 <Text
                   tag="h3"
                   variant="textSM"
-                  class="font-medium text-zinc-900"
+                  class="font-medium text-foreground"
                 >
                   {article.title}
                 </Text>
@@ -76,15 +76,15 @@ const products = [
               <Text
                 tag="h3"
                 variant="textSM"
-                class="flex items-center text-zinc-500  gap-x-1"
+                class="flex items-center text-muted-foreground gap-x-1"
               >
                 <del class="opacity-70">{article.discountedPrice}</del>
-                <span class="text-zinc-900"> {article.price}</span>
+                <span class="text-foreground"> {article.price}</span>
                 <a href="#_">
                   <span class="absolute inset-0" />
                 </a>
               </Text>
-              <Text tag="p" variant="textSM" class="mt-8 text-zinc-500 ">
+              <Text tag="p" variant="textSM" class="mt-8 text-muted-foreground">
                 {article.description}
               </Text>
             </div>

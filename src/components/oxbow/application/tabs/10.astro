@@ -1,15 +1,15 @@
 ---
 export const excludeFromObfuscation = [
-  "text-zinc-600",
-  "bg-zinc-600",
+  "text-muted-foreground",
+  "bg-muted",
   "ring-1",
-  "ring-zinc-200",
-  "bg-zinc-50",
-  "border-zinc-200",
+  "ring-border",
+  "bg-muted",
+  "border-border",
 ];
 ---
 
-<div class="flex flex-col justify-center p-8 mx-auto bg-white dark:bg-zinc-900">
+<div class="flex flex-col justify-center p-8 mx-auto bg-background">
   <!-- Accessible Tabs • Tabs header with search -->
   <div
     x-data="{
@@ -29,14 +29,14 @@ export const excludeFromObfuscation = [
   >
     <div class="flex items-center justify-between gap-4">
       <div
-        class="border-b border-zinc-200 dark:border-zinc-700"
+        class="border-b border-border"
         role="tablist"
         aria-orientation="horizontal"
       >
-        <div class="flex text-sm gap-6 text-zinc-600 dark:text-zinc-200">
+        <div class="flex text-sm gap-6 text-foreground">
           <template x-for="(id, idx) in keys" :key="id">
             <button
-              class="relative pb-2 font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500/50"
+              class="relative pb-2 font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-border"
               :id="'tab-'+id"
               role="tab"
               :aria-selected="selected===id"
@@ -45,12 +45,12 @@ export const excludeFromObfuscation = [
               x-ref="tab-[[id]]"
               @click="select(id)"
               @keydown="onKeydown($event)"
-              :class="selected===id ? 'text-zinc-600 dark:text-zinc-400' : 'hover:text-zinc-900 dark:hover:text-zinc-100'"
+              :class="selected===id ? 'text-muted-foreground' : 'hover:text-foreground'"
             >
               <span x-text="id.charAt(0).toUpperCase()+id.slice(1)"></span>
               <span
                 class="absolute left-0 bottom-0 h-[2px] w-full transition-all"
-                :class="selected===id ? 'bg-zinc-600 dark:bg-zinc-400' : 'bg-transparent'"
+                :class="selected===id ? 'bg-muted' : 'bg-transparent'"
                 aria-hidden="true"></span>
             </button>
           </template>
@@ -63,13 +63,13 @@ export const excludeFromObfuscation = [
             type="search"
             x-model="query"
             placeholder="Search..."
-            class="w-56 px-3 text-sm border h-9 rounded-md bg-zinc-50 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-orange-500 /40 dark:focus:ring-zinc-400/40"
+            class="w-56 px-3 text-sm border h-9 rounded-md bg-background border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-border /40 focus:ring-border/40"
           />
         </label>
       </div>
     </div>
 
-    <div class="pt-4 text-sm text-zinc-500 dark:text-zinc-300">
+    <div class="pt-4 text-sm text-muted-foreground">
       <template x-for="id in keys" :key="'panel-'+id">
         <section
           x-show="selected===id"
@@ -77,14 +77,14 @@ export const excludeFromObfuscation = [
           role="tabpanel"
           :id="'panel-'+id"
           :aria-labelledby="'tab-'+id"
-          class="p-4 border rounded-lg border-zinc-200 dark:border-zinc-700"
+          class="p-4 border rounded-lg border-border"
         >
           <p>
             <span x-text="id.charAt(0).toUpperCase()+id.slice(1)"></span> content
             — inline search on the right.
           </p>
           <p x-show="query" class="mt-2">
-            <span class="text-zinc-600">Query:</span>
+            <span class="text-muted-foreground">Query:</span>
             <span x-text="query"></span>
           </p>
         </section>

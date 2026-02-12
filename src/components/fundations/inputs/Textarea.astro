@@ -12,36 +12,36 @@ const {
 
 const variantClasses = {
   default: [
-    "bg-white",
+    "bg-background",
     "border",
-    "text-zinc-500",
+    "text-muted-foreground",
     "ring-1",
-    "ring-zinc-200",
-    "placeholder-zinc-400",
-    "focus:border-zinc-300",
+    "ring-border",
+    "placeholder:text-muted-foreground",
+    "focus:border-border",
     "focus:outline-none",
-    "focus:ring-orange-500",
+    "focus:ring-border",
     "focus:ring-offset-2",
     "focus:ring-2",
     // Dark mode variants
-    "dark:bg-zinc-800",
-    "dark:text-zinc-100",
-    "dark:ring-zinc-700",
-    "dark:placeholder-zinc-400",
-    "dark:focus:border-zinc-600",
-    "dark:focus:ring-orange-500 ",
-    "dark:focus:ring-offset-zinc-900",
+    "bg-background",
+    "text-foreground",
+    "ring-border",
+    "placeholder:text-muted-foreground",
+    "focus:border-border",
+    "focus:ring-border ",
+    "focus:ring-offset-background",
   ],
   dark: [
-    "bg-zinc-800",
-    "text-zinc-100",
-    "border-zinc-700",
+    "bg-background",
+    "text-foreground",
+    "border-border",
     "ring-1",
-    "ring-zinc-700",
-    "placeholder-zinc-400",
-    "focus:ring-orange-500 ",
+    "ring-border",
+    "placeholder:text-muted-foreground",
+    "focus:ring-border ",
     "focus:ring-offset-2",
-    "focus:border-zinc-600",
+    "focus:border-border",
     "focus:outline-none",
   ],
 };
@@ -62,13 +62,17 @@ let textareaClasses = [
   ...className.split(" "),
 ];
 
-const errorTextColor = variant === "dark" ? "text-red-400" : "text-red-600";
+const errorTextColor =
+  variant === "dark" ? "text-destructive" : "text-destructive";
 ---
 
 <div class="w-full">
   {
     label && (
-      <label for={id} class="block mb-1 text-sm font-medium text-zinc-500">
+      <label
+        for={id}
+        class="block mb-1 text-sm font-medium text-muted-foreground"
+      >
         {label}
       </label>
     )

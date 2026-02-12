@@ -3,7 +3,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
 import Text from "@/components/fundations/typography/Text.astro";
 import CircleCheck from "@/components/fundations/icons/CircleCheck.astro";
 
-export const excludeFromObfuscation = ["bg-zinc-800", "bg-zinc-400"];
+export const excludeFromObfuscation = ["bg-background", "bg-muted"];
 
 const data = [
   {
@@ -29,30 +29,30 @@ const data = [
 ];
 ---
 
-<section class="bg-white dark:bg-zinc-900">
+<section class="bg-background">
   <div class="px-8 py-24 mx-auto max-w-7xl md:px-12 lg:px-20">
     <div
-      class="relative items-center p-8 list-none grid grid-cols-1 bg-zinc-50 dark:bg-zinc-900/40 lg:grid-cols-2 gap-4 lg:gap-24 rounded-3xl lg:p-10 overflow-clip"
+      class="relative items-center p-8 list-none grid grid-cols-1 bg-muted/40 lg:grid-cols-2 gap-4 lg:gap-24 rounded-3xl lg:p-10 overflow-clip"
     >
       <div class="pt-8 text-center lg:text-left">
         <Text
           tag="p"
           variant="textSM"
-          class="font-bold text-orange-600 uppercase dark:text-orange-400"
+          class="font-bold text-foreground uppercase"
         >
           Tagline
         </Text>
         <Text
           tag="h2"
           variant="displayMD"
-          class="mt-4 font-semibold text-zinc-900 dark:text-white lg:text-balance"
+          class="mt-4 font-semibold text-foreground lg:text-balance"
         >
           Transforming the banking experience for a digital future
         </Text>
         <Text
           tag="p"
           variant="textBase"
-          class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+          class="mt-4 font-medium text-muted-foreground"
         >
           The fastest method for working together on staging and temporary
           environments.
@@ -65,7 +65,7 @@ const data = [
       <div class="items-center h-full mt-12 lg:mt-0">
         <img
           alt="#"
-          class="absolute w-full border shadow rounded-2xl border-zinc-200 dark:border-zinc-700"
+          class="absolute w-full border shadow rounded-2xl border-border"
           src="/images/dashboardLight.svg"
         />
       </div>
@@ -79,27 +79,27 @@ const data = [
                 <Text
                   variant="textLG"
                   tag="h3"
-                  class="font-medium text-zinc-900 dark:text-white"
+                  class="font-medium text-foreground"
                 >
                   {section.category}
                 </Text>
                 <Text
                   tag="p"
                   variant="textBase"
-                  class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+                  class="mt-4 font-medium text-muted-foreground"
                 >
                   {section.text}
                 </Text>
               </div>
               <ul
                 role="list"
-                class="mt-6 text-base font-medium list-none space-y-1 text-zinc-900 dark:text-white"
+                class="mt-6 text-base font-medium list-none space-y-1 text-foreground"
               >
                 {section.items.map((item) => (
                   <li>
-                    <div class="flex items-center  gap-4">
+                    <div class="flex items-center gap-4">
                       <CircleCheck
-                        class="text-orange-600 dark:text-orange-400"
+                        class="text-foreground"
                         size="base"
                         slot="icon"
                       />
@@ -145,7 +145,7 @@ const data = [
           <!-- Previous slide button -->
           <button
             @click="activeSlide = activeSlide === 0 ? slides.length - 1 : activeSlide - 1"
-            class="absolute flex items-center justify-center bg-white border rounded-full left-4 top-1/2 transform -translate-y-1/2 text-zinc-900 size-10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+            class="absolute flex items-center justify-center bg-background border rounded-full left-4 top-1/2 transform -translate-y-1/2 text-foreground size-10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-border"
             aria-label="Previous Slide"
           >
             &larr;
@@ -153,7 +153,7 @@ const data = [
           <!-- Next slide button -->
           <button
             @click="activeSlide = activeSlide === slides.length - 1 ? 0 : activeSlide + 1"
-            class="absolute flex items-center justify-center bg-white border rounded-full right-4 top-1/2 transform -translate-y-1/2 text-zinc-900 size-10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+            class="absolute flex items-center justify-center bg-background border rounded-full right-4 top-1/2 transform -translate-y-1/2 text-foreground size-10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-border"
             aria-label="Next Slide"
           >
             &rarr;
@@ -165,7 +165,7 @@ const data = [
             <template x-for="(slide, index) in slides" :key="index">
               <button
                 @click="activeSlide = index"
-                :class="{'bg-zinc-800': activeSlide === index, 'bg-zinc-400': activeSlide !== index}"
+                :class="{'bg-background': activeSlide === index, 'bg-muted': activeSlide !== index}"
                 class="w-3 h-3 rounded-full focus:outline-none"
                 :aria-label="'Slide ' + (index + 1)"
                 :aria-current="activeSlide === index ? 'true' : 'false'"

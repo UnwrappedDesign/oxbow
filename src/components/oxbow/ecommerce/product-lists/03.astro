@@ -32,18 +32,18 @@ const products = [
 ];
 ---
 
-<section class="bg-white dark:bg-zinc-900">
+<section class="bg-background">
   <div class="relative px-8 py-24 mx-auto md:px-12 lg:px-20 max-w-7xl">
     <div class="relative grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {
         products.map((article) => (
-          <div class="flex flex-col gap-2 ">
+          <div class="flex flex-col gap-2">
             <div class="relative">
-              <div class="relative aspect-[8/12] ">
+              <div class="relative aspect-[8/12]">
                 <img
                   src={article.image}
                   alt="#_"
-                  class="absolute inset-0 object-cover size-full  rounded-2xl bg-zinc-50"
+                  class="absolute inset-0 object-cover size-full rounded-2xl bg-muted"
                 />
               </div>
               <div>
@@ -51,7 +51,7 @@ const products = [
                   <Text
                     tag="h3"
                     variant="textSM"
-                    class="font-medium text-zinc-900 dark:text-white"
+                    class="font-medium text-foreground"
                   >
                     {article.title}
                     <a href="#_">
@@ -61,7 +61,7 @@ const products = [
                   <ul role="list" class="flex items-center gap-x-1">
                     {article.colors.map((color, index) => (
                       <li
-                        class={`size-3 rounded-full border border-black/10 ${color}`}
+                        class={`size-3 rounded-full border border-border/10 ${color}`}
                       >
                         <span class="sr-only">{color}</span>
                       </li>
@@ -71,21 +71,17 @@ const products = [
                 <Text
                   tag="p"
                   variant="textSM"
-                  class="mt-2 text-zinc-500 dark:text-zinc-300 "
+                  class="mt-2 text-muted-foreground"
                 >
                   {article.description}
                 </Text>
               </div>
             </div>
             <div class="flex items-center justify-between w-full mt-12">
-              <Text
-                tag="h3"
-                variant="textSM"
-                class="text-zinc-500 dark:text-zinc-300 "
-              >
+              <Text tag="h3" variant="textSM" class="text-muted-foreground">
                 {article.price}
               </Text>
-              <button class="text-sm dark:text-zinc-300">Add to cart</button>
+              <button class="text-sm text-muted-foreground">Add to cart</button>
             </div>
           </div>
         ))

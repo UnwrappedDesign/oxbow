@@ -5,11 +5,11 @@ export const excludeFromObfuscation = [
   "size-12",
   "opacity-25",
   "opacity-100",
-  "text-white",
+  "text-foreground",
 ];
 ---
 
-<section class="bg-white dark:bg-zinc-900" x-data="{ testimonialActive: 1 }">
+<section class="bg-background" x-data="{ testimonialActive: 1 }">
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl">
     <div class="relative flex flex-col h-full text-center">
       <div class="max-w-sm mx-auto">
@@ -18,7 +18,7 @@ export const excludeFromObfuscation = [
             <Text
               tag="blockquote"
               variant="textXL"
-              class="font-semibold text-zinc-900 dark:text-white lg:text-balance"
+              class="font-semibold text-foreground lg:text-balance"
             >
               Working with Oxbow reduced our time-to-market and improved payment
               reliability.
@@ -30,7 +30,7 @@ export const excludeFromObfuscation = [
             <Text
               tag="blockquote"
               variant="textXL"
-              class="font-semibold text-zinc-900 dark:text-white lg:text-balance"
+              class="font-semibold text-foreground lg:text-balance"
             >
               The library’s design and docs saved our engineers hours every
               sprint.
@@ -42,7 +42,7 @@ export const excludeFromObfuscation = [
             <Text
               tag="blockquote"
               variant="textXL"
-              class="font-semibold text-zinc-900 dark:text-white lg:text-balance"
+              class="font-semibold text-foreground lg:text-balance"
             >
               We shipped polished pages faster thanks to sensible defaults and
               examples.
@@ -54,8 +54,8 @@ export const excludeFromObfuscation = [
         <div class="flex flex-row items-center justify-center">
           <button
             @click.prevent="testimonialActive = 1"
-            class="inline-block mx-2 font-bold text-center text-white rounded-full opacity-100 shadow-xs focus:outline-none focus:ring-2 ring-2 ring-zinc-700 ring-offset-zinc-100"
-            :class="{'size-12 opacity-25  ': testimonialActive != 1, 'opacity-100  text-white': testimonialActive == 1 }"
+            class="inline-block mx-2 font-bold text-center text-foreground rounded-full opacity-100 shadow-xs focus:outline-none focus:ring-2 ring-2 ring-border ring-offset-background"
+            :class="{'size-12 opacity-25 ': testimonialActive != 1, 'opacity-100 text-foreground': == 1 }"
           >
             <img
               class="inline-block object-cover rounded-full size-12"
@@ -65,8 +65,8 @@ export const excludeFromObfuscation = [
           </button>
           <button
             @click.prevent="testimonialActive = 2"
-            class="inline-block mx-2 font-bold text-center rounded-full opacity-25 shadow-xs focus:outline-none focus:ring-2 ring-2 ring-zinc-700 ring-offset-zinc-100 size-12"
-            :class="{'size-12 opacity-25  ': testimonialActive != 2, 'opacity-100  ': testimonialActive == 2 }"
+            class="inline-block mx-2 font-bold text-center rounded-full opacity-25 shadow-xs focus:outline-none focus:ring-2 ring-2 ring-border ring-offset-background size-12"
+            :class="{'size-12 opacity-25 ': testimonialActive != 2, 'opacity-100 == 2 }"
           >
             <img
               class="inline-block object-cover rounded-full size-12"
@@ -76,8 +76,8 @@ export const excludeFromObfuscation = [
           </button>
           <button
             @click.prevent="testimonialActive = 3"
-            class="inline-block mx-2 font-bold text-center rounded-full opacity-25 shadow-xs focus:outline-none focus:ring-2 ring-2 ring-zinc-700 ring-offset-zinc-100 size-12"
-            :class="{'size-12 opacity-25  ': testimonialActive != 3, 'opacity-100  text-white': testimonialActive == 3 }"
+            class="inline-block mx-2 font-bold text-center rounded-full opacity-25 shadow-xs focus:outline-none focus:ring-2 ring-2 ring-border ring-offset-background size-12"
+            :class="{'size-12 opacity-25 ': testimonialActive != 3, 'opacity-100 text-foreground': == 3 }"
           >
             <img
               class="inline-block object-cover rounded-full size-12"
@@ -91,31 +91,47 @@ export const excludeFromObfuscation = [
             <Text
               tag="h3"
               variant="textBase"
-              class="font-medium text-zinc-900 dark:text-white"
+              class="font-medium text-foreground"
             >
               Michael Andreuzza
             </Text>
             <Text
               tag="p"
               variant="textXS"
-              class="font-medium text-zinc-400 dark:text-zinc-300"
+              class="font-medium text-muted-foreground"
             >
               Founder
             </Text>
           </div>
           <div x-show="testimonialActive == 2" style="display: none;">
-            <Text tag="h3" variant="textBase" class="font-medium text-zinc-900">
+            <Text
+              tag="h3"
+              variant="textBase"
+              class="font-medium text-foreground"
+            >
               Jonny Mnemonic
             </Text>
-            <Text tag="p" variant="textXS" class="font-medium text-zinc-400">
+            <Text
+              tag="p"
+              variant="textXS"
+              class="font-medium text-muted-foreground"
+            >
               Designer
             </Text>
           </div>
           <div x-show="testimonialActive == 3" style="display: none;">
-            <Text tag="h3" variant="textBase" class="font-medium text-zinc-900">
+            <Text
+              tag="h3"
+              variant="textBase"
+              class="font-medium text-foreground"
+            >
               Anna Svenblad
             </Text>
-            <Text tag="p" variant="textXS" class="font-medium text-zinc-400">
+            <Text
+              tag="p"
+              variant="textXS"
+              class="font-medium text-muted-foreground"
+            >
               Writer
             </Text>
           </div>

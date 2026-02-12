@@ -18,7 +18,7 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
 ---
 
 <div
-  class="p-8 pt-12 pb-120 bg-white dark:bg-zinc-900 flex items-center justify-center"
+  class="p-8 pt-12 pb-120 bg-background flex items-center justify-center"
 >
   <!-- Copy:start -->
   <!--
@@ -57,7 +57,7 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
     <div
       x-show="open"
       x-transition.opacity
-      class="fixed inset-0 z-40 bg-black/40 dark:bg-white/20"
+      class="fixed inset-0 z-40 bg-background/20"
       @click="close()"
       aria-hidden="true"
     >
@@ -86,12 +86,12 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
         x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0"
         @click.outside="close()"
-        class="w-full sm:max-w-lg rounded-xl bg-white dark:bg-zinc-800 shadow-lg outline outline-1 outline-black/5 dark:-outline-offset-1 dark:outline-white/10 p-4 sm:p-6"
+        class="w-full sm:max-w-lg rounded-xl bg-background shadow-lg outline outline-1 outline-border/5 -outline-offset-1 outline-border/10 p-4 sm:p-6"
       >
         <!-- Header -->
         <div class="flex items-start gap-3">
           <div
-            class="shrink-0 size-10 rounded-full grid place-items-center bg-zinc-100 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-200"
+            class="shrink-0 size-10 rounded-full grid place-items-center bg-muted text-foreground"
           >
             <UsersGroup size="sm" />
           </div>
@@ -100,14 +100,14 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
               tag="h2"
               variant="textSM"
               id="invite-title"
-              class="font-semibold text-zinc-900 dark:text-zinc-100"
+              class="font-semibold text-foreground"
             >
               Invite teammate
             </Text>
             <Text
               variant="textXS"
               tag="p"
-              class="text-xs text-zinc-600 dark:text-zinc-300"
+              class="text-xs text-muted-foreground"
             >
               Send an invite by email and choose a role.
             </Text>
@@ -123,7 +123,7 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
         <!-- Body: form / success -->
         <div class="mt-4" x-show="!sent">
           <label
-            class="block text-xs font-medium text-zinc-700 dark:text-zinc-200"
+            class="block text-xs font-medium text-foreground"
             >Email</label
           >
           <input
@@ -131,40 +131,40 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
             x-model="form.email"
             type="email"
             placeholder="name@company.com"
-            class="mt-1 block w-full h-10 px-4 py-2 text-xs bg-white border border-transparent rounded-lg appearance-none dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-orange-700 focus:bg-transparent focus:outline-none focus:ring-orange-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+            class="mt-1 block w-full h-10 px-4 py-2 text-xs bg-background border border-transparent rounded-lg appearance-none text-muted-foreground duration-300 ring-1 ring-border placeholder:text-muted-foreground focus:border-border focus:border-border focus:bg-transparent focus:outline-none focus:ring-border focus:ring-offset-2 focus:ring-2 sm:text-sm"
           />
           <label
-            class="block mt-3 text-xs font-medium text-zinc-700 dark:text-zinc-200"
+            class="block mt-3 text-xs font-medium text-foreground"
             >Role</label
           >
           <div class="mt-1 flex gap-2">
             <button
               type="button"
               @click="form.role='viewer'"
-              :class="form.role==='viewer' ? 'bg-zinc-900 dark:bg-white text-white dark:text-zinc-900' : 'outline outline outline-zinc-200 text-zinc-700 dark:outline-zinc-700 dark:text-zinc-200'"
+              :class="form.role==='viewer' ? 'bg-background : 'outline outline outline-border text-muted-foreground'"
               class="h-8 px-2 rounded-md text-xs font-medium">Viewer</button
             >
             <button
               type="button"
               @click="form.role='editor'"
-              :class="form.role==='editor' ? 'bg-zinc-900 dark:bg-white text-white dark:text-zinc-900' : 'outline outline outline-zinc-200 text-zinc-700 dark:outline-zinc-700 dark:text-zinc-200'"
+              :class="form.role==='editor' ? 'bg-background : 'outline outline outline-border text-muted-foreground'"
               class="h-8 px-2 rounded-md text-xs font-medium">Editor</button
             >
             <button
               type="button"
               @click="form.role='admin'"
-              :class="form.role==='admin' ? 'bg-zinc-900 dark:bg-white text-white dark:text-zinc-900' : 'outline outline outline-zinc-200 text-zinc-700 dark:outline-zinc-700 dark:text-zinc-200'"
+              :class="form.role==='admin' ? 'bg-background : 'outline outline outline-border text-muted-foreground'"
               class="h-8 px-2 rounded-md text-xs font-medium">Admin</button
             >
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3">
             <div>
               <label
-                class="block text-xs font-medium text-zinc-700 dark:text-zinc-200"
+                class="block text-xs font-medium text-foreground"
                 >Department</label
               >
               <select
-                class="mt-1 block w-full h-10 px-4 py-2 text-xs bg-white border border-transparent rounded-lg appearance-none dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-orange-700 focus:bg-transparent focus:outline-none focus:ring-orange-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+                class="mt-1 block w-full h-10 px-4 py-2 text-xs bg-background border border-transparent rounded-lg appearance-none text-muted-foreground duration-300 ring-1 ring-border placeholder:text-muted-foreground focus:border-border focus:border-border focus:bg-transparent focus:outline-none focus:ring-border focus:ring-offset-2 focus:ring-2 sm:text-sm"
               >
                 <option>General</option>
                 <option>Engineering</option>
@@ -174,11 +174,11 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
             </div>
             <div>
               <label
-                class="block text-xs font-medium text-zinc-700 dark:text-zinc-200"
+                class="block text-xs font-medium text-foreground"
                 >Expires</label
               >
               <select
-                class="mt-1 block w-full h-10 px-4 py-2 text-xs bg-white border border-transparent rounded-lg appearance-none dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-orange-700 focus:bg-transparent focus:outline-none focus:ring-orange-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+                class="mt-1 block w-full h-10 px-4 py-2 text-xs bg-background border border-transparent rounded-lg appearance-none text-muted-foreground duration-300 ring-1 ring-border placeholder:text-muted-foreground focus:border-border focus:border-border focus:bg-transparent focus:outline-none focus:ring-border focus:ring-offset-2 focus:ring-2 sm:text-sm"
               >
                 <option>7 days</option>
                 <option>30 days</option>
@@ -209,7 +209,7 @@ import IconButton from "@/components/fundations/buttons/IconButton.astro";
         <!-- Success state -->
         <div class="mt-2" x-show="sent" x-transition.opacity>
           <div
-            class="flex items-center gap-2 text-green-700 dark:text-green-400"
+            class="flex items-center gap-2 text-success"
           >
             <Check size="sm" />
             <p class="text-sm">

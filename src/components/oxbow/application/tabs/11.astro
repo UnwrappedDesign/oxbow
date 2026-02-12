@@ -1,15 +1,15 @@
 ---
 export const excludeFromObfuscation = [
   "border-l-2",
-  "border-zinc-600",
-  "text-zinc-600",
-  "bg-zinc-50",
+  "border-border",
+  "text-muted-foreground",
+  "bg-muted",
   "ring-1",
-  "ring-zinc-200",
+  "ring-border",
 ];
 ---
 
-<div class="flex flex-col justify-center p-8 mx-auto bg-white dark:bg-zinc-900">
+<div class="flex flex-col justify-center p-8 mx-auto bg-background">
   <!-- Vertical Tabs • Sidebar with counts -->
   <div
     x-data="{
@@ -36,7 +36,7 @@ export const excludeFromObfuscation = [
       >
         <template x-for="(id, idx) in keys" :key="id">
           <button
-            class="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-left rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500/50"
+            class="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-left rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-border"
             :id="'tab-'+id"
             role="tab"
             :aria-selected="selected===id"
@@ -45,19 +45,19 @@ export const excludeFromObfuscation = [
             x-ref="tab-[[id]]"
             @click="select(id)"
             @keydown="onKeydown($event)"
-            :class="selected===id ? 'bg-zinc-50 dark:bg-zinc-800 text-zinc-600 md:pl-2' : 'text-zinc-700 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-zinc-100'"
+            :class="selected===id ? 'bg-background md:pl-2 text-foreground' : 'text-muted-foreground hover:text-foreground'"
           >
             <span x-text="id.charAt(0).toUpperCase()+id.slice(1)"></span>
             <span
               class="ml-3 inline-flex items-center px-1.5 h-5 text-[0.70rem] rounded-full border"
-              :class="selected===id ? ' text-zinc-600' : ' text-zinc-600 dark:text-zinc-400'"
+              :class="selected===id ? 'text-foreground' : 'text-muted-foreground'"
               x-text="id==='projects'? '12' : id==='packages' ? '7' : '3'"
             ></span>
           </button>
         </template>
       </div>
     </aside>
-    <main class="pt-1 text-sm text-zinc-500 dark:text-zinc-300 md:col-span-2">
+    <main class="pt-1 text-sm text-muted-foreground md:col-span-2">
       <template x-for="id in keys" :key="'panel-'+id">
         <section
           x-show="selected===id"
@@ -65,7 +65,7 @@ export const excludeFromObfuscation = [
           role="tabpanel"
           :id="'panel-'+id"
           :aria-labelledby="'tab-'+id"
-          class="p-4 border rounded-lg border-zinc-200 dark:border-zinc-700"
+          class="p-4 border rounded-lg border-border"
         >
           <p>
             <span x-text="id.charAt(0).toUpperCase()+id.slice(1)"></span> content

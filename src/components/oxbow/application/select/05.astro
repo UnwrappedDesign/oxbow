@@ -1,13 +1,13 @@
 ---
 export const description = "Conditional styling";
 export const excludeFromObfuscation = [
-  "ring-green-500",
-  "ring-orange-500",
-  "ring-red-500",
-  "bg-green-50",
-  "bg-orange-50",
-  "bg-red-50",
-  "bg-zinc-50",
+  "ring-success",
+  "ring-border",
+  "ring-destructive",
+  "bg-success",
+  "bg-muted/10",
+  "bg-destructive/10",
+  "bg-muted",
 ];
 import Select from "@/components/fundations/inputs/Select.astro";
 const countryOptions = [
@@ -21,7 +21,7 @@ const countryOptions = [
 ];
 ---
 
-<div class="flex justify-center p-16 mx-auto bg-white dark:bg-zinc-900">
+<div class="flex justify-center p-16 mx-auto bg-background">
   <div class="w-full max-w-sm mx-auto">
     <!-- copy:start -->
     <div
@@ -30,9 +30,9 @@ const countryOptions = [
          selectedOption: '',
          getSelectClass() {
            return {
-             'ring-green-500': this.selectedOption === 'us',
-             'ring-orange-500': this.selectedOption === 'ca',
-             'ring-red-500': this.selectedOption === 'uk'
+             'ring-success': this.selectedOption === 'us',
+             'ring-border': this.selectedOption === 'ca',
+             'ring-destructive': this.selectedOption === 'uk'
            };
          }
        }"
@@ -51,20 +51,15 @@ const countryOptions = [
 
       <div
         class="flex items-center p-4 mt-2 rounded-md gap-2"
-        :class="{
-        'bg-green-50 dark:bg-green-500/10': selectedOption === 'us',
-        'bg-orange-50 dark:bg-orange-500/10': selectedOption === 'ca',
-        'bg-red-50 dark:bg-red-500/10': selectedOption === 'uk',
-        'bg-zinc-50 dark:bg-zinc-500/10': !['us', 'ca', 'uk'].includes(selectedOption)
-       }"
+        :class="{ 'bg-success bg-success/10': selectedOption === 'us', 'bg-muted/10': 'ca', 'bg-destructive/10': 'uk', 'bg-muted/10': !['us', 'uk'].includes(selectedOption) }"
       >
-        <p class="text-xs font-medium text-zinc-500 dark:text-zinc-300">
+        <p class="text-xs font-medium text-muted-foreground">
           Selected option: <span x-text="selectedOption || 'None'"></span>
         </p>
         <p
           x-show="selectedOption === 'us'"
           x-transition
-          class="hidden text-xs font-medium text-green-700 dark:text-green-300"
+          class="hidden text-xs font-medium text-success"
           :class="{ 'hidden': selectedOption !== 'us' }"
         >
           You selected the United States!
@@ -72,7 +67,7 @@ const countryOptions = [
         <p
           x-show="selectedOption === 'ca'"
           x-transition
-          class="hidden text-xs font-medium text-orange-700 dark:text-orange-300"
+          class="hidden text-xs font-medium text-foreground"
           :class="{ 'hidden': selectedOption !== 'ca' }"
         >
           You selected Canada!
@@ -80,7 +75,7 @@ const countryOptions = [
         <p
           x-show="selectedOption === 'uk'"
           x-transition
-          class="hidden text-xs font-medium text-red-700 dark:text-red-300"
+          class="hidden text-xs font-medium text-destructive"
           :class="{ 'hidden': selectedOption !== 'uk' }"
         >
           You selected the United Kingdom!

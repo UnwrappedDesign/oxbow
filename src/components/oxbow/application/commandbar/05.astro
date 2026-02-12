@@ -3,11 +3,11 @@ import Button from "@/components/fundations/buttons/Button.astro";
 import IconButton from "@/components/fundations/buttons/IconButton.astro";
 // Dynamic classes used in :class and conditionals
 export const excludeFromObfuscation = [
-  "bg-zinc-50",
-  "bg-white/5",
-  "dark:bg-white/5",
-  "text-accent-600",
-  "text-zinc-600",
+  "bg-muted",
+  "bg-background/5",
+  "bg-background/5",
+  "text-foreground",
+  "text-muted-foreground",
 ];
 import Search from "@/components/fundations/icons/Search.astro";
 import XIcon from "@/components/fundations/icons/X.astro";
@@ -20,9 +20,7 @@ import Check from "@/components/fundations/icons/Check.astro";
 import Pin from "@/components/fundations/icons/Pin.astro";
 ---
 
-<div
-  class="flex items-center justify-center p-8 py-24 bg-white dark:bg-zinc-900"
->
+<div class="flex items-center justify-center p-8 py-24 bg-background">
   <!-- Copy:start -->
   <!--
 
@@ -36,7 +34,7 @@ import Pin from "@/components/fundations/icons/Pin.astro";
 
 -->
   <div
-    class="w-full max-w-4xl overflow-hidden bg-white shadow-lg dark:bg-zinc-800 rounded-xl outline outline-zinc-200 dark:outline-zinc-800"
+    class="w-full max-w-4xl overflow-hidden bg-background shadow-lg rounded-xl outline outline-border"
     x-data="{
       open: true,
       query: '',
@@ -104,34 +102,28 @@ import Pin from "@/components/fundations/icons/Pin.astro";
     <div class="p-2">
       <div class="relative">
         <Search
-          class="pointer-events-none absolute top-3.5 left-4 text-zinc-400"
+          class="pointer-events-none absolute top-3.5 left-4 text-muted-foreground"
           size="base"
           slot="icon"
         />
         <input
           x-ref="input"
           x-model="query"
-          class="w-full h-12 bg-transparent border-0 rounded-lg pr-36 text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 pl-11 sm:text-sm ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none focus:ring-2 focus:ring-orange-500"
+          class="w-full h-12 bg-transparent border-0 rounded-lg pr-36 text-foreground placeholder:text-muted-foreground pl-11 sm:text-sm ring-1 ring-border focus:outline-none focus:ring-2 focus:ring-border"
           placeholder="Search files, people and updates…"
           autocomplete="off"
         />
         <div
-          class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 hidden sm:flex gap-1 text-[0.70rem] text-zinc-500 dark:text-zinc-300"
+          class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 hidden sm:flex gap-1 text-[0.70rem] text-muted-foreground"
         >
-          <kbd
-            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700"
-            >⌘</kbd
-          >
-          <kbd
-            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700"
-            >K</kbd
-          >
+          <kbd class="px-1 border rounded bg-background border-border">⌘</kbd>
+          <kbd class="px-1 border rounded bg-background border-border">K</kbd>
         </div>
         <button
           type="button"
           x-show="query.length>0"
           @click="query=''; $nextTick(()=> $refs.input?.focus())"
-          class="absolute right-[4.5rem] top-1/2 -translate-y-1/2 size-7 inline-flex items-center justify-center rounded-md text-zinc-500 dark:text-zinc-300 hover:text-zinc-700 hover:bg-zinc-100 dark:hover:bg-white/10"
+          class="absolute right-[4.5rem] top-1/2 -translate-y-1/2 size-7 inline-flex items-center justify-center rounded-md text-muted-foreground hover:text-muted-foreground hover:bg-background/10"
           aria-label="Clear search"
         >
           <XIcon size="sm" />
@@ -141,32 +133,32 @@ import Pin from "@/components/fundations/icons/Pin.astro";
         <div class="flex items-center gap-2">
           <button
             @click="active='all'; selected=0"
-            :class="active==='all' ? 'text-orange-600 dark:text-orange-400' : 'text-zinc-600 dark:text-zinc-400'"
-            class="inline-flex items-center px-2 py-1 rounded-md hover:bg-zinc-50 dark:hover:bg-white/5 gap-2"
+            :class="active==='all' ? 'text-foreground' : 'text-muted-foreground'"
+            class="inline-flex items-center px-2 py-1 rounded-md hover:bg-background/5 gap-2"
           >
             <Report size="sm" />
             <span class="hidden sm:inline">All</span>
           </button>
           <button
             @click="active='files'; selected=0"
-            :class="active==='files' ? 'text-orange-600 dark:text-orange-400' : 'text-zinc-600 dark:text-zinc-400'"
-            class="inline-flex items-center px-2 py-1 rounded-md hover:bg-zinc-50 dark:hover:bg-white/5 gap-2"
+            :class="active==='files' ? 'text-foreground' : 'text-muted-foreground'"
+            class="inline-flex items-center px-2 py-1 rounded-md hover:bg-background/5 gap-2"
           >
             <FileDots size="sm" />
             <span class="hidden sm:inline">Files</span>
           </button>
           <button
             @click="active='people'; selected=0"
-            :class="active==='people' ? 'text-orange-600 dark:text-orange-400' : 'text-zinc-600 dark:text-zinc-400'"
-            class="inline-flex items-center px-2 py-1 rounded-md hover:bg-zinc-50 dark:hover:bg-white/5 gap-2"
+            :class="active==='people' ? 'text-foreground' : 'text-muted-foreground'"
+            class="inline-flex items-center px-2 py-1 rounded-md hover:bg-background/5 gap-2"
           >
             <UsersGroup size="sm" />
             <span class="hidden sm:inline">People</span>
           </button>
           <button
             @click="active='updates'; selected=0"
-            :class="active==='updates' ? 'text-orange-600 dark:text-orange-400' : 'text-zinc-600 dark:text-zinc-400'"
-            class="inline-flex items-center px-2 py-1 rounded-md hover:bg-zinc-50 dark:hover:bg-white/5 gap-2"
+            :class="active==='updates' ? 'text-foreground' : 'text-muted-foreground'"
+            class="inline-flex items-center px-2 py-1 rounded-md hover:bg-background/5 gap-2"
           >
             <Report size="sm" />
             <span class="hidden sm:inline">Updates</span>
@@ -176,10 +168,10 @@ import Pin from "@/components/fundations/icons/Pin.astro";
           <label class="inline-flex items-center cursor-pointer gap-2">
             <input
               type="checkbox"
-              class="border accent-zinc-900 rounded-md border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900"
+              class="border text-foreground rounded-md border-border bg-background"
               x-model="onlyPinned"
             />
-            <span class="text-zinc-600 dark:text-zinc-300">Pinned only</span>
+            <span class="text-muted-foreground">Pinned only</span>
           </label>
         </div>
       </div>
@@ -187,28 +179,26 @@ import Pin from "@/components/fundations/icons/Pin.astro";
 
     <!-- Two-column body: results + preview -->
     <div
-      class="border-t grid grid-cols-1 md:grid-cols-2 gap-0 border-zinc-100 dark:border-white/5"
+      class="border-t grid grid-cols-1 md:grid-cols-2 gap-0 border-border border-border/5"
     >
       <!-- Results list -->
       <div class="py-2">
-        <div
-          class="px-4 py-1 text-[0.70rem] font-medium text-zinc-500 dark:text-zinc-300"
-        >
+        <div class="px-4 py-1 text-[0.70rem] font-medium text-muted-foreground">
           Results
         </div>
-        <ul class="divide-y divide-zinc-100 dark:divide-zinc-900">
+        <ul class="divide-y divide-border">
           <template x-for="(r, idx) in filtered()" :key="r.id">
             <li
-              :class="isSel(r.id) ? 'bg-zinc-50 dark:bg-white/5' : ''"
+              :class="isSel(r.id) ? 'bg-background/5' : ''"
               class="flex items-center justify-between px-4 py-3 cursor-pointer"
               @mouseenter="selected = idx"
               @click="selected = idx; choose()"
             >
               <div
-                class="flex items-center gap-3 text-zinc-900 dark:text-zinc-50"
+                class="flex items-center gap-3 text-muted-foreground"
               >
                 <div
-                  class="bg-white rounded-lg size-8 dark:bg-zinc-800 grid place-items-center ring-1 ring-zinc-200 dark:ring-zinc-700"
+                  class="bg-background rounded-lg size-8 grid place-items-center ring-1 ring-border"
                 >
                   <template x-if="r.kind==='files'"
                     ><FileDots size="sm" /></template
@@ -223,7 +213,7 @@ import Pin from "@/components/fundations/icons/Pin.astro";
                 <div>
                   <div class="text-sm font-medium" x-text="r.title"></div>
                   <div
-                    class="text-xs text-zinc-500 dark:text-zinc-300 dark:text-zinc-400"
+                    class="text-xs text-muted-foreground"
                     x-text="r.subtitle"
                   >
                   </div>
@@ -232,7 +222,7 @@ import Pin from "@/components/fundations/icons/Pin.astro";
               <div class="flex items-center gap-2">
                 <template x-for="b in r.badges" :key="b">
                   <span
-                    class="hidden md:inline text-[0.70rem] px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-white/5 text-zinc-700 dark:text-zinc-300"
+                    class="hidden md:inline text-[0.70rem] px-2 py-0.5 rounded-full bg-background/5 text-muted-foreground"
                     x-text="b"></span>
                 </template>
                 <IconButton
@@ -240,7 +230,7 @@ import Pin from "@/components/fundations/icons/Pin.astro";
                   size="xxs"
                   @click.stop="togglePin(r.id)"
                   :aria-pressed="pinned.has(r.id)"
-                  :class="pinned.has(r.id)?'text-orange-600 dark:text-orange-400':'text-zinc-600 dark:text-zinc-400'"
+                  :class="pinned.has(r.id)?'text-foreground':'text-muted-foreground'"
                 >
                   <Pin slot="icon" size="xs" />
                 </IconButton>
@@ -249,7 +239,7 @@ import Pin from "@/components/fundations/icons/Pin.astro";
           </template>
           <li
             x-show="filtered().length===0"
-            class="px-4 py-6 text-sm italic text-center text-zinc-500 dark:text-zinc-300"
+            class="px-4 py-6 text-sm italic text-center text-muted-foreground"
           >
             No results
           </li>
@@ -258,19 +248,19 @@ import Pin from "@/components/fundations/icons/Pin.astro";
 
       <!-- Preview pane -->
       <div
-        class="border-t md:border-t-0 md:border-l border-zinc-100 dark:border-zinc-800 p-4 lg:p-8 min-h-[260px] bg-white/60 dark:bg-white/2"
+        class="border-t md:border-t-0 md:border-l border-border p-4 lg:p-8 min-h-[260px] bg-background/2"
       >
         <template x-if="current()">
           <div>
             <div class="flex items-start justify-between">
               <div>
                 <div
-                  class="text-sm font-semibold text-zinc-900 dark:text-zinc-100"
+                  class="text-sm font-semibold text-foreground"
                   x-text="current().title"
                 >
                 </div>
                 <div
-                  class="text-xs text-zinc-500 dark:text-zinc-300"
+                  class="text-xs text-muted-foreground"
                   x-text="current().subtitle"
                 >
                 </div>
@@ -302,9 +292,7 @@ import Pin from "@/components/fundations/icons/Pin.astro";
                 </Button>
               </div>
             </div>
-            <div
-              class="mt-8 text-xs leading-relaxed text-zinc-700 dark:text-zinc-300"
-            >
+            <div class="mt-8 text-xs leading-relaxed text-muted-foreground">
               <p>
                 Preview excerpt is shown here to give quick context. Use arrow
                 keys to move, Enter to open, or pin frequently used results.
@@ -319,7 +307,7 @@ import Pin from "@/components/fundations/icons/Pin.astro";
         </template>
         <div
           x-show="!current()"
-          class="h-full text-sm grid place-items-center text-zinc-500 dark:text-zinc-300"
+          class="h-full text-sm grid place-items-center text-muted-foreground"
         >
           Select a result to preview
         </div>
@@ -328,39 +316,39 @@ import Pin from "@/components/fundations/icons/Pin.astro";
 
     <!-- Footer -->
     <div
-      class="px-4 py-2 text-[0.70rem] text-zinc-500 dark:text-zinc-300 flex items-center justify-between bg-zinc-50 dark:bg-white/10"
+      class="px-4 py-2 text-[0.70rem] text-muted-foreground flex items-center justify-between bg-background/10"
     >
       <div>
         Tips: <kbd
-          class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+          class="px-1 border rounded bg-background border-border text-muted-foreground"
           >/</kbd
         > to search • <kbd
-          class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+          class="px-1 border rounded bg-background border-border text-muted-foreground"
           >⌘</kbd
         >+<kbd
-          class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+          class="px-1 border rounded bg-background border-border text-muted-foreground"
           >P</kbd
         > to pin • <kbd
-          class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+          class="px-1 border rounded bg-background border-border text-muted-foreground"
           >⌘</kbd
         >+<kbd
-          class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+          class="px-1 border rounded bg-background border-border text-muted-foreground"
           >C</kbd
         > to copy
       </div>
       <div class="items-center hidden sm:flex gap-2">
         <span class="flex items-center gap-1"
           ><kbd
-            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            class="px-1 border rounded bg-background border-border text-muted-foreground"
             >↑</kbd
           ><kbd
-            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            class="px-1 border rounded bg-background border-border text-muted-foreground"
             >↓</kbd
           > to navigate</span
         >
         <span class="flex items-center gap-1"
           ><kbd
-            class="px-1 border rounded bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 dark:text-zinc-400 text-zinc-600"
+            class="px-1 border rounded bg-background border-border text-muted-foreground"
             >↵</kbd
           > to open</span
         >

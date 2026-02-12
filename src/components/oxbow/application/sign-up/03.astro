@@ -1,8 +1,8 @@
 ---
 export const excludeFromObfuscation = [
-  "ring-orange-500",
-  "outline-zinc-200",
-  "outline-zinc-300",
+  "ring-border",
+  "outline-border",
+  "outline-border",
 ];
 
 export const description = "Split screen signup with testimonial";
@@ -19,25 +19,21 @@ import TextInput from "@/components/fundations/inputs/TextInput.astro";
 import Check from "@/components/fundations/icons/Check.astro";
 ---
 
-<div class="flex h-screen bg-white dark:bg-zinc-900">
-  <div
-    class="flex items-center justify-center w-full  lg:w-2/3"
-  >
-    <div
-      class="w-full max-w-md py-24 lg:py-32 "
-    >
+<div class="flex h-screen bg-background">
+  <div class="flex items-center justify-center w-full lg:w-2/3">
+    <div class="w-full max-w-md py-24 lg:py-32">
       <div>
         <Text
           tag="h1"
           variant="displaySM"
-          class="font-semibold tracking-tight text-zinc-900 dark:text-white"
+          class="font-semibold tracking-tight text-foreground"
         >
           Create your account
         </Text>
         <Text
           tag="p"
           variant="textBase"
-          class="mt-2 text-zinc-500 dark:text-zinc-400 text-balance"
+          class="mt-2 text-muted-foreground text-balance"
         >
           Join the party. Set up your account the old-fashioned way—email,
           password, done.
@@ -58,7 +54,7 @@ radioGroupOptions: [
   },
 ]
 }"
-          class="flex flex-wrap pb-4 border-b gap-y-2 gap-x-8 border-zinc-200 dark:border-zinc-700"
+          class="flex flex-wrap pb-4 border-b gap-y-2 gap-x-8 border-border"
           role="radiogroup"
           aria-labelledby="radio-group-label"
         >
@@ -79,26 +75,26 @@ radioGroupOptions: [
               <label
                 :for="'radio-' + option.value"
                 class="block cursor-pointer"
-                :class="{ 'ring-orange-500': radioGroupSelectedValue === option.value }"
+                :class="{ 'ring-border': radioGroupSelectedValue === option.value }"
               >
                 <div class="rounded-lg" tabindex="-1">
                   <div class="flex items-center gap-2">
                     <div
-                      class="flex items-center justify-center text-orange-600 bg-white rounded shadow size-4 outline outline-zinc-300 dark:outline-zinc-700 dark:text-orange-400 dark:bg-zinc-800"
-                      :class="{ 'outline-zinc-200 dark:outline-zinc-500': radioGroupSelectedValue === option.value, 'outline-zinc-300 dark:outline-zinc-700': radioGroupSelectedValue !== option.value }"
+                      class="flex items-center justify-center text-foreground bg-background rounded shadow size-4 outline outline-border"
+                      :class="{ 'outline-border': radioGroupSelectedValue === option.value }"
                       aria-hidden="true"
                     >
                       <Check
                         x-show="radioGroupSelectedValue === option.value"
                         size="xs"
-                        class="text-orange-500 dark:text-orange-400"
+                        class="text-foreground"
                       />
                     </div>
                     <Text
                       tag="span"
                       variant="textSM"
                       x-text="option.title"
-                      class="font-medium text-zinc-900 dark:text-white"
+                      class="font-medium text-foreground"
                     />
                   </div>
                 </div>
@@ -138,31 +134,36 @@ radioGroupOptions: [
         <Text
           tag="p"
           variant="textXS"
-          class="font-medium text-zinc-500 dark:text-zinc-400"
+          class="font-medium text-muted-foreground"
         >
           By creating an account, you agree to our
           <a
             href="#_"
-            class="font-medium text-orange-500 dark:text-orange-400 hover:text-zinc-500 dark:hover:text-zinc-300"
+            class="font-medium text-foreground hover:text-muted-foreground"
           >
             Terms of service
           </a>
           and
-          <a href="#_" class="font-medium text-orange-500 hover:text-zinc-500">
+          <a
+            href="#_"
+            class="font-medium text-foreground hover:text-muted-foreground"
+          >
             Privacy Policy
           </a>
         </Text>
-        <Button fullWidth variant="default" size="base"> Create account </Button>
+        <Button fullWidth variant="default" size="base">
+          Create account
+        </Button>
       </form>
       <Text
         tag="p"
         variant="textXS"
-        class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+        class="mt-4 font-medium text-muted-foreground"
       >
         Already have an account?
         <a
           href="#_"
-          class="font-medium text-orange-500 dark:text-orange-400 hover:text-zinc-500 dark:hover:text-zinc-300"
+          class="font-medium text-foreground hover:text-muted-foreground"
         >
           Sign in
         </a>
@@ -170,7 +171,7 @@ radioGroupOptions: [
     </div>
   </div>
   <div
-    class="relative hidden overflow-hidden bg-white border-8 border-white dark:border-zinc-900 lg:block dark:bg-zinc-900 lg:w-1/3 lg:order-first"
+    class="relative hidden overflow-hidden bg-background border-8 border-border lg:block lg:w-1/3 lg:order-first"
   >
     <Image
       width={1200}
@@ -182,31 +183,40 @@ radioGroupOptions: [
     />
     <div
       aria-hidden="true"
-      class="absolute inset-0 pointer-events-none bg-zinc-800/80 rounded-2xl"
+      class="absolute inset-0 pointer-events-none bg-background/80 rounded-2xl"
     >
     </div>
     <div class="absolute inset-0 flex flex-col items-start justify-between p-8">
       <div>
         <a href="#_">
           <span class="sr-only">Back to home</span>
-          <Logo class="h-12 mx-auto text-white md:mx-0" aria-hidden="true" /></a
+          <Logo
+            class="h-12 mx-auto text-foreground md:mx-0"
+            aria-hidden="true"
+          /></a
         >
         <Text
           tag="h1"
           variant="textXL"
-          class="mt-12 font-semibold text-white text-shadow-sm text-balance"
+          class="mt-12 font-semibold text-shadow-sm text-balance"
         >
           Go ahead, start your "journey."
         </Text>
-        <Text tag="p" variant="textSM" class="mt-2 text-white text-shadow-sm">
+        <Text
+          tag="p"
+          variant="textSM"
+          class="mt-2 text-shadow-sm"
+        >
           Join the internet's favorite club of freelancers and business owners—
           because what could possibly go wrong?
         </Text>
       </div>
       <div>
-        <div class="w-full p-6 shadow bg-zinc-900/20 backdrop-blur rounded-xl">
+        <div
+          class="w-full p-6 shadow bg-background/20 backdrop-blur rounded-xl"
+        >
           <div class="relative flex flex-col gap-2">
-            <Text tag="h3" variant="textBase" class="text-white">
+            <Text tag="h3" variant="textBase" class="text-foreground">
               "I've seen enough UI kits to last a lifetime. Oxbow's the first
               one that didn't make me roll my eyes."
             </Text>
@@ -223,14 +233,14 @@ radioGroupOptions: [
                 <Text
                   tag="p"
                   variant="textBase"
-                  class="font-semibold text-white"
+                  class="font-semibold text-foreground"
                 >
                   Johan Snällström
                 </Text>
                 <Text
                   tag="p"
                   variant="textXS"
-                  class="text-zinc-200 dark:text-zinc-400"
+                  class="text-muted-foreground"
                 >
                   Software Engineer
                 </Text>

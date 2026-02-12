@@ -16,7 +16,7 @@ import Text from "@/components/fundations/typography/Text.astro";
 ---
 
 <div
-  class="flex items-center justify-center p-8 py-40 bg-white lg:py-56 dark:bg-zinc-900"
+  class="flex items-center justify-center p-8 py-40 bg-background lg:py-56"
 >
   <!-- Copy Start -->
   <!-- 
@@ -83,33 +83,33 @@ import Text from "@/components/fundations/typography/Text.astro";
           x-transition:leave="transition ease-in duration-150"
           x-transition:leave-start="opacity-100"
           x-transition:leave-end="opacity-0"
-          class="pointer-events-auto w-full rounded-xl bg-white shadow-lg outline outline-1 outline-black/5 transition dark:bg-zinc-800 dark:-outline-offset-1 dark:outline-white/10"
+          class="pointer-events-auto w-full rounded-xl bg-background shadow-lg outline outline-1 outline-border/5 transition -outline-offset-1 outline-border/10"
           role="status"
         >
           <div class="p-4">
             <template x-if="toast.state!=='done'">
               <div class="flex items-start gap-3">
-                <div class="shrink-0 text-blue-600 dark:text-blue-400">
+                <div class="shrink-0 text-info">
                   <Refresh size="base" />
                 </div>
                 <div class="flex-1 min-w-0">
                   <Text
                     variant="sm"
                     tag="p"
-                    class="font-medium text-zinc-900 dark:text-white"
+                    class="font-medium text-foreground"
                   >
                     Uploading…
                   </Text>
-                  <p class="mt-1 text-xs text-zinc-600 dark:text-zinc-300">
+                  <p class="mt-1 text-xs text-muted-foreground">
                     <span x-text="toast.name"></span> · <span
                       x-text="toast.size"></span>
                   </p>
                   <!-- progress bar -->
                   <div
-                    class="mt-2 h-2 w-full rounded-full bg-zinc-100 dark:bg-zinc-700 overflow-hidden"
+                    class="mt-2 h-2 w-full rounded-full bg-muted overflow-hidden"
                   >
                     <div
-                      class="h-2 rounded-full bg-blue-600 dark:bg-blue-400"
+                      class="h-2 rounded-full bg-info"
                       :style="`width:${toast.progress}%`"
                     >
                     </div>
@@ -136,7 +136,7 @@ import Text from "@/components/fundations/typography/Text.astro";
                       @click="cancel()">Cancel</Button
                     >
                     <span
-                      class="ml-auto text-[0.70rem] text-zinc-500 dark:text-zinc-400"
+                      class="ml-auto text-[0.70rem] text-muted-foreground"
                       x-text="toast.progress + '%'"
                     >
                     </span>
@@ -158,14 +158,14 @@ import Text from "@/components/fundations/typography/Text.astro";
 
             <template x-if="toast.state==='done'">
               <div class="flex items-start gap-3">
-                <div class="shrink-0 text-emerald-600 dark:text-emerald-400">
+                <div class="shrink-0 text-success">
                   <Check size="base" />
                 </div>
                 <div class="flex-1 min-w-0">
-                  <p class="text-sm font-medium text-zinc-900 dark:text-white">
+                  <p class="text-sm font-medium text-foreground">
                     Upload complete
                   </p>
-                  <p class="mt-1 text-xs text-zinc-600 dark:text-zinc-300">
+                  <p class="mt-1 text-xs text-muted-foreground">
                     <span x-text="toast.name"></span> · <span
                       x-text="toast.size"></span>
                   </p>
@@ -184,7 +184,7 @@ import Text from "@/components/fundations/typography/Text.astro";
                 <div class="ml-2 flex shrink-0">
                   <button
                     type="button"
-                    class="inline-flex rounded-md text-zinc-400 hover:text-zinc-500 focus:outline-2 focus:outline-offset-2 focus:outline-blue-600 dark:hover:text-white dark:focus:outline-blue-500"
+                    class="inline-flex rounded-md text-muted-foreground focus:outline-2 focus:outline-offset-2 hover:text-foreground focus:outline-info"
                     @click="toast.open=false"
                   >
                     <span class="sr-only">Close</span>

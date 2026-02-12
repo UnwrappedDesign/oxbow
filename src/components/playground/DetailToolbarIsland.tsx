@@ -51,12 +51,12 @@ export default function DetailToolbarIsland({ cat, sub, idx, subsByCat, counts, 
   const go = (href:string) => { window.location.assign(href); };
 
   const CatMenu = () => (
-    <div ref={menuRef} className="fixed z-50 w-56 mt-2 text-xs bg-white shadow rounded-xl outline outline-zinc-100 text-zinc-600 divide-y divide-zinc-100" style={{top:menuPos.top, left:menuPos.left}}>
+    <div ref={menuRef} className="fixed z-50 w-56 mt-2 text-xs bg-background shadow rounded-xl outline outline-border text-muted-foreground divide-y divide-border" style={{top:menuPos.top, left:menuPos.left}}>
       <div className="py-2 overflow-auto max-h-64">
         {Object.keys(subsByCat).sort().map(key => (
-          <button key={key} onClick={()=>{ const first = (subsByCat[key]||[])[0]||''; go(`/playground/${key}/${first}/${clamp(idx,1,count(key,first))}`); }} className="w-full flex items-center justify-between px-3 py-1.5 hover:bg-base-100 text-left text-xs">
+          <button key={key} onClick={()=>{ const first = (subsByCat[key]||[])[0]||''; go(`/playground/${key}/${first}/${clamp(idx,1,count(key,first))}`); }} className="w-full flex items-center justify-between px-3 py-1.5 hover:bg-muted text-left text-xs">
             <span className="capitalize">{fmt(key)}</span>
-            {cat===key && <Check className="size-4 text-accent-600"/>}
+            {cat===key && <Check className="size-4 text-foreground"/>}
           </button>
         ))}
       </div>
@@ -64,12 +64,12 @@ export default function DetailToolbarIsland({ cat, sub, idx, subsByCat, counts, 
   );
 
   const SubMenu = () => (
-    <div ref={menuRef} className="fixed z-50 w-64 mt-2 text-xs bg-white shadow rounded-xl outline outline-zinc-100 text-zinc-600 divide-y divide-zinc-100" style={{top:menuPos.top, left:menuPos.left}}>
+    <div ref={menuRef} className="fixed z-50 w-64 mt-2 text-xs bg-background shadow rounded-xl outline outline-border text-muted-foreground divide-y divide-border" style={{top:menuPos.top, left:menuPos.left}}>
       <div className="py-2 overflow-auto max-h-64">
         {(subsByCat[cat]||[]).map(name => (
-          <a key={name} href={`/playground/${cat}/${name}/${clamp(idx,1,count(cat,name))}`} className="w-full flex items-center justify-between px-3 py-1.5 hover:bg-base-100 text-xs">
+          <a key={name} href={`/playground/${cat}/${name}/${clamp(idx,1,count(cat,name))}`} className="w-full flex items-center justify-between px-3 py-1.5 hover:bg-muted text-xs">
             <span className="capitalize">{fmt(name)}</span>
-            {sub===name && <Check className="size-4 text-accent-600"/>}
+            {sub===name && <Check className="size-4 text-foreground"/>}
           </a>
         ))}
       </div>
@@ -77,10 +77,10 @@ export default function DetailToolbarIsland({ cat, sub, idx, subsByCat, counts, 
   );
 
   const IdxMenu = () => (
-    <div ref={menuRef} className="fixed z-50 w-40 mt-2 text-xs bg-white shadow rounded-xl outline outline-zinc-100 text-zinc-600" style={{top:menuPos.top, left:menuPos.left}}>
+    <div ref={menuRef} className="fixed z-50 w-40 mt-2 text-xs bg-background shadow rounded-xl outline outline-border text-muted-foreground" style={{top:menuPos.top, left:menuPos.left}}>
       <div className="px-2 py-2 overflow-auto max-h-64 grid grid-cols-4 gap-1">
         {Array.from({length: count(cat, sub)}, (_,i)=> i+1).map(n => (
-          <a key={n} href={`/playground/${cat}/${sub}/${n}`} className={`flex items-center justify-center px-2 py-1.5 rounded hover:bg-base-100 text-xs ${n===clamp(idx,1,count(cat,sub))?'text-accent-600 font-medium':''}`}>{n}</a>
+          <a key={n} href={`/playground/${cat}/${sub}/${n}`} className={`flex items-center justify-center px-2 py-1.5 rounded hover:bg-muted text-xs ${n===clamp(idx,1,count(cat,sub))?'text-foreground font-medium':''}`}>{n}</a>
         ))}
       </div>
     </div>
@@ -89,21 +89,21 @@ export default function DetailToolbarIsland({ cat, sub, idx, subsByCat, counts, 
   return (
     <div className="flex items-center gap-2">
       {/* Category */}
-      <button ref={btnRef} onClick={(e)=>openMenu('cat', e)} className="inline-flex items-center gap-2 h-[28px] px-2 py-1 rounded-lg bg-white outline outline-1 outline-zinc-200 text-zinc-700 text-xs">
+      <button ref={btnRef} onClick={(e)=>openMenu('cat', e)} className="inline-flex items-center gap-2 h-[28px] px-2 py-1 rounded-lg bg-background outline outline-1 outline-border text-foreground text-xs">
         <span className="capitalize">{fmt(cat)}</span>
         <ChevronDown className="size-4"/>
       </button>
       {open==='cat' && <CatMenu/>}
 
       {/* Block */}
-      <button onClick={(e)=>openMenu('sub', e)} className="hidden md:inline-flex items-center gap-2 h-[28px] px-2 py-1 rounded-lg bg-white outline outline-1 outline-zinc-200 text-zinc-700 text-xs">
+      <button onClick={(e)=>openMenu('sub', e)} className="hidden md:inline-flex items-center gap-2 h-[28px] px-2 py-1 rounded-lg bg-background outline outline-1 outline-border text-foreground text-xs">
         <span className="capitalize">{fmt(sub)}</span>
         <ChevronDown className="size-4"/>
       </button>
       {open==='sub' && <SubMenu/>}
 
       {/* Number */}
-      <button onClick={(e)=>openMenu('idx', e)} className="hidden md:inline-flex items-center  h-[28px] px-2 py-1 rounded-lg bg-white outline outline-1 outline-zinc-200 text-zinc-700 text-xs">
+      <button onClick={(e)=>openMenu('idx', e)} className="hidden md:inline-flex items-center h-[28px] px-2 py-1 rounded-lg bg-background outline outline-1 outline-border text-foreground text-xs">
         <span>#0</span>
         <span>{clamp(idx,1,count(cat,sub))}</span>
         <ChevronDown className="size-4"/>
@@ -111,19 +111,19 @@ export default function DetailToolbarIsland({ cat, sub, idx, subsByCat, counts, 
       {open==='idx' && <IdxMenu/>}
 
       {/* Divider */}
-      <div aria-hidden className="mx-1 h-4 w-[1px] bg-zinc-200 hidden md:inline-block"/>
+      <div aria-hidden className="mx-1 h-4 w-[1px] bg-border hidden md:inline-block"/>
 
       {/* Pagination */}
       <nav className="relative z-0 inline-flex gap-1.5" aria-label="Pagination">
         {prevHref ? (
-          <a href={prevHref} aria-label="Go to previous page" className="inline-flex items-center justify-center h-7 w-7 rounded-md outline outline-1 outline-zinc-200"><ChevronLeft className="size-4"/></a>
+          <a href={prevHref} aria-label="Go to previous page" className="inline-flex items-center justify-center h-7 w-7 rounded-md outline outline-1 outline-border"><ChevronLeft className="size-4"/></a>
         ) : (
-          <div className="inline-flex items-center justify-center opacity-50 h-7 w-7 rounded-md outline outline-1 outline-zinc-100"><ChevronLeft className="size-4"/></div>
+          <div className="inline-flex items-center justify-center opacity-50 h-7 w-7 rounded-md outline outline-1 outline-border"><ChevronLeft className="size-4"/></div>
         )}
         {nextHref ? (
-          <a href={nextHref} aria-label="Go to next page" className="inline-flex items-center justify-center h-7 w-7 rounded-md outline outline-1 outline-zinc-200"><ChevronRight className="size-4"/></a>
+          <a href={nextHref} aria-label="Go to next page" className="inline-flex items-center justify-center h-7 w-7 rounded-md outline outline-1 outline-border"><ChevronRight className="size-4"/></a>
         ) : (
-          <div className="inline-flex items-center justify-center opacity-50 h-7 w-7 rounded-md outline outline-1 outline-zinc-100"><ChevronRight className="size-4"/></div>
+          <div className="inline-flex items-center justify-center opacity-50 h-7 w-7 rounded-md outline outline-1 outline-border"><ChevronRight className="size-4"/></div>
         )}
       </nav>
     </div>

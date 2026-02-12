@@ -25,20 +25,15 @@ import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
 import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
 ---
 
-<div class="relative bg-white dark:bg-zinc-900">
+<div class="relative bg-background">
   <!-- copy:start -->
   <!-- Mobile top bar -->
-  <div
-    class="lg:hidden sticky top-0 z-40 bg-white dark:bg-zinc-800 border-b border-zinc-200 dark:border-zinc-800"
-  >
+  <div class="lg:hidden sticky top-0 z-40 bg-background border-b border-border">
     <div class="flex items-center justify-between px-4 h-12">
       <div class="flex items-center gap-2">
-        <Logo class="text-zinc-900 dark:text-white h-6" />
+        <Logo class="text-foreground h-6" />
         <span
-          class="text-sm
-          font-semibold
-          text-zinc-800
-          dark:text-zinc-100"
+          class="text-sm font-semibold text-foreground"
           >Oxbow UI</span
         >
       </div>
@@ -69,7 +64,7 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
   >
     <!-- Overlay -->
     <div
-      class="fixed inset-0 z-40 bg-black/40 dark:bg-white/10 transition-opacity duration-200 lg:hidden"
+      class="fixed inset-0 z-40 bg-background/10 transition-opacity duration-200 lg:hidden"
       x-show="open"
       x-transition.opacity
       @click="open=false"
@@ -78,24 +73,20 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
     </div>
     <!-- Sidebar panel (distinct from 01: narrower + support use case) -->
     <aside
-      class="fixed inset-y-0 left-0 z-50 w-72 lg:w-80 h-dvh lg:h-dvh lg:relative lg:inset-auto lg:left-auto transform transition-transform duration-200 -translate-x-full lg:translate-x-0 bg-white dark:bg-zinc-900 outline outline-1 outline-zinc-200 dark:outline-zinc-800 flex flex-col overflow-hidden"
+      class="fixed inset-y-0 left-0 z-50 w-72 lg:w-80 h-dvh lg:h-dvh lg:relative lg:inset-auto lg:left-auto transform transition-transform duration-200 -translate-x-full lg:translate-x-0 bg-background outline outline-1 outline-border flex flex-col overflow-hidden"
       :class="open ? 'translate-x-0' : ''"
     >
       <!-- Header -->
       <div
-        class="h-14 shrink-0 flex items-center justify-between px-4 border-b border-zinc-100 dark:border-zinc-800"
+        class="h-14 shrink-0 flex items-center justify-between px-4 border-b border-border"
       >
         <div class="flex items-center gap-2">
-          <Logo class="text-zinc-900 dark:text-white h-8" />
+          <Logo class="text-foreground h-8" />
           <div>
-            <p
-              class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 leading-tight"
-            >
+            <p class="text-sm font-semibold text-foreground leading-tight">
               Oxbow UI
             </p>
-            <p class="text-[0.70rem] text-zinc-500 dark:text-zinc-400">
-              Support Console
-            </p>
+            <p class="text-[0.70rem] text-muted-foreground">Support Console</p>
           </div>
         </div>
         <IconButton
@@ -112,42 +103,42 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
       <div class="p-3 lg:p-4">
         <label class="relative block">
           <span
-            class="absolute inset-y-0 left-0 pl-3 flex items-center text-zinc-500 dark:text-zinc-400"
+            class="absolute inset-y-0 left-0 pl-3 flex items-center text-muted-foreground"
             ><SearchIcon class="size-4" /></span
           >
           <input
             x-model="search"
             placeholder="Search tickets"
-            class="w-full h-9 pl-9 pr-3 block w-full h-10 px-4 py-2 text-xs bg-white border border-transparent rounded-lg appearance-none dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 duration-300 ring-1 ring-zinc-200 dark:ring-zinc-700 placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-zinc-300 dark:focus:border-orange-700 focus:bg-transparent focus:outline-none focus:ring-orange-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+            class="w-full pl-9 pr-3 block h-10 px-4 py-2 text-xs bg-background border border-transparent rounded-lg appearance-none text-muted-foreground duration-300 ring-1 ring-border placeholder:text-muted-foreground focus:border-border focus:border-border focus:bg-transparent focus:outline-none focus:ring-border focus:ring-offset-2 focus:ring-2 sm:text-sm"
           />
         </label>
       </div>
       <!-- Navigation (scroll area; min-h-0 ensures inner overflow works in flex) -->
       <nav class="flex-1 min-h-0 px-2 lg:px-3 pb-40 overflow-y-auto">
         <p
-          class="px-3 lg:px-4 text-[0.70rem] font-semibold tracking-wide text-zinc-500 dark:text-zinc-400"
+          class="px-3 lg:px-4 text-[0.70rem] font-semibold tracking-wide text-muted-foreground"
         >
           Support
         </p>
         <ul class="mt-1 space-y-1">
           <li>
             <button
-              class="w-full h-9 px-3 rounded-md flex items-center gap-2 text-sm outline outline-1 outline-transparent hover:bg-zinc-50 dark:hover:bg-white/5"
-              :class="active==='inbox' ? 'bg-white text-zinc-900 dark:bg-white/10 dark:text-white outline-white/10' : 'text-zinc-700 dark:text-zinc-300'"
+              class="w-full h-9 px-3 rounded-md flex items-center gap-2 text-sm outline outline-1 outline-transparent hover:bg-background/5"
+              :class="active==='inbox' ? 'bg-background text-foreground bg-background/10 outline-border/10' : 'text-muted-foreground'"
               @click="active='inbox'"
             >
               <Mail class="size-4" />
               <span>Inbox</span>
               <span
-                class="ml-auto text-[0.70rem] px-1.5 py-0.5 rounded bg-white text-zinc-900 outline outline-1 outline-zinc-200 dark:bg-white/10 dark:text-white dark:outline-white/10"
+                class="ml-auto text-[0.70rem] px-1.5 py-0.5 rounded text-foreground outline outline-1 outline-border bg-background/10 outline-border/10"
                 >10</span
               >
             </button>
           </li>
           <li>
             <button
-              class="w-full h-9 px-3 rounded-md flex items-center gap-2 text-sm outline outline-1 outline-transparent hover:bg-zinc-50 dark:hover:bg-white/5"
-              :class="active==='dashboard' ? 'bg-white text-zinc-900 dark:bg-white/10 dark:text-white outline-white/10' : 'text-zinc-700 dark:text-zinc-300'"
+              class="w-full h-9 px-3 rounded-md flex items-center gap-2 text-sm outline outline-1 outline-transparent hover:bg-background/5"
+              :class="active==='dashboard' ? 'bg-background text-foreground bg-background/10 outline-border/10' : 'text-muted-foreground'"
               @click="active='dashboard'"
             >
               <Home class="size-4" />
@@ -155,23 +146,23 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
             </button>
           </li>
         </ul>
-        <div class="pt-3 mt-3 border-t border-zinc-100 dark:border-zinc-800">
+        <div class="pt-3 mt-3 border-t border-border">
           <p
-            class="px-3 lg:px-4 text-[0.70rem] font-semibold tracking-wide text-zinc-500 dark:text-zinc-400"
+            class="px-3 lg:px-4 text-[0.70rem] font-semibold tracking-wide text-muted-foreground"
           >
             Queues
           </p>
           <ul class="mt-1 space-y-1">
             <li>
               <button
-                class="w-full h-9 px-3 rounded-md flex items-center justify-between text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                class="w-full h-9 px-3 rounded-md flex items-center justify-between text-sm text-muted-foreground hover:bg-background/5"
                 @click="sections.queues=!sections.queues"
                 :aria-expanded="sections.queues"
               >
                 <span class="flex items-center gap-2"
                   ><Clipboard class="size-4" /> Ticket queues</span
                 >
-                <span class="text-zinc-500 dark:text-zinc-400"
+                <span class="text-muted-foreground"
                   ><ChevronDown
                     x-show="sections.queues"
                     class="size-4"
@@ -186,23 +177,23 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
                   <li>
                     <a
                       href="#_"
-                      class="flex items-center justify-between h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                      class="flex items-center justify-between h-9 px-3 rounded-md text-sm text-muted-foreground hover:bg-background/5"
                       >Unassigned</a
                     >
                   </li>
                   <li>
                     <a
                       href="#_"
-                      class="flex items-center justify-between h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                      class="flex items-center justify-between h-9 px-3 rounded-md text-sm text-muted-foreground hover:bg-background/5"
                       >My team</a
                     >
                   </li>
                   <li>
                     <a
                       href="#_"
-                      class="flex items-center justify-between h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                      class="flex items-center justify-between h-9 px-3 rounded-md text-sm text-muted-foreground hover:bg-background/5"
                       >Escalations <span
-                        class="text-[0.70rem] px-1.5 py-0.5 rounded bg-white text-zinc-900 outline outline-1 outline-zinc-200 dark:bg-white/10 dark:text-white dark:outline-white/10"
+                        class="text-[0.70rem] px-1.5 py-0.5 rounded text-foreground outline outline-1 outline-border bg-background/10 outline-border/10"
                         >3</span
                       ></a
                     >
@@ -212,14 +203,14 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
             </li>
             <li>
               <button
-                class="w-full h-9 px-3 rounded-md flex items-center justify-between text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                class="w-full h-9 px-3 rounded-md flex items-center justify-between text-sm text-muted-foreground hover:bg-background/5"
                 @click="sections.knowledge=!sections.knowledge"
                 :aria-expanded="sections.knowledge"
               >
                 <span class="flex items-center gap-2"
                   ><CircleInfo class="size-4" /> Knowledge</span
                 >
-                <span class="text-zinc-500 dark:text-zinc-400"
+                <span class="text-muted-foreground"
                   ><ChevronDown
                     x-show="sections.knowledge"
                     class="size-4"
@@ -234,21 +225,21 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
                   <li>
                     <a
                       href="#_"
-                      class="flex items-center h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                      class="flex items-center h-9 px-3 rounded-md text-sm text-muted-foreground hover:bg-background/5"
                       >Articles</a
                     >
                   </li>
                   <li>
                     <a
                       href="#_"
-                      class="flex items-center h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                      class="flex items-center h-9 px-3 rounded-md text-sm text-muted-foreground hover:bg-background/5"
                       >Guides</a
                     >
                   </li>
                   <li>
                     <a
                       href="#_"
-                      class="flex items-center h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                      class="flex items-center h-9 px-3 rounded-md text-sm text-muted-foreground hover:bg-background/5"
                       >Playbooks</a
                     >
                   </li>
@@ -258,23 +249,23 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
             <li>
               <a
                 href="#_"
-                class="flex items-center gap-2 h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                class="flex items-center gap-2 h-9 px-3 rounded-md text-sm text-muted-foreground hover:bg-background/5"
                 ><Tool class="size-4" /> Macros</a
               >
             </li>
             <li>
               <a
                 href="#_"
-                class="flex items-center gap-2 h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                class="flex items-center gap-2 h-9 px-3 rounded-md text-sm text-muted-foreground hover:bg-background/5"
                 ><Report class="size-4" /> Reports</a
               >
             </li>
           </ul>
         </div>
         <!-- Administration -->
-        <div class="pt-3 mt-3 border-t border-zinc-100 dark:border-zinc-800">
+        <div class="pt-3 mt-3 border-t border-border">
           <p
-            class="px-3 lg:px-4 text-[0.70rem] font-semibold tracking-wide text-zinc-500 dark:text-zinc-400"
+            class="px-3 lg:px-4 text-[0.70rem] font-semibold tracking-wide text-muted-foreground"
           >
             Administration
           </p>
@@ -282,30 +273,30 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
             <li>
               <a
                 href="#_"
-                class="flex items-center gap-2 h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                class="flex items-center gap-2 h-9 px-3 rounded-md text-sm text-muted-foreground hover:bg-background/5"
                 ><UsersGroup class="size-4" /> Teams</a
               >
             </li>
             <li>
               <a
                 href="#_"
-                class="flex items-center gap-2 h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                class="flex items-center gap-2 h-9 px-3 rounded-md text-sm text-muted-foreground hover:bg-background/5"
                 ><Settings class="size-4" /> Preferences</a
               >
             </li>
             <li>
               <a
                 href="#_"
-                class="flex items-center gap-2 h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                class="flex items-center gap-2 h-9 px-3 rounded-md text-sm text-muted-foreground hover:bg-background/5"
                 ><Lifebuoy class="size-4" /> Help Center</a
               >
             </li>
           </ul>
         </div>
         <!-- Quick filters -->
-        <div class="pt-3 mt-3 border-t border-zinc-100 dark:border-zinc-800">
+        <div class="pt-3 mt-3 border-t border-border">
           <p
-            class="px-3 text-[0.70rem] font-semibold tracking-wide text-zinc-500 dark:text-zinc-400"
+            class="px-3 text-[0.70rem] font-semibold tracking-wide text-muted-foreground"
           >
             Quick filters
           </p>
@@ -313,27 +304,27 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
             <button
               @click="filters.mine=!filters.mine"
               class="h-7 px-2 rounded-md text-xs"
-              :class="filters.mine ? 'bg-white text-zinc-900 dark:bg-white/10 dark:text-white' : 'text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5'"
+              :class="filters.mine ? 'bg-background/10 text-foreground' : 'text-muted-foreground hover:bg-background/5'"
               >My open</button
             >
             <button
               @click="filters.unassigned=!filters.unassigned"
               class="h-7 px-2 rounded-md text-xs"
-              :class="filters.unassigned ? 'bg-white text-zinc-900 dark:bg-white/10 dark:text-white' : 'text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5'"
+              :class="filters.unassigned ? 'bg-background/10 text-foreground' : 'text-muted-foreground hover:bg-background/5'"
               >Unassigned</button
             >
             <button
               @click="filters.sla=!filters.sla"
               class="h-7 px-2 rounded-md text-xs"
-              :class="filters.sla ? 'bg-white text-zinc-900 dark:bg-white/10 dark:text-white' : 'text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5'"
+              :class="filters.sla ? 'bg-background/10 text-foreground' : 'text-muted-foreground hover:bg-background/5'"
               >SLA</button
             >
           </div>
         </div>
         <!-- Tags -->
-        <div class="pt-3 mt-3 border-t border-zinc-100 dark:border-zinc-800">
+        <div class="pt-3 mt-3 border-t border-border">
           <p
-            class="px-3 text-[0.70rem] font-semibold tracking-wide text-zinc-500 dark:text-zinc-400"
+            class="px-3 text-[0.70rem] font-semibold tracking-wide text-muted-foreground"
           >
             Tags
           </p>
@@ -341,11 +332,11 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
             <li>
               <button
                 @click="tags.billing=!tags.billing"
-                class="w-full h-8 px-3 rounded-md flex items-center justify-between text-xs text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                class="w-full h-8 px-3 rounded-md flex items-center justify-between text-xs text-muted-foreground hover:bg-background/5"
               >
                 <span>billing</span>
                 <span
-                  class="text-[0.70rem] px-1.5 py-0.5 rounded bg-white text-zinc-900 outline outline-1 outline-zinc-200 dark:bg-white/10 dark:text-white dark:outline-white/10"
+                  class="text-[0.70rem] px-1.5 py-0.5 rounded text-foreground outline outline-1 outline-border bg-background/10 outline-border/10"
                   >18</span
                 >
               </button>
@@ -353,11 +344,11 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
             <li>
               <button
                 @click="tags.bug=!tags.bug"
-                class="w-full h-8 px-3 rounded-md flex items-center justify-between text-xs text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                class="w-full h-8 px-3 rounded-md flex items-center justify-between text-xs text-muted-foreground hover:bg-background/5"
               >
                 <span>bug</span>
                 <span
-                  class="text-[0.70rem] px-1.5 py-0.5 rounded bg-white text-zinc-900 outline outline-1 outline-zinc-200 dark:bg-white/10 dark:text-white dark:outline-white/10"
+                  class="text-[0.70rem] px-1.5 py-0.5 rounded text-foreground outline outline-1 outline-border bg-background/10 outline-border/10"
                   >12</span
                 >
               </button>
@@ -365,11 +356,11 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
             <li>
               <button
                 @click="tags.feature=!tags.feature"
-                class="w-full h-8 px-3 rounded-md flex items-center justify-between text-xs text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                class="w-full h-8 px-3 rounded-md flex items-center justify-between text-xs text-muted-foreground hover:bg-background/5"
               >
                 <span>feature</span>
                 <span
-                  class="text-[0.70rem] px-1.5 py-0.5 rounded bg-white text-zinc-900 outline outline-1 outline-zinc-200 dark:bg-white/10 dark:text-white dark:outline-white/10"
+                  class="text-[0.70rem] px-1.5 py-0.5 rounded text-foreground outline outline-1 outline-border bg-background/10 outline-border/10"
                   >7</span
                 >
               </button>
@@ -377,9 +368,9 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
           </ul>
         </div>
         <!-- Pinned -->
-        <div class="pt-3 mt-3 border-t border-zinc-100 dark:border-zinc-800">
+        <div class="pt-3 mt-3 border-t border-border">
           <p
-            class="px-3 text-[0.70rem] font-semibold tracking-wide text-zinc-500 dark:text-zinc-400"
+            class="px-3 text-[0.70rem] font-semibold tracking-wide text-muted-foreground"
           >
             Pinned
           </p>
@@ -387,37 +378,33 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
             <li>
               <a
                 href="#_"
-                class="flex items-center justify-between h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                class="flex items-center justify-between h-9 px-3 rounded-md text-sm text-muted-foreground hover:bg-background/5"
               >
                 <span class="flex items-center gap-2">
                   <Mail class="size-4" />
                   <span>High priority escalation</span>
                 </span>
-                <span class="text-xs text-red-600 dark:text-red-400"
-                  >Urgent</span
-                >
+                <span class="text-xs text-destructive">Urgent</span>
               </a>
             </li>
             <li>
               <a
                 href="#_"
-                class="flex items-center justify-between h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                class="flex items-center justify-between h-9 px-3 rounded-md text-sm text-muted-foreground hover:bg-background/5"
               >
                 <span class="flex items-center gap-2">
                   <Mail class="size-4" />
                   <span>Customer feedback review</span>
                 </span>
-                <span class="text-xs text-yellow-600 dark:text-yellow-400"
-                  >Review</span
-                >
+                <span class="text-xs text-warning">Review</span>
               </a>
             </li>
           </ul>
         </div>
         <!-- Recent Tickets -->
-        <div class="pt-3 mt-3 border-t border-zinc-100 dark:border-zinc-800">
+        <div class="pt-3 mt-3 border-t border-border">
           <p
-            class="px-3 text-[0.70rem] font-semibold tracking-wide text-zinc-500 dark:text-zinc-400"
+            class="px-3 text-[0.70rem] font-semibold tracking-wide text-muted-foreground"
           >
             Recent Tickets
           </p>
@@ -425,86 +412,78 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
             <li>
               <a
                 href="#_"
-                class="flex items-center justify-between h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                class="flex items-center justify-between h-9 px-3 rounded-md text-sm text-muted-foreground hover:bg-background/5"
               >
                 <span class="flex items-center gap-2">
                   <Mail class="size-4" />
                   <span>Ticket #1234</span>
                 </span>
-                <span class="text-xs text-zinc-500 dark:text-zinc-400"
-                  >2m ago</span
-                >
+                <span class="text-xs text-muted-foreground">2m ago</span>
               </a>
             </li>
             <li>
               <a
                 href="#_"
-                class="flex items-center justify-between h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                class="flex items-center justify-between h-9 px-3 rounded-md text-sm text-muted-foreground hover:bg-background/5"
               >
                 <span class="flex items-center gap-2">
                   <Mail class="size-4" />
                   <span>Ticket #1233</span>
                 </span>
-                <span class="text-xs text-zinc-500 dark:text-zinc-400"
-                  >5m ago</span
-                >
+                <span class="text-xs text-muted-foreground">5m ago</span>
               </a>
             </li>
             <li>
               <a
                 href="#_"
-                class="flex items-center justify-between h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                class="flex items-center justify-between h-9 px-3 rounded-md text-sm text-muted-foreground hover:bg-background/5"
               >
                 <span class="flex items-center gap-2">
                   <Mail class="size-4" />
                   <span>Ticket #1232</span>
                 </span>
-                <span class="text-xs text-zinc-500 dark:text-zinc-400"
-                  >10m ago</span
-                >
+                <span class="text-xs text-muted-foreground">10m ago</span>
               </a>
             </li>
             <li>
               <a
                 href="#_"
-                class="flex items-center justify-between h-9 px-3 rounded-md text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+                class="flex items-center justify-between h-9 px-3 rounded-md text-sm text-muted-foreground hover:bg-background/5"
               >
                 <span class="flex items-center gap-2">
                   <Mail class="size-4" />
                   <span>Ticket #1231</span>
                 </span>
-                <span class="text-xs text-zinc-500 dark:text-zinc-400"
-                  >15m ago</span
-                >
+                <span class="text-xs text-muted-foreground">15m ago</span>
               </a>
             </li>
           </ul>
         </div>
         <!-- Shortcuts -->
-        <div class="pt-3 mt-3 border-t border-zinc-100 dark:border-zinc-800">
+        <div class="pt-3 mt-3 border-t border-border">
           <p
-            class="px-3 text-[0.70rem] font-semibold tracking-wide text-zinc-500 dark:text-zinc-400"
+            class="px-3 text-[0.70rem] font-semibold tracking-wide text-muted-foreground"
           >
             Shortcuts
           </p>
           <div class="px-3 mt-2 flex flex-wrap gap-2">
             <button
-              class="h-7 px-2 rounded-md text-xs text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+              class="h-7 px-2 rounded-md text-xs text-muted-foreground hover:bg-background/5"
             >
               New ticket
             </button>
             <button
-              class="h-7 px-2 rounded-md text-xs text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+              class="h-7 px-2 rounded-md text-xs text-muted-foreground hover:bg-background/5"
             >
               Bulk assign
             </button>
             <button
-              class="h-7 px-2 rounded-md text-xs text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+              class="h-7 px-2 rounded-md text-xs text-muted-foreground hover:bg-background/5"
             >
               Export
             </button>
             <button
-              class="h-7 px-2 rounded-md text-xs text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5"
+              class="h-7 px-2 rounded-md text-xs text-muted-foreground hover:bg-background/5"
             >
               Archive
             </button>
@@ -512,37 +491,77 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
         </div>
       </nav>
       <!-- Sticky footer: pinned at bottom; dropdown overlays upward -->
-      <div class="sticky bottom-0 z-10 bg-white dark:bg-zinc-900 border-t border-zinc-100 dark:border-zinc-800">
+      <div class="sticky bottom-0 z-10 bg-background border-t border-border">
         <div class="p-3 lg:p-4 space-y-3">
-          <div class="rounded-lg outline outline-1 outline-zinc-200 dark:outline-zinc-800 bg-white dark:bg-zinc-900 p-3">
-            <p class="text-xs font-medium text-zinc-700 dark:text-zinc-200">Status</p>
-            <p class="mt-1 text-xs text-zinc-500 dark:text-zinc-400">Queue health is stable. 2 open incidents.</p>
+          <div
+            class="rounded-lg outline outline-1 outline-border bg-background p-3"
+          >
+            <p
+              class="text-xs font-medium text-foreground"
+            >
+              Status
+            </p>
+            <p class="mt-1 text-xs text-muted-foreground">
+              Queue health is stable. 2 open incidents.
+            </p>
             <div class="mt-2 flex items-center justify-between">
-              <Button type="button" variant="outline" size="xxs">View report</Button>
+              <Button type="button" variant="outline" size="xxs"
+                >View report</Button
+              >
               <Button type="button" variant="muted" size="xxs">Dismiss</Button>
             </div>
           </div>
         </div>
         <div class="px-3 pb-3 lg:px-4 lg:pb-4">
           <div x-data="{ open:false }" class="relative">
-            <button class="w-full flex items-center justify-between gap-3 p-2 rounded-lg hover:bg-zinc-50 dark:hover:bg-white/5" @click="open=!open">
+            <button
+              class="w-full flex items-center justify-between gap-3 p-2 rounded-lg hover:bg-background/5"
+              @click="open=!open"
+            >
               <span class="flex items-center gap-3">
-                <img src="/avatars/2.jpg" alt="Avatar" class="size-8 rounded-full" />
+                <img
+                  src="/avatars/2.jpg"
+                  alt="Avatar"
+                  class="size-8 rounded-full"
+                />
                 <span class="text-left">
-                  <span class="block text-sm font-medium text-zinc-900 dark:text-zinc-100">Ricardo S.</span>
-                  <span class="block text-xs text-zinc-500 dark:text-zinc-400">ricardo@oxbowui.com</span>
+                  <span class="block text-sm font-medium text-foreground"
+                    >Ricardo S.</span
+                  >
+                  <span class="block text-xs text-muted-foreground"
+                    >ricardo@oxbowui.com</span
+                  >
                 </span>
               </span>
-              <ChevronDown class="size-4 text-zinc-600 dark:text-zinc-300" />
+              <ChevronDown class="size-4 text-muted-foreground" />
             </button>
-            <div x-show="open" x-transition.opacity @click.outside="open=false" class="absolute left-0 right-0 bottom-14 z-50 rounded-lg bg-white dark:bg-zinc-900 shadow-xl overflow-hidden">
+            <div
+              x-show="open"
+              x-transition.opacity
+              @click.outside="open=false"
+              class="absolute left-0 right-0 bottom-14 z-50 rounded-lg bg-background shadow-xl overflow-hidden"
+            >
               <div class="p-2 text-sm">
-                <a href="#_" class="flex items-center h-9 px-2 rounded-md text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5">View profile</a>
-                <a href="#_" class="flex items-center h-9 px-2 rounded-md text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5">Account</a>
-                <a href="#_" class="flex items-center h-9 px-2 rounded-md text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-white/5">Docs</a>
+                <a
+                  href="#_"
+                  class="flex items-center h-9 px-2 rounded-md text-muted-foreground hover:bg-background/5"
+                  >View profile</a
+                >
+                <a
+                  href="#_"
+                  class="flex items-center h-9 px-2 rounded-md text-muted-foreground hover:bg-background/5"
+                  >Account</a
+                >
+                <a
+                  href="#_"
+                  class="flex items-center h-9 px-2 rounded-md text-muted-foreground hover:bg-background/5"
+                  >Docs</a
+                >
               </div>
-              <div class="border-t border-zinc-100 dark:border-zinc-800 p-2">
-                <Button type="button" variant="muted" class="w-full" size="xxs">Sign out</Button>
+              <div class="border-t border-border p-2">
+                <Button type="button" variant="muted" class="w-full" size="xxs"
+                  >Sign out</Button
+                >
               </div>
             </div>
           </div>

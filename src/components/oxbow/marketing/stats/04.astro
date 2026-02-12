@@ -27,7 +27,7 @@ const stats = [
 ];
 ---
 
-<section class="bg-white dark:bg-zinc-900">
+<section class="bg-background">
   <div class="px-8 py-24 mx-auto max-w-7xl md:px-12 lg:px-20">
     <div class="grid grid-cols-1 gap-12 lg:grid-cols-3 lg:items-center">
       <div class="flex flex-col justify-between h-full gap-8">
@@ -36,13 +36,13 @@ const stats = [
           <Text
             tag="h2"
             variant="displaySM"
-            class="mt-4 font-semibold tracking-tight text-zinc-900 dark:text-white lg:text-balance"
+            class="mt-4 font-semibold tracking-tight text-foreground lg:text-balance"
           >
             Transform your finances with proven results
           </Text>
           <Text
             variant="textBase"
-            class="mt-4 font-medium text-zinc-500 dark:text-zinc-400"
+            class="mt-4 font-medium text-muted-foreground"
           >
             Our track record speaks volumes—millions of users, minimal fees, and
             impressive returns.
@@ -58,21 +58,19 @@ const stats = [
       <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:col-span-2">
         {
           stats.map((stat) => (
-            <div class="flex flex-col p-8 shadow bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl">
+            <div class="flex flex-col p-8 shadow bg-linear-180 outline outline-border from-muted to-background rounded-xl">
               <Text
                 tag="h3"
                 variant="textBase"
-                class="flex items-center font-semibold text-zinc-900 dark:text-white gap-2"
+                class="flex items-center font-semibold text-foreground gap-2"
               >
-                <span class="font-semibold text-orange-700 dark:text-orange-400">
-                  {stat.value}
-                </span>
+                <span class="font-semibold text-foreground">{stat.value}</span>
                 {stat.label}
               </Text>
               <Text
                 tag="p"
                 variant="textBase"
-                class="mt-2 font-medium text-zinc-600 dark:text-zinc-300"
+                class="mt-2 font-medium text-muted-foreground"
               >
                 {stat.description}
               </Text>

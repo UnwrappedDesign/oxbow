@@ -3,9 +3,9 @@ export const excludeFromObfuscation = [
   "w-1/2",
   "translate-x-0",
   "translate-x-full",
-  "text-zinc-600",
-  "focus:text-zinc-900",
-  "hover:text-zinc-900",
+  "text-muted-foreground",
+  "focus:text-foreground",
+  "hover:text-foreground",
 ];
 export const description = "Pricing section with three tiers";
 // Components
@@ -37,11 +37,10 @@ import AdjustmentsHorizontal from "@/components/fundations/icons/AdjustmentsHori
 const pricingOptions = [
   {
     id: "core",
-    cardClass:
-      "bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 shadow from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl p-8",
-    primaryTextColor: "text-zinc-900 dark:text-white",
-    secondaryTextColor: "text-zinc-500 dark:text-zinc-400",
-    featuresBorderColor: "border-zinc-200 dark:border-zinc-600",
+    cardClass: "bg-background outline outline-border shadow rounded-xl p-8",
+    primaryTextColor: "text-foreground",
+    secondaryTextColor: "text-muted-foreground",
+    featuresBorderColor: "border-border border-border",
     title: "Core",
     monthly: "$29.00",
     annual: "$19.00",
@@ -62,11 +61,10 @@ const pricingOptions = [
   },
   {
     id: "momentum",
-    cardClass:
-      "bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 shadow from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl",
-    primaryTextColor: "text-zinc-900 dark:text-white",
-    secondaryTextColor: "text-zinc-500 dark:text-zinc-300",
-    featuresBorderColor: "border-orange-200 dark:border-white/20",
+    cardClass: "bg-background outline outline-border shadow rounded-xl",
+    primaryTextColor: "text-foreground",
+    secondaryTextColor: "text-muted-foreground",
+    featuresBorderColor: "border-border/30 border-border/20",
     title: "Momentum",
     monthly: "$49.00",
     annual: "$39.00",
@@ -90,11 +88,10 @@ const pricingOptions = [
   },
   {
     id: "velocity",
-    cardClass:
-      "bg-linear-180 outline outline-zinc-100 dark:outline-zinc-800 shadow from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 rounded-xl p-8",
-    primaryTextColor: "text-zinc-900 dark:text-white",
-    secondaryTextColor: "text-zinc-500 dark:text-zinc-400",
-    featuresBorderColor: "border-zinc-200 dark:border-zinc-600",
+    cardClass: "bg-background outline outline-border shadow rounded-xl p-8",
+    primaryTextColor: "text-foreground",
+    secondaryTextColor: "text-muted-foreground",
+    featuresBorderColor: "border-border border-border",
     title: "Velocity",
     monthly: "$99.00",
     annual: "$79.00",
@@ -116,20 +113,20 @@ const pricingOptions = [
 ];
 ---
 
-<section x-data="{ duration: 'monthly' }" class="bg-white dark:bg-zinc-900">
+<section x-data="{ duration: 'monthly' }" class="bg-background">
   <div class="px-8 py-24 mx-auto max-w-7xl md:px-12 lg:px-20">
     <div class="max-w-md mx-auto text-center">
       <Text
         tag="h1"
         variant="displayMD"
-        class="font-semibold tracking-tight text-zinc-900 text-balance dark:text-zinc-100"
+        class="font-semibold tracking-tight text-foreground text-balance"
       >
         Give your team tools that don't suck
       </Text>
       <Text
         tag="p"
         variant="textBase"
-        class="mt-2 font-medium text-zinc-600 text-balance dark:text-zinc-400"
+        class="mt-2 font-medium text-muted-foreground text-balance"
       >
         Start with what you need, skip what you don't. Scale up when
         spreadsheets stop cutting it.
@@ -137,16 +134,16 @@ const pricingOptions = [
       <!-- Pricing Toggle -->
       <div
         aria-labelledby="pricing-toggle"
-        class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-white shadow dark:bg-zinc-900 ring-1 ring-zinc-200 dark:ring-zinc-700 ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52 dark:ring-offset-black"
+        class="relative z-0 inline-flex justify-center w-full p-1 mx-auto mt-8 overflow-hidden bg-background shadow ring-1 ring-border ring-offset-2 gap-4 lg:mx-0 rounded-md max-w-52 ring-offset-background"
       >
         <div
-          class="absolute inset-0 bg-zinc-50 dark:bg-zinc-800 rounded-md transition-transform duration-200 ease-in-out"
+          class="absolute inset-0 bg-muted rounded-md ring-1 ring-border/60 shadow-sm transition-transform duration-200 ease-in-out"
           :class="duration === 'monthly' ? 'w-1/2 translate-x-0' : 'w-1/2 translate-x-full'"
         >
         </div>
         <button
           class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-          :class="duration === 'monthly' ? 'text-zinc-600 dark:text-zinc-300' : 'focus:text-zinc-900 hover:text-zinc-900 dark:focus:text-zinc-100 dark:hover:text-zinc-100 dark:text-zinc-300'"
+          :class="duration === 'monthly' ? 'text-foreground' : 'text-muted-foreground hover:text-foreground focus:text-foreground'"
           @click="duration = 'monthly'"
           type="button"
           :aria-pressed="duration === 'monthly'"
@@ -155,7 +152,7 @@ const pricingOptions = [
         </button>
         <button
           class="relative z-10 flex items-center justify-center w-full h-6 px-2 text-xs font-medium focus:outline-none transition-colors duration-300"
-          :class="duration === 'annual' ? 'text-zinc-600 dark:text-zinc-300' : 'focus:text-zinc-900 hover:text-zinc-900 dark:focus:text-zinc-100 dark:hover:text-zinc-100 dark:text-zinc-300'"
+          :class="duration === 'annual' ? 'text-foreground' : 'text-muted-foreground hover:text-foreground focus:text-foreground'"
           @click="duration = 'annual'"
           type="button"
           :aria-pressed="duration === 'annual'"

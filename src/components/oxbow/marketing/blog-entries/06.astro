@@ -17,26 +17,26 @@ const articles = [
 ];
 ---
 
-<section class="bg-white dark:bg-zinc-900">
+<section class="bg-background">
   <div class="px-8 py-24 mx-auto max-w-7xl md:px-12 lg:px-20">
     <div class="relative flex flex-col gap-12">
       {
         articles.map((article) => (
           <>
-            <article class="relative flex flex-col justify-end px-8 pb-8 overflow-hidden bg-white  isolate rounded-2xl pt-80 sm:pt-48 lg:pt-80 dark:bg-zinc-900">
+            <article class="relative flex flex-col justify-end px-8 pb-8 overflow-hidden bg-background isolate rounded-2xl pt-80 sm:pt-48 lg:pt-80">
               <Image
                 width={570}
                 height={480}
                 src={article.image}
                 alt="#_"
-                class="absolute inset-0 object-cover -z-10 size-full bg-zinc-50 dark:bg-zinc-800"
+                class="absolute inset-0 object-cover -z-10 size-full bg-background"
               />
-              <div class="absolute inset-0 -z-10 bg-gradient-to-t from-zinc-100 via-zinc-200/70 dark:from-zinc-900 dark:via-zinc-800/70" />
+              <div class="absolute inset-0 -z-10 bg-gradient-to-t from-background via-muted" />
               <div class="max-w-md">
                 <Text
                   tag="h3"
                   variant="displayMD"
-                  class="font-semibold tracking-tight text-zinc-900 dark:text-white"
+                  class="font-semibold tracking-tight text-foreground"
                 >
                   {article.title}
                 </Text>
@@ -44,13 +44,13 @@ const articles = [
                   <img
                     src={article.authorImage}
                     alt="#_"
-                    class="object-cover rounded-full size-10 bg-zinc-50 dark:bg-zinc-800"
+                    class="object-cover rounded-full size-10 bg-background"
                   />
                   <div>
                     <Text
                       tag="h3"
                       variant="textSM"
-                      class="font-medium text-zinc-900 dark:text-white"
+                      class="font-medium text-foreground"
                     >
                       {article.author}
                     </Text>

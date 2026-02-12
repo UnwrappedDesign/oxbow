@@ -2,13 +2,13 @@
 export const description = "Tags input";
 ---
 
-<div class="justify-center h-full bg-white gap-2 p-15 dark:bg-zinc-900">
+<div class="justify-center h-full bg-background gap-2 p-15">
   <div class="w-full max-w-sm mx-auto">
     <!-- copy:start -->
     <div class="w-full">
       <label
         for="tags-input"
-        class="block mb-1 text-sm font-medium text-zinc-500 dark:text-zinc-200"
+        class="block mb-1 text-sm font-medium text-foreground"
       >
         Tags
       </label>
@@ -35,18 +35,18 @@ export const description = "Tags input";
           placeholder="Add a tag"
           x-model="newTag"
           @keydown.enter.prevent="addTag()"
-          class="block w-full h-10 px-4 py-2 text-sm bg-white border border-transparent appearance-none transition duration-300 ease-in-out rounded-md text-zinc-500 ring-1 ring-zinc-200 placeholder-zinc-400 focus:border-zinc-300 focus:bg-transparent focus:outline-none focus:ring-orange-500 focus:ring-offset-2 focus:ring-2 dark:bg-zinc-800 dark:text-zinc-100 dark:ring-zinc-700 dark:placeholder-zinc-400 dark:focus:border-zinc-600 dark:focus:ring-orange-500"
+          class="block w-full h-10 px-4 py-2 text-sm bg-background border border-transparent appearance-none transition duration-300 ease-in-out rounded-md ring-1 ring-border placeholder:text-muted-foreground focus:border-border focus:bg-transparent focus:outline-none focus:ring-border focus:ring-offset-2 focus:ring-2 text-foreground"
         />
         <div class="flex flex-wrap mt-2 gap-2">
           <template x-for="(tag, index) in tags" :key="index">
             <span
-              class="inline-flex items-center font-medium relative text-zinc-700 bg-zinc-50 px-2.5 py-1 text-xs rounded-md gap-1 dark:text-zinc-100 dark:bg-zinc-800 dark:outline dark:outline-1 dark:outline-zinc-700"
+              class="inline-flex items-center font-medium relative px-2.5 py-1 text-xs rounded-md gap-1 text-foreground bg-background outline outline-1 outline-border"
             >
               <span x-text="tag"></span>
               <button
                 @click="removeTag(index)"
                 type="button"
-                class="inline-flex items-center justify-center rounded-full size-4 hover:bg-zinc-200 dark:hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                class="inline-flex items-center justify-center rounded-full size-4 hover:bg-muted focus:outline-none focus:ring-2 focus:ring-border"
                 aria-label="Remove tag"
               >
                 <svg
@@ -68,7 +68,7 @@ export const description = "Tags input";
             </span>
           </template>
         </div>
-        <p class="text-xs text-zinc-500 dark:text-zinc-400">
+        <p class="text-xs text-muted-foreground">
           Press Enter to add a tag
         </p>
         <input

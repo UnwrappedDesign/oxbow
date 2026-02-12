@@ -1,14 +1,14 @@
 ---
 export const excludeFromObfuscation = [
-  "bg-zinc-50",
-  "border-zinc-200",
-  "text-zinc-700",
+  "bg-muted",
+  "border-border",
+  "text-muted-foreground",
   "ring-1",
-  "ring-zinc-200",
+  "ring-border",
 ];
 ---
 
-<div class="flex flex-col justify-center p-8 mx-auto bg-white dark:bg-zinc-900">
+<div class="flex flex-col justify-center p-8 mx-auto bg-background">
   <!-- Monochrome Table • Selectable rows + Bulk actions -->
   <div
     x-data="{
@@ -35,7 +35,7 @@ export const excludeFromObfuscation = [
   >
     <div class="flex items-center justify-between mb-3">
       <div
-        class="text-sm text-zinc-600"
+        class="text-sm text-muted-foreground"
         x-text="selected.size ? selected.size + ' selected' : '0 selected'"
       >
       </div>
@@ -44,26 +44,26 @@ export const excludeFromObfuscation = [
       <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
         <div class="flex justify-center">
           <table class="min-w-[900px] text-sm">
-            <thead class="bg-zinc-100 dark:bg-zinc-950">
+            <thead class="bg-background">
               <tr>
                 <th class="w-10 px-3 py-2 text-left">
                   <input
                     type="checkbox"
                     :checked="allSelected()"
                     @change="toggleAll($event)"
-                    class="bg-white rounded size-4 border-zinc-300 dark:border-zinc-600 text-zinc-700 dark:text-zinc-100 focus:ring-zinc-300 dark:focus:ring-zinc-600 dark:bg-zinc-900 checked:bg-white checked:border-zinc-200 checked:text-zinc-900 dark:checked:bg-zinc-900 dark:checked:border-zinc-700 dark:checked:text-zinc-100"
+                    class="bg-background rounded size-4 border-border text-foreground focus:ring-border checked:bg-background checked:border-border checked:text-foreground"
                   />
                 </th>
                 <th
-                  class="px-3 py-2 font-medium text-left text-zinc-700 dark:text-zinc-100"
+                  class="px-3 py-2 font-medium text-left text-foreground"
                   >Name</th
                 >
                 <th
-                  class="px-3 py-2 font-medium text-left text-zinc-700 dark:text-zinc-100"
+                  class="px-3 py-2 font-medium text-left text-foreground"
                   >Owner</th
                 >
                 <th
-                  class="px-3 py-2 font-medium text-right text-zinc-700 dark:text-zinc-100"
+                  class="px-3 py-2 font-medium text-right text-foreground"
                   >Size</th
                 >
               </tr>
@@ -71,25 +71,24 @@ export const excludeFromObfuscation = [
             <tbody>
               <template x-for="r in rows" :key="r.id">
                 <tr
-                  class="even:bg-zinc-50 dark:even:bg-zinc-800"
-                  :class="selected.has(r.id) ? 'bg-zinc-50 dark:bg-zinc-800' : ''"
+                  class="even:bg-background"
+                  :class="selected.has(r.id) ? 'bg-background' : ''"
                 >
                   <td class="px-3 py-2">
                     <input
                       type="checkbox"
                       :checked="selected.has(r.id)"
                       @change="toggle(r.id)"
-                      class="bg-white rounded size-4 border-zinc-300 dark:border-zinc-600 text-zinc-700 dark:text-zinc-100 focus:ring-zinc-300 dark:focus:ring-zinc-600 dark:bg-zinc-900 checked:bg-white checked:border-zinc-200 checked:text-zinc-900 dark:checked:bg-zinc-900 dark:checked:border-zinc-700 dark:checked:text-zinc-100"
+                      class="bg-background rounded size-4 border-border text-foreground focus:ring-border checked:bg-background checked:border-border checked:text-foreground"
                     />
                   </td>
                   <td
-                    class="px-3 py-2 text-zinc-700 dark:text-zinc-100"
+                    class="px-3 py-2 text-foreground"
                     x-text="r.name"></td>
+                  <td class="px-3 py-2 text-muted-foreground" x-text="r.owner"
+                  ></td>
                   <td
-                    class="px-3 py-2 text-zinc-500 dark:text-zinc-300"
-                    x-text="r.owner"></td>
-                  <td
-                    class="px-3 py-2 text-right tabular-nums text-zinc-700 dark:text-zinc-100"
+                    class="px-3 py-2 text-right tabular-nums text-foreground"
                     x-text="r.size"></td>
                 </tr>
               </template>

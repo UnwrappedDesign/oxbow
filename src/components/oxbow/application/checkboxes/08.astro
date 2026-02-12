@@ -4,7 +4,7 @@ import Text from "@/components/fundations/typography/Text.astro";
 ---
 
 <section
-  class="flex flex-wrap items-center justify-center h-full p-24 bg-white gap-2 dark:bg-zinc-900"
+  class="flex flex-wrap items-center justify-center h-full p-24 bg-background gap-2"
 >
   <!-- copy:start -->
   <div
@@ -34,11 +34,11 @@ import Text from "@/components/fundations/typography/Text.astro";
       }
     }"
   >
-    <div class="text-sm text-zinc-700 dark:text-zinc-200">
+    <div class="text-sm text-foreground">
       Admin implies Read and Write. Unchecking Read/Write removes Admin.
     </div>
     <div
-      class="px-2 text-xs font-medium grid grid-cols-4 text-zinc-500 dark:text-zinc-400"
+      class="px-2 text-xs font-medium grid grid-cols-4 text-muted-foreground"
     >
       <div>Resource</div>
       <div class="text-center">Read</div>
@@ -47,14 +47,14 @@ import Text from "@/components/fundations/typography/Text.astro";
     </div>
     <template x-for="(row, i) in rows" :key="row.name">
       <div
-        class="items-center px-2 py-2 bg-white border rounded grid grid-cols-4 border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900"
+        class="items-center px-2 py-2 bg-background border rounded grid grid-cols-4 border-border"
       >
         <div class="flex flex-col">
           <span
-            class="text-sm text-zinc-700 dark:text-zinc-200"
+            class="text-sm text-foreground"
             x-text="row.name"></span>
           <span
-            class="text-xs text-zinc-500 dark:text-zinc-400"
+            class="text-xs text-muted-foreground"
             x-text="summary(row)"></span>
         </div>
         <div class="flex justify-center">
@@ -63,7 +63,7 @@ import Text from "@/components/fundations/typography/Text.astro";
             :id="`r-`+i"
             :checked="row.read"
             @change="toggle(row,'read',$event)"
-            class="text-orange-600 rounded shadow size-4 border-zinc-300 dark:border-zinc-700 focus:ring-orange-600 dark:bg-zinc-900 dark:checked:bg-orange-600"
+            class="text-foreground rounded shadow size-4 border-border focus:ring-border bg-background checked:bg-muted"
           />
         </div>
         <div class="flex justify-center">
@@ -72,7 +72,7 @@ import Text from "@/components/fundations/typography/Text.astro";
             :id="`w-`+i"
             :checked="row.write"
             @change="toggle(row,'write',$event)"
-            class="text-orange-600 rounded shadow size-4 border-zinc-300 dark:border-zinc-700 focus:ring-orange-600 dark:bg-zinc-900 dark:checked:bg-orange-600"
+            class="text-foreground rounded shadow size-4 border-border focus:ring-border bg-background checked:bg-muted"
           />
         </div>
         <div class="flex justify-center">
@@ -81,7 +81,7 @@ import Text from "@/components/fundations/typography/Text.astro";
             :id="`a-`+i"
             :checked="row.admin"
             @change="toggle(row,'admin',$event)"
-            class="text-orange-600 rounded shadow size-4 border-zinc-300 dark:border-zinc-700 focus:ring-orange-600 dark:bg-zinc-900 dark:checked:bg-orange-600"
+            class="text-foreground rounded shadow size-4 border-border focus:ring-border bg-background checked:bg-muted"
           />
         </div>
       </div>

@@ -1,11 +1,11 @@
 ---
 export const excludeFromObfuscation = [
-  "bg-zinc-50",
-  "border-zinc-200",
-  "text-zinc-700",
+  "bg-muted",
+  "border-border",
+  "text-muted-foreground",
   "tabular-nums",
   "ring-1",
-  "ring-zinc-200",
+  "ring-border",
 ];
 
 import ChevronUp from "@/components/fundations/icons/ChevronUp.astro";
@@ -13,7 +13,7 @@ import ChevronDown from "@/components/fundations/icons/ChevronDown.astro";
 import Button from "@/components/fundations/buttons/Button.astro";
 ---
 
-<div class="flex flex-col justify-center p-8 mx-auto bg-white dark:bg-zinc-900">
+<div class="flex flex-col justify-center p-8 mx-auto bg-background">
   <!-- Usable data table: filters + sorting + pagination -->
   <div
     x-data="{ sortKey:'name', sortDir:'asc', page:1, size:5,
@@ -37,13 +37,11 @@ import Button from "@/components/fundations/buttons/Button.astro";
     <!-- Filter/search removed -->
     <div class="overflow-x-auto">
       <div class="flex flex-col justify-center">
-        <table class="min-w-[900px] text-sm bg-white dark:bg-zinc-900">
-          <thead
-            class="border-b bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700"
-          >
+        <table class="min-w-[900px] text-sm bg-background">
+          <thead class="border-b bg-background border-border">
             <tr>
               <th
-                class="px-3 py-2 font-medium text-left text-zinc-700 dark:text-zinc-100"
+                class="px-3 py-2 font-medium text-left text-foreground"
               >
                 <button
                   @click="setSort('name')"
@@ -63,7 +61,7 @@ import Button from "@/components/fundations/buttons/Button.astro";
                 </button>
               </th>
               <th
-                class="px-3 py-2 font-medium text-left text-zinc-700 dark:text-zinc-100"
+                class="px-3 py-2 font-medium text-left text-foreground"
                 ><button @click="setSort('email')" class="hover:underline"
                   >Email <span
                     x-text="sortKey==='email'?(sortDir==='asc'?'▲':'▼'):''"
@@ -71,15 +69,15 @@ import Button from "@/components/fundations/buttons/Button.astro";
                 ></th
               >
               <th
-                class="px-3 py-2 font-medium text-left text-zinc-700 dark:text-zinc-100"
+                class="px-3 py-2 font-medium text-left text-foreground"
                 >Location</th
               >
               <th
-                class="px-3 py-2 font-medium text-left text-zinc-700 dark:text-zinc-100"
+                class="px-3 py-2 font-medium text-left text-foreground"
                 >Status</th
               >
               <th
-                class="px-3 py-2 font-medium text-right text-zinc-700 dark:text-zinc-100"
+                class="px-3 py-2 font-medium text-right text-foreground"
                 ><button @click="setSort('balance')" class="hover:underline"
                   >Balance <span
                     x-text="sortKey==='balance'?(sortDir==='asc'?'▲':'▼'):''"
@@ -90,38 +88,36 @@ import Button from "@/components/fundations/buttons/Button.astro";
           </thead>
           <tbody>
             <template x-for="r in pageRows()" :key="r.email">
-              <tr class="even:bg-zinc-50 dark:even:bg-zinc-800">
+              <tr class="even:bg-background">
                 <td
-                  class="px-3 py-2 font-medium text-zinc-700 dark:text-zinc-100"
+                  class="px-3 py-2 font-medium text-foreground"
                   x-text="r.name"></td>
-                <td
-                  class="px-3 py-2 text-zinc-500 dark:text-zinc-300"
-                  x-text="r.email"></td>
-                <td
-                  class="px-3 py-2 text-zinc-500 dark:text-zinc-300"
-                  x-text="r.location"></td>
+                <td class="px-3 py-2 text-muted-foreground" x-text="r.email"
+                ></td>
+                <td class="px-3 py-2 text-muted-foreground" x-text="r.location"
+                ></td>
                 <td
                   class="px-3 py-2"
-                  :class="r.status==='Active' ? 'text-emerald-600 dark:text-emerald-400' : r.status==='Inactive' ? 'text-red-600 dark:text-red-400' : 'text-yellow-600 dark:text-yellow-400'"
+                  :class="r.status==='Active' 'text-success' r.status==='Inactive' ? 'text-destructive' : 'text-warning'"
                   x-text="r.status"></td>
                 <td
-                  class="px-3 py-2 font-mono font-medium text-right tabular-nums text-zinc-700 dark:text-zinc-100"
+                  class="px-3 py-2 font-mono font-medium text-right tabular-nums text-foreground"
                   x-text="Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(r.balance)"
                 ></td>
               </tr>
             </template>
             <tr x-show="pageRows().length===0"
               ><td
-                class="px-3 py-6 text-center text-zinc-500 dark:text-zinc-300"
+                class="px-3 py-6 text-center text-muted-foreground"
                 colspan="5">No results</td
               ></tr
             >
           </tbody>
         </table>
         <div
-          class="flex items-center justify-between p-3 border-t border-zinc-200 dark:border-zinc-700"
+          class="flex items-center justify-between p-3 border-t border-border"
         >
-          <div class="font-mono text-sm text-zinc-900 dark:text-white">
+          <div class="font-mono text-sm text-foreground">
             <span x-text="(page-1)*size + 1"></span> – <span
               x-text="Math.min(page*size,total())"></span> of <span
               x-text="total()"></span>
