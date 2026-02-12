@@ -7,7 +7,7 @@ interface Props {
 }
 const { entries } = Astro.props; // Make sure entries is correctly passed and used
 const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/images/**/*.{jpeg,jpg,png,gif}"
+  "/src/images/**/*.{jpeg,jpg,png,gif}",
 );
 const modules = import.meta.glob("@/components/oxbow/**/*.astro", {
   eager: true,
@@ -28,7 +28,7 @@ const entriesWithQuantity = entries
     const imagePath = `/src/images/${entry.image}`;
     if (!images[imagePath])
       throw new Error(
-        `"${imagePath}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`
+        `"${imagePath}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`,
       );
     return {
       ...entry,
@@ -42,42 +42,40 @@ const entriesWithQuantity = entries
   .sort((a, b) => a.name.localeCompare(b.name));
 ---
 
-<ul class="grid grid-cols-1 lg:grid-cols-4 gap-y-12 gap-x-4 mt-8 group">
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-1 mt-8">
   {
     entriesWithQuantity.map((template) => {
       return (
-        <li class="relative py-2.5  group">
+        <div class="relative bg-white dark:bg-base-950 flex flex-col ">
           <a
             title={template.name}
             href={template.link}
             class="absolute inset-0 z-1"
           />
-          <div>
-            <Image
-              class="object-cover object-top  rounded-lg  aspect-16/10 w-full outline outline-base-200 dark:outline-base-800 shadow"
-              
-              alt={template.name}
-              src={template.image()}
-            />
-            <div class="flex flex-col  mt-2.5">
-              <Text
-                tag="p"
-                variant="textXS"
-                class="relative font-medium text-black   dark:text-white"
-              >
-                {template.name}
-              </Text>
-              <Text
-                tag="p"
-                variant="textXS"
-                class="relative flex items-center gap-1  2xl:text-sm text-base-500"
-              >
-                {template.quantity} Components
-              </Text>
-            </div>
+
+          <div class="p-6 items">
+            <Text
+              tag="p"
+              variant="textBad"
+              class="relative font-medium text-black   dark:text-white"
+            >
+              {template.name}
+            </Text>
+            <Text
+              tag="p"
+              variant="textSM"
+              class="relative flex items-center gap-1  2xl:text-sm text-base-500"
+            >
+              {template.quantity} Components
+            </Text>
           </div>
-        </li>
+          <Image
+            class="object-cover object-top  aspect-16/10 w-full mt-12"
+            alt={template.name}
+            src={template.image()}
+          />
+        </div>
       );
     })
   }
-</ul>
+</div>

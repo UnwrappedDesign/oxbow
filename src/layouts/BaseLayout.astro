@@ -2,22 +2,14 @@
 import BaseHead from "@/components/BaseHead.astro";
 import Navigation from "@/components/global/Navigation.astro";
 import Footer from "@/components/global/Footer.astro";
-
 const siteUrl = (Astro.site && Astro.site.toString()) || "https://oxbowui.com";
 const canonicalUrl = new URL(
   Astro.url.pathname,
-  Astro.site ?? siteUrl
+  Astro.site ?? siteUrl,
 ).toString();
-const privatePaths = [
-  /^\/404$/,
-  /^\/login(\b|\/)/,
-  /^\/login-password(\b|\/)/,
-  /^\/email-signin(\b|\/)/,
-  /^\/webhooks\//,
-  /^\/api\//,
-  /^\/iframe\//,
-];
+const privatePaths = [/^\/404$/, /^\/iframe\//];
 const defaultNoindex = privatePaths.some((rx) => rx.test(Astro.url.pathname));
+const isIndexPage = Astro.url.pathname === "/";
 // Optional per-page SEO overrides
 interface HeadOverrides {
   title?: string;
@@ -36,7 +28,6 @@ const {
   hideFooter = false,
 }: HeadOverrides & { hideNav?: boolean; hideFooter?: boolean } = (Astro.props ??
   {}) as any;
-
 ---
 
 <html lang="en" class="scroll-smooth">
@@ -53,10 +44,10 @@ const {
     />
   </head>
   <body class="bg-white dark:bg-base-950 min-h-screen flex flex-col">
-    {!hideNav && <Navigation />}
+    <Navigation />
     <main class="grow w-full mx-auto py-26 lg:py-23">
       <slot />
     </main>
-    {!hideFooter && <Footer />}
+    <Footer />
   </body>
 </html>

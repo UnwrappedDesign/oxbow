@@ -1,19 +1,11 @@
 ---
 import Text from "@/components/fundations/typography/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-import StripesBG from "@/components/assets/StripesBG.astro";
+
 // Assets
 import Logo from "@/components/assets/Logo.astro";
 // Fundations
 const navLinks = [
-  
-  {
-    title: "Social",
-    links: [
-      { label: "Gabriel ", href: "https://x.com/g_perales" },
-      { label: "Michael", href: "https://x.com/Mike_Andreuzza" },
-    ],
-  },
   {
     title: "Tools",
     links: [
@@ -34,65 +26,59 @@ const navLinks = [
 ];
 ---
 
-<footer class="overflow-hidden">
-  <Wrapper variant="standard" class="pb-12">
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-      <div>
+<footer>
+  <Wrapper class="py-8">
+    <div class="max-w-2xl mx-auto text-center">
+      <Text tag="p" variant="textSM" class="text-base-500">
+        Built by
         <a
-          href="/"
-          class="flex items-center text-sm text-base-900 dark:text-white gap-2"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-base-900"
+          href="https://x.com/mike_andreuzza">Michael</a
         >
-          <span class="sr-only">Go to homepage</span>
-          <Logo class="h-6 dark:invert" />
-          Oxbow UI
-        </a>
-        <p class="mt-1 text-sm font-normal text-base-500 text-balance">
-          Tailwind CSS & Alpine JS blocks
-        </p>
-      </div>
-      <div class="grid grid-cols-2 gap-8 xl:col-span-2 xl:col-start-3">
-        {
-          navLinks.map((section, i) => (
-            <nav aria-label={section.title}>
-              <Text
-                tag="h3"
-                variant="textBase"
-                class="font-medium font-display text-base-900 dark:text-white"
-              >
-                {section.title}
-              </Text>
-              <ul
-                role="list"
-                class="mt-2 text-sm space-y-1 text-base-600 dark:text-base-400"
-              >
-                {section.links.map((link, j) => (
-                  <li>
-                    <a
-                      class="hover:text-base-900 dark:hover:text-white"
-                      href={link.href}
-                      title={link.label}
-                      target={
-                        link.href.startsWith("http") ? "_blank" : undefined
-                      }
-                      rel={
-                        link.href.startsWith("http")
-                          ? "noopener noreferrer"
-                          : undefined
-                      }
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          ))
-        }
-      </div>
-    </div>
-      <Text tag="p" variant="textXS" class="text-base-600 dark:text-base-400 mt-12">
-        © {new Date().getFullYear()} Oxbow. All rights reserved.
+        and <a
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-base-900"
+          href="https://x.com/g_perales">Gabriel</a
+        >
+        . Code available on
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-base-900"
+          href="https://github.com/UnwrappedDesign/oxbow">GitHub</a
+        >
       </Text>
-    
+      {
+        navLinks.map((section, i) => (
+          <nav aria-label={section.title}>
+            <ul
+              role="list"
+              class="mt-4 text-sm flex gap-4 justify-center flex-wrap text-base-600 dark:text-base-400"
+            >
+              {section.links.map((link, j) => (
+                <li>
+                  <a
+                    class="hover:text-base-900 dark:hover:text-white"
+                    href={link.href}
+                    title={link.label}
+                    target={link.href.startsWith("http") ? "_blank" : undefined}
+                    rel={
+                      link.href.startsWith("http")
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))
+      }
+    </div>
   </Wrapper>
 </footer>

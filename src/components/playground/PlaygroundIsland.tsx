@@ -411,7 +411,7 @@ export default function PlaygroundIsland({
     setCopiedMcpConfig(false);
   }, [activeIdeTab]);
   const clamp = (n: number, min: number, max: number) =>
-    leftPadZero(Math.max(min, Math.min(max, n)));
+    Math.max(min, Math.min(max, n));
   const openInNewWindow = () => {
     try {
       const url = new URL(iframeSrc, window.location.origin);
@@ -435,194 +435,252 @@ export default function PlaygroundIsland({
     });
     setNavOpen(which);
   };
+  const ToolbarTooltip = ({
+    label,
+    className = "",
+  }: {
+    label: string;
+    className?: string;
+  }) => (
+    <span
+      className={`pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-black px-3 py-1.5 text-xs font-medium text-white opacity-0 shadow-sm transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100 ${className}`}
+    >
+      {label}
+    </span>
+  );
+  const iconButtonBase =
+    "flex size-8 items-center justify-center rounded-md bg-base-25 transition-colors hover:bg-base-50 dark:bg-base-900 dark:hover:bg-base-800/80";
+  const iconButtonText = "text-base-600 dark:text-base-300 hover:text-base-900 dark:hover:text-white";
+  const iconButtonActive = "text-base-900 shadow-xs dark:text-white";
+  const textButtonBase =
+    "flex h-8 items-center gap-2 rounded-md bg-base-25 px-2.5 text-xs transition-colors hover:bg-base-50 dark:bg-base-900 dark:hover:bg-base-800/80";
+  const navMenuBase =
+    "fixed z-50 mt-2 rounded-lg bg-white shadow-md text-sm text-base-700 dark:bg-base-900 dark:text-base-200";
+  const navMenuItemBase =
+    "flex items-center justify-between w-full rounded-lg px-3 py-2.5 text-left text-xs transition-colors hover:bg-base-50 dark:hover:bg-base-800/70";
   return (
     <div className="relative">
-  <div className="flex items-center justify-between gap-4 pb-2 ">
+  <div className="flex items-center justify-between gap-2 pb-2 ">
         {/* Left: index + tools */}
-        <div className="flex items-center gap-4 ">
-          <button
-            type="button"
-            onClick={copyUrl}
-            className={`flex items-center justify-center px-1.5 text-xs transition-colors ${copiedUrl ? "text-accent-600 dark:text-accent-400" : "text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white"}`}
-            title="Copy block URL"
-            aria-label="Copy block URL"
-          >
-            {copiedUrl ? <Check size={14} /> : iframeId.replace("iframe-", "")}
-          </button>
+        <div className="flex items-center gap-1.5 ">
+          <div className="relative group">
+            <button
+              type="button"
+              onClick={copyUrl}
+              className={`inline-flex h-8 min-w-8 items-center justify-center rounded-md bg-base-25 px-2 text-xs transition-colors hover:bg-base-50 dark:bg-base-900 dark:hover:bg-base-800/80 ${copiedUrl ? "text-accent-600 dark:text-accent-400" : "text-base-600 hover:text-base-900 dark:text-base-300 dark:hover:text-white"}`}
+              title="Copy block URL"
+              aria-label="Copy block URL"
+            >
+              {copiedUrl ? <Check size={14} /> : iframeId.replace("iframe-", "")}
+            </button>
+            <ToolbarTooltip
+              label="Copy URL"
+              className="left-0 translate-x-0 px-2.5 py-1"
+            />
+          </div>
           <div className="w-px h-4 bg-base-300 dark:bg-base-700 hidden md:flex"></div>
-          <span className="items-center hidden gap-3 md:flex">
-            <button
-              onClick={() => setViewportWidth("mobile")}
-              className={`flex items-center justify-center transition-colors ${viewport === "mobile" ? "text-base-900 dark:text-white" : "text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white"}`}
-              title="Mobile view"
-            >
-              <Smartphone size={16} />
-            </button>
-            <button
-              onClick={() => setViewportWidth("tablet")}
-              className={`flex items-center justify-center transition-colors ${viewport === "tablet" ? "text-base-900 dark:text-white" : "text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white"}`}
-              title="Tablet view"
-            >
-              <Tablet size={16} />
-            </button>
-            <button
-              onClick={() => setViewportWidth("desktop")}
-              className={`flex items-center justify-center transition-colors ${viewport === "desktop" ? "text-base-900 dark:text-white" : "text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white"}`}
-              title="Desktop view"
-            >
-              <Monitor size={16} />
-            </button>
+          <span className="items-center hidden gap-2 md:flex">
+            <div className="relative group">
+              <button
+                onClick={() => setViewportWidth("mobile")}
+                className={`${iconButtonBase} ${viewport === "mobile" ? iconButtonActive : iconButtonText}`}
+              >
+                <Smartphone size={14} />
+              </button>
+              <ToolbarTooltip label="Mobile view" />
+            </div>
+            <div className="relative group">
+              <button
+                onClick={() => setViewportWidth("tablet")}
+                className={`${iconButtonBase} ${viewport === "tablet" ? iconButtonActive : iconButtonText}`}
+              >
+                <Tablet size={14} />
+              </button>
+              <ToolbarTooltip label="Tablet view" />
+            </div>
+            <div className="relative group">
+              <button
+                onClick={() => setViewportWidth("desktop")}
+                className={`${iconButtonBase} ${viewport === "desktop" ? iconButtonActive : iconButtonText}`}
+              >
+                <Monitor size={14} />
+              </button>
+              <ToolbarTooltip label="Desktop view" />
+            </div>
           </span>
           <div className="w-px h-4 bg-base-300 dark:bg-base-700 hidden md:flex"></div>
-          <span className="items-center hidden gap-3 md:flex">
-            <button
-              onClick={() => setMode("light")}
-              className={`flex items-center justify-center transition-colors ${mode === "light" ? "text-base-900 dark:text-white" : "text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white"}`}
-              title="Light mode"
-            >
-              <Sun size={16} />
-            </button>
-            <button
-              onClick={() => setMode("system")}
-              className={`flex items-center justify-center transition-colors ${mode === "system" ? "text-base-900 dark:text-white" : "text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white"}`}
-              title="System mode"
-            >
-              <Laptop size={16} />
-            </button>
-            <button
-              onClick={() => setMode("dark")}
-              className={`flex items-center justify-center transition-colors ${mode === "dark" ? "text-base-900 dark:text-white" : "text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white"}`}
-              title="Dark mode"
-            >
-              <Moon size={16} />
-            </button>
+          <span className="items-center hidden gap-2 md:flex">
+            <div className="relative group">
+              <button
+                onClick={() => setMode("light")}
+                className={`${iconButtonBase} ${mode === "light" ? iconButtonActive : iconButtonText}`}
+              >
+                <Sun size={14} />
+              </button>
+              <ToolbarTooltip label="Light mode" />
+            </div>
+            <div className="relative group">
+              <button
+                onClick={() => setMode("system")}
+                className={`${iconButtonBase} ${mode === "system" ? iconButtonActive : iconButtonText}`}
+              >
+                <Laptop size={14} />
+              </button>
+              <ToolbarTooltip label="System mode" />
+            </div>
+            <div className="relative group">
+              <button
+                onClick={() => setMode("dark")}
+                className={`${iconButtonBase} ${mode === "dark" ? iconButtonActive : iconButtonText}`}
+              >
+                <Moon size={14} />
+              </button>
+              <ToolbarTooltip label="Dark mode" />
+            </div>
           </span>
           <div className="w-px h-4 bg-base-300 dark:bg-base-700 hidden md:flex"></div>
           {/* Code controls next to theme toggles */}
-          <div className="items-center hidden gap-2 md:flex">
-            <button
-              onClick={() => setTab("preview")}
-              className={`flex items-center justify-center transition-colors ${tab === "preview" ? "text-base-900 dark:text-white" : "text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white"}`}
-              title="Preview"
-            >
-              <Eye size={16} />
-            </button>
-            <button
-              onClick={() => setTab("code")}
-              className={`flex items-center justify-center transition-colors ${tab === "code" ? "text-base-900 dark:text-white" : "text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white"}`}
-              title="Code"
-            >
-              <Code size={16} />
-            </button>
+          <div className="items-center hidden gap-1.5 md:flex">
+            <div className="relative group">
+              <button
+                onClick={() => setTab("preview")}
+                className={`${iconButtonBase} ${tab === "preview" ? iconButtonActive : iconButtonText}`}
+              >
+                <Eye size={14} />
+              </button>
+              <ToolbarTooltip label="Preview" />
+            </div>
+            <div className="relative group">
+              <button
+                onClick={() => setTab("code")}
+                className={`${iconButtonBase} ${tab === "code" ? iconButtonActive : iconButtonText}`}
+              >
+                <Code size={14} />
+              </button>
+              <ToolbarTooltip label="Code" />
+            </div>
             </div>
           <div className="w-px h-4 bg-base-300 dark:bg-base-700 hidden md:flex"></div>
 
-          <div className="items-center hidden gap-3 md:flex">
-            <button
-              onClick={copyCode}
-              className="flex items-center justify-center transition-colors text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white"
-              title="Copy"
-              aria-label="Copy"
-            >
-              {copiedCode ? <Check size={16} /> : <Copy size={16} />}
-            </button>
-            <button
-              onClick={downloadCode}
-              className="flex items-center justify-center transition-colors text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white"
-              title="Download code"
-              aria-label="Download code"
-            >
-              <Download size={16} />
-            </button>
-            <button
-              onClick={openInNewWindow}
-              className="flex items-center justify-center transition-colors text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white"
-              title="Open in new window"
-              aria-label="Open in new window"
-            >
-              <ExternalLink size={16} />
-            </button>
-            <button
-              onClick={() => setIsOxbowModalOpen(true)}
-              className="flex items-center justify-center transition-colors text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white"
-              title="Install with Oxbow CLI/MCP"
-              aria-label="Install with Oxbow CLI/MCP"
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 100 100"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
+          <div className="items-center hidden gap-2 md:flex">
+            <div className="relative group">
+              <button
+                onClick={copyCode}
+                className={`${iconButtonBase} ${copiedCode ? "text-accent-600 dark:text-accent-400" : iconButtonText}`}
+                aria-label="Copy"
               >
-                <path d="M11 47.2749L46.5657 11.7093C51.4763 6.79872 59.438 6.79872 64.3483 11.7093C69.2591 16.6199 69.2591 24.5815 64.3483 29.4921L37.489 56.3516" stroke="currentColor" strokeWidth="6.28718" strokeLinecap="round"/>
-                <path d="M37.8599 55.9806L64.3486 29.4915C69.2594 24.5809 77.2211 24.5809 82.1319 29.4915L82.3169 29.6768C87.2277 34.5874 87.2277 42.549 82.3169 47.4596L50.151 79.6257C48.5142 81.2624 48.5142 83.9161 50.151 85.5529L56.7558 92.1581" stroke="currentColor" strokeWidth="6.28718" strokeLinecap="round"/>
-                <path d="M55.4575 20.6001L29.1536 46.9039C24.2431 51.8143 24.2431 59.776 29.1536 64.6868C34.0642 69.5971 42.0259 69.5971 46.9365 64.6868L73.2402 38.3829" stroke="currentColor" strokeWidth="6.28718" strokeLinecap="round"/>
-              </svg>
-            </button>
+                {copiedCode ? <Check size={14} /> : <Copy size={14} />}
+              </button>
+              <ToolbarTooltip label="Copy code" />
+            </div>
+            <div className="relative group">
+              <button
+                onClick={downloadCode}
+                className={`${iconButtonBase} ${iconButtonText}`}
+                aria-label="Download code"
+              >
+                <Download size={14} />
+              </button>
+              <ToolbarTooltip label="Download code" />
+            </div>
+            <div className="relative group">
+              <button
+                onClick={openInNewWindow}
+                className={`${iconButtonBase} ${iconButtonText}`}
+                aria-label="Open in new window"
+              >
+                <ExternalLink size={14} />
+              </button>
+              <ToolbarTooltip label="Open in new window" />
+            </div>
+            <div className="relative group">
+              <button
+                onClick={() => setIsOxbowModalOpen(true)}
+                className={`${iconButtonBase} ${iconButtonText}`}
+                aria-label="Install with Oxbow CLI/MCP"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 100 100"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path d="M11 47.2749L46.5657 11.7093C51.4763 6.79872 59.438 6.79872 64.3483 11.7093C69.2591 16.6199 69.2591 24.5815 64.3483 29.4921L37.489 56.3516" stroke="currentColor" strokeWidth="6.28718" strokeLinecap="round"/>
+                  <path d="M37.8599 55.9806L64.3486 29.4915C69.2594 24.5809 77.2211 24.5809 82.1319 29.4915L82.3169 29.6768C87.2277 34.5874 87.2277 42.549 82.3169 47.4596L50.151 79.6257C48.5142 81.2624 48.5142 83.9161 50.151 85.5529L56.7558 92.1581" stroke="currentColor" strokeWidth="6.28718" strokeLinecap="round"/>
+                  <path d="M55.4575 20.6001L29.1536 46.9039C24.2431 51.8143 24.2431 59.776 29.1536 64.6868C34.0642 69.5971 42.0259 69.5971 46.9365 64.6868L73.2402 38.3829" stroke="currentColor" strokeWidth="6.28718" strokeLinecap="round"/>
+                </svg>
+              </button>
+              <ToolbarTooltip label="Install with MCP" />
+            </div>
           </div>
         </div>
         {/* Right: code controls + nav (if provided) */}
-        <div className="items-center justify-end hidden gap-3 md:flex ">
+        <div className="items-center justify-end hidden gap-2 md:flex ">
           {arguments[0]?.subsByCat && (
             <>
               {/* Category */}
-              <div className="relative">
+              <div className="relative group">
                 <button
                   onClick={(e) => openNavMenu("cat", e)}
-                  className="flex items-center gap-2 text-xs transition-colors text-base-900 dark:text-white"
+                  className={`${textButtonBase} text-base-900 dark:text-white`}
                 >
                   <span className="capitalize">
                     {fmt(arguments[0]!.navCat || "")}
                   </span>
-                  <ChevronDown className="size-4" />
+                  <ChevronDown className="size-3.5" />
                 </button>
+                <ToolbarTooltip label="Category" />
               </div>
               {/* Block */}
-              <div className="relative">
+              <div className="relative group">
                 <button
                   onClick={(e) => openNavMenu("sub", e)}
-                  className="hidden md:flex items-center gap-2 text-xs transition-colors text-base-900 dark:text-white"
+                  className={`${textButtonBase} hidden md:flex text-base-900 dark:text-white`}
                 >
                   <span className="capitalize">
                     {fmt(arguments[0]!.navSub || "")}
                   </span>
-                  <ChevronDown className="size-4" />
+                  <ChevronDown className="size-3.5" />
                 </button>
+                <ToolbarTooltip label="Block" />
               </div>
               {/* Number */}
-              <div className="relative">
+              <div className="relative group">
                 <button
                   onClick={(e) => openNavMenu("idx", e)}
-                  className="hidden md:flex items-center gap-2  text-xs transition-colors text-base-900 hover:text-accent-600 dark:text-white dark:hover:text-accent-400"
+                  className={`${textButtonBase} hidden md:flex text-base-900 hover:text-accent-600 dark:text-white dark:hover:text-accent-400`}
                 >
                  <div>
                     <span>#</span>
                     
                     <span>
-                      {clamp(
-                        arguments[0]!.navIdx || 1,
-                        1,
-                        count(
-                          arguments[0]!.navCat || "",
-                          arguments[0]!.navSub || "",
+                      {leftPadZero(
+                        clamp(
+                          arguments[0]!.navIdx || 1,
+                          1,
+                          count(
+                            arguments[0]!.navCat || "",
+                            arguments[0]!.navSub || "",
+                          ),
                         ),
                       )}
                     </span>
                  </div>
-                  <ChevronDown className="size-4" />
+                  <ChevronDown className="size-3.5" />
                 </button>
+                <ToolbarTooltip label="Block number" />
               </div>
            <div className="w-px h-4 bg-base-300 dark:bg-base-700 hidden md:flex"></div>
 
               {navOpen === "cat" && (
                 <div
                   ref={navMenuRef}
-                  className="fixed z-50 w-56 mt-2 text-xs transition-colors bg-white shadow  outline outline-base-100 text-base-600 divide-y divide-base-100 dark:bg-base-950 dark:text-base-300 dark:outline-base-800 dark:divide-base-800"
+                  className={`${navMenuBase} w-56`}
                   style={{ top: navPos.top, left: navPos.left }}
                 >
-                  <div className="py-2 overflow-hidden max-h-64">
+                  <div className="p-2 overflow-hidden max-h-64">
                     {Object.keys(arguments[0]!.subsByCat!)
                       .sort()
                       .map((key) => (
@@ -632,10 +690,10 @@ export default function PlaygroundIsland({
                             const first =
                               (arguments[0]!.subsByCat![key] || [])[0] || "";
                             window.location.assign(
-                              `/playground/${key}/${first}/${clamp(arguments[0]!.navIdx || 1, 1, count(key, first))}`,
+                              `/playground/${key}/${first}/${leftPadZero(clamp(arguments[0]!.navIdx || 1, 1, count(key, first)))}`,
                             );
                           }}
-                          className="flex items-center justify-between w-full px-3 py-1.5 text-left transition-colors text-xs hover:bg-base-100 dark:hover:bg-base-800/60"
+                          className={navMenuItemBase}
                         >
                           <span className="capitalize">{fmt(key)}</span>
                           {arguments[0]!.navCat === key && (
@@ -649,17 +707,17 @@ export default function PlaygroundIsland({
               {navOpen === "sub" && (
                 <div
                   ref={navMenuRef}
-                  className="fixed z-50 w-64 mt-2 text-xs transition-colors bg-white shadow-lg outline outline-base-100 text-base-600 divide-y divide-base-100 dark:bg-base-950 dark:text-base-300 dark:outline-base-800 dark:divide-base-800"
+                  className={`${navMenuBase} w-64`}
                   style={{ top: navPos.top, left: navPos.left }}
                 >
-                  <div className="py-2 overflow-auto max-h-64">
+                  <div className="p-2 overflow-auto max-h-64">
                     {(
                       arguments[0]!.subsByCat![arguments[0]!.navCat || ""] || []
                     ).map((name) => (
                       <a
                         key={name}
-                        href={`/playground/${arguments[0]!.navCat}/${name}/${clamp(arguments[0]!.navIdx || 1, 1, count(arguments[0]!.navCat || "", name))}`}
-                        className="flex items-center justify-between w-full px-3 py-1.5 transition-colors hover:bg-base-100 dark:hover:bg-base-800/60"
+                        href={`/playground/${arguments[0]!.navCat}/${name}/${leftPadZero(clamp(arguments[0]!.navIdx || 1, 1, count(arguments[0]!.navCat || "", name)))}`}
+                        className={navMenuItemBase}
                       >
                         <span className="capitalize">{fmt(name)}</span>
                         {arguments[0]!.navSub === name && (
@@ -673,10 +731,10 @@ export default function PlaygroundIsland({
               {navOpen === "idx" && (
                 <div
                   ref={navMenuRef}
-                  className="fixed z-50 w-40 mt-2 text-xs transition-colors bg-white shadow-lg outline outline-base-100 text-base-600 dark:bg-base-900 dark:text-base-300 dark:outline-base-700"
+                  className={`${navMenuBase} w-40`}
                   style={{ top: navPos.top, left: navPos.left }}
                 >
-                  <div className="grid grid-cols-4 gap-2 px-2 py-2 overflow-auto max-h-64">
+                  <div className="grid grid-cols-4 gap-2 p-2 overflow-auto max-h-64">
                     {Array.from(
                       {
                         length: count(
@@ -689,7 +747,7 @@ export default function PlaygroundIsland({
                       <a
                         key={n}
                         href={`/playground/${arguments[0]!.navCat}/${arguments[0]!.navSub}/${leftPadZero(n)}`}
-                        className={`flex items-center justify-center px-2 py-1.5 transition-colors rounded hover:bg-base-100 dark:hover:bg-base-800/60 ${n === clamp(arguments[0]!.navIdx || 1, 1, count(arguments[0]!.navCat || "", arguments[0]!.navSub || "")) ? "text-base-950 font-medium dark:text-white" : "text-base-600 dark:text-base-200"}`}
+                        className={`flex h-8 items-center justify-center rounded-lg text-xs transition-colors hover:bg-base-50 dark:hover:bg-base-800/70 ${n === clamp(arguments[0]!.navIdx || 1, 1, count(arguments[0]!.navCat || "", arguments[0]!.navSub || "")) ? "text-base-950 font-medium dark:text-white" : "text-base-600 dark:text-base-200"}`}
                       >
                         {n}
                       </a>
@@ -702,13 +760,13 @@ export default function PlaygroundIsland({
                 <a
                   href={arguments[0]!.prevHref}
                   aria-label="Previous"
-                  className="flex items-center justify-center transition-colors text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white"
+                  className={`${iconButtonBase} ${iconButtonText}`}
                 >
-                  <ChevronLeft size={16} />
+                  <ChevronLeft size={14} />
                 </a>
               ) : (
                 <div className="flex items-center justify-center opacity-30 text-base-400 dark:text-base-600">
-                  <ChevronLeft size={16} />
+                  <ChevronLeft size={14} />
                 </div>
               )}
               
@@ -716,87 +774,89 @@ export default function PlaygroundIsland({
                 <a
                   href={arguments[0]!.nextHref}
                   aria-label="Next"
-                  className="flex items-center justify-center transition-colors text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white"
+                  className={`${iconButtonBase} ${iconButtonText}`}
                 >
-                  <ChevronRight size={16} />
+                  <ChevronRight size={14} />
                 </a>
               ) : (
                 <div className="flex items-center justify-center opacity-30 text-base-400 dark:text-base-600">
-                  <ChevronRight size={16} />
+                  <ChevronRight size={14} />
                 </div>
               )}
             </>
           )}
         </div>
       </div>
-      <div className="relative flex w-full min-h-0 overflow-hidden outline outline-base-200 shadow rounded-lg dark:outline-base-800    dark:shadow-base-900/50 z-1 isolate scrollbar-hide bg-white dark:bg-base-950/60 mt-4 ">
-        <PlaygroundShortcutsButton />
-        {tab === "preview" && (
-          <div className="flex flex-col items-center w-full bg-white scrollbar-hide dark:bg-base-950/60">
-            <div
-              ref={containerRef}
-              id="playground-preview-container"
-              className="flex flex-col w-full mx-auto text-base transition-colors bg-white shadow-normal scrollbar-hide dark:bg-base-950/80"
-              style={{
-                transition: "width 250ms ease-in-out, height 200ms ease",
-              }}
-            >
-              <iframe
-                ref={iframeRef}
-                id={iframeId}
-                className="block w-full border-0 transition-colors scrollbar-hide dark:bg-base-950"
-                title={`Preview ${iframeSrc}`}
-                style={{ height: "auto", visibility: "visible" }}
-                src={iframeSrc}
-                onLoad={() => {
-                  requestHeight();
-                  // apply current mode as soon as possible
-                  applyModeToIframe(mode);
-                  setTimeout(requestHeight, 50);
-                  setTimeout(requestHeight, 650);
+    <div className="p-8 bg-base-25 dark:bg-base-900 mt-4">
+        <div className="relative flex w-full min-h-0 overflow-hidden z-1 isolate scrollbar-hide bg-white dark:bg-base-950/60  ">
+          <PlaygroundShortcutsButton />
+          {tab === "preview" && (
+            <div className="flex flex-col items-center w-full bg-white scrollbar-hide dark:bg-base-950/60">
+              <div
+                ref={containerRef}
+                id="playground-preview-container"
+                className="flex flex-col w-full mx-auto text-base transition-colors bg-white shadow-normal scrollbar-hide dark:bg-base-950/80"
+                style={{
+                  transition: "width 250ms ease-in-out, height 200ms ease",
                 }}
-              />
+              >
+                <iframe
+                  ref={iframeRef}
+                  id={iframeId}
+                  className="block w-full border-0 transition-colors scrollbar-hide dark:bg-base-950"
+                  title={`Preview ${iframeSrc}`}
+                  style={{ height: "auto", visibility: "visible" }}
+                  src={iframeSrc}
+                  onLoad={() => {
+                    requestHeight();
+                    // apply current mode as soon as possible
+                    applyModeToIframe(mode);
+                    setTimeout(requestHeight, 50);
+                    setTimeout(requestHeight, 650);
+                  }}
+                />
+              </div>
             </div>
-          </div>
-        )}
-        {tab === "code" && (
-          <div className="flex-grow  text-xs transition-colors bg-sand-50  code-pane size-full selection:bg-zinc-100 scrollbar-hide dark:bg-base-900 dark:text-base-200 dark:selection:bg-base-800/60">
-            {mode === "system" && !!arguments[0]?.highlightedSystem ? (
-              <div
-                className="overflow-x-auto scrollbar-hide"
-                dangerouslySetInnerHTML={{
-                  __html: arguments[0]!.highlightedSystem!,
-                }}
-              />
-            ) : mode === "light" && !!arguments[0]?.highlightedLight ? (
-              <div
-                className="overflow-x-auto scrollbar-hide"
-                dangerouslySetInnerHTML={{
-                  __html: arguments[0]!.highlightedLight!,
-                }}
-              />
-            ) : mode === "dark" && !!arguments[0]?.highlightedDark ? (
-              <div
-                className="overflow-x-auto scrollbar-hide"
-                dangerouslySetInnerHTML={{
-                  __html: arguments[0]!.highlightedDark!,
-                }}
-              />
-            ) : (
-              <pre className="overflow-x-auto text-zinc-800 whitespace-pre scrollbar-hide dark:text-base-200">
-                <code>{codeText}</code>
-              </pre>
-            )}
-          </div>
-        )}
-      </div>
+          )}
+          {tab === "code" && (
+            <div className="grow  text-xs transition-colors bg-sand-50  code-pane size-full selection:bg-zinc-100 scrollbar-hide dark:bg-base-900 dark:text-base-200 dark:selection:bg-base-800/60">
+              {mode === "system" && !!arguments[0]?.highlightedSystem ? (
+                <div
+                  className="overflow-x-auto scrollbar-hide"
+                  dangerouslySetInnerHTML={{
+                    __html: arguments[0]!.highlightedSystem!,
+                  }}
+                />
+              ) : mode === "light" && !!arguments[0]?.highlightedLight ? (
+                <div
+                  className="overflow-x-auto scrollbar-hide"
+                  dangerouslySetInnerHTML={{
+                    __html: arguments[0]!.highlightedLight!,
+                  }}
+                />
+              ) : mode === "dark" && !!arguments[0]?.highlightedDark ? (
+                <div
+                  className="overflow-x-auto scrollbar-hide"
+                  dangerouslySetInnerHTML={{
+                    __html: arguments[0]!.highlightedDark!,
+                  }}
+                />
+              ) : (
+                <pre className="overflow-x-auto text-zinc-800 whitespace-pre scrollbar-hide dark:text-base-200">
+                  <code>{codeText}</code>
+                </pre>
+              )}
+            </div>
+          )}
+        </div>
+    </div>
       {isOxbowModalOpen && (
         <div
           className="fixed inset-0 z-80 flex items-center justify-center p-4 bg-black/30 backdrop-blur-[1px]"
           onClick={() => setIsOxbowModalOpen(false)}
         >
           <div
-            className="w-full max-w-xl rounded-lg bg-white p-4 shadow-lg outline outline-base-200 dark:bg-base-950 dark:outline-base-800"
+            className="w-full max-w-xl rounded-lg bg-white p-4 shadow-lg  dark:bg-base-950"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between">
@@ -813,7 +873,7 @@ export default function PlaygroundIsland({
             </div>
             <div className="mt-3">
               <p className="text-xs text-base-600 dark:text-base-400">CLI command</p>
-              <div className="mt-1 flex items-center gap-2 rounded-md bg-base-50 px-3 py-2 font-mono text-xs text-base-900 outline outline-base-200 dark:bg-base-900 dark:text-base-100 dark:outline-base-700">
+              <div className="mt-1 flex items-center gap-2 rounded-md bg-base-25 px-3 h-10 font-mono text-xs text-base-900  dark:bg-base-900 dark:text-base-100 0">
                 <span className="truncate">{installCommand}</span>
                 <button
                   type="button"
@@ -831,52 +891,52 @@ export default function PlaygroundIsland({
               <div className="mt-2 flex items-center gap-1">
                 <button
                   type="button"
-                  className={`rounded-md px-2 py-1 text-[11px] transition-colors ${activeIdeTab === "code" ? "bg-base-900 text-white dark:bg-base-100 dark:text-base-900" : "bg-base-100 text-base-700 hover:bg-base-200 dark:bg-base-800 dark:text-base-300 dark:hover:bg-base-700"}`}
+                  className={`rounded-md px-2 py-1 text-[11px] transition-colors ${activeIdeTab === "code" ? "bg-base-900 text-white dark:bg-base-100 dark:text-base-900" : "bg-base-50 text-base-700 hover:bg-base-100 dark:bg-base-800 dark:text-base-300 dark:hover:bg-base-700"}`}
                   onClick={() => setActiveIdeTab("code")}
                 >
                   Code
                 </button>
                 <button
                   type="button"
-                  className={`rounded-md px-2 py-1 text-[11px] transition-colors ${activeIdeTab === "cursor" ? "bg-base-900 text-white dark:bg-base-100 dark:text-base-900" : "bg-base-100 text-base-700 hover:bg-base-200 dark:bg-base-800 dark:text-base-300 dark:hover:bg-base-700"}`}
+                  className={`rounded-md px-2 py-1 text-[11px] transition-colors ${activeIdeTab === "cursor" ? "bg-base-900 text-white dark:bg-base-100 dark:text-base-900" : "bg-base-50 text-base-700 hover:bg-base-100 dark:bg-base-800 dark:text-base-300 dark:hover:bg-base-700"}`}
                   onClick={() => setActiveIdeTab("cursor")}
                 >
                   Cursor
                 </button>
                 <button
                   type="button"
-                  className={`rounded-md px-2 py-1 text-[11px] transition-colors ${activeIdeTab === "vsCode" ? "bg-base-900 text-white dark:bg-base-100 dark:text-base-900" : "bg-base-100 text-base-700 hover:bg-base-200 dark:bg-base-800 dark:text-base-300 dark:hover:bg-base-700"}`}
+                  className={`rounded-md px-2 py-1 text-[11px] transition-colors ${activeIdeTab === "vsCode" ? "bg-base-900 text-white dark:bg-base-100 dark:text-base-900" : "bg-base-50 text-base-700 hover:bg-base-100 dark:bg-base-800 dark:text-base-300 dark:hover:bg-base-700"}`}
                   onClick={() => setActiveIdeTab("vsCode")}
                 >
                   VS Code
                 </button>
                 <button
                   type="button"
-                  className={`rounded-md px-2 py-1 text-[11px] transition-colors ${activeIdeTab === "openCode" ? "bg-base-900 text-white dark:bg-base-100 dark:text-base-900" : "bg-base-100 text-base-700 hover:bg-base-200 dark:bg-base-800 dark:text-base-300 dark:hover:bg-base-700"}`}
+                  className={`rounded-md px-2 py-1 text-[11px] transition-colors ${activeIdeTab === "openCode" ? "bg-base-900 text-white dark:bg-base-100 dark:text-base-900" : "bg-base-50 text-base-700 hover:bg-base-100 dark:bg-base-800 dark:text-base-300 dark:hover:bg-base-700"}`}
                   onClick={() => setActiveIdeTab("openCode")}
                 >
                   OpenCode
                 </button>
                 <button
                   type="button"
-                  className={`rounded-md px-2 py-1 text-[11px] transition-colors ${activeIdeTab === "claudeCode" ? "bg-base-900 text-white dark:bg-base-100 dark:text-base-900" : "bg-base-100 text-base-700 hover:bg-base-200 dark:bg-base-800 dark:text-base-300 dark:hover:bg-base-700"}`}
+                  className={`rounded-md px-2 py-1 text-[11px] transition-colors ${activeIdeTab === "claudeCode" ? "bg-base-900 text-white dark:bg-base-100 dark:text-base-900" : "bg-base-50 text-base-700 hover:bg-base-100 dark:bg-base-800 dark:text-base-300 dark:hover:bg-base-700"}`}
                   onClick={() => setActiveIdeTab("claudeCode")}
                 >
                   Claude Code
                 </button>
                 <button
                   type="button"
-                  className={`rounded-md px-2 py-1 text-[11px] transition-colors ${activeIdeTab === "claudeDesktop" ? "bg-base-900 text-white dark:bg-base-100 dark:text-base-900" : "bg-base-100 text-base-700 hover:bg-base-200 dark:bg-base-800 dark:text-base-300 dark:hover:bg-base-700"}`}
+                  className={`rounded-md px-2 py-1 text-[11px] transition-colors ${activeIdeTab === "claudeDesktop" ? "bg-base-900 text-white dark:bg-base-100 dark:text-base-900" : "bg-base-50 text-base-700 hover:bg-base-100 dark:bg-base-800 dark:text-base-300 dark:hover:bg-base-700"}`}
                   onClick={() => setActiveIdeTab("claudeDesktop")}
                 >
                   Claude Desktop
                 </button>
               </div>
-              <div className="mt-1 rounded-md bg-base-50 p-3 font-mono text-xs text-base-900 outline outline-base-200 dark:bg-base-900 dark:text-base-100 dark:outline-base-700">
+              <div className="mt-2 rounded-md bg-base-25 p-3 font-mono text-xs text-base-900  dark:bg-base-900 dark:text-base-100 relative">
                 <pre className="overflow-x-auto whitespace-pre">{activeMcpConfig}</pre>
                 <button
                   type="button"
-                  className="mt-2 text-xs text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white"
+                  className="mt-2 text-xs text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white absolute top-0 right-2"
                   onClick={copyMcpConfig}
                 >
                   {copiedMcpConfig ? "Copied" : "Copy config"}
