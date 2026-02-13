@@ -10,9 +10,7 @@ import {
   Download,
   ChevronLeft,
   ChevronRight,
-  ExternalLink,
-  Sun,
-  Moon,
+  Maximize,
 } from "lucide-react";
 type Mode = "light" | "dark";
 type Tab = "preview" | "code";
@@ -51,25 +49,30 @@ export default function PlaygroundIsland({
 }: Props) {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  // Persist mode in localStorage
   const [mode, setModeState] = useState<Mode>("light");
-  // Always sync mode from localStorage on mount (and when remounting after navigation)
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const saved = window.localStorage.getItem("oxbow-playground-mode");
-      if (saved === "light" || saved === "dark") {
-        setModeState(saved);
-      } else if (saved === "system") {
-        setModeState("light");
-      }
-    }
+    if (typeof window === "undefined") return;
+    const getGlobalMode = (): Mode => {
+      const html = document.documentElement;
+      const dataTheme = html.getAttribute("data-theme");
+      if (dataTheme === "dark") return "dark";
+      if (dataTheme === "light") return "light";
+      if (html.classList.contains("dark")) return "dark";
+      return window.localStorage.getItem("theme") === "dark" ? "dark" : "light";
+    };
+    const syncMode = () => setModeState(getGlobalMode());
+    syncMode();
+    const observer = new MutationObserver(syncMode);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class", "data-theme"],
+    });
+    window.addEventListener("storage", syncMode);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("storage", syncMode);
+    };
   }, []);
-  const setMode = (m: Mode) => {
-    setModeState(m);
-    if (typeof window !== "undefined") {
-      window.localStorage.setItem("oxbow-playground-mode", m);
-    }
-  };
   const [tab, setTab] = useState<Tab>(initialTab || "preview");
   const [copiedUrl, setCopiedUrl] = useState(false);
   const [copiedCode, setCopiedCode] = useState(false);
@@ -344,7 +347,7 @@ export default function PlaygroundIsland({
     className?: string;
   }) => (
     <span
-      className={`pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-background px-3 py-1.5 text-xs font-medium text-foreground opacity-0 shadow-sm transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100 ${className}`}
+      className={`pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-foreground px-3 py-1.5 text-xs font-medium text-background opacity-0 shadow-sm transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100 ${className}`}
     >
       {label}
     </span>
@@ -363,7 +366,7 @@ export default function PlaygroundIsland({
       <div ref={toolbarRootRef} className={toolbarWrapperClass}>
         <div className="pb-2">
         {/* Left: index + tools */}
-        <div className="flex items-center gap-2 w-full overflow-x-auto">
+        <div className="flex items-center gap-2 w-full">
          <div className="items-center hidden gap-2 md:flex">
             <div className="relative group">
               <button
@@ -380,20 +383,6 @@ export default function PlaygroundIsland({
                 className="left-0 translate-x-0 px-2.5 py-1"
               />
             </div>
-            <ToolbarDivider />
-            <span className="items-center hidden gap-2 md:flex">
-              <div className="relative group">
-                <button
-                  onClick={() => setMode(mode === "light" ? "dark" : "light")}
-                  className={`${iconButtonBase} ${iconButtonActive}`}
-                >
-                  {mode === "light" ? <Sun size={14} /> : <Moon size={14} />}
-                </button>
-                <ToolbarTooltip
-                  label={mode === "light" ? "Switch to dark mode" : "Switch to light mode"}
-                />
-              </div>
-            </span>
             <ToolbarDivider />
             <div className="items-center hidden gap-2 md:flex">
               <div className="relative group">
@@ -474,7 +463,7 @@ export default function PlaygroundIsland({
                 className={`${iconButtonBase} ${iconButtonText}`}
                 aria-label="Open in new window"
               >
-                <ExternalLink size={14} />
+                <Maximize size={14} />
               </button>
               <ToolbarTooltip label="Open in new window" />
             </div>
