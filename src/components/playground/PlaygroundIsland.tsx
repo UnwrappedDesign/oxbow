@@ -8,7 +8,6 @@ import {
   Copy,
   Check,
   Download,
-  ChevronDown,
   ChevronLeft,
   ChevronRight,
   ExternalLink,
@@ -81,12 +80,7 @@ export default function PlaygroundIsland({
   const [copiedInstallCommand, setCopiedInstallCommand] = useState(false);
   const [copiedMcpConfig, setCopiedMcpConfig] = useState(false);
   const [activeIdeTab, setActiveIdeTab] = useState<IdeTab>("code");
-  const [navOpen, setNavOpen] = useState<null | "cat" | "sub" | "idx">(null);
-  const navMenuRef = useRef<HTMLDivElement | null>(null);
-  const [navPos, setNavPos] = useState<{ top: number; left: number }>({
-    top: 0,
-    left: 0,
-  });
+  const toolbarRootRef = useRef<HTMLDivElement | null>(null);
   const codeText = ppcode;
   const codePaneDark = mode === "dark";
   const applyModeToIframe = (m: Mode) => {
@@ -176,20 +170,12 @@ export default function PlaygroundIsland({
   useEffect(() => {
     const onEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        setNavOpen(null);
         setIsOxbowModalOpen(false);
       }
     };
-    const onClick = (e: MouseEvent) => {
-      const t = e.target as Node;
-      if (navMenuRef.current?.contains(t)) return;
-      setNavOpen(null);
-    };
     window.addEventListener("keydown", onEsc);
-    window.addEventListener("click", onClick);
     return () => {
       window.removeEventListener("keydown", onEsc);
-      window.removeEventListener("click", onClick);
     };
   }, [tab]);
   useEffect(() => {
@@ -253,11 +239,6 @@ export default function PlaygroundIsland({
     else el.style.width = "100%";
     setTimeout(requestHeight, 260);
   };
-  const fmt = (s: string) =>
-    (s || "").replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-  const count = (c: string, s: string) =>
-    (arguments[0]?.counts || {})[`${c}/${s}`] || 1;
-  const leftPadZero = (n: number | string) => n.toString().padStart(2, "0");
   const parsedFromIframe = useMemo(() => {
     try {
       const url = new URL(iframeSrc, "http://localhost");
@@ -348,30 +329,12 @@ export default function PlaygroundIsland({
   useEffect(() => {
     setCopiedMcpConfig(false);
   }, [activeIdeTab]);
-  const clamp = (n: number, min: number, max: number) =>
-    Math.max(min, Math.min(max, n));
   const openInNewWindow = () => {
     try {
       const url = new URL(iframeSrc, window.location.origin);
       url.searchParams.set("mode", mode);
       window.open(url.toString(), "_blank", "noopener,noreferrer");
     } catch {}
-  };
-  const openNavMenu = (
-    which: "cat" | "sub" | "idx",
-    ev: React.MouseEvent<HTMLButtonElement>,
-  ) => {
-    ev.stopPropagation(); // Only stop propagation for nav menu buttons
-    if (navOpen === which) {
-      setNavOpen(null);
-      return;
-    }
-    const r = ev.currentTarget.getBoundingClientRect();
-    setNavPos({
-      top: Math.min(r.bottom + 8, window.innerHeight - 10),
-      left: Math.max(8, r.right - 220),
-    });
-    setNavOpen(which);
   };
   const ToolbarTooltip = ({
     label,
@@ -386,112 +349,105 @@ export default function PlaygroundIsland({
       {label}
     </span>
   );
+  const ToolbarDivider = () => (
+    <div className="w-px h-4 bg-muted hidden md:flex" aria-hidden="true" />
+  );
   const iconButtonBase =
-    "flex size-8 items-center justify-center rounded-md bg-muted transition-colors hover:bg-background/80";
+    "flex size-8 items-center justify-center rounded-md bg-muted transition-colors hover:bg-muted/70";
   const iconButtonText = "text-muted-foreground hover:text-foreground";
   const iconButtonActive = "text-foreground shadow-xs";
-  const textButtonBase =
-    "flex h-8 items-center gap-2 rounded-md bg-muted px-2.5 text-xs transition-colors hover:bg-background/80";
-  const navMenuBase =
-    "fixed z-50 mt-2 rounded-lg shadow-md text-sm bg-background text-foreground";
-  const navMenuItemBase =
-    "flex items-center justify-between w-full rounded-lg px-3 py-2.5 text-left text-xs transition-colors hover:bg-background/70";
+  const toolbarWrapperClass = "mx-auto px-8 w-full max-w-3xl";
+  const previewWrapperClass = "max-w-screen 2xl:max-w-[1440px] w-full mx-auto px-8";
   return (
     <div className="relative">
-  <div className="flex items-center justify-between gap-2 pb-2">
+      <div ref={toolbarRootRef} className={toolbarWrapperClass}>
+        <div className="pb-2">
         {/* Left: index + tools */}
-        <div className="flex items-center gap-1.5">
-          <div className="relative group">
-            <button
-              type="button"
-              onClick={copyUrl}
-              className={`inline-flex h-8 min-w-8 items-center justify-center rounded-md bg-muted px-2 text-xs transition-colors hover:bg-background/80 ${copiedUrl ? "text-foreground" : "text-muted-foreground hover:text-foreground"}`}
-              title="Copy block URL"
-              aria-label="Copy block URL"
-            >
-              {copiedUrl ? <Check size={14} /> : iframeId.replace("iframe-", "")}
-            </button>
-            <ToolbarTooltip
-              label="Copy URL"
-              className="left-0 translate-x-0 px-2.5 py-1"
-            />
-          </div>
-          <div className="w-px h-4 bg-muted hidden md:flex"></div>
-          <span className="items-center hidden gap-2 md:flex">
+        <div className="flex items-center gap-2 w-full overflow-x-auto">
+         <div className="items-center hidden gap-2 md:flex">
             <div className="relative group">
               <button
-                onClick={() => setViewportWidth("mobile")}
-                className={`${iconButtonBase} ${viewport === "mobile" ? iconButtonActive : iconButtonText}`}
+                type="button"
+                onClick={copyUrl}
+                className={`inline-flex h-8 min-w-8 items-center justify-center rounded-md bg-muted px-2 text-xs transition-colors hover:bg-muted/70 ${copiedUrl ? "text-foreground" : "text-muted-foreground hover:text-foreground"}`}
+                title="Copy block URL"
+                aria-label="Copy block URL"
               >
-                <Smartphone size={14} />
+                {copiedUrl ? <Check size={14} /> : iframeId.replace("iframe-", "")}
               </button>
-              <ToolbarTooltip label="Mobile view" />
+              <ToolbarTooltip
+                label="Copy URL"
+                className="left-0 translate-x-0 px-2.5 py-1"
+              />
             </div>
-            <div className="relative group">
-              <button
-                onClick={() => setViewportWidth("tablet")}
-                className={`${iconButtonBase} ${viewport === "tablet" ? iconButtonActive : iconButtonText}`}
-              >
-                <Tablet size={14} />
-              </button>
-              <ToolbarTooltip label="Tablet view" />
+            <ToolbarDivider />
+            <span className="items-center hidden gap-2 md:flex">
+              <div className="relative group">
+                <button
+                  onClick={() => setMode(mode === "light" ? "dark" : "light")}
+                  className={`${iconButtonBase} ${iconButtonActive}`}
+                >
+                  {mode === "light" ? <Sun size={14} /> : <Moon size={14} />}
+                </button>
+                <ToolbarTooltip
+                  label={mode === "light" ? "Switch to dark mode" : "Switch to light mode"}
+                />
+              </div>
+            </span>
+            <ToolbarDivider />
+            <div className="items-center hidden gap-2 md:flex">
+              <div className="relative group">
+                <button
+                  onClick={() => setTab("preview")}
+                  className={`${iconButtonBase} ${tab === "preview" ? iconButtonActive : iconButtonText}`}
+                >
+                  <Eye size={14} />
+                </button>
+                <ToolbarTooltip label="Preview" />
+              </div>
+              <div className="relative group">
+                <button
+                  onClick={() => setTab("code")}
+                  className={`${iconButtonBase} ${tab === "code" ? iconButtonActive : iconButtonText}`}
+                >
+                  <Code size={14} />
+                </button>
+                <ToolbarTooltip label="Code" />
+              </div>
             </div>
-            <div className="relative group">
-              <button
-                onClick={() => setViewportWidth("desktop")}
-                className={`${iconButtonBase} ${viewport === "desktop" ? iconButtonActive : iconButtonText}`}
-              >
-                <Monitor size={14} />
-              </button>
-              <ToolbarTooltip label="Desktop view" />
-            </div>
-          </span>
-          <div className="w-px h-4 bg-muted hidden md:flex"></div>
-          <span className="items-center hidden gap-2 md:flex">
-            <div className="relative group">
-              <button
-                onClick={() => setMode("light")}
-                className={`${iconButtonBase} ${mode === "light" ? iconButtonActive : iconButtonText}`}
-              >
-                <Sun size={14} />
-              </button>
-              <ToolbarTooltip label="Light mode" />
-            </div>
-            <div className="relative group">
-              <button
-                onClick={() => setMode("dark")}
-                className={`${iconButtonBase} ${mode === "dark" ? iconButtonActive : iconButtonText}`}
-              >
-                <Moon size={14} />
-              </button>
-              <ToolbarTooltip label="Dark mode" />
-            </div>
-          </span>
-          <div className="w-px h-4 bg-muted hidden md:flex"></div>
-          {/* Code controls next to theme toggles */}
-          <div className="items-center hidden gap-1.5 md:flex">
-            <div className="relative group">
-              <button
-                onClick={() => setTab("preview")}
-                className={`${iconButtonBase} ${tab === "preview" ? iconButtonActive : iconButtonText}`}
-              >
-                <Eye size={14} />
-              </button>
-              <ToolbarTooltip label="Preview" />
-            </div>
-            <div className="relative group">
-              <button
-                onClick={() => setTab("code")}
-                className={`${iconButtonBase} ${tab === "code" ? iconButtonActive : iconButtonText}`}
-              >
-                <Code size={14} />
-              </button>
-              <ToolbarTooltip label="Code" />
-            </div>
-            </div>
-          <div className="w-px h-4 bg-muted hidden md:flex"></div>
+            <ToolbarDivider />
+        
+              <span className="items-center hidden gap-2 md:flex">
+                <div className="relative group">
+                  <button
+                    onClick={() => setViewportWidth("mobile")}
+                    className={`${iconButtonBase} ${viewport === "mobile" ? iconButtonActive : iconButtonText}`}
+                  >
+                    <Smartphone size={14} />
+                  </button>
+                  <ToolbarTooltip label="Mobile view" />
+                </div>
+                <div className="relative group">
+                  <button
+                    onClick={() => setViewportWidth("tablet")}
+                    className={`${iconButtonBase} ${viewport === "tablet" ? iconButtonActive : iconButtonText}`}
+                  >
+                    <Tablet size={14} />
+                  </button>
+                  <ToolbarTooltip label="Tablet view" />
+                </div>
+                <div className="relative group">
+                  <button
+                    onClick={() => setViewportWidth("desktop")}
+                    className={`${iconButtonBase} ${viewport === "desktop" ? iconButtonActive : iconButtonText}`}
+                  >
+                    <Monitor size={14} />
+                  </button>
+                  <ToolbarTooltip label="Desktop view" />
+                </div>
+              </span>
+                      <ToolbarDivider />
 
-          <div className="items-center hidden gap-2 md:flex">
             <div className="relative group">
               <button
                 onClick={copyCode}
@@ -544,179 +500,46 @@ export default function PlaygroundIsland({
               <ToolbarTooltip label="Install with MCP" />
             </div>
           </div>
-        </div>
-        {/* Right: code controls + nav (if provided) */}
-        <div className="items-center justify-end hidden gap-2 md:flex">
-          {arguments[0]?.subsByCat && (
-            <>
-              {/* Category */}
-              <div className="relative group">
-                <button
-                  onClick={(e) => openNavMenu("cat", e)}
-                  className={`${textButtonBase} text-foreground`}
-                >
-                  <span className="capitalize">
-                    {fmt(arguments[0]!.navCat || "")}
-                  </span>
-                  <ChevronDown className="size-3.5" />
-                </button>
-                <ToolbarTooltip label="Category" />
-              </div>
-              {/* Block */}
-              <div className="relative group">
-                <button
-                  onClick={(e) => openNavMenu("sub", e)}
-                  className={`${textButtonBase} hidden md:flex text-foreground`}
-                >
-                  <span className="capitalize">
-                    {fmt(arguments[0]!.navSub || "")}
-                  </span>
-                  <ChevronDown className="size-3.5" />
-                </button>
-                <ToolbarTooltip label="Block" />
-              </div>
-              {/* Number */}
-              <div className="relative group">
-                <button
-                  onClick={(e) => openNavMenu("idx", e)}
-                  className={`${textButtonBase} hidden md:flex text-foreground hover:text-foreground`}
-                >
-                 <div>
-                    <span>#</span>
-                    
-                    <span>
-                      {leftPadZero(
-                        clamp(
-                          arguments[0]!.navIdx || 1,
-                          1,
-                          count(
-                            arguments[0]!.navCat || "",
-                            arguments[0]!.navSub || "",
-                          ),
-                        ),
-                      )}
-                    </span>
-                 </div>
-                  <ChevronDown className="size-3.5" />
-                </button>
-                <ToolbarTooltip label="Block number" />
-              </div>
-           <div className="w-px h-4 bg-muted hidden md:flex"></div>
+           <div className="flex items-center gap-2 ml-auto">
+              {arguments[0]?.subsByCat && (
+                <>
 
-              {navOpen === "cat" && (
-                <div
-                  ref={navMenuRef}
-                  className={`${navMenuBase} w-56`}
-                  style={{ top: navPos.top, left: navPos.left }}
-                >
-                  <div className="p-2 overflow-hidden max-h-64">
-                    {Object.keys(arguments[0]!.subsByCat!)
-                      .sort()
-                      .map((key) => (
-                        <button
-                          key={key}
-                          onClick={() => {
-                            const first =
-                              (arguments[0]!.subsByCat![key] || [])[0] || "";
-                            window.location.assign(
-                              `/playground/${key}/${first}/${leftPadZero(clamp(arguments[0]!.navIdx || 1, 1, count(key, first)))}`,
-                            );
-                          }}
-                          className={navMenuItemBase}
-                        >
-                          <span className="capitalize">{fmt(key)}</span>
-                          {arguments[0]!.navCat === key && (
-                            <Check className="size-4 text-foreground" />
-                          )}
-                        </button>
-                      ))}
-                  </div>
-                </div>
-              )}
-              {navOpen === "sub" && (
-                <div
-                  ref={navMenuRef}
-                  className={`${navMenuBase} w-64`}
-                  style={{ top: navPos.top, left: navPos.left }}
-                >
-                  <div className="p-2 overflow-auto max-h-64">
-                    {(
-                      arguments[0]!.subsByCat![arguments[0]!.navCat || ""] || []
-                    ).map((name) => (
+                  <div className="flex items-center gap-2">
+                    {arguments[0]!.prevHref ? (
                       <a
-                        key={name}
-                        href={`/playground/${arguments[0]!.navCat}/${name}/${leftPadZero(clamp(arguments[0]!.navIdx || 1, 1, count(arguments[0]!.navCat || "", name)))}`}
-                        className={navMenuItemBase}
+                        href={arguments[0]!.prevHref}
+                        aria-label="Previous"
+                        className={`${iconButtonBase} ${iconButtonText}`}
                       >
-                        <span className="capitalize">{fmt(name)}</span>
-                        {arguments[0]!.navSub === name && (
-                          <Check className="size-4 text-foreground" />
-                        )}
+                        <ChevronLeft size={14} />
                       </a>
-                    ))}
-                  </div>
-                </div>
-              )}
-              {navOpen === "idx" && (
-                <div
-                  ref={navMenuRef}
-                  className={`${navMenuBase} w-40`}
-                  style={{ top: navPos.top, left: navPos.left }}
-                >
-                  <div className="grid grid-cols-4 gap-2 p-2 overflow-auto max-h-64">
-                    {Array.from(
-                      {
-                        length: count(
-                          arguments[0]!.navCat || "",
-                          arguments[0]!.navSub || "",
-                        ),
-                      },
-                      (_, i) => i + 1,
-                    ).map((n) => (
+                    ) : (
+                      <div className="flex items-center justify-center opacity-30 text-muted-foreground">
+                        <ChevronLeft size={14} />
+                      </div>
+                    )}
+                    {arguments[0]!.nextHref ? (
                       <a
-                        key={n}
-                        href={`/playground/${arguments[0]!.navCat}/${arguments[0]!.navSub}/${leftPadZero(n)}`}
-                        className={`flex h-8 items-center justify-center rounded-lg text-xs transition-colors hover:bg-background/70 ${n === clamp(arguments[0]!.navIdx || 1, 1, count(arguments[0]!.navCat || "", arguments[0]!.navSub || "")) ? "text-foreground font-medium" : "text-muted-foreground"}`}
+                        href={arguments[0]!.nextHref}
+                        aria-label="Next"
+                        className={`${iconButtonBase} ${iconButtonText}`}
                       >
-                        {n}
+                        <ChevronRight size={14} />
                       </a>
-                    ))}
+                    ) : (
+                      <div className="flex items-center justify-center opacity-30 text-muted-foreground">
+                        <ChevronRight size={14} />
+                      </div>
+                    )}
                   </div>
-                </div>
+                </>
               )}
-              {/* Pagination */}
-              {arguments[0]!.prevHref ? (
-                <a
-                  href={arguments[0]!.prevHref}
-                  aria-label="Previous"
-                  className={`${iconButtonBase} ${iconButtonText}`}
-                >
-                  <ChevronLeft size={14} />
-                </a>
-              ) : (
-                <div className="flex items-center justify-center opacity-30 text-muted-foreground">
-                  <ChevronLeft size={14} />
-                </div>
-              )}
-              
-              {arguments[0]!.nextHref ? (
-                <a
-                  href={arguments[0]!.nextHref}
-                  aria-label="Next"
-                  className={`${iconButtonBase} ${iconButtonText}`}
-                >
-                  <ChevronRight size={14} />
-                </a>
-              ) : (
-                <div className="flex items-center justify-center opacity-30 text-muted-foreground">
-                  <ChevronRight size={14} />
-                </div>
-              )}
-            </>
-          )}
+           </div>
+        </div>
         </div>
       </div>
-    <div className="mt-4">
+      <div className={previewWrapperClass}>
+        <div className="mt-4">
         <div className="relative flex w-full min-h-0 overflow-hidden z-1 isolate scrollbar-hide bg-background/60 ">
           {tab === "preview" && (
             <div className="flex flex-col items-center w-full scrollbar-hide bg-background/60  overflow-hidden border border-border rounded-lg shadow">
@@ -763,7 +586,8 @@ export default function PlaygroundIsland({
             </div>
           )}
         </div>
-    </div>
+        </div>
+      </div>
       {isOxbowModalOpen && (
         <div
           className="fixed inset-0 z-80 flex items-center justify-center p-4 bg-background/30 backdrop-blur-[1px]"

@@ -29,23 +29,6 @@ const templates: { [key: string]: Template[] } = {
       ],
     },
     {
-      name: "Creative Hero Sections",
-      link: "/playground/marketing/creative-heros",
-      image: "creativeHeros.png",
-      tags: [
-        "portfolio",
-        "creative",
-        "hero",
-        "header",
-        "personal site",
-        "freelancer",
-        "self-introduction",
-        "about me",
-        "bold intro",
-      ],
-    },
-
-    {
       name: "Bento Grids",
       link: "/playground/marketing/bento-grids",
       image: "bento.png",
