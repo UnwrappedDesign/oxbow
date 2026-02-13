@@ -73,7 +73,7 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
     </div>
     <!-- Sidebar panel (distinct from 01: narrower + support use case) -->
     <aside
-      class="fixed inset-y-0 left-0 z-50 w-72 lg:w-80 h-dvh lg:h-dvh lg:relative lg:inset-auto lg:left-auto transform transition-transform duration-200 -translate-x-full lg:translate-x-0 bg-background outline outline-1 outline-border flex flex-col overflow-hidden"
+      class="fixed z-50 inset-y-0 left-0 w-72 lg:w-80 lg:static lg:translate-x-0 transform transition-transform duration-200 -translate-x-full lg:opacity-100 bg-background outline outline-1 outline-border flex flex-col"
       :class="open ? 'translate-x-0' : ''"
     >
       <!-- Header -->
@@ -293,80 +293,6 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
             </li>
           </ul>
         </div>
-        <!-- Quick filters -->
-        <div class="pt-3 mt-3 border-t border-border">
-          <p
-            class="px-3 text-[0.70rem] font-semibold tracking-wide text-muted-foreground"
-          >
-            Quick filters
-          </p>
-          <div class="px-3 mt-2 flex flex-wrap gap-2">
-            <button
-              @click="filters.mine=!filters.mine"
-              class="h-7 px-2 rounded-md text-xs"
-              :class="filters.mine ? 'bg-background/10 text-foreground' : 'text-muted-foreground hover:bg-background/5'"
-              >My open</button
-            >
-            <button
-              @click="filters.unassigned=!filters.unassigned"
-              class="h-7 px-2 rounded-md text-xs"
-              :class="filters.unassigned ? 'bg-background/10 text-foreground' : 'text-muted-foreground hover:bg-background/5'"
-              >Unassigned</button
-            >
-            <button
-              @click="filters.sla=!filters.sla"
-              class="h-7 px-2 rounded-md text-xs"
-              :class="filters.sla ? 'bg-background/10 text-foreground' : 'text-muted-foreground hover:bg-background/5'"
-              >SLA</button
-            >
-          </div>
-        </div>
-        <!-- Tags -->
-        <div class="pt-3 mt-3 border-t border-border">
-          <p
-            class="px-3 text-[0.70rem] font-semibold tracking-wide text-muted-foreground"
-          >
-            Tags
-          </p>
-          <ul class="mt-1 space-y-1">
-            <li>
-              <button
-                @click="tags.billing=!tags.billing"
-                class="w-full h-8 px-3 rounded-md flex items-center justify-between text-xs text-muted-foreground hover:bg-background/5"
-              >
-                <span>billing</span>
-                <span
-                  class="text-[0.70rem] px-1.5 py-0.5 rounded text-foreground outline outline-1 outline-border bg-background/10 outline-border/10"
-                  >18</span
-                >
-              </button>
-            </li>
-            <li>
-              <button
-                @click="tags.bug=!tags.bug"
-                class="w-full h-8 px-3 rounded-md flex items-center justify-between text-xs text-muted-foreground hover:bg-background/5"
-              >
-                <span>bug</span>
-                <span
-                  class="text-[0.70rem] px-1.5 py-0.5 rounded text-foreground outline outline-1 outline-border bg-background/10 outline-border/10"
-                  >12</span
-                >
-              </button>
-            </li>
-            <li>
-              <button
-                @click="tags.feature=!tags.feature"
-                class="w-full h-8 px-3 rounded-md flex items-center justify-between text-xs text-muted-foreground hover:bg-background/5"
-              >
-                <span>feature</span>
-                <span
-                  class="text-[0.70rem] px-1.5 py-0.5 rounded text-foreground outline outline-1 outline-border bg-background/10 outline-border/10"
-                  >7</span
-                >
-              </button>
-            </li>
-          </ul>
-        </div>
         <!-- Pinned -->
         <div class="pt-3 mt-3 border-t border-border">
           <p
@@ -458,36 +384,6 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
               </a>
             </li>
           </ul>
-        </div>
-        <!-- Shortcuts -->
-        <div class="pt-3 mt-3 border-t border-border">
-          <p
-            class="px-3 text-[0.70rem] font-semibold tracking-wide text-muted-foreground"
-          >
-            Shortcuts
-          </p>
-          <div class="px-3 mt-2 flex flex-wrap gap-2">
-            <button
-              class="h-7 px-2 rounded-md text-xs text-muted-foreground hover:bg-background/5"
-            >
-              New ticket
-            </button>
-            <button
-              class="h-7 px-2 rounded-md text-xs text-muted-foreground hover:bg-background/5"
-            >
-              Bulk assign
-            </button>
-            <button
-              class="h-7 px-2 rounded-md text-xs text-muted-foreground hover:bg-background/5"
-            >
-              Export
-            </button>
-            <button
-              class="h-7 px-2 rounded-md text-xs text-muted-foreground hover:bg-background/5"
-            >
-              Archive
-            </button>
-          </div>
         </div>
       </nav>
       <!-- Sticky footer: pinned at bottom; dropdown overlays upward -->

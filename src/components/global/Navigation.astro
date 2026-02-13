@@ -10,64 +10,23 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 
 <div
   class="fixed top-0 left-0 right-0 z-50 items-center w-full mx-auto duration-300 bg-background"
-  x-data="navigation()"
 >
   <Wrapper variant="nav" class="w-full">
     <div
-      class="flex flex-col w-full lg:bg-none md:flex-row md:items-center md:justify-between"
-      x-data="{ open: false }"
+      class="flex w-full items-center gap-4 text-xs lg:text-sm font-medium text-muted-foreground"
     >
-      <div class="flex flex-row items-center justify-between lg:justify-start">
-        <a
-          href="/"
-          class="flex items-center w-full gap-2 sm:w-auto text-foreground text-base"
-          ><Logo class="h-7" />
-          <span class="-mt-1 font-medium">oxbow</span></a
-        >
-        <button
-          aria-label="open"
-          @click="open = !open"
-          class="inline-flex items-center justify-center p-2 text-foreground focus:outline-none focus:text-muted-foreground md:hidden"
-          ><svg
-            viewBox="0 0 24 24"
-            class="size-6"
-            fill="none"
-            stroke="currentColor"
-          >
-            <path
-              d="M4 6h16M4 12h16M4 18h16"
-              :class="{'hidden': open, 'inline-flex': !open }"
-              class="inline-flex"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"></path>
-            <path
-              d="M6 18L18 6M6 6l12 12"
-              :class="{'hidden': !open, 'inline-flex': open }"
-              class="hidden"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"></path>
-          </svg>
-        </button>
-      </div>
-      <nav
-        :class="{'flex': open, 'hidden': !open}"
-        class="flex-col items-center justify-end text-sm grow hidden font-medium text-muted-foreground md:flex md:flex-row md:pb-0 gap-x-4 gap-y-4"
-      >
-        <div class="flex flex-col items-center gap-3 md:flex-row">
-          <a
-            class="hover:text-foreground duration-300 focus:outline-none"
-            href="https://github.com/UnwrappedDesign/oxbow">GitHub</a
-          >
-          <a
-            class="hover:text-foreground duration-300 focus:outline-none"
-            href="https://lexingtonthemes.com">Astro Templates</a
-          >
+      <a href="/"> oxbow</a>
 
-          <ThemeToggle />
-        </div>
-      </nav>
+      <a
+        class="hover:text-foreground duration-300 focus:outline-none ml-auto"
+        href="https://github.com/UnwrappedDesign/oxbow">GitHub</a
+      >
+      <a
+        class="hover:text-foreground duration-300 focus:outline-none"
+        href="https://lexingtonthemes.com">Astro Templates</a
+      >
+
+      <ThemeToggle />
     </div>
   </Wrapper>
 </div>

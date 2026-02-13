@@ -107,7 +107,7 @@ const component = matchKey ? await modules[matchKey]() : undefined;
             const d = document;
             const b = d.body;
             const e = d.documentElement;
-            return Math.max(
+            const flowHeight = Math.max(
               b?.scrollHeight || 0,
               e?.scrollHeight || 0,
               b?.offsetHeight || 0,
@@ -115,6 +115,18 @@ const component = matchKey ? await modules[matchKey]() : undefined;
               b?.clientHeight || 0,
               e?.clientHeight || 0,
             );
+            // Fixed/sticky layouts (e.g. sidebars) do not always affect scrollHeight.
+            // Include their visual bottom edge so iframe height is not under-reported.
+            let floatingBottom = 0;
+            const all = d.body?.querySelectorAll("*") || [];
+            for (const node of all) {
+              const el = node;
+              const pos = window.getComputedStyle(el).position;
+              if (pos !== "fixed" && pos !== "sticky") continue;
+              const rect = el.getBoundingClientRect();
+              floatingBottom = Math.max(floatingBottom, rect.bottom + window.scrollY);
+            }
+            return Math.max(flowHeight, floatingBottom);
           } catch (_) {
             return 0;
           }
