@@ -1,0 +1,233 @@
+---
+import Search from "@/components/fundations/icons/Search.astro";
+import Command from "@/components/fundations/icons/Command.astro";
+
+interface SearchItem {
+  title: string;
+  description: string;
+  href: string;
+}
+
+interface Props {
+  items: SearchItem[];
+}
+
+const { items = [] } = Astro.props as Props;
+---
+
+<button
+  type="button"
+  class="inline-flex items-center gap-1.5 px-1.5 py-1.5 h-7 text-xs text-muted-foreground bg-background border border-border rounded-sm hover:bg-muted transition-colors"
+  data-blocks-search-trigger
+  aria-label="Search blocks"
+>
+  <Search size="xs" />
+
+  <kbd class="inline-flex items-center gap-0.5 text-muted-foreground">
+    <Command size="xs" />
+    <span class="text-sm font-medium">K</span>
+  </kbd>
+</button>
+
+<script is:inline define:vars={{ items }}>
+  (() => {
+    function init() {
+      if (document.getElementById("blocks-search-modal")) {
+        document
+          .querySelectorAll("[data-blocks-search-trigger]")
+          .forEach((trigger) => {
+            if (!trigger.hasAttribute("data-initialized")) {
+              trigger.setAttribute("data-initialized", "true");
+              trigger.addEventListener("click", () => {
+                const modal = document.getElementById("blocks-search-modal");
+                if (!modal) return;
+                modal.classList.remove("hidden");
+                document.body.style.overflow = "hidden";
+                const input = modal.querySelector("[data-search-input]");
+                setTimeout(() => {
+                  if (input instanceof HTMLInputElement) input.focus();
+                }, 50);
+              });
+            }
+          });
+        return;
+      }
+
+      const modal = document.createElement("div");
+      modal.id = "blocks-search-modal";
+      modal.className = "fixed inset-0 z-[100] hidden";
+      modal.setAttribute("role", "dialog");
+      modal.setAttribute("aria-modal", "true");
+      modal.innerHTML =
+        '<div class="absolute inset-0 bg-overlay/10 backdrop-blur-sm" data-search-backdrop></div><div class="relative flex items-start justify-center pt-[18vh] px-4"><div class="w-full max-w-md bg-popover border border-border rounded-xl shadow-xl overflow-hidden"><div class="flex items-center gap-3 px-3 border-b border-border"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground shrink-0"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input type="text" placeholder="Search blocks..." class="flex-1 h-12 text-sm bg-transparent border-0 outline-none focus:outline-none focus:ring-0 shadow-none placeholder:text-muted-foreground text-foreground" data-search-input /><button type="button" class="text-[10px] text-muted-foreground px-1.5 py-1 rounded border border-border bg-muted hover:bg-muted/80" data-search-close>ESC</button></div><div class="max-h-[50vh] overflow-y-auto" data-search-results><div class="py-12 text-sm text-muted-foreground text-center" data-search-hint>Type to search blocks...</div><div class="py-12 text-sm text-muted-foreground text-center hidden" data-search-empty>No blocks found</div></div></div></div>';
+      document.body.appendChild(modal);
+
+      const input = modal.querySelector("[data-search-input]");
+      const results = modal.querySelector("[data-search-results]");
+      const emptyState = modal.querySelector("[data-search-empty]");
+      const hint = modal.querySelector("[data-search-hint]");
+      const closeBtn = modal.querySelector("[data-search-close]");
+
+      if (
+        !(input instanceof HTMLInputElement) ||
+        !(results instanceof HTMLElement) ||
+        !(emptyState instanceof HTMLElement) ||
+        !(hint instanceof HTMLElement)
+      ) {
+        return;
+      }
+
+      let selectedIndex = -1;
+
+      const search = (query) => {
+        if (!query.trim()) return [];
+        const q = query.toLowerCase();
+        return items.filter((item) => {
+          return (
+            item.title.toLowerCase().includes(q) ||
+            item.description.toLowerCase().includes(q)
+          );
+        });
+      };
+
+      const updateSelection = () => {
+        const resultItems = results.querySelectorAll("[data-result-item]");
+        resultItems.forEach((item, index) => {
+          if (!(item instanceof HTMLElement)) return;
+          if (index === selectedIndex) {
+            item.classList.add("bg-muted");
+            item.scrollIntoView({ block: "nearest" });
+          } else {
+            item.classList.remove("bg-muted");
+          }
+        });
+      };
+
+      const renderResults = (matches) => {
+        results
+          .querySelectorAll("[data-result-item]")
+          .forEach((item) => item.remove());
+        selectedIndex = -1;
+
+        if (!input.value.trim()) {
+          emptyState.classList.add("hidden");
+          hint.classList.remove("hidden");
+          return;
+        }
+
+        hint.classList.add("hidden");
+
+        if (!matches.length) {
+          emptyState.classList.remove("hidden");
+          return;
+        }
+
+        emptyState.classList.add("hidden");
+
+        matches.forEach((item, index) => {
+          const link = document.createElement("a");
+          link.setAttribute("data-result-item", "");
+          link.setAttribute("data-result-index", String(index));
+          link.href = item.href;
+          link.className =
+            "flex flex-col gap-0.5 px-4 py-3 hover:bg-muted transition-colors cursor-pointer border-b border-border last:border-0";
+          link.innerHTML =
+            '<span class="text-sm font-medium text-foreground">' +
+            item.title +
+            '</span><span class="text-xs text-muted-foreground line-clamp-1">' +
+            item.description +
+            "</span>";
+          link.addEventListener("click", closeModal);
+          link.addEventListener("mouseenter", () => {
+            selectedIndex = index;
+            updateSelection();
+          });
+          results.appendChild(link);
+        });
+      };
+
+      function openModal() {
+        modal.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+        selectedIndex = -1;
+        setTimeout(() => input.focus(), 50);
+      }
+
+      function closeModal() {
+        modal.classList.add("hidden");
+        document.body.style.overflow = "";
+        input.value = "";
+        selectedIndex = -1;
+        renderResults([]);
+      }
+
+      document
+        .querySelectorAll("[data-blocks-search-trigger]")
+        .forEach((trigger) => {
+          trigger.setAttribute("data-initialized", "true");
+          trigger.addEventListener("click", openModal);
+        });
+
+      if (closeBtn instanceof HTMLButtonElement) {
+        closeBtn.addEventListener("click", closeModal);
+      }
+
+      modal.addEventListener("click", (event) => {
+        const dialog = modal.querySelector(".max-w-md");
+        if (dialog && !dialog.contains(event.target)) {
+          closeModal();
+        }
+      });
+
+      input.addEventListener("input", (event) => {
+        const target = event.target;
+        if (!(target instanceof HTMLInputElement)) return;
+        renderResults(search(target.value));
+      });
+
+      input.addEventListener("keydown", (event) => {
+        const resultItems = results.querySelectorAll("[data-result-item]");
+        const count = resultItems.length;
+        if (!count) return;
+
+        if (event.key === "ArrowDown") {
+          event.preventDefault();
+          selectedIndex = selectedIndex < count - 1 ? selectedIndex + 1 : 0;
+          updateSelection();
+        } else if (event.key === "ArrowUp") {
+          event.preventDefault();
+          selectedIndex = selectedIndex > 0 ? selectedIndex - 1 : count - 1;
+          updateSelection();
+        } else if (event.key === "Enter" && selectedIndex >= 0) {
+          event.preventDefault();
+          const selected = resultItems[selectedIndex];
+          if (selected instanceof HTMLAnchorElement) {
+            closeModal();
+            window.location.href = selected.href;
+          }
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (
+          (event.metaKey || event.ctrlKey) &&
+          event.key.toLowerCase() === "k"
+        ) {
+          event.preventDefault();
+          if (modal.classList.contains("hidden")) openModal();
+          else closeModal();
+        }
+
+        if (event.key === "Escape" && !modal.classList.contains("hidden")) {
+          closeModal();
+        }
+      });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", init);
+    } else {
+      init();
+    }
+  })();
+</script>

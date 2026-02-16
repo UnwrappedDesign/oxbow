@@ -4,8 +4,52 @@ import ThemeToggle from "@/components/assets/ThemeToggle.astro";
 import Logo from "@/components/assets/Logo.astro";
 // Fundations
 import Text from "@/components/fundations/typography/Text.astro";
-
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import BlocksSearch from "@/components/landing/BlocksSearch.astro";
+import {
+  pageSections,
+  pageExamples,
+  forms,
+  elements,
+  overlay,
+  navigation,
+  storeSections,
+} from "@/data/entries.json";
+
+const groupedEntries = [
+  {
+    title: "Marketing",
+    groups: [
+      { label: "Page sections", data: pageSections },
+      { label: "Landing Pages", data: pageExamples },
+    ],
+  },
+  {
+    title: "Application",
+    groups: [
+      { label: "Navigation", data: navigation },
+      { label: "Overlay", data: overlay },
+      { label: "Forms", data: forms },
+      { label: "Elements", data: elements },
+    ],
+  },
+  {
+    title: "eCommerce",
+    groups: [{ label: "Pages", data: storeSections }],
+  },
+];
+
+const searchItems = groupedEntries.flatMap((section) =>
+  section.groups.flatMap((group) =>
+    group.data
+      .filter((entry) => (entry.count || 0) > 0)
+      .map((entry) => ({
+        title: entry.name,
+        description: `${section.title} / ${group.label}`,
+        href: entry.link,
+      })),
+  ),
+);
 ---
 
 <div
@@ -25,6 +69,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
         class="hover:text-foreground duration-300 focus:outline-none"
         href="https://lexingtonthemes.com">Astro Templates</a
       >
+      <BlocksSearch items={searchItems} />
 
       <ThemeToggle />
     </div>

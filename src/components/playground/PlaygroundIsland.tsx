@@ -11,6 +11,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Maximize,
+  TerminalSquare,
 } from "lucide-react";
 type Mode = "light" | "dark";
 type Tab = "preview" | "code";
@@ -79,7 +80,8 @@ export default function PlaygroundIsland({
   const [viewport, setViewport] = useState<"mobile" | "tablet" | "desktop">(
     "desktop",
   );
-  const [isOxbowModalOpen, setIsOxbowModalOpen] = useState(false);
+  const [isCliModalOpen, setIsCliModalOpen] = useState(false);
+  const [isMcpModalOpen, setIsMcpModalOpen] = useState(false);
   const [copiedInstallCommand, setCopiedInstallCommand] = useState(false);
   const [copiedMcpConfig, setCopiedMcpConfig] = useState(false);
   const [activeIdeTab, setActiveIdeTab] = useState<IdeTab>("code");
@@ -173,7 +175,8 @@ export default function PlaygroundIsland({
   useEffect(() => {
     const onEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        setIsOxbowModalOpen(false);
+        setIsCliModalOpen(false);
+        setIsMcpModalOpen(false);
       }
     };
     window.addEventListener("keydown", onEsc);
@@ -469,9 +472,25 @@ export default function PlaygroundIsland({
             </div>
             <div className="relative group">
               <button
-                onClick={() => setIsOxbowModalOpen(true)}
+                onClick={() => {
+                  setIsMcpModalOpen(false);
+                  setIsCliModalOpen(true);
+                }}
                 className={`${iconButtonBase} ${iconButtonText}`}
-                aria-label="Install with Oxbow CLI/MCP"
+                aria-label="Install with Oxbow CLI"
+              >
+                <TerminalSquare size={14} />
+              </button>
+              <ToolbarTooltip label="Install with CLI" />
+            </div>
+            <div className="relative group">
+              <button
+                onClick={() => {
+                  setIsCliModalOpen(false);
+                  setIsMcpModalOpen(true);
+                }}
+                className={`${iconButtonBase} ${iconButtonText}`}
+                aria-label="Install with MCP"
               >
                 <svg
                   width="16"
@@ -577,10 +596,10 @@ export default function PlaygroundIsland({
         </div>
         </div>
       </div>
-      {isOxbowModalOpen && (
+      {isCliModalOpen && (
         <div
           className="fixed inset-0 z-80 flex items-center justify-center p-4 bg-background/30 backdrop-blur-[1px]"
-          onClick={() => setIsOxbowModalOpen(false)}
+          onClick={() => setIsCliModalOpen(false)}
         >
           <div
             className="w-full max-w-xl rounded-lg p-4 shadow-lg bg-background"
@@ -588,12 +607,12 @@ export default function PlaygroundIsland({
           >
             <div className="flex items-center justify-between">
               <p className="text-sm font-medium text-foreground">
-                Install this block
+                Install with CLI
               </p>
               <button
                 type="button"
                 className="text-xs text-muted-foreground hover:text-foreground"
-                onClick={() => setIsOxbowModalOpen(false)}
+                onClick={() => setIsCliModalOpen(false)}
               >
                 Close
               </button>
@@ -610,6 +629,30 @@ export default function PlaygroundIsland({
                   {copiedInstallCommand ? "Copied" : "Copy"}
                 </button>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {isMcpModalOpen && (
+        <div
+          className="fixed inset-0 z-80 flex items-center justify-center p-4 bg-background/30 backdrop-blur-[1px]"
+          onClick={() => setIsMcpModalOpen(false)}
+        >
+          <div
+            className="w-full max-w-xl rounded-lg p-4 shadow-lg bg-background"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between">
+              <p className="text-sm font-medium text-foreground">
+                Install with MCP
+              </p>
+              <button
+                type="button"
+                className="text-xs text-muted-foreground hover:text-foreground"
+                onClick={() => setIsMcpModalOpen(false)}
+              >
+                Close
+              </button>
             </div>
             <div className="mt-4">
               <p className="text-xs text-muted-foreground">
