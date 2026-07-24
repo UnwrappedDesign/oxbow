@@ -32,36 +32,37 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
                   class="px-3 py-2 font-medium text-left text-foreground"
                 >
                   Name
-                  <th
-                    scope="col"
-                    class="px-3 py-2 font-medium text-left text-foreground"
-                  >
-                    Price
-                  </th>
-                  <th
-                    scope="col"
-                    class="px-3 py-2 font-medium text-left text-foreground"
-                  >
-                    Status
-                  </th>
-                  <th
-                    scope="col"
-                    class="px-3 py-2 font-medium text-left text-foreground"
-                  >
-                    Total Sales
-                  </th>
-                  <th
-                    scope="col"
-                    class="px-3 py-2 font-medium text-right text-foreground"
-                  >
-                    Total revenue
-                  </th>
-                  <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
-                    <span class="sr-only">Edit</span>
-                  </th>
+                </th>
+                <th
+                  scope="col"
+                  class="px-3 py-2 font-medium text-left text-foreground"
+                >
+                  Price
+                </th>
+                <th
+                  scope="col"
+                  class="px-3 py-2 font-medium text-left text-foreground"
+                >
+                  Status
+                </th>
+                <th
+                  scope="col"
+                  class="px-3 py-2 font-medium text-left text-foreground"
+                >
+                  Total Sales
+                </th>
+                <th
+                  scope="col"
+                  class="px-3 py-2 font-medium text-right text-foreground"
+                >
+                  Total revenue
+                </th>
+                <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
+                  <span class="sr-only">Edit</span>
                 </th>
               </tr>
-              <tbody class="divide-y divide-border">
+            </thead>
+            <tbody class="divide-y divide-border">
                 <template x-for="r in pageRows()" :key="r.name">
                   <tr>
                     <td
@@ -81,7 +82,7 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
                       x-text="r.price"></td>
                     <td
                       class="max-w-xs px-3 py-2 overflow-hidden whitespace-nowrap"
-                      :class="r.status==='Paid' 'text-success' r.status==='Canceled' ? 'text-destructive' : 'text-warning'"
+                      :class="r.status==='Paid' ? 'text-success' : r.status==='Canceled' ? 'text-destructive' : 'text-warning'"
                       x-text="r.status"></td>
                     <td
                       class="px-3 py-2 text-sm font-medium whitespace-nowrap text-muted-foreground"
@@ -98,8 +99,7 @@ import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
                     >No results</td
                   >
                 </tr>
-              </tbody>
-            </thead>
+            </tbody>
           </table>
         </div>
       </div>
