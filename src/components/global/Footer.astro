@@ -6,7 +6,11 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 <footer>
   <Wrapper class="py-8">
     <div class="max-w-2xl mx-auto text-center">
-      <Text tag="p" variant="textSM" class="text-muted-foreground">
+      <Text
+        tag="p"
+        variant="textSM"
+        class="text-muted-foreground flex flex-wrap gap-1 justify-center"
+      >
         Built by
         <a
           target="_blank"
@@ -23,6 +27,35 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
           href="https://github.com/UnwrappedDesign/oxbow">GitHub</a
         >
       </Text>
+      <iframe
+        class="mx-auto"
+        id="kobbe-embed-live"
+        src="https://app.kobbe.io/embed/embed_c8705a8f1cf53ec82ae5ca5d35305c73/live?primaryColor=0c8aff&theme=system"
+        width="288"
+        height="52"
+        style="background:transparent!important;border:none;display:block;width:100%;max-width:288px;height:52px;overflow:hidden;"
+        frameborder="0"
+        allowtransparency="true"
+        loading="lazy"
+        title="Kobbe live visitors"
+        scrolling="no"></iframe><script>
+        (function () {
+          var o = "https://app.kobbe.io";
+          window.addEventListener("message", function (e) {
+            if (e.origin !== o) return;
+            var d = e.data;
+            if (
+              !d ||
+              d.type !== "kobbe:embed-widget-height" ||
+              d.kind !== "live" ||
+              typeof d.height !== "number"
+            )
+              return;
+            var f = document.getElementById("kobbe-embed-live");
+            if (f) f.style.height = d.height + "px";
+          });
+        })();
+      </script>
     </div>
   </Wrapper>
 </footer>
